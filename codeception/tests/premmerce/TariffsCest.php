@@ -20,11 +20,11 @@ use \PremmerceTester;
  */
 class TariffsCest {
 
-    protected $storeUrl = 'http://imageqatest.premme.com';
+    protected $storeUrl = 'http://hewrewfgrhjwer.premme.com';
 //    protected $storeUrl = 'http://qwertystore.premme.com';
-    protected $email = 'imageqa@tariff.test';
+    protected $email = 'qweryt@ejbfba.ew';
 //    protected $email    = 'qwerty@store.store';
-    protected $password = 'imageqa';
+    protected $password = 'premmerce';
 //    protected $password = 'qwerty';
 
     protected $actualTariff;
@@ -41,16 +41,16 @@ class TariffsCest {
         'Настройки шаблона интернет-магазина',
         'Рейтинг',
         'Галерея',
-        'Конструктор полей',
+//        'Конструктор полей',
         'Редактор шаблонов',
         'Управление шаблонами',
         //standart
         'Импорт-экспорт в CSV/XLS',
-        'Скидки интернет-магазина',
+//        'Скидки интернет-магазина',
         'SEO эксперт',
         'Module Y.Market',
         //bussiness
-        'Списки пожеланий',
+//        'Списки пожеланий',
         'Синхронизация с 1С',
         'Статистика',
         'Модуль редиректов',

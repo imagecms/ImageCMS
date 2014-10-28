@@ -32,34 +32,66 @@ class CurrenciesPage
     
     //FrontEnd Search
     public static $SearchField  = ".//*[@id='inputString']";
-    public static $SearchButton  = "html/body/div[1]/div[1]/header/div[2]/div/div/div[2]/div[2]/div/form/span/button";
+    public static $SearchButton  = '//*[@type="submit"]';
     
     
     //FrontEnd Product Price 
-    public static $MainFirstPlace  = ".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span/span/span[1]";
-    public static $MainSecondPlace  = ".//*[@id='items-catalog-main']/li/div[1]/div[2]/span/span/span/span[2]";
-    public static $AdditFirstPlace  = '//*[@id="items-catalog-main"]/li/div[1]/div[2]/span/span[2]/span/span/span[1]';
-    public static $AdditSecondPlace  = '//*[@id="items-catalog-main"]/li/div[1]/div[2]/span/span[2]/span/span/span[2]';
+    public static $MainFirstPlace  = '//*[@id="items-catalog-main"]/li[1]//*[@class="price-new"]/span/span[1]';
+    public static $MainSecondPlace  = '//*[@id="items-catalog-main"]/li[1]//*[@class="price-new"]/span/span[2]';
+    public static $AdditFirstPlace  = '//*[@id="items-catalog-main"]/li[1]//*[@class="price-add"]/span/span[1]';
+    public static $AdditSecondPlace  = '//*[@id="items-catalog-main"]/li[1]//*[@class="price-add"]/span/span[2]';
+    
+    public static $FirstProductSearching  = '//*[@id="items-catalog-main"]/li[1]/a';
     
     //FrontEnd Product Card Price 
-    public static $MainFirstPlaceCard  = "/html/body/div[1]/div[2]/div[2]/div[1]/div/div[2]/div[2]/div/div/div[1]/div[1]/span/span[1]/span/span/span[1]";
-    public static $MainSecondPlaceCard  = "/html/body/div[1]/div[2]/div[2]/div[1]/div/div[2]/div[2]/div/div/div[1]/div[1]/span/span[1]/span/span/span[2]";
-    public static $AdditFirstPlaceCard  = '/html/body/div[1]/div[2]/div[2]/div[1]/div/div[2]/div[2]/div/div/div[1]/div[1]/span/span[2]/span/span/span[1]';
-    public static $AdditSecondPlaceCard  = '/html/body/div[1]/div[2]/div[2]/div[1]/div/div[2]/div[2]/div/div/div[1]/div[1]/span/span[2]/span/span/span[2]';
+    public static $MainFirstPlaceCard  = './/*[@class="frame-prices-buy-wish-compare"]//*[@class="price-new"]/span/span[1]';
+    public static $MainSecondPlaceCard  = './/*[@class="frame-prices-buy-wish-compare"]//*[@class="price-new"]/span/span[2]';
+    public static $AdditFirstPlaceCard  = './/*[@class="frame-prices-buy-wish-compare"]//*[@class="price-add"]/span/span[1]';
+    public static $AdditSecondPlaceCard  = './/*[@class="frame-prices-buy-wish-compare"]//*[@class="price-add"]/span/span[2]';
+    
+    public static $CardForm  = '//*[@class="frame-inside page-product"]';
+    public static $BuyCardButton  = '//*[@class="btnBuy infoBut"]';
+    public static $CartInfo  = '//*[@id="tinyBask"]/div/button/span[2]/span[2]/span[1]';
+    public static $CartButton  = './/*[@class="btnBask"]';
+    public static $ExecuteOrderCardButton  = './/*[@class="btn-buy btn-buy-p f_r"]';
     
     //FrontEnd Product Cart Price 
-    public static $MainFirstCart  = '//*[@id="popupCart"]/div/div[3]/div[1]/div/span[2]/span/span[1]/span/span/span[1]';
-    public static $MainSecondCart  = '//*[@id="popupCart"]/div/div[3]/div[1]/div/span[2]/span/span[1]/span/span/span[2]';
-    public static $AdditFirstCart  = '//*[@id="popupCart"]/div/div[3]/div[1]/div/span[2]/span/span[2]/span/span/span[1]';
-    public static $AdditSecondCart  = '//*[@id="popupCart"]/div/div[3]/div[1]/div/span[2]/span/span[2]/span/span/span[2]';
+    public static $MainFirstCart  = ".//*[@id='popupCart']//*[@class='clearfix']//*[@class='price-new']/span/span[1]";
+    public static $MainSecondCart  = ".//*[@id='popupCart']//*[@class='clearfix']//*[@class='price-new']/span/span[1]";
+    public static $AdditFirstCart  = ".//*[@id='popupCart']//*[@class='clearfix']//*[@class='price-add']/span/span[1]";
+    public static $AdditSecondCart  = ".//*[@id='popupCart']//*[@class='clearfix']//*[@class='price-add']/span/span[1]";
     
-    public static $MainFirstPlaceSum  = '//*[@id="popupCart"]/div/div[2]/div/div/div/table/tbody/tr/td[4]/div/span/span/span/span/span[1]';
-    public static $MainSecondPlaceSum  = '//*[@id="popupCart"]/div/div[2]/div/div/div/table/tbody/tr/td[4]/div/span/span/span/span/span[2]';
+    public static $MainFirstPlaceSum  = ".//*[@id='popupCart']//*[@class='table-order']//*[@class='price-new']/span/span[1]";
+    public static $MainSecondPlaceSum  = ".//*[@id='popupCart']//*[@class='table-order']//*[@class='price-new']/span/span[2]";
     
+    public static $CartDeleteProductButton  = './/*[@class="icon_times_cart"]';
+    public static $CloseCartButton  = '//*[@id="popupCart"]/div/button';
+    public static $CartForm  = '//*[@id="popupCart"]';
     
+    //FrontEnd Product ExecuteOrdering Price 
     
+    public static $MainFirstProductExecuteOrdering  = './/*[@class="frame-cur-sum-price"]//*[@class="price-new"]/span/span[1]';
+    public static $MainSecondProductExecuteOrdering  = './/*[@class="frame-cur-sum-price"]//*[@class="price-new"]/span/span[2]';
+    public static $MainFirstCostProductsExecuteOrdering  = './/*[@class="gen-info-price"]//*[@class="f_r"]/span[1]';
+    public static $MainSecondCostProductsExecuteOrdering  = './/*[@class="gen-info-price"]//*[@class="f_r"]/span[2]';
+    public static $MainFirstSumExecuteOrdering  = './/*[@class="frame-prices f_r"]//*[@class="price-new"]/span/span[1]';
+    public static $MainSecondSumExecuteOrdering  = './/*[@class="frame-prices f_r"]//*[@class="price-new"]/span/span[2]';
+    public static $AdditFirstSumExecuteOrdering  = './/*[@class="frame-prices f_r"]//*[@class="price-add"]/span/span[1]';
+    public static $AdditSecondSumExecuteOrdering  = './/*[@class="frame-prices f_r"]//*[@class="price-add"]/span/span[2]';
     
+    public static $PhoneField  = '//*[@class="m-b_5"]';
+    public static $SubmitOrderButton  = '//*[@id="submitOrder"]';
     
+    //FrontEnd Product OrderFinish Price 
+    
+    public static $MainFirstProductOrderFinish  = './/*[@class="frame-cur-sum-price"]//*[@class="price-new"]/span/span[1]';
+    public static $MainSecondProductOrderFinish  = './/*[@class="frame-cur-sum-price"]//*[@class="price-new"]/span/span[2]';
+    public static $MainFirstCostProductsOrderFinish  = './/*[@class="gen-info-price"]//*[@class="price-new"]/span/span[1]';
+    public static $MainSecondCostProductsOrderFinish  = './/*[@class="gen-info-price"]//*[@class="price-new"]/span/span[2]';
+    public static $MainFirstSumOrderFinish  = './/*[@class="frame-prices f-s_0 f_r"]//*[@class="price-new"]/span/span[1]';
+    public static $MainSecondSumOrderFinish  = './/*[@class="frame-prices f-s_0 f_r"]//*[@class="price-new"]/span/span[2]';
+    public static $AdditFirstSumOrderFinish  = './/*[@class="frame-prices f-s_0 f_r"]//*[@class="price-add"]/span/span[1]';
+    public static $AdditSecondSumOrderFinish  = './/*[@class="frame-prices f-s_0 f_r"]//*[@class="price-add"]/span/span[2]';
     
     
     //List Landing Page

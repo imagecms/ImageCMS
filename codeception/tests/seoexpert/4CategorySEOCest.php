@@ -9,19 +9,19 @@ class CategorySEOCest
     
 //---------------------------AUTORIZATION--------------------------------------- 
     /**
-     * @group a
+     * @group aa
      */
     public function Login(SeoExpertTester $I){
         InitTest::Login($I);
     }
     
    
-    /**
-     * @group a
-     */
-    public function ClearChash(SeoExpertTester $I) {
-        InitTest::ClearAllCach($I);
-    }  
+//    /**
+//     * @group a
+//     */
+//    public function ClearChash(SeoExpertTester $I) {
+//        InitTest::ClearAllCach($I);
+//    }  
     
     
     
@@ -40,7 +40,7 @@ class CategorySEOCest
      */
     public function CreateCategoryEng (SeoExpertTester\seoexpertSteps $I){      
         $I->SeoCreateCategoryProduct($createNameCategory = 'Bird');
-        InitTest::ClearAllCach($I);        
+//        InitTest::ClearAllCach($I);        
     }
     
     
@@ -86,7 +86,7 @@ class CategorySEOCest
      */
     public function CreateBrandFifth (SeoExpertTester\seoexpertSteps $I){
         $I->SeoCreateBrand($brandName = 'Stone Island');
-        InitTest::ClearAllCach($I);
+//        InitTest::ClearAllCach($I);
     }
     
     
@@ -157,7 +157,7 @@ class CategorySEOCest
                 $BrandProduct   = 'Stone Island',
                 $CategoryProduct = 'Bird',
                 $Additional_Category = 'Напиток');
-        InitTest::ClearAllCach($I);
+//        InitTest::ClearAllCach($I);
     }
 
     
@@ -178,7 +178,7 @@ class CategorySEOCest
         $I->SeoCreateDescriptonAndH1($name_category = 'Напиток',
                                     $description_category = 'ДЕСК страх и ненависть ДЕСК',
                                     $H1_category = "'Н1 категории Н1'");
-        InitTest::ClearAllCach($I);
+//        InitTest::ClearAllCach($I);
     }
     
     
@@ -193,16 +193,16 @@ class CategorySEOCest
     }
     
     
-     /**
-     * @group a
-     */
-    public function CCach(SeoExpertTester $I) {
-        InitTest::ClearAllCach($I);
-    }
+//     /**
+//     * @group a
+//     */
+//    public function CCach(SeoExpertTester $I) {
+//        InitTest::ClearAllCach($I);
+//    }
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps 
      */
     public function GetIDCategory(SeoExpertTester\seoexpertSteps $I) {
@@ -215,7 +215,7 @@ class CategorySEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function TabBaseSetData(SeoExpertTester\seoexpertSteps $I) {
@@ -224,7 +224,7 @@ class CategorySEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function RusTitle (SeoExpertTester\seoexpertSteps $I) {
@@ -242,7 +242,7 @@ class CategorySEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function EngTitle (SeoExpertTester\seoexpertSteps $I) {
@@ -260,7 +260,7 @@ class CategorySEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function RusTitleText (SeoExpertTester\seoexpertSteps $I) {
@@ -275,7 +275,7 @@ class CategorySEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function EngTitleText (SeoExpertTester\seoexpertSteps $I) {
@@ -290,16 +290,16 @@ class CategorySEOCest
     
     
     
-    /**
-     * @group a
-     */
-    public function ClearC(SeoExpertTester $I) {
-        InitTest::ClearAllCach($I);
-    }
+//    /**
+//     * @group a
+//     */
+//    public function ClearC(SeoExpertTester $I) {
+//        InitTest::ClearAllCach($I);
+//    }
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function RusTitleTrnslit (SeoExpertTester\seoexpertSteps $I) {
@@ -318,7 +318,7 @@ class CategorySEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function EngTitleTranslit (SeoExpertTester\seoexpertSteps $I) {
@@ -333,16 +333,16 @@ class CategorySEOCest
     }
     
     
-    /**
-     * @group a
-     */
-    public function ClearChashOn(SeoExpertTester $I) {
-        InitTest::ClearAllCach($I);
-    }
+//    /**
+//     * @group a
+//     */
+//    public function ClearChashOn(SeoExpertTester $I) {
+//        InitTest::ClearAllCach($I);
+//    }
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function RusTitlePadegu (SeoExpertTester\seoexpertSteps $I) {
@@ -359,7 +359,7 @@ class CategorySEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function RusDescriptionPadegu (SeoExpertTester\seoexpertSteps $I) {
@@ -376,7 +376,7 @@ class CategorySEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function RusTitlePadeguTranslit (SeoExpertTester\seoexpertSteps $I) {
@@ -391,7 +391,7 @@ class CategorySEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function RusDescriptionPadeguTranslit (SeoExpertTester\seoexpertSteps $I) {
@@ -405,16 +405,16 @@ class CategorySEOCest
     }
     
     
-    /**
-     * @group a
-     */
-    public function ClearChashClear(SeoExpertTester $I) {
-        InitTest::ClearAllCach($I);
-    }
+//    /**
+//     * @group a
+//     */
+//    public function ClearChashClear(SeoExpertTester $I) {
+//        InitTest::ClearAllCach($I);
+//    }
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function EngTitlePadegu (SeoExpertTester\seoexpertSteps $I) {
@@ -430,7 +430,7 @@ class CategorySEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function EngDEscriprionPadegu (SeoExpertTester\seoexpertSteps $I) {
@@ -446,7 +446,7 @@ class CategorySEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function EngTitlePadeguTranslit (SeoExpertTester\seoexpertSteps $I) {
@@ -463,7 +463,7 @@ class CategorySEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function EngDescriptionPadeguTranslit (SeoExpertTester\seoexpertSteps $I) {
@@ -476,18 +476,18 @@ class CategorySEOCest
         $I->CheckValuesInPage($URL_Page = '/shop/category/bird#', $values = "Bird  Bird  Bird  Bird  Bird  Bird / mini.loc");
     }
     
-    /**
-     * @group a
-     */
-    public function ChashClear(SeoExpertTester $I) {
-        InitTest::ClearAllCach($I);
-    }
+//    /**
+//     * @group a
+//     */
+//    public function ChashClear(SeoExpertTester $I) {
+//        InitTest::ClearAllCach($I);
+//    }
     
     
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function RusLenghtFirst (SeoExpertTester\seoexpertSteps $I) {
@@ -507,7 +507,7 @@ class CategorySEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function RusLenghtFirstMax (SeoExpertTester\seoexpertSteps $I) {
@@ -527,7 +527,7 @@ class CategorySEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function RusLenghtFirstMin (SeoExpertTester\seoexpertSteps $I) {
@@ -548,7 +548,7 @@ class CategorySEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function RusLenghtFirstNull (SeoExpertTester\seoexpertSteps $I) {
@@ -567,7 +567,7 @@ class CategorySEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function RusPagination (SeoExpertTester\seoexpertSteps $I) {
@@ -595,7 +595,7 @@ class CategorySEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function RusAmuontBrandOne (SeoExpertTester\seoexpertSteps $I) {
@@ -611,7 +611,7 @@ class CategorySEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function EngAmuontBrandOne (SeoExpertTester\seoexpertSteps $I) {
@@ -626,7 +626,7 @@ class CategorySEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function RusAmuontBrandTwo (SeoExpertTester\seoexpertSteps $I) {
@@ -643,7 +643,7 @@ class CategorySEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function EngAmuontBrandTwo (SeoExpertTester\seoexpertSteps $I) {
@@ -659,7 +659,7 @@ class CategorySEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function RusAmuontBrandThree (SeoExpertTester\seoexpertSteps $I) {
@@ -675,7 +675,7 @@ class CategorySEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function EngAmuontBrandThree (SeoExpertTester\seoexpertSteps $I) {
@@ -691,7 +691,7 @@ class CategorySEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function RusAmuontBrandMax (SeoExpertTester\seoexpertSteps $I) {
@@ -708,7 +708,7 @@ class CategorySEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function EngAmuontBrandMax (SeoExpertTester\seoexpertSteps $I) {
@@ -727,7 +727,7 @@ class CategorySEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function RusKeywords (SeoExpertTester\seoexpertSteps $I) {
@@ -746,7 +746,7 @@ class CategorySEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function CheckBoxActiveOn (SeoExpertTester\seoexpertSteps $I) {
@@ -764,7 +764,7 @@ class CategorySEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function CategoryCheckBoxActiveOff (SeoExpertTester\seoexpertSteps $I) {
@@ -785,7 +785,7 @@ class CategorySEOCest
     
     
     /**
-     * @group a
+     * @group aa
      * @guy SeoExpertTester\seoexpertSteps
      */
     public function CategoryCheckBoxNullMetaData (SeoExpertTester\seoexpertSteps $I) {

@@ -56,10 +56,11 @@ class Commentsapi extends Comments {
             $this->cache->store('comments_' . $item_id . $this->module, $comments, $this->cache_ttl, 'comments');
         }
 
-        if ($comments != null)
+        if ($comments != null) {
             $comments_count = count($comments);
-        else
+        } else {
             $comments_count = 0;
+        }
 
         if (is_array($comments)) {
             $i = 0;
@@ -89,12 +90,12 @@ class Commentsapi extends Comments {
         }
         ($hook = get_hook('comments_read_com_tpl')) ? eval($hook) : NULL;
 
-        if ($this->enable_comments)
+        if ($this->enable_comments) {
             $comments = \CMSFactory\assetManager::create()
                     ->setData($data)
                     ->registerStyle('comments', TRUE)
                     ->fetchTemplate($this->tpl_name);
-        else {
+        } else {
             $comments = '';
         }
 
@@ -116,7 +117,7 @@ class Commentsapi extends Comments {
         $item_id = $this->parsUrl($_SERVER['HTTP_REFERER']);
 
         $commentsCount = $this->getTotalCommentsForProducts($item_id);
-        $comments = $this->base->get($item_id, 0, $this->module, $_POST[countcomment]);
+        $comments = $this->base->get($item_id, 0, $this->module, $_POST['countcomment']);
 
         // Read comments template
         // Set page id for comments form
@@ -125,10 +126,11 @@ class Commentsapi extends Comments {
             $this->cache->store('comments_' . $item_id . $this->module, $comments, $this->cache_ttl, 'comments');
         }
 
-        if ($comments != null)
+        if ($comments != null) {
             $comments_count = count($comments);
-        else
+        } else {
             $comments_count = 0;
+        }
 
         if (is_array($comments)) {
             $i = 0;
@@ -150,7 +152,7 @@ class Commentsapi extends Comments {
             'use_captcha' => $this->use_captcha,
             'use_moderation' => $this->use_moderation,
             'enable_comments' => $this->enable_comments,
-            'visibleMainForm' => $_POST[visibleMainForm]
+            'visibleMainForm' => $_POST['visibleMainForm']
         );
 
         if ($this->use_captcha == TRUE && !$this->dx_auth->is_admin()) {
@@ -159,12 +161,12 @@ class Commentsapi extends Comments {
         }
         ($hook = get_hook('comments_read_com_tpl')) ? eval($hook) : NULL;
 
-        if ($this->enable_comments)
+        if ($this->enable_comments) {
             $comments = \CMSFactory\assetManager::create()
                     ->setData($data)
                     ->registerStyle('comments', TRUE)
                     ->fetchTemplate($this->tpl_name);
-        else {
+        } else {
             $comment = '';
         }
 
@@ -196,8 +198,9 @@ class Commentsapi extends Comments {
                     ->get('shop_products')
                     ->row();
 
-            if ($id->enable_comments == 0)
+            if ($id->enable_comments == 0) {
                 $this->enable_comments = false;
+            }
             return $id->id;
         }
 
@@ -207,7 +210,6 @@ class Commentsapi extends Comments {
 
             return $url;
         }
-
         if (strstr($url, '/album/')) {
             $url = explode(DS, $url);
             $url = $url[count($url) - 1];
@@ -221,8 +223,9 @@ class Commentsapi extends Comments {
                     ->get('settings')
                     ->row();
 
-            if ($id->comments_status == 0)
+            if ($id->comments_status == 0) {
                 $this->enable_comments = false;
+            }
             return $id->main_page_id;
         }
 
@@ -231,28 +234,36 @@ class Commentsapi extends Comments {
 
         $id = $this->db->select('id, comments_status')
                 ->where('url', $paths)
-                ->get('content')
-                ->row();
+                ->get('content');
+        
+        if ($id) {
+            $id = $id->row();
+        }
 
-        if ($id->comments_status == 0)
+        if ($id->comments_status == 0) {
             $this->enable_comments = FALSE;
+        }
         return $id->id;
     }
 
     public function getModule($url) {
         $url = '/' . $url;
 
-        if (strstr($url, '/shop/'))
+        if (strstr($url, '/shop/')) {
             return 'shop';
+        }
 
-        if (strstr($url, '/bloh/'))
+        if (strstr($url, '/bloh/')) {
             return 'core';
+        }
 
-        if (strstr($url, '/gallery/'))
+        if (strstr($url, '/gallery/')) {
             return 'gallery';
+        }
 
-        if ($url == site_url())
+        if ($url == site_url()) {
             return 'core';
+        }
 
         return 'core';
     }
@@ -389,10 +400,9 @@ class Commentsapi extends Comments {
                     $field_name = 'captcha';
 
 //                if ($this->form_validation->error($field_name)) {
-                    $this->dx_auth->captcha();
-                    $cap_image = $this->dx_auth->get_captcha_image();
+                $this->dx_auth->captcha();
+                $cap_image = $this->dx_auth->get_captcha_image();
 //                }
-
 //                if ($this->use_captcha == TRUE && !$this->dx_auth->is_admin()) {
 //                    $this->dx_auth->captcha();
 //                    $data['cap_image'] = $this->dx_auth->get_captcha_image();
@@ -515,8 +525,7 @@ class Commentsapi extends Comments {
                 return FALSE;
             else
                 return TRUE;
-        }
-        else
+        } else
             return TRUE;
     }
 

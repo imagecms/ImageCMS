@@ -178,7 +178,7 @@ class DeleteStatusCest
         $I->click(NavigationBarPage::$CallbacksList);
         $I->waitForElementNotVisible(CallbacksPage::$OrdersFormUp);
         $I->wait('5');
-        $rowCallback=$I->grabClassCount($I,"btn btn-small btn-danger my_btn_s");
+        $rowCallback=$I->grabClassCount($I,".btn btn-small btn-danger my_btn_s");
         $I->comment((string)$rowCallback);
         $I->see('name', CallbacksPage::UserNameLine('1'));
         $I->see('123', CallbacksPage::PhoneLine('1'));
