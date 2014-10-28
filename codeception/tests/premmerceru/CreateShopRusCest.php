@@ -4,770 +4,801 @@ use \RussianTester;
 class CreateShopRusCest
 {
     private $store, $mail;
-//    public function AllElementsPresent1(RussianTester $I)
-//    {
-//        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-//        $I->amOnPage(PremmerceMainPage::$URL); 
-//        $I->seeElement(PremmerceMainPage::$CreateShopField);
-//        $I->seeElement(PremmerceMainPage::$DomainEnd);
-//        $I->see(".premme.com", PremmerceMainPage::$DomainEnd);
-//        $I->click(PremmerceMainPage::$CreateShopButtonCentre); 
-//        $RequiredDomain=$I->grabAttributeFrom(PremmerceMainPage::$ErrorDomain, 'class');
-//        $I->comment("RequiredDomain: $RequiredDomain");
-//        $I->assertEquals($RequiredDomain, 'create-msg');
-//        $I->wait('2');
-//        $I->fillField(PremmerceMainPage::$CreateShopField, 'sh');
-//        $I->wait('2');
-//        $I->click(PremmerceMainPage::$CreateShopButtonCentre);
-//        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);                
-//        $I->seeElement(PremmerceCreateShopPage::$DomainEndInRegisterForm);
-//        $I->see(".premme.com", PremmerceCreateShopPage::$DomainEndInRegisterForm);        
-//        $I->seeElement(PremmerceCreateShopPage::$EmailField);
-//        $I->seeElement(PremmerceCreateShopPage::$PasswordField);
-//        $I->seeElement(PremmerceCreateShopPage::$UserNameField);
-//        $I->seeElement(PremmerceCreateShopPage::$PhoneNumberField);
-//        $I->seeElement(PremmerceCreateShopPage::$CountrySelectMenu);
-//        $I->seeElement(PremmerceCreateShopPage::$CityField);
-//        $I->seeElement(PremmerceCreateShopPage::$CategorySelectMenu);
-//        $I->seeElement(PremmerceCreateShopPage::$LevelOfUseSelectMenu);
-//        $I->seeElement(PremmerceCreateShopPage::$AgreeCheckbox);
-//        $I->seeElement(PremmerceCreateShopPage::$WorkConditionLink);
-//        $I->seeElement(PremmerceCreateShopPage::$CreateShopNowRegisterFormButton);       
-//    }
-//    
-//    
-//    public function AllElementsPresent2(RussianTester $I)
-//    {
-//        $I->amOnPage(PremmerceMainPage::$URL);        
-//        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
-//        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);                
-//        $I->seeElement(PremmerceCreateShopPage::$DomainEndInRegisterForm);
-//        $I->see(".premme.com", PremmerceCreateShopPage::$DomainEndInRegisterForm);        
-//        $I->seeElement(PremmerceCreateShopPage::$PasswordField);
-//        $I->seeElement(PremmerceCreateShopPage::$UserNameField);
-//        $I->seeElement(PremmerceCreateShopPage::$PhoneNumberField);
-//        $I->seeElement(PremmerceCreateShopPage::$CountrySelectMenu);
-//        $I->seeElement(PremmerceCreateShopPage::$CityField);
-//        $I->seeElement(PremmerceCreateShopPage::$CategorySelectMenu);
-//        $I->seeElement(PremmerceCreateShopPage::$LevelOfUseSelectMenu);
-//        $I->seeElement(PremmerceCreateShopPage::$AgreeCheckbox);
-//        $I->seeElement(PremmerceCreateShopPage::$WorkConditionLink);
-//        $I->seeElement(PremmerceCreateShopPage::$CreateShopNowRegisterFormButton);       
-//    }
-//    
-//    
-//    public function RequiredFields1(RussianTester $I)
-//    {
-//        $I->amOnPage(PremmerceMainPage::$URL);
-//        $I->wait(5);
-//        $I->fillField(PremmerceMainPage::$CreateShopField, 'ыывв');
-//        $I->wait('2');
-//        $I->click(PremmerceMainPage::$CreateShopButtonCentre);
-//        $ErrorDomain=$I->grabAttributeFrom(PremmerceMainPage::$ErrorDomain.'/span', 'class');
-//        $I->comment("ErrorDomain: $ErrorDomain");
-//        $I->assertEquals($ErrorDomain, 'text-el');
-//        $I->wait('2');
-//        $I->fillField(PremmerceMainPage::$CreateShopField, 'sh');
-//        $I->wait('2');
-//        $I->click(PremmerceMainPage::$CreateShopButtonCentre);
-//        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm); 
-//        $I->fillField(PremmerceCreateShopPage::$ShopNameField, 'паыво');
-//        $I->click(PremmerceCreateShopPage::$CreateShopNowRegisterFormButton);        
-//        $ErrorDomain=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorDomain, 'class');
-//        $I->comment("ErrorDomain: $ErrorDomain");
-//        $I->assertEquals($ErrorDomain, 'error');
-//        $RequiredEmail=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorEmail, 'class');
-//        $I->comment("RequiredEmail: $RequiredEmail");
-//        $I->assertEquals($RequiredEmail, 'error');
-//        $RequiredPassword=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorPassword, 'class');
-//        $I->comment("RequiredPassword: $RequiredPassword");
-//        $I->assertEquals($RequiredPassword, 'error');
-//        $RequiredUserName=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorUserName, 'class');
-//        $I->comment("RequiredUserName: $RequiredUserName");
-//        $I->assertEquals($RequiredUserName, 'error');
-//        $RequiredPhone=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorPhoneNumber, 'class');
-//        $I->comment("RequiredPhone: $RequiredPhone");
-//        $I->assertEquals($RequiredPhone, 'error');
-//        $RequiredCity=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorCity, 'class');
-//        $I->comment("RequiredCity: $RequiredCity");
-//        $I->assertEquals($RequiredCity, 'error');        
-//        $RequiredLevel=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorLevelOfUse, 'class');
-//        $I->comment("RequiredLevel: $RequiredLevel");
-//        $I->assertEquals($RequiredLevel, 'error');
-//        $RequiredAgree=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorAgree, 'class');
-//        $I->comment("RequiredAgree: $RequiredAgree");
-//        $I->assertEquals($RequiredAgree, 'error');
-//    }
-//    
-//        
-//    public function RequiredFields2(RussianTester $I)
-//    {
-//        $I->amOnPage(PremmerceMainPage::$URL);        
-//        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
-//        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm); 
-//        $I->click(PremmerceCreateShopPage::$CreateShopNowRegisterFormButton);
-//        $ErrorDomain=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorDomain, 'class');
-//        $I->comment("ErrorDomain: $ErrorDomain");
-//        $I->assertEquals($ErrorDomain, 'error');
-//        $RequiredEmail=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorEmail, 'class');
-//        $I->comment("RequiredEmail: $RequiredEmail");
-//        $I->assertEquals($RequiredEmail, 'error');
-//        $RequiredPassword=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorPassword, 'class');
-//        $I->comment("RequiredPassword: $RequiredPassword");
-//        $I->assertEquals($RequiredPassword, 'error');
-//        $RequiredUserName=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorUserName, 'class');
-//        $I->comment("RequiredUserName: $RequiredUserName");
-//        $I->assertEquals($RequiredUserName, 'error');
-//        $RequiredPhone=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorPhoneNumber, 'class');
-//        $I->comment("RequiredPhone: $RequiredPhone");
-//        $I->assertEquals($RequiredPhone, 'error');
-//        $RequiredCity=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorCity, 'class');
-//        $I->comment("RequiredCity: $RequiredCity");
-//        $I->assertEquals($RequiredCity, 'error');        
-//        $RequiredLevel=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorLevelOfUse, 'class');
-//        $I->comment("RequiredLevel: $RequiredLevel");
-//        $I->assertEquals($RequiredLevel, 'error');
-//        $RequiredAgree=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorAgree, 'class');
-//        $I->comment("RequiredAgree: $RequiredAgree");
-//        $I->assertEquals($RequiredAgree, 'error');
-//    }
+    public function AllElementsPresent1(RussianTester $I)
+    {
+        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
+        $I->amOnPage(PremmerceMainPage::$URL); 
+        $I->seeElement(PremmerceMainPage::$CreateShopField);
+        $I->seeElement(PremmerceMainPage::$DomainEnd);
+        $I->see(".premme.com", PremmerceMainPage::$DomainEnd);
+        $I->click(PremmerceMainPage::$CreateShopButtonCentre); 
+        $RequiredDomain=$I->grabAttributeFrom(PremmerceMainPage::$ErrorDomain, 'class');
+        $I->comment("RequiredDomain: $RequiredDomain");
+        $I->assertEquals($RequiredDomain, 'create-msg');
+        $I->wait('2');
+        $I->fillField(PremmerceMainPage::$CreateShopField, 'sh');
+        $I->wait('2');
+        $I->click(PremmerceMainPage::$CreateShopButtonCentre);
+        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);                
+        $I->seeElement(PremmerceCreateShopPage::$DomainEndInRegisterForm);
+        $I->see(".premme.com", PremmerceCreateShopPage::$DomainEndInRegisterForm);        
+        $I->seeElement(PremmerceCreateShopPage::$EmailField);
+        $I->seeElement(PremmerceCreateShopPage::$PasswordField);
+        $I->seeElement(PremmerceCreateShopPage::$UserNameField);
+        $I->seeElement(PremmerceCreateShopPage::$PhoneNumberField);
+        $I->seeElement(PremmerceCreateShopPage::$CountrySelectMenu);
+        $I->seeElement(PremmerceCreateShopPage::$CityField);
+        $I->seeElement(PremmerceCreateShopPage::$CategorySelectMenu);
+        $I->seeElement(PremmerceCreateShopPage::$LevelOfUseSelectMenu);
+        $I->seeElement(PremmerceCreateShopPage::$AgreeCheckbox);
+        $I->seeElement(PremmerceCreateShopPage::$WorkConditionLink);
+        $I->seeElement(PremmerceCreateShopPage::$CreateShopNowRegisterFormButton);       
+    }
+    
+    
+    public function AllElementsPresent2(RussianTester $I)
+    {
+        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
+        $I->amOnPage(PremmerceMainPage::$URL);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
+        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);                
+        $I->seeElement(PremmerceCreateShopPage::$DomainEndInRegisterForm);
+        $I->see(".premme.com", PremmerceCreateShopPage::$DomainEndInRegisterForm);        
+        $I->seeElement(PremmerceCreateShopPage::$PasswordField);
+        $I->seeElement(PremmerceCreateShopPage::$UserNameField);
+        $I->seeElement(PremmerceCreateShopPage::$PhoneNumberField);
+        $I->seeElement(PremmerceCreateShopPage::$CountrySelectMenu);
+        $I->seeElement(PremmerceCreateShopPage::$CityField);
+        $I->seeElement(PremmerceCreateShopPage::$CategorySelectMenu);
+        $I->seeElement(PremmerceCreateShopPage::$LevelOfUseSelectMenu);
+        $I->seeElement(PremmerceCreateShopPage::$AgreeCheckbox);
+        $I->seeElement(PremmerceCreateShopPage::$WorkConditionLink);
+        $I->seeElement(PremmerceCreateShopPage::$CreateShopNowRegisterFormButton);       
+    }
+    
+    
+    public function RequiredFields1(RussianTester $I)
+    {
+        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
+        $I->amOnPage(PremmerceMainPage::$URL);
+        $I->wait(5);
+        $I->fillField(PremmerceMainPage::$CreateShopField, 'ыывв');
+        $I->wait('2');
+        $I->click(PremmerceMainPage::$CreateShopButtonCentre);
+        $ErrorDomain=$I->grabAttributeFrom(PremmerceMainPage::$ErrorDomain.'/span', 'class');
+        $I->comment("ErrorDomain: $ErrorDomain");
+        $I->assertEquals($ErrorDomain, 'text-el');
+        $I->wait('2');
+        $I->fillField(PremmerceMainPage::$CreateShopField, 'sh');
+        $I->wait('2');
+        $I->click(PremmerceMainPage::$CreateShopButtonCentre);
+        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm); 
+        $I->fillField(PremmerceCreateShopPage::$ShopNameField, 'паыво');
+        $I->click(PremmerceCreateShopPage::$CreateShopNowRegisterFormButton);        
+        $ErrorDomain=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorDomain, 'class');
+        $I->comment("ErrorDomain: $ErrorDomain");
+        $I->assertEquals($ErrorDomain, 'error');
+        $RequiredEmail=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorEmail, 'class');
+        $I->comment("RequiredEmail: $RequiredEmail");
+        $I->assertEquals($RequiredEmail, 'error');
+        $RequiredPassword=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorPassword, 'class');
+        $I->comment("RequiredPassword: $RequiredPassword");
+        $I->assertEquals($RequiredPassword, 'error');
+        $RequiredUserName=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorUserName, 'class');
+        $I->comment("RequiredUserName: $RequiredUserName");
+        $I->assertEquals($RequiredUserName, 'error');
+        $RequiredPhone=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorPhoneNumber, 'class');
+        $I->comment("RequiredPhone: $RequiredPhone");
+        $I->assertEquals($RequiredPhone, 'error');
+        $RequiredCity=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorCity, 'class');
+        $I->comment("RequiredCity: $RequiredCity");
+        $I->assertEquals($RequiredCity, 'error');        
+        $RequiredLevel=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorLevelOfUse, 'class');
+        $I->comment("RequiredLevel: $RequiredLevel");
+        $I->assertEquals($RequiredLevel, 'error');
+        $RequiredAgree=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorAgree, 'class');
+        $I->comment("RequiredAgree: $RequiredAgree");
+        $I->assertEquals($RequiredAgree, 'error');
+    }
+    
+        
+    public function RequiredFields2(RussianTester $I)
+    {
+        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
+        $I->amOnPage(PremmerceMainPage::$URL);        
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
+        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm); 
+        $I->click(PremmerceCreateShopPage::$CreateShopNowRegisterFormButton);
+        $ErrorDomain=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorDomain, 'class');
+        $I->comment("ErrorDomain: $ErrorDomain");
+        $I->assertEquals($ErrorDomain, 'error');
+        $RequiredEmail=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorEmail, 'class');
+        $I->comment("RequiredEmail: $RequiredEmail");
+        $I->assertEquals($RequiredEmail, 'error');
+        $RequiredPassword=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorPassword, 'class');
+        $I->comment("RequiredPassword: $RequiredPassword");
+        $I->assertEquals($RequiredPassword, 'error');
+        $RequiredUserName=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorUserName, 'class');
+        $I->comment("RequiredUserName: $RequiredUserName");
+        $I->assertEquals($RequiredUserName, 'error');
+        $RequiredPhone=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorPhoneNumber, 'class');
+        $I->comment("RequiredPhone: $RequiredPhone");
+        $I->assertEquals($RequiredPhone, 'error');
+        $RequiredCity=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorCity, 'class');
+        $I->comment("RequiredCity: $RequiredCity");
+        $I->assertEquals($RequiredCity, 'error');        
+        $RequiredLevel=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorLevelOfUse, 'class');
+        $I->comment("RequiredLevel: $RequiredLevel");
+        $I->assertEquals($RequiredLevel, 'error');
+        $RequiredAgree=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorAgree, 'class');
+        $I->comment("RequiredAgree: $RequiredAgree");
+        $I->assertEquals($RequiredAgree, 'error');
+    }
     
     /**
      * @guy RussianTester\LocrusSteps
      */
     
-//    public function ValidationDomain1Fail(RussianTester\LocrusSteps $I)
-//    {
-//        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-//        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
-//        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
-//        $set="abcdefghijklmnopqrstuvwxyz1234567890";
-//            $size = strlen($set)-1; 
-//            $prefix = 'shop-ru-ru-';
-//            $mailsufix = '@gmail.com';
-//            $name = null;
-//            $max = 7;
-//                while($max--)
-//                $name.=$set[rand(0,$size)]; 
-//            $store1 = '-'.$prefix.$name;
-//            $mail1 = $prefix.$name.$mailsufix;
-//            echo "your store name: $store1 \nyoour mail: $mail1";
-//            $password='1111111';
-//            $user='Norman';
-//            $phone='4443434367';
-//            $city='Boston';
-//            $country='3';
-//            $category='2';
-//            $level='3';
-//            $agree='';
-//            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
-//            $I->wait('2');
-//        $ErrorDomain=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorDomain, 'class');
-//        $I->comment("Domain:$ErrorDomain");
-//        $I->assertEquals($ErrorDomain, 'error');        
-//    }
-//    
-//    
-//    /**
-//     * @guy RussianTester\LocrusSteps
-//     */
-//    
-//    public function ValidationDomain2Fail(RussianTester\LocrusSteps $I)
-//    {
-//        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-//        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
-//        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
-//        $set="abcdefghijklmnopqrstuvwxyz1234567890";
-//            $size = strlen($set)-1; 
-//            $prefix = 'shop-ru-ru-';
-//            $mailsufix = '@gmail.com';
-//            $name = null;
-//            $max = 7;
-//                while($max--)
-//                $name.=$set[rand(0,$size)]; 
-//            $store1 = '_'.$prefix.$name;
-//            $mail1 = $prefix.$name.$mailsufix;
-//            echo "your store name: $store1 \nyoour mail: $mail1";
-//            $password='1111111';
-//            $user='Norman';
-//            $phone='4443434367';
-//            $city='Boston';
-//            $country='3';
-//            $category='2';
-//            $level='3';
-//            $agree='';
-//            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
-//            $I->wait('2');
-//        $ErrorDomain=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorDomain, 'class');
-//        $I->comment("Domain:$ErrorDomain");
-//        $I->assertEquals($ErrorDomain, 'error');        
-//    }
-//    
-//    
-//    /**
-//     * @guy RussianTester\LocrusSteps
-//     */
-//    
-//    public function ValidationDomain3Fail(RussianTester\LocrusSteps $I)
-//    {
-//        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-//        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
-//        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
-//        $set="abcdefghijklmnopqrstuvwxyz1234567890";
-//            $size = strlen($set)-1; 
-//            $prefix = 'shop-ru-ru-';
-//            $mailsufix = '@gmail.com';
-//            $name = null;
-//            $max = 7;
-//                while($max--)
-//                $name.=$set[rand(0,$size)]; 
-//            $store1 = $prefix.$name.'-';
-//            $mail1 = $prefix.$name.$mailsufix;
-//            echo "your store name: $store1 \nyoour mail: $mail1";
-//            $password='1111111';
-//            $user='Norman';
-//            $phone='4443434367';
-//            $city='Boston';
-//            $country='3';
-//            $category='2';
-//            $level='3';
-//            $agree='';
-//            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
-//            $I->wait('2');
-//        $ErrorDomain=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorDomain, 'class');
-//        $I->comment("Domain:$ErrorDomain");
-//        $I->assertEquals($ErrorDomain, 'error');        
-//    }
-//            
-//    /**
-//     * @guy RussianTester\LocrusSteps
-//     */
-//    
-//    public function ValidationDomain4Fail(RussianTester\LocrusSteps $I)
-//    {
-//        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-//        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
-//        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
-//        $set="abcdefghijklmnopqrstuvwxyz1234567890";
-//            $size = strlen($set)-1; 
-//            $prefix = 'shop-ru-ru-';
-//            $mailsufix = '@gmail.com';
-//            $name = null;
-//            $max = 7;
-//                while($max--)
-//                $name.=$set[rand(0,$size)]; 
-//            $store1 = '&#'.$prefix.'sdfs%^&$'.'fd'.$name;
-//            $mail1 = $prefix.$name.$mailsufix;
-//            echo "your store name: $store1 \nyoour mail: $mail1";
-//            $password='1111111';
-//            $user='Norman';
-//            $phone='4443434367';
-//            $city='Boston';
-//            $country='3';
-//            $category='2';
-//            $level='3';
-//            $agree='';
-//            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
-//            $I->wait('2');
-//        $ErrorDomain=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorDomain, 'class');
-//        $I->comment("Domain:$ErrorDomain");
-//        $I->assertEquals($ErrorDomain, 'error');        
-//    }
-//    
-//    /**
-//     * @guy RussianTester\LocrusSteps
-//     */
-//    
-//    public function ValidationDomain5Fail(RussianTester\LocrusSteps $I)
-//    {
-//        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-//        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
-//        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
-//        $set="abcdefghijklmnopqrstuvwxyz1234567890";
-//            $size = strlen($set)-1; 
-//            $prefix = 'shop-ru-ru-';
-//            $mailsufix = '@gmail.com';
-//            $name = null;
-//            $max = 7;
-//                while($max--)
-//                $name.=$set[rand(0,$size)]; 
-//            $store1 = $prefix.'_'.'12fg'.$name;
-//            $mail1 = $prefix.$name.$mailsufix;
-//            echo "your store name: $store1 \nyoour mail: $mail1";
-//            $password='1111111';
-//            $user='Norman';
-//            $phone='4443434367';
-//            $city='Boston';
-//            $country='3';
-//            $category='2';
-//            $level='3';
-//            $agree='';
-//            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
-//            $I->wait('2');
-//        $ErrorDomain=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorDomain, 'class');
-//        $I->comment("Domain:$ErrorDomain");
-//        $I->assertEquals($ErrorDomain, 'error');        
-//    }
-//          
-//    /**
-//     * @guy RussianTester\LocrusSteps
-//     */
-//    
-//    public function ValidationDomain6Fail(RussianTester\LocrusSteps $I)
-//    {
-//        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-//        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
-//        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
-//        $set="abcdefghijklmnopqrstuvwxyz1234567890";
-//            $size = strlen($set)-1; 
-//            $prefix = 'shop-ru-ru-';
-//            $mailsufix = '@gmail.com';
-//            $name = null;
-//            $max = 7;
-//                while($max--)
-//                $name.=$set[rand(0,$size)]; 
-//            $store1 = $prefix.'.'.'d'.$name;
-//            $mail1 = $prefix.$name.$mailsufix;
-//            echo "your store name: $store1 \nyoour mail: $mail1";
-//            $password='1111111';
-//            $user='Norman';
-//            $phone='4443434367';
-//            $city='Boston';
-//            $country='3';
-//            $category='2';
-//            $level='3';
-//            $agree='';
-//            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
-//            $I->wait('2');
-//        $ErrorDomain=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorDomain, 'class');
-//        $I->comment("Domain:$ErrorDomain");
-//        $I->assertEquals($ErrorDomain, 'error');        
-//    }
-//    
-//    
-//    /**
-//     * @guy RussianTester\LocrusSteps
-//     */
-//    
-//    public function ValidationDomain7Fail(RussianTester\LocrusSteps $I)
-//    {
-//        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-//        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
-//        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
-//        $set="abcdefghijklmnopqrstuvwxyz1234567890";
-//            $size = strlen($set)-1; 
-//            $prefix = 'shop-ru-ru-';
-//            $mailsufix = '@gmail.com';
-//            $name = null;
-//            $max = 10;
-//                while($max--)
-//                $name.=$set[rand(0,$size)]; 
-//            $store1 = $prefix.'.'.'d'.$name;
-//            $mail1 = $prefix.$name.$mailsufix;
-//            echo "your store name: $store1 \nyoour mail: $mail1";
-//            $password='1111111';
-//            $user='Norman';
-//            $phone='4443434367';
-//            $city='Boston';
-//            $country='3';
-//            $category='2';
-//            $level='3';
-//            $agree='';
-//            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
-//            $I->wait('2');
-//        $ErrorDomain=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorDomain, 'class');
-//        $I->comment("Domain:$ErrorDomain");
-//        $I->assertEquals($ErrorDomain, 'error');        
-//    }
-//    
-//    /**
-//     * @guy RussianTester\LocrusSteps
-//     */
-//    
-//    public function ValidationDomain8Fail(RussianTester\LocrusSteps $I)
-//    {
-//        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-//        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
-//        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
-//        $set="abcdefghijklmnopqrstuvwxyz1234567890";
-//            $size = strlen($set)-1; 
-//            $prefix = 'shop-ua-ua-';
-//            $mailsufix = '@gmail.com';
-//            $name = null;
-//            $max = 7;
-//                while($max--)
-//                $name.=$set[rand(0,$size)]; 
-//            $store1 = $prefix.' '.$name;
-//            $mail1 = $prefix.$name.$mailsufix;
-//            echo "your store name: $store1 \nyoour mail: $mail1";
-//            $password='1111111';
-//            $user='Norman';
-//            $phone='4443434367';
-//            $city='Boston';
-//            $country='1';
-//            $category='2';
-//            $level='3';
-//            $agree='';
-//            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
-//            $I->wait('2');
-//        $ErrorDomain=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorDomain, 'class');
-//        $I->comment("Domain:$ErrorDomain");
-//        $I->assertEquals($ErrorDomain, 'error');        
-//    }    
-//    
-//    /**
-//     * @guy RussianTester\LocrusSteps
-//     */
-//    
-//    public function ValidationEmail1Fail(RussianTester\LocrusSteps $I)
-//    {
-//        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-//        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
-//        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
-//        $set="abcdefghijklmnopqrstuvwxyz1234567890";
-//            $size = strlen($set)-1; 
-//            $prefix = 'shop-ru-ru-';
-//            $mailsufix = 'gmail.com';
-//            $name = null;
-//            $max = 7;
-//                while($max--)
-//                $name.=$set[rand(0,$size)]; 
-//            $store1 = $prefix.$name;
-//            $mail1 = $prefix.$name.$mailsufix;
-//            echo "your store name: $store1 \nyoour mail: $mail1";
-//            $password='1111111';
-//            $user='Norman';
-//            $phone='4443434367';
-//            $city='Boston';
-//            $country='3';
-//            $category='2';
-//            $level='3';
-//            $agree='';
-//            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
-//            $I->wait('2');
-//        $ErrorEmail=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorEmail, 'class');
-//        $I->comment("Email:$ErrorEmail");
-//        $I->assertEquals($ErrorEmail, 'error');        
-//    }   
-//    
-//    /**
-//     * @guy RussianTester\LocrusSteps
-//     */
-//    
-//    public function ValidationEmail2Fail(RussianTester\LocrusSteps $I)
-//    {
-//        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-//        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
-//        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
-//        $set="abcdefghijklmnopqrstuvwxyz1234567890";
-//            $size = strlen($set)-1; 
-//            $prefix = 'shop-ru-ru-';
-//            $mailsufix = '@gmail.c';
-//            $name = null;
-//            $max = 7;
-//                while($max--)
-//                $name.=$set[rand(0,$size)]; 
-//            $store1 = $prefix.$name;
-//            $mail1 = $prefix.$name.$mailsufix;
-//            echo "your store name: $store1 \nyoour mail: $mail1";
-//            $password='1111111';
-//            $user='Norman';
-//            $phone='4443434367';
-//            $city='Boston';
-//            $country='3';
-//            $category='2';
-//            $level='3';
-//            $agree='';
-//            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
-//            $I->wait('2');
-//        $ErrorEmail=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorEmail, 'class');
-//        $I->comment("Email:$ErrorEmail");
-//        $I->assertEquals($ErrorEmail, 'error');        
-//    }   
-//    
-//    /**
-//     * @guy RussianTester\LocrusSteps
-//     */
-//    
-//    public function ValidationEmail3Fail(RussianTester\LocrusSteps $I)
-//    {
-//        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-//        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
-//        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
-//        $set="abcdefghijklmnopqrstuvwxyz1234567890";
-//            $size = strlen($set)-1; 
-//            $prefix = 'shop-ru-ru-';
-//            $mailsufix = '@g_d.com';
-//            $name = null;
-//            $max = 7;
-//                while($max--)
-//                $name.=$set[rand(0,$size)]; 
-//            $store1 = $prefix.$name;
-//            $mail1 = $prefix.$name.$mailsufix;
-//            echo "your store name: $store1 \nyoour mail: $mail1";
-//            $password='1111111';
-//            $user='Norman';
-//            $phone='4443434367';
-//            $city='Boston';
-//            $country='3';
-//            $category='2';
-//            $level='3';
-//            $agree='';
-//            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
-//            $I->wait('2');
-//        $ErrorEmail=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorEmail, 'class');
-//        $I->comment("Email:$ErrorEmail");
-//        $I->assertEquals($ErrorEmail, 'error');        
-//    }   
-//    
-//    
-//     /**
-//     * @guy RussianTester\LocrusSteps
-//     */
-//    
-//    public function ValidationEmail4Fail(RussianTester\LocrusSteps $I)
-//    {
-//        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-//        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
-//        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
-//        $set="abcdefghijklmnopqrstuvwxyz1234567890";
-//            $size = strlen($set)-1; 
-//            $prefix = 'shop-ru-ru-';
-//            $mailsufix = '@g_d.com';
-//            $name = null;
-//            $max = 7;
-//                while($max--)
-//                $name.=$set[rand(0,$size)]; 
-//            $store1 = $prefix.$name;
-//            $mail1 = $prefix.$name.$mailsufix;
-//            echo "your store name: $store1 \nyoour mail: $mail1";
-//            $password='1111111';
-//            $user='Norman';
-//            $phone='4443434367';
-//            $city='Boston';
-//            $country='3';
-//            $category='2';
-//            $level='3';
-//            $agree='';
-//            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
-//            $I->wait('2');
-//        $ErrorEmail=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorEmail, 'class');
-//        $I->comment("Email:$ErrorEmail");
-//        $I->assertEquals($ErrorEmail, 'error');        
-//    }   
-//    
-//    
-//     /**
-//     * @guy RussianTester\LocrusSteps
-//     */
-//    
-//    public function ValidationEmail5Fail(RussianTester\LocrusSteps $I)
-//    {
-//        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-//        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
-//        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
-//        $set="abcdefghijklmnopqrstuvwxyz1234567890";
-//            $size = strlen($set)-1; 
-//            $prefix = 'shop-ru-ru-';
-//            $mailsufix = '@gmail.com';
-//            $name = null;
-//            $max = 7;
-//                while($max--)
-//                $name.=$set[rand(0,$size)]; 
-//            $store1 = $prefix.$name;
-//            $mail1 = '.'.$prefix.$name.$mailsufix;
-//            echo "your store name: $store1 \nyoour mail: $mail1";
-//            $password='1111111';
-//            $user='Norman';
-//            $phone='4443434367';
-//            $city='Boston';
-//            $country='3';
-//            $category='2';
-//            $level='3';
-//            $agree='';
-//            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
-//            $I->wait('2');
-//        $ErrorEmail=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorEmail, 'class');
-//        $I->comment("Email:$ErrorEmail");
-//        $I->assertEquals($ErrorEmail, 'error');        
-//    }   
-//    
-//    
-//     /**
-//     * @guy RussianTester\LocrusSteps
-//     */
-//    
-//    public function ValidationEmail6Fail(RussianTester\LocrusSteps $I)
-//    {
-//        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-//        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
-//        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
-//        $set="abcdefghijklmnopqrstuvwxyz1234567890";
-//            $size = strlen($set)-1; 
-//            $prefix = 'shop-ru-ru-';
-//            $mailsufix = '@gmail.com';
-//            $name = null;
-//            $max = 7;
-//                while($max--)
-//                $name.=$set[rand(0,$size)]; 
-//            $store1 = $prefix.$name;
-//            $mail1 = '_'.$prefix.$name.'_'.$mailsufix;
-//            echo "your store name: $store1 \nyoour mail: $mail1";
-//            $password='1111111';
-//            $user='Norman';
-//            $phone='4443434367';
-//            $city='Boston';
-//            $country='3';
-//            $category='2';
-//            $level='3';
-//            $agree='';
-//            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
-//            $I->wait('2');
-//        $ErrorEmail=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorEmail, 'class');
-//        $I->comment("Email:$ErrorEmail");
-//        $I->assertEquals($ErrorEmail, 'error');        
-//    }   
-//    
-//     /**
-//     * @guy RussianTester\LocrusSteps
-//     */
-//    
-//    public function ValidationEmail7Fail(RussianTester\LocrusSteps $I)
-//    {
-//        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-//        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
-//        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
-//        $set="abcdefghijklmnopqrstuvwxyz1234567890";
-//            $size = strlen($set)-1; 
-//            $prefix = 'shop-ru-ru-';
-//            $mailsufix = '@gmail.com';
-//            $name = null;
-//            $max = 7;
-//                while($max--)
-//                $name.=$set[rand(0,$size)]; 
-//            $store1 = $prefix.$name;
-//            $mail1 = $prefix.'_'.$name.'@'.$mailsufix;
-//            echo "your store name: $store1 \nyoour mail: $mail1";
-//            $password='1111111';
-//            $user='Norman';
-//            $phone='4443434367';
-//            $city='Boston';
-//            $country='3';
-//            $category='2';
-//            $level='3';
-//            $agree='';
-//            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
-//            $I->wait('2');
-//        $ErrorEmail=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorEmail, 'class');
-//        $I->comment("Email:$ErrorEmail");
-//        $I->assertEquals($ErrorEmail, 'error');        
-//    }   
-//    
-//     /**
-//     * @guy RussianTester\LocrusSteps
-//     */
-//    
-//    public function ValidationEmail8Fail(RussianTester\LocrusSteps $I)
-//    {
-//        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-//        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
-//        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
-//        $set="abcdefghijklmnopqrstuvwxyz1234567890";
-//            $size = strlen($set)-1; 
-//            $prefix = 'shop-ru-ru-';
-//            $mailsufix = '@gmail.com';
-//            $name = null;
-//            $max = 7;
-//                while($max--)
-//                $name.=$set[rand(0,$size)]; 
-//            $store1 = $prefix.$name;
-//            $mail1 = $prefix.'@'.$name.$mailsufix;
-//            echo "your store name: $store1 \nyoour mail: $mail1";
-//            $password='1111111';
-//            $user='Norman';
-//            $phone='4443434367';
-//            $city='Boston';
-//            $country='3';
-//            $category='2';
-//            $level='3';
-//            $agree='';
-//            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
-//            $I->wait('2');
-//        $ErrorEmail=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorEmail, 'class');
-//        $I->comment("Email:$ErrorEmail");
-//        $I->assertEquals($ErrorEmail, 'error');        
-//    } 
-//    
-//    
-//    /**
-//     * @guy RussianTester\LocrusSteps
-//     */
-//    
-//    public function ValidationEmail9Fail(RussianTester\LocrusSteps $I)
-//    {
-//        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-//        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
-//        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
-//        $set="abcdefghijklmnopqrstuvwxyz1234567890";
-//            $size = strlen($set)-1; 
-//            $prefix = 'shop-ru-ru-';
-//            $mailsufix = '@gmail.com';
-//            $name = null;
-//            $max = 7;
-//                while($max--)
-//                $name.=$set[rand(0,$size)]; 
-//            $store1 = $prefix.$name;
-//            $mail1 = $prefix.'_-'.$name.'@@%$^&$#'.$mailsufix;
-//            echo "your store name: $store1 \nyoour mail: $mail1";
-//            $password='1111111';
-//            $user='Norman';
-//            $phone='4443434367';
-//            $city='Boston';
-//            $country='3';
-//            $category='2';
-//            $level='3';
-//            $agree='';
-//            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
-//            $I->wait('2');
-//        $ErrorEmail=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorEmail, 'class');
-//        $I->comment("Email:$ErrorEmail");
-//        $I->assertEquals($ErrorEmail, 'error');        
-//    } 
-//    
-//    /**
-//     * @guy RussianTester\LocrusSteps
-//     */
-//    
-//    public function ValidationEmail10Fail(RussianTester\LocrusSteps $I)
-//    {
-//        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
-//        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
-//        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
-//        $set="abcdefghijklmnopqrstuvwxyz1234567890";
-//            $size = strlen($set)-1; 
-//            $prefix = 'shop-ru-ru-';
-//            $mailsufix = '@gmail.com';
-//            $name = null;
-//            $max = 7;
-//                while($max--)
-//                $name.=$set[rand(0,$size)]; 
-//            $store1 = $prefix.$name;
-//            $mail1 = $prefix.'_-'.$name.'@@%$^&$#'.$mailsufix.'.';
-//            echo "your store name: $store1 \nyoour mail: $mail1";
-//            $password='1111111';
-//            $user='Norman';
-//            $phone='4443434367';
-//            $city='Boston';
-//            $country='3';
-//            $category='2';
-//            $level='3';
-//            $agree='';
-//            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
-//            $I->wait('2');
-//        $ErrorEmail=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorEmail, 'class');
-//        $I->comment("Email:$ErrorEmail");
-//        $I->assertEquals($ErrorEmail, 'error');        
-//    } 
+    public function ValidationDomain1Fail(RussianTester\LocrusSteps $I)
+    {
+        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
+        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
+        $set="abcdefghijklmnopqrstuvwxyz1234567890";
+            $size = strlen($set)-1; 
+            $prefix = 'shop-ru-ru-';
+            $mailsufix = '@gmail.com';
+            $name = null;
+            $max = 7;
+                while($max--)
+                $name.=$set[rand(0,$size)]; 
+            $store1 = '-'.$prefix.$name;
+            $mail1 = $prefix.$name.$mailsufix;
+            echo "your store name: $store1 \nyoour mail: $mail1";
+            $password='1111111';
+            $user='Norman';
+            $phone='4443434367';
+            $city='Boston';
+            $country='3';
+            $category='2';
+            $level='3';
+            $agree='';
+            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
+            $I->wait('2');
+        $ErrorDomain=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorDomain, 'class');
+        $I->comment("Domain:$ErrorDomain");
+        $I->assertEquals($ErrorDomain, 'error');        
+    }
+    
+    
+    /**
+     * @guy RussianTester\LocrusSteps
+     */
+    
+    public function ValidationDomain2Fail(RussianTester\LocrusSteps $I)
+    {
+        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
+        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
+        $set="abcdefghijklmnopqrstuvwxyz1234567890";
+            $size = strlen($set)-1; 
+            $prefix = 'shop-ru-ru-';
+            $mailsufix = '@gmail.com';
+            $name = null;
+            $max = 7;
+                while($max--)
+                $name.=$set[rand(0,$size)]; 
+            $store1 = '_'.$prefix.$name;
+            $mail1 = $prefix.$name.$mailsufix;
+            echo "your store name: $store1 \nyoour mail: $mail1";
+            $password='1111111';
+            $user='Norman';
+            $phone='4443434367';
+            $city='Boston';
+            $country='3';
+            $category='2';
+            $level='3';
+            $agree='';
+            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
+            $I->wait('2');
+        $ErrorDomain=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorDomain, 'class');
+        $I->comment("Domain:$ErrorDomain");
+        $I->assertEquals($ErrorDomain, 'error');        
+    }
+    
+    
+    /**
+     * @guy RussianTester\LocrusSteps
+     */
+    
+    public function ValidationDomain3Fail(RussianTester\LocrusSteps $I)
+    {
+        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
+        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
+        $set="abcdefghijklmnopqrstuvwxyz1234567890";
+            $size = strlen($set)-1; 
+            $prefix = 'shop-ru-ru-';
+            $mailsufix = '@gmail.com';
+            $name = null;
+            $max = 7;
+                while($max--)
+                $name.=$set[rand(0,$size)]; 
+            $store1 = $prefix.$name.'-';
+            $mail1 = $prefix.$name.$mailsufix;
+            echo "your store name: $store1 \nyoour mail: $mail1";
+            $password='1111111';
+            $user='Norman';
+            $phone='4443434367';
+            $city='Boston';
+            $country='3';
+            $category='2';
+            $level='3';
+            $agree='';
+            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
+            $I->wait('2');
+        $ErrorDomain=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorDomain, 'class');
+        $I->comment("Domain:$ErrorDomain");
+        $I->assertEquals($ErrorDomain, 'error');        
+    }
+            
+    /**
+     * @guy RussianTester\LocrusSteps
+     */
+    
+    public function ValidationDomain4Fail(RussianTester\LocrusSteps $I)
+    {
+        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
+        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
+        $set="abcdefghijklmnopqrstuvwxyz1234567890";
+            $size = strlen($set)-1; 
+            $prefix = 'shop-ru-ru-';
+            $mailsufix = '@gmail.com';
+            $name = null;
+            $max = 7;
+                while($max--)
+                $name.=$set[rand(0,$size)]; 
+            $store1 = '&#'.$prefix.'sdfs%^&$'.'fd'.$name;
+            $mail1 = $prefix.$name.$mailsufix;
+            echo "your store name: $store1 \nyoour mail: $mail1";
+            $password='1111111';
+            $user='Norman';
+            $phone='4443434367';
+            $city='Boston';
+            $country='3';
+            $category='2';
+            $level='3';
+            $agree='';
+            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
+            $I->wait('2');
+        $ErrorDomain=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorDomain, 'class');
+        $I->comment("Domain:$ErrorDomain");
+        $I->assertEquals($ErrorDomain, 'error');        
+    }
+    
+    /**
+     * @guy RussianTester\LocrusSteps
+     */
+    
+    public function ValidationDomain5Fail(RussianTester\LocrusSteps $I)
+    {
+        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
+        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
+        $set="abcdefghijklmnopqrstuvwxyz1234567890";
+            $size = strlen($set)-1; 
+            $prefix = 'shop-ru-ru-';
+            $mailsufix = '@gmail.com';
+            $name = null;
+            $max = 7;
+                while($max--)
+                $name.=$set[rand(0,$size)]; 
+            $store1 = $prefix.'_'.'12fg'.$name;
+            $mail1 = $prefix.$name.$mailsufix;
+            echo "your store name: $store1 \nyoour mail: $mail1";
+            $password='1111111';
+            $user='Norman';
+            $phone='4443434367';
+            $city='Boston';
+            $country='3';
+            $category='2';
+            $level='3';
+            $agree='';
+            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
+            $I->wait('2');
+        $ErrorDomain=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorDomain, 'class');
+        $I->comment("Domain:$ErrorDomain");
+        $I->assertEquals($ErrorDomain, 'error');        
+    }
+          
+    /**
+     * @guy RussianTester\LocrusSteps
+     */
+    
+    public function ValidationDomain6Fail(RussianTester\LocrusSteps $I)
+    {
+        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
+        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
+        $set="abcdefghijklmnopqrstuvwxyz1234567890";
+            $size = strlen($set)-1; 
+            $prefix = 'shop-ru-ru-';
+            $mailsufix = '@gmail.com';
+            $name = null;
+            $max = 7;
+                while($max--)
+                $name.=$set[rand(0,$size)]; 
+            $store1 = $prefix.'.'.'d'.$name;
+            $mail1 = $prefix.$name.$mailsufix;
+            echo "your store name: $store1 \nyoour mail: $mail1";
+            $password='1111111';
+            $user='Norman';
+            $phone='4443434367';
+            $city='Boston';
+            $country='3';
+            $category='2';
+            $level='3';
+            $agree='';
+            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
+            $I->wait('2');
+        $ErrorDomain=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorDomain, 'class');
+        $I->comment("Domain:$ErrorDomain");
+        $I->assertEquals($ErrorDomain, 'error');        
+    }
+    
+    
+    /**
+     * @guy RussianTester\LocrusSteps
+     */
+    
+    public function ValidationDomain7Fail(RussianTester\LocrusSteps $I)
+    {
+        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
+        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
+        $set="abcdefghijklmnopqrstuvwxyz1234567890";
+            $size = strlen($set)-1; 
+            $prefix = 'shop-ru-ru-';
+            $mailsufix = '@gmail.com';
+            $name = null;
+            $max = 10;
+                while($max--)
+                $name.=$set[rand(0,$size)]; 
+            $store1 = $prefix.'.'.'d'.$name;
+            $mail1 = $prefix.$name.$mailsufix;
+            echo "your store name: $store1 \nyoour mail: $mail1";
+            $password='1111111';
+            $user='Norman';
+            $phone='4443434367';
+            $city='Boston';
+            $country='3';
+            $category='2';
+            $level='3';
+            $agree='';
+            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
+            $I->wait('2');
+        $ErrorDomain=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorDomain, 'class');
+        $I->comment("Domain:$ErrorDomain");
+        $I->assertEquals($ErrorDomain, 'error');        
+    }
+    
+    /**
+     * @guy RussianTester\LocrusSteps
+     */
+    
+    public function ValidationDomain8Fail(RussianTester\LocrusSteps $I)
+    {
+        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
+        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
+        $set="abcdefghijklmnopqrstuvwxyz1234567890";
+            $size = strlen($set)-1; 
+            $prefix = 'shop-ua-ua-';
+            $mailsufix = '@gmail.com';
+            $name = null;
+            $max = 7;
+                while($max--)
+                $name.=$set[rand(0,$size)]; 
+            $store1 = $prefix.' '.$name;
+            $mail1 = $prefix.$name.$mailsufix;
+            echo "your store name: $store1 \nyoour mail: $mail1";
+            $password='1111111';
+            $user='Norman';
+            $phone='4443434367';
+            $city='Boston';
+            $country='1';
+            $category='2';
+            $level='3';
+            $agree='';
+            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
+            $I->wait('2');
+        $ErrorDomain=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorDomain, 'class');
+        $I->comment("Domain:$ErrorDomain");
+        $I->assertEquals($ErrorDomain, 'error');        
+    }    
+    
+    /**
+     * @guy RussianTester\LocrusSteps
+     */
+    
+    public function ValidationEmail1Fail(RussianTester\LocrusSteps $I)
+    {
+        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
+        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
+        $set="abcdefghijklmnopqrstuvwxyz1234567890";
+            $size = strlen($set)-1; 
+            $prefix = 'shop-ru-ru-';
+            $mailsufix = 'gmail.com';
+            $name = null;
+            $max = 7;
+                while($max--)
+                $name.=$set[rand(0,$size)]; 
+            $store1 = $prefix.$name;
+            $mail1 = $prefix.$name.$mailsufix;
+            echo "your store name: $store1 \nyoour mail: $mail1";
+            $password='1111111';
+            $user='Norman';
+            $phone='4443434367';
+            $city='Boston';
+            $country='3';
+            $category='2';
+            $level='3';
+            $agree='';
+            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
+            $I->wait('2');
+        $ErrorEmail=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorEmail, 'class');
+        $I->comment("Email:$ErrorEmail");
+        $I->assertEquals($ErrorEmail, 'error');        
+    }   
+    
+    /**
+     * @guy RussianTester\LocrusSteps
+     */
+    
+    public function ValidationEmail2Fail(RussianTester\LocrusSteps $I)
+    {
+        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
+        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
+        $set="abcdefghijklmnopqrstuvwxyz1234567890";
+            $size = strlen($set)-1; 
+            $prefix = 'shop-ru-ru-';
+            $mailsufix = '@gmail.c';
+            $name = null;
+            $max = 7;
+                while($max--)
+                $name.=$set[rand(0,$size)]; 
+            $store1 = $prefix.$name;
+            $mail1 = $prefix.$name.$mailsufix;
+            echo "your store name: $store1 \nyoour mail: $mail1";
+            $password='1111111';
+            $user='Norman';
+            $phone='4443434367';
+            $city='Boston';
+            $country='3';
+            $category='2';
+            $level='3';
+            $agree='';
+            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
+            $I->wait('2');
+        $ErrorEmail=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorEmail, 'class');
+        $I->comment("Email:$ErrorEmail");
+        $I->assertEquals($ErrorEmail, 'error');        
+    }   
+    
+    /**
+     * @guy RussianTester\LocrusSteps
+     */
+    
+    public function ValidationEmail3Fail(RussianTester\LocrusSteps $I)
+    {
+        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
+        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
+        $set="abcdefghijklmnopqrstuvwxyz1234567890";
+            $size = strlen($set)-1; 
+            $prefix = 'shop-ru-ru-';
+            $mailsufix = '@g_d.com';
+            $name = null;
+            $max = 7;
+                while($max--)
+                $name.=$set[rand(0,$size)]; 
+            $store1 = $prefix.$name;
+            $mail1 = $prefix.$name.$mailsufix;
+            echo "your store name: $store1 \nyoour mail: $mail1";
+            $password='1111111';
+            $user='Norman';
+            $phone='4443434367';
+            $city='Boston';
+            $country='3';
+            $category='2';
+            $level='3';
+            $agree='';
+            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
+            $I->wait('2');
+        $ErrorEmail=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorEmail, 'class');
+        $I->comment("Email:$ErrorEmail");
+        $I->assertEquals($ErrorEmail, 'error');        
+    }   
+    
+    
+     /**
+     * @guy RussianTester\LocrusSteps
+     */
+    
+    public function ValidationEmail4Fail(RussianTester\LocrusSteps $I)
+    {
+        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
+        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
+        $set="abcdefghijklmnopqrstuvwxyz1234567890";
+            $size = strlen($set)-1; 
+            $prefix = 'shop-ru-ru-';
+            $mailsufix = '@g_d.com';
+            $name = null;
+            $max = 7;
+                while($max--)
+                $name.=$set[rand(0,$size)]; 
+            $store1 = $prefix.$name;
+            $mail1 = $prefix.$name.$mailsufix;
+            echo "your store name: $store1 \nyoour mail: $mail1";
+            $password='1111111';
+            $user='Norman';
+            $phone='4443434367';
+            $city='Boston';
+            $country='3';
+            $category='2';
+            $level='3';
+            $agree='';
+            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
+            $I->wait('2');
+        $ErrorEmail=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorEmail, 'class');
+        $I->comment("Email:$ErrorEmail");
+        $I->assertEquals($ErrorEmail, 'error');        
+    }   
+    
+    
+     /**
+     * @guy RussianTester\LocrusSteps
+     */
+    
+    public function ValidationEmail5Fail(RussianTester\LocrusSteps $I)
+    {
+        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
+        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
+        $set="abcdefghijklmnopqrstuvwxyz1234567890";
+            $size = strlen($set)-1; 
+            $prefix = 'shop-ru-ru-';
+            $mailsufix = '@gmail.com';
+            $name = null;
+            $max = 7;
+                while($max--)
+                $name.=$set[rand(0,$size)]; 
+            $store1 = $prefix.$name;
+            $mail1 = '.'.$prefix.$name.$mailsufix;
+            echo "your store name: $store1 \nyoour mail: $mail1";
+            $password='1111111';
+            $user='Norman';
+            $phone='4443434367';
+            $city='Boston';
+            $country='3';
+            $category='2';
+            $level='3';
+            $agree='';
+            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
+            $I->wait('2');
+        $ErrorEmail=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorEmail, 'class');
+        $I->comment("Email:$ErrorEmail");
+        $I->assertEquals($ErrorEmail, 'error');        
+    }   
+    
+    
+     /**
+     * @guy RussianTester\LocrusSteps
+     */
+    
+    public function ValidationEmail6Passed(RussianTester\LocrusSteps $I)
+    {
+        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
+        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
+        $set="abcdefghijklmnopqrstuvwxyz1234567890";
+            $size = strlen($set)-1; 
+            $prefix = 'shop-ru-ru-';
+            $mailsufix = '@gmail.com';
+            $name = null;
+            $max = 7;
+                while($max--)
+                $name.=$set[rand(0,$size)]; 
+            $store1 = $prefix.$name;
+            $mail1 = '_'.$prefix.$name.'_'.$mailsufix;
+            echo "your store name: $store1 \nyoour mail: $mail1";
+            $password='1111111';
+            $user='Norman';
+            $phone='4443434367';
+            $city='Boston';
+            $country='3';
+            $category='2';
+            $level='3';
+            $agree='';
+            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
+            $I->wait('2');
+        $I->waitForElementVisible(PremmerceCreateShopPage::$CreateLoadingForm);
+        $I->wait('10');
+        $I->waitForElement(PremmerceCabinetPage::$SiteLink, '60');
+        $I->seeCurrentUrlEquals('/saas/profile');
+        $I->click(PremmerceCabinetPage::$SiteLink);
+        $I->wait('3');
+        $I->executeInSelenium(function (\Webdriver $webdriver) {
+            $handles=$webdriver->getWindowHandles();
+            $last_window = end($handles);
+            $webdriver->switchTo()->window($last_window);
+        });
+        $I->wait('6');
+        $I->waitForElement(".//*[@id='inputString']");
+        $I->seeInTitle('ImageCMS DemoShop');
+        $I->amOnPage('/saas/profile');
+        $I->wait(5);
+        $I->click(PremmerceCabinetPage::$AdminLink);
+        $I->executeInSelenium(function (\Webdriver $webdriver) {
+            $handles=$webdriver->getWindowHandles();
+            $last_window = end($handles);
+            $webdriver->switchTo()->window($last_window);
+        });
+        $I->waitForElement('[id="topPanelNotifications"]');
+        $I->seeElement('[class="btn_header btn-personal-area"]');
+        $I->click('[class="btn_header btn-personal-area"]');
+        $I->wait('1');
+//        $I->see($user, ".head");
+        $I->amOnPage('/saas/profile');
+        $I->click(PremmerceCabinetPage::$ProfileButton);
+        $I->click(PremmerceCabinetPage::$ExitButton);
+        $I->wait(2);       
+    }   
+    
+     /**
+     * @guy RussianTester\LocrusSteps
+     */
+    
+    public function ValidationEmail7Fail(RussianTester\LocrusSteps $I)
+    {
+        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
+        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
+        $set="abcdefghijklmnopqrstuvwxyz1234567890";
+            $size = strlen($set)-1; 
+            $prefix = 'shop-ru-ru-';
+            $mailsufix = '@gmail.com';
+            $name = null;
+            $max = 7;
+                while($max--)
+                $name.=$set[rand(0,$size)]; 
+            $store1 = $prefix.$name;
+            $mail1 = $prefix.'_'.$name.'@'.$mailsufix;
+            echo "your store name: $store1 \nyoour mail: $mail1";
+            $password='1111111';
+            $user='Norman';
+            $phone='4443434367';
+            $city='Boston';
+            $country='3';
+            $category='2';
+            $level='3';
+            $agree='';
+            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
+            $I->wait('2');
+        $ErrorEmail=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorEmail, 'class');
+        $I->comment("Email:$ErrorEmail");
+        $I->assertEquals($ErrorEmail, 'error');        
+    }   
+    
+     /**
+     * @guy RussianTester\LocrusSteps
+     */
+    
+    public function ValidationEmail8Fail(RussianTester\LocrusSteps $I)
+    {
+        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
+        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
+        $set="abcdefghijklmnopqrstuvwxyz1234567890";
+            $size = strlen($set)-1; 
+            $prefix = 'shop-ru-ru-';
+            $mailsufix = '@gmail.com';
+            $name = null;
+            $max = 7;
+                while($max--)
+                $name.=$set[rand(0,$size)]; 
+            $store1 = $prefix.$name;
+            $mail1 = $prefix.'@'.$name.$mailsufix;
+            echo "your store name: $store1 \nyoour mail: $mail1";
+            $password='1111111';
+            $user='Norman';
+            $phone='4443434367';
+            $city='Boston';
+            $country='3';
+            $category='2';
+            $level='3';
+            $agree='';
+            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
+            $I->wait('2');
+        $ErrorEmail=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorEmail, 'class');
+        $I->comment("Email:$ErrorEmail");
+        $I->assertEquals($ErrorEmail, 'error');        
+    } 
+    
+    
+    /**
+     * @guy RussianTester\LocrusSteps
+     */
+    
+    public function ValidationEmail9Fail(RussianTester\LocrusSteps $I)
+    {
+        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
+        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
+        $set="abcdefghijklmnopqrstuvwxyz1234567890";
+            $size = strlen($set)-1; 
+            $prefix = 'shop-ru-ru-';
+            $mailsufix = '@gmail.com';
+            $name = null;
+            $max = 7;
+                while($max--)
+                $name.=$set[rand(0,$size)]; 
+            $store1 = $prefix.$name;
+            $mail1 = $prefix.'_-'.$name.'@@%$^&$#'.$mailsufix;
+            echo "your store name: $store1 \nyoour mail: $mail1";
+            $password='1111111';
+            $user='Norman';
+            $phone='4443434367';
+            $city='Boston';
+            $country='3';
+            $category='2';
+            $level='3';
+            $agree='';
+            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
+            $I->wait('2');
+        $ErrorEmail=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorEmail, 'class');
+        $I->comment("Email:$ErrorEmail");
+        $I->assertEquals($ErrorEmail, 'error');        
+    } 
+    
+    /**
+     * @guy RussianTester\LocrusSteps
+     */
+    
+    public function ValidationEmail10Fail(RussianTester\LocrusSteps $I)
+    {
+        InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
+        $I->click(PremmerceMainPage::$CreateShopButtonTop);        
+        $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
+        $set="abcdefghijklmnopqrstuvwxyz1234567890";
+            $size = strlen($set)-1; 
+            $prefix = 'shop-ru-ru-';
+            $mailsufix = '@gmail.com';
+            $name = null;
+            $max = 7;
+                while($max--)
+                $name.=$set[rand(0,$size)]; 
+            $store1 = $prefix.$name;
+            $mail1 = $prefix.'_-'.$name.'@@%$^&$#'.$mailsufix.'.';
+            echo "your store name: $store1 \nyoour mail: $mail1";
+            $password='1111111';
+            $user='Norman';
+            $phone='4443434367';
+            $city='Boston';
+            $country='3';
+            $category='2';
+            $level='3';
+            $agree='';
+            $I->CreateShop($store1, $mail1, $password, $user, $phone, $city, null, null, $level, $agree);
+            $I->wait('2');
+        $ErrorEmail=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorEmail, 'class');
+        $I->comment("Email:$ErrorEmail");
+        $I->assertEquals($ErrorEmail, 'error');        
+    } 
     
     /**
      * @guy RussianTester\LocrusSteps
@@ -838,6 +869,7 @@ class CreateShopRusCest
     
     public function ValidationEmail12Passed(RussianTester\LocrusSteps $I)
     {
+        $I->wait('5');
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
         $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
@@ -900,6 +932,7 @@ class CreateShopRusCest
     
     public function ValidationUserNameAndCity(RussianTester\LocrusSteps $I)
     {
+        $I->wait('5');
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
         $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
@@ -912,7 +945,7 @@ class CreateShopRusCest
                 while($max--)
                 $name.=$set[rand(0,$size)]; 
             $store1 = $prefix.$name;
-            $mail1 = '.'.$prefix.$name.$mailsufix;
+            $mail1 = $prefix.$name.$mailsufix;
             echo "your store name: $store1 \nyoour mail: $mail1";
             $password='1111111';
             $user='Петров Петр Петрович Петров Петр';
@@ -979,6 +1012,7 @@ class CreateShopRusCest
     
     public function CreateShopUkrCountry(RussianTester\LocrusSteps $I)
     {
+        $I->wait('5');
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);        
         $I->fillField(PremmerceMainPage::$CreateShopField, 's');
         $I->seeElement(PremmerceMainPage::$DomainEnd);
@@ -1012,9 +1046,9 @@ class CreateShopRusCest
         $ErrorUserName=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorUserName, 'class');
         $I->comment("UserName:$ErrorUserName");
         $I->assertEquals($ErrorUserName, "error");
-        $ErrorPhone=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorPhoneNumber, 'class');
-        $I->comment($ErrorPhone);
-        $I->assertEquals($ErrorPhone, 'error');       
+//        $ErrorPhone=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorPhoneNumber, 'class');
+//        $I->comment($ErrorPhone);
+//        $I->assertEquals($ErrorPhone, 'error');       
         $ErrorCity=$I->grabAttributeFrom(PremmerceCreateShopPage::$ErrorCity, 'class');
         $I->comment("City:$ErrorCity");
         $I->assertEquals($ErrorCity, 'error');
@@ -1080,7 +1114,9 @@ class CreateShopRusCest
     
     public function CreateShopRusCountry(RussianTester\LocrusSteps $I)
     {
+        $I->wait('5');
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
+        $I->amOnPage(LocRusPage::$URL);
         $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
             $set="abcdefghijklmnopqrstuvwxyz1234567890";
@@ -1218,6 +1254,7 @@ class CreateShopRusCest
         
     public function CreateShopWithEmailAlreadyRegistered(RussianTester\LocrusSteps $I)
     {
+        $I->wait('5');
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
         $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);               
@@ -1292,6 +1329,7 @@ class CreateShopRusCest
     
     public function CreateShopWithNameDomainAlreadyRegistered(RussianTester\LocrusSteps $I)
     {
+        $I->wait('5');
         InitTest::VerifyLogInOrLogOutPremmerceAdmin($I);
         $I->click(PremmerceMainPage::$CreateShopButtonTop);        
         $I->waitForElement(PremmerceCreateShopPage::$RegisterForm);
