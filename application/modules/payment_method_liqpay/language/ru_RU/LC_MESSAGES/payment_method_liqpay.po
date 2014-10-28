@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-27 04:03+0200\n"
-"PO-Revision-Date: 2014-10-27 04:03+0200\n"
+"POT-Creation-Date: 2014-10-28 03:44+0200\n"
+"PO-Revision-Date: 2014-10-28 03:44+0200\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -17,11 +17,15 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 
-#: ./application/modules/payment_method_liqpay/payment_method_liqpay.php:59
+#: ./application/modules/payment_method_liqpay/assets/form.tpl:13
+msgid "Оплатить"
+msgstr ""
+
+#: ./application/modules/payment_method_liqpay/assets/adminForm.tpl:2
 msgid "Public key"
 msgstr "Public key"
 
-#: ./application/modules/payment_method_liqpay/payment_method_liqpay.php:65
+#: ./application/modules/payment_method_liqpay/assets/adminForm.tpl:8
 msgid "Private key"
 msgstr "Private key"
 

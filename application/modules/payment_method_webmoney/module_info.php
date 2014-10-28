@@ -3,8 +3,8 @@
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 $com_info = array(
-    'menu_name' => lang('Robokassa', 'payment_method_robokassa'), // Menu name
-    'description' => lang('Метод оплаты Robokassa', 'payment_method_robokassa'),            // Module Description
+    'menu_name' => lang('WebMoney', 'payment_method_webmoney'), // Menu name
+    'description' => lang('Метод оплаты WebMoney', 'payment_method_webmoney'),            // Module Description
     'admin_type' => 'window',       // Open admin class in new window or not. Possible values window/inside
     'window_type' => 'xhr',         // Load method. Possible values xhr/iframe
     'w' => 600,                     // Window width
