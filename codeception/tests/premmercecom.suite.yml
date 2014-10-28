@@ -1,7 +1,0 @@
-class_name: EnglishTester
-modules:
-    enabled: [AcceptanceHelper]
-
-    config:
-        WebDriver:
-            url: 'http://premmerce.com/'

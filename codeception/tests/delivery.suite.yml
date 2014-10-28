@@ -1,3 +1,0 @@
-class_name: DeliveryTester
-modules:
-    enabled: [AcceptanceHelper]
