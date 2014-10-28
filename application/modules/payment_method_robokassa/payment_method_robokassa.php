@@ -55,19 +55,35 @@ class Payment_method_robokassa extends MY_Controller {
         $data = $this->getPaymentSettings($key);
 
         return '           
-            <div class="control-group">
-                <label class="control-label" for="inputRecCount">' . lang('Public key', 'payment_method_liqpay') . ':</label>
+             <div class="control-group">
+                <label class="control-label" for="inputRecCount">' . lang('Login', 'payment_method_robokassa') . ':</label>
                 <div class="controls">
-                 <input type="text" name="payment_method_liqpay[merchant_id]" value="' . $data['merchant_id'] . '"/>
+                  <input type="text" name="payment_method_robokassa[login]" value="' . $data['login'] . '"  />
+                </div>
+            </div>          
+            <div class="control-group">
+                <label class="control-label" for="inputRecCount">' . lang('Password', 'payment_method_robokassa') . ' 1:</label>
+                <div class="controls">
+                 <input type="text" name="payment_method_robokassa[password1]" value="' . $data['password1'] . '"  />
                 </div>
             </div>
+            
             <div class="control-group">
-                <label class="control-label" for="inputRecCount">' . lang('Private key', 'payment_method_liqpay') . ':</label>
+                <label class="control-label" for="inputRecCount">' . lang('Password') . ' 2:</label>
                 <div class="controls">
-                 <input type="text" name="payment_method_liqpay[merchant_sig]" value="' . $data['merchant_sig'] . '" />
+                  <input type="text" name="payment_method_robokassa[password2]" value="' . $data['password2'] . '"/>
+                </div>
+            </div>        
+            <div class="control-group">
+                <label class="control-label" for="inputRecCount">' . lang('Merchant settings', 'payment_method_robokassa') . ':</label>
+                <div class="controls">
+                Result URL: ' . shop_url('order/view/') . '<br/>
+                Success URL: ' . shop_url('order/view/') . '<br/>
+                Fail URL: ' . shop_url('order/view/') . '<br/><br/>
+                    <span class="help-block">' . lang('The method of sending data for all requests: GET', 'main') . '.</span>
                 </div>
             </div>
-     
+   
         ';
     }
 
@@ -81,39 +97,41 @@ class Payment_method_robokassa extends MY_Controller {
         $key = $payment_method_id . '_' . $this->moduleName;
         $paySettings = $this->getPaymentSettings($key);
 
-        $publicKey = $paySettings['merchant_id'];
-        $privateKey = $paySettings['merchant_sig'];
-        $descr = 'OrderId: ' . $param->id . '; Key: ' . $param->getKey();
+        $mrh_login = $paySettings['login'];
+        $mrh_pass1 = $paySettings['password1'];
+        $shp_order_key = $param->getKey();
+        $shp_payment_id = $param->getPaymentMethod();
+        $inv_desc = "Оплата заказа номер " . $param->getId();
+//        // номер заказа
+        $inv_id = $param->getId();
+//
+        // ціна товарів
+        $productsPrice = $param->getTotalPrice();
+        // ціна доставки
 
-        $data = array(
-            'public_key' => $publicKey,
-            'amount' => $param->getTotalPrice(),
-            'currency' => \Currency\Currency::create()->getMainCurrency()->getCode(),
-            'description' => $descr,
-            'order_id' => $param->id,
-            'server_url' => site_url() . $this->moduleName.'/callback',
-            'result_url' => site_url() . 'shop/order/view/' . $param->getKey(),
-        );
+        $deliveryPrice = $param->SDeliveryMethods->getPrice();
+        $out_summ = ShopCore::app()->SCurrencyHelper->convert($deliveryPrice + $productsPrice);
+//        // предлагаемая валюта платежа
+        $in_curr = "PCR";
+//
+//        // язык
+        $culture = "ru";
+//
+//        // формирование подписи
+        $crc = md5("$mrh_login:$out_summ:$inv_id:$mrh_pass1");
 
-        $inv = $privateKey . $data['amount'] . $data['currency'] . $data['public_key'] . $data['order_id'] . 'buy' . $data['description'] . $data['result_url'] . $data['server_url'];
-        $inv = html_entity_decode($inv);
-        $signature = base64_encode(sha1($inv, 1));
+        return '<form method="post" action="https://merchant.roboxchange.com/Index.aspx">
+                <!-- для реального режима измените action формы на "https://merchant.roboxchange.com/Index.aspx" -->
 
-        return '<form id="paidForm" method="POST" action="https://www.liqpay.com/api/pay" 
-                    accept-charset="utf-8">
-                      <input type="hidden" name="public_key" value="' . $data['public_key'] . '"/>
-                      <input type="hidden" name="amount" value="' . $data['amount'] . '"/>
-                      <input type="hidden" name="currency" value="' . $data['currency'] . '"/>
-                      <input type="hidden" name="description" value="' . $data['description'] . '"/>
-                      <input type="hidden" name="order_id" value="' . $data['order_id'] . '"/>
-                      <input type="hidden" name="result_url" value="' . $data['result_url'] . '"/>
-                      ' . "<input type='hidden' name='server_url' value='" . $data['server_url'] . "'/>" . '     
-                      <input type="hidden" name="type" value="buy"/>
-                      <input type="hidden" name="signature" value="' . $signature . '"/>' .
-                "<div class='btn-cart btn-cart-p'>
-                    <input type='submit' value='Оплатить'>
-                </div>" .
-                '</form>';
+                <input type="hidden" name="MrchLogin" value="'.$mrh_login.'" />
+                <input type="hidden" name="OutSum" value="'.$out_summ.'" />
+                <input type="hidden" name="InvId" value="'.$inv_id.'" />
+                <input type="hidden" name="Desc" value="'.$inv_desc.'" />
+                <input type="hidden" name="SignatureValue" value="'.$crc.'" />
+
+                <input type="submit" value="Оплатить" />
+
+                </form>';
     }
 
     /**
@@ -144,23 +162,28 @@ class Payment_method_robokassa extends MY_Controller {
         $key = $userOrder->payment_method . '_'.$this->moduleName;
         $paySettings = $this->getPaymentSettings($key);
         
+        $mrh_pass2 = $paySettings['password2'];
+        $shp_order_key = $param->getKey();
+        $shp_payment_id = $param->getPaymentMethod();
+        $out_summ = $_REQUEST["OutSum"];
+        $inv_id = $_REQUEST["InvId"];
+        $crc = strtoupper($_REQUEST["SignatureValue"]);
+        
+        
+        $my_crc = strtoupper(md5("$out_summ:$inv_id:$mrh_pass2"));
 
-        $sign = base64_encode(sha1(
-                        $paySettings['merchant_sig'] .
-                        $param['amount'] .
-                        $param['currency'] .
-                        $param['public_key'] .
-                        $param['order_id'] .
-                        $param['type'] .
-                        $param['description'] .
-                        $param['status'] .
-                        $param['transaction_id'] .
-                        $param['sender_phone']
-                        , 1));
+        // Check sum
+        if ($out_summ != ShopCore::app()->SCurrencyHelper->convert($param->getTotalPrice()))
+            return ERROR_SUM;
 
-        if ($param['signature'] == $sign && $order_id)
-            if ($param['status'] == 'success')
-                $this->successPaid($order_id, $userOrder);
+        // Check sign
+        if ($my_crc != $crc)
+            return "bad sign $out_summ:$inv_id:Shp_orderKey=$shp_order_key:Shp_pmId=$shp_payment_id";
+
+        // Set order paid
+        $this->successPaid($order_id, $userOrder);
+
+        return true;
     }
 
     /**
@@ -170,7 +193,7 @@ class Payment_method_robokassa extends MY_Controller {
      */
     public function saveSettings(SPaymentMethods $paymentMethod) {
         $saveKey = $paymentMethod->getId() . '_'.$this->moduleName;
-        \ShopCore::app()->SSettings->set($saveKey, serialize($_POST['payment_method_liqpay']));
+        \ShopCore::app()->SSettings->set($saveKey, serialize($_POST['payment_method_robokassa']));
 
         return true;
     }
