@@ -114,7 +114,7 @@ class Payment_method_robokassa extends MY_Controller {
 //        // формирование подписи
         $crc = md5("$mrh_login:$out_summ:$inv_id:$mrh_pass1");
 
-        return '<form method="post" action="https://merchant.roboxchange.com/Index.aspx">
+        return '<form method="post" action="http://test.robokassa.ru/Index.aspx">
                 <input type="hidden" name="MrchLogin" value="'.$mrh_login.'" />
                 <input type="hidden" name="OutSum" value="'.$out_summ.'" />
                 <input type="hidden" name="InvId" value="'.$inv_id.'" />
@@ -140,7 +140,7 @@ class Payment_method_robokassa extends MY_Controller {
     private function checkPaid($param) {  
         $ci = &get_instance();
         
-        $order_id = $param['order_id'];
+        $order_id = $param['InvId'];
         $userOrder = $ci->db->where('id', $order_id)
                 ->get('shop_orders');
         if($userOrder){
@@ -151,7 +151,6 @@ class Payment_method_robokassa extends MY_Controller {
 
         $key = $userOrder->payment_method . '_'.$this->moduleName;
         $paySettings = $this->getPaymentSettings($key);
-        
         $mrh_pass2 = $paySettings['password2'];
         $out_summ = $_POST["OutSum"];
         $inv_id = $_POST["InvId"];
@@ -160,7 +159,7 @@ class Payment_method_robokassa extends MY_Controller {
         $my_crc = strtoupper(md5("$out_summ:$inv_id:$mrh_pass2"));
 
         // Check sum
-        if ($out_summ != ShopCore::app()->SCurrencyHelper->convert($param->getTotalPrice()))
+        if ($out_summ != ShopCore::app()->SCurrencyHelper->convert($param['OutSum']))
             return false;
 
         // Check sign
