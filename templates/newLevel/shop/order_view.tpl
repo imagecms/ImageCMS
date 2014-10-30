@@ -49,13 +49,6 @@
                         <td>{echo $model->getUserPhone()}</td>
                     </tr>
                 {/if}
-                {$s_field = ShopCore::app()->CustomFieldsHelper->getOneCustomFieldsByNameArray('addphone','order', $model->getId())}
-                {if $s_field.field_data && $s_field.field_data !== ''}
-                    <tr>
-                        <th>{lang('Дополнительный телефон','newLevel')}:</th>
-                        <td>{echo $s_field.field_data}</td>
-                    </tr>
-                {/if}
                 <tr>
                     <th>E-mail:</th>
                     <td>{echo $model->getUserEmail()}</td>
@@ -77,19 +70,18 @@
                     </tr>
                 {/if}
                 <!-- End. Delivery Method name -->
-                {$s_field = ShopCore::app()->CustomFieldsHelper->getOneCustomFieldsByNameArray('city','order', $model->getId())}
-                {if $s_field.field_data && $s_field.field_data !== ''}
-                    <tr>
-                        <th>{lang('Город','newLevel')}:</th>
-                        <td>{echo $s_field.field_data}</td>
-                    </tr>
-                {/if}
                 {if $model->getUserDeliverTo()}
                     <tr>
                         <th>{lang('Адрес','newLevel')}:</th>
                         <td>{echo $model->getUserDeliverTo()}</td>
                     </tr>
                 {/if}
+                {foreach ShopCore::app()->CustomFieldsHelper->getCustomFielsdAsArray('order', $model->getId()) as $cf}
+                    <tr>
+                        <th>{$cf.field_label}:</th>
+                        <td>{$cf.field_data}</td>
+                    </tr>
+                {/foreach}
                 {if $model->getUserComment()}
                     <tr>
                         <th>{lang('Комментарий','newLevel')}:</th>
@@ -393,11 +385,11 @@
                                                     {if $NextCSIdCond}
                                                         <span class="price-add">
                                                             <span>
-                                                                 <span>
+                                                                <span>
                                                                     {echo \Currency\Currency::create()->getCurrencyToFormat($NextCSId, $orderProduct->getKit()->getTotalPrice($NextCSId)*$orderProduct->getQuantity($NextCSId),'span', 'curr-add', '',  'span', 'price', '');}
-                                                                 </span>
-                                                                <!--<span class="price">{echo $orderProduct->getKit()->getTotalPrice($NextCSId)*$orderProduct->getQuantity($NextCSId)}</span>
-                                                                <span class="curr-add">{$NextCS}</span>-->
+                                                                </span>
+                                                               <!--<span class="price">{echo $orderProduct->getKit()->getTotalPrice($NextCSId)*$orderProduct->getQuantity($NextCSId)}</span>
+                                                               <span class="curr-add">{$NextCS}</span>-->
                                                             </span>
                                                         </span>
                                                     {/if}

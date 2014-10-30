@@ -1,3 +1,4 @@
+{$opi_limit = NULL}
 {if count($products) > 0}
     <div class="horizontal-carousel">
         <section class="special-proposition frame-view-products">
@@ -6,7 +7,7 @@
                     {/*frame-scroll-pane || carousel-js-css || ' '*/}
                     <div class="content-carousel container">
                         <ul class="items items-catalog items-h-carousel items-product">
-                            {getOPI($products, array('opi_widget'=>true))}
+                            {getOPI($products, array('opi_widget'=>true, 'opi_limit'=>false))}
                         </ul>
                     </div>
                     <div class="group-button-carousel">

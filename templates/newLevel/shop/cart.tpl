@@ -70,20 +70,10 @@
                                 <div class="frame-label">
                                     <span class="title">{lang('Телефон','newLevel')}:</span>
                                     <div class="frame-form-field">
-                                        {if trim(ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field_phone')->getOneCustomFieldsByName('addphone','order',$profile.id,'user')->asHtml()) != ''}
-                                            <span class="f_r l-h_35">
-                                                <button type="button" class="d_l_1" data-drop=".drop-add-phone" data-overlay-opacity="0" data-place="inherit">{lang('Еще один номер', 'newLevel')}</button>
-                                            </span>
+                                        {if $isRequired['userInfo[phone]']}
+                                            <span class="must">*</span>
                                         {/if}
-                                        <div class="d_b o_h maskPhoneFrame">
-                                            {if $isRequired['userInfo[phone]']}
-                                                <span class="must">*</span>
-                                            {/if}
-                                            <input type="text" name="userInfo[phone]" value="{if isset($formData['phone'])}{$formData['phone']}{else:}{$profile.phone}{/if}" class="m-b_5">
-                                            <div class="drop drop-add-phone">
-                                                {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field_phone')->getOneCustomFieldsByName('addphone','order',$profile.id,'user')->asHtml()}
-                                            </div>
-                                        </div>
+                                        <input type="text" name="userInfo[phone]" value="{if isset($formData['phone'])}{$formData['phone']}{else:}{$profile.phone}{/if}" class="m-b_5">
                                     </div>
                                 </div>
                                 <label>
@@ -95,8 +85,6 @@
                                         <input type="text" value="{if isset($formData['email'])}{$formData['email']}{else:}{$profile.email}{/if}" name="userInfo[email]">
                                     </span>
                                 </label>
-                                {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getOneCustomFieldsByName('country','order',$profile.id,'user')->asHtml()}
-                                {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getOneCustomFieldsByName('Selo','order',$profile.id,'user')->asHtml()}
                             </div>
                             <div class="groups-form">
                                 {if count($deliveryMethods) > 0}
@@ -140,16 +128,16 @@
                                                                     { /*}<div>{lang('Стоимость','newLevel')}: {echo ceil($deliveryMethod->getPrice())} <span class="curr">{$CS}</span></div>{ */}
                                                                     { /*}<div>{lang('Бесплатно от','newLevel')}: {echo ceil($deliveryMethod->getFreeFrom())} <span class="curr">{$CS}</span></div>{ */}
                                                                     <div> {lang('Стоимость','newLevel')}:
-                                                                            {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), number_format($deliveryMethod->getPrice(),$pricePrecision,'.',''),'span', 'curr', '');}
+                                                                        {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), number_format($deliveryMethod->getPrice(),$pricePrecision,'.',''),'span', 'curr', '');}
                                                                     </div>
                                                                     <div> {lang('Бесплатно от','newLevel')}:
-                                                                            {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), number_format($deliveryMethod->getFreeFrom(),$pricePrecision,'.',''),'span', 'curr', '');}
+                                                                        {echo \Currency\Currency::create()->getCurrencyToFormat(\Currency\Currency::create()->getMainCurrency()->getId(), number_format($deliveryMethod->getFreeFrom(),$pricePrecision,'.',''),'span', 'curr', '');}
                                                                     </div>
-                        
+
                                                                     { /*}<div>{lang('Стоимость','newLevel')}: {echo number_format($deliveryMethod->getPrice(),$pricePrecision,'.','')} <span class="curr">{$CS}</span></div>
                                                                     <div>{lang('Бесплатно от','newLevel')}: {echo number_format($deliveryMethod->getFreeFrom(),$pricePrecision,'.','')} <span class="curr">{$CS}</span></div>{ */}
+                                                                    {/if}
                                                                 {/if}
-                                                            {/if}
                                                         </div>
                                                     </div>
                                                 {/foreach}
@@ -168,10 +156,19 @@
                                         <input name="userInfo[deliverTo]" type="text" value="{if isset($formData['deliverTo'])}{$formData['deliverTo']}{else:}{$profile.deliverTo}{/if}"/>
                                     </span>
                                 </div>
+                                {foreach ShopCore::app()->CustomFieldsHelper->getCustomFielsdAsArray('order') as $cf}
+                                    <label for="custom_field_{$cf.id}">
+                                        <span class="title">{$cf.field_label}:</span>
+                                        <span class="frame-form-field">
+                                            {if $cf.is_required}
+                                                <span class="must">*</span>
+                                            {/if}
+                                            <input type="text" name="custom_field[{$cf.id}]" value="{$cf.field_data}" id="custom_field_{$cf.id}">
+                                        </span>
+                                    </label>
+                                {/foreach}
+
                                 { /*} End. Delivery  address block and comment{ */}
-
-                                {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getOneCustomFieldsByName('city','order',$profile.id,'user')->asHtml()}
-
                                 <div class="frame-label">
                                     <div class="frame-form-field">
                                         <button type="button" class="m-b_5 t-a_l" data-drop=".hidden-comment" data-place="inherit" data-overlay-opacity="0"><span class="d_l_1">{lang('Добавить комментарий к заказу', 'newLevel')}</span></button>
