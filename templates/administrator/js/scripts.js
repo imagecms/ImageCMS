@@ -294,7 +294,7 @@ function init_2() {
     // /if ($.exists('[data-submit]')) $('body').append('<div class="notifications bottom-right"><div class="alert-message" style="color:#666;text-shadow:0 1px #fff;">??? ???? ???? <span style="color:green;font-weight:bold;">'+$('[data-submit]').text()+'</span> ??????????? ?????????? ?????? <span style="color:green;font-weight:bold;">Ctrl + s</span></div></div>')
 
     /** Show/Hide Price to be confirmed message input in delivery methods edit and create ***/
-    $('#deliverySumSpecifiedSpan').off('click').on('click', function () {
+    $('#deliverySumSpecifiedSpan').parent().off('click').on('click', function () {
         var spanBlock = $(this);
         var checkBox = spanBlock.find('#deliverySumSpecifiedInput');
         var controlBlock = spanBlock.closest('#deliveryPriceDisableBlock');

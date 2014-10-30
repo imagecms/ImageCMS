@@ -24,7 +24,17 @@
                         <span class="help-block">{lang('E-mail является логином','newLevel')}</span>
                     </span>
                 </label>
-                {echo ShopCore::app()->CustomFieldsHelper->setRequiredHtml('<span class="must">*</span>')->setPatternMain('pattern_custom_field')->getOneCustomFieldsByName('city','user',$profile->getId())->asHtml()}
+                {foreach ShopCore::app()->CustomFieldsHelper->getCustomFielsdAsArray('user', $profile->getId()) as $cf}
+                    <label for="custom_field_{$cf.id}">
+                        <span class="title">{$cf.field_label}:</span>
+                        <span class="frame-form-field">
+                            {if $cf.is_required}
+                                <span class="must">*</span>
+                            {/if}
+                            <input type="text" name="custom_field[{$cf.id}]" value="{$cf.field_data}" id="custom_field_{$cf.id}">
+                        </span>
+                    </label>
+                {/foreach}
                 <label>
                     <span class="title">{lang('Адрес','newLevel')}:</span>
                     <span class="frame-form-field">
