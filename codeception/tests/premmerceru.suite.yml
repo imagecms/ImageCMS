@@ -1,7 +1,0 @@
-class_name: RussianTester
-modules:
-    enabled: [AcceptanceHelper]
-
-    config:
-        WebDriver:
-            url: 'http://imagego.ru/'

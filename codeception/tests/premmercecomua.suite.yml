@@ -1,7 +1,0 @@
-class_name: UkrainianTester
-modules:
-    enabled: [AcceptanceHelper]
-    
-    config:
-        WebDriver:
-            url: 'http://imagego.com.ua/'
