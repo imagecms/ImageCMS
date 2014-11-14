@@ -26,7 +26,6 @@
         <div id="page" class="tab-pane {if $item.item_type == 'page'}active{/if}">
             <form method="post" action="/admin/components/cp/menu/edit_item/{$item.id}" id="page_form">
                 {$data = unserialize($item.add_data)}
-                {var_dump($item)}
                 <input type="hidden" name="menu_id" value="{$menu.id}"/>
                 <input type="hidden" name="item_id" value="{$item.item_id}" id="item_page_id"/>
                 <input type="hidden" value="{$item.item_image}" id="item_url_image"/>

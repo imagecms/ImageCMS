@@ -61,7 +61,7 @@ class MY_Lang extends MX_Lang {
         if (!isset($this->ci)) {
             $this->ci = & get_instance();
         }
-
+        return;
         $languages = $this->ci->db->select('lang_name, identif, locale')->get('languages');
 
         if ($languages) {
@@ -81,9 +81,11 @@ class MY_Lang extends MX_Lang {
     }
 
     private function _init() {
-        if (!isset($this->ci)) {
-            $this->ci = & get_instance();
+        if (isset($this->ci)) {
+            return;
         }
+        
+        $this->ci = & get_instance();
 
         if (!strstr($_SERVER['REQUEST_URI'], 'install')) {
             if (is_null($this->ci->db)) {
@@ -91,7 +93,9 @@ class MY_Lang extends MX_Lang {
                 echo $error->show_error('DB Error', 'Unable to connect to the database', 'error_db');
                 exit;
             }
-            $sett = $this->ci->db->where('s_name', 'main')->get('settings');
+            //if (is_null($this->ci->db)) {
+                $sett = $this->ci->db->where('s_name', 'main')->get('settings');
+            //}
             if ($sett) {
                 $sett = $sett->row();
             }else {

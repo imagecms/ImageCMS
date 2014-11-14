@@ -10,6 +10,21 @@ class Lib_init {
 
         log_message('debug', "Lib_init Class Initialized");
 
+        /**
+         * @todo Code is from Codeigniter 3 Dev... On updating to 3 version 
+         * this functionallity will be present in framework, so this shoud 
+         * be deleted. 
+         */
+        if ($composer_autoload = $CI->config->item('composer_autoload')) {
+            if ($composer_autoload === TRUE && file_exists(APPPATH . 'vendor/autoload.php')) {
+                require_once(APPPATH . 'vendor/autoload.php');
+            } elseif (file_exists($composer_autoload)) {
+                require_once($composer_autoload);
+            }
+        }
+
+
+        // load cms configs
         // Set timezone
         if (function_exists('date_default_timezone_set')) {
             date_default_timezone_set($CI->config->item('default_time_zone'));
@@ -88,10 +103,9 @@ class Lib_init {
                 define('ICMS_DISBALE_CSRF', true);
             }
             // Support for privat
-		if ($CI->uri->segment(1)=='shop' && $CI->uri->segment(2)=='order' && $CI->uri->segment(3)=='view' && $_POST)
-{
-    define('ICMS_DISBALE_CSRF',true);
-}
+            if ($CI->uri->segment(1) == 'shop' && $CI->uri->segment(2) == 'order' && $CI->uri->segment(3) == 'view' && $_POST) {
+                define('ICMS_DISBALE_CSRF', true);
+            }
             if ($CI->uri->segment(1) == 'shop' && $CI->uri->segment(2) == 'cart' && $CI->uri->segment(3) == 'view' && $_GET['succes'] == 'true') {
                 define('ICMS_DISBALE_CSRF', true);
             }
@@ -102,12 +116,9 @@ class Lib_init {
                 define('ICMS_DISBALE_CSRF', true);
             }
             // Support for privat
-			if ($CI->uri->segment(1)=='shop' && $CI->uri->segment(2)=='order' && $CI->uri->segment(3)=='view')
-			{
-				define('ICMS_DISBALE_CSRF',true);
-			}
-			
-
+            if ($CI->uri->segment(1) == 'shop' && $CI->uri->segment(2) == 'order' && $CI->uri->segment(3) == 'view') {
+                define('ICMS_DISBALE_CSRF', true);
+            }
         }
     }
 

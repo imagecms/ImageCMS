@@ -79,13 +79,13 @@ class MY_Controller extends MX_Controller {
             $this->db->cache_on();
             $res = $this->db->where('identif', 'shop')
                     ->get('components');
-            
+
             if ($res) {
                 $res = $res->result_array();
             } else {
                 show_error($this->db->_error_message());
             }
-            
+
             $this->db->cache_off();
 
             return (bool) count($res);
@@ -104,7 +104,7 @@ class MY_Controller extends MX_Controller {
             return self::$currentLocale;
         }
 
-        if (strstr($_SERVER['PATH_INFO'], 'install')) {
+        if (isset($_SERVER['ORIG_PATH_INFO']) && strstr($_SERVER['ORIG_PATH_INFO'], 'install')) {
             return;
         }
 

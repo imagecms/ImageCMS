@@ -252,7 +252,7 @@ class DX_Auth {
              */
 
             // Check if role has parent id
-            if ($role->parent_id > 0) {
+            if (isset($role->parent_id) && $role->parent_id > 0) {
                 // Add to result array
                 $parent_roles_id[] = $role->parent_id;
 
@@ -315,7 +315,7 @@ class DX_Auth {
         $data['parent_roles_name'] = $parent_roles_name;
         $data['permission'] = $permission;
         $data['parent_permissions'] = $parent_permissions;
-
+        
         return $data;
     }
 

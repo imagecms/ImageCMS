@@ -1,4 +1,5 @@
 <?php
+
 /*
  * ---------------------------------------------------------------
  * APPLICATION ENVIRONMENT
@@ -17,16 +18,6 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
-
-/**
- * Hard user rebase, if trying to use index.php
- *
- * (!strpos($_SERVER['REQUEST_URI'], 'index.php')) OR header("Location:http://" . $_SERVER['SERVER_NAME'] . "/page_not_found");
- */
-if (strpos($_SERVER['REQUEST_URI'], 'index.php') !== false) {
-    header("Location:http://" . $_SERVER['SERVER_NAME'] . "/page_not_found");
-    exit;
-}
 define('ENVIRONMENT', 'development');
 /*
  * ---------------------------------------------------------------
@@ -37,29 +28,22 @@ define('ENVIRONMENT', 'development');
  * By default development will show errors but testing and live will hide them.
  */
 
-switch (ENVIRONMENT) {
-    case 'development':
-        error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
-        ini_set('display_errors', 'on');
-        break;
+if (defined('ENVIRONMENT')) {
+    switch (ENVIRONMENT) {
+        case 'development':
+            error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
+            ini_set('display_errors', 'on');
+            break;
 
-    case 'testing':
-    case 'production':
-        error_reporting(E_ALL ^ E_NOTICE ^ E_DEPRECATED ^ E_STRICT ^ E_WARNING);
-        ini_set('display_errors', 'off');
-        break;
+        case 'testing':
+        case 'production':
+            error_reporting(0);
+            break;
 
-    default:
-        header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
-        exit('The application environment is not set correctly.');
+        default:
+            exit('The application environment is not set correctly.');
+    }
 }
-
-/*
- * ---------------------------------------------------------------
- * DISPLAY OR NO INFORMATION ABOUT PROFILING
- * ---------------------------------------------------------------
- */
-define('ENABLE_PROFILER', false);
 
 /*
  * ---------------------------------------------------------------
@@ -112,7 +96,7 @@ $application_folder = 'application';
 // The directory name, relative to the "controllers" folder.  Leave blank
 // if your controller is not in a sub-folder within the "controllers" folder
 // $routing['directory'] = '';
-// The controller class file name.  Example:  Mycontroller.php
+// The controller class file name.  Example:  Mycontroller
 // $routing['controller'] = '';
 // The controller function you wish to be called.
 // $routing['function']	= '';
@@ -145,9 +129,6 @@ $application_folder = 'application';
  */
 
 // Set the current directory correctly for CLI requests
-
-
-
 if (defined('STDIN')) {
     chdir(dirname(__FILE__));
 }
@@ -164,7 +145,6 @@ if (!is_dir($system_path)) {
     exit("Your system folder path does not appear to be set correctly. Please open the following file and correct this: " . pathinfo(__FILE__, PATHINFO_BASENAME));
 }
 
-
 /*
  * -------------------------------------------------------------------
  *  Now that we know the path, set the main path constants
@@ -174,6 +154,7 @@ if (!is_dir($system_path)) {
 define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
 
 // The PHP file extension
+// this global constant is deprecated.
 define('EXT', '.php');
 
 // Path to the system folder
@@ -191,6 +172,8 @@ define('SYSDIR', trim(strrchr(trim(BASEPATH, '/'), '/'), '/'));
 define('DOCUMENT_ROOT', $_SERVER['DOCUMENT_ROOT']);
 define('MAINSITE', '');
 define('BACKUPFOLDER', PUBPATH . 'application/backups/');
+
+
 // The path to the "application" folder
 if (is_dir($application_folder)) {
     define('APPPATH', $application_folder . '/');
@@ -202,6 +185,7 @@ if (is_dir($application_folder)) {
     define('APPPATH', BASEPATH . $application_folder . '/');
 }
 
+
 define('IMAGECMS_NUMBER', '4.6.1 Premium');
 
 define('IMAGECMS_VERSION', '20140604');
@@ -212,6 +196,7 @@ define('BUILD_ID', '461.832');
 
 define('IMAGECMS_PUBLIC_ID', '51035d2a96a227c54d0dea3ff415ced6d39266c3');
 
+
 /*
  * --------------------------------------------------------------------
  * LOAD THE BOOTSTRAP FILE
@@ -220,7 +205,7 @@ define('IMAGECMS_PUBLIC_ID', '51035d2a96a227c54d0dea3ff415ced6d39266c3');
  * And away we go...
  *
  */
-require_once BASEPATH . 'core/CodeIgniter' . EXT;
+require_once BASEPATH . 'core/CodeIgniter.php';
 
 /* End of file index.php */
 /* Location: ./index.php */

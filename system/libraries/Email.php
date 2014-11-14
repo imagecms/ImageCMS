@@ -6,7 +6,7 @@
  *
  * @package		CodeIgniter
  * @author		ExpressionEngine Dev Team
- * @copyright	Copyright (c) 2008 - 2011, EllisLab, Inc.
+ * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc.
  * @license		http://codeigniter.com/user_guide/license.html
  * @link		http://codeigniter.com
  * @since		Version 1.0
@@ -29,7 +29,7 @@
 class CI_Email {
 
 	var	$useragent		= "CodeIgniter";
-	var	$mailpath		= "../sendmail";	// Sendmail path
+	var	$mailpath		= "/usr/sbin/sendmail";	// Sendmail path
 	var	$protocol		= "mail";	// mail/sendmail/smtp
 	var	$smtp_host		= "";		// SMTP Server.  Example: mail.earthlink.net
 	var	$smtp_user		= "";		// SMTP Username
@@ -39,7 +39,7 @@ class CI_Email {
 	var	$smtp_crypto	= "";		// SMTP Encryption. Can be null, tls or ssl.
 	var	$wordwrap		= TRUE;		// TRUE/FALSE  Turns word-wrap on/off
 	var	$wrapchars		= "76";		// Number of characters to wrap at.
-	var	$mailtype		= "html";	// text/html  Defines email formatting
+	var	$mailtype		= "text";	// text/html  Defines email formatting
 	var	$charset		= "utf-8";	// Default char set: iso-8859-1 or us-ascii
 	var	$multipart		= "mixed";	// "mixed" (in the body) or "related" (separate)
 	var $alt_message	= '';		// Alternative message for HTML emails
@@ -1032,7 +1032,7 @@ class CI_Email {
 
 				if ($this->_get_protocol() == 'mail')
 				{
-					$this->_header_str .= $hdr;
+					$this->_header_str .= rtrim($hdr);
 					$this->_finalbody = $this->_body;
 				}
 				else
@@ -1070,7 +1070,7 @@ class CI_Email {
 
 				if ($this->_get_protocol() == 'mail')
 				{
-					$this->_header_str .= $hdr;
+					$this->_header_str .= rtrim($hdr);
 				}
 				else
 				{
@@ -1092,7 +1092,7 @@ class CI_Email {
 
 				if ($this->_get_protocol() == 'mail')
 				{
-					$this->_header_str .= $hdr;
+					$this->_header_str .= rtrim($hdr);
 				}
 
 				$body .= $this->_get_mime_message() . $this->newline . $this->newline;
@@ -1110,7 +1110,7 @@ class CI_Email {
 
 				if ($this->_get_protocol() == 'mail')
 				{
-					$this->_header_str .= $hdr;
+					$this->_header_str .= rtrim($hdr);
 				}
 
 				$body .= $this->_get_mime_message() . $this->newline . $this->newline;
@@ -1520,7 +1520,7 @@ class CI_Email {
 
 		}
 
-		$this->_set_error_message(lang('email_sent'), $this->_get_protocol());
+		$this->_set_error_message('lang:email_sent', $this->_get_protocol());
 		return TRUE;
 	}
 
@@ -1954,7 +1954,7 @@ class CI_Email {
 			}
 		}
 
-		$msg .= "<pre>".$this->_header_str."\n".htmlspecialchars($this->_subject)."\n".htmlspecialchars($this->_finalbody).'</pre>';
+		$msg .= "<pre>".htmlspecialchars($this->_header_str)."\n".htmlspecialchars($this->_subject)."\n".htmlspecialchars($this->_finalbody).'</pre>';
 		return $msg;
 	}
 

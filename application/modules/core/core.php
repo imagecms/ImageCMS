@@ -198,7 +198,7 @@ class Core extends MY_Controller {
 
             // Select page permissions and page data
             $this->db->select('content.*');
-            $this->db->select('CONCAT_WS("", content.cat_url, content.url) as full_url');
+            $this->db->select('CONCAT(content.cat_url,content.url ) as full_url');
             $this->db->select('content_permissions.data as roles', FALSE);
             $this->db->where('url', $last_element);
             $this->db->where('post_status', 'publish');
