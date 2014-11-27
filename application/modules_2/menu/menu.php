@@ -229,7 +229,6 @@ class Menu extends MY_Controller {
                     $item['add_data']['newpage'] == '1' ? $this->arranged_menu_array[$arranged_items_count]['target'] = 'target="_blank"' : $this->arranged_menu_array[$arranged_items_count]['target'] = 'target="_self"';
                 } else {
                     $item['add_data']['newpage'] == '1' ? $this->arranged_menu_array[$arranged_items_count]['target'] = 'target="_blank"' : $this->arranged_menu_array[$arranged_items_count]['target'] = 'target="_self"';
-                   
                 }
 
                 if (($menu_array[$start_index]['position'] != $item['position']) AND ( $menu_array[$end_index]['position'] != $item['position'])) {
@@ -432,7 +431,7 @@ class Menu extends MY_Controller {
             if ($this->tpl_folder) {
                 $err_data = array('user_template' => $this->tpl_folder . '/' . $tpl . '.tpl');
             } else {
-                $err_data = array('system_template' => './application/modules/menu/templates/public/' . $tpl . '.tpl');
+                $err_data = array('system_template' => './application/' . getModContDirName('menu') . '/menu/templates/public/' . $tpl . '.tpl');
             }
 
             $this->errors[] = $err_data;

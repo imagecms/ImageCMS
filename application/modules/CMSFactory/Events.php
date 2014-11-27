@@ -29,6 +29,3 @@ class Events extends BaseEvents {
     }
 
 }
-
-/* End of file /application/modules/CMSFactory/Events.php */
-?>

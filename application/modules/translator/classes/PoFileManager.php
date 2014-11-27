@@ -5,11 +5,6 @@ namespace translator\classes;
 use translator\classes\FileOperator as FileOperator;
 
 class PoFileManager {
-    /**
-     * Modules folder path
-     */
-
-    const MODULES_PATH = "./application/modules/";
 
     /**
      * Templates folder path
@@ -87,7 +82,7 @@ class PoFileManager {
     public function getPoFileUrl($name, $type, $lang) {
         switch ($type) {
             case 'modules':
-                $url = self::MODULES_PATH . $name . '/language/' . $lang . '/LC_MESSAGES/' . $name . '.po';
+                $url = getModulePath($name) . 'language/' . $lang . '/LC_MESSAGES/' . $name . '.po';
                 break;
             case 'templates':
                 $url = self::TEMPLATES_PATH . $name . '/language/' . $name . '/' . $lang . '/LC_MESSAGES/' . $name . '.po';
@@ -239,13 +234,11 @@ class PoFileManager {
             /**
              * Update modules
              */
-            $modules = new \DirectoryIterator(self::MODULES_PATH);
-            foreach ($modules as $module) {
-                if ($module->isDir() && !$module->isDot()) {
-                    $name = $module->getFilename();
-                    $type = 'modules';
-                    $this->saas_update_one($name, $type, $lang);
-                }
+            $modules = getModulesPaths();
+            foreach ($modules as $moduleName => $modulePath) {
+                $name = $moduleName;
+                $type = 'modules';
+                $this->saas_update_one($name, $type, $lang);
             }
 
 

@@ -399,13 +399,13 @@ class Admin extends BaseAdminController {
         if (!empty($data))
             $this->template->add_array($data);
 
-        $this->template->show('file:' . 'application/modules/sitemap/templates/admin/' . $viewName);
+        $this->template->show('file:' . 'application/' . getModContDirName('sitemap') . '/sitemap/templates/admin/' . $viewName);
         exit;
 
         if ($return === false)
-            $this->template->show('file:' . 'application/modules/sitemap/templates/admin/' . $viewName);
+            $this->template->show('file:' . 'application/' . getModContDirName('sitemap') . '/sitemap/templates/admin/' . $viewName);
         else
-            return $this->template->fetch('file:' . 'application/modules/sitemap/templates/admin/' . $viewName);
+            return $this->template->fetch('file:' . 'application/' . getModContDirName('sitemap') . '/sitemap/templates/admin/' . $viewName);
     }
 
     /**

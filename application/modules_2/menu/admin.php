@@ -301,15 +301,15 @@ class Admin extends BaseAdminController {
         $id = (int) $id;
         $cnt = count($modules);
         for ($i = 0; $i < $cnt; $i++) {
-            $info = $this->components->get_module_info($modules[$i]['name']);            
+            $info = $this->components->get_module_info($modules[$i]['name']);
             $modules[$i]['menu_name'] = $info['menu_name'];
             $modules[$i]['description'] = $info['description'];
-            $modules[$i]['url_image'] = $this->db->where('id',$id)
-                                            ->where('title',$info['menu_name'])
-                                            ->select('item_image')
-                                            ->get('menus_data')
-                                            ->row()
-                                            ->item_image;
+            $modules[$i]['url_image'] = $this->db->where('id', $id)
+                            ->where('title', $info['menu_name'])
+                            ->select('item_image')
+                            ->get('menus_data')
+                            ->row()
+                    ->item_image;
         }
 
         unset($info);
@@ -1158,13 +1158,13 @@ class Admin extends BaseAdminController {
 //        if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
 //            $this->template->fetch('file:' . 'application/modules/menu/templates/' . $viewName);
 //        else
-        $this->template->show('file:' . 'application/modules/menu/templates/' . $viewName);
+        $this->template->show('file:' . 'application/' . getModContDirName('menu') . '/menu/templates/' . $viewName);
         exit;
 
         if ($return === false)
-            $this->template->show('file:' . 'application/modules/menu/templates/' . $viewName);
+            $this->template->show('file:' . 'application/' . getModContDirName('menu') . '/menu/templates/' . $viewName);
         else
-            return $this->template->fetch('file:' . 'application/modules/menu/templates/' . $viewName);
+            return $this->template->fetch('file:' . 'application/' . getModContDirName('menu') . '/menu/templates/' . $viewName);
     }
 
     function change_hidden() {

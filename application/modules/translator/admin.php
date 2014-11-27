@@ -69,7 +69,7 @@ class Admin extends BaseAdminController {
     }
 
     public function settings() {
-        
+
         if ($_POST) {
             $settings = $this->input->post('settings');
             updateSettings($settings);
@@ -161,7 +161,7 @@ class Admin extends BaseAdminController {
 
         $paths = $this->input->post('paths');
         $parsedLangs = array();
-       
+
         if ($paths) {
             $parsedLangs = FilesParser::getInstatce()->getParsedPathsLangs($url, $paths);
 
@@ -177,7 +177,7 @@ class Admin extends BaseAdminController {
             if (isset($parsedLangs['js_langs']))
                 $this->updateJsLangsFile($parsedLangs['js_langs'], $domain, $type);
         }
- 
+
         $all_langs = array();
         foreach ($parsedLangs['parsed_langs'] as $key => $langsOne) {
             foreach ($langsOne as $origin => $paths) {
@@ -232,7 +232,7 @@ class Admin extends BaseAdminController {
             if ($domain == "admin") {
                 file_put_contents($base_dir . '/templates/administrator/inc/jsLangs.tpl', $js_content);
             } else {
-                file_put_contents($base_dir . '/application/modules/' . $domain . '/assets/jsLangs.tpl', $js_content);
+                file_put_contents(getModulePath($domain) . 'assets/jsLangs.tpl', $js_content);
             }
         } else {
             if ($domain == "admin") {
@@ -240,8 +240,8 @@ class Admin extends BaseAdminController {
                     unlink($base_dir . '/templates/administrator/inc/jsLangs.tpl');
                 }
             } else {
-                if (file_exists($base_dir . '/application/modules/' . $domain . '/assets/jsLangs.tpl')) {
-                    unlink($base_dir . '/application/modules/' . $domain . '/assets/jsLangs.tpl');
+                if (file_exists(getModulePath($domain) . 'assets/jsLangs.tpl')) {
+                    unlink(getModulePath($domain) . 'assets/jsLangs.tpl');
                 }
             }
         }
@@ -620,7 +620,7 @@ class Admin extends BaseAdminController {
         $langs = $this->session->userdata('langs_modules');
         $langs = $langs[$lang];
         $langs = sort_names($langs);
-        
+
 //        if (self::$SAAS) {
 //            foreach ($langs as $key => $lang) {
 //                if ($lang['module'] == 'admin') {

@@ -29,6 +29,8 @@ class Lib_init {
         if (function_exists('date_default_timezone_set')) {
             date_default_timezone_set($CI->config->item('default_time_zone'));
         }
+        
+//        $installPath
 
         if (file_exists(APPPATH . 'modules/install/install.php') AND $CI->config->item('is_installed') !== TRUE) {
             if ($CI->uri->segment(1) != 'install') {
@@ -81,10 +83,12 @@ class Lib_init {
             define('DS', DIRECTORY_SEPARATOR);
         }
 
-        if (is_dir(APPPATH . '' . 'modules/shop/')) {
+        // if shop installed ...
+
+        if (FALSE !== $shopPath = $this->getShopPath()) {
             // Full path to shop module dir with ending slash.
 
-            define('SHOP_DIR', APPPATH . '' . 'modules/shop/');
+            define('SHOP_DIR', $shopPath);
 
             // Include Shop core.
             require_once(SHOP_DIR . 'classes/ShopCore.php');
@@ -120,6 +124,19 @@ class Lib_init {
                 define('ICMS_DISBALE_CSRF', true);
             }
         }
+    }
+
+    /**
+     * @return string|bool(false) path to shop module
+     */
+    private function getShopPath() {
+        foreach (\Modules::$locations as $path => $relPath) {
+            $shopDir = $path . 'shop';
+            if (file_exists($shopDir)) {
+                return $shopDir . '/';
+            }
+        }
+        return false;
     }
 
     public function _detect_uri() {

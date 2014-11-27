@@ -110,7 +110,8 @@ if (!function_exists('getMoFileName')) {
                         $begin = '.';
                     }
 //$locale = 'de_DE';
-                    $module_path = correctUrl('./application/modules/' . $domain . '/language/' . $locale);
+                    $_module_path = getModulePath($domain);
+                    $module_path = correctUrl($_module_path . 'language/' . $locale);
                     if (is_dir($module_path)) {
                         $searched = glob($module_path . '/' . $locale . '/LC_MESSAGES/' . $domain . '*.mo');
                         if (!empty($searched)) {

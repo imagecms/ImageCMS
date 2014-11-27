@@ -1,6 +1,4 @@
 <?php
-/*
-/var/www/image.loc/application/modules/new_level/assets/js/script.js*/
 
 echo " <script> langs = {}; langs['Message'] = ". lang('Message', 'new_level') .";
 langs['Property type updated'] = ". lang('Property type updated', 'new_level') .";

@@ -1,6 +1,6 @@
 <?php
 
-/***********************
+/* * *********************
  * Дать права 0777 на папки:
  * /uploads
  * /uploads/origin
@@ -10,7 +10,7 @@
  * 
  * /application/backups 
  * /application/backups
- ***********************
+ * **********************
  * 
  * Дополнительные фото и фото вариантов.
  * 
@@ -80,7 +80,6 @@ class Import extends ShopAdminController {
      * @access private
      */
     private $uplaodedFileInfo = array();
-    
     private $fullPath = '/var/www/saas_data/mainsaas/';
 
     public function __construct() {
@@ -101,10 +100,10 @@ class Import extends ShopAdminController {
         if (($_POST['offers'] >= $_POST['countProd']) && $_POST['offers']) {
             $this->resizeAndUpdatePrice($_POST['withResize'], $_POST['withCurUpdate'], $result);
             echo (json_encode($result));
-        }elseif(!$bool){
+        } elseif (!$bool) {
 //            var_dump($result);
             $this->resizeAndUpdatePrice($_POST['withResize'], false, $result);
-            return $result;            
+            return $result;
         } else {
             return $result;
         }
@@ -158,18 +157,18 @@ class Import extends ShopAdminController {
      * @access private
      */
     private function resizeAndUpdatePrice($resize = false, $curUpdate = false, $result = null) {
-        if($result){
+        if ($result) {
             if ($resize) {
                 $result['content'] = explode('/', trim($result['content'][0]));
                 \MediaManager\Image::create()
                         ->resizeById($result['content'])
                         ->resizeByIdAdditional($result['content'], TRUE);
-            }        
-        }else{
+            }
+        } else {
             LOG::create()->set(' resizeAndUpdatePrice $result is empty. import.php - IMPORT');
         }
 
-        if ($curUpdate){
+        if ($curUpdate) {
             \Currency\Currency::create()->checkPrices();
         }
     }
@@ -225,14 +224,14 @@ class Import extends ShopAdminController {
      * @access private
      */
     private function convertXLStoCSV($excel_file = '') {
-        if(file_exists('./application/modules/import_export/PHPExcel/PHPExcel.php')){
-            include './application/modules/import_export/PHPExcel/PHPExcel.php';
-            include './application/modules/import_export/PHPExcel/PHPExcel/IOFactory.php';
-            include './application/modules/import_export/PHPExcel/PHPExcel/Writer/Excel2007.php';            
-        }else{
-            include $this->fullPath.'/application/modules/import_export/PHPExcel/PHPExcel.php';
-            include $this->fullPath.'/application/modules/import_export/PHPExcel/PHPExcel/IOFactory.php';
-            include $this->fullPath.'/application/modules/import_export/PHPExcel/PHPExcel/Writer/Excel2007.php';
+        if (file_exists('./application/' . getModContDirName('import_export') . '/import_export/PHPExcel/PHPExcel.php')) {
+            include './application/' . getModContDirName('import_export') . '/import_export/PHPExcel/PHPExcel.php';
+            include './application/' . getModContDirName('import_export') . '/import_export/PHPExcel/PHPExcel/IOFactory.php';
+            include './application/' . getModContDirName('import_export') . '/import_export/PHPExcel/PHPExcel/Writer/Excel2007.php';
+        } else {
+            include $this->fullPath . '/application/' . getModContDirName('import_export') . '/import_export/PHPExcel/PHPExcel.php';
+            include $this->fullPath . '/application/' . getModContDirName('import_export') . '/import_export/PHPExcel/PHPExcel/IOFactory.php';
+            include $this->fullPath . '/application/' . getModContDirName('import_export') . '/import_export/PHPExcel/PHPExcel/Writer/Excel2007.php';
         }
         $objReader = PHPExcel_IOFactory::createReaderForFile($excel_file);
         $objReader->setReadDataOnly(true);

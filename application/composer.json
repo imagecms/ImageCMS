@@ -3,6 +3,6 @@
         "vendor-dir": "third_party"
     },
     "require": {
-        "sfGuardPlugin": "4.0.*"
+        "symfony/console": "3.0.*@dev"
     }
 }

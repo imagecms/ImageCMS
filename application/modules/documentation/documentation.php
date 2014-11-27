@@ -543,7 +543,7 @@ class Documentation extends \MY_Controller {
     }
 
     public function recent_news() {
-        $this->load->helper('../modules/documentation/helpers/documentation');
+        $this->load->helper('../' . getModContDirName('documentation') . '/documentation/helpers/documentation');
         $settings = array(
             'news_count' => 3,
             'max_symdols' => 150,

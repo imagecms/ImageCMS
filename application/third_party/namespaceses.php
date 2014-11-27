@@ -10,10 +10,22 @@ function modules_namespaces_initialize() {
 function __nsautoload($class) {
 
     if (strpos($class, "\\")) {
-        if (file_exists($file = APPPATH . 'modules/' . str_replace('\\', DIRECTORY_SEPARATOR, $class) . EXT) || file_exists($file = APPPATH . 'modules/shop/classes/' . str_replace('\\', DIRECTORY_SEPARATOR, $class) . EXT)) {
-            require $file;
+
+        // searching among modules
+        foreach (\Modules::$locations as $path => $relPath) {
+            if (file_exists($file = $path . str_replace('\\', DIRECTORY_SEPARATOR, $class) . EXT)) {
+                require $file;
+            }
         }
 
+        // searching class among shop classes
+        if (FALSE !== $shopPath = getModulePath('shop')) {
+            if (file_exists($file = $shopPath . 'classes/' . str_replace('\\', DIRECTORY_SEPARATOR, $class) . EXT)) {
+                require $file;
+            }
+        }
+
+        // class from application namespase
         if (file_exists($file = APPPATH . str_replace('\\', DIRECTORY_SEPARATOR, $class) . EXT)) {
             require $file;
         }

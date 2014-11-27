@@ -263,15 +263,15 @@ class Admin extends BaseAdminController {
                     pjax('/admin/components/cp/cfcm/index#additional_fields');
                 }
             } else {
-                $this->template->registerJsFile('./application/modules/cfcm/templates/scripts/admin.js', 'after');
+                $modulePath = getModulePath('cfcm');
+                $this->template->registerJsFile($modulePath . 'templates/scripts/admin.js', 'after');
                 $this->template->add_array(array(
                     'form' => $form,
                 ));
 
                 $this->render('_form');
             }
-        }
-        else
+        } else
             echo lang("Field has not been found", 'cfcm');
     }
 

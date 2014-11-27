@@ -39,11 +39,15 @@ class Widgets_manager extends BaseAdminController {
             $widgets = $query->result_array();
             $cnt = count($widgets);
 
+            
             for ($i = 0; $i < $cnt; $i++) {
-
+                if (empty($widgets[$i]['data'])) {
+                    continue;
+                }
                 $moduleInfo = $this->load->module('admin/components')->get_module_info($widgets[$i]['data']);
                 $subpath = isset($moduleInfo['widgets_subpath']) ? $moduleInfo['widgets_subpath'] . '/' : '';
-                $form_file = APPPATH . 'modules/' . $widgets[$i]['data'] . '/' . $subpath . 'templates/' . $widgets[$i]['method'] . '_form.tpl';
+                $modulePath = getModulePath($widgets[$i]['data']);
+                $form_file = $modulePath . $subpath . 'templates/' . $widgets[$i]['method'] . '_form.tpl';
 
                 if (file_exists(realpath($form_file))) {
                     $widgets[$i]['config'] = TRUE;
@@ -117,10 +121,12 @@ class Widgets_manager extends BaseAdminController {
                 $subpath = isset($moduleInfo['widgets_subpath']) ? $moduleInfo['widgets_subpath'] . '/' : '';
 
                 $currentTemplate = $this->db->get('settings')->row()->site_template;
-                if (file_exists(TEMPLATES_PATH . $currentTemplate . '/' . 'patterns/widgets/' . $data['method'] . '.tpl'))
+                if (file_exists(TEMPLATES_PATH . $currentTemplate . '/' . 'patterns/widgets/' . $data['method'] . '.tpl')) {
                     $tpl_file = TEMPLATES_PATH . $currentTemplate . '/' . 'patterns/widgets/' . $data['method'] . '.tpl';
-                else
-                    $tpl_file = PUBPATH . APPPATH . 'modules/' . $data['data'] . '/' . $subpath . 'templates/' . $data['method'] . '.tpl';
+                } else {
+                    $modulePath = getModulePath($data['data']);
+                    $tpl_file = $modulePath . $subpath . 'templates/' . $data['method'] . '.tpl';
+                }
 
                 if (file_exists($tpl_file)) {
                     // Get current template folder
@@ -147,7 +153,8 @@ class Widgets_manager extends BaseAdminController {
 
                 $this->lib_admin->log(lang("Created a widget", "admin") . " " . $data['name']);
 
-                $conf_file = PUBPATH . '/' . APPPATH . 'modules/' . $data['data'] . '/' . $subpath . 'templates/' . $data['method'] . '_form.tpl';
+                $modulePath = getModulePath($data['data']);
+                $conf_file = $modulePath . $subpath . 'templates/' . $data['method'] . '_form.tpl';
                 showMessage(lang("Widget created", "admin") . '.');
 
                 if (file_exists($conf_file))
@@ -477,7 +484,8 @@ class Widgets_manager extends BaseAdminController {
 
                 foreach ($modules as $k) {
                     $moduleInfo = $this->load->module('admin/components')->get_module_info($k['name']);
-                    $xml_file = realpath(PUBPATH . '/' . APPPATH . 'modules/' . $k['name'] . '/widgets.xml');
+                    $modulePath = getModulePath($k['name']);
+                    $xml_file = realpath($modulePath . 'widgets.xml');
                     if (file_exists($xml_file)) {
                         $tmp = array(
                             'widgets' => $this->parse_widget_xml($k['name']),
@@ -487,7 +495,7 @@ class Widgets_manager extends BaseAdminController {
 
                         $subpath = isset($moduleInfo['widgets_subpath']) ? $moduleInfo['widgets_subpath'] . '/' : '';
                         ;
-                        $widgets_file = realpath(PUBPATH . '/' . APPPATH . 'modules/' . $k['name'] . '/' . $subpath . $k['name'] . '_widgets.php');
+                        $widgets_file = realpath($modulePath . $subpath . $k['name'] . '_widgets.php');
 
                         if (file_exists($widgets_file))
                             $widgets[] = $tmp;
@@ -512,7 +520,8 @@ class Widgets_manager extends BaseAdminController {
      * Get widget info title/description/method
      */
     private function parse_widget_xml($xml_folder) {
-        if ($this->lib_xml->load('modules/' . $xml_folder . '/widgets')) {
+        $modulePath = getModulePath($xml_folder);
+        if ($this->lib_xml->load($modulePath . 'widgets')) {
             $widgets_array = $this->lib_xml->parse();
             $info = $widgets_array['widgets'][0]['widget'];
 

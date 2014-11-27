@@ -38,7 +38,7 @@ class Cms_hooks {
         $ci->load->library('lib_xml');
 
         $xml = '<?xml version="1.0" encoding="UTF-8"?><hooks>';
-       
+
         // Get all installed modules
         $ci->db->select('name');
         $modules = $ci->db->get('components')->result_array();
@@ -47,7 +47,8 @@ class Cms_hooks {
 
         // Search for hooks.xml in all installed modules
         foreach ($modules as $m) {
-            $xml_file = APPPATH . 'modules/' . $m['name'] . '/hooks.xml';
+
+            $xml_file = getModulePath($m['name']) . '/hooks.xml';
 
             if (file_exists($xml_file)) {
                 $xml .= file_get_contents($xml_file);

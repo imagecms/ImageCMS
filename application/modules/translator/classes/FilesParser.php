@@ -13,11 +13,6 @@ class FilesParser {
     private static $instance;
 
     /**
-     * Modules folder path
-     */
-    private static $MODULES_PATH = '';
-
-    /**
      * Templates folder path
      */
     private static $TEMPLATES_PATH = '';
@@ -56,7 +51,6 @@ class FilesParser {
     private static $PARSED_PATHS = array();
 
     private function __construct() {
-        self::$MODULES_PATH = './application/modules/';
         self::$TEMPLATES_PATH = './templates/';
         self::$MAIN_PATH = './application/language/main/';
     }
@@ -78,22 +72,18 @@ class FilesParser {
      */
     public function parseModules() {
         try {
-// _______________________________________________
-            if (!is_dir(self::$MODULES_PATH))
-                return array();
-// _______________________________________________
-            $modules = new \DirectoryIterator(self::$MODULES_PATH);
-            foreach ($modules as $module) {
-                if ($module->isDir() && !$module->isDot() && is_dir(self::$MODULES_PATH . $module->getBasename() . '/language')) {
-                    $module_dir = self::$MODULES_PATH . $module->getBasename();
-                    $language_dir = $module_dir . '/language/';
+
+            $modules = getModulesPaths();
+            
+            foreach ($modules as $moduleName => $modulePath) {
+                    $language_dir = $modulePath . 'language/';
                     $locales = new \DirectoryIterator($language_dir);
                     foreach ($locales as $locale) {
                         if ($locale->isDir() && !$locale->isDot() && is_dir($language_dir . $locale->getBasename()) && isLocale($locale->getBasename())) {
                             $objLang = new \MY_Lang();
                             $objLang->load($module->getBasename());
 //___________________________
-                            $module_info = $module_dir . '/module_info.php';
+                            $module_info = $modulePath . 'module_info.php';
                             $module_info = \get_mainsite_url($module_info);
 //___________________________                            
 
@@ -107,10 +97,10 @@ class FilesParser {
                             unset($com_info);
                         }
                     }
-                }
+                
             }
             return self::$MODULES_LOCALES;
-        } catch (Exception $exc) {
+        } catch (\Exception $exc) {
             return array();
         }
     }

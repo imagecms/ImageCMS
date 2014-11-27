@@ -9,10 +9,10 @@ if (!function_exists('sort_names')) {
      */
     function sort_names($arr) {
         usort($arr, function($a, $b) {
-                    $first = $a['menu_name'];
-                    $second = $b['menu_name'];
-                    return strnatcmp($first, $second);
-                });
+            $first = $a['menu_name'];
+            $second = $b['menu_name'];
+            return strnatcmp($first, $second);
+        });
         return $arr;
     }
 
@@ -192,7 +192,7 @@ if (!function_exists('isLocale')) {
 if (!function_exists('getEditorStyles')) {
 
     function getEditorStyles() {
-        $files = scandir('./application/modules/translator/assets/js/src-min');
+        $files = scandir(getModulePath('translator') . 'assets/js/src-min');
         $styles = array();
         foreach ($files as $file) {
             if (strstr($file, 'theme-')) {
@@ -311,7 +311,7 @@ if (!function_exists('getPoFileAttributes')) {
                         );
                         break;
                     default :
-                        if (file_exists('./application/modules/' . $domain)) {
+                        if (moduleExists($domain)) {
                             $attributes = array(
                                 'name' => $domain,
                                 'type' => 'modules',
@@ -339,7 +339,7 @@ if (!function_exists('get_mainsite_url')) {
 
     function get_mainsite_url($url) {
         $true_path = preg_replace('/\/language(.*)/', '', $url);
-        
+
         if (strstr($true_path, './templates/')) {
             return $url;
         }
@@ -359,7 +359,7 @@ if (!function_exists('get_mainsite_url')) {
 if (!function_exists('is_client_module')) {
 
     function is_client_module($module_name) {
-        if (is_dir('./application/modules/' . $module_name) && !is_dir(MAINSITE . '/application/modules/' . $module_name)) {
+        if (is_dir('./application/' . getModContDirName($module_name) . '/' . $module_name) && !is_dir(MAINSITE . '/application/modules/' . $module_name)) {
             return TRUE;
         } else {
             return FALSE;
@@ -389,7 +389,7 @@ if (!function_exists('get_file_name')) {
     function get_file_name($name, $type) {
         switch ($type) {
             case 'modules':
-                $module_info = (MAINSITE ? MAINSITE : '.') . "/application/modules/{$name}/module_info.php";
+                $module_info = (MAINSITE ? MAINSITE : '.') . "/application/" . getModContDirName($name) . "/{$name}/module_info.php";
                 include($module_info);
                 $lang = new MY_Lang();
                 $lang->load($name);

@@ -68,7 +68,8 @@ class Sys_upgrade extends BaseAdminController {
         if ($root == '//') $root = '/';
 
         // Try to find self.
-        $list = $this->ftp->list_files($root.'application/modules/core/');
+        $modulePath = getModulePath('core');
+        $list = $this->ftp->list_files($modulePath);
 
         $error = TRUE;
         foreach($list as $k => $v)

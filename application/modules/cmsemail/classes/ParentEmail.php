@@ -106,10 +106,10 @@ class ParentEmail extends \MY_Controller {
 
     public function __construct() {
         parent::__construct();
+        $modulePath = getModulePath('cmsemail');
 
-        $this->load->model('../modules/cmsemail/models/cmsemail_model');
-        $lang = new \MY_Lang();
-        $lang->load('cmsemail');
+        $this->load->model('../' . getModContDirName('cmsemail') . '/cmsemail/models/cmsemail_model');
+        (new \MY_Lang())->load('cmsemail');
     }
 
     /**

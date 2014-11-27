@@ -31,7 +31,7 @@ class Admin extends BaseAdminController {
         $this->set_tpl_roles();
         $this->template->add_array($this->genre_user_table());
         $this->template->add_array($this->show_edit_prems_tpl($id = 10));
-        $this->template->registerJsFile('application/modules/user_manager/templates/js/script.js', 'after');
+        $this->template->registerJsFile(getModulePath('user_manager') . 'templates/js/script.js', 'after');
         $this->display_tpl('main');
     }
 
@@ -185,7 +185,7 @@ class Admin extends BaseAdminController {
                 exit;
             }
 
-            if (!check_perm('user_create') AND !check_perm('user_create_all_roles')) {
+            if (!check_perm('user_create') AND ! check_perm('user_create_all_roles')) {
                 //cp_check_perm('user_create');
             }
 
@@ -231,7 +231,7 @@ class Admin extends BaseAdminController {
         $this->set_tpl_roles();
         if (!$this->ajaxRequest) {
             $this->template->registerJsFile('templates/administrator/js/jquery.maskedinput-1.3.min.js', 'after');
-            $this->template->registerJsFile('application/modules/user_manager/templates/js/create.js', 'after');
+            $this->template->registerJsFile(getModulePath('user_manager') . 'templates/js/create.js', 'after');
             $this->display_tpl('create_user');
         }
     }

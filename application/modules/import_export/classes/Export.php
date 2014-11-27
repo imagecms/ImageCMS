@@ -7,10 +7,13 @@
  */
 
 namespace import_export\classes;
+
 use import_export\classes\Logger as LOG;
+
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 class Export {
+
     public $delimiter = ";";
     public $maxRowLength = 10000;
     public $language = 'ru';
@@ -44,45 +47,44 @@ class Export {
     protected $categoriesData = NULL;
     protected $categories = NULL;
     protected $withZip = false;
-    
-    
-    public function __construct(array $settings = array()){
+
+    public function __construct(array $settings = array()) {
         $ci = &get_instance();
         $this->db = $ci->db;
         if (sizeof($settings) > 0) {
             foreach ($settings as $key => $value) {
-                if (isset($this->$key)){
+                if (isset($this->$key)) {
                     $this->$key = $value;
                 }
             }
         }
-        
-        $this->withZip = (bool)$settings['withZip'];
-        if($this->withZip == true && $this->attributes['vimg'] != '1' && $this->attributes['imgs'] != '1'){
+
+        $this->withZip = (bool) $settings['withZip'];
+        if ($this->withZip == true && $this->attributes['vimg'] != '1' && $this->attributes['imgs'] != '1') {
             $this->addError('Укажите колонки фотографий для экспорта.');
             LOG::create()->set('Укажите колонки фотографий для экспорта.');
-        } 
-        
-        if($this->attributes['name'] != '1'){
+        }
+
+        if ($this->attributes['name'] != '1') {
             $this->addError('Атрибут \'Имя товара\' обязательний для експорта!');
             LOG::create()->set('Атрибут \'Имя товара\' обязательний для експорта!');
-        } elseif($this->attributes['url'] != '1'){
+        } elseif ($this->attributes['url'] != '1') {
             $this->addError('Атрибут \'URL\' обязательний для експорта!');
             LOG::create()->set('Атрибут \'URL\' обязательний для експорта!');
-        } elseif($this->attributes['prc'] != '1'){
+        } elseif ($this->attributes['prc'] != '1') {
             $this->addError('Атрибут \'Цена\' обязательний для експорта!');
             LOG::create()->set('Атрибут \'Цена\' обязательний для експорта!');
-        } elseif($this->attributes['var'] != '1'){
+        } elseif ($this->attributes['var'] != '1') {
             $this->addError('Атрибут \'Имя варианта\' обязательний для експорта!');
             LOG::create()->set('Атрибут \'Имя варианта\' обязательний для експорта!');
-        } elseif($this->attributes['cat'] != '1'){
+        } elseif ($this->attributes['cat'] != '1') {
             $this->addError('Атрибут \'Категория\' обязательний для експорта!');
             LOG::create()->set('Атрибут \'Категория\' обязательний для експорта!');
-        } elseif($this->attributes['num'] != '1'){
+        } elseif ($this->attributes['num'] != '1') {
             $this->addError('Атрибут \'Артикул\' обязательний для експорта!');
             LOG::create()->set('Атрибут \'Артикул\' обязательний для експорта!');
         }
-        
+
         if (!count($this->attributes) > 0) {
             $this->addError('Укажите колонки для экспорта.');
             LOG::create()->set('Укажите колонки для экспорта.');
@@ -96,9 +98,9 @@ class Export {
             $this->categories = $this->getCategoriesPaths();
         }
         ini_set('max_execution_time', 900);
-        set_time_limit(900); 
-    }    
-    
+        set_time_limit(900);
+    }
+
     /**
      * Saving csv-file
      * @return string filename
@@ -106,7 +108,7 @@ class Export {
     public function saveToCsvFile($pathToFile) {
         $path = $pathToFile . 'products.csv';
         $this->getDataCsv();
-        if (!file_exists($path)){
+        if (!file_exists($path)) {
             LOG::create()->set('Файл експорта не существует (csv)!');
         }
         $f = fopen($path, 'w+');
@@ -114,7 +116,6 @@ class Export {
         fclose($f);
         return $writeResult == FALSE ? FALSE : basename($path);
     }
-    
 
     /**
      * Saving excel-file
@@ -134,12 +135,12 @@ class Export {
             default:
                 return FALSE;
         }
-        if(!file_exists($path)){
+        if (!file_exists($path)) {
             LOG::create()->set('Файл експорта не существует (xls)!');
         }
-        include './application/modules/import_export/PHPExcel/PHPExcel.php';
-        include './application/modules/import_export/PHPExcel/PHPExcel/IOFactory.php';
-        include './application/modules/import_export/PHPExcel/PHPExcel/Writer/Excel2007.php';
+        include getModulePath('import_export') . 'PHPExcel/PHPExcel.php';
+        include getModulePath('import_export') . 'PHPExcel/PHPExcel/IOFactory.php';
+        include getModulePath('import_export') . 'PHPExcel/PHPExcel/Writer/Excel2007.php';
         $objPHPExcel = new \PHPExcel();
         $someProductData = current($this->resultArray);
         $headerArray = array();
@@ -178,14 +179,14 @@ class Export {
             }
             $list[] = $row;
         }
-        if($this->attributes['imgs'] == '1'){
+        if ($this->attributes['imgs'] == '1') {
             foreach ($list as $key => $val) {
                 $list[$key]['additional_images'] = $this->addImg($val);
             }
         }
         $this->resultArray = $list;
     }
-    
+
     /**
      * Getting additional images
      * @param array $list
@@ -195,14 +196,14 @@ class Export {
     public function addImg($v) {
         $number = $v['number'];
         $productID = $this->db->where('number', $number)->get('shop_product_variants')->row()->product_id;
-        $imgsAdd = $this->db->where('product_id', $productID)->get('shop_product_images')->result_array();        
+        $imgsAdd = $this->db->where('product_id', $productID)->get('shop_product_images')->result_array();
         if (count($imgsAdd) > 0) {
             $imgString = '';
             foreach ($imgsAdd as $img) {
                 $imgString .= $img['image_name'] . '|';
             }
             $imgString = trim($imgString, '|');
-            $imgString = str_replace('||','|',$imgString);
+            $imgString = str_replace('||', '|', $imgString);
             return $imgString;
         }
     }
@@ -211,7 +212,7 @@ class Export {
      * Getting products data
      * @return array
      */
-    public function getDataArray() {        
+    public function getDataArray() {
         if (is_null($this->resultArray)) {
             $this->getDataFromBase();
         }
@@ -277,7 +278,7 @@ class Export {
         }
         foreach ($fieldsArray as $field) {
             if ($field == FALSE && $this->skipErrors == TRUE) {
-                $this->addError('Error while creating query. Field missing.'); 
+                $this->addError('Error while creating query. Field missing.');
                 LOG::create()->set('Error while creating query. Field missing.');
             }
             $fields .= $field != FALSE ? " \n {$field}, " : "";
@@ -414,8 +415,8 @@ class Export {
             'var' => '`shop_product_variants_i18n`.`name` as variant_name',
             'act' => 'active', //
             'hit' => 'hit', //
-            'hot' => 'hot',         //новинка
-            'action' => 'action',   //акція
+            'hot' => 'hot', //новинка
+            'action' => 'action', //акція
             'brd' => '`shop_brands_i18n`.`name` as brand_name', //
             'modim' => 'mainModImage',
             'modis' => 'smallModImage',
@@ -465,7 +466,7 @@ class Export {
         ";
         $categoriesData = array();
         $result = $this->db->query($query);
-        if(!$result){
+        if (!$result) {
             LOG::create()->set('Пустой результат вибора категорий');
             return;
         }
@@ -548,19 +549,18 @@ class Export {
     public function getErrors() {
         return $this->errors;
     }
-    
+
     /**
      * Add photos to ZIP
      * @access public
      * @author Oleh
      */
-    
-    public function addToArchive($arr){
+    public function addToArchive($arr) {
         $zip = new \ZipArchive();
         $date = date('m_d_y');
         $time = date('G_i_s');
-        $zipName = "archive_" . $date . "_" . $time . ".zip"; 
-        if($zip->open('./application/backups/' . $zipName, \ZipArchive::CREATE) !== TRUE){      
+        $zipName = "archive_" . $date . "_" . $time . ".zip";
+        if ($zip->open('./application/backups/' . $zipName, \ZipArchive::CREATE) !== TRUE) {
             LOG::create()->set("Невозможно создать zip-архив.");
         }
 //        foreach($arr as $key => $val){
@@ -592,9 +592,9 @@ class Export {
 //                }
 //            }
 //        }
-        
+
         if ($this->attributes['vimg'] == '1') {
-            foreach($arr as $key => $val){
+            foreach ($arr as $key => $val) {
                 if (file_exists('./uploads/shop/products/origin/' . $val['mainImage']) && $val['mainImage'] != "") {
                     $fN = "./uploads/shop/products/origin/" . $val['mainImage'];
                     $zFN = 'origin/' . $val['mainImage'];
@@ -604,9 +604,9 @@ class Export {
                 }
             }
         }
-        
+
         if ($this->attributes['imgs'] == '1') {
-            foreach($arr as $key => $val){
+            foreach ($arr as $key => $val) {
                 $number = $val['number'];
                 $prodId = $this->db->where('number', $number)->get('shop_product_variants')->row()->product_id;
                 $imgsAdd = $this->db->where('product_id', $prodId)->get('shop_product_images')->result_array();
@@ -625,5 +625,5 @@ class Export {
         }
         $zip->close();
     }
-    
+
 }

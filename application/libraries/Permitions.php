@@ -18,8 +18,8 @@ class Permitions {
     public function __construct() {
         $ci = & get_instance();
         $ci->load->library('DX_Auth');
-        self::$shop_controllers_path = MAINSITE . "/application/modules/shop/admin/";
-        self::$base_controllers_path = MAINSITE . "/application/modules/admin/";
+        self::$shop_controllers_path = getModulePath('shop') . "admin/";
+        self::$base_controllers_path = getModulePath('admin');
     }
 
     /**
@@ -176,11 +176,11 @@ class Permitions {
 //        if ($res) {
 //            die("Файл " . $adminClassFile . " не найден");
 //        } else {
-            if ($checkLink AND $link != '') {
-                return array('adminClassName' => $adminClassName, 'adminMethod' => $adminMethod);
-            } else {
-                self::checkAllPermitions($adminClassName, $adminMethod);
-            }
+        if ($checkLink AND $link != '') {
+            return array('adminClassName' => $adminClassName, 'adminMethod' => $adminMethod);
+        } else {
+            self::checkAllPermitions($adminClassName, $adminMethod);
+        }
 //        }
     }
 
@@ -202,7 +202,7 @@ class Permitions {
                 $ci->load->helper("directory");
                 $controllers = directory_map($adminControllersDir, true);
                 foreach ($controllers as $c) {
-                    if (file_exists($adminControllersDir . $c . "/admin.php") AND !in_array($c, array('shop', 'admin'))) {
+                    if (file_exists($adminControllersDir . $c . "/admin.php") AND ! in_array($c, array('shop', 'admin'))) {
                         $result[] = $adminControllersDir . $c . "/admin.php";
                     }
                 }

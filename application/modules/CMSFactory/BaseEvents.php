@@ -543,4 +543,3 @@ abstract class BaseEvents {
     }
 }
 
-/* End of file /application/modules/CMSFactory/BaseEvents.php */

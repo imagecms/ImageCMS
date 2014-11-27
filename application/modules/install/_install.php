@@ -23,7 +23,7 @@ class Install extends MY_Controller {
     }
 
     public function index() {
-        if (file_exists('./application/modules/shop')) {
+        if (moduleExists('shop')) {
             $data = array(
                 'content' => $this->load->view('license_shop', array('next_link' => $this->host . '/install/step_1'), TRUE),
             );
@@ -74,7 +74,7 @@ class Install extends MY_Controller {
             }
         }
 
-        if (file_exists('./application/modules/shop')) {
+        if (moduleExists('shop')) {
             if (strnatcmp(phpversion(), '5.4') != -1) {
                 $allow_params['PHP version >= 5.4'] = 'ok';
             } else {
@@ -102,7 +102,7 @@ class Install extends MY_Controller {
             'soap' => 'ok',
         );
 
-        if (file_exists('./application/modules/shop')) {
+        if (moduleExists('shop')) {
             $exts['ionCube Loader'] = 'ok';
         }
 
@@ -311,7 +311,7 @@ class Install extends MY_Controller {
 
             $this->load->helper("file");
 
-            if (file_exists('./application/modules/shop')) {
+            if (moduleExists('shop')) {
                 delete_files('./uploads/shop', TRUE);
 
                 mysql_query('UPDATE `settings` SET `main_type`=\'module\', `main_page_module`=\'shop\';', $link);
@@ -370,7 +370,12 @@ class Install extends MY_Controller {
 
         $this->cache->delete_all();
         // Rewrite config file
-        $this->write_config_file();
+        $this->writeDatabaseConfig([
+            'hostname' => $this->input->post('db_host'),
+            'username' => $this->input->post('db_user'),
+            'password' => $this->input->post('db_pass'),
+            'database' => $this->input->post('db_name'),
+        ]);
 
         //redirect('install/done','refresh');
         header("Location: " . $this->host . "/install/done");
@@ -380,38 +385,30 @@ class Install extends MY_Controller {
         $this->_display($this->load->view('done', '', TRUE));
     }
 
-    private function write_config_file() {
-        $config_file = APPPATH . 'config/config.php';
-        $config_file_copy = APPPATH . 'modules/install/config.php';
+    /**
+     * 
+     * @param array $data
+     *  - hostname
+     *  - username
+     *  - password
+     *  - database
+     */
+    public function writeDatabaseConfig($data) {
+        $configFile = APPPATH . 'config/database.php';
 
         $this->load->helper('file');
-        $config = read_file($config_file_copy);
+        $configContent = read_file($configFile);
 
-        $db_server = $this->input->post('db_host');
-        $db_user = $this->input->post('db_user');
-        $db_pass = $this->input->post('db_pass');
-        $db_name = $this->input->post('db_name');
+        $basePattern = "/db\['default'\]\['__KEY__'\] = '([a-zA-Z0-9\-\_]*)';/";
+        $baseReplacement = "db['default']['__KEY__'] = '__VALUE__';";
 
-        $db_settings = "\$db['default']['hostname'] = '$db_server';
-            \$db['default']['username'] = '$db_user';
-            \$db['default']['password'] = '$db_pass';
-            \$db['default']['database'] = '$db_name';
-            \$db['default']['dbdriver'] = 'mysql';
-            \$db['default']['dbprefix'] = '';
-            \$db['default']['pconnect'] = FALSE;
-            \$db['default']['db_debug'] = FALSE;
-            \$db['default']['cache_on'] = FALSE;
-            \$db['default']['cachedir'] = 'system/cache';
-            \$db['default']['char_set'] = 'utf8';
-            \$db['default']['dbcollat'] = 'utf8_general_ci';
-            \$db['default']['swap_pre'] = '';
-            \$db['default']['autoinit'] = TRUE;
-            \$db['default']['stricton'] = FALSE;
-            ";
+        foreach ($data as $key => $value) {
+            $keyPattern = str_replace('__KEY__', $key, $basePattern);
+            $replacement = str_replace(['__KEY__', '__VALUE__'], [$key, $value], $baseReplacement);
+            $configContent = preg_replace($keyPattern, $replacement, $configContent);
+        }
 
-        $config = str_replace('{DB_SETTINGS}', $db_settings, $config);
-
-        if (!write_file($config_file, $config)) {
+        if (!write_file($configFile, $configContent)) {
             die(lang('Error writing file config.php', 'install'));
         }
     }

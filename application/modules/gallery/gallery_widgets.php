@@ -98,13 +98,13 @@ class Gallery_Widgets extends MY_Controller {
         if (!empty($data))
             $this->template->add_array($data);
 
-        $this->template->show('file:' . 'application/modules/gallery/templates/' . $viewName);
+        $this->template->show('file:' . 'application/' . getModContDirName('gallery') . '/gallery/templates/' . $viewName);
         exit;
 
         if ($return === false)
-            $this->template->show('file:' . 'application/modules/gallery/templates/' . $viewName);
+            $this->template->show('file:' . 'application/' . getModContDirName('gallery') . '/gallery/templates/' . $viewName);
         else
-            return $this->template->fetch('file:' . 'application/modules/gallery/templates/' . $viewName);
+            return $this->template->fetch('file:' . 'application/' . getModContDirName('gallery') . '/gallery/templates/' . $viewName);
     }
 
 }

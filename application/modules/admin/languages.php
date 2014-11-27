@@ -106,8 +106,7 @@ class Languages extends BaseAdminController {
     }
 
     function getPoFileSettingsText($lang = '', $type = '', $module = NULL) {
-        $content =
-                b"\xEF\xBB\xBF" .
+        $content = b"\xEF\xBB\xBF" .
                 'msgid ""' . PHP_EOL .
                 'msgstr ""' . PHP_EOL .
                 '"Project-Id-Version: \n"' . PHP_EOL .
@@ -164,8 +163,8 @@ class Languages extends BaseAdminController {
                             '"X-Poedit-Country: \n"' . PHP_EOL .
                             '"X-Poedit-SearchPath-0: .\n"' . PHP_EOL .
                             '"X-Poedit-SearchPath-1: ../../../templates/administrator\n"' . PHP_EOL .
-                            '"X-Poedit-SearchPath-2: ../../modules/shop/admin\n"' . PHP_EOL .
-                            'X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n' . PHP_EOL;
+                            '"X-Poedit-SearchPath-2: ../../' . getModContDirName('shop') . '/shop/admin\n"' . PHP_EOL .
+                            'X-Poedit-SearchPath-3: ../../../application/' . getModContDirName('shop') . '/shop/models/build/classes\n' . PHP_EOL;
                 } else {
                     $content .=
                             '"X-Poedit-Basepath: ../../..\n"' . PHP_EOL .

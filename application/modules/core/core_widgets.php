@@ -179,7 +179,7 @@ class Core_Widgets extends MY_Controller {
             $this->template->add_array($data);
         }
 
-        $this->template->show('file:' . APPPATH . 'modules/core/templates/' . $viewName);
+        $this->template->show('file:' . APPPATH . getModContDirName('core') . '/core/templates/' . $viewName);
     }
 
 }

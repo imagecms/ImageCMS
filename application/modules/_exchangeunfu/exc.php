@@ -10,12 +10,6 @@ namespace exchangeunfu;
  */
 class exc {
 
-    /**
-     * Path to upload dir
-     * @var string
-     */
-    private $pass = './application/modules/exchangeunfu/';
-    
     /** Arrays for db data storage  */
     private $prod = array();
     private $users = array();
@@ -31,7 +25,7 @@ class exc {
     private $insert = array();
     private $insert_categories_i18n = array();
     private $insert_order_products = array();
-    
+
     /** Arrays for update data storage  */
     private $update = array();
     private $update_categories_i18n = array();
@@ -47,18 +41,20 @@ class exc {
     private $partners_table = 'mod_exchangeunfu_partners';
     private $prices_table = 'mod_exchangeunfu_prices';
     private $product_variants_table = 'shop_product_variants';
-    
+
     /** xml document for import */
     private $xml;
-    
+
     /** object instance of ci */
     private $ci;
-    
+
     /** contains default locale */
     private $locale;
 
     public function __construct() {
-        $this->xml = simplexml_load_file($this->pass . 'export.xml');
+
+        $modulePath = getModulePath('exchangeunfu');
+        $this->xml = simplexml_load_file($modulePath . 'export.xml');
         $this->ci = &get_instance();
         $this->locale = 'ru';
     }
@@ -114,9 +110,9 @@ class exc {
         if (isset($this->xml->СписокПродуктивность)) {
             $this->importProductivity();
         }
-        
+
         echo "success";
-        
+
 
         $time = microtime(true) - $start;
         printf('Скрипт выполнялся %.4F сек.', $time);
@@ -502,7 +498,7 @@ class exc {
     private function importPrices() {
         $this->prod = load_product();
         $this->partners = load_partners();
-         
+
         foreach ($this->xml->СписокЦен as $offer) {
             //prepare update data
             $data = array();
@@ -560,7 +556,7 @@ class exc {
     public function importOrders() {
         $this->users = load_users();
         $this->products_i18n = load_products_i18n();
-        
+
         foreach ($this->xml->СписокЗаказыПокупателя as $order) {
             $data = array();
             $data['date_created'] = strtotime($order->Дата . '');
@@ -569,7 +565,7 @@ class exc {
             $data['paid'] = (int) $order->ПризнакПередоплаты;
             $data['external_id'] = $order->ID . '';
             $data['partner_external_id'] = $order->IDОрганизация . '';
-            
+
             $user = is_user($order->IDКонтрагент, $this->users);
             if ($user) {
                 $data['user_id'] = $user['id'];
@@ -583,7 +579,7 @@ class exc {
                 $this->updateOrder($order, $data);
             }
         }
-        
+
         $this->insertData($this->orders_table);
 
         $inserted_orders = load_orders();
@@ -596,12 +592,12 @@ class exc {
                 }
             }
         }
-        
+
         $this->insert = $this->insert_order_products;
         $this->insertData($this->orders_products_table);
-        
+
         $this->updateData($this->orders_table, 'external_id');
-        
+
         $this->update = $this->update_order_products;
         $this->updateData($this->orders_products_table, 'external_id');
     }
@@ -654,7 +650,7 @@ class exc {
     public function updateOrder($order, $data) {
         $total_price = 0;
         $this->update[] = $data;
-    
+
         $order_id = is_order($order->ID . '', $this->orders);
         if (isset($order->Строки)) {
             foreach ($order->Строки as $product) {
@@ -682,7 +678,7 @@ class exc {
 
                 $total_price += (int) $product->Сумма;
             }
-            
+
             //update order total price
             $data = array();
             $data['total_price'] = $total_price;

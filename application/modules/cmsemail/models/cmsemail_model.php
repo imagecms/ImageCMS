@@ -305,9 +305,9 @@ class Cmsemail_model extends \CI_Model {
                     'enabled' => 1
         ));
 
-        $sql = file_get_contents('./application/modules/cmsemail/models/paterns.sql');
+        $sql = file_get_contents('./application/' . getModContDirName('cmsemail') . '/cmsemail/models/paterns.sql');
         $this->db->query($sql);
-        $sql = file_get_contents('./application/modules/cmsemail/models/patterns_i18n.sql');
+        $sql = file_get_contents('./application/' . getModContDirName('cmsemail') . '/cmsemail/models/patterns_i18n.sql');
         $this->db->query($sql);
 
         return TRUE;

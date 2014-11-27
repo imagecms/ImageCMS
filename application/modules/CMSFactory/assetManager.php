@@ -183,6 +183,7 @@ class assetManager {
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
     public function renderAdmin($tpl, $ignoreWrap = FALSE, $fetchJsTpl = TRUE) {
+
         if (\CI_Controller::get_instance()->input->post('ignoreWrap')) {
             $ignoreWrap = TRUE;
         }
@@ -200,7 +201,9 @@ class assetManager {
 
 
             /** Start. If file doesn't exists thorow exception */
-            file_exists($this->buildAdminTemplatePath($tpl) . '.tpl') OR throwException(sprintf('Can\'t load template file: <i>%s/assets/admin/%s.tpl</i>', $this->getTrace(), $tpl));
+            if (!file_exists($this->buildAdminTemplatePath($tpl) . '.tpl')) {
+                throw new \Exception(sprintf('Can\'t load template file: <i>%s/assets/admin/%s.tpl</i>', $this->getTrace(), $tpl));
+            }
 
             /** Start. Load template file */
             \CI_Controller::get_instance()->template->show('file:' . $this->buildAdminTemplatePath($tpl), !$ignoreWrap);
@@ -243,8 +246,9 @@ class assetManager {
         try {
 
             /** Start. If file doesn't exists thorow exception */
-            file_exists($this->buildTemplatePath($tpl) . '.tpl') OR throwException(sprintf('Can\'t load template file: <i>%s/assets/%s.tpl</i>', $this->getTrace(), $tpl));
-
+            if (!file_exists($this->buildTemplatePath($tpl) . '.tpl')) {
+                throw new \Exception(sprintf('Can\'t load template file: <i>%s/assets/%s.tpl</i>', $this->getTrace(), $tpl));
+            }
             /** Start. Load template file */
             \CI_Controller::get_instance()->template->show('file:' . $this->buildTemplatePath($tpl), !$ignoreWrap);
 
@@ -272,7 +276,9 @@ class assetManager {
     public function fetchTemplate($tpl) {
         try {
 
-            file_exists($this->buildTemplatePath($tpl) . '.tpl') OR throwException('Can\'t load template file: <i>' . $paths . DIRECTORY_SEPARATOR . $tpl . '.tpl</i>');
+            if (!file_exists($this->buildTemplatePath($tpl) . '.tpl')) {
+                throw new \Exception('Can\'t load template file: <i>' . $paths . DIRECTORY_SEPARATOR . $tpl . '.tpl</i>');
+            }
 //
 //            $obj = new \MY_Lang();
 //            $obj->load($this->getTrace());
@@ -304,7 +310,9 @@ class assetManager {
                 }
             }
             /** Start. If file doesn't exists thorow exception */
-            file_exists($this->buildAdminTemplatePath($tpl) . '.tpl') OR throwException('Can\'t load template file: <i>' . $paths . DIRECTORY_SEPARATOR . $tpl . '.tpl</i>');
+            if (!file_exists($this->buildAdminTemplatePath($tpl) . '.tpl')) {
+                throw new \Exception('Can\'t load template file: <i>' . $paths . DIRECTORY_SEPARATOR . $tpl . '.tpl</i>');
+            }
 //
 //            $obj = new \MY_Lang();
 //            $obj->load($this->getTrace());
@@ -369,10 +377,11 @@ class assetManager {
             $this->template = \CI_Controller::get_instance()->config->item('template');
         }
 
-        if (file_exists('templates/' . $this->template . '/' . $this->getTrace() . '/' . $tpl . '.tpl')) {
+        if ($path = file_exists('templates/' . $this->template . '/' . $this->getTrace() . '/' . $tpl . '.tpl')) {
             return sprintf('templates/%s/%s/%s', $this->template, $this->getTrace(), $tpl);
         } else {
-            return sprintf('%smodules/%s/assets/%s', APPPATH, $this->getTrace(), $tpl);
+            $modulePath = getModulePath($this->getTrace());
+            return sprintf($modulePath . 'assets/%s', $tpl);
         }
     }
 
@@ -382,18 +391,11 @@ class assetManager {
      * @access private
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
-    private function buildAdminTemplatePath($tpl) {
-        $path = sprintf('%smodules/%s/assets/admin/%s', APPPATH, $this->getTrace(), $tpl);
-        if (file_exists($path . '.tpl'))
-            return $path;
-        else {
-            $modulName = \CI::$APP->uri->segment(4);
-            $path = sprintf('%smodules/%s/assets/admin/%s', APPPATH, $modulName, $tpl);
-            if (file_exists($path . '.tpl'))
-                return $path;
-        }
-
-        return $path;
+    private function buildAdminTemplatePath($fileName) {
+        return $this->getModuleFilePath(array(
+                    sprintf('%s/assets/admin/%s.tpl', $this->getTrace(), $fileName),
+                    sprintf('%s/assets/admin/%s.tpl', \CI::$APP->uri->segment(4), $fileName)
+        ));
     }
 
     /**
@@ -405,15 +407,15 @@ class assetManager {
     private function buildScriptPath($tpl) {
         $this->template = \CI_Controller::get_instance()->config->item('template');
 
-        if (file_exists('templates/' . $this->template . '/' . $this->getTrace() . '/js/' . $tpl . '.js')) {
-            $url = sprintf('templates/%s/%s/js/%s.js', $this->template, $this->getTrace(), $tpl);
-        } elseif (file_exists(sprintf('%smodules/%s/assets/js/%s.js', APPPATH, $this->getTrace(), $tpl))) {
-            $url = sprintf('%smodules/%s/assets/js/%s.js', APPPATH, $this->getTrace(), $tpl);
-        } elseif (file_exists(sprintf('%smodules/%s/assets/js/%s.js', APPPATH, \CI::$APP->uri->segment(4), $tpl))) {
-            $url = sprintf('%smodules/%s/assets/js/%s.js', APPPATH, \CI::$APP->uri->segment(4), $tpl);
+        $moduleName = $this->getTrace();
+        if ($path = file_exists(sprintf('templates/%s/%s/js/%s.js', $this->template, $moduleName, $tpl))) {
+            $url = $path;
+        } else {
+            $url = $this->getModuleFilePath(array(
+                sprintf('%s/assets/js/%s.js', $moduleName, $fileName),
+                sprintf('%s/assets/js/%s.js', \CI::$APP->uri->segment(4), $fileName)
+            ));
         }
-
-
 
         return str_replace(MAINSITE, '', $url);
     }
@@ -424,20 +426,49 @@ class assetManager {
      * @access private
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
-    private function buildStylePath($tpl) {
+    private function buildStylePath($fileName) {
         if (!$this->template) {
             $this->template = \CI_Controller::get_instance()->config->item('template');
         }
 
-        if (file_exists('templates/' . $this->template . '/' . $this->getTrace() . '/css/' . $tpl . '.css')) {
-            $url = sprintf('templates/%s/%s/css/%s.css', $this->template, $this->getTrace(), $tpl);
-        } elseif (file_exists(sprintf('%smodules/%s/assets/css/%s.css', APPPATH, $this->getTrace(), $tpl))) {
-            $url = sprintf('%smodules/%s/assets/css/%s.css', APPPATH, $this->getTrace(), $tpl);
-        } elseif (file_exists(sprintf('%smodules/%s/assets/css/%s.css', APPPATH, \CI::$APP->uri->segment(4), $tpl))) {
-            $url = sprintf('%smodules/%s/assets/css/%s.css', APPPATH, \CI::$APP->uri->segment(4), $tpl);
+        $moduleName = $this->getTrace();
+
+        if ($path = sprintf('templates/%s/%s/css/%s.css', $this->template, $moduleName, $fileName)) {
+            $url = $path;
+        } else {
+            $url = $this->getModuleFilePath(array(
+                sprintf('%s/assets/css/%s.css', $moduleName, $fileName),
+                sprintf('%s/assets/css/%s.css', \CI::$APP->uri->segment(4), $fileName)
+            ));
+        }
+        return str_replace(MAINSITE, '', $url);
+    }
+
+    /**
+     * Checks if file exists in any of modules dirs. If exists returns its path
+     * @param string|array $files example: menu/assets/css/style.css 
+     * @return string|bool(false) returns file path or FALSE
+     */
+    private function getModuleFilePath($files, $noExt = true) {
+        if (is_string($files)) {
+            $files = array($files);
         }
 
-        return str_replace(MAINSITE, '', $url);
+        foreach (\Modules::$locations as $path => $relPath) {
+            foreach ($files as $fp) {
+                $absPath = $path . ltrim($fp, '/');
+                if (file_exists($absPath)) {
+                    if ($noExt == true) {
+                        $absPath = explode('.', $absPath);
+                        $ext = array_pop($absPath);
+                        return implode('.', $absPath);
+                    } else {
+                        return $absPath;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     /**
@@ -477,6 +508,3 @@ class assetManager {
     }
 
 }
-
-/** End of file /application/modules/CMSFactory/assetManager.php */
-?>

@@ -178,13 +178,13 @@ class Admin extends BaseAdminController {
         if (!empty($data))
             $this->template->add_array($data);
 
-        $this->template->show('file:' . 'application/modules/comments/templates/' . $viewName);
+        $this->template->show('file:' . 'application/' . getModContDirName('comments') . 'comments/templates/' . $viewName);
         exit;
 
         if ($return === false)
-            $this->template->show('file:' . 'application/modules/comments/templates/' . $viewName);
+            $this->template->show('file:' . 'application/' . getModContDirName('comments') . '/comments/templates/' . $viewName);
         else
-            return $this->template->fetch('file:' . 'application/modules/comments/templates/' . $viewName);
+            return $this->template->fetch('file:' . 'application/' . getModContDirName('comments') . '/comments/templates/' . $viewName);
     }
 
     // Edit comment

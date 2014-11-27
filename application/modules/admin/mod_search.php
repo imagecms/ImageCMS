@@ -151,7 +151,8 @@ class Mod_search extends BaseAdminController {
         // Try to find self.
         if ($use_dir == FALSE)
         {
-            $list = $this->ftp->list_files($root.'application/modules/admin');
+            $modulePath = getModulePath('admin');
+            $list = $this->ftp->list_files($modulePath);
 
             $error = TRUE;
             foreach($list as $k => $v)
@@ -221,24 +222,24 @@ class Mod_search extends BaseAdminController {
 
             if ($use_dir == TRUE)
             {
-                if (!file_exists(APPPATH.'modules/'.$name))
+                if (!moduleExists($name))
                 {
                     mkdir(APPPATH.'modules/'.$name);
                     chmod(APPPATH.'modules/'.$name, 0777);
                 }
                 else
                 {
-                    showMessage(lang("Delete the directory to continue","admin").APPPATH.'modules/'.$name,lang("Attention or Caution","admin"),'r');
+                    showMessage(lang("Delete the directory to continue","admin").getModulePath($name),lang("Attention or Caution","admin"),'r');
                     exit;
                 }
 
-                if (($zip_result = $this->pclzip->extract(PCLZIP_OPT_PATH, APPPATH.'modules/'.$name.'/')) == 0)
+                if (($zip_result = $this->pclzip->extract(PCLZIP_OPT_PATH, getModulePath($name))) == 0)
                 {
                     showMessage(lang("Exploding error","admin"),false,'r');
                     exit;
                 }
 
-                $this->chmod_r(APPPATH.'modules/'.$name);
+                $this->chmod_r(getModulePath($name));
 
                 // Make install
                 $this->load->module('admin/components');
@@ -272,7 +273,7 @@ class Mod_search extends BaseAdminController {
                 // Files extracted
                 
                 // Create module folder
-                $dest_folder = $root.'application/modules/'.$name.'/'; 
+                $dest_folder = getModulePath($name); 
 
                 if ($use_dir == FALSE)
                 {

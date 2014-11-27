@@ -5,6 +5,11 @@ if (!defined('BASEPATH'))
 
 $config['default_time_zone'] = 'Europe/Kiev';
 
+$config['modules_locations'] = array(
+    'modules',
+    'modules_2'
+);
+
 $config['static_base_url'] = '';
 
 $config['is_installed'] = TRUE;

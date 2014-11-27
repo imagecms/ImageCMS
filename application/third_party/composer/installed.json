@@ -1,0 +1,61 @@
+[
+    {
+        "name": "symfony/console",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "target-dir": "Symfony/Component/Console",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/Console.git",
+            "reference": "0f59dca5634f4fe95320ad81a3a7c0997bbc53df"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/Console/zipball/0f59dca5634f4fe95320ad81a3a7c0997bbc53df",
+            "reference": "0f59dca5634f4fe95320ad81a3a7c0997bbc53df",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "require-dev": {
+            "psr/log": "~1.0",
+            "symfony/event-dispatcher": "~2.1",
+            "symfony/process": "~2.1"
+        },
+        "suggest": {
+            "psr/log": "For using the console logger",
+            "symfony/event-dispatcher": "",
+            "symfony/process": ""
+        },
+        "time": "2014-11-11 08:37:22",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "3.0-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Symfony\\Component\\Console\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Symfony Community",
+                "homepage": "http://symfony.com/contributors"
+            },
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            }
+        ],
+        "description": "Symfony Console Component",
+        "homepage": "http://symfony.com"
+    }
+]

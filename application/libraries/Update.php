@@ -70,7 +70,8 @@ class Update {
 
     public function __construct() {
         $this->ci = &get_instance();
-        $this->pathUS = $this->US . "application/modules/update/UpdateService.wsdl";
+        $modulePath = getModulePath('update');
+        $this->pathUS = $this->US . "application/" . getModContDirName('update') . "/update/UpdateService.wsdl";
         $this->client = new SoapClient($this->pathUS);
     }
 
@@ -124,12 +125,12 @@ class Update {
      * form XML doc
      */
     public function formXml() {
-        $modules = get_dir_file_info('./application/modules/');
+        $modules = getModulesPaths();
         $array = array();
-        foreach ($modules as $key => $modul) {
-            $ver = read_file("./application/modules/$key/module_info.php");
+        foreach ($modules as $moduleName => $modulePath) {
+            $ver = read_file($modulePath . "module_info.php");
             preg_match("/'version'(\s*)=>(\s*)'(.*)',/", $ver, $find);
-            $array[$key] = end($find);
+            $array[$moduleName] = end($find);
         }
 
         $array['core'] = IMAGECMS_NUMBER;

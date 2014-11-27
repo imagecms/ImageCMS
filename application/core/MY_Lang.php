@@ -174,7 +174,8 @@ class MY_Lang extends MX_Lang {
 //            } else {
 //            var_dumps_exit(getMoFileName($module));
 //            var_dumps_exit(correctUrl('./application/modules/' . $module . '/language/' . $lang));
-            $this->addDomain(correctUrl('./application/modules/' . $module . '/language/' . $lang), getMoFileName($module), $lang);
+            
+            $this->addDomain(correctUrl(getModulePath($module) . '/language/' . $lang), getMoFileName($module), $lang);
 //            }
         }
     }

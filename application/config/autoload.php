@@ -55,7 +55,7 @@ $autoload['packages'] = array();
   |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
  */
 
-$autoload['libraries'] = array('lib_init', 'lib_category', 'lib_csrf');
+$autoload['libraries'] = array('lib_modules', 'lib_init', 'lib_category', 'lib_csrf');
 
 
 /*
@@ -67,7 +67,7 @@ $autoload['libraries'] = array('lib_init', 'lib_category', 'lib_csrf');
   |	$autoload['helper'] = array('url', 'file');
  */
 
-$autoload['helper'] = array('url', 'language', 'array', 'rules', 'widget', 'form_csrf', 'my_url', 'category', 'page', 'cache', 'html', 'javascript', 'security', 'siteinfo', 'form_helper');
+$autoload['helper'] = array('url', 'language', 'array', 'rules', 'widget', 'form_csrf', 'my_url', 'category', 'page', 'cache', 'html', 'javascript', 'security', 'siteinfo', 'form_helper', 'module');
 
 
 /*

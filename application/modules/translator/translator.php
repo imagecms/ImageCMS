@@ -127,7 +127,7 @@ class Translator extends MY_Controller {
                         $lang = new MY_Lang();
                         $lang->load('translator');
                         \CMSFactory\assetManager::create()->registerScript('translateSingleLang');
-                        $obj->template->include_tpl('translationApiForm', './application/modules/translator/assets/');
+                        $obj->template->include_tpl('translationApiForm', getModulePath('translator') . 'translator/assets/');
                     }
                 }
             }

@@ -230,7 +230,7 @@ class Core extends MY_Controller {
                 if ($without_cat == FALSE) {
                     // load page and category
                     foreach ($cats_unsorted as $cat) {
-                        if (($cat['path_url'] == $cat_path . $SLASH) AND ($cat['id'] == $page_info['category'])) {
+                        if (($cat['path_url'] == $cat_path . $SLASH) AND ( $cat['id'] == $page_info['category'])) {
                             $page_found = TRUE;
                             $data_type = 'page';
                             $this->page_content = $page_info;
@@ -611,7 +611,7 @@ class Core extends MY_Controller {
 
         ($hook = get_hook('core_dispcat_set_meta')) ? eval($hook) : NULL;
 
-        
+
         // Generate auto meta-tags 
         if ($this->settings['create_description'] == 'auto' && !$category['description']) {
             $category['description'] = $this->lib_seo->get_description($category['short_desc']);
@@ -628,12 +628,12 @@ class Core extends MY_Controller {
                 }
             }
         }
-        
+
         // adding page number for pages with pagination (from second page)
         $curPage = $this->pagination->cur_page;
         if ($curPage > 1) {
             $title = $category['title'] . ' - ' . $curPage;
-            $description =  $category['description'] . ' - ' . $curPage;
+            $description = $category['description'] . ' - ' . $curPage;
 
             $this->set_meta_tags($title, $category['keywords'], $description);
         } else {
@@ -824,7 +824,7 @@ class Core extends MY_Controller {
             if ($mod_function == FALSE)
                 $mod_function = 'index';
 
-            $file = APPPATH . 'modules/' . $mod_name . '/' . $mod_function . EXT;
+            $file = getModulePath($mod_name) . $mod_function . EXT;
 
             $this->core_data['module'] = $mod_name;
 

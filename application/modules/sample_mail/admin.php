@@ -105,12 +105,12 @@ class Admin extends BaseAdminController {
     public function render($viewName, array $data = array(), $return = false) {
         if (!empty($data))
             $this->template->add_array($data);
-        $this->template->show('file:' . 'application/modules/sample_mail/templates/admin/' . $viewName);
+        $this->template->show('file:' . 'application/' . getModContDirName('sample_mail') . '/sample_mail/templates/admin/' . $viewName);
         exit;
         if ($return === false)
-            $this->template->show('file:' . 'application/modules/sample_mail/templates/admin/' . $viewName);
+            $this->template->show('file:' . 'application/' . getModContDirName('sample_mail') . '/sample_mail/templates/admin/' . $viewName);
         else
-            return $this->template->fetch('file:' . 'application/modules/sample_mail/templates/admin/' . $viewName);
+            return $this->template->fetch('file:' . 'application/' . getModContDirName('sample_mail') . '/sample_mail/templates/admin/' . $viewName);
     }
 
     public function index() {

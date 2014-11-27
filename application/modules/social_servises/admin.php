@@ -70,13 +70,13 @@ class Admin extends BaseAdminController {
         if (!empty($data))
             $this->template->add_array($data);
 
-        $this->template->show('file:' . 'application/modules/social_servises/templates/admin/' . $viewName);
+        $this->template->show('file:' . 'application/' . getModContDirName('social_servises') . '/social_servises/templates/admin/' . $viewName);
         exit;
 
         if ($return === false)
-            $this->template->show('file:' . 'application/modules/social_servises/templates/admin/' . $viewName);
+            $this->template->show('file:' . 'application/' . getModContDirName('social_servises') . '/social_servises/templates/admin/' . $viewName);
         else
-            return $this->template->fetch('file:' . 'application/modules/social_servises/templates/admin/' . $viewName);
+            return $this->template->fetch('file:' . 'application/' . getModContDirName('social_servises') . '/social_servises/templates/admin/' . $viewName);
     }
 
 }

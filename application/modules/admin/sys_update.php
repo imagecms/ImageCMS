@@ -114,11 +114,16 @@ class Sys_update extends BaseAdminController {
     }
 
     public function get_license() {
-        if (file_exists('application/modules/shop/license.key')) {
-            echo file_get_contents('application/modules/shop/license.key');
-        } else {
+        if (false === $shopPath = getModulePath('shop')) {
             echo 0;
+            return;
         }
+        $licenseFile = $shopPath . 'license.key';
+        if (!file_exists($licenseFile)) {
+            echo 0;
+            return;
+        }
+        echo file_get_contents($licenseFile);
     }
 
     public function backup() {

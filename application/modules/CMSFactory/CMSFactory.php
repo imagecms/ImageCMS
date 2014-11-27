@@ -29,5 +29,3 @@ class CMSFactory extends MY_Controller {
     }
 
 }
-
-/* End of file /application/modules/CMSFactory/CMSFactory.php */

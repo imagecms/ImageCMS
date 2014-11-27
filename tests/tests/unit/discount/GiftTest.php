@@ -19,7 +19,7 @@ class GiftTest extends PHPUnit_Framework_TestCase {
      */
     protected function setUp() {
 
-        require_once realpath(APPPATH) . '/modules/mod_discount/gift.php';
+        require_once realpath(APPPATH) . '/modules/' . getModContDirName('mod_discount') . '/mod_discount/gift.php';
         $this->object = new Gift;
     }
 
