@@ -338,7 +338,11 @@ class Sitemap extends MY_Controller {
         if ((int) $settings['generateXML'] || $regenerate) {
             $this->_create_map();
         } else {
-            $this->result = file_get_contents($this->sitemap_path);
+            if (file_exists($this->sitemap_path)) {
+                $this->result = file_get_contents($this->sitemap_path);
+            } else {
+                $this->_create_map();
+            }
         }
 
         // Show Site Map
@@ -602,6 +606,7 @@ class Sitemap extends MY_Controller {
 
         $site_maps = array();
         $url_count = 0;
+        
         while ($item = current($items)) {
             if ($url_count < $this->max_url_count) {
                 $data .= "<url>\n";
@@ -711,7 +716,14 @@ class Sitemap extends MY_Controller {
      * @return boolean
      */
     public function robotsCheck($check) {
-        $array = $this->robots;
+        $checkSetting = $this->db->get('settings')
+                ->row()
+                ->robots_status;
+//            $array = $this->robots;
+        
+        if(!$checkSetting && $checkSetting == '0'){
+            $array = array('/');
+        }
 
         foreach ($array as $ar) {
             if ($ar == '/')

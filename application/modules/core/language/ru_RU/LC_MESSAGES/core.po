@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-29 11:12+0300\n"
-"PO-Revision-Date: 2014-05-29 11:12+0300\n"
+"POT-Creation-Date: 2015-01-28 12:00+0200\n"
+"PO-Revision-Date: 2015-01-28 12:00+0200\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -18,95 +18,111 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: ./application/modules/core/templates/similar_posts.tpl:2
+#: application/modules/core/widgets_info.php:5
+msgid "Latest news"
+msgstr "Последние новости"
+
+#: application/modules/core/widgets_info.php:6
+msgid "Displaying the last or popular pages in the selected category."
+msgstr "Отображение последних либо популярных страниц из выбранной категории."
+
+#: application/modules/core/widgets_info.php:10
+msgid "Similar pages"
+msgstr "Похожие страницы"
+
+#: application/modules/core/widgets_info.php:11
+msgid "Displays a list of pages that are linked title."
+msgstr "Выводит список страниц, которые связаны между собой заголовком."
+
+#: application/modules/core/templates/similar_posts.tpl:2
 msgid "Related topics"
 msgstr "Связанные темы"
 
-#: ./application/modules/core/templates/recent_news_form.tpl:5
-msgid "Widget settings"
-msgstr "Настройки виджета"
-
-#: ./application/modules/core/templates/recent_news_form.tpl:9
-msgid "Go back"
-msgstr "Назад"
-
-#: ./application/modules/core/templates/recent_news_form.tpl:10
-msgid "Save"
-msgstr "Сохранить"
-
-#: ./application/modules/core/templates/recent_news_form.tpl:11
-msgid "Save and go back"
-msgstr "Сохранить и выйти"
-
-#: ./application/modules/core/templates/recent_news_form.tpl:18
-msgid "Settings"
-msgstr "Настройки"
-
-#: ./application/modules/core/templates/recent_news_form.tpl:25
-msgid "Pages"
-msgstr "Страницы"
-
-#: ./application/modules/core/templates/recent_news_form.tpl:28
-msgid "Latest"
-msgstr "Последний"
-
-#: ./application/modules/core/templates/recent_news_form.tpl:29
-msgid "Popular"
-msgstr "Популярный"
-
-#: ./application/modules/core/templates/recent_news_form.tpl:34
-msgid "Categories"
-msgstr "Категории"
-
-#: ./application/modules/core/templates/recent_news_form.tpl:37
+#: application/modules/core/templates/recent_news_form.tpl:37
 msgid "Without a category"
 msgstr "Без категории"
 
-#: ./application/modules/core/templates/recent_news_form.tpl:44
-msgid "Number of news for display"
-msgstr "Количество новостей для отображения"
-
-#: ./application/modules/core/templates/recent_news_form.tpl:50
-#: ./application/modules/core/core_widgets.php:88
-msgid "Maximum number of characters"
-msgstr "Максимальное количество символов"
-
-#: ./application/modules/core/core_widgets.php:87
-msgid "Amount of news"
-msgstr "Количество новостей"
-
-#: ./application/modules/core/core_widgets.php:102
-msgid "Settings have been saved"
-msgstr "Сохранение настроек прошло успешно"
-
-#: ./application/modules/core/core.php:345
-msgid "Home page not found."
-msgstr "Главная страница не найдена."
-
-#: ./application/modules/core/core.php:392
-msgid "Module uploading or loading  error"
-msgstr "Загрузки модуля или ошибка загрузки"
-
-#: ./application/modules/core/core.php:537
-msgid "The first"
-msgstr "Первый"
-
-#: ./application/modules/core/core.php:538
-msgid "Last"
-msgstr "Последний"
-
-#: core.php:564
-msgid "Can't locate category template file."
-msgstr "Не удается найти файл шаблона категории."
-
-#: ./application/modules/core/core.php:575
+#: application/modules/core/core.php:608
 msgid "In the category has no pages."
 msgstr "В категории не имеет страниц."
 
-#: ./application/modules/core/core.php:707
+#: application/modules/core/core.php:356
+msgid "Home page not found."
+msgstr "Главная страница не найдена."
+
+#: application/modules/core/core.php:403
+msgid "Module uploading or loading  error"
+msgstr "Загрузки модуля или ошибка загрузки"
+
+#: application/modules/core/templates/recent_news_form.tpl:34
+msgid "Categories"
+msgstr "Категории"
+
+#: application/modules/core/core_widgets.php:88
+msgid "Amount of news"
+msgstr "Количество новостей"
+
+#: application/modules/core/templates/recent_news_form.tpl:44
+msgid "Number of news for display"
+msgstr "Количество новостей для отображения"
+
+#: application/modules/core/core_widgets.php:89
+#: application/modules/core/templates/recent_news_form.tpl:50
+msgid "Maximum number of characters"
+msgstr "Максимальное количество символов"
+
+#: application/modules/core/templates/recent_news_form.tpl:9
+msgid "Go back"
+msgstr "Назад"
+
+#: application/modules/core/templates/recent_news_form.tpl:18
+msgid "Settings"
+msgstr "Настройки"
+
+#: application/modules/core/templates/recent_news_form.tpl:5
+msgid "Widget settings"
+msgstr "Настройки виджета"
+
+#: application/modules/core/core.php:600
+msgid "Can't locate category template file."
+msgstr "Не удается найти файл шаблона категории."
+
+#: application/modules/core/core.php:573
+msgid "The first"
+msgstr "Первый"
+
+#: application/modules/core/templates/recent_news_form.tpl:29
+msgid "Popular"
+msgstr "Популярный"
+
+#: application/modules/core/core.php:574
+msgid "Last"
+msgstr "Последний"
+
+#: application/modules/core/templates/recent_news_form.tpl:28
+msgid "Latest"
+msgstr "Последний"
+
+#: application/modules/core/core_widgets.php:103
+msgid "Settings have been saved"
+msgstr "Сохранение настроек прошло успешно"
+
+#: application/modules/core/templates/recent_news_form.tpl:10
+msgid "Save"
+msgstr "Сохранить"
+
+#: application/modules/core/templates/recent_news_form.tpl:11
+msgid "Save and go back"
+msgstr "Сохранить и выйти"
+
+#: application/modules/core/core.php:768
 msgid "Page not found"
 msgstr "Страница не найдена"
 
-#: ./application/modules/core/core.php:709
+#: application/modules/core/core.php:770
 msgid "Page not found."
 msgstr "Страница не найдена."
+
+#: application/modules/core/templates/recent_news_form.tpl:25
+msgid "Pages"
+msgstr "Страницы"

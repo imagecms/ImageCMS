@@ -73,7 +73,7 @@ class Languages extends BaseAdminController {
         $this->form_validation->set_rules('identif', lang("Identifier", "admin"), 'trim|required|min_length[1]|max_length[100]|alpha_dash');
         $this->form_validation->set_rules('image', lang("Image", "admin"), 'max_length[250]');
         $this->form_validation->set_rules('locale', lang("Locale", "admin"), 'required|max_length[250]');
-        $this->form_validation->set_rules('template', lang("Template", "admin"), 'required|max_length[250]');
+//        $this->form_validation->set_rules('template', lang("Template", "admin"), 'max_length[250]');
 
         if ($this->form_validation->run($this) == FALSE) {
             showMessage(validation_errors(), '', 'r');
@@ -93,19 +93,26 @@ class Languages extends BaseAdminController {
 
             $this->cms_admin->insert_lang($data);
 
-            $this->lib_admin->log(lang("Create a language", "admin") . " " . $data['lang_name']);
+            $this->lib_admin->log(lang("Create a language ", "admin") . " " . $data['lang_name']);
 
             $this->cache->delete('main_site_langs');
 
             $this->createLanguageFolders($data['locale']);
 
-            showMessage(lang("Language has been created", "admin"));
 
-            pjax('/admin/languages/');
+            showMessage(lang("Language has been created", "admin"));            
+            
+            if(isset($_POST['create_exit'])){
+                pjax('/admin/languages/');                
+            }else{
+                $lastLangId = $this->db->query("SELECT id FROM languages ORDER BY id DESC")->row()->id;
+                pjax('/admin/languages/edit/'.$lastLangId);                
+            }
         }
     }
 
     function getPoFileSettingsText($lang = '', $type = '', $module = NULL) {
+
         $content =
                 b"\xEF\xBB\xBF" .
                 'msgid ""' . PHP_EOL .
@@ -164,8 +171,8 @@ class Languages extends BaseAdminController {
                             '"X-Poedit-Country: \n"' . PHP_EOL .
                             '"X-Poedit-SearchPath-0: .\n"' . PHP_EOL .
                             '"X-Poedit-SearchPath-1: ../../../templates/administrator\n"' . PHP_EOL .
-                            '"X-Poedit-SearchPath-2: ../../modules/shop/admin\n"' . PHP_EOL .
-                            'X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n' . PHP_EOL;
+                            '"X-Poedit-SearchPath-2: ../../' . getModContDirName('shop') . '/shop/admin\n"' . PHP_EOL .
+                            'X-Poedit-SearchPath-3: ../../../application/' . getModContDirName('shop') . '/shop/models/build/classes\n' . PHP_EOL;
                 } else {
                     $content .=
                             '"X-Poedit-Basepath: ../../..\n"' . PHP_EOL .
@@ -355,7 +362,11 @@ class Languages extends BaseAdminController {
         $this->template->assign('folder_selected', $lang['folder']);
         $this->template->assign('locales', $this->getLocales());
         $this->template->assign('locale', $lang['locale']);
+        $this->template->assign('is_default', $lang['default']);
         $this->template->assign('template_selected', $lang['template']);
+
+        $settings = $this->cms_admin->get_settings();
+        $this->template->assign('template_installed', $settings['site_template']);
 
         $this->template->show('lang_edit', FALSE);
     }
@@ -370,7 +381,7 @@ class Languages extends BaseAdminController {
         $this->form_validation->set_rules('identif', lang("Identifier", "admin"), 'trim|required|min_length[1]|max_length[100]|alpha_dash');
         $this->form_validation->set_rules('image', lang("Image", "admin"), 'max_length[250]');
         $this->form_validation->set_rules('locale', lang("Locale", "admin"), 'required|max_length[250]');
-        $this->form_validation->set_rules('template', lang("Template", "admin"), 'required|max_length[250]');
+//        $this->form_validation->set_rules('template', lang("Template", "admin"), 'max_length[250]');
 
         if ($this->form_validation->run($this) == FALSE) {
             showMessage(validation_errors(), '', 'r');
@@ -541,5 +552,3 @@ class Languages extends BaseAdminController {
     }
 
 }
-
-/* End of languages.php */

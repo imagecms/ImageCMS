@@ -84,11 +84,12 @@ class Admin extends BaseAdminController {
         }
 
         if (!is_really_writable($this->conf['upload_path']) OR !file_exists($this->conf['upload_path'])) {
-            $this->template->add_array(array(
-                'error' => lang("Create a directory to continue your work with the gallery", 'gallery') . $this->conf['upload_path'] . lang("Set the write access", 'gallery')
-            ));
 
-            $this->display_tpl('error');
+            \CMSFactory\assetManager::create()
+                ->setData(array(
+                    'error' => lang("Create a directory to continue your work with the gallery", 'gallery') . $this->conf['upload_path'] . lang("Set the write access", 'gallery')
+                ))
+                ->renderAdmin('error');
 
             exit;
         }
@@ -113,11 +114,12 @@ class Admin extends BaseAdminController {
     public function index() {
 
         $categories = $this->gallery_m->get_categories('position', 'asc');
-        $this->template->add_array(array(
-            'categories' => $categories,
-        ));
 
-        $this->display_tpl('categories');
+        \CMSFactory\assetManager::create()
+            ->setData(array(
+                'categories' => $categories,
+            ))
+            ->renderAdmin('categories');
     }
 
     /**
@@ -148,16 +150,15 @@ class Admin extends BaseAdminController {
                 }
             }
 
-            $this->template->add_array(array(
-                'albums' => $albums
-            ));
+            $this->template->add_array(array());
         }
 
-        $this->template->add_array(array(
-            'category' => $this->gallery_m->get_category($id)
-        ));
-
-        $this->display_tpl('album_list');
+        \CMSFactory\assetManager::create()
+            ->setData(array(
+                'albums' => $albums,
+                'category' => $this->gallery_m->get_category($id)
+            ))
+            ->renderAdmin('album_list');
     }
 
     /**
@@ -166,11 +167,12 @@ class Admin extends BaseAdminController {
     public function settings($action = 'show') {
         switch ($action) {
             case 'show':
-                $this->template->registerCssFile('/templates/administrator/js/colorpicker/css/colorpicker.css', 'after');
-                $this->template->registerJsFile('/templates/administrator/js/colorpicker/js/colorpicker.js', 'after');
-                $this->template->assign('settings', $this->gallery_m->load_settings());
+                \CMSFactory\assetManager::create()
+                    ->setData(array(
+                        'settings' => $this->gallery_m->load_settings()
+                    ))
+                    ->renderAdmin('settings');
 
-                $this->display_tpl('settings');
                 break;
 
             case 'update':
@@ -196,9 +198,15 @@ class Admin extends BaseAdminController {
                 }
 
                 // Check if watermark image exists.
-                if ($_POST['watermark_type'] == 'overlay' AND !file_exists('.' . $_POST['watermark_image'])) {
+                if ($this->input->post('watermark_type') == 'overlay' && !file_exists('./uploads/' . $_POST['watermark_image']) && !file_exists($_POST['watermark_image'])) {
                     showMessage(lang("Specify the correct path to watermark image", 'gallery'), false, 'r');
                     break;
+                }
+
+                if (file_exists('./uploads/' . $this->input->post('watermark_image'))) {
+                    $imagePath = './uploads/' . trim($this->input->post('watermark_image'));
+                } elseif (file_exists($this->input->post('watermark_image'))) {
+                    $imagePath = trim($this->input->post('watermark_image'));
                 }
 
                 // Check if watermark font exists.
@@ -207,12 +215,12 @@ class Admin extends BaseAdminController {
                     'max_width' => $this->input->post('max_width'),
                     'max_height' => $this->input->post('max_height'),
                     'quality' => $this->input->post('quality'),
-                    'maintain_ratio' => (bool) $this->input->post('maintain_ratio'),
-                    'maintain_ratio_prev' => (bool) $this->input->post('maintain_ratio_prev'),
-                    'maintain_ratio_icon' => (bool) $this->input->post('maintain_ratio_icon'),
-                    'crop' => (bool) $this->input->post('crop'),
-                    'crop_prev' => (bool) $this->input->post('crop_prev'),
-                    'crop_icon' => (bool) $this->input->post('crop_icon'),
+                    'maintain_ratio' => (bool)$this->input->post('maintain_ratio'),
+                    'maintain_ratio_prev' => (bool)$this->input->post('maintain_ratio_prev'),
+                    'maintain_ratio_icon' => (bool)$this->input->post('maintain_ratio_icon'),
+                    'crop' => (bool)$this->input->post('crop'),
+                    'crop_prev' => (bool)$this->input->post('crop_prev'),
+                    'crop_icon' => (bool)$this->input->post('crop_icon'),
                     'prev_img_width' => $this->input->post('prev_img_width'),
                     'prev_img_height' => $this->input->post('prev_img_height'),
                     'thumb_width' => $this->input->post('thumb_width'),
@@ -224,7 +232,7 @@ class Admin extends BaseAdminController {
                     'watermark_font_size' => trim($this->input->post('watermark_font_size')),
                     'watermark_color' => trim($this->input->post('watermark_color')),
                     'watermark_padding' => trim($this->input->post('watermark_padding')),
-                    'watermark_image' => '.' . trim($this->input->post('watermark_image')),
+                    'watermark_image' => $imagePath,
                     'watermark_image_opacity' => trim($this->input->post('watermark_image_opacity')),
                     'watermark_type' => trim($this->input->post('watermark_type')),
                     'order_by' => $this->input->post('order_by'),
@@ -253,24 +261,24 @@ class Admin extends BaseAdminController {
                         }
                     }
                 } else {
-                     $params['watermark_font_path'] = trim($this->input->post('watermark_font_path_tmp'));
+                    $params['watermark_font_path'] = trim($this->input->post('watermark_font_path_tmp'));
                 }
 
                 if ($_POST['watermark']['delete_watermark_font_path'] == 1) {
-                    $path= trim($this->input->post('watermark_font_path_tmp'));
-                    if(file_exists($path) && !is_dir($path)){
+                    $path = trim($this->input->post('watermark_font_path_tmp'));
+                    if (file_exists($path) && !is_dir($path)) {
                         chmod($path, 0777);
                         unlink($path);
                     }
-                    
+
                     $params['watermark_font_path'] = '';
                 }
-
 
 
                 $this->db->where('name', 'gallery');
                 $this->db->update('components', array('settings' => serialize($params)));
 
+                $this->lib_admin->log(lang("Gallery settings was edited", "gallery"));
                 showMessage(lang("Settings have been saved", 'gallery'));
 
                 break;
@@ -305,6 +313,7 @@ class Admin extends BaseAdminController {
             // Create folder for admin thumbs
             @mkdir($this->conf['upload_path'] . $album_id . '/_admin_thumbs');
 
+            $this->lib_admin->log(lang("Gallery album was created", "gallery"));
             showMessage(lang('Album created', 'gallery'));
 
             $_POST['action'] ? $action = $_POST['action'] : $action = 'edit';
@@ -313,7 +322,7 @@ class Admin extends BaseAdminController {
                 pjax(site_url('admin/components/cp/gallery/edit_album_params/' . $album_id));
 
             if ($action == 'exit')
-                pjax('/admin/components/cp/gallery/category/' . $album['category_id']);
+                pjax('/admin/components/cp/gallery/category/' . $_POST['category_id']);
         }
     }
 
@@ -322,7 +331,6 @@ class Admin extends BaseAdminController {
      */
     public function update_album($id, $locale) {
         $this->form_validation->set_rules('name', lang("Name", 'gallery'), 'required');
-        // var_dump($_POST['tpl_file']);
         if (!preg_match('/[a-z]/', $_POST['tpl_file']) && !empty($_POST['tpl_file'])) {
             showMessage('wrong tpl name', '', 'r');
             exit();
@@ -331,13 +339,14 @@ class Admin extends BaseAdminController {
             showMessage(validation_errors(), '', 'r');
             exit();
         } else {
+            $this->lib_admin->log(lang("Gallery album was updated", "gallery") . '. Id: ' . $id);
             showMessage(lang("Changes have been saved", 'gallery'));
         }
         $data = array(
-            'category_id' => (int) $this->input->post('category_id'),
+            'category_id' => (int)$this->input->post('category_id'),
             // 'name' => $this->input->post('name'),
             // 'description' => trim($this->input->post('description')),
-            'position' => (int) $this->input->post('position'),
+            'position' => (int)$this->input->post('position'),
             'tpl_file' => $this->input->post('tpl_file')
         );
 
@@ -353,8 +362,7 @@ class Admin extends BaseAdminController {
         if ($this->db->where('id', $id)->where('locale', $locale)->get('gallery_albums_i18n')->num_rows()) {
             $this->db->where('id', $id)->where('locale', $locale);
             $this->db->update('gallery_albums_i18n', $data_locale);
-        }
-        else
+        } else
             $this->db->insert('gallery_albums_i18n', $data_locale);
 
         $album = $this->gallery_m->get_album($id);
@@ -375,14 +383,14 @@ class Admin extends BaseAdminController {
         $album = $this->gallery_m->get_album($id, true, false, false, $locale);
 
         if ($album != FALSE) {
-            $this->template->add_array(array(
-                'locale' => $locale,
-                'languages' => $this->db->get('languages')->result_array(),
-                'album' => $album,
-                'categories' => $this->gallery_m->get_categories($album['category_id']),
-            ));
-
-            $this->display_tpl('album_params');
+            \CMSFactory\assetManager::create()
+                ->setData(array(
+                    'locale' => $locale,
+                    'languages' => $this->db->get('languages')->result_array(),
+                    'album' => $album,
+                    'categories' => $this->gallery_m->get_categories($album['category_id']),
+                ))
+                ->renderAdmin('album_params');
         } else {
             show_error(lang("Can't load album information", 'gallery'));
         }
@@ -393,7 +401,7 @@ class Admin extends BaseAdminController {
      */
     public function delete_album($id = FALSE, $category = NULL) {
         if ($id == FALSE) {
-            $id = (int) $this->input->post('album_id');
+            $id = (int)$this->input->post('album_id');
         }
 
         $album = $this->gallery_m->get_album($id);
@@ -409,6 +417,7 @@ class Admin extends BaseAdminController {
             rmdir($this->conf['upload_path'] . $album['id'], TRUE);
 //            }
             $this->gallery_m->delete_album($album['id']);
+            $this->lib_admin->log(lang("Gallery album was removed", "gallery") . '. Id: ' . $id);
             pjax('/admin/components/cp/gallery/category/' . $category);
 //            echo 'deleted';
 //            exit;
@@ -425,11 +434,11 @@ class Admin extends BaseAdminController {
         // $this->db->select('id, name');
         $cats = $this->gallery_m->get_categories();
 
-        $this->template->add_array(array(
-            'categories' => $cats,
-        ));
-
-        $this->display_tpl('create_album');
+        \CMSFactory\assetManager::create()
+            ->setData(array(
+                'categories' => $cats,
+            ))
+            ->renderAdmin('create_album');
     }
 
     /**
@@ -438,13 +447,13 @@ class Admin extends BaseAdminController {
     public function edit_album($id = 0) {
         $album = $this->gallery_m->get_album($id);
 
-        $this->template->add_array(array(
-            'album' => $album,
-            'category' => $this->gallery_m->get_category($album['category_id']),
-            'album_url' => $this->conf['upload_url'] . $id
-        ));
-
-        $this->display_tpl('edit_album');
+        \CMSFactory\assetManager::create()
+            ->setData(array(
+                'album' => $album,
+                'category' => $this->gallery_m->get_category($album['category_id']),
+                'album_url' => $this->conf['upload_url'] . $id
+            ))
+            ->renderAdmin('edit_album');
     }
 
     // --------------------------------------------------------------------
@@ -457,16 +466,16 @@ class Admin extends BaseAdminController {
         if ($image != FALSE) {
             $album = $this->gallery_m->get_album($image['album_id'], FALSE);
 
-            $this->template->add_array(array(
-                'locale' => $locale,
-                'languages' => $this->db->get('languages')->result_array(),
-                'image' => $image,
-                'album' => $album,
-                'category' => $this->gallery_m->get_category($album['category_id']),
-                'album_url' => $this->conf['upload_url'] . $album['id']
-            ));
-
-            $this->display_tpl('edit_image');
+            \CMSFactory\assetManager::create()
+                ->setData(array(
+                    'locale' => $locale,
+                    'languages' => $this->db->get('languages')->result_array(),
+                    'image' => $image,
+                    'album' => $album,
+                    'category' => $this->gallery_m->get_category($album['category_id']),
+                    'album_url' => $this->conf['upload_url'] . $album['id']
+                ))
+                ->renderAdmin('edit_image');
         } else {
             show_error(lang("Can't load image information", 'gallery'));
         }
@@ -481,7 +490,7 @@ class Admin extends BaseAdminController {
         if ($image != FALSE) {
             $this->load->library('Form_validation');
 
-            $this->form_validation->set_rules('new_name', lang("Name", 'gallery'), 'trim|required');
+            $this->form_validation->set_rules('new_name', lang("New name", 'gallery'), 'trim|required');
 
             if ($this->form_validation->run($this) == FALSE) {
                 showMessage(validation_errors(), false, 'r');
@@ -541,6 +550,7 @@ class Admin extends BaseAdminController {
 
                 // Delete image info.
                 $this->gallery_m->delete_image($image['id']);
+                $this->lib_admin->log(lang("Album image deleted.", "gallery") . '. Id: ' . $image['id']);
                 showMessage(lang("Photos removed", 'gallery'));
             }
         }
@@ -558,9 +568,14 @@ class Admin extends BaseAdminController {
         if ($image != FALSE) {
             $album = $this->gallery_m->get_album($image['album_id'], FALSE);
 
-            $this->gallery_m->update_description($id, trim($this->input->post('description')), $locale);
+            $data = array(
+                'description' => trim($this->input->post('description')),
+                'title' => trim($this->input->post('title')),
+            );
 
-            $this->gallery_m->update_position($id, trim((int) $this->input->post('position')));
+            $this->gallery_m->update_description($id, $data, $locale);
+
+            $this->gallery_m->update_position($id, trim((int)$this->input->post('position')));
 
             if ($this->input->post('cover') == 1) {
                 $this->gallery_m->set_album_cover($image['album_id'], $image['id']);
@@ -579,7 +594,7 @@ class Admin extends BaseAdminController {
     public function update_positions() {
         $positions = $this->input->post('positions');
         foreach ($positions as $key => $value) {
-            $this->db->where('id', (int) $value)->set('position', $key)->update('gallery_category');
+            $this->db->where('id', (int)$value)->set('position', $key)->update('gallery_category');
         }
         showMessage(lang("Positions updated", 'gallery'));
     }
@@ -587,7 +602,7 @@ class Admin extends BaseAdminController {
     public function update_album_positions() {
         $positions = $this->input->post('positions');
         foreach ($positions as $key => $value) {
-            $this->db->where('id', (int) $value)->set('position', $key)->update('gallery_albums');
+            $this->db->where('id', (int)$value)->set('position', $key)->update('gallery_albums');
         }
         showMessage(lang("Positions updated", 'gallery'));
     }
@@ -595,7 +610,7 @@ class Admin extends BaseAdminController {
     public function update_img_positions() {
         $positions = $this->input->post('positions');
         foreach ($positions as $key => $value) {
-            $this->db->where('id', (int) $value)->set('position', $key)->update('gallery_images');
+            $this->db->where('id', (int)$value)->set('position', $key)->update('gallery_images');
         }
         showMessage(lang("Positions updated", 'gallery'));
     }
@@ -645,7 +660,7 @@ class Admin extends BaseAdminController {
     // --------------------------------------------------------------------
 
     public function show_create_category() {
-        $this->display_tpl('create_category');
+        \CMSFactory\assetManager::create()->renderAdmin('create_category');
     }
 
     public function create_category() {
@@ -680,15 +695,18 @@ class Admin extends BaseAdminController {
 
             $this->db->insert('gallery_category_i18n', $data_locale);
 
+            $this->lib_admin->log(lang("Gallery category was created", "gallery"));
             //updateDiv('page', site_url('admin/components/cp/gallery'));
             //$_POST['action'] ? $action = $_POST['action'] : $action = 'edit';
 
-            pjax('/admin/components/cp/gallery/index');
-//            if ($action == 'close')
-//                pjax('/admin/components/cp/gallery/index');
-//            if ($action == 'edit')
-//                pjax('/admin/components/cp/gallery/edit_category/' . $last_id);
+            if ($_POST['action'] == 'close') {
+                pjax('/admin/components/cp/gallery/index');
+            } else {
+                pjax('/admin/components/cp/gallery/edit_category/' . $last_id);
+            }
         }
+
+
     }
 
     public function edit_category($id, $locale = null) {
@@ -697,16 +715,17 @@ class Admin extends BaseAdminController {
             $locale = $this->gallery_m->chose_locale();
         $category = $this->gallery_m->get_category($id, $locale);
 
-        $this->template->add_array(array(
-            'category' => $category,
-            'locale' => $locale,
-            'languages' => $this->db->get('languages')->result_array()
-        ));
-
-        $this->display_tpl('edit_category');
+        \CMSFactory\assetManager::create()
+            ->setData(array(
+                'category' => $category,
+                'locale' => $locale,
+                'languages' => $this->db->get('languages')->result_array()
+            ))
+            ->renderAdmin('edit_category');
     }
 
-    public function update_category($id, $locale) {
+    public
+    function update_category($id, $locale) {
         $this->load->library('Form_validation');
         $val = $this->form_validation;
 
@@ -735,12 +754,11 @@ class Admin extends BaseAdminController {
             if ($this->db->where('id', $id)->where('locale', $locale)->get('gallery_category_i18n')->num_rows()) {
                 $this->db->where('id', $id)->where('locale', $locale);
                 $this->db->update('gallery_category_i18n', $data_locale);
-            }
-            else
+            } else
                 $this->db->insert('gallery_category_i18n', $data_locale);
 
 
-
+            $this->lib_admin->log(lang("Gallery category was edited", "gallery") . '. Id: ' . $id);
             showMessage(lang("Changes have been saved", 'gallery'));
 
             //updateDiv('page', site_url('admin/components/cp/gallery'));
@@ -753,7 +771,8 @@ class Admin extends BaseAdminController {
         }
     }
 
-    public function delete_category() {
+    public
+    function delete_category() {
         foreach ($this->input->post('id') as $id) {
 
             // Delete category albums
@@ -766,6 +785,7 @@ class Admin extends BaseAdminController {
             }
             $this->gallery_m->delete_category($id);
         }
+        $this->lib_admin->log(lang("Gallery category was removed", "gallery") . '. Ids: ' . implode(', ', $this->input->post('id')));
     }
 
     /**
@@ -776,7 +796,7 @@ class Admin extends BaseAdminController {
      *            [name] => qwe.jpg
      *               ...
      *  ))
-     * But in case of many file it is like this: 
+     * But in case of many file it is like this:
      * Array (
      *      [somefile] => Array (
      *            [name] => Array (
@@ -788,9 +808,10 @@ class Admin extends BaseAdminController {
      *  ))
      * There is a need to transform $_FILES like each file come from his own input
      *
-     *  @param string $field name of the input[name]
+     * @param string $field name of the input[name]
      */
-    private function transform_FILES($field = 'userfile') {
+    private
+    function transform_FILES($field = 'userfile') {
         if (!key_exists($field, $_FILES))
             return FALSE;
 
@@ -813,7 +834,8 @@ class Admin extends BaseAdminController {
      * Upload image to album folder.
      *
      */
-    public function upload_image($album_id = 0) {
+    public
+    function upload_image($album_id = 0) {
         $temp_conf = $this->conf;
         if (is_array($_FILES['newPic'])) {
             // making transformation of $_FILES array for CodeIgniter's Upload class
@@ -827,6 +849,7 @@ class Admin extends BaseAdminController {
 
             $config['allowed_types'] = $this->conf['allowed_types'];
             $config['max_size'] = 1024 * 1024 * $this->max_image_size;
+            $config['encrypt_name'] = TRUE;
 
             // init Upload
             $this->load->library('upload', $config);
@@ -854,13 +877,15 @@ class Admin extends BaseAdminController {
             if (isset($data['error'])) {
                 showMessage($data['error'], '', 'r');
             } else {
-                showMessage('Upload success');
+                showMessage(lang('Upload success', 'gallery'));
                 pjax('');
             }
         }
+        $this->lib_admin->log(lang("Photos in gallery the album are saved", "gallery"));
     }
 
-    public function upload_archive($album_id = 0) {
+    public
+    function upload_archive($album_id = 0) {
 
         $temp_directory = 'temp_' . MD5($album_id . time());
         $temp_path = $this->conf['cache_path'] . $temp_directory;
@@ -907,7 +932,7 @@ class Admin extends BaseAdminController {
                 //scan directory and add all images to album
 
                 if (!($dir = opendir($unpack_path))) {
-                    
+
                 }
 
                 $album_data = $this->gallery_m->get_album($album_id);
@@ -917,8 +942,7 @@ class Admin extends BaseAdminController {
                     foreach ($album_data['images'] as $image) {
                         array_push($album_images, $image['full_name']);
                     }
-                }
-                else
+                } else
                     $album_data = array();
                 //$this->load->library('image_lib');
 
@@ -972,7 +996,8 @@ class Admin extends BaseAdminController {
     /**
      * Resize image and create thumb
      */
-    private function resize_and_thumb($file = array()) {
+    private
+    function resize_and_thumb($file = array()) {
         $this->load->library('image_lib');
 
         // Resize image
@@ -1088,15 +1113,13 @@ class Admin extends BaseAdminController {
                 $this->image_lib->clear();
                 $this->image_lib->initialize($config);
                 $this->image_lib->crop();
-            }
-            else { // Только уменьшаем
+            } else { // Только уменьшаем
                 $this->image_lib->clear();
                 $this->image_lib->initialize($config);
                 if (!$this->image_lib->resize())
                     echo $this->image_lib->display_errors();
             }
-        }
-        else {
+        } else {
             // copy file to thumbs folder
             $this->load->helper('File');
             $file_data = read_file($file['full_path']);
@@ -1143,7 +1166,8 @@ class Admin extends BaseAdminController {
     /**
      * Watermarking an Image if watermark_text is not empty
      */
-    private function make_watermark($file_path) {
+    private
+    function make_watermark($file_path) {
         if (!$this->conf['watermark_font_path']) {
             $this->conf['watermark_font_path'] = './uploads/defaultFont.ttf';
         }
@@ -1177,7 +1201,8 @@ class Admin extends BaseAdminController {
     /**
      * Display template file
      */
-    private function display_tpl($file = '') {
+    private
+    function display_tpl($file = '') {
         $file = realpath(dirname(__FILE__)) . '/templates/admin/' . $file;
         $this->template->show('file:' . $file);
     }
@@ -1185,7 +1210,8 @@ class Admin extends BaseAdminController {
     /**
      * Fetch template file
      */
-    private function fetch_tpl($file = '') {
+    private
+    function fetch_tpl($file = '') {
         $file = realpath(dirname(__FILE__)) . '/templates/admin/' . $file . '.tpl';
         return $this->template->fetch('file:' . $file);
     }

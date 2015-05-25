@@ -9,6 +9,7 @@ namespace CMSFactory;
 abstract class BaseEvents {
 
     public $holder = array();
+
     protected $storage = array();
 
     /**
@@ -17,7 +18,7 @@ abstract class BaseEvents {
      * @return Events
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
-    abstract static function create();
+    //abstract static function create();
 
     /**
      * Declares a new event. The method adds the general pool of information about the event and sets it as held. The user can call the place where, in his opinion, there is a need. Will be generated key that consists of a pair of "Class: method."
@@ -67,11 +68,13 @@ abstract class BaseEvents {
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
     public function setListener($callback, $alias = null) {
-        if ($alias !== null && $this->key !== null)
+        if ($alias !== null && $this->key !== null) {
             throw new \Exception("Can't declarete both.");
-        $alias = ($this->key)? : $alias;
-        if ($alias == null)
+        }
+        $alias = ($this->key) ? : $alias;
+        if ($alias == null) {
             throw new \Exception("Bind value can't not be null.");
+        }
 
         $trace = debug_backtrace();
         $isClosure = false;
@@ -80,7 +83,7 @@ abstract class BaseEvents {
             $class = $trace[1]['class'];
         } elseif (is_array($callback)) {
             $method = $callback[1];
-            $class = is_object($callback[0]) ? get_class($callback[0]) : $callback[0];
+            $class = !is_object($callback[0]) ? get_class($callback[0]) : $callback[0];
         } elseif ($callback instanceof \Closure) {
             $method = $callback;
             $class = $trace[1]['class'];
@@ -109,7 +112,7 @@ abstract class BaseEvents {
     public function runFactory($eventAlias = null, $cleanQueue = false) {
         (defined('BASEPATH')) OR exit('No direct script access allowed');
         foreach (Events::create()->storage as $storageKey => $value) {
-            if (!is_null($eventAlias) && $eventAlias != $storageKey) {
+            if ($eventAlias != null && $eventAlias != $storageKey) {
                 continue;
             }
             if (isset($value['run'])) {
@@ -127,7 +130,7 @@ abstract class BaseEvents {
                 }
             }
         }
-//        \CMSFactory\Events::create()->get();
+        //        \CMSFactory\Events::create()->get();
     }
 
     public function get() {
@@ -293,6 +296,26 @@ abstract class BaseEvents {
         return $this;
     }
 
+    final public function ShopAdminPropertiesPreCreate() {
+        $this->key = 'ShopAdminProperties:preCreate';
+        return $this;
+    }
+
+    final public function ShopAdminPropertiesCreate() {
+        $this->key = 'ShopAdminProperties:create';
+        return $this;
+    }
+
+    final public function ShopAdminPropertiesPreFastCreate() {
+        $this->key = 'ShopAdminProperties:preFastCreate';
+        return $this;
+    }
+
+    final public function ShopAdminPropertiesFastCreate() {
+        $this->key = 'ShopAdminProperties:fastCreate';
+        return $this;
+    }
+
     /**
      * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
      * <table>
@@ -310,6 +333,16 @@ abstract class BaseEvents {
 
     final public function onShopProductPreCreate() {
         $this->key = 'ShopAdminProducts:preCreate';
+        return $this;
+    }
+
+    final public function onShopProductFastProdCreate() {
+        $this->key = 'ShopAdminProducts:fastProdCreate';
+        return $this;
+    }
+
+    final public function onShopProductPreFastProdCreate() {
+        $this->key = 'ShopAdminProducts:prefastProdCreate';
         return $this;
     }
 
@@ -344,6 +377,16 @@ abstract class BaseEvents {
 
     public function onShopCategoryPreCreate() {
         $this->key = 'ShopAdminCategories:preCreate';
+        return $this;
+    }
+
+    public function onShopCategoryFastCreate() {
+        $this->key = 'ShopAdminCategories:fastCreate';
+        return $this;
+    }
+
+    public function onShopCategoryPreFastCreate() {
+        $this->key = 'ShopAdminCategories:preFastCreate';
         return $this;
     }
 
@@ -401,6 +444,11 @@ abstract class BaseEvents {
     /** */
     public function onAddToCart() {
         $this->key = 'Cart:add';
+        return $this;
+    }
+
+    public function onAddItemToCart() {
+        $this->key = 'Cart:addItem';
         return $this;
     }
 
@@ -531,6 +579,7 @@ abstract class BaseEvents {
         $this->key = 'ShopAdminBrands:preCreate';
         return $this;
     }
+
     /**
      * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
      * @return BehaviorFactory
@@ -541,6 +590,5 @@ abstract class BaseEvents {
         $this->key = 'Components:modules_table';
         return $this;
     }
-}
 
-/* End of file /application/modules/CMSFactory/BaseEvents.php */
+}

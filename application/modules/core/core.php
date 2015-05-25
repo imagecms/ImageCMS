@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Image CMS
@@ -12,15 +13,25 @@ if (!defined('BASEPATH'))
 class Core extends MY_Controller {
 
     public $langs = array(); // Langs array
+
     public $def_lang = array(); // Default language array
+
     public $page_content = array(); // Page data
+
     public $cat_content = array(); // Category data
+
     public $settings = array(); // Site settings
+
     public $modules = array(); // Modules array
+
     public $action = '';
+
     public $by_pages = FALSE;
+
     public $cat_page = 0;
+
     public $tpl_data = array();
+
     public $core_data = array('data_type' => null);
 
     public function __construct() {
@@ -32,9 +43,6 @@ class Core extends MY_Controller {
     }
 
     public function index() {
-
-
-
         $page_found = FALSE;
         $without_cat = FALSE;
         $SLASH = '';
@@ -58,8 +66,9 @@ class Core extends MY_Controller {
 
         $this->load->library('template');
 
-        if ((!empty($_GET) || strstr($_SERVER['REQUEST_URI'], '?')) && $this->uri->uri_string() == '')
+        if ((!empty($this->input->get()) || strstr($this->input->server('REQUEST_URI'), '?')) && $this->uri->uri_string() == '') {
             $this->template->registerCanonical(site_url());
+        }
 
         $last_element = key($this->uri->uri_to_assoc(0));
 
@@ -78,8 +87,9 @@ class Core extends MY_Controller {
                 $cat_path = substr($cat_path, strlen($this->uri->segment(1)));
 
                 // Delete first slash
-                if (substr($cat_path, 0, 1) == '/')
+                if (substr($cat_path, 0, 1) == '/') {
                     $cat_path = substr($cat_path, 1);
+                }
 
                 $uri_lang = $this->uri->segment(1);
 
@@ -89,14 +99,13 @@ class Core extends MY_Controller {
                 $this->config->set_item('cur_lang', $this->langs[$uri_lang]['id']);
 
                 // Set language template
+//                $this->config->set_item('template', $this->langs[$uri_lang]['template']);
 
-                $this->config->set_item('template', $this->langs[$uri_lang]['template']);
-
-                $this->template->set_config_value('tpl_path', TEMPLATES_PATH . $this->langs[$uri_lang]['template'] . '/');
+                $this->template->set_config_value('tpl_path', TEMPLATES_PATH . $this->settings['site_template'] . '/');
 
                 ($hook = get_hook('core_changed_tpl_path')) ? eval($hook) : NULL;
 
-                $this->load_functions_file($this->langs[$uri_lang]['template']);
+                $this->load_functions_file($this->settings['site_template']);
 
                 // Reload template settings
                 $this->template->load();
@@ -105,22 +114,22 @@ class Core extends MY_Controller {
                 $this->config->set_item('base_url', base_url() . $uri_lang);
 
                 $mod_segment = 2;
-            }
-            else {
+            } else {
                 $this->use_def_language();
             }
         } else {
             $this->use_def_language();
         }
-        // End language detect
+        // End language detect        
+        if (!preg_match('/^\/mainsaas/', $this->input->server('PATH_INFO'))) {
+            if ($this->settings['site_offline'] == 'yes') {
+                if ($this->session->userdata('DX_role_id') != 1) {
 
-        if ($this->settings['site_offline'] == 'yes') {
-            if ($this->session->userdata('DX_role_id') != 1) {
-
-                ($hook = get_hook('core_goes_offline')) ? eval($hook) : NULL;
-                header('HTTP/1.1 503 Service Unavailable');
-                $this->template->display('offline');
-                exit;
+                    ($hook = get_hook('core_goes_offline')) ? eval($hook) : NULL;
+                    header('HTTP/1.1 503 Service Unavailable');
+                    $this->template->display('offline');
+                    exit;
+                }
             }
         }
 
@@ -133,6 +142,8 @@ class Core extends MY_Controller {
         ($hook = get_hook('core_load_lib_category')) ? eval($hook) : NULL;
 
         $this->load->library('lib_category');
+
+        $this->lib_category->setLocaleId(CI::$APP->config->item('cur_lang'));
         $categories = $this->lib_category->build();
 
         $this->tpl_data['categories'] = $categories;
@@ -166,8 +177,9 @@ class Core extends MY_Controller {
         }
 
         if (is_numeric($last_element) AND is_int($last_element)) {
-            if (substr($cat_path, -1) == '/')
+            if (substr($cat_path, -1) == '/') {
                 $cat_path = substr($cat_path, 0, -1);
+            }
 
             // Delete page number from path
             $cat_path = substr($cat_path, 0, strripos($cat_path, '/'));
@@ -177,8 +189,9 @@ class Core extends MY_Controller {
             ($hook = get_hook('core_enable_pagination')) ? eval($hook) : NULL;
         }
 
-        if (substr($cat_path, -1) != '/')
+        if (substr($cat_path, -1) != '/') {
             $SLASH = '/';
+        }
 
         foreach ($cats_unsorted as $cat) {
             if ($cat['path_url'] == $cat_path . $SLASH) {
@@ -198,7 +211,7 @@ class Core extends MY_Controller {
 
             // Select page permissions and page data
             $this->db->select('content.*');
-            $this->db->select('CONCAT_WS("", content.cat_url, content.url) as full_url');
+            $this->db->select('CONCAT(content.cat_url,content.url ) as full_url');
             $this->db->select('content_permissions.data as roles', FALSE);
             $this->db->where('url', $last_element);
             $this->db->where('post_status', 'publish');
@@ -220,8 +233,9 @@ class Core extends MY_Controller {
             if ($query->num_rows() > 0) {
                 ($hook = get_hook('core_page_found')) ? eval($hook) : NULL;
 
-                if (substr($cat_path, -1) == '/')
+                if (substr($cat_path, -1) == '/') {
                     $cat_path = substr($cat_path, 0, -1);
+                }
                 $cat_path = substr($cat_path, 0, strripos($cat_path, '/'));
 
                 $page_info = $query->row_array();
@@ -230,7 +244,7 @@ class Core extends MY_Controller {
                 if ($without_cat == FALSE) {
                     // load page and category
                     foreach ($cats_unsorted as $cat) {
-                        if (($cat['path_url'] == $cat_path . $SLASH) AND ($cat['id'] == $page_info['category'])) {
+                        if (($cat['path_url'] == $cat_path . $SLASH) AND ( $cat['id'] == $page_info['category'])) {
                             $page_found = TRUE;
                             $data_type = 'page';
                             $this->page_content = $page_info;
@@ -269,30 +283,37 @@ class Core extends MY_Controller {
             $this->tpl_data['is_logged_in'] = TRUE;
             $this->tpl_data['username'] = $this->dx_auth->get_username();
         }
-        $agent = $this->user_browser($_SERVER['HTTP_USER_AGENT']);
+        $agent = $this->user_browser();
 
-        $this->template->add_array(array(
-            'agent' => $agent,
-        ));
+        $this->template->add_array(
+        array(
+                    'agent' => $agent,
+                )
+        );
 
         //Assign captcha type
-        if ($this->dx_auth->use_recaptcha)
+        if ($this->dx_auth->use_recaptcha) {
             $this->tpl_data['captcha_type'] = 'recaptcha';
-        else
+        } else {
             $this->tpl_data['captcha_type'] = 'captcha';
+        }
 
         // Assign template variables and load modules
         $this->_process_core_data();
 
-        if (strstr($_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'], '//'))
+        $fullUrl = explode('?', $this->input->server('HTTP_HOST') . $this->input->server('REQUEST_URI'));
+        $urlWithoutGet = $fullUrl[0];
+        if (strstr($urlWithoutGet, '//')) {
             $this->error_404();
+        }
 
         // on every page load
         \CMSFactory\Events::create()->registerEvent(NULL, 'Core:pageLoaded');
 
         // If module than exit from core and load module
-        if ($this->is_module($mod_segment) == TRUE)
+        if ($this->is_module($mod_segment) == TRUE) {
             return TRUE;
+        }
 
         switch ($this->settings['main_type']) {
             case 'page':
@@ -330,7 +351,8 @@ class Core extends MY_Controller {
     /**
      * Display main page
      */
-    function _mainpage() {
+    public function _mainpage() {
+
         /** Register event 'Core:_mainpage' */
         \CMSFactory\Events::create()->registerEvent(NULL, 'Core:_mainPage')->runFactory();
 
@@ -409,7 +431,7 @@ class Core extends MY_Controller {
     /**
      * Display page
      */
-    function _display_page_and_cat($page = array(), $category = array()) {
+    public function _display_page_and_cat($page = array(), $category = array()) {
         /** Register event 'Core:_displayPage' */
         \CMSFactory\Events::create()->registerEvent($this->page_content, 'Core:_displayPage')->runFactory();
 
@@ -421,7 +443,7 @@ class Core extends MY_Controller {
         }
 
 
-        if (sizeof($category) > 0) {
+        if (count($category) > 0) {
             // Set page template file
             if ($page['full_tpl'] == NULL) {
                 $page_tpl = $category['page_tpl'];
@@ -439,13 +461,16 @@ class Core extends MY_Controller {
 
         empty($page_tpl) ? $page_tpl = 'page_full' : TRUE;
 
-        $this->template->add_array(array(
-            'page' => $page,
-            'category' => $category
-        ));
+        $this->template->add_array(
+        array(
+                    'page' => $page,
+                    'category' => $category
+                )
+        );
 
-        if (!empty($_GET))
+        if (!empty($this->input->get())) {
             $this->template->registerCanonical(site_url());
+        }
 
         $this->template->assign('content', $this->template->read($page_tpl));
 
@@ -474,8 +499,12 @@ class Core extends MY_Controller {
         $this->db->limit(1);
         $this->db->update('content');
 
-        if (!empty($page['main_tpl']))
+        \CMSFactory\Events::create()->registerEvent($this->page_content, 'page:load');
+        \CMSFactory\Events::runFactory();
+
+        if (!empty($page['main_tpl'])) {
             $tpl_name = $page['main_tpl'];
+        }
 
         if (!$tpl_name) {
             $this->core->core_data['id'] = $page['id'];
@@ -486,6 +515,7 @@ class Core extends MY_Controller {
     }
 
     // Select or count pages in category
+
     public function _get_category_pages($category = array(), $row_count = 0, $offset = 0, $count = FALSE) {
 
         ($hook = get_hook('core_get_category_pages')) ? eval($hook) : NULL;
@@ -529,7 +559,7 @@ class Core extends MY_Controller {
     /**
      * Display category
      */
-    function _display_category($category = array()) {
+    public function _display_category($category = array()) {
         /** Register event 'Core:_displayCategory' */
         \CMSFactory\Events::create()->registerEvent($this->cat_content, 'Core:_displayCategory')->runFactory();
 
@@ -569,8 +599,6 @@ class Core extends MY_Controller {
             $config['total_rows'] = $category['total_pages'];
             $config['per_page'] = $category['per_page'];
             $config['uri_segment'] = $segment;
-            $config['first_link'] = lang("The first", "core");
-            $config['last_link'] = lang("Last", "core");
 
             $this->pagination->num_links = 5;
 
@@ -611,7 +639,7 @@ class Core extends MY_Controller {
 
         ($hook = get_hook('core_dispcat_set_meta')) ? eval($hook) : NULL;
 
-        
+
         // Generate auto meta-tags 
         if ($this->settings['create_description'] == 'auto' && !$category['description']) {
             $category['description'] = $this->lib_seo->get_description($category['short_desc']);
@@ -628,12 +656,12 @@ class Core extends MY_Controller {
                 }
             }
         }
-        
+
         // adding page number for pages with pagination (from second page)
         $curPage = $this->pagination->cur_page;
         if ($curPage > 1) {
             $title = $category['title'] . ' - ' . $curPage;
-            $description =  $category['description'] . ' - ' . $curPage;
+            $description = $category['description'] . ' - ' . $curPage;
 
             $this->set_meta_tags($title, $category['keywords'], $description);
         } else {
@@ -644,6 +672,9 @@ class Core extends MY_Controller {
         $this->template->assign('content', $content);
 
         ($hook = get_hook('core_dispcat_show_content')) ? eval($hook) : NULL;
+
+        \CMSFactory\Events::create()->registerEvent($this->cat_content, 'pageCategory:load');
+        \CMSFactory\Events::runFactory();
 
         if (!$category['main_tpl']) {
             $this->core->core_data['id'] = $category['id'];
@@ -659,7 +690,7 @@ class Core extends MY_Controller {
      */
     public function _load_languages() {
         // Load languages
-        ($hook = get_hook('core_load_languages')) ? eval($hook) : NULL;
+//        ($hook = get_hook('core_load_languages')) ? eval($hook) : NULL;
 
         if (($langs = $this->cache->fetch('main_site_langs')) === FALSE) {
             $langs = $this->cms_base->get_langs();
@@ -675,8 +706,9 @@ class Core extends MY_Controller {
                 'image' => $lang['image']
             );
 
-            if ($lang['default'] == 1)
+            if ($lang['default'] == 1) {
                 $this->def_lang = array($lang);
+            }
         }
     }
 
@@ -751,7 +783,7 @@ class Core extends MY_Controller {
      *
      * @return string
      */
-    function _prepare_content($text = '') {
+    public function _prepare_content($text = '') {
         return htmlspecialchars_decode($text);
     }
 
@@ -759,7 +791,7 @@ class Core extends MY_Controller {
      * Page not found
      * Show 404 error
      */
-    function error_404() {
+    public function error_404() {
         ($hook = get_hook('core_init_error_404')) ? eval($hook) : NULL;
         header('HTTP/1.1 404 Not Found');
         ($hook = get_hook('core_display_error_404')) ? eval($hook) : NULL;
@@ -775,12 +807,14 @@ class Core extends MY_Controller {
     /**
      * Display error template end exit
      */
-    function error($text, $back = TRUE) {
+    public function error($text, $back = TRUE) {
         ($hook = get_hook('core_display_errors_tpl')) ? eval($hook) : NULL;
 
-        $this->template->add_array(array(
-            'content' => $this->template->read('error', array('error_text' => $text, 'back_button' => $back))
-        ));
+        $this->template->add_array(
+        array(
+                    'content' => $this->template->read('error', array('error_text' => $text, 'back_button' => $back))
+                )
+        );
 
         $this->template->show();
         exit;
@@ -789,7 +823,7 @@ class Core extends MY_Controller {
     /**
      *  Language detection in url segments
      */
-    function segment($n) {
+    public function segment($n) {
         if (array_key_exists($this->uri->segment(1), $this->langs)) {
             $n++;
             return $this->uri->segment($n);
@@ -821,10 +855,11 @@ class Core extends MY_Controller {
             //$mod_name = $this->modules[$this->uri->segment($n)];
             $mod_function = $this->uri->segment($n + 1);
 
-            if ($mod_function == FALSE)
+            if ($mod_function == FALSE) {
                 $mod_function = 'index';
+            }
 
-            $file = APPPATH . 'modules/' . $mod_name . '/' . $mod_function . EXT;
+            $file = getModulePath($mod_name) . $mod_function . EXT;
 
             $this->core_data['module'] = $mod_name;
 
@@ -833,8 +868,9 @@ class Core extends MY_Controller {
 
                 // Run module
                 $func = $this->uri->segment($n + 2);
-                if ($func == FALSE)
+                if ($func == FALSE) {
                     $func = 'index';
+                }
 
                 $args = $this->grab_variables($n + 3);
 
@@ -865,11 +901,12 @@ class Core extends MY_Controller {
      * Check user access for page
      */
 
-    function check_page_access($roles) {
+    public function check_page_access($roles) {
         ($hook = get_hook('core_check_page_access')) ? eval($hook) : NULL;
 
-        if ($roles == FALSE OR count($roles) == 0)
+        if ($roles == FALSE OR count($roles) == 0) {
             return TRUE;
+        }
 
         // if (count($roles) == 0) return TRUE;
 
@@ -877,20 +914,24 @@ class Core extends MY_Controller {
         $logged = $this->dx_auth->is_logged_in();
         $my_role = $this->dx_auth->get_role_id();
 
-        if ($this->dx_auth->is_admin() === TRUE)
+        if ($this->dx_auth->is_admin() === TRUE) {
             $access = TRUE;
+        }
 
         // Check roles access
         if ($access != TRUE) {
             foreach ($roles as $role) {
-                if ($role['role_id'] == $my_role)
+                if ($role['role_id'] == $my_role) {
                     $access = TRUE;
+                }
 
-                if ($role['role_id'] == 1 AND $logged == TRUE)
+                if ($role['role_id'] == 1 AND $logged == TRUE) {
                     $access = TRUE;
+                }
 
-                if ($role['role_id'] == '0')
+                if ($role['role_id'] == '0') {
                     $access = TRUE;
+                }
             }
         }
 
@@ -908,19 +949,22 @@ class Core extends MY_Controller {
      * @access public
      * @return array
      */
-    function grab_variables($n) {
+    public function grab_variables($n) {
         $args = array();
 
         foreach ($this->uri->uri_to_assoc($n) as $k => $v) {
-            if (isset($k))
+            if (isset($k)) {
                 array_push($args, $k);
-            if (isset($v))
+            }
+            if (isset($v)) {
                 array_push($args, $v);
+            }
         }
 
         for ($i = 0, $cnt = count($args); $i < $cnt; $i++) {
-            if ($args[$i] === FALSE)
+            if ($args[$i] === FALSE) {
                 unset($args[$i]);
+            }
         }
 
         return $args;
@@ -952,7 +996,7 @@ class Core extends MY_Controller {
         $full_path = './templates/' . $tpl_name . '/functions.php';
 
         if (file_exists($full_path)) {
-            include($full_path);
+            include $full_path;
         }
     }
 
@@ -962,11 +1006,13 @@ class Core extends MY_Controller {
     public function set_meta_tags($title = '', $keywords = '', $description = '', $page_number = '', $showsitename = 0, $category = '') {
         ($hook = get_hook('core_set_meta_tags')) ? eval($hook) : NULL;
         if ($this->core_data['data_type'] == 'main') {
-            $this->template->add_array(array(
-                'site_title' => empty($this->settings['site_title']) ? $title : $this->settings['site_title'],
-                'site_description' => empty($this->settings['site_description']) ? $description : $this->settings['site_description'],
-                'site_keywords' => empty($this->settings['site_keywords']) ? $keywords : $this->settings['site_keywords']
-            ));
+            $this->template->add_array(
+            array(
+                        'site_title' => empty($this->settings['site_title']) ? $title : $this->settings['site_title'],
+                        'site_description' => empty($this->settings['site_description']) ? $description : $this->settings['site_description'],
+                        'site_keywords' => empty($this->settings['site_keywords']) ? $keywords : $this->settings['site_keywords']
+                    )
+            );
         } else {
             if (($page_number > 1) && ($page_number != '')) {
                 $title = $page_number . ' - ' . $title;
@@ -1006,43 +1052,60 @@ class Core extends MY_Controller {
                 $title .= ' ' . $this->settings['delimiter'] . ' ' . $this->settings['site_short_title'];
             }
 
-            if ($this->settings['create_description'] == 'empty')
+            if ($this->settings['create_description'] == 'empty') {
                 $description = '';
-            if ($this->settings['create_keywords'] == 'empty')
+            }
+            if ($this->settings['create_keywords'] == 'empty') {
                 $keywords = '';
+            }
 
-            $this->template->add_array(array(
-                'site_title' => $title,
-                'site_description' => strip_tags($description),
-                'site_keywords' => $keywords,
-                'page_number' => $page_number
-            ));
+            $this->template->add_array(
+            array(
+                        'site_title' => $title,
+                        'site_description' => htmlspecialchars(strip_tags($description)),
+                        'site_keywords' => htmlspecialchars($keywords),
+                        'page_number' => $page_number
+                    )
+            );
         }
     }
 
-    private function user_browser($agent) {
-        preg_match("/(MSIE|Opera|Firefox|Chrome|Version|Opera Mini|Netscape|Konqueror|SeaMonkey|Camino|Minefield|Iceweasel|K-Meleon|Maxthon)(?:\/| )([0-9.]+)/", $agent, $browser_info);
-        list(, $browser, $version) = $browser_info;
-        if (preg_match("/Opera ([0-9.]+)/i", $agent, $opera))
-            return $browserIn = array('0' => 'Opera', '1' => $opera[1]);
-        if ($browser == 'MSIE') {
-            preg_match("/(Maxthon|Avant Browser|MyIE2)/i", $agent, $ie); // check to see whether the development is based on IE
-            if ($ie)
-                return $browserIn = array('0' => $ie[1], '1' => $version); // If so, it returns an
-            return $browserIn = array('0' => 'IE', '1' => $version); // otherwise just return the IE and the version number
+    private function user_browser() {
+        $this->load->library('user_agent');
+        $browserIn = array(
+            '0' => $this->agent->browser(),
+            '1' => $this->agent->version()
+        );
+        return $browserIn;
+    }
+
+    public function robots() {
+        $robotsSettings = $this->db->select('robots_settings,robots_settings_status,robots_status')->get('settings');
+        if ($robotsSettings) {
+            $robotsSettings = $robotsSettings->row();
         }
-        if ($browser == 'Firefox') {
-            preg_match("/(Flock|Navigator|Epiphany)\/([0-9.]+)/", $agent, $ff); // check to see whether the development is based on Firefox
-            if ($ff)
-                return $browserIn = array('0' => $ff[1], '1' => $ff[2]); // if so, shows the number and version
+        //$robotTxt = file_get_contents('robots.txt');
+        header("Content-type: text/plain");
+        if ($robotsSettings->robots_status == '1') {
+            if ($robotsSettings->robots_settings_status == '1') {
+                if (trim($robotsSettings->robots_settings)) {
+                    echo $robotsSettings->robots_settings;
+                    exit;
+                } else {
+                    header("Content-type: text/plain");
+                    echo "User-agent: * \r\nDisallow: /";
+                    exit;
+                }
+            } else {
+                header("Content-type: text/plain");
+                echo "User-agent: * \r\nDisallow: ";
+                exit;
+            }
+        } else {
+            header("Content-type: text/plain");
+            echo "User-agent: * \r\nDisallow: /";
+            exit;
         }
-        if ($browser == 'Opera' && $version == '9.80')
-            return $browserIn = array('0' => 'Opera', '1' => substr($agent, -5));
-        if ($browser == 'Version')
-            return $browserIn = array('0' => 'Safari', '1' => $version); // define Safari
-        if (!$browser && strpos($agent, 'Gecko'))
-            return 'Browser based on Gecko'; // unrecognized browser check to see if they are on the engine, Gecko, and returns a message about this
-        return $browserIn = array('0' => $browser, '1' => $version); // for the rest of the browser and return the version
     }
 
 }

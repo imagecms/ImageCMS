@@ -29,14 +29,9 @@ class Admin extends BaseAdminController {
     public $fileError = '';
     public $filePermissionsErrors;
     public $allowed_extentions = array('php', 'tpl', 'js');
-    public $parse_regexpr = array(
-        '(?<!\w)lang\([\"]{1}(?!\')(.*?)[\"]{1}',
-        "(?<!\w)lang\([']{1}(?!\")(.*?)[']{1}",
-        '(?<!\w)langf\([\"]{1}(?!\')(.*?)[\"]{1}',
-        "(?<!\w)langf\([']{1}(?!\")(.*?)[']{1}"
-    );
     public $poFileManager;
-    private static $SAAS = TRUE;
+    private static $SAAS;
+    private static $BILING;
 
     public function __construct() {
         parent::__construct();
@@ -44,6 +39,8 @@ class Admin extends BaseAdminController {
         $lang->load('translator');
         $this->load->helper('translator');
         $this->poFileManager = new PoFileManager();
+        self::$SAAS = MAINSITE ? TRUE : FALSE;
+        self::$BILING = is_dir('./application/modules/saas') ? TRUE : FALSE;
     }
 
     /**
@@ -69,11 +66,13 @@ class Admin extends BaseAdminController {
     }
 
     public function settings() {
-        
+
         if ($_POST) {
             $settings = $this->input->post('settings');
             updateSettings($settings);
             showMessage(lang('Settings was successfully updated', 'translator', FALSE));
+
+            $this->lib_admin->log(lang('Translators settings was successfully updated.', 'translator'));
 
             if ($this->input->post('action') == 'exit') {
                 pjax(site_url('admin/components/init_window/translator'));
@@ -90,11 +89,13 @@ class Admin extends BaseAdminController {
 
     public function index($isExchange = FALSE) {
         $translation = $this->session->userdata('translation');
+
         $po_table = '';
-        $name = $translation['name'];
-        $type = $translation['type'];
-        $lang = $translation['lang'];
-        if ($translation && $name && $type && $lang) {
+        $name = $_GET['name'] ? $_GET['name'] : $translation['name'];
+        $type = $_GET['type'] ? $_GET['type'] : $translation['type'];
+        $lang = $_GET['lang'] ? $_GET['lang'] : $translation['lang'];
+
+        if (($translation || $_GET) && $name && $type && $lang) {
 
             if (!$isExchange) {
                 $po_table = $this->renderModulePoFile($name, $type, $lang);
@@ -105,6 +106,20 @@ class Admin extends BaseAdminController {
 
         $this->getExistingLocales();
 
+        $modules = $this->load->module('admin/components')->find_components();
+
+        switch ($type) {
+            case 'modules':
+                $names = $this->renderModulesNames($lang);
+                break;
+            case 'templates':
+                $names = $this->renderTemplatesNames($lang);
+                break;
+            default :
+                $names = '';
+        }
+
+
         \CMSFactory\assetManager::create()
                 ->registerScript('admin')
                 ->registerStyle('admin')
@@ -112,28 +127,74 @@ class Admin extends BaseAdminController {
                 ->setData('settings', getSettings())
                 ->setData('languages_names', get_language_names())
                 ->setData('editorStyles', getEditorStyles())
-                ->setData('SAAS', self::$SAAS)
+                ->setData('BILING', self::$BILING)
+                ->setData('modules', $modules)
+                ->setData('names', $names)
                 ->renderAdmin('list');
 
+//        var_dumps_exit('33333');
+
         if ($translation) {
-            $names = '';
-            switch ($type) {
-                case 'modules':
-                    $names = $this->renderModulesNames($lang);
-                    break;
-                case 'templates':
-                    $names = $this->renderTemplatesNames($lang);
-                    break;
-            }
+            $data = trim($po_table);
 
-            $names = trim(preg_replace('/\s\s+/', ' ', $names));
-            $names = preg_replace('/<link[\W\w]+\/>/', '', $names);
-            $names = preg_replace('/<script[\W\w]+<\/script>/', '', $names);
-            $data = trim(preg_replace('/\s\s+/', ' ', $po_table));
-
-            jsCode("Translator.start(" . json_encode($data) . "," . json_encode($names) . ", '" . $type . "', '" . $lang . "', '" . $name . "');");
+            jsCode("Translator.start(" . json_encode($data) . ",'" . $type . "', '" . $lang . "', '" . $name . "');");
         } else {
             jsCode("Translator.render('');");
+        }
+    }
+
+    public function search($search = NULL, $searchType = NULL) {
+        $data = $this->input->post();
+        $search = $search ? $search : trim($data['search']);
+        $search = urldecode($search);
+
+        if ($_POST) {
+            $searchType = trim($data['searchType']);
+
+            if ($search) {
+                if (translator\classes\PoFileSearch::getInstatce()->run($search, $searchType)) {
+                    $searchResult = translator\classes\PoFileSearch::getInstatce()->getData();
+
+                    $this->session->set_flashdata('searchResultsCount', translator\classes\PoFileSearch::getInstatce()->getResultsCount());
+                    $this->session->set_flashdata('searchResult', $searchResult);
+                } else {
+                    $searchError = translator\classes\PoFileSearch::getInstatce()->getErrors();
+                    $this->session->set_flashdata('searchError', $searchError);
+                }
+                redirect(site_url("/admin/components/init_window/translator/search/$search/$searchType"));
+            } else {
+                $this->session->set_flashdata('searchError', lang('Field Search string cannot be empty.', 'translator'));
+                redirect(site_url("/admin/components/init_window/translator/search"));
+            }
+        } else {
+            if ($search) {
+                if (translator\classes\PoFileSearch::getInstatce()->run($search, $searchType)) {
+                    $searchResult = translator\classes\PoFileSearch::getInstatce()->getData();
+                    $searchResultsCount = translator\classes\PoFileSearch::getInstatce()->getResultsCount();
+                } else {
+                    $searchError = translator\classes\PoFileSearch::getInstatce()->getErrors();
+                }
+            }
+            $languages = $this->db->get('languages')->result_array();
+            $languages_data = array();
+            foreach ($languages as $language) {
+                $languages_data[$language['locale']] = $language['lang_name'];
+            }
+
+            \CMSFactory\assetManager::create()
+                    ->setData(
+                            array(
+                                'searchResult' => $searchResult ? $searchResult : $this->session->flashdata('searchResult'),
+                                'searchError' => $searchError ? $searchError : $this->session->flashdata('searchError'),
+                                'searchResultsCount' => $searchResultsCount ? $searchResultsCount : $this->session->flashdata('searchResultsCount'),
+                                'languages' => $languages_data,
+                                'search' => $search,
+                                'searchType' => $searchType,
+                            )
+                    )
+                    ->registerScript('admin')
+                    ->registerStyle('admin')
+                    ->renderAdmin('search');
         }
     }
 
@@ -146,10 +207,8 @@ class Admin extends BaseAdminController {
      */
     public function parse($module_template, $type, $lang) {
         $url_base = dirname($this->poFileManager->getPoFileUrl($module_template, $type, $lang));
-//_____________________________________________        
         $url = get_mainsite_url($url_base);
-//_____________________________________________        
-//        var_dumps_exit($url);
+
         switch ($type) {
             case 'main':
                 $domain = 'main';
@@ -161,7 +220,7 @@ class Admin extends BaseAdminController {
 
         $paths = $this->input->post('paths');
         $parsedLangs = array();
-       
+
         if ($paths) {
             $parsedLangs = FilesParser::getInstatce()->getParsedPathsLangs($url, $paths);
 
@@ -173,11 +232,10 @@ class Admin extends BaseAdminController {
                 }
             }
 
-
             if (isset($parsedLangs['js_langs']))
                 $this->updateJsLangsFile($parsedLangs['js_langs'], $domain, $type);
         }
- 
+
         $all_langs = array();
         foreach ($parsedLangs['parsed_langs'] as $key => $langsOne) {
             foreach ($langsOne as $origin => $paths) {
@@ -189,21 +247,25 @@ class Admin extends BaseAdminController {
         $result = $this->poFileManager->toArray($module_template, $type, $lang);
         $currentLangs = $result['po_array'];
 
+
         foreach ($all_langs as $key => $newLang) {
-            if (!isset($currentLangs[$key])) {
-                $results['new'][$key] = $newLang;
+            if (!isset($currentLangs[$key]) && trim($key)) {
+                $results['new'][encode($key)] = $newLang;
             } else {
                 unset($currentLangs[$key]);
             }
         }
-        foreach ($results['new'] as $key => $langNew) {
-            $results['new'][encode($key)] = $langNew;
-        }
+
+//        foreach ($results['new'] as $key => $langNew) {
+//            $results['new'][encode($key)] = $langNew;
+//        }
 
         $results['old'] = $currentLangs;
         foreach ($results['old'] as $key => $langOld) {
+            unset($results['old'][$key]);
             $results['old'][encode($key)] = $langOld;
         }
+
         return json_encode($results);
     }
 
@@ -224,7 +286,9 @@ class Admin extends BaseAdminController {
             $js_content = '<script>' . PHP_EOL;
             foreach ($langs as $langArray) {
                 foreach ($langArray as $origin) {
-                    $js_content .='langs["' . mb_ereg_replace('([\s]+{.*?})', "<?php echo '\\0'?>", $origin) . '"] = \'<?php echo lang("' . $origin . '", "' . $domain . '", FALSE)?>\';' . PHP_EOL;
+                    $quote = strstr($origin, '"') ? "'" : '"';
+                    $php_string = '<?php echo addslashes(lang(' . $quote . $origin . $quote . ', "' . $domain . '", FALSE))?>';
+                    $js_content .='langs[' . $quote . mb_ereg_replace('([\s]+{.*?})', "<?php echo '\\0'?>", $origin) . $quote . '] = \'' . $php_string . '\';' . PHP_EOL;
                 }
             }
             $js_content .='</script>';
@@ -380,7 +444,7 @@ class Admin extends BaseAdminController {
 
                 $this->setSession($modules_templatesReceiver, $typeReceiver, $langReceiver);
 
-                $this->setSession($module_template, $type, $lang);
+//                $this->setSession($module_template, $type, $lang);
                 $can_edit_file = can_edit_file($module_template, $type);
 
                 $this->exchangePoArray = \CMSFactory\assetManager::create()
@@ -514,67 +578,16 @@ class Admin extends BaseAdminController {
      */
     public function savePoArray($module_template, $type, $lang) {
         $po_array = (array) json_decode($this->input->post('po_array'));
+        $showMessage = (bool) $this->input->post('showMessage');
 
         if ($this->poFileManager->save($module_template, $type, $lang, $po_array)) {
-            showMessage(lang('Translation file was successfuly saved.', 'translator'), lang('Message', 'translator'));
+            if ($showMessage)
+                showMessage(lang('Translation file was successfuly saved.', 'translator'), lang('Message', 'translator'));
+            $this->lib_admin->log(lang('Translation file was successfuly saved.', 'translator') . ' - ' . $module_template . ' | ' . $lang);
         } else {
             foreach ($this->poFileManager->getErrors() as $error) {
                 showMessage($error, lang('Error', 'translator'), 'r');
             }
-        }
-    }
-
-    public function saas_updates() {
-        if (!self::$SAAS)
-            $this->core->error_404();
-
-        if ($_POST) {
-
-            $lang = $this->input->post('locale');
-            $type = $this->input->post('type');
-            $name = $this->input->post('module_template');
-            $mode = (int) $this->input->post('mode');
-
-            if ($mode) {
-                $this->form_validation->set_rules('locale', lang('Locale', 'translator'), 'required');
-            } else {
-                $this->form_validation->set_rules('locale', lang('Locale', 'translator'), 'required');
-                $this->form_validation->set_rules('type', lang('Entity type', 'translator'), 'required');
-
-                if ($type == 'modules') {
-                    $this->form_validation->set_rules('module_template', lang('Module name', 'translator'), 'required');
-                }
-            }
-
-            if ($this->form_validation->run($this) == FALSE) {
-                return json_encode(array('error' => TRUE, 'data' => validation_errors()));
-            } else {
-                $data['modules'] = $this->poFileManager->getModules();
-
-                return json_encode(array('error' => FALSE, 'success' => TRUE, 'data' => $data));
-            }
-        } else {
-            $this->getExistingLocales();
-
-            \CMSFactory\assetManager::create()
-                    ->registerScript('admin')
-                    ->registerStyle('admin')
-                    ->setData('langs', $this->langs)
-                    ->renderAdmin('saas_updates');
-        }
-    }
-
-    public function update_one_module() {
-        $name = $this->input->post('name');
-        $type = $this->input->post('type');
-        $lang = $this->input->post('locale');
-
-        $result = $this->poFileManager->saas_update_one($name, $type, $lang);
-
-        if ($result) {
-            return json_encode(array('error' => FALSE, 'success' => TRUE, 'data' => lang('Successfully updated', 'translator')));
-        } else {
-            return json_encode(array('error' => TRUE, 'success' => FALSE, 'data' => lang('Can not update.', 'translator')));
         }
     }
 
@@ -620,15 +633,16 @@ class Admin extends BaseAdminController {
         $langs = $this->session->userdata('langs_modules');
         $langs = $langs[$lang];
         $langs = sort_names($langs);
-        
-//        if (self::$SAAS) {
-//            foreach ($langs as $key => $lang) {
-//                if ($lang['module'] == 'admin') {
-//                    unset($langs[$key]);
-//                    break;
-//                }
-//            }
-//        }
+
+        if (self::$SAAS) {
+            $tariff_modules = $this->load->module('mainsaas')->getNotPermited();
+
+            foreach ($langs as $key => $lang) {
+                if (!in_array($lang['module'], $tariff_modules)) {
+                    unset($langs[$key]);
+                }
+            }
+        }
         return \CMSFactory\assetManager::create()
                         ->setData('langs', $langs)
                         ->fetchAdminTemplate('modules_names', FALSE);
@@ -773,6 +787,47 @@ class Admin extends BaseAdminController {
             'type' => $type,
             'lang' => $lang,
         ));
+    }
+
+    /**
+     * Returns main translation file paths
+     * @return json
+     */
+    public function getMainFilePaths() {
+        $po_array = $this->poFileManager->toArray('main', 'main', CUR_LOCALE);
+
+        foreach ($po_array['settings']['SearchPath'] as $key => $path) {
+            $po_array['settings']['SearchPath'][$key] = str_replace('../../../', '', $path);
+            if (!preg_match('/\w/', $path)) {
+                unset($po_array['settings']['SearchPath'][$key]);
+            }
+        }
+
+        return json_encode($po_array['settings']['SearchPath']);
+    }
+
+    public function updateOne() {
+        $name = $this->input->post('name');
+        $type = $this->input->post('type');
+        $locale = $this->input->post('locale');
+        $translation = $this->input->post('translation');
+        $origin = $this->input->post('origin');
+
+        $poFileManager = new PoFileManager();
+
+        if ($name && $type && $locale && $origin) {
+            $data[$origin] = array(
+                'translation' => $translation
+            );
+
+            if ($poFileManager->update($name, $type, $locale, $data)) {
+                return json_encode(array('success' => TRUE, 'message' => lang('Successfully translated.', 'translator')));
+            } else {
+                return json_encode(array('errors' => TRUE, 'message' => $poFileManager->getErrors()));
+            }
+        } else {
+            return json_encode(array('errors' => TRUE, 'message' => lang('Not valid translation file attributes.', 'translator')));
+        }
     }
 
 }

@@ -1,5 +1,15 @@
 <?php
 
+if (!function_exists('lang')) {
+
+    function lang($v)
+    {
+
+        return $v;
+    }
+
+}
+
 if (!function_exists('sort_names')) {
 
     /**
@@ -7,12 +17,13 @@ if (!function_exists('sort_names')) {
      * @param array $arr
      * @return array
      */
-    function sort_names($arr) {
-        usort($arr, function($a, $b) {
-                    $first = $a['menu_name'];
-                    $second = $b['menu_name'];
-                    return strnatcmp($first, $second);
-                });
+    function sort_names($arr)
+    {
+        usort($arr, function ($a, $b) {
+            $first = $a['menu_name'];
+            $second = $b['menu_name'];
+            return strnatcmp($first, $second);
+        });
         return $arr;
     }
 
@@ -20,7 +31,8 @@ if (!function_exists('sort_names')) {
 
 if (!function_exists('get_language_name')) {
 
-    function get_language_names() {
+    function get_language_names()
+    {
         $languageCodes = array(
             "ab" => lang("Abkhazian", 'translator', FALSE),
             "ae" => lang("Avestan", 'translator', FALSE),
@@ -121,10 +133,11 @@ if (!function_exists('get_language_name')) {
 if (!function_exists('isLocale')) {
 
     /**
-     * Check locale 
+     * Check locale
      * @return array - locales
      */
-    function isLocale($lang) {
+    function isLocale($lang)
+    {
         $langs = array(
             'af_ZA', 'am_ET', 'ar_AE',
             'ar_BH', 'ar_DZ', 'ar_EG',
@@ -191,8 +204,9 @@ if (!function_exists('isLocale')) {
 
 if (!function_exists('getEditorStyles')) {
 
-    function getEditorStyles() {
-        $files = scandir('./application/modules/translator/assets/js/src-min');
+    function getEditorStyles()
+    {
+        $files = scandir(getModulePath('translator') . '/assets/js/src-min');
         $styles = array();
         foreach ($files as $file) {
             if (strstr($file, 'theme-')) {
@@ -214,12 +228,13 @@ if (!function_exists('getSettings')) {
      * Get module settings
      * @return array
      */
-    function getSettings() {
-        $CI = & get_instance();
+    function getSettings()
+    {
+        $CI = &get_instance();
         $settings = $CI->db->select('settings')
-                ->where('identif', 'translator')
-                ->get('components')
-                ->row_array();
+            ->where('identif', 'translator')
+            ->get('components')
+            ->row_array();
         $settings = unserialize($settings['settings']);
         return $settings;
     }
@@ -233,12 +248,13 @@ if (!function_exists('updateSettings')) {
      * @param array $settings
      * @return boolean
      */
-    function updateSettings($settings) {
-        $CI = & get_instance();
+    function updateSettings($settings)
+    {
+        $CI = &get_instance();
         if ($settings && is_array($settings))
             return $CI->db->where('identif', 'translator')
-                            ->update('components', array('settings' => serialize($settings)
-            ));
+                ->update('components', array('settings' => serialize($settings)
+                ));
         else
             return FALSE;
     }
@@ -247,7 +263,8 @@ if (!function_exists('updateSettings')) {
 
 if (!function_exists('makeCorrectUrl')) {
 
-    function makeCorrectUrl($from = '', $to = "") {
+    function makeCorrectUrl($from = '', $to = "")
+    {
 
         $dotsCount = substr_count($to, '..');
 
@@ -270,12 +287,22 @@ if (!function_exists('makeCorrectUrl')) {
         }
 
         $url = $from . $to . '/';
+
+        if (substr($url, 0, 1) == '/') {
+            $url = substr_replace($url, '', 0, 1);
+        }
+
+        if (substr($url, 0, 2) == './') {
+            $url = substr_replace($url, '', 0, 2);
+        }
+
         return $url;
     }
 
 }
 
-function get_sec() {
+function get_sec()
+{
     $mtime = microtime();
     $mtime = explode(" ", $mtime);
     $mtime = $mtime[1] + $mtime[0];
@@ -284,9 +311,10 @@ function get_sec() {
 
 if (!function_exists('getPoFileAttributes')) {
 
-    function getPoFileAttributes($domain) {
+    function getPoFileAttributes($domain)
+    {
         if ($domain) {
-            $CI = & get_instance();
+            $CI = &get_instance();
 
             if (strstr($_SERVER['HTTP_REFERER'], 'admin')) {
                 $langs = $CI->config->item('languages');
@@ -311,7 +339,7 @@ if (!function_exists('getPoFileAttributes')) {
                         );
                         break;
                     default :
-                        if (file_exists('./application/modules/' . $domain)) {
+                        if (moduleExists($domain)) {
                             $attributes = array(
                                 'name' => $domain,
                                 'type' => 'modules',
@@ -337,9 +365,10 @@ if (!function_exists('getPoFileAttributes')) {
 if (!function_exists('get_mainsite_url')) {
 
 
-    function get_mainsite_url($url) {
+    function get_mainsite_url($url)
+    {
         $true_path = preg_replace('/\/language(.*)/', '', $url);
-        
+
         if (strstr($true_path, './templates/')) {
             return $url;
         }
@@ -358,19 +387,21 @@ if (!function_exists('get_mainsite_url')) {
 
 if (!function_exists('is_client_module')) {
 
-    function is_client_module($module_name) {
-        if (is_dir('./application/modules/' . $module_name) && !is_dir(MAINSITE . '/application/modules/' . $module_name)) {
-            return TRUE;
-        } else {
-            return FALSE;
-        }
+    function is_client_module($module_name)
+    {
+//        if (is_dir('./application/' . getModContDirName($module_name) . '/' . $module_name) && !is_dir(MAINSITE . '/application/' . getModContDirName($module_name) . '/' . $module_name)) {
+//            return TRUE;
+//        } else {
+        return FALSE;
+//        }
     }
 
 }
 
 if (!function_exists('can_edit_file')) {
 
-    function can_edit_file($module_name, $entity_type) {
+    function can_edit_file($module_name, $entity_type)
+    {
         if (!MAINSITE)
             return TRUE;
 
@@ -386,10 +417,11 @@ if (!function_exists('can_edit_file')) {
 
 if (!function_exists('get_file_name')) {
 
-    function get_file_name($name, $type) {
+    function get_file_name($name, $type)
+    {
         switch ($type) {
             case 'modules':
-                $module_info = (MAINSITE ? MAINSITE : '.') . "/application/modules/{$name}/module_info.php";
+                $module_info = (MAINSITE ? MAINSITE : '.') . "/application/" . getModContDirName($name) . "/{$name}/module_info.php";
                 include($module_info);
                 $lang = new MY_Lang();
                 $lang->load($name);
@@ -409,6 +441,21 @@ if (!function_exists('get_file_name')) {
     }
 
 }
+
+if (!function_exists('getModulePathForTranslator')) {
+
+    function getModulePathForTranslator($module_name)
+    {
+        $module_path = getModulePath($module_name);
+
+        if (MAINSITE) {
+            $module_path = str_replace(MAINSITE, '.', $module_path);
+        }
+
+        return $module_path;
+    }
+}
+
 
 //________________________________________________________
 ?>

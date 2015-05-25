@@ -12,11 +12,11 @@
         <input type="text" name="variableValueEdit" class="variableValueEdit" style="display: none"/>
     </td>
     <td style="width: 100px">
-        <button class="btn my_btn_s btn-small btn-success editVariable" type="button">
+        <button class="btn my_btn_s btn-small editVariable" type="button">
             <i class="icon-edit"></i>
         </button>
-        <button data-update="count" onclick="EmailTemplateVariables.update($(this), '{echo $template_id}', '{echo $variable}', '{echo $locale}')" class="btn btn-small refreshVariable" type="button" style="display: none;">
-            <i class="icon-refresh"></i>
+        <button data-update="count" onclick="EmailTemplateVariables.update($(this), '{echo $template_id}', '{echo $variable}', '{echo $locale}')" class="btn btn-small refreshVariable my_btn_s" type="button" style="display: none;">
+            <i class="icon-ok"></i>
         </button>
     </td>
     <td class="span1">

@@ -39,8 +39,9 @@ class Admin extends BaseAdminController {
         $this->template->assign('all', $row);
 
 
-        if (!$this->ajaxRequest)
+        if (!$this->ajaxRequest) {
             $this->display_tpl('form');
+        }
     }
 
     public function send_email() {

@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-09 04:55+0300\n"
-"PO-Revision-Date: 2014-08-09 04:55+0300\n"
+"POT-Creation-Date: 2015-01-30 01:39+0200\n"
+"PO-Revision-Date: 2015-01-30 01:39+0200\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -18,6 +18,30 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
+#: ./application/modules/share/assets/admin/settings.tpl:17
+msgid "Buttons I like"
+msgstr "Like buttons"
+
+#: ./application/modules/share/assets/admin/settings.tpl:5
+msgid "Button social networks module settings"
+msgstr "Social Networking Buttons"
+
+#: ./application/modules/share/module_info.php:4
+msgid "Social Networking Buttons"
+msgstr "Social Media Buttons"
+
+#: ./application/modules/share/assets/admin/settings.tpl:137
+msgid "button"
+msgstr ""
+
+#: ./application/modules/share/module_info.php:5
+msgid "Adds social networks buttons to products and articles"
+msgstr "Adds social media buttons to products and articles"
+
+#: ./application/modules/share/assets/admin/settings.tpl:16
+msgid "Share buttons"
+msgstr ""
+
 #: ./application/modules/share/assets/admin/settings.tpl:113
 msgid "My circle"
 msgstr "Moj krug"
@@ -26,17 +50,9 @@ msgstr "Moj krug"
 msgid "VK"
 msgstr "VK.com"
 
-#: ./application/modules/share/assets/admin/settings.tpl:17
-msgid "Buttons I like"
-msgstr "Like buttons"
-
 #: ./application/modules/share/assets/admin/settings.tpl:174
 msgid "Вконтакте"
 msgstr "VK.com"
-
-#: ./application/modules/share/assets/admin/settings.tpl:5
-msgid "Button social networks module settings"
-msgstr "Social network button settings"
 
 #: ./application/modules/share/assets/admin/settings.tpl:136
 msgid "counter"
@@ -49,40 +65,32 @@ msgstr "Yandex"
 #: ./application/modules/share/assets/admin/settings.tpl:63
 #: ./application/modules/share/assets/admin/settings.tpl:200
 msgid "Twitter"
-msgstr "Twitter"
+msgstr ""
 
 #: ./application/modules/share/assets/admin/settings.tpl:190
 msgid "Google +"
-msgstr "Google +"
-
-#: ./application/modules/share/module_info.php:4
-msgid "Social Networking Buttons"
-msgstr "Social Media Buttons"
-
-#: ./application/modules/share/assets/admin/settings.tpl:137
-msgid "button"
-msgstr "button/ Button"
+msgstr ""
 
 #: ./application/modules/share/assets/admin/settings.tpl:83
 msgid "My World"
-msgstr "My World"
+msgstr ""
 
 #: ./application/modules/share/assets/admin/settings.tpl:138
 msgid "link"
-msgstr "link/Link"
+msgstr ""
 
 #: ./application/modules/share/assets/admin/settings.tpl:25
 #: ./application/modules/share/assets/admin/settings.tpl:156
 msgid "Settings"
-msgstr "Settings"
+msgstr ""
 
 #: ./application/modules/share/assets/admin/settings.tpl:139
 msgid "icon and menu"
-msgstr "icon and menu/ Icons and menu"
+msgstr ""
 
 #: ./application/modules/share/assets/admin/settings.tpl:103
 msgid "Friendfeed"
-msgstr "Friendfeed"
+msgstr ""
 
 #: ./application/modules/share/assets/admin/settings.tpl:93
 msgid "Livejournal"
@@ -90,7 +98,7 @@ msgstr "LiveJournal"
 
 #: ./application/modules/share/admin.php:39
 msgid "Settings successfully saved"
-msgstr "Settings successfully saved/ Settings have been saved successfully"
+msgstr ""
 
 #: ./application/modules/share/assets/admin/settings.tpl:184
 msgid "Ваш API ID"
@@ -102,7 +110,7 @@ msgstr "Go back"
 
 #: ./application/modules/share/assets/admin/settings.tpl:140
 msgid "only icons"
-msgstr "only icons/Only icons"
+msgstr ""
 
 #: ./application/modules/share/assets/admin/settings.tpl:123
 msgid "Google+"
@@ -128,11 +136,3 @@ msgstr "External view"
 #: ./application/modules/share/assets/admin/settings.tpl:164
 msgid "Facebook"
 msgstr "Facebook"
-
-#: ./application/modules/share/assets/admin/settings.tpl:16
-msgid "Share buttons"
-msgstr "Share buttons"
-
-#: ./application/modules/share/module_info.php:5
-msgid "Adds social networks buttons to products and articles"
-msgstr "Adds social media buttons to products and articles"

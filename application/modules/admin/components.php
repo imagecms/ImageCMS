@@ -21,6 +21,7 @@ class Components extends BaseAdminController {
         parent::__construct();
 
         $this->load->library('DX_Auth');
+
         admin_or_redirect();
 
         $this->load->library('lib_admin');
@@ -37,8 +38,7 @@ class Components extends BaseAdminController {
         $not_installed = array();
 
         $fs_modules = $this->find_components();
-        $db_modules = $this->db->order_by('position', 'asc')->get('components')->result_array();
-
+        $db_modules = $this->db->order_by('position', 'asc')->not_like('identif', 'payment_method_')->get('components')->result_array();
         // Find not installed modules
         $count = count($fs_modules);
         for ($i = 0; $i < $count; $i++) {
@@ -48,6 +48,7 @@ class Components extends BaseAdminController {
                 $fs_modules[$i]['name'] = $info['menu_name'];
                 $fs_modules[$i]['version'] = $info['version'];
                 $fs_modules[$i]['description'] = $info['description'];
+                $fs_modules[$i]['icon_class'] = $info['icon_class'];
 
                 array_push($not_installed, $fs_modules[$i]);
             }
@@ -63,9 +64,10 @@ class Components extends BaseAdminController {
                 $db_modules[$i]['menu_name'] = $info['menu_name'];
                 $db_modules[$i]['version'] = $info['version'];
                 $db_modules[$i]['description'] = $info['description'];
+                $db_modules[$i]['icon_class'] = $info['icon_class'];
                 $db_modules[$i]['identif'] = $db_modules[$i]['identif'];
-
-                if (file_exists(APPPATH . 'modules/' . $module_name . '/admin.php')) {
+                $modulePath = getModulePath($module_name);
+                if (file_exists($modulePath . 'admin.php')) {
                     $db_modules[$i]['admin_file'] = 1;
                 } else {
                     $db_modules[$i]['admin_file'] = 0;
@@ -132,11 +134,14 @@ class Components extends BaseAdminController {
 
     function install($module = '') {
         //cp_check_perm('module_install');
+
         $module = strtolower($module);
 
         ($hook = get_hook('admin_install_module')) ? eval($hook) : NULL;
 
-        if (file_exists(APPPATH . 'modules/' . $module . '/' . $module . '.php') AND $this->is_installed($module) == 0) {
+        $modulePath = getModulePath($module);
+
+        if (file_exists($modulePath . $module . '.php') AND $this->is_installed($module) == 0) {
             // Make module install
             $data = array(
                 'name' => $module,
@@ -144,7 +149,6 @@ class Components extends BaseAdminController {
             );
 
             $this->db->insert('components', $data);
-
             $this->load->module($module);
 
             if (method_exists($module, '_install') === TRUE) {
@@ -173,27 +177,36 @@ class Components extends BaseAdminController {
         }
     }
 
-    function deinstall() {
+    function deinstall($moduleName) {
         //cp_check_perm('module_deinstall');
-        $modules = $_POST['ids'];
+        $modules = $_POST['ids'] ? : [$moduleName];
+         
         foreach ($modules as $module) {
             $module = strtolower($module);
 
             ($hook = get_hook('admin_deinstall_module')) ? eval($hook) : NULL;
 
-            if (file_exists(APPPATH . 'modules/' . $module . '/' . $module . '.php') AND $this->is_installed($module) == 1) {
+            $modulePath = getModulePath($module);
+
+            if (file_exists($modulePath . $module . '.php') AND $this->is_installed($module) == 1) {
                 $this->load->module($module);
 
                 if (method_exists($module, '_deinstall') === TRUE) {
                     $this->$module->_deinstall();
                 }
-
+                
                 $this->db->limit(1);
                 $this->db->delete('components', array('name' => $module));
                 $this->lib_admin->log(lang("Deleted a module", "admin") . " " . $module);
+                if (php_sapi_name() == 'cli') {
+                    return true;
+                }
                 showMessage(lang("The module successfully uninstall", "admin"));
                 pjax('/admin/components/modules_table');
             } else {
+                if (php_sapi_name() == 'cli') {
+                    return false;
+                }
                 showMessage(lang("Module deletion error", "admin"), false, 'r');
                 pjax('/admin/components/modules_table');
             }
@@ -210,7 +223,7 @@ class Components extends BaseAdminController {
      * @return boolean
      */
     function module_exists($module_name) {
-        return opendir(APPPATH . 'modules/' . $module_name . '/');
+        return moduleExists($module_name);
     }
 
     function find_components($in_menu = FALSE) {
@@ -218,49 +231,46 @@ class Components extends BaseAdminController {
         if ($in_menu == TRUE) {
             $this->db->where('in_menu', 1);
         }
+        $this->db->not_like('identif', 'payment_method_');
         $installed = $this->db->get('components')->result_array();
 
-        if ($com_path = opendir(APPPATH . 'modules/')) {
-            while (false !== ($file = readdir($com_path))) {
-                if ($file != "." && $file != ".." && $file != "index.html" && !is_file($file)) {
-                    $info_file = APPPATH . 'modules/' . $file . '/module_info.php';
-                    $com_file_admin = APPPATH . 'modules/' . $file . '/admin.php';
+        $modulesPaths = getModulesPaths();
+        foreach ($modulesPaths as $moduleName => $modulePath) {
 
-                    $lang = new MY_Lang();
-                    $lang->load($file);
+            $info_file = $modulePath . 'module_info.php';
+            $com_file_admin = $modulePath . 'admin.php';
 
-                    if (file_exists($info_file)) {
-                        include ($info_file);
+            $lang = new MY_Lang();
+            $lang->load($moduleName);
 
-                        if (file_exists($com_file_admin)) {
-                            $admin_file = 1;
-                        } else {
-                            $admin_file = 0;
-                        }
+            if (file_exists($info_file)) {
+                include ($info_file);
 
-                        $ins = FALSE;
+                if (file_exists($com_file_admin)) {
+                    $admin_file = 1;
+                } else {
+                    $admin_file = 0;
+                }
 
-                        foreach ($installed as $k) {
-                            if ($k['name'] == $file) {
-                                $ins = TRUE;
-                            }
-                        }
+                $ins = FALSE;
 
-                        $new_com = array(
-                            'menu_name' => $com_info['menu_name'],
-                            'com_name' => $file,
-                            'admin_file' => $admin_file,
-                            'installed' => $ins,
-                            'type' => $com_info['type'],
-                        );
-
-                        array_push($components, $new_com);
+                foreach ($installed as $k) {
+                    if ($k['name'] == $moduleName) {
+                        $ins = TRUE;
                     }
                 }
-            }
-            closedir($com_path);
-        }
 
+                $new_com = array(
+                    'menu_name' => $com_info['menu_name'],
+                    'com_name' => $moduleName,
+                    'admin_file' => $admin_file,
+                    'installed' => $ins,
+                    'type' => $com_info['type'],
+                );
+
+                array_push($components, $new_com);
+            }
+        }
         return $components;
     }
 
@@ -270,12 +280,17 @@ class Components extends BaseAdminController {
      */
     function find_components_for_menu_list() {
         /** Get all components which show in menu */
-        $components = $this->db
-                ->where('in_menu', 1)
-                ->order_by('position', 'asc')
-                ->get('components')
+        $components = $this->db->where('in_menu', 1);
+
+        if (MAINSITE) {
+            $components = $components->order_by('name', 'asc');
+        } else {
+            $components = $components->order_by('position', 'asc');
+        }
+
+        $components = $components->get('components')
                 ->result_array();
-                
+
         if (MAINSITE != '') {
             $components = $this->isPermitedModules($components, array());
             $components = $components[0];
@@ -286,18 +301,17 @@ class Components extends BaseAdminController {
         } else {
             /** Delete components which not have admin.php */
             foreach ($components as $key => $value) {
-                if (!file_exists(APPPATH . 'modules/' . $value['name'] . '/admin.php')) {
+                if (!file_exists(getModulePath($value['name']) . 'admin.php')) {
                     unset($components[$key]);
                 } else {
-                    $info_file = APPPATH . 'modules/' . $value['name'] . '/module_info.php';
-
+                    $info_file = getModulePath($value['name']) . 'module_info.php';
                     $lang = new MY_Lang();
                     $lang->load($value['name']);
 
                     if (file_exists($info_file)) {
                         include($info_file);
-                        $components[$key]['menu_name'] = $com_info['menu_name'];
                         $components[$key]['type'] = $com_info['type'];
+                        $components[$key] = array_merge($components[$key], $com_info);
                     }
                 }
             }
@@ -369,7 +383,7 @@ class Components extends BaseAdminController {
 
         // buildWindow($id,$title,$contentURL,$width,$height,$method = 'iframe')
         //$module = $this->input->post('component');
-        $info_file = realpath(APPPATH . 'modules/' . $module) . '/module_info.php';
+        $info_file = getModulePath($module) . 'module_info.php';
 
         if (file_exists($info_file)) {
             include_once ($info_file);
@@ -460,10 +474,10 @@ class Components extends BaseAdminController {
     }
 
     function get_module_info($mod_name) {
-        $info_file = realpath(APPPATH . 'modules/' . $mod_name) . '/module_info.php';
+        $info_file = getModulePath($mod_name) . 'module_info.php';
+        $lang = new MY_Lang();
+        $lang->load($mod_name);
         if (file_exists($info_file)) {
-            $lang = new MY_Lang();
-            $lang->load($mod_name);
             include($info_file);
             return $com_info;
         } else {

@@ -612,5 +612,9 @@ class Comments extends MY_Controller {
         $this->dbforge->drop_table('comments');
     }
 
-}
+    public function getWaitingForMaderationCount() {
+        $count = $this->db->where("status",1)->count_all_results('comments');
+        return $count;
+    }
 
+}

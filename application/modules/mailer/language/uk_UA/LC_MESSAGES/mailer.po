@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-22 10:41+0300\n"
-"PO-Revision-Date: 2014-07-22 10:41+0300\n"
+"POT-Creation-Date: 2014-10-28 06:35+0200\n"
+"PO-Revision-Date: 2014-10-28 06:35+0200\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -20,11 +20,11 @@ msgstr ""
 
 #: ./application/modules/mailer/module_info.php:4
 msgid "Subscription and mailing"
-msgstr "Передплата та розсилка"
+msgstr "Підписка і розсилка листів"
 
 #: ./application/modules/mailer/module_info.php:5
 msgid "Subscription and mailing module for news, promotions, discounts"
-msgstr "Підписка на розсилки і, модуль новини, акції, знижки"
+msgstr "Модуль підписки і розсилки для новин, акцій, знижок"
 
 #: ./application/modules/mailer/admin.php:51
 #: ./application/modules/mailer/templates/admin/form.tpl:63

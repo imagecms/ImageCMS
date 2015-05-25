@@ -416,9 +416,10 @@ class Auth extends MY_Controller {
 
     function deny() {
 //         ($hook = get_hook('auth_page_access_deny')) ? eval($hook) : NULL;
+        \CMSFactory\assetManager::create()
+                ->setData('content',lang('You are not allowed to view the page.', 'auth'))
+                ->render('deny', FALSE);
 
-        $this->template->assign('content', lang('You are not allowed to view the page.', 'auth'));
-        $this->template->show();
     }
 
     function banned() {

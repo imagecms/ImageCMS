@@ -12,7 +12,6 @@ if (!defined('BASEPATH'))
  */
 class Search extends MY_Controller {
 
-    public $highlightColor = '#FAE373';
     public $search_ttl = 3600; //Search time to live in minutes.
     public $table = '';
     public $cache_on = FALSE;
@@ -35,12 +34,13 @@ class Search extends MY_Controller {
         parent::__construct();
         $lang = new MY_Lang();
         $lang->load('search');
-        //$this->output->enable_profiler(TRUE);
-        $this->template->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW");
+
     }
 
     // Search pages
     public function index($hash = '', $offset = 0) {
+        $this->template->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW");
+
         $offset = (int) $offset;
 
         if ($hash != '') {
@@ -56,7 +56,7 @@ class Search extends MY_Controller {
             $config = array(
                 'table' => 'content',
                 'order_by' => array('publish_date' => 'DESC'),
-                'select' => array('content.*', 'CONCAT_WS("", content.cat_url, content.url) as full_url'),
+                'select' => array('content.*', 'CONCAT_WS( "", content.cat_url, content.url ) as full_url'),
             );
 
             $this->init($config);
@@ -153,7 +153,7 @@ class Search extends MY_Controller {
                 $stop = $length;
 
             $tempText = mb_substr($tempText, $start, $stop, 'UTF-8');
-            $tempText = str_replace($text, '<span style="background-color:' . $this->highlightColor . '">' . $text . '</span>', $tempText);
+            $tempText = str_replace($text, '<mark>' . $text . '</mark>', $tempText);
             $data[$i]['parsedText'] = '...' . mb_substr($tempText, 0, 500, 'utf-8') . '...';
         }
 

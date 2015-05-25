@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-22 10:47+0300\n"
-"PO-Revision-Date: 2014-07-22 10:47+0300\n"
+"POT-Creation-Date: 2015-01-28 11:26+0200\n"
+"PO-Revision-Date: 2015-01-28 11:26+0200\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -18,26 +18,34 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: ./application/modules/tags/tags.php:144
+#: application/modules/tags/widgets_info.php:5
+msgid "Tags cloud"
+msgstr "Хмара тегів"
+
+#: application/modules/tags/widgets_info.php:6
+msgid "Displaying the most popular tags cloud to your website."
+msgstr "Відображення хмари найпопулярніших тегів до сторінок сайту."
+
+#: application/modules/tags/tags.php:144
 msgid "The first"
 msgstr "Перший"
 
-#: ./application/modules/tags/tags.php:145
+#: application/modules/tags/tags.php:145
 msgid "Last"
 msgstr "Останній"
 
-#: ./application/modules/tags/tags.php:160
+#: application/modules/tags/tags.php:160
 msgid "Search title"
 msgstr "Пошук за назвою"
 
-#: ./application/modules/tags/module_info.php:4
+#: application/modules/tags/module_info.php:7
 msgid "Tags"
 msgstr "Теги"
 
-#: ./application/modules/tags/module_info.php:5
+#: application/modules/tags/module_info.php:8
 msgid "Tags module"
 msgstr "Модуль тегів"
 
-#: ./application/modules/tags/templates/admin/tags_admin.tpl:5
+#: application/modules/tags/templates/admin/tags_admin.tpl:5
 msgid "All tags"
 msgstr "Всі теги"

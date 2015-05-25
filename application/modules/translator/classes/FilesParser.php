@@ -13,11 +13,6 @@ class FilesParser {
     private static $instance;
 
     /**
-     * Modules folder path
-     */
-    private static $MODULES_PATH = '';
-
-    /**
      * Templates folder path
      */
     private static $TEMPLATES_PATH = '';
@@ -26,7 +21,7 @@ class FilesParser {
      * Main language folder path
      */
     private static $MAIN_PATH = '';
-    private static $ALLOW_EXTENSIONS = array('php', 'tpl', 'js');
+    public static $ALLOW_EXTENSIONS = array('php', 'tpl', 'js');
 
     /**
      * Modules locales array
@@ -45,18 +40,15 @@ class FilesParser {
      * @var type 
      */
     private static $MAIN_LOCALES = array();
-    private static $PARSE_REGEXPR = array(
-        '(?<!\w)lang\([\"]{1}(?!\')(.*?)[\"]{1}',
-        "(?<!\w)lang\([']{1}(?!\")(.*?)[']{1}",
-        '(?<!\w)langf\([\"]{1}(?!\')(.*?)[\"]{1}',
-        "(?<!\w)langf\([']{1}(?!\")(.*?)[']{1}"
+    public static $PARSE_REGEXPR = array(
+        '(?<!\w)t?langf?\([\"]{1}(?!\')(.*?)[\"]{1}',
+        "(?<!\w)t?langf?\([']{1}(?!\")(.*?)[']{1}"
     );
     private static $FINDED_LANGS = array();
     private static $FINDED_JS_LANGS = array();
     private static $PARSED_PATHS = array();
 
     private function __construct() {
-        self::$MODULES_PATH = './application/modules/';
         self::$TEMPLATES_PATH = './templates/';
         self::$MAIN_PATH = './application/language/main/';
     }
@@ -78,37 +70,32 @@ class FilesParser {
      */
     public function parseModules() {
         try {
-// _______________________________________________
-            if (!is_dir(self::$MODULES_PATH))
-                return array();
-// _______________________________________________
-            $modules = new \DirectoryIterator(self::$MODULES_PATH);
-            foreach ($modules as $module) {
-                if ($module->isDir() && !$module->isDot() && is_dir(self::$MODULES_PATH . $module->getBasename() . '/language')) {
-                    $module_dir = self::$MODULES_PATH . $module->getBasename();
-                    $language_dir = $module_dir . '/language/';
-                    $locales = new \DirectoryIterator($language_dir);
-                    foreach ($locales as $locale) {
-                        if ($locale->isDir() && !$locale->isDot() && is_dir($language_dir . $locale->getBasename()) && isLocale($locale->getBasename())) {
-                            $objLang = new \MY_Lang();
-                            $objLang->load($module->getBasename());
-//___________________________
-                            $module_info = $module_dir . '/module_info.php';
-                            $module_info = \get_mainsite_url($module_info);
-//___________________________                            
+            $modules = getModulesPaths();
+            foreach ($modules as $moduleName => $modulePath) {
+                $language_dir = $modulePath . 'language/';
+                if (!file_exists($language_dir)) { // TODO: Спитати Марка чому в shop нема language =))
+                    continue;
+                }
+                $locales = new \DirectoryIterator($language_dir);
+                foreach ($locales as $locale) {
+                    if ($locale->isDir() && !$locale->isDot() && is_dir($language_dir . $locale->getBasename()) && isLocale($locale->getBasename())) {
+                        $objLang = new \MY_Lang();
+                        $objLang->load($moduleName);
 
+                        $module_info = $module_dir . '/module_info.php';
+                        $module_info = \get_mainsite_url($module_info);
 
-                            include($module_info);
-                            $menu_name = $com_info['menu_name'] ? $com_info['menu_name'] : $module->getBasename();
-                            self::$MODULES_LOCALES[$locale->getBasename()][] = array(
-                                'module' => $module->getBasename(),
-                                'menu_name' => ucfirst($menu_name)
-                            );
-                            unset($com_info);
-                        }
+                        include($module_info);
+                        $menu_name = $com_info['menu_name'] ? $com_info['menu_name'] : $moduleName;
+                        self::$MODULES_LOCALES[$locale->getBasename()][] = array(
+                            'module' => $moduleName,
+                            'menu_name' => ucfirst($menu_name)
+                        );
+                        unset($com_info);
                     }
                 }
             }
+
             return self::$MODULES_LOCALES;
         } catch (Exception $exc) {
             return array();
@@ -121,10 +108,9 @@ class FilesParser {
      */
     public function parseTemplates() {
         try {
-// _______________________________________________
             if (!is_dir(self::$TEMPLATES_PATH))
                 return array();
-// _______________________________________________
+
             $templates = new \DirectoryIterator(self::$TEMPLATES_PATH);
             foreach ($templates as $template) {
                 if ($template->isDir() && !$template->isDot() && is_dir(self::$TEMPLATES_PATH . $template->getBasename() . '/language/' . $template->getBasename())) {
@@ -151,10 +137,9 @@ class FilesParser {
      */
     public function parseMain() {
         try {
-// _______________________________________________            
             if (!is_dir(self::$MAIN_PATH))
                 return array();
-// _______________________________________________
+
             $main = new \DirectoryIterator(self::$MAIN_PATH);
             foreach ($main as $locale) {
                 if ($locale->isDir() && !$locale->isDot() && is_dir(self::$MAIN_PATH . $locale->getBasename()) && isLocale($locale->getBasename())) {
@@ -194,6 +179,7 @@ class FilesParser {
                                         $lang = mb_ereg_search_getregs(); //get first result
                                         do {
                                             $origin = mb_ereg_replace('!\s+!', ' ', $lang[1]);
+
                                             if (!self::$FINDED_LANGS[$origin]) {
                                                 self::$FINDED_LANGS[$origin] = array();
                                             }
@@ -201,6 +187,7 @@ class FilesParser {
                                             if ($file->getExtension() == 'js') {
                                                 self::$FINDED_JS_LANGS[$origin] = $origin;
                                             }
+
                                             $path = str_replace("\\", "/", $file->getPathname());
                                             array_push(self::$FINDED_LANGS[$origin], $path . ':' . ($line_number + 1));
                                             $lang = mb_ereg_search_regs(); //get next result
@@ -221,7 +208,7 @@ class FilesParser {
 
         self::$FINDED_LANGS = array();
         self::$FINDED_JS_LANGS = array();
-
+//var_dumps_exit($data);
         return $data;
     }
 
@@ -237,7 +224,9 @@ class FilesParser {
             if ($paths) {
                 foreach ($paths as $key => $path) {
                     $scan_path = makeCorrectUrl($baseUrl, $path);
+//                    var_dumps($scan_path);
                     if (file_exists($scan_path)) {
+                        
                         $finded = $this->findLangs($scan_path);
                         if ($finded['parsed_langs']) {
                             $result['js_langs'][] = $finded['js_langs'];
@@ -249,6 +238,7 @@ class FilesParser {
                         }
                     }
                 }
+//                exit;
             }
             return $result;
         } else {

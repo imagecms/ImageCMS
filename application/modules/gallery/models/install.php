@@ -18,7 +18,7 @@ class Install extends CI_Model {
         // Enable url access and install default settings
 
         $params = array(
-            'max_file_size'       => 5,
+            'max_image_size'       => 5,
             'max_width'           => 0,
             'max_height'          => 0,
             'quality'             => 95,

@@ -1,1 +1,0 @@
-<ul>{$wrapper}<div class="clear"></div></ul>

@@ -25,33 +25,37 @@ langs["Show answers"] = '<?php echo lang("Show answers", "comments")?>';
                 <button type="button" class="btn btn-small btn-danger disabled action_on" id="comment_delete"><i class="icon-trash"></i>{lang("Delete", 'comments')}</button>
                 <a class="btn btn-small pjax" href="/admin/components/cp/comments/show_settings"><i class="icon-wrench"></i>{lang('Settings', 'comments')}</a>
             </div>
-        </div>    
+        </div>
     </div>
     <div class="btn-group myTab m-t_20">
         <a class="btn btn-small pjax {if $status == 'all' OR $status== NULL}active{/if}" href="/admin/components/cp/comments/index/status/all/page/0">{lang("All comments", 'comments')}
             {$all_comm_show = $total_waiting + $total_app + $total_spam}
+          {/*}
             {if $all_comm_show}
-                <span style="top:-13px;" class="badge badge-important">
+                <span class="comm-label-in">
                     {$all_comm_show}
                 </span>
             {/if}
+            { */}
         </a>
         <a class="btn btn-small pjax {if $status == 'waiting'}active{/if}" href="/admin/components/cp/comments/index/status/waiting/page/0">{lang("Waiting for moderation", 'comments')}
             {if $total_waiting>0}
-                <span style="top:-13px;" class="badge badge-important">{$total_waiting}</span>
+                <span style="" class="comm-label-in">{$total_waiting}</span>
             {/if}
         </a>
         <a class="btn btn-small pjax {if $status == 'approved'}active{/if}" href="/admin/components/cp/comments/index/status/approved/page/0">{lang("Approval", 'comments')}
+
             {if $total_app>0}
-                <span style="top:-13px;" class="badge badge-important">
+                <span class="comm-label-in">
                     {$total_app}
                 </span>
             {/if}
+
         </a>
         <a class="btn btn-small pjax {if $status == 'spam'}active{/if}" href="/admin/components/cp/comments/index/status/spam/page/0">
             {lang("Spam", 'comments')}
             {if $total_spam>0}
-                <span style="top:-13px;" class="badge badge-important">
+                <span  class="comm-label-in">
                     {$total_spam}
                 </span>
             {/if}
@@ -90,7 +94,7 @@ langs["Show answers"] = '<?php echo lang("Show answers", "comments")?>';
                                                 </span>
                                             </span>
                                         </td>
-                                        <td><a href="{echo site_url('admin/components/cp/comments/edit/')}/{$item.id}" class="pjax">{$item.id}</a></td>
+                                        <td><a href="{echo site_url('admin/components/cp/comments/edit/')}/{$item.id}">{$item.id}</a></td>
                                         <td>
                                             <span class="time muted">{date('d-m-Y H:i', $item.date)}</span>
                                             <span class="text_comment" id="comment_text_holder{$item.id}">{truncate(htmlspecialchars($item.text), 80, '...')}</span>
@@ -162,7 +166,9 @@ langs["Show answers"] = '<?php echo lang("Show answers", "comments")?>';
                                             {/if}
                                         </td>
                                     </tr>
-                                {else:}    
+                                {/if}
+
+                                {if $children[$item.id]}
                                     <tr>
                                         <td colspan="7">
                                             <table>
@@ -186,12 +192,12 @@ langs["Show answers"] = '<?php echo lang("Show answers", "comments")?>';
                                                                 </span>
                                                             </span>
                                                         </td>
-                                                        <td><a href="{echo site_url('admin/components/cp/comments/edit/')}/{$item.id}" class="pjax">{$item.id}</a></td>
+                                                        <td><a href="{echo site_url('admin/components/cp/comments/edit/')}/{$item.id}" >{$item.id}</a></td>
                                                         <td>
                                                             <span class="time muted">{date('d-m-Y H:i', $item.date)}</span>
                                                             <span class="text_comment parent_comment_{$item.id}" id="comment_text_holder{$item.id}">{truncate(htmlspecialchars($item.text), 80, '...')}</span>
                                                             <span class="frame_edit_comment ref_group" id="comment_text_editor{$item.id}">
-                                                                <textarea id="edited_com_text{$item.id}">{$item.text}</textarea>                                                                
+                                                                <textarea id="edited_com_text{$item.id}">{$item.text}</textarea>
                                                                 <span class="js ref comment_update" data-cid="{$item.id}" data-uname="{$item.user_name}" data-uemail="{$item.user_mail}" data-cstatus="{$item.status}">
                                                                     {lang('Save', 'comments')}
                                                                 </span>
@@ -258,6 +264,7 @@ langs["Show answers"] = '<?php echo lang("Show answers", "comments")?>';
                                                             {/if}
                                                         </td>
                                                     </tr>
+                                                    {if $status == 'all'}
                                                     <tr>
                                                         <td colspan="7">
                                                             <table>
@@ -297,7 +304,7 @@ langs["Show answers"] = '<?php echo lang("Show answers", "comments")?>';
                                                                                     </span>
                                                                                 </span>
                                                                             </td>
-                                                                            <td><a href="{echo site_url('admin/components/cp/comments/edit/')}/{$ic.id}" class="pjax">{$ic.id}</a></td>
+                                                                            <td><a href="{echo site_url('admin/components/cp/comments/edit/')}/{$ic.id}" >{$ic.id}</a></td>
                                                                             <td>
                                                                                 <span class="simple_tree pull-left">&#8627;</span>
                                                                                 <div class="o_h">
@@ -368,6 +375,7 @@ langs["Show answers"] = '<?php echo lang("Show answers", "comments")?>';
                                                         </table>
                                                     </td>
                                                 </tr>
+                                                    {/if}
                                             </tbody>
                                         </table>
                                     </td>

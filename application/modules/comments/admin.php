@@ -15,7 +15,7 @@ class Admin extends BaseAdminController {
         parent::__construct();
 
         $this->load->library('DX_Auth');
-        //cp_check_perm('module_admin');
+//        cp_check_perm('module_admin');
 
         $this->load->model('base', 'comments');
 
@@ -95,7 +95,7 @@ class Admin extends BaseAdminController {
                 $children = $this->proccess_child_comments($comments);
 
             foreach ($comments as $key => $comment) {
-                if ($comment['parent'] != 0 && $status_all != 1 && $status_all != 2) {
+                if ($comment['parent'] != 0 && $status_all != 1 && $status_all != 2 && $status == 'all') {
                     unset($comments[$key]);
                 }
             }
@@ -178,13 +178,13 @@ class Admin extends BaseAdminController {
         if (!empty($data))
             $this->template->add_array($data);
 
-        $this->template->show('file:' . 'application/modules/comments/templates/' . $viewName);
+        $this->template->show('file:' . 'application/' . getModContDirName('comments') . 'comments/templates/' . $viewName);
         exit;
 
         if ($return === false)
-            $this->template->show('file:' . 'application/modules/comments/templates/' . $viewName);
+            $this->template->show('file:' . 'application/' . getModContDirName('comments') . '/comments/templates/' . $viewName);
         else
-            return $this->template->fetch('file:' . 'application/modules/comments/templates/' . $viewName);
+            return $this->template->fetch('file:' . 'application/' . getModContDirName('comments') . '/comments/templates/' . $viewName);
     }
 
     // Edit comment
@@ -211,20 +211,20 @@ class Admin extends BaseAdminController {
 
         $this->_recount_comments($comment['item_id'], $comment['module']);
 
-
+        $this->lib_admin->log(lang("Comment successfully updated", "comments"));
         showMessage(lang('Comment successfully updated', 'comments'), lang('Message', 'comments'));
 
         if ($this->input->post('action') == 'exit')
-            pjax('/admin/components/run/shop/dashboard#last_comments');
+            pjax('/admin/components/cp/comments');
     }
 
     public function update_status() {
         $this->db->where_in('id', $this->input->post('id'));
         $this->db->update('comments', array('status' => $this->input->post('status')));
 
-        //for children comments
-//        $this->db->where_in('parent', $this->input->post('id'));
-//        $this->db->update('comments', array('status' => $this->input->post('status')));
+//        for children comments
+        $this->db->where_in('parent', $this->input->post('id'));
+        $this->db->update('comments', array('status' => $this->input->post('status')));
         /*
           $comment = $this->comments->get_one($this->input->post('id'));
 
@@ -232,6 +232,9 @@ class Admin extends BaseAdminController {
 
           $this->_recount_comments($comment['item_id'], $comment['module']);
          */
+         
+        $ids = is_array($this->input->post('id')) ? implode(', ', $this->input->post('id')) : $this->input->post('id');
+        $this->lib_admin->log(lang("Comments status was updated", "comments") . '. Ids: ' . $ids);
         showMessage(lang('Status updated', 'comments'), lang('Message', 'comments'));
         $this->load->helper('url');
         $url = '/' . str_replace(base_url(), '', $_SERVER['HTTP_REFERER']);
@@ -255,6 +258,8 @@ class Admin extends BaseAdminController {
 
         $this->_recount_comments($comment['item_id'], $comment['module']);
 
+        $id = is_array($id) ? implode(', ', $id) : $id;
+        $this->lib_admin->log(lang("Comment(s) deleted", "comments") . '. Ids: ' . $id);
         showMessage(lang('Comment(s) deleted', 'comments'));
 
         $this->load->helper('url');
@@ -297,7 +302,7 @@ class Admin extends BaseAdminController {
         $settings = $this->comments->get_settings();
 
         \CMSFactory\assetManager::create()
-                ->setData('settings',$settings)
+                ->setData('settings', $settings)
                 ->renderAdmin('settings');
     }
 
@@ -311,7 +316,7 @@ class Admin extends BaseAdminController {
         );
 
         $this->comments->save_settings($data);
-
+        $this->lib_admin->log(lang("Comments settings was edited", "comments"));
         showMessage(lang('Changes saved', 'comments'));
         pjax('/admin/components/cp/comments');
     }

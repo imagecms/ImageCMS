@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-26 04:00+0300\n"
-"PO-Revision-Date: 2014-07-26 04:00+0300\n"
+"POT-Creation-Date: 2015-01-28 01:49+0200\n"
+"PO-Revision-Date: 2015-01-28 01:49+0200\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -17,6 +17,10 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/comments/templates/edit.tpl:60
+msgid "Contents"
+msgstr "Content"
 
 # ?
 #: ./application/modules/comments/assets/comments_api.tpl:34
@@ -340,10 +344,6 @@ msgstr "Comments"
 #: ./application/modules/comments/comments.php:241
 msgid "log in, please."
 msgstr "Please log in"
-
-#: ./application/modules/comments/templates/edit.tpl:60
-msgid "Contents"
-msgstr "Contents"
 
 #: ./application/modules/comments/commentsapi.php:105
 #: ./application/modules/comments/commentsapi.php:105

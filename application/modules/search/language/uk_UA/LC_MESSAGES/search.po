@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-18 06:42+0300\n"
-"PO-Revision-Date: 2014-07-18 06:42+0300\n"
+"POT-Creation-Date: 2014-10-30 05:11+0200\n"
+"PO-Revision-Date: 2014-10-30 05:11+0200\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -18,14 +18,14 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
+#: ./application/modules/search/module_info.php:5
+msgid "Module includes the ability to search the site"
+msgstr "Модуль включає можливість пошуку по сайту"
+
 #: ./application/modules/search/module_info.php:4
 #: ./application/modules/search/search.php:129
 msgid "Search"
 msgstr "Пошук"
-
-#: ./application/modules/search/module_info.php:5
-msgid "Module includes the ability to search the site"
-msgstr "Модуль включає в себе можливість пошуку по сайту"
 
 #: ./application/modules/search/search.php:187
 msgid "Positions saved"

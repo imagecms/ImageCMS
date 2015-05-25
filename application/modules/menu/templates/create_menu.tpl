@@ -28,13 +28,13 @@
                             <div class="inside_padd">
                                 <div class="form-horizontal">
                                     <div class="control-group">
-                                        <label class="control-label" for="menu_name">{lang("Name", "menu")}:</label>
+                                        <label class="control-label" for="menu_name">{lang("Name", "menu")}: <span class="must">*</span></label>
                                         <div class="controls">
                                             <input type="text" class="textbox" name="menu_name" id="menu_name" required/>
                                         </div>
                                     </div>
                                     <div class="control-group">
-                                        <label class="control-label" for="main_title">{lang("Title", "menu")}:</label>
+                                        <label class="control-label" for="main_title">{lang("Title", "menu")}: <span class="must">*</span></label>
                                         <div class="controls">
                                             <input type="text" class="textbox" name="main_title" id="main_title" required/>
                                         </div>

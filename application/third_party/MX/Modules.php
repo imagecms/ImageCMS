@@ -94,7 +94,8 @@ class Modules
 		(is_array($module)) ? list($module, $params) = each($module) : $params = NULL;
 
 		/* get the requested controller class name */
-		$alias = strtolower(end(explode('/', $module)));
+                $arrayPath = explode('/', $module);
+		$alias = strtolower(end($arrayPath));
 
 		/* return an existing controller from the registry */
 		if (isset(self::$registry[$alias])) return self::$registry[$alias];

@@ -5,8 +5,9 @@
  * An open source application development framework for PHP 5.1.6 or newer
  *
  * @package		CodeIgniter
- * @author		ExpressionEngine Dev Team
- * @copyright	Copyright (c) 2008 - 2011, EllisLab, Inc.
+ * @author		EllisLab Dev Team
+ * @copyright		Copyright (c) 2008 - 2014, EllisLab, Inc.
+ * @copyright		Copyright (c) 2014 - 2015, British Columbia Institute of Technology (http://bcit.ca/)
  * @license		http://codeigniter.com/user_guide/license.html
  * @link		http://codeigniter.com
  * @since		Version 1.0
@@ -21,7 +22,7 @@
  * @package		CodeIgniter
  * @subpackage	Libraries
  * @category	Pagination
- * @author		ExpressionEngine Dev Team
+ * @author		EllisLab Dev Team
  * @link		http://codeigniter.com/user_guide/libraries/pagination.html
  */
 class CI_Pagination {
@@ -35,33 +36,30 @@ class CI_Pagination {
 	var $num_links			=  2; // Number of "digit" links to show before/after the currently viewed page
 	var $cur_page			=  0; // The current page being viewed
 	var $use_page_numbers	= FALSE; // Use page number for segment instead of offset
-	var $first_link			= '<span class="first-page">&laquo;</span>';
-	var $next_link			= '<span class="next-page">Следующая страница</span> →';
-	var $prev_link			= '← <span class="prev-page">Предыдущая страница</span>';
-	var $last_link			= '<span class="last-page">&raquo;</span>';
+	var $first_link			= '&lsaquo; First';
+	var $next_link			= '&gt;';
+	var $prev_link			= '&lt;';
+	var $last_link			= 'Last &rsaquo;';
 	var $uri_segment		= 3;
-	var $full_tag_open		= '<div class="pagination"><ul class="f-s_0">';
-	var $full_tag_close		= '</ul></div>';
-	var $first_tag_open		= '<li>';
-	var $first_tag_close            = '<li class="clear-pag-item">...</li></li>';
-	var $last_tag_open		= '<li class="clear-pag-item">...</li><li>';
-	var $last_tag_close		= '</li>';
+	var $full_tag_open		= '';
+	var $full_tag_close		= '';
+	var $first_tag_open		= '';
+	var $first_tag_close	= '&nbsp;';
+	var $last_tag_open		= '&nbsp;';
+	var $last_tag_close		= '';
 	var $first_url			= ''; // Alternative URL for the First Page.
-	var $cur_tag_open		= '<li class="active"><span>';
-	var $cur_tag_close		= '</span></li>';
-	var $next_tag_open		= '<li class="next-page">';
-	var $next_tag_close		= '</li>';
-	var $prev_tag_open		= '<li class="prev-page">';
-	var $prev_tag_close		= '</li>';
-	var $num_tag_open		= '<li>';
-	var $num_tag_close		= '</li>';
+	var $cur_tag_open		= '&nbsp;<strong>';
+	var $cur_tag_close		= '</strong>';
+	var $next_tag_open		= '&nbsp;';
+	var $next_tag_close		= '&nbsp;';
+	var $prev_tag_open		= '&nbsp;';
+	var $prev_tag_close		= '';
+	var $num_tag_open		= '&nbsp;';
+	var $num_tag_close		= '';
 	var $page_query_string	= FALSE;
 	var $query_string_segment = 'per_page';
 	var $display_pages		= TRUE;
 	var $anchor_class		= '';
-        var $controls_tag_open = '';
-        var $controls_tag_close = '';
-        var $separate_controls		= FALSE;
 
 	/**
 	 * Constructor
@@ -71,8 +69,6 @@ class CI_Pagination {
 	 */
 	public function __construct($params = array())
 	{
-            $this->first_link = $this->first_link . lang('First', 'main');
-            $this->last_link = lang('Last', 'main') . $this->last_link ;
 		if (count($params) > 0)
 		{
 			$this->initialize($params);

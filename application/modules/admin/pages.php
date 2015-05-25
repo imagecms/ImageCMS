@@ -145,7 +145,7 @@ class Pages extends BaseAdminController {
     public function add() {
 
         //cp_check_perm('page_create');
-
+        
         $this->form_validation->set_rules('page_title', lang("Title", "admin"), 'trim|required|min_length[1]|max_length[500]');
         $this->form_validation->set_rules('page_url', lang("URL", "admin"), 'alpha_dash');
         $this->form_validation->set_rules('prev_text', lang("Preliminary contents", "admin"), 'trim|required');
@@ -273,7 +273,7 @@ class Pages extends BaseAdminController {
 
             $this->lib_admin->log(
                     lang("Created a page", "admin") . " " .
-                    '<a href="' . site_url('admin/pages/edit/' . $page_id) . '">' . $data['title'] . '</a>'
+                    '<a href="/admin/pages/edit/' . $page_id . '">' . $data['title'] . '</a>'
             );
 
             $action = $this->input->post('action');
@@ -330,6 +330,7 @@ class Pages extends BaseAdminController {
      */
     function edit($page_id, $lang = 0) {
         //cp_check_perm('page_edit');
+//        CI::$APP->config->set_item('cur_lang', $lang);
         if ($this->cms_admin->get_page($page_id) == FALSE) {
             showMessage(lang("Page", "admin") . $page_id . lang("Not found", "admin"), false, 'r');
             exit;
@@ -372,10 +373,8 @@ class Pages extends BaseAdminController {
             $page_roles = unserialize($page_roles['data']);
 
             // Set roles
-            $locale = $def_lang;
-            $locale = $locale['identif'];
-
-            $g_query = $this->db->query("SELECT * FROM `shop_rbac_roles` JOIN `shop_rbac_roles_i18n` ON shop_rbac_roles.id=shop_rbac_roles_i18n.id");
+            $locale = MY_Controller::defaultLocale();
+            $g_query = $this->db->query("SELECT * FROM `shop_rbac_roles` JOIN `shop_rbac_roles_i18n` ON shop_rbac_roles.id=shop_rbac_roles_i18n.id WHERE locale='$locale'");
             $roles = $g_query->result_array();
 
             if ($roles != FALSE) {
@@ -615,7 +614,7 @@ class Pages extends BaseAdminController {
             if ($this->cms_admin->update_page($page_id, $data) >= 1) {
                 $this->lib_admin->log(
                         lang("Changed the page", "admin") . " " .
-                        '<a href="' . site_url('admin/pages/edit/' . $page_id) . '">' . $data['title'] . '</a>'
+                        '<a href="/admin/pages/edit/' . $page_id . '">' . $data['title'] . '</a>'
                 );
 
                 $action = $this->input->post('action');
@@ -731,6 +730,7 @@ class Pages extends BaseAdminController {
         //cp_check_perm('page_edit');
 
         $ids = $_POST['pages'];
+        $ids_key = array_flip($_POST['pages']);
 
         $this->db->select('category');
         $page = $this->db->get_where('content', array('id' => substr($_POST['pages'][0], 5)))->row_array();
@@ -741,8 +741,7 @@ class Pages extends BaseAdminController {
             $category['id'] = 0;
             $category['path_url'] = '';
         }
-
-
+        
         if (count($ids) > 0) {
             foreach ($ids as $k => $v) {
                 $page_id = substr($v, 5);
@@ -766,7 +765,6 @@ class Pages extends BaseAdminController {
 
                     case 'copy':
                         $page = $this->db->get_where('content', array('id' => $page_id))->row_array();
-
                         $page['category'] = $data['category'];
                         $page['cat_url'] = $data['cat_url'];
                         $page['lang_alias'] = 0;
@@ -802,11 +800,15 @@ class Pages extends BaseAdminController {
                         break;
                 }
             }
-
-            if ($action == 'copy')
+            $catName = $category['name']?' -> '.$category['name']:'';
+            if ($action == 'copy'){
                 showMessage(lang('Page successfuly copied', 'admin'));
-            else if ($action == 'move')
+                $this->lib_admin->log(lang("Pages was copied", "admin").'. Id: '.implode(', ',$ids_key).''.$catName);
+            }
+            else if ($action == 'move'){
                 showMessage(lang("Successfull moving", "admin"));
+                $this->lib_admin->log(lang("Pages was moving", "admin").'. Id: '.implode(', ',$ids_key).''.$catName);
+            }
             pjax($_SERVER["HTTP_REFERER"]);
         } else
             showMessage(lang("The operation error", "admin"));
@@ -961,17 +963,20 @@ class Pages extends BaseAdminController {
      * @cur_page int
      */
     function GetPagesByCategory($cat_id = 'all', $cur_page = 0) {
-        if ($cat_id != 'all')
+        $def_lang = $this->cms_admin->get_default_lang();
+        CI::$APP->config->set_item('cur_lang', $def_lang['id']);
+        if ($cat_id != 'all'){
             $db_where = array(
                 'category' => $cat_id,
-                'lang_alias' => 0
+                //'lang_alias' => 0,
+                'lang' => (int)$def_lang['id']
             );
-        else {
-            //             /$this->db->select('content.*, category.name as cat_name');
-
+        }else {
+            //$this->db->select('content.*, category.name as cat_name');
             $db_where = array(
                 'category >=' => 0,
-                'lang_alias' => 0
+                //'lang_alias' => 0,
+                'lang' => (int)$def_lang['id']
             );
         }
         $main_settings = $this->cms_base->get_settings();
@@ -988,52 +993,65 @@ class Pages extends BaseAdminController {
 
         //$this->db->order_by('category', 'asc');
         $this->db->order_by('content.position', 'asc');
+        $this->db->order_by('content.id', 'desc');
 
         //filter
-        if ($this->input->post('id'))
-            $this->db->where('content.id', $this->input->post('id'));
-        if ($this->input->post('title'))
+        if ($this->input->post('id')){
+            $this->db->where('content.id', $this->input->post('id'));  
+            $flagPOST = true;
+        }
+        if ($this->input->post('title')){
             $this->db->where('content.title LIKE ', '%' . $this->input->post('title') . '%');
-        if ($this->input->post('url'))
-            $this->db->where('content.url LIKE ', '%' . $this->input->post('url') . '%');
+            $flagPOST = true;
+        }
+        if ($this->input->post('url')){
+            $this->db->where('content.url LIKE ', '%' . $this->input->post('url') . '%'); 
+            $flagPOST = true;
+        }
 
         if ($cat_id == NULL)
             $this->db->join('category', 'category.id = content.category');
 
-        $query = $this->db->get_where('content', $db_where, $row_count, $offset);
-
+        if(!$flagPOST){
+            $query = $this->db->get_where('content', $db_where, $row_count, $offset);
+        }else{
+            $query = $this->db->get_where('content', $db_where);            
+        }
         $this->db->where($db_where);
         $this->db->from('content');
         $total_pages = $this->db->count_all_results();
-
+        
         if ($query->num_rows > 0) {
-            // Begin pagination
-            $config['base_url'] = site_url('admin/pages/GetPagesByCategory/' . $cat_id . '/');
-            $config['container'] = 'page';
-            $config['uri_segment'] = 5;
-            $config['total_rows'] = $total_pages;
-            $config['per_page'] = $this->_Config['per_page'];
+            // При пагинации при поиске ломался поиск.
+            if(!$flagPOST){
+                // Begin pagination
+                $config['base_url'] = site_url('admin/pages/GetPagesByCategory/' . $cat_id . '/');
+                $config['container'] = 'page';
+                $config['uri_segment'] = 5;
+                $config['total_rows'] = $total_pages;
+                $config['per_page'] = $this->_Config['per_page'];
 
-            $config['separate_controls'] = true;
-            $config['full_tag_open'] = '<div class="pagination pull-left"><ul>';
-            $config['full_tag_close'] = '</ul></div>';
-            $config['controls_tag_open'] = '<div class="pagination pull-right"><ul>';
-            $config['controls_tag_close'] = '</ul></div>';
-            $config['next_link'] = lang('Next', 'admin') . '&nbsp;&gt;';
-            $config['prev_link'] = '&lt;&nbsp;' . lang('Prev', 'admin');
-            $config['cur_tag_open'] = '<li class="btn-primary active"><span>';
-            $config['cur_tag_close'] = '</span></li>';
-            $config['prev_tag_open'] = '<li>';
-            $config['prev_tag_close'] = '</li>';
-            $config['next_tag_open'] = '<li>';
-            $config['next_tag_close'] = '</li>';
-            $config['num_tag_close'] = '</li>';
-            $config['num_tag_open'] = '<li>';
-            $config['num_tag_close'] = '</li>';
+                $config['separate_controls'] = true;
+                $config['full_tag_open'] = '<div class="pagination pull-left"><ul>';
+                $config['full_tag_close'] = '</ul></div>';
+                $config['controls_tag_open'] = '<div class="pagination pull-right"><ul>';
+                $config['controls_tag_close'] = '</ul></div>';
+                $config['next_link'] = lang('Next', 'admin') . '&nbsp;&gt;';
+                $config['prev_link'] = '&lt;&nbsp;' . lang('Prev', 'admin');
+                $config['cur_tag_open'] = '<li class="btn-primary active"><span>';
+                $config['cur_tag_close'] = '</span></li>';
+                $config['prev_tag_open'] = '<li>';
+                $config['prev_tag_close'] = '</li>';
+                $config['next_tag_open'] = '<li>';
+                $config['next_tag_close'] = '</li>';
+                $config['num_tag_close'] = '</li>';
+                $config['num_tag_open'] = '<li>';
+                $config['num_tag_close'] = '</li>';
 
-            $this->pagination->num_links = 5;
-            $this->pagination->initialize($config);
-            // End pagination
+                $this->pagination->num_links = 5;
+                $this->pagination->initialize($config);
+                // End pagination
+            }
 
             $pages = $query->result_array();
 
@@ -1060,9 +1078,9 @@ class Pages extends BaseAdminController {
                 'cat_id' => $cat_id,
                 'show_cat_list' => $main_settings['cat_list'],
             ));
+
+            $this->template->show('pages_list', FALSE);
         }
     }
 
 }
-
-/* End of pages.php */

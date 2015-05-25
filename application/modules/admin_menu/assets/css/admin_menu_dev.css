@@ -1,0 +1,25 @@
+.table-admin-menu{
+    min-height: 800px; 
+}
+.table-admin-menu td{
+    padding: 0px;
+}
+
+.table-admin-menu h4{
+    margin-left: 20px;
+    line-height: 1;
+    font-size: 18px;
+}
+
+.table-admin-menu hr{
+    margin-top: 0px;
+}
+
+.table-admin-menu ul > li{
+    cursor: pointer;
+}
+
+.sortableMenu li{
+    opacity: 1;
+}
+

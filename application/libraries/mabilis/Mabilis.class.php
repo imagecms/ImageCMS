@@ -11,7 +11,9 @@
 class Mabilis {
 
     private $compiler = NULL;
+
     private $config = NULL;
+
     private $arr = NULL;
 
     public function __construct(&$config = array()) {
@@ -24,7 +26,6 @@ class Mabilis {
     public function view($file, $data = array(), $return = FALSE) {
         // Delete double .tpl.tpl
         $file = preg_replace('/.tpl.tpl/', '.tpl', $file);
-
 
         if (preg_match('/file:/', $file, $_Matches)) {
             $file_dir = preg_replace('/\/\//', '/', $file);
@@ -56,12 +57,13 @@ class Mabilis {
         ob_start();
 
         if (file_exists($compiled_file)) {
-//            if (!in_array($compiled_file, $this->arr)) {
-                include($compiled_file);
-//                $this->arr[$compiled_file] = $compiled_file;
-//            }
-//            else
-//                include $this->arr[$compiled_file];
+
+            //            if (!in_array($compiled_file, $this->arr)) {
+            include $compiled_file;
+            //                $this->arr[$compiled_file] = $compiled_file;
+            //            }
+            //            else
+            //                include $this->arr[$compiled_file];
         } else {
             print '<p class="error">Error: ' . $compiled_file . ' does not exists!</p>';
         }
@@ -74,7 +76,6 @@ class Mabilis {
         if ($this->config->use_filemtime == TRUE AND $mabilis_last_modified != @filemtime($file_dir)) {
             @unlink($compiled_file);
         }
-
 
         if ($return == TRUE) {
             $buffer = ob_get_contents();

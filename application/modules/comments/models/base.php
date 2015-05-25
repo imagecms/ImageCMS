@@ -97,6 +97,9 @@ class Base extends CI_Model {
         $this->db->where('status', $status);
         $this->db->from('comments');
 
+//        if($status == 0)
+//            var_dumps($this->db->get()->result_array());
+
         return $this->db->count_all_results();
     }
 

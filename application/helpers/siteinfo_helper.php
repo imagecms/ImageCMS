@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * ImageCMS
@@ -10,10 +11,10 @@ if (!defined('BASEPATH'))
 if (!function_exists('siteinfo')) {
 
     /**
-     * Get information about site 
+     * Get information about site
      *
      * @param string $name - name of siteinfo param
-     *    - siteinfo_compatyname 
+     *    - siteinfo_compatyname
      *    - siteinfo_address
      *    - siteinfo_mainphone
      *    - siteinfo_contacts
@@ -30,8 +31,9 @@ if (!function_exists('siteinfo')) {
         $ci = &get_instance();
         $ci->load->library('SiteInfo');
         $siteinfo = new SiteInfo();
-        // next code is only for compatibility with older versions of library, 
+        // next code is only for compatibility with older versions of library,
         // so in the future needed to be removed (with funciton processOldVersions() too)
+
         if (FALSE !== $data = siteInfoAdditionalManipulations($name)) {
             return $data;
         } else {
@@ -76,8 +78,9 @@ if (!function_exists('siteInfoAdditionalManipulations')) {
                     if (key_exists($settings['site_template'], $value)) {
                         $fileName = $value[$settings['site_template']];
                         if (SHOP_INSTALLED) {
-                            $colorScheme = CI::$APP->load->module('new_level')->getColorScheme();
-                            return "/templates/{$settings['site_template']}/{$colorScheme}/{$fileName}";
+                            $colorScheme = CI::$APP->load->module('template_manager')->getComponent('TColorScheme')->getColorSheme();
+
+                            return "/templates/{$settings['site_template']}/css/{$colorScheme}/{$fileName}";
                         } else {
                             return "/templates/{$settings['site_template']}/images/{$fileName}";
                         }
@@ -85,10 +88,11 @@ if (!function_exists('siteInfoAdditionalManipulations')) {
                         reset($value);
                         $key = key($value);
                         if (SHOP_INSTALLED) {
-                            $colorScheme = CI::$APP->load->module('new_level')->getColorScheme();
-                            return "/templates/" . $key . "/{$colorScheme}/" . $value[$key];
+                            $colorScheme = CI::$APP->load->module('template_manager')->getComponent('TColorScheme')->getColorSheme();
+                            $template = \template_manager\classes\TemplateManager::getInstance()->getCurentTemplate();
+                            return "/templates/" . $template->name . "/css/{$colorScheme}/" . $value[$key];
                         } else {
-                            return "/templates/{$settings['site_template']}/images/{$fileName}";
+                            return "/templates/{$settings['site_template']}/images/" . array_shift($value);
                         }
                     }
                     return '';
@@ -100,6 +104,3 @@ if (!function_exists('siteInfoAdditionalManipulations')) {
     }
 
 }
-
-/* End of siteinfo.php */
-?>

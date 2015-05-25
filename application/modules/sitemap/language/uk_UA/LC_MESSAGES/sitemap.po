@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-13 07:06+0300\n"
-"PO-Revision-Date: 2014-08-13 07:06+0300\n"
+"POT-Creation-Date: 2014-12-26 05:24+0200\n"
+"PO-Revision-Date: 2014-12-26 05:24+0200\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -17,6 +17,19 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/sitemap/admin.php:185
+msgid "Sitemaps priorities was edited"
+msgstr "Пріоритети карти сайту були відредаговані"
+
+#: ./application/modules/sitemap/admin.php:234
+msgid "Sitemaps freq was edited"
+msgstr "Частота карти сайту була відредагована"
+
+#: ./application/modules/sitemap/admin.php:290
+#: ./application/modules/sitemap/admin.php:297
+msgid "Sitemap block url was edited"
+msgstr "Посилання карти сайту було відредаговано"
 
 #: ./application/modules/sitemap/sitemap.php:777
 msgid "Ping sended"
@@ -32,108 +45,109 @@ msgstr "Не можливо написати в robots.txt. Перевірте �
 
 #: ./application/modules/sitemap/admin.php:66
 #: ./application/modules/sitemap/admin.php:70
-#: ./application/modules/sitemap/admin.php:113
-#: ./application/modules/sitemap/admin.php:116
-#: ./application/modules/sitemap/admin.php:152
-#: ./application/modules/sitemap/admin.php:184
-#: ./application/modules/sitemap/admin.php:232
-#: ./application/modules/sitemap/admin.php:288
+#: ./application/modules/sitemap/admin.php:115
+#: ./application/modules/sitemap/admin.php:118
+#: ./application/modules/sitemap/admin.php:154
+#: ./application/modules/sitemap/admin.php:187
+#: ./application/modules/sitemap/admin.php:236
+#: ./application/modules/sitemap/admin.php:294
 msgid "Error"
 msgstr "Помилка"
 
 #: ./application/modules/sitemap/admin.php:68
-#: ./application/modules/sitemap/admin.php:182
-#: ./application/modules/sitemap/admin.php:230
-#: ./application/modules/sitemap/admin.php:285
-#: ./application/modules/sitemap/admin.php:290
+#: ./application/modules/sitemap/admin.php:184
+#: ./application/modules/sitemap/admin.php:233
+#: ./application/modules/sitemap/admin.php:289
+#: ./application/modules/sitemap/admin.php:296
 msgid "Changes have been saved"
 msgstr "Зміни були збережені"
 
 #: ./application/modules/sitemap/admin.php:68
 #: ./application/modules/sitemap/admin.php:111
-#: ./application/modules/sitemap/admin.php:182
-#: ./application/modules/sitemap/admin.php:230
-#: ./application/modules/sitemap/admin.php:285
-#: ./application/modules/sitemap/admin.php:290
+#: ./application/modules/sitemap/admin.php:184
+#: ./application/modules/sitemap/admin.php:233
+#: ./application/modules/sitemap/admin.php:289
+#: ./application/modules/sitemap/admin.php:296
 msgid "Message"
 msgstr "Повідомлення"
 
 #: ./application/modules/sitemap/admin.php:70
-#: ./application/modules/sitemap/admin.php:184
-#: ./application/modules/sitemap/admin.php:232
-#: ./application/modules/sitemap/admin.php:288
+#: ./application/modules/sitemap/admin.php:187
+#: ./application/modules/sitemap/admin.php:236
+#: ./application/modules/sitemap/admin.php:294
 msgid "Changes have not been saved"
 msgstr "Зміни не були збережені"
 
 #: ./application/modules/sitemap/admin.php:111
+#: ./application/modules/sitemap/admin.php:112
 msgid "Site map have been saved"
 msgstr "Карта сайту була збережена"
 
-#: ./application/modules/sitemap/admin.php:113
+#: ./application/modules/sitemap/admin.php:115
 msgid "Site map have not been saved. Set writing permissions on module folder."
 msgstr "Карта сайту не була збережена. Вкажіть у письмовій формі дозвіл на папку модуля"
 
-#: ./application/modules/sitemap/admin.php:116
+#: ./application/modules/sitemap/admin.php:118
 msgid "Site map have not been saved"
 msgstr "Карта сайту не була збережена"
 
-#: ./application/modules/sitemap/admin.php:140
+#: ./application/modules/sitemap/admin.php:142
 msgid "Main page priority"
 msgstr " Пріоритет головної сторінки"
 
-#: ./application/modules/sitemap/admin.php:141
+#: ./application/modules/sitemap/admin.php:143
 msgid "Categories priority"
 msgstr "Пріоритет категорії "
 
-#: ./application/modules/sitemap/admin.php:142
+#: ./application/modules/sitemap/admin.php:144
 msgid "Regular or usual pages priority"
 msgstr " Пріоритет звичайної сторінки"
 
-#: ./application/modules/sitemap/admin.php:143
+#: ./application/modules/sitemap/admin.php:145
 msgid "Subcategories priority"
 msgstr "Пріоритет підкатегорій"
 
-#: ./application/modules/sitemap/admin.php:145
+#: ./application/modules/sitemap/admin.php:147
 msgid "Products priority"
 msgstr "Пріоритет продуктів"
 
-#: ./application/modules/sitemap/admin.php:146
+#: ./application/modules/sitemap/admin.php:148
 msgid "Brands priority"
 msgstr "Пріоритет брендів"
 
-#: ./application/modules/sitemap/admin.php:147
+#: ./application/modules/sitemap/admin.php:149
 msgid "Products categories priority"
 msgstr "Продукти пріоритетних категорій"
 
-#: ./application/modules/sitemap/admin.php:148
+#: ./application/modules/sitemap/admin.php:150
 msgid "Products subcategories priority"
 msgstr "Продукти пріоритетних підкатегорій"
 
-#: ./application/modules/sitemap/admin.php:243
+#: ./application/modules/sitemap/admin.php:247
 msgid "always"
 msgstr "завжди"
 
-#: ./application/modules/sitemap/admin.php:244
+#: ./application/modules/sitemap/admin.php:248
 msgid "hourly"
 msgstr "погодинно"
 
-#: ./application/modules/sitemap/admin.php:245
+#: ./application/modules/sitemap/admin.php:249
 msgid "daily"
 msgstr "щодня"
 
-#: ./application/modules/sitemap/admin.php:246
+#: ./application/modules/sitemap/admin.php:250
 msgid "weekly"
 msgstr "щотижня"
 
-#: ./application/modules/sitemap/admin.php:247
+#: ./application/modules/sitemap/admin.php:251
 msgid "monthly"
 msgstr "щомісяця"
 
-#: ./application/modules/sitemap/admin.php:248
+#: ./application/modules/sitemap/admin.php:252
 msgid "yearly"
 msgstr "щорічно"
 
-#: ./application/modules/sitemap/admin.php:249
+#: ./application/modules/sitemap/admin.php:253
 msgid "never"
 msgstr "ніколи"
 
@@ -145,69 +159,69 @@ msgstr "Карта сайту"
 msgid "Creating a site map for search engines"
 msgstr "Створення карти сайту для пошукових систем"
 
+#: ./application/modules/sitemap/assets/admin/changefreq.tpl:5
+#: ./application/modules/sitemap/assets/admin/settings.tpl:5
 #: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:5
 #: ./application/modules/sitemap/assets/admin/priorities.tpl:5
-#: ./application/modules/sitemap/assets/admin/settings.tpl:5
-#: ./application/modules/sitemap/assets/admin/changefreq.tpl:5
 msgid "Site Map"
 msgstr "Карта сайту"
 
+#: ./application/modules/sitemap/assets/admin/changefreq.tpl:9
+#: ./application/modules/sitemap/assets/admin/settings.tpl:9
 #: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:9
 #: ./application/modules/sitemap/assets/admin/priorities.tpl:9
-#: ./application/modules/sitemap/assets/admin/settings.tpl:9
-#: ./application/modules/sitemap/assets/admin/changefreq.tpl:9
 msgid "Go back"
 msgstr "Повернутися"
 
-#: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:10
-#: ./application/modules/sitemap/assets/admin/priorities.tpl:10
+#: ./application/modules/sitemap/assets/admin/changefreq.tpl:10
 #: ./application/modules/sitemap/assets/admin/settings.tpl:10
 #: ./application/modules/sitemap/assets/admin/settings.tpl:66
-#: ./application/modules/sitemap/assets/admin/changefreq.tpl:10
+#: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:10
+#: ./application/modules/sitemap/assets/admin/priorities.tpl:10
 msgid "Save"
 msgstr "Зберегти"
 
+#: ./application/modules/sitemap/assets/admin/changefreq.tpl:14
+#: ./application/modules/sitemap/assets/admin/settings.tpl:14
 #: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:14
 #: ./application/modules/sitemap/assets/admin/priorities.tpl:14
-#: ./application/modules/sitemap/assets/admin/settings.tpl:14
-#: ./application/modules/sitemap/assets/admin/changefreq.tpl:14
 msgid "Others"
 msgstr "Інші"
 
+#: ./application/modules/sitemap/assets/admin/changefreq.tpl:17
+#: ./application/modules/sitemap/assets/admin/settings.tpl:17
 #: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:17
 #: ./application/modules/sitemap/assets/admin/priorities.tpl:17
 #: ./application/modules/sitemap/assets/admin/priorities.tpl:32
-#: ./application/modules/sitemap/assets/admin/settings.tpl:17
-#: ./application/modules/sitemap/assets/admin/changefreq.tpl:17
 msgid "Priorities"
 msgstr "Пріоритети"
 
+#: ./application/modules/sitemap/assets/admin/changefreq.tpl:18
+#: ./application/modules/sitemap/assets/admin/settings.tpl:18
 #: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:18
 #: ./application/modules/sitemap/assets/admin/priorities.tpl:18
-#: ./application/modules/sitemap/assets/admin/settings.tpl:18
-#: ./application/modules/sitemap/assets/admin/changefreq.tpl:18
 msgid "Change frequency"
 msgstr "Зміна частоти"
 
+#: ./application/modules/sitemap/assets/admin/changefreq.tpl:19
+#: ./application/modules/sitemap/assets/admin/settings.tpl:19
 #: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:19
 #: ./application/modules/sitemap/assets/admin/priorities.tpl:19
-#: ./application/modules/sitemap/assets/admin/settings.tpl:19
-#: ./application/modules/sitemap/assets/admin/changefreq.tpl:19
 msgid "Block urls"
 msgstr "Блокувати URL-адреси"
 
+#: ./application/modules/sitemap/assets/admin/changefreq.tpl:21
+#: ./application/modules/sitemap/assets/admin/settings.tpl:21
 #: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:21
 #: ./application/modules/sitemap/assets/admin/priorities.tpl:21
-#: ./application/modules/sitemap/assets/admin/settings.tpl:21
-#: ./application/modules/sitemap/assets/admin/changefreq.tpl:21
 msgid "View Site Map"
 msgstr "Переглянути Карту сайту"
 
-#: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:23
-#: ./application/modules/sitemap/assets/admin/priorities.tpl:23
+#: ./application/modules/sitemap/assets/admin/changefreq.tpl:23
 #: ./application/modules/sitemap/assets/admin/settings.tpl:23
 #: ./application/modules/sitemap/assets/admin/settings.tpl:32
-#: ./application/modules/sitemap/assets/admin/changefreq.tpl:23
+#: ./application/modules/sitemap/assets/admin/blocked_urls.tpl:23
+#: ./application/modules/sitemap/assets/admin/priorities.tpl:23
 msgid "Settings"
 msgstr "Налаштування"
 
@@ -240,18 +254,18 @@ msgstr "Додати"
 msgid "Block in robots"
 msgstr "Блок у роботів"
 
-#: ./application/modules/sitemap/assets/admin/priorities.tpl:39
 #: ./application/modules/sitemap/assets/admin/changefreq.tpl:39
+#: ./application/modules/sitemap/assets/admin/priorities.tpl:39
 msgid "Main page"
 msgstr "Головна сторінка"
 
-#: ./application/modules/sitemap/assets/admin/priorities.tpl:53
 #: ./application/modules/sitemap/assets/admin/changefreq.tpl:46
+#: ./application/modules/sitemap/assets/admin/priorities.tpl:53
 msgid "Regular or usual pages"
 msgstr "Звичайні сторінки"
 
-#: ./application/modules/sitemap/assets/admin/priorities.tpl:67
 #: ./application/modules/sitemap/assets/admin/changefreq.tpl:53
+#: ./application/modules/sitemap/assets/admin/priorities.tpl:67
 msgid "Categories pages"
 msgstr "Сторінки категорій"
 
@@ -259,8 +273,8 @@ msgstr "Сторінки категорій"
 msgid "Subcategories pages"
 msgstr "Сторінки підкатегорій"
 
-#: ./application/modules/sitemap/assets/admin/priorities.tpl:96
 #: ./application/modules/sitemap/assets/admin/changefreq.tpl:76
+#: ./application/modules/sitemap/assets/admin/priorities.tpl:96
 msgid "Products categories pages"
 msgstr "Сторінки товарних категорій"
 
@@ -272,14 +286,14 @@ msgstr "Сторінки товарних підкатегорій"
 msgid "Products pages"
 msgstr "Сторінки товарів"
 
-#: ./application/modules/sitemap/assets/admin/priorities.tpl:138
 #: ./application/modules/sitemap/assets/admin/changefreq.tpl:90
+#: ./application/modules/sitemap/assets/admin/priorities.tpl:138
 msgid "Brands pages"
 msgstr "Сторінки брендів"
 
-#: ./application/modules/sitemap/assets/admin/priorities.tpl:154
-#: ./application/modules/sitemap/assets/admin/settings.tpl:117
 #: ./application/modules/sitemap/assets/admin/changefreq.tpl:99
+#: ./application/modules/sitemap/assets/admin/settings.tpl:117
+#: ./application/modules/sitemap/assets/admin/priorities.tpl:154
 msgid "View code"
 msgstr "Переглянути код"
 

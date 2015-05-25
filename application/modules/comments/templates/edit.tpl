@@ -8,10 +8,10 @@
             <div class="pull-right">
                 <div class="d-i_b">
                     
-                    <a href="{if $_SERVER['HTTP_REFERER']}{echo $_SERVER['HTTP_REFERER']}{else:}{site_url('admin/components/cp/comments')}{/if}" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back', 'admin')}</span></a>
+                    {/*<a href="{if $_SERVER['HTTP_REFERER']}{echo $_SERVER['HTTP_REFERER']}{else:}{site_url('admin/components/cp/comments')}{/if}" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back', 'admin')}</span></a>*/}
+                    <a href="{site_url('admin/components/cp/comments')}" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back', 'admin')}</span></a>
                     <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#update" data-action="close"><i class="icon-ok"></i>{lang("Save", 'comments')}</button>
                     <button type="button" class="btn btn-small action_on formSubmit" data-form="#update" data-action="exit"><i class="icon-check"></i>{lang('Save and exit', 'admin')}</button>
-
                 </div>
             </div>
         </div>

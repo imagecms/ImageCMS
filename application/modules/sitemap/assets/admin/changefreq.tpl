@@ -10,21 +10,21 @@
                 <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#sitemap_changefreq_form" data-submit><i class="icon-ok icon-white"></i>{lang("Save", 'sitemap')}</button>
                 <div class="p_r d-i_b v-a_m">
                     <button type="button" class="btn btn-small btn-info dropdown-toggle" data-toggle="dropdown">
-                        <i class="icon-white icon-list"></i>
+                        <i class="icon-list"></i>
                         {lang('Others', 'sitemap')}<span class="caret"></span>
                     </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a style="text-decoration: none" class="pjax" href="/admin/components/init_window/sitemap/priorities">{lang('Priorities', 'sitemap')}</a></li>
-                        <li><a style="text-decoration: none" class="pjax" href="/admin/components/init_window/sitemap/changefreq">{lang('Change frequency', 'sitemap')}</a></li>
-                        <li><a style="text-decoration: none" class="pjax" href="/admin/components/init_window/sitemap/blockedUrls">{lang('Block urls', 'sitemap')}</a></li>
+                    <ul class="dropdown-menu" role="menu" style="right:0;left:auto;">
+                        <li><a style="text-decoration: none" class="" href="/admin/components/init_window/sitemap/priorities">{lang('Priorities', 'sitemap')}</a></li>
+                        <li><a style="text-decoration: none" class="" href="/admin/components/init_window/sitemap/changefreq">{lang('Change frequency', 'sitemap')}</a></li>
+                        {/*}<li><a style="text-decoration: none" class="" href="/admin/components/init_window/sitemap/blockedUrls">{lang('Block urls', 'sitemap')}</a></li>{ */}
                         <li class="divider"></li>
                         <li><a style="text-decoration: none" href="{site_url('sitemap.xml')}" target="_blank">{lang("View Site Map", 'sitemap')}</a></li>
                         <li class="divider"></li>
-                        <li><a style="text-decoration: none" class="pjax" href="/admin/components/init_window/sitemap/settings">{lang('Settings', 'sitemap')}</a></li>
+                        <li><a style="text-decoration: none" class="" href="/admin/components/init_window/sitemap/settings">{lang('Settings', 'sitemap')}</a></li>
                     </ul>
                 </div>
             </div>
-        </div>                            
+        </div>
     </div>
     <form action="/admin/components/cp/sitemap/changefreq" id="sitemap_changefreq_form" method="post" class="form-horizontal m-t_10">
         <table class="table  table-bordered table-hover table-condensed content_big_td">
@@ -47,7 +47,7 @@
                                 <div class="controls">
                                     {form_dropdown('pages_changefreq', $changefreq_options, $pages_changefreq)}
                                 </div>
-                            </div>    
+                            </div>
 
                             <div class="control-group">
                                 <label class="control-label">{lang("Categories pages", 'sitemap')}:</label>

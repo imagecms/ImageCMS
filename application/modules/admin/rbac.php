@@ -9,10 +9,16 @@ class Rbac extends BaseAdminController {
         $this->load->library('lib_category');
         $this->lib_admin->init_settings();
         $url = $this->uri->segment(3);
-        if ($url == 'permition_denied') {
-            $this->permition_denied();
-            exit();
+
+        switch ($url) {
+            case 'permition_denied':
+                $this->permition_denied();
+                exit();
+            case 'not_installed_module_error':
+                $this->not_installed_module_error();
+                exit();
         }
+
         $data = $this->uri->segment(4);
         $lang = $this->uri->segment(5);
         Permitions::$url($data, $lang);
@@ -21,6 +27,10 @@ class Rbac extends BaseAdminController {
 
     public function permition_denied() {
         $this->template->show('permition_error');
+    }
+
+    public function not_installed_module_error() {
+        $this->template->show('not_installed_module_error');
     }
 
     public function index() {

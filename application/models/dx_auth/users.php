@@ -6,7 +6,7 @@
  */
 class Users extends CI_Model {
 
-    function Users() {
+    public function __construct() {
         parent::__construct();
 
         // Other stuff
@@ -17,7 +17,7 @@ class Users extends CI_Model {
 
     // General function
 
-    function get_all($offset = 0, $row_count = 0) {
+    public function get_all($offset = 0, $row_count = 0) {
         $users_table = $this->_table;
         $roles_table = $this->_roles_table;
 
@@ -39,48 +39,48 @@ class Users extends CI_Model {
         return $query;
     }
 
-    function get_user_by_id($user_id) {
+    public function get_user_by_id($user_id) {
         $this->db->where('id', $user_id);
         return $this->db->get($this->_table);
     }
 
-    function get_user_by_username($username) {
-// 		$this->db->where('username', $username);
-// 		return $this->db->get($this->_table);
+    public function get_user_by_username($username) {
+        // 		$this->db->where('username', $username);
+        // 		return $this->db->get($this->_table);
         return false;
     }
 
-    function get_user_by_email($email) {
+    public function get_user_by_email($email) {
         $this->db->where('email', $email);
         return $this->db->get($this->_table);
     }
 
-    function get_login($login) {
+    public function get_login($login) {
         $this->db->where('email', $login);
         return $this->db->get($this->_table);
     }
 
-    function check_ban($user_id) {
+    public function check_ban($user_id) {
         $this->db->select('1', FALSE);
         $this->db->where('id', $user_id);
         $this->db->where('banned', '1');
         return $this->db->get($this->_table);
     }
 
-    function check_username($username) {
-// 		$this->db->select('1', FALSE);
-// 		$this->db->where('LOWER(username)=', strtolower($username));
-// 		return $this->db->get($this->_table);
+    public function check_username($username) {
+        // 		$this->db->select('1', FALSE);
+        // 		$this->db->where('LOWER(username)=', strtolower($username));
+        // 		return $this->db->get($this->_table);
         return true;
     }
 
-    function check_email($email) {
+    public function check_email($email) {
         $this->db->select('1', FALSE);
         $this->db->where('LOWER(email)=', strtolower($email));
         return $this->db->get($this->_table);
     }
 
-    function ban_user($user_id, $reason = NULL) {
+    public function ban_user($user_id, $reason = NULL) {
         $data = array(
             'banned' => 1,
             'ban_reason' => $reason
@@ -88,7 +88,7 @@ class Users extends CI_Model {
         return $this->set_user($user_id, $data);
     }
 
-    function unban_user($user_id) {
+    public function unban_user($user_id) {
         $data = array(
             'banned' => 0,
             'ban_reason' => NULL
@@ -96,7 +96,7 @@ class Users extends CI_Model {
         return $this->set_user($user_id, $data);
     }
 
-    function set_role($user_id, $role_id) {
+    public function set_role($user_id, $role_id) {
         $data = array(
             'role_id' => $role_id
         );
@@ -105,23 +105,23 @@ class Users extends CI_Model {
 
     // User table function
 
-    function create_user($data) {
+    public function create_user($data) {
         $data['created'] = date('U');
         return $this->db->insert($this->_table, $data);
     }
 
-    function get_user_field($user_id, $fields) {
+    public function get_user_field($user_id, $fields) {
         $this->db->select($fields);
         $this->db->where('id', $user_id);
         return $this->db->get($this->_table);
     }
 
-    function set_user($user_id, $data) {
+    public function set_user($user_id, $data) {
         $this->db->where('id', $user_id);
         return $this->db->update($this->_table, $data);
     }
 
-    function delete_user($user_id) {
+    public function delete_user($user_id) {
         $this->db->where('id', $user_id);
         $this->db->delete($this->_table);
         return $this->db->affected_rows() > 0;
@@ -129,7 +129,7 @@ class Users extends CI_Model {
 
     // Forgot password function
 
-    function newpass($user_id, $pass, $key) {
+    public function newpass($user_id, $pass, $key) {
         $data = array(
             'newpass' => $pass,
             'newpass_key' => $key,
@@ -138,7 +138,7 @@ class Users extends CI_Model {
         return $this->set_user($user_id, $data);
     }
 
-    function activate_newpass($user_id, $key) {
+    public function activate_newpass($user_id, $key) {
         $this->db->set('password', 'newpass', FALSE);
         $this->db->set('newpass', NULL);
         $this->db->set('newpass_key', NULL);
@@ -149,7 +149,7 @@ class Users extends CI_Model {
         return $this->db->update($this->_table);
     }
 
-    function clear_newpass($user_id) {
+    public function clear_newpass($user_id) {
         $data = array(
             'newpass' => NULL,
             'newpass_key' => NULL,
@@ -160,7 +160,7 @@ class Users extends CI_Model {
 
     // Change password function
 
-    function change_password($user_id, $new_pass) {
+    public function change_password($user_id, $new_pass) {
         $this->db->set('password', $new_pass);
         $this->db->where('id', $user_id);
         return $this->db->update($this->_table);

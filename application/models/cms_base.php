@@ -1,12 +1,15 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * @property CI_DB_active_record $db
  */
 class Cms_base extends CI_Model {
+
+    private static $arr;
 
     public function __construct() {
         parent::__construct();
@@ -19,7 +22,11 @@ class Cms_base extends CI_Model {
      * @return array
      */
     public function get_settings() {
-        $this->db->cache_on();
+        if (self::$arr) {
+            return self::$arr;
+        }
+
+        //$this->db->cache_on();         //!!! Відключив через кешування запитів і повернення неправильних даних
         $this->db->where('s_name', 'main');
         $query = $this->db->get('settings', 1);
 
@@ -27,22 +34,21 @@ class Cms_base extends CI_Model {
             $arr = $query->row_array();
             $lang_arr = get_main_lang();
             $meta = $this->db
-                    ->where('lang_ident', $lang_arr['id'])
-                    ->limit(1)
-                    ->get('settings_i18n')
-                    ->result_array();
+                ->where('lang_ident', $lang_arr['id'])
+                ->limit(1)
+                ->get('settings_i18n')
+                ->result_array();
 
             $arr['site_short_title'] = $meta[0]['short_name'];
             $arr['site_title'] = $meta[0]['name'];
             $arr['site_description'] = $meta[0]['description'];
             $arr['site_keywords'] = $meta[0]['keywords'];
             $this->db->cache_off();
-
+            self::$arr = $arr;
             return $arr;
         } else {
             show_error($this->db->_error_message());
         }
-        $this->db->cache_off();
 
         return FALSE;
     }
@@ -56,7 +62,7 @@ class Cms_base extends CI_Model {
     public function get_langs() {
         $this->db->cache_on();
         $query = $this->db
-                ->get('languages');
+            ->get('languages');
         if ($query) {
             $query = $query->result_array();
         } else {
@@ -74,9 +80,9 @@ class Cms_base extends CI_Model {
     public function get_modules() {
         $this->db->cache_on();
         $query = $this->db
-                ->select('id, name, identif, autoload, enabled')
-                ->order_by('position')
-                ->get('components');
+            ->select('id, name, identif, autoload, enabled')
+            ->order_by('position')
+            ->get('components');
         $this->db->cache_off();
 
         return $query;
@@ -133,7 +139,7 @@ class Cms_base extends CI_Model {
      * @return array
      */
     public function get_categories() {
-//        $this->db->cache_on();
+        //        $this->db->cache_on();
         $this->db->order_by('position', 'ASC');
         $query = $this->db->get('category');
 
@@ -145,16 +151,16 @@ class Cms_base extends CI_Model {
             return $categories;
         }
 
-//        $this->db->cache_on();
+        //        $this->db->cache_on();
         return FALSE;
     }
 
     public function get_category_by_id($id) {
 
         $query = $this->db
-                ->order_by('position', 'ASC')
-                ->where('id', $id)
-                ->get('category');
+            ->order_by('position', 'ASC')
+            ->where('id', $id)
+            ->get('category');
 
         if ($query->num_rows() > 0) {
             $categories = $query->row_array();
@@ -176,6 +182,34 @@ class Cms_base extends CI_Model {
         }
 
         return $url;
+    }
+
+    public function getCategoriesPagesCounts() {
+        // getting counts
+        $result = $this->db
+            ->select(['category.id', 'category.parent_id', 'count(content.id) as pages_count'])
+            ->from('category')
+            ->join('content', 'category.id=content.category')
+            ->where('lang_alias', 0)
+            ->group_by('category.id')
+            ->get();
+
+        if (!$result) {
+            return [];
+        }
+
+        $result = $result->result_array();
+
+        $categoriesPagesCounts = array();
+        $count = count($result);
+        for ($i = 0; $i < $count; $i++) {
+            $categoriesPagesCounts[$result[$i]['id']] = array(
+                'parent_id' => $result[$i]['parent_id'],
+                'pages_count' => $result[$i]['pages_count'],
+            );
+        }
+
+        return $categoriesPagesCounts;
     }
 
 }

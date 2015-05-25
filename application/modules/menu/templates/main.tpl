@@ -1,6 +1,6 @@
 <div class="container">
 
-    <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->    
+    <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->
     <div class="modal hide fade modal_del">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -17,7 +17,7 @@
 
     <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->
 
-    <form method="post" action="#"> 
+    <form method="post" action="#">
         <section class="mini-layout">
             <div class="frame_title clearfix">
                 <div class="pull-left">
@@ -30,7 +30,7 @@
                         <a type="button" class="btn btn-small btn-success createLink pjax" href="/admin/components/cp/menu/create_item/{$insert_id}"><i class="icon-plus-sign icon-white"></i>{lang("Create link", "menu")}</a>
                         <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()"><i class="icon-trash"></i>{lang("Delete", "menu")}</button>
                     </div>
-                </div>                            
+                </div>
             </div>
             <div class="tab-content">
                 <div class="row-fluid">
@@ -50,7 +50,7 @@
                             <div>{lang('Show', 'menu')}</div>
                         </div>
                         <div class=" body_category frame_level">
-                            <div class="sortable save_positions" data-url="/admin/components/cp/menu/save_positions">
+                            <div class="sortable save_positions menu-table" data-url="/admin/components/cp/menu/save_positions">
                                 {$tree}
                             </div>
                         </div>

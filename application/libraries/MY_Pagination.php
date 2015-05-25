@@ -7,11 +7,13 @@ class MY_Pagination extends CI_Pagination {
     public function __construct()
     {
         parent::__construct();
+        $this->first_link = '&lsaquo; ' . lang('First');
+        $this->last_link	=  lang('Last') . ' &rsaquo;';
     }
-    
+
 	public function create_links_ajax()
 	{
-        $CI =& get_instance(); 
+        $CI =& get_instance();
 
 		// If our item count or per-page total is zero there is no need to continue.
 		if ($this->total_rows == 0 OR $this->per_page == 0)
@@ -92,7 +94,7 @@ class MY_Pagination extends CI_Pagination {
 
   		// And here we go...
 		$output = '';
-                
+
                 // Check for separated controls
                 if ($this->separate_controls)
                     $controls_output = '';
@@ -100,7 +102,7 @@ class MY_Pagination extends CI_Pagination {
 		// Render the "First" link
 		if  ($this->cur_page > $this->num_links)
 		{
-			$output .= $this->first_tag_open.'<a class="pjax" href="'.$this->base_url.'offset'.'/'.$this->suffix.'">'.$this->first_link.'</a>'.$this->first_tag_close;
+			$output .= $this->first_tag_open.'<a href="'.$this->base_url.'offset'.'/'.$this->suffix.'">'.$this->first_link.'</a>'.$this->first_tag_close;
 		}
 
 		// Render the "previous" link
@@ -108,13 +110,13 @@ class MY_Pagination extends CI_Pagination {
 		{
 			$i = $uri_page_number - $this->per_page;
 			if ($i == 0) $i = 'offset';
-                        
+
                         if (!$this->separate_controls)
-                            $output .= $this->prev_tag_open.'<a class="pjax" href="'.$this->base_url.$i.'/'.$this->suffix.'">'.$this->prev_link.'</a>'.$this->prev_tag_close;
+                            $output .= $this->prev_tag_open.'<a href="'.$this->base_url.$i.'/'.$this->suffix.'">'.$this->prev_link.'</a>'.$this->prev_tag_close;
                         else
-                            $controls_output .= $this->prev_tag_open.'<a class="pjax" href="'.$this->base_url.$i.'/'.$this->suffix.'">'.$this->prev_link.'</a>'.$this->prev_tag_close;
+                            $controls_output .= $this->prev_tag_open.'<a href="'.$this->base_url.$i.'/'.$this->suffix.'">'.$this->prev_link.'</a>'.$this->prev_tag_close;
 		}
-                
+
                 else {
                     if ($this->separate_controls)
                         $controls_output .= str_replace('>', ' class="disabled">', $this->prev_tag_open).'<span>'.$this->prev_link.'</span>'.$this->prev_tag_close;
@@ -134,7 +136,7 @@ class MY_Pagination extends CI_Pagination {
 				else
 				{
 					$n = ($i == 0) ? 'offset' : $i;
-					$output .= $this->num_tag_open.'<a class="pjax" href="'.$this->base_url.$n.'/'.$this->suffix.'">'.$loop.'</a>'.$this->num_tag_close;
+					$output .= $this->num_tag_open.'<a href="'.$this->base_url.$n.'/'.$this->suffix.'">'.$loop.'</a>'.$this->num_tag_close;
 				}
 			}
 		}
@@ -143,11 +145,11 @@ class MY_Pagination extends CI_Pagination {
 		if ($this->cur_page < $num_pages)
 		{
                     if (!$this->separate_controls)
-			$output .= $this->next_tag_open.'<a class="pjax" href="'.$this->base_url.($this->cur_page * $this->per_page).'/'.$this->suffix.'">'.$this->next_link.'</a>'.$this->next_tag_close;
+			$output .= $this->next_tag_open.'<a href="'.$this->base_url.($this->cur_page * $this->per_page).'/'.$this->suffix.'">'.$this->next_link.'</a>'.$this->next_tag_close;
                     else
-                        $controls_output .= $this->next_tag_open.'<a class="pjax" href="'.$this->base_url.($this->cur_page * $this->per_page).'/'.$this->suffix.'">'.$this->next_link.'</a>'.$this->next_tag_close;
+                        $controls_output .= $this->next_tag_open.'<a href="'.$this->base_url.($this->cur_page * $this->per_page).'/'.$this->suffix.'">'.$this->next_link.'</a>'.$this->next_tag_close;
 		}
-                
+
                 else {
                     if ($this->separate_controls)
                         $controls_output .= str_replace('>', ' class="disabled">', $this->next_tag_open).'<span>'.$this->next_link.'</span>'.$this->next_tag_close;
@@ -157,20 +159,20 @@ class MY_Pagination extends CI_Pagination {
 		if (($this->cur_page + $this->num_links) < $num_pages)
 		{
 			$i = (($num_pages * $this->per_page) - $this->per_page);
-			$output .= $this->last_tag_open.'<a class="pjax" href="'.$this->base_url.$i.'/'.$this->suffix.'">'.$this->last_link.'</a>'.$this->last_tag_close;
+			$output .= $this->last_tag_open.'<a href="'.$this->base_url.$i.'/'.$this->suffix.'">'.$this->last_link.'</a>'.$this->last_tag_close;
 		}
 
 		// Kill double slashes.  Note: Sometimes we can end up with a double slash
 		// in the penultimate link so we'll kill all double slashes.
 		$output = preg_replace("#([^:])//+#", "\\1/", $output);
-                
+
                 // Add the wrapper HTML if exists
 		$output = $this->full_tag_open.$output.$this->full_tag_close;
-                
+
                 if ($this->separate_controls){
                     $controls_output = preg_replace("#([^:])//+#", "\\1/", $controls_output);
                     $controls_output = $this->controls_tag_open.$controls_output.$this->controls_tag_close;
-                    
+
                     $output = $output.$controls_output;
                 }
 

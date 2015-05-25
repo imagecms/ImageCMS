@@ -11,7 +11,6 @@ if (!defined('BASEPATH'))
  * TODO: Rewrites as module
  *       optimize it and write db model
  */
-
 class Lib_category {
 
     public $categories = array();
@@ -19,9 +18,23 @@ class Lib_category {
     public $path = array();
     public $unsorted_arr = FALSE;
     public $unsorted = FALSE;
+    protected $defaultLocaleId;
 
-    function Lib_category() {
+    /**
+     *
+     * @var array [category_id => [parent_id=>category_id, pages_count=?],...]
+     */
+    protected $categoriesPagesCounts = array();
+
+    function __construct() {
         $this->CI = get_instance();
+
+        $this->defaultLocaleId = $this->CI->load->model('cms_admin')->get_default_lang()['id'];
+    }
+
+    public function setLocaleId($localeId) {
+        $this->defaultLocaleId = $localeId;
+        return $this;
     }
 
     /**
@@ -31,7 +44,7 @@ class Lib_category {
      * @return array
      */
     function build() {
-    
+
         // check cache file
         if (($cache = $this->CI->cache->fetch_func($this, '_build')) !== false) {
             return $cache;
@@ -57,7 +70,7 @@ class Lib_category {
         }
 
         if (($cache = $this->CI->cache->fetch('categories_unsorted_array')) !== FALSE) {
-            $this->unsorted_arr = & $cache;
+            $this->unsorted_arr = &$cache;
 
             foreach ($this->unsorted_arr as $k => $v) {
                 $this->unsorted_arr[$k] = $this->translate($this->unsorted_arr[$k]);
@@ -76,7 +89,7 @@ class Lib_category {
             }
 
             $this->CI->cache->store($key, $cats);
-            $this->unsorted_arr = & $cats;
+            $this->unsorted_arr = &$cats;
 
             foreach ($this->unsorted_arr as $k => $v) {
                 $this->unsorted_arr[$k] = $this->translate($this->unsorted_arr[$k]);
@@ -148,16 +161,19 @@ class Lib_category {
      * @return array
      */
     function _build() {
-        
+
         $this->categories = $this->CI->cms_base->get_categories();
         if ($this->categories)
             $this->create_path();
-        
+
         $new_cats = array();
-        
+
         if ($this->categories)
             foreach ($this->categories as $cats) {
                 if ($cats['parent_id'] == 0) {
+
+                    $cats['pages'] = $this->getPagesCountIncludingChilds($cats['id']);
+
                     # Category Level
                     $cats['level'] = $this->level;
 
@@ -166,16 +182,42 @@ class Lib_category {
                     # Build subcategories
                     //$cats['subtree'] = $this->_get_sub_cats($cats['id']);
                     $sub = $this->_get_sub_cats($cats['id']);
-                    if (count($sub))
+                    if (count($sub)) {
                         $cats['subtree'] = $sub;
+                    }
 
                     array_push($new_cats, $cats);
                 }
             }
 
         unset($this->categories);
-         
+
         return $new_cats;
+    }
+
+    /**
+     * 
+     * @param int $categoryId
+     * @return int|null int when pages count, null when category not found
+     */
+    public function getPagesCountIncludingChilds($categoryId) {
+	    if (!$this->categoriesPagesCounts) {
+            $this->categoriesPagesCounts = $this->CI->load->model('cms_base')->getCategoriesPagesCounts();
+        }
+
+        if (!isset($this->categoriesPagesCounts[$categoryId])) {
+            return 0;
+        }
+        
+        $childsCount = $this->categoriesPagesCounts[$categoryId]['pages_count'];        
+        
+        foreach ($this->categoriesPagesCounts as $categoryIdInner => $categoryData) {
+            if ($categoryData['parent_id'] == $categoryId) {
+                $childsCount += $this->getPagesCountIncludingChilds($categoryIdInner);
+            }
+        }
+        
+        return $childsCount;
     }
 
     /**
@@ -190,6 +232,7 @@ class Lib_category {
 
         foreach ($this->categories as $sub_cats) {
             if ($sub_cats['parent_id'] == $parent_id) {
+                $sub_cats['pages'] = $this->getPagesCountIncludingChilds($sub_cats['id']);
                 $sub_cats['level'] = $this->level;
 
                 $sub_cats = $this->translate($sub_cats);
@@ -203,7 +246,7 @@ class Lib_category {
         }
 
         $this->level--;
-       
+
         return $new_sub_cats;
     }
 
@@ -253,7 +296,8 @@ class Lib_category {
     }
 
     function translate($category = array()) {
-        if (!$this->CI->config->item('cur_lang')) {
+
+        if (!$this->defaultLocaleId) {
             return $category;
         }
 
@@ -279,7 +323,7 @@ class Lib_category {
 
     function get_translated_array() {
         $translated = array();
-        $lang = $this->CI->config->item('cur_lang');
+        $lang = $this->defaultLocaleId;
         $ck = 'categories_translated_array_' . $lang;
 
         if (($translated = $this->CI->cache->fetch($ck)) !== FALSE) {

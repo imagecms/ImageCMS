@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-13 06:17+0300\n"
-"PO-Revision-Date: 2014-08-13 06:17+0300\n"
+"POT-Creation-Date: 2014-12-26 04:52+0200\n"
+"PO-Revision-Date: 2014-12-26 04:52+0200\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -19,16 +19,52 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 
 #: ./application/modules/share/admin.php:39
+msgid "Social buttons was updated"
+msgstr "Кнопки соціальних мереж оновлено"
+
+#: ./application/modules/share/module_info.php:5
+msgid "Adds social networks buttons to products and articles"
+msgstr "Додає до товарів і статей кнопки соціальних мереж"
+
+#: ./application/modules/share/assets/admin/settings.tpl:17
+msgid "Buttons I like"
+msgstr "Кнопки "
+
+#: ./application/modules/share/assets/admin/settings.tpl:140
+msgid "only icons"
+msgstr "лише іконки"
+
+#: ./application/modules/share/assets/admin/settings.tpl:139
+msgid "icon and menu"
+msgstr "значок і меню"
+
+#: ./application/modules/share/assets/admin/settings.tpl:113
+msgid "My circle"
+msgstr "Мой круг"
+
+#: ./application/modules/share/assets/admin/settings.tpl:83
+msgid "My World"
+msgstr "Мой Мир"
+
+#: ./application/modules/share/assets/admin/settings.tpl:73
+msgid "Odnoklassniki"
+msgstr "Одноклассники"
+
+#: ./application/modules/share/assets/admin/settings.tpl:43
+msgid "VK"
+msgstr "В.К."
+
+#: ./application/modules/share/assets/admin/settings.tpl:16
+msgid "Share buttons"
+msgstr "Кнопки "
+
+#: ./application/modules/share/admin.php:41
 msgid "Settings successfully saved"
 msgstr "Налаштування успішно збережено"
 
 #: ./application/modules/share/module_info.php:4
 msgid "Social Networking Buttons"
 msgstr "Кнопки соціальних мереж"
-
-#: ./application/modules/share/module_info.php:5
-msgid "Adds social networks buttons to products and articles"
-msgstr "Додає кнопки соціальних мереж для товарів і статей"
 
 #: ./application/modules/share/assets/admin/settings.tpl:5
 msgid "Button social networks module settings"
@@ -46,14 +82,6 @@ msgstr "Зберегти"
 msgid "Save and go back"
 msgstr "Зберегти і повернутися"
 
-#: ./application/modules/share/assets/admin/settings.tpl:16
-msgid "Share buttons"
-msgstr "Кнопки Share"
-
-#: ./application/modules/share/assets/admin/settings.tpl:17
-msgid "Buttons I like"
-msgstr "Кнопки Like"
-
 #: ./application/modules/share/assets/admin/settings.tpl:25
 #: ./application/modules/share/assets/admin/settings.tpl:156
 msgid "Settings"
@@ -62,10 +90,6 @@ msgstr "Налаштування"
 #: ./application/modules/share/assets/admin/settings.tpl:33
 msgid "Я.ру"
 msgstr "Я.ру"
-
-#: ./application/modules/share/assets/admin/settings.tpl:43
-msgid "VK"
-msgstr "VK"
 
 #: ./application/modules/share/assets/admin/settings.tpl:53
 #: ./application/modules/share/assets/admin/settings.tpl:164
@@ -77,14 +101,6 @@ msgstr "Facebook"
 msgid "Twitter"
 msgstr "Twitter"
 
-#: ./application/modules/share/assets/admin/settings.tpl:73
-msgid "Odnoklassniki"
-msgstr "Однокласники"
-
-#: ./application/modules/share/assets/admin/settings.tpl:83
-msgid "My World"
-msgstr "Мій Світ"
-
 #: ./application/modules/share/assets/admin/settings.tpl:93
 msgid "Livejournal"
 msgstr "Livejournal"
@@ -92,10 +108,6 @@ msgstr "Livejournal"
 #: ./application/modules/share/assets/admin/settings.tpl:103
 msgid "Friendfeed"
 msgstr "Friendfeed"
-
-#: ./application/modules/share/assets/admin/settings.tpl:113
-msgid "My circle"
-msgstr "My circle"
 
 #: ./application/modules/share/assets/admin/settings.tpl:123
 msgid "Google+"
@@ -116,14 +128,6 @@ msgstr "кнопка"
 #: ./application/modules/share/assets/admin/settings.tpl:138
 msgid "link"
 msgstr "посилання"
-
-#: ./application/modules/share/assets/admin/settings.tpl:139
-msgid "icon and menu"
-msgstr "значок меню"
-
-#: ./application/modules/share/assets/admin/settings.tpl:140
-msgid "only icons"
-msgstr "тільки значки"
 
 #: ./application/modules/share/assets/admin/settings.tpl:174
 msgid "Вконтакте"

@@ -1,0 +1,30 @@
+{
+    "name": "ImageCMS",
+    "description": "Content managment system in two editions: Corporate (Free) & Shop (Proprietary)",
+    "keywords": ["CMS", "E-commerce"],
+    "homepage": "http://www.imagecms.net",
+    "type": "project",
+    "config": {
+        "vendor-dir": "third_party"
+    },
+    "require": {
+        "php": ">=5.4.0",
+        "ext-curl": "*",
+        "propel/propel": "2.0.*@dev",
+        "monolog/monolog": "1.12.*@dev",
+        "phpoffice/phpexcel": ">1.8",
+        "symfony/var-dumper": "2.6.*",
+        "tubalmartin/cssmin": "dev-master",
+        "patchwork/jsqueeze": "~2.0",
+        "tecnick.com/tcpdf": ">=6",
+        "google/apiclient": ">=1.1.2"
+
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": ">=2",
+        "phpmd/phpmd": ">=2.2.2",
+        "nubera-ebusiness/intercom-php": "dev-master",
+        "phpunit/phpunit": ">=4.6.6",
+        "phpunit/phpunit-skeleton-generator": ">=2.0.1"
+    }
+}

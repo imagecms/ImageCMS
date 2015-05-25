@@ -6,8 +6,8 @@ $(document).ready(function() {
             dataType: 'text',
             url: base_url + 'admin/components/cp/cfcm/getFormFields/' + $(this).val(),
             success: function(data) {
-                $('input').each(function() {
-                    if ($.inArray($(this).attr('id'), notDeleted) === -1) {
+                $('input, select').each(function() {
+                    if ($.inArray($(this).attr('id'), notDeleted) === -1 && !$(this).closest('.chosen-container').length) {
                         $(this).closest('.control-group').remove();
                     }
                 });

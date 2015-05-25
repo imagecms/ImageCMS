@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-13 08:21+0300\n"
-"PO-Revision-Date: 2014-08-13 08:21+0300\n"
+"POT-Creation-Date: 2014-10-28 06:33+0200\n"
+"PO-Revision-Date: 2014-10-28 06:33+0200\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -17,6 +17,14 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/user_manager/module_info.php:4
+msgid "Users manager"
+msgstr "Управління користувачами"
+
+#: ./application/modules/user_manager/module_info.php:5
+msgid "User management in ImageCMS Corporate."
+msgstr "Управління користувачами для корпоративного сайту"
 
 #: ./application/modules/user_manager/admin.php:94
 msgid "Next"
@@ -138,14 +146,6 @@ msgstr "a_del_user_notif"
 #: ./application/modules/user_manager/admin.php:516
 msgid "amt_deleted_user"
 msgstr "amt_deleted_user"
-
-#: ./application/modules/user_manager/module_info.php:4
-msgid "Users manager"
-msgstr "Менеджер користувачів"
-
-#: ./application/modules/user_manager/module_info.php:5
-msgid "User management in ImageCMS Corporate."
-msgstr "Управління користувачами в ImageCMS Corporate"
 
 #: ./application/modules/user_manager/templates/genreroletable.tpl:2
 #: ./application/modules/user_manager/templates/edit_perms.tpl:63

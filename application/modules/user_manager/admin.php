@@ -31,7 +31,7 @@ class Admin extends BaseAdminController {
         $this->set_tpl_roles();
         $this->template->add_array($this->genre_user_table());
         $this->template->add_array($this->show_edit_prems_tpl($id = 10));
-        $this->template->registerJsFile('application/modules/user_manager/templates/js/script.js', 'after');
+        $this->template->registerJsFile(getModulePath('user_manager') . 'templates/js/script.js', 'after');
         $this->display_tpl('main');
     }
 
@@ -72,7 +72,7 @@ class Admin extends BaseAdminController {
 
         $this->load->model('dx_auth/users', 'users');
 
-        $offset = (int) $this->uri->segment(6);
+        $offset = (int)$this->uri->segment(6);
         $row_count = 20;
 
         // Get all users
@@ -201,8 +201,8 @@ class Admin extends BaseAdminController {
                 $this->user2->set_role($user_info['id'], $role);
 
                 $this->lib_admin->log(
-                        lang('Create a user or the username has been created', 'user_manager') .
-                        ' <a href="' . site_url('/admin/components/cp/user_manager/edit_user/' . $user_info['id']) . '">' . $val->set_value('username') . '</a>'
+                    lang('Create a user or the username has been created', 'user_manager') .
+                    ' <a href="' . site_url('/admin/components/cp/user_manager/edit_user/' . $user_info['id']) . '">' . $val->set_value('username') . '</a>'
                 );
 
                 showMessage(lang('Username has been created or user has been created', 'user_manager'));
@@ -231,7 +231,7 @@ class Admin extends BaseAdminController {
         $this->set_tpl_roles();
         if (!$this->ajaxRequest) {
             $this->template->registerJsFile('templates/administrator/js/jquery.maskedinput-1.3.min.js', 'after');
-            $this->template->registerJsFile('application/modules/user_manager/templates/js/create.js', 'after');
+            $this->template->registerJsFile(getModulePath('user_manager') . 'templates/js/create.js', 'after');
             $this->display_tpl('create_user');
         }
     }
@@ -260,8 +260,8 @@ class Admin extends BaseAdminController {
                 ($hook = get_hook('users_ban')) ? eval($hook) : NULL;
                 $this->users->ban_user($value);
                 $this->lib_admin->log(
-                        lang('Ban the user  or the user has been banned', 'user_manager') .
-                        ' <a href="' . site_url('/admin/components/cp/user_manager/edit_user/' . $value) . '">' . $row->username . '</a>'
+                    lang('Ban the user  or the user has been banned', 'user_manager') .
+                    ' <a href="' . site_url('/admin/components/cp/user_manager/edit_user/' . $value) . '">' . $row->username . '</a>'
                 );
             } else {
 
@@ -269,8 +269,8 @@ class Admin extends BaseAdminController {
                 ($hook = get_hook('users_unban')) ? eval($hook) : NULL;
                 $this->users->unban_user($value);
                 $this->lib_admin->log(
-                        lang('The user has been unbanned ', 'user_manager') .
-                        ' <a href="' . site_url('/admin/components/cp/user_manager/edit_user/' . $value) . '">' . $row->username . '</a>'
+                    lang('The user has been unbanned ', 'user_manager') .
+                    ' <a href="' . site_url('/admin/components/cp/user_manager/edit_user/' . $value) . '">' . $row->username . '</a>'
                 );
             }
         }
@@ -284,19 +284,19 @@ class Admin extends BaseAdminController {
         if (!empty($_GET)) {
             //cp_check_perm('user_view_data');
 
-
+//?s_data=ad&s_email=&role=0
+            $locale = MY_Controller::defaultLocale();
             @$s_data = $this->input->get('s_data');
             @$s_email = $this->input->get('s_email');
             $role = $this->input->get('role');
-            $page = (int) $this->uri->segment(8);
-
+            $page = (int)$this->uri->segment(8);
             $this->db->select("users.*", FALSE);
             $this->db->select("shop_rbac_roles.name AS role_name", FALSE);
-            $this->db->select("shop_rbac_roles_i18n.alt_name AS role_alt_name", FALSE);
+            $this->db->select("shop_rbac_roles_i18n.alt_name AS role_alt_name, shop_rbac_roles_i18n.locale", FALSE);
 
             $this->db->join("shop_rbac_roles", "shop_rbac_roles.id = users.role_id", 'left');
-            $this->db->join("shop_rbac_roles_i18n", "shop_rbac_roles.id = shop_rbac_roles_i18n.id", 'left');
-//            $this->db->where('locale', BaseAdminController::getCurrentLocale());
+            $this->db->join("shop_rbac_roles_i18n", "shop_rbac_roles.id = shop_rbac_roles_i18n.id AND shop_rbac_roles_i18n.locale='$locale'", 'left');
+
             if (!empty($s_data)) {
                 $this->db->like('username', $s_data);
             } elseif (!empty($s_email)) {
@@ -334,7 +334,6 @@ class Admin extends BaseAdminController {
 
                     echo $rezult_table;
                 } else {
-
 
 
                     $this->template->assign('users', $users);
@@ -430,8 +429,8 @@ class Admin extends BaseAdminController {
 
 
             $this->lib_admin->log(
-                    lang('amt_updated_user') .
-                    ' <a href="' . site_url('/admin/components/cp/user_manager/edit_user/' . $user_id) . '">' . $data['username'] . '</a>'
+                lang('amt_updated_user') .
+                ' <a href="' . site_url('/admin/components/cp/user_manager/edit_user/' . $user_id) . '">' . $data['username'] . '</a>'
             );
 
             showMessage(lang('Changes saved', 'user_manager'));
@@ -561,9 +560,8 @@ class Admin extends BaseAdminController {
         }
 
         array_multisort($count, SORT_ASC, $groups);
-
-        $this->db->select("shop_rbac_roles.*", FALSE);
-        $this->db->select("shop_rbac_roles_i18n.alt_name", FALSE);
+//        $this->db->select("shop_rbac_roles.*", FALSE);
+//        $this->db->select("shop_rbac_roles_i18n.alt_name", FALSE);
         $this->db->where('locale', BaseAdminController::getCurrentLocale());
         $this->db->join("shop_rbac_roles_i18n", "shop_rbac_roles_i18n.id = shop_rbac_roles.id");
         $role = $this->db->get('shop_rbac_roles')->result_array();
@@ -596,6 +594,25 @@ class Admin extends BaseAdminController {
     private function fetch_tpl($file) {
         $file = realpath(dirname(__FILE__)) . '/templates/' . $file;
         return $this->template->show('file:' . $file);
+    }
+
+    /**
+     * Set user role
+     * @param $userId
+     * @param $roleId
+     */
+    public function setRoleId() {
+        $userId = $this->input->post('userId');
+        $roleId = $this->input->post('roleId');
+        $userId = is_array($userId) ? $userId : array($userId);
+
+        $this->db->where_in('id', $userId)->set('role_id', $roleId)->update('users');
+
+        if ($this->input->is_ajax_request()) {
+            echo json_encode(['success' => TRUE, 'message' => lang('User role changed.', 'admin')]);
+        } else {
+            return TRUE;
+        }
     }
 
 }

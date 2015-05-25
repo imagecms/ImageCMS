@@ -1,13 +1,15 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 class Admin_search extends BaseAdminController {
 
     public $items_per_page = '20'; // items per page for advanced search.
 
     public function __construct() {
+
         parent::__construct();
 
         $this->load->library('DX_Auth');
@@ -22,12 +24,14 @@ class Admin_search extends BaseAdminController {
     }
 
     public function index($hash = '', $offset = 0) {
+
         $this->load->module('search');
         $this->load->helper('category');
-        
-        /** Check is first page (Temp) **/
-        if ($offset == 'offset')
+
+        /** Check is first page (Temp) * */
+        if ($offset == 'offset') {
             $offset = 0;
+        }
 
         $data = trim($this->input->get('q'));
         $data = strip_tags($data);
@@ -48,15 +52,15 @@ class Admin_search extends BaseAdminController {
             $where = array(
                 array(
                     'publish_date <=' => 'UNIX_TIMESTAMP()',
-                    'backticks' => FALSE,
+                    'backticks' => false,
                 ),
                 array(
                     'id =' => (int) $searchText,
                     'backticks' => 'both',
                 ),
-//					array(
-//							'lang_alias ' => '0',
-//						),
+                //                  array(
+                //                          'lang_alias ' => '0',
+                //                      ),
                 array(
                     'prev_text' => $searchText,
                     'operator' => 'LIKE',
@@ -104,40 +108,46 @@ class Admin_search extends BaseAdminController {
 
             if ($result['total_rows'] > 0) {
                 $this->template->assign('pages', $result['query']->result_array());
-                $cats = Array();
-                foreach ($this->db->get('category')->result_array() as $row)
+                $cats = array();
+                foreach ($this->db->get('category')->result_array() as $row) {
                     $cats[$row['id']] = $row['name'];
+                }
                 $this->template->assign('categories', $cats);
             }
 
             $usersResult = $this->db->where('id =', $searchText)
-                    ->or_where("username LIKE '%$searchText%'")
-                    ->or_where("email LIKE '%$searchText%'")
-                    ->get('users')
-                    ->result_array();
+                ->or_where("username LIKE '%$searchText%'")
+                ->or_where("email LIKE '%$searchText%'")
+                ->get('users')
+                ->result_array();
 
-            if (count($usersResult) > 0)
+            if (count($usersResult) > 0) {
                 $this->template->assign('users', $usersResult);
+            }
         }
 
-        if ($result['search_title'] == NULL) {
+        if ($result['search_title'] == null) {
             $result['search_title'] = $searchText;
         }
 
         $this->template->assign('search_title', $result['search_title']);
 
-        $this->template->show('search', FALSE);
+        $this->template->show('search', false);
     }
 
     public function advanced_search() {
-        $this->template->add_array(array(
-            'categories' => $this->lib_category->build(),
-        ));
 
-        $this->template->show('advanced_search', FALSE);
+        $this->template->add_array(
+            array(
+                    'categories' => $this->lib_category->build(),
+                )
+        );
+
+        $this->template->show('advanced_search', false);
     }
 
     public function do_advanced_search() {
+
         $this->load->library('pagination');
         $this->load->module('filter');
         $this->load->module('forms');
@@ -148,40 +158,44 @@ class Admin_search extends BaseAdminController {
 
         $search_data['search_text'] = urldecode($search_data['search_text']);
 
-        if ($search_data['use_cfcm_group'] == 0)
+        if ($search_data['use_cfcm_group'] == 0) {
             unset($search_data['use_cfcm_group']);
+        }
 
-        if (!$search_data)
+        if (!$search_data) {
             $search_data = array();
+        }
 
         ob_start();
         $this->form_from_group($search_data['use_cfcm_group'], $search_data);
         $group_html = ob_get_contents();
         ob_end_clean();
 
-        $this->template->add_array(array(
-            'advanced_search' => TRUE,
-            'filter_data' => $search_data,
-            'cfcm_group_html' => $group_html,
-        ));
+        $this->template->add_array(
+            array(
+                    'advanced_search' => true,
+                    'filter_data' => $search_data,
+                    'cfcm_group_html' => $group_html,
+                )
+        );
 
         $ids = $this->filter->search_items($search_data);
 
-        if (!$ids AND isset($search_data['use_cfcm_group'])) {
-            $this->template->show('search', FALSE);
+        if (!$ids and isset($search_data['use_cfcm_group'])) {
+            $this->template->show('search', false);
             exit;
         }
 
         $query = $this->_filter_pages($ids, $search_data);
 
         if ($query->num_rows() == 0) {
-            $this->template->show('search', FALSE);
+            $this->template->show('search', false);
             exit;
         }
 
         $config = array();
         $config['base_url'] = site_url('admin/admin_search/do_advanced_search/' . http_build_query($search_data, '', '/'));
-        $config['total_rows'] = $this->_filter_pages($ids, $search_data, TRUE);
+        $config['total_rows'] = $this->_filter_pages($ids, $search_data, true);
         $config['per_page'] = $this->items_per_page;
         $config['uri_segment'] = $this->uri->total_segments();
         $config['first_link'] = lang('First link', 'admin');
@@ -194,18 +208,21 @@ class Admin_search extends BaseAdminController {
         $this->pagination->initialize($config);
         $pagination = $this->pagination->create_links_ajax();
 
-        $this->template->add_array(array(
-            'pages' => $query->result_array(),
-            'pagination' => $pagination,
-            'advanced_search' => TRUE,
-            'filter_data' => $search_data,
-            'cfcm_group_html' => $group_html,
-        ));
+        $this->template->add_array(
+            array(
+                    'pages' => $query->result_array(),
+                    'pagination' => $pagination,
+                    'advanced_search' => true,
+                    'filter_data' => $search_data,
+                    'cfcm_group_html' => $group_html,
+                )
+        );
 
-        $this->template->show('search', FALSE);
+        $this->template->show('search', false);
     }
 
     public function validate_advanced_search() {
+
         $this->load->module('filter');
         $this->load->module('forms');
 
@@ -230,50 +247,56 @@ class Admin_search extends BaseAdminController {
         }
     }
 
-    public function form_from_group($group_id, $attributes = FALSE) {
+    public function form_from_group($group_id, $attributes = false) {
+
         $this->load->module('filter');
         $this->load->module('forms');
         $this->load->module('cfcm/admin')->_set_forms_config();
         $form = $this->filter->create_filter_form($group_id);
 
         // overfilling form on search
-        if ($attributes AND $form)
+        if ($attributes and $form) {
             $form->setAttributes($attributes);
+        }
 
         $result = '';
 
-        if ($form)
+        if ($form) {
             foreach ($form->asArray() as $field) {
                 $result .= '<div class="form_text">' . $field['label'] . '</div>';
                 $result .= '<div class="form_input">' . $field['field'] . '</div>';
                 $result .= '<div class="form_overflow"></div>';
             }
+        }
 
         echo $result;
         echo '<input type="hidden" value="' . $group_id . '" name="use_cfcm_group" />';
     }
 
-    public function _filter_pages($ids, $search_data, $count = FALSE) {
+    public function _filter_pages($ids, $search_data, $count = false) {
+
         $where = array(
             'lang_alias' => '0',
         );
 
         $this->db->where($where);
 
-        if (count((array) $ids) > 0 AND is_array($ids))
+        if (count((array) $ids) > 0 and is_array($ids)) {
             $this->db->where_in('id', $ids);
+        }
 
         if (isset($search_data['search_text'])) {
             $s_text = $search_data['search_text'];
-            $this->db->where('(title LIKE "%' . $this->db->escape_str($s_text) . '%" OR prev_text LIKE "%' . $this->db->escape_str($s_text) . '%" OR full_text LIKE "%' . $this->db->escape_str($s_text) . '%" )', NULL, FALSE);
+            $this->db->where('(title LIKE "%' . $this->db->escape_str($s_text) . '%" OR prev_text LIKE "%' . $this->db->escape_str($s_text) . '%" OR full_text LIKE "%' . $this->db->escape_str($s_text) . '%" )', null, false);
         }
 
-        if (isset($search_data['category']) AND $search_data['category'] != '')
+        if (isset($search_data['category']) and $search_data['category'] != '') {
             $this->db->where_in('category', $search_data['category']);
+        }
 
-        if ($count == FALSE) {
+        if ($count == false) {
             $this->db->select('*');
-            $this->db->select('CONCAT_WS("", content.cat_url, content.url) as full_url', FALSE);
+            $this->db->select('CONCAT_WS("", content.cat_url, content.url) as full_url', false);
             return $this->db->get('content', $this->items_per_page, (int) $this->uri->segment($this->uri->total_segments()));
         } else {
             $this->db->from('content');
@@ -282,17 +305,19 @@ class Admin_search extends BaseAdminController {
     }
 
     public function autocomplete() {
+
         if ($this->ajaxRequest) {
             $tokens = array();
             $pages = $this->db->select('title')
-                    ->get('content')
-                    ->result_array();
-            foreach ($pages as $p)
+                ->get('content')
+                ->result_array();
+            foreach ($pages as $p) {
                 $tokens[] = $p['title'];
+            }
 
             $users = $this->db->select('username, email')
-                    ->get('users')
-                    ->result_array();
+                ->get('users')
+                ->result_array();
 
             foreach ($users as $u) {
                 $tokens[] = $u['username'];
@@ -300,8 +325,9 @@ class Admin_search extends BaseAdminController {
             }
 
             echo json_encode(array_values(array_unique($tokens)));
-        } else
+        } else {
             redirect('/admin');
+        }
     }
 
 }

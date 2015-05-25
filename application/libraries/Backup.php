@@ -13,7 +13,7 @@ class Backup {
 
     /**
      *
-     * @var Backup 
+     * @var Backup
      */
     protected static $instanse;
 
@@ -70,7 +70,7 @@ class Backup {
     }
 
     /**
-     * 
+     *
      * @return Backup
      */
     public static function create() {
@@ -109,7 +109,7 @@ class Backup {
         if (!is_array($backupSettings)) { // no settings yet
             return NULL;
         }
-        if (!is_null($key)) {
+        if ($key != null) {
             if (!key_exists($key, $backupSettings)) {
                 return NULL;
             }
@@ -121,12 +121,12 @@ class Backup {
     /**
      * Creating the backup file
      * @param string $ext extention (txt|zip|gzip)
-     * @param string $fileName (optional) filename 
+     * @param string $fileName (optional) filename
      * @return string|boolean filename|FALSE
      */
-    public function createBackup($ext, $prefix = NULL, $fullName = FALSE) {
+    public function createBackup($ext, $prefix = NULL, $fullName = FALSE, $params = array()) {
         if (is_really_writable($this->directory)) {
-            if (is_null($prefix)) {
+            if ($prefix == null) {
                 $prefix = "sql";
             }
             if ($fullName === TRUE) {
@@ -134,7 +134,19 @@ class Backup {
             } else {
                 $fileName = $prefix . "_" . date("d-m-Y_H.i.s");
             }
-            $backup = & $this->ci->dbutil->backup(array('format' => $ext == 'sql' ? 'txt' : $ext));
+
+            $params = array(
+                'format' => $ext == 'sql' ? 'txt' : $ext,
+            );
+
+            $currentDbInstance = $this->ci->db;
+
+            $this->initBackupDB();
+
+            $backup = & $this->ci->dbutil->backup($params);
+
+            $this->ci->db = $currentDbInstance;
+
             if (write_file($this->directory . '/' . $fileName . '.' . $ext, $backup)) {
                 return $this->directory . '/' . $fileName . '.' . $ext;
             }
@@ -147,7 +159,29 @@ class Backup {
     }
 
     /**
-     * 
+     * Init DB for backup with msql driver
+     */
+    private function initBackupDB() {
+        // this is just all config keys
+        $configNames = array(
+            'hostname', 'username', 'password',
+            'database', 'dbdriver', 'dbprefix',
+            'pconnect', 'db_debug', 'cache_on',
+            'cachedir', 'char_set', 'dbcollat',
+            'swap_pre', 'autoinit', 'stricton',
+        );
+
+        $config = array();
+        foreach ($configNames as $key) {
+            $config[$key] = $key == 'dbdriver' ? 'mysql' : $this->ci->db->$key;
+        }
+
+        $this->ci->db = $this->ci->load->database($config, TRUE);
+        $this->ci->load->dbutil();
+    }
+
+    /**
+     *
      * @return boolean
      */
     public function deleteOldFiles() {
@@ -189,7 +223,7 @@ class Backup {
     }
 
     /**
-     * 
+     *
      * @return boolean
      */
     public function getOldestFileToDelete() {
@@ -197,16 +231,20 @@ class Backup {
         // getting only files that allow to delete by pattern
         $files = array();
         foreach ($files_ as $file) {
-            if ($this->checkFileName($file['filename'], 'allowDelete') && $file['locked'] != 1)
+            if ($this->checkFileName($file['filename'], 'allowDelete') && $file['locked'] != 1) {
                 $files[] = $file;
+            }
         }
 
-        if (!count($files) > 0)
+        if (!count($files) > 0) {
             return FALSE;
+        }
 
         $minKey = 0;
         $minTime = $files[0]['timeUpdate'];
-        for ($i = 1; $i < count($files); $i++) {
+
+        $countFiles = count($files);
+        for ($i = 1; $i < $countFiles; $i++) {
             if ($minTime > $files[$i]['timeUpdate']) {
                 $minTime = $files[$i]['timeUpdate'];
                 $minKey = $i;
@@ -254,12 +292,19 @@ class Backup {
             }
             closedir($dir);
         }
+
+        foreach ($files as $key => $row) {
+            $backaps[$key] = $row['timeUpdate'];
+        }
+
+        array_multisort($backaps, SORT_DESC, $files);
+
         return $files;
     }
 
     /**
      * Checking file name by pattern
-     * @param string $fileName 
+     * @param string $fileName
      * @param boolean $returnValue
      * @return boolean
      */

@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-02 03:58+0300\n"
-"PO-Revision-Date: 2014-08-02 03:58+0300\n"
+"POT-Creation-Date: 2015-02-05 03:19+0200\n"
+"PO-Revision-Date: 2015-02-05 03:19+0200\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -17,6 +17,68 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/menu/templates/edit_item.tpl:5
+#: ./application/modules/menu/templates/edit_item_origin.tpl:5
+#: ./application/modules/menu/templates/_menulistitem.tpl:29
+msgid "Edit menu item"
+msgstr "Edit menu item"
+
+#: ./application/modules/menu/templates/create_item.tpl:11
+#: ./application/modules/menu/templates/create_menu.tpl:12
+msgid "Create and exit"
+msgstr "Create and exit"
+
+#: ./application/modules/menu/templates/create_item.tpl:5
+msgid "Create a menu item"
+msgstr "Create a menu item"
+
+#: ./application/modules/menu/templates/main.tpl:30
+msgid "Create link"
+msgstr "Add menu item"
+
+#: ./application/modules/menu/assets/admin/menu_list.tpl:29
+#: ./application/modules/menu/templates/menu_list.tpl:29
+msgid "Create a menu"
+msgstr "Add new menu"
+
+# ?
+#: ./application/modules/menu/admin.php:224
+msgid "The menu item was successfully created"
+msgstr "The menu item successfully created"
+
+#: ./application/modules/menu/admin.php:842
+msgid "Menu created"
+msgstr "Menu created"
+
+#: ./application/modules/menu/assets/admin/menu_list.tpl:50
+#: ./application/modules/menu/templates/menu_list.tpl:50
+msgid "Created"
+msgstr "Created"
+
+#: ./application/modules/menu/admin.php:896
+msgid "The menu with the same name has been created yet"
+msgstr "The menu with the same name has been created yet"
+
+#: ./application/modules/menu/templates/category_selector.tpl:108
+#: ./application/modules/menu/templates/create_item.tpl:10
+#: ./application/modules/menu/templates/create_menu.tpl:11
+#: ./application/modules/menu/templates/module_selector.tpl:119
+#: ./application/modules/menu/templates/url_selector.tpl:98
+msgid "Create"
+msgstr "Create"
+
+#: ./application/modules/menu/assets/admin/menu_list.tpl:51
+#: ./application/modules/menu/assets/admin/menu_list.tpl:73
+#: ./application/modules/menu/templates/menu_list.tpl:51
+#: ./application/modules/menu/templates/menu_list.tpl:73
+msgid "Editing"
+msgstr "Edit"
+
+#: ./application/modules/menu/assets/admin/menu_list.tpl:47
+#: ./application/modules/menu/templates/menu_list.tpl:47
+msgid "Denotation"
+msgstr "Title"
 
 #: ./application/modules/menu/templates/category_selector.tpl:56
 #: ./application/modules/menu/templates/create_item.tpl:132
@@ -67,11 +129,6 @@ msgstr "Root menu cannot be used as a child item"
 msgid "Open a menu, level"
 msgstr "Open menu, level"
 
-# ?
-#: ./application/modules/menu/admin.php:224
-msgid "The menu item was successfully created"
-msgstr "The menu item was successfully created/ The menu item has been successfully created/ Menu item created"
-
 #: ./application/modules/menu/templates/edit_item.tpl:149
 msgid "Choose image "
 msgstr "Choose an image"
@@ -103,11 +160,11 @@ msgstr "Category ID"
 #: ./application/modules/menu/admin.php:883
 #: ./application/modules/menu/admin.php:1135
 msgid "Changes saved"
-msgstr "Changes saved/ Changes have been saved"
+msgstr "Changes saved"
 
 #: ./application/modules/menu/admin.php:618
 msgid "Changes successfully saved"
-msgstr "Changes successfully saved/ Changes has been successfully saved"
+msgstr "Changes successfully saved"
 
 #: ./application/modules/menu/templates/edit_item.tpl:418
 #: ./application/modules/menu/templates/edit_item_origin.tpl:404
@@ -147,10 +204,6 @@ msgstr "Description"
 msgid "Save and go back"
 msgstr "Save and go back"
 
-#: ./application/modules/menu/admin.php:842
-msgid "Menu created"
-msgstr "Menu created/ Menu has been created"
-
 #: ./application/modules/menu/assets/admin/menu_list.tpl:10
 #: ./application/modules/menu/templates/menu_list.tpl:10
 msgid "Delete selected menu?"
@@ -163,17 +216,12 @@ msgstr "The field is required to be filled in"
 #: ./application/modules/menu/templates/edit_menu.tpl:7
 #: ./application/modules/menu/templates/edit_menu.tpl:26
 msgid "Edit a menu"
-msgstr "Edit a menu/ Edit menu/ Edit the menu"
+msgstr "Edit menu"
 
 #: ./application/modules/menu/admin.php:920
 #: ./application/modules/menu/admin.php:937
 msgid "Menu removed"
-msgstr "Menu removed/ Menu deleted"
-
-#: ./application/modules/menu/assets/admin/menu_list.tpl:29
-#: ./application/modules/menu/templates/menu_list.tpl:29
-msgid "Create a menu"
-msgstr "Create a menu"
+msgstr "Menu removed"
 
 #: ./application/modules/menu/admin.php:1178
 #: ./application/modules/menu/templates/category_selector.tpl:46
@@ -252,13 +300,6 @@ msgstr "Menu items deleting..."
 msgid "Menu deleting"
 msgstr "Menu deleting..."
 
-#: ./application/modules/menu/assets/admin/menu_list.tpl:51
-#: ./application/modules/menu/assets/admin/menu_list.tpl:73
-#: ./application/modules/menu/templates/menu_list.tpl:51
-#: ./application/modules/menu/templates/menu_list.tpl:73
-msgid "Editing"
-msgstr "Editing..."
-
 #: ./application/modules/menu/assets/admin/menu_list.tpl:13
 #: ./application/modules/menu/assets/admin/menu_list.tpl:30
 #: ./application/modules/menu/templates/main.tpl:13
@@ -298,15 +339,6 @@ msgstr "Options"
 #: ./application/modules/menu/templates/pages_selector.tpl:101
 msgid "ID"
 msgstr "ID"
-
-#: ./application/modules/menu/templates/main.tpl:30
-msgid "Create link"
-msgstr "Create a  link"
-
-#: ./application/modules/menu/assets/admin/menu_list.tpl:50
-#: ./application/modules/menu/templates/menu_list.tpl:50
-msgid "Created"
-msgstr "Created"
 
 #: ./application/modules/menu/templates/category_selector.tpl:67
 #: ./application/modules/menu/templates/create_item.tpl:145
@@ -484,11 +516,6 @@ msgstr "Attention"
 msgid "Menu item successfuly deleted"
 msgstr "Menu item successfuly deleted/ Menu item has been successfully deleted"
 
-#: ./application/modules/menu/assets/admin/menu_list.tpl:47
-#: ./application/modules/menu/templates/menu_list.tpl:47
-msgid "Denotation"
-msgstr "Denotation"
-
 #: ./application/modules/menu/templates/create_item.tpl:9
 #: ./application/modules/menu/templates/create_menu.tpl:10
 #: ./application/modules/menu/templates/edit_item.tpl:9
@@ -571,10 +598,6 @@ msgstr "hide menu/ Hide the menu/ Hide menu"
 #: ./application/modules/menu/templates/module_selector.tpl:5
 msgid "Select module"
 msgstr "Select a module"
-
-#: ./application/modules/menu/admin.php:896
-msgid "The menu with the same name has been created yet"
-msgstr "The menu with the same name has been created yet"
 
 #: ./application/modules/menu/templates/create_item.tpl:415
 #: ./application/modules/menu/templates/module_selector.tpl:44
@@ -668,11 +691,6 @@ msgstr "Error"
 msgid "Access level"
 msgstr "Access level"
 
-#: ./application/modules/menu/templates/create_item.tpl:11
-#: ./application/modules/menu/templates/create_menu.tpl:12
-msgid "Create and exit"
-msgstr "Create and exit"
-
 #: ./application/modules/menu/assets/admin/menu_list.tpl:14
 #: ./application/modules/menu/templates/category_selector.tpl:109
 #: ./application/modules/menu/templates/main.tpl:14
@@ -753,27 +771,9 @@ msgstr "Title"
 msgid "For example"
 msgstr "For example"
 
-#: ./application/modules/menu/templates/category_selector.tpl:108
-#: ./application/modules/menu/templates/create_item.tpl:10
-#: ./application/modules/menu/templates/create_menu.tpl:11
-#: ./application/modules/menu/templates/module_selector.tpl:119
-#: ./application/modules/menu/templates/url_selector.tpl:98
-msgid "Create"
-msgstr "Create"
-
-#: ./application/modules/menu/templates/edit_item.tpl:5
-#: ./application/modules/menu/templates/edit_item_origin.tpl:5
-#: ./application/modules/menu/templates/_menulistitem.tpl:29
-msgid "Edit menu item"
-msgstr "Edit a menu item/Edit menu item"
-
 #: ./application/modules/menu/admin.php:114
 msgid "category ID"
 msgstr "category ID/ Category ID"
-
-#: ./application/modules/menu/templates/create_item.tpl:5
-msgid "Create a menu item"
-msgstr "Create a menu item"
 
 #: ./application/modules/menu/templates/category_selector.tpl:148
 msgid "Choose category."

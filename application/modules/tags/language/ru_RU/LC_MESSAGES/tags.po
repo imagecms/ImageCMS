@@ -2,11 +2,11 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-26 01:55+0200\n"
-"PO-Revision-Date: 2013-12-26 01:55+0200\n"
-"Last-Translator:  \n"
-"Language-Team:  \n"
-"Language: ru_RU\n"
+"POT-Creation-Date: 2015-01-28 11:26+0200\n"
+"PO-Revision-Date: 2015-01-28 11:26+0200\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,27 +18,34 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: ./application/modules/tags/templates/admin/tags_admin.tpl:5
+#: application/modules/tags/widgets_info.php:5
+msgid "Tags cloud"
+msgstr "Облако тегов"
+
+#: application/modules/tags/widgets_info.php:6
+msgid "Displaying the most popular tags cloud to your website."
+msgstr "Отображение облака самых популярных тегов к страницам сайта."
+
+#: application/modules/tags/templates/admin/tags_admin.tpl:5
 msgid "All tags"
 msgstr "Все теги"
 
-#: ./application/modules/tags/tags.php:144
+#: application/modules/tags/tags.php:144
 msgid "The first"
 msgstr "Первый"
 
-#: ./application/modules/tags/tags.php:145
+#: application/modules/tags/tags.php:145
 msgid "Last"
 msgstr "Последний"
 
-#: ./application/modules/tags/tags.php:160
+#: application/modules/tags/tags.php:160
 msgid "Search title"
 msgstr "Название поиска"
 
-#: ./application/modules/tags/module_info.php:4
+#: application/modules/tags/module_info.php:7
 msgid "Tags"
 msgstr "Теги"
 
-#: ./application/modules/tags/module_info.php:5
+#: application/modules/tags/module_info.php:8
 msgid "Tags module"
 msgstr "Модуль тегов"
-

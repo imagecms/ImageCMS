@@ -38,6 +38,7 @@ class Menu extends MY_Controller {
     private $cache_key = '';
     public $menu_template_vars = array();
     private $cur_level = 0;
+    public static $IS_ADMIN_PART = FALSE;
 
     function __construct() {
         parent::__construct();
@@ -46,8 +47,7 @@ class Menu extends MY_Controller {
         $this->cache_key = $this->cache_key . $this->dx_auth->get_role_id();
         $lang = new MY_Lang();
         $lang->load('menu');
-
-
+        $this->setAdminPart();
         $this->load->helper('string');
     }
 
@@ -193,7 +193,7 @@ class Menu extends MY_Controller {
                     }
                 }
 
-                if ($this->cur_level < ( $item['expand_level'] ))
+                if ($this->cur_level < ($item['expand_level']))
                     $this->expand[$item['id']] = TRUE; // to expand tree
                 if ($site_url == $this->current_uri OR $active_cur === TRUE) {
                     $this->expand[$item['id']] = TRUE;
@@ -229,22 +229,21 @@ class Menu extends MY_Controller {
                     $item['add_data']['newpage'] == '1' ? $this->arranged_menu_array[$arranged_items_count]['target'] = 'target="_blank"' : $this->arranged_menu_array[$arranged_items_count]['target'] = 'target="_self"';
                 } else {
                     $item['add_data']['newpage'] == '1' ? $this->arranged_menu_array[$arranged_items_count]['target'] = 'target="_blank"' : $this->arranged_menu_array[$arranged_items_count]['target'] = 'target="_self"';
-                   
                 }
 
-                if (($menu_array[$start_index]['position'] != $item['position']) AND ( $menu_array[$end_index]['position'] != $item['position'])) {
+                if (($menu_array[$start_index]['position'] != $item['position']) AND ($menu_array[$end_index]['position'] != $item['position'])) {
                     $this->arranged_menu_array[$arranged_items_count]['edge'] = "default";
                 }
 
-                if (($menu_array[$start_index]['position'] == $item['position']) AND ( $menu_array[$end_index]['position'] != $item['position'])) {
+                if (($menu_array[$start_index]['position'] == $item['position']) AND ($menu_array[$end_index]['position'] != $item['position'])) {
                     $this->arranged_menu_array[$arranged_items_count]['edge'] = "first";
                 }
 
-                if (($menu_array[$start_index]['position'] != $item['position']) AND ( $menu_array[$end_index]['position'] == $item['position'])) {
+                if (($menu_array[$start_index]['position'] != $item['position']) AND ($menu_array[$end_index]['position'] == $item['position'])) {
                     $this->arranged_menu_array[$arranged_items_count]['edge'] = "last";
                 }
 
-                if (($menu_array[$start_index]['position'] == $item['position']) AND ( $menu_array[$end_index]['position'] == $item['position'])) {
+                if (($menu_array[$start_index]['position'] == $item['position']) AND ($menu_array[$end_index]['position'] == $item['position'])) {
                     $this->arranged_menu_array[$arranged_items_count]['edge'] = "one";
                 }
 
@@ -281,7 +280,7 @@ class Menu extends MY_Controller {
      * Натягивает шаблон на данные и запихивает всю эту красоту в this->arranged_menu_array[$arranged_items_count]['html']. версия для элемента списка
      *
      * @param integer $index номер элемента для натягивания шаблона
-     * @param string  $wrapper натянутые шаблоны на всех всех наследников
+     * @param string $wrapper натянутые шаблоны на всех всех наследников
      * @access private
      * @return TRUE
      */
@@ -301,7 +300,7 @@ class Menu extends MY_Controller {
      * Натягивает данные на шаблон и запихивает всю эту красоту в this->arranged_menu_array[$arranged_items_count]['html']. версия для элемента списка
      *
      * @param integer $index номер элемента для натягивания шаблона
-     * @param string  $wrapper натянутые шаблоны на всех всех наследников
+     * @param string $wrapper натянутые шаблоны на всех всех наследников
      * @access private
      * @return TRUE
      */
@@ -322,6 +321,7 @@ class Menu extends MY_Controller {
             'has_childs' => $this->arranged_menu_array[$index]['has_childs'],
             'is_active_hard' => $is_active_hard,
         );
+
 
         if ($index == -1) {
             $this->arranged_menu_array[$index]['html'] = $wrapper;
@@ -432,7 +432,7 @@ class Menu extends MY_Controller {
             if ($this->tpl_folder) {
                 $err_data = array('user_template' => $this->tpl_folder . '/' . $tpl . '.tpl');
             } else {
-                $err_data = array('system_template' => './application/modules/menu/templates/public/' . $tpl . '.tpl');
+                $err_data = array('system_template' => './application/' . getModContDirName('menu') . '/menu/templates/public/' . $tpl . '.tpl');
             }
 
             $this->errors[] = $err_data;
@@ -476,7 +476,7 @@ class Menu extends MY_Controller {
      */
     private function get_expand_items($url) {
         foreach ($this->sub_menu_array as $item) {
-            if (site_url($item['link']) == $url AND $item['parent_id'] != 0 and ! empty($item['link'])) {
+            if (site_url($item['link']) == $url AND $item['parent_id'] != 0 and !empty($item['link'])) {
                 $this->expand[$item['parent_id']] = TRUE;
                 $this->get_expand_items(site_url($this->sub_menu_array[$item['parent_id']]['link']));
             }
@@ -491,8 +491,8 @@ class Menu extends MY_Controller {
      * @access public
      */
     public function prepare_menu_array($menu) {
-        if (($menu_data = $this->cache->fetch($this->cache_key . $menu, 'menus')) !== FALSE) {
-
+        $menu_cache_key = $this->cache_key . $menu . self::getCurrentLocale();
+        if (($menu_data = $this->cache->fetch($menu_cache_key, 'menus')) !== FALSE) {
             $this->menu_array = $menu_data['menu_array'];
             $this->sub_menu_array = $menu_data['sub_menu_array'];
         } else {
@@ -544,7 +544,6 @@ class Menu extends MY_Controller {
             }
 
 
-
             $this->cur_menu_id = $menus[0]['menu_id'];
             $this->load->model('menu_model', 'item');
 
@@ -563,6 +562,7 @@ class Menu extends MY_Controller {
             for ($i = 0; $i < $cnt; $i++) {
                 switch ($menus[$i]['item_type']) {
                     case 'page':
+
                         $url = $this->item->get_page_url($menus[$i]['item_id']);
                         $menus[$i]['link'] = $url['cat_url'] . $url['url'];
                         break;
@@ -597,13 +597,18 @@ class Menu extends MY_Controller {
 
                 if ($langs != FALSE) {
                     foreach ($langs as $lang) {
-                        $this->db->where('item_id', $menus[$i]['id']);
-                        $this->db->where('lang_id', $lang['id']);
-                        $t_query = $this->db->get('menu_translate');
 
-                        if ($t_query->num_rows() == 1) {
-                            $n_title = $t_query->row_array();
-                            $menus[$i]['lang_title_' . $lang['id']] = $n_title['title'];
+                        if (self::getCurrentLocale($lang)) {
+                            $this->db->where('item_id', $menus[$i]['id']);
+                            $this->db->where('lang_id', $lang['id']);
+                            $t_query = $this->db->get('menu_translate');
+
+                            if ($t_query->num_rows() == 1) {
+                                $n_title = $t_query->row_array();
+                                if ($n_title['title'])
+                                    $menus[$i]['title'] = $n_title['title'];
+
+                            }
                         }
                     }
                 }
@@ -620,8 +625,34 @@ class Menu extends MY_Controller {
                 'sub_menu_array' => $this->sub_menu_array
             );
 
-            $this->cache->store($this->cache_key . $menu, $data, FALSE, 'menus');
+
+            $this->cache->store($menu_cache_key, $data, FALSE, 'menus');
         }
+    }
+
+    /**
+     * Get current locale for menu module
+     * @param $language
+     * @return bool
+     */
+    public static function getCurrentLocale($language = NULL) {
+        if(is_null($language)){
+            return self::$IS_ADMIN_PART ? MY_Controller::defaultLocale() : MY_Controller::getCurrentLocale();
+        }
+
+        if (self::$IS_ADMIN_PART && $language['identif'] == MY_Controller::defaultLocale()) {
+            return TRUE;
+        }
+
+        if (!self::$IS_ADMIN_PART && $language['identif'] == MY_Controller::getCurrentLocale()) {
+            return TRUE;
+        }
+
+        return FALSE;
+    }
+
+    private function setAdminPart() {
+        return $this->uri->segment(1) === 'admin' ? TRUE : FALSE;
     }
 
     private function _check_roles($roles = array()) {
@@ -708,5 +739,3 @@ class Menu extends MY_Controller {
     }
 
 }
-
-/* End of file tags.php */

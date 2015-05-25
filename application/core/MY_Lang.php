@@ -34,6 +34,7 @@ class MY_Lang extends MX_Lang {
     public $gettext_domain;
     private $gettext_path;
     private $gettext = null;
+    static $LANG;
 
     /**
      * The constructor initialize the library
@@ -53,14 +54,13 @@ class MY_Lang extends MX_Lang {
     public function getAdminLocale() {
         $this->ci = & get_instance();
         $locale = $this->ci->config->item('language');
-
+//        var_dumps($locale);
         return $locale ? $locale : 'ru_RU';
     }
 
     public function getDBFrontLanguages() {
-        if (!isset($this->ci)) {
+        if (!isset($this->ci))
             $this->ci = & get_instance();
-        }
 
         $languages = $this->ci->db->select('lang_name, identif, locale')->get('languages');
 
@@ -81,9 +81,8 @@ class MY_Lang extends MX_Lang {
     }
 
     private function _init() {
-        if (!isset($this->ci)) {
+        if (!isset($this->ci))
             $this->ci = & get_instance();
-        }
 
         if (!strstr($_SERVER['REQUEST_URI'], 'install')) {
             if (is_null($this->ci->db)) {
@@ -91,12 +90,9 @@ class MY_Lang extends MX_Lang {
                 echo $error->show_error('DB Error', 'Unable to connect to the database', 'error_db');
                 exit;
             }
-            $sett = $this->ci->db->where('s_name', 'main')->get('settings');
-            if ($sett) {
-                $sett = $sett->row();
-            }else {
-                show_error($this->ci->db->_error_message());
-            }
+
+            $sett = $this->ci->db->where('s_name', 'main')->get('settings')->row();
+            
             if ($sett->lang_sel) {
                 $this->ci->config->set_item('language', str_replace('_lang', '', $sett->lang_sel));
             }
@@ -106,8 +102,6 @@ class MY_Lang extends MX_Lang {
                 $this->ci->session->set_userdata('language', 'ru_RU');
             }
         }
-
-        unset($sett);
     }
 
     private function _language() {
@@ -140,6 +134,8 @@ class MY_Lang extends MX_Lang {
     public function load($module = 'main') {
         $this->_init();
 
+
+
         if (strstr(uri_string(), 'admin')) {
             $lang = $this->getAdminLocale();
             if (!$module) {
@@ -153,9 +149,12 @@ class MY_Lang extends MX_Lang {
                 $lang = $languageFront[1];
             }
         }
-//        var_dumps_exit($lang);
-//        $lang = 'de_DE';
-//        $module = 'translator';
+
+//        var_dumps($lang);
+        if (self::$LANG) {
+            $lang = self::$LANG;
+        }
+
         if ($module == 'main') {
             $this->addDomain(correctUrl('./application/language/main/' . $lang), getMoFileName('main'), $lang);
             $template_name = \CI_Controller::get_instance()->config->item('template');
@@ -165,13 +164,8 @@ class MY_Lang extends MX_Lang {
             if ($module == 'admin') {
                 $this->addDomain(correctUrl('./application/language/main/' . $lang), getMoFileName('main'), $lang);
             }
-//            if (MAINSITE && $module == 'admin') {
-//                $this->addDomain(MAINSITE . '/application/modules/' . $module . '/language', getMoFileName($module), $lang);
-//            } else {
-//            var_dumps_exit(getMoFileName($module));
-//            var_dumps_exit(correctUrl('./application/modules/' . $module . '/language/' . $lang));
+
             $this->addDomain(correctUrl('./application/modules/' . $module . '/language/' . $lang), getMoFileName($module), $lang);
-//            }
         }
     }
 
@@ -182,7 +176,6 @@ class MY_Lang extends MX_Lang {
      * @return mixed|void
      */
     public function addDomain($directory, $domain, $locale) {
-//        var_dumps_exit($locale);
         if (!setlocale(LC_ALL, $locale . '.utf8', $locale . '.utf-8', $locale . '.UTF8', $locale . '.UTF-8', $locale . '.utf-8', $locale . '.UTF-8', $locale)) {
             // Set current locale
             setlocale(LC_ALL, '');
@@ -331,6 +324,10 @@ class MY_Lang extends MX_Lang {
         }
 
         return strtr($sString, $aTrad);
+    }
+
+    public static function setLang($lang) {
+        self::$LANG = $lang;
     }
 
 }

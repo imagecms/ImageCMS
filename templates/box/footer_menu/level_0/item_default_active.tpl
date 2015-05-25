@@ -1,1 +1,0 @@
-<li class="active"><span>{$title}{if $wrapper}<span class="icon-arrow-d"></span>{/if}</span>{$wrapper}</li>

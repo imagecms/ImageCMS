@@ -26,7 +26,7 @@ class Commentsapi extends Comments {
 
     private function init_settings() {
         $settings = $this->base->get_settings();
-
+        
         ($hook = get_hook('comments_settigs_init')) ? eval($hook) : NULL;
         if (is_array($settings)) {
             foreach ($settings as $k => $v) {
@@ -142,7 +142,7 @@ class Commentsapi extends Comments {
                 $i++;
             }
         }
-
+        
         $data = array(
             'comments_arr' => $comments,
             'comment_ch' => $comment_ch,
@@ -154,7 +154,7 @@ class Commentsapi extends Comments {
             'enable_comments' => $this->enable_comments,
             'visibleMainForm' => $_POST['visibleMainForm']
         );
-
+        
         if ($this->use_captcha == TRUE && !$this->dx_auth->is_admin()) {
             $this->dx_auth->captcha();
             $data['cap_image'] = $this->dx_auth->get_captcha_image();

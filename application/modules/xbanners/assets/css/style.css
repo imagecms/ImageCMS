@@ -1,0 +1,98 @@
+/**
+    Crop style
+*/
+
+.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-draggable {
+    min-width: 600px;
+    min-height: 400px;
+}
+
+#Principal {
+    margin: 0 auto !important;
+}
+
+#JtuyoshiCrop {
+    height: auto !important;
+}
+
+#dialog-PcAlert {
+    height: 260px!important;
+    color: rgb(173, 74, 74);
+}
+
+/**
+    End Crop style
+*/
+
+
+/*xBanner*/
+.content_big_td.table.table-edit-banner {table-layout: auto;}
+.table-banner-managmen tbody > tr td {position: relative;}
+.table-banner-managmen tbody > tr td {background-color: #f5f5f5;}
+.table-banner-managmen tbody > tr.has-slides td {background-color: #fff;}
+.table-banner-managmen tbody > tr.has-slides:hover td {background-color: #f9f9f9;}
+.table-banner-managmen > thead > tr > th {padding: 8px 15px; font-weight: bold;  background: #fff !important;}
+.table-banner-managmen > tbody > tr > td {padding: 8px 15px;}
+.fa-eye {cursor: pointer;}
+.fa-eye:before {font-size: 18px;}
+.dropdown-menu.theme-tooltip {border:1px solid #cbcbcb; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 15px; top: 50%; left: 50%;  margin-left: 25px;margin-top: -1px;}
+.dropdown-menu.theme-tooltip:before {content: "";position: absolute;border-left: 13px solid rgba(113, 101, 58, 0);border-right: 0px solid rgba(113, 101, 58, 0);border-top: 15px solid #cbcbcb;left: -13px;top: -1px;}
+.dropdown-menu.theme-tooltip:after {content: ""; position: absolute;border-left: 11px solid rgba(255, 241, 190, 0);border-right: 0 solid rgba(255, 241, 190, 0);border-top: 12px solid #ffffff;left: -11px;top: 0;}
+.control-group-photo_album {float: left;}
+.control-group-photo_album + .form-horizontal {margin-left:460px; display: table;  margin-right: 0;padding-right: 0;}
+.addNewSlide .control-group-photo_album + .form-horizontal, .addNewSlidecss .control-group-photo_album + .form-horizontal {margin-left: 500px;}
+.control-group-photo_album  .photo_album .fon {width: 416px; height: 197px; margin-top: 5px; margin-left: 5px; border:1px dashed #d7d7d7;}
+.addNewSlide .control-group-photo_album  .photo_album .fon, .addNewSlidecss .control-group-photo_album  .photo_album .fon {width: 453px; height: 187px;}
+.control-group-photo_album .photo-block {background: transparent;width: 417px; height: 198px; border:1px solid transparent; box-shadow: 0 0 0 1px #dfdfdf;}
+.addNewSlide .control-group-photo_album .photo-block, .addNewSlidecss .control-group-photo_album .photo-block {width: 455px; height: 189px}
+.control-group-photo_album .photo-block .fon-size {font-size: 12px; color:#c4c4c4;}
+.control-group-photo_album .photo-block.isImage {border:1px solid #dfdfdf; box-shadow: none; text-align: right;}
+.control-group-photo_album .photo-block.isImage > .helper {display: none;} 
+.control-group-photo_album .photo-block.isImage > img {box-shadow: 0 0 0 1px #dfdfdf; cursor: default;}
+.control-group-photo_album .photo_album .btn-group {width: 100%;}
+.table-edit-banner .form-horizontal .control-label {width: 100px !important; text-align: left; font-weight: bold;}
+.table-edit-banner .form-horizontal.not-margin .control-label {margin-bottom: 0;}
+.table-edit-banner .form-horizontal.not-margin.is-margin .control-label {margin-bottom: 5px;}
+.table-edit-banner .form-horizontal .controls {margin-left: 110px !important;margin-right: 30px;}
+.table-edit-banner.content_big_td thead th {background: #fdfdfd;}
+.table-edit-banner .form-horizontal .controls {min-width: 425px;}
+.table-edit-banner .form-horizontal .controls input[type="text"] {width: 100%;}
+.table-edit-banner .form-horizontal .controls .icon-info-sign {position: absolute;right:-20px;top: 6px;}
+.table-edit-banner .form-horizontal .control-group:first-child .control-label, .table-edit-banner .form-horizontal .control-group:first-child .controls {padding-top: 0;}
+.table-edit-banner .form-horizontal .robotsChecker {margin-right: 12px;}
+.table-edit-banner .show-control-group, .addNewSlide, .form-horizontal .hide-control, .saveSlide, .btnCloseEditSlide, .saveEditformSubmit, .table-edit-effects .show-control-group {display: none;}
+.success-form-horizontal.hide-select .select-cat-control-group {display: none !important;}
+.success-form-horizontal .control-group {margin-bottom: 0;}
+.success-form-horizontal.is-margin .control-group {margin-bottom:10px;}
+.table-success-banner.content_big_td td {background-color: #fff !important;}
+.urlcomplete + .suggesion {background: #fff;max-height: 300px;overflow-y: scroll;  -moz-border-radius: 0;-webkit-border-radius: 0;border-radius: 0;-moz-box-shadow: 0 1px 5px rgba(0,0,0,0.3);-webkit-box-shadow: 0 1px 5px rgba(0,0,0,0.3);box-shadow: 0 1px 5px rgba(0,0,0,0.3);}
+.urlcomplete + .suggesion ul li {list-style: none;padding: 2px;margin: 0;display: block;}
+.show-control-group .chosen-container {width:395px !important;}
+.table-success-banner.content_big_td td.sortable-move {background-color: #f7f7f7!important;padding: 17px !important; vertical-align: middle;}
+.table-success-banner.content_big_td td.sortable-move:hover {background: url('../images/sortable-banner.png') center center no-repeat;}
+.table-success-banner.content_big_td td.sortable-move:hover .hide-count {opacity: 0;}
+.table-success-banner.content_big_td td.sortable-move:hover {background-color: #fff !important;}
+.table-edit-banner tbody tr.active td {background-color:#fff !important;}
+.table-edit-banner tbody tr.ui-sortable-helper td {background-color: #fcffee !important;}
+
+/*autocomplete*/
+.autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }
+.autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; }
+.autocomplete-selected { background: #F0F0F0; }
+.autocomplete-suggestions strong { font-weight: normal; color: #3399FF; }
+.autocomplete-group { padding: 2px 5px; }
+.autocomplete-group strong { display: block; border-bottom: 1px solid #000; }
+@media screen and (max-width: 1240px){
+    .table-edit-banner .form-horizontal .controls {min-width: 290px;}
+}
+
+.editImageFon{
+    background-color: rgba(0,0,0,0.5);
+    cursor: pointer;
+}
+
+.offEditImageFon{
+    cursor: auto;
+}
+
+/*/xBanner*/
