@@ -2,11 +2,11 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-13 11:41+0200\n"
-"PO-Revision-Date: 2014-03-13 11:41+0200\n"
-"Last-Translator:  \n"
-"Language-Team:  \n"
-"Language: ru_RU\n"
+"POT-Creation-Date: 2014-12-26 04:52+0200\n"
+"PO-Revision-Date: 2014-12-26 04:52+0200\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,114 +18,118 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: ./application/modules/share/templates/admin/settings.tpl:11
+#: ./application/modules/share/admin.php:39
+msgid "Social buttons was updated"
+msgstr "Кнопки социальных сетей обновлены"
+
+#: ./application/modules/share/assets/admin/settings.tpl:11
 msgid "Save and go back"
 msgstr "Cохранить и выйти"
 
-#: ./application/modules/share/templates/admin/settings.tpl:9
+#: ./application/modules/share/assets/admin/settings.tpl:9
 msgid "Go back"
 msgstr "Вернуться"
 
-#: ./application/modules/share/templates/admin/settings.tpl:10
+#: ./application/modules/share/assets/admin/settings.tpl:10
 msgid "Save"
 msgstr "Сохранить"
 
-#: ./application/modules/share/admin.php:44
+#: ./application/modules/share/admin.php:41
 msgid "Settings successfully saved"
 msgstr "Настройки успешно сохранены"
 
-#: ./application/modules/share/templates/admin/settings.tpl:136
+#: ./application/modules/share/assets/admin/settings.tpl:136
 msgid "counter"
 msgstr "счетчик"
 
-#: ./application/modules/share/templates/admin/settings.tpl:5
+#: ./application/modules/share/assets/admin/settings.tpl:5
 msgid "Button social networks module settings"
 msgstr "Настройки модуля кнопок социальных сетей"
 
-#: ./application/modules/share/templates/admin/settings.tpl:16
+#: ./application/modules/share/assets/admin/settings.tpl:16
 msgid "Share buttons"
 msgstr "Кнопки “Поделиться”"
 
-#: ./application/modules/share/templates/admin/settings.tpl:17
+#: ./application/modules/share/assets/admin/settings.tpl:17
 msgid "Buttons I like"
 msgstr "Кнопки “Мне нравится”"
 
-#: ./application/modules/share/templates/admin/settings.tpl:33
+#: ./application/modules/share/assets/admin/settings.tpl:33
 msgid "Я.ру"
 msgstr "Я.ру"
 
-#: ./application/modules/share/templates/admin/settings.tpl:43
+#: ./application/modules/share/assets/admin/settings.tpl:43
 msgid "VK"
 msgstr "В.К."
 
-#: ./application/modules/share/templates/admin/settings.tpl:53
-#: ./application/modules/share/templates/admin/settings.tpl:164
+#: ./application/modules/share/assets/admin/settings.tpl:53
+#: ./application/modules/share/assets/admin/settings.tpl:164
 msgid "Facebook"
 msgstr "Facebook"
 
-#: ./application/modules/share/templates/admin/settings.tpl:63
-#: ./application/modules/share/templates/admin/settings.tpl:200
+#: ./application/modules/share/assets/admin/settings.tpl:63
+#: ./application/modules/share/assets/admin/settings.tpl:200
 msgid "Twitter"
 msgstr "Twitter"
 
-#: ./application/modules/share/templates/admin/settings.tpl:73
+#: ./application/modules/share/assets/admin/settings.tpl:73
 msgid "Odnoklassniki"
 msgstr "Одноклассники"
 
-#: ./application/modules/share/templates/admin/settings.tpl:83
+#: ./application/modules/share/assets/admin/settings.tpl:83
 msgid "My World"
 msgstr "Мой Мир"
 
-#: ./application/modules/share/templates/admin/settings.tpl:93
+#: ./application/modules/share/assets/admin/settings.tpl:93
 msgid "Livejournal"
 msgstr "Livejournal"
 
-#: ./application/modules/share/templates/admin/settings.tpl:103
+#: ./application/modules/share/assets/admin/settings.tpl:103
 msgid "Friendfeed"
 msgstr "Friendfeed"
 
-#: ./application/modules/share/templates/admin/settings.tpl:113
+#: ./application/modules/share/assets/admin/settings.tpl:113
 msgid "My circle"
 msgstr "Мой круг"
 
-#: ./application/modules/share/templates/admin/settings.tpl:123
+#: ./application/modules/share/assets/admin/settings.tpl:123
 msgid "Google+"
 msgstr "Google+"
 
-#: ./application/modules/share/templates/admin/settings.tpl:133
+#: ./application/modules/share/assets/admin/settings.tpl:133
 msgid "External view"
 msgstr "Внешний вид"
 
-#: ./application/modules/share/templates/admin/settings.tpl:137
+#: ./application/modules/share/assets/admin/settings.tpl:137
 msgid "button"
 msgstr "кнопка"
 
-#: ./application/modules/share/templates/admin/settings.tpl:138
+#: ./application/modules/share/assets/admin/settings.tpl:138
 msgid "link"
 msgstr "ссылка"
 
-#: ./application/modules/share/templates/admin/settings.tpl:139
+#: ./application/modules/share/assets/admin/settings.tpl:139
 msgid "icon and menu"
 msgstr "значок и меню"
 
-#: ./application/modules/share/templates/admin/settings.tpl:140
+#: ./application/modules/share/assets/admin/settings.tpl:140
 msgid "only icons"
 msgstr "только иконки"
 
-#: ./application/modules/share/templates/admin/settings.tpl:174
+#: ./application/modules/share/assets/admin/settings.tpl:174
 msgid "Вконтакте"
 msgstr "Вконтакте"
 
-#: ./application/modules/share/templates/admin/settings.tpl:184
+#: ./application/modules/share/assets/admin/settings.tpl:184
 msgid "Ваш API ID"
 msgstr "Ваш API ID"
 
-#: ./application/modules/share/templates/admin/settings.tpl:190
+#: ./application/modules/share/assets/admin/settings.tpl:190
 msgid "Google +"
 msgstr "Google+"
 
-#: ./application/modules/share/templates/admin/settings.tpl:25
-#: ./application/modules/share/templates/admin/settings.tpl:156
+#: ./application/modules/share/assets/admin/settings.tpl:25
+#: ./application/modules/share/assets/admin/settings.tpl:156
 msgid "Settings"
 msgstr "Настройки"
 
@@ -136,4 +140,3 @@ msgstr "Кнопки социальных сетей"
 #: ./application/modules/share/module_info.php:5
 msgid "Adds social networks buttons to products and articles"
 msgstr "Добавляет к товарам и статьям кнопки социальных сетей"
-

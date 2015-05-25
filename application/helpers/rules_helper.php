@@ -7,11 +7,14 @@ if (!defined('BASEPATH')) {
 if (!function_exists('admin_or_redirect')) {
 
     function admin_or_redirect() {
+        if (PHP_SAPI == 'cli') {
+            return true;
+        }
         $ci = & get_instance();
 
         if (!$ci->dx_auth->is_logged_in()) {
             if ($ci->input->is_ajax_request()) {
-                echo json_encode(array('success' => false, 'redirect' => '/admin/login'));
+                redirect('admin/login', '');
             } else {
                 redirect('admin/login', '');
             }
@@ -22,7 +25,7 @@ if (!function_exists('admin_or_redirect')) {
             return true;
         } else {
             if ($ci->input->is_ajax_request()) {
-                echo json_encode(array('success' => false, 'redirect' => '/admin/login'));
+                redirect('admin/login', '');
             } else {
                 redirect('admin/login', '');
             }

@@ -1,12 +1,12 @@
 ﻿msgid ""
 msgstr ""
-"Project-Id-Version: ImageCMS\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-26 01:10+0200\n"
-"PO-Revision-Date: 2013-12-26 01:10+0200\n"
-"Last-Translator: ImageCMS ImageCMS\n"
-"Language-Team:  \n"
-"Language: ru_RU\n"
+"POT-Creation-Date: 2015-01-28 11:22+0200\n"
+"PO-Revision-Date: 2015-01-28 11:22+0200\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -14,111 +14,58 @@ msgstr ""
 "X-Poedit-Basepath: ../../..\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.5.7\n"
-"X-Poedit-Language: Russian\n"
+"X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: /var/www/image.loc/_tempLangs.php:7
-#: /var/www/image.loc/_tempLangs.php:8
-msgid "Not choose"
-msgstr "Не обрано"
+#: application/modules/language_switch/widgets_info.php:5
+msgid "Language panel"
+msgstr "Языковая панель"
 
-#: /var/www/image.loc/_tempLangs.php:9
-#: /var/www/image.loc/_tempLangs.php:29
-msgid "Error"
-msgstr "Ошибка"
+#: application/modules/language_switch/widgets_info.php:6
+msgid "Site languages switcher"
+msgstr "Переключение языков сайта"
 
-#: /var/www/image.loc/_tempLangs.php:10
-msgid "Can not create a price twice for partner"
-msgstr "Невозможно создать цену дважды для партнера"
-
-#: /var/www/image.loc/_tempLangs.php:11
-#: /var/www/image.loc/_tempLangs.php:13
-#: /var/www/image.loc/_tempLangs.php:15
-#: /var/www/image.loc/_tempLangs.php:17
-#: /var/www/image.loc/_tempLangs.php:19
-#: /var/www/image.loc/_tempLangs.php:21
-#: /var/www/image.loc/_tempLangs.php:23
-#: /var/www/image.loc/_tempLangs.php:25
-#: /var/www/image.loc/_tempLangs.php:27
-msgid "Message"
-msgstr "Сообщение"
-
-#: /var/www/image.loc/_tempLangs.php:12
-msgid "Upgrade successful."
-msgstr "Обновление завершено."
-
-#: /var/www/image.loc/_tempLangs.php:14
-msgid "Successful deleting."
-msgstr "Успешное удаление."
-
-#: /var/www/image.loc/_tempLangs.php:16
-#: /var/www/image.loc/_tempLangs.php:18
-#: /var/www/image.loc/_tempLangs.php:20
-msgid "Value is changed."
-msgstr "Значение изменено."
-
-#: /var/www/image.loc/_tempLangs.php:22
-msgid "Partner updated"
-msgstr "Партнер обновлен"
-
-#: /var/www/image.loc/_tempLangs.php:24
-msgid "Partner successfully deleted"
-msgstr "Партнер успешно удален"
-
-#: /var/www/image.loc/_tempLangs.php:26
-msgid "Partner not deleted"
-msgstr "Партнер не удален"
-
-#: /var/www/image.loc/_tempLangs.php:28
-msgid "Partner successfully added"
-msgstr "Партнер успешно добавлен"
-
-#: /var/www/image.loc/_tempLangs.php:30
-msgid "Partner not added"
-msgstr "Партнер не додан"
-
-#: /var/www/image.loc/_tempLangs.php:31
+#: application/modules/language_switch/templates/admin.tpl:2
 msgid "Language Switch module"
 msgstr "Модуль Переключения языка"
 
-#: /var/www/image.loc/_tempLangs.php:32
+#: application/modules/language_switch/templates/admin.tpl:6
 msgid "Automatic creation of the switch between the languages that are configured online"
 msgstr "Автоматическое создание переключение между языками, которые настроены на сайте"
 
-#: /var/www/image.loc/_tempLangs.php:33
+#: application/modules/language_switch/templates/admin.tpl:8
 msgid "Set of icons, flags to work with the module. It must be specified in the two-letter language identifier format"
 msgstr "Набор иконок, флаги для работы с модулем. Это должно быть указано в наборе двух букв идентификатора языка"
 
-#: /var/www/image.loc/_tempLangs.php:34
+#: application/modules/language_switch/templates/admin.tpl:12
 msgid "Module development"
 msgstr "Розроботка модуля"
 
-#: /var/www/image.loc/_tempLangs.php:35
+#: application/modules/language_switch/templates/admin.tpl:14
 msgid "Author"
 msgstr "Автор"
 
-#: module_info.php:4
+#: application/modules/language_switch/module_info.php:7
 msgid "Langauges switch"
 msgstr "Переключение языка"
 
-#: module_info.php:5
+#: application/modules/language_switch/module_info.php:8
 msgid "Allows you to insert a widget to switch languages on the site"
 msgstr "Позволяет вставить виджет для переключения языков на сайте"
 
-#: language_switch_widgets.php:59
+#: application/modules/language_switch/language_switch_widgets.php:66
 msgid "Image"
 msgstr "Изображение"
 
-#: language_switch_widgets.php:60
+#: application/modules/language_switch/language_switch_widgets.php:67
 msgid "Description"
 msgstr "Описание"
 
-#: language_switch_widgets.php:61
+#: application/modules/language_switch/language_switch_widgets.php:68
 msgid "passage Url"
 msgstr "адрес прохода"
 
-#: language_switch_widgets.php:74
+#: application/modules/language_switch/language_switch_widgets.php:81
 msgid "Settings saved"
 msgstr "Настройки сохранены"
-

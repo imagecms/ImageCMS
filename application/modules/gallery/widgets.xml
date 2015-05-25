@@ -2,8 +2,18 @@
 <widgets>
 
     <widget>
-        <title>Последние изображения</title>
-        <description>Отображение последних добавленных в галерею изображений.</description>
+        <i18n_ru>
+            <title>Последние изображения</title>
+            <description>Отображение последних добавленных в галерею изображений.</description>
+        </i18n_ru>
+        <i18n_en>
+            <title>Recent images</title>
+            <description>Displays the most recently added to the image gallery.</description>
+        </i18n_en>
+        <i18n_ua>
+            <title>Останні зображення</title>
+            <description>Відображення останніх доданих до галереї зображень.</description>
+        </i18n_ua>
         <method>latest_fotos</method>
     </widget>
 

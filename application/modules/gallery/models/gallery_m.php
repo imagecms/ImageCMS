@@ -253,14 +253,14 @@ class Gallery_m extends CI_Model {
         $this->db->delete('gallery_images');
     }
 
-    function update_description($id, $text, $locale) {
+    function update_description($id, $data, $locale) {
 
         if ($this->db->where('id', $id)->where('locale', $locale)->get('gallery_images_i18n')->num_rows()) {
             $this->db->where('id', $id)->where('locale', $locale);
-            $this->db->update('gallery_images_i18n', array('description' => $text));
+            $this->db->update('gallery_images_i18n', array('description' => $data['description'], 'title' => $data['title']));
         }
         else
-            $this->db->insert('gallery_images_i18n', array('id' => $id, 'locale' => $locale, 'description' => $text));
+            $this->db->insert('gallery_images_i18n', array('id' => $id, 'locale' => $locale, 'title' => $data['title'], 'description' => $data['description']));
     }
 
     function update_position($id, $position = 0) {

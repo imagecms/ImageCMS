@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 class Admin_logs extends BaseAdminController {
 
@@ -27,7 +28,7 @@ class Admin_logs extends BaseAdminController {
         if ($messages->num_rows() > 0) {
             $messages = $messages->result_array();
         } else {
-            $messages = FALSE;
+            $messages = false;
         }
 
         $total = $this->db->get('logs')->num_rows();
@@ -47,6 +48,8 @@ class Admin_logs extends BaseAdminController {
             $config['controls_tag_close'] = '</ul></div>';
             $config['next_link'] = lang('Next', 'admin') . '&nbsp;&gt;';
             $config['prev_link'] = '&lt;&nbsp;' . lang('Prev', 'admin');
+            $config['last_link'] = lang('Last', 'admin') . ' &rsaquo;';
+            $config['first_link'] = '&lsaquo; ' . lang('First', 'admin');
             $config['cur_tag_open'] = '<li class="btn-primary active"><span>';
             $config['cur_tag_close'] = '</span></li>';
             $config['prev_tag_open'] = '<li>';
@@ -66,14 +69,15 @@ class Admin_logs extends BaseAdminController {
             //$this->template->assign('paginator', $this->pagination->create_links_ajax());
         }
 
-        $this->template->add_array(array(
-            'messages' => $messages,
-//            'languages' => ShopCore::$ci->cms_admin->get_langs(true),
-            'paginator' => $this->pagination->create_links_ajax(),
-        ));
+        $this->template->add_array(
+            array(
+                    'messages' => $messages,
+                    //            'languages' => ShopCore::$ci->cms_admin->get_langs(true),
+                    'paginator' => $this->pagination->create_links_ajax(),
+                )
+        );
 
-
-        $this->template->show('logs', FALSE);
+        $this->template->show('logs', false);
     }
 
 }

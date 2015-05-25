@@ -2,11 +2,11 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-26 01:46+0200\n"
-"PO-Revision-Date: 2013-12-26 01:46+0200\n"
-"Last-Translator:  \n"
-"Language-Team:  \n"
-"Language: ru_RU\n"
+"POT-Creation-Date: 2015-05-06 09:57+0300\n"
+"PO-Revision-Date: 2015-05-06 09:57+0300\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,40 +18,79 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: ./application/modules/navigation/templates/widget_navigation.tpl:3
+#: application/modules/navigation/navigation_widgets.php:275
+msgid "Login"
+msgstr "Вход"
+
+#: application/modules/navigation/navigation_widgets.php:282
+msgid "Registration"
+msgstr "Регистрация"
+
+#: application/modules/navigation/navigation_widgets.php:289
+msgid "Activation"
+msgstr "Активация"
+
+#: application/modules/navigation/navigation_widgets.php:296
+msgid "Remind password"
+msgstr "Напоминание пароля"
+
+#: application/modules/navigation/navigation_widgets.php:303
+msgid "Reset password"
+msgstr "Сброс пароля"
+
+#: application/modules/navigation/navigation_widgets.php:310
+msgid "Change password"
+msgstr "Изменение пароль"
+
+#: application/modules/navigation/navigation_widgets.php:230
+msgid "Gallery"
+msgstr "Галерея"
+
+#: application/modules/navigation/navigation_widgets.php:253
+msgid "All albums"
+msgstr "Все альбомы"
+
+#: application/modules/navigation/widgets_info.php:5
+msgid "Site navigation"
+msgstr "Навигация по сайту"
+
+#: application/modules/navigation/widgets_info.php:6
+msgid "Displays the current location of the user on the site."
+msgstr "Отображает текущее местонахождение пользователя на сайте."
+
+#: application/modules/navigation/navigation_widgets.php:95
+msgid "Wish list"
+msgstr "Список желаний"
+
+#: application/modules/navigation/templates/widget_navigation.tpl:3
 msgid "Navigation"
 msgstr "Навигация"
 
-#: ./application/modules/navigation/navigation_widgets.php:71
-#: ./application/modules/navigation/navigation_widgets.php:77
+#: application/modules/navigation/navigation_widgets.php:77
+#: application/modules/navigation/navigation_widgets.php:83
 msgid "Brands"
 msgstr "Бренды"
 
-#: ./application/modules/navigation/navigation_widgets.php:86
+#: application/modules/navigation/navigation_widgets.php:90
 msgid "Compare"
 msgstr "Сравнение"
 
-#: ./application/modules/navigation/navigation_widgets.php:91
-msgid "Wish List"
-msgstr "Список Желаний"
-
-#: ./application/modules/navigation/navigation_widgets.php:96
+#: application/modules/navigation/navigation_widgets.php:100
 msgid "Profile"
 msgstr "Профиль"
 
-#: ./application/modules/navigation/navigation_widgets.php:101
+#: application/modules/navigation/navigation_widgets.php:105
 msgid "Search"
 msgstr "Поиск"
 
-#: ./application/modules/navigation/navigation_widgets.php:106
+#: application/modules/navigation/navigation_widgets.php:110
 msgid "Cart"
 msgstr "Корзина"
 
-#: ./application/modules/navigation/module_info.php:4
+#: application/modules/navigation/module_info.php:7
 msgid "Site Navigation"
 msgstr "Навигация по сайту"
 
-#: ./application/modules/navigation/module_info.php:5
+#: application/modules/navigation/module_info.php:8
 msgid "Displays the current user location on the site."
 msgstr "Отображает текущее местонахождение пользователя на сайте."
-

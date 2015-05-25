@@ -1,6 +1,6 @@
 <div class="container">
 
-    <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->    
+    <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->
     <div class="modal hide fade modal_del">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -29,7 +29,7 @@
                         <button type="button" class="btn btn-small btn-success" onclick="window.location.href = '{$BASE_URL}admin/components/cp/menu/create_tpl'"><i class="icon-plus-sign icon-white"></i>{lang("Create a menu", "menu")}</button>
                         <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()"><i class="icon-trash"></i>{lang("Delete", "menu")}</button>
                     </div>
-                </div>                            
+                </div>
             </div>
             <div class="tab-content">
                 <div class="row-fluid">
@@ -64,13 +64,13 @@
                                         </td>
                                         <td ><p>{$item.id}</p></td>
                                         <td>
-                                            <a class="pjax" href="{$SELF_URL}/menu_item/{$item.name}" id="del" >{$item.main_title}</a>
+                                            <a href="{$SELF_URL}/menu_item/{$item.name}" id="del" >{$item.main_title}</a>
                                         </td>
                                         <td><p>{$item.name}</p></td>
                                         <td>{$item.description}
                                         </td>
                                         <td>{$item.created}</td>
-                                        <td><a href="{$BASE_URL}admin/components/cp/menu/edit_menu/{$item.id}" class="pjax">{lang("Editing", "menu")}</a></td>
+                                        <td><a href="{$BASE_URL}admin/components/cp/menu/edit_menu/{$item.id}">{lang("Editing", "menu")}</a></td>
                                     </tr>
                                 {/foreach}
                             {/if}

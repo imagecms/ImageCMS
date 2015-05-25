@@ -126,8 +126,14 @@ class Translator extends MY_Controller {
                             define('ENABLE_TRANSLATION_API', TRUE);
                         $lang = new MY_Lang();
                         $lang->load('translator');
-                        \CMSFactory\assetManager::create()->registerScript('translateSingleLang');
-                        $obj->template->include_tpl('translationApiForm', './application/modules/translator/assets/');
+                        $obj->template->registerJsFile('/templates/administrator/js/jquery-ui-1.8.23.custom.min.js');
+                        if (MAINSITE) {
+                            $obj->template->registerJsFile(MAINSITE . getModulePath('translator') . '/assets/js/translateSingleLang.js');
+                            $obj->template->display('file:' . getModulePath('translator') . '/assets/translationApiForm');
+                        } else {
+                            $obj->template->registerJsFile(getModulePath('translator') . '/assets/js/translateSingleLang.js');
+                            $obj->template->display('file:' . getModulePath('translator') . '/assets/translationApiForm');
+                        }
                     }
                 }
             }
@@ -148,6 +154,7 @@ class Translator extends MY_Controller {
                 'translation' => $translation,
                 'comment' => $comment
             );
+
             if ($poFileManager->update($po_Attributes['name'], $po_Attributes['type'], $po_Attributes['lang'], $data)) {
                 return json_encode(array('success' => TRUE, 'message' => lang('Successfully translated.', 'translator')));
             } else {
@@ -162,14 +169,18 @@ class Translator extends MY_Controller {
         $settings = getSettings();
 
         if (strstr($_SERVER['HTTP_REFERER'], 'admin')) {
-            $langs = $this->config->item('languages');
-            $language = $this->config->item('language');
-            $locale = $langs[$language][0];
+            $locale = $this->config->item('language');
+            $language = $this->db->select('identif')->where('locale', $locale)->get('languages');
+            if ($language) {
+                $language = $language->row_array();
+            }
+            $locale = $language['identif'];
         } else {
             $locale = MY_Controller::getCurrentLocale();
         }
 
         $settings['curLocale'] = $locale;
+        $settings['successMessage'] = lang('Successfully translated.', 'translator');
         return json_encode($settings);
     }
 
@@ -188,6 +199,80 @@ class Translator extends MY_Controller {
         ($this->dx_auth->is_admin()) OR exit;
 
         $this->db->where('name', 'translator')->delete('components');
+    }
+
+    /**
+     * Replace temlates languages(ru to en)
+     * @param string $template_name - template name
+     */
+    public function replaceLangs($template_name) {
+        if ($template_name) {
+            translator\classes\Replacer::getInstatce()->run($template_name);
+        }
+    }
+
+    /**
+     * Restore template replaced template
+     */
+    public function restoreTemplate() {
+        $source = $this->input->get('source');
+        $backup = $this->input->get('backup');
+
+        if ($source) {
+            translator\classes\Replacer::getInstatce()->restoreTemplate($source, $backup);
+        }
+    }
+
+    public function copyLangs(){
+        
+        $it = new RecursiveDirectoryIterator("/var/www/_image.loc/");
+        
+        foreach(new RecursiveIteratorIterator($it) as $file)
+        {
+            $file = (string)$file;
+            $ext = end(explode('.', $file));
+            
+            if(strstr($file, '/uk_UA/')){
+                if ($ext == 'po'){
+                    $copyTo = str_replace('_image.loc', 'image.loc', $file);
+                    $path = array_shift(explode('/uk_UA/', $copyTo));
+
+                    $path = $path .  '/uk_UA';
+
+                    mkdir($path);
+                    chmod($path, 0777);
+
+                    $path = $path .  '/LC_MESSAGES';
+                    mkdir($path);
+                    chmod($path, 0777);
+                   // var_dumps_exit($path);
+                    
+                    //var_dumps($path);
+                    unlink($copyTo);
+                    copy($file, $copyTo);
+                    chmod($copyTo, 0777);
+                }               
+            
+
+                if ($ext == 'mo'){
+                    $copyTo = str_replace('_image.loc', 'image.loc', $file);
+
+                    $path = array_shift(explode('/uk_UA/', $copyTo));
+                    $path = $path .  '/uk_UA';
+                    mkdir($path);
+                    chmod($path, 0777);
+
+                    $path = $path .  '/LC_MESSAGES';
+                    mkdir($path);
+                    chmod($path, 0777);
+
+                    unlink($copyTo);
+                    copy($file, $copyTo);
+                    chmod($copyTo, 0777);
+                }    
+            }
+            
+        }
     }
 
 }

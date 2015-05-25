@@ -2,7 +2,7 @@
 
 class User_Autologin extends CI_Model {
 
-    function User_Autologin() {
+    public function __construct() {
         parent::__construct();
 
         // Other stuff
@@ -11,7 +11,7 @@ class User_Autologin extends CI_Model {
         $this->_users_table = $this->_prefix . $this->config->item('DX_users_table');
     }
 
-    function store_key($key, $user_id) {
+    public function store_key($key, $user_id) {
         $user = array(
             'key_id' => md5($key),
             'user_id' => $user_id,
@@ -22,7 +22,7 @@ class User_Autologin extends CI_Model {
         return $this->db->insert($this->_table, $user);
     }
 
-    function get_key($key, $user_id) {
+    public function get_key($key, $user_id) {
         $auto_table = $this->_table;
         $users_table = $this->_users_table;
 
@@ -37,7 +37,7 @@ class User_Autologin extends CI_Model {
         return $this->db->get();
     }
 
-    function delete_key($key, $user_id) {
+    public function delete_key($key, $user_id) {
         $data = array(
             'key_id' => md5($key),
             'user_id' => $user_id
@@ -47,12 +47,12 @@ class User_Autologin extends CI_Model {
         return $this->db->delete($this->_table);
     }
 
-    function clear_keys($user_id) {
+    public function clear_keys($user_id) {
         $this->db->where('user_id', $user_id);
         return $this->db->delete($this->_table);
     }
 
-    function prune_keys($user_id) {
+    public function prune_keys($user_id) {
         $data = array(
             'user_id' => $user_id,
             'user_agent' => substr($this->input->user_agent(), 0, 149),

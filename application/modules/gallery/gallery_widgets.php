@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Image CMS
@@ -18,31 +19,38 @@ class Gallery_Widgets extends MY_Controller {
         $this->load->helper('gallery');
         $this->load->model('gallery_m');
 
-        if ($widget['settings']['order'] == 'latest')
+        if ($widget['settings']['order'] == 'latest') {
             $images = gallery_latest_images($widget['settings']['limit']);
-        else
+        } else {
             $images = gallery_latest_images($widget['settings']['limit'], 'random');
+        }
 
         if (!empty($images)) {
-            for ($i = 0; $i < count($images); $i++) {
+            $countImages = count($images);
+            for ($i = 0; $i < $countImages; $i++) {
+                $images[$i]['url'] = site_url($images[$i]['url']);
+                $images[$i]['file_path'] = media_url($images[$i]['file_path']);
                 $images[$i]['thumb_path'] = media_url('uploads/gallery/' . $images[$i]['album_id'] . '/_thumbs/' . $images[$i]['file_name'] . $images[$i]['file_ext']);
             }
         }
 
-        $this->template->add_array(array(
-            'images' => $images,
-        ));
+        $this->template->add_array(
+            array(
+                    'images' => $images,
+                )
+        );
 
         return $this->template->fetch('widgets/' . $widget['name'], $data);
     }
 
     public function latest_fotos_configure($action = 'show_settings', $widget_data = array()) {
-        if ($this->dx_auth->is_admin() == FALSE)
+        if ($this->dx_auth->is_admin() == FALSE) {
             exit;
+        }
 
         switch ($action) {
             case 'show_settings':
-                //$this->display_tpl('latest_fotos_form', array('widget' => $widget_data));
+                //                $this->display_tpl('latest_fotos_form', array('widget' => $widget_data));
                 $this->render('latest_fotos_form', array('widget' => $widget_data));
                 break;
 
@@ -64,8 +72,9 @@ class Gallery_Widgets extends MY_Controller {
                 $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
 
                 showMessage(lang("Settings have been saved", 'gallery'));
-                if ($_POST['action'] == 'tomain')
+                if ($_POST['action'] == 'tomain') {
                     pjax('/admin/widgets_manager/index');
+                }
                 break;
 
             case 'install_defaults':
@@ -80,14 +89,15 @@ class Gallery_Widgets extends MY_Controller {
     }
 
     // Template functions
-    function display_tpl($file, $vars = array()) {
+
+    public function display_tpl($file, $vars = array()) {
         $this->template->add_array($vars);
 
         $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';
         $this->template->display('file:' . $file);
     }
 
-    function fetch_tpl($file, $vars = array()) {
+    public function fetch_tpl($file, $vars = array()) {
         $this->template->add_array($vars);
 
         $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';
@@ -95,16 +105,10 @@ class Gallery_Widgets extends MY_Controller {
     }
 
     public function render($viewName, array $data = array(), $return = false) {
-        if (!empty($data))
+        if (!empty($data)) {
             $this->template->add_array($data);
-
-        $this->template->show('file:' . 'application/modules/gallery/templates/' . $viewName);
-        exit;
-
-        if ($return === false)
-            $this->template->show('file:' . 'application/modules/gallery/templates/' . $viewName);
-        else
-            return $this->template->fetch('file:' . 'application/modules/gallery/templates/' . $viewName);
+        }
+        $this->template->show('file:' . APPPATH . getModContDirName('gallery') . '/gallery/templates/' . $viewName);
     }
 
 }

@@ -11,7 +11,10 @@ class BaseAdminController extends MY_Controller {
         $lang->load('admin');
 
         $this->load->library('Permitions');
-        Permitions::checkPermitions();
+        if (php_sapi_name() != 'cli') {
+            Permitions::checkPermitions();
+        }
+        
         $this->load->library('lib_admin');
         $this->lib_admin->init_settings();
         $this->autoloadModules();
@@ -54,5 +57,3 @@ class BaseAdminController extends MY_Controller {
     }
 
 }
-
-?>

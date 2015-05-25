@@ -31,13 +31,13 @@
                                 <div class="inside_padd">
                                     <div class="form-horizontal">
                                         <div class="control-group m-t_10">
-                                            <label class="control-label" for="inputParent">{lang("Name", "menu")}:</label>
+                                            <label class="control-label" for="inputParent">{lang("Name", "menu")}: <span class="must">*</span></label>
                                             <div class="controls">
                                                 <input type="text" name="menu_name" name1='ssss' value="{$name}" />
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label" for="inputWayImg">{lang("Title", "menu")}:</label>
+                                            <label class="control-label" for="inputWayImg">{lang("Title", "menu")}: <span class="must">*</span></label>
                                             <div class="controls">
                                                 <input type="text" class="textbox" name="main_title" value="{$main_title}" />
                                             </div>

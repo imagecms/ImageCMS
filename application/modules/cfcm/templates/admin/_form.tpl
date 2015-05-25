@@ -8,11 +8,11 @@
             <span class="help-inline"></span>
             <div class="d-i_b">
                 <a href="/admin/components/cp/cfcm/index{if $form->type == "group"}#fields_groups{else:}#additional_fields{/if}" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back", 'admin')}</span></a>
-                <button type="button" class="btn btn-small action_on formSubmit btn-success"  data-action="edit" data-form="#{echo $f_id = uniqid()}"><i class="icon-plus-sign icon-white"></i>{if $CI->uri->segment(5) == 'create_field'}{lang("Create", 'admin')}{else:}{lang("Save", 'cfcm')}{/if}</button>
-                <button type="button" class="btn btn-small action_on formSubmit btn-default" data-action="close" data-form="#{echo $f_id}"><i class="icon-check"></i>{if $CI->uri->segment(5) == 'create_field'}{lang('Create and exit', 'admin')}{else:}{lang("Save and exit", 'cfcm')}{/if}</button>
+                <button type="button" class="btn btn-small action_on formSubmit {if strstr($CI->uri->segment(5), 'create')}btn-success{else:}btn-primary{/if}"  data-action="edit" data-form="#{echo $f_id = uniqid()}"><i class="icon-plus-sign icon-white"></i>{if strstr($CI->uri->segment(5), 'create')}{lang("Create", 'admin')}{else:}{lang("Save", 'cfcm')}{/if}</button>
+                <button type="button" class="btn btn-small action_on formSubmit btn-default" data-action="close" data-form="#{echo $f_id}"><i class="icon-check"></i>{if strstr($CI->uri->segment(5), 'create')}{lang('Create and exit', 'admin')}{else:}{lang("Save and exit", 'cfcm')}{/if}</button>
             </div>
-        </div>                            
-    </div>             
+        </div>
+    </div>
     <table class="table  table-bordered table-hover table-condensed content_big_td m-t_10">
         <thead>
             <tr>
@@ -25,7 +25,7 @@
             <tr>
                 <td colspan="6">
                     <div class="inside_padd">
-                        <form action="{echo $form->action}" method="post" id="{$f_id}" class="form-horizontal">
+                        <form action="{echo $form->action}" method="post" id="{$f_id}" class="form-horizontal additionals-one-fields">
                             {foreach $form->asArray() as $f}
                                 <div class="control-group">
                                     <label class="control-label">

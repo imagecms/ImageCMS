@@ -106,10 +106,9 @@ class ParentEmail extends \MY_Controller {
 
     public function __construct() {
         parent::__construct();
-
-        $this->load->model('../modules/cmsemail/models/cmsemail_model');
-        $lang = new \MY_Lang();
-        $lang->load('cmsemail');
+        $modulePath = getModulePath('cmsemail');
+        $this->load->model('../' . getModContDirName('cmsemail') . '/cmsemail/models/cmsemail_model');
+        (new \MY_Lang())->load('cmsemail');
     }
 
     /**
@@ -144,10 +143,11 @@ class ParentEmail extends \MY_Controller {
     public function sendEmail($send_to, $patern_name, $variables, $attachment = FALSE) {
         //loading CodeIgniter Email library 
         $this->load->library('email');
+        $locale = \MY_Controller::getCurrentLocale();
 
         //Getting settings 
         $patern_settings = $this->cmsemail_model->getPaternSettings($patern_name);
-        $default_settings = $this->cmsemail_model->getSettings();
+        $default_settings = $this->cmsemail_model->getSettings($locale);
 
         //Prepare settings into correct array for initialize library
         if ($patern_settings) {
@@ -162,10 +162,12 @@ class ParentEmail extends \MY_Controller {
         $default_settings['type'] = strtolower($patern_settings['type']);
         $patern_settings['protocol'] = $default_settings['protocol'];
         if (strtolower($default_settings['protocol']) == strtolower("SMTP")) {
-            $patern_settings['port'] = $default_settings['port'];
+            $patern_settings['smtp_port'] = $default_settings['port'];
             $patern_settings['smtp_host'] = $default_settings['smtp_host'];
             $patern_settings['smtp_user'] = $default_settings['smtp_user'];
             $patern_settings['smtp_pass'] = $default_settings['smtp_pass'];
+            $patern_settings['smtp_crypto'] = $default_settings['encryption'];
+            $this->email->set_newline("\r\n");
         }
 
         //Initializing library settings
@@ -194,7 +196,6 @@ class ParentEmail extends \MY_Controller {
                 \CMSFactory\Events::runFactory();
             }
         }
-
         //Sending administrator email if active in options
         if ($patern_settings['admin_message_active']) {
             $this->from_email = $patern_settings['from_email'];
@@ -372,17 +373,18 @@ class ParentEmail extends \MY_Controller {
      */
     private function _set_config($settings) {
         $config['protocol'] = $settings['protocol'];
-
         if (strtolower($settings['protocol']) == strtolower("SMTP")) {
-            $config['smtp_port'] = $settings['port'];
+            $config['protocol']  = strtolower($settings['protocol']);
+            $config['smtp_port'] = $settings['smtp_port'];
             $config['smtp_host'] = $settings['smtp_host'];
             $config['smtp_user'] = $settings['smtp_user'];
             $config['smtp_pass'] = $settings['smtp_pass'];
+            $config['smtp_crypto'] = $settings['smtp_crypto'];
         }
 
         $config['mailtype'] = strtolower($settings['type']);
         $config['mailpath'] = $settings['mailpath'];
-
+        
         return $this->email->initialize($config);
     }
 
@@ -416,8 +418,8 @@ class ParentEmail extends \MY_Controller {
         return $this->cmsemail_model->getAllTemplates();
     }
 
-    public function getSettings() {
-        return $this->cmsemail_model->getSettings();
+    public function getSettings($locale = FALSE) {
+        return $this->cmsemail_model->getSettings($locale);
     }
 
     public function getTemplateById($id, $locale) {

@@ -19,7 +19,9 @@ class Login extends BaseAdminController {
             redirect('/admin');
         }
 
-        $this->load->library(array('lib_admin', 'form_validation'));
+        $this->load->library('lib_admin');
+        $this->load->library('form_validation');
+
         $this->lib_admin->init_settings();
         $this->form_validation->set_error_delimiters('<div class="alert alert-error">', '</div>');
     }
@@ -31,9 +33,10 @@ class Login extends BaseAdminController {
             $this->template->assign('use_captcha', '1');
             $this->template->assign('cap_image', $this->dx_auth->get_captcha_image());
         }
-        $browser = $this->user_browser($_SERVER['HTTP_USER_AGENT']);
 
-        if (($browser[0] === 'Firefox' && $browser[1] < 16.0) || $browser[0] === 'IE' || ($browser[0] === 'Chrome' && $browser[1] < 17 ) || ($browser[0] === 'Opera' && $browser[1] < 12.11)) {
+        $this->load->library('user_agent');
+
+        if (($this->agent->browser() === 'Firefox' && $this->agent->version() < 16.0) || $this->agent->browser() === 'IE' || ($this->agent->browser() === 'Chrome' && $this->agent->version() < 17) || ($this->agent->browser() === 'Opera' && $this->agent->version() < 12.11)) {
             $this->template->display('old_browser');
         } else {
             $this->do_login();
@@ -47,7 +50,7 @@ class Login extends BaseAdminController {
      */
     function do_login() {
 
-        $this->form_validation->set_rules('login', lang("E-mail"), 'trim|required|min_length[3]|max_length[50]|valid_email');
+        $this->form_validation->set_rules('login', lang("E-mail", 'admin'), 'trim|required|min_length[3]|max_length[50]|valid_email');
         $this->form_validation->set_rules('password', lang("Password", "admin"), 'trim|required|min_length[5]|max_length[32]');
 
         if ($_POST['remember'] == 1) {
@@ -63,25 +66,26 @@ class Login extends BaseAdminController {
 
         if ($this->form_validation->run($this) == FALSE) {
 //			    if ($this->form_validation->run($this) == TRUE)
-            $err_object = & _get_validation_object();
+            $err_object = &_get_validation_object();
 
             foreach ($_POST as $k => $v) {
                 $err_text = $err_object->error($k, $prefix, $suffix);
                 $this->template->assign($k . '_error', $err_text);
             }
         } else {
-            if ($this->check_permissions($this->input->post('login'))) {
-                $rezult = $this->dx_auth->login($this->input->post('login'), $this->input->post('password'), $remember);
+            $result = $this->dx_auth->login($this->input->post('login'), $this->input->post('password'), $remember);
 
-                if ($rezult == TRUE) {
+            if ($result == TRUE) {
+
+                if ($this->check_permissions($this->input->post('login'))) {
                     $this->lib_admin->log(lang("Entered the IP control panel", "admin") . " " . $this->input->ip_address());
-
-                    redirect('admin/admin/init', 'refresh');
+                    redirect('admin/admin/init');
                 } else {
-                    $this->template->assign('login_failed', lang("Username and password have not been found", "admin"));
+                    $this->template->assign('login_failed', lang("Not enough access rights", "admin"));
+                    $this->dx_auth->logout();
                 }
             } else {
-                 $this->template->assign('login_failed', lang("Not enough access rights", "admin"));
+                $this->template->assign('login_failed', lang("Username and password have not been found", "admin"));
             }
         }
 
@@ -113,7 +117,7 @@ class Login extends BaseAdminController {
         $val = $this->form_validation;
 
         // Set form validation rules
-        $val->set_rules('login', lang("Username or Email", "admin"), 'trim|required|xss_clean');
+        $val->set_rules('login', lang("E-mail", "admin"), 'trim|required|xss_clean');
 
         // Validate rules and call forgot password function
         if ($val->run() AND $this->dx_auth->forgot_password($this->input->post('login'))) {

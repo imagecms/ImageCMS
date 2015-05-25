@@ -33,9 +33,10 @@ class Authapi extends MY_Controller {
      */
     public function login() {
         if (!$this->dx_auth->is_logged_in()) {
-
+            
+            $this->form_validation->set_message('required', lang('The %s is required','auth'));
             /** Set form validation rules */
-            $this->form_validation->set_rules('email', lang('Email', 'auth'), 'trim|required|min_length[3]|xss_clean|valid_email|callback_email_check_for_login');
+            $this->form_validation->set_rules('email', lang('E-Mail Address', 'auth'), 'trim|required|min_length[3]|xss_clean|valid_email|callback_email_check_for_login');
             $this->form_validation->set_rules('password', lang('Password', 'auth'), 'trim|required|min_length[3]|max_length[30]|xss_clean');
             $this->form_validation->set_rules('remember', lang('Remeber me', 'auth'), 'integer');
             $this->form_validation->set_rules('redirect_to', lang('Redirect to', 'auth'), 'trim|min_length[3]|max_length[255]|xss_clean');
@@ -48,7 +49,7 @@ class Authapi extends MY_Controller {
             if (true === $validationResult AND true === $doLoginResult) {
                 if (class_exists('ShopCore') && SHOP_INSTALLED)
                     ShopCore::app()->SCart->transferCartData();
-                $jsonResponse['msg'] = lang('User logged in success', 'auth');
+                $jsonResponse['msg'] = lang('User successfully logged in', 'auth');
                 $jsonResponse['status'] = true;
                 $jsonResponse['refresh'] = true;
                 $jsonResponse['redirect'] = FAlSE;
@@ -129,10 +130,13 @@ class Authapi extends MY_Controller {
         if (!$this->dx_auth->is_logged_in() AND $this->dx_auth->allow_registration) {
             $val = $this->form_validation;
             // Set form validation rules
-            $val->set_rules('email', lang("Email", 'auth'), 'trim|required|xss_clean|valid_email|callback_email_check');
-            $val->set_rules('username', ' ', 'required|trim|min_length[2]|xss_clean');
+            $this->form_validation->set_message('required', lang('The %s is required','auth'));
+
+            
+            $val->set_rules('email', lang("E-mail", 'auth'), 'trim|required|xss_clean|valid_email|callback_email_check');
+            $val->set_rules('username', lang("Your name field", 'auth'), 'required|trim|min_length[2]|xss_clean');
             $val->set_rules('password', lang("Password", 'auth'), 'trim|required|xss_clean|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']|matches[confirm_password]');
-            $val->set_rules('confirm_password', lang("Repeat Password", 'auth'), 'trim|required|xss_clean');
+            $val->set_rules('confirm_password', lang("Password Confirm field", 'auth'), 'trim|required|xss_clean');
 
             if ($this->dx_auth->captcha_registration) {
                 if ($this->dx_auth->use_recaptcha)
@@ -212,7 +216,10 @@ class Authapi extends MY_Controller {
     public function forgot_password() {
         $val = $this->form_validation;
         // Set form validation rules
-        $val->set_rules('email', lang("Email", 'auth'), 'trim|required|xss_clean|valid_email|callback_email_check_for_login');
+        $this->form_validation->set_message('required', lang('The %s is required','auth'));
+
+        
+        $val->set_rules('email', lang('Email', 'auth'), 'trim|required|xss_clean|valid_email|callback_email_check_for_login');
         // Validate rules and call forgot password function
         if ($val->run($this) AND $this->dx_auth->forgot_password($val->set_value('email'))) {
             echo json_encode(array(
@@ -282,7 +289,7 @@ class Authapi extends MY_Controller {
             /** Set form validation */
             $this->form_validation->set_rules('old_password', lang('Old password', 'auth'), 'trim|required|xss_clean|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']');
             $this->form_validation->set_rules('new_password', lang('New password', 'auth'), 'trim|required|xss_clean|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']|matches[confirm_new_password]');
-            $this->form_validation->set_rules('confirm_new_password', lang('Repeat new password', 'auth'), 'trim|required|xss_clean');
+            $this->form_validation->set_rules('confirm_new_password', lang('Confirm password', 'auth'), 'trim|required|xss_clean');
 
             /** Validate rules and change password */
             $validationResult = $this->form_validation->run();

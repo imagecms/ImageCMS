@@ -32,6 +32,10 @@ class Admin extends BaseAdminController {
 
     function createGroup() {
         $name = $this->input->post('name');
+        if($this->db->where($name)->get('mod_banner_groups')){
+            return FALSE;
+        }
+
         if ($this->db->table_exists('mod_banner_groups')) {
             $this->db->set('name', $name)->insert('mod_banner_groups');
         } else {
@@ -100,6 +104,7 @@ class Admin extends BaseAdminController {
     public function chose_active() {
         $status = ($this->input->post('status')) === 'false' ? 1 : 0;
         $this->banner_model->chose_active($this->input->post('id'), $status);
+        $this->lib_admin->log(lang("Banner status was edited", "banners") . '. Id: ' . $this->input->post('id'));
     }
 
     /**
@@ -115,6 +120,7 @@ class Admin extends BaseAdminController {
         foreach (json_decode($ids) as $key) {
             $this->banner_model->del_banner($key);
         }
+        $this->lib_admin->log(lang("Banner was removed", "banners") . '. Ids: ' . implode(', ', json_decode($ids)));
     }
 
     /**
@@ -147,6 +153,8 @@ class Admin extends BaseAdminController {
                 try {
                     $lid = $this->banner_model->add_banner($data);
 
+                    $last_banner_id = $this->db->order_by("id", "desc")->get('mod_banner')->row()->id;
+                    $this->lib_admin->log(lang("Banner created", "banners") . '. Id: ' . $last_banner_id);
                     showMessage(lang('Banner created', 'banners'));
                     /** Show successful message and redirect */
                     if ($this->input->post('action') == 'tomain') {
@@ -209,7 +217,8 @@ class Admin extends BaseAdminController {
                 $this->banner_model->edit_banner($data);
 
                 /** Show successful message and redirect */
-                showMessage(lang('Data saved', 'banners'));
+                $this->lib_admin->log(lang("Banner was edited", "banners") . '. Id: ' . $id);
+                showMessage(lang('Data is saved', 'banners'));
                 if ($this->input->post('action') == 'tomain') {
                     pjax('/admin/components/init_window/banners');
                 }

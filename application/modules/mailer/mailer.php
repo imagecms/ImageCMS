@@ -26,7 +26,6 @@ class Mailer extends MY_Controller {
     public function index() {
 
         $this->load->library('form_validation');
-
         $this->form_validation->set_rules('user_email', lang("Your e-mail", 'mailer'), 'required|trim|valid_email');
 
         if ($this->form_validation->run($this) == FALSE) {
@@ -53,27 +52,92 @@ class Mailer extends MY_Controller {
 
                 $date = date('U');
                 $email = $this->input->post('user_email');
-                
-                   
+
+
                 $data = array(
                     'email' => $email,
                     'date' => $date
                 );
-                    
+
                 $this->db->insert('mail', $data);
-                   
+
+                $this->registerUserByEmail($email);
+
                 $this->template->add_array(array(
                     'email' => $query,
                 ));
-                   
-                redirect('/mailer/success/');
-                    
-            } else {
 
+                redirect('/mailer/success/');
+            } else {
                 $this->db->delete('mail', array('email' => $this->input->post('user_email')));
                 redirect('/mailer/cancel/');
             }
         }
+    }
+
+    public function ajaxSubmit() {
+
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('user_email', lang("Your e-mail", 'mailer'), 'required|trim|valid_email');
+
+        if ($this->form_validation->run($this) == FALSE) {
+            CMSFactory\assetManager::create()->setData(array(
+                'mailer_errors' => validation_errors(),
+            ));
+            CMSFactory\assetManager::create()->render('error', true);
+        } else {
+
+
+            $query = $this->db->get_where('mail', array('email' => $this->input->post('user_email')));
+            $row = $query->row();
+
+            if (!empty($row) && $this->input->post('add_user_mail') != 1) {
+                CMSFactory\assetManager::create()->render('already', true);
+                exit;
+            } elseif (empty($row) && $this->input->post('add_user_mail') == 1) {
+                CMSFactory\assetManager::create()->render('no', true);
+                exit;
+            }
+
+            if ($this->input->post('add_user_mail') == 2) {
+
+                $date = date('U');
+                $email = $this->input->post('user_email');
+
+                $data = array(
+                    'email' => $email,
+                    'date' => $date
+                );
+
+                $this->db->insert('mail', $data);
+
+                $this->registerUserByEmail($email);
+
+                CMSFactory\assetManager::create()->setData(array(
+                    'email' => $query,
+                ));
+                CMSFactory\assetManager::create()->render('success', true);
+            } else {
+                $this->db->delete('mail', array('email' => $this->input->post('user_email')));
+                CMSFactory\assetManager::create()->render('cancel', true);
+            }
+        }
+    }
+
+    /**
+     * Register subscribed user by email
+     * @param string $email - user email
+     * @return bool
+     */
+    private function registerUserByEmail($email) {
+        if (!$email) {
+            return FALSE;
+        }
+
+        $username = array_shift(explode('@', $email));
+        $password = random_string('alnum', 8);
+        $key = random_string('alnum', 5);
+        $this->dx_auth->register($username, $password, $email, '', $key);
     }
 
     public function getForm() {
@@ -101,7 +165,7 @@ class Mailer extends MY_Controller {
     }
 
     /**
-     * Загрузка настроек модуля 
+     * Загрузка настроек модуля
      */
     private function load_settings() {
         $this->db->limit(1);
@@ -151,25 +215,31 @@ class Mailer extends MY_Controller {
      * Display template file
      */
     private function display_tpl($file = '') {
-        $file = realpath(dirname(__FILE__)) . '/templates/public/' . $file;
-        $this->template->show('file:' . $file);
+        $this->template->show('file:' . $this->searchTpl($file));
     }
 
     /**
      * Display template file
      */
     private function show_tpl($file = '') {
-
-        $file = realpath(dirname(__FILE__)) . '/templates/public/' . $file;
-        $this->template->show('file:' . $file);
+        $this->template->show('file:' . $this->searchTpl($file));
     }
 
     /**
      * Fetch template file
      */
     private function fetch_tpl($file = '') {
-        $file = realpath(dirname(__FILE__)) . '/templates/public/' . $file . '.tpl';
-        return $this->template->fetch('file:' . $file);
+        return $this->template->fetch('file:' . $this->searchTpl($file . '.tpl'));
+    }
+
+    protected function searchTpl($file = '') {
+        $templateModulePath = TEMPLATES_PATH
+            . template_manager\classes\TemplateManager::getInstance()->getCurentTemplate()->name
+            . '/mailer/';
+        if (file_exists($templateModulePath . $file) || file_exists($templateModulePath . $file . '.tpl')) {
+            return $templateModulePath . $file;
+        }
+        return realpath(dirname(__FILE__)) . '/templates/public/' . $file;
     }
 
 }

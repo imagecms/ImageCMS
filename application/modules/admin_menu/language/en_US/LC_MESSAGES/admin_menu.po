@@ -1,0 +1,1175 @@
+﻿msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-01-29 02:51+0200\n"
+"PO-Revision-Date: 2015-01-29 02:51+0200\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: application/modules/admin_menu/menus/full.php:455
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:348
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:417
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:417
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:417
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:348
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:348
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:417
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:348
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:417
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:417
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:348
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:348
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:348
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:348
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:348
+msgid "Template manager"
+msgstr ""
+
+#: application/modules/admin_menu/menus/full.php:477
+#: application/modules/admin_menu/menus/professional.php:419
+#: application/modules/admin_menu/menus/premium.php:488
+#: application/modules/admin_menu/menus/corporate.php:216
+#: application/modules/admin_menu/menus/shop.php:307
+#: application/modules/admin_menu/menus/base.php:130
+msgid "Template editor"
+msgstr "File manager"
+
+#: application/modules/admin_menu/menus/full.php:291
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:152
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:152
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:152
+#: application/modules/admin_menu/menus/professional.php:154
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:152
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:152
+#: application/modules/admin_menu/menus/premium.php:154
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:152
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:152
+#: application/modules/admin_menu/menus/shop.php:95
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:152
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:152
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:152
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:152
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:152
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:152
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:152
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:152
+msgid "Brands"
+msgstr "Manufacturers"
+
+#: application/modules/admin_menu/menus/full.php:280
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:141
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:141
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:141
+#: application/modules/admin_menu/menus/professional.php:143
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:141
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:141
+#: application/modules/admin_menu/menus/premium.php:143
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:141
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:141
+#: application/modules/admin_menu/menus/shop.php:89
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:141
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:141
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:141
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:141
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:141
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:141
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:141
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:141
+msgid "Products properties"
+msgstr "Product features"
+
+#: application/modules/admin_menu/menus/full.php:269
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:130
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:130
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:130
+#: application/modules/admin_menu/menus/professional.php:132
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:130
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:130
+#: application/modules/admin_menu/menus/premium.php:132
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:130
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:130
+#: application/modules/admin_menu/menus/shop.php:83
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:130
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:130
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:130
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:130
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:130
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:130
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:130
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:130
+msgid "Products list"
+msgstr "Products"
+
+#: application/modules/admin_menu/menus/full.php:228
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:83
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:83
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:83
+#: application/modules/admin_menu/menus/professional.php:85
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:83
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:83
+#: application/modules/admin_menu/menus/premium.php:85
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:83
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:83
+#: application/modules/admin_menu/menus/shop.php:61
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:83
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:83
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:83
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:83
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:83
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:83
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:83
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:83
+msgid "Notification statuses"
+msgstr "Arrival notifications statuses"
+
+#: application/modules/admin_menu/menus/full.php:222
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:72
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:72
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:72
+#: application/modules/admin_menu/menus/professional.php:74
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:72
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:72
+#: application/modules/admin_menu/menus/premium.php:74
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:72
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:72
+#: application/modules/admin_menu/menus/shop.php:55
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:72
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:72
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:72
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:72
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:72
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:72
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:72
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:72
+msgid "Notifications list"
+msgstr "Arrival notifications list"
+
+#: application/modules/admin_menu/menus/full.php:216
+msgid "Notifications"
+msgstr ""
+
+#: application/modules/admin_menu/menus/full.php:203
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:50
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:50
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:50
+#: application/modules/admin_menu/menus/professional.php:52
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:50
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:50
+#: application/modules/admin_menu/menus/premium.php:52
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:50
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:50
+#: application/modules/admin_menu/menus/shop.php:42
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:50
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:50
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:50
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:50
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:50
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:50
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:50
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:50
+msgid "Callback statuses"
+msgstr "Call me back statuses"
+
+#: application/modules/admin_menu/menus/full.php:197
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:39
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:39
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:39
+#: application/modules/admin_menu/menus/professional.php:41
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:39
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:39
+#: application/modules/admin_menu/menus/premium.php:41
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:39
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:39
+#: application/modules/admin_menu/menus/shop.php:36
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:39
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:39
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:39
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:39
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:39
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:39
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:39
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:39
+msgid "Callbacks list"
+msgstr "Call me back list"
+
+#: application/modules/admin_menu/menus/full.php:209
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:61
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:61
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:61
+#: application/modules/admin_menu/menus/professional.php:63
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:61
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:61
+#: application/modules/admin_menu/menus/premium.php:63
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:61
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:61
+#: application/modules/admin_menu/menus/shop.php:48
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:61
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:61
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:61
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:61
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:61
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:61
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:61
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:61
+msgid "Callback themes"
+msgstr "Call me back themes"
+
+#: application/modules/admin_menu/menus/full.php:191
+msgid "Callbacks"
+msgstr ""
+
+#: application/modules/admin_menu/menus/full.php:184
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:28
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:28
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:28
+#: application/modules/admin_menu/menus/professional.php:30
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:28
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:28
+#: application/modules/admin_menu/menus/premium.php:30
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:28
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:28
+#: application/modules/admin_menu/menus/shop.php:29
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:28
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:28
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:28
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:28
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:28
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:28
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:28
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:28
+msgid "Order statuses"
+msgstr "Orders statuses"
+
+#: application/modules/admin_menu/assets/admin/menu.tpl:37
+msgid "Module search"
+msgstr ""
+
+#: application/modules/admin_menu/assets/admin/cms.tpl:8
+#: application/modules/admin_menu/assets/js/admin_menu.js:208
+msgid "Edit menu item"
+msgstr ""
+
+#: application/modules/admin_menu/assets/admin/cms.tpl:15
+msgid "Cancel"
+msgstr ""
+
+#: application/modules/admin_menu/assets/js/admin_menu.js:217
+msgid "Delete menu item"
+msgstr ""
+
+#: application/modules/admin_menu/menus/full.php:431
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:381
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:450
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:450
+#: application/modules/admin_menu/menus/professional.php:364
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:450
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:381
+#: application/modules/admin_menu/menus/premium.php:433
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:381
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:450
+#: application/modules/admin_menu/menus/shop.php:267
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:381
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:450
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:450
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:381
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:381
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:381
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:381
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:381
+msgid "Delivery methods (shipping)"
+msgstr "Shipping options"
+
+#: application/modules/admin_menu/menus/full.php:490
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:425
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:494
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:494
+#: application/modules/admin_menu/menus/professional.php:441
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:494
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:425
+#: application/modules/admin_menu/menus/premium.php:510
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:425
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:494
+#: application/modules/admin_menu/menus/corporate.php:238
+#: application/modules/admin_menu/menus/shop.php:320
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:425
+#: application/modules/admin_menu/menus/base.php:143
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:494
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:494
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:425
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:425
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:425
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:425
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:425
+msgid "Events journal"
+msgstr "Logs"
+
+#: application/modules/admin_menu/menus/full.php:87
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:290
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:290
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:290
+#: application/modules/admin_menu/menus/professional.php:292
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:290
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:290
+#: application/modules/admin_menu/menus/premium.php:292
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:290
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:290
+#: application/modules/admin_menu/menus/corporate.php:72
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:290
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:290
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:290
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:290
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:290
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:290
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:290
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:290
+msgid "Groups list "
+msgstr "Additional fields groups"
+
+#: application/modules/admin_menu/menus/shop.php:177
+#: application/modules/admin_menu/menus/base.php:41
+msgid "Group\'s list "
+msgstr ""
+
+#: application/modules/admin_menu/menus/full.php:67
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:279
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:279
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:279
+#: application/modules/admin_menu/menus/professional.php:281
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:279
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:279
+#: application/modules/admin_menu/menus/premium.php:281
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:279
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:279
+#: application/modules/admin_menu/menus/corporate.php:61
+#: application/modules/admin_menu/menus/shop.php:171
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:279
+#: application/modules/admin_menu/menus/base.php:35
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:279
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:279
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:279
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:279
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:279
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:279
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:279
+msgid "Fields list"
+msgstr "Additional fields list"
+
+#: application/modules/admin_menu/menus/full.php:61
+#: application/modules/admin_menu/menus/corporate.php:50
+msgid "Custom fields constructor"
+msgstr ""
+
+#: application/modules/admin_menu/menus/full.php:449
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:414
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:483
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:483
+#: application/modules/admin_menu/menus/professional.php:397
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:483
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:414
+#: application/modules/admin_menu/menus/premium.php:466
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:414
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:483
+#: application/modules/admin_menu/menus/shop.php:285
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:414
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:483
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:483
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:414
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:414
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:414
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:414
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:414
+msgid "Custom fields"
+msgstr ""
+
+#: application/modules/admin_menu/menus/full.php:36
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:246
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:246
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:246
+#: application/modules/admin_menu/menus/professional.php:248
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:246
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:246
+#: application/modules/admin_menu/menus/premium.php:248
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:246
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:246
+#: application/modules/admin_menu/menus/corporate.php:39
+#: application/modules/admin_menu/menus/shop.php:151
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:246
+#: application/modules/admin_menu/menus/base.php:28
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:246
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:246
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:246
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:246
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:246
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:246
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:246
+msgid "Articles list"
+msgstr "Pages list"
+
+#: application/modules/admin_menu/menus/full.php:30
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:235
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:235
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:235
+#: application/modules/admin_menu/menus/professional.php:237
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:235
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:235
+#: application/modules/admin_menu/menus/premium.php:237
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:235
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:235
+#: application/modules/admin_menu/menus/corporate.php:28
+#: application/modules/admin_menu/menus/shop.php:145
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:235
+#: application/modules/admin_menu/menus/base.php:22
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:235
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:235
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:235
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:235
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:235
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:235
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:235
+msgid "Create page"
+msgstr "Add page"
+
+#: application/modules/admin_menu/menus/full.php:341
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:210
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:210
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:210
+#: application/modules/admin_menu/menus/professional.php:212
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:210
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:210
+#: application/modules/admin_menu/menus/premium.php:212
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:210
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:210
+#: application/modules/admin_menu/menus/shop.php:129
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:210
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:210
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:210
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:210
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:210
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:210
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:210
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:210
+msgid "RBAC control"
+msgstr "Roles"
+
+#: application/modules/admin_menu/menus/full.php:335
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:199
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:199
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:199
+#: application/modules/admin_menu/menus/professional.php:201
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:199
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:199
+#: application/modules/admin_menu/menus/premium.php:201
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:199
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:199
+#: application/modules/admin_menu/menus/shop.php:123
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:199
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:199
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:199
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:199
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:199
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:199
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:199
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:199
+msgid "List of users"
+msgstr "Users"
+
+#: application/modules/admin_menu/menus/full.php:327
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:187
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:187
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:187
+#: application/modules/admin_menu/menus/professional.php:189
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:187
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:187
+#: application/modules/admin_menu/menus/premium.php:189
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:187
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:187
+#: application/modules/admin_menu/menus/shop.php:115
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:187
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:187
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:187
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:187
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:187
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:187
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:187
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:187
+msgid "Users management"
+msgstr "Users"
+
+#: application/modules/admin_menu/menus/full.php:381
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:337
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:337
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:337
+#: application/modules/admin_menu/menus/premium.php:353
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:337
+#: application/modules/admin_menu/menus/shop.php:217
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:337
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:337
+msgid "Users"
+msgstr ""
+
+#: application/modules/admin_menu/menus/full.php:302
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:163
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:163
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:163
+#: application/modules/admin_menu/menus/professional.php:165
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:163
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:163
+#: application/modules/admin_menu/menus/premium.php:165
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:163
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:163
+#: application/modules/admin_menu/menus/shop.php:101
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:163
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:163
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:163
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:163
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:163
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:163
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:163
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:163
+msgid "Produkts kits"
+msgstr "Products kits"
+
+#: application/modules/admin_menu/menus/full.php:235
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:96
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:96
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:96
+#: application/modules/admin_menu/menus/professional.php:98
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:96
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:96
+#: application/modules/admin_menu/menus/premium.php:98
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:96
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:96
+#: application/modules/admin_menu/menus/shop.php:69
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:96
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:96
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:96
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:96
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:96
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:96
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:96
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:96
+msgid "Products catalogue"
+msgstr "Catalog"
+
+#: application/modules/admin_menu/menus/full.php:313
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:174
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:174
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:174
+#: application/modules/admin_menu/menus/professional.php:176
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:174
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:174
+#: application/modules/admin_menu/menus/premium.php:176
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:174
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:174
+#: application/modules/admin_menu/menus/shop.php:107
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:174
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:174
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:174
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:174
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:174
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:174
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:174
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:174
+msgid "Products without images"
+msgstr ""
+
+#: application/modules/admin_menu/menus/full.php:388
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:348
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:348
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:348
+#: application/modules/admin_menu/menus/premium.php:364
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:348
+#: application/modules/admin_menu/menus/shop.php:224
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:348
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:348
+msgid "Products"
+msgstr ""
+
+#: application/modules/admin_menu/menus/full.php:258
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:119
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:119
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:119
+#: application/modules/admin_menu/menus/professional.php:121
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:119
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:119
+#: application/modules/admin_menu/menus/premium.php:121
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:119
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:119
+#: application/modules/admin_menu/menus/shop.php:77
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:119
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:119
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:119
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:119
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:119
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:119
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:119
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:119
+msgid "Product categories"
+msgstr "Categories"
+
+#: application/modules/admin_menu/menus/full.php:49
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:257
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:257
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:257
+#: application/modules/admin_menu/menus/professional.php:259
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:257
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:257
+#: application/modules/admin_menu/menus/premium.php:259
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:257
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:257
+#: application/modules/admin_menu/menus/shop.php:158
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:257
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:257
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:257
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:257
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:257
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:257
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:257
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:257
+msgid "Create category"
+msgstr ""
+
+#: application/modules/admin_menu/menus/full.php:73
+#: application/modules/admin_menu/menus/full.php:103
+#: application/modules/admin_menu/menus/corporate.php:97
+#: application/modules/admin_menu/menus/base.php:57
+msgid "Create new"
+msgstr ""
+
+#: application/modules/admin_menu/menus/full.php:149
+#: application/modules/admin_menu/menus/corporate.php:169
+#: application/modules/admin_menu/menus/base.php:102
+msgid "Create widget"
+msgstr ""
+
+#: application/modules/admin_menu/menus/full.php:247
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:108
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:108
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:108
+#: application/modules/admin_menu/menus/professional.php:110
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:108
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:108
+#: application/modules/admin_menu/menus/premium.php:110
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:108
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:108
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:108
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:108
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:108
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:108
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:108
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:108
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:108
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:108
+msgid "Create product"
+msgstr "Add product"
+
+#: application/modules/admin_menu/menus/full.php:55
+#: application/modules/admin_menu/menus/full.php:79
+#: application/modules/admin_menu/menus/full.php:109
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:268
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:268
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:268
+#: application/modules/admin_menu/menus/professional.php:270
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:268
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:268
+#: application/modules/admin_menu/menus/premium.php:270
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:268
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:268
+#: application/modules/admin_menu/menus/corporate.php:108
+#: application/modules/admin_menu/menus/shop.php:164
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:268
+#: application/modules/admin_menu/menus/base.php:63
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:268
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:268
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:268
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:268
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:268
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:268
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:268
+msgid "Categories list"
+msgstr ""
+
+#: application/modules/admin_menu/menus/full.php:155
+#: application/modules/admin_menu/menus/corporate.php:180
+#: application/modules/admin_menu/menus/base.php:108
+msgid "Widgets list"
+msgstr ""
+
+#: application/modules/admin_menu/menus/full.php:178
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:17
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:17
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:17
+#: application/modules/admin_menu/menus/professional.php:19
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:17
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:17
+#: application/modules/admin_menu/menus/premium.php:19
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:17
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:17
+#: application/modules/admin_menu/menus/shop.php:23
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:17
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:17
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:17
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:17
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:17
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:17
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:17
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:17
+msgid "Orders list"
+msgstr ""
+
+#: application/modules/admin_menu/menus/full.php:502
+#: application/modules/admin_menu/menus/professional.php:464
+#: application/modules/admin_menu/menus/premium.php:533
+#: application/modules/admin_menu/menus/corporate.php:260
+#: application/modules/admin_menu/menus/shop.php:332
+#: application/modules/admin_menu/menus/base.php:155
+msgid "Roles list"
+msgstr ""
+
+#: application/modules/admin_menu/assets/admin/tariffs.tpl:5
+msgid "Tariffs menus"
+msgstr ""
+
+#: application/modules/admin_menu/assets/admin/tariffs.tpl:12
+#: application/modules/admin_menu/assets/admin/cms.tpl:32
+msgid "Back"
+msgstr ""
+
+#: application/modules/admin_menu/assets/admin/tariffs.tpl:17
+#: application/modules/admin_menu/assets/admin/cms.tpl:14
+#: application/modules/admin_menu/assets/admin/cms.tpl:38
+msgid "Save"
+msgstr ""
+
+#: application/modules/admin_menu/assets/admin/tariffs.tpl:24
+msgid "Upload menus to server"
+msgstr ""
+
+#: application/modules/admin_menu/assets/admin/tariffs.tpl:33
+msgid "Search tariff"
+msgstr ""
+
+#: application/modules/admin_menu/assets/admin/cms.tpl:23
+msgid "Cms menus"
+msgstr ""
+
+#: application/modules/admin_menu/assets/admin/cms.tpl:54
+msgid "Corporate"
+msgstr ""
+
+#: application/modules/admin_menu/assets/admin/cms.tpl:60
+msgid "Professional"
+msgstr ""
+
+#: application/modules/admin_menu/assets/admin/cms.tpl:66
+msgid "Premium"
+msgstr ""
+
+#: application/modules/admin_menu/menus/full.php:8
+#: application/modules/admin_menu/menus/corporate.php:5
+#: application/modules/admin_menu/menus/base.php:6
+msgid "Dashboard"
+msgstr ""
+
+#: application/modules/admin_menu/menus/full.php:16
+#: application/modules/admin_menu/menus/full.php:24
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:223
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:223
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:223
+#: application/modules/admin_menu/menus/professional.php:225
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:223
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:223
+#: application/modules/admin_menu/menus/premium.php:225
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:223
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:223
+#: application/modules/admin_menu/menus/corporate.php:16
+#: application/modules/admin_menu/menus/shop.php:137
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:223
+#: application/modules/admin_menu/menus/base.php:14
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:223
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:223
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:223
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:223
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:223
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:223
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:223
+msgid "Content"
+msgstr ""
+
+#: application/modules/admin_menu/menus/full.php:43
+#: application/modules/admin_menu/menus/full.php:95
+#: application/modules/admin_menu/menus/full.php:395
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:359
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:359
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:359
+#: application/modules/admin_menu/menus/premium.php:375
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:359
+#: application/modules/admin_menu/menus/corporate.php:85
+#: application/modules/admin_menu/menus/shop.php:231
+#: application/modules/admin_menu/menus/base.php:49
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:359
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:359
+msgid "Categories"
+msgstr ""
+
+#: application/modules/admin_menu/menus/full.php:117
+#: application/modules/admin_menu/menus/corporate.php:121
+#: application/modules/admin_menu/menus/base.php:71
+msgid "Menu"
+msgstr ""
+
+#: application/modules/admin_menu/menus/full.php:124
+#: application/modules/admin_menu/menus/full.php:349
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:303
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:303
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:303
+#: application/modules/admin_menu/menus/professional.php:305
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:303
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:303
+#: application/modules/admin_menu/menus/premium.php:305
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:303
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:303
+#: application/modules/admin_menu/menus/corporate.php:132
+#: application/modules/admin_menu/menus/shop.php:185
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:303
+#: application/modules/admin_menu/menus/base.php:78
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:303
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:303
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:303
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:303
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:303
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:303
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:303
+msgid "Modules"
+msgstr ""
+
+#: application/modules/admin_menu/menus/full.php:132
+#: application/modules/admin_menu/menus/full.php:357
+#: application/modules/admin_menu/menus/professional.php:317
+#: application/modules/admin_menu/menus/premium.php:317
+#: application/modules/admin_menu/menus/corporate.php:144
+#: application/modules/admin_menu/menus/shop.php:193
+#: application/modules/admin_menu/menus/base.php:85
+msgid "All modules"
+msgstr ""
+
+#: application/modules/admin_menu/menus/full.php:141
+#: application/modules/admin_menu/menus/full.php:443
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:403
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:472
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:472
+#: application/modules/admin_menu/menus/professional.php:386
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:472
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:403
+#: application/modules/admin_menu/menus/premium.php:455
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:403
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:472
+#: application/modules/admin_menu/menus/corporate.php:157
+#: application/modules/admin_menu/menus/shop.php:279
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:403
+#: application/modules/admin_menu/menus/base.php:94
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:472
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:472
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:403
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:403
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:403
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:403
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:403
+msgid "Widgets"
+msgstr ""
+
+#: application/modules/admin_menu/menus/full.php:164
+#: application/modules/admin_menu/menus/full.php:172
+#: application/modules/admin_menu/menus/full.php:374
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:5
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:5
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:326
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:5
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:326
+#: application/modules/admin_menu/menus/professional.php:7
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:5
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:326
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:5
+#: application/modules/admin_menu/menus/premium.php:7
+#: application/modules/admin_menu/menus/premium.php:342
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:5
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:5
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:326
+#: application/modules/admin_menu/menus/shop.php:15
+#: application/modules/admin_menu/menus/shop.php:210
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:5
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:5
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:326
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:5
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:326
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:5
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:5
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:5
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:5
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:5
+msgid "Orders"
+msgstr ""
+
+#: application/modules/admin_menu/menus/full.php:366
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:314
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:314
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:314
+#: application/modules/admin_menu/menus/premium.php:330
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:314
+#: application/modules/admin_menu/menus/shop.php:202
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:314
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:314
+msgid "Statistics"
+msgstr ""
+
+#: application/modules/admin_menu/menus/full.php:402
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:370
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:370
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:370
+#: application/modules/admin_menu/menus/premium.php:386
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:370
+#: application/modules/admin_menu/menus/shop.php:238
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:370
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:370
+msgid "Search"
+msgstr ""
+
+#: application/modules/admin_menu/menus/full.php:411
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:314
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:383
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:383
+#: application/modules/admin_menu/menus/professional.php:330
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:383
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:314
+#: application/modules/admin_menu/menus/premium.php:399
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:314
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:383
+#: application/modules/admin_menu/menus/shop.php:247
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:314
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:383
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:383
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:314
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:314
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:314
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:314
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:314
+msgid "Settings"
+msgstr ""
+
+#: application/modules/admin_menu/menus/full.php:419
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:337
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:406
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:406
+#: application/modules/admin_menu/menus/professional.php:342
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:406
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:337
+#: application/modules/admin_menu/menus/premium.php:411
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:337
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:406
+#: application/modules/admin_menu/menus/shop.php:255
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:337
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:406
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:406
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:337
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:337
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:337
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:337
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:337
+msgid "Shop settings"
+msgstr ""
+
+#: application/modules/admin_menu/menus/full.php:425
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:370
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:439
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:439
+#: application/modules/admin_menu/menus/professional.php:353
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:439
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:370
+#: application/modules/admin_menu/menus/premium.php:422
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:370
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:439
+#: application/modules/admin_menu/menus/shop.php:261
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:370
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:439
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:439
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:370
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:370
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:370
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:370
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:370
+msgid "Currencies"
+msgstr ""
+
+#: application/modules/admin_menu/menus/full.php:437
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:392
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:461
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:461
+#: application/modules/admin_menu/menus/professional.php:375
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:461
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:392
+#: application/modules/admin_menu/menus/premium.php:444
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:392
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:461
+#: application/modules/admin_menu/menus/shop.php:273
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:392
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:461
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:461
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:392
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:392
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:392
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:392
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:392
+msgid "Payment methods"
+msgstr ""
+
+#: application/modules/admin_menu/menus/full.php:463
+#: application/modules/admin_menu/menus/corporate.php:193
+#: application/modules/admin_menu/menus/shop.php:293
+#: application/modules/admin_menu/menus/base.php:116
+msgid "System"
+msgstr ""
+
+#: application/modules/admin_menu/menus/full.php:471
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:326
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:395
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:395
+#: application/modules/admin_menu/menus/professional.php:408
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:395
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:326
+#: application/modules/admin_menu/menus/premium.php:477
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:326
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:395
+#: application/modules/admin_menu/menus/corporate.php:205
+#: application/modules/admin_menu/menus/shop.php:301
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:326
+#: application/modules/admin_menu/menus/base.php:124
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:395
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:395
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:326
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:326
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:326
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:326
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:326
+msgid "Global settings"
+msgstr ""
+
+#: application/modules/admin_menu/menus/full.php:483
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:359
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:428
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:428
+#: application/modules/admin_menu/menus/professional.php:430
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:428
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:359
+#: application/modules/admin_menu/menus/premium.php:499
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:359
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:428
+#: application/modules/admin_menu/menus/corporate.php:227
+#: application/modules/admin_menu/menus/shop.php:313
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:359
+#: application/modules/admin_menu/menus/base.php:136
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:428
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:428
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:359
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:359
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:359
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:359
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:359
+msgid "Languages"
+msgstr ""
+
+#: application/modules/admin_menu/menus/full.php:496
+#: application/modules/admin_menu/menus/professional.php:453
+#: application/modules/admin_menu/menus/premium.php:522
+#: application/modules/admin_menu/menus/corporate.php:249
+#: application/modules/admin_menu/menus/shop.php:326
+#: application/modules/admin_menu/menus/base.php:149
+msgid "Backup"
+msgstr ""
+
+#: application/modules/admin_menu/menus/full.php:509
+#: application/modules/admin_menu/menus/professional.php:475
+#: application/modules/admin_menu/menus/premium.php:544
+#: application/modules/admin_menu/menus/shop.php:339
+msgid "System update"
+msgstr ""
+
+#: application/modules/admin_menu/menus/full.php:515
+#: application/modules/admin_menu/menus/professional.php:486
+#: application/modules/admin_menu/menus/premium.php:555
+#: application/modules/admin_menu/menus/shop.php:345
+msgid "System information"
+msgstr ""
+
+#: application/modules/admin_menu/menus/full.php:523
+#: application/modules/admin_menu/menus/Tariff_16_menu.php:436
+#: application/modules/admin_menu/menus/Tariff_18_menu.php:505
+#: application/modules/admin_menu/menus/Tariff_9_menu.php:505
+#: application/modules/admin_menu/menus/professional.php:496
+#: application/modules/admin_menu/menus/Tariff_17_menu.php:505
+#: application/modules/admin_menu/menus/Tariff_19_menu.php:436
+#: application/modules/admin_menu/menus/premium.php:565
+#: application/modules/admin_menu/menus/Tariff_8_menu.php:436
+#: application/modules/admin_menu/menus/Tariff_14_menu.php:505
+#: application/modules/admin_menu/menus/corporate.php:271
+#: application/modules/admin_menu/menus/shop.php:353
+#: application/modules/admin_menu/menus/Tariff_12_menu.php:436
+#: application/modules/admin_menu/menus/base.php:163
+#: application/modules/admin_menu/menus/Tariff_13_menu.php:505
+#: application/modules/admin_menu/menus/Tariff_10_menu.php:505
+#: application/modules/admin_menu/menus/Tariff_21_menu.php:436
+#: application/modules/admin_menu/menus/Tariff_20_menu.php:436
+#: application/modules/admin_menu/menus/Tariff_7_menu.php:436
+#: application/modules/admin_menu/menus/Tariff_15_menu.php:436
+#: application/modules/admin_menu/menus/Tariff_11_menu.php:436
+msgid "Clear cache"
+msgstr ""
+
+#: application/modules/admin_menu/menus/shop.php:8
+msgid "Shop dashboard"
+msgstr ""
+
+#: application/modules/admin_menu/admin.php:81
+#: application/modules/admin_menu/admin.php:96
+msgid "Successfully saved."
+msgstr ""
+
+#: application/modules/admin_menu/admin.php:81
+#: application/modules/admin_menu/admin.php:96
+#: application/modules/admin_menu/admin.php:116
+msgid "Success"
+msgstr ""
+
+#: application/modules/admin_menu/admin.php:83
+#: application/modules/admin_menu/admin.php:98
+msgid "No data to save."
+msgstr ""
+
+#: application/modules/admin_menu/admin.php:83
+#: application/modules/admin_menu/admin.php:98
+msgid "Error"
+msgstr ""
+
+#: application/modules/admin_menu/admin.php:116
+msgid "Successfully updated."
+msgstr ""
+
+#: application/modules/admin_menu/module_info.php:6
+msgid "Admin menu module"
+msgstr ""
+
+#: application/modules/admin_menu/classes/AdminMenuBuilder.php:99
+#: application/modules/admin_menu/classes/AdminMenuBuilder.php:124
+msgid "$1"
+msgstr ""

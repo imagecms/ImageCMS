@@ -8,12 +8,12 @@ if (!defined('BASEPATH'))
  *
  * Authentication library for Code Igniter.
  *
- * @author		Dexcell
- * @version		1.0.4
- * @based on	CL Auth by Jason Ashdown (http://http://www.jasonashdown.co.uk/)
- * @link			http://dexcell.shinsengumiteam.com/dx_auth
- * @license		MIT License Copyright (c) 2008 Erick Hartanto
- * @credits		http://dexcell.shinsengumiteam.com/dx_auth/general/credits.html
+ * @author        Dexcell
+ * @version        1.0.4
+ * @based on    CL Auth by Jason Ashdown (http://http://www.jasonashdown.co.uk/)
+ * @link            http://dexcell.shinsengumiteam.com/dx_auth
+ * @license        MIT License Copyright (c) 2008 Erick Hartanto
+ * @credits        http://dexcell.shinsengumiteam.com/dx_auth/general/credits.html
  */
 class DX_Auth {
 
@@ -24,7 +24,7 @@ class DX_Auth {
     var $_captcha_image;
 
     function DX_Auth() {
-        $this->ci = & get_instance();
+        $this->ci = &get_instance();
 
         log_message('debug', 'DX Auth Initialized');
 
@@ -129,8 +129,7 @@ class DX_Auth {
         // if PHP5
         if (function_exists('str_split')) {
             $_pass = str_split($_password);
-        }
-        // if PHP4
+        } // if PHP4
         else {
             $_pass = array();
             if (is_string($_password)) {
@@ -252,7 +251,8 @@ class DX_Auth {
              */
 
             // Check if role has parent id
-            if ($role->parent_id > 0) {
+
+            if (isset($role->parent_id) && $role->parent_id > 0) {
                 // Add to result array
                 $parent_roles_id[] = $role->parent_id;
 
@@ -504,8 +504,7 @@ class DX_Auth {
         // Check if key is in user permission array
         if (array_key_exists($key, $permission)) {
             $result = $permission[$key];
-        }
-        // Key not found
+        } // Key not found
         else {
             if ($check_parent) {
                 // Get current user parent permissions
@@ -613,8 +612,8 @@ class DX_Auth {
     // Get useremail string
     function get_user_email() {
         $user = $this->ci->db
-                ->where('id', $this->get_user_id())
-                ->get('users');
+            ->where('id', $this->get_user_id())
+            ->get('users');
         if ($user) {
             $user = $user->row_array();
             return $user['email'];
@@ -622,7 +621,7 @@ class DX_Auth {
             return '';
         }
     }
-    
+
     // Get user role id
     function get_role_id() {
         return $this->ci->session->userdata('DX_role_id');
@@ -635,6 +634,9 @@ class DX_Auth {
 
     // Check is user is has admin privilege
     function is_admin() {
+        if (php_sapi_name() == 'cli') {
+            return true;
+        }
         return strtolower($this->ci->session->userdata('DX_role_name')) == 'admin';
     }
 
@@ -775,8 +777,7 @@ class DX_Auth {
                     $this->_banned = TRUE;
                     // Set ban reason
                     $this->_ban_reason = $row->ban_reason;
-                }
-                // If it's not a banned user then try to login
+                } // If it's not a banned user then try to login
                 else {
                     $password = $this->_encode($password);
                     $stored_hash = $row->password;
@@ -813,8 +814,7 @@ class DX_Auth {
                         $this->_auth_error = lang('auth login incorrect password');
                     }
                 }
-            }
-            // Check if login is still not activated
+            } // Check if login is still not activated
             elseif ($query = $this->ci->user_temp->$get_user_function($login) AND $query->num_rows() == 1) {
                 // Set error message
                 $this->_auth_error = lang('auth not activated');
@@ -984,12 +984,13 @@ class DX_Auth {
 
                     // Create reset password link to be included in email
                     $data['reset_password_uri'] = site_url($this->ci->config->item('DX_reset_password_uri') . "{$row->email}/{$data['key']}");
-                    
+
                     // Trigger event and get email content
                     // $this->ci->dx_auth_event->sending_forgot_password_email($data, $message);
 
+                    $settings = $this->ci->cms_base->get_settings();
                     $replaceData = array(
-                        'webSiteName' => $this->ci->config->item('DX_website_name'),
+                        'webSiteName' => $settings['site_title'] ? $settings['site_title'] : $this->ci->config->item('DX_website_name'),
                         'resetPasswordUri' => $data['reset_password_uri'],
                         'password' => $data['password'],
                         'key' => $data['key'],
@@ -997,7 +998,7 @@ class DX_Auth {
                     );
 
                     \cmsemail\email::getInstance()->sendEmail($row->email, 'forgot_password', $replaceData);
-                    
+
 
                     // Send instruction email
                     //$this->_email($row->email, $from, $subject, $message);
@@ -1159,9 +1160,6 @@ class DX_Auth {
     function captcha() {
         $this->ci->load->helper('dx_captcha');
         // Load library SESSION
-//        var_dumps_exit($this->ci->input->is_ajax_request());
-        if ($this->ci->uri->segment(1) == 'feedback')
-            $this->ci->load->library('session');
 
         $vals = array(
             'img_path' => $this->ci->config->item('DX_captcha_path'),
@@ -1200,7 +1198,7 @@ class DX_Auth {
     function is_captcha_expired() {
         // Captcha Expired
         list($usec, $sec) = explode(" ", microtime());
-        $now = ((float) $usec + (float) $sec);
+        $now = ((float)$usec + (float)$sec);
 
         // Check if captcha already expired
 

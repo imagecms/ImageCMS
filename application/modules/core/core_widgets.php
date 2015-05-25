@@ -28,7 +28,7 @@ class Core_Widgets extends MY_Controller {
             $settings = $widget['settings'];
         }
 
-        $this->db->select('CONCAT_WS("", content.cat_url, content.url) as full_url, content.id, content.title, prev_text, publish_date, showed, comments_count, author, category.name as cat_name', FALSE);
+        $this->db->select('CONCAT_WS("", content.cat_url, content.url) as full_url, content.id, content.title, prev_text, publish_date, showed, comments_count, author, category.name as cat_name, content.cat_url', FALSE);
         $this->db->join('category', 'category.id=content.category');
         $this->db->where('post_status', 'publish');
         $this->db->where('prev_text !=', 'null');
@@ -141,7 +141,7 @@ class Core_Widgets extends MY_Controller {
 
                     $this->db->limit(5);
                     $this->db->select('content.*');
-                    $this->db->select('CONCAT_WS("", content.cat_url, content.url) as full_url');
+                    $this->db->select("CONCAT_WS('', content.cat_url, content.url ) as full_url");
                     $this->db->where('post_status', 'publish');
                     $this->db->where('publish_date <=', time());
                     $this->db->where('lang', $this->config->item('cur_lang'));
@@ -178,8 +178,7 @@ class Core_Widgets extends MY_Controller {
         if (!empty($data)) {
             $this->template->add_array($data);
         }
-
-        $this->template->show('file:' . APPPATH . 'modules/core/templates/' . $viewName);
+        $this->template->show('file:' . APPPATH . getModContDirName('core') . '/core/templates/' . $viewName);
     }
 
 }

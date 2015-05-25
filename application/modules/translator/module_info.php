@@ -9,7 +9,8 @@ $com_info = array(
     'w' => 800,                     // Window width
     'h' => 550,                     // Window height
     'version' => '1.0',             // Module version
-    'author' => 'dev@imagecms.net'  // Author info
+    'author' => 'dev@imagecms.net',  // Author info
+    'icon_class' => 'icon-book'
 );
 
 /* End of file module_info.php */

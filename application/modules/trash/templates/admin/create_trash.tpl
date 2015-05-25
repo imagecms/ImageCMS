@@ -33,11 +33,11 @@
                                         <form id="create" method="post" action="{$SELF_URL}/create_trash">
 
                                             <div class="control-group">
-                                                <label class="control-label" for="url">Url:</label>
+                                                <label class="control-label" for="url">Url: <span class="must">*</span></label>
                                                 <div class="controls">
                                                     <div class="input-prepend">
                                                         <span class="add-on">{site_url()}</span>
-                                                        <input name="url" id="Url" class="span19" id="prependedInput" type="text" >
+                                                        <input name="url" id="Url" class="span19" id="prependedInput" type="text" required="required">
                                                     </div>
                                                 </div> 
                                             </div>

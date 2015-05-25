@@ -1,6 +1,0 @@
-<ul class="">
-    {$wrapper}
-</ul>
-
-
-

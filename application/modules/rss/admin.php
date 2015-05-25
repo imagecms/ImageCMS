@@ -56,7 +56,8 @@ class Admin extends BaseAdminController {
 
         $this->db->where('name', 'rss');
         $this->db->update('components', array('settings' => serialize($data)));
-
+        
+        $this->lib_admin->log(lang("RSS was edited", "rss"));
         showMessage(lang("Changes have been saved", 'rss'));
     }
 

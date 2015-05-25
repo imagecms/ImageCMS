@@ -2,10 +2,28 @@
 <spotlight>
     <current>
         <name>ImageCMS Corporate</name>
+        <export_version>4.8</export_version>
+        <edition>Corporate</edition>
+        <timestamp>1429747200</timestamp>
+    </current>
+    <item>
+        <name>ImageCMS Corporate</name>
+        <export_version>4.7</export_version>
+        <edition>Corporate</edition>
+        <timestamp>1425340800</timestamp>
+    </item>
+    <item>
+        <name>ImageCMS Corporate</name>
+        <export_version>4.7b</export_version>
+        <edition>Corporate</edition>
+        <timestamp>1421884800</timestamp>
+    </item>
+    <item>
+        <name>ImageCMS Corporate</name>
         <export_version>4.6.1</export_version>
         <edition>Corporate</edition>
         <timestamp>1401840000</timestamp>
-    </current>
+    </item>
     <item>
         <name>ImageCMS Corporate</name>
         <export_version>4.6.1b</export_version>

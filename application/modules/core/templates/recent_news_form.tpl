@@ -34,7 +34,7 @@
                                 <label class="control-label" for="symcount">{lang("Categories", 'core')}:</label>
                                 <div class="controls">
                                     <select name="categories[]" multiple="multiple" id="symcount">
-                                        <option value="0">{lang("Without a category", 'core')}</option>
+                                        <!--<option value="0">{lang("Without a category", 'core')}</option> -->
                                         <option disabled="disabled"> </option>
                                         {build_cats_tree($cats, $widget.settings.categories)}
                                     </select>

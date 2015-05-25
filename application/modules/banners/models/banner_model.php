@@ -90,6 +90,7 @@ class Banner_model extends CI_Model {
         if ($query) {
             $query = $query->result_array();
 
+
             if ($group != '0') {
                 foreach ($query as $key => $banner) {
                     if (!in_array($group, unserialize($banner['group']))) {
@@ -100,7 +101,17 @@ class Banner_model extends CI_Model {
                         unset($query[$key]);
                     }
                 }
+            }else{
+                
+           
+                 foreach ($query as $key => $banner) {
+                    if (unserialize($banner['group']) && !strstr($_SERVER['REQUEST_URI'],'/admin/')) {
+                       unset($query[$key]);
+                    }
+                }
+            
             }
+  
         }
 
         return $query;
@@ -148,13 +159,27 @@ class Banner_model extends CI_Model {
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->create_table('mod_banner_groups');
 
-        $fields = array(
-            'group' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '255',
-                'null' => TRUE,
-        ));
-        $this->dbforge->add_column('mod_banner', $fields);
+        if (!in_array('group', $this->getColumnNamesOfTable('mod_banner'))) {
+            $this->dbforge->add_column('mod_banner', array(
+                'group' => array(
+                    'type' => 'VARCHAR',
+                    'constraint' => '255',
+                    'null' => TRUE,
+            )));
+        }
+    }
+
+    protected function getColumnNamesOfTable($tableName) {
+        $result = $this->db->query('SHOW COLUMNS FROM `' . $tableName . '`');
+        $fields = array();
+        if ($result) {
+            $tableFields = $result->result_array();
+            for ($i = 0; $i < count($tableFields); $i++) {
+                $fields[] = $tableFields[$i]['Field'];
+            }
+            return $fields;
+        }
+        return [];
     }
 
 }

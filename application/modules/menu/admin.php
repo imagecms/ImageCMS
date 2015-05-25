@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Image CMS
@@ -9,13 +10,21 @@ if (!defined('BASEPATH'))
 class Admin extends BaseAdminController {
 
     private $root_menu = array();
+
     private $sub_menu = array();
+
     private $sub_menus = array();
+
     private $padding = 0;
+
     private $menu_result = array();
+
     private $for_delete = array();
 
-    function __construct() {
+    private $default_lang_id;
+
+    public function __construct() {
+
         parent::__construct();
         $lang = new MY_Lang();
         $lang->load('menu');
@@ -23,7 +32,7 @@ class Admin extends BaseAdminController {
         // Only admin access
         $this->load->library('DX_Auth');
 
-        $this->cache->delete_group('menus');
+        $this->cache->delete_all();
         $this->load->library('Form_validation');
         $this->load->library('lib_admin');
         $this->load->module('menu');
@@ -32,9 +41,11 @@ class Admin extends BaseAdminController {
         $this->template->assign('langs', $this->_get_langs());
 
         $this->menu->select_hidden = TRUE; //select hidden items
+        $this->default_lang_id = $this->load->module('core')->def_lang[0]['id'];
     }
 
-    function index() {
+    public function index() {
+
         $root_menus = $this->db->get('menus')->result_array();
         \CMSFactory\assetManager::create()
                 ->setData('menus', $root_menus)
@@ -42,36 +53,41 @@ class Admin extends BaseAdminController {
     }
 
     public function chose_hidden() {
+
         $status = $_POST['status'] === 'false' ? 0 : 1;
         $id = $_POST['id'];
         $this->db->query("update menus_data set hidden = '$status' where id = '$id'");
+        $this->lib_admin->log(lang("Status menus item was changed", "menu") . '. Id: ' . $id);
     }
 
     /**
      * List all menu items
      */
-    function menu_item($name = '') {
+    public function menu_item($name = '') {
+
         $this->menu->prepare_menu_array($name);
-        $this->root_menu = & $this->menu->menu_array;
-        $this->sub_menu = & $this->menu->sub_menu_array;
+        $this->root_menu = &$this->menu->menu_array;
+        $this->sub_menu = &$this->menu->sub_menu_array;
 
         $this->process_root($this->root_menu);
+        //        var_dumps_exit($this->menu_result);
 
         $ins_id = $this->db->get_where('menus', array('name' => $name))->row_array();
 
         $this->template->assign('menu_result', $this->menu_result);
         $this->template->assign('insert_id', $ins_id['id']);
         $this->template->assign('menu_title', $ins_id['main_title']);
-//        if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
-//            $this->fetch_tpl('main');
-//        else
+        //        if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
+        //            $this->fetch_tpl('main');
+        //        else
 
         $this->template->assign('tree', $this->_printRecursiveMenuItems($this->root_menu));
 
         $this->display_tpl('main');
     }
 
-    function list_menu_items($menu_id = 0) {
+    public function list_menu_items($menu_id = 0) {
+
         if ($menu_id > 0) {
             $this->menu_item($this->get_name_by_id($menu_id));
         }
@@ -80,9 +96,16 @@ class Admin extends BaseAdminController {
     /**
      * Display create_item.tpl
      */
-    function create_item($id = null) {
+    public function create_item($id = null) {
+
         if (empty($_POST)) {
-            $parents = $this->db->where('menu_id', $id)->get('menus_data')->result_array();
+            $parents = $this->db
+                ->where('menu_id', $id)
+                ->select('menus_data.*, menu_translate.title')
+                ->join('menu_translate', 'menus_data.id = menu_translate.item_id')
+                ->where('lang_id', $this->default_lang_id)
+                ->get('menus_data')->result_array();
+
             $menu = $this->db->where('id', $id)->get('menus')->row_array();
             $cats = $this->lib_category->build();
             $pages = $this->get_pages(0, 0, 'controller');
@@ -144,10 +167,9 @@ class Admin extends BaseAdminController {
                     $image = $_POST['module_item_image'];
                 } elseif ($_POST['url_item_image']) {
                     $image = $_POST['url_item_image'];
-                } else
+                } else {
                     $image = '';
-
-
+                }
 
                 if ($_POST['page_newpage']) {
                     $newpage = $_POST['page_newpage'];
@@ -158,7 +180,6 @@ class Admin extends BaseAdminController {
                 } elseif ($_POST['url_newpage']) {
                     $newpage = $_POST['url_newpage'];
                 }
-
 
                 //preparing roles
                 $roles = $_POST['item_roles'];
@@ -180,22 +201,13 @@ class Admin extends BaseAdminController {
                     'parent_id' => $_POST['parent_id'],
                 );
 
-                //For position after
-                switch ($_POST['position_after']) {
-                    case 'first':
-                        $item_data['position'] = 1;
-                        $this->db->query('UPDATE `menus_data` SET `position`=`position`+1 WHERE `menu_id` = ' . $this->input->post('menu_id') . ' AND `parent_id`=' . $this->input->post('parent_id'));
-                        break;
-                    case '0':
-                        $all_menu_items_count = count($this->db->where('menu_id', $_POST['menu_id'])->where('parent_id', $this->input->post('parent_id'))->get('menus_data')->result());
-                        $item_data['position'] = $all_menu_items_count + 1;
-                        break;
-                    default :
-                        $pos = $this->db->where('id', $_POST['position_after'])->get('menus_data')->row_array();
-                        $pos = $pos['position'];
-                        $item_data['position'] = $pos + 1;
-                        $this->db->query('UPDATE `menus_data` SET `position`=`position`+1 WHERE `menu_id` = ' . $this->input->post('menu_id') . ' AND `position` > ' . $pos . ' AND `parent_id`=' . $this->input->post('parent_id'));
-                }
+                //                $item_data['position'] = $all_menu_items_count + 1;
+                $last_item_position = $this->db->where('menu_id', $_POST['menu_id'])
+                    ->where('parent_id', $this->input->post('parent_id'))
+                    ->select_max('position')
+                    ->get('menus_data')->result_array();
+                $newItemPosition = $last_item_position[0]['position'] + 1;
+                $item_data['position'] = $newItemPosition;
 
                 if (!isset($item_data['add_data'])) {
                     if ($_POST['item_type'] == 'module') {
@@ -221,6 +233,13 @@ class Admin extends BaseAdminController {
                 } else {
                     $this->db->insert('menus_data', $item_data);
                     $lastId = $this->db->insert_id();
+                    $translate = array(
+                        'item_id' => $lastId,
+                        'title' => $item_data['title'],
+                        'lang_id' => $this->default_lang_id
+                    );
+                    $this->db->insert('menu_translate', $translate);
+                    $this->lib_admin->log(lang('The menu item was successfully created', 'menu') . '. Id: ' . $lastId);
                     showMessage(lang('The menu item was successfully created', 'menu'));
                     $row = $this->db->where('id', $_POST['menu_id'])->get('menus')->row_array();
                     if ($_POST['action'] == 'tomain') {
@@ -236,12 +255,13 @@ class Admin extends BaseAdminController {
     /**
      * Display template to select/edit menu item
      */
-    function display_selector($id, $type = 'page') {
+    public function display_selector($id, $type = 'page') {
+
         $this->template->assign('insert_id', $id);
 
         $this->menu->prepare_menu_array($this->get_name_by_id($id));
-        $this->root_menu = & $this->menu->menu_array;
-        $this->sub_menu = & $this->menu->sub_menu_array;
+        $this->root_menu = &$this->menu->menu_array;
+        $this->sub_menu = &$this->menu->sub_menu_array;
         $this->process_root($this->root_menu);
         $this->template->assign('menu_result', $this->menu_result);
 
@@ -286,14 +306,14 @@ class Admin extends BaseAdminController {
         }
     }
 
-    /*
+    /**
      * Load all modules info
      *
      * @access private
      * @return array
      */
-
     private function _load_module_list() {
+
         $this->load->module('admin/components');
 
         $modules = $this->db->get('components')->result_array();
@@ -301,15 +321,19 @@ class Admin extends BaseAdminController {
         $id = (int) $id;
         $cnt = count($modules);
         for ($i = 0; $i < $cnt; $i++) {
-            $info = $this->components->get_module_info($modules[$i]['name']);            
-            $modules[$i]['menu_name'] = $info['menu_name'];
-            $modules[$i]['description'] = $info['description'];
-            $modules[$i]['url_image'] = $this->db->where('id',$id)
-                                            ->where('title',$info['menu_name'])
-                                            ->select('item_image')
-                                            ->get('menus_data')
-                                            ->row()
-                                            ->item_image;
+            $info = $this->components->get_module_info($modules[$i]['name']);
+            if ($info) {
+                $modules[$i]['menu_name'] = $info['menu_name'];
+                $modules[$i]['description'] = $info['description'];
+                $modules[$i]['url_image'] = $this->db->where('id', $id)
+                    ->where('title', $info['menu_name'])
+                    ->select('item_image')
+                    ->get('menus_data')
+                    ->row()
+                    ->item_image;
+            } else {
+                unset($modules[$i]);
+            }
         }
 
         unset($info);
@@ -320,11 +344,12 @@ class Admin extends BaseAdminController {
     /**
      * Get menu name by ID
      *
-     * @param $id integer
+     * @param  integer $id
      * @access public
-     * @return arra
+     * @return array
      */
-    function get_name_by_id($id) {
+    public function get_name_by_id($id) {
+
         $query = $this->db->get_where('menus', array('id' => $id))->row_array();
         return $query['name'];
     }
@@ -335,7 +360,8 @@ class Admin extends BaseAdminController {
      * @access public
      * @return bool
      */
-    function delete_item($id = null) {
+    public function delete_item($id = null) {
+
         //cp_check_perm('menu_edit');
         if ($this->input->post('ids')) {
             $id = $this->input->post('ids');
@@ -350,6 +376,7 @@ class Admin extends BaseAdminController {
                     $this->menu_model->delete_menu_item($item_id);
                 }
             }
+            $this->lib_admin->log(lang('Menu item successfuly deleted', 'menu') . '. Ids ' . implode(', ', $id));
             showMessage(lang('Menu item successfuly deleted', 'menu'), '');
         } else {
             if ($id > 0) {
@@ -363,6 +390,7 @@ class Admin extends BaseAdminController {
                     $this->menu_model->delete_menu_item($item_id);
                 }
 
+                $this->lib_admin->log(lang('Menu item successfuly deleted', 'menu') . '. Id ' . $id);
                 showMessage(lang('Menu item successfuly deleted', 'menu'), '');
                 return TRUE;
             } else {
@@ -374,11 +402,12 @@ class Admin extends BaseAdminController {
     /**
      * Find sub items for delete
      *
-     * @param $id integer - item id
+     * @param  integer $id - item id
      * @access private
      * @return array
      */
     private function _get_delete_items($id) {
+
         $items = $this->menu_model->get_parent_items($id);
 
         if ($items != FALSE) {
@@ -392,10 +421,11 @@ class Admin extends BaseAdminController {
     /**
      * Find all subitems and push in $this->sub_menus array
      *
-     * @param $id integer - item id
+     * @param  integer $id  - item id
      * @access private
      */
     private function _get_sub_items($id) {
+
         $items = $this->menu_model->get_parent_items($id);
 
         if ($items != FALSE) {
@@ -407,16 +437,47 @@ class Admin extends BaseAdminController {
     }
 
     /**
+     * ajax
+     * @param type $title
+     */
+    public function loadPathImg() {
+
+        $pathUrl = $this->db->like('add_data', $_POST['title'])->where('item_type', 'module')->get('menus_data')->row()->item_image;
+        if ($pathUrl) {
+            echo $pathUrl;
+        }
+    }
+
+    /**
      * Display edit item window
      */
-    function edit_item($item_id) {
+    public function edit_item($item_id) {
 
         if (empty($_POST)) {
-            $item = $this->db->where('id', $item_id)->get('menus_data')->row_array();
-            $parents = $this->db->where('menu_id', $item['menu_id'])->get('menus_data')->result_array();
+            $item = $this->db
+                ->where('menus_data.id', $item_id)
+                ->select(['menus_data.*', 'menu_translate.title'])
+                ->join('menu_translate', 'menus_data.id = menu_translate.item_id', 'left')
+                ->where('lang_id', $this->default_lang_id)
+                ->get('menus_data')->row_array();
+
+            if (empty($item)) {
+                $item = $this->db
+                    ->where('menus_data.id', $item_id)
+                    ->get('menus_data')->row_array();
+            }
+            $parents = $this->db
+                ->select('menus_data.*, menu_translate.title')
+                ->where('menu_id', $item['menu_id'])
+                ->join('menu_translate', 'menus_data.id = menu_translate.item_id')
+                ->where('lang_id', $this->default_lang_id)
+                ->get('menus_data')->result_array();
             $menu = $this->db->where('id', $item['menu_id'])->get('menus')->row_array();
+
+            $category_id = ($item['item_type'] === 'page') ? getPageCategoryId($item['item_id']) : 0;
+
             $cats = $this->lib_category->build();
-            $pages = $this->get_pages(0, 0, 'controller');
+            $pages = $this->get_pages($category_id, 0, 'controller');
             $locale = MY_Controller::getCurrentLocale();
             $this->db->select("shop_rbac_roles.*", FALSE);
             $this->db->select("shop_rbac_roles_i18n.alt_name", FALSE);
@@ -426,6 +487,7 @@ class Admin extends BaseAdminController {
 
             //$query = $this->db->get('shop_rbac_roles');
             $this->template->assign('roles', $role);
+            $this->template->assign('selected_category_id', $category_id);
             $this->template->assign('modules', $this->_load_module_list());
             $this->template->assign('cats', $cats);
             $this->template->assign('menu', $menu);
@@ -434,8 +496,6 @@ class Admin extends BaseAdminController {
             $this->template->assign('pages', $pages);
             $this->display_tpl('edit_item');
         } else {
-//            echo 'adsasd';
-//            exit;
             if ($_POST['page_item_type']) {
                 $item_type = $_POST['page_item_type'];
             } elseif ($_POST['cat_item_type']) {
@@ -447,7 +507,7 @@ class Admin extends BaseAdminController {
             }
 
             $this->form_validation->set_rules('menu_id', 'Menu Id', 'required');
-//            $this->form_validation->set_rules('item_type', 'Item Type', 'required');
+            //            $this->form_validation->set_rules('item_type', 'Item Type', 'required');
             $this->form_validation->set_rules('title', lang('Title', 'menu'), 'required');
             if ($item_type == 'page') {
                 $this->form_validation->set_rules('page_item_type', 'Item Type', 'required');
@@ -469,12 +529,9 @@ class Admin extends BaseAdminController {
                 $this->form_validation->set_rules('item_url', 'URL', 'required');
             }
 
-
             if ($this->form_validation->run($this) == FALSE) {
                 showMessage(validation_errors(), '', 'r');
             } else {
-
-
 
                 if ($_POST['page_hidden']) {
                     $hidden = $_POST['page_hidden'];
@@ -520,46 +577,6 @@ class Admin extends BaseAdminController {
                     $roles = serialize($_POST['item_roles']);
                 }
 
-//                 Item position
-                if ($_POST['position_after'] > 0) {
-                    $after_pos = $this->menu_model->get_item_position($_POST['position_after']);
-                    $after_pos = $after_pos['position'];
-                    if ($after_pos != FALSE) {
-                        $position = $after_pos + 1;
-                        $sql = "UPDATE `menus_data`
-                            SET `position`=`position` + 1
-                            WHERE `position` > '$after_pos'
-                            AND `menu_id`='" . $this->input->post('menu_id') . "'
-                            AND `parent_id`='" . $this->input->post('parent_id') . "'
-                            ";
-                        $this->db->query($sql);
-                    }
-                }
-                if ($_POST['position_after'] == 0) {
-                    $this->db->select_max('position');
-                    $this->db->where('menu_id', $_POST['menu_id']);
-                    $this->db->where('parent_id', $parent_id);
-                    $query = $this->db->get('menus_data')->row_array();
-
-                    if ($query['position'] == NULL) {
-                        $position = 1;
-                    } else {
-                        $position = $query['position'] + 1;
-                    }
-                }
-                if ($_POST['position_after'] == 'first') {
-                    $this->db->select_min('position');
-                    $this->db->where('menu_id', $_POST['menu_id']);
-                    $this->db->where('parent_id', (int) $parent_id);
-                    $query = $this->db->get('menus_data')->row_array();
-                    if ($query['position'] == NULL) {
-                        $position = 1;
-                    } else {
-                        $position = $query['position'] - 1;
-                    }
-                }
-
-
                 $item_data = array(
                     'menu_id' => $_POST['menu_id'],
                     'item_id' => $_POST['item_id'],
@@ -569,9 +586,7 @@ class Admin extends BaseAdminController {
                     'item_image' => $image,
                     'roles' => $roles,
                     'parent_id' => (int) $parent_id,
-                    'position' => $position
                 );
-
 
                 if ($item_data['item_type'] == 'module') {
                     $data['mod_name'] = $_POST['mod_name'];
@@ -586,23 +601,22 @@ class Admin extends BaseAdminController {
                 if ($item_data['item_type'] == 'page') {
                     $item_data['add_data'] = serialize(array('page' => $_POST['item_url'], 'newpage' => (int) $newpage));
                 }
-                if (!isset($item_data['add_data']))
+                if (!isset($item_data['add_data'])) {
                     $item_data['add_data'] = serialize($data);
+                }
                 $errorMessage = Null;
                 // Error: wrong parent id
-                if ($_POST['item_id'] != 0 && $parent_id != 0)
+                if ($_POST['item_id'] != 0 && $parent_id != 0) {
                     if ($_POST['item_id'] == $parent_id) {
                         $error = TRUE;
                         $errorMessage = 1;
                     }
-
+                }
 
                 // Error: don't place root menu in sub
-                $item = $this->menu_model->get_item($_POST['item_id']);
-                if ($item['parent_id'] == 0) {
-                    $this->_get_sub_items($_POST['item_id']);
-
-                    foreach ($this->sub_menus as $k => $v) {
+                if ($parent_id != 0) {
+                    $this->_get_sub_items($item_id);
+                    foreach ($this->sub_menus as $v) {
                         if ($v == $parent_id) {
                             $error = TRUE;
                             $errorMessage = 2;
@@ -610,17 +624,24 @@ class Admin extends BaseAdminController {
                     }
                 }
 
-
                 if ($error == TRUE) {
-                    if ($errorMessage == 1)
+                    if ($errorMessage == 1) {
                         showMessage(lang('Invalid parent identifier', 'menu'), '', 'r');
-                    if ($errorMessage == 2)
+                    }
+                    if ($errorMessage == 2) {
                         showMessage(lang('Can not be root menu in subparagraph', 'menu'), '', 'r');
+                    }
                     exit();
                 } else {
 
+                    $item_data_translated = array('title' => $item_data['title']);
+                    $this->db->where('item_id', $item_id);
+                    $this->db->where('lang_id', $this->default_lang_id);
+                    $this->db->update('menu_translate', $item_data_translated);
+
                     $this->db->where('id', $item_id);
                     $this->db->update('menus_data', $item_data);
+                    $this->lib_admin->log(lang('Menu item was edited', 'menu') . '. Id ' . $item_id);
                     showMessage(lang('Changes successfully saved', 'menu'));
                     $row = $this->db->where('id', $_POST['menu_id'])->get('menus')->row_array();
                     if ($_POST['action'] == 'tomain') {
@@ -632,20 +653,21 @@ class Admin extends BaseAdminController {
     }
 
     private function _printRecursiveMenuItems($items) {
+
         $html = '';
         foreach ($items as $item) {
             $item['hasKids'] = false;
-            if ($submenus = $this->menu->_get_sub_menus($item['id']))
+            if ($submenus = $this->menu->_get_sub_menus($item['id'])) {
                 $item['hasKids'] = true;
-//            $html .= '<div class="item">';
-//            $html .= $item['title'];
+            }
+            //            $html .= '<div class="item">';
+            //            $html .= $item['title'];
             $html .= '<div>';
 
             $this->template->assign('item', $item);
             $html .= $this->fetch_tpl('_menulistitem');
-
             if ($item['hasKids']) {
-                $html .= '<div class="frame_level">';
+                $html .= '<div class="frame_level sortable ui-sortable">';
                 $html .= $this->_printRecursiveMenuItems($submenus);
                 $html .= '</div>';
             }
@@ -656,7 +678,8 @@ class Admin extends BaseAdminController {
         return $html;
     }
 
-    function process_root($array) {
+    public function process_root($array) {
+
         foreach ($array as $item) {
             $sub_menus = $this->menu->_get_sub_menus($item['id']);
 
@@ -678,7 +701,7 @@ class Admin extends BaseAdminController {
      * Insert link into menu
      * Set positions
      */
-    function insert_menu_item() {
+    public function insert_menu_item() {
 
         //cp_check_perm('menu_edit');
 
@@ -761,8 +784,9 @@ class Admin extends BaseAdminController {
             $item_data['add_data'] = serialize(array('url' => $_POST['url'], 'newpage' => $_POST['newpage']));
         }
 
-        if (!isset($item_data['add_data']))
+        if (!isset($item_data['add_data'])) {
             $item_data['add_data'] = serialize(array('newpage' => $_POST['newpage']));
+        }
 
         if ($_POST['update_id'] == 0) {
             // Insert new item
@@ -781,15 +805,16 @@ class Admin extends BaseAdminController {
             if ($item['parent_id'] == 0) {
                 $this->_get_sub_items($_POST['update_id']);
 
-                foreach ($this->sub_menus as $k => $v) {
+                foreach ($this->sub_menus as $v) {
                     if ($v == $_POST['parent_id']) {
                         $error = TRUE;
                     }
                 }
             }
 
-            if ($_POST['position_after'] == 0)
+            if ($_POST['position_after'] == 0) {
                 unset($item_data['position']);
+            }
 
             if ($error == TRUE) {
                 return FALSE;
@@ -800,7 +825,8 @@ class Admin extends BaseAdminController {
         }
     }
 
-    function save_positions() {
+    public function save_positions() {
+
         //cp_check_perm('menu_edit');
 
         foreach ($_POST['positions'] as $k => $v) {
@@ -815,7 +841,8 @@ class Admin extends BaseAdminController {
      *
      * @access public
      */
-    function create_menu() {
+    public function create_menu() {
+
         //cp_check_perm('menu_create');
         if ($_POST['menu_name'] == NULL) {
             showMessage(lang("Name field sieve", 'menu'), '', 'r');
@@ -827,7 +854,7 @@ class Admin extends BaseAdminController {
         $val = $this->form_validation;
         $val->set_rules('menu_name', lang("Name", 'menu'), 'required|min_length[2]|max_length[25]|alpha_dash');
         $val->set_rules('main_title', lang("Name", 'menu'), 'required|max_length[100]');
-//        $val->set_rules('menu_tpl', lang("Template folder", 'menu'), 'required|max_length[255]');
+        //        $val->set_rules('menu_tpl', lang("Template folder", 'menu'), 'required|max_length[255]');
         $val->set_rules('menu_desc', lang("Description", 'menu'), 'max_length[500]');
         $val->set_rules('menu_expand_level', lang("Nesting level", 'menu'), 'numeric|max_length[2]');
 
@@ -843,36 +870,38 @@ class Admin extends BaseAdminController {
                 'created' => date('Y-m-d H:i:s')
             );
 
-            $this->menu_model->insert_menu($data);
+            $menu_id = $this->menu_model->insert_menu($data);
 
+            $this->lib_admin->log(lang("Menu was created", "menu") . '. Id: ' . $menu_id);
             showMessage(lang("Menu created", 'menu'));
-            if ($this->input->post('action') == 'tomain')
+            if ($this->input->post('action') == 'tomain') {
                 pjax('/admin/components/cp/menu');
-            else
-                pjax('/admin/components/cp/menu/edit_menu/' . $this->db->insert_id());
+            } else {
+                pjax('/admin/components/cp/menu/edit_menu/' . $menu_id);
+            }
         }
     }
 
-    function edit_menu($id) {
+    public function edit_menu($id) {
+
         //cp_check_perm('menu_edit');
         $menu_data = $this->menu_model->get_menu($id);
         $this->template->add_array($menu_data);
         $this->display_tpl('edit_menu');
     }
 
-    function update_menu($id) {
+    public function update_menu($id) {
+
         $val = $this->form_validation;
         $val->set_rules('menu_name', lang("Name", 'menu'), 'required|min_length[2]|max_length[25]|alpha_dash');
         $val->set_rules('main_title', lang("Name", 'menu'), 'required|max_length[100]');
-//        $val->set_rules('menu_tpl', lang("Template folder", 'menu'), 'required|max_length[5000]');
+        //        $val->set_rules('menu_tpl', lang("Template folder", 'menu'), 'required|max_length[5000]');
         $val->set_rules('menu_desc', lang("Description", 'menu'), 'max_length[500]');
         $val->set_rules('menu_expand_level', lang("Nesting level", 'menu'), 'numeric|max_length[2]');
-
 
         if ($this->form_validation->run($this) == FALSE) {
             showMessage(validation_errors(), '', 'r');
         } else {
-
 
             $data = array(
                 'name' => $this->input->post('menu_name'),
@@ -883,16 +912,18 @@ class Admin extends BaseAdminController {
                 'created' => date('Y-m-d H:i:s')
             );
 
-
             $this->db->where('id', $id);
             $this->db->update('menus', $data);
+            $this->lib_admin->log(lang("Menu was edited", "menu") . '. Id: ' . $id);
             showMessage(lang('Changes saved', 'menu'));
-            if ($_POST['action'] == 'tomain')
+            if ($_POST['action'] == 'tomain') {
                 pjax('/admin/components/cp/menu');
+            }
         }
     }
 
-    function check_menu_data() {
+    public function check_menu_data() {
+
         if ($_POST['menu_name'] == NULL) {
             showMessage(lang("The field is required to be filled in"), false, 'r');
             exit;
@@ -904,13 +935,14 @@ class Admin extends BaseAdminController {
         }
     }
 
-    function delete_menu($name = null) {
+    public function delete_menu($name = null) {
+
         if ($name == null) {
             $name = $this->input->post('ids');
             foreach ($name as $n) {
                 $this->menu->prepare_menu_array($n);
-                $this->root_menu = & $this->menu->menu_array;
-                $this->sub_menu = & $this->menu->sub_menu_array;
+                $this->root_menu = &$this->menu->menu_array;
+                $this->sub_menu = &$this->menu->sub_menu_array;
                 $this->process_root($this->root_menu);
                 //root menus array
                 foreach ($this->root_menu as $menu) {
@@ -923,12 +955,13 @@ class Admin extends BaseAdminController {
                 //delete main menu
                 $this->menu_model->delete_menu($n);
             }
+            $this->lib_admin->log(lang("Menu removed", "menu"));
             showMessage(lang("Menu removed", 'menu'));
             pjax('/admin/components/cp/menu');
         } else {
             $this->menu->prepare_menu_array($name);
-            $this->root_menu = & $this->menu->menu_array;
-            $this->sub_menu = & $this->menu->sub_menu_array;
+            $this->root_menu = &$this->menu->menu_array;
+            $this->sub_menu = &$this->menu->sub_menu_array;
             $this->process_root($this->root_menu);
             //root menus array
             foreach ($this->root_menu as $menu) {
@@ -940,12 +973,14 @@ class Admin extends BaseAdminController {
             }
             //delete main menu
             $this->menu_model->delete_menu($name);
+            $this->lib_admin->log(lang("Menu removed", "menu") . '. Id: ' . $menu['id']);
             showMessage(lang("Menu removed", 'menu'));
             pjax('/admin/components/cp/menu');
         }
     }
 
-    function create_tpl() {
+    public function create_tpl() {
+
         //cp_check_perm('menu_create');
 
         $this->display_tpl('create_menu');
@@ -954,16 +989,19 @@ class Admin extends BaseAdminController {
     /**
      * Get pages and return in JSON
      */
-    function get_pages($cat_id = 0, $cur_page = 0, $referer = null) {
+    public function get_pages($cat_id = 0, $cur_page = 0, $referer = null) {
+
         $data['nav_count'] = array();
         $data['links'] = 0;
         $per_page = 10;
-        if ($_POST['per_page'])
+        if ($_POST['per_page']) {
             $per_page = (int) $_POST['per_page'];
+        }
         //$per_page = (int) $_POST['per_page'];
         $this->db->select('id, title, url, cat_url');
         $this->db->order_by('created', 'desc');
-        $this->db->where('lang_alias', 0);
+        $this->db->where('lang', $this->load->module('core')->def_lang[0]['id']);
+        //        $this->db->where('lang_alias', 0);
         $this->db->where('category', $cat_id);
 
         if ($cur_page == 0) {
@@ -975,25 +1013,30 @@ class Admin extends BaseAdminController {
         if ($pages->num_rows() > 0) {
             $pages = $pages->result_array();
             $data['pages_list'] = $pages;
-            $total = $this->db->get_where('content', array('lang_alias' => 0, 'category' => $cat_id))->num_rows();
+            //            $total = $this->db->get_where('content', array('lang_alias' => 0, 'category' => $cat_id))->num_rows();
+            $total = $this->db->get_where('content', array('lang' => $this->default_lang_id, 'category' => $cat_id))->num_rows();
 
             $data['links'] = ceil($total / $per_page);
-            if ($data['links'] == 1)
+            if ($data['links'] == 1) {
                 $data['links'] = 0;
+            }
 
             if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
-                if ($referer == 'controller')
+                if ($referer == 'controller') {
                     return $data;
+                }
                 echo json_encode($data);
-            } else
+            } else {
                 return $data;
+            }
         }
     }
 
     /**
      * Search pages
      */
-    function search_pages($cur_page = 0) {
+    public function search_pages($cur_page = 0) {
+
         $data['nav_count'] = array();
         $data['links'] = 0;
 
@@ -1001,7 +1044,8 @@ class Admin extends BaseAdminController {
 
         $this->db->select('id, title, url, cat_url, category');
         $this->db->order_by('created', 'desc');
-        $this->db->where('lang_alias', 0);
+        //        $this->db->where('lang_alias', 0);
+        $this->db->where('lang', $this->default_lang_id);
         $this->db->like('title', $_POST['search']);
 
         if ($cur_page == 0) {
@@ -1041,14 +1085,16 @@ class Admin extends BaseAdminController {
             $data['pages_list'] = $pages;
 
             $this->db->select('id');
-            $this->db->where('lang_alias', 0);
+            $this->db->where('lang', $this->default_lang_id);
+            //            $this->db->where('lang_alias', 0);
             $this->db->like('title', $_POST['search']);
             $total = $this->db->get('content')->num_rows();
 
             $data['links'] = ceil($total / $per_page);
 
-            if ($data['links'] == 1)
+            if ($data['links'] == 1) {
                 $data['links'] = 0;
+            }
 
             echo json_encode($data);
         }
@@ -1058,7 +1104,8 @@ class Admin extends BaseAdminController {
      * Ajax function
      * Load item data and return it in Json
      */
-    function get_item() {
+    public function get_item() {
+
         $item_id = (int) $_POST['item_id'];
 
         $this->db->where('id', $item_id);
@@ -1067,31 +1114,36 @@ class Admin extends BaseAdminController {
         if ($query->num_rows() > 0) {
             $data = $query->row_array();
 
-            if (!empty($data['add_data']))
+            if (!empty($data['add_data'])) {
                 $data['add_data'] = unserialize($data['add_data']);
+            }
 
-            $cnt = count($data);
             $data['roles'] = unserialize($data['roles']);
 
-            if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
+            if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
                 echo json_encode($data);
-            else
+            } else {
                 return $data;
+            }
         }
     }
 
     // Template functions
-    function display_tpl($file) {
+
+    public function display_tpl($file) {
+
         $file = realpath(dirname(__FILE__)) . '/templates/' . $file;
         $this->template->show('file:' . $file);
     }
 
-    function fetch_tpl($file) {
+    public function fetch_tpl($file) {
+
         $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';
         return $this->template->fetch('file:' . $file);
     }
 
-    function translate_window($id) {
+    public function translate_window($id) {
+
         $langs = $this->_get_langs();
 
         $n = 0;
@@ -1118,7 +1170,8 @@ class Admin extends BaseAdminController {
         $this->display_tpl('translate_item');
     }
 
-    function translate_item($id) {
+    public function translate_item($id) {
+
         //cp_check_perm('menu_edit');
 
         $langs = $this->_get_langs();
@@ -1142,7 +1195,8 @@ class Admin extends BaseAdminController {
         //closeWindow('translate_m_Window');
     }
 
-    function _get_langs() {
+    public function _get_langs() {
+
         $query = $this->db->get('languages');
 
         if ($query->num_rows() > 0) {
@@ -1153,33 +1207,39 @@ class Admin extends BaseAdminController {
     }
 
     public function render($viewName, array $data = array(), $return = false) {
-        if (!empty($data))
+
+        if (!empty($data)) {
             $this->template->add_array($data);
-//        if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
-//            $this->template->fetch('file:' . 'application/modules/menu/templates/' . $viewName);
-//        else
-        $this->template->show('file:' . 'application/modules/menu/templates/' . $viewName);
+        }
+        //        if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
+        //            $this->template->fetch('file:' . 'application/modules/menu/templates/' . $viewName);
+        //        else
+        $this->template->show('file:' . 'application/' . getModContDirName('menu') . '/menu/templates/' . $viewName);
         exit;
 
-        if ($return === false)
-            $this->template->show('file:' . 'application/modules/menu/templates/' . $viewName);
-        else
-            return $this->template->fetch('file:' . 'application/modules/menu/templates/' . $viewName);
+        if ($return === false) {
+            $this->template->show('file:' . 'application/' . getModContDirName('menu') . '/menu/templates/' . $viewName);
+        } else {
+            return $this->template->fetch('file:' . 'application/' . getModContDirName('menu') . '/menu/templates/' . $viewName);
+        }
     }
 
-    function change_hidden() {
+    public function change_hidden() {
+
         $id = $this->input->post('id');
         $hidden = $this->db->where('id', $id)->get('menus_data')->row();
         $hidden = $hidden->hidden;
-        if ($hidden == 1)
+        if ($hidden == 1) {
             $hidden = 0;
-        else
+        } else {
             $hidden = 1;
+        }
         $data = array('hidden' => $hidden);
         $this->menu_model->update_item($id, $data);
     }
 
-    function get_children_items($parent_id, $menu_id) {
+    public function get_children_items($parent_id, $menu_id) {
+
         $result = $this->db->select('id, title')->where('parent_id', $parent_id)->where('menu_id', $menu_id)->get('menus_data')->result_array();
         $html .= "<option value='0'> " . lang('No', 'menu') . " </option>";
         $html .= "<option value='first'> " . lang('First', 'menu') . " </option>";
@@ -1194,4 +1254,3 @@ class Admin extends BaseAdminController {
 }
 
 /* End of file admin.php */
-

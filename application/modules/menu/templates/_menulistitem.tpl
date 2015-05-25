@@ -5,13 +5,14 @@
                 <input type="checkbox" name="ids" value="{$item.id}"/>
             </span>
         </span>
-    </div>     
+    </div>
     <div>
         <p>{$item.id}</p>
     </div>
     <div class="share_alt">
         <!--<a href="#" class="go_to_site pull-right btn btn-small" data-rel="tooltip" data-placement="top" data-original-title="перейти на сайт"><i class="icon-share-alt"></i></a>-->
         <div class="title {if $item.parent_id > 0} lev {/if}">
+            {if $item.parent_id > 0}<span class="simple_tree">↳</span>{/if}
             {if $item.hasKids}
                 <button type="button" class="btn btn-small my_btn_s"
                         style="display: none;" data-rel="tooltip"
@@ -24,10 +25,12 @@
                     <i class="my_icon icon-plus"></i>
                 </button>
             {else:}
-                <span class="simple_tree">↳</span>
+                <span class="folder-icons"></span>
             {/if}
-            <a href="/admin/components/cp/menu/edit_item/{$item.id}" class="pjax" data-rel="tooltip" data-placement="top" data-original-title="{lang('Edit menu item', 'menu')}">{truncate($item.title, 100)}</a>
-            <a href="/admin/components/cp/menu/translate_window/{$item.id}" class="pjax f_r" data-rel="tooltip" data-placement="top" data-original-title="{lang('Translate menu item', 'menu')}"><i class="icon-text-width"></i></a>
+            <a href="/admin/components/cp/menu/edit_item/{$item.id}" data-rel="tooltip" data-placement="top" data-original-title="{lang('Edit menu item', 'menu')}">{truncate($item.title, 100)}</a>
+
+            <a href="/admin/components/cp/menu/translate_window/{$item.id}" class="btn pjax pull-right" data-rel="tooltip" data-placement="top" data-original-title="{lang('Translate menu item', 'menu')}"><i class="icon-text-width"></i></a>
+
         </div>
     </div>
     <div>

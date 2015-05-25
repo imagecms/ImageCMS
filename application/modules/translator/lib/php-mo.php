@@ -41,16 +41,25 @@ function phpmo_convert($input, $output = false) {
 }
 
 function phpmo_clean_helper($x) {
+
     if (is_array($x)) {
         foreach ($x as $k => $v) {
+//            $v_tmp = mb_substr($v, 1, mb_strlen($v) - 2);
+//            $v = str_replace('"', '\"', $v_tmp);
             $x[$k] = phpmo_clean_helper($v);
         }
     } else {
+        $v = $x;
+        $v_tmp = mb_substr($v, 1, mb_strlen($v) - 2);
+            $v = str_replace('"', '\"', $v_tmp);
+//        var_dumps($v);
+        $v = $x;
         if ($x[0] == '"')
             $x = substr($x, 1, -1);
         $x = str_replace("\"\n\"", '', $x);
         $x = str_replace('$', '\\$', $x);
-        $x = @ eval("return \"$x\";");
+//        $x = @ eval("return \"$x\";");
+//        var_dumps($x);
     }
     return $x;
 }
@@ -118,31 +127,11 @@ function phpmo_parse_po_file($in) {
                 if ($data) {
                     $temp[$state][] = $data;
                 }
+
                 break;
-//			default :
-//				if (strpos($key, 'msgstr[') !== FALSE) {
-//					// translated-string-case-n
-//					$state = 'msgstr';
-//					$temp[$state][] = $data;
-//				} else {
-//					// continued lines
-//					switch ($state) {
-//						case 'msgctxt' :
-//						case 'msgid' :
-//						case 'msgid_plural' :
-//							$temp[$state] .= "\n" . $line;
-//							break;
-//						case 'msgstr' :
-//							$temp[$state][sizeof($temp[$state]) - 1] .= "\n" . $line;
-//							break;
-//						default :
-//							// parse error
-//							return FALSE;
-//					}
-//				}
-//				break;
         }
     }
+
 
     // add final entry
     if ($state == 'msgstr')
@@ -154,15 +143,18 @@ function phpmo_parse_po_file($in) {
     foreach ($temp as $entry) {
         foreach ($entry as & $v) {
             $v = phpmo_clean_helper($v);
+//            var_dumps($v);
             if ($v === FALSE) {
                 // parse error
                 continue;
 //                return FALSE;
             }
         }
+        
         $hash[$entry['msgid']] = $entry;
     }
-
+//    var_dumps($hash);
+//exit;
     return $hash;
 }
 
@@ -179,7 +171,6 @@ function phpmo_write_mo_file($hash, $out) {
     $ids = '';
     $strings = '';
 
-//        var_dumps($hash); exit;
     foreach ($hash as $entry) {
         $id = $entry['msgid'];
         if (isset($entry['msgid_plural']))
@@ -240,10 +231,17 @@ function phpmo_write_mo_file($hash, $out) {
 
     $directory = dirname($out);
     $current_mo_file_name = array_pop(glob($directory . '/*.mo'));
-    if(!$current_mo_file_name){
+    if (!$current_mo_file_name) {
         $current_mo_file_name = array_pop(glob($directory . '\*.mo'));
-        if(!$current_mo_file_name){
+        if (!$current_mo_file_name) {
             $current_mo_file_name = $out;
+        }
+    }
+    
+    $old_mo_files = glob($directory . '/*.mo');
+    if($old_mo_files && is_array($old_mo_files)){
+        foreach($old_mo_files as $file){
+            unlink($file);
         }
     }
 
@@ -254,7 +252,7 @@ function phpmo_write_mo_file($hash, $out) {
         $new_mo_file_name = preg_replace('/_[\d]+/', '_' . $addition_time, $current_mo_file_name);
     }
 
-    rename($current_mo_file_name, $new_mo_file_name);
+//    rename($current_mo_file_name, $new_mo_file_name);
 
     file_put_contents($new_mo_file_name, $mo);
 

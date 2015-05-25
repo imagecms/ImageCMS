@@ -6,7 +6,7 @@
         {if $origin}
             <tr class="originTR" {if $counter > 10}style="display: none"{/if}>
                 <td class="t-a_c fuzzyTD" rowspan="2">
-                    <button type="button" onclick="Translator.markFuzzy($(this))" class="{if $translation['fuzzy']} btn-danger {/if}btn btn-small notCorrect">
+                    <button type="button" onclick="Translator.markFuzzy($(this))" class="{if $translation['fuzzy']} btn-warning {/if}btn btn-small notCorrect">
                         <i class="icon-lock"></i>
                     </button>
                 </td>
@@ -17,10 +17,10 @@
                     <textarea class="origin" readonly="">{echo htmlspecialchars($origin,ENT_QUOTES|ENT_SUBSTITUTE)}</textarea>
                 </td>
                 <td  rowspan="2">
-                    <textarea class="comment" rows="5" >{echo $translation['comment']}</textarea>                
+                    <textarea class="comment" rows="15" >{echo $translation['comment']}</textarea>                
                 </td>
                 <td class="t-a_c pathsTd" rowspan="2">
-                    <select class="links" size="5">
+                    <select class="links notchosen" size="5">
                         {foreach $translation['links'] as $link}
                             {if $link}
                                 <option value="{echo $link}" onclick="Translator.openFileToEdit($(this))" title="{echo $link}">{echo $link}</option>
@@ -133,58 +133,3 @@
         </td>
     </tr>
 {/foreach}
-{ /* }
-<div class="path" style="width: 515px">
-    <b class="pathNumber">1</b>
-    <input type="text" name="path[]" class="basePath" value="{echo $po_settings['Basepath']}">
-    <b class="baseTitle">({lang('Basic path', 'translator')})</b>
-    <br>
-</div>
-{foreach $po_settings['SearchPath'] as $key => $path}
-    <div class="path">
-        <b class="pathNumber">
-            {echo $key+1}.
-        </b>
-        <input type="text" name="path[]" class="otherPaths" value="{echo $path}">
-        <div class="removePath" onclick="Translator.deletePath($(this))"><i class=" icon icon-trash"></i></div>
-        <br>
-    </div>
-{/foreach}
-{ */ }
-
-<div class="modal hide fade modal_file_edit">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3>{lang('File editing', 'translator')}</h3>
-        {if $editorStyles}
-            <div>
-                <h5>{lang('Editor theme', 'translator')}:</h5>
-                <select class="editorTheme" onchange="AceEditor.changeTheme($(this))">
-                    {foreach $editorStyles as $style}
-                        <option {if $settings['editorTheme'] == $style}selected="selected"{/if} value="{echo $style}">{echo $style}</option>
-                    {/foreach}
-                </select>
-            </div>
-        {/if}
-    </div>
-    <div class="modal-body">
-        <div id="fileEdit" class="fileEdit"></div>
-    </div>
-    <div class="modal-footer">
-        <div class="pull-left" style="text-align: left">
-            <span><b>{lang('Origin string', 'translator')}:</b></span>
-            <a onclick="AceEditor.goToLang($(this))"><span class="originStringInFileEdit"></span></a>
-            <br>
-            <span><b>{lang('Line number', 'translator')}:</b></span>
-            <a onclick="AceEditor.goToLang($(this))"><span class="originStringLineInFileEdit"></span></a>
-        </div>
-        {if $can_edit_file}
-            <div class="pull-right">
-                <a class="btn btn-primary" onclick="Translator.saveEditingFile($(this))" >{lang('Save', 'translator')}</a>
-                <a class="btn" onclick="$('.modal').modal('hide');">{lang('Cancel', 'translator')}</a>
-            </div>
-        {/if}
-    </div>
-</div>
-
-

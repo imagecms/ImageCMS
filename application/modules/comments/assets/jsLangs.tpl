@@ -1,4 +1,4 @@
 <script>
-langs["Hide answers"] = '<?php echo lang("Hide answers", "comments", FALSE)?>';
-langs["Show answers"] = '<?php echo lang("Show answers", "comments", FALSE)?>';
+langs["Hide answers"] = '<?php echo addslashes(lang("Hide answers", "comments", FALSE))?>';
+langs["Show answers"] = '<?php echo addslashes(lang("Show answers", "comments", FALSE))?>';
 </script>

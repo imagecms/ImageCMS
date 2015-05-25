@@ -2,14 +2,34 @@
 <widgets>
 
     <widget>
-        <title>Последние комментарии</title>
-        <description>Отображение списка последних комментариев.</description>
+        <i18n_ru>
+            <title>Последние комментарии</title>
+            <description>Отображение списка последних комментариев.</description>
+        </i18n_ru>
+        <i18n_en>
+            <title>Recent comments</title>
+            <description>Displays a list of recent comments.</description>
+        </i18n_en>
+        <i18n_ua>
+            <title>Останні коментарі</title>
+            <description>Відображення списку останніх коментарів.</description>
+        </i18n_ua>
         <method>recent_comments</method>
     </widget>
     
     <widget>
-        <title>Последние отзывы о товарах</title>
-        <description>Отображение послених отзывов о товарах.</description>
+        <i18n_ru>
+            <title>Последние отзывы о товарах</title>
+            <description>Отображение последних отзывов о товарах.</description>
+        </i18n_ru>
+        <i18n_en>
+            <title>Latest Product Reviews</title>
+            <description>Showing latest product reviews.</description>
+        </i18n_en>
+        <i18n_ua>
+            <title>Останні відгуки про товари</title>
+            <description>Відображення останніх відгуків про товари.</description>
+        </i18n_ua>
         <method>recent_product_comments</method>
     </widget>
 

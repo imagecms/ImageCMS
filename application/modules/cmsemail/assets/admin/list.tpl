@@ -39,7 +39,7 @@
                             id="del_sel_property">
                         <i class="icon-trash"></i>{lang('Delete', 'cmsemail')}
                     </button>
-                    <a class="btn btn-small btn-success pjax" href="/admin/components/cp/cmsemail/create" >
+                    <a class="btn btn-small btn-success" href="/admin/components/cp/cmsemail/create" >
                         <i class="icon-plus-sign icon-white"></i>{lang('Create template', 'cmsemail')}
                     </a>
                 </div>
@@ -81,7 +81,7 @@
                                             <p>{echo $model.description}</p>
                                         </td>
                                         <td>
-                                            <a class="pjax" href="/admin/components/cp/cmsemail/edit/{echo $model.id}/#settings">{echo $model.name}</a>
+                                            <a href="/admin/components/cp/cmsemail/edit/{echo $model.id}/#settings">{echo $model.name}</a>
                                         </td>
                                         {$settings = unserialize($model.settings)}
                                         <td>{echo $model.theme}</td>

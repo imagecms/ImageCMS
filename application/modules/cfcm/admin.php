@@ -79,8 +79,9 @@ class Admin extends BaseAdminController {
 
         if ($groups->num_rows() > 0) {
             $this->template->assign('groups', $groups->result_array());
+        }else{
+            $this->template->assign('groups', false);
         }
-
         $this->render('index');
 //         echo $this->display_tpl('index');
     }
@@ -135,9 +136,14 @@ class Admin extends BaseAdminController {
                             $this->db->insert_batch('content_fields_groups_relations', $toInsert);
                     }
 
+                    $this->lib_admin->log(lang("Field created", "cfcm") . ' - field_' . $_POST['field_name']);
                     showMessage(lang("Field created", 'cfcm'));
 
-                    pjax($this->get_url('edit_field/' . $data['field_name']));
+                    if ($this->input->post('action') === 'close') {
+                        pjax($this->get_url());
+                    } else {
+                        pjax($this->get_url('edit_field/' . $data['field_name']));
+                    }
                     exit;
                 }
             } else {
@@ -207,6 +213,7 @@ class Admin extends BaseAdminController {
         $this->db->where('field_name', $field_name)
                 ->delete('content_fields_groups_relations');
 
+        $this->lib_admin->log(lang("Field deleted successfuly", "cfcm") . ' - ' . $field_name);
         showMessage(lang('Field deleted successfuly', 'cfcm'));
         pjax($this->get_url('index'));
     }
@@ -257,22 +264,26 @@ class Admin extends BaseAdminController {
                         $this->db->delete('content_fields_groups_relations', array('field_name' => $data['field_name']));
                     $this->db->insert_batch('content_fields_groups_relations', $toInsert);
                 }
+
+                $this->lib_admin->log(lang("Field has been updated", "cfcm") . ' - ' . $name);
                 showMessage(lang("Field has been updated", 'cfcm'));
 
                 if ($this->input->post('action') == 'close') {
                     pjax('/admin/components/cp/cfcm/index#additional_fields');
                 }
             } else {
-                $this->template->registerJsFile('./application/modules/cfcm/templates/scripts/admin.js', 'after');
+                $modulePath = getModulePath('cfcm');
+                $this->template->registerJsFile($modulePath . 'templates/scripts/admin.js', 'after');
                 $this->template->add_array(array(
                     'form' => $form,
                 ));
 
                 $this->render('_form');
             }
-        }
-        else
+        } else {
+
             echo lang("Field has not been found", 'cfcm');
+        }
     }
 
     public function getFormFields($type = NULL) {
@@ -306,7 +317,7 @@ class Admin extends BaseAdminController {
         $form->action = $this->get_url('create_group');
         $form->title = lang("Creating a group", 'cfcm');
         $form->type = "group";
-        if ($_POST) {
+        if ($this->input->post()) {
             if (empty($_POST['name'])) {
                 showMessage(lang("Specify the group name", 'cfcm'), false, 'r');
                 exit;
@@ -314,9 +325,15 @@ class Admin extends BaseAdminController {
 
             if ($form->isValid()) {
                 $this->db->insert('content_field_groups', $form->getData());
-                showMessage(lang("Group has been created", 'cfcm'));
 
-                pjax('/admin/components/cp/cfcm#fields_groups');
+                $last_field_id = $this->db->order_by("id", "desc")->get('content_field_groups')->row()->id;
+                $this->lib_admin->log(lang("Group has been created", "cfcm") . '. Id: ' . $last_field_id);
+                showMessage(lang("Group has been created", 'cfcm'));
+                if ($this->input->post('action') == 'edit') {
+                    pjax('/admin/components/cp/cfcm/edit_group/' . $last_field_id);
+                } else {
+                    pjax('/admin/components/cp/cfcm#fields_groups');
+                }
             } else {
                 showMessage($form->_validation_errors(), false, 'r');
             }
@@ -347,21 +364,28 @@ class Admin extends BaseAdminController {
         $form->action = $this->get_url('edit_group/' . $id);
         $form->title = lang("ID group editing", 'cfcm') . $group['id'];
         $form->type = "group";
-        if ($_POST)
+        if ($this->input->post()) {
             if ($form->isValid()) {
                 $data = $form->getData();
 
                 $this->db->limit(1);
                 $this->db->where('id', $id);
                 $this->db->update('content_field_groups', $data);
-                showMessage(lang("Group has been updated", 'cfcm'));
 
-                pjax($this->get_url('index#fields_groups'));
+                $this->lib_admin->log(lang("Group has been updated", "cfcm") . '. Id: ' . $id);
+
+                showMessage(lang("Group has been updated", 'cfcm'));
+                if ('close' === $this->input->post('action')) {
+                    pjax($this->get_url('index#fields_groups'));
+                } else {
+                    pjax($this->get_url('edit_group/' . $id));
+                }
                 exit;
             } else {
                 showMessage($form->_validation_errors(), false, 'r');
                 exit;
             }
+        }
 
         $form->setAttributes($group);
 
@@ -388,6 +412,7 @@ class Admin extends BaseAdminController {
         $this->db->where('category_field_group', $id)
                 ->update('category', array('category_field_group' => '-1'));
 
+        $this->lib_admin->log(lang("Group deleted successfuly", "cfcm") . '. Id: ' . $id);
         showMessage(lang('Group deleted successfuly', 'cfcm'));
         pjax('/admin/components/cp/cfcm#fields_groups');
     }

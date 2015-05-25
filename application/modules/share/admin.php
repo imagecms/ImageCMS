@@ -36,6 +36,8 @@ class Admin extends BaseAdminController {
             pjax('/admin/components/modules_table');
         }
         
+        $this->lib_admin->log(lang("Social buttons was updated", "share"));
+
         showMessage(lang('Settings successfully saved', 'share'));
     }
 

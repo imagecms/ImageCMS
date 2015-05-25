@@ -1,0 +1,63 @@
+#workPlace{
+    height: 700px;        
+}
+
+#workPlace > .originMenu{
+    width: 20%;
+    height: 100%!important;
+    border: 1px solid rgb(192, 189, 189);
+    border-radius: 3px;
+    margin-top: 10px; 
+    overflow: auto;
+}
+
+#workPlace > .menusList{
+    width: 79%;
+    height: 100%;
+    overflow-x: auto;
+    border: 1px solid rgb(192, 189, 189);
+    border-radius: 3px;
+    margin-top: 10px; 
+}
+
+#workPlace > .menusList > div.corporate, #workPlace > .menusList > div.premium, #workPlace > .menusList > div.professional, #workPlace > .menusList > div.tariff{
+    float: left;
+    height: 95%;
+    width: 30%;
+    margin-left: 20px;
+    margin-top: 2%;
+    border-radius: 3px;
+    border: 1px solid rgb(192, 189, 189);
+    overflow: auto;
+}
+
+#workPlace > .menusList > div > h5{
+    height: 20px;
+    width: 100%;
+    margin-top: 0px;
+    padding: 5px 0 5px 0;
+    border-bottom: 1px solid rgb(192, 189, 189);
+    text-align: center;
+    background-color: rgb(228, 228, 228);  
+    /*position: absolute;*/
+}
+#workPlace > .menusList > div > ul{
+    /*margin-top: 30px;*/
+}
+
+#workPlace ul > li{
+    cursor: move;
+    color: black;  
+    opacity: 1;
+}
+
+div.search{
+    text-align: right;
+    margin-bottom: 0;
+    margin-top: 10px;
+}
+
+div.search input#searchTariff{
+    width: 300px!important;
+    margin-bottom: 0;
+}

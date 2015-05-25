@@ -66,7 +66,9 @@ class Menu_model extends CI_Model{
         if (is_array($data))
         {
             $this->db->insert('menus',$data);
+            return $this->db->insert_id();
         }
+        return 0;
     }
 
     function set_item_position($item_id = FALSE, $pos = FALSE)

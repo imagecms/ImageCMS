@@ -25,11 +25,12 @@ class Admin extends BaseAdminController {
 
     function __construct() {
         parent::__construct();
-        $lang = new MY_Lang();
-        $lang->load('sitemap');
 
         $this->load->library('DX_Auth');
         $this->load->model('sitemap_model');
+
+        $lang = new MY_Lang();
+        $lang->load('sitemap');
         //cp_check_perm('module_admin');
     }
 
@@ -62,9 +63,7 @@ class Admin extends BaseAdminController {
 
             /** Update settings */
             if ($this->sitemap_model->updateSettings($data)) {
-//                if (!$this->replaceRobots($data['robotsStatus'])) {
-//                    showMessage(lang("Can not write in robots.txt. Check write permissions.", 'sitemap'), lang("Error", "sitemap"), 'r');
-//                }
+                $this->lib_admin->log(lang("Sitemap settings edited", "sitemap"));
                 showMessage(lang("Changes have been saved", 'sitemap'), lang("Message", "sitemap"));
             } else {
                 showMessage(lang("Changes have not been saved", 'sitemap'), lang("Error", "sitemap"), 'r');
@@ -94,6 +93,11 @@ class Admin extends BaseAdminController {
      * Save sitemap
      */
     public function saveSiteMap() {
+        $lang = new MY_Lang();
+        $lang->load('sitemap');
+        $successMessage = lang("Site map have been saved", "sitemap");
+        $successMessageTitle = lang("Site map have been saved", "sitemap");
+
         // Get Site Map Data
         $sitemap = file_get_contents(site_url('sitemapRegenerate.xml'));
         if ($sitemap) {
@@ -105,10 +109,12 @@ class Admin extends BaseAdminController {
                 chmod($site_map_file, 0777);
                 unlink($site_map_file);
             }
-            // Create file and puts Site Map data 
+
+            // Create file and puts Site Map data
             if (file_put_contents($this->sitemap_path, $sitemap)) {
                 chmod($this->sitemap_path, 0777);
-                showMessage(lang("Site map have been saved", 'sitemap'), lang("Message", "sitemap"));
+                $this->lib_admin->log($successMessage);
+                showMessage($successMessage, $successMessageTitle);
             } else {
                 showMessage(lang("Site map have not been saved. Set writing permissions on module folder.", 'sitemap'), lang("Error", "sitemap"), 'r');
             }
@@ -180,6 +186,7 @@ class Admin extends BaseAdminController {
             /** Set priorities */
             if ($this->sitemap_model->updatePriorities($data)) {
                 showMessage(lang("Changes have been saved", 'sitemap'), lang("Message", "sitemap"));
+                $this->lib_admin->log(lang("Sitemaps priorities was edited", "sitemap"));
             } else {
                 showMessage(lang("Changes have not been saved", 'sitemap'), lang("Error", "sitemap"), 'r');
             }
@@ -228,6 +235,7 @@ class Admin extends BaseAdminController {
             /** Set changefreq */
             if ($this->sitemap_model->updateChangefreq($data)) {
                 showMessage(lang("Changes have been saved", 'sitemap'), lang("Message", "sitemap"));
+                $this->lib_admin->log(lang("Sitemaps freq was edited", "sitemap"));
             } else {
                 showMessage(lang("Changes have not been saved", 'sitemap'), lang("Error", "sitemap"), 'r');
             }
@@ -283,11 +291,13 @@ class Admin extends BaseAdminController {
             /** Set blockedUrls */
             if ($this->sitemap_model->updateBlockedUrls($data)) {
                 showMessage(lang("Changes have been saved", 'sitemap'), lang("Message", "sitemap"));
+                $this->lib_admin->log(lang("Sitemap block url was edited", "sitemap"));
             } else {
                 if ($data) {
                     showMessage(lang("Changes have not been saved", 'sitemap'), lang("Error", "sitemap"), 'r');
                 } else {
                     showMessage(lang("Changes have been saved", 'sitemap'), lang("Message", "sitemap"));
+                    $this->lib_admin->log(lang("Sitemap block url was edited", "sitemap"));
                 }
             }
 
@@ -399,13 +409,13 @@ class Admin extends BaseAdminController {
         if (!empty($data))
             $this->template->add_array($data);
 
-        $this->template->show('file:' . 'application/modules/sitemap/templates/admin/' . $viewName);
+        $this->template->show('file:' . 'application/' . getModContDirName('sitemap') . '/sitemap/templates/admin/' . $viewName);
         exit;
 
         if ($return === false)
-            $this->template->show('file:' . 'application/modules/sitemap/templates/admin/' . $viewName);
+            $this->template->show('file:' . 'application/' . getModContDirName('sitemap') . '/sitemap/templates/admin/' . $viewName);
         else
-            return $this->template->fetch('file:' . 'application/modules/sitemap/templates/admin/' . $viewName);
+            return $this->template->fetch('file:' . 'application/' . getModContDirName('sitemap') . '/sitemap/templates/admin/' . $viewName);
     }
 
     /**

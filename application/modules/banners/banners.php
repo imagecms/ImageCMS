@@ -178,6 +178,40 @@ class Banners extends MY_Controller {
         }
     }
 
+    public static function addMenu() {
+//        return array(
+//            1 =>
+//            array(
+//                'identifier' => 'banners',
+//                'text' => lang("Banners management", "banners"),
+//                'link' => '/admin/components/cp/banners',
+//                'subMenu' =>
+//                array(
+//                    array(
+//                        'identifier' => 'banners_man',
+//                        'text' => lang("Banners management", "banners"),
+//                        'link' => '/admin/components/cp/banners',
+//                        'class' => '',
+//                        'id' => '',
+//                        'pjax' => '',
+//                        'icon' => '',
+//                        'divider' => false,
+//                    ),
+//                    array(
+//                        'identifier' => 'create_banner',
+//                        'text' => lang("Create a banner", "banners"),
+//                        'link' => '/admin/components/init_window/banners/create',
+//                        'class' => '',
+//                        'id' => '',
+//                        'pjax' => '',
+//                        'icon' => '',
+//                        'divider' => false,
+//                    ),
+//                ),
+//            )
+//        );
+    }
+
 }
 
 /* End of file banners.php */

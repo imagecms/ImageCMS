@@ -71,10 +71,18 @@ class YandexTranslate {
         return $result;
     }
 
-    public function translate($translationLanguage, $textToTranslate = "") {
+    public function translate($translationLanguage, $textToTranslate = "", $sourceLanguage = FALSE) {
+        $this->sourceLanguage = $sourceLanguage ? $sourceLanguage : $this->sourceLanguage;
         if ($translationLanguage) {
-            $translationLanguage = '&text=' . str_replace(' ', '%20', $textToTranslate);
-            return $this->open_https_url(self::$yandexApiUrl . 'key=' . $this->yandexApiKey . $translationLanguage . '&lang=' . $this->sourceLanguage . '-' . $translationLanguage . '&format=plain');
+            $translationText = '&text=' . str_replace(' ', '%20', $textToTranslate);
+            $translation = $this->open_https_url(self::$yandexApiUrl . 'key=' . $this->yandexApiKey . $translationText . '&lang=' . $translationLanguage . '-' . $this->sourceLanguage . '&format=plain');
+            $translation = (array) json_decode($translation);
+
+            if ($translation['code'] == '200') {
+                return array_shift($translation['text']);
+            } else {
+                return $textToTranslate;
+            }
         } else {
             return FALSE;
         }

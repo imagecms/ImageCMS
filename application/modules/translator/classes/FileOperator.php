@@ -31,6 +31,7 @@ class FileOperator {
     private $data;
 
     private function __construct() {
+        
     }
 
     /**
@@ -91,22 +92,37 @@ class FileOperator {
      * @param string $filePath - file path
      * @return boolean
      */
-    public function checkFile($filePath) {
+    public function checkFile($filePath, $langOn = TRUE) {
         clearstatcache();
-        
+
         if (file_exists($filePath)) {
             if (!is_readable($filePath)) {
-                $this->setError(lang('File cant be read. Please, set read file permissions.', 'translator'), 'read');
+                if ($langOn) {
+                    $error = lang('File cant be read. Please, set read file permissions.', 'translator');
+                } else {
+                    $error = 'File cant be read. Please, set read file permissions.';
+                }
+                $this->setError($error, 'read');
                 return FALSE;
             }
 
             if (!is_writable($filePath)) {
-                $this->setError(lang('File cant be written. Please, set write file permissions.', 'translator'), 'write');
+                if ($langOn) {
+                    $error = lang('File cant be written. Please, set write file permissions.', 'translator');
+                } else {
+                    $error = 'File cant be written. Please, set write file permissions.';
+                }
+                $this->setError($error, 'write');
                 return FALSE;
             }
             return TRUE;
         } else {
-            $this->setError(lang('File does not exist or check perrmissions to the file.', 'translator'), 'create');
+            if ($langOn) {
+                $error = lang('File does not exist or check perrmissions to the file.', 'translator');
+            } else {
+                $error = 'File does not exist or check perrmissions to the file.';
+            }
+            $this->setError($error, 'create');
             return FALSE;
         }
     }
@@ -145,4 +161,5 @@ class FileOperator {
     }
 
 }
+
 ?>

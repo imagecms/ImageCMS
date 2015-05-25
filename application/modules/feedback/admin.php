@@ -56,6 +56,7 @@ class Admin extends BaseAdminController {
                         $this->db->where('name', 'feedback');
                         $this->db->update('components', array('settings' => serialize($data)));
 
+                        $this->lib_admin->log(lang("Feedbacks settings was edited", "feedback"));
                         showMessage(lang("Settings have been saved", 'feedback'));
                     }
                 }

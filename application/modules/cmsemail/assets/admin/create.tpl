@@ -30,7 +30,7 @@
                         <div class="inside_padd">
                             <div class="row-fluid">
                                 <div class="control-group">
-                                    <label class="control-label" for="comcount">{lang('Template name (only latin)', 'cmsemail')}:</label>
+                                    <label class="control-label" for="comcount">{lang('Template name (only latin)', 'cmsemail')}: <span class="must">*</span></label>
                                     <div class="controls">
                                         <input id="comcount" type="text" required class="required" name="mail_name" value=""/>
                                     </div>
@@ -51,7 +51,7 @@
                                 </div>
 
                                 <div class="control-group">
-                                    <label class="control-label" for="comcount4">{lang('Theme', 'cmsemail')}:</label>
+                                    <label class="control-label" for="comcount4">{lang('Theme', 'cmsemail')}: <span class="must">*</span></label>
                                     <div class="controls">
                                         <input id="comcount4" type="text" required class="required" name="mail_theme" value=""/>
                                     </div>
@@ -76,14 +76,14 @@
                                 </div>
 
                                 <div class="control-group">
-                                    <label class="control-label" for="userMailText">{lang('Template user mail', 'cmsemail')}:</label>
+                                    <label class="control-label" for="userMailText">{lang('Template user mail', 'cmsemail')}: <span class="must">*</span></label>
                                     <div class="controls">
                                         <textarea class="elRTE" name="userMailText" id="userMailText"></textarea>
                                     </div>
                                 </div>
 
                                 <div class="control-group">
-                                    <label class="control-label" for="userMailTextRadio">{lang('Send email to user', 'cmsemail')}:</label>
+                                    <label class="control-label" for="userMailTextRadio">{lang('Send email to user', 'cmsemail')}: </label>
                                     <div class="controls">
                                         &nbsp; {lang('Yes', 'cmsemail')} &nbsp;
                                         <span class="frame_label">
@@ -101,7 +101,7 @@
                                 </div>
 
                                 <div class="control-group">
-                                    <label class="control-label" for="adminMailText">{lang('Admin mail template', 'cmsemail')}:</label>
+                                    <label class="control-label" for="adminMailText">{lang('Admin mail template', 'cmsemail')}: <span class="must">*</span></label>
                                     <div class="controls">
                                         <textarea class="elRTE" name="adminMailText" id="adminMailText"></textarea>
                                     </div>

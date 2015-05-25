@@ -52,7 +52,8 @@ $route['admin/delete_cache'] = "admin/delete_cache";
 $route['install/(.*)'] = "install/$1";
 $route['install'] = "install";
 //----------------------------------------------
-
+$route['robots']    = 'core/robots';
+$route['robots.txt']    = 'core/robots';
 $route['sitemap.xml']    = 'sitemap/build_xml_map';
 $route['sitemap.xml.gz'] = 'sitemap/gzip';
 

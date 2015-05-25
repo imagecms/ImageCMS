@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 /**
  * Java Script helper
  */
@@ -14,7 +15,6 @@ function showMessage($message, $title = FALSE, $class = '', $ret = false) {
 
     $message = str_replace($del, '', $message);
     $title = str_replace($del, '', $title);
-
 
     if ($title == FALSE) {
         $title = lang('Message') . ": ";
@@ -38,14 +38,15 @@ function showMessage($message, $title = FALSE, $class = '', $ret = false) {
 }
 
 function pjax($url, $selector = '#mainContent') {
-    echo '<script>$.pjax({url: "' . $url . '", container:"' . $selector . '"});</script>';
+    echo '<script>$.pjax({url: "' . $url . '", container:"' . $selector . '"}); </script>';
+    //    echo '<script>$.pjax({url: "' . $url . '", container:"' . $selector . '"});location.reload();</script>';
 }
 
 /**
  * Redirect function
  */
 function ajax_redirect($location) {
-    echo lang('Redirecting') . ': <b>' . $location . '</b> ' . "<script type='text/javascript'> setTimeout(\"location.href = '" . $location . "';\",3000); </script>";
+    echo lang('Redirecting') . ': <b>' . $location . '</b> ' . "<script type='text/javascript'> setTimeout(\"location.href = '" . $location . "';\",50); </script>";
 }
 
 /*
@@ -75,10 +76,12 @@ function jsCode($code) {
 if (!function_exists('checkAjaxRequest')) {
 
     function checkAjaxRequest() {
-        if ($_SERVER['HTTP_X_REQUESTED_WITH'] != 'XMLHttpRequest')
+        $CI = & get_instance();
+        if ($CI->input->server('HTTP_X_REQUESTED_WITH') != 'XMLHttpRequest') {
             return false;
-        else
+        } else {
             return true;
+        }
     }
 
 }

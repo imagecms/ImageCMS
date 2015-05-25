@@ -134,8 +134,9 @@ class MX_Loader extends CI_Loader
 	public function library($library, $params = NULL, $object_name = NULL) {
 
 		if (is_array($library)) return $this->libraries($library);
-
-		$class = strtolower(end(explode('/', $library)));
+                
+                $arrayPath = explode('/', $library);
+		$class = strtolower(end($arrayPath));
 
 		if (isset($this->_ci_classes[$class]) AND $_alias = $this->_ci_classes[$class])
 			return CI::$APP->$_alias;
@@ -178,7 +179,8 @@ class MX_Loader extends CI_Loader
 
 		if (is_array($model)) return $this->models($model);
 
-		($_alias = $object_name) OR $_alias = end(explode('/', $model));
+                $arrayPath = explode('/', $model);
+		($_alias = $object_name) OR $_alias = end($arrayPath);
 
 		if (in_array($_alias, $this->_ci_models, TRUE))
 			return CI::$APP->$_alias;
@@ -219,7 +221,8 @@ class MX_Loader extends CI_Loader
 	/** Load a module controller **/
 	public function module($module, $params = NULL)	{
 		if (is_array($module)) return $this->modules($module);
-		$_alias = strtolower(end(explode('/', $module)));
+                $arrayPath = explode('/', $module);
+		$_alias = strtolower(end($arrayPath));
 		CI::$APP->$_alias = Modules::load(array($module => $params));                
 		return CI::$APP->$_alias;
 	}

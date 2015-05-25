@@ -11,7 +11,8 @@ $com_info = array(
     'w' => 600, // Window width
     'h' => 550, // Window height
     'version' => '1.0 dev.', // Module version
-    'author' => 'dev@imagecms.net' // Author info
+    'author' => 'dev@imagecms.net', // Author info
+    'icon_class' => 'icon-envelope'
 );
 
 /* End of file module_info.php */

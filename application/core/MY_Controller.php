@@ -56,6 +56,7 @@ class MY_Controller extends MX_Controller {
     public $pjaxRequest = false;
     public $ajaxRequest = false;
     public static $currentLocale = null;
+    public static $currentLanguage = null;
     public static $detect_load_admin = array();
     public static $detect_load = array();
 
@@ -78,17 +79,17 @@ class MY_Controller extends MX_Controller {
         if ($this->db) {
             $this->db->cache_on();
             $res = $this->db->where('identif', 'shop')
-                    ->get('components');
-            
+                ->get('components');
+
             if ($res) {
                 $res = $res->result_array();
             } else {
                 show_error($this->db->_error_message());
             }
-            
+
             $this->db->cache_off();
 
-            return (bool) count($res);
+            return (bool)count($res);
         } else {
             return false;
         }
@@ -99,22 +100,18 @@ class MY_Controller extends MX_Controller {
      * @return type
      */
     public static function getCurrentLocale() {
-
+        $ci = get_instance();
         if (self::$currentLocale) {
             return self::$currentLocale;
         }
-
-        if (strstr($_SERVER['PATH_INFO'], 'install')) {
+        if (preg_match('/^\/install/', $ci->input->server('PATH_INFO'))) {
             return;
         }
-
-        $ci = get_instance();
         $lang_id = $ci->config->item('cur_lang');
-
         if ($lang_id) {
             $query = $ci->db
-                    ->query("SELECT `identif` FROM `languages` WHERE `id`=$lang_id")
-                    ->result();
+                ->query("SELECT `identif` FROM `languages` WHERE `id`=$lang_id")
+                ->result();
             if ($query) {
                 self::$currentLocale = $query[0]->identif;
             } else {
@@ -124,8 +121,36 @@ class MY_Controller extends MX_Controller {
         } else {
             self::$currentLocale = chose_language();
         }
-
         return self::$currentLocale;
+    }
+
+    /**
+     * Get current language
+     * @return type
+     */
+    public static function getCurrentLanguage() {
+        if (self::$currentLanguage) {
+            return self::$currentLanguage;
+        }
+
+        $ci = get_instance();
+        if (preg_match('/^\/install/', $ci->input->server('PATH_INFO'))) {
+            return;
+        }
+
+        $language = $ci->db
+            ->where('identif', self::getCurrentLocale())
+            ->get('languages')
+            ->row_array();
+
+        if ($language) {
+            self::$currentLanguage = $language;
+        } else {
+            $defaultLanguage = self::getDefaultLanguage();
+            self::$currentLanguage = $defaultLanguage;
+        }
+
+        return self::$currentLanguage;
     }
 
     public static function defaultLocale() {
@@ -139,8 +164,8 @@ class MY_Controller extends MX_Controller {
     private function getDefaultLanguage() {
         $ci = get_instance();
         $languages = $ci->db
-                ->where('default', 1)
-                ->get('languages');
+            ->where('default', 1)
+            ->get('languages');
 
         if ($languages) {
             $languages = $languages->row_array();

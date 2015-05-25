@@ -38,6 +38,7 @@ class Admin extends BaseAdminController {
         
         if ($this->input->post('action') == 'tomain')
             pjax('/admin/components/modules_table');
+        $this->lib_admin->log(lang("Star rating was edited", "star_rating"));
         showMessage(lang("Settings saved success", 'star_rating'));
     }
 
