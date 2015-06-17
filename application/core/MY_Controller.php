@@ -54,21 +54,26 @@
 class MY_Controller extends MX_Controller {
 
     public $pjaxRequest = false;
+
     public $ajaxRequest = false;
+
     public static $currentLocale = null;
+
     public static $currentLanguage = null;
+
     public static $detect_load_admin = array();
+
     public static $detect_load = array();
 
     public function __construct() {
         parent::__construct();
 
-        if (isset($_SERVER['HTTP_X_PJAX']) && $_SERVER['HTTP_X_PJAX'] == true) {
+        if ($this->input->server('HTTP_X_PJAX') && $this->input->server('HTTP_X_PJAX') == true) {
             $this->pjaxRequest = true;
             header('X-PJAX: true');
         }
 
-        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+        if ($this->input->server('HTTP_X_REQUESTED_WITH') && strtolower($this->input->server('HTTP_X_REQUESTED_WITH')) == 'xmlhttprequest') {
             $this->ajaxRequest = true;
         }
 
@@ -89,7 +94,7 @@ class MY_Controller extends MX_Controller {
 
             $this->db->cache_off();
 
-            return (bool)count($res);
+            return (bool) count($res);
         } else {
             return false;
         }
@@ -180,6 +185,46 @@ class MY_Controller extends MX_Controller {
      */
     public static function adminAutoload() {
         /** Must be an empty */
+    }
+
+    /**
+     * Check for premium CMS version
+     * @return bool
+     * @throws Exception
+     */
+    public static function isPremiumCMS() {
+        return self::checkCMSVersion('premium');
+    }
+
+    /**
+     * Check for professional CMS version
+     * @return bool
+     * @throws Exception
+     */
+    public static function isProCMS() {
+        return self::checkCMSVersion('pro');
+    }
+
+    /**
+     * Check for corporate CMS version
+     * @return bool
+     * @throws Exception
+     */
+    public static function isCorporateCMS() {
+        return self::checkCMSVersion('corporate');
+    }
+
+    /**
+     * Check current CMS version
+     * @param $version - version name: premium, pro, corporate
+     * @return bool
+     * @throws Exception
+     */
+    private static function checkCMSVersion($version) {
+        if (!in_array($version, ['premium', 'pro', 'corporate'])) {
+            throw new Exception('You must specify version to define it: premium, pro, corporate');
+        }
+        return strstr(strtolower(IMAGECMS_NUMBER), $version) ? true : false;
     }
 
 }

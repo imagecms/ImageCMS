@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Image CMS
@@ -11,10 +12,15 @@ if (!defined('BASEPATH'))
 class Feedback extends MY_Controller {
 
     public $username_max_len = 30;
+
     public $message_max_len = 600;
+
     public $theme_max_len = 150;
+
     public $admin_mail = 'admin@localhost';
+
     public $message = '';
+
     protected $formErrors = array();
 
     public function __construct() {
@@ -33,7 +39,7 @@ class Feedback extends MY_Controller {
     }
 
     public function autoload() {
-        
+
     }
 
     function captcha_check($code) {
@@ -54,6 +60,7 @@ class Feedback extends MY_Controller {
     }
 
     // Index function
+
     public function index() {
         $this->template->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW");
 
@@ -73,21 +80,26 @@ class Feedback extends MY_Controller {
             $this->form_validation->set_rules('theme', lang('Subject', 'feedback'), 'trim|required|max_length[' . $this->theme_max_len . ']|xss_clean');
             $this->form_validation->set_rules('message', lang('Message', 'feedback'), 'trim|required|max_length[' . $this->message_max_len . ']|xss_clean');
 
-            if ($this->dx_auth->use_recaptcha)
+            if ($this->dx_auth->use_recaptcha) {
                 $this->form_validation->set_rules('recaptcha_response_field', lang("Protection code", 'feedback'), 'trim|xss_clean|required|callback_recaptcha_check');
-            else
+            }
+            else {
                 $this->form_validation->set_rules('captcha', lang("Protection code", 'feedback'), 'trim|required|xss_clean|callback_captcha_check');
+            }
 
             if ($this->form_validation->run($this) == FALSE) { // there are errors
                 $this->form_validation->set_error_delimiters("", "");
                 CMSFactory\assetManager::create()->setData('validation', $this->form_validation);
+                form_error();
             } else { // form is validate
-                $this->message = strip_tags(nl2br(
-                                lang('Theme', 'feedback') . ' : ' . $this->input->post('theme') .
-                                lang('Name', 'feedback') . ' : ' . $this->input->post('name') .
-                                lang('E-mail', 'feedback') . ' : ' . $this->input->post('email') .
-                                lang('Message', 'feedback') . ' : ' . $this->input->post('message')
-                ));
+                $this->message = strip_tags(
+                    nl2br(
+                        lang('Theme', 'feedback') . ' : ' . $this->input->post('theme') .
+                        lang('Name', 'feedback') . ' : ' . $this->input->post('name') .
+                        lang('E-mail', 'feedback') . ' : ' . $this->input->post('email') .
+                        lang('Message', 'feedback') . ' : ' . $this->input->post('message')
+                    )
+                );
                 $this->_send_message();
             }
         }
@@ -96,6 +108,7 @@ class Feedback extends MY_Controller {
     }
 
     // Send e-mail
+
     private function _send_message() {
         $config['charset'] = 'UTF-8';
         $config['wordwrap'] = FALSE;

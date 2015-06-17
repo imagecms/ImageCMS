@@ -158,10 +158,10 @@ class Admin extends BaseAdminController {
 
                     case "url":
                         $array = array(
-                        'trash_url' => ltrim($this->input->post('url'), '/'),
-                        'trash_redirect_type' => $this->input->post('redirect_type'),
-                        'trash_type' => $this->input->post('type'),
-                        'trash_redirect' => 'http://' . ltrim($this->input->post('redirect_url'), 'http://')
+                            'trash_url' => ltrim($this->input->post('url'), '/'),
+                            'trash_redirect_type' => $this->input->post('redirect_type'),
+                            'trash_type' => $this->input->post('type'),
+                            'trash_redirect' => prep_url($this->input->post('redirect_url'))
                         );
                         break;
 
@@ -169,11 +169,11 @@ class Admin extends BaseAdminController {
                         $query = $this->db->get_where('shop_products', array('id' => $this->input->post('products')));
                         $url = $query->row();
                         $array = array(
-                        'trash_id' => $this->input->post('products'),
-                        'trash_url' => ltrim($this->input->post('url'), '/'),
-                        'trash_redirect_type' => $this->input->post('redirect_type'),
-                        'trash_type' => $this->input->post('type'),
-                        'trash_redirect' => site_url() . 'shop/product/' . $url->url
+                            'trash_id' => $this->input->post('products'),
+                            'trash_url' => ltrim($this->input->post('url'), '/'),
+                            'trash_redirect_type' => $this->input->post('redirect_type'),
+                            'trash_type' => $this->input->post('type'),
+                            'trash_redirect' => site_url() . 'shop/product/' . $url->url
                         );
                         break;
 
@@ -181,11 +181,11 @@ class Admin extends BaseAdminController {
                         $query = $this->db->get_where('shop_category', array('id' => $this->input->post('category')));
                         $url = $query->row();
                         $array = array(
-                        'trash_id' => $this->input->post('category'),
-                        'trash_url' => ltrim($this->input->post('url'), '/'),
-                        'trash_redirect_type' => $this->input->post('redirect_type'),
-                        'trash_type' => $this->input->post('type'),
-                        'trash_redirect' => site_url() . 'shop/category/' . $url->full_path
+                            'trash_id' => $this->input->post('category'),
+                            'trash_url' => ltrim($this->input->post('url'), '/'),
+                            'trash_redirect_type' => $this->input->post('redirect_type'),
+                            'trash_type' => $this->input->post('type'),
+                            'trash_redirect' => site_url() . 'shop/category/' . $url->full_path
                         );
                         break;
 
@@ -193,25 +193,25 @@ class Admin extends BaseAdminController {
                         $query = $this->db->get_where('category', array('id' => $this->input->post('category_base')));
                         $url = $query->row();
                         $array = array(
-                        'trash_id' => $this->input->post('category_base'),
-                        'trash_url' => ltrim($this->input->post('url'), '/'),
-                        'trash_redirect_type' => $this->input->post('redirect_type'),
-                        'trash_type' => $this->input->post('type'),
-                        'trash_redirect' => site_url($this->cms_base->get_category_full_path($url->id))
+                            'trash_id' => $this->input->post('category_base'),
+                            'trash_url' => ltrim($this->input->post('url'), '/'),
+                            'trash_redirect_type' => $this->input->post('redirect_type'),
+                            'trash_type' => $this->input->post('type'),
+                            'trash_redirect' => site_url($this->cms_base->get_category_full_path($url->id))
                         );
                         break;
 
                     case "404":
                         $array = array(
-                        'trash_url' => ltrim($this->input->post('url'), '/'),
-                        'trash_redirect_type' => '404'
+                            'trash_url' => ltrim($this->input->post('url'), '/'),
+                            'trash_redirect_type' => '404'
                         );
                         break;
 
                     default :
                         $array = array(
-                        'trash_url' => ltrim($this->input->post('url'), '/'),
-                        'trash_redirect_type' => '404'
+                            'trash_url' => ltrim($this->input->post('url'), '/'),
+                            'trash_redirect_type' => '404'
                         );
                         break;
                 }
@@ -260,11 +260,11 @@ class Admin extends BaseAdminController {
             switch ($this->input->post('redirect_type')) {
                 case "url":
                     $array = array(
-                    'id' => $this->input->post('id'),
-                    'trash_url' => $this->input->post('old_url'),
-                    'trash_redirect_type' => $this->input->post('redirect_type'),
-                    'trash_type' => $this->input->post('type'),
-                    'trash_redirect' => prep_url($this->input->post('redirect_url'))
+                        'id' => $this->input->post('id'),
+                        'trash_url' => $this->input->post('old_url'),
+                        'trash_redirect_type' => $this->input->post('redirect_type'),
+                        'trash_type' => $this->input->post('type'),
+                        'trash_redirect' => prep_url($this->input->post('redirect_url'))
                     );
                     break;
 
@@ -273,12 +273,12 @@ class Admin extends BaseAdminController {
                     $url = $query->row();
 
                     $array = array(
-                    'id' => $this->input->post('id'),
-                    'trash_id' => $this->input->post('products'),
-                    'trash_url' => $this->input->post('old_url'),
-                    'trash_redirect_type' => $this->input->post('redirect_type'),
-                    'trash_type' => $this->input->post('type'),
-                    'trash_redirect' => site_url() . 'shop/product/' . $url->url
+                        'id' => $this->input->post('id'),
+                        'trash_id' => $this->input->post('products'),
+                        'trash_url' => $this->input->post('old_url'),
+                        'trash_redirect_type' => $this->input->post('redirect_type'),
+                        'trash_type' => $this->input->post('type'),
+                        'trash_redirect' => site_url() . 'shop/product/' . $url->url
                     );
                     break;
 
@@ -287,12 +287,12 @@ class Admin extends BaseAdminController {
                     $url = $query->row();
 
                     $array = array(
-                    'id' => $this->input->post('id'),
-                    'trash_id' => $this->input->post('category'),
-                    'trash_url' => $this->input->post('old_url'),
-                    'trash_redirect_type' => $this->input->post('redirect_type'),
-                    'trash_type' => $this->input->post('type'),
-                    'trash_redirect' => site_url() . 'shop/category/' . $url->full_path
+                        'id' => $this->input->post('id'),
+                        'trash_id' => $this->input->post('category'),
+                        'trash_url' => $this->input->post('old_url'),
+                        'trash_redirect_type' => $this->input->post('redirect_type'),
+                        'trash_type' => $this->input->post('type'),
+                        'trash_redirect' => site_url() . 'shop/category/' . $url->full_path
                     );
                     break;
 
@@ -301,28 +301,28 @@ class Admin extends BaseAdminController {
                     $url = $query->row();
 
                     $array = array(
-                    'id' => $this->input->post('id'),
-                    'trash_id' => $this->input->post('category_base'),
-                    'trash_url' => $this->input->post('old_url'),
-                    'trash_redirect_type' => $this->input->post('redirect_type'),
-                    'trash_type' => $this->input->post('type'),
-                    'trash_redirect' => site_url($this->cms_base->get_category_full_path($url->id))
+                        'id' => $this->input->post('id'),
+                        'trash_id' => $this->input->post('category_base'),
+                        'trash_url' => $this->input->post('old_url'),
+                        'trash_redirect_type' => $this->input->post('redirect_type'),
+                        'trash_type' => $this->input->post('type'),
+                        'trash_redirect' => site_url($this->cms_base->get_category_full_path($url->id))
                     );
                     break;
 
                 case "404":
                     $array = array(
-                    'id' => $this->input->post('id'),
-                    'trash_url' => $this->input->post('old_url'),
-                    'trash_redirect_type' => $this->input->post('redirect_type')
+                        'id' => $this->input->post('id'),
+                        'trash_url' => $this->input->post('old_url'),
+                        'trash_redirect_type' => $this->input->post('redirect_type')
                     );
                     break;
 
                 default :
                     $array = array(
-                    'id' => $this->input->post('id'),
-                    'trash_url' => $this->input->post('old_url'),
-                    'trash_redirect_type' => $this->input->post('redirect_type')
+                        'id' => $this->input->post('id'),
+                        'trash_url' => $this->input->post('old_url'),
+                        'trash_redirect_type' => $this->input->post('redirect_type')
                     );
                     break;
             }
@@ -332,7 +332,7 @@ class Admin extends BaseAdminController {
             $this->lib_admin->log(lang("Trash was edited", "trash") . '. Url: ' . $array['trash_url']);
         }
 
-        if ($this->input->post('action') ) {
+        if ($this->input->post('action')) {
             showMessage(lang('Successfully saved', 'trash'));
         }
         if ($this->input->post('action') == 'exit') {

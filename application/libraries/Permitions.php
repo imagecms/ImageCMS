@@ -7,17 +7,25 @@ if (!defined('BASEPATH')) {
 class Permitions {
 
     private static $shop_controllers_path;  //define shop admin controllers path
+
     private static $base_controllers_path;       //define base admin controllers path
+
     private static $modules_controllers_path = '/application/modules/';          //define modules path
+
     private static $rbac_roles_table = 'shop_rbac_roles';                       //define rbac roles table name
+
     private static $rbac_privileges_table = 'shop_rbac_privileges';             //define privileges table name
+
     private static $rbac_group_table = 'shop_rbac_group';                       //define group table
+
     private static $rbac_roles_privileges_table = 'shop_rbac_roles_privileges'; //define roles privileges table
+
     private static $controller_types = array('shop', 'base', 'module');         //define controllers types
+
     private static $installed_modules = array();         //define installed modules
 
     public function __construct() {
-        $ci = & get_instance();
+        $ci = &get_instance();
         $ci->load->library('DX_Auth');
         self::$shop_controllers_path = getModulePath('shop') . "admin/";
         self::$base_controllers_path = getModulePath('admin');
@@ -74,7 +82,7 @@ class Permitions {
      * @return boolean
      */
     private static function checkAllPermitions($adminClassName, $adminMethod) {
-        $ci = & get_instance();
+        $ci = &get_instance();
         //define error message
         $err_text = '<div class="alert alert-error">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -146,7 +154,7 @@ class Permitions {
      * @return array with class name and class method
      */
     private static function checkUrl($checkLink = FALSE, $link = '') {
-        $ci = & get_instance();
+        $ci = &get_instance();
 
         if ($checkLink AND $link != '') {
             $uri_array = explode("/", $link);
@@ -206,29 +214,29 @@ class Permitions {
             $adminMethod = 'index';
         }
 
-//        if (MAINSITE) {
-//            $res = !file_exists(MAINSITE . '/' . $adminClassFile) AND $adminClassFile != MAINSITE . '/application/modules/admin/.php';
-//        } else {
-//            $res = !file_exists('./' . $adminClassFile) AND $adminClassFile != './application/modules/admin/.php';
-//        }
-//        
-//        if ($res) {
-//            die("Файл " . $adminClassFile . " не найден");
-//        } else {
+        //        if (MAINSITE) {
+        //            $res = !file_exists(MAINSITE . '/' . $adminClassFile) AND $adminClassFile != MAINSITE . '/application/modules/admin/.php';
+        //        } else {
+        //            $res = !file_exists('./' . $adminClassFile) AND $adminClassFile != './application/modules/admin/.php';
+        //        }
+        //
+        //        if ($res) {
+        //            die("Файл " . $adminClassFile . " не найден");
+        //        } else {
 
         if ($checkLink AND $link != '') {
             return array('adminClassName' => $adminClassName, 'adminMethod' => $adminMethod);
         } else {
             self::checkAllPermitions($adminClassName, $adminMethod);
         }
-//        }
+        //        }
     }
 
     /**
      * scans all admin controllers
      */
     private static function processRbacPrivileges() {
-        $ci = & get_instance();
+        $ci = &get_instance();
         $controllerFolders = self::$controller_types;
         foreach ($controllerFolders as $folder) {
             if ($folder == 'base') {
@@ -242,7 +250,7 @@ class Permitions {
                 $ci->load->helper("directory");
                 $controllers = directory_map($adminControllersDir, true);
                 foreach ($controllers as $c) {
-                    if (file_exists($adminControllersDir . $c . "/admin.php") AND ! in_array($c, array('shop', 'admin'))) {
+                    if (file_exists($adminControllersDir . $c . "/admin.php") AND !in_array($c, array('shop', 'admin'))) {
                         $result[] = $adminControllersDir . $c . "/admin.php";
                     }
                 }
@@ -273,7 +281,7 @@ class Permitions {
      */
     private static function scanControllers($controller, $folder) {
         $locale = MY_Controller::getCurrentLocale();
-        $ci = & get_instance();
+        $ci = &get_instance();
         $fileExtension = EXT;
         if ($folder == 'module') {
             $arr = explode("/", $controller);
@@ -283,7 +291,7 @@ class Permitions {
             $controller = str_replace("admin.php", $arr[2] . "temp" . $fileExtension, $controller);
         }
 
-        require_once $controller;
+        include_once $controller;
         $controllerName = str_replace("temp", "", basename($controller, $fileExtension));
         switch ($folder) {
             case 'base':
@@ -296,7 +304,6 @@ class Permitions {
                 $controllerClassName = 'ShopAdmin' . ucfirst($controllerName);
                 break;
         }
-
 
         $class = new ReflectionClass($controllerClassName);
 
@@ -328,7 +335,7 @@ class Permitions {
      * @return boolean
      */
     private static function checkSuperAdmin() {
-        $ci = & get_instance();
+        $ci = &get_instance();
         $superAdmin = $ci->db->where('id', 1)->get('users')->row();
         if (empty($superAdmin)) {
             die("Супер администратор не найден");
@@ -356,7 +363,7 @@ class Permitions {
      * add all privileges to superadmin role
      */
     private static function createSuperAdmin() {
-        $ci = & get_instance();
+        $ci = &get_instance();
         $superAdmin = $ci->db->where('id', 1)->get('users')->row();
         if (empty($superAdmin)) {
             die("Супер администратор не найден");
@@ -379,40 +386,40 @@ class Permitions {
      * create a RBAC privileges group
      *
      * @access public
-     * @return	void
+     * @return    void
      */
     public function groupCreate() {
 
         $this->form_validation->set_rules('Name', 'Name', 'required');
 
-        if (!empty($_POST)) {
+        if ($this->input->post()) {
             if ($this->form_validation->run($this) == FALSE) {
                 showMessage(validation_errors(), '', 'r');
             } else {
 
-                $sql = "INSERT INTO shop_rbac_group (type, name) VALUES(" . $this->db->escape($_POST['type']) . "," . $this->db->escape($_POST['Name']) . ")";
+                $sql = "INSERT INTO shop_rbac_group (type, name) VALUES(" . $this->db->escape($this->input->post('type')) . "," . $this->db->escape($this->input->post('Name')) . ")";
                 $this->db->query($sql);
 
                 $idNewGroup = $this->db->insert_id();
 
-                $sql = "INSERT INTO  shop_rbac_group_i18n (id, description, locale) VALUES(" . $idNewGroup . ", " . $this->db->escape($_POST['Description']) . ", '" . MY_Controller::getCurrentLocale() . "' ) ";
+                $sql = "INSERT INTO  shop_rbac_group_i18n (id, description, locale) VALUES(" . $idNewGroup . ", " . $this->db->escape($this->input->post('Description')) . ", '" . MY_Controller::getCurrentLocale() . "' ) ";
 
                 $this->db->query($sql);
 
-                if ($_POST['Privileges']) {
-                    $idPrivilege = implode(',', $_POST['Privileges']);
+                if ($this->input->post('Privileges')) {
+                    $idPrivilege = implode(',', $this->input->post('Privileges'));
                     $sql = "UPDATE shop_rbac_privileges SET group_id = " . $idNewGroup . " WHERE id IN(" . $idPrivilege . ")";
                     $this->db->query($sql);
                 }
 
                 showMessage('Группа создана');
-                if ($_POST['action'] == 'tomain') {
+                if ($this->input->post('action') == 'tomain') {
                     pjax('/admin/rbac/groupEdit/' . $idNewGroup);
                 }
-                if ($_POST['action'] == 'tocreate') {
+                if ($this->input->post('action') == 'tocreate') {
                     pjax('/admin/rbac/groupCreate');
                 }
-                if ($_POST['action'] == 'toedit') {
+                if ($this->input->post('action') == 'toedit') {
                     pjax('/admin/rbac/groupEdit/' . $idNewGroup);
                 }
             }
@@ -423,10 +430,12 @@ class Permitions {
             INNER JOIN shop_rbac_privileges_i18n SRPI ON SRPI.id = SRP.id WHERE SRPI.locale = "' . MY_Controller::getCurrentLocale() . '"  ORDER BY SRP.name ASC';
             $model = $this->db->query($sqlModel);
 
-            $this->template->add_array(array(
+            $this->template->add_array(
+                array(
                 'model' => $model,
                 'privileges' => $model->result(),
-            ));
+                )
+            );
 
             $this->template->show('groupCreate', FALSE);
         }
@@ -443,39 +452,40 @@ class Permitions {
             $this->error404('Группа не найдена');
         }
 
-        if (!empty($_POST)) {
+        if ($this->input->post()) {
 
-            $sql = "UPDATE shop_rbac_group SET name = " . $this->db->escape($_POST['Name']) .
-                    " WHERE id = " . $groupId;
+            $sql = "UPDATE shop_rbac_group SET name = " . $this->db->escape($this->input->post('Name')) .
+                " WHERE id = " . $groupId;
             $this->db->query($sql);
 
-            $sql = "UPDATE shop_rbac_group_i18n SET description = " . $this->db->escape($_POST['Description']) . " WHERE id = " . $groupId . " AND locale = '" . MY_Controller::getCurrentLocale() . "'";
+            $sql = "UPDATE shop_rbac_group_i18n SET description = " . $this->db->escape($this->input->post('Description')) . " WHERE id = " . $groupId . " AND locale = '" . MY_Controller::getCurrentLocale() . "'";
             $this->db->query($sql);
 
-            if ($_POST['Privileges']) {
-                $idPrivilege = implode(',', $_POST['Privileges']);
+            if ($this->input->post('Privileges')) {
+                $idPrivilege = implode(',', $this->input->post('Privileges'));
                 $sql = "UPDATE shop_rbac_privileges SET group_id = " . $groupId . " WHERE id IN(" . $idPrivilege . ")";
                 $this->db->query($sql);
             }
             showMessage('Изменения сохранены');
-            if ($_POST['action'] == 'tomain') {
+            if ($this->input->post('action') == 'tomain') {
                 pjax('/admin/rbac/groupEdit/' . $groupId);
             }
-            if ($_POST['action'] == 'tocreate') {
+            if ($this->input->post('action') == 'tocreate') {
                 pjax('/admin/rbac/groupCreate');
             }
-            if ($_POST['action'] == 'toedit') {
+            if ($this->input->post('action') == 'toedit') {
                 pjax('/admin/rbac/groupEdit/' . $groupId);
             }
         } else {
 
             $sqlPrivilege = $this->db->select(array('id', 'name', 'group_id'))->get('shop_rbac_privileges')->result();
 
-
-            $this->template->add_array(array(
+            $this->template->add_array(
+                array(
                 'model' => $model->row(),
                 'privileges' => $sqlPrivilege
-            ));
+                )
+            );
 
             $this->template->show('groupEdit', FALSE);
         }
@@ -483,15 +493,16 @@ class Permitions {
 
     public function groupList() {
 
-
         $sql = 'SELECT SRG.id, SRG.name, SRGI.description
             FROM shop_rbac_group SRG
             INNER JOIN shop_rbac_group_i18n SRGI ON SRGI.id = SRG.id WHERE SRGI.locale = "' . MY_Controller::getCurrentLocale() . '" ORDER BY name ASC';
         $query = $this->db->query($sql);
 
-        $this->template->add_array(array(
+        $this->template->add_array(
+            array(
             'model' => $query->result()
-        ));
+            )
+        );
 
         $this->template->show('groupList', FALSE);
     }
@@ -501,7 +512,7 @@ class Permitions {
      *
      * @param integer $groupId
      * @access public
-     * @return	void
+     * @return    void
      */
     public function groupDelete() {
         $groupId = $this->input->post('ids');
@@ -525,27 +536,27 @@ class Permitions {
      * @return     void
      */
     public function roleCreate() {
-        if (!empty($_POST)) {
+        if ($this->input->post()) {
             $this->form_validation->set_rules('Name', lang('Title'), 'required');
             $this->form_validation->set_rules('Importance', lang('Важность'), 'numeric');
             if ($this->form_validation->run($this) == FALSE) {
                 showMessage(validation_errors(), '', 'r');
             } else {
-                if ($this->db->where('name', $_POST['Name'])->get(self::$rbac_roles_table)->num_rows() == 0) {
-                    $sql = "INSERT INTO shop_rbac_roles(name, importance) VALUES(" . $this->db->escape($_POST['Name']) . ", " . $this->db->escape($_POST['Importance']) .
-                            ")";
+                if ($this->db->where('name', $this->input->post('Name'))->get(self::$rbac_roles_table)->num_rows() == 0) {
+                    $sql = "INSERT INTO shop_rbac_roles(name, importance) VALUES(" . $this->db->escape($this->input->post('Name')) . ", " . $this->db->escape($this->input->post('Importance')) .
+                        ")";
                     $this->db->query($sql);
                     $idCreate = $this->db->insert_id();
                     $languages = $this->db->get('languages')->result_array();
                     foreach ($languages as $lang) {
-                        $sql = "INSERT INTO shop_rbac_roles_i18n(id, alt_name, locale, description) VALUES(" . $idCreate . ", " . $this->db->escape($_POST['Name']) .
-                                ",  '" . $lang['identif'] . "',  "
-                                . $this->db->escape($_POST['Description']) . ")";
+                        $sql = "INSERT INTO shop_rbac_roles_i18n(id, alt_name, locale, description) VALUES(" . $idCreate . ", " . $this->db->escape($this->input->post('Name')) .
+                            ",  '" . $lang['identif'] . "',  "
+                            . $this->db->escape($this->input->post('Description')) . ")";
                         $this->db->query($sql);
                     }
 
-                    if ($_POST['Privileges']) {
-                        foreach ($_POST['Privileges'] as $idPrivilege) {
+                    if ($this->input->post('Privileges')) {
+                        foreach ($this->input->post('Privileges') as $idPrivilege) {
                             $sqlPrivilege = "INSERT INTO shop_rbac_roles_privileges (role_id, privilege_id) VALUES(" . $idCreate . ", " . $this->db->escape($idPrivilege) . ")";
                             $this->db->query($sqlPrivilege);
                         }
@@ -554,7 +565,7 @@ class Permitions {
                     $last_role_id = $this->db->order_by("id", "desc")->get('shop_rbac_roles')->row()->id;
                     $this->lib_admin->log(lang("The role is created") . '. Id: ' . $last_role_id);
                     showMessage(lang("Changes have been saved"));
-                    if ($_POST['action'] == 'new') {
+                    if ($this->input->post('action') == 'new') {
                         pjax('/admin/rbac/roleEdit/' . $idCreate);
                     } else {
                         pjax('/admin/rbac/roleList');
@@ -579,15 +590,19 @@ class Permitions {
             }
 
             foreach ($controller_types as $controller_type) {
-                $result[$controller_type] = $this->db->query("SELECT *, " . self::$rbac_group_table . ".id as id FROM " . self::$rbac_group_table . "
+                $result[$controller_type] = $this->db->query(
+                    "SELECT *, " . self::$rbac_group_table . ".id as id FROM " . self::$rbac_group_table . "
                     LEFT JOIN `" . self::$rbac_group_table . "_i18n` ON " . self::$rbac_group_table . ".id=" . self::$rbac_group_table . "_i18n.id AND `locale` = '" . $locale . "'
-                        WHERE `type`='" . $controller_type . "'")->result_array();
+                        WHERE `type`='" . $controller_type . "'"
+                )->result_array();
                 if (!empty($result[$controller_type])) {
                     foreach ($result[$controller_type] as $key => $group) {
 
-                        $result[$controller_type][$key]['privileges'] = $this->db->query("SELECT *, " . self::$rbac_privileges_table . ".id as id FROM " . self::$rbac_privileges_table . "
+                        $result[$controller_type][$key]['privileges'] = $this->db->query(
+                            "SELECT *, " . self::$rbac_privileges_table . ".id as id FROM " . self::$rbac_privileges_table . "
                             LEFT JOIN " . self::$rbac_privileges_table . "_i18n ON " . self::$rbac_privileges_table . ".id=" . self::$rbac_privileges_table . "_i18n.id AND `locale` = '" . $locale . "'
-                                WHERE `group_id`=" . (int) $group['id'])->result_array();
+                                WHERE `group_id`=" . (int) $group['id']
+                        )->result_array();
                         /* echo "SELECT * FROM " . self::$rbac_privileges_table . "
                           LEFT JOIN " . self::$rbac_privileges_table . "_i18n ON " . self::$rbac_privileges_table . ".id=" . self::$rbac_privileges_table . "_i18n.id AND `locale` = '" . MY_Controller::getCurrentLocale() . "'
                           WHERE `group_id`=" . (int) $group['id'] . '<br/>'; */
@@ -595,24 +610,25 @@ class Permitions {
                 }
             }
 
-//            Первоначальное
-//            foreach ($controller_types as $controller_type) {
-//                $result[$controller_type] = $this->db->query("SELECT * FROM " . self::$rbac_group_table . "
-//                    JOIN `" . self::$rbac_group_table . "_i18n` ON " . self::$rbac_group_table . ".id=" . self::$rbac_group_table . "_i18n.id
-//                        WHERE `type`='" . $controller_type . "' AND `locale`='" . $locale . "'")->result_array();
-//                if (!empty($result[$controller_type])) {
-//                    foreach ($result[$controller_type] as $key => $group) {
-//                        $result[$controller_type][$key]['privileges'] = $this->db->query("SELECT * FROM " . self::$rbac_privileges_table . "
-//                            JOIN " . self::$rbac_privileges_table . "_i18n ON " . self::$rbac_privileges_table . ".id=" . self::$rbac_privileges_table . "_i18n.id
-//                                WHERE `group_id`=" . (int) $group['id'] . " AND `locale`='" . $locale . "'")->result_array();
-//                    }
-//                }
-//            }
+            //            Первоначальное
+            //            foreach ($controller_types as $controller_type) {
+            //                $result[$controller_type] = $this->db->query("SELECT * FROM " . self::$rbac_group_table . "
+            //                    JOIN `" . self::$rbac_group_table . "_i18n` ON " . self::$rbac_group_table . ".id=" . self::$rbac_group_table . "_i18n.id
+            //                        WHERE `type`='" . $controller_type . "' AND `locale`='" . $locale . "'")->result_array();
+            //                if (!empty($result[$controller_type])) {
+            //                    foreach ($result[$controller_type] as $key => $group) {
+            //                        $result[$controller_type][$key]['privileges'] = $this->db->query("SELECT * FROM " . self::$rbac_privileges_table . "
+            //                            JOIN " . self::$rbac_privileges_table . "_i18n ON " . self::$rbac_privileges_table . ".id=" . self::$rbac_privileges_table . "_i18n.id
+            //                                WHERE `group_id`=" . (int) $group['id'] . " AND `locale`='" . $locale . "'")->result_array();
+            //                    }
+            //                }
+            //            }
             //array sort
             foreach ($controller_types as $controller_type) {
                 //foreach ($result[$controller_type] as $key => $value) {
-                for ($j = 0; $j < count($result[$controller_type]); $j++) {
-                    for ($i = 0; $i < count($result[$controller_type]) - $j; $i++) {
+                $controller_type_count = count($result[$controller_type]);
+                for ($j = 0; $j < $controller_type_count; $j++) {
+                    for ($i = 0; $i < $controller_type_count - $j; $i++) {
                         if ($result[$controller_type][$i + 1]) {
                             if (count($result[$controller_type][$i + 1]['privileges']) < count($result[$controller_type][$i]['privileges'])) {
                                 $temp = $result[$controller_type][$i];
@@ -623,9 +639,11 @@ class Permitions {
                     }
                 }
             }
-            $this->template->add_array(array(
+            $this->template->add_array(
+                array(
                 'types' => $result
-            ));
+                )
+            );
 
             $this->template->show('roleCreate', FALSE);
         }
@@ -639,31 +657,33 @@ class Permitions {
 
         $queryModel = $this->db->query($sqlModel)->row();
 
-        if ($_POST) {
+        if ($this->input->post()) {
             if (empty($queryModel)) {
 
-                $sql = "INSERT INTO shop_rbac_roles_i18n(id, alt_name, locale, description) VALUES(" . $id . ", " . $this->db->escape($_POST['alt_name']) .
-                        ",  '" . $lang . "',  "
-                        . $this->db->escape($_POST['Description']) . ")";
+                $sql = "INSERT INTO shop_rbac_roles_i18n(id, alt_name, locale, description) VALUES(" . $id . ", " . $this->db->escape($this->input->post('alt_name')) .
+                    ",  '" . $lang . "',  "
+                    . $this->db->escape($this->input->post('Description')) . ")";
                 $this->db->query($sql);
             } else {
-                $sqlI = "UPDATE shop_rbac_roles_i18n SET alt_name = " . $this->db->escape($_POST['alt_name']) . ", locale = '" . $lang . "', description = " . $this->db->escape($_POST['Description']) . " WHERE id = '" . $id . "' AND locale = '" . $lang . "'";
+                $sqlI = "UPDATE shop_rbac_roles_i18n SET alt_name = " . $this->db->escape($this->input->post('alt_name')) . ", locale = '" . $lang . "', description = " . $this->db->escape($this->input->post('Description')) . " WHERE id = '" . $id . "' AND locale = '" . $lang . "'";
                 $this->db->query($sqlI);
             }
 
             showMessage(lang("Changes have been saved"));
-            if ($_POST['action'] == 'edit') {
+            if ($this->input->post('action') == 'edit') {
                 pjax('/admin/rbac/translateRole/' . $id . '/' . $lang);
             } else {
                 pjax('/admin/rbac/roleList');
             }
         } else {
 
-            $this->template->add_array(array(
+            $this->template->add_array(
+                array(
                 'model' => $queryModel,
                 'idRole' => $id,
                 'lang_sel' => $lang
-            ));
+                )
+            );
             $this->template->show('translateRole', FALSE);
         }
     }
@@ -671,9 +691,9 @@ class Permitions {
     /**
      * edit a RBAC role
      *
-     * @access	public
-     * @param	integer $roleId
-     * @return	void
+     * @access    public
+     * @param    integer $roleId
+     * @return    void
      */
     public function roleEdit($roleId) {
         $sqlModel = 'SELECT SRR.id, SRR.name, SRR.importance, SRRI.alt_name, SRRI.description
@@ -687,35 +707,39 @@ class Permitions {
             $this->error404(lang("Role not found"));
         }
 
-        if (!empty($_POST)) {
+        if ($this->input->post()) {
             $this->form_validation->set_rules('alt_name', lang('Title'), 'required');
 
             if ($this->form_validation->run($this) == FALSE) {
                 showMessage(validation_errors(), '', 'r');
             } else {
-                $sql = "UPDATE shop_rbac_roles SET importance = " . $this->db->escape($_POST['Importance']) .
-                        " WHERE id   =   '" . $roleId . "'";
+
+                $sql = "UPDATE shop_rbac_roles SET importance = " . $this->db->escape($this->input->post('Importance')) .
+                    " WHERE id   =   '" . $roleId . "'";
                 $this->db->query($sql);
 
-//                echo "<pre>";
-//                var_dump($_POST);
-//                var_dump($roleId);
-//                exit('ok');
-
                 $sqlI = "UPDATE `shop_rbac_roles_i18n` SET `alt_name` = " .
-                        $this->db->escape($_POST['alt_name']) . ", `description` = " .
-                        $this->db->escape($_POST['Description']) . " WHERE id = '" .
-                        $roleId . "' AND locale = '" . MY_Controller::getCurrentLocale() . "'";
+                    $this->db->escape($this->input->post('alt_name')) . ", `description` = " .
+                    $this->db->escape($this->input->post('Description')) . " WHERE id = '" .
+                    $roleId . "' AND locale = '" . MY_Controller::getCurrentLocale() . "'";
                 $this->db->query($sqlI);
 
-                //$this->db->where('id',$roleId)->update('shop_rbac_roles',array('name', $_POST['Name']));
+                //$this->db->where('id',$roleId)->update('shop_rbac_roles',array('name', $this->input->post('Name')));
 
-                if ($_POST['Privileges']) {
-                    $idForDelete = implode(', ', $_POST['Privileges']);
+                if ($this->input->post('Privileges')) {
+
+                    if (MY_Controller::isProCMS()) {
+                        $privilegesPOSTIds = $this->filterShopPrivileges();
+                    } else {
+                        $privilegesPOSTIds = $this->input->post('Privileges');
+                    }
+
+                    $idForDelete = implode(', ', $this->input->post('Privileges'));
+
                     $sqlDelete = "DELETE FROM `shop_rbac_roles_privileges` WHERE `role_id`=" . $roleId . " AND `privilege_id` NOT IN (" . $idForDelete . ")";
                     $this->db->query($sqlDelete);
 
-                    foreach ($_POST['Privileges'] as $idPrivilege) {
+                    foreach ($privilegesPOSTIds as $idPrivilege) {
                         if (!$this->db->where(array('role_id' => $roleId, 'privilege_id' => (int) $idPrivilege))->get(self::$rbac_roles_privileges_table)->num_rows()) {
                             $sqlPrivilege = "INSERT INTO shop_rbac_roles_privileges (role_id, privilege_id) VALUES(" . $this->db->escape($roleId) . ", " . $this->db->escape($idPrivilege) . ")";
                             $this->db->query($sqlPrivilege);
@@ -725,7 +749,7 @@ class Permitions {
                 $this->lib_admin->log(lang("Role was edited") . '. Id: ' . $roleId);
                 showMessage(lang("Changes have been saved"));
                 pjax('/admin/rbac/roleEdit/' . $roleId);
-                if ($_POST['action'] != 'edit') {
+                if ($this->input->post('action') != 'edit') {
                     pjax('/admin/rbac/roleList');
                 }
             }
@@ -754,15 +778,19 @@ class Permitions {
             }
 
             foreach ($controller_types as $controller_type) {
-                $result[$controller_type] = $this->db->query("SELECT *, " . self::$rbac_group_table . ".id as id FROM " . self::$rbac_group_table . "
+                $result[$controller_type] = $this->db->query(
+                    "SELECT *, " . self::$rbac_group_table . ".id as id FROM " . self::$rbac_group_table . "
                     LEFT JOIN `" . self::$rbac_group_table . "_i18n` ON " . self::$rbac_group_table . ".id=" . self::$rbac_group_table . "_i18n.id AND `locale` = '" . $locale . "'
-                        WHERE `type`='" . $controller_type . "'")->result_array();
+                        WHERE `type`='" . $controller_type . "'"
+                )->result_array();
                 if (!empty($result[$controller_type])) {
                     foreach ($result[$controller_type] as $key => $group) {
 
-                        $result[$controller_type][$key]['privileges'] = $this->db->query("SELECT *, " . self::$rbac_privileges_table . ".id as id FROM " . self::$rbac_privileges_table . "
+                        $result[$controller_type][$key]['privileges'] = $this->db->query(
+                            "SELECT *, " . self::$rbac_privileges_table . ".id as id FROM " . self::$rbac_privileges_table . "
                             LEFT JOIN " . self::$rbac_privileges_table . "_i18n ON " . self::$rbac_privileges_table . ".id=" . self::$rbac_privileges_table . "_i18n.id AND `locale` = '" . $locale . "'
-                                WHERE `group_id`=" . (int) $group['id'])->result_array();
+                                WHERE `group_id`=" . (int) $group['id']
+                        )->result_array();
                         /* echo "SELECT * FROM " . self::$rbac_privileges_table . "
                           LEFT JOIN " . self::$rbac_privileges_table . "_i18n ON " . self::$rbac_privileges_table . ".id=" . self::$rbac_privileges_table . "_i18n.id AND `locale` = '" . MY_Controller::getCurrentLocale() . "'
                           WHERE `group_id`=" . (int) $group['id'] . '<br/>'; */
@@ -773,8 +801,9 @@ class Permitions {
             //array sort
             foreach ($controller_types as $controller_type) {
                 //foreach ($result[$controller_type] as $key => $value) {
-                for ($j = 0; $j < count($result[$controller_type]); $j++) {
-                    for ($i = 0; $i < count($result[$controller_type]) - $j; $i++) {
+                $controller_type_count = count($result[$controller_type]);
+                for ($j = 0; $j < $controller_type_count; $j++) {
+                    for ($i = 0; $i < $controller_type_count - $j; $i++) {
                         if ($result[$controller_type][$i + 1]) {
                             if (count($result[$controller_type][$i + 1]['privileges']) < count($result[$controller_type][$i]['privileges'])) {
                                 $temp = $result[$controller_type][$i];
@@ -788,12 +817,14 @@ class Permitions {
 
             $sqlLangSel = 'SELECT lang_sel FROM settings';
             $Lang = $this->db->query($sqlLangSel)->row();
-            $this->template->add_array(array(
+            $this->template->add_array(
+                array(
                 'model' => $queryModel->row(),
                 'lang_sel' => $Lang,
                 'types' => $result,
                 'privilegeCheck' => $role_privileges
-            ));
+                )
+            );
 
             $this->template->show('roleEdit', FALSE);
         }
@@ -803,7 +834,7 @@ class Permitions {
      * display a list of RBAC roles
      *
      * @access public
-     * @return	void
+     * @return    void
      */
     public function roleList() {
 
@@ -812,9 +843,11 @@ class Permitions {
             INNER JOIN shop_rbac_roles_i18n SRRI ON SRRI.id = SRR.id WHERE SRRI.locale = "' . MY_Controller::getCurrentLocale() . '" ORDER BY SRR.name ASC';
         $query = $this->db->query($sql);
 
-        $this->template->add_array(array(
+        $this->template->add_array(
+            array(
             'model' => $query->result(),
-        ));
+            )
+        );
 
         $this->template->show('roleList', FALSE);
     }
@@ -824,7 +857,7 @@ class Permitions {
      *
      * @param integer $groupId
      * @access public
-     * @return	void
+     * @return    void
      */
     public function roleDelete() {
         $groupId = $this->input->post('ids');
@@ -839,7 +872,7 @@ class Permitions {
             $this->lib_admin->log(lang("Role was deleted") . '. Id: ' . implode(', ', $groupId));
 
             showMessage(lang('Role(s) successfully deleted'));
-//            showMessage('Роль(и) успешно удалена(ы)');
+            //            showMessage('Роль(и) успешно удалена(ы)');
             pjax('/admin/rbac/roleList');
         }
     }
@@ -850,11 +883,11 @@ class Permitions {
      * create a RBAC privilege
      *
      * @access public
-     * @return	void
+     * @return    void
      */
     public function privilegeCreate() {
 
-        if (!empty($_POST)) {
+        if ($this->input->post()) {
 
             $this->form_validation->set_rules('Name', 'Name', 'required');
 
@@ -862,24 +895,22 @@ class Permitions {
                 showMessage(validation_errors(), '', 'r');
             } else {
 
-
-                $sql = "INSERT INTO shop_rbac_privileges(name, group_id) VALUES(" . $this->db->escape($_POST['Name']) .
-                        ",  " . $this->db->escape($_POST['GroupId']) . ")";
+                $sql = "INSERT INTO shop_rbac_privileges(name, group_id) VALUES(" . $this->db->escape($this->input->post('Name')) .
+                    ",  " . $this->db->escape($this->input->post('GroupId')) . ")";
                 $this->db->query($sql);
 
                 $idNewPrivilege = $this->db->insert_id();
 
                 $sqlI = "INSERT INTO shop_rbac_privileges_i18n(id, title, description, locale) VALUES("
-                        . $idNewPrivilege .
-                        ", " . $this->db->escape($_POST['Title']) .
-                        ", " . $this->db->escape($_POST['Description']) .
-                        ", '" . MY_Controller::getCurrentLocale() . "')";
+                    . $idNewPrivilege .
+                    ", " . $this->db->escape($this->input->post('Title')) .
+                    ", " . $this->db->escape($this->input->post('Description')) .
+                    ", '" . MY_Controller::getCurrentLocale() . "')";
                 $this->db->query($sqlI);
-
 
                 showMessage(lang("Privilege created"));
 
-                if ($_POST['action'] == 'close') {
+                if ($this->input->post('action') == 'close') {
                     pjax('/admin/rbac/privilegeCreate');
                 } else {
                     pjax('/admin/rbac/privilegeList');
@@ -891,9 +922,11 @@ class Permitions {
             INNER JOIN  shop_rbac_group_i18n SRGI ON SRGI.id = SRG.id WHERE SRGI.locale = "' . MY_Controller::getCurrentLocale() . '"';
             $queryRBACGroup = $this->db->query($sql)->result();
 
-            $this->template->add_array(array(
+            $this->template->add_array(
+                array(
                 'groups' => $queryRBACGroup
-            ));
+                )
+            );
 
             $this->template->show('privilegeCreate', FALSE);
         }
@@ -904,10 +937,10 @@ class Permitions {
      *
      * @param integer $privilegeId
      * @access public
-     * @return	void
+     * @return    void
      */
     public function privilegeEdit($privilegeId) {
-//        $queryRBACPrivilege = $this->db->get_where('shop_rbac_privileges', array('id' => $privilegeId))->row();
+        //        $queryRBACPrivilege = $this->db->get_where('shop_rbac_privileges', array('id' => $privilegeId))->row();
 
         $sqlPr = 'SELECT SRP.id, SRP.name, SRP.group_id, SRPI.title, SRPI.description
             FROM shop_rbac_privileges SRP
@@ -918,18 +951,15 @@ class Permitions {
             $this->error404(lang("The privilege is not found"));
         }
 
+        if ($this->input->post()) {
 
-        if (!empty($_POST)) {
-
-
-            $sql = "UPDATE shop_rbac_privileges SET name = " . $this->db->escape($_POST[
-                            'Name']) . ",  description  =  " . $this->db->escape($_POST['Description']) . ", group_id = " . $this->db->escape($_POST['GroupId']) .
-                    " WHERE id = " . $privilegeId;
+            $sql = "UPDATE shop_rbac_privileges SET name = " . $this->db->escape($this->input->post('Name')) . ",  description  =  " . $this->db->escape($this->input->post('Description')) . ", group_id = " . $this->db->escape($this->input->post('GroupId')) .
+                " WHERE id = " . $privilegeId;
             $this->db->query($sql);
 
             showMessage(lang("Changes have been saved"));
 
-            if ($_POST['action'] == 'close') {
+            if ($this->input->post('action') == 'close') {
                 pjax('/admin/rbac/privilegeEdit/' . $privilegeId);
             } else {
                 pjax('/admin/rbac/privilegeList');
@@ -940,10 +970,12 @@ class Permitions {
             INNER JOIN  shop_rbac_group_i18n SRGI ON SRGI.id = SRG.id WHERE SRGI.locale = "' . MY_Controller::getCurrentLocale() . '"';
             $queryRBACGroup = $this->db->query($sql)->result();
 
-            $this->template->add_array(array(
+            $this->template->add_array(
+                array(
                 'model' => $queryRBACPrivilege,
                 'groups' => $queryRBACGroup
-            ));
+                )
+            );
 
             $this->template->show('privilegeEdit', FALSE);
         }
@@ -953,7 +985,7 @@ class Permitions {
      * display a list of RBAC privileges
      *
      * @access public
-     * @return	void
+     * @return    void
      */
     public function privilegeList() {
 
@@ -972,10 +1004,12 @@ class Permitions {
 
         $queryRBACGroup = $this->db->select(array('id', 'name'))->get('shop_rbac_privileges')->result();
 
-        $this->template->add_array(array(
+        $this->template->add_array(
+            array(
             'model' => $queryRBACGroup,
             'groups' => $queryGroups
-        ));
+            )
+        );
 
         $this->template->show('privilegeList', FALSE);
     }
@@ -985,12 +1019,12 @@ class Permitions {
      *
      * @param integer $privilegeId
      * @access public
-     * @return	void
+     * @return    void
      */
     public function privilegeDelete() {
         $privilegeId = $this->input->post('id');
         $model = ShopRbacPrivilegesQuery::create()
-                ->findPks($privilegeId);
+            ->findPks($privilegeId);
 
         if ($model != null) {
             $model->delete();
@@ -1001,10 +1035,12 @@ class Permitions {
 
     public static function checkControlPanelAccess($role_id) {
         if ($role_id != null) {
-            $ci = & get_instance();
-            $r = $ci->db->query("SELECT * FROM `" . self::$rbac_roles_privileges_table . "`
+            $ci = &get_instance();
+            $r = $ci->db->query(
+                "SELECT * FROM `" . self::$rbac_roles_privileges_table . "`
                         JOIN `" . self::$rbac_privileges_table . "` ON " . self::$rbac_roles_privileges_table . ".privilege_id = " . self::$rbac_privileges_table . ".id
-                        WHERE " . self::$rbac_roles_privileges_table . ".role_id = " . $role_id . " AND `name` = 'Admin::__construct'")->num_rows();
+                        WHERE " . self::$rbac_roles_privileges_table . ".role_id = " . $role_id . " AND `name` = 'Admin::__construct'"
+            )->num_rows();
             if ($r > 0) {
                 return 'admin';
             } else {

@@ -10,6 +10,11 @@
                 <div class="d-i_b">                        
                     <a href="/admin/languages" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back","admin")}</span></a>
                     <button type="submit" class="btn btn-small btn-success formSubmit" data-form="#createLang" data-action="edit" data-submit><i class="icon-plus-sign icon-white"></i>{lang("Create","admin")}</button>
+                    <button id="clickButton" type="submit" class="btn btn-small formSubmit" data-form="#createLang" data-action="close" data-submit style="display: none">z</button>
+                    <button type="submit" class="btn btn-small" onclick="submitAndExit()">
+                        <i class="icon-check"></i>
+                        {lang("Create and exit","admin")}
+                    </button>
                 </div>
             </div>                            
         </div>
@@ -30,14 +35,14 @@
                                     <div class="inside_padd">
                                         <div class="form-horizontal">
                                             <div class="control-group">
-                                                <label class="control-label" for="name">{lang("Language","admin")}:</label>
+                                                <label class="control-label" for="name">{lang("Language","admin")}: <span class="must">*</span></label>
                                                 <div class="controls">
                                                     <input type="text" name="name" id="name" required/>
                                                 </div>
                                             </div>    
                                             <div class="row-fluid">
                                                 <div class="control-group">
-                                                    <label class="control-label" for="identif">{lang("Identifier","admin")}:</label>
+                                                    <label class="control-label" for="identif">{lang("Identifier","admin")}: <span class="must">*</span></label>
                                                     <div class="controls">
                                                         <input type="text" name="identif" id="identif" required/>
                                                     </div>
@@ -64,9 +69,18 @@
                                                             {lang("Image URL","admin")}:
                                                         </label>
                                                         <div class="controls">
-                                                            <div class="group_icon pull-right">            
-                                                                <button type="button" class="btn btn-small" onclick="elFinderPopup('image', 'Img');
+                                                            <div class="group_icon pull-right">  
+                                                                {if MAINSITE != ''}
+                                                                    <button type="button" class="btn btn-small" onclick="elFinderPopup('image', 'Img');
                                                                         return false;"><i class="icon-picture"></i>  {lang("Choose an image ","admin")}</button>
+                                                                {else:}
+                                                                    <a href="{echo site_url('application/third_party/filemanager/dialog.php?type=1&field_id=Img');}" class="btn  btn-small iframe-btn" type="button">
+                                                                        <i class="icon-picture"></i>
+                                                                        {lang('Choose an image ','admin')}
+                                                                    </a>
+                                                                {/if}    
+                                                                {/*<button type="button" class="btn btn-small" onclick="elFinderPopup('image', 'Img');
+                                                                        return false;"><i class="icon-picture"></i>  {lang("Choose an image ","admin")}</button>*/}
                                                             </div>
                                                             <div class="o_h">		            
                                                                 <input type="text" name="image" id="Img" value="" accept="image/gif, image/jpeg, image/png, image/jpg">					
@@ -85,6 +99,7 @@
                                                         </div>
                                                     </div>
                                                     { */ }
+                                                    { /* }
                                                     <div class="control-group">
                                                         <label class="control-label" for="template">{lang("Template","admin")}:</label>
                                                         <div class="controls">
@@ -95,6 +110,7 @@
                                                             </select>
                                                         </div>
                                                     </div>
+                                                    { */ }
                                                 </div>
                                             </div>
                                         </div>
@@ -103,6 +119,7 @@
                             </tr>
                         </tbody>
                     </table>
+                    <span id="insertSubmitAndExit"></span>
                     {form_csrf()}
                 </form>
             </div>
@@ -110,3 +127,12 @@
     </section>
 </div>
 <div id="elFinder"></div>
+{literal}
+    <script type="text/javascript">
+        function submitAndExit() {
+            var hiddenInsert = "<input type='hidden' value='1' name='create_exit'>";
+            $('#insertSubmitAndExit').append(hiddenInsert);
+            $('#clickButton').click();
+        }
+    </script>
+{/literal}

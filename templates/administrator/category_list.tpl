@@ -7,6 +7,7 @@
         </div>
         <div class="modal-body">
             <p>{lang("Remove selected categories","admin")}?</p>
+            <p>{lang('Attention! Will also remove all the pages from this category.','admin')}</p>
         </div>
         <div class="modal-footer">
             <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('{$BASE_URL}admin/categories/delete')" >{lang("Delete","admin")}</a>

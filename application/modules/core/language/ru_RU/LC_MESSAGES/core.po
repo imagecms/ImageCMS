@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-28 12:00+0200\n"
-"PO-Revision-Date: 2015-01-28 12:00+0200\n"
+"POT-Creation-Date: 2015-06-15 03:23+0300\n"
+"PO-Revision-Date: 2015-06-15 03:23+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -17,6 +17,10 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: application/modules/core/core.php:1013
+msgid "Page"
+msgstr "Страница"
 
 #: application/modules/core/widgets_info.php:5
 msgid "Latest news"
@@ -42,15 +46,15 @@ msgstr "Связанные темы"
 msgid "Without a category"
 msgstr "Без категории"
 
-#: application/modules/core/core.php:608
+#: application/modules/core/core.php:631
 msgid "In the category has no pages."
 msgstr "В категории не имеет страниц."
 
-#: application/modules/core/core.php:356
+#: application/modules/core/core.php:377
 msgid "Home page not found."
 msgstr "Главная страница не найдена."
 
-#: application/modules/core/core.php:403
+#: application/modules/core/core.php:424
 msgid "Module uploading or loading  error"
 msgstr "Загрузки модуля или ошибка загрузки"
 
@@ -83,21 +87,13 @@ msgstr "Настройки"
 msgid "Widget settings"
 msgstr "Настройки виджета"
 
-#: application/modules/core/core.php:600
+#: application/modules/core/core.php:623
 msgid "Can't locate category template file."
 msgstr "Не удается найти файл шаблона категории."
-
-#: application/modules/core/core.php:573
-msgid "The first"
-msgstr "Первый"
 
 #: application/modules/core/templates/recent_news_form.tpl:29
 msgid "Popular"
 msgstr "Популярный"
-
-#: application/modules/core/core.php:574
-msgid "Last"
-msgstr "Последний"
 
 #: application/modules/core/templates/recent_news_form.tpl:28
 msgid "Latest"
@@ -115,11 +111,11 @@ msgstr "Сохранить"
 msgid "Save and go back"
 msgstr "Сохранить и выйти"
 
-#: application/modules/core/core.php:768
+#: application/modules/core/core.php:794
 msgid "Page not found"
 msgstr "Страница не найдена"
 
-#: application/modules/core/core.php:770
+#: application/modules/core/core.php:796
 msgid "Page not found."
 msgstr "Страница не найдена."
 

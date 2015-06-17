@@ -1,6 +1,6 @@
 <div class="container">
 
-    <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->    
+    <!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->
     <div class="modal hide fade modal_del">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -32,7 +32,7 @@
                         <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()" id="del_sel_role"><i class="icon-trash"></i>{lang("Delete","admin")}</button>
                         <a class="btn btn-small pjax btn-success" href="/admin/rbac/roleCreate" ><i class="icon-plus-sign icon-white"></i>{lang("New Role","admin")}</a>
                     </div>
-                </div>  
+                </div>
             </div>
             {if count($model)>0}
                 <div class="row-fluid">
@@ -47,9 +47,9 @@
                                     </span>
                                 </th>
                                 <th class="span1">{lang("ID","admin")}</th>
-                                <th>{lang("Name","admin")}</th>
-                                <th>{lang("Description","admin")}</th>                                   
-                            </tr>    
+                                <th>{lang("Title","admin")}</th>
+                                <th>{lang("Description","admin")}</th>
+                            </tr>
                         </thead>
                         <tbody>
                             {foreach $model as $item}
@@ -63,9 +63,9 @@
                                             </span>
                                         {/if}
                                     </td>
-                                    <td><a class="pjax" href="/admin/rbac/roleEdit/{echo $item->id}">{echo $item->id}</a></td>
+                                    <td>{echo $item->id}</td>
                                     <td>
-                                        <a class="pjax" href="/admin/rbac/roleEdit/{echo $item->id}">{echo $item->alt_name}</a>
+                                        <a  data-rel="tooltip" data-placement="top" data-original-title="{lang('Edit role','admin')}" href="/admin/rbac/roleEdit/{echo $item->id}">{echo $item->alt_name}</a>
                                     </td>
                                     <td>
                                         {echo $item->description}
@@ -78,7 +78,7 @@
             {else:}
                 </br>
                 <div class="alert alert-info">
-                    {lang("List","admin")} {lang("Role","admin")} {lang("Empty.","admin")}
+                    {lang("Roles list is empty.","admin")}
                 </div>
             {/if}
         </section>

@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Image CMS
@@ -10,13 +11,13 @@ if (!defined('BASEPATH'))
  */
 class Navigation_Widgets extends MY_Controller {
 
-    function __construct() {
+    public function __construct() {
         parent::__construct();
         $lang = new MY_Lang();
         $lang->load('navigation');
     }
 
-    function widget_navigation($widget = array()) {
+    public function widget_navigation($widget = array()) {
         $this->load->module('core');
 
         if ($widget['settings'] == FALSE) {
@@ -100,6 +101,11 @@ class Navigation_Widgets extends MY_Controller {
                 $tpl_data = array('navi_cats' => $navi_cats);
                 return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
                 break;
+            case 'feedback':
+                $navi_cats[] = array('path_url' => 'feedback', 'name' => lang('Feedback', 'feedback'));
+                $tpl_data = array('navi_cats' => $navi_cats);
+                return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
+                break;
             case 'shop_category':
                 if ($this->core->core_data['id'] != null && $this->core->core_data > 0) {
 
@@ -130,8 +136,9 @@ class Navigation_Widgets extends MY_Controller {
 
                     if ($product) {
 
-                        if ($product->getCategoryId() == null && $product->getCategoryId() == 0)
+                        if ($product->getCategoryId() == null && $product->getCategoryId() == 0) {
                             throw new Exception("Category not found");
+                        }
 
                         $category = SCategoryQuery::create()->findOneById($product->getCategoryId());
                         $categories = $category->buildCategoryPath(\Propel\Runtime\ActiveQuery\Criteria::ASC, MY_Controller::getCurrentLocale());
@@ -195,7 +202,6 @@ class Navigation_Widgets extends MY_Controller {
 
                 }
 
-
                 $tpl_data = array('navi_cats' => $path);
                 return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
                 break;
@@ -251,7 +257,6 @@ class Navigation_Widgets extends MY_Controller {
 
                 }
 
-
                 $tpl_data = array('navi_cats' => $path);
                 return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
                 break;
@@ -260,14 +265,15 @@ class Navigation_Widgets extends MY_Controller {
     }
 
     // Template functions
-    function display_tpl($file, $vars = array()) {
+
+    public function display_tpl($file, $vars = array()) {
         $this->template->add_array($vars);
 
         $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';
         $this->template->display('file:' . $file);
     }
 
-    function fetch_tpl($file, $vars = array()) {
+    public function fetch_tpl($file, $vars = array()) {
         $this->template->add_array($vars);
 
         $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';

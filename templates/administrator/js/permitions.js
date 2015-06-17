@@ -6,8 +6,10 @@ function denyPermitions() {
     if ($.exists('.formSubmit')) {
         $('body').off('click.permitions');
         if ($.exists('.permition_deny')) {
-            $('body').on('click.permitions', '.formSubmit', function() {
+            $('.formSubmit').on('click', function(e) {
                 $('.permition_deny').modal();
+                e.stopPropagation()
+                return false;
             });
         }
     }
@@ -16,8 +18,10 @@ function denyPermitions() {
         var parent = $('.icon-trash').parent();
         parent.removeAttr('onclick').die('click').unbind('click');
         if ($.exists('.permition_deny')) {
-            parent.bind('click', function() {
+            parent.bind('click', function(e) {
                 $('.permition_deny').modal();
+                e.stopPropagation()
+                return false;
             })
         }
     }
@@ -25,19 +29,32 @@ function denyPermitions() {
     if ($.exists('.com_del')) {
         $('.com_del').die('click').unbind('click');
         if ($.exists('.permition_deny')) {
-            $('.com_del').bind('click', function() {
+            $('.com_del').bind('click', function(e) {
                 $('.permition_deny').modal();
+                e.stopPropagation()
+                return false;
             })
         }
     }
 
-    if ($.exists('.prod-on_off')) {
-        $('.frame_prod-on_off').children('span').die('click').unbind();
-        $('.frame_prod-on_off').children('span').bind('click', function() {
+
+    if ($.exists('.frame_prod-on_off')) {
+        // $('.frame_prod-on_off').children('span').die('click').unbind();
+        $('.frame_prod-on_off > span').on('click', function(e) {
             $('.permition_deny').modal();
+            e.stopPropagation()
             return false;
         });
     }
 
+    if ($.exists('.show_template_agreement')) {
+        $('.show_template_agreement').live('click', function(e) {
+            $('#license_agreement_modal').remove();
+            $('.modal-backdrop').remove();
+            $('.permition_deny').modal();
+            e.stopPropagation()
+            return false;
+        });
+    }
 
 }

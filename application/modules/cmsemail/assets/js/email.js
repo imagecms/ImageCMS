@@ -50,7 +50,7 @@ $(document).ready(function () {
 
     });
 
-    $('.addVariable').on('click', function () {
+    $('body').on('click', '.addVariable', function () {
         $('.addVariableContainer').show();
         $(this).hide();
     });
@@ -179,7 +179,8 @@ var EmailTemplateVariables = {
                 }
                 curElement.parent('div').find('.typeVariable').val('');
                 $('.addVariableContainer').css('display', 'none');
-//                $('.addVariableContainer button').data('variable', $.trim(variable.val()));
+                $('.addVariableContainer').find('input').val('');
+                $('.addVariable').show();
                 $(data).insertBefore('table.variablesTable .addVariableContainer');
                 showMessage(lang('Message'), lang('Variable successfully added'));
             }

@@ -103,15 +103,15 @@
                                         <div class="control-group">
                                             <div class="control-label">{lang("Save ratio", 'gallery')}:</div>
                                             <div class="controls">
-                                                <label class="d-i_b m-r_15"><input type="radio" value="1" {if $settings.maintain_ratio == TRUE}checked="checked"{/if}   name="maintain_ratio" />{lang("Yes", 'gallery')}:</label>
-                                                <label class="d-i_b"><input type="radio" value="0" {if $settings.maintain_ratio == FALSE}checked="checked"{/if} name="maintain_ratio" />{lang("No", 'gallery')}:</label>
+                                                <label class="d-i_b m-r_15"><input type="radio" value="1" {if $settings.maintain_ratio == TRUE}checked="checked"{/if}   name="maintain_ratio" />{lang("Yes", 'gallery')}</label>
+                                                <label class="d-i_b"><input type="radio" value="0" {if $settings.maintain_ratio == FALSE}checked="checked"{/if} name="maintain_ratio" />{lang("No", 'gallery')}</label>
                                             </div>
                                         </div>
                                         <div class="control-group">
                                             <div class="control-label">{lang("Cut the borders", 'gallery')}:</div>
                                             <div class="controls">
-                                                <label class="d-i_b m-r_15"><input type="radio" value="1" {if $settings.crop == TRUE}checked="checked"{/if}   name="crop" /> {lang("Yes", 'gallery')}:</label>
-                                                <label class="d-i_b"><input type="radio" value="0" {if $settings.crop == FALSE}checked="checked"{/if} name="crop" /> {lang("No", 'gallery')}:</label>
+                                                <label class="d-i_b m-r_15"><input type="radio" value="1" {if $settings.crop == TRUE}checked="checked"{/if}   name="crop" /> {lang("Yes", 'gallery')}</label>
+                                                <label class="d-i_b"><input type="radio" value="0" {if $settings.crop == FALSE}checked="checked"{/if} name="crop" /> {lang("No", 'gallery')}</label>
                                             </div>
                                         </div>
                                     </div>
@@ -154,15 +154,15 @@
                                         <div class="control-group">
                                             <div class="control-label">{lang("Save ratio", 'gallery')}:</div>
                                             <div class="controls">
-                                                <label class="d-i_b m-r_15"><input type="radio" value="1" {if $settings.maintain_ratio_prev == TRUE}checked="checked"{/if}   name="maintain_ratio_prev" /> {lang("Yes", 'gallery')}:</label>
-                                                <label class="d-i_b"><input type="radio" value="0" {if $settings.maintain_ratio_prev == FALSE}checked="checked"{/if} name="maintain_ratio_prev" /> {lang("No", 'gallery')}:</label>
+                                                <label class="d-i_b m-r_15"><input type="radio" value="1" {if $settings.maintain_ratio_prev == TRUE}checked="checked"{/if}   name="maintain_ratio_prev" /> {lang("Yes", 'gallery')}</label>
+                                                <label class="d-i_b"><input type="radio" value="0" {if $settings.maintain_ratio_prev == FALSE}checked="checked"{/if} name="maintain_ratio_prev" /> {lang("No", 'gallery')}</label>
                                             </div>
                                         </div>
                                         <div class="control-group">
                                             <div class="control-label">{lang("Cut the borders", 'gallery')}:</div>
                                             <div class="controls">
-                                                <label class="d-i_b m-r_15"><input type="radio" value="1" {if $settings.crop_prev == TRUE}checked="checked"{/if}   name="crop_prev" /> {lang("Yes", 'gallery')}:</label>
-                                                <label class="d-i_b"><input type="radio" value="0" {if $settings.crop_prev == FALSE}checked="checked"{/if} name="crop_prev" /> {lang("No", 'gallery')}:</label>
+                                                <label class="d-i_b m-r_15"><input type="radio" value="1" {if $settings.crop_prev == TRUE}checked="checked"{/if}   name="crop_prev" /> {lang("Yes", 'gallery')}</label>
+                                                <label class="d-i_b"><input type="radio" value="0" {if $settings.crop_prev == FALSE}checked="checked"{/if} name="crop_prev" /> {lang("No", 'gallery')}</label>
                                             </div>
                                         </div>
                                     </div>
@@ -205,15 +205,15 @@
                                         <div class="control-group">
                                             <div class="control-label">{lang("Save ratio", 'gallery')}:</div>
                                             <div class="controls">
-                                                <label class="d-i_b m-r_15"><input type="radio" value="1" {if $settings.maintain_ratio_icon == TRUE}checked="checked"{/if} name="maintain_ratio_icon" /> {lang("Yes", 'gallery')}:</label>
-                                                <label class="d-i_b"><input type="radio" value="0" {if $settings.maintain_ratio_icon == FALSE}checked="checked"{/if} name="maintain_ratio_icon" /> {lang("No", 'gallery')}:</label>
+                                                <label class="d-i_b m-r_15"><input type="radio" value="1" {if $settings.maintain_ratio_icon == TRUE}checked="checked"{/if} name="maintain_ratio_icon" /> {lang("Yes", 'gallery')}</label>
+                                                <label class="d-i_b"><input type="radio" value="0" {if $settings.maintain_ratio_icon == FALSE}checked="checked"{/if} name="maintain_ratio_icon" /> {lang("No", 'gallery')}</label>
                                             </div>
                                         </div>
                                         <div class="control-group">
                                             <div class="control-label">{lang("Cut the borders", 'gallery')}:</div>
                                             <div class="controls">
-                                                <label class="d-i_b m-r_15"><input type="radio" value="1" {if $settings.crop_icon == TRUE}checked="checked"{/if}   name="crop_icon" /> {lang("Yes", 'gallery')}:</label>
-                                                <label class="d-i_b"><input type="radio" value="0" {if $settings.crop_icon == FALSE}checked="checked"{/if} name="crop_icon" /> {lang("No", 'gallery')}:</label>
+                                                <label class="d-i_b m-r_15"><input type="radio" value="1" {if $settings.crop_icon == TRUE}checked="checked"{/if}   name="crop_icon" /> {lang("Yes", 'gallery')}</label>
+                                                <label class="d-i_b"><input type="radio" value="0" {if $settings.crop_icon == FALSE}checked="checked"{/if} name="crop_icon" /> {lang("No", 'gallery')}</label>
                                             </div>
                                         </div>
                                     </div>
@@ -267,6 +267,7 @@
                                         <!-- Image settings -->
                                         <div id="image_settings" {if $settings.watermark_type == 'text'}style="display:none;"{/if}>
                                             <div class="control-group">
+                                                <label class="control-label" >{lang("Image path", 'gallery')}:</label>
                                                 <div class="controls">
                                                     <div class="pull-right">
                                                         {if MAINSITE != ''}

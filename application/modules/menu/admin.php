@@ -98,7 +98,7 @@ class Admin extends BaseAdminController {
      */
     public function create_item($id = null) {
 
-        if (empty($_POST)) {
+        if (!$this->input->post()) {
             $parents = $this->db
                 ->where('menu_id', $id)
                 ->select('menus_data.*, menu_translate.title')
@@ -316,7 +316,7 @@ class Admin extends BaseAdminController {
 
         $this->load->module('admin/components');
 
-        $modules = $this->db->get('components')->result_array();
+        $modules = $this->db->where('identif !=', 'mainsaas')->get('components')->result_array();
         $id = $this->uri->segment(6);
         $id = (int) $id;
         $cnt = count($modules);

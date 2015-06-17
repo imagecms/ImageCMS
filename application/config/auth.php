@@ -1,4 +1,7 @@
-<?php  if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+if (!defined('BASEPATH')) {
+    exit('No direct script access allowed');
+}
 
 /*
 |--------------------------------------------------------------------------
@@ -10,12 +13,8 @@
 */
 
 
-
-
-
-
 $config['DX_website_name'] = 'Image CMS';
-$config['DX_webmaster_email'] = 'webmaster@localhost.com';
+$config['DX_webmaster_email'] = 'info@fullmarket.com';
 
 
 /*
@@ -58,7 +57,7 @@ $config['DX_login_attempts_table'] = 'login_attempts';
 */
 
 $config['DX_email_activation'] = FALSE;
-$config['DX_email_activation_expire'] = 60*60*24*2;
+$config['DX_email_activation_expire'] = 60 * 60 * 24 * 2;
 $config['DX_email_account_details'] = FALSE;
 
 /*
@@ -93,7 +92,7 @@ $config['DX_login_record_time'] = TRUE;
 */
 
 $config['DX_autologin_cookie_name'] = 'autologin';
-$config['DX_autologin_cookie_life'] = 60*60*24*31*2;
+$config['DX_autologin_cookie_life'] = 60 * 60 * 24 * 31 * 2;
 
 /*
 |--------------------------------------------------------------------------
@@ -134,7 +133,7 @@ $config['DX_forgot_password_expire'] = 900;
 */
 
 $config['DX_captcha_path'] = './captcha/';
-$config['DX_captcha_fonts_path'] = $config['DX_captcha_path'].'fonts';
+$config['DX_captcha_fonts_path'] = $config['DX_captcha_path'] . 'fonts';
 $config['DX_captcha_width'] = 150;
 $config['DX_captcha_height'] = 40;
 $config['DX_captcha_font_size'] = '14';

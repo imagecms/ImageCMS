@@ -167,7 +167,7 @@ $shopMenu = array(
             ),
             array(
                 'link' => $ADMIN_URL . 'callbacks',
-                'text' => lang('Callbacks list', 'admin', FALSE),
+                'text' => lang('Callbacks list_', 'admin', FALSE),
             ),
             array(
                 'link' => $ADMIN_URL . 'callbacks/statuses',
@@ -182,7 +182,7 @@ $shopMenu = array(
             ),
             array(
                 'link' => $ADMIN_URL . 'notifications',
-                'text' => lang('Notifications list', 'admin', FALSE),
+                'text' => lang('Notifications list_', 'admin', FALSE),
             ),
             array(
                 'link' => $ADMIN_URL . 'notificationstatuses/index',
@@ -196,6 +196,10 @@ $shopMenu = array(
         'text' => lang('Products catalogue', 'admin', FALSE),
         'icon' => 'icon-list-alt',
         'subMenu' => array(
+            array(
+                'link' => $ADMIN_URL . 'products/create',
+                'text' => lang('Create product', 'admin', FALSE),
+            ),
             array(
                 'link' => $ADMIN_URL . 'categories/index',
                 'text' => lang('Product categories', 'admin', FALSE),
@@ -234,7 +238,7 @@ $shopMenu = array(
             ),
             array(
                 'link' => '/admin/rbac/roleList',
-                'text' => lang('RBAC control', 'admin', FALSE),
+                'text' => lang('RBAC control_', 'admin', FALSE),
             ),
         )
     ),
@@ -326,16 +330,31 @@ $shopMenu = array(
             )
         )
     ),
-    /** Shop settings * */
+    /** Shop settings */
     array(
         'link' => '',
         'text' => lang('Settings', 'admin', FALSE),
         'icon' => 'icon-cog',
         'subMenu' => array(
             array(
+                'link' => '/admin/settings',
+                'text' => lang('Global settings', 'admin', FALSE),
+            ),
+            array(
                 'link' => $ADMIN_URL . 'settings',
                 'text' => lang('Shop settings', 'admin', FALSE),
             ),
+            array(
+                'link' => '/admin/components/cp/template_manager',
+                'text' => lang('Managing design', 'admin', FALSE),
+            ),
+            array(
+                'link' => '/admin/languages',
+                'text' => lang('Languages', 'admin', FALSE),
+            ),
+            array(
+                'divider' => true
+            ),           
             array(
                 'link' => $ADMIN_URL . 'currencies',
                 'text' => lang('Currencies', 'admin', FALSE),
@@ -348,10 +367,6 @@ $shopMenu = array(
                 'link' => $ADMIN_URL . 'paymentmethods/index',
                 'text' => lang('Payment methods', 'admin', FALSE),
             ),
-            /*array(
-                'link' => $ADMIN_URL . 'system/import',
-                'text' => lang('Import-Export CSV/XLS', 'admin', FALSE),
-            ),*/
             array(
                 'link' => '/admin/widgets_manager',
                 'text' => lang('Widgets', 'admin', FALSE),
@@ -360,50 +375,12 @@ $shopMenu = array(
                 'link' => $ADMIN_URL . 'customfields',
                 'text' => lang('Custom fields', 'admin', FALSE),
             ),
-        )
-    ),
-    array(
-        'link' => '',
-        'text' => lang('System', 'admin', FALSE),
-        'icon' => 'icon-hdd',
-        'subMenu' => array(
-            array(
-                'link' => '/admin/settings',
-                'text' => lang('Global settings', 'admin', FALSE),
-            ),
-            array(
-                'link' => '/admin/components/cp/template_editor',
-                'text' => lang('Template editor', 'admin', FALSE),
-            ),
-            array(
-                'link' => '/admin/languages',
-                'text' => lang('Languages', 'admin', FALSE),
-            ),
             array(
                 'divider' => true
-            ),
+            ),    
             array(
                 'link' => '/admin/admin_logs',
                 'text' => lang('Events journal', 'admin', FALSE),
-            ),
-            array(
-                'link' => '/admin/backup',
-                'text' => lang('Backup', 'admin', FALSE),
-            ),
-            array(
-                'link' => '/admin/rbac/roleList',
-                'text' => lang('Roles list', 'admin', FALSE),
-            ),
-            array(
-                'divider' => true
-            ),
-            array(
-                'link' => '/admin/sys_update',
-                'text' => lang('System update', 'admin', FALSE),
-            ),
-            array(
-                'link' => '/admin/sys_info',
-                'text' => lang('System information', 'admin', FALSE),
             ),
             array(
                 'divider' => true
@@ -414,7 +391,7 @@ $shopMenu = array(
                 'text' => lang('Clear cache', 'admin', FALSE),
             ),
         )
-    )
+    )  
 );
 
 if (preg_match('/Pro/', IMAGECMS_NUMBER)) {

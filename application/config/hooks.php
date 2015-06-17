@@ -16,7 +16,7 @@ if (!defined('BASEPATH'))
 $hook['pre_system'][] = array(
     'class' => '',
     'function' => 'checkPhpVersionOrDie',
-    'filename' => 'hooks.php',
+    'filename' => 'system_validation_hooks.php',
     'filepath' => 'third_party'
 );
 $hook['post_controller'][] = array(

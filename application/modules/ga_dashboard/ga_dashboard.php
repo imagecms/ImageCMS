@@ -16,7 +16,7 @@ class Ga_dashboard extends MY_Controller {
     }
 
     public function index() {
-        
+
     }
 
     public function autoload() {
@@ -24,7 +24,7 @@ class Ga_dashboard extends MY_Controller {
 
         if ($settings['google_analytics_ee'] == 1 and $settings['google_webmaster'] != '') {
             CMSFactory\Events::create()->onProductPageLoad()->setListener('ProductPageLoad');
-//            CMSFactory\Events::create()->onAddItemToCart()->setListener('ProductAddToCart');
+            //            CMSFactory\Events::create()->onAddItemToCart()->setListener('ProductAddToCart');
             CMSFactory\Events::create()->onCategoryPageLoad()->setListener('CategorySearchPageLoad');
             CMSFactory\Events::create()->onSearchPageLoad()->setListener('CategorySearchPageLoad');
             CMSFactory\Events::create()->onBrandPageLoad()->setListener('CategorySearchPageLoad');
@@ -114,8 +114,8 @@ class Ga_dashboard extends MY_Controller {
           $this->dbforge->create_table('mod_empty', TRUE);
          */
         $this->db
-                ->where('name', 'ga_dashboard')
-                ->update('components', array('autoload' => '1', 'enabled' => '1'));
+            ->where('name', 'ga_dashboard')
+            ->update('components', array('autoload' => '1', 'enabled' => '1'));
     }
 
     public function _deinstall() {

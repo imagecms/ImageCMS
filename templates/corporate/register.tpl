@@ -1,5 +1,6 @@
 <div class="frame-inside">
     <div class="container">
+        {widget('path')}
         <h1>{lang('Регистрация','corporate')}</h1>
         <div class="vertical-form w_50">
             {if validation_errors() OR $info_message}
@@ -21,7 +22,7 @@
                     </span>
                 </label>
                 <label>
-                    <span class="title">{lang('ФИО','corporate')}</span>
+                    <span class="title">{lang('Ваше имя','corporate')}</span>
                     <span class="frame-form-field">
                         <input type="text" size="30" name="username" id="username" value="{set_value('username')}"/>
                     </span>

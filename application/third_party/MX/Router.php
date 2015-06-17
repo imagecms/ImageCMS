@@ -111,7 +111,7 @@ class MX_Router extends CI_Router
 				}
 			}
 		}
-		
+
 		/* application controller exists? */			
 		if (is_file(APPPATH.'controllers/'.$module.$ext)) {
 			return $segments;

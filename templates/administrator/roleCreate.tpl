@@ -28,9 +28,9 @@
                         <div class="inside_padd">
                             <div class="row-fluid">
                                 <div class="control-group m-t_10">
-                                    <label class="control-label" for="Name">{lang("Name","admin")}:</label>
+                                    <label class="control-label" for="Name">{lang("Title","admin")}:<span class="must" ">*</span></label>
                                     <div class="controls">
-                                        <input type="text" name="Name" id="Name" value=""/>
+                                        <input type="text" name="Name" required="required" class="required" id="Name" value=""/>
                                     </div>
                                 </div>
                                 <div class="control-group">
@@ -74,7 +74,7 @@
                                                 </span>
                                             </span>
                                         </th>                           
-                                        <th>{echo $groups['description']}</th>
+                                        <th>{if $groups['description']}{echo $groups['description']}{else:}{echo $groups['name']} {/if}</th>
                                     </tr>                        
                                 </thead>
                                 <tbody class="sortable">
@@ -88,7 +88,7 @@
                                                 </span>
                                             </td>
                                             <td style="word-wrap : break-word;">
-                                                <p title="{echo $privilege['description']}">{echo $privilege['title']}</p>
+                                                <p title="{if $privilege['description']}{echo $privilege['description']}{else:}{echo $privilege['name']}{/if}">{if $privilege['title']}{echo $privilege['title']}{else:}{echo $privilege['name']}{/if}</p>
                                             </td>                              
                                         </tr>
                                     {/foreach}

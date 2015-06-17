@@ -15,6 +15,10 @@ class Admin extends BaseAdminController {
         $lang = new MY_Lang();
         $lang->load('admin_menu');
         $this->load->model('admin_menu_model');
+
+        if (MAINSITE) {
+            redirect(site_url('admin'));
+        }
     }
 
     /**
@@ -59,7 +63,7 @@ class Admin extends BaseAdminController {
         $lang = new \MY_Lang();
         $lang->load('admin_menu');
 
-        $type = $_GET['type'] ? $_GET['type'] : 'billing';
+        $type = $this->input->get('type') ? $this->input->get('type') : 'billing';
         $tariffs = \saas\models\SaasTariff::all();
 
         foreach ($tariffs as $key => $tariff) {
@@ -157,8 +161,7 @@ class Admin extends BaseAdminController {
     /**
      * Upload tariffs menus
      */
-    public
-    function uploadTariffsMenus() {
+    public function uploadTariffsMenus() {
         $tariffs_menus_paths = glob(AdminMenuBuilder::getMenuPath() . 'store/Tariff_*_menu.php');
 
         $menus = array();
@@ -167,14 +170,12 @@ class Admin extends BaseAdminController {
             $menus[$saas_path] = file_get_contents($path);
         }
 
-
         saas\server\Store::uploadTariffsMenus($menus);
 
         showMessage(lang('Successfully updated.', 'admin_menu'), lang('Success', 'admin_menu'));
     }
 
-    public
-    function ajaxUpdateItemTitle() {
+    public function ajaxUpdateItemTitle() {
         $data = $this->input->post();
         $poFileManager = new \translator\classes\PoFileManager();
 
@@ -188,9 +189,8 @@ class Admin extends BaseAdminController {
         $poFileManager->update($name, $type, $lang, $po_data);
     }
 
-    public
-    function ajaxGetNewMenuItem() {
-        $type = $_GET['type'] ? $_GET['type'] : 'TD';
+    public function ajaxGetNewMenuItem() {
+        $type = $this->input->get('type') ? $this->input->get('type') : 'TD';
         return \CMSFactory\assetManager::create()->setData('type', $type)->fetchAdminTemplate('devMenuOneItem', FALSE);
     }
 

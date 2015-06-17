@@ -1,14 +1,15 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Image CMS
  *
  * Gallery module
  * Need Imagebox module
- * @property Gallery_m $gallery_m 
+ * @property Gallery_m $gallery_m
  */
 class Gallery extends MY_Controller {
 
@@ -16,9 +17,10 @@ class Gallery extends MY_Controller {
         'upload_url' => 'uploads/gallery/',
         'thumbs_folder' => '_thumbs',
     );
+
     private $settings = array();
 
-    function __construct() {
+    public function __construct() {
         parent::__construct();
         $lang = new MY_Lang();
         $lang->load('gallery');
@@ -31,14 +33,14 @@ class Gallery extends MY_Controller {
         $this->load->helper('gallery');
     }
 
-    function autoload() {
-        
+    public function autoload() {
+
     }
 
     /**
      * List categories and get albums from first category
      */
-    function index() {
+    public function index() {
         $this->core->set_meta_tags(lang('Gallery', 'gallery'));
 
         $categories = $this->gallery_m->get_categories($this->settings['order_by'], $this->settings['sort_order']);
@@ -59,7 +61,7 @@ class Gallery extends MY_Controller {
                 ->render('index');
     }
 
-    function albums() {
+    public function albums() {
         $this->core->set_meta_tags(lang('Gallery', 'gallery'));
 
         $categories = $this->gallery_m->get_categories($this->settings['order_by'], $this->settings['sort_order']);
@@ -82,7 +84,7 @@ class Gallery extends MY_Controller {
     /**
      * Display category albums
      */
-    function category($id = 0) {
+    public function category($id = 0) {
         $this->core->set_meta_tags(lang('Gallery', 'gallery'));
 
         $category = $this->gallery_m->get_category($id);
@@ -109,7 +111,8 @@ class Gallery extends MY_Controller {
     }
 
     // Display album images
-    function album($id = 0) {
+
+    public function album($id = 0) {
         if (preg_match("/[A-Z]/", $this->uri->uri_string())) {
             redirect(site_url(strtolower($this->uri->uri_string())), 'location', 301);
         }
@@ -153,9 +156,9 @@ class Gallery extends MY_Controller {
             exit;
         }
 
-        $prev_img['url'] = $this->conf['upload_url'] . $album['id'] . '/' . $prev_img['file_name'] . '_prev' . $prev_img['file_ext'];
+            $prev_img['url'] = $this->conf['upload_url'] . $album['id'] . '/' . $prev_img['file_name'] . '_prev' . $prev_img['file_ext'];
 
-        $data = array(
+            $data = array(
             'album' => $album,
             'thumb_url' => $this->conf['upload_url'] . $album['id'] . '/' . $this->conf['thumbs_folder'] . '/',
             'album_link' => 'gallery/album/' . $album['id'] . '/',
@@ -166,12 +169,12 @@ class Gallery extends MY_Controller {
             'current_pos' => $current_pos,
             'current_category' => $this->gallery_m->get_category($album['category_id']),
             'gallery_category' => $this->gallery_m->get_categories($this->settings['order_by'], $this->settings['sort_order']),
-        );
+            );
 
-        $this->gallery_m->increase_image_views($prev_img['id']);
-        $this->core->set_meta_tags(array($album['name']));
+            $this->gallery_m->increase_image_views($prev_img['id']);
+            $this->core->set_meta_tags(array($album['name']));
 
-        \CMSFactory\assetManager::create()
+            \CMSFactory\assetManager::create()
                 ->setData($data)
                 ->registerStyle('jquery.fancybox-1.3.4', FAlSE)
                 ->registerStyle('style', FAlSE)
@@ -181,9 +184,10 @@ class Gallery extends MY_Controller {
                 ->render($album['tpl_file'] ? : 'album');
     }
 
-    function thumbnails($id = 0, $page = 0) {
-        if (preg_match("/[A-Z]/", $this->uri->uri_string()))
+    public function thumbnails($id = 0, $page = 0) {
+        if (preg_match("/[A-Z]/", $this->uri->uri_string())) {
             redirect(site_url(strtolower($this->uri->uri_string())), 'location', 301);
+        }
 
         $album = $this->gallery_m->get_album($id, true, 15, $page * 15);
 
@@ -193,15 +197,15 @@ class Gallery extends MY_Controller {
         }
         $this->load->library('Pagination');
         $this->pagination = new \CI_Pagination();
-        $config['uri_segment'] = 4;
-        $config['base_url'] = site_url('gallery/thumbnails/' . $id);
-        $config['page_query_string'] = false;
-        $config['total_rows'] = ceil($album[count] / 15);
-        $config['last_link'] = ceil($album[count] / 15);
-        $config['per_page'] = 1;
+        $galleryThumbnailsPagination['uri_segment'] = 4;
+        $galleryThumbnailsPagination['base_url'] = site_url('gallery/thumbnails/' . $id);
+        $galleryThumbnailsPagination['page_query_string'] = false;
+        $galleryThumbnailsPagination['total_rows'] = ceil($album[count] / 15);
+        $galleryThumbnailsPagination['last_link'] = ceil($album[count] / 15);
+        $galleryThumbnailsPagination['per_page'] = 1;
+        include_once "./templates/{$this->config->item('template')}/paginations.php";
 
-        $this->pagination->num_links = 3;
-        $this->pagination->initialize($config);
+        $this->pagination->initialize($galleryThumbnailsPagination);
 
         $data = array(
             'album' => $album,
@@ -219,7 +223,7 @@ class Gallery extends MY_Controller {
                 ->render('thumbnails');
     }
 
-    function post_comment() {
+    public function post_comment() {
         $image_id = (int) $this->input->post('comment_item_id');
 
         $this->load->module('comments');
@@ -233,7 +237,8 @@ class Gallery extends MY_Controller {
     }
 
     // Create cover url to each album
-    function create_albums_covers($albums = array()) {
+
+    public function create_albums_covers($albums = array()) {
         $cnt = count($albums);
         for ($i = 0; $i < $cnt; $i++) {
             $thumb_url = '/' . $this->conf['upload_url'] . $albums[$i]['id'] . '/' . $this->conf['thumbs_folder'] . '/';
@@ -253,7 +258,8 @@ class Gallery extends MY_Controller {
     }
 
     // Install
-    function _install() {
+
+    public function _install() {
         if ($this->dx_auth->is_admin() == FALSE) {
             exit;
         }
@@ -261,7 +267,8 @@ class Gallery extends MY_Controller {
     }
 
     // Delete module
-    function _deinstall() {
+
+    public function _deinstall() {
         if ($this->dx_auth->is_admin() == FALSE) {
             exit;
         }

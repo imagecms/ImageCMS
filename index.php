@@ -197,13 +197,13 @@ if (is_dir($application_folder)) {
     define('APPPATH', BASEPATH . $application_folder . '/');
 }
 
-define('IMAGECMS_NUMBER', '4.8.1 Corporate');
+define('IMAGECMS_NUMBER', '4.8.1b1 Corporate');
 
-define('IMAGECMS_VERSION', '20150423');
+define('IMAGECMS_VERSION', '20150615');
 
 define('IMAGECMS_BUILD_ID', '${buildid}');
 
-define('BUILD_ID', '48.1023');
+define('BUILD_ID', '481.1050');
 
 define('IMAGECMS_PUBLIC_ID', '51035d2a96a227c54d0dea3ff415ced6d39266c3');
 

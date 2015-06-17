@@ -41,6 +41,9 @@ class Trash extends MY_Controller {
         \CMSFactory\Events::create()->onShopProductCreate()->setListener('delProductWhenCreate');
         \CMSFactory\Events::create()->onShopProductAjaxChangeActive()->setListener('addProductWhenAjaxChangeActive');
         \CMSFactory\Events::create()->onShopCategoryDelete()->setListener('addProductsWhenCatDelete');
+        \CMSFactory\Events::create()->onShopProductUpdate()->setListener('addProductWhenAjaxChangeActive');
+        \CMSFactory\Events::create()->onShopProductCreate()->setListener('addProductWhenAjaxChangeActive');
+        \CMSFactory\Events::create()->on('ShopAdminProducts:fastProdCreate')->setListener('addProductWhenAjaxChangeActive');
     }
 
     /**
@@ -82,7 +85,7 @@ class Trash extends MY_Controller {
             'trash_url' => ltrim($trash_url, '/'),
             'trash_redirect_type' => 'url',
             'trash_type' => in_array($type, array(301, 302)) ? $type : 301,
-            'trash_redirect' => '/' . ltrim($redirect_url, 'http://')
+            'trash_redirect' => '/' . str_replace(array('http://', 'https://'), '', $redirect_url)
         );
 
         $this->db->insert('trash', $array);
@@ -111,6 +114,10 @@ class Trash extends MY_Controller {
         }
 
         foreach ($models as $model) {
+            if (!$model) {
+                continue;
+            }
+
             $ci->db->where('trash_url', 'shop/product/' . $model->getUrl())->delete('trash');
             if (!$model->getActive()) {
                 $array = array(

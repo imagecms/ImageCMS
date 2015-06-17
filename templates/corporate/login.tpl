@@ -1,5 +1,6 @@
 <div class="frame-inside">
     <div class="container">
+        {widget('path')}
         <h1>{lang('Вход','corporate')}</h1>
         <div class="vertical-form w_50">
             <form method="post" id="login_form" onsubmit="ImageCMSApi.formAction('{site_url('/auth/authapi/login')}', '#login_form');

@@ -17,7 +17,8 @@
         "tubalmartin/cssmin": "dev-master",
         "patchwork/jsqueeze": "~2.0",
         "tecnick.com/tcpdf": ">=6",
-        "google/apiclient": ">=1.1.2"
+        "google/apiclient": ">=1.1.2",
+        "greenlion/php-sql-parser": ">=4.0"
 
     },
     "require-dev": {
@@ -25,6 +26,7 @@
         "phpmd/phpmd": ">=2.2.2",
         "nubera-ebusiness/intercom-php": "dev-master",
         "phpunit/phpunit": ">=4.6.6",
-        "phpunit/phpunit-skeleton-generator": ">=2.0.1"
+        "phpunit/phpunit-skeleton-generator": ">=2.0.1",
+        "halleck45/phpmetrics": ">=1.1.1"
     }
 }

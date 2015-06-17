@@ -64,6 +64,7 @@ $(document).ready(function() {
                 $('.filesCount').text(obj.filesCount);
             }
         });
+
         $(this).parent().parent().siblings('a').trigger('click');
     });
 
@@ -286,6 +287,7 @@ function showOnSite(id, currentEl) {
             $(this).addClass('disable_tovar').css('left', '-28px');
             $(this).attr('rel', '0');
         }
+
     });
 
     var showStatus = $(currentEl).attr('rel');

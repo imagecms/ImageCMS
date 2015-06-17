@@ -54,7 +54,7 @@ final class BannersModuleManager {
         $this->db = \CI::$APP->db;
         $this->sqlFile = realpath(__DIR__ . '/../../models/propel/generated-sql/Shop.sql');
         $this->bannerImagesFolder = UPLOADSPATH . 'images/bimages';
-//        $this->bannerImagesFolder = UPLOADSPATH . 'banners/origins';
+        //        $this->bannerImagesFolder = UPLOADSPATH . 'banners/origins';
         $this->sqlContent = $this->getSqlFile();
     }
 
@@ -126,17 +126,11 @@ final class BannersModuleManager {
         chmod(dirname($this->bannerImagesFolder), 0777);
 
         return mkdir($this->bannerImagesFolder, 0777, true) &&
-            chmod($this->bannerImagesFolder, 0777);
+                chmod($this->bannerImagesFolder, 0777);
     }
 
     protected function removeBannersDirectory() {
-        $dirPath = dirname($this->bannerImagesFolder);
-        if (is_dir($dirPath)) {
-            foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($dirPath, \FilesystemIterator::SKIP_DOTS), \RecursiveIteratorIterator::CHILD_FIRST) as $path) {
-                $path->isDir() && !$path->isLink() ? rmdir($path->getPathname()) : unlink($path->getPathname());
-            }
-        }
-        return rmdir($dirPath);
+        return rmdir($this->bannerImagesFolder);
     }
 
     /**

@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>{lang("Operation panel","admin")} | Image CMS</title>
+        <title>{lang("Operation panel","admin")} | {if MAINSITE}Premmerce{else:}Image CMS{/if}</title>
         <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
         <meta name="description" content="{lang("Operation panel","admin")} - Image CMS" />
         <meta name="generator" content="ImageCMS">
 
-        <link rel="icon" type="image/x-icon" href="{$THEME}images/{if MAINSITE}premmerce_{/if}favicon.png"/>
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+        <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
         <link rel="stylesheet" type="text/css" href="{$THEME}css/bootstrap_complete.css">
         <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css">
@@ -19,11 +21,20 @@
         <link rel="stylesheet" type="text/css" href="{$THEME}css/jquery/custom-theme/jquery.ui.1.8.16.ie.css">
 
         <link rel="stylesheet" type="text/css" href="{$JS_URL}/elfinder-2.0/css/Aristo/css/Aristo/Aristo.css" media="screen" charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="{$JS_URL}/elrte-1.3/css/elrte.min.css" media="screen" charset="utf-8">
 
         <link rel="stylesheet" type="text/css" href="{$JS_URL}/elfinder-2.0/css/elfinder.min.css" media="screen" charset="utf-8">
         <link rel="stylesheet" type="text/css" href="{$JS_URL}/elfinder-2.0/css/theme.css" media="screen" charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="{$THEME}js/colorpicker/css/colorpicker.css" media="screen" charset="utf-8">
         <script src="{$THEME}js/jquery-1.8.2.min.js" type="text/javascript"></script>
+        <script async="async" src="{$THEME}js/jquery-validate/jquery.validate.min.js" type="text/javascript"></script>
+        <script async="async" src="{$THEME}js/jquery-validate/jquery.validate.i18n.js" type="text/javascript"></script>
+
+        <!-- http://trentrichardson.com/examples/timepicker/ -->
+        <link rel="stylesheet" type="text/css" href="{$THEME}js/timepicker/jquery-ui-timepicker-addon.css">
+
+        <link rel="icon" type="image/x-icon" href="{$THEME}images/{if MAINSITE}premmerce_{/if}favicon.png"/>
+
+        <link rel="stylesheet" type="text/css" href="{echo site_url('/js/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.css')}" media="screen" charset="utf-8">
     </head>
     <body>
         {literal}
@@ -81,13 +92,15 @@
                         <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '1' || $_COOKIE['condPromoToolbar'] == NULL}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '0');
                                 $('.imagecms-top-fixed-header').removeClass('imagecms-active');
                                 $(this).hide().next().show();
-                                $(window).scroll();">
+                                $(window).scroll();
+                                        $(.frame_zH_frame_title).css('margin-top', '0');">
                             <span class="imagecms-toggle-close-text imagecms-bar-close-text"><span style="font-size: 14px;">↑</span> Скрыть</span>
                         </button>
                         <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '0'}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '1');
                                 $('.imagecms-top-fixed-header').addClass('imagecms-active');
                                 $(this).hide().prev().show();
-                                $(window).scroll();">
+                                $(window).scroll();
+                                        $('.frame_zH_frame_title').css('margin-top', '-30px');">
                             <span class="imagecms-toggle-close-text imagecms-bar-show-text"><span style="font-size: 14px;">↓</span> Показать</span>
                         </button>
                         <div class="imagecms-buy-license">
@@ -156,255 +169,220 @@
             <div id="fixPage"></div>
             <!-- Here be notifications -->
             <div class="notifications top-right"></div>
-
             <header>
                 <section class="container">
-                    {if SHOP_INSTALLED}
-                        <a href="{base_url('admin/components/run/shop/dashboard')}" class="logo pull-left pjax">
-                        {else:}
-                            <a href="/admin/dashboard" class="logo pull-left pjax">
-                            {/if}
-                            <span class="helper"></span>
-                            <img src="{$THEME}img/logo_new.png"/>
-                            {/*<img src="{$THEME}img/logo_premmerce.png"/>*/}
-                        </a>
+                    <div class="row-fluid">
+                        <div class="span3 left-header">
+
+                            <a href="{if SHOP_INSTALLED}{base_url('admin/components/run/shop/dashboard')}{else:}/admin/dashboard{/if}" class="logo pull-left pjax">
+                                <span class="helper"></span>
+                                {if MAINSITE}
+                                    <img src="{$THEME}img/logo_premmerce.png"/>
+                                {else:}
+                                    <img src="{$THEME}img/logo_new.png"/>
+                                {/if}
+                            </a>
+
+                        </div>
+
+                        <div class="span6 center-header">
+                            <span class="frame-prem frame-prem-header">
+                                <span class="helper"></span>
+                                <div class="">
+                                    <div class="frame-prem-site"><a href="{echo rtrim(site_url(),'/')}" target="_blank">{echo rtrim(site_url(),'/')}</a></div>
+                                        {if MAINSITE}
+                                        <div class="frame-prem-right">
+                                            <span class="title d-i_b v-a_m">{echo lang('Balance:', 'admin')}</span>
+                                            <span class="f-s_0 d-i_b v-a_m">
+                                                <span class="text-el text-c-day">{echo $CI->load->module('mainsaas')->getDaysLeft()}</span>
+                                                <span class="text-el text-days">{echo lang('days', 'admin')}</span>
+                                            </span>
+                                            <a href="{echo $CI->load->module('mainsaas')->getDomainBiling()}/saas/orders/payments" class="icon-plus-tarif-money my_icon"></a>
+                                        </div>
+                                    {/if}
+                                </div>
+                            </span>
+                        </div>
 
                         {if $CI->dx_auth->is_logged_in()}
-                            <div class="pull-right span4 f-s_0 right-header">
+                            <div class="pull-right span3 f-s_0 right-header">
                                 <span class="helper"></span>
                                 <ul class="d_i-b f-s_0">
-                                    {if MAINSITE}
-                                        {if !$isfree}
-                                            <li class="btn_header {if $daysLeft <= 5}btn_header-danger{/if}">
-                                                <button type="button">
-                                                    <span class="text-el">{$daysLeft} {lang("days left", "admin")}</span>
-                                                </button>
-                                            </li>
-                                        {else:}
-                                            <li class="btn_header">
-                                                <button type="button">
-                                                    <span class="text-el">{lang("Free tarif", "admin")}</span>
-                                                </button>
-                                            </li>
-                                        {/if}
-                                    {/if}
-                                    {/* <li class="btn_header btn-mail">
-                                    <li class="btn_header">
-                                        <button type="button">
-                                            <span class="text-el">{lang("14 days left", "admin")}</span>
-                                        </button>
-                                    </li>
-                                    <li class="btn_header btn_header-danger">
-                                        <button type="button">
-                                            <span class="text-el">{lang("5 days left", "admin")}</span>
-                                        </button>
-                                    </li>
-                                    <li class="btn_header">
-                                        <button type="button">
-                                            <span class="text-el">{lang("Free tarif", "admin")}</span>
-                                        </button>
-                                    </li>
-                                    <li class="btn_header btn-mail">
-                                        <a href="#">
-                                            <span class="icon_mail">
-                                                <span class="badge badge-important">25</span>
-                                            </span>
-                                        </a>
-                                    </li> */}
+                                    {//if MAINSITE}
+                                    {if SHOP_INSTALLED}
 
-                                    <li class="dropdown d-i_b v-a_m">
-                                        <a data-toggle="dropdown" class="btn_header btn-personal-area">
-                                            <span>
-                                                <span class="icon_person"></span>
-                                                <span class="icon_arrow"></span>
-                                            </span>
-                                        </a>
-                                        <ul class="frame-dropdown dropdown-menu">
-                                            <li class="head">
-                                                {if $CI->dx_auth->get_username()}
-                                                    {echo $CI->dx_auth->get_username()}
-                                                {else:}
-                                                    {echo lang("Guest","admin")}
-                                                {/if}
-                                            </li>
-                                            {if $CI->dx_auth->get_username()}
-                                                <li>
-                                                    <a href="
-                                                       {if SHOP_INSTALLED}/admin/components/run/shop/users/edit/{echo $CI->dx_auth->get_user_id()}
-                                                       {else:}/admin/components/cp/user_manager/edit_user/{echo $CI->dx_auth->get_user_id()}
-                                                       {/if}"
-                                                       id="user_name">
-                                                        {lang("Personal data", "admin")}
-                                                    </a>
-                                                </li>
-                                            {/if}
+                                        {/*if $support_answers_count}
                                             <li>
-                                                <a href="/admin/logout">
-                                                    {lang("Exit", "admin")}
+                                                <a href="#" class="header-badge-count">
+                                                    <span class="helper"></span>
+                                                    <span class="">
+                                                        <span class="icon-badge-count my_icon"></span>
+                                                        <span class="text-el">{echo $support_answers_count}</span>
+                                                    </span>
                                                 </a>
                                             </li>
-                                        </ul>
+                                        {/if*/}
+                                        <li class="">
+                                            <a href="#" data-drop=".frame-add-info-header">
+                                                <span class="helper"></span>
+                                                <span class="icon-help"></span>
+                                            </a>
+                                        </li>
+                                    {/if}
+                                    {///if}
+
+                                    <li class="dropdown d-i_b v-a_m">
+                                        <a data-toggle="dropdown" class="btn-personal-area">
+                                            <span class="helper"></span>
+                                            <span class="my_icon icon-personal-area"></span>
+                                        </a>
+                                        {if MAINSITE}
+                                            {echo $CI->load->module('mainsaas')->getSaasDropMenu()}
+                                        {else:}
+                                            <ul class="frame-dropdown dropdown-menu drop_menu_black">
+                                                {/*}
+                                                <li class="head">
+                                                    {if $CI->dx_auth->get_username()}
+                                                        {echo $CI->dx_auth->get_username()}
+                                                    {else:}
+                                                        {echo lang("Guest","admin")}
+                                                    {/if}
+                                                </li>
+                                                { */}
+                                                {if $CI->dx_auth->get_username()}
+                                                    <li>
+                                                        <a href="
+                                                           {if SHOP_INSTALLED}/admin/components/run/shop/users/edit/{echo $CI->dx_auth->get_user_id()}
+                                                           {else:}/admin/components/cp/user_manager/edit_user/{echo $CI->dx_auth->get_user_id()}
+                                                           {/if}"
+                                                           id="user_name">
+                                                            {lang("Personal data", "admin")}
+                                                        </a>
+                                                    </li>
+                                                {/if}
+                                                <li>
+                                                    <a href="/auth/logout">
+                                                        {lang("Exit", "admin")}
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        {/if}
                                     </li>
-                                    <li class="btn_header">
+                                    <li class="">
                                         <a href="{$BASE_URL}" target="_blank">
-                                            <span class="icon_on-site"></span>
-                                            <span class="text-el">{lang('To the site','admin')}</span>
+                                            <span class="helper"></span>
+                                            <span class="my_icon icon-to-the-site"></span>
                                         </a>
                                     </li>
                                 </ul>
                             </div>
-                            {if SHOP_INSTALLED}
-                                <div class="frame-quick-access f-s_0" id="topPanelNotifications" style="display: block;">
-                                    <span class="helper"></span>
-                                    <div class="d-i_b">
-                                        <a href="/admin/components/run/shop/orders/index" class="btn-quick-access pjax">
-                                            <span class="frame-icon">
-                                                <i class="icon-bask"></i>
-                                            </span>
-                                            <span class="text-el">{lang('Orders','admin')}</span>
-                                        </a>
-                                        <a href="/admin/components/cp/comments" class="btn-quick-access pjax">
-                                            <span class="frame-icon">
-                                                <i class="icon-comment_head"></i>
-                                            </span>
-                                            <span class="text-el">{lang("Comments","admin")}</span>
-                                        </a>
-                                        <a href="#" class="btn-quick-access pjax">
-                                            <span class="frame-icon">
-                                                <i class="icon-report_exists"></i>
-                                            </span>
-                                            <span class="text-el">{lang("No photo","admin")}</span>
-                                        </a>
-                                        <a href="#" class="btn-quick-access pjax">
-                                            <span class="frame-icon">
-                                                <i class="icon-callback"></i>
-                                            </span>
-                                            <span class="text-el">{lang("Callback", "admin")}</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            {/if}
                         {/if}
+                    </div>
                 </section>
             </header>
-            {if $CI->dx_auth->is_logged_in()}
-                <div class="frame_nav">
-                    {if MAINSITE}
-                        {include(MAINSITE.'/templates/administrator/inc/menus.php');}
-                    {else:}
-                        {include('templates/administrator/inc/menus.php');}
-                    {/if}
-                    {if !SHOP_INSTALLED}
-                        <table class="container" id="baseAdminMenu">
-                            <tbody class="navbar navbar-inverse">
-                                <tr>
-                                    {foreach $baseMenu as $li}
-                                        {if $li.subMenu}
-                                            <td class="{$li.class} {if $li.subMenu} dropdown{/if}">
-                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{echo (bool)$li.text?$li.text:$li.text}</a>
-                                                <ul class="dropdown-menu">
-                                                    {foreach $li.subMenu as $sli}
-                                                        {if $sli.menusList}
-                                                            {if !$menus}
-                                                                {$CI->load->module('menu'); $menus=$CI->menu->get_all_menus()}
-                                                            {/if}
-                                                            <li><a href="/admin/components/cp/menu/index" class="pjax">{lang("Management","admin")}</a></li>
-                                                            <li class="divider"></li>
-                                                                {foreach $menus as $menu}
-                                                                <li><a href="/admin/components/cp/menu/menu_item/{$menu.name}" class="pjax">{$menu.main_title}</a></li>
-                                                                {/foreach}
-                                                            {/if}
-                                                            {if $sli.modulesList}
-                                                                {if !$components}
-                                                                    {$CI->load->module('admin/components'); $components = $CI->components->find_components_for_menu_list(TRUE)}
-                                                                {/if}
-                                                                {foreach $components as $component}
-                                                                <li><a href="/admin/components/cp/{echo $component['name']}" class="pjax">{echo $component['menu_name']}</a></li>
-                                                                {/foreach}
-                                                            {/if}
+            {if MAINSITE}
+                <div class="frame-add-info-header" style="display: none;">
+                    <div class="container">
+                        <button type="button" class="icon-close2" data-closed=".frame-add-info-header"></button>
+                        <ul class="items items-add-info">
+                            {$contacts = $CI->load->module('mainsaas')->getContacts()}
+                            <li class="item-manager">
+                                <div class="frame-title f-s_0">
+                                    <span class="icon-manager"></span>
+                                    <span class="title">{lang('Менеджер', 'admin')}</span>
+                                </div>
+                                <ul class="items-menu-col">
+                                    {if $contacts['addphone2']}
+                                        <li>
+                                            {echo $contacts['addphone2']}
+                                        </li>
+                                    {/if}
 
-                                                        <li {if $sli.divider} class="divider"{/if}{if $sli.header} class="nav-header"{/if}>
-                                                            {if $sli.link || $sli.id}
-                                                                <a 
-                                                                    {if $sli.link} href="{site_url($sli.link)}" {/if}
-                                                                    {if $sli.id} id="{$sli.id}" {/if}
-                                                                    {if $sli.pjax !== FALSE} class="pjax" {/if}
-                                                                    >
-                                                                    {echo (bool)$sli.text?$sli.text:$sli.text}
-                                                                </a>
-                                                            {else:}
-                                                                {echo (bool)$sli.text ? $sli.text : $sli.text}
-                                                            {/if}
-                                                        </li>
+                                    {if $contacts['addphone1']}
+                                        <li>
+                                            {echo $contacts['addphone1']}
+                                        </li>
+                                    {/if}
 
+                                    {if $contacts['addphone3']}
+                                        <li>
+                                            {echo $contacts['addphone3']}
+                                        </li>
+                                    {/if}
 
-                                                    {/foreach}
-                                                </ul>
-                                            </td>
+                                    {if $contacts['siteinfo_mainphone'] && !$contacts['addphone2']}
+                                        <li>
+                                            {echo $contacts['siteinfo_mainphone']}
+                                        </li>
+                                    {/if}
+
+                                    {if $contacts['Email']}
+                                        <li>
+                                            {echo $contacts['Email']}
+                                        </li>
+                                    {/if}
+                                </ul>
+                            </li>
+                            <li class="item-support">
+                                <div class="frame-title f-s_0">
+                                    <span class="icon-maintain"></span>
+                                    <span class="title">{lang('Служба поддержки', 'admin')}</span>
+                                </div>
+                                <ul class="items-menu-col">
+                                    <li class="f-s_0">
+                                        <a href="{echo $CI->load->module('mainsaas')->getDomainBiling()}/saas/support" class="text-el">{lang('Ваши вопросы', 'admin')}</a>
+                                        {if $support_answers_count}
+                                            <span class="badge-new">
+                                                {echo $support_answers_count}
+                                            </span>
                                         {/if}
-                                    {/foreach}
-                                </tr>
-
-                                {//if SHOP_INSTALLED}
-                                <!-- <a class="btn btn-small pull-right btn-info" onclick="loadShopInterface();" href="#">{lang('Manage shop','admin')}<span class="f-s_14">→</span></a>-->
-                                {///if}
-                                {$CI->lang->load($langDomain)}
-                            </tbody>
-                        </table>
-                    {/if}
-                    {if SHOP_INSTALLED}
-                        <table class="container" >
-                            <tbody>
-                                <tr>
-                                    {foreach $shopMenu as $li}
-                                        {if $li.subMenu}
-                                            <td class="{$li.class} {if $li.subMenu} dropdown{/if}">
-                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{echo (bool)$li.text?$li.text:$li.text}</a>
-                                                <ul class="dropdown-menu">
-                                                    {foreach $li.subMenu as $sli}
-                                                        <li {if $sli.divider} class="divider"{/if}{if $sli.header} class="nav-header"{/if}>
-                                                            {if $sli.link || $sli.id}
-                                                                <a 
-                                                                    {if $sli.link} href="{site_url($sli.link)}" {/if}
-                                                                    {if $sli.id} id="{$sli.id}" {/if}
-                                                                    {if $sli.pjax !== FALSE} class="pjax" {/if}>
-                                                                    {echo (bool)$sli.text?$sli.text:$sli.text}
-                                                                </a>
-                                                            {else:}
-                                                                {echo $sli.text?$sli.text:$sli.text}
-                                                            {/if}
-
-                                                        </li>
-                                                        {if $sli.modulesList}
-                                                            {if !$components}
-                                                                {$CI->load->module('admin/components'); $components = $CI->components->find_components_for_menu_list(TRUE)}
-                                                            {/if}
-                                                            {foreach $components as $component}
-                                                                <li><a href="/admin/components/cp/{echo $component['name']}">{echo $component['menu_name']}</a></li>
-                                                            {/foreach}
-                                                            
-                                                                {if !MAINSITE}
-                                                                <li class="divider"></li>
-                                                                    <li><a href="/admin/components/modules_table" class="pjax">{lang('All modules', 'admin')}</a></li>
-                                                                {/if}
-                                                            {/if}
-
-                                                    {/foreach}
-                                                </ul>
-                                            </td>
-                                        {/if}
-                                    {/foreach}
-                                </tr>
-                                <!--<a class="btn btn-small pull-right btn-info" onclick=" loadBaseInterface();"  href="#"><span class="f-s_14">←</span> {lang('Manage site','admin')} </a>-->
-                            </tbody>
-                        </table>
-                    {/if}
+                                    </li>
+                                    <li>
+                                        <a href="{echo $CI->load->module('mainsaas')->getDomainBiling()}/saas/support/#create-ticket">{lang('Задать вопрос', 'admin')}</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="item-instruction">
+                                {echo $CI->load->module('mainsaas')->getInstruction()}
+                            </li>
+                        </ul>
+                    </div>
                 </div>
+            {else: }
+                {if SHOP_INSTALLED}
+                    <div class="frame-add-info-header full-width" style="{if true == $d_b}display: block{else:}display: none{/if};">
+                        <div class="container">
+                            <button type="button" class="icon-close2" data-closed=".frame-add-info-header"></button>
+                            <ul class="items items-add-info">
+                                <li class="item-instruction">
+                                    <div class="frame-title f-s_0">
+                                        <span class="icon-instr"></span>
+                                        <span class="title">{lang('Instructions for filling', 'admin')}</span>
+                                    </div>
+
+                                    <ul class="items items-menu-row">
+                                        {foreach $CI->load->module('admin/docs')->getPages() as $page}
+                                            {if stripos($page->full_url, $active_docs_page)}
+                                                <li><span>{truncate($page->title, 25)}</span></li>
+                                                    {else:}
+                                                <li><a href="{echo $page->full_url}">{truncate($page->title, 25)}</a></li>
+                                                {/if}
+                                            {/foreach}
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                {/if}
             {/if}
+
+            <!-- Admin Menu  -->
+            {echo $CI->load->module('admin_menu')->show()}
+
             <div id="loading"></div>
             {$CI->lang->load($langDomain)}
             <div class="container" id="mainContent">
-                {literal}<script>setTimeout(function() {
+                {literal}<script>setTimeout(function () {
                         $('.mini-layout').css('padding-top', $('.frame_title:not(.no_fixed)').outerHeight());
                     }, 0);</script>{/literal}
                         {$content}
@@ -420,45 +398,74 @@
                             {echo create_admin_language_select()}
                         </div>
                         <div class="span4 t-a_c">
-                            {if !defined('MAINSITE')}
-                                {lang("Version","admin")}: <b>{echo getCMSNumber()}</b>-->
+                            {if MAINSITE == ''}
+                                {lang("Version","admin")}: <b>{echo getCMSNumber()}</b>
                             {/if}
-                            <div class="muted">{lang('Help us get better','admin')} - <a href="#" id="rep_bug">{lang('report an error','admin')}</a></div>
+                            <div class="muted">{lang('Help us get better','admin')} - <a href="#"  onclick="$('.addNotificationMessage').modal();
+                                    return false;">{lang('report an error','admin')}</a></div>
                         </div>
-                        {if !define(MAINSITE)}
-                        <div class="span4 t-a_r">
-                            <div class="muted">Copyright © ImageCMS {echo date('Y')}</div>
-                            <a href="{if MAINSITE}http://docs.premmerce.com/{else:}http://docs.imagecms.net{/if}" target="blank">{lang('Documentation','admin')}</a>
-                        </div>
+                        {if !MAINSITE}
+                            <div class="span4 t-a_r">
+                                <div class="muted">Copyright © ImageCMS {echo date('Y')}</div>
+                                <a href="{if MAINSITE}http://docs.premmerce.com/{else:}http://docs.imagecms.net{/if}" target="blank">{lang('Documentation','admin')}</a>
+                            </div>
                         {else:}
-                        <div class="span4 t-a_r">
-                            <div class="muted">Copyright © ImageCMS {echo date('Y')}</div>
-                            <a href="http://docs.premmerce.com" target="blank">{lang('Documentation','admin')}</a>
-                        </div>                        
+                            <div class="span4 t-a_r">
+                                <div class="muted">Copyright © Premmerce {echo date('Y')}</div>
+                                <a href="http://docs.premmerce.com" target="blank">{lang('Documentation','admin')}</a>
+                            </div>
                         {/if}
                     </div>
                 </div>
             </footer>
             <div id="elfinder"></div>
             <div class="standart_form frame_rep_bug">
-                <form>
-                    <label>
-                        {lang('Your Name','admin')}:
-                        <input type=text name="name"/>
-                    </label>
-                    <label>
-                        {lang('Your Email','admin')}:
-                        <input type=text name="email"/>
-                    </label>
-                    <label>
-                        {lang('Your remark', "admin")}:
-                        <textarea name='text'></textarea>
-                    </label>
-                    <input type="submit" value="{lang("Send","admin")}" class="btn btn-info"/>
-                    <input type="button" value="{lang("Cancel","admin")}" class="btn btn-info" style="float:right" name="cancel_button"/>
-                    <input type="hidden" name='ip' value="{$_SERVER['REMOTE_ADDR']}" id="ip_address"/>
+
+            </div>
+
+
+            <div class="addNotificationMessage modal hide fade">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3>{lang("Report an error","admin")}</h3>
+                </div>
+                <form class="form-vetical">
+                    <div class="modal-body">
+
+                        <div class="control-group">
+                            <label class="control-label">
+                                {lang('Your Name','admin')}:
+                            </label>
+                            <div class="controls">
+                                <input type=text name="name"/>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">
+                                {lang('Your Email','admin')}:
+                            </label>
+                            <div class="controls">
+                                <input type=text name="email"/>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">
+                                {lang('Your remark', "admin")}:
+                            </label>
+                            <div class="controls">
+                                <textarea name='text'></textarea>
+                            </div>
+                        </div>
+                        <input type="hidden" name='ip' value="{$_SERVER['REMOTE_ADDR']}" id="ip_address"/>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang('Cancel','admin')}</a>
+                        <button type="submit" class="btn btn-primary">{lang("Send","admin")}</button>
+                    </div>
                 </form>
             </div>
+
+
             <script>
                 {$settings = $CI->cms_admin->get_settings();}
                 var textEditor = '{$settings.text_editor}';
@@ -471,27 +478,28 @@
                 var base_url = "{site_url()}";
             </script>
 
+
             <script src="{$THEME}js/pjax/jquery.pjax.min.js" type="text/javascript"></script>
             <script src="{$THEME}js/jquery-ui-1.8.23.custom.min.js" type="text/javascript"></script>
+            <script src="{$THEME}js/timepicker/jquery-ui-timepicker-addon.js" type="text/javascript"></script>
             <script src="{$THEME}js/bootstrap.min.js" type="text/javascript"></script>
             <script async="async" src="{$THEME}js/bootstrap-notify.js" type="text/javascript"></script>
             <script src="{$THEME}js/jquery.form.js" type="text/javascript"></script>
 
-            <script async="async" src="{$THEME}js/jquery-validate/jquery.validate.min.js" type="text/javascript"></script>
-            <script async="async" src="{$THEME}js/jquery-validate/jquery.validate.i18n.js" type="text/javascript"></script>
 
             <script src="{$THEME}js/chosen.js" type="text/javascript"></script>
+            <script src="{$THEME}js/jquery.synctranslit.min.js" type="text/javascript"></script>
 
+            <script type="text/javascript" src="{echo site_url('application/third_party/tinymce/tinymce/tinymce.min.js')}"></script>
             <script src="{$THEME}js/functions.js" type="text/javascript"></script>
             <script src="{$THEME}js/scripts.js" type="text/javascript"></script>
 
-            <script type="text/javascript" src="{$JS_URL}/elrte-1.3/js/elrte.min.js"></script>
             <script type="text/javascript" src="{$JS_URL}/elfinder-2.0/js/elfinder.min.js"></script>
 
+            <script type="text/javascript" src="{echo site_url('/js/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.pack.js')}"></script>
 
             {if $this->CI->config->item('language') == 'russian'}
                 <script async="async" src="{$THEME}js/jquery-validate/messages_ru.js" type="text/javascript"></script>
-                <script type="text/javascript" src="{$JS_URL}/elrte-1.3/js/i18n/elrte.ru.js"></script>
                 <script type="text/javascript" src="{$JS_URL}/elfinder-2.0/js/i18n/elfinder.ru.js"></script>
             {/if}
 
@@ -499,9 +507,11 @@
             <script src="{$THEME}js/admin_base_m.js" type="text/javascript"></script>
             <script src="{$THEME}js/admin_base_r.js" type="text/javascript"></script>
             <script src="{$THEME}js/admin_base_v.js" type="text/javascript"></script>
-            <script src="{$THEME}js/admin_base_y.js" type="text/javascript"></script>
-            <script type="text/javascript" src="{$JS_URL}/tiny_mce/jquery.tinymce.js"></script>
+
             <script src="{$THEME}js/autosearch.js" type="text/javascript"></script>
+            {if MAINSITE}
+                <script src="/application/modules/mainsaas/assets/js/mainsaas.js" type="text/javascript"></script>
+            {/if}
 
             <script>
                 {if $CI->uri->segment('4') == 'shop'}
@@ -509,12 +519,19 @@
                 {else:}
                 var isShop = false;
                 {/if}
+
+                {if MAINSITE}
+                var MAINSITE = true;
+                {else:}
+                var MAINSITE = false;
+                {/if}
+
                 var lang_only_number = "{lang("numbers only","admin")}";
                 var show_tovar_text = "{lang("show","admin")}";
                 var hide_tovar_text = "{lang("don't show", 'admin')}";
                 {literal}
 
-                    $(document).ready(function() {
+                    $(document).ready(function () {
 
                         if (!isShop)
                         {
@@ -526,7 +543,7 @@
                     })
 
                     function number_tooltip_live() {
-                        $('.number input').each(function() {
+                        $('.number input').each(function () {
                             $(this).attr({
                                 'data-placement': 'top',
                                 'data-title': lang_only_number
@@ -534,7 +551,7 @@
                         });
                     }
                     function prod_on_off() {
-                        $('.prod-on_off').die('click').live('click', function() {
+                        $('.prod-on_off').die('click').live('click', function () {
                             var $this = $(this);
                             if (!$this.hasClass('disabled')) {
                                 if ($this.hasClass('disable_tovar')) {
@@ -564,7 +581,7 @@
                             }
                         });
                     }
-                    $(window).load(function() {
+                    $(window).load(function () {
                         number_tooltip_live();
                         prod_on_off();
                     })

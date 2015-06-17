@@ -54,7 +54,7 @@
                     </div>
                 </section>
             </header>
-            <div class="frame_nav">
+            <div class="frame_nav header-menu-out">
                 <div class="container">
                     <nav class="navbar navbar-inverse">
                         <ul class="nav">

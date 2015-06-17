@@ -25,8 +25,12 @@ class Admin extends BaseAdminController {
 
         ClassLoader::getInstance()->registerNamespacedPath(__DIR__ . '/models/propel/generated-classes')->registerAlias(__DIR__ . '/src', 'Banners');
     }
+    
+    public function deleteA(){
+        \Banners\Models\BannersQuery::create()->deleteAll();
+    }
 
-    /**
+        /**
      * Banners places list page
      */
     public function index() {

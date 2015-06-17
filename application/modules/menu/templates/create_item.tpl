@@ -1,12 +1,12 @@
 <section class="mini-layout">
-    <div class="frame_title clearfix">
+    <div class="frame_title top_null clearfix"">
         <div class="pull-left">
             <span class="help-inline"></span>
             <span class="title">{lang("Create a menu item", "menu")}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="/admin/components/cp/menu/menu_item/{$menu.name}" class="t-d_n m-r_15 pjax"><span class="f-s_14"></span>←<span class="t-d_u">{lang("Go back", "menu")}</span></a>
+                <a href="/admin/components/cp/menu/menu_item/{$menu.name}" class="t-d_n m-r_15 pjax"><span class="f-s_14"></span>← <span class="t-d_u">{lang("Go back", "menu")}</span></a>
                 <button type="button" class="btn btn-small btn-success formSubmit submit_link" data-form="#page_form" data-submit><i class="icon-plus-sign icon-white"></i>{lang("Create", "menu")}</button>
                 <button type="button" class="btn btn-small formSubmit submit_link" data-form="#page_form" data-action="tomain"><i class="icon-check"></i>{lang("Create and exit", "menu")}</button>
             </div>
@@ -100,7 +100,7 @@
                                     <div class="span12">
                                         <div class="control-group">
                                             <label class="control-label">{lang("Type", "menu")}:</label>
-                                            <div class="controls">
+                                            <div class="controls ctext">
                                                 <span class="help-block">{lang("Page", "menu")}</span>
                                             </div>
                                         </div>
@@ -251,7 +251,7 @@
                                     <div class="span12">
                                         <div class="control-group">
                                             <label class="control-label">{lang("Type", "menu")}:</label>
-                                            <div class="controls">
+                                            <div class="controls ctext">
                                                 <span class="help-block">{lang("Categories", "menu")}</span>
                                             </div>
                                         </div>
@@ -385,7 +385,7 @@
                                             <div class="span12">
                                                 <div class="control-group">
                                                     <label class="control-label">{lang("Type", "menu")}:</label>
-                                                    <div class="controls">
+                                                    <div class="controls ctext">
                                                         <span class="help-block">
                                                             {lang("Module", "menu")}
                                                         </span>
