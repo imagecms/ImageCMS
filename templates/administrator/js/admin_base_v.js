@@ -142,8 +142,11 @@ $(document).ready(function() {
                 $('.notifications').append(data);
             }
         });
+        
+        if(!price){
+            btn.parent().find('input').val(0);
+        }
 
-        //btn.toggleClass('btn-primary active');
     });
 
     $('body').off('change').on('change', '.prodFilterSelect', function(event) {

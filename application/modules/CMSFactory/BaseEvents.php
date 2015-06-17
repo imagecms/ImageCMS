@@ -467,6 +467,11 @@ abstract class BaseEvents {
         return $this;
     }
 
+    public function onBrandsPageLoad() {
+        $this->key = 'brands:load';
+        return $this;
+    }
+
     public function onCategoryPageLoad() {
         $this->key = 'category:load';
         return $this;

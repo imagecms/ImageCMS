@@ -66,7 +66,7 @@ class Core extends MY_Controller {
 
         $this->load->library('template');
 
-        if ((!empty($this->input->get()) || strstr($this->input->server('REQUEST_URI'), '?')) && $this->uri->uri_string() == '') {
+        if (($this->input->get() || strstr($this->input->server('REQUEST_URI'), '?')) && $this->uri->uri_string() == '') {
             $this->template->registerCanonical(site_url());
         }
 
@@ -99,7 +99,7 @@ class Core extends MY_Controller {
                 $this->config->set_item('cur_lang', $this->langs[$uri_lang]['id']);
 
                 // Set language template
-//                $this->config->set_item('template', $this->langs[$uri_lang]['template']);
+                //                $this->config->set_item('template', $this->langs[$uri_lang]['template']);
 
                 $this->template->set_config_value('tpl_path', TEMPLATES_PATH . $this->settings['site_template'] . '/');
 
@@ -120,7 +120,7 @@ class Core extends MY_Controller {
         } else {
             $this->use_def_language();
         }
-        // End language detect        
+        // End language detect
         if (!preg_match('/^\/mainsaas/', $this->input->server('PATH_INFO'))) {
             if ($this->settings['site_offline'] == 'yes') {
                 if ($this->session->userdata('DX_role_id') != 1) {
@@ -286,7 +286,7 @@ class Core extends MY_Controller {
         $agent = $this->user_browser();
 
         $this->template->add_array(
-        array(
+            array(
                     'agent' => $agent,
                 )
         );
@@ -442,7 +442,6 @@ class Core extends MY_Controller {
             $page['full_text'] = $page['prev_text'];
         }
 
-
         if (count($category) > 0) {
             // Set page template file
             if ($page['full_tpl'] == NULL) {
@@ -462,18 +461,17 @@ class Core extends MY_Controller {
         empty($page_tpl) ? $page_tpl = 'page_full' : TRUE;
 
         $this->template->add_array(
-        array(
+            array(
                     'page' => $page,
                     'category' => $category
                 )
         );
 
-        if (!empty($this->input->get())) {
+        if ($this->input->get()) {
             $this->template->registerCanonical(site_url());
         }
 
         $this->template->assign('content', $this->template->read($page_tpl));
-
 
         if ($this->settings['create_description'] == 'auto' && !$page['description']) {
             $page['description'] = $this->lib_seo->get_description($page['full_text']);
@@ -490,7 +488,6 @@ class Core extends MY_Controller {
                 }
             }
         }
-
 
         $this->set_meta_tags($page['meta_title'] == NULL ? $page['title'] : $page['meta_title'], $page['keywords'], $page['description']);
 
@@ -589,22 +586,20 @@ class Core extends MY_Controller {
         if ($category['total_pages'] > $category['per_page']) {
             $this->load->library('Pagination');
 
-
             if (array_key_exists($this->uri->segment(1), $this->langs)) {
-                $config['base_url'] = '/' . $this->uri->segment(1) . "/" . $category['path_url'];
+                $pagesCategoryPagination['base_url'] = '/' . $this->uri->segment(1) . "/" . $category['path_url'];
             } else {
-                $config['base_url'] = '/' . $category['path_url'];
+                $pagesCategoryPagination['base_url'] = '/' . $category['path_url'];
             }
 
-            $config['total_rows'] = $category['total_pages'];
-            $config['per_page'] = $category['per_page'];
-            $config['uri_segment'] = $segment;
-
-            $this->pagination->num_links = 5;
+            $pagesCategoryPagination['total_rows'] = $category['total_pages'];
+            $pagesCategoryPagination['per_page'] = $category['per_page'];
+            $pagesCategoryPagination['uri_segment'] = $segment;
+            include_once "./templates/{$this->config->item('template')}/paginations.php";
 
             ($hook = get_hook('core_dispcat_set_pagination')) ? eval($hook) : NULL;
 
-            $this->pagination->initialize($config);
+            $this->pagination->initialize($pagesCategoryPagination);
             $this->template->assign('pagination', $this->pagination->create_links());
         }
         // End pagination
@@ -639,8 +634,7 @@ class Core extends MY_Controller {
 
         ($hook = get_hook('core_dispcat_set_meta')) ? eval($hook) : NULL;
 
-
-        // Generate auto meta-tags 
+        // Generate auto meta-tags
         if ($this->settings['create_description'] == 'auto' && !$category['description']) {
             $category['description'] = $this->lib_seo->get_description($category['short_desc']);
         }
@@ -690,7 +684,7 @@ class Core extends MY_Controller {
      */
     public function _load_languages() {
         // Load languages
-//        ($hook = get_hook('core_load_languages')) ? eval($hook) : NULL;
+        //        ($hook = get_hook('core_load_languages')) ? eval($hook) : NULL;
 
         if (($langs = $this->cache->fetch('main_site_langs')) === FALSE) {
             $langs = $this->cms_base->get_langs();
@@ -811,7 +805,7 @@ class Core extends MY_Controller {
         ($hook = get_hook('core_display_errors_tpl')) ? eval($hook) : NULL;
 
         $this->template->add_array(
-        array(
+            array(
                     'content' => $this->template->read('error', array('error_text' => $text, 'back_button' => $back))
                 )
         );
@@ -1007,7 +1001,7 @@ class Core extends MY_Controller {
         ($hook = get_hook('core_set_meta_tags')) ? eval($hook) : NULL;
         if ($this->core_data['data_type'] == 'main') {
             $this->template->add_array(
-            array(
+                array(
                         'site_title' => empty($this->settings['site_title']) ? $title : $this->settings['site_title'],
                         'site_description' => empty($this->settings['site_description']) ? $description : $this->settings['site_description'],
                         'site_keywords' => empty($this->settings['site_keywords']) ? $keywords : $this->settings['site_keywords']
@@ -1015,7 +1009,7 @@ class Core extends MY_Controller {
             );
         } else {
             if (($page_number > 1) && ($page_number != '')) {
-                $title = $page_number . ' - ' . $title;
+                $title = lang('Page', 'core') . ' №' .  $page_number . ' - ' . $title;
             }
 
             if ($description != '') {
@@ -1059,8 +1053,9 @@ class Core extends MY_Controller {
                 $keywords = '';
             }
 
+            $page_number = $page_number ? : (int) $this->pagination->cur_page;
             $this->template->add_array(
-            array(
+                array(
                         'site_title' => $title,
                         'site_description' => htmlspecialchars(strip_tags($description)),
                         'site_keywords' => htmlspecialchars($keywords),
@@ -1094,16 +1089,23 @@ class Core extends MY_Controller {
                 } else {
                     header("Content-type: text/plain");
                     echo "User-agent: * \r\nDisallow: /";
+                    echo "\r\nHost: " . $this->input->server('HTTP_HOST');
+                    echo "\r\nSitemap: " . site_url('sitemap.xml');
                     exit;
                 }
             } else {
+
                 header("Content-type: text/plain");
                 echo "User-agent: * \r\nDisallow: ";
+                echo "\r\nHost: " . $this->input->server('HTTP_HOST');
+                echo "\r\nSitemap: " . site_url('sitemap.xml');
                 exit;
             }
         } else {
             header("Content-type: text/plain");
             echo "User-agent: * \r\nDisallow: /";
+            echo "\r\nHost: " . $this->input->server('HTTP_HOST');
+            echo "\r\nSitemap: " . site_url('sitemap.xml');
             exit;
         }
     }

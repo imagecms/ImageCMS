@@ -1,13 +1,17 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 class Install extends MY_Controller {
 
     public $host = '';
+
     public $useSqlFile = 'sql.sql';
+
     private $exts = FALSE;
+
     private $loadedExt = FALSE;
 
     public function __construct() {
@@ -15,7 +19,7 @@ class Install extends MY_Controller {
         $lang = new MY_Lang();
         $lang->load('install');
         $lang->load('main');
-//        $this->host = 'http://' . str_replace('index.php', '', $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME']) . 'index.php/';
+        //        $this->host = 'http://' . str_replace('index.php', '', $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME']) . 'index.php/';
         $this->load->helper('string');
         $this->load->helper('form_csrf');
         $this->host = reduce_multiples($this->host);
@@ -92,7 +96,7 @@ class Install extends MY_Controller {
             'soap' => 'ok',
         );
 
-        if (moduleExists('shop') && end(explode('.', $_SERVER['HTTP_HOST'])) != 'loc') {
+        if (moduleExists('shop') && end(explode('.', $this->input->server('HTTP_HOST'))) != 'loc') {
             $exts['ionCube Loader'] = 'ok';
         }
 
@@ -141,7 +145,7 @@ class Install extends MY_Controller {
 
         $data = array(
             'dirs' => $dir_array,
-            'need_params' => $need_params,
+            //            'need_params' => $need_params,
             'allow_params' => $allow_params,
             'exts' => $exts,
             'locales' => $locales,
@@ -166,7 +170,7 @@ class Install extends MY_Controller {
      * @param type $name
      * @return boolean
      */
-    private function _get_ext($name = '') {
+    protected function _get_ext($name = '') {
         if ($this->exts === FALSE) {
             ob_start();
             phpinfo(INFO_MODULES);
@@ -175,7 +179,7 @@ class Install extends MY_Controller {
             $this->exts = strip_tags($this->exts, '<h2><th><td>');
         }
 
-        $result = preg_match("/<h2>.*$name.*<\/h2>/", $this->exts, $m);
+        preg_match("/<h2>.*$name.*<\/h2>/", $this->exts, $m);
 
         if (count($m) == 0) {
             return FALSE;
@@ -191,13 +195,13 @@ class Install extends MY_Controller {
         $result = TRUE;
         $other_errors = '';
 
-        if (count($_POST) > 0) {
+        if ($this->input->post()) {
             $this->form_validation->set_rules('site_title', lang('Site name', 'install'), 'required');
             $this->form_validation->set_rules('db_host', lang('Host', 'install'), 'required');
             $this->form_validation->set_rules('db_user', lang('Database username', 'install'), 'required');
             //$this->form_validation->set_rules('db_pass', 'Пароль БД', 'required');
             $this->form_validation->set_rules('db_name', lang('Database name', 'install'), 'required');
-//            $this->form_validation->set_rules('admin_login', 'Логин администратора', 'required|min_length[4]');
+            //            $this->form_validation->set_rules('admin_login', 'Логин администратора', 'required|min_length[4]');
             $this->form_validation->set_rules('admin_pass', lang('Administrator password', 'install'), 'required|min_length[5]');
             $this->form_validation->set_rules('admin_mail', lang('Administrator E-mail', 'install'), 'required|valid_email');
             $this->form_validation->set_rules('lang_sel', lang('Language', 'install'), 'required');
@@ -258,7 +262,7 @@ class Install extends MY_Controller {
         mysqli_query($link, 'SET NAMES `utf8`');
         $sqlFileData = read_file(dirname(__FILE__) . '/' . $this->useSqlFile);
 
-        $queries = explode(";\n", $sqlFileData);
+        $queries = explode(";\n", str_replace(';\r\n', ';\n', $sqlFileData));
 
         foreach ($queries as $q) {
             $q = trim($q);
@@ -341,18 +345,20 @@ class Install extends MY_Controller {
             delete_files('./uploads/images', TRUE);
         }
 
+        $this->writeDatabaseConfig(
+            [
+                    'hostname' => $this->input->post('db_host'),
+                    'username' => $this->input->post('db_user'),
+                    'password' => $this->input->post('db_pass'),
+                    'database' => $this->input->post('db_name'),
+                ]
+        );
 
-
-        $this->writeDatabaseConfig([
-            'hostname' => $this->input->post('db_host'),
-            'username' => $this->input->post('db_user'),
-            'password' => $this->input->post('db_pass'),
-            'database' => $this->input->post('db_name'),
-        ]);
-
-        $this->writeCmsConfig([
-            'is_installed' => 'TRUE',
-        ]);
+        $this->writeCmsConfig(
+            [
+                    'is_installed' => 'TRUE',
+                ]
+        );
 
         $this->load->database();
 
@@ -362,7 +368,7 @@ class Install extends MY_Controller {
         $this->load->library('DX_Auth');
         $admin_pass = crypt($this->dx_auth->_encode($this->input->post('admin_pass')));
 
-        $admin_login = $this->input->post('admin_login');
+        //        $admin_login = $this->input->post('admin_login');
         $admin_mail = $this->input->post('admin_mail');
 
         $admin_created = date('Y-m-d H:i:s', time());
@@ -374,16 +380,17 @@ class Install extends MY_Controller {
 
         $this->cache->delete_all();
 
-        $this->writeDatabaseConfig([
-            'hostname' => $this->input->post('db_host'),
-            'username' => $this->input->post('db_user'),
-            'password' => $this->input->post('db_pass'),
-            'database' => $this->input->post('db_name'),
-        ]);
+        $this->writeDatabaseConfig(
+            [
+                    'hostname' => $this->input->post('db_host'),
+                    'username' => $this->input->post('db_user'),
+                    'password' => $this->input->post('db_pass'),
+                    'database' => $this->input->post('db_name'),
+                ]
+        );
 
         // login admin
         $this->dx_auth->login($this->input->post('admin_login'), $this->input->post('admin_pass'), true);
-
 
         //redirect('install/done','refresh');
         header("Location: " . $this->host . "/install/done");
@@ -397,7 +404,7 @@ class Install extends MY_Controller {
     }
 
     /**
-     * 
+     *
      * @param array $data
      *  - hostname
      *  - username
@@ -486,7 +493,7 @@ class Install extends MY_Controller {
         if ($language) {
             $this->session->set_userdata('language', $language);
 
-            redirect($_SERVER['HTTP_REFERER']);
+            redirect($this->input->server('HTTP_REFERER'));
         }
     }
 

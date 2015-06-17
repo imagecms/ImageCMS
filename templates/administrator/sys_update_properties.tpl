@@ -20,7 +20,7 @@
             </div>
         </div>
     </div>
-    <form method="post" action="{$BASE_URL}admin/sys_update/properties" class="form-horizontal" id="sys_form">
+    <form method="post" action="{$BASE_URL}admin/sys_update/properties" class="form-horizontal m-t_15" id="sys_form">
         <table class="table  table-bordered table-hover table-condensed content_big_td">
             <thead>
                 <tr>
@@ -36,7 +36,7 @@
                             <div class="control-group">
                                 <label class="control-label">{lang('Your updation key', 'admin')}:</label>
                                 <div class="controls">
-                                    <textarea name="careKey" rows="10" required>{echo $careKey}</textarea>
+                                    <textarea name="careKey" class="elRTE" rows="10" required>{echo $careKey}</textarea>
                                 </div>
                             </div>
                         </div>

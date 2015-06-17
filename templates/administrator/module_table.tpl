@@ -81,15 +81,22 @@
                                                     </span>
                                                 </td>
                                                 <td class="module_name">
-                                                    {if $module['admin_file'] == 1}
-                                                        {if $module.name == 'shop'}
-                                                            {$module.menu_name}
-                                                        {else:}
-                                                            <a href="/admin/components/init_window/{$module.name}">{$module.menu_name}</a>
+                                                    <div class="pull-left" style="width: 10%;">
+                                                        {if $module['icon_class']}
+                                                            <i class="{echo $module['icon_class']}" style="margin-left: 5px;"></i>
                                                         {/if}
-                                                    {else:}
-                                                        {$module.menu_name}
-                                                    {/if}
+                                                    </div>
+                                                    <div style="margin-left: 25px;">
+                                                        {if $module['admin_file'] == 1}
+                                                            {if $module.name == 'shop'}
+                                                                {$module.menu_name}
+                                                            {else:}
+                                                                <a href="/admin/components/init_window/{$module.name}">{$module.menu_name}</a>
+                                                            {/if}
+                                                        {else:}
+                                                            {$module.menu_name}
+                                                        {/if}
+                                                    </div>
                                                     <!--                                    <a href="#">{lang('Users','admin')}</a>-->
                                                 </td>
                                                 <td class="module_description">
@@ -147,7 +154,14 @@
                                         {foreach $not_installed as $module}
                                             <tr class="module_row">
                                                 <td class="module_name">
-                                                    {$module.menu_name}
+                                                    <div class="pull-left" style="width: 10%;">
+                                                        {if $module['icon_class']}
+                                                            <i class="{echo $module['icon_class']}" style="margin-left: 5px;"></i>
+                                                        {/if}
+                                                    </div>
+                                                    <div style="margin-left: 25px;">
+                                                        {$module.menu_name}
+                                                    </div>
                                                 </td>
                                                 <td class="module_description">
                                                     <p>{$module.description}</p>

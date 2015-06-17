@@ -90,6 +90,7 @@
     langs.checkAndFillAll = "{lang('Check the input data and fill in all mandatory fields','admin')}";
     langs.curCertificate = "{lang('Current certificate (amount):','admin')}";
     langs.sortMethodUpdated = "{lang('Sort method updated','admin')}";
+    langs.selectSomeOptions = "{lang("Select Some Options", 'admin')}";
 
     // shopFunctions.js
     langs.manageShop = "{lang('Manage shop','admin')}";

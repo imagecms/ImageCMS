@@ -42,8 +42,8 @@
                                     </td>
                                     <td>{date('Y-m-d H:i:s', $l['created'])}</td>
                                     <td>
-                                        <a class="btn btn-small my_btn_s pjax" data-rel="tooltip" data-title="{lang("Editing","admin")}" href="{$BASE_URL}admin/pages/edit/{$l.id}/{$l.lang}">
-                                            <i class="icon-edit"></i>
+                                        <a class="btn btn-small" data-rel="tooltip" data-title="{lang("Editing","admin")}" href="{$BASE_URL}admin/pages/edit/{$l.id}/{$l.lang}">
+                                            <i class="icon-edit" style="top:-2px!important;"></i>
                                         </a>
                                     </td>
                                 </tr>
@@ -91,8 +91,8 @@
                                     </td>
                                     <td>{date('Y-m-d H:i:s', $l['created'])}</td>
                                     <td>
-                                        <a class="btn btn-small my_btn_s pjax" data-rel="tooltip" data-title="{lang("Editing","admin")}" href="{$BASE_URL}admin/pages/edit/{$l.id}/{$l.lang}">
-                                            <i class="icon-edit"></i>
+                                        <a class="btn btn-small" data-rel="tooltip" data-title="{lang("Editing","admin")}" href="{$BASE_URL}admin/pages/edit/{$l.id}/{$l.lang}">
+                                            <i class="icon-edit" style="top:-2px!important;"></i>
                                         </a>
                                     </td>
                                 </tr>
@@ -120,7 +120,7 @@
                             <td>
                                 <p>
                                     {lang("Version","admin")}: {$cms_number} <br />
-                                    <a class="pjax" href="/admin/sys_update">
+                                    <a href="/admin/sys_update">
                                         {lang('Check version update' , 'admin')}
                                     </a>
                                     <br/>
@@ -159,7 +159,7 @@
                                         <span style="font-size:11px;">{date('d-m-Y H:i', $c.date)}</span>
                                         <br/>
                                         <i>{$c.user_name}:</i>
-                                        <a class="pjax" href="/admin/components/cp/comments">
+                                        <a href="/admin/components/cp/comments">
                                             {truncate($c.text, 50, '...')}
                                         </a>
                                     </td>

@@ -519,34 +519,3 @@
         ColorPickerSetColor: ColorPicker.setColor
     });
 })(jQuery)
-
-
-if ($('.ColorPicker').length) {
-    $('.ColorPicker').ColorPicker({
-        onShow: function(colpkr) {
-//            $(colpkr).fadeIn(400);
-//            return false;
-        },
-        onHide: function(colpkr) {
-            $(colpkr).fadeOut(400);
-            return false;
-        },
-        onChange: function(hsb, hex, rgb, el) {
-            $(el).val('#' + hex);
-            $(el).next().css({backgroundColor: '#' + hex});
-        },
-        onSubmit: function(hsb, hex, rgb, el) {
-            $(el).val('#' + hex);
-            $(el).next().css({backgroundColor: '#' + hex});
-            $(el).ColorPickerHide();
-        },
-        onBeforeShow: function(colpkr) {
-            $(this).ColorPickerSetColor(this.value);
-        }
-    }).bind('keyup', function() {
-        $(this).ColorPickerSetColor(this.value);
-    });
-    
-    $('.colorpicker input').attr('style', 'height: 11px!important; width: 30px; padding-bottom: 5px;  padding-top: 0px; padding-left: 15px; font-size: 11px!important;')
-}
-

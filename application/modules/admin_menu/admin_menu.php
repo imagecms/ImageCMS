@@ -12,11 +12,16 @@ use admin_menu\classes\AdminMenuBuilder as AdminMenuBuilder;
 class Admin_menu extends MY_Controller {
 
     static private $SAAS;
+
     static private $SAAS_USER;
+
     static public $DEV_MODE;
+
     static private $MENU_NAME;
+
     static private $MENU_TYPE;
-    static private $HIDEN_MODULES = array('language_switch', 'payment_method_webmoney', 'payment_method_privat24', 'payment_method_liqpay', 'payment_method_oschadbank', 'payment_method_sberbank', 'payment_method_robokassa', 'payment_method_interkassa', 'test', 'admin', 'CMSFactory', 'core', 'imagebox', 'forms', 'admin_menu', 'comments', 'cfcm', 'auth', 'shop', 'smart_filter', 'tags', 'navigation', 'shop_news', 'admin_menu');
+
+    static private $HIDEN_MODULES = array('language_switch', 'payment_method_paypal', 'payment_method_webmoney', 'payment_method_privat24', 'payment_method_liqpay', 'payment_method_oschadbank', 'payment_method_sberbank', 'payment_method_robokassa', 'payment_method_interkassa', 'test', 'admin', 'CMSFactory', 'core', 'imagebox', 'forms', 'admin_menu', 'cfcm', 'auth', 'shop', 'smart_filter', 'tags', 'navigation', 'shop_news', 'admin_menu', 'new_level', 'ga_dashboard');
 
     public function __construct() {
         parent::__construct();
@@ -32,7 +37,7 @@ class Admin_menu extends MY_Controller {
     }
 
     public function index() {
-        
+
     }
 
     public function setDevMode($menu_name = NULL, $menu_type = 'cms') {
@@ -50,7 +55,7 @@ class Admin_menu extends MY_Controller {
     }
 
     public function autoload() {
-        
+
     }
 
     private static function setMenuType($menu_type) {
@@ -129,11 +134,13 @@ class Admin_menu extends MY_Controller {
             $tpl = self::$DEV_MODE ? 'dev_menu' : 'menu';
 
             return CMSFactory\assetManager::create()
-                            ->setData(array(
+                            ->setData(
+                                array(
                                 'menu' => $menu,
                                 'modules' => $modules,
                                 'SAAS' => self::$SAAS
-                            ))
+                                )
+                            )
                             ->registerScript('admin_menu')
                             ->fetchAdminTemplate($tpl);
         }
@@ -163,7 +170,7 @@ class Admin_menu extends MY_Controller {
                 $lang->load($module_name);
 
                 if (file_exists($info_file)) {
-                    include($info_file);
+                    include $info_file;
                     $modules[$key] = array('name' => $module_name);
                     $modules[$key] = array_merge($modules[$key], $com_info);
                 } else {

@@ -20,13 +20,11 @@ date_default_timezone_set('Europe/Rome');
 | ...
 |
 */
-
 if($_SESSION['DX_role_name'] == 'admin'){
     define('USE_ACCESS_KEYS', false); // TRUE or FALSE
 }  else {
     define('USE_ACCESS_KEYS', true); // TRUE or FALSE
 }
-
 /*
 |--------------------------------------------------------------------------
 | DON'T COPY THIS VARIABLES IN FOLDERS config.php FILES
@@ -60,8 +58,8 @@ $config = array(
 	|
 	*/
 
-//	'base_url' => ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] && ! in_array(strtolower($_SERVER['HTTPS']), array( 'off', 'no' ))) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'],
 	'base_url' => '',
+
 	/*
 	|--------------------------------------------------------------------------
 	| path from base_url to base of upload folder
@@ -254,7 +252,7 @@ $config = array(
 	//**********************
 	'ext_img'                                 => array( 'jpg', 'jpeg', 'png', 'gif', 'bmp', 'tiff', 'svg' ), //Images
 	'ext_file'                                => array( 'doc', 'docx', 'rtf', 'pdf', 'xls', 'xlsx', 'txt', 'csv', 'html', 'xhtml', 'psd', 'sql', 'log', 'fla', 'xml', 'ade', 'adp', 'mdb', 'accdb', 'ppt', 'pptx', 'odt', 'ots', 'ott', 'odb', 'odg', 'otp', 'otg', 'odf', 'ods', 'odp', 'css', 'ai' ), //Files
-	'ext_video'                               => array( 'epub','mov', 'mpeg', 'm4v', 'mp4', 'avi', 'mpg', 'wma', "flv", "webm" ), //Video
+	'ext_video'                               => array( 'mov', 'mpeg', 'm4v', 'mp4', 'avi', 'mpg', 'wma', "flv", "webm" ), //Video
 	'ext_music'                               => array( 'mp3', 'm4a', 'ac3', 'aiff', 'mid', 'ogg', 'wav' ), //Audio
 	'ext_misc'                                => array( 'zip', 'rar', 'gz', 'tar', 'iso', 'dmg' ), //Archives
 

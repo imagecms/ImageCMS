@@ -1,5 +1,5 @@
 
-<!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->    
+<!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->
 <div class="modal hide fade modal_del">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -26,14 +26,14 @@
                 <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()" id="del_sel_wid"><i class="icon-trash"></i>{lang("Delete","admin")}</button>
                 <a href="/admin/widgets_manager/create_tpl" type="button" class="btn btn-small btn-success pjax"><i class="icon-plus-sign icon-white"></i>{lang("Create a widget","admin")}</a>
             </div>
-        </div>  
+        </div>
     </div>
     {if $error}
         <br>
         <div class="alert alert-error">
             {$error}
         </div>
-    {else:}   
+    {else:}
         {if count($widgets)>0}
             <form method="post" action="#" class="form-horizontal">
                 <table class="table  table-bordered table-hover table-condensed t-l_a">
@@ -47,11 +47,12 @@
                                 </span>
                             </th>
                             <th>{lang("ID","admin")}</th>
-                            <th>{lang("Name","admin")}</th>
+                            <th>{lang("Title","admin")}</th>
+                            <th>{lang("Key","admin")}</th>
                             <th>{lang("Type","admin")}</th>
                             <th>{lang("Description","admin")}</th>
                             <th class="t-a_c">{lang("Settings","admin")}</th>
-                        </tr>    
+                        </tr>
                     </thead>
                     <tbody>
                         {foreach $widgets as $widget}
@@ -64,22 +65,22 @@
                                     </span>
                                 </td>
                                 <td>{$widget.id}</td>
-                                <td> 
-                                    {if $widget.config == TRUE || $widget.type == 'html'}
-                                        <a 
-                                            {if $widget.config == TRUE} 
-                                                class="pjax" href="/admin/widgets_manager/edit_module_widget/{$widget.id}" 
+                                <td>{$widget.title}</td>
+                                <td>
+                                        <a
+                                            {if $widget.type == 'module'}
+                                                href="/admin/widgets_manager/edit_module_widget/{$widget.id}/info"
                                                 data-rel="tooltip" data-title="{lang("Editing","admin")}"
-                                            {/if}  
-                                            {if $widget.type == 'html'} 
-                                                class="pjax" href="/admin/widgets_manager/edit_html_widget/{$widget.id}"
+                                            {/if}
+                                            {if $widget.type == 'html'}
+                                                href="/admin/widgets_manager/edit_html_widget/{$widget.id}/info"
                                             {/if}
                                             >
-                                        {/if}
+
                                         {$widget.name}
-                                        {if $widget.config == TRUE ||  $widget.type == 'html'}
+
                                         </a>
-                                    {/if}
+
                                 </td>
                                 <td>
                                     {switch $widget.type}
@@ -108,5 +109,5 @@
                 {lang("No widgets created","admin")}
             </div>
         {/if}
-    {/if}        
+    {/if}
 </section>

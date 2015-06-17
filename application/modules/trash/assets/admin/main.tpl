@@ -52,7 +52,7 @@
                                     </span>
                                 </span>
                             </th>
-                            <th style="font-size: 12px;color: #3f5a6a;">{lang('Old URL', 'trash')}</th>
+                            <th style="font-size: 12px;color: #3f5a6a; width:200px" class="span3">{lang('Old URL', 'trash')}</th>
                             <th style="font-size: 12px;color: #3f5a6a;">{lang('Redirect type', 'trash')}</th>
                             <th style="font-size: 12px;color: #3f5a6a;">{lang('Redirect kind', 'trash')}</th>
                             <th style="font-size: 12px;color: #3f5a6a;">{lang('Redirect', 'trash')}</th>
@@ -68,11 +68,11 @@
                                     </span>
                                 </span>
                             </td>
-                            <td>
+                            <td class="span3" style="padding: 0px">
                                 <a href="/admin/components/init_window/trash/edit_trash/{echo $item->id}"
                                 data-rel="tooltip"
                                 data-title="{lang("Editing", 'trash')}">
-                                {echo site_url().$item->trash_url}
+                                <pre style="width: 350px; border: none; color: rgb(0, 136, 204);">{echo site_url().$item->trash_url}</pre>
                             </a>
                         </td>
                         <td>
@@ -81,8 +81,10 @@
                         <td>
                             <label>{echo $item->trash_type}</label>
                         </td>
-                        <td>
-                            <a href="{echo $item->trash_redirect}" target="_blank">{echo $item->trash_redirect}</a>
+                        <td style="padding: 0px">
+                            <a href="{echo $item->trash_redirect}" target="_blank">
+                                <pre style="width: 350px; border: none; color: rgb(0, 136, 204);">{echo $item->trash_redirect}</pre>
+                            </a>
                         </td>
                     </tr>
                     {/foreach}

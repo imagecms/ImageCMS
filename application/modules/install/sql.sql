@@ -852,8 +852,8 @@ CREATE TABLE IF NOT EXISTS `mod_banner` (
 --
 
 INSERT INTO `mod_banner` (`id`, `active`, `active_to`, `where_show`, `group`, `position`) VALUES
-(4, 1, 1422648000, 'a:1:{i:0;s:6:"main_0";}', NULL, 0),
-(5, 1, 1422648000, 'a:1:{i:0;s:6:"main_0";}', NULL, 0);
+(4, 1, -1, 'a:1:{i:0;s:6:"main_0";}', NULL, 0),
+(5, 1, -1, 'a:1:{i:0;s:6:"main_0";}', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -1291,8 +1291,7 @@ INSERT INTO `shop_rbac_group_i18n` (`id`, `description`, `locale`) VALUES
 (56, 'Управление модулем редактор шаблонов', 'ru'),
 (57, 'Управление модулем перенаправления', 'ru'),
 (58, 'Управление пользователями', 'ru'),
-(59, 'Управление виджетами', 'ru'),
-(59, 'Импорт/Експорт', 'ru');
+(59, 'Управление виджетами', 'ru');
 
 -- --------------------------------------------------------
 
@@ -3560,6 +3559,70 @@ CREATE TABLE IF NOT EXISTS `template_settings` (
   `key` text,
   `data` text
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+
+DROP TABLE IF EXISTS `mod_sitemap_blocked_urls`;
+CREATE TABLE IF NOT EXISTS `mod_sitemap_blocked_urls` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `url` varchar(255) NOT NULL,
+  `robots_check` int(11) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `mod_sitemap_changefreq`
+--
+
+DROP TABLE IF EXISTS `mod_sitemap_changefreq`;
+CREATE TABLE IF NOT EXISTS `mod_sitemap_changefreq` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `main_page_changefreq` varchar(255) DEFAULT NULL,
+  `pages_changefreq` varchar(255) DEFAULT NULL,
+  `product_changefreq` varchar(255) DEFAULT NULL,
+  `categories_changefreq` varchar(255) DEFAULT NULL,
+  `products_categories_changefreq` varchar(255) DEFAULT NULL,
+  `products_sub_categories_changefreq` varchar(255) DEFAULT NULL,
+  `brands_changefreq` varchar(255) DEFAULT NULL,
+  `sub_categories_changefreq` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Дамп данных таблицы `mod_sitemap_changefreq`
+--
+
+INSERT INTO `mod_sitemap_changefreq` (`id`, `main_page_changefreq`, `pages_changefreq`, `product_changefreq`, `categories_changefreq`, `products_categories_changefreq`, `products_sub_categories_changefreq`, `brands_changefreq`, `sub_categories_changefreq`) VALUES
+(1, 'weekly', 'weekly', 'weekly', 'weekly', 'weekly', 'weekly', 'weekly', 'weekly');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `mod_sitemap_priorities`
+--
+
+DROP TABLE IF EXISTS `mod_sitemap_priorities`;
+CREATE TABLE IF NOT EXISTS `mod_sitemap_priorities` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `main_page_priority` float DEFAULT '1',
+  `cats_priority` float DEFAULT '1',
+  `pages_priority` float DEFAULT '1',
+  `sub_cats_priority` float DEFAULT '1',
+  `products_priority` float DEFAULT '1',
+  `products_categories_priority` float DEFAULT '1',
+  `products_sub_categories_priority` float DEFAULT '1',
+  `brands_priority` float DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Дамп данных таблицы `mod_sitemap_priorities`
+--
+
+INSERT INTO `mod_sitemap_priorities` (`id`, `main_page_priority`, `cats_priority`, `pages_priority`, `sub_cats_priority`, `products_priority`, `products_categories_priority`, `products_sub_categories_priority`, `brands_priority`) VALUES
+(1, 1, 0.8, 0.9, 0.7, 0.4, 0.6, 0.5, 0.3);
+
 
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

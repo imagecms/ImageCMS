@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * @property CI_Cache $cache
@@ -21,7 +22,7 @@ class Settings extends BaseAdminController {
      */
     protected $uploadPath = 'uploads/images/';
 
-    function __construct() {
+    public function __construct() {
         parent::__construct();
 
         $this->load->library('DX_Auth');
@@ -32,9 +33,9 @@ class Settings extends BaseAdminController {
         $this->lib_admin->init_settings();
     }
 
-    function index() {
+    public function index() {
 
-//        $this->cms_admin->get_langs();
+        //        $this->cms_admin->get_langs();
         //cp_check_perm('cp_site_settings');
 
         $settings = $this->cms_admin->get_settings();
@@ -62,30 +63,30 @@ class Settings extends BaseAdminController {
         $this->template->assign('work_values', array('yes' => lang("Yes", "admin"), 'no' => lang("No", "admin")));
         $this->template->assign('site_offline', $settings['site_offline']);
 
-
         $this->config->set_item('cur_lang', $this->load->module('core')->def_lang[0]['id']);
         $this->template->assign('tree', $this->lib_category->build());
 
         $this->template->assign('parent_id', $settings['main_page_cat']);
         $this->template->assign('id', 0);
 
-///++++++++++++++++++++
+        ///++++++++++++++++++++
 
         $langs = $this->db->get('languages')->result_array();
         $lang_meta = array();
         foreach ($langs as $lang) {
             $meta = $this->db->where('lang_ident', $lang['id'])->limit(1)->get('settings_i18n')->result_array();
-            if (count($meta) > 0)
+            if (count($meta) > 0) {
                 $lang_meta[$lang['id']] = $meta[0];
-            else
+            } else {
                 $lang_meta[$lang['id']] = null;
+            }
         }
 
         $this->template->assign('langs', $langs);
 
         $this->template->assign('meta_langs', $lang_meta);
 
-//++++++++++++++++++++
+        //++++++++++++++++++++
 
         ($hook = get_hook('admin_show_settings_tpl')) ? eval($hook) : NULL;
 
@@ -103,7 +104,8 @@ class Settings extends BaseAdminController {
         $this->template->show('settings_site', FALSE);
     }
 
-//++++++++++++++
+    //++++++++++++++
+
     public function translate_meta() {
 
         $this->load->library('form_validation');
@@ -122,15 +124,18 @@ class Settings extends BaseAdminController {
             $key = $this->input->post('keywords');
             $lang = $this->input->post('lang_ident');
             if (count($this->db->where('lang_ident', $lang)->get('settings_i18n')->result_array())) {
-                $this->db->query("UPDATE settings_i18n
+                $this->db->query(
+                    "UPDATE settings_i18n
                                                             SET
                                                                 name = '$name',
                                                                 short_name = '$short_name',
                                                                 description = '$desk',
                                                                 keywords = '$key'
-                                                            WHERE lang_ident = '$lang'");
+                                                            WHERE lang_ident = '$lang'"
+                );
             } else {
-                $this->db->query("INSERT INTO settings_i18n(
+                $this->db->query(
+                    "INSERT INTO settings_i18n(
                                                                 lang_ident,
                                                                 name,
                                                                 short_name,
@@ -142,16 +147,18 @@ class Settings extends BaseAdminController {
                                                                 '$name',
                                                                 '$short_name',
                                                                 '$desk',
-                                                                '$key')");
+                                                                '$key')"
+                );
             }
         }
     }
 
-//+++++++++++++++++++++++++++++++++++++++++
+    //+++++++++++++++++++++++++++++++++++++++++
+
     /**
      * Main Page settings
      */
-    function main_page() {
+    public function main_page() {
         $this->template->assign('tree', $this->lib_category->build());
 
         $settings = $this->cms_admin->get_settings();
@@ -169,7 +176,7 @@ class Settings extends BaseAdminController {
      * @access private
      * @return array
      */
-    function _get_templates() {
+    public function _get_templates() {
         $new_arr_shop = array();
         if ($handle = opendir(TEMPLATES_PATH)) {
             while (false !== ($file = readdir($handle))) {
@@ -201,7 +208,7 @@ class Settings extends BaseAdminController {
      *
      * @access public
      */
-    function save() {
+    public function save() {
         //cp_check_perm('cp_site_settings');
 
         $this->form_validation->set_rules('siteinfo_adminemail', lang('Admin email', 'admin'), 'valid_email');
@@ -349,15 +356,16 @@ class Settings extends BaseAdminController {
      */
     protected function processSiteInfo() {
 
-        $this->load->library('SiteInfo', $_POST['siteinfo_locale']);
-        unset($_POST['siteinfo_locale']);
+        $this->load->library('SiteInfo', $this->input->post('siteinfo_locale'));
 
         // getting all parameters with keys
         $siteinfo = array();
-        foreach ($_POST as $key => $value) {
+        $postData = $this->input->post();
+        unset($postData['siteinfo_locale']);
+        foreach ($postData as $key => $value) {
             if (0 === strpos($key, "siteinfo_")) {
                 $siteinfo[$key] = $value;
-                unset($_POST[$key]);
+                unset($postData[$key]);
             }
         }
 
@@ -386,9 +394,8 @@ class Settings extends BaseAdminController {
         $config['overwrite'] = TRUE;
         $this->load->library('upload', $config);
 
-
         // upload or delete (or do nothing) favicon and logo
-        if ($_POST['si_delete_favicon'] == 1) {
+        if ($this->input->post('si_delete_favicon') == 1) {
             if (isset($siteinfo['siteinfo_favicon'])) {
                 unset($siteinfo['siteinfo_favicon']);
             }
@@ -396,7 +403,7 @@ class Settings extends BaseAdminController {
             $this->processLogoOrFavicon('siteinfo_favicon', $siteinfo);
         }
 
-        if ($_POST['si_delete_logo'] == 1) {
+        if ($this->input->post('si_delete_logo') == 1) {
             if (isset($siteinfo['siteinfo_logo'])) {
                 unset($siteinfo['siteinfo_logo']);
             }
@@ -416,19 +423,19 @@ class Settings extends BaseAdminController {
         }
 
         $this->siteinfo->setSiteInfoData($siteinfo);
-        if ($_POST['si_delete_favicon'] == 1) {
+        if ($this->input->post('si_delete_favicon') == 1) {
             $this->siteinfo->deleteSiteInfoValue('favicon');
         }
-        if ($_POST['si_delete_logo'] == 1) {
+        if ($this->input->post('si_delete_logo') == 1) {
             $this->siteinfo->deleteSiteInfoValue('logo');
         }
         return $this->siteinfo->save();
     }
 
     public function getSiteInfoDataJson() {
-        $this->load->library('SiteInfo', $_POST['locale']);
+        $this->load->library('SiteInfo', $this->input->post('locale'));
         $data = $this->siteinfo->getSiteInfoData(TRUE);
-        echo json_encode(array_merge($data, array('locale' => $_POST['locale'])));
+        echo json_encode(array_merge($data, array('locale' => $this->input->post('locale'))));
     }
 
     /**
@@ -453,10 +460,10 @@ class Settings extends BaseAdminController {
     public function switch_admin_lang($lang) {
         if ($lang) {
             $this->db->set('lang_sel', $lang)
-                    ->update('settings');
+                ->update('settings');
             $this->session->set_userdata('language', $lang);
         }
-        redirect($_SERVER['HTTP_REFERER'] ? $_SERVER['HTTP_REFERER'] : '/admin/dashboard');
+        redirect($this->input->server('HTTP_REFERER') ? $this->input->server('HTTP_REFERER') : '/admin/dashboard');
     }
 
     /**
@@ -465,13 +472,13 @@ class Settings extends BaseAdminController {
      */
     public function license_agreement() {
         header('Content-Type: text/plain; charset=utf-8');
-        $template = new \template_manager\classes\Template($_GET['template_name']);
+        $template = new \template_manager\classes\Template($this->input->get('template_name'));
         echo $template->getLicenseAgreement();
     }
 
     public function template_has_license($templateName = null) {
-        if (is_null($templateName)) {
-            $templateName = $_GET['template_name'];
+        if (!$templateName) {
+            $templateName = $this->input->get('template_name');
         }
 
         if (empty($templateName)) {
@@ -490,4 +497,3 @@ class Settings extends BaseAdminController {
 }
 
 /* End of settings.php */
-

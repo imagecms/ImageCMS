@@ -2,7 +2,7 @@
 
 <div class="frame-inside without-crumbs">
     <div class="container">
-        <h1>{lang('Галерея','gallery')}11</h1>
+        <h1>{lang('Галерея','gallery')}</h1>
         <h4>{lang('Категории','gallery')}:</h4>
 
         {if is_array($categories)}

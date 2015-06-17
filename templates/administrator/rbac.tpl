@@ -6,10 +6,10 @@
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="$('.modal').modal();"><i class="icon-trash"></i>{lang("Delete","admin")}</button>
+                <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="$('.modal:not(.addNotificationMessage)').modal();"><i class="icon-trash"></i>{lang("Delete","admin")}</button>
                 <a class="btn btn-small btn-success pjax" href="/admin/components/run/shop/rbac/group_create" ><i class="icon-plus-sign icon-white"></i>{lang('Create role group','admin')}</a>
             </div>
-        </div>  
+        </div>
     </div>
     <div class="tab-content">
         {if count($model)>0}
@@ -28,7 +28,7 @@
                             <th class="span1">{echo $model[0]->getLabel('Id')}</th>
                             <th>{echo $model[0]->getLabel('Name')}</th>
                             <th>{echo $model[0]->getLabel('Description')}</th>
-                        </tr>    
+                        </tr>
                     </thead>
                     <tbody class="sortable" id="rltbl">
                         {foreach $model as $item}
@@ -42,7 +42,7 @@
                             </td>
                             <td>{echo $item->getId()}</td>
                             <td>
-                                <a class="pjax" href="/admin/components/run/shop/rbac/group_edit/{echo $item->getId()}">{echo ShopCore::encode($item->getName())}</a>
+                                <a href="/admin/components/run/shop/rbac/group_edit/{echo $item->getId()}">{echo ShopCore::encode($item->getName())}</a>
                             </td>
                             <td>
                                 {echo $item->getDescription()}

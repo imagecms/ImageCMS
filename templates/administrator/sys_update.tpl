@@ -113,27 +113,27 @@
                                     <th >
                                         {if $sort_by == 'size'}
                                             {if $order == 'asc'}
-                                                <a class="pjax" href="/admin/sys_update/update/size/desc#restore">{lang('Size', 'admin')}(MB)</a>
+                                                <a href="/admin/sys_update/update/size/desc#restore">{lang('Size', 'admin')}(MB)</a>
                                                 <span class="f-s_14">↓</span>
                                             {else:}
-                                                <a class="pjax" href="/admin/sys_update/update/size/asc#restore">{lang('Size', 'admin')}(MB)</a>
+                                                <a href="/admin/sys_update/update/size/asc#restore">{lang('Size', 'admin')}(MB)</a>
                                                 <span class="f-s_14">↑</span>
                                             {/if}
                                         {else:}
-                                            <a class="pjax" href="/admin/sys_update/update/size/asc#restore">{lang('Size', 'admin')}(MB)</a>
+                                            <a href="/admin/sys_update/update/size/asc#restore">{lang('Size', 'admin')}(MB)</a>
                                         {/if}
                                     </th>
                                     <th>
                                         {if $sort_by == 'create_date'}
                                             {if $order == 'asc'}
-                                                <a class="pjax" href="/admin/sys_update/update/create_date/desc#restore">{lang('Creation date', 'admin')}</a>
+                                                <a href="/admin/sys_update/update/create_date/desc#restore">{lang('Creation date', 'admin')}</a>
                                                 <span class="f-s_14">↓</span>
                                             {else:}
-                                                <a class="pjax" href="/admin/sys_update/update/create_date/asc#restore">{lang('Creation date', 'admin')}</a>
+                                                <a href="/admin/sys_update/update/create_date/asc#restore">{lang('Creation date', 'admin')}</a>
                                                 <span class="f-s_14">↑</span>
                                             {/if}
                                         {else:}
-                                            <a class="pjax" href=/update/create_date/asc#restore">{lang('Creation date', 'admin')}</a>
+                                            <a href="/update/create_date/asc#restore">{lang('Creation date', 'admin')}</a>
                                         {/if}
                                     <th>{lang('Restore', 'admin')}</th>
                                     <th>{lang('Deleting', 'admin')}</th>

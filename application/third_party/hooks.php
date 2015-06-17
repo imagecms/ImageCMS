@@ -10,10 +10,3 @@
 function runFactory() {
     \CMSFactory\Events::runFactory();
 }
-
-function checkPhpVersionOrDie() {
-    $isMinVersion = version_compare(PHP_VERSION, '5.4.0') >= 0;
-    if (!$isMinVersion) {
-        show_error('PHP version must be 5.4.0 or higher', 500);
-    }
-}

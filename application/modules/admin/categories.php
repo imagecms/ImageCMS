@@ -441,7 +441,17 @@ class Categories extends BaseAdminController {
             $settings = unserialize($cat['settings']);
             $cat['fetch_pages'] = unserialize($cat['fetch_pages']);
             $this->template->add_array($cat);
-            $this->template->assign('tree', $this->lib_category->build());
+
+            $categories = $this->lib_category->build();
+
+            $tree = array();
+            foreach ($categories as $one) {
+                if($one['id'] !== $cat['id']) {
+                    array_push($tree, $one);
+                }
+            }
+
+            $this->template->assign('tree', $tree);
             $this->template->assign('include_cats', $this->sub_cats($this->lib_category->build()));
             $this->template->assign('settings', $settings);
             ($hook = get_hook('admin_show_category_edit')) ? eval($hook) : NULL;

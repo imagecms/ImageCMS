@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Image CMS
@@ -19,126 +20,127 @@ class Sitemap extends MY_Controller {
 
     /**
      * Priority for categories
-     * @var int 
+     * @var int
      */
     public $cats_priority = '1';
 
     /**
      * Priority for main page
-     * @var int 
+     * @var int
      */
     public $main_page_priority = '1';
 
     /**
      * Priority for subcategories pages
-     * @var int 
+     * @var int
      */
     public $sub_cats_priority = '1'; // priority for subcategories pages
+
     /**
      * Priority for products pages
-     * @var int 
+     * @var int
      */
     public $products_priority = '1';
 
     /**
      * Priority for products categories pages
-     * @var int 
+     * @var int
      */
     public $products_categories_priority = '1';
 
     /**
      * Priority for products sub categories pages
-     * @var int 
+     * @var int
      */
     public $products_sub_categories_priority = '1';
 
     /**
      * Priority for brands pages
-     * @var int 
+     * @var int
      */
     public $brands_priority = '1';
 
     /**
      * Frequency for pages
-     * @var type 
+     * @var type
      */
     public $pages_changefreq = 'daily';
 
     /**
      * Frequency for categories pages
-     * @var string 
+     * @var string
      */
     public $categories_changefreq = 'daily';
 
     /**
      * Frequency for products categories pages
-     * @var string 
+     * @var string
      */
     public $products_categories_changefreq = 'daily';
 
     /**
      * Frequency for products sub categiries pages
-     * @var string 
+     * @var string
      */
     public $products_sub_categories_changefreq = 'daily';
 
     /**
      * Frequency for main page
-     * @var string 
+     * @var string
      */
     public $main_page_changefreq = 'daily';
 
     /**
      * Frequency for products pages
-     * @var string 
+     * @var string
      */
     public $products_changefreq = 'daily';
 
     /**
      * Frequency for brands pages
-     * @var string 
+     * @var string
      */
     public $brands_changefreq = 'daily';
 
     /**
      * Frequency for sub categories pages
-     * @var string 
+     * @var string
      */
     public $sub_categories_changefreq = 'daily';
 
     /**
      * Default frequency
-     * @var string 
+     * @var string
      */
     public $changefreq = 'daily';
 
     /**
      * Blocked urls array
-     * @var array 
+     * @var array
      */
     public $blocked_urls = array();
 
     /**
      * Gzip level
-     * @var type 
+     * @var type
      */
     public $gzip_level = 0;
 
     /**
      * Sitemap result
-     * @var type 
+     * @var type
      */
     public $result = '';
 
     /**
      * Langs array
-     * @var type 
+     * @var type
      */
     public $langs = array();
 
     /**
      * Default lang
-     * @var type 
+     * @var type
      */
     public $default_lang = array();
 
@@ -156,23 +158,23 @@ class Sitemap extends MY_Controller {
 
     /**
      * Path to folder where site_maps files exists
-     * @var type 
+     * @var type
      */
     private $site_map_folder_path = './uploads/sitemaps';
 
     /**
      * Sitemap items
-     * @var array 
+     * @var array
      */
     public $items = array();
 
     /**
-     * Max url tag count 
-     * @var type 
+     * Max url tag count
+     * @var type
      */
     private $max_url_count = 30000;
 
-    function __construct() {
+    public function __construct() {
         parent::__construct();
         $lang = new MY_Lang();
         $lang->load('sitemap');
@@ -198,7 +200,19 @@ class Sitemap extends MY_Controller {
     public function index() {
         $categories = $this->lib_category->_build();
 
-        $this->template->assign('content', $this->sitemap_ul($categories));
+        $pages = $this->db
+            ->get_where(
+                'content',
+                array(
+                    'category' => 0,
+                    'lang' => $this->config->item('cur_lang'),
+                    'publish_date <=' => time(),
+                    'post_status' => 'publish'
+                    )
+            )
+            ->result_array();
+
+        $this->template->assign('content', $this->sitemap_ul($categories, $pages));
         $this->template->show();
     }
 
@@ -234,7 +248,7 @@ class Sitemap extends MY_Controller {
 
     /**
      * Set page url when page item is updated
-     * @param type $data - events array that contains page url $data['url'] 
+     * @param type $data - events array that contains page url $data['url']
      * @return boolean
      */
     public function setUpdatedUrl($data = array()) {
@@ -296,7 +310,7 @@ class Sitemap extends MY_Controller {
      * @param array $items - site map items
      * @return string
      */
-    public function sitemap_ul($items = array()) {
+    public function sitemap_ul($items = array(), $pages_without_category = array()) {
 
         $out .= '<ul class="sitemap">';
 
@@ -321,6 +335,10 @@ class Sitemap extends MY_Controller {
             if (count($item['subtree']) > 0) {
                 $out .= $this->sitemap_ul($item['subtree']);
             }
+        }
+
+        foreach ($pages_without_category as $page) {
+            $out .= '<li>' . anchor($page['url'], $page['title']) . '</li>';
         }
 
         $out .= '</ul>';
@@ -463,12 +481,11 @@ class Sitemap extends MY_Controller {
             }
         }
 
-
         if (SHOP_INSTALLED) {
             // Get Shop Categories
             $shop_categories = $this->sitemap_model->get_shop_categories();
 
-            // Add categories to Site Map 
+            // Add categories to Site Map
             foreach ($shop_categories as $shopcat) {
                 $url = 'shop/category/' . $shopcat['full_path'];
                 if ($this->not_blocked_url($url)) {
@@ -606,7 +623,7 @@ class Sitemap extends MY_Controller {
 
         $site_maps = array();
         $url_count = 0;
-        
+
         while ($item = current($items)) {
             if ($url_count < $this->max_url_count) {
                 $data .= "<url>\n";
@@ -699,38 +716,42 @@ class Sitemap extends MY_Controller {
      * @return array
      */
     public function replace($lines) {
-        if (!$lines)
+        if (!$lines) {
             return FALSE;
+        }
 
         $array = array();
         foreach ($lines as $line) {
-            if ((substr_count($line, 'Disallow:') > 0) && (trim(str_replace('Disallow:', '', $line)) != ''))
+            if ((substr_count($line, 'Disallow:') > 0) && (trim(str_replace('Disallow:', '', $line)) != '')) {
                 array_push($array, trim(str_replace('Disallow:', '', $line)));
+            }
         }
         return $array;
     }
 
     /**
-     * Check robots 
+     * Check robots
      * @param type $check
      * @return boolean
      */
     public function robotsCheck($check) {
         $checkSetting = $this->db->get('settings')
-                ->row()
-                ->robots_status;
-//            $array = $this->robots;
-        
-        if(!$checkSetting && $checkSetting == '0'){
+            ->row()
+            ->robots_status;
+        //            $array = $this->robots;
+
+        if (!$checkSetting && $checkSetting == '0') {
             $array = array('/');
         }
 
         foreach ($array as $ar) {
-            if ($ar == '/')
+            if ($ar == '/') {
                 return true;
+            }
 
-            if (strstr($ar, $check))
+            if (strstr($ar, $check)) {
                 return true;
+            }
         }
         return false;
     }
@@ -742,8 +763,9 @@ class Sitemap extends MY_Controller {
      */
     public function ping_google($data = array()) {
         // Checking is used server is local
-        if (strstr($_SERVER['SERVER_NAME'], '.loc'))
+        if (strstr($_SERVER['SERVER_NAME'], '.loc')) {
             return FALSE;
+        }
 
         $ci = & get_instance();
 
@@ -754,18 +776,19 @@ class Sitemap extends MY_Controller {
         $settings = unserialize($query['settings']);
 
         // Check if turn off sending site map
-        if (!$settings['sendSiteMap'])
+        if (!$settings['sendSiteMap']) {
             return FALSE;
+        }
 
         // Check sending Site map url is change
-//        if ($settings['sendWhenUrlChanged']) {
-//            if ($ci->updated_url) {
-//                if ($ci->updated_url == $data['url']) {
-//                    return FALSE;
-//                }
-//                unset($ci->updated_url);
-//            }
-//        }
+        //        if ($settings['sendWhenUrlChanged']) {
+        //            if ($ci->updated_url) {
+        //                if ($ci->updated_url == $data['url']) {
+        //                    return FALSE;
+        //                }
+        //                unset($ci->updated_url);
+        //            }
+        //        }
         // Checking time permission(1 hour passed from last send) to send ping
         if ((time() - $settings['lastSend']) / (60 * 60) >= 1) {
 
@@ -780,13 +803,13 @@ class Sitemap extends MY_Controller {
             curl_close($ch);
 
             if ($code == '200') {
-                // Update settings, set lastSend time 
+                // Update settings, set lastSend time
                 $settings['lastSend'] = time();
                 $ci->db->limit(1);
                 $ci->db->where('name', 'sitemap');
                 $ci->db->update('components', array('settings' => serialize($settings)));
 
-//                showMessage(lang('Ping sended', 'sitemap'), 'Google ping');
+                //                showMessage(lang('Ping sended', 'sitemap'), 'Google ping');
             }
 
             return $code;
@@ -805,7 +828,7 @@ class Sitemap extends MY_Controller {
     /**
      * Install module
      */
-    function _install() {
+    public function _install() {
         $robotsCheck = $this->robotsCheck() ? 1 : 0;
         return $this->sitemap_model->installModule($robotsCheck);
     }
@@ -813,7 +836,7 @@ class Sitemap extends MY_Controller {
     /**
      * Deinstall module
      */
-    function _deinstall() {
+    public function _deinstall() {
         return $this->sitemap_model->deinstallModule();
     }
 

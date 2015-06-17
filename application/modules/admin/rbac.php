@@ -34,7 +34,30 @@ class Rbac extends BaseAdminController {
     }
 
     public function index() {
-        
+
+    }
+
+    public function filterShopPrivileges() {
+        $privilegesPOST = $this->input->post('Privileges');
+        $skipPrivileges = $this->db->like('name', 'Shop')->get('shop_rbac_privileges');
+        if ($skipPrivileges) {
+            $skipPrivileges = $skipPrivileges->result_array();
+            $skipPrivilegesIds = [];
+            array_map(
+                function ($privilege) use (&$skipPrivilegesIds) {
+                    $skipPrivilegesIds[$privilege['id']] = $privilege;
+                },
+                $skipPrivileges
+            );
+        }
+
+        $privilegesPOSTIds = array_filter(
+            $privilegesPOST,
+            function ($id) use (&$skipPrivilegesIds, &$privilegesPOST) {
+                return !$skipPrivilegesIds[$id] ? true : false;
+            }
+        );
+        return $privilegesPOSTIds;
     }
 
 }

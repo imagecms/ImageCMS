@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Image CMS
@@ -10,11 +11,11 @@ if (!defined('BASEPATH'))
  */
 class Gallery_m extends CI_Model {
 
-    function Base() {
+    public function Base() {
         parent::__construct();
     }
 
-    function load_settings() {
+    public function load_settings() {
         $this->db->select('settings');
         $query = $this->db->get_where('components', array('name' => 'gallery'))->row_array();
 
@@ -24,7 +25,7 @@ class Gallery_m extends CI_Model {
     /**
      * Create new album
      */
-    function create_album() {
+    public function create_album() {
         $locale = $this->chose_locale();
         $this->db->select_max('position');
         $pos = $this->db->get('gallery_albums')->row_array();
@@ -52,23 +53,20 @@ class Gallery_m extends CI_Model {
 
         $this->db->insert('gallery_albums_i18n', $data_locale);
 
-
-
-
         return $lid;
     }
 
-    function update_album($id, $data = array()) {
+    public function update_album($id, $data = array()) {
         $this->db->where('id', $id);
         $this->db->update('gallery_albums', $data);
     }
 
-    function getTotalImages() {
+    public function getTotalImages() {
         $query = $this->db->get('gallery_images')->result_array();
         return count($query);
     }
 
-    function delete_album($id) {
+    public function delete_album($id) {
         // delete album
         $this->db->where('id', $id);
         $this->db->delete('gallery_albums');
@@ -89,7 +87,7 @@ class Gallery_m extends CI_Model {
     /**
      * Get all albums
      */
-    function get_albums($order_by = 'date', $sort_order = 'desc', $category_id = 0) {
+    public function get_albums($order_by = 'date', $sort_order = 'desc', $category_id = 0) {
         // Select albums
 
         $locale = $this->chose_locale();
@@ -138,7 +136,7 @@ class Gallery_m extends CI_Model {
         }
     }
 
-    function get_last_image($album_id) {
+    public function get_last_image($album_id) {
         $this->db->order_by('uploaded', 'desc');
         $this->db->where('album_id', $album_id);
         $query = $this->db->get('gallery_images', 1);
@@ -153,9 +151,10 @@ class Gallery_m extends CI_Model {
     /**
      * Get Album info
      */
-    function get_album($id = 0, $include_images = TRUE, $limit, $page, $locale = null) {
-        if (null === $locale)
+    public function get_album($id = 0, $include_images = TRUE, $limit, $page, $locale = null) {
+        if (null === $locale) {
             $locale = $this->chose_locale();
+        }
         $this->db->limit(1);
         $this->db->where('gallery_albums.id', $id);
         $this->joinI18n($this->db, 'gallery_albums', $locale);
@@ -175,7 +174,7 @@ class Gallery_m extends CI_Model {
         }
     }
 
-    function get_album_images($album_id, $limit, $ofset, $locale) {
+    public function get_album_images($album_id, $limit, $ofset, $locale) {
         //$this->db->order_by('uploaded', 'asc');
 
         $this->db->select('*, gallery_images.id as id');
@@ -183,8 +182,9 @@ class Gallery_m extends CI_Model {
         $this->db->select('CONCAT_WS("", file_name, file_ext) as full_name', FALSE);
         $this->db->order_by('position', 'asc');
         $this->db->where('album_id', $album_id);
-        if (($limit) || ($ofset))
+        if (($limit) || ($ofset)) {
             $this->db->limit($limit, $ofset);
+        }
         $query = $this->db->get('gallery_images');
 
         if ($query->num_rows() > 0) {
@@ -194,14 +194,14 @@ class Gallery_m extends CI_Model {
         }
     }
 
-    function set_album_cover($album_id, $image_id) {
+    public function set_album_cover($album_id, $image_id) {
         $this->db->where('id', $album_id);
         $this->db->update('gallery_albums', array('cover_id' => $image_id));
     }
 
     // --------------------------------------------------------------------
 
-    function add_image($data = array()) {
+    public function add_image($data = array()) {
         $this->db->select_max('position');
         $pos = $this->db->get('gallery_images')->row_array();
 
@@ -217,10 +217,11 @@ class Gallery_m extends CI_Model {
         return $this->db->insert_id();
     }
 
-    function get_image_info($id, $locale = null) {
+    public function get_image_info($id, $locale = null) {
 
-        if (null === $locale)
+        if (null === $locale) {
             $locale = $this->chose_locale();
+        }
 
         $this->db->limit(1);
         $this->joinI18n($this->db, 'gallery_images', $locale);
@@ -235,35 +236,38 @@ class Gallery_m extends CI_Model {
         }
     }
 
-    function increase_image_views($id) {
+    public function increase_image_views($id) {
         $this->db->limit(1);
         $this->db->set('views', 'views + 1', FALSE);
         $this->db->where('id', $id);
         $this->db->update('gallery_images');
     }
 
-    function rename_image($id, $name) {
+    public function rename_image($id, $name) {
         $this->db->where('id', $id);
         $this->db->update('gallery_images', array('file_name' => $name));
     }
 
-    function delete_image($id) {
+    public function delete_image($id) {
         $this->db->limit(1);
         $this->db->where('id', $id);
         $this->db->delete('gallery_images');
+
+        $this->db->where('id', $id);
+        $this->db->delete('gallery_images_i18n');
     }
 
-    function update_description($id, $data, $locale) {
+    public function update_description($id, $data, $locale) {
 
         if ($this->db->where('id', $id)->where('locale', $locale)->get('gallery_images_i18n')->num_rows()) {
             $this->db->where('id', $id)->where('locale', $locale);
             $this->db->update('gallery_images_i18n', array('description' => $data['description'], 'title' => $data['title']));
-        }
-        else
+        } else {
             $this->db->insert('gallery_images_i18n', array('id' => $id, 'locale' => $locale, 'title' => $data['title'], 'description' => $data['description']));
+        }
     }
 
-    function update_position($id, $position = 0) {
+    public function update_position($id, $position = 0) {
         $this->db->limit(1);
         $this->db->where('id', $id);
         $this->db->update('gallery_images', array('position' => $position));
@@ -271,42 +275,45 @@ class Gallery_m extends CI_Model {
 
     // --------------------------------------------------------------------
 
-    function create_category($data = array()) {
+    public function create_category($data = array()) {
         $this->db->insert('gallery_category', $data);
         return $this->db->insert_id();
     }
 
-    function get_category($id, $locale = null) {
-        if (null === $locale)
+    public function get_category($id, $locale = null) {
+        if (null === $locale) {
             $locale = $this->chose_locale();
+        }
         $this->db->limit(1);
         $this->db->where('gallery_category.id', $id);
         $this->db->select('*, gallery_category.id as id');
         $this->joinI18n($this->db, 'gallery_category', $locale);
         $query = $this->db->get('gallery_category');
 
-        if ($query->num_rows() == 1)
+        if ($query->num_rows() == 1) {
             return $query->row_array();
-        else
+        } else {
             return FALSE;
+        }
     }
 
-    function joinI18n($con, $table, $locale) {
+    public function joinI18n($con, $table, $locale) {
         $con->join($table . '_i18n', $table . "_i18n.id = " . $table . ".id and " . $table . "_i18n.locale = '" . $locale . "'", 'left');
         return $con;
     }
 
-    function chose_locale() {
+    public function chose_locale() {
 
         $url = $this->uri->uri_string();
         $url_arr = explode('/', $url);
 
         $languages = $this->db->get('languages')->result_array();
         //echo $this->db->last_query();
-        foreach ($languages as $l)
-            if (in_array($l['identif'], $url_arr))
+        foreach ($languages as $l) {
+            if (in_array($l['identif'], $url_arr)) {
                 $lang = $l['identif'];
-
+            }
+        }
 
         if (!$lang) {
             $languages = $this->db->where('default', 1)->get('languages')->row();
@@ -316,7 +323,7 @@ class Gallery_m extends CI_Model {
         return $lang;
     }
 
-    function get_categories($order_by = 'name', $sort_order = 'desc') {
+    public function get_categories($order_by = 'name', $sort_order = 'desc') {
         if ($sort_order != 'desc' AND $sort_order != 'asc') {
             $sort_order = 'desc';
         }
@@ -341,8 +348,9 @@ class Gallery_m extends CI_Model {
 
         $query = $this->db->get('gallery_category');
 
-        if (!$query)
+        if (!$query) {
             return FALSE;
+        }
 
         if ($query->num_rows() > 0) {
             return $query->result_array();
@@ -351,14 +359,14 @@ class Gallery_m extends CI_Model {
         }
     }
 
-    function update_category($data = array(), $id) {
+    public function update_category($data = array(), $id) {
         $this->db->limit(1);
         $this->db->where('id', $id);
 
         $this->db->update('gallery_category', $data);
     }
 
-    function delete_category($id) {
+    public function delete_category($id) {
         $this->db->limit(1);
         $this->db->where('id', $id);
         $this->db->delete('gallery_category');

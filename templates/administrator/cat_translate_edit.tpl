@@ -26,16 +26,16 @@
                             {foreach $langs as $l}
                                 {if $l.id != $lang}
                                     {if $l.default}
-                                        <li><a href="/admin/categories/edit/{$orig_cat.id}" class="pjax">{$l.lang_name}</a></li>
+                                        <li><a href="/admin/categories/edit/{$orig_cat.id}">{$l.lang_name}</a></li>
                                         {else:}
-                                        <li><a href="/admin/categories/translate/{$orig_cat.id}/{$l.id}" class="pjax">{$l.lang_name}</a></li>
+                                        <li><a href="/admin/categories/translate/{$orig_cat.id}/{$l.id}">{$l.lang_name}</a></li>
                                         {/if}
                                     {/if}
                                 {/foreach}
                         </ul>
                     </div>
                 </div>
-            </div>                            
+            </div>
         </div>
         <form method="post" active="{$BASE_URL}admin/categories/translate/{$orig_cat.id}/{$lang}" id="save">
             <div class="tab-content">
@@ -62,46 +62,57 @@
                                                 </div>
 
                                                 <div class="control-group">
-                                                    <label class="control-label" for="Img">
-                                                        {lang("Image","admin")}:                            
-                                                    </label>
-                                                    <div class="controls">
-                                                        <div class="group_icon pull-right">
-                                                            <button class="btn btn-small" onclick="elFinderPopup('image', 'Img');
-                                                                    return false;"><i class="icon-picture"></i>  {lang("Choose an image ","admin")}</button>
+                                                    <div class="control-group">
+                                                        <label class="control-label" for="Img">
+                                                            {lang("Image","admin")}:
+                                                        </label>
+                                                        <div class="controls">
+                                                            <div class="group_icon pull-right">
+                                                                <div class="group_icon pull-right">
+                                                                    {if MAINSITE != ''}
+                                                                        <button class="btn btn-small" onclick="elFinderPopup('image', 'Img');
+                                                                            return false;"><i class="icon-picture"></i>  {lang("Choose an image ","admin")}</button>
+                                                                    {else:}
+                                                                        <a href="{echo site_url('application/third_party/filemanager/dialog.php?type=1&field_id=Img');}" class="btn  btn-small iframe-btn" type="button">
+                                                                            <i class="icon-picture"></i>
+                                                                            {lang('Choose an image ','admin')}
+                                                                        </a>
+                                                                    {/if}    
+                                                                    {/*<button class="btn btn-small" onclick="elFinderPopup('image', 'Img');
+                                                                    return false;"><i class="icon-picture"></i>  {lang("Choose an image ","admin")}</button>*/}
+                                                                </div>
+                                                            </div>
+                                                            <div class="o_h">
+                                                                <input type="text" name="image" id="Img" value="{$cat.image}">
+                                                            </div>
                                                         </div>
-                                                        <div class="o_h">
-                                                            <input type="text" name="image" id="Img" value="{$cat.image}">				    
+                                                    </div>   
+                                                    <div class="control-group">
+                                                        <label class="control-label" for="short_desc">{lang("Description","admin")}:</label>
+                                                        <div class="controls">
+                                                            <textarea class="elRTE" name="short_desc" id="short_desc" >{htmlspecialchars($cat.short_desc)}</textarea>
                                                         </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="control-group">
-                                                    <label class="control-label" for="short_desc">{lang("Description","admin")}:</label>
-                                                    <div class="controls">
-                                                        <textarea class="elRTE" name="short_desc" id="short_desc" >{htmlspecialchars($cat.short_desc)}</textarea>
+                                                    <div class="control-group"><label class="control-label" for="title">{lang("Meta Title","admin")}:</label>
+                                                        <div class="controls">
+                                                            <input type="text" name="title" value="{$cat.title}" id="title" />
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                    <div class="control-group"><label class="control-label" for="description">{lang("Meta Description","admin")}:</label>
+                                                        <div class="controls">
+                                                            <textarea id="description"  name="description"  rows="10" cols="180" >{$cat.description}</textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="control-group"><label class="control-label" for="keywords">{lang("Meta Keywords","admin")}:</label>
+                                                        <div class="controls">
+                                                            <textarea id="keywords" name="keywords" rows="10" cols="180" >{$cat.keywords}</textarea>
+                                                        </div>
+                                                    </div>
 
-                                                <div class="control-group"><label class="control-label" for="title">{lang("Meta Title","admin")}:</label>
-                                                    <div class="controls">
-                                                        <input type="text" name="title" value="{$cat.title}" id="title" />
-                                                    </div>
                                                 </div>
-                                                <div class="control-group"><label class="control-label" for="description">{lang("Meta Description","admin")}:</label>
-                                                    <div class="controls">
-                                                        <textarea id="description"  name="description"  rows="10" cols="180" >{$cat.description}</textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="control-group"><label class="control-label" for="keywords">{lang("Meta Keywords","admin")}:</label>
-                                                    <div class="controls">
-                                                        <textarea id="keywords" name="keywords" rows="10" cols="180" >{$cat.keywords}</textarea>
-                                                    </div>
-                                                </div>
-
                                             </div>
                                         </div>
-                                    </div>
                                 </td>
                             </tr>
                         </tbody>

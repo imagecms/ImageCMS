@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Image CMS
@@ -13,21 +14,37 @@ if (!defined('BASEPATH'))
 class Search extends MY_Controller {
 
     public $search_ttl = 3600; //Search time to live in minutes.
+
     public $table = '';
+
     public $cache_on = FALSE;
+
     public $row_count = 15;
+
     public $table_pk = 'id';
+
     public $search_tpl = 'search';
+
     public $query_hash = '';
+
     public $search_title = '';
+
     public $hash_prefix = '';
+
     public $hash_data = FALSE;
+
     public $select = array();
+
     public $title_delimiter = ' - ';
+
     public $default_operator = 'where';
+
     public $min_s_len = 3; // Min. length to make search request.
+
     private $where = array();
+
     private $order_by = array();
+
     private $search_table = 'search';
 
     public function __construct() {
@@ -38,6 +55,7 @@ class Search extends MY_Controller {
     }
 
     // Search pages
+
     public function index($hash = '', $offset = 0) {
         $this->template->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW");
 
@@ -89,7 +107,6 @@ class Search extends MY_Controller {
                 $result = $this->query($hash, $offset);
             }
 
-
             if (!$this->search_title) {
                 $this->search_title = $this->input->post('text');
             }
@@ -98,16 +115,14 @@ class Search extends MY_Controller {
             if ($result['total_rows'] > $this->row_count) {
                 $this->load->library('Pagination');
 
-                // $config['base_url']    = site_url($category['path_url']);
-                $config['base_url'] = site_url('search/index/' . $result['hash'] . '/');
-                $config['total_rows'] = $result['total_rows'];
-                $config['per_page'] = $this->row_count;
-                $config['uri_segment'] = 4;
+                $pagesSearchPagination['base_url'] = site_url('search/index/' . $result['hash'] . '/');
+                $pagesSearchPagination['total_rows'] = $result['total_rows'];
+                $pagesSearchPagination['per_page'] = $this->row_count;
+                $pagesSearchPagination['uri_segment'] = 4;
+                $pagesSearchPagination['page_query_string'] = FALSE;
+                include_once "./templates/{$this->config->item('template')}/paginations.php";
 
-                $config['page_query_string'] = FALSE;
-
-                $this->pagination->num_links = 6;
-                $this->pagination->initialize($config);
+                $this->pagination->initialize($pagesSearchPagination);
                 $this->template->assign('pagination', $this->pagination->create_links());
             }
             //End pagination
@@ -115,10 +130,11 @@ class Search extends MY_Controller {
             $result = FALSE;
         }
 
-        if ($result === FALSE)
+        if ($result === FALSE) {
             $data = FALSE;
-        else
+        } else {
             $data = $result['query']->result_array();
+        }
 
         if (isset($s_text)) {
             $this->template->assign('search_title', $s_text);
@@ -138,8 +154,9 @@ class Search extends MY_Controller {
      * @return array
      */
     protected function _highlight_text($data, $text) {
-        if (!$data)
+        if (!$data) {
             return;
+        }
         $dataCount = count($data);
         for ($i = 0; $i < $dataCount; $i++) {
             $tempText = strip_tags($data[$i]['prev_text'] . ' ' . $data[$i]['full_text']);
@@ -147,10 +164,12 @@ class Search extends MY_Controller {
             $length = mb_strlen($tempText, 'UTF-8');
             $start = $pos - 40;
             $stop = $pos + 40;
-            if ($start < 0)
+            if ($start < 0) {
                 $start = 0;
-            if ($stop > $length)
+            }
+            if ($stop > $length) {
                 $stop = $length;
+            }
 
             $tempText = mb_substr($tempText, $start, $stop, 'UTF-8');
             $tempText = str_replace($text, '<mark>' . $text . '</mark>', $tempText);
@@ -161,6 +180,7 @@ class Search extends MY_Controller {
     }
 
     // Init search settings
+
     public function init($config = array()) {
         foreach ($config as $key => $val) {
             if (isset($this->$key)) {
@@ -176,9 +196,10 @@ class Search extends MY_Controller {
     }
 
     public function save_positions() {
-        $positions = $_POST['positions'];
-        if (sizeof($positions) == 0)
+        $positions = $this->input->post('positions');
+        if (count($positions) == 0) {
             return false;
+        }
 
         foreach ($positions as $key => $val) {
             $query = "UPDATE `shop_product_variants` SET `position`=" . $key . " WHERE `id`=" . (int) $val . "; ";
@@ -200,6 +221,7 @@ class Search extends MY_Controller {
     }
 
     // Search by hash
+
     public function query($hash = '', $offset = 0) {
         if (($hash_data = $this->hash_data($hash)) == FALSE) {
             $this->load->module('core');
@@ -216,6 +238,7 @@ class Search extends MY_Controller {
     }
 
     // Search
+
     public function execute($where = array(), $offset = 0) {
         $collect_ids = FALSE;
 
@@ -240,8 +263,9 @@ class Search extends MY_Controller {
 
             if ($refresh == FALSE) {
                 // Store query data
-                if (!$this->search_title)
+                if (!$this->search_title) {
                     $this->search_title = $this->input->post('text');
+                }
 
                 $q_data = array(
                     'hash' => $this->query_hash,
@@ -256,8 +280,7 @@ class Search extends MY_Controller {
 
                 $this->db->insert($this->search_table, $q_data);
             }
-        }
-        else {
+        } else {
             if (!is_array($this->hash_data->ids)) {
                 $this->hash_data->ids = unserialize($this->hash_data->ids);
             }
@@ -304,7 +327,6 @@ class Search extends MY_Controller {
                     $use_group = FALSE;
                 }
 
-
                 foreach ($params as $key => $val) {
                     if ($use_group == FALSE) {
                         $this->db->$operator($key, $val, $backticks);
@@ -344,8 +366,9 @@ class Search extends MY_Controller {
 
             return $this->execute($where, $offset);
         } else {
-            if (!$this->search_title)
+            if (!$this->search_title) {
                 $this->search_title = $this->input->post('text');
+            }
 
             $data = array(
                 'query' => $this->db->get($this->table),
@@ -385,7 +408,6 @@ class Search extends MY_Controller {
                     $use_group = FALSE;
                 }
 
-
                 foreach ($params as $key => $val) {
                     if ($use_group == FALSE) {
                         $res = $this->db->$operator($key, $val, $backticks);
@@ -400,6 +422,7 @@ class Search extends MY_Controller {
     }
 
     // Generate search hash
+
     private function generate_hash($where = array()) {
         return sha1($this->hash_prefix . $this->table . serialize($this->order_by) . serialize($where) . $this->row_count . serialize($this->select));
     }
@@ -426,6 +449,7 @@ class Search extends MY_Controller {
     }
 
     // Display search template file
+
     public function _display($pages = array(), $foundInCategories = null) {
         /*         * Prepare categories for search results * */
         $categoriesInSearchResults = null;
@@ -436,7 +460,7 @@ class Search extends MY_Controller {
             $this->load->library('lib_category');
             foreach ($foundInCategories as $key => $value) {
                 if (array_key_exists($value['category'], $categories)) {
-                    $categories[$value['category']]['count'] ++;
+                    $categories[$value['category']]['count']++;
                 } else {
                     $value['count'] = 1;
                     $categories[$value['category']] = $value;
@@ -451,13 +475,15 @@ class Search extends MY_Controller {
         if (count($pages) > 0) {
             ($hook = get_hook('core_return_category_pages')) ? eval($hook) : NULL;
 
-            $this->template->add_array(array(
-                'items' => $pages,
-                'categoriesInSearchResults' => $categoriesInSearchResults,
-                'tree' => $tree,
-                'countAll' => count($foundInCategories),
-                'categoriesInfo' => $categoriesInfo
-            ));
+            $this->template->add_array(
+                array(
+                    'items' => $pages,
+                    'categoriesInSearchResults' => $categoriesInSearchResults,
+                    'tree' => $tree,
+                    'countAll' => count($foundInCategories),
+                    'categoriesInfo' => $categoriesInfo
+                )
+            );
         }
 
         $this->template->show($this->search_tpl);
@@ -494,9 +520,11 @@ class Search extends MY_Controller {
     }
 
     // Create search table
+
     public function _install() {
-        if ($this->dx_auth->is_admin() == FALSE)
+        if ($this->dx_auth->is_admin() == FALSE) {
             exit;
+        }
 
         $this->load->dbforge();
 
@@ -550,8 +578,9 @@ class Search extends MY_Controller {
     }
 
     public function _deinstall() {
-        if ($this->dx_auth->is_admin() == FALSE)
+        if ($this->dx_auth->is_admin() == FALSE) {
             exit;
+        }
 
         $this->load->dbforge();
         $this->dbforge->drop_table('search');

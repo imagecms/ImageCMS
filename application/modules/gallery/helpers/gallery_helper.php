@@ -14,7 +14,7 @@ if (!function_exists('gallery_latest_images')) {
 
         if ($count > 0) {
             $ci->db
-                ->select('gallery_images.*, gallery_images_i18n.*, gallery_images.description AS desc_old')
+                ->select('gallery_images.*, gallery_images_i18n.*')
                 ->limit((int) $count);
 
             if ($order == 'latest') {

@@ -8,8 +8,8 @@
  * @author Gula Andriy <a.gula@imagecms.net>
  * @copyright (c) 2015, Gula Andriy
  * @version 1.0
- * 
- * @property Seo_snippets_model $seo_snippets_model 
+ *
+ * @property Seo_snippets_model $seo_snippets_model
  */
 class Seo_snippets extends MY_Controller {
 
@@ -47,15 +47,15 @@ class Seo_snippets extends MY_Controller {
 
     public function _install() {
         $this->db->where('name', 'seo_snippets')
-                ->update('components', array('autoload' => '1', 'enabled' => '1'));
+            ->update('components', array('autoload' => '1', 'enabled' => '1'));
     }
 
     public function _deinstall() {
-        
+
     }
 
     private function makeLocalBusinessSnippet() {
-        return $LocalBusiness = array(
+        $LocalBusiness = array(
             '@context' => 'http://schema.org',
             '@type' => 'LocalBusiness',
             'name' => $this->settings['site_title'],
@@ -68,23 +68,25 @@ class Seo_snippets extends MY_Controller {
             ),
             'url' => site_url(),
         );
+        return $LocalBusiness;
     }
 
     private function makeWebSiteSnippet() {
-        return $WebSite = array(
+        $WebSite = array(
             '@context' => 'http://schema.org',
             '@type' => 'WebSite',
             'url' => site_url(),
-            'potentialAction' => array(
-                '@type' => 'SearchAction',
-                'target' => site_url('shop/search?text={search_term_string}'),
-                'query-input' => 'required name=search_term_string',
-            ),
+                //            'potentialAction' => array(
+                //                '@type' => 'SearchAction',
+                //                'target' => site_url('shop/search?text={search_term_string}'),
+                //                'query-input' => 'required name=search_term_string',
+                //            ),
         );
+        return $WebSite;
     }
 
     /**
-     * 
+     *
      * @param array $product
      */
     public static function makeProductSnippet($product) {
@@ -121,10 +123,10 @@ class Seo_snippets extends MY_Controller {
                 ),
                 'aggregateRating' => array(
                     '@type' => 'AggregateRating',
-                    'ratingValue' => (float) (($aggregateRating['reviewCount']? : 0) / ($aggregateRating['ratingCount']? : 0)),
+                    'ratingValue' => (float) (($aggregateRating['reviewCount'] ? : 0) / ($aggregateRating['ratingCount'] ? : 0)),
                     'bestRating' => 5,
                     'worstRating' => 0,
-                    'ratingCount' => $aggregateRating['ratingCount']? : 0,
+                    'ratingCount' => $aggregateRating['ratingCount'] ? : 0,
                 ),
             );
 

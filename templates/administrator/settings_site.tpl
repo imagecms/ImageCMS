@@ -18,7 +18,7 @@
                     <li class="active"><a href="#setings">{lang('General Settings',"admin")}</a></li>
                     <li><a href="#seo">{lang('Analysts settings', 'admin')}</a></li>
                     <li><a href="#homePage">{lang('Main page','admin')}</a></li>
-                    <li><a href="#metatag">{lang('Management of Meta Tags','admin')}</a></li>  
+                    <li><a href="#metatag">{lang('Management of Meta Tags','admin')}</a></li>
                     <li><a href="#metatag_edit">{lang('Enter Meta Tags','admin')}</a></li>
                     <li><a href="#site_info_tab">{lang('Site information','admin')}</a></li>
                 </ul>
@@ -64,25 +64,25 @@
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                        {if !defined('MAINSITE')}               
-                                                        <div class="control-group">
-                                                            <label class="control-label" for="template">{lang('Template', 'admin')}:</label>
-                                                            <div class="controls">
-                                                                <select name="template" id="template" onchange="$('#license_agreement_link').attr('href', '/admin/settings/license_agreement?template_name=' + $(this).val())">
-                                                                    {foreach $templates as $k => $v}
-                                                                        <option value="{$k}" {if $template_selected == $k} selected="selected" {/if} >{$k}</option>
-                                                                    {/foreach}
-                                                                </select>
-                                                                <span class="help-block" id='license_link' style="display: none">
-                                                                    {lang('Installing the template you agree to the', 'admin')}
-                                                                    <a target="_blank" href="/admin/settings/license_agreement?template_name={$template_selected}" id="license_agreement_link">
-                                                                        {lang('license agreement', 'admin')}
-                                                                    </a>
-                                                                </span>
+                                                        {if !defined('MAINSITE')}
+                                                            <div class="control-group">
+                                                                <label class="control-label" for="template">{lang('Template', 'admin')}:</label>
+                                                                <div class="controls">
+                                                                    <select name="template" id="template" onchange="$('#license_agreement_link').attr('href', '/admin/settings/license_agreement?template_name=' + $(this).val())">
+                                                                        {foreach $templates as $k => $v}
+                                                                            <option value="{$k}" {if $template_selected == $k} selected="selected" {/if} >{$k}</option>
+                                                                        {/foreach}
+                                                                    </select>
+                                                                    <span class="help-block" id='license_link' style="display: none">
+                                                                        {lang('Installing the template you agree to the', 'admin')}
+                                                                        <a target="_blank" href="/admin/settings/license_agreement?template_name={$template_selected}" id="license_agreement_link">
+                                                                            {lang('license agreement', 'admin')}
+                                                                        </a>
+                                                                    </span>
+                                                                </div>
                                                             </div>
-                                                        </div>
                                                         {else:}
-                                                            <input name='template' type='hidden' value="{echo $template_selected}">                                                            
+                                                            <input name='template' type='hidden' value="{echo $template_selected}">
                                                         {/if}
                                                         <div class="control-group">
                                                             <label class="control-label" for="cat_list">{lang('Display category tree in the content','admin')}:</label>
@@ -99,17 +99,26 @@
                                                             <div class="controls">
                                                                 <select name="text_editor" id="textEditor">
                                                                     <option value="tinymce" {if $text_editor == 'tinymce'} selected="selected" {/if} >TinyMCE</option>
-                                                                    <option value="elrte" {if $text_editor == 'elrte'} selected="selected" {/if} >elRTE</option>
+                                                                    {/*<option value="elrte" {if $text_editor == 'elrte'} selected="selected" {/if} >elRTE</option>*/}
                                                                     <option value="none" {if $text_editor == 'none'} selected="selected" {/if} >Native textarea</option>
                                                                 </select>
                                                             </div>
                                                         </div>
                                                         <div class="control-group">
-                                                            <label class="control-label" for="comcount">{lang("Close or open the site for indexing robots", 'admin')}:</label>
+                                                            <label class="control-label" for="comcount">{lang("Open the site for indexing robots", 'admin')}:</label>
                                                             <div class="controls">
                                                                 <div class="robotsChecker frame_prod-on_off">
-                                                                    <span class="prod-on_off{if !$robots_status} disable_tovar{/if}"></span>
-                                                                    <input type="hidden" name="robots_status" value="{if $robots_status}1{else:}0{/if}" data-val-on="1" data-val-off="0">
+                                                                    <span onclick="visualSettingMenu('robots_settings_status', 'robots_status', false)" class="prod-on_off{if !$robots_status} disable_tovar{/if}"></span>
+                                                                    <input type="checkbox" name="robots_status" value="1" data-val-on="1" data-val-off="0" {if $robots_status}checked="checked"{/if}>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div id="robots_settings_status" class="control-group" {if !$robots_status} style="display:none"{/if}>
+                                                            <div class="controls">
+                                                                <div>
+                                                                    <label><input onclick="visualSettingMenu('robots_settings', 'robots_settings_status', true)" type="checkbox" name="robots_settings_status" value="1" {if $robots_settings_status}checked="checked"{/if}> - {lang('Configuring robots file manually','admin')}</label>
+                                                                    <textarea id="robots_settings" name="robots_settings" {if !$robots_settings_status} style="display:none"{/if}>{echo $robots_settings}</textarea>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -121,6 +130,22 @@
                                 </tbody>
                             </table>
                         </div>
+                        {literal}
+                            <script type="text/javascript">
+                                function visualSettingMenu(idEditedEl, name, invert) {
+                                    var check = $('input[name="' + name + '"]').attr('checked');
+                                    if (check == 'checked' && !invert) {
+                                        $('#' + idEditedEl).hide(400);
+                                    } else if (check == 'checked' && invert) {
+                                        $('#' + idEditedEl).show(400);
+                                    } else if (check != 'checked' && invert) {
+                                        $('#' + idEditedEl).hide(400);
+                                    } else {
+                                        $('#' + idEditedEl).show(400);
+                                    }
+                                }
+                            </script>
+                        {/literal}
                         <div class="tab-pane" id="seo">
                             <table class="table  table-bordered table-hover table-condensed content_big_td">
                                 <thead>
@@ -143,6 +168,8 @@
                                                                 <span class="help-block">
                                                                     {lang('The code should be in the format ua-54545845', 'admin')}
                                                                 </span>
+                                                                <input type="checkbox" name="google_analytics_ee" {if $google_analytics_ee == 1}checked="checked"{/if}/>
+                                                                {lang('Use Enhanced Ecommerce - Web Tracking', "admin")} (beta)
                                                             </div>
                                                         </div>
                                                         <div class="control-group m-t_10">
@@ -219,24 +246,12 @@
                                                                 <span class="niceRadio b_n">
                                                                     <input type="radio" id="main_type" name="main_type" value="module" {if $main_type == "module"} checked="checked" {/if} />
                                                                 </span>
-                                                                {if defined('MAINSITE')}
+                                                                <select name="main_page_module"  class="input-large">
                                                                     {foreach $modules as $m}
                                                                         {$mData = modules::run('admin/components/get_module_info',$m['name'])}
-                                                                        {if $m['name'] == 'shop'}
-                                                                            <input type="text" value="{$mData['menu_name']}" readonly='true'/>
-                                                                            <input type="hidden" name="main_page_module" value="{echo $m['name']}" />
-                                                                        {/if}
-                                                                    {/foreach}    
-                                                                {else:}
-                                                                    <select name="main_page_module"  class="input-large">
-                                                                        {foreach $modules as $m}
-                                                                            {$mData = modules::run('admin/components/get_module_info',$m['name'])}
-                                                                            {//if $mData['main_page'] === true}
-                                                                            <option {if $m['name'] == $main_page_module}selected="selected"{/if} value="{$m['name']}">{echo $mData['menu_name']}</option>
-                                                                            {///if}
-                                                                        {/foreach}    
-                                                                    </select>
-                                                                {/if}
+                                                                        <option {if $m['name'] == $main_page_module}selected="selected"{/if} value="{$m['name']}">{echo $mData['menu_name']}</option>
+                                                                    {/foreach}
+                                                                </select>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -415,10 +430,11 @@
                                         <td colspan="6">
                                             <div class="inside_padd">
                                                 <div class="form-horizontal">
+                                                    <input type="hidden" name="default_locale_hidden" value="{echo MY_Controller::getCurrentLocale()}">
                                                     <div class="row-fluid">
                                                         <div class="control-group">
-                                                            <label class="control-label" data-toggle="ttip" data-title="{$tooltipText} 'siteinfo_companytype'" for="siteinfo_companytype">
-                                                                {lang('For language', 'admin')} 
+                                                            <label class="control-label" data-toggle="ttip" for="siteinfo_companytype">
+                                                                {lang('For language', 'admin')}
                                                             </label>
                                                             <div class="controls">
                                                                 <select name="siteinfo_locale" id="siteinfo_locale">
@@ -430,9 +446,9 @@
                                                         </div>
                                                         <hr />
                                                         <div class="control-group">
-                                                            <label class="control-label" data-toggle="ttip" data-title="{$tooltipText} 'siteinfo_companytype'" for="siteinfo_companytype">
-                                                                {lang('Company type', 'admin')} 
-                                                                <i class="icon-info-sign"></i>
+                                                            <label class="control-label"  for="siteinfo_companytype">
+                                                                {lang('Company type', 'admin')}
+                                                                <i class="icon-info-sign" data-toggle="ttip" data-title="{$tooltipText} 'siteinfo_companytype'"></i>
                                                             </label>
                                                             <div class="controls">
                                                                 <textarea rows="1" id="siteinfo_companytype" name="siteinfo_companytype">{$siteinfo_companytype}</textarea>
@@ -440,8 +456,8 @@
                                                         </div>
 
                                                         <div class="control-group">
-                                                            <label class="control-label" data-toggle="ttip" data-title="{$tooltipText} 'siteinfo_address'" for="siteinfo_address">{lang('Address', 'admin')} 
-                                                                <i class="icon-info-sign"></i>
+                                                            <label class="control-label"  for="siteinfo_address">{lang('Address', 'admin')}
+                                                                <i class="icon-info-sign" data-toggle="ttip" data-title="{$tooltipText} 'siteinfo_address'"></i>
                                                             </label>
                                                             <div class="controls">
                                                                 <textarea rows="1" id="siteinfo_address" name="siteinfo_address">{$siteinfo_address}</textarea>
@@ -449,8 +465,8 @@
                                                         </div>
 
                                                         <div class="control-group">
-                                                            <label class="control-label" data-toggle="ttip" data-title="{$tooltipText} 'siteinfo_mainphone'" for="siteinfo_mainphone">{lang('Main phone', 'admin')} 
-                                                                <i class="icon-info-sign"></i>
+                                                            <label class="control-label"  for="siteinfo_mainphone">{lang('Main phone', 'admin')}
+                                                                <i class="icon-info-sign" data-toggle="ttip" data-title="{$tooltipText} 'siteinfo_mainphone'"></i>
                                                             </label>
                                                             <div class="controls">
                                                                 <textarea rows="1" id="siteinfo_mainphone" name="siteinfo_mainphone">{$siteinfo_mainphone}</textarea>
@@ -458,8 +474,8 @@
                                                         </div>
 
                                                         <div class="control-group">
-                                                            <label class="control-label" data-toggle="ttip" data-title="{$tooltipText} 'siteinfo_adminemail'" for="siteinfo_adminemail">{lang('Admin email', 'admin')}
-                                                                <i class="icon-info-sign"></i>
+                                                            <label class="control-label"  for="siteinfo_adminemail">{lang('Admin email', 'admin')}
+                                                                <i class="icon-info-sign" data-toggle="ttip" data-title="{$tooltipText} 'siteinfo_adminemail'"></i>
                                                             </label>
                                                             <div class="controls">
                                                                 <textarea rows="1" id="siteinfo_adminemail" name="siteinfo_adminemail">{$siteinfo_adminemail}</textarea>
@@ -468,9 +484,9 @@
 
                                                         <hr />
                                                         <div class="control-group">
-                                                            <label class="control-label" data-toggle="ttip" data-title="{$tooltipText}, {lang('that you entered as a contact type', 'admin')}" for="">{lang('Contacts', 'admin')} 
-                                                                <i class="icon-info-sign"></i>
-                                                            </label>  
+                                                            <label class="control-label"  for="">{lang('Contacts', 'admin')}
+                                                                <i class="icon-info-sign" data-toggle="ttip" data-title="{$tooltipText}, {lang('that you entered as a contact type', 'admin')}"></i>
+                                                            </label>
                                                             <div class="controls">
                                                                 <table id="siteinfo_contacts_table" class="content_small_td">
                                                                     {if count($contacts) > 0}
@@ -487,7 +503,7 @@
                                                                                         <i class="icon-trash"></i>
                                                                                     </button>
                                                                                 </td>
-                                                                            </tr> 
+                                                                            </tr>
                                                                         {/foreach}
                                                                     {else:}
                                                                         <tr class="siteinfo_contact_row" data-original-title="{$tooltipText} {lang('you entered as a contact type', 'admin')}">
@@ -502,61 +518,16 @@
                                                                                     <i class="icon-trash"></i>
                                                                                 </button>
                                                                             </td>
-                                                                        </tr> 
+                                                                        </tr>
                                                                     {/if}
 
                                                                 </table>
-                                                            </div>
-                                                            <p id="siteinfo_contacts_controls" style='text-align:right; padding-top:7px;'>
-                                                                <a class="btn btn-small btn-success" id="siteinfo_addcontact">
-                                                                    <span class="icon-plus-sign icon-white"></span>
-                                                                    {lang('Add contact', 'admin')}
-                                                                </a>
-                                                            </p>
-                                                        </div>
-
-                                                        <hr />
-                                                        <div class="control-group">
-                                                            <label class="control-label" data-toggle="ttip" data-title="{$tooltipText} 'siteinfo_logo'">
-                                                                {lang('Logo', 'admin')} 
-                                                                <i class="icon-info-sign"></i>
-                                                            </label>
-                                                            <input type="file" id="siteinfo_logo" name="siteinfo_logo" data-url="file">
-                                                            <input type="hidden" id="si_delete_logo" class="si_delete_image" name="si_delete_logo" value="0">
-
-                                                            <div class="controls siteinfo_logoimage">
-                                                                <div class='siteinfo_image_container'>
-                                                                    {$logo = siteinfo('siteinfo_logo')}
-                                                                    {if !empty($logo)}
-                                                                        <button type="button" class="btn btn-small remove_btn">
-                                                                            <i class="icon-trash"></i>
-                                                                        </button>
-                                                                        <img class="img-polaroid" src="{site_url($logo)}" alt="{lang('Click to select the image', 'admin')}" />
-                                                                    {else:}
-                                                                        <img class="img-polaroid" src="{$BASE_URL}templates/administrator/images/select-picture.png" alt="{lang('Click to select the image', 'admin')}" />
-                                                                    {/if}
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="control-group">
-                                                            <label class="control-label" data-toggle="ttip" data-title="{$tooltipText} 'siteinfo_favicon'">Favicon 
-                                                                <i class="icon-info-sign"></i>
-                                                            </label>
-                                                            <input type="file" id="siteinfo_favicon" name="siteinfo_favicon" data-url="file">
-                                                            <input type="hidden" id="si_delete_favicon" class="si_delete_image" name="si_delete_favicon" value="0">
-
-                                                            <div class="controls siteinfo_faviconimage">
-                                                                <div class='siteinfo_image_container'>
-                                                                    {$favicon = siteinfo('siteinfo_favicon')}
-                                                                    {if !empty($favicon)}
-                                                                        <button type="button" class="btn btn-small remove_btn">
-                                                                            <i class="icon-trash"></i>
-                                                                        </button>
-                                                                        <img class="img-polaroid" src="{site_url($favicon)}" alt="{lang('Click to select the image', 'admin')}" />
-                                                                    {else:}
-                                                                        <img class="img-polaroid" src="{$BASE_URL}templates/administrator/images/select-picture.png" alt="{lang('Click to select the image', 'admin')}" />
-                                                                    {/if}
-                                                                </div>
+                                                                <p id="siteinfo_contacts_controls" style='padding-top:7px;margin-left: 152px;'>
+                                                                    <a class="btn" id="siteinfo_addcontact">
+                                                                        <span class="icon-plus-sign"></span>
+                                                                        {lang('Add contact', 'admin')}
+                                                                    </a>
+                                                                </p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -568,7 +539,7 @@
                             </table>
                         </div> <!-- Інформація про сайт - Завершення -->
                     </div>
-                </form> 
+                </form>
             </div>
         </div>
     </section>

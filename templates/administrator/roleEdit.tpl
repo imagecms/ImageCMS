@@ -56,17 +56,12 @@
                         <div class="inside_padd">
                             <div class="row-fluid">
                                 <div class="control-group m-t_10">
-                                    <label class="control-label" for="Name">{lang('Name', 'admin')}:</label>
+                                    <label class="control-label" for="Name">{lang('Title', 'admin')}:<span class="must" ">*</span></label>
                                     <div class="controls">
-                                        <input type="text" name="Name" id="Name" value="{echo $model->name}" />
+                                        <input type="text" name="alt_name" required="required" class="required" id="alt_name" value="{echo $model->alt_name}" />
                                     </div>
                                 </div>
-                                <div class="control-group">
-                                    <label class="control-label" for="alt_name">{lang('Description', 'admin')}:</label>
-                                    <div class="controls">
-                                        <input type="text" name="alt_name" id="alt_name" value="{echo $model->alt_name}"/>
-                                    </div>
-                                </div>
+
                                 <div class="control-group">
                                     <label class="control-label" for="Description">{lang('Full description','admin')}:</label>
                                     <div class="controls">
@@ -94,6 +89,7 @@
         </div>
         <div class="tab-content">
             {foreach $types as $key => $type}
+
                 {if  strpos(getCmsNumber(), 'Premium') OR  $key!='shop' OR MAINSITE}
                     <div class="tab-pane row {if $key == 'base'}active{/if}" id="{echo $key}">
                         {foreach $type as $k => $groups}
@@ -108,11 +104,12 @@
                                                     </span>
                                                 </span>
                                             </th>
-                                            <th>{echo $groups['description']}</th>
+                                            <th>{if $groups['description']}{echo $groups['description']}{else:}{echo $groups['name']} {/if}</th>
                                         </tr>
                                     </thead>
                                     <tbody class="sortable">
                                         {foreach $groups['privileges'] as $privilege}
+
                                             {$checked = null}
                                             {if in_array((int)$privilege['id'], $privilegeCheck)}
                                                 {$checked = 1}
@@ -126,9 +123,9 @@
                                                     </span>
                                                 </td>
                                                 <td style="word-wrap : break-word;">
-                                                    <p title="{echo $privilege['description']}">{echo $privilege['title']}</p>
+                                                    <p title="{if $privilege['description']}{echo $privilege['description']}{else:}{echo $privilege['name']}{/if}">{if $privilege['title']}{echo $privilege['title']}{else:}{echo $privilege['name']}{/if}</p>
                                                 </td>
-                                                <!--<td><a href="/admin/rbac/deletePermition/{echo $privilege['id']}" class="pjax">удаление</a></td>-->
+                                                <!--<td><a href="/admin/rbac/deletePermition/{echo $privilege['id']}" >удаление</a></td>-->
                                             </tr>
                                         {/foreach}
                                     </tbody>
