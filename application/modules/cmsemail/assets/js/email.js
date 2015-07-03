@@ -1,7 +1,7 @@
-$(document).ready(function () {
+$(document).ready(function() {
 
 
-    $('.protocolSettings').on('change', function () {
+    $('.protocolSettings').on('change', function() {
         if ($(this).val() === "SMTP") {
             $('.portControlGroup').css('display', 'block');
         } else {
@@ -9,7 +9,7 @@ $(document).ready(function () {
         }
     });
 
-    $('.niceCheck').on('click', function () {
+    $('.niceCheck').on('click', function() {
         if ($(this).find('.wraper_activSettings').attr('checked')) {
             $('.wraperControlGroup').slideUp(500);
         } else {
@@ -17,23 +17,23 @@ $(document).ready(function () {
         }
     });
 
-    $('#userMailVariables').die().live('click', function () {
+    $('#userMailVariables').die().live('click', function() {
         EmailTemplateVariables.insertVariable(this);
     });
 
 
-    $('#adminMailVariables').die().live('click', function () {
+    $('#adminMailVariables').die().live('click', function() {
         EmailTemplateVariables.insertVariable(this);
     });
 
-    $('.mailTestResultsHide').on('click', function () {
+    $('.mailTestResultsHide').on('click', function() {
         $('.mailTestResults').css('display', 'none');
         $(this).css('display', 'none');
 
     });
 
 
-    $('body').on('click', 'table.variablesTable .icon-edit', function () {
+    $('body').on('click', 'table.variablesTable .editVariable', function() {
         var editor = $(this).closest('tr').find('div.variable');
 
         var editValue = $.trim(editor.text());
@@ -45,12 +45,12 @@ $(document).ready(function () {
         editor.empty();
         editor.parent().find('.variableValueEdit').css('display', 'block').val(editValue);
 
-        $(this).parent('.editVariable').css('display', 'none');
+        $(this).css('display', 'none');
         $(this).closest('tr').find('.refreshVariable').css('display', 'block');
 
     });
 
-    $('body').on('click', '.addVariable', function () {
+    $('body').on('click', '.addVariable', function() {
         $('.addVariableContainer').show();
         $(this).hide();
     });
@@ -87,7 +87,7 @@ function mailTest() {
             send_to: send_to
         },
         url: '/admin/components/cp/cmsemail/mailTest',
-        success: function (data) {
+        success: function(data) {
             $('.mailTestResults').html(data);
             $('.mailTestResults').css('display', 'block');
             $('.mailTestResultsHide').css('display', 'block');
@@ -101,7 +101,7 @@ function mailTest() {
 }
 
 var EmailTemplateVariables = {
-    insertVariable: function (curElem) {
+    insertVariable: function(curElem) {
         var activeEditor = tinyMCE.activeEditor.contentAreaContainer;
         var curEditor = $(curElem).closest('.control-group').find('div[id*="mceu_"].mce-edit-area');
 
@@ -109,7 +109,7 @@ var EmailTemplateVariables = {
             tinyMCE.execCommand("mceInsertContent", false, ' ' + $(curElem).val() + ' ');
         }
     },
-    delete: function (template_id, variable, curElement, locale) {
+    delete: function(template_id, variable, curElement, locale) {
         $.ajax({
             type: 'POST',
             data: {
@@ -117,7 +117,7 @@ var EmailTemplateVariables = {
                 variable: variable
             },
             url: '/admin/components/cp/cmsemail/deleteVariable/' + locale,
-            success: function (data) {
+            success: function(data) {
                 if (!data) {
                     showMessage(lang('Error'), lang('Variable is not removed'), 'r');
                     return false;
@@ -127,7 +127,7 @@ var EmailTemplateVariables = {
             }
         });
     },
-    update: function (curElement, template_id, oldVariable, locale) {
+    update: function(curElement, template_id, oldVariable, locale) {
         var closestTr = curElement.closest('tr');
         var variable = closestTr.find('.variableEdit');
         var variableValue = closestTr.find('.variableValueEdit');
@@ -143,7 +143,7 @@ var EmailTemplateVariables = {
                 template_id: template_id
             },
             url: '/admin/components/cp/cmsemail/updateVariable/' + locale,
-            success: function (data) {
+            success: function(data) {
                 if (!data) {
                     showMessage(lang('Error'), lang('Variable is not updated'), 'r');
                     return false;
@@ -158,7 +158,7 @@ var EmailTemplateVariables = {
             }
         });
     },
-    add: function (curElement, template_id, locale) {
+    add: function(curElement, template_id, locale) {
         var variable = curElement.closest('tr').find('.variableEdit');
         var variableValue = curElement.closest('tr').find('.variableValueEdit');
 
@@ -172,7 +172,7 @@ var EmailTemplateVariables = {
                 template_id: template_id
             },
             url: '/admin/components/cp/cmsemail/addVariable/' + locale,
-            success: function (data) {
+            success: function(data) {
                 if (!data) {
                     showMessage(lang('Error'), lang('Variable is not added'), 'r');
                     return false;
@@ -186,7 +186,7 @@ var EmailTemplateVariables = {
             }
         });
     },
-    updateVariablesList: function (curElement, template_id, locale) {
+    updateVariablesList: function(curElement, template_id, locale) {
         if (!curElement.hasClass('active')) {
             $.ajax({
                 type: 'POST',
@@ -194,14 +194,14 @@ var EmailTemplateVariables = {
                     template_id: template_id
                 },
                 url: '/admin/components/cp/cmsemail/getTemplateVariables/' + locale,
-                success: function (data) {
+                success: function(data) {
                     $('#userMailVariables').html(data);
                     $('#adminMailVariables').html(data);
                 }
             });
         }
     },
-    validateVariable: function (variable, variableValue) {
+    validateVariable: function(variable, variableValue) {
         var variable = $.trim(variable);
         var variableValue = $.trim(variableValue);
 
@@ -216,7 +216,7 @@ var EmailTemplateVariables = {
         }
 
         if ((variable[0] != '$' || variable[variable.length - 1] != '$') || variable.length < 3) {
-            showMessage(lang('Error'), lang('Variable must be surrounded by $'), 'r');
+            showMessage(lang('Error'), lang('Variable must be surrounded by') + ' $', 'r');
             exit;
         }
 

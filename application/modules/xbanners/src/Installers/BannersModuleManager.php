@@ -118,6 +118,10 @@ final class BannersModuleManager {
         (new TemplatePlacesInstaller)->install();
     }
 
+    public function updateTemplatePlaces() {
+        (new TemplatePlacesInstaller)->update();
+    }
+
     /**
      * @return boolean
      */

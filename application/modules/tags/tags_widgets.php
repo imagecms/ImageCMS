@@ -1,25 +1,24 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
 
 /**
  * Image CMS
  */
-
 class Tags_Widgets extends MY_Controller {
 
-   	public function __construct()
-	{
-		parent::__construct();
-                $lang = new MY_Lang();
-            $lang->load('tags');
-    } 
+    public function __construct() {
+        parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('tags');
+    }
 
     // Display recent or popular news
-    public function tags_cloud($widget = array())
-    {
-        if ( $widget['settings'] == FALSE)
-        {
+    public function tags_cloud($widget = array()) {
+        if ($widget['settings'] == FALSE) {
             $settings = $this->defaults;
-        }else{
+        } else {
             $settings = $widget['settings'];
         }
 
@@ -30,24 +29,40 @@ class Tags_Widgets extends MY_Controller {
         return $this->tags->build_cloud();
     }
 
-    // Configure form
-    public function tags_cloud_configure($action = 'show_settings', $widget_data = array())
-    {
-        if( $this->dx_auth->is_admin() == FALSE) exit;
+    // Display recent or popular news
+    public function tags_cloud_new($widget = array()) {
+        if ($widget['settings'] == FALSE) {
+            $settings = $this->defaults;
+        } else {
+            $settings = $widget['settings'];
+        }
 
-        switch ($action)
-        {
+        $this->load->module('tags');
+        $this->tags->prepare_tags();
+        //shuffle( $this->tags->tags );
+
+        return $this->template->fetch('widgets/' . $widget['name'], array(
+                    'tags' => $this->tags->build_cloud('array'))
+        );
+    }
+
+    // Configure form
+    public function tags_cloud_configure($action = 'show_settings', $widget_data = array()) {
+        if ($this->dx_auth->is_admin() == FALSE)
+            exit;
+
+        switch ($action) {
             case 'show_settings':
 
-            break;
+                break;
 
             case 'update_settings':
 
-            break;
+                break;
 
             case 'install_defaults':
-                     
-            break;
+
+                break;
         }
     }
 

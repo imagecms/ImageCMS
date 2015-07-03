@@ -27,4 +27,5 @@ langs["numbers only"] = '<?php echo addslashes(lang("numbers only", "admin", FAL
 langs["Not supported file format"] = '<?php echo addslashes(lang("Not supported file format", "admin", FALSE))?>';
 langs["Message"] = '<?php echo addslashes(lang("Message", "admin", FALSE))?>';
 langs["Sorting method updated"] = '<?php echo addslashes(lang("Sorting method updated", "admin", FALSE))?>';
+langs["You can upload only |max_file_uploads| images at once"] = '<?php echo addslashes(lang("You can upload only |max_file_uploads| images at once", "admin", FALSE))?>';
 </script>

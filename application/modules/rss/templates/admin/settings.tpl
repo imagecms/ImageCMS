@@ -41,6 +41,7 @@
                                         {echo build_cats_tree($cats, $settings.categories)}
                                     </select>
                                     <span class="help-block">{lang("Choose transmition categories", 'rss')}</span>
+                                    <span class="help-block">{lang('Tighten Ctrl to select multiple items', 'admin')}</span>
                                 </div>
                             </div>
                             <div class="control-group">

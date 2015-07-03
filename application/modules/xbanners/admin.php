@@ -25,25 +25,26 @@ class Admin extends BaseAdminController {
 
         ClassLoader::getInstance()->registerNamespacedPath(__DIR__ . '/models/propel/generated-classes')->registerAlias(__DIR__ . '/src', 'Banners');
     }
-    
-    public function deleteA(){
+
+    public function deleteA() {
         \Banners\Models\BannersQuery::create()->deleteAll();
     }
 
-        /**
+    /**
      * Banners places list page
      */
     public function index() {
-
 
         ImagesManager::getInstance()->setInactiveOnTimeOut();
         $banners = \Banners\Models\BannersQuery::create()->joinWithI18n(MY_Controller::defaultLocale())->find();
 
         \CMSFactory\assetManager::create()
-            ->setData([
-                'banners' => $banners,
-                'pageTypes' => BannerPageTypesManager::getInstance()->getPagesTypes(),
-            ])
+            ->setData(
+                [
+                    'banners' => $banners,
+                    'pageTypes' => BannerPageTypesManager::getInstance()->getPagesTypes(),
+                ]
+            )
             ->registerStyle('style')
             ->registerScript('script')
             ->renderAdmin('banner/list');
@@ -61,23 +62,20 @@ class Admin extends BaseAdminController {
         $banner = \Banners\Models\BannersQuery::create()
             ->findPk($id);
 
-
         if (!$banner) {
             $this->core->error_404();
         }
 
         $banner->setLocale($locale);
 
-
-        if ($_POST) {
+        if ($this->input->post()) {
             $this->form_validation->set_rules('banner[name]', lang('Name', 'xbanners'), 'reguired|min_length[2]|max_length[255]|trim');
             $this->form_validation->set_rules('options[autoplaySpeed]', lang('autoplaySpeed', 'xbanners'), 'reguired|min_length[1]|max_length[5]|trim|numeric');
             $this->form_validation->set_rules('options[speed]', lang('speed', 'xbanners'), 'reguired|min_length[2]|max_length[5]|trim|numeric');
 
             if ($this->form_validation->run($this) === FALSE) {
                 showMessage(validation_errors(), '', 'r');
-            }
-            else {
+            } else {
                 $data = $this->input->post('banner');
                 $banner->setName($data['name']);
 
@@ -87,21 +85,22 @@ class Admin extends BaseAdminController {
 
                 showMessage(lang('Banner successfully update', 'xbanners'), lang('Success', 'admin'));
             }
-        }
-        else {
+        } else {
             $bannerImages = \Banners\Managers\ImagesManager::getInstance()->getImagesByPageType($banner, $locale);
             $allowedPagesOptions = BannerPageTypesManager::getInstance()->getView($banner->getPageType(), $locale);
 
             $options = $banner->getEffects();
 
-            \CMSFactory\assetManager::create()->setData([
-                'banner' => $banner,
-                'allowedPagesOptions' => $allowedPagesOptions,
-                'bannerImages' => $bannerImages,
-                'locale' => $locale,
-                'languages' => ShopCore::$ci->cms_admin->get_langs(true),
-                'options' => $options
-            ])
+            \CMSFactory\assetManager::create()->setData(
+                [
+                    'banner' => $banner,
+                    'allowedPagesOptions' => $allowedPagesOptions,
+                    'bannerImages' => $bannerImages,
+                    'locale' => $locale,
+                    'languages' => $this->load->model('cms_admin')->get_langs(true),
+                    'options' => $options
+                ]
+            )
                 ->registerStyle('style')
                 ->registerScript('script')
                 ->renderAdmin('banner/edit');
@@ -116,21 +115,19 @@ class Admin extends BaseAdminController {
      */
     public function saveImage($bannerId, $locale, $imageId = NULL) {
         try {
-            if ($_POST) {
+            if ($this->input->post()) {
                 $this->form_validation->set_rules('image[name]', lang('Name', 'xbanners'), 'required|min_length[2]|max_length[255]|trim');
                 $this->form_validation->set_rules('image[url]', lang('URL', 'xbanners'), 'required|trim|callback_validate_url');
 
                 if ($this->form_validation->run($this) === FALSE) {
                     showMessage(validation_errors(), '', 'r');
-                }
-                else {
+                } else {
                     $data = $this->input->post('image');
                     $data = ImagesManager::getInstance()->prepareImageData($data, $bannerId, $locale);
 
                     if ($_FILES[ImagesManager::IMAGE_FILE_FIELD]) {
                         $data['src'] = ImagesManager::getInstance()->saveImage($imageId, $data['locale']);
-                    }
-                    elseif (!$_FILES[ImagesManager::IMAGE_FILE_FIELD] && !$data['src']) {
+                    } elseif (!$_FILES[ImagesManager::IMAGE_FILE_FIELD] && !$data['src']) {
                         showMessage(lang('Slide must have image', 'xbanners'), lang('Error', 'admin'), 'r');
                         exit;
                     }
@@ -175,7 +172,7 @@ class Admin extends BaseAdminController {
     }
 
     public function uploadImage() {
-        require_once('assets/js/crop/src/php/core/PictureCut.php');
+        include_once 'assets/js/crop/src/php/core/PictureCut.php';
         ImagesManager::getInstance()->uploadImage();
     }
 
@@ -190,8 +187,7 @@ class Admin extends BaseAdminController {
             if (ImagesManager::getInstance()->delete($imageId, $locale)) {
                 showMessage(lang('Image successfully deleted', 'xbanners'), lang('Success', 'admin'));
             }
-        }
-        else {
+        } else {
             showMessage(lang('Can not delete image', 'xbanners'), lang('Error', 'admin'), 'r');
         }
 
@@ -210,8 +206,7 @@ class Admin extends BaseAdminController {
             ImagesManager::getInstance()->delete($imageId);
             BannerImageQuery::create()->findPk($imageId)->delete();
             showMessage(lang('Banner slide successfully deleted', 'xbanners'), lang('Success', 'admin'));
-        }
-        else {
+        } else {
             showMessage(lang('Can not delete banner slide', 'xbanners'), lang('Error', 'admin'), 'r');
         }
 
@@ -247,8 +242,15 @@ class Admin extends BaseAdminController {
             ->toJson();
     }
 
-//    public function test() {
-//        \Banners\Compatibility\CompatibilityImprover::getInstance()->getOldBannersData();
-//    }
+    public function updateBannersPlaces() {
+        $man = new \Banners\Installers\BannersModuleManager();
+        try {
+            $man->updateTemplatePlaces();
+            showMessage(lang('Successfully saved', 'xbanners'), lang('Success', 'admin'));
+        } catch (Exception $e) {
+            showMessage($e->getMessage(), lang('Error', 'admin'), 'r');
+        }
+        pjax(site_url('/admin/components/cp/xbanners'));
+    }
 
 }

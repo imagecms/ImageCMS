@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * ImageCMS
@@ -11,9 +12,13 @@ if (!defined('BASEPATH'))
 class Lib_seo {
 
     protected $orderJustMaked = FALSE;
+
     public $origin_arr;
+
     public $modif_arr;
+
     public $min_word_length = 3;
+
     public $desc_chars = 160;
 
     /**
@@ -34,7 +39,7 @@ class Lib_seo {
         }
     }
 
-    function init($settings) {
+    public function init($settings) {
         $CI = & get_instance();
         if (!strstr($CI->uri->uri_string(), '/cart/')) {
             $CI->template->registerJsScript($this->renderGA($settings));
@@ -47,7 +52,7 @@ class Lib_seo {
     /**
      * Create keywrods from text
      */
-    function get_keywords($text, $as_array = FALSE) {
+    public function get_keywords($text, $as_array = FALSE) {
         $text = strip_tags($text);
         $text = mb_strtolower($text, 'utf-8');
         $this->explode_str_on_words($text);
@@ -65,12 +70,12 @@ class Lib_seo {
         }
     }
 
-    function get_description($text) {
+    public function get_description($text) {
         $delete = array(';', '"', '&mdash', '&nbsp;');
 
         $tags = get_html_translation_table(HTML_ENTITIES);
 
-        foreach ($tags as $k => $v) {
+        foreach ($tags as $v) {
             $text = str_replace($v, '', $text);
         }
 
@@ -84,7 +89,7 @@ class Lib_seo {
     /**
      * 	Explode text on words
      */
-    function explode_str_on_words($text) {
+    public function explode_str_on_words($text) {
         $search = array("'ё'",
             "'<script[^>]*?>.*?</script>'si",
             "'<[\/\!]*?[^<>]*?>'si",
@@ -137,7 +142,7 @@ class Lib_seo {
     /**
      * Count words in text
      */
-    function count_words() {
+    public function count_words() {
         $tmp_arr = array();
         foreach ($this->origin_arr as $val) {
             if (strlen(utf8_decode($val)) >= $this->min_word_length) {
@@ -150,11 +155,11 @@ class Lib_seo {
                 }
             }
         }
-//arsort ($tmp_arr);
+        //arsort ($tmp_arr);
         $this->modif_arr = $tmp_arr;
     }
 
-    function renderGA($GAid = null) {
+    public function renderGA($GAid = null) {
         /* Show Google Analytics code if some value inserted in admin panel */
         if ($GAid['google_analytics_id']) {
             if ($this->getCustomParams()) {
@@ -180,13 +185,11 @@ class Lib_seo {
 
 </script>";
 
-
             return $ga;
         }
     }
 
-    function renderGAForCart($model = null, $GAid = null) {
-        $CI = & get_instance();
+    public function renderGAForCart($model = null, $GAid = null) {
         /* Show Google Analytics code if some value inserted in admin panel */
         if ($GAid['google_analytics_id']) {
             if ($this->getCustomParams()) {
@@ -235,7 +238,7 @@ class Lib_seo {
                             break;
                         }
                     }
-                    $ga .="ga('ecommerce:addItem', {
+                    $ga .= "ga('ecommerce:addItem', {
     'id': '" . $model->getId() . "',
     'name': '" . encode($product->getName()) . " " . encode($item->getVariantName()) . "',
     'sku': '" . encode($Variant->getNumber()) . "',
@@ -244,16 +247,14 @@ class Lib_seo {
     'quantity': '" . $item->getQuantity() . "',
   });";
                 }
-                $ga .="ga('ecommerce:send');</script>";
+                $ga .= "ga('ecommerce:send');</script>";
             }
-
 
             return $ga;
         }
     }
 
-    function makeOrderForGoogle($model) {
-        $CI = & get_instance();
+    public function makeOrderForGoogle($model) {
         if ($model && $this->orderJustMaked) {
             $ga = "
                     <script>
@@ -269,7 +270,7 @@ class Lib_seo {
                 $total = $total + $item->getQuantity() * $item->toCurrency();
                 $product = $item->getSProducts();
 
-                $ga .="ga('ecommerce:addItem', {
+                $ga .= "ga('ecommerce:addItem', {
     'id': '" . $model->id . "',
     'name': '" . encode($product->getName()) . " " . encode($item->getVariantName()) . "',
     'sku': '" . $product->getUrl() . "',
@@ -278,13 +279,13 @@ class Lib_seo {
     'quantity': '" . $item->getQuantity() . "',
   });";
             }
-            $ga .="ga('ecommerce:send');</script>";
+            $ga .= "ga('ecommerce:send');</script>";
 
             return $ga;
         }
     }
 
-    function renderYaMetrica($YaMetricaId = null) {
+    public function renderYaMetrica($YaMetricaId = null) {
         $YandexMetrik = '';
         if ($YaMetricaId['yandex_metric']) {
             $YandexMetrik = '<!-- Yandex.Metrika counter -->
@@ -319,7 +320,7 @@ class Lib_seo {
         return $YandexMetrik;
     }
 
-    function renderYandexWebmaster($YaWebmasterId = null) {
+    public function renderYandexWebmaster($YaWebmasterId = null) {
         $YaWebmaster = '';
         if ($YaWebmasterId['yandex_webmaster']) {
             $YaWebmaster = '<meta name=\'yandex-verification\' content=\'' . $YaWebmasterId['yandex_webmaster'] . '\' />';
@@ -328,7 +329,7 @@ class Lib_seo {
         return $YaWebmaster;
     }
 
-    function renderGoogleWebmaster($GWebmasterId = null) {
+    public function renderGoogleWebmaster($GWebmasterId = null) {
         $GWebmaster = '';
         if ($GWebmasterId['google_webmaster']) {
             $GWebmaster = '<meta name="google-site-verification" content="' . $GWebmasterId['google_webmaster'] . '" />';

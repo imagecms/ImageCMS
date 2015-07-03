@@ -90,8 +90,7 @@
         <div class="tab-content">
             {foreach $types as $key => $type}
 
-                {if  strpos(getCmsNumber(), 'Premium') OR  $key!='shop' OR MAINSITE}
-                    <div class="tab-pane row {if $key == 'base'}active{/if}" id="{echo $key}">
+                    <div {if  !(strpos(getCmsNumber(), 'Premium') OR  $key!='shop' OR MAINSITE)}style="display:none"{/if} class="tab-pane row {if $key == 'base'}active{/if}" id="{echo $key}">
                         {foreach $type as $k => $groups}
                             <div class="span3">
                                 <table class="table  table-bordered table-hover table-condensed t-l_a">
@@ -133,7 +132,6 @@
                             </div>
                         {/foreach}
                     </div>
-                {/if}
             {/foreach}
         </div>
         {form_csrf()}

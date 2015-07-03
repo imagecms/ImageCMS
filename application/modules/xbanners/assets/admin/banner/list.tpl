@@ -5,6 +5,14 @@
                 <span class="help-inline"></span>
                 <span class="title">{lang('Banner managment', 'xbanners')}</span>
             </div>
+
+            <div class="pull-right">
+                <div class="d-i_b">
+                    <a href="/admin/components/cp/xbanners/updateBannersPlaces" type="button" class="pjax btn btn-small btn-primary">
+                        <i class="icon-ok icon-refresh"></i>{lang('Update banners', 'xbanners')}
+                    </a>
+                </div>
+            </div>
         </div>
         <div class="row-fluid">
             {if !count($banners)}

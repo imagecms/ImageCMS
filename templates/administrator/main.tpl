@@ -82,6 +82,7 @@
             </style>
         {/literal}
         {include_tpl('inc/javascriptVars')}
+        {include_tpl('inc/php_to_js_variables')}
         {include_tpl('inc/jsLangs.tpl')}
         {$langDomain = $CI->land->gettext_domain}
         {$CI->lang->load('admin')}
@@ -465,20 +466,7 @@
                 </form>
             </div>
 
-
-            <script>
-                {$settings = $CI->cms_admin->get_settings();}
-                var textEditor = '{$settings.text_editor}';
-                {if $CI->dx_auth->is_logged_in()}
-                var userLogined = true;
-                {else:}
-                var userLogined = false;
-                {/if}
-                var locale = '{echo $this->CI->config->item('language')}';
-                var base_url = "{site_url()}";
-            </script>
-
-
+            <script src="{$THEME}js/jquery-i18n/datepicker/jquery.ui.datepicker-{echo MY_Controller::getAdminInterfaceLocale()}.js" type="text/javascript"></script>
             <script src="{$THEME}js/pjax/jquery.pjax.min.js" type="text/javascript"></script>
             <script src="{$THEME}js/jquery-ui-1.8.23.custom.min.js" type="text/javascript"></script>
             <script src="{$THEME}js/timepicker/jquery-ui-timepicker-addon.js" type="text/javascript"></script>
@@ -514,21 +502,6 @@
             {/if}
 
             <script>
-                {if $CI->uri->segment('4') == 'shop'}
-                var isShop = true;
-                {else:}
-                var isShop = false;
-                {/if}
-
-                {if MAINSITE}
-                var MAINSITE = true;
-                {else:}
-                var MAINSITE = false;
-                {/if}
-
-                var lang_only_number = "{lang("numbers only","admin")}";
-                var show_tovar_text = "{lang("show","admin")}";
-                var hide_tovar_text = "{lang("don't show", 'admin')}";
                 {literal}
 
                     $(document).ready(function () {
@@ -562,7 +535,7 @@
                                         $this.parent().attr('data-original-title', show_tovar_text)
                                         $('.tooltip-inner').text(show_tovar_text);
                                     }
-                                    $this.next().attr('checked', true).end().closest('td').next().children().removeClass('disabled').removeAttr('disabled');
+                                    $this.next().attr('checked', true).end().closest('td').next().children().not('.currencies-value').removeClass('disabled').removeAttr('disabled');
                                     if ($this.attr('data-page') != undefined)
                                         $('.setHit, .setHot, .setAction').removeClass('disabled').removeAttr('disabled');
                                 }
@@ -574,7 +547,7 @@
                                         $this.parent().attr('data-original-title', hide_tovar_text)
                                         $('.tooltip-inner').text(hide_tovar_text);
                                     }
-                                    $this.next().attr('checked', false).end().closest('td').next().children().addClass('disabled').attr('disabled', 'disabled');
+                                    $this.next().attr('checked', false).end().closest('td').next().children().not('.currencies-value').addClass('disabled').attr('disabled', 'disabled');
                                     if ($this.attr('data-page') != undefined)
                                         $('.setHit, .setHot, .setAction').addClass('disabled').attr('disabled', 'disabled')
                                 }
@@ -585,10 +558,7 @@
                         number_tooltip_live();
                         prod_on_off();
                     })
-                    base_url = '{/literal}{$BASE_URL}';
-                        theme_url = '{$THEME}';
-
-                        var elfToken = '{echo $CI->lib_csrf->get_token()}';
+                {/literal}
                 </script>
                 <div id="jsOutput" style="display: none;"></div>
             </body>

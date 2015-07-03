@@ -59,7 +59,7 @@
                                             </span>
                                         </span>
                                     </th>
-                                    <th>{lang('Name', 'cmsemail')}</th>
+                                    <th>{lang('Template description', 'cmsemail')}</th>
                                     <th>{lang('Template variable', 'cmsemail')}</th>
                                     <th>{lang('Theme', 'cmsemail')}</th>
                                     <th>{lang("From", 'cmsemail')}</th>

@@ -504,7 +504,33 @@ $(document).ready(function () {
         }
     });
 
+    $('#create_category_tpl').live('click', function () {
+        var name = prompt(langs.enterTemplateName, '');
+        if (name != null && name != "") {
+            var self = this;
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                url: "/admin/categories/create_tpl",
+                data: "filename=" + name,
+                success: function (obj) {
+                    $('.notifications').append(obj.responce);
+
+                    if (obj.result) {
+                        $(self).closest('.controls').find('select').prepend('<option value="' + name + '" selected="selected">' + name + '</option>');
+                        $(self).closest('.controls').find('select').trigger('chosen:updated');
+                        //$('#inputTemplateCategory').attr('value', name);
+                    }
+                }
+            });
+        }
+    });
+
     $('.prop_active').live('click', function () {
+        if (!($(this).closest('table.properties_table').length & $(this).closest('tbody').length)) {
+            return false;
+        }
+
         var id = $(this).attr('data-id');
         $.ajax({
             type: "post",
@@ -846,18 +872,16 @@ $(document).ready(function () {
         clonedVarTr.find('.mainImageName').val(mainImageName);
 
         var imageFile = $('.variantsProduct tbody').find('tr').last().find('input[name^="image"]');
-        //console.log(imageFile);
-        //console.log(imageFile[0].files.length);
-        //console.log(imageFile[0].files.length);
         mainImageName = imageFile[0].files.length ? imageFile[0].files[0]['name'] : mainImageName;
-        //$('input[name="image0"]')[0].files[0]['name']
         mainImageName = mainImageName ? mainImageName : '../../nophoto/nophoto.jpg'
 
+        if(imageFile[0].files.length){
+            clonedVarTr.find('input[name^="image"]')[0].files =imageFile[0].files;
+            clonedVarTr.find('.changeImage').val(1);
+        }
+
         var imageInet = $('.variantsProduct tbody').find('tr').last().find('input[name^="variants[inetImage]"]').val();
-        console.log(imageInet)
-        console.log(mainImageName)
         var src = $('.variantsProduct tbody').find('tr').last().find('.photo-block > img').attr('src');
-        //var src = imageInet ? imageInet : '/uploads/shop/products/small/' + mainImageName;
         clonedVarTr.find('.photo-block > img').attr('src', src);
 
         clonedVarTr.attr('id', 'ProductVariantRow_' + countVarRows);
@@ -870,10 +894,50 @@ $(document).ready(function () {
         $('#ProductVariantRow_' + countVarRows).children('td.number:last').find('input').attr('onkeyup', "checkLenghtStr('stock-len-" + countVarRows + "', 9, 0, event.keyCode);");
 
         $('.name-var-def').attr('disabled', false);
-        // alert(1);
         initChosenSelect();
 
-        // clonedVarTr.find('.photo-block img').attr('src', '/templates/administrator/images/select-picture.png');
+    });
+
+    $('.variantsProduct .change_image').live('click', function () {
+        var curFiles = $(this).closest('tr').find('[type="file"][name^="image"]')[0].files;
+        var self = $(this).closest('tr').find('[type="file"][name^="image"]');
+
+        if (curFiles.length) {
+            var doReplace = false;
+            $('div.variantsProduct').find('[type="file"][name^="image"]').each(function () {
+                if (doReplace) {
+                    var isCreated = $(this).closest('tr').find('[name^="variants[CurrentId]"]').val();
+                    var hasOwnFiles = $(this)[0].files.length;
+                    if (!isCreated && !hasOwnFiles) {
+                        $(this)[0].files = curFiles;
+                        $(this).closest('tr').find('.changeImage').val(1);
+                    }
+                }
+
+                if ($(self).is(this)) {
+                    doReplace = true;
+                }
+            })
+        }else{
+            var doReplace = false;
+            var imageName = '';
+            $('div.variantsProduct').find('[type="file"][name^="image"]').each(function () {
+                if (doReplace) {
+                    var isCreated = $(this).closest('tr').find('[name^="variants[CurrentId]"]').val();
+
+                    var hasOwnFiles = $(this)[0].files.length;
+                    if (!isCreated && !hasOwnFiles) {
+                        console.log(1111);
+                        $(this).closest('tr').find('[name^="variants[copyImage]"]').val(imageName);
+                    }
+                }
+
+                if ($(self).is(this)) {
+                    doReplace = true;
+                    imageName = $(this).closest('tr').find('[name^="variants[mainImageName]"]').val();
+                }
+            })
+        }
     });
 
     /*------------------------- IMAGES -------------------------*/

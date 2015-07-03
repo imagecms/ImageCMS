@@ -197,7 +197,7 @@ if (is_dir($application_folder)) {
     define('APPPATH', BASEPATH . $application_folder . '/');
 }
 
-define('IMAGECMS_NUMBER', '4.8.1b1 Corporate');
+define('IMAGECMS_NUMBER', '4.8.1b2 Corporate');
 
 define('IMAGECMS_VERSION', '20150615');
 

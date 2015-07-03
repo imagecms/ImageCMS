@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Image CMS
@@ -21,6 +22,7 @@ class Core_Widgets extends MY_Controller {
     }
 
     // Display recent or popular news
+
     public function recent_news($widget = array()) {
         if ($widget['settings'] == FALSE) {
             $settings = $this->defaults;
@@ -28,12 +30,12 @@ class Core_Widgets extends MY_Controller {
             $settings = $widget['settings'];
         }
 
-        $this->db->select('CONCAT_WS("", content.cat_url, content.url) as full_url, content.id, content.title, prev_text, publish_date, showed, comments_count, author, category.name as cat_name, content.cat_url', FALSE);
-        $this->db->join('category', 'category.id=content.category');
-        $this->db->where('post_status', 'publish');
-        $this->db->where('prev_text !=', 'null');
-        $this->db->where('publish_date <=', time());
-        $this->db->where('lang', $this->config->item('cur_lang'));
+            $this->db->select('CONCAT_WS("", content.cat_url, content.url) as full_url, content.id, content.title, prev_text, publish_date, showed, comments_count, author, category.name as cat_name, content.cat_url', FALSE);
+            $this->db->join('category', 'category.id=content.category');
+            $this->db->where('post_status', 'publish');
+            $this->db->where('prev_text !=', 'null');
+            $this->db->where('publish_date <=', time());
+            $this->db->where('lang', $this->config->item('cur_lang'));
 
         if (count($settings['categories']) > 0) {
             $this->db->where_in('category', $settings['categories']);
@@ -45,7 +47,7 @@ class Core_Widgets extends MY_Controller {
             $this->db->order_by('showed', 'desc'); // Pupular news
         }
 
-        $query = $this->db->get('content', $settings['news_count']);
+            $query = $this->db->get('content', $settings['news_count']);
 
         if ($query->num_rows() > 0) {
             $news = $query->result_array();
@@ -70,6 +72,7 @@ class Core_Widgets extends MY_Controller {
     }
 
     // Configure form
+
     public function recent_news_configure($action = 'show_settings', $widget_data = array()) {
         if ($this->dx_auth->is_admin() == FALSE) {
             exit;
@@ -92,17 +95,17 @@ class Core_Widgets extends MY_Controller {
                     showMessage(validation_errors());
                 } else {
                     $data = array(
-                        'news_count' => $_POST['news_count'],
-                        'max_symdols' => $_POST['max_symdols'],
-                        'categories' => $_POST['categories'],
-                        'display' => $_POST['display'],
+                        'news_count' => $this->input->post('news_count'),
+                        'max_symdols' => $this->input->post('max_symdols'),
+                        'categories' => $this->input->post('categories'),
+                        'display' => $this->input->post('display'),
                     );
 
                     $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
 
                     showMessage(lang("Settings have been saved", 'core'));
 
-                    if ($_POST['action'] == 'tomain') {
+                    if ($this->input->post('action') == 'tomain') {
                         pjax('/admin/widgets_manager/index');
                     }
                 }
@@ -115,6 +118,7 @@ class Core_Widgets extends MY_Controller {
     }
 
     // Similar posts
+
     public function similar_posts($widget = array()) {
         $this->load->module('core');
 
@@ -129,10 +133,10 @@ class Core_Widgets extends MY_Controller {
             $titleParts = explode(' ', $title);
 
             if (!empty($titleParts)) {
-                foreach ($titleParts as $key => $text) {
+                foreach ($titleParts as $text) {
                     $text = trim($text);
-                    if ($text != '') {
-                        $sql[] = "title LIKE '%$text%'";
+                    if ($text != '' and strlen($text) >= 4) {
+                        $sql[] = "title LIKE '% $text %'";
                     }
                 }
 
@@ -160,21 +164,22 @@ class Core_Widgets extends MY_Controller {
     }
 
     // Template functions
-    function display_tpl($file, $vars = array()) {
+
+    public function display_tpl($file, $vars = array()) {
         $this->template->add_array($vars);
 
         $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';
         $this->template->display('file:' . $file);
     }
 
-    function fetch_tpl($file, $vars = array()) {
+    public function fetch_tpl($file, $vars = array()) {
         $this->template->add_array($vars);
 
         $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';
         return $this->template->fetch('file:' . $file);
     }
 
-    public function render($viewName, array $data = array(), $return = false) {
+    public function render($viewName, array $data = array()) {
         if (!empty($data)) {
             $this->template->add_array($data);
         }

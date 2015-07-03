@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Image CMS
@@ -35,7 +36,6 @@ class Mailer extends MY_Controller {
             redirect('/mailer/error/');
         } else {
 
-
             $query = $this->db->get_where('mail', array('email' => $this->input->post('user_email')));
             $row = $query->row();
 
@@ -47,12 +47,17 @@ class Mailer extends MY_Controller {
                 exit;
             }
 
-
             if ($this->input->post('add_user_mail') == 2) {
 
                 $date = date('U');
                 $email = $this->input->post('user_email');
 
+                if ($this->dx_auth->get_user_email() != $email) {
+                    if (!$this->dx_auth->is_email_available($email)) {
+                        redirect(site_url('/mailer/error/'));
+                        exit;
+                    }
+                }
 
                 $data = array(
                     'email' => $email,
@@ -63,9 +68,11 @@ class Mailer extends MY_Controller {
 
                 $this->registerUserByEmail($email);
 
-                $this->template->add_array(array(
-                    'email' => $query,
-                ));
+                $this->template->add_array(
+                    array(
+                        'email' => $query,
+                    )
+                );
 
                 redirect('/mailer/success/');
             } else {
@@ -81,12 +88,13 @@ class Mailer extends MY_Controller {
         $this->form_validation->set_rules('user_email', lang("Your e-mail", 'mailer'), 'required|trim|valid_email');
 
         if ($this->form_validation->run($this) == FALSE) {
-            CMSFactory\assetManager::create()->setData(array(
-                'mailer_errors' => validation_errors(),
-            ));
+            CMSFactory\assetManager::create()->setData(
+                array(
+                    'mailer_errors' => validation_errors(),
+                )
+            );
             CMSFactory\assetManager::create()->render('error', true);
         } else {
-
 
             $query = $this->db->get_where('mail', array('email' => $this->input->post('user_email')));
             $row = $query->row();
@@ -100,10 +108,9 @@ class Mailer extends MY_Controller {
             }
 
             if ($this->input->post('add_user_mail') == 2) {
-
-                $date = date('U');
                 $email = $this->input->post('user_email');
 
+                $date = date('U');
                 $data = array(
                     'email' => $email,
                     'date' => $date
@@ -111,11 +118,17 @@ class Mailer extends MY_Controller {
 
                 $this->db->insert('mail', $data);
 
-                $this->registerUserByEmail($email);
+                if ($this->dx_auth->get_user_email() != $email) {
+                    if ($this->dx_auth->is_email_available($email)) {
+                        $this->registerUserByEmail($email);
+                    }
+                }
 
-                CMSFactory\assetManager::create()->setData(array(
-                    'email' => $query,
-                ));
+                CMSFactory\assetManager::create()->setData(
+                    array(
+                        'email' => $query,
+                    )
+                );
                 CMSFactory\assetManager::create()->render('success', true);
             } else {
                 $this->db->delete('mail', array('email' => $this->input->post('user_email')));
@@ -182,8 +195,9 @@ class Mailer extends MY_Controller {
      * Функция будет вызвана при установке модуля из панели управления
      */
     public function _install() {
-        if ($this->dx_auth->is_admin() == FALSE)
+        if ($this->dx_auth->is_admin() == FALSE) {
             exit;
+        }
         //Create Table MAIL
         $sql = "CREATE TABLE IF NOT EXISTS `mail` (
                     `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -201,8 +215,9 @@ class Mailer extends MY_Controller {
     }
 
     public function _deinstall() {
-        if ($this->dx_auth->is_admin() == FALSE)
+        if ($this->dx_auth->is_admin() == FALSE) {
             exit;
+        }
         //Delete Table MAIL
         $sql = "DROP TABLE `mail`;";
 

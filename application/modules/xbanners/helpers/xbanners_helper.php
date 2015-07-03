@@ -45,6 +45,7 @@ if (!function_exists('makeSelected')) {
 }
 
 if (!function_exists('getBannerPreviewSrc')) {
+
     /**
      * Returns banner preview image file src
      * @param string $bannerPlaceName - banner place name
@@ -68,4 +69,29 @@ if (!function_exists('getBannerPreviewSrc')) {
         return $defaultPath;
     }
 
+}
+
+
+if (!function_exists('pluralize')) {
+
+    function pluralize($count = 0, array $words = array()) {
+        if (empty($words)) {
+            $words = array(' ', ' ', ' ');
+        }
+
+        $numeric = (int) abs($count);
+        if ($numeric % 100 == 1 || ($numeric % 100 > 20) && ($numeric % 10 == 1)) {
+            return $words[0];
+        }
+        if ($numeric % 100 == 2 || ($numeric % 100 > 20) && ($numeric % 10 == 2)) {
+            return $words[1];
+        }
+        if ($numeric % 100 == 3 || ($numeric % 100 > 20) && ($numeric % 10 == 3)) {
+            return $words[1];
+        }
+        if ($numeric % 100 == 4 || ($numeric % 100 > 20) && ($numeric % 10 == 4)) {
+            return $words[1];
+        }
+        return $words[2];
+    }
 }

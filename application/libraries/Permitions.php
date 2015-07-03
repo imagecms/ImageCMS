@@ -840,7 +840,7 @@ class Permitions {
 
         $sql = 'SELECT SRR.id, SRR.name, SRR.importance, SRRI.alt_name, SRRI.description
             FROM shop_rbac_roles SRR
-            INNER JOIN shop_rbac_roles_i18n SRRI ON SRRI.id = SRR.id WHERE SRRI.locale = "' . MY_Controller::getCurrentLocale() . '" ORDER BY SRR.name ASC';
+            INNER JOIN shop_rbac_roles_i18n SRRI ON SRRI.id = SRR.id WHERE SRRI.locale = "' . MY_Controller::getCurrentLocale() . '" ORDER BY SRR.id ASC';
         $query = $this->db->query($sql);
 
         $this->template->add_array(

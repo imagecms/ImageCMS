@@ -41,7 +41,9 @@ class PoFileManager {
         'X-Poedit-Country',
         'SearchPath'
     );
+
     private static $SAAS_URL = '';
+
     private static $CURRENT_TEMPLATE_PATHS = array();
 
     public function __construct() {
@@ -53,8 +55,9 @@ class PoFileManager {
      * @param string $error - error message
      */
     private function setError($error) {
-        if ($error)
+        if ($error) {
             self::$ERRORS[] = $error;
+        }
     }
 
     /**
@@ -86,7 +89,6 @@ class PoFileManager {
 
         $modules_templatesExchanger = $data['modules_templatesExchanger'];
         $modules_templatesReceiver = $data['modules_templatesReceiver'];
-
 
         if ($langExchanger && $langReceiver && $typeExchanger && $typeReceiver) {
             $resultExchanger = $this->toArray($modules_templatesExchanger, $typeExchanger, $langExchanger);
@@ -126,16 +128,22 @@ class PoFileManager {
 
                 switch ($this->getDomainType($domain)) {
                     case 'modules':
-                        $contains = array_filter(self::$CURRENT_TEMPLATE_PATHS, function ($path, $domain) {
-                            return strstr($path, 'modules/' . $domain) ? TRUE : FALSE;
-                        });
+                        $contains = array_filter(
+                            self::$CURRENT_TEMPLATE_PATHS,
+                            function ($path, $domain) {
+                                return strstr($path, 'modules/' . $domain) ? TRUE : FALSE;
+                            }
+                        );
 
                         return (!empty($contains)) ? $template : $domain;
                     case 'main':
-                        $contains = array_filter(self::$CURRENT_TEMPLATE_PATHS, function ($path) {
-                            $main_path = 'system/language/form_validation';
-                            return strstr($path, $main_path) ? TRUE : FALSE;
-                        });
+                        $contains = array_filter(
+                            self::$CURRENT_TEMPLATE_PATHS,
+                            function ($path) {
+                                $main_path = 'system/language/form_validation';
+                                return strstr($path, $main_path) ? TRUE : FALSE;
+                            }
+                        );
 
                         return (!empty($contains)) ? $template : $domain;
                     default :
@@ -189,7 +197,7 @@ class PoFileManager {
         if (self::$SAAS_URL) {
             $url = str_replace('./', self::$SAAS_URL . '/', $url);
         }
-//        var_dumps($url);
+        //        var_dumps($url);
         return $url;
     }
 
@@ -326,7 +334,7 @@ class PoFileManager {
                 $lang = new \MY_Lang();
                 $lang->load($moduleName);
 
-                include($modulePath . 'module_info.php');
+                include $modulePath . 'module_info.php';
                 $name = isset($com_info['menu_name']) ? $com_info['menu_name'] : $moduleName;
                 $data[$moduleName] = $name;
             }
@@ -368,11 +376,13 @@ class PoFileManager {
 
                 if (isset($po_data['po_array'][$origin])) {
 
-                    if ($values['translation'])
+                    if ($values['translation']) {
                         $po_data['po_array'][$origin]['translation'] = $values['translation'];
+                    }
 
-                    if ($values['comment'])
+                    if ($values['comment']) {
                         $po_data['po_array'][$origin]['comment'] = $values['comment'];
+                    }
                 } else {
 
                     if ($values['translation']) {
@@ -505,8 +515,8 @@ class PoFileManager {
 
         $po_file_data = $this->makePoFileData($data);
         $po_file_content = b"\xEF\xBB\xBF" . $settings . "\n\n" . $po_file_data;
-//        var_dumps($lang);
-//var_dumps($po_file_content);
+        //        var_dumps($lang);
+        //var_dumps($po_file_content);
         if (file_put_contents($url, $po_file_content)) {
             if ($this->convertToMO($url)) {
                 return TRUE;
@@ -589,7 +599,7 @@ class PoFileManager {
      * @return boolean
      */
     public function convertToMO($url = '') {
-        require_once(realpath(dirname(__FILE__) . '/..') . '/lib/php-mo.php');
+        include_once realpath(dirname(__FILE__) . '/..') . '/lib/php-mo.php';
 
         if ($url) {
             return \phpmo_convert($url);
@@ -612,8 +622,9 @@ class PoFileManager {
 
         foreach ($po as $key => $line) {
 
-            if (!($key > 2 && $origin))
+            if (!($key > 2 && $origin)) {
                 $this->prepareSettingsValues($line);
+            }
 
             $first2symbols = substr($line, 0, 2);
             if (substr($line, 0, 1) == '#' && $first2symbols != '#:' && $first2symbols != '#,') {
@@ -707,6 +718,35 @@ class PoFileManager {
             }
         }
         return $this->po_settings;
+    }
+
+    public function searchPoFileAutocomplete($name, $type, $lang, $searchString) {
+        $poFile = $this->toArray($name, $type, $lang);
+        $poFileData = $poFile['po_array'];
+        $searchString = mb_strtolower(trim($searchString));
+
+        $results = [];
+        foreach ($poFileData as $origin => $data) {
+            $translation = $data['translation'];
+
+            $positionSearch = mb_stripos($origin, $searchString);
+            if ($positionSearch !== false) {
+                $results[$positionSearch][] = $origin;
+            }
+
+            $positionSearch = mb_stripos($translation, $searchString);
+            if ($positionSearch !== false) {
+                $results[$positionSearch][] = $translation;
+            }
+
+        }
+        ksort($results);
+        $resultsData = [];
+        foreach ($results as $key => $result) {
+            natcasesort($result);
+            $resultsData = array_merge($resultsData, $result);
+        }
+        return $resultsData ? $resultsData : [];
     }
 
 }

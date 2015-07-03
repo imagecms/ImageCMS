@@ -75,11 +75,10 @@
                                             <i class="icon-edit"></i> {lang('Edit albums', 'gallery')}
                                         </a>
                                         <button type="button"
-                                                class="btn btn-danger btn-small"
+                                                class="btn btn-small"
                                                 data-rel="tooltip"
                                                 onclick="$('.modal:not(.addNotificationMessage)').modal('show');"
-                                                data-title="{lang('Delete', 'gallery')}"
-                                                data-remove="">
+                                                data-title="{lang('Delete', 'gallery')}">
                                             <i class="icon-trash"></i> {lang('Delete', 'gallery')}
                                         </button>
                                     </div>

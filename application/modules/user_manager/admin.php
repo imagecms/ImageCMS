@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Image CMS
@@ -9,9 +10,7 @@ if (!defined('BASEPATH'))
  */
 class Admin extends BaseAdminController {
 
-    private $mod_name = 'user_manager';
-
-    function __construct() {
+    public function __construct() {
         parent::__construct();
         $lang = new MY_Lang();
         $lang->load('user_manager');
@@ -27,10 +26,10 @@ class Admin extends BaseAdminController {
      * Select roles and displau main template
      */
 
-    function index() {
+    public function index() {
         $this->set_tpl_roles();
         $this->template->add_array($this->genre_user_table());
-        $this->template->add_array($this->show_edit_prems_tpl($id = 10));
+        $this->template->add_array($this->show_edit_prems_tpl(10));
         $this->template->registerJsFile(getModulePath('user_manager') . 'templates/js/script.js', 'after');
         $this->display_tpl('main');
     }
@@ -39,7 +38,7 @@ class Admin extends BaseAdminController {
      * Assign template roles
      */
 
-    function set_tpl_roles() {
+    public function set_tpl_roles() {
         // roles
         //$query = $this->db->get('shop_rbac_roles');
 
@@ -55,7 +54,7 @@ class Admin extends BaseAdminController {
         // roles
     }
 
-    function getRolesTable($roleId) {
+    public function getRolesTable($roleId) {
         $this->template->add_array($this->show_edit_prems_tpl($roleId));
         $this->display_tpl('genreroletable');
     }
@@ -66,13 +65,13 @@ class Admin extends BaseAdminController {
      * Calling from javascript from main.tpl
      */
 
-    function genre_user_table() {
+    public function genre_user_table() {
 
         //cp_check_perm('user_view_data');
 
         $this->load->model('dx_auth/users', 'users');
 
-        $offset = (int)$this->uri->segment(6);
+        $offset = (int) $this->uri->segment(6);
         $row_count = 20;
 
         // Get all users
@@ -112,10 +111,11 @@ class Admin extends BaseAdminController {
         $users = $users->result_array();
 
         for ($i = 0, $users_c = count($users); $i < $users_c; $i++) {
-            if ($users[$i]['banned'] == 1)
+            if ($users[$i]['banned'] == 1) {
                 $users[$i]['banned'] = 1;
-            else
+            } else {
                 $users[$i]['banned'] = 0;
+            }
         }
         return array(
             'users' => $users,
@@ -123,11 +123,10 @@ class Admin extends BaseAdminController {
         );
     }
 
-    function auto_complit($type) {
+    public function auto_complit($type) {
 
         $s_limit = $this->input->get('limit');
         $s_coef = $this->input->get('term');
-
 
         $this->db->select("users.*", FALSE);
         if ($type == 'name') {
@@ -143,14 +142,15 @@ class Admin extends BaseAdminController {
         $users = $query->result_array();
 
         foreach ($users as $user) {
-            if ($type == 'email')
+            if ($type == 'email') {
                 $response[] = array(
                     'value' => $user['email']
                 );
-            else
+            } else {
                 $response[] = array(
                     'value' => $user['username']
                 );
+            }
         }
         echo json_encode($response);
     }
@@ -159,10 +159,9 @@ class Admin extends BaseAdminController {
      * Register new user
      */
 
-    function create_user() {
+    public function create_user() {
 
-
-        if ($_POST) {
+        if ($this->input->post()) {
 
             $this->load->model('dx_auth/users', 'user2');
             $val = $this->form_validation;
@@ -175,7 +174,6 @@ class Admin extends BaseAdminController {
 
             ($hook = get_hook('users_create_set_val_rules')) ? eval($hook) : NULL;
 
-            $user = $this->input->post('username');
             $email = $this->input->post('email');
             $role = $this->input->post('role');
 
@@ -184,14 +182,6 @@ class Admin extends BaseAdminController {
                 showMessage(lang('User with the same e-mail has been registered', 'user_manager'), '', 'r');
                 exit;
             }
-
-            if (!check_perm('user_create') AND !check_perm('user_create_all_roles')) {
-                //cp_check_perm('user_create');
-            }
-
-//            if (!check_perm('user_create_all_roles')) {
-//                $role = $this->dx_auth->get_role_id();
-//            }
 
             $this->load->helper('string');
             if ($val->run() AND $user_info = $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email'), '', random_string('alnum', 5), $this->input->post('phone'), false)) {
@@ -207,7 +197,7 @@ class Admin extends BaseAdminController {
 
                 showMessage(lang('Username has been created or user has been created', 'user_manager'));
 
-                $action = $_POST['action'];
+                $action = $this->input->post('action');
 
                 if ($action == 'close') {
                     pjax('/admin/components/cp/user_manager/edit_user/' . $user_info['id']);
@@ -240,7 +230,7 @@ class Admin extends BaseAdminController {
      * Ban, unban or delete users
      */
 
-    function actions($value) {
+    public function actions($value) {
         $this->load->model('dx_auth/users', 'users');
 
         // foreach ($_POST as $k => $value) {
@@ -252,7 +242,6 @@ class Admin extends BaseAdminController {
         foreach ($query->result() as $row) {
 
             //echo ;
-
 
             if ($row->banned == 0) {
 
@@ -280,16 +269,12 @@ class Admin extends BaseAdminController {
      * Search users
      */
 
-    function search() {
-        if (!empty($_GET)) {
-            //cp_check_perm('user_view_data');
-
-//?s_data=ad&s_email=&role=0
+    public function search() {
+        if ($this->input->get()) {
             $locale = MY_Controller::defaultLocale();
             @$s_data = $this->input->get('s_data');
             @$s_email = $this->input->get('s_email');
             $role = $this->input->get('role');
-            $page = (int)$this->uri->segment(8);
             $this->db->select("users.*", FALSE);
             $this->db->select("shop_rbac_roles.name AS role_name", FALSE);
             $this->db->select("shop_rbac_roles_i18n.alt_name AS role_alt_name, shop_rbac_roles_i18n.locale", FALSE);
@@ -335,7 +320,6 @@ class Admin extends BaseAdminController {
                     echo $rezult_table;
                 } else {
 
-
                     $this->template->assign('users', $users);
                     $this->template->add_array($this->show_edit_prems_tpl($id = 2));
                     $this->template->add_array(array('role_id' => $role));
@@ -355,7 +339,7 @@ class Admin extends BaseAdminController {
      * Show edit_users form
      */
 
-    function edit_user($user_id) {
+    public function edit_user($user_id) {
         ////cp_check_perm('user_edit');
 
         $this->load->model('dx_auth/users', 'users');
@@ -368,8 +352,9 @@ class Admin extends BaseAdminController {
         } else {
             $this->template->add_array($user->row_array());
             $this->set_tpl_roles();
-            if (!$this->ajaxRequest)
+            if (!$this->ajaxRequest) {
                 $this->display_tpl('edit_user');
+            }
         }
     }
 
@@ -377,8 +362,7 @@ class Admin extends BaseAdminController {
      * Update user data
      */
 
-    function update_user($user_id) {
-
+    public function update_user($user_id) {
 
         //cp_check_perm('edit_user');
 
@@ -427,6 +411,14 @@ class Admin extends BaseAdminController {
             $this->db->where('id', $user_id);
             $this->db->update('users', $data);
 
+            $replaceData = array(
+                'user_name' => $this->input->post('username'),
+                'password' => $this->input->post('new_pass')
+            );
+
+            if ($replaceData['password']) {
+                \cmsemail\email::getInstance()->sendEmail($this->input->post('email'), 'change_password', $replaceData);
+            }
 
             $this->lib_admin->log(
                 lang('amt_updated_user') .
@@ -435,7 +427,7 @@ class Admin extends BaseAdminController {
 
             showMessage(lang('Changes saved', 'user_manager'));
 
-            $action = $_POST['action'];
+            $action = $this->input->post('action');
 
             if ($action == 'close') {
                 pjax('/admin/components/cp/user_manager/edit_user/' . $user_id);
@@ -452,19 +444,20 @@ class Admin extends BaseAdminController {
      * Groups                           *
      * ********************************** */
 
-    function groups_index() {
+    public function groups_index() {
         $query = $this->db->get('roles');
         $this->template->assign('roles', $query->result_array());
         $this->display_tpl('groups');
     }
 
-    function _create() {
+    public function _create() {
 
-        if (!$this->ajaxRequest)
+        if (!$this->ajaxRequest) {
             $this->display_tpl('create_group');
+        }
         //cp_check_perm('roles_create');
 
-        if ($_POST) {
+        if ($this->input->post()) {
 
             $this->form_validation->set_rules('name', lang('amt_identif'), 'required|trim|max_length[150]|min_length[2]|alpha_dash');
             $this->form_validation->set_rules('alt_name', lang('amt_tname'), 'required|trim|max_length[150]|min_length[2]');
@@ -486,7 +479,7 @@ class Admin extends BaseAdminController {
                 $this->lib_admin->log(lang('amt_created_group') . $data['name']);
                 showMessage(lang('amt_group_created'));
 
-                $action = $_POST['action'];
+                $action = $this->input->post('action');
 
                 $user_info = $this->db->get_where('roles', array('name' => $data['name']));
                 $row = $user_info->row();
@@ -501,13 +494,14 @@ class Admin extends BaseAdminController {
     }
 
     public function deleteAll() {
-        if (empty($_POST['ids'])) {
+        if (!$this->input->post('ids')) {
             showMessage(lang('a_del_user_notif'), '', 'r');
             exit;
-        }
-        if ($_POST['ids'])
+        } else {
             $this->load->model('dx_auth/users', 'users');
-        $ids = $_POST['ids'];
+        }
+
+        $ids = $this->input->post('ids');
         foreach ($ids as $id) {
             //cp_check_perm('user_delete');
             ($hook = get_hook('users_delete')) ? eval($hook) : NULL;
@@ -516,7 +510,7 @@ class Admin extends BaseAdminController {
         }
     }
 
-    function update_role_perms() {
+    public function update_role_perms() {
 
         //cp_check_perm('roles_edit');
 
@@ -526,7 +520,7 @@ class Admin extends BaseAdminController {
         $all_perms = $this->get_permissions_table();
 
         foreach ($all_perms as $k => $v) {
-            if (isset($_POST[$k]) AND $_POST[$k] == 1) {
+            if ($this->input->post($k) == 1) {
                 $permission_data[$k] = 1;
             }
         }
@@ -541,7 +535,7 @@ class Admin extends BaseAdminController {
         showMessage(lang('Changes saved', 'user_manager'));
     }
 
-    function show_edit_prems_tpl($id) {
+    public function show_edit_prems_tpl($id) {
 
         $this->load->model('dx_auth/permissions', 'permissions');
         $permissions = $this->permissions->get_permission_data($id);
@@ -560,32 +554,35 @@ class Admin extends BaseAdminController {
         }
 
         array_multisort($count, SORT_ASC, $groups);
-//        $this->db->select("shop_rbac_roles.*", FALSE);
-//        $this->db->select("shop_rbac_roles_i18n.alt_name", FALSE);
+        //        $this->db->select("shop_rbac_roles.*", FALSE);
+        //        $this->db->select("shop_rbac_roles_i18n.alt_name", FALSE);
         $this->db->where('locale', BaseAdminController::getCurrentLocale());
         $this->db->join("shop_rbac_roles_i18n", "shop_rbac_roles_i18n.id = shop_rbac_roles.id");
         $role = $this->db->get('shop_rbac_roles')->result_array();
 
-        $this->template->add_array(array(
-            'selected_role' => $id,
-            'roles' => $role,
-            'all_perms' => $all_perms,
-            'permissions' => $permissions,
-            'groups' => $groups,
-            'group_names' => $this->get_group_names(),
-        ));
+        $this->template->add_array(
+            array(
+                    'selected_role' => $id,
+                    'roles' => $role,
+                    'all_perms' => $all_perms,
+                    'permissions' => $permissions,
+                    'groups' => $groups,
+                    'group_names' => $this->get_group_names(),
+                )
+        );
     }
 
-    function get_permissions_table() {
+    public function get_permissions_table() {
         return get_permissions_array();
     }
 
-    function get_group_names() {
+    public function get_group_names() {
         return get_perms_groups();
     }
 
     //////////////////////////////////////////
     // Template functions
+
     private function display_tpl($file) {
         $file = realpath(dirname(__FILE__)) . '/templates/' . $file;
         $this->template->show('file:' . $file);

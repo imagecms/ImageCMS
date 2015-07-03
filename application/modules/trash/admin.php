@@ -116,18 +116,19 @@ class Admin extends BaseAdminController {
         $this->form_validation->set_rules('url', 'Url', 'required');
 
         $this->db->where('name', 'shop')->get('components');
+        $locale = MY_Controller::defaultLocale();
 
         if (count($this->db->where('name', 'shop')->get('components')->row()) > 0) {
 
             $query = $this->db
-                ->where('locale', MY_Controller::getCurrentLocale())
+                ->where('locale', $locale)
                 ->order_by('name', 'asc')
                 ->get('shop_products_i18n');
             $this->template->add_array(array('products' => $query->result()));
 
             $this->db->order_by("name", "asc");
             $query = $this->db
-                ->where('locale', MY_Controller::getCurrentLocale())
+                ->where('locale', $locale)
                 ->get('shop_category_i18n');
             $this->template->add_array(array('category' => $query->result()));
         }
@@ -136,15 +137,12 @@ class Admin extends BaseAdminController {
         //$query = $this->db->get('category');
 
         $lang_identif = $this->db
-            ->where('identif', MY_Controller::getCurrentLocale())
+            ->where('identif', $locale)
             ->get('languages')
             ->row();
 
-        $query = $this->db
-            ->where('lang', (int) $lang_identif->id)
-            ->join('category_translate', 'category_translate.alias = category.id')
-            ->get('category');
-
+        $this->db->order_by("name", "asc");
+        $query = $this->db->get('category');
         $this->template->add_array(array('category_base' => $query->result()));
 
         ($this->ajaxRequest) OR $this->display_tpl('create_trash');
@@ -237,14 +235,19 @@ class Admin extends BaseAdminController {
     public function edit_trash($id) {
         $query = $this->db->get_where('trash', array('id' => $id));
         $this->template->add_array(array('trash' => $query->row()));
+        $locale = MY_Controller::defaultLocale();
 
         if (count($this->db->get_where('components', array('name' => 'shop'))->row()) > 0) {
-            $this->db->order_by("name", "asc");
-            $query = $this->db->get('shop_products_i18n');
+            $query = $this->db
+                ->where('locale', $locale)
+                ->order_by('name', 'asc')
+                ->get('shop_products_i18n');
             $this->template->add_array(array('products' => $query->result()));
 
             $this->db->order_by("name", "asc");
-            $query = $this->db->get('shop_category_i18n');
+            $query = $this->db
+                ->where('locale', $locale)
+                ->get('shop_category_i18n');
             $this->template->add_array(array('category' => $query->result()));
         }
 

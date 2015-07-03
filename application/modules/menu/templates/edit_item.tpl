@@ -53,6 +53,7 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        {/*}
                                         <div class="control-group">
                                             <label class="control-label">{lang('On page', 'menu')}:</label>
                                             <div class="controls">
@@ -66,6 +67,7 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        {*/}
                                         <div class="control-group">
                                             <label class="control-label">{lang('Pages list', 'menu')}:</label>
                                             <div class="controls">

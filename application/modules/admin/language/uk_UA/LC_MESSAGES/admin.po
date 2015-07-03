@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-23 03:46+0300\n"
-"PO-Revision-Date: 2015-04-23 03:46+0300\n"
+"POT-Creation-Date: 2015-06-22 05:48+0300\n"
+"PO-Revision-Date: 2015-06-22 05:48+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -21,27 +21,104 @@ msgstr ""
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../modules/shop/models2\n"
 
+#: templates/administrator/js/scripts.js:1031
+msgid "You can upload only |max_file_uploads| images at once"
+msgstr "Ви можете завантажити тільки |max_file_uploads| зображень відразу"
+
+#: application/modules/shop/admin/orders.php:2014
+msgid "Choose more then one order"
+msgstr "Вибрати більше одного замовлення"
+
+#: application/modules/shop/admin/orders.php:2028
+msgid "Selected orders must have the same payment status"
+msgstr ""
+
+#: application/modules/shop/admin/orders.php:2034
+msgid "Choose orders with the same users"
+msgstr ""
+
+#: application/modules/shop/admin/orders.php:2109
+msgid "Orders successfully merged"
+msgstr ""
+
+#: application/modules/shop/admin/products.php:834
+msgid "Successfully changed"
+msgstr ""
+
+#: application/modules/shop/admin/users.php:675
+msgid "User role changed."
+msgstr ""
+
+#: application/modules/shop/admin/templates/users/list.tpl:21
+msgid "Change user role"
+msgstr ""
+
+#: application/modules/shop/admin/templates/users/list.tpl:62
+msgid "Change role"
+msgstr ""
+
+#: application/modules/shop/admin/templates/users/list.tpl:96
+msgid "Including shipping"
+msgstr ""
+
+#: application/modules/shop/admin/templates/users/list.tpl:109
+msgid "All users"
+msgstr ""
+
+#: application/modules/shop/admin/templates/users/list.tpl:184
+msgid "Users list is empty"
+msgstr ""
+
+#: application/modules/shop/admin/templates/orders/list.tpl:19
+#: application/modules/shop/admin/templates/orders/list.tpl:45
+msgid "Merge Orders"
+msgstr ""
+
+#: application/modules/shop/admin/templates/orders/list.tpl:22
+msgid "Вы действительно хотите объединить заказы?"
+msgstr ""
+
+#: application/modules/shop/admin/templates/orders/list.tpl:23
+msgid "При объединении заказов, данные скидок и подарочных сертификатов будут проигнорированы, сохранятся только начальная и конечная цены."
+msgstr ""
+
+#: application/modules/shop/admin/templates/orders/list.tpl:24
+msgid "Способы оплаты и доставки будут выбраны с более старого заказа."
+msgstr ""
+
+#: application/modules/shop/admin/templates/orders/list.tpl:25
+msgid "Изначальные заказы будут удалены!"
+msgstr ""
+
+#: application/modules/shop/admin/templates/orders/list.tpl:29
+msgid "Merge"
+msgstr ""
+
+#: application/modules/shop/admin/currencies.php:380
+msgid "The field %s must be numeric"
+msgstr ""
+
 #: templates/administrator/inc/javascriptVars.tpl:93
 msgid "Select Some Options"
 msgstr "Виберіть опції"
 
-#: templates/administrator/settings_site.tpl:172
+#: templates/administrator/settings_site.tpl:186
 msgid "Use Enhanced Ecommerce - Web Tracking"
 msgstr "Використовувати Enhanced Ecommerce - Web Tracking"
 
-#: application/modules/admin/backup.php:55
+#: application/modules/admin/backup.php:56
 msgid "unlock"
 msgstr "розблокувати"
 
-#: application/modules/admin/backup.php:55
+#: application/modules/admin/backup.php:56
 msgid "lock"
 msgstr "заблокувати"
 
-#: application/modules/shop/admin/orders.php:892
+#: application/modules/shop/admin/orders.php:921
 msgid "Quantity can not be less then 1"
 msgstr "Кількість не може бути меньше одного"
 
-#: application/modules/shop/admin/orders.php:1412
+#: application/modules/shop/admin/orders.php:1461
 msgid "%s can not be less then 1"
 msgstr "%s не може бути меньше одного"
 
@@ -62,7 +139,7 @@ msgstr "Подивитися на сайті"
 msgid "Next product"
 msgstr "Наступний"
 
-#: templates/administrator/js/admin_base_i.js:1074
+#: templates/administrator/js/admin_base_i.js:1101
 msgid "Please specify the product name"
 msgstr "Вкажіть назву продукту"
 
@@ -85,11 +162,11 @@ msgstr "Повідомлення змінено статус"
 msgid "Edit role"
 msgstr "Зміна ролі"
 
-#: application/modules/shop/admin/callbacks.php:394
+#: application/modules/shop/admin/callbacks.php:413
 msgid "Callback theme changed to"
 msgstr "Зворотного виклику, теми змінено"
 
-#: application/modules/shop/admin/products.php:1282
+#: application/modules/shop/admin/products.php:1234
 msgid "moved in category. Category Id:"
 msgstr "переміщено в категорію. Category Id:"
 
@@ -98,7 +175,7 @@ msgstr "переміщено в категорію. Category Id:"
 msgid "Widget edited"
 msgstr "Віджет відредаговано"
 
-#: application/modules/shop/admin/products.php:1282
+#: application/modules/shop/admin/products.php:1234
 msgid "Product Id:"
 msgstr "Id Продукту:"
 
@@ -107,15 +184,15 @@ msgstr "Id Продукту:"
 msgid "Widget settings edited"
 msgstr "Налаштування віджета відредаговано"
 
-#: application/modules/shop/admin/orders.php:597
+#: application/modules/shop/admin/orders.php:614
 msgid "Order status changed to"
 msgstr "Статус замовлення змінений на"
 
-#: application/modules/shop/admin/callbacks.php:356
+#: application/modules/shop/admin/callbacks.php:377
 msgid "Callback status changed to"
 msgstr "Зворотного виклику, статус змінено на"
 
-#: templates/administrator/main.tpl:358
+#: templates/administrator/main.tpl:361
 msgid "Instructions for filling"
 msgstr "Інструкції для наповнення"
 
@@ -123,28 +200,28 @@ msgstr "Інструкції для наповнення"
 msgid "dont show"
 msgstr "не показувати"
 
-#: application/modules/shop/admin/orders.php:638
+#: application/modules/shop/admin/orders.php:659
 msgid "Order paid status changed to Not paid"
 msgstr "Замовлення, сплачений статус змінено на не сплачені"
 
-#: application/modules/shop/admin/products.php:1177
+#: application/modules/shop/admin/products.php:1128
 msgid "Copy product ID:"
 msgstr "Скопіюйте код продукту:"
 
-#: application/modules/shop/admin/orders.php:636
+#: application/modules/shop/admin/orders.php:657
 msgid "Order paid status changed to Paid"
 msgstr "Замовлення, сплачений статус змінено на оплачений"
 
-#: application/modules/shop/admin/products.php:1175
+#: application/modules/shop/admin/products.php:1126
 msgid "Created product clone. Id:"
 msgstr "Створений продукт клонування. Id:"
 
-#: application/modules/shop/admin/orders.php:597
-#: application/modules/shop/admin/orders.php:636
-#: application/modules/shop/admin/orders.php:638
+#: application/modules/shop/admin/orders.php:614
+#: application/modules/shop/admin/orders.php:657
+#: application/modules/shop/admin/orders.php:659
 #: application/modules/shop/admin/notifications.php:215
-#: application/modules/shop/admin/callbacks.php:357
-#: application/modules/shop/admin/callbacks.php:395
+#: application/modules/shop/admin/callbacks.php:378
+#: application/modules/shop/admin/callbacks.php:414
 msgid "Id:"
 msgstr "Id:"
 
@@ -153,9 +230,9 @@ msgstr "Id:"
 msgid "The %s is required"
 msgstr "%s обовязковий"
 
-#: application/modules/shop/admin/products.php:1009
-#: application/modules/shop/admin/products.php:1063
-#: application/modules/shop/admin/products.php:1096
+#: application/modules/shop/admin/products.php:958
+#: application/modules/shop/admin/products.php:1011
+#: application/modules/shop/admin/products.php:1046
 msgid "(copy)"
 msgstr "(копія)"
 
@@ -172,8 +249,8 @@ msgstr "-Не вибрано-"
 msgid "active"
 msgstr "active"
 
-#: application/modules/shop/admin/templates/users/list.tpl:218
-#: application/modules/shop/admin/templates/users/list.tpl:224
+#: application/modules/shop/admin/templates/users/list.tpl:282
+#: application/modules/shop/admin/templates/users/list.tpl:289
 #: application/modules/shop/admin/templates/settings/settings.tpl:1236
 #: application/modules/shop/admin/templates/settings/settings.tpl:1242
 msgid "API Key for Mail Chimp"
@@ -186,16 +263,16 @@ msgstr "API ключ для Mail Chimp"
 msgid "Csv name is already used"
 msgstr "CSV назва вже використовується"
 
-#: application/modules/shop/models2/generated-classes/SProperties.php:26
+#: application/modules/shop/models2/generated-classes/SProperties.php:25
 msgid "CSV column name "
 msgstr "CSV назва стовпця"
 
-#: application/modules/admin/login.php:51
-#: application/modules/admin/login.php:117
+#: application/modules/admin/login.php:53
+#: application/modules/admin/login.php:120
 msgid "E-mail"
 msgstr "E-mail"
 
-#: application/modules/admin/settings.php:207
+#: application/modules/admin/settings.php:214
 msgid "Admin email"
 msgstr "E-mail адміністратора"
 
@@ -220,7 +297,7 @@ msgstr "FIO"
 msgid "FTP_connect function is not available"
 msgstr "FTP_connect функція не доступна"
 
-#: templates/administrator/settings_site.tpl:177
+#: templates/administrator/settings_site.tpl:191
 msgid "G.Webmaster"
 msgstr "G.Webmaster"
 
@@ -241,11 +318,11 @@ msgstr "ID"
 msgid "ID / Full Name / Email"
 msgstr "ID / ПІБ / E-mail"
 
-#: templates/administrator/settings_site.tpl:165
+#: templates/administrator/settings_site.tpl:177
 msgid "ID Google Analytics"
 msgstr "ID Google Analytics"
 
-#: templates/administrator/settings_site.tpl:191
+#: templates/administrator/settings_site.tpl:209
 msgid "ID for yandex metric"
 msgstr "ID для Яндекс.Метрика"
 
@@ -257,11 +334,11 @@ msgstr "ID замовлення"
 msgid "Main product ID"
 msgstr "ID основного продукту"
 
-#: application/modules/shop/models2/generated-classes/SProperties.php:24
+#: application/modules/shop/models2/generated-classes/SProperties.php:23
 msgid "ProductId"
 msgstr "ID продукту"
 
-#: templates/administrator/settings_site.tpl:240
+#: templates/administrator/settings_site.tpl:266
 msgid "Page ID"
 msgstr "ID сторінки"
 
@@ -280,40 +357,40 @@ msgstr "IP-адреса автора Списку побажань"
 msgid "ISO"
 msgstr "ISO"
 
-#: templates/administrator/category_edit.tpl:342
+#: templates/administrator/category_edit.tpl:381
 #: templates/administrator/add_page.tpl:136
-#: templates/administrator/edit_page.tpl:171
-#: templates/administrator/settings_site.tpl:328
+#: templates/administrator/edit_page.tpl:174
+#: templates/administrator/settings_site.tpl:364
 #: templates/administrator/cat_translate_edit.tpl:102
-#: templates/administrator/create_cat.tpl:277
+#: templates/administrator/create_cat.tpl:356
 msgid "Meta Description"
 msgstr "Meta Description"
 
-#: templates/administrator/category_edit.tpl:351
+#: templates/administrator/category_edit.tpl:390
 #: templates/administrator/add_page.tpl:146
-#: templates/administrator/edit_page.tpl:181
-#: templates/administrator/settings_site.tpl:316
+#: templates/administrator/edit_page.tpl:184
+#: templates/administrator/settings_site.tpl:350
 #: templates/administrator/cat_translate_edit.tpl:107
-#: templates/administrator/create_cat.tpl:282
+#: templates/administrator/create_cat.tpl:364
 msgid "Meta Keywords"
 msgstr "Meta Keywords"
 
-#: application/modules/admin/categories.php:134
-#: application/modules/admin/categories.php:462
+#: application/modules/admin/categories.php:144
+#: application/modules/admin/categories.php:530
 #: application/modules/admin/pages.php:492
-#: application/modules/admin/settings.php:114
+#: application/modules/admin/settings.php:116
 msgid "Keywords"
 msgstr "Meta Keywords"
 
-#: templates/administrator/category_edit.tpl:335
+#: templates/administrator/category_edit.tpl:374
 #: templates/administrator/add_page.tpl:127
-#: templates/administrator/edit_page.tpl:162
+#: templates/administrator/edit_page.tpl:165
 #: templates/administrator/cat_translate_edit.tpl:97
-#: templates/administrator/create_cat.tpl:272
+#: templates/administrator/create_cat.tpl:348
 msgid "Meta Title"
 msgstr "Meta Title"
 
-#: application/modules/admin/categories.php:464
+#: application/modules/admin/categories.php:532
 msgid "Meta title"
 msgstr "Meta-заголовок"
 
@@ -326,8 +403,8 @@ msgstr "Off введені вручну"
 msgid "PHP SOAP extension is not installed"
 msgstr "PHP SOAP extension не встановлюється"
 
-#: templates/administrator/js/admin_base_i.js:1230
-#: templates/administrator/js/admin_base_i.js:1378
+#: templates/administrator/js/admin_base_i.js:1257
+#: templates/administrator/js/admin_base_i.js:1405
 msgid "PHP GD library is not installed"
 msgstr "PHP бібліотека GD не встановлена"
 
@@ -379,7 +456,7 @@ msgid "Auto"
 msgstr "Авто"
 
 #: templates/administrator/category_edit.tpl:85
-#: templates/administrator/create_cat.tpl:55
+#: templates/administrator/create_cat.tpl:61
 msgid "AutoFit"
 msgstr "Автодобір"
 
@@ -393,19 +470,20 @@ msgstr "Автозавантаження"
 #: application/modules/shop/admin/templates/categories/create_elfinder.tpl:109
 #: application/modules/shop/admin/templates/categories/edit_elfiner.tpl:130
 #: application/modules/shop/admin/templates/products/default_edit.tpl:554
-#: application/modules/shop/admin/templates/products/create.tpl:242
+#: application/modules/shop/admin/templates/products/create.tpl:243
 msgid "Autoselection"
 msgstr "Автозаповнення"
 
 #: templates/administrator/add_page.tpl:108
 #: templates/administrator/add_page.tpl:140
 #: templates/administrator/edit_page.tpl:140
-#: templates/administrator/edit_page.tpl:175
+#: templates/administrator/edit_page.tpl:147
+#: templates/administrator/edit_page.tpl:178
 msgid "Autocomplete"
 msgstr "Автозаповнення"
 
 #: templates/administrator/add_page.tpl:150
-#: templates/administrator/edit_page.tpl:185
+#: templates/administrator/edit_page.tpl:188
 msgid "Autocomplete words"
 msgstr "Автозаповнення"
 
@@ -445,7 +523,7 @@ msgstr "Адмініструвати сайт"
 msgid "Email"
 msgstr "Адреса"
 
-#: templates/administrator/settings_site.tpl:459
+#: templates/administrator/settings_site.tpl:512
 msgid "Address"
 msgstr "Адреса"
 
@@ -459,7 +537,7 @@ msgstr "Адреса доставки"
 msgid "Delivery address specified by the customer"
 msgstr "Адреса доставки, вказана замовником"
 
-#: application/modules/admin/admin.php:207
+#: application/modules/admin/admin.php:220
 msgid "Site address"
 msgstr "Адреса сайту"
 
@@ -482,10 +560,10 @@ msgstr "Аксесуари"
 #: application/modules/shop/admin/templates/commulative/edit.tpl:49
 #: application/modules/shop/admin/templates/customfields/list.tpl:78
 #: application/modules/shop/admin/templates/settings/settings.tpl:315
-#: application/modules/shop/admin/templates/paymentmethods/list.tpl:54
-#: application/modules/shop/admin/templates/paymentmethods/list.tpl:77
+#: application/modules/shop/admin/templates/paymentmethods/list.tpl:53
+#: application/modules/shop/admin/templates/paymentmethods/list.tpl:82
 #: application/modules/shop/admin/templates/paymentmethods/create.tpl:62
-#: application/modules/shop/admin/templates/paymentmethods/edit.tpl:62
+#: application/modules/shop/admin/templates/paymentmethods/edit.tpl:49
 #: application/modules/shop/admin/templates/deliverymethods/list.tpl:53
 #: application/modules/shop/admin/templates/deliverymethods/create.tpl:48
 #: application/modules/shop/admin/templates/deliverymethods/edit.tpl:49
@@ -517,8 +595,8 @@ msgstr "Активними до тих пір, поки"
 #: application/modules/shop/admin/templates/search/list.tpl:207
 #: application/modules/shop/admin/templates/search/list.tpl:341
 #: application/modules/shop/admin/templates/search/list.tpl:343
-#: application/modules/shop/admin/templates/search/list.tpl:468
-#: application/modules/shop/admin/templates/search/list.tpl:470
+#: application/modules/shop/admin/templates/search/list.tpl:476
+#: application/modules/shop/admin/templates/search/list.tpl:478
 #: application/modules/shop/admin/templates/products/_create.tpl:159
 #: application/modules/shop/admin/templates/products/list.tpl:95
 #: application/modules/shop/admin/templates/products/list.tpl:97
@@ -555,6 +633,7 @@ msgstr "Акції"
 msgid "English"
 msgstr "Англійська"
 
+#: application/modules/shop/admin/orders.php:1974
 #: application/modules/shop/admin/templates/products/default_edit.tpl:68
 #: application/modules/shop/admin/templates/products/create.tpl:96
 msgid "Number"
@@ -593,7 +672,7 @@ msgstr "Баланс"
 msgid "Баланс:"
 msgstr "Баланс:"
 
-#: templates/administrator/main.tpl:193
+#: templates/administrator/main.tpl:196
 msgid "Balance:"
 msgstr "Баланс:"
 
@@ -602,7 +681,7 @@ msgid "Banners"
 msgstr "Банери"
 
 #: templates/administrator/category_edit.tpl:96
-#: templates/administrator/create_cat.tpl:65
+#: templates/administrator/create_cat.tpl:72
 msgid "Parent category"
 msgstr "Батьківська категорія"
 
@@ -610,12 +689,12 @@ msgstr "Батьківська категорія"
 msgid "Parent Category"
 msgstr "Батьківська Категорія"
 
-#: application/modules/admin/categories.php:132
-#: application/modules/admin/categories.php:330
+#: application/modules/admin/categories.php:142
+#: application/modules/admin/categories.php:340
 msgid "Parent"
 msgstr "Батьківська категорія"
 
-#: application/modules/shop/admin/templates/orders/list.tpl:92
+#: application/modules/shop/admin/templates/orders/list.tpl:111
 msgid "no delivery"
 msgstr "без доставки"
 
@@ -623,7 +702,6 @@ msgstr "без доставки"
 msgid "Without category"
 msgstr "Без категорії"
 
-#: templates/administrator/desktop.tpl:107
 #: templates/administrator/new_desktop.tpl:67
 #: templates/administrator/pages_list.tpl:10
 #: templates/administrator/pages_list.tpl:28
@@ -653,7 +731,7 @@ msgstr "Безкоштовно"
 #: application/modules/shop/admin/templates/users/edit_1.tpl:208
 #: application/modules/shop/admin/templates/users/edit.tpl:205
 #: application/modules/shop/admin/templates/dashboard/dashboard.tpl:93
-#: application/modules/shop/admin/templates/orders/edit.tpl:452
+#: application/modules/shop/admin/templates/orders/edit.tpl:457
 msgid "Unpaid"
 msgstr "Безкоштовно"
 
@@ -684,30 +762,30 @@ msgstr "Блокувати"
 msgid "Brand"
 msgstr "Бренд"
 
-#: application/modules/shop/admin/brands.php:361
-#: application/modules/shop/admin/brands.php:362
+#: application/modules/shop/admin/brands.php:354
+#: application/modules/shop/admin/brands.php:355
 msgid "Brand (s) has been successfully removed (s)"
 msgstr "Бренд (и) був успішно видалений (і)"
 
 #: application/modules/shop/admin/templates/products/_create.tpl:166
 #: application/modules/shop/admin/templates/products/default_edit.tpl:176
 #: application/modules/shop/admin/templates/products/_edit.tpl:193
-#: application/modules/shop/admin/templates/products/create.tpl:169
+#: application/modules/shop/admin/templates/products/create.tpl:170
 msgid "Brand name"
 msgstr "Бренд виробника"
 
-#: application/modules/shop/admin/brands.php:309
+#: application/modules/shop/admin/brands.php:303
 msgid "Brand edited"
 msgstr "Бренд відредаговано"
 
-#: application/modules/shop/admin/brands.php:224
-#: application/modules/shop/admin/brands.php:452
+#: application/modules/shop/admin/brands.php:218
+#: application/modules/shop/admin/brands.php:440
 msgid "Brand not found"
 msgstr "Бренд не знайдено"
 
-#: application/modules/shop/admin/products.php:1495
-#: application/modules/shop/admin/brands.php:193
-#: application/modules/shop/admin/brands.php:194
+#: application/modules/shop/admin/products.php:1449
+#: application/modules/shop/admin/brands.php:188
+#: application/modules/shop/admin/brands.php:189
 msgid "Brand created"
 msgstr "Бренд створений"
 
@@ -790,7 +868,7 @@ msgstr "Будь ласка, введіть те ж значення знову"
 msgid "Please enter only digits."
 msgstr "Будь ласка, введіть тільки цифри"
 
-#: templates/administrator/settings_site.tpl:420
+#: templates/administrator/settings_site.tpl:469
 msgid "Please use function siteinfo() with the parameter"
 msgstr "Будь ласка, використовуйте функцію електронної пошти siteinfo() з параметром"
 
@@ -798,7 +876,7 @@ msgstr "Будь ласка, використовуйте функцію еле�
 msgid "Please fix this field."
 msgstr "Будь ласка, виправте це поле"
 
-#: application/modules/admin/login.php:121
+#: application/modules/admin/login.php:124
 msgid "Please check your email for instructions on how to activate the new password."
 msgstr "Будь ласка, перевірте вашу електронну пошту для отримання інструкцій про те, як активувати новий пароль"
 
@@ -838,7 +916,7 @@ msgstr "Валюта"
 msgid "The currency is in use in the products. Recalculate?"
 msgstr "Валюта використовується в продуктах. Перераховувати?"
 
-#: application/modules/shop/admin/currencies.php:143
+#: application/modules/shop/admin/currencies.php:152
 msgid "Currency was updated"
 msgstr "Валюти був оновлений"
 
@@ -868,7 +946,7 @@ msgstr "Вартість комплекту"
 msgid "Gift certificate price"
 msgstr "Вартість подарункового сертифікату"
 
-#: application/modules/shop/admin/orders.php:1934
+#: application/modules/shop/admin/orders.php:1973
 #: application/modules/shop/admin/templates/orders/cart_list.tpl:65
 msgid "Option"
 msgstr "Варіант"
@@ -877,7 +955,7 @@ msgstr "Варіант"
 msgid "Variant"
 msgstr "Варіант товару"
 
-#: application/modules/shop/admin/templates/search/list.tpl:474
+#: application/modules/shop/admin/templates/search/list.tpl:482
 #: application/modules/shop/admin/templates/search/advanced.tpl:156
 msgid "Variants"
 msgstr "Варіанти"
@@ -897,7 +975,7 @@ msgstr "Варіанти виробів"
 msgid "Discount options"
 msgstr "Варіанти знижки"
 
-#: application/modules/admin/admin.php:193
+#: application/modules/admin/admin.php:206
 msgid "Your Email"
 msgstr "Ваш E-mail"
 
@@ -909,15 +987,15 @@ msgstr "Ваш ключ оновлення"
 msgid "Your phone field"
 msgstr "Ваш телефон полі"
 
-#: application/modules/admin/admin.php:194
+#: application/modules/admin/admin.php:207
 msgid "Your remark"
 msgstr "Ваше зауваження"
 
-#: application/modules/admin/admin.php:218
+#: application/modules/admin/admin.php:230
 msgid "Your message has been sent"
 msgstr "Ваше повідомлення надіслане"
 
-#: application/modules/admin/admin.php:192
+#: application/modules/admin/admin.php:205
 msgid "Your Name"
 msgstr "Ваше ім'я"
 
@@ -926,7 +1004,7 @@ msgid "Your name field"
 msgstr "Ваше ім'я поля"
 
 #: templates/administrator/main_elfinder.tpl:317
-#: templates/administrator/main.tpl:331
+#: templates/administrator/main.tpl:334
 msgid "Ваши вопросы"
 msgstr "Ваші запитання"
 
@@ -1018,7 +1096,7 @@ msgstr "Ввімкніть"
 #: templates/administrator/main_elfinder.tpl:360
 #: templates/administrator/module_table.tpl:149
 #: templates/administrator/dashboard.tpl:122
-#: templates/administrator/main.tpl:400
+#: templates/administrator/main.tpl:403
 #: templates/administrator/modules_search.tpl:64
 msgid "Version"
 msgstr "Версія"
@@ -1039,7 +1117,7 @@ msgstr "Вже зарезервоване таке ім'я категорії"
 msgid " already exists. Specify or select another URL"
 msgstr "вже існує. Введіть або виберіть інший URL"
 
-#: templates/administrator/settings_site.tpl:509
+#: templates/administrator/settings_site.tpl:566
 msgid "you entered as a contact type"
 msgstr "ви ввели в якості контактного типу"
 
@@ -1081,11 +1159,11 @@ msgstr "Ви не встановили для себе набір основни
 msgid "You did not ask for a set of main commodity"
 msgstr "Ви не встановили для себе набір основних товарних"
 
-#: application/modules/admin/categories.php:572
+#: application/modules/admin/categories.php:638
 msgid "You can not delete the last category from the list"
 msgstr "Ви не можете видалити останню категорію зі списку"
 
-#: application/modules/shop/admin/orders.php:698
+#: application/modules/shop/admin/orders.php:729
 msgid "You can not delete the last item from the order"
 msgstr "Ви не можете вилучити останній елемент замовлення"
 
@@ -1098,7 +1176,7 @@ msgstr "Ви не обрали"
 msgid "You must attach the goods to create a set"
 msgstr "Ви повинні прикріпити товари для створення набору"
 
-#: templates/administrator/settings_site.tpl:77
+#: templates/administrator/settings_site.tpl:84
 msgid "Installing the template you agree to the"
 msgstr "Ви погоджуєетесь встановити шаблон з"
 
@@ -1111,7 +1189,7 @@ msgid "Select"
 msgstr "Виберіть"
 
 #: templates/administrator/category_edit.tpl:119
-#: templates/administrator/create_cat.tpl:85
+#: templates/administrator/create_cat.tpl:96
 msgid "Select a field group for a category"
 msgstr "Виберіть групу полів для категорії"
 
@@ -1172,24 +1250,24 @@ msgstr "Вибрані"
 msgid "Selected products"
 msgstr "Вибрані продукти"
 
-#: application/modules/shop/admin/templates/users/list.tpl:83
-#: application/modules/shop/admin/templates/users/list.tpl:89
-#: application/modules/shop/admin/templates/callbacks/list.tpl:101
+#: application/modules/shop/admin/templates/users/list.tpl:119
+#: application/modules/shop/admin/templates/users/list.tpl:125
 #: application/modules/shop/admin/templates/callbacks/list.tpl:112
-#: application/modules/shop/admin/templates/orders/list.tpl:135
-#: application/modules/shop/admin/templates/orders/list.tpl:141
+#: application/modules/shop/admin/templates/callbacks/list.tpl:123
+#: application/modules/shop/admin/templates/orders/list.tpl:154
+#: application/modules/shop/admin/templates/orders/list.tpl:160
 msgid "choose a date"
 msgstr "вибрати дату"
 
 #: templates/administrator/add_page.tpl:237
 #: templates/administrator/add_page.tpl:251
-#: templates/administrator/edit_page.tpl:270
-#: templates/administrator/edit_page.tpl:285
+#: templates/administrator/edit_page.tpl:273
+#: templates/administrator/edit_page.tpl:288
 msgid "choose date"
 msgstr "вибрати дату"
 
 #: application/modules/shop/admin/templates/products/default_edit.tpl:205
-#: application/modules/shop/admin/templates/products/create.tpl:196
+#: application/modules/shop/admin/templates/products/create.tpl:197
 msgid "Chose additional categories"
 msgstr "Вибрати додаткові категорії"
 
@@ -1203,9 +1281,9 @@ msgstr "Вибрати додаткові категорії"
 #: templates/administrator/cat_translate_edit.tpl:74
 #: templates/administrator/cat_translate_edit.tpl:78
 #: templates/administrator/cat_translate_edit.tpl:82
-#: templates/administrator/create_cat.tpl:124
-#: templates/administrator/create_cat.tpl:129
-#: templates/administrator/create_cat.tpl:135
+#: templates/administrator/create_cat.tpl:140
+#: templates/administrator/create_cat.tpl:145
+#: templates/administrator/create_cat.tpl:151
 msgid "Choose an image "
 msgstr "Вибрати зображення"
 
@@ -1214,7 +1292,7 @@ msgstr "Вибрати зображення"
 msgid "Choose an image"
 msgstr "Вибрати зображення"
 
-#: templates/administrator/settings_site.tpl:58
+#: templates/administrator/settings_site.tpl:61
 msgid "Select admin language"
 msgstr "Вибір мови для адмінпанелі"
 
@@ -1256,7 +1334,7 @@ msgstr "Видалення бренду"
 msgid "Removing properties"
 msgstr "Видалення властивості"
 
-#: application/modules/shop/admin/products.php:1200
+#: application/modules/shop/admin/products.php:1151
 msgid "Deleted complete"
 msgstr "Видалення завершено"
 
@@ -1269,8 +1347,8 @@ msgid "Delete categories"
 msgstr "Видалення категорій"
 
 #: application/modules/shop/admin/templates/users/list.tpl:7
-#: application/modules/shop/admin/templates/users/list.tpl:19
-#: application/modules/shop/admin/templates/users/list.tpl:20
+#: application/modules/shop/admin/templates/users/list.tpl:43
+#: application/modules/shop/admin/templates/users/list.tpl:44
 msgid "Deleting a user"
 msgstr "Видалення користувача"
 
@@ -1279,8 +1357,8 @@ msgstr "Видалення користувача"
 msgid "Removing Gift Certificate"
 msgstr "Видалення подарунковий сертифікату"
 
-#: application/modules/shop/admin/customfields.php:224
-#: application/modules/shop/admin/customfields.php:225
+#: application/modules/shop/admin/customfields.php:227
+#: application/modules/shop/admin/customfields.php:228
 msgid "Field is removed"
 msgstr "Видалення поля"
 
@@ -1302,8 +1380,8 @@ msgstr "Видалення способів оплати"
 msgid "Delete pages"
 msgstr "Видалення сторінок"
 
-#: application/modules/admin/categories.php:583
-#: application/modules/admin/categories.php:615
+#: application/modules/admin/categories.php:649
+#: application/modules/admin/categories.php:681
 msgid "Deleted ID category or ID category has been deleted"
 msgstr "Видалено ID категорії"
 
@@ -1325,7 +1403,7 @@ msgstr "Видалено віджет"
 #: templates/administrator/privilegeList.tpl:65
 #: templates/administrator/backup.tpl:34
 #: templates/administrator/languages.tpl:14
-#: templates/administrator/languages.tpl:30
+#: templates/administrator/languages.tpl:29
 #: templates/administrator/roleList.tpl:13
 #: templates/administrator/roleList.tpl:32
 #: templates/administrator/sys_update.tpl:166
@@ -1335,8 +1413,8 @@ msgid "Delete"
 msgstr "Видалити"
 
 #: templates/administrator/inc/javascriptVars.tpl:111
-#: templates/administrator/settings_site.tpl:502
-#: templates/administrator/settings_site.tpl:517
+#: templates/administrator/settings_site.tpl:559
+#: templates/administrator/settings_site.tpl:574
 msgid "Remove"
 msgstr "Видалити"
 
@@ -1456,7 +1534,7 @@ msgstr "Видалити замовлення"
 msgid "Delete the query?"
 msgstr "Видалити запит?"
 
-#: application/modules/shop/admin/templates/callbacks/list.tpl:289
+#: application/modules/shop/admin/templates/callbacks/list.tpl:300
 #: application/modules/shop/admin/templates/callbacks/_list.tpl:195
 msgid "Remove callback(s)"
 msgstr "Видалити зворотній дзвінок(ки)"
@@ -1526,7 +1604,6 @@ msgstr "Видалити ролі"
 msgid "Remove roles?"
 msgstr "Видалити ролі?"
 
-#: templates/administrator/desktop.tpl:157
 #: templates/administrator/new_desktop.tpl:122
 msgid "Clear old or Delete outdated posts or information"
 msgstr "Видалити старі пости або інформацію"
@@ -1557,7 +1634,7 @@ msgstr "Видаляти скасовані замовлення"
 msgid "Delete canceled messages"
 msgstr "Видаляти скасовані повідомлення"
 
-#: application/modules/shop/models2/generated-classes/SProperties.php:35
+#: application/modules/shop/models2/generated-classes/SProperties.php:34
 msgid "Use in categories"
 msgstr "Використовувати в категоріях"
 
@@ -1569,7 +1646,7 @@ msgstr "Використовувати подарункові сертифіка
 msgid "Delete the selected queries?"
 msgstr "Вилучити обрані запити?"
 
-#: templates/administrator/settings_site.tpl:45
+#: templates/administrator/settings_site.tpl:46
 msgid "Site shutdown"
 msgstr "Вимкнення сайту"
 
@@ -1590,8 +1667,8 @@ msgstr "Вимкнути"
 msgid "Turn off"
 msgstr "Вимкнути"
 
-#: application/modules/shop/admin/orders.php:718
-#: application/modules/shop/admin/orders.php:733
+#: application/modules/shop/admin/orders.php:748
+#: application/modules/shop/admin/orders.php:763
 msgid "Product is removed from the Order"
 msgstr "Виріб знімається з замовлення"
 
@@ -1607,13 +1684,12 @@ msgstr "Висота"
 msgid "Height, px"
 msgstr "Висота, px"
 
-#: templates/administrator/desktop.tpl:166
 #: templates/administrator/main_elfinder.tpl:246
-#: templates/administrator/main.tpl:263
+#: templates/administrator/main.tpl:266
 msgid "Exit"
 msgstr "Вихід"
 
-#: application/modules/admin/admin.php:183
+#: application/modules/admin/admin.php:196
 msgid "Exited the control panel"
 msgstr "Вихід з панелі управління"
 
@@ -1702,16 +1778,12 @@ msgstr "Внизу"
 msgid "Watermark"
 msgstr "Водяний знак"
 
-#: templates/administrator/desktop.tpl:87
-msgid "Forward"
-msgstr "Вперед"
-
 #: application/modules/admin/pages.php:1039
-#: application/modules/admin/admin_logs.php:48
+#: application/modules/admin/admin_logs.php:49
 msgid "Next"
 msgstr "Вперед"
 
-#: application/modules/shop/admin/orders.php:173
+#: application/modules/shop/admin/orders.php:182
 msgid "Forward&nbsp;"
 msgstr "Вперед"
 
@@ -1758,7 +1830,7 @@ msgid "Installed a module"
 msgstr "Встановлено модуль"
 
 #: templates/administrator/add_page.tpl:265
-#: templates/administrator/edit_page.tpl:299
+#: templates/administrator/edit_page.tpl:302
 msgid "All"
 msgstr "Всі"
 
@@ -1766,7 +1838,7 @@ msgstr "Всі"
 msgid "All orders"
 msgstr "Всі замовлення"
 
-#: application/modules/shop/admin/templates/callbacks/list.tpl:272
+#: application/modules/shop/admin/templates/callbacks/list.tpl:283
 #: application/modules/shop/admin/templates/callbacks/_list.tpl:179
 msgid "All Callbacks "
 msgstr "Всі зворотні виклики"
@@ -1780,12 +1852,6 @@ msgstr "Всі знайдені продукти"
 msgid "All categories"
 msgstr "Всі категорії"
 
-#: application/modules/shop/admin/templates/users/list.tpl:77
-#: application/modules/shop/admin/templates/users/list.tpl:128
-msgid "Simple user"
-msgstr "Всі користувачі"
-
-#: templates/administrator/desktop.tpl:132
 #: templates/administrator/inc/menus_premmerce.php:76
 #: templates/administrator/inc/menus_premmerce.php:290
 #: templates/administrator/inc/menus.php:76
@@ -1808,14 +1874,14 @@ msgstr "Від"
 #: application/modules/shop/admin/templates/comulativ/create.tpl:37
 #: application/modules/shop/admin/templates/comulativ/edit.tpl:55
 #: application/modules/shop/admin/templates/commulative/edit.tpl:55
-#: application/modules/shop/admin/templates/users/list.tpl:83
-#: application/modules/shop/admin/templates/users/list.tpl:97
-#: application/modules/shop/admin/templates/callbacks/list.tpl:99
+#: application/modules/shop/admin/templates/users/list.tpl:119
+#: application/modules/shop/admin/templates/users/list.tpl:133
+#: application/modules/shop/admin/templates/callbacks/list.tpl:110
 #: application/modules/shop/admin/templates/deliverymethods/list.tpl:52
 #: application/modules/shop/admin/templates/deliverymethods/create.tpl:82
 #: application/modules/shop/admin/templates/deliverymethods/edit.tpl:85
-#: application/modules/shop/admin/templates/orders/list.tpl:135
-#: application/modules/shop/admin/templates/orders/list.tpl:155
+#: application/modules/shop/admin/templates/orders/list.tpl:154
+#: application/modules/shop/admin/templates/orders/list.tpl:174
 msgid "from"
 msgstr "від"
 
@@ -1860,7 +1926,6 @@ msgstr "Віджет успішно видалений"
 msgid "Widget successfully created"
 msgstr "Віджет успішно створений"
 
-#: templates/administrator/desktop.tpl:145
 #: templates/administrator/inc/menus_premmerce.php:88
 #: templates/administrator/inc/menus_premmerce.php:372
 #: templates/administrator/inc/menus.php:88
@@ -1874,7 +1939,7 @@ msgstr "Віджети"
 msgid "Displayed categories selection"
 msgstr "Відкрити обрані категорії"
 
-#: templates/administrator/settings_site.tpl:108
+#: templates/administrator/settings_site.tpl:117
 msgid "Open the site for indexing robots"
 msgstr "Відкрити сайт для індексації роботами"
 
@@ -1905,22 +1970,22 @@ msgstr "Відновлення"
 msgid "Password recovery"
 msgstr "Відновлення паролю"
 
-#: templates/administrator/settings_site.tpl:88
+#: templates/administrator/settings_site.tpl:95
 msgid "Display category tree in the content"
 msgstr "Відображати дерево категорій у списку вмістимого"
 
-#: templates/administrator/settings_site.tpl:303
+#: templates/administrator/settings_site.tpl:335
 msgid "Whether to display the category name in the title page"
 msgstr "Відображати назву категорії в заголовку сторінки?"
 
-#: templates/administrator/category_edit.tpl:259
-#: templates/administrator/create_cat.tpl:207
+#: templates/administrator/category_edit.tpl:265
+#: templates/administrator/create_cat.tpl:237
 msgid "Display pages of other categories"
 msgstr "Відображати сторінки інших категорій"
 
 #: templates/administrator/main_elfinder.tpl:393
 #: templates/administrator/forgot_password.tpl:53
-#: templates/administrator/main.tpl:461
+#: templates/administrator/main.tpl:464
 #: templates/administrator/move_pages.tpl:9
 msgid "Send"
 msgstr "Відправити"
@@ -1986,9 +2051,8 @@ msgstr "Головна"
 msgid "Main"
 msgstr "Головна"
 
-#: templates/administrator/desktop.tpl:152
-#: templates/administrator/settings_site.tpl:20
-#: templates/administrator/settings_site.tpl:210
+#: templates/administrator/settings_site.tpl:21
+#: templates/administrator/settings_site.tpl:230
 msgid "Main page"
 msgstr "Головна сторінка"
 
@@ -2000,11 +2064,11 @@ msgstr "Головна сторінка шаблону"
 msgid "Main page template "
 msgstr "Головна сторінка шаблону"
 
-#: templates/administrator/settings_site.tpl:468
+#: templates/administrator/settings_site.tpl:522
 msgid "Main phone"
 msgstr "Головний телефон"
 
-#: application/modules/admin/categories.php:139
+#: application/modules/admin/categories.php:149
 msgid "Main template"
 msgstr "Головний шаблон"
 
@@ -2026,17 +2090,17 @@ msgid "Users group"
 msgstr "Група користувачів"
 
 #: templates/administrator/category_edit.tpl:107
-#: templates/administrator/create_cat.tpl:75
+#: templates/administrator/create_cat.tpl:84
 msgid "Field group"
 msgstr "Група полів"
 
 #: templates/administrator/category_edit.tpl:134
-#: templates/administrator/create_cat.tpl:96
+#: templates/administrator/create_cat.tpl:108
 msgid "Pages fields group"
 msgstr "Група полів сторінки"
 
 #: templates/administrator/main_elfinder.tpl:230
-#: templates/administrator/main.tpl:246
+#: templates/administrator/main.tpl:249
 msgid "Guest"
 msgstr "Гість"
 
@@ -2133,7 +2197,7 @@ msgstr "Дата реєстрації"
 #: application/modules/shop/admin/templates/products/_create.tpl:360
 #: application/modules/shop/admin/templates/products/default_edit.tpl:625
 #: application/modules/shop/admin/templates/products/_edit.tpl:408
-#: application/modules/shop/admin/templates/products/create.tpl:313
+#: application/modules/shop/admin/templates/products/create.tpl:314
 msgid "Date of creation"
 msgstr "Дата створення"
 
@@ -2142,14 +2206,14 @@ msgstr "Дата створення"
 msgid "Creation date"
 msgstr "Дата створення"
 
-#: application/modules/shop/admin/products.php:147
-#: application/modules/shop/admin/products.php:491
+#: application/modules/shop/admin/products.php:144
+#: application/modules/shop/admin/products.php:513
 #: application/modules/shop/admin/templates/dashboard/dashboard.tpl:174
 msgid "Date Created"
 msgstr "Дата створення"
 
 #: templates/administrator/add_page.tpl:246
-#: templates/administrator/edit_page.tpl:280
+#: templates/administrator/edit_page.tpl:283
 msgid "Time and date of publication"
 msgstr "Дата і час публікації"
 
@@ -2164,7 +2228,7 @@ msgstr "Двокрапка"
 msgid "Deposit rates"
 msgstr "Депозитні ставки"
 
-#: application/modules/admin/backup.php:43
+#: application/modules/admin/backup.php:44
 msgid "Some of settings not saved"
 msgstr "Деякі налаштування не збережені"
 
@@ -2172,7 +2236,7 @@ msgstr "Деякі налаштування не збережені"
 msgid "Source"
 msgstr "Джерело"
 
-#: templates/administrator/settings_site.tpl:437
+#: templates/administrator/settings_site.tpl:488
 msgid "For language"
 msgstr "Для мови"
 
@@ -2184,7 +2248,7 @@ msgstr "Для імпортованих зображень буде провод
 msgid "дней"
 msgstr "днів"
 
-#: templates/administrator/main.tpl:196
+#: templates/administrator/main.tpl:199
 msgid "days"
 msgstr "днів"
 
@@ -2205,7 +2269,7 @@ msgid "Adding accessories"
 msgstr "Додавання аксесуарів"
 
 #: application/modules/shop/admin/templates/settings/settings.tpl:230
-#: application/modules/shop/admin/templates/orders/edit.tpl:488
+#: application/modules/shop/admin/templates/orders/edit.tpl:493
 #: application/modules/shop/admin/templates/orders/cart_list.tpl:21
 #: application/modules/shop/admin/templates/products/default_edit.tpl:324
 msgid "Add"
@@ -2224,19 +2288,19 @@ msgstr "Додати в меню"
 #: application/modules/shop/admin/templates/products/default_edit.tpl:157
 #: application/modules/shop/admin/templates/products/_edit.tpl:157
 #: application/modules/shop/admin/templates/products/_edit.tpl:158
-#: application/modules/shop/admin/templates/products/create.tpl:151
+#: application/modules/shop/admin/templates/products/create.tpl:152
 msgid "Add a variant"
 msgstr "Додати варіант"
 
-#: templates/administrator/settings_site.tpl:528
+#: templates/administrator/settings_site.tpl:585
 msgid "Add contact"
 msgstr "Додати контакт"
 
-#: application/modules/shop/admin/templates/orders/edit.tpl:365
+#: application/modules/shop/admin/templates/orders/edit.tpl:370
 msgid "Add a new product to the order"
 msgstr "Додати новий товар на замовлення"
 
-#: application/modules/shop/admin/templates/orders/edit.tpl:483
+#: application/modules/shop/admin/templates/orders/edit.tpl:488
 msgid "Add product to order"
 msgstr "Додати продукт у замовлення"
 
@@ -2258,7 +2322,7 @@ msgstr "Додати статтю"
 msgid "Additional currency"
 msgstr "Додаткова валюта"
 
-#: application/modules/shop/admin/currencies.php:185
+#: application/modules/shop/admin/currencies.php:196
 msgid "Additional currency was edited"
 msgstr "Додаткова валюти була відредагована"
 
@@ -2270,8 +2334,8 @@ msgstr "Додаткова зміна розміру зображення"
 msgid "Additional image"
 msgstr "Додаткове зображення"
 
-#: application/modules/shop/admin/customfields.php:62
-#: application/modules/shop/admin/customfields.php:63
+#: application/modules/shop/admin/customfields.php:58
+#: application/modules/shop/admin/customfields.php:59
 msgid "An additional field is created"
 msgstr "Додаткове поле створюється"
 
@@ -2299,12 +2363,12 @@ msgstr "Додаткові зображення"
 #: application/modules/shop/admin/templates/products/_create.tpl:187
 #: application/modules/shop/admin/templates/products/default_edit.tpl:203
 #: application/modules/shop/admin/templates/products/_edit.tpl:214
-#: application/modules/shop/admin/templates/products/create.tpl:194
+#: application/modules/shop/admin/templates/products/create.tpl:195
 msgid "Additional categories"
 msgstr "Додаткові категорії"
 
 #: application/modules/shop/admin/templates/products/default_edit.tpl:597
-#: application/modules/shop/admin/templates/products/create.tpl:285
+#: application/modules/shop/admin/templates/products/create.tpl:286
 msgid "Advanced settings"
 msgstr "Додаткові налаштування"
 
@@ -2330,7 +2394,7 @@ msgid "Additional fields list"
 msgstr "Додаткові поля списку"
 
 #: templates/administrator/add_page.tpl:190
-#: templates/administrator/edit_page.tpl:225
+#: templates/administrator/edit_page.tpl:228
 msgid "Comment permission"
 msgstr "Дозволити коментування"
 
@@ -2341,8 +2405,8 @@ msgstr " Документ Яндекс.Маркет"
 #: templates/administrator/new_desktop.tpl:162
 #: templates/administrator/main_elfinder.tpl:367
 #: templates/administrator/main_elfinder.tpl:372
-#: templates/administrator/main.tpl:408
-#: templates/administrator/main.tpl:413
+#: templates/administrator/main.tpl:411
+#: templates/administrator/main.tpl:416
 msgid "Documentation"
 msgstr "Документація"
 
@@ -2352,12 +2416,12 @@ msgstr "Допомога"
 
 #: templates/administrator/new_desktop.tpl:158
 #: templates/administrator/main_elfinder.tpl:362
-#: templates/administrator/main.tpl:402
+#: templates/administrator/main.tpl:405
 msgid "Help us get better"
 msgstr "Допоможіть нам стати краще"
 
-#: application/modules/shop/admin/orders.php:1345
-#: application/modules/shop/admin/templates/orders/edit.tpl:376
+#: application/modules/shop/admin/orders.php:1381
+#: application/modules/shop/admin/templates/orders/edit.tpl:381
 #: application/modules/shop/admin/templates/orders/cart_list.tpl:28
 msgid "Delivery"
 msgstr "Доставка"
@@ -2375,7 +2439,7 @@ msgid "Delivery and payment"
 msgstr "Доставка та оплата"
 
 #: templates/administrator/add_page.tpl:261
-#: templates/administrator/edit_page.tpl:295
+#: templates/administrator/edit_page.tpl:298
 msgid "Access"
 msgstr "Доступ"
 
@@ -2391,12 +2455,11 @@ msgstr "Доступ за URL-адресою на"
 msgid "Print receipt"
 msgstr "Друк квитанцій"
 
-#: application/modules/shop/admin/orders.php:888
+#: application/modules/shop/admin/orders.php:917
 msgid "Very high price, please set smaller"
 msgstr "Дуже висока ціна, будь ласка, встановіть меншу"
 
-#: application/modules/shop/admin/templates/notifications/list.tpl:69
-#: application/modules/shop/admin/templates/notifications/list.tpl:193
+#: application/modules/shop/admin/templates/notifications/list.tpl:64
 msgid "Valid until"
 msgstr "Дійсний до"
 
@@ -2408,7 +2471,7 @@ msgstr "Дійсний до"
 msgid "Really delete selected products?"
 msgstr "Дійсно видалити вибрані продукти?"
 
-#: application/modules/shop/admin/templates/callbacks/list.tpl:292
+#: application/modules/shop/admin/templates/callbacks/list.tpl:303
 #: application/modules/shop/admin/templates/callbacks/_list.tpl:198
 msgid "Really delete callback(s)"
 msgstr "Дійсно видалити зворотній дзвінок(ки)?"
@@ -2421,20 +2484,20 @@ msgstr "Дія"
 msgid "Actions"
 msgstr "Дії"
 
-#: application/modules/shop/admin/templates/users/list.tpl:44
-#: application/modules/shop/admin/templates/users/list.tpl:171
-#: application/modules/shop/admin/templates/users/list.tpl:207
+#: application/modules/shop/admin/templates/users/list.tpl:75
+#: application/modules/shop/admin/templates/users/list.tpl:232
+#: application/modules/shop/admin/templates/users/list.tpl:271
 #: application/modules/shop/admin/templates/system/export.tpl:4
 #: application/modules/shop/admin/templates/system/export_.tpl:61
 #: application/modules/shop/admin/templates/system/import.tpl:12
 msgid "Export"
 msgstr "Експорт"
 
-#: application/modules/shop/admin/templates/users/list.tpl:192
+#: application/modules/shop/admin/templates/users/list.tpl:255
 msgid "Export CSV gives <br />jumps file with <br />a list of all<br /> users."
 msgstr "Експорт CSV дає <br />скачки файлу з <br />списку<br /> користувачів"
 
-#: application/modules/shop/admin/templates/users/list.tpl:202
+#: application/modules/shop/admin/templates/users/list.tpl:266
 msgid "Export Mailchimp sent <br />to all users on their<br /> email subscription<br /> form on your<br /> news rassilku."
 msgstr "Експорт Mailchimp відправлено <br />для всіх користувачів на їх<br /> e-mail для підписки<br /> з Вашої<br /> розсилки новин"
 
@@ -2463,11 +2526,10 @@ msgstr "Електронна пошта веб-майстра сайту"
 msgid "No profiles"
 msgstr "Жодних профілів"
 
-#: templates/administrator/widgets_list.tpl:110
+#: templates/administrator/widgets_list.tpl:109
 msgid "No widgets created"
 msgstr "Жодних створених віджетів"
 
-#: templates/administrator/desktop.tpl:160
 #: templates/administrator/new_desktop.tpl:126
 #: templates/administrator/logs.tpl:6
 msgid "Event journal"
@@ -2482,17 +2544,17 @@ msgid "Events journal"
 msgstr "Журнал подій"
 
 #: templates/administrator/category_edit.tpl:229
-#: templates/administrator/create_cat.tpl:183
+#: templates/administrator/create_cat.tpl:205
 msgid "by position"
 msgstr "з позиції"
 
 #: templates/administrator/category_edit.tpl:228
-#: templates/administrator/create_cat.tpl:182
+#: templates/administrator/create_cat.tpl:204
 msgid "by alphabet"
 msgstr "за алфавітом"
 
 #: templates/administrator/category_edit.tpl:227
-#: templates/administrator/create_cat.tpl:181
+#: templates/administrator/create_cat.tpl:203
 msgid "by date"
 msgstr "за датою"
 
@@ -2504,7 +2566,7 @@ msgstr "За замовчуванням"
 msgid "by default"
 msgstr "За замовчуванням"
 
-#: application/modules/shop/admin/callbacks.php:330
+#: application/modules/shop/admin/callbacks.php:352
 msgid "Default status was changed"
 msgstr "За замовчуванням статус змінився"
 
@@ -2520,7 +2582,7 @@ msgid "Banned"
 msgstr "Заборонені"
 
 #: templates/administrator/forgot_password.tpl:41
-#: templates/administrator/login_page.tpl:84
+#: templates/administrator/login_page.tpl:85
 msgid "Forgot your password?"
 msgstr "Забули пароль?"
 
@@ -2538,8 +2600,8 @@ msgid "Download"
 msgstr "Завантажити"
 
 #: application/modules/shop/admin/templates/products/default_edit.tpl:99
-#: application/modules/shop/admin/templates/products/create.tpl:117
-#: application/modules/shop/admin/templates/products/create.tpl:395
+#: application/modules/shop/admin/templates/products/create.tpl:118
+#: application/modules/shop/admin/templates/products/create.tpl:397
 #: application/modules/shop/admin/templates/products/edit.tpl:151
 msgid "Load from internet"
 msgstr "Завантажити з Інтернету"
@@ -2552,17 +2614,17 @@ msgstr "Завершено"
 msgid "Completed"
 msgstr "Завершено"
 
-#: application/modules/shop/admin/templates/orders/check.tpl:167
-#: application/modules/shop/admin/templates/orders/check.tpl:170
-#: application/modules/shop/admin/templates/orders/edit.tpl:401
+#: application/modules/shop/admin/templates/orders/check.tpl:165
+#: application/modules/shop/admin/templates/orders/check.tpl:168
+#: application/modules/shop/admin/templates/orders/edit.tpl:406
 msgid "In total"
 msgstr "Загалом"
 
-#: application/modules/shop/admin/orders.php:1960
+#: application/modules/shop/admin/orders.php:2002
 #: application/modules/shop/admin/templates/users/edit_1.tpl:154
 #: application/modules/shop/admin/templates/users/edit.tpl:150
-#: application/modules/shop/admin/templates/orders/list.tpl:92
-#: application/modules/shop/admin/templates/orders/check.tpl:70
+#: application/modules/shop/admin/templates/orders/list.tpl:111
+#: application/modules/shop/admin/templates/orders/check.tpl:68
 #: application/modules/shop/admin/templates/orders/create.tpl:287
 #: application/modules/shop/admin/templates/orders/edit.tpl:245
 msgid "Total price"
@@ -2576,12 +2638,12 @@ msgstr "Загальна інформація"
 msgid "Total file caching"
 msgstr "Загальне кешування файлів"
 
-#: templates/administrator/settings_site.tpl:18
-#: templates/administrator/settings_site.tpl:34
+#: templates/administrator/settings_site.tpl:19
+#: templates/administrator/settings_site.tpl:35
 msgid "General Settings"
 msgstr "Загальні налаштування"
 
-#: templates/administrator/login_page.tpl:74
+#: templates/administrator/login_page.tpl:75
 msgid "Log in"
 msgstr "Зайти"
 
@@ -2596,8 +2658,8 @@ msgstr "Закрити"
 msgid "Close fast create"
 msgstr "Закрити швидке створення"
 
-#: templates/administrator/settings_site.tpl:320
-#: templates/administrator/settings_site.tpl:332
+#: templates/administrator/settings_site.tpl:356
+#: templates/administrator/settings_site.tpl:370
 msgid "Leave empty"
 msgstr "Залишити порожнім"
 
@@ -2632,36 +2694,36 @@ msgstr "Замовлення"
 msgid "Order"
 msgstr "Замовлення"
 
-#: application/modules/shop/admin/orders.php:1616
+#: application/modules/shop/admin/orders.php:1659
 msgid "Order was successfully created"
 msgstr "Замовлення було успішно створено,"
 
-#: application/modules/shop/admin/orders.php:561
+#: application/modules/shop/admin/orders.php:578
 msgid "Order deleted"
 msgstr "Замовлення видалено"
 
-#: application/modules/shop/admin/orders.php:562
+#: application/modules/shop/admin/orders.php:579
 msgid "Orders are removed"
 msgstr "Замовлення видаляються"
 
-#: application/modules/shop/admin/orders.php:345
+#: application/modules/shop/admin/orders.php:358
 msgid "Order edited"
 msgstr "Замовлення відредаговано"
 
-#: application/modules/shop/admin/orders.php:238
+#: application/modules/shop/admin/orders.php:249
 msgid "Order not found"
 msgstr "Замовлення не знайдено"
 
-#: application/modules/shop/admin/orders.php:1567
+#: application/modules/shop/admin/orders.php:1612
 msgid "Order bad "
 msgstr "Замовлення погане"
 
-#: application/modules/shop/admin/orders.php:1614
+#: application/modules/shop/admin/orders.php:1657
 msgid "Order is created"
 msgstr "Замовлення створено"
 
-#: application/modules/shop/admin/templates/orders/list.tpl:290
-#: application/modules/shop/admin/templates/orders/list.tpl:300
+#: application/modules/shop/admin/templates/orders/list.tpl:309
+#: application/modules/shop/admin/templates/orders/list.tpl:319
 msgid "Orders on the page"
 msgstr "Замовлень на сторінці"
 
@@ -2670,7 +2732,7 @@ msgid "Ordered products"
 msgstr "Замовлені продукти"
 
 #: application/modules/shop/admin/templates/dashboard/dashboard.tpl:25
-#: application/modules/shop/admin/templates/orders/list.tpl:89
+#: application/modules/shop/admin/templates/orders/list.tpl:108
 msgid "Customer"
 msgstr "Замовник"
 
@@ -2679,12 +2741,12 @@ msgstr "Замовник"
 msgid "Member Discount"
 msgstr "Запам'ятати знижку"
 
-#: templates/administrator/login_page.tpl:81
+#: templates/administrator/login_page.tpl:82
 msgid "Remember me"
 msgstr "Запамятати мене"
 
-#: templates/administrator/category_edit.tpl:242
-#: templates/administrator/create_cat.tpl:195
+#: templates/administrator/category_edit.tpl:245
+#: templates/administrator/create_cat.tpl:222
 msgid "Posts on page"
 msgstr "Записів на сторінці"
 
@@ -2692,8 +2754,8 @@ msgstr "Записів на сторінці"
 msgid "Removal requests"
 msgstr "Запити на видалення"
 
-#: templates/administrator/settings_site.tpl:22
-#: templates/administrator/settings_site.tpl:353
+#: templates/administrator/settings_site.tpl:23
+#: templates/administrator/settings_site.tpl:391
 msgid "Enter Meta Tags"
 msgstr "Заповнити мета-теги"
 
@@ -2701,14 +2763,14 @@ msgstr "Заповнити мета-теги"
 msgid "Fill in the required fields."
 msgstr "Заповніть необхідні поля"
 
-#: application/modules/admin/admin.php:97
+#: application/modules/admin/admin.php:106
 msgid "Outdated files have been deleted"
 msgstr "Застарілі файли були видалені"
 
 #: templates/administrator/category_edit.tpl:126
 #: templates/administrator/category_edit.tpl:151
-#: templates/administrator/create_cat.tpl:90
-#: templates/administrator/create_cat.tpl:110
+#: templates/administrator/create_cat.tpl:102
+#: templates/administrator/create_cat.tpl:125
 msgid "Apply for subcategories"
 msgstr "Застосувати для підкатегорії"
 
@@ -2744,7 +2806,7 @@ msgstr "Захищені тим же ім'ям модуля"
 #: templates/administrator/backup.tpl:212
 #: templates/administrator/translateGroup.tpl:10
 #: templates/administrator/translatePrivilege.tpl:10
-#: templates/administrator/settings_site.tpl:11
+#: templates/administrator/settings_site.tpl:12
 #: templates/administrator/cat_translate_edit.tpl:11
 #: templates/administrator/translateRole.tpl:10
 #: templates/administrator/privilegeEdit.tpl:10
@@ -2801,7 +2863,7 @@ msgstr "Збереження і редагування"
 msgid " Save and edit"
 msgstr "Збереження і редагування"
 
-#: application/modules/shop/admin/orders.php:643
+#: application/modules/shop/admin/orders.php:664
 msgid "Saved"
 msgstr "Збережено"
 
@@ -2813,17 +2875,17 @@ msgstr "Зворотний дзвінок"
 msgid "Callbacks"
 msgstr "Зворотні виклики"
 
-#: application/modules/shop/admin/callbacks.php:414
-#: application/modules/shop/admin/callbacks.php:415
+#: application/modules/shop/admin/callbacks.php:432
+#: application/modules/shop/admin/callbacks.php:433
 msgid "Callback was removed"
 msgstr "Зворотній дзвінок був видалений"
 
-#: application/modules/shop/admin/callbacks.php:181
+#: application/modules/shop/admin/callbacks.php:183
 msgid "Callback edited"
 msgstr "Зворотній дзвінок відредаговано "
 
-#: application/modules/shop/admin/callbacks.php:420
-#: application/modules/shop/admin/callbacks.php:421
+#: application/modules/shop/admin/callbacks.php:438
+#: application/modules/shop/admin/callbacks.php:439
 msgid "Callback(s) was removed"
 msgstr "Зворотній дзвінок(и) видалено"
 
@@ -2882,11 +2944,11 @@ msgstr "Змінена мова"
 msgid "Changed a widget"
 msgstr "Змінено віджет"
 
-#: application/modules/admin/categories.php:498
+#: application/modules/admin/categories.php:564
 msgid "Changed the category translation"
 msgstr "Змінено переклад категорій"
 
-#: application/modules/admin/categories.php:260
+#: application/modules/admin/categories.php:268
 msgid "Changed the category"
 msgstr "Змінено розділ"
 
@@ -2898,7 +2960,7 @@ msgstr "Змінено сторінку"
 msgid "Changed the module settings"
 msgstr "Змінені налаштування модулю"
 
-#: application/modules/admin/settings.php:285
+#: application/modules/admin/settings.php:293
 msgid "Changed wesite settings"
 msgstr "Змінені параметри wesite"
 
@@ -2910,22 +2972,22 @@ msgid "Changes has been saved"
 msgstr "Зміни були збережені"
 
 #: application/modules/shop/admin/deliverymethods.php:168
-#: application/modules/shop/admin/users.php:419
-#: application/modules/shop/admin/users.php:434
+#: application/modules/shop/admin/users.php:446
+#: application/modules/shop/admin/users.php:460
 #: application/modules/shop/admin/settings.php:311
 #: application/modules/shop/admin/settings.php:577
-#: application/modules/shop/admin/callbacks.php:182
-#: application/modules/shop/admin/callbacks.php:303
-#: application/modules/shop/admin/callbacks.php:531
-#: application/modules/shop/admin/customfields.php:162
+#: application/modules/shop/admin/callbacks.php:184
+#: application/modules/shop/admin/callbacks.php:320
+#: application/modules/shop/admin/callbacks.php:556
+#: application/modules/shop/admin/customfields.php:166
 #: application/modules/shop/admin/kits.php:182
 #: application/modules/shop/admin/kits.php:224
 #: application/modules/shop/admin/orderstatuses.php:142
-#: application/modules/shop/admin/paymentmethods.php:146
+#: application/modules/shop/admin/paymentmethods.php:164
 #: application/modules/shop/admin/notificationstatuses.php:122
-#: application/modules/shop/admin/brands.php:310
-#: application/modules/shop/admin/brands.php:484
-#: application/modules/shop/admin/currencies.php:145
+#: application/modules/shop/admin/brands.php:304
+#: application/modules/shop/admin/brands.php:472
+#: application/modules/shop/admin/currencies.php:154
 msgid "Changes have been saved"
 msgstr "Зміни були збережені"
 
@@ -2933,11 +2995,11 @@ msgstr "Зміни були збережені"
 msgid "Changes were saved"
 msgstr "Зміни були збережені"
 
-#: application/modules/shop/admin/products.php:759
+#: application/modules/shop/admin/products.php:734
 msgid "The product was successfully edited"
 msgstr "Зміни збережені"
 
-#: application/modules/admin/categories.php:267
+#: application/modules/admin/categories.php:275
 #: application/modules/admin/sys_update.php:104
 #: application/modules/admin/components.php:559
 msgid "Changes saved"
@@ -2955,7 +3017,7 @@ msgstr "Зміни продукту"
 msgid "Change saved successfully"
 msgstr "Зміни успішно збережено"
 
-#: application/modules/shop/admin/callbacks.php:361
+#: application/modules/shop/admin/callbacks.php:382
 msgid "Callback's status was changed"
 msgstr "Змінився статус зворотнього виклику"
 
@@ -2964,7 +3026,7 @@ msgstr "Змінився статус зворотнього виклику"
 msgid "Edit category ID"
 msgstr "Змінити ID категорії"
 
-#: application/modules/shop/admin/templates/orders/edit.tpl:425
+#: application/modules/shop/admin/templates/orders/edit.tpl:430
 msgid "Modify date"
 msgstr "Змінити дату"
 
@@ -2992,7 +3054,7 @@ msgid "Resize products images"
 msgstr "Змінити розмір зображень продукції"
 
 #: application/modules/shop/admin/templates/search/list.tpl:59
-#: application/modules/shop/admin/templates/orders/list.tpl:30
+#: application/modules/shop/admin/templates/orders/list.tpl:49
 msgid "Change status"
 msgstr "Змінити статус"
 
@@ -3008,10 +3070,6 @@ msgstr "Змінити статус позначених повідомлень?
 msgid "Time of the order status change"
 msgstr "Змінити час статусу замовлення"
 
-#: templates/administrator/desktop.tpl:104
-msgid "Contents"
-msgstr "Зміст"
-
 #: application/modules/shop/admin/templates/settings/settings.tpl:420
 msgid "Displacement"
 msgstr "Зміщення"
@@ -3024,7 +3082,7 @@ msgstr "Знайдено товарів з додатковими зображе
 msgid "Products found"
 msgstr "Знайдені продукти"
 
-#: application/modules/shop/admin/templates/callbacks/list.tpl:272
+#: application/modules/shop/admin/templates/callbacks/list.tpl:283
 #: application/modules/shop/admin/templates/callbacks/_list.tpl:179
 msgid "Found results"
 msgstr "Знайдені результати"
@@ -3033,8 +3091,8 @@ msgstr "Знайдені результати"
 msgid "Find a user"
 msgstr "Знайти користувача"
 
-#: templates/administrator/settings_site.tpl:499
-#: templates/administrator/settings_site.tpl:514
+#: templates/administrator/settings_site.tpl:556
+#: templates/administrator/settings_site.tpl:571
 msgid "Value"
 msgstr "Значення"
 
@@ -3091,8 +3149,8 @@ msgstr "Зніміть дисплей в публічному розділі п�
 msgid "Images"
 msgstr "Зображення"
 
-#: application/modules/admin/categories.php:130
-#: application/modules/admin/categories.php:460
+#: application/modules/admin/categories.php:140
+#: application/modules/admin/categories.php:528
 #: application/modules/admin/languages.php:74
 #: application/modules/admin/languages.php:382
 msgid "Image"
@@ -3124,7 +3182,7 @@ msgstr "карта"
 msgid "Catalog"
 msgstr "Каталог"
 
-#: application/modules/admin/backup.php:123
+#: application/modules/admin/backup.php:128
 msgid "Directory |0| has no writing permission"
 msgstr "Каталог |0| не має письмової форми дозволу"
 
@@ -3134,56 +3192,56 @@ msgstr "Каталог |0| не має письмової форми дозво�
 msgid "Products catalogue"
 msgstr "Каталог товарiв"
 
-#: application/modules/admin/categories.php:647
+#: application/modules/admin/categories.php:712
 msgid "Pages category deleted"
 msgstr "Категоря видалена"
 
-#: application/modules/shop/admin/categories.php:240
-#: application/modules/shop/admin/products.php:53
+#: application/modules/shop/admin/categories.php:237
+#: application/modules/shop/admin/products.php:57
 msgid "Category not found"
 msgstr "Категорію не знайдено"
 
-#: application/modules/admin/categories.php:386
-#: application/modules/admin/categories.php:408
+#: application/modules/admin/categories.php:396
+#: application/modules/admin/categories.php:414
 msgid "Category"
 msgstr "Категорія"
 
-#: application/modules/shop/admin/categories.php:542
+#: application/modules/shop/admin/categories.php:530
 msgid "Category ID:"
 msgstr "Категорія ID:"
 
-#: application/modules/shop/admin/categories.php:541
+#: application/modules/shop/admin/categories.php:529
 msgid "Category activated."
 msgstr "Категорія активована."
 
-#: application/modules/shop/admin/categories.php:334
+#: application/modules/shop/admin/categories.php:329
 msgid "Category deleted"
 msgstr "Категорія видалена"
 
-#: application/modules/shop/admin/categories.php:281
+#: application/modules/shop/admin/categories.php:277
 msgid "Category edited"
 msgstr "Категорія відредагована"
 
-#: application/modules/shop/admin/categories.php:541
+#: application/modules/shop/admin/categories.php:529
 msgid "Category deactivated."
 msgstr "Категорія деактивовано."
 
-#: application/modules/admin/categories.php:377
+#: application/modules/admin/categories.php:385
 msgid "Category has been created or created a category"
 msgstr "Категорія створена"
 
-#: application/modules/shop/admin/categories.php:151
-#: application/modules/shop/admin/categories.php:152
-#: application/modules/shop/admin/categories.php:220
-#: application/modules/shop/admin/products.php:1447
+#: application/modules/shop/admin/categories.php:149
+#: application/modules/shop/admin/categories.php:150
+#: application/modules/shop/admin/categories.php:217
+#: application/modules/shop/admin/products.php:1402
 msgid "Category created"
 msgstr "Категорія створена"
 
-#: application/modules/admin/categories.php:215
+#: application/modules/admin/categories.php:224
 msgid "Category has been created"
 msgstr "Категорія створена"
 
-#: application/modules/admin/categories.php:223
+#: application/modules/admin/categories.php:232
 msgid "Pages category created"
 msgstr "Категорія створена"
 
@@ -3191,7 +3249,7 @@ msgstr "Категорія створена"
 msgid "Category creating"
 msgstr "Категорія створення"
 
-#: application/modules/shop/admin/categories.php:335
+#: application/modules/shop/admin/categories.php:330
 msgid "Category deleted successfully"
 msgstr "Категорія успішно видалена"
 
@@ -3199,7 +3257,6 @@ msgstr "Категорія успішно видалена"
 msgid "Category successfully added"
 msgstr "Категорія успішно додана"
 
-#: templates/administrator/desktop.tpl:112
 #: templates/administrator/inc/menus_premmerce.php:46
 #: templates/administrator/inc/menus_premmerce.php:323
 #: templates/administrator/inc/menus.php:46
@@ -3211,12 +3268,12 @@ msgstr "Категорія успішно додана"
 #: templates/administrator/dashboard.tpl:22
 #: templates/administrator/dashboard.tpl:70
 #: templates/administrator/dashboard.tpl:142
-#: templates/administrator/settings_site.tpl:222
+#: templates/administrator/settings_site.tpl:242
 #: templates/administrator/modules_search.tpl:120
 msgid "Categories"
 msgstr "Категорії"
 
-#: application/modules/admin/categories.php:129
+#: application/modules/admin/categories.php:139
 msgid "URL categories"
 msgstr "Категорії URL"
 
@@ -3224,7 +3281,7 @@ msgstr "Категорії URL"
 msgid "Category or page with such url already exist"
 msgstr "Категорії або сторінки з таким URL вже існує"
 
-#: application/modules/admin/categories.php:644
+#: application/modules/admin/categories.php:710
 msgid "Pages categories deleted"
 msgstr "Категорії видалені"
 
@@ -3238,14 +3295,13 @@ msgstr "Категорії товарів"
 msgid "Manage shop"
 msgstr "Керувати магазином"
 
-#: templates/administrator/desktop.tpl:154
 #: templates/administrator/new_desktop.tpl:119
 #: templates/administrator/cache_all.tpl:5
 msgid "Cache"
 msgstr "Кеш"
 
-#: application/modules/admin/admin.php:91
 #: application/modules/admin/admin.php:99
+#: application/modules/admin/admin.php:108
 msgid "Cache has been cleared"
 msgstr "Кеш був очищений"
 
@@ -3260,9 +3316,10 @@ msgstr "Клавіша, щоб переглянути список бажань"
 msgid "Classes"
 msgstr "Класи"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:1083
-#: application/modules/shop/admin/templates/gifts/create.tpl:35
-#: application/modules/shop/admin/templates/gifts/edit.tpl:35
+#: templates/administrator/widgets_list.tpl:51
+#: templates/administrator/widget_edit_html.tpl:40
+#: templates/administrator/widget_create.tpl:37
+#: templates/administrator/widget_edit_module.tpl:36
 msgid "Key"
 msgstr "Ключ"
 
@@ -3270,19 +3327,19 @@ msgstr "Ключ"
 msgid " Key to view the order"
 msgstr "Ключ для перегляду замовлення"
 
-#: application/modules/shop/admin/templates/users/list.tpl:233
-#: application/modules/shop/admin/templates/users/list.tpl:239
+#: application/modules/shop/admin/templates/users/list.tpl:298
+#: application/modules/shop/admin/templates/users/list.tpl:305
 #: application/modules/shop/admin/templates/settings/settings.tpl:1251
 #: application/modules/shop/admin/templates/settings/settings.tpl:1257
 msgid "Key for Mail Chimp list"
 msgstr "Ключ для списку Mail Chimp"
 
-#: application/modules/shop/admin/templates/users/list.tpl:222
+#: application/modules/shop/admin/templates/users/list.tpl:287
 #: application/modules/shop/admin/templates/settings/settings.tpl:1240
 msgid "The key to your account <br />on the mail Mailchimp"
 msgstr "Ключ до Вашого облікового запису <br />на пошті Mailchimp"
 
-#: application/modules/shop/admin/templates/users/list.tpl:237
+#: application/modules/shop/admin/templates/users/list.tpl:303
 #: application/modules/shop/admin/templates/settings/settings.tpl:1255
 msgid "The key to your list of <br />news for MailChimp"
 msgstr "Ключ до вашого списку <br />новин для MailChimp"
@@ -3301,15 +3358,15 @@ msgstr "Клієнт E-mail"
 msgid "Code"
 msgstr "Код"
 
-#: templates/administrator/login_page.tpl:67
+#: templates/administrator/login_page.tpl:68
 msgid "Security code"
 msgstr "Код безпеки"
 
-#: templates/administrator/settings_site.tpl:169
+#: templates/administrator/settings_site.tpl:183
 msgid "The code should be in the format ua-54545845"
 msgstr "Код повинен бути в форматі ua-54545845"
 
-#: application/modules/admin/login.php:62
+#: application/modules/admin/login.php:64
 msgid "Protection code"
 msgstr "Код протекції"
 
@@ -3353,7 +3410,7 @@ msgstr "Кома"
 #: application/modules/shop/admin/templates/orders/_create.tpl:136
 #: application/modules/shop/admin/templates/orders/check.tpl:51
 #: application/modules/shop/admin/templates/orders/edit.tpl:95
-#: application/modules/shop/admin/templates/orders/edit.tpl:426
+#: application/modules/shop/admin/templates/orders/edit.tpl:431
 msgid "Comment"
 msgstr "Коментар"
 
@@ -3361,8 +3418,8 @@ msgstr "Коментар"
 msgid "Commentary to change the status"
 msgstr "Коментар для зміни статусу"
 
-#: templates/administrator/category_edit.tpl:253
-#: templates/administrator/create_cat.tpl:202
+#: templates/administrator/category_edit.tpl:259
+#: templates/administrator/create_cat.tpl:232
 msgid "Comment pages by default "
 msgstr "Коментар сторінки"
 
@@ -3426,12 +3483,11 @@ msgstr "Комплекти для тіла"
 msgid "Components"
 msgstr "Компоненти"
 
-#: templates/administrator/desktop.tpl:108
 #: templates/administrator/new_desktop.tpl:69
 msgid "Field constructor"
 msgstr "Конструктор полів"
 
-#: templates/administrator/settings_site.tpl:487
+#: templates/administrator/settings_site.tpl:543
 msgid "Contacts"
 msgstr "Контакти"
 
@@ -3447,15 +3503,15 @@ msgstr "Копіювати"
 msgid "Copy page"
 msgstr "Копія сторінки"
 
-#: application/modules/shop/admin/products.php:1184
+#: application/modules/shop/admin/products.php:1135
 msgid "A copy was successfully created"
 msgstr "Копія успішно створена"
 
-#: application/modules/shop/models2/generated-classes/CustomFields.php:23
+#: application/modules/shop/models2/generated-classes/CustomFields.php:20
 msgid "Custom object"
 msgstr "Користувальницький об'єкт"
 
-#: application/modules/shop/models2/generated-classes/CustomFields.php:30
+#: application/modules/shop/models2/generated-classes/CustomFields.php:27
 msgid "Custom posibble list"
 msgstr "Користувальницький список"
 
@@ -3464,7 +3520,7 @@ msgstr "Користувальницький список"
 msgid "Custom classes for widget"
 msgstr "Користувальницькі класи для віджету"
 
-#: application/modules/shop/models2/generated-classes/CustomFields.php:34
+#: application/modules/shop/models2/generated-classes/CustomFields.php:31
 msgid "Custom right field"
 msgstr "Користувацьке праве поле"
 
@@ -3482,15 +3538,15 @@ msgstr "Користувач вже був сповіщений по E-mail пр
 msgid "User already notified via E-mail upon availability! Notify again"
 msgstr "Користувач вже повідомлений про це на E-mail за наявності вільних місць! Повідомляти знову"
 
-#: application/modules/shop/admin/users.php:433
+#: application/modules/shop/admin/users.php:459
 msgid "User edited"
 msgstr "Користувач відредагован"
 
-#: application/modules/shop/admin/orders.php:1423
+#: application/modules/shop/admin/orders.php:1471
 msgid "User is not selected"
 msgstr "Користувач не вибраний"
 
-#: application/modules/shop/admin/users.php:389
+#: application/modules/shop/admin/users.php:412
 msgid "User not found"
 msgstr "Користувач не знайдений"
 
@@ -3498,7 +3554,7 @@ msgstr "Користувач не знайдений"
 msgid "User is notified by E-mail"
 msgstr "Користувач отримує сповіщення по E-mail"
 
-#: application/modules/shop/admin/users.php:321
+#: application/modules/shop/admin/users.php:339
 msgid "A user with this email is already registered."
 msgstr "Користувач із таким email вже зареєстрований"
 
@@ -3506,7 +3562,7 @@ msgstr "Користувач із таким email вже зареєстрова
 msgid "A user with this email already exists"
 msgstr "Користувач із такою електронною адресою вже існує"
 
-#: application/modules/shop/admin/users.php:572
+#: application/modules/shop/admin/users.php:605
 msgid "User deleted"
 msgstr "Користувача видалено"
 
@@ -3524,16 +3580,16 @@ msgstr "Користувачі"
 msgid "Users management"
 msgstr "Користувачі"
 
-#: templates/administrator/settings_site.tpl:387
+#: templates/administrator/settings_site.tpl:430
 msgid "Short site name"
 msgstr "Коротка назва сайту"
 
-#: application/modules/admin/settings.php:112
+#: application/modules/admin/settings.php:114
 msgid "Short name"
 msgstr "Коротке ім'я"
 
-#: application/modules/admin/categories.php:135
-#: application/modules/admin/categories.php:463
+#: application/modules/admin/categories.php:145
+#: application/modules/admin/categories.php:531
 msgid "Short description"
 msgstr "Короткий опис"
 
@@ -3562,9 +3618,9 @@ msgstr "Крапка з комою"
 msgid "Currency rate"
 msgstr "Курс валюти"
 
-#: application/modules/shop/admin/orders.php:1413
-#: application/modules/shop/admin/orders.php:1935
-#: application/modules/shop/admin/templates/orders/check.tpl:68
+#: application/modules/shop/admin/orders.php:1462
+#: application/modules/shop/admin/orders.php:1975
+#: application/modules/shop/admin/templates/orders/check.tpl:66
 #: application/modules/shop/admin/templates/orders/create.tpl:286
 #: application/modules/shop/admin/templates/orders/_editAddToCartWindow.tpl:34
 #: application/modules/shop/admin/templates/orders/edit.tpl:244
@@ -3610,7 +3666,7 @@ msgstr "Кількість товарів на сайті"
 msgid "Digets count after comma in price"
 msgstr "Кількість цифр в ціні, після коми"
 
-#: application/modules/admin/admin_logs.php:50
+#: application/modules/admin/admin_logs.php:51
 msgid "Last"
 msgstr "Кінець"
 
@@ -3640,7 +3696,7 @@ msgstr "Локаль"
 msgid "Localization"
 msgstr "Локалізація"
 
-#: templates/administrator/settings_site.tpl:79
+#: templates/administrator/settings_site.tpl:86
 msgid "license agreement"
 msgstr "ліцензійна угода"
 
@@ -3658,18 +3714,17 @@ msgstr "Максимальний розмір резервної копії"
 msgid "Array of values for the number of products on site"
 msgstr "Масив значень для кількості товарів на сайті"
 
-#: application/modules/shop/admin/templates/notifications/list.tpl:71
-#: application/modules/shop/admin/templates/notifications/list.tpl:195
-#: application/modules/shop/admin/templates/callbacks/list.tpl:49
-#: application/modules/shop/admin/templates/callbacks/list.tpl:189
+#: application/modules/shop/admin/templates/notifications/list.tpl:66
+#: application/modules/shop/admin/templates/callbacks/list.tpl:59
+#: application/modules/shop/admin/templates/callbacks/list.tpl:200
 #: application/modules/shop/admin/templates/callbacks/_list.tpl:46
 #: application/modules/shop/admin/templates/callbacks/_list.tpl:117
-#: application/modules/shop/admin/templates/orders/edit.tpl:427
+#: application/modules/shop/admin/templates/orders/edit.tpl:432
 msgid "Manager"
 msgstr "Менеджер"
 
 #: templates/administrator/main_elfinder.tpl:276
-#: templates/administrator/main.tpl:290
+#: templates/administrator/main.tpl:293
 msgid "Менеджер"
 msgstr "Менеджер"
 
@@ -3677,7 +3732,6 @@ msgstr "Менеджер"
 msgid "Manager does not exist or is not set"
 msgstr "Менеджер не існує або не встановлений"
 
-#: templates/administrator/desktop.tpl:119
 #: templates/administrator/inc/menus_premmerce.php:61
 #: templates/administrator/inc/menus.php:61
 #: templates/administrator/new_desktop.tpl:81
@@ -3695,18 +3749,18 @@ msgstr "Мені"
 #: application/modules/shop/admin/templates/products/_create.tpl:416
 #: application/modules/shop/admin/templates/products/default_edit.tpl:540
 #: application/modules/shop/admin/templates/products/_edit.tpl:459
-#: application/modules/shop/admin/templates/products/create.tpl:228
+#: application/modules/shop/admin/templates/products/create.tpl:229
 msgid "Meta data"
 msgstr "Мета-дані"
 
-#: templates/administrator/create_cat.tpl:20
+#: templates/administrator/create_cat.tpl:23
 msgid "Meta-tags"
 msgstr "Мета-теги"
 
 #: templates/administrator/category_edit.tpl:47
-#: templates/administrator/category_edit.tpl:325
-#: templates/administrator/settings_site.tpl:271
-#: templates/administrator/create_cat.tpl:262
+#: templates/administrator/category_edit.tpl:364
+#: templates/administrator/settings_site.tpl:299
+#: templates/administrator/create_cat.tpl:338
 msgid "Meta tags"
 msgstr "Мета-теги"
 
@@ -3722,7 +3776,7 @@ msgstr "Метод оплачений"
 msgid "Sorting method by default"
 msgstr "Метод сортування за замовчуванням"
 
-#: templates/administrator/js/scripts.js:1964
+#: templates/administrator/js/scripts.js:1972
 #: templates/administrator/js/scripts_elfinder.js:1779
 msgid "Sorting method updated"
 msgstr "Метод сортування обновлено"
@@ -3735,11 +3789,11 @@ msgstr "Метод сортування оновлено"
 msgid "Sorting methods"
 msgstr "Методи сортування"
 
-#: application/modules/shop/models2/generated-classes/SProperties.php:27
+#: application/modules/shop/models2/generated-classes/SProperties.php:26
 msgid "Multiple selection"
 msgstr "Множинний вибір"
 
-#: application/modules/shop/admin/brands.php:467
+#: application/modules/shop/admin/brands.php:455
 msgid " language "
 msgstr "мова"
 
@@ -3765,7 +3819,6 @@ msgstr "Мова створена"
 msgid "Language of the page"
 msgstr "Мова сторінки"
 
-#: templates/administrator/desktop.tpl:153
 #: templates/administrator/inc/menus_premmerce.php:116
 #: templates/administrator/inc/menus_premmerce.php:353
 #: templates/administrator/inc/menus.php:116
@@ -3813,7 +3866,6 @@ msgid "Module successfully installed"
 msgstr "Модуль успішно встановлений"
 
 #: templates/administrator/roleCreate.tpl:58
-#: templates/administrator/desktop.tpl:130
 #: templates/administrator/inc/menus_premmerce.php:71
 #: templates/administrator/inc/menus_premmerce.php:285
 #: templates/administrator/inc/menus.php:71
@@ -3827,7 +3879,7 @@ msgstr "Модулі"
 #: templates/administrator/category_edit.tpl:50
 #: templates/administrator/add_page.tpl:23
 #: templates/administrator/edit_page.tpl:52
-#: templates/administrator/create_cat.tpl:22
+#: templates/administrator/create_cat.tpl:25
 msgid "Modules additions"
 msgstr "Модулі доповнення"
 
@@ -3874,7 +3926,7 @@ msgstr "На сайт"
 msgid "Out of stock"
 msgstr "На складі"
 
-#: application/modules/admin/categories.php:140
+#: application/modules/admin/categories.php:150
 msgid "Per page"
 msgstr "На сторінці"
 
@@ -3882,11 +3934,11 @@ msgstr "На сторінці"
 msgid "At the properties page"
 msgstr "На сторінці властивостей"
 
-#: application/modules/shop/admin/templates/users/list.tpl:161
+#: application/modules/shop/admin/templates/users/list.tpl:220
 msgid "At the users page"
 msgstr "На сторінці користувачів"
 
-#: application/modules/shop/admin/templates/search/list.tpl:586
+#: application/modules/shop/admin/templates/search/list.tpl:595
 msgid "At the products page"
 msgstr "На сторінці товарів"
 
@@ -3909,7 +3961,7 @@ msgid "Send email"
 msgstr "Надіслати E-mail"
 
 #: application/modules/admin/pages.php:1040
-#: application/modules/admin/admin_logs.php:49
+#: application/modules/admin/admin_logs.php:50
 msgid "Prev"
 msgstr "Назад"
 
@@ -3932,7 +3984,7 @@ msgstr "Назва варіанту"
 msgid "Product variant name"
 msgstr "Назва варіанту товару"
 
-#: templates/administrator/settings_site.tpl:296
+#: templates/administrator/settings_site.tpl:326
 msgid "Category name"
 msgstr "Назва категорії"
 
@@ -3940,8 +3992,8 @@ msgstr "Назва категорії"
 msgid "The name at the website"
 msgstr "Назва на сайті"
 
-#: templates/administrator/settings_site.tpl:283
-#: templates/administrator/settings_site.tpl:380
+#: templates/administrator/settings_site.tpl:311
+#: templates/administrator/settings_site.tpl:421
 msgid "Site name"
 msgstr "Назва сайту"
 
@@ -3949,12 +4001,12 @@ msgstr "Назва сайту"
 msgid "Name of the WishList author"
 msgstr "Назва Списку побажань автора"
 
-#: application/modules/shop/models2/generated-classes/SProducts.php:60
+#: application/modules/shop/models2/generated-classes/SProducts.php:66
 msgid "Название товара"
 msgstr "Назва товару"
 
 #: application/modules/shop/admin/templates/settings/settings.tpl:499
-#: application/modules/shop/admin/templates/orders/check.tpl:66
+#: application/modules/shop/admin/templates/orders/check.tpl:64
 #: application/modules/shop/admin/templates/products/_create.tpl:42
 #: application/modules/shop/admin/templates/products/default_edit.tpl:17
 #: application/modules/shop/admin/templates/products/default_edit.tpl:462
@@ -3967,15 +4019,11 @@ msgstr "Назва товару"
 msgid "File name"
 msgstr "Назва файлу"
 
-#: application/modules/shop/admin/templates/paymentmethods/list.tpl:51
-msgid "Currency name"
-msgstr "Найменування валюти"
-
-#: application/modules/shop/models2/generated-classes/CustomFields.php:32
+#: application/modules/shop/models2/generated-classes/CustomFields.php:29
 msgid "Custom active field"
 msgstr "Налаштовуване поле"
 
-#: application/modules/shop/models2/generated-classes/CustomFields.php:29
+#: application/modules/shop/models2/generated-classes/CustomFields.php:26
 msgid "Custom multiple field"
 msgstr "Налаштовувані за декількома полями"
 
@@ -3985,31 +4033,31 @@ msgstr "Налаштовувані за декількома полями"
 #: templates/administrator/inc/menus.php:622
 #: templates/administrator/category_edit.tpl:46
 #: templates/administrator/widgets_list.tpl:54
-#: templates/administrator/widgets_list.tpl:99
+#: templates/administrator/widgets_list.tpl:98
 #: templates/administrator/shop_menu.tpl:56
 #: templates/administrator/lang_edit.tpl:33
 #: templates/administrator/add_page.tpl:21
 #: templates/administrator/add_page.tpl:210
 #: templates/administrator/sys_update_properties.tpl:28
 #: templates/administrator/edit_page.tpl:50
-#: templates/administrator/edit_page.tpl:242
+#: templates/administrator/edit_page.tpl:245
 #: templates/administrator/backup.tpl:20
 #: templates/administrator/backup.tpl:170
-#: templates/administrator/create_cat.tpl:19
-#: templates/administrator/create_cat.tpl:33
+#: templates/administrator/create_cat.tpl:22
+#: templates/administrator/create_cat.tpl:36
 msgid "Settings"
 msgstr "Налаштування"
 
-#: templates/administrator/settings_site.tpl:19
-#: templates/administrator/settings_site.tpl:154
+#: templates/administrator/settings_site.tpl:20
+#: templates/administrator/settings_site.tpl:166
 msgid "Analysts settings"
 msgstr "Налаштування аналітики"
 
-#: application/modules/admin/settings.php:289
+#: application/modules/admin/settings.php:297
 msgid "Settings have been saved"
 msgstr "Налаштування були збережені"
 
-#: application/modules/admin/backup.php:45
+#: application/modules/admin/backup.php:46
 msgid "Settings saved"
 msgstr "Налаштування збережені"
 
@@ -4027,12 +4075,11 @@ msgstr "Налаштування оновлення"
 msgid "Gift certificate settings"
 msgstr "Налаштування подарунковий сертифікату"
 
-#: templates/administrator/desktop.tpl:151
 #: templates/administrator/new_desktop.tpl:117
 msgid "Site settings"
 msgstr "Налаштування сайту"
 
-#: templates/administrator/settings_site.tpl:120
+#: templates/administrator/settings_site.tpl:131
 msgid "Configuring robots file manually"
 msgstr "Налаштування файлу роботів вручну"
 
@@ -4048,7 +4095,7 @@ msgstr "Наприклад"
 msgid "For example:"
 msgstr "Наприклад:"
 
-#: application/modules/shop/admin/customfields.php:161
+#: application/modules/shop/admin/customfields.php:165
 msgid "Custom field edited"
 msgstr "Настроюване поле відредаговано"
 
@@ -4066,8 +4113,8 @@ msgstr "Не активний"
 msgid "Has not been published"
 msgstr "Не було опубліковано"
 
-#: application/modules/shop/admin/categories.php:330
-#: application/modules/shop/admin/categories.php:340
+#: application/modules/shop/admin/categories.php:326
+#: application/modules/shop/admin/categories.php:334
 msgid "Failed to delete the category"
 msgstr "Не вдалося видалити категорію"
 
@@ -4083,7 +4130,7 @@ msgstr "Не вдалося оновити номер стовпця"
 msgid "Failed to create user"
 msgstr "Не вдалося створити користувача"
 
-#: application/modules/shop/admin/categories.php:571
+#: application/modules/admin/categories.php:505
 msgid "Could not create file"
 msgstr "Не вдалося створити файл"
 
@@ -4091,30 +4138,29 @@ msgstr "Не вдалося створити файл"
 msgid "Unable to remove the base status"
 msgstr "Не вдається видалити базу статусу"
 
-#: application/modules/shop/admin/currencies.php:306
+#: application/modules/shop/admin/currencies.php:308
+#: application/modules/shop/admin/currencies.php:319
 msgid "Unable to remove currency. The currency used in the payment methods."
 msgstr "Не вдається видалити валюти. Валюта, використовувана в способах оплати"
 
-#: application/modules/shop/admin/templates/categories/edit.tpl:53
-#: application/modules/shop/admin/templates/categories/edit.tpl:149
-#: application/modules/shop/admin/templates/categories/edit_elfiner.tpl:53
-#: application/modules/shop/admin/templates/categories/edit_elfiner.tpl:142
-#: application/modules/shop/admin/templates/orders/create.tpl:177
-#: application/modules/shop/admin/templates/orders/create.tpl:190
-#: application/modules/shop/admin/templates/orders/create.tpl:245
-#: application/modules/shop/admin/templates/orders/create.tpl:258
+#: templates/administrator/category_edit.tpl:291
+#: templates/administrator/category_edit.tpl:316
+#: templates/administrator/category_edit.tpl:340
+#: templates/administrator/create_cat.tpl:265
+#: templates/administrator/create_cat.tpl:290
+#: templates/administrator/create_cat.tpl:314
 msgid "Not selected"
 msgstr "Не вибрано"
 
-#: application/modules/admin/login.php:85
-#: application/modules/admin/login.php:102
+#: application/modules/admin/login.php:84
+#: application/modules/admin/login.php:105
 msgid "Not enough access rights"
 msgstr "Не вистачає прав доступу"
 
 #: application/modules/shop/admin/templates/products/_create.tpl:169
 #: application/modules/shop/admin/templates/products/default_edit.tpl:179
 #: application/modules/shop/admin/templates/products/_edit.tpl:196
-#: application/modules/shop/admin/templates/products/create.tpl:172
+#: application/modules/shop/admin/templates/products/create.tpl:173
 msgid "Not specified"
 msgstr "Не вказано"
 
@@ -4133,12 +4179,12 @@ msgstr "Не знайдено"
 msgid "Can not create file (No Rights)"
 msgstr "Не може створити файл (немає прав)"
 
-#: application/modules/shop/admin/products.php:1512
-#: application/modules/shop/admin/products.php:1516
+#: application/modules/shop/admin/products.php:1466
+#: application/modules/shop/admin/products.php:1470
 msgid "Can not create brand without name."
 msgstr "Не можливо створити бренд без імені."
 
-#: application/modules/shop/admin/products.php:1456
+#: application/modules/shop/admin/products.php:1411
 msgid "Can not create categoty without name."
 msgstr "Не можливо створити категорію без імені."
 
@@ -4146,15 +4192,15 @@ msgstr "Не можливо створити категорію без імен�
 msgid "Can't load module info file"
 msgstr "Не можна завантажити модуль інфо-файлу"
 
-#: application/modules/shop/admin/templates/orders/list.tpl:40
-#: application/modules/shop/admin/templates/orders/list.tpl:164
-#: application/modules/shop/admin/templates/orders/list.tpl:247
+#: application/modules/shop/admin/templates/orders/list.tpl:59
+#: application/modules/shop/admin/templates/orders/list.tpl:183
+#: application/modules/shop/admin/templates/orders/list.tpl:266
 msgid "Not paid"
 msgstr "Не оплачено"
 
+#: templates/administrator/inc/php_to_js_variables.tpl:27
 #: templates/administrator/main_elfinder.tpl:454
 #: templates/administrator/pages_list.tpl:207
-#: templates/administrator/main.tpl:523
 #: templates/administrator/search.tpl:51
 msgid "don't show"
 msgstr "не показувати"
@@ -4163,8 +4209,8 @@ msgstr "не показувати"
 msgid "Do not show zeros in the fractional part"
 msgstr "Не показувати нулі в дробовій частині"
 
-#: templates/administrator/js/scripts.js:1423
-#: templates/administrator/js/scripts.js:1449
+#: templates/administrator/js/scripts.js:1433
+#: templates/administrator/js/scripts.js:1459
 #: templates/administrator/js/scripts_elfinder.js:1295
 #: templates/administrator/js/scripts_elfinder.js:1320
 msgid "Not supported file format"
@@ -4201,19 +4247,21 @@ msgstr "Невідповідні дані були знайдені"
 msgid "Not enough rights to access"
 msgstr "Недостатньо прав для доступу"
 
-#: application/modules/shop/admin/templates/callbacks/list.tpl:144
-#: application/modules/shop/admin/templates/callbacks/list.tpl:219
+#: application/modules/shop/admin/templates/users/list.tpl:29
+#: application/modules/shop/admin/templates/users/list.tpl:110
+#: application/modules/shop/admin/templates/users/list.tpl:168
+#: application/modules/shop/admin/templates/callbacks/list.tpl:83
+#: application/modules/shop/admin/templates/callbacks/list.tpl:155
+#: application/modules/shop/admin/templates/callbacks/list.tpl:230
 #: application/modules/shop/admin/templates/callbacks/edit.tpl:51
 #: application/modules/shop/admin/templates/callbacks/_list.tpl:72
 #: application/modules/shop/admin/templates/callbacks/_list.tpl:147
-#: application/modules/shop/admin/callbacks.php:394
+#: application/modules/shop/admin/callbacks.php:413
 msgid "Does not have"
 msgstr "Немає"
 
-#: application/modules/shop/admin/templates/notifications/list.tpl:83
-#: application/modules/shop/admin/templates/notifications/list.tpl:117
-#: application/modules/shop/admin/templates/notifications/list.tpl:207
-#: application/modules/shop/admin/templates/notifications/list.tpl:247
+#: application/modules/shop/admin/templates/notifications/list.tpl:86
+#: application/modules/shop/admin/templates/notifications/list.tpl:122
 #: application/modules/shop/admin/templates/orders/edit.tpl:197
 msgid "none"
 msgstr "немає"
@@ -4223,10 +4271,10 @@ msgid "There are no currencies"
 msgstr "Немає валюти"
 
 #: application/modules/shop/admin/deliverymethods.php:197
-#: application/modules/shop/admin/users.php:561
+#: application/modules/shop/admin/users.php:594
 #: application/modules/shop/admin/notifications.php:286
-#: application/modules/shop/admin/customfields.php:211
-#: application/modules/shop/admin/paymentmethods.php:176
+#: application/modules/shop/admin/customfields.php:215
+#: application/modules/shop/admin/paymentmethods.php:194
 #: application/modules/shop/admin/notificationstatuses.php:151
 msgid "No data transmitted"
 msgstr "Немає даних"
@@ -4255,7 +4303,7 @@ msgstr "Немає модулів, знайдених за вашим запит
 msgid "No recently updated pages"
 msgstr "Немає нещодавно оновлених сторінок"
 
-#: templates/administrator/js/admin_base_i.js:1003
+#: templates/administrator/js/admin_base_i.js:1030
 msgid "No results for your query"
 msgstr "Немає результатів для вашого запиту"
 
@@ -4275,25 +4323,25 @@ msgstr "Немає файлів відновлення "
 msgid "No photo"
 msgstr "Немає фото"
 
-#: application/modules/shop/admin/currencies.php:359
+#: application/modules/shop/admin/currencies.php:365
 msgid "There was no price for the upgrade"
 msgstr "Немає ціни для оновлення"
 
-#: application/modules/shop/admin/currencies.php:296
+#: application/modules/shop/admin/currencies.php:300
 msgid "Unable to remove the main currency"
 msgstr "Неможливо видалити основний обмін"
 
-#: application/modules/shop/admin/callbacks.php:440
+#: application/modules/shop/admin/callbacks.php:457
 msgid "Unable to remove default status"
 msgstr "Неможливо видалити статус за замовчуванням"
 
 #: templates/administrator/add_page.tpl:226
-#: templates/administrator/edit_page.tpl:258
+#: templates/administrator/edit_page.tpl:261
 msgid "Unpublished"
 msgstr "Неопубліковані"
 
-#: application/modules/admin/login.php:143
-#: application/modules/admin/login.php:147
+#: application/modules/admin/login.php:146
+#: application/modules/admin/login.php:150
 msgid "Wrong protection code"
 msgstr "Неправильний код протекції"
 
@@ -4301,12 +4349,12 @@ msgstr "Неправильний код протекції"
 msgid "Wrong file type. Only csv|xls|xlsx"
 msgstr "Неправильний тип файлу. Тільки в CSV|XLS|XLSX"
 
-#: application/modules/shop/admin/brands.php:157
-#: application/modules/shop/admin/brands.php:267
+#: application/modules/shop/admin/brands.php:152
+#: application/modules/shop/admin/brands.php:261
 msgid "Wrong image format"
 msgstr "Неправильний формат зображення"
 
-#: application/modules/shop/admin/users.php:548
+#: application/modules/shop/admin/users.php:581
 msgid "Wrong phone format"
 msgstr "Неправильний формат телефону"
 
@@ -4342,13 +4390,14 @@ msgstr "Новий користувач"
 msgid "New user created"
 msgstr "Новий користувач створений"
 
-#: application/modules/shop/admin/users.php:395
+#: application/modules/shop/admin/users.php:419
+#: application/modules/shop/admin/users.php:423
 #: application/modules/shop/admin/templates/users/edit_1.tpl:65
 #: application/modules/shop/admin/templates/users/edit.tpl:57
 msgid "New password"
 msgstr "Новий пароль"
 
-#: application/modules/shop/admin/users.php:396
+#: application/modules/shop/admin/users.php:420
 msgid "New password confirm"
 msgstr "Новий пароль підтвердження"
 
@@ -4373,8 +4422,8 @@ msgstr "Новинка"
 
 #: application/modules/shop/admin/templates/search/list.tpl:335
 #: application/modules/shop/admin/templates/search/list.tpl:337
-#: application/modules/shop/admin/templates/search/list.tpl:462
-#: application/modules/shop/admin/templates/search/list.tpl:464
+#: application/modules/shop/admin/templates/search/list.tpl:470
+#: application/modules/shop/admin/templates/search/list.tpl:472
 #: application/modules/shop/admin/templates/categories/create.tpl:134
 #: application/modules/shop/admin/templates/categories/edit.tpl:154
 #: application/modules/shop/admin/templates/categories/create_elfinder.tpl:127
@@ -4423,9 +4472,9 @@ msgstr "Номер телефону користувача, що просив з
 msgid "Customer phone number"
 msgstr "Номери телефону клієнта"
 
-#: application/modules/admin/categories.php:387
-#: application/modules/admin/categories.php:409
-#: application/modules/admin/settings.php:62
+#: application/modules/admin/categories.php:397
+#: application/modules/admin/categories.php:415
+#: application/modules/admin/settings.php:63
 msgid "No"
 msgstr "Ні"
 
@@ -4435,7 +4484,7 @@ msgid "The property(ies) deleted"
 msgstr "Об'єкт(и) видалено"
 
 #: templates/administrator/category_edit.tpl:145
-#: templates/administrator/create_cat.tpl:105
+#: templates/administrator/create_cat.tpl:119
 msgid "Select a field group to be displayed/ viewed in the created category of the group or group category"
 msgstr "Оберіть групу полів, яка буде відображатися під час створення сторінок в даній категорії"
 
@@ -4449,22 +4498,22 @@ msgstr "Оберіть набір прав доступу до довідник�
 msgid "Select the module type to the table below"
 msgstr "Оберіть тип модуля із таблиці нижче"
 
-#: application/modules/shop/admin/currencies.php:87
-#: application/modules/shop/admin/currencies.php:178
+#: application/modules/shop/admin/currencies.php:96
+#: application/modules/shop/admin/currencies.php:189
 msgid "Currency not found"
 msgstr "Обмін не знайдено"
 
-#: application/modules/shop/admin/currencies.php:61
-#: application/modules/shop/admin/currencies.php:63
+#: application/modules/shop/admin/currencies.php:67
+#: application/modules/shop/admin/currencies.php:69
 msgid "Currency created"
 msgstr "Обмін створено"
 
-#: application/modules/shop/admin/currencies.php:326
-#: application/modules/shop/admin/currencies.php:327
+#: application/modules/shop/admin/currencies.php:336
+#: application/modules/shop/admin/currencies.php:337
 msgid "Currency successfully removed"
 msgstr "Обмін успішно видалений"
 
-#: application/modules/shop/models2/generated-classes/CustomFields.php:28
+#: application/modules/shop/models2/generated-classes/CustomFields.php:25
 msgid "Custom required field"
 msgstr "Обов'язкове користувацьке поле"
 
@@ -4474,7 +4523,7 @@ msgstr "Обов'язкове користувацьке поле"
 msgid "Field required"
 msgstr "Обов'язкове поле"
 
-#: templates/administrator/settings_site.tpl:364
+#: templates/administrator/settings_site.tpl:402
 msgid "Choose language"
 msgstr "Обрати мову"
 
@@ -4493,7 +4542,7 @@ msgstr "Один користувач"
 msgid "Single quotes"
 msgstr "Одинарні лапки"
 
-#: application/modules/shop/admin/templates/orders/check.tpl:67
+#: application/modules/shop/admin/templates/orders/check.tpl:65
 msgid "Measurement unit"
 msgstr "Одиниця виміру"
 
@@ -4501,7 +4550,7 @@ msgstr "Одиниця виміру"
 msgid "Update or download new browsers here"
 msgstr "Оновити або завантажити нові браузери тут"
 
-#: templates/administrator/login_page.tpl:70
+#: templates/administrator/login_page.tpl:71
 msgid "Update the code"
 msgstr "Оновити код"
 
@@ -4509,7 +4558,6 @@ msgstr "Оновити код"
 msgid "Refresh prices after import"
 msgstr "Оновити ціни після імпорту"
 
-#: templates/administrator/desktop.tpl:88
 #: templates/administrator/sys_update.tpl:24
 #: templates/administrator/sys_upgrade.tpl:46
 msgid "Update"
@@ -4537,20 +4585,20 @@ msgstr "Оновлені сторінки"
 msgid "Operating system"
 msgstr "Операційна система"
 
-#: application/modules/shop/admin/orders.php:562
-#: application/modules/shop/admin/orders.php:615
+#: application/modules/shop/admin/orders.php:579
+#: application/modules/shop/admin/orders.php:636
 msgid "The operation was successful"
 msgstr "Операція пройшла успішно"
 
 #: application/modules/shop/models2/generated-classes/ShopDiscounts.php:27
 #: application/modules/shop/models2/generated-classes/SBrands.php:30
-#: application/modules/shop/models2/generated-classes/CustomFields.php:27
+#: application/modules/shop/models2/generated-classes/CustomFields.php:24
 #: application/modules/shop/models2/generated-classes/SPaymentMethods.php:23
 msgid "Описание"
 msgstr "Опис"
 
-#: application/modules/admin/categories.php:133
-#: application/modules/admin/categories.php:461
+#: application/modules/admin/categories.php:143
+#: application/modules/admin/categories.php:529
 #: application/modules/admin/widgets_manager.php:102
 #: application/modules/admin/widgets_manager.php:168
 #: application/modules/admin/widgets_manager.php:264
@@ -4560,7 +4608,7 @@ msgstr "Опис"
 msgid "Description "
 msgstr "Опис"
 
-#: application/modules/admin/settings.php:113
+#: application/modules/admin/settings.php:115
 msgid "Description"
 msgstr "Опис"
 
@@ -4575,16 +4623,16 @@ msgstr "Опис ціни доставки"
 #: application/modules/shop/admin/templates/users/edit.tpl:203
 #: application/modules/shop/admin/templates/dashboard/dashboard.tpl:91
 #: application/modules/shop/admin/templates/orders/_create.tpl:86
-#: application/modules/shop/admin/templates/orders/list.tpl:39
-#: application/modules/shop/admin/templates/orders/list.tpl:165
-#: application/modules/shop/admin/templates/orders/list.tpl:245
+#: application/modules/shop/admin/templates/orders/list.tpl:58
+#: application/modules/shop/admin/templates/orders/list.tpl:184
+#: application/modules/shop/admin/templates/orders/list.tpl:264
 #: application/modules/shop/admin/templates/orders/edit.tpl:68
-#: application/modules/shop/admin/templates/orders/edit.tpl:450
+#: application/modules/shop/admin/templates/orders/edit.tpl:455
 msgid "Paid"
 msgstr "Оплачено"
 
 #: templates/administrator/add_page.tpl:224
-#: templates/administrator/edit_page.tpl:256
+#: templates/administrator/edit_page.tpl:259
 msgid "Published"
 msgstr "Опубліковано"
 
@@ -4593,18 +4641,18 @@ msgstr "Опубліковано"
 msgid "Has been published"
 msgstr "Опубліковано"
 
-#: application/modules/shop/admin/currencies.php:273
+#: application/modules/shop/admin/currencies.php:281
 msgid "Main currency was edited"
 msgstr "Основна валюта була відредагована"
 
-#: application/modules/shop/models2/generated-classes/SProperties.php:32
+#: application/modules/shop/models2/generated-classes/SProperties.php:31
 msgid "Main property"
 msgstr "Основна властивість"
 
-#: templates/administrator/category_edit.tpl:282
-#: templates/administrator/category_edit.tpl:296
-#: templates/administrator/create_cat.tpl:226
-#: templates/administrator/create_cat.tpl:237
+#: templates/administrator/category_edit.tpl:298
+#: templates/administrator/category_edit.tpl:323
+#: templates/administrator/create_cat.tpl:272
+#: templates/administrator/create_cat.tpl:297
 msgid "Main category template by default"
 msgstr "Основна категорія шаблону за замовчуванням"
 
@@ -4620,7 +4668,7 @@ msgstr "Основна категорія шаблону за замовчува
 #: application/modules/shop/admin/templates/products/_edit.tpl:729
 #: application/modules/shop/admin/templates/products/_edit.tpl:748
 #: application/modules/shop/admin/templates/products/create.tpl:108
-#: application/modules/shop/admin/templates/products/create.tpl:380
+#: application/modules/shop/admin/templates/products/create.tpl:381
 #: application/modules/shop/admin/templates/products/edit.tpl:140
 #: application/modules/shop/admin/templates/system/importfields.tpl:180
 msgid "Main image"
@@ -4654,7 +4702,7 @@ msgid "Product main template. By default product.tpl"
 msgstr "Основний шаблон продукту. За замовчуванням product.tpl"
 
 #: application/modules/shop/admin/templates/products/default_edit.tpl:640
-#: application/modules/shop/admin/templates/products/create.tpl:328
+#: application/modules/shop/admin/templates/products/create.tpl:329
 msgid "Main product template. By default product.tpl"
 msgstr "Основний шаблон товару. За замовчуванням product.tpl"
 
@@ -4676,12 +4724,12 @@ msgid "General settings"
 msgstr "Основні налаштування"
 
 #: templates/administrator/main_elfinder.tpl:240
-#: templates/administrator/main.tpl:257
+#: templates/administrator/main.tpl:260
 msgid "Personal data"
 msgstr "Особисті дані"
 
-#: application/modules/admin/admin_search.php:94
-#: application/modules/admin/admin_search.php:188
+#: application/modules/admin/admin_search.php:98
+#: application/modules/admin/admin_search.php:202
 msgid "Last link"
 msgstr "Останнє посилання"
 
@@ -4701,7 +4749,6 @@ msgstr "Останній IP"
 msgid "The last status in the list can not be deleted"
 msgstr "Останній статус у списку не може бути видалено"
 
-#: templates/administrator/desktop.tpl:156
 #: templates/administrator/new_desktop.tpl:121
 #: templates/administrator/cache_all.tpl:37
 msgid "Clear all"
@@ -4719,12 +4766,12 @@ msgstr "Очистити застарілі"
 msgid "Clear cache"
 msgstr "Очистити кеш"
 
-#: application/modules/admin/admin.php:83
+#: application/modules/admin/admin.php:91
 msgid "Cleared the cache"
 msgstr "Очищений кеш"
 
 #: templates/administrator/add_page.tpl:225
-#: templates/administrator/edit_page.tpl:257
+#: templates/administrator/edit_page.tpl:260
 msgid "Waiting approval "
 msgstr "Очікування схвалення"
 
@@ -4739,8 +4786,6 @@ msgstr "Панель управління"
 
 #: templates/administrator/old_browser.tpl:6
 #: templates/administrator/old_browser.tpl:7
-#: templates/administrator/desktop.tpl:6
-#: templates/administrator/desktop.tpl:7
 #: templates/administrator/main_elfinder.tpl:4
 #: templates/administrator/main_elfinder.tpl:6
 #: templates/administrator/forgot_password.tpl:6
@@ -4769,7 +4814,7 @@ msgstr "Параметри оновлено"
 msgid "FTP connection settings"
 msgstr "Параметри підключення FTP"
 
-#: application/modules/admin/login.php:52
+#: application/modules/admin/login.php:54
 msgid "Password"
 msgstr "Пароль"
 
@@ -4786,7 +4831,7 @@ msgstr "Пароль клієнта"
 msgid "Password confirm"
 msgstr "Пароль підтвердження"
 
-#: application/modules/shop/admin/templates/orders/edit.tpl:369
+#: application/modules/shop/admin/templates/orders/edit.tpl:374
 msgid "The initial value of the goods"
 msgstr "Первісна вартість товарів"
 
@@ -4810,7 +4855,7 @@ msgstr "Перевірка"
 msgid "Check"
 msgstr "Перевірка"
 
-#: application/modules/shop/models2/generated-classes/CustomFields.php:31
+#: application/modules/shop/models2/generated-classes/CustomFields.php:28
 msgid "Validations"
 msgstr "Перевірки"
 
@@ -4822,17 +4867,13 @@ msgstr "Перевірте версію оновлення"
 msgid "Properties list review"
 msgstr "Перегляд властивостей товарів"
 
-#: templates/administrator/desktop.tpl:165
-msgid "View a site"
-msgstr "Перегляд сайту"
-
 #: templates/administrator/category_edit.tpl:212
-#: templates/administrator/create_cat.tpl:167
+#: templates/administrator/create_cat.tpl:187
 msgid "View page"
 msgstr "Перегляд сторінки"
 
-#: templates/administrator/category_edit.tpl:309
-#: templates/administrator/create_cat.tpl:247
+#: templates/administrator/category_edit.tpl:347
+#: templates/administrator/create_cat.tpl:321
 msgid "Page view template by default"
 msgstr "Перегляд сторінки шаблону за замовчуванням"
 
@@ -4857,8 +4898,8 @@ msgstr "Перейти на сайт"
 msgid "Translation"
 msgstr "Переклад"
 
-#: application/modules/shop/admin/categories.php:401
-#: application/modules/shop/admin/categories.php:414
+#: application/modules/shop/admin/categories.php:390
+#: application/modules/shop/admin/categories.php:402
 msgid "Тo translation"
 msgstr "Переклад відсутній"
 
@@ -4866,11 +4907,11 @@ msgstr "Переклад відсутній"
 msgid "Category translation"
 msgstr "Переклад категорій"
 
-#: application/modules/admin/categories.php:511
+#: application/modules/admin/categories.php:576
 msgid "Category translation updated"
 msgstr "Переклад категорії оновлено"
 
-#: application/modules/admin/categories.php:488
+#: application/modules/admin/categories.php:555
 msgid "Translated the category"
 msgstr "Перекладено категорію"
 
@@ -4906,18 +4947,18 @@ msgstr "Перерахувати продукцію після оплати за
 msgid "Recalculation"
 msgstr "Перерахунок"
 
-#: application/modules/shop/admin/currencies.php:340
-#: application/modules/shop/admin/currencies.php:352
+#: application/modules/shop/admin/currencies.php:349
+#: application/modules/shop/admin/currencies.php:358
 msgid "Conversion completed. Now the currency may be removed"
 msgstr "Перетворення завершено. Тепер валюта може бути видалена"
 
-#: application/modules/shop/admin/templates/search/list.tpl:496
+#: application/modules/shop/admin/templates/search/list.tpl:504
 #: application/modules/shop/admin/templates/search/advanced.tpl:175
 msgid "Drag product variant"
 msgstr "Перетягніть варіант продукту"
 
-#: application/modules/admin/admin_search.php:93
-#: application/modules/admin/admin_search.php:187
+#: application/modules/admin/admin_search.php:97
+#: application/modules/admin/admin_search.php:201
 msgid "First link"
 msgstr "Перше посилання"
 
@@ -4926,7 +4967,7 @@ msgid "Period"
 msgstr "Період"
 
 #: application/modules/shop/admin/templates/paymentmethods/create.tpl:75
-#: application/modules/shop/admin/templates/paymentmethods/edit.tpl:75
+#: application/modules/shop/admin/templates/paymentmethods/edit.tpl:62
 #: application/modules/shop/admin/templates/orders/cart_list.tpl:65
 msgid "Payments"
 msgstr "Платежі"
@@ -4948,7 +4989,7 @@ msgstr "Пов'язані продукти"
 msgid "back"
 msgstr "повернутися"
 
-#: application/modules/shop/admin/orders.php:174
+#: application/modules/shop/admin/orders.php:183
 msgid "&nbsp;Back"
 msgstr "Повернутися"
 
@@ -4969,7 +5010,6 @@ msgid "Return"
 msgstr "Повернутися"
 
 #: templates/administrator/roleCreate.tpl:9
-#: templates/administrator/desktop.tpl:86
 #: templates/administrator/category_edit.tpl:11
 #: templates/administrator/widget_edit_html.tpl:9
 #: templates/administrator/add_page.tpl:10
@@ -4979,7 +5019,7 @@ msgstr "Повернутися"
 #: templates/administrator/cat_translate_edit.tpl:10
 #: templates/administrator/translateRole.tpl:9
 #: templates/administrator/privilegeEdit.tpl:9
-#: templates/administrator/create_cat.tpl:11
+#: templates/administrator/create_cat.tpl:12
 #: templates/administrator/roleEdit.tpl:9
 #: templates/administrator/widget_edit_module.tpl:9
 msgid "Back"
@@ -5022,8 +5062,7 @@ msgstr "Повний імпорт"
 msgid "Inform"
 msgstr "Повідомити"
 
-#: application/modules/shop/admin/templates/notifications/list.tpl:156
-#: application/modules/shop/admin/templates/notifications/list.tpl:287
+#: application/modules/shop/admin/templates/notifications/list.tpl:161
 msgid "Notify"
 msgstr "Повідомити"
 
@@ -5032,18 +5071,17 @@ msgstr "Повідомити"
 msgid "Notify a buyer about the status change"
 msgstr "Повідомити покупця про зміну статусу"
 
-#: templates/administrator/main.tpl:428
+#: templates/administrator/main.tpl:431
 msgid "Report an error"
 msgstr "Повідомити про помилку"
 
 #: templates/administrator/new_desktop.tpl:158
 #: templates/administrator/main_elfinder.tpl:362
-#: templates/administrator/main.tpl:403
+#: templates/administrator/main.tpl:406
 msgid "report an error"
 msgstr "повідомити про помилку"
 
-#: application/modules/shop/admin/templates/notifications/list.tpl:73
-#: application/modules/shop/admin/templates/notifications/list.tpl:197
+#: application/modules/shop/admin/templates/notifications/list.tpl:68
 msgid "Notifications"
 msgstr "Повідомлення"
 
@@ -5055,8 +5093,7 @@ msgstr "повідомлення"
 msgid "Notification "
 msgstr "Повідомлення"
 
-#: application/modules/shop/admin/templates/notifications/list.tpl:151
-#: application/modules/shop/admin/templates/notifications/list.tpl:282
+#: application/modules/shop/admin/templates/notifications/list.tpl:156
 msgid "Notified"
 msgstr "Повідомлення"
 
@@ -5124,13 +5161,13 @@ msgstr "Повідомляти Вас по електронній пошті п�
 msgid "Notify the user via E-mail upon availability"
 msgstr "Повідомляти користувача через E-mail про наявність"
 
-#: application/modules/shop/admin/templates/orders/check.tpl:116
-#: application/modules/shop/admin/templates/orders/check.tpl:153
+#: application/modules/shop/admin/templates/orders/check.tpl:114
+#: application/modules/shop/admin/templates/orders/check.tpl:151
 msgid "Gift certificate"
 msgstr "Подарунковий сертифікат"
 
 #: application/modules/shop/admin/templates/orders/create.tpl:299
-#: application/modules/shop/admin/templates/orders/edit.tpl:393
+#: application/modules/shop/admin/templates/orders/edit.tpl:398
 msgid "Gift Certificate"
 msgstr "Подарунковий сертифікат"
 
@@ -5151,26 +5188,26 @@ msgstr "Подивитися на сайті"
 msgid "Order details"
 msgstr "Подробиці замовлення"
 
-#: application/modules/shop/admin/callbacks.php:255
+#: application/modules/shop/admin/callbacks.php:265
 msgid "Position created"
 msgstr "Позицію створено"
 
-#: application/modules/admin/categories.php:131
+#: application/modules/admin/categories.php:141
 msgid "Position"
 msgstr "Позиція"
 
-#: application/modules/admin/categories.php:63
+#: application/modules/admin/categories.php:71
 msgid "The position has been successfully saved"
 msgstr "Позиція була успішно збережена"
 
-#: application/modules/shop/admin/categories.php:501
-#: application/modules/shop/admin/search.php:231
+#: application/modules/shop/admin/categories.php:489
+#: application/modules/shop/admin/search.php:232
 #: application/modules/shop/admin/deliverymethods.php:241
 #: application/modules/shop/admin/properties.php:578
 #: application/modules/shop/admin/settings.php:478
-#: application/modules/shop/admin/paymentmethods.php:205
+#: application/modules/shop/admin/paymentmethods.php:223
 #: application/modules/shop/admin/notificationstatuses.php:198
-#: application/modules/shop/admin/brands.php:524
+#: application/modules/shop/admin/brands.php:511
 msgid "Positions saved"
 msgstr "Позиції зберігаються"
 
@@ -5178,20 +5215,20 @@ msgstr "Позиції зберігаються"
 msgid "Positions updated"
 msgstr "Позиції оновлюються"
 
-#: application/modules/shop/admin/callbacks.php:375
+#: application/modules/shop/admin/callbacks.php:395
 #: application/modules/shop/admin/orderstatuses.php:245
 msgid "Positions saved successfully"
 msgstr "Позиції успішно збережено"
 
+#: templates/administrator/inc/php_to_js_variables.tpl:26
 #: templates/administrator/main_elfinder.tpl:453
 #: templates/administrator/pages_list.tpl:207
-#: templates/administrator/main.tpl:522
 #: templates/administrator/search.tpl:51
 msgid "show"
 msgstr "показати"
 
 #: templates/administrator/main_elfinder.tpl:136
-#: templates/administrator/main.tpl:144
+#: templates/administrator/main.tpl:147
 msgid "Show"
 msgstr "Показати"
 
@@ -5214,15 +5251,15 @@ msgstr "Показати у всіх категоріях"
 msgid "Show in menu"
 msgstr "Показувати в меню"
 
-#: application/modules/shop/models2/generated-classes/SProperties.php:33
+#: application/modules/shop/models2/generated-classes/SProperties.php:32
 msgid "Show in product compare"
 msgstr "Показувати в порівнянні"
 
-#: application/modules/shop/models2/generated-classes/SProperties.php:31
+#: application/modules/shop/models2/generated-classes/SProperties.php:30
 msgid "Show on product page"
 msgstr "Показувати на сторінці товару"
 
-#: application/modules/shop/models2/generated-classes/SProperties.php:34
+#: application/modules/shop/models2/generated-classes/SProperties.php:33
 msgid "Show in filter"
 msgstr "Показувати у фільтрі"
 
@@ -5235,7 +5272,7 @@ msgstr "Покупець"
 msgid "Field"
 msgstr "Поле"
 
-#: application/modules/admin/categories.php:115
+#: application/modules/admin/categories.php:125
 #: application/modules/admin/pages.php:137
 msgid "The %s field can only contain Latin characters"
 msgstr "Поле %s може містити тільки латинські літери"
@@ -5246,7 +5283,7 @@ msgstr "Поле %s може містити тільки латинські лі
 msgid "Field active"
 msgstr "Поле активне"
 
-#: application/modules/shop/admin/customfields.php:124
+#: application/modules/shop/admin/customfields.php:125
 msgid "Field not found"
 msgstr "Поле не знайдене"
 
@@ -5264,9 +5301,9 @@ msgstr "Поле повинно містити тільки літери без 
 msgid "File field"
 msgstr "Поля файлу"
 
-#: application/modules/admin/categories.php:572
+#: application/modules/admin/categories.php:638
 #: application/modules/admin/sys_update.php:106
-#: application/modules/admin/settings.php:209
+#: application/modules/admin/settings.php:216
 msgid "Error"
 msgstr "Помилка"
 
@@ -5295,7 +5332,7 @@ msgstr "Помилка модулю встановлення"
 msgid "The operation error"
 msgstr "Помилка операції"
 
-#: application/modules/admin/admin.php:102
+#: application/modules/admin/admin.php:112
 msgid "Clearing cache error"
 msgstr "Помилка очищення кешу "
 
@@ -5323,7 +5360,7 @@ msgstr "Помилка при завантаженні файлу версій"
 msgid "Script error. Notify administrator."
 msgstr "Помилка сценарію. Повідомити адміністратора"
 
-#: application/modules/shop/admin/currencies.php:317
+#: application/modules/shop/admin/currencies.php:329
 msgid "Error. The currency used in the products. Check the currency options products"
 msgstr "Помилка. Валюта, яка використовується в продуктах. Перевірте параметри валюти продукції"
 
@@ -5378,7 +5415,7 @@ msgstr "Популярність формули: кількість перегл
 msgid "Empty."
 msgstr "Порожній"
 
-#: templates/administrator/js/admin_base_i.js:981
+#: templates/administrator/js/admin_base_i.js:1008
 msgid "Empty list"
 msgstr "Порожній список"
 
@@ -5429,7 +5466,7 @@ msgid "Link to view the product"
 msgstr "Посилання на перегляд продукту"
 
 #: templates/administrator/main_elfinder.tpl:325
-#: templates/administrator/main.tpl:339
+#: templates/administrator/main.tpl:342
 msgid "Задать вопрос"
 msgstr "Поставити питання"
 
@@ -5474,7 +5511,7 @@ msgstr "Почати пошук"
 msgid "Start import"
 msgstr "Почати імпорт"
 
-#: application/modules/admin/admin_logs.php:51
+#: application/modules/admin/admin_logs.php:52
 msgid "First"
 msgstr "Початок"
 
@@ -5482,7 +5519,6 @@ msgstr "Початок"
 msgid "Start typing name here"
 msgstr "Почніть вводити ім'я тут"
 
-#: templates/administrator/desktop.tpl:133
 #: templates/administrator/inc/menus_premmerce.php:328
 #: templates/administrator/inc/menus.php:329
 #: templates/administrator/inc/menus.php:612
@@ -5548,7 +5584,6 @@ msgstr "Привілей"
 msgid "Privileges"
 msgstr "Привілеї"
 
-#: templates/administrator/desktop.tpl:99
 #: templates/administrator/new_desktop.tpl:26
 msgid "Hello"
 msgstr "Привіт"
@@ -5556,12 +5591,12 @@ msgstr "Привіт"
 #: application/modules/shop/admin/templates/users/edit_1.tpl:177
 #: application/modules/shop/admin/templates/users/edit.tpl:174
 #: application/modules/shop/admin/templates/dashboard/dashboard.tpl:56
-#: application/modules/shop/admin/templates/orders/list.tpl:196
+#: application/modules/shop/admin/templates/orders/list.tpl:215
 msgid "Purchased Product"
 msgstr "Придбаний продукт"
 
 #: templates/administrator/main_elfinder.tpl:130
-#: templates/administrator/main.tpl:138
+#: templates/administrator/main.tpl:141
 msgid "Hide"
 msgstr "Приховати"
 
@@ -5577,20 +5612,20 @@ msgstr "Прогресивні знижки"
 msgid "Продлить"
 msgstr "Продовжити"
 
-#: application/modules/shop/admin/products.php:1199
+#: application/modules/shop/admin/products.php:1150
 msgid "The product was removed"
 msgstr "Продукт був видалений"
 
-#: application/modules/shop/admin/products.php:758
+#: application/modules/shop/admin/products.php:733
 msgid "The product was edited"
 msgstr "Продукт був відредагований"
 
-#: application/modules/shop/admin/products.php:247
+#: application/modules/shop/admin/products.php:266
 msgid "The product was created"
 msgstr "Продукт був створений"
 
-#: application/modules/shop/admin/orders.php:1024
-#: application/modules/shop/admin/orders.php:1051
+#: application/modules/shop/admin/orders.php:1058
+#: application/modules/shop/admin/orders.php:1086
 msgid "Product updated"
 msgstr "Продукт оновлено"
 
@@ -5645,7 +5680,7 @@ msgstr "Підриваюча помилка"
 msgid "Module deinstalling"
 msgstr "Після видалення модуля"
 
-#: application/modules/shop/admin/orders.php:1937
+#: application/modules/shop/admin/orders.php:1977
 #: application/modules/shop/admin/templates/users/edit_orders_list.tpl:34
 #: application/modules/shop/admin/templates/orders/create.tpl:303
 #: application/modules/shop/admin/templates/orders/_editWindow.tpl:47
@@ -5672,7 +5707,7 @@ msgstr "Редагування віджету"
 #: application/modules/shop/admin/templates/users/edit_1.tpl:174
 #: application/modules/shop/admin/templates/users/edit.tpl:171
 #: application/modules/shop/admin/templates/dashboard/dashboard.tpl:36
-#: application/modules/shop/admin/templates/orders/list.tpl:181
+#: application/modules/shop/admin/templates/orders/list.tpl:200
 msgid "Edit order"
 msgstr "Редагування замовлення"
 
@@ -5721,18 +5756,17 @@ msgid "Сallback topic editing"
 msgstr "Редагування теми зворотнього виклику"
 
 #: application/modules/shop/admin/templates/settings/settings.tpl:111
-#: application/modules/shop/admin/templates/paymentmethods/list.tpl:70
+#: application/modules/shop/admin/templates/paymentmethods/list.tpl:69
 #: application/modules/shop/admin/templates/deliverymethods/list.tpl:69
 #: application/modules/shop/admin/templates/products/default_edit.tpl:98
 #: application/modules/shop/admin/templates/products/default_edit.tpl:306
-#: application/modules/shop/admin/templates/products/create.tpl:116
-#: application/modules/shop/admin/templates/products/create.tpl:391
+#: application/modules/shop/admin/templates/products/create.tpl:117
+#: application/modules/shop/admin/templates/products/create.tpl:393
 #: application/modules/shop/admin/templates/products/edit.tpl:150
 msgid "Edit"
 msgstr "Редагувати"
 
-#: templates/administrator/desktop.tpl:115
-#: templates/administrator/widgets_list.tpl:74
+#: templates/administrator/widgets_list.tpl:73
 #: templates/administrator/new_desktop.tpl:77
 #: templates/administrator/new_desktop.tpl:111
 #: templates/administrator/dashboard.tpl:33
@@ -5747,7 +5781,7 @@ msgstr "Редагувати"
 
 #: application/modules/shop/admin/templates/brands/list.tpl:97
 #: application/modules/shop/admin/templates/search/list.tpl:290
-#: application/modules/shop/admin/templates/search/list.tpl:419
+#: application/modules/shop/admin/templates/search/list.tpl:427
 #: application/modules/shop/admin/templates/products/oneProductListItem.tpl:43
 msgid "Edit brand"
 msgstr "Редагувати бренд"
@@ -5757,8 +5791,8 @@ msgstr "Редагувати бренд"
 msgid "Roles group edit"
 msgstr "Редагувати групи ролей"
 
-#: application/modules/shop/admin/templates/callbacks/list.tpl:135
-#: application/modules/shop/admin/templates/callbacks/list.tpl:210
+#: application/modules/shop/admin/templates/callbacks/list.tpl:146
+#: application/modules/shop/admin/templates/callbacks/list.tpl:221
 #: application/modules/shop/admin/templates/callbacks/_list.tpl:63
 #: application/modules/shop/admin/templates/callbacks/_list.tpl:138
 msgid "Edit callback"
@@ -5769,7 +5803,7 @@ msgid "edit category"
 msgstr "редагувати категорії"
 
 #: application/modules/shop/admin/templates/search/list.tpl:310
-#: application/modules/shop/admin/templates/search/list.tpl:439
+#: application/modules/shop/admin/templates/search/list.tpl:447
 #: application/modules/shop/admin/templates/categories/_listItem.tpl:36
 #: application/modules/shop/admin/templates/products/oneProductListItem.tpl:64
 msgid "Edit category"
@@ -5783,10 +5817,10 @@ msgstr "Редагувати коментар"
 msgid "Edit product kit"
 msgstr "Редагувати комплекту продукту"
 
-#: application/modules/shop/admin/templates/users/list.tpl:125
+#: application/modules/shop/admin/templates/users/list.tpl:161
 #: application/modules/shop/admin/templates/dashboard/dashboard.tpl:147
 #: application/modules/shop/admin/templates/dashboard/dashboard.tpl:195
-#: application/modules/shop/admin/templates/orders/list.tpl:192
+#: application/modules/shop/admin/templates/orders/list.tpl:211
 #: application/modules/shop/admin/templates/orders/edit.tpl:142
 msgid "Edit user"
 msgstr "Редагувати користувача"
@@ -5799,8 +5833,7 @@ msgstr "Редагувати набiр"
 msgid "Currency edit"
 msgstr "Редагувати обмін"
 
-#: application/modules/shop/admin/templates/notifications/list.tpl:112
-#: application/modules/shop/admin/templates/notifications/list.tpl:241
+#: application/modules/shop/admin/templates/notifications/list.tpl:116
 msgid "Edit notification"
 msgstr "Редагувати повідомлення"
 
@@ -5813,10 +5846,10 @@ msgid "Gift certificate edit"
 msgstr "Редагувати подарунковий сертифікат "
 
 #: application/modules/shop/admin/templates/search/list.tpl:274
-#: application/modules/shop/admin/templates/search/list.tpl:403
+#: application/modules/shop/admin/templates/search/list.tpl:411
 #: application/modules/shop/admin/templates/notifications/edit.tpl:117
-#: application/modules/shop/admin/templates/orders/edit.tpl:262
-#: application/modules/shop/admin/templates/orders/edit.tpl:309
+#: application/modules/shop/admin/templates/orders/edit.tpl:267
+#: application/modules/shop/admin/templates/orders/edit.tpl:314
 #: application/modules/shop/admin/templates/products/default_edit.tpl:416
 #: application/modules/shop/admin/templates/products/oneProductListItem.tpl:25
 #: application/modules/shop/admin/templates/kits/index.tpl:69
@@ -5857,7 +5890,7 @@ msgstr "Редагувати тему зворотнього виклику "
 msgid "Template editor"
 msgstr "Редактор шаблонів"
 
-#: application/modules/admin/backup.php:174
+#: application/modules/admin/backup.php:178
 msgid "Backup copying"
 msgstr "Резервне копіювання"
 
@@ -5867,8 +5900,8 @@ msgstr "Резервне копіювання"
 msgid "Backup"
 msgstr "Резервне копіювання"
 
-#: application/modules/admin/backup.php:142
-#: application/modules/admin/backup.php:195
+#: application/modules/admin/backup.php:146
+#: application/modules/admin/backup.php:200
 msgid "Backup copying has been completed"
 msgstr "Резервне копіювання завершено"
 
@@ -5889,11 +5922,11 @@ msgstr "Реєстрація користувача після створенн�
 msgid "Registration after order"
 msgstr "Реєстрація після замовлення"
 
-#: application/modules/admin/settings.php:336
+#: application/modules/admin/settings.php:345
 msgid "Robots was opened - "
 msgstr "Роботи були вiдкритi - "
 
-#: application/modules/admin/settings.php:317
+#: application/modules/admin/settings.php:326
 msgid "Robots was closed - "
 msgstr "Роботи були закритi - "
 
@@ -5914,7 +5947,7 @@ msgstr "Роздільник полів"
 msgid "Fields separator"
 msgstr "Роздільник полів"
 
-#: templates/administrator/settings_site.tpl:309
+#: templates/administrator/settings_site.tpl:341
 msgid "Separator"
 msgstr "Розділювальний знак"
 
@@ -5944,7 +5977,8 @@ msgid "Advanced search product"
 msgstr "Розширений пошук продукту"
 
 #: application/modules/shop/admin/templates/users/edit_1.tpl:79
-#: application/modules/shop/admin/templates/users/list.tpl:63
+#: application/modules/shop/admin/templates/users/list.tpl:26
+#: application/modules/shop/admin/templates/users/list.tpl:94
 #: application/modules/shop/admin/templates/users/create.tpl:47
 #: application/modules/shop/admin/templates/users/edit.tpl:69
 #: application/modules/shop/admin/templates/rbac/role_list.tpl:84
@@ -5984,7 +6018,7 @@ msgstr "Рівень використання сервера"
 msgid "site"
 msgstr "сайт"
 
-#: templates/administrator/settings_site.tpl:53
+#: templates/administrator/settings_site.tpl:56
 msgid "The site will be available only to the Administrator"
 msgstr "Сайт буде доступний лише для Адміністратора"
 
@@ -6002,7 +6036,7 @@ msgstr "Сервер"
 msgid "Character"
 msgstr "Символ"
 
-#: application/modules/shop/admin/templates/paymentmethods/list.tpl:52
+#: application/modules/shop/admin/templates/paymentmethods/list.tpl:51
 msgid "Currency symbol"
 msgstr "Символ валюти"
 
@@ -6010,7 +6044,6 @@ msgstr "Символ валюти"
 msgid "characters"
 msgstr "символи"
 
-#: templates/administrator/desktop.tpl:149
 #: templates/administrator/inc/menus_premmerce.php:103
 #: templates/administrator/inc/menus.php:103
 #: templates/administrator/inc/menus.php:374
@@ -6031,10 +6064,10 @@ msgstr "Системна помилка - незнайоме продовжен�
 #: templates/administrator/pages_list.tpl:33
 #: templates/administrator/pages_list.tpl:47
 #: templates/administrator/category_list.tpl:14
-#: templates/administrator/main.tpl:460
+#: templates/administrator/main.tpl:463
 #: templates/administrator/add_page.tpl:316
 #: templates/administrator/privilegeList.tpl:66
-#: templates/administrator/edit_page.tpl:352
+#: templates/administrator/edit_page.tpl:355
 #: templates/administrator/languages.tpl:15
 #: templates/administrator/move_pages.tpl:10
 #: templates/administrator/fast_cat_add.tpl:21
@@ -6050,7 +6083,7 @@ msgstr "Скасувати фільтр"
 
 #: application/modules/shop/admin/templates/search/list.tpl:50
 #: application/modules/shop/admin/templates/callbacks/list.tpl:21
-#: application/modules/shop/admin/templates/orders/list.tpl:25
+#: application/modules/shop/admin/templates/orders/list.tpl:43
 #: application/modules/shop/admin/templates/properties/list.tpl:37
 msgid "Reset filter"
 msgstr "Скинути фільтр"
@@ -6069,7 +6102,7 @@ msgid "Copy to the local computer"
 msgstr "Скопіювати на локальний комп'ютер"
 
 #: templates/administrator/main_elfinder.tpl:313
-#: templates/administrator/main.tpl:327
+#: templates/administrator/main.tpl:330
 msgid "Служба поддержки"
 msgstr "Служба підтримки"
 
@@ -6078,7 +6111,7 @@ msgid "Sort by price"
 msgstr "Сортувати за ціною"
 
 #: templates/administrator/category_edit.tpl:222
-#: templates/administrator/create_cat.tpl:177
+#: templates/administrator/create_cat.tpl:197
 msgid "Sort by"
 msgstr "Сортувати по"
 
@@ -6169,7 +6202,7 @@ msgstr "Список зворотних викликів порожній"
 msgid "Callback list"
 msgstr "Список зворотніх викликів"
 
-#: application/modules/shop/admin/templates/callbacks/list.tpl:279
+#: application/modules/shop/admin/templates/callbacks/list.tpl:290
 #: application/modules/shop/admin/templates/callbacks/_list.tpl:185
 msgid "Empty callback list."
 msgstr "Список зворотніх викликів - порожній"
@@ -6229,8 +6262,7 @@ msgstr "Список накопичувальних знижок"
 msgid "Wish List"
 msgstr "Список побажань"
 
-#: application/modules/shop/admin/templates/notifications/list.tpl:167
-#: application/modules/shop/admin/templates/notifications/list.tpl:301
+#: application/modules/shop/admin/templates/notifications/list.tpl:172
 msgid "Empty product arrival notification list."
 msgstr "Список повідомлень про прибуття товарів - порожній"
 
@@ -6271,7 +6303,7 @@ msgstr "Список способів доставки порожній"
 msgid "Payment methods list"
 msgstr "Список способів оплати"
 
-#: application/modules/shop/admin/templates/paymentmethods/list.tpl:88
+#: application/modules/shop/admin/templates/paymentmethods/list.tpl:93
 msgid "Payment methods list is empty"
 msgstr "Список способів оплати порожній"
 
@@ -6298,11 +6330,11 @@ msgstr "Список сторінок"
 msgid "Products list"
 msgstr "Список товарів"
 
-#: application/modules/shop/admin/templates/search/list.tpl:558
+#: application/modules/shop/admin/templates/search/list.tpl:567
 msgid "Product list is empty"
 msgstr "Список товарів - порожній"
 
-#: application/modules/admin/admin.php:207
+#: application/modules/admin/admin.php:220
 msgid "Message"
 msgstr "Сповіщення"
 
@@ -6353,21 +6385,21 @@ msgstr "Спосіб доставки не знайдено"
 msgid "Payment method"
 msgstr "Спосіб оплати"
 
-#: application/modules/shop/admin/paymentmethods.php:145
+#: application/modules/shop/admin/paymentmethods.php:163
 msgid "Payment method was edited"
 msgstr "Спосіб оплати був відредагований"
 
-#: application/modules/shop/admin/paymentmethods.php:187
-#: application/modules/shop/admin/paymentmethods.php:188
+#: application/modules/shop/admin/paymentmethods.php:205
+#: application/modules/shop/admin/paymentmethods.php:206
 msgid "Method of payment is removed"
 msgstr "Спосіб оплати видаляється"
 
-#: application/modules/shop/admin/paymentmethods.php:111
+#: application/modules/shop/admin/paymentmethods.php:129
 msgid "Payment method is not found."
 msgstr "Спосіб оплати не знайдено"
 
-#: application/modules/shop/admin/paymentmethods.php:76
-#: application/modules/shop/admin/paymentmethods.php:77
+#: application/modules/shop/admin/paymentmethods.php:94
+#: application/modules/shop/admin/paymentmethods.php:95
 msgid "Payment method is created"
 msgstr "Спосіб оплати створюється"
 
@@ -6375,7 +6407,7 @@ msgstr "Спосіб оплати створюється"
 msgid "The ratio of the size of the watermark to the size of photos"
 msgstr "Співвідношення розміру водяного знака до розміру зображень"
 
-#: application/modules/admin/admin.php:216
+#: application/modules/admin/admin.php:228
 msgid "An error occurred while sending a message"
 msgstr "Сталася помилка під час відправлення повідомлення"
 
@@ -6390,7 +6422,7 @@ msgstr "Стан редагування зворотного виклику"
 #: application/modules/shop/admin/templates/products/_create.tpl:368
 #: application/modules/shop/admin/templates/products/default_edit.tpl:169
 #: application/modules/shop/admin/templates/products/_edit.tpl:415
-#: application/modules/shop/admin/templates/products/create.tpl:162
+#: application/modules/shop/admin/templates/products/create.tpl:163
 #: application/modules/shop/admin/templates/system/importcsv.tpl:100
 #: application/modules/shop/admin/templates/system/export_.tpl:74
 #: application/modules/shop/admin/templates/system/importfields.tpl:171
@@ -6413,7 +6445,7 @@ msgstr "Статус"
 msgid "Arrival notification status was deleted"
 msgstr "Статус був видалений"
 
-#: application/modules/shop/admin/callbacks.php:450
+#: application/modules/shop/admin/callbacks.php:467
 msgid "Status was removed"
 msgstr "Статус був видалений"
 
@@ -6448,12 +6480,12 @@ msgstr "Статус замовлення видаляється"
 msgid "Order status edited"
 msgstr "Статус замовлення відредаговано"
 
-#: application/modules/shop/admin/orders.php:490
-#: application/modules/shop/admin/orders.php:615
+#: application/modules/shop/admin/orders.php:508
+#: application/modules/shop/admin/orders.php:636
 msgid "Order Status changed"
 msgstr "Статус замовлення змінено"
 
-#: application/modules/shop/admin/orders.php:338
+#: application/modules/shop/admin/orders.php:351
 #: application/modules/shop/admin/notifications.php:332
 msgid "Order status changed"
 msgstr "Статус замовлення змінено"
@@ -6470,23 +6502,23 @@ msgstr "Статус замовлення створено"
 msgid "Order status created"
 msgstr "Статус замовлення створено"
 
-#: application/modules/shop/admin/templates/orders/edit.tpl:418
+#: application/modules/shop/admin/templates/orders/edit.tpl:423
 msgid "Order status and history"
 msgstr "Статус замовлення та історія"
 
-#: application/modules/shop/admin/callbacks.php:335
+#: application/modules/shop/admin/callbacks.php:357
 msgid "Callback default status changed. New default status ID:"
 msgstr "Статус зворотного дзвінка за замовчуванням змінився. Новий статус за замовчуванням ідентифікатор:"
 
-#: application/modules/shop/admin/callbacks.php:449
+#: application/modules/shop/admin/callbacks.php:466
 msgid "Status callback was removed"
 msgstr "Статус зворотнього дзвінка був видалений"
 
-#: application/modules/shop/admin/callbacks.php:302
+#: application/modules/shop/admin/callbacks.php:319
 msgid "Status callback edited"
 msgstr "Статус зворотнього дзвінка відредаговано"
 
-#: application/modules/shop/admin/callbacks.php:254
+#: application/modules/shop/admin/callbacks.php:264
 msgid "Status callback created"
 msgstr "Статус зворотнього дзвінка створено"
 
@@ -6498,17 +6530,17 @@ msgstr "Статус не знайдений"
 #: application/modules/shop/admin/templates/users/edit_1.tpl:155
 #: application/modules/shop/admin/templates/users/edit.tpl:151
 #: application/modules/shop/admin/templates/dashboard/dashboard.tpl:29
-#: application/modules/shop/admin/templates/orders/list.tpl:38
-#: application/modules/shop/admin/templates/orders/list.tpl:102
-#: application/modules/shop/admin/templates/orders/edit.tpl:428
+#: application/modules/shop/admin/templates/orders/list.tpl:57
+#: application/modules/shop/admin/templates/orders/list.tpl:121
+#: application/modules/shop/admin/templates/orders/edit.tpl:433
 msgid "Payment status"
 msgstr "Статус оплати"
 
-#: application/modules/shop/admin/orders.php:643
+#: application/modules/shop/admin/orders.php:664
 msgid "Payment status of orders changed"
 msgstr "Статус оплати замовлення змінено"
 
-#: application/modules/shop/admin/paymentmethods.php:101
+#: application/modules/shop/admin/paymentmethods.php:119
 msgid "Status payment was edited"
 msgstr "Статус платежу був відредагований"
 
@@ -6530,7 +6562,7 @@ msgid "Pendings status was created"
 msgstr "Статус повідомлень створено"
 
 #: templates/administrator/add_page.tpl:220
-#: templates/administrator/edit_page.tpl:252
+#: templates/administrator/edit_page.tpl:255
 msgid "Publication status"
 msgstr "Статус публікації"
 
@@ -6642,8 +6674,8 @@ msgstr "Створено"
 msgid "Created a widget"
 msgstr "Створено віджет"
 
-#: application/modules/shop/admin/users.php:355
-#: application/modules/shop/admin/users.php:356
+#: application/modules/shop/admin/users.php:375
+#: application/modules/shop/admin/users.php:376
 msgid "User created"
 msgstr "Створено користувачем"
 
@@ -6651,7 +6683,7 @@ msgstr "Створено користувачем"
 msgid "Created a page"
 msgstr "Створено сторінку"
 
-#: application/modules/shop/admin/users.php:351
+#: application/modules/shop/admin/users.php:372
 msgid "Created by"
 msgstr "Створені"
 
@@ -6673,8 +6705,6 @@ msgstr "Створити"
 
 #: templates/administrator/roleCreate.tpl:10
 #: templates/administrator/privilegeCreate.tpl:5
-#: templates/administrator/desktop.tpl:106
-#: templates/administrator/desktop.tpl:114
 #: templates/administrator/new_desktop.tpl:65
 #: templates/administrator/new_desktop.tpl:76
 #: templates/administrator/new_desktop.tpl:110
@@ -6683,20 +6713,20 @@ msgstr "Створити"
 #: templates/administrator/add_page.tpl:11
 #: templates/administrator/add_page.tpl:317
 #: templates/administrator/lang_create.tpl:12
-#: templates/administrator/edit_page.tpl:353
+#: templates/administrator/edit_page.tpl:356
 #: templates/administrator/backup.tpl:19
 #: templates/administrator/backup.tpl:82
 #: templates/administrator/backup.tpl:152
 #: templates/administrator/fast_cat_add.tpl:20
-#: templates/administrator/create_cat.tpl:12
+#: templates/administrator/create_cat.tpl:14
 #: templates/administrator/widget_create.tpl:10
 msgid "Create"
 msgstr "Створити"
 
 #: application/modules/shop/admin/templates/brands/list.tpl:32
 #: application/modules/shop/admin/templates/products/default_edit.tpl:185
-#: application/modules/shop/admin/templates/products/create.tpl:178
-#: application/modules/shop/admin/templates/products/create.tpl:479
+#: application/modules/shop/admin/templates/products/create.tpl:179
+#: application/modules/shop/admin/templates/products/create.tpl:481
 #: application/modules/shop/admin/templates/products/edit.tpl:238
 msgid "Create a brand"
 msgstr "Створити бренд"
@@ -6739,7 +6769,7 @@ msgstr "Створити додаткове поле"
 msgid "Order create"
 msgstr "Створити замовлення"
 
-#: application/modules/shop/admin/templates/orders/list.tpl:44
+#: application/modules/shop/admin/templates/orders/list.tpl:63
 msgid "Create order"
 msgstr "Створити замовлення"
 
@@ -6754,7 +6784,7 @@ msgstr "Створити категорію"
 #: templates/administrator/add_page.tpl:53
 #: templates/administrator/add_page.tpl:287
 #: templates/administrator/edit_page.tpl:77
-#: templates/administrator/edit_page.tpl:323
+#: templates/administrator/edit_page.tpl:326
 msgid "Create a category"
 msgstr "Створити категорію"
 
@@ -6766,7 +6796,7 @@ msgstr "Створити копію"
 msgid " Create a product copy?"
 msgstr "Створити копію продукту?"
 
-#: application/modules/shop/admin/templates/users/list.tpl:35
+#: application/modules/shop/admin/templates/users/list.tpl:64
 msgid "Create user"
 msgstr "Створити користувача"
 
@@ -6790,10 +6820,12 @@ msgstr "Створити невелике зображення"
 msgid "Create new"
 msgstr "Створити новий"
 
-#: application/modules/shop/admin/templates/categories/create.tpl:99
-#: application/modules/shop/admin/templates/categories/edit.tpl:123
-#: application/modules/shop/admin/templates/categories/create_elfinder.tpl:92
-#: application/modules/shop/admin/templates/categories/edit_elfiner.tpl:116
+#: templates/administrator/category_edit.tpl:286
+#: templates/administrator/category_edit.tpl:311
+#: templates/administrator/category_edit.tpl:335
+#: templates/administrator/create_cat.tpl:260
+#: templates/administrator/create_cat.tpl:285
+#: templates/administrator/create_cat.tpl:309
 msgid "Create a new template"
 msgstr "Створити новий шаблон"
 
@@ -6880,7 +6912,7 @@ msgstr "Створити товарний набір"
 #: templates/administrator/roleCreate.tpl:11
 #: templates/administrator/add_page.tpl:12
 #: templates/administrator/lang_create.tpl:16
-#: templates/administrator/create_cat.tpl:13
+#: templates/administrator/create_cat.tpl:16
 #: templates/administrator/widget_create.tpl:11
 msgid "Create and exit"
 msgstr "Створити і вийти"
@@ -6902,7 +6934,7 @@ msgstr "Створити і повернутися"
 msgid "Columns"
 msgstr "Стовпці"
 
-#: application/modules/admin/admin.php:207
+#: application/modules/admin/admin.php:220
 msgid "page"
 msgstr "сторінка"
 
@@ -6927,7 +6959,7 @@ msgstr "Сторінка з URL"
 msgid "Page with the same URL has been created yet. Specify or select another URL"
 msgstr "Сторінка з такою URL-адресою ще не створена. Введіть або виберіть інший URL"
 
-#: application/modules/admin/settings.php:231
+#: application/modules/admin/settings.php:238
 msgid "Page has not been found"
 msgstr "Сторінка не знайдена"
 
@@ -6985,7 +7017,7 @@ msgstr "Сума покупки"
 #: application/modules/shop/admin/templates/comulativ/user.tpl:48
 #: application/modules/shop/admin/templates/commulative/user.tpl:48
 #: application/modules/shop/admin/templates/users/edit_1.tpl:34
-#: application/modules/shop/admin/templates/users/list.tpl:65
+#: application/modules/shop/admin/templates/users/list.tpl:96
 #: application/modules/shop/admin/templates/users/edit.tpl:109
 #: application/modules/shop/admin/templates/dashboard/dashboard.tpl:140
 msgid "Purchase price"
@@ -6999,22 +7031,22 @@ msgstr "Сума, на яку буде знижка"
 msgid "Entity"
 msgstr "Сутність"
 
-#: templates/administrator/settings_site.tpl:319
-#: templates/administrator/settings_site.tpl:331
+#: templates/administrator/settings_site.tpl:355
+#: templates/administrator/settings_site.tpl:369
 msgid "Auto formation"
 msgstr "Сформувати автоматично"
 
-#: application/modules/admin/settings.php:62
+#: application/modules/admin/settings.php:63
 msgid "Yes"
 msgstr "Так"
 
-#: application/modules/shop/admin/callbacks.php:286
+#: application/modules/shop/admin/callbacks.php:300
 #: application/modules/shop/admin/orderstatuses.php:209
 msgid "Such status does not exist"
 msgstr "Такого статусу не існує"
 
 #: templates/administrator/add_page.tpl:118
-#: templates/administrator/edit_page.tpl:153
+#: templates/administrator/edit_page.tpl:156
 msgid "Tags"
 msgstr "Теги"
 
@@ -7039,7 +7071,7 @@ msgstr "Текст повідомлення"
 msgid "Textarea field"
 msgstr "Текстове поле"
 
-#: templates/administrator/settings_site.tpl:98
+#: templates/administrator/settings_site.tpl:108
 msgid "Text editor"
 msgstr "Текстовий редактор"
 
@@ -7058,8 +7090,8 @@ msgstr "Текстовий роздільник"
 #: application/modules/shop/admin/templates/users/edit_1.tpl:46
 #: application/modules/shop/admin/templates/users/create.tpl:64
 #: application/modules/shop/admin/templates/users/edit.tpl:38
-#: application/modules/shop/admin/templates/callbacks/list.tpl:45
-#: application/modules/shop/admin/templates/callbacks/list.tpl:185
+#: application/modules/shop/admin/templates/callbacks/list.tpl:55
+#: application/modules/shop/admin/templates/callbacks/list.tpl:196
 #: application/modules/shop/admin/templates/callbacks/edit.tpl:71
 #: application/modules/shop/admin/templates/callbacks/_list.tpl:42
 #: application/modules/shop/admin/templates/callbacks/_list.tpl:113
@@ -7068,8 +7100,8 @@ msgstr "Текстовий роздільник"
 msgid "Telephone"
 msgstr "Телефон"
 
-#: application/modules/shop/admin/users.php:309
-#: application/modules/shop/admin/users.php:399
+#: application/modules/shop/admin/users.php:327
+#: application/modules/shop/admin/users.php:426
 #: application/modules/shop/admin/templates/orders/check.tpl:17
 #: application/modules/shop/admin/templates/orders/create.tpl:157
 #: application/modules/shop/admin/templates/orders/create.tpl:225
@@ -7080,8 +7112,8 @@ msgstr "Телефон"
 msgid "User phone number"
 msgstr "Телефонний номер користувача"
 
-#: application/modules/shop/admin/templates/callbacks/list.tpl:46
-#: application/modules/shop/admin/templates/callbacks/list.tpl:186
+#: application/modules/shop/admin/templates/callbacks/list.tpl:56
+#: application/modules/shop/admin/templates/callbacks/list.tpl:197
 #: application/modules/shop/admin/templates/callbacks/_list.tpl:43
 #: application/modules/shop/admin/templates/callbacks/_list.tpl:114
 #: application/modules/shop/admin/templates/settings/settings.tpl:705
@@ -7101,23 +7133,23 @@ msgstr "Тема"
 msgid "Subject"
 msgstr "Тема"
 
-#: application/modules/shop/admin/callbacks.php:568
+#: application/modules/shop/admin/callbacks.php:597
 msgid "Topic deleted"
 msgstr "Тема видалена"
 
-#: application/modules/shop/admin/callbacks.php:567
+#: application/modules/shop/admin/callbacks.php:596
 msgid "Topic callbacks deleted"
 msgstr "Тема зворотнього дзвінка видалена"
 
-#: application/modules/shop/admin/callbacks.php:530
+#: application/modules/shop/admin/callbacks.php:555
 msgid "Topic callbacks edited"
 msgstr "Тема зворотнього дзвінка відредагована"
 
-#: application/modules/shop/admin/callbacks.php:491
+#: application/modules/shop/admin/callbacks.php:510
 msgid "Topic callbacks created"
 msgstr "Тема зворотнього дзвінка створена"
 
-#: application/modules/shop/admin/callbacks.php:492
+#: application/modules/shop/admin/callbacks.php:511
 msgid "Topic started"
 msgstr "Тема розпочата"
 
@@ -7132,7 +7164,7 @@ msgstr "Теми зворотніх дзвінків"
 msgid "Callback themes"
 msgstr "Теми зворотніх дзвінків"
 
-#: application/modules/shop/admin/callbacks.php:399
+#: application/modules/shop/admin/callbacks.php:418
 msgid "Callback theme is changed"
 msgstr "Тему зворотнього дзвінка змінено"
 
@@ -7142,8 +7174,8 @@ msgstr "Тему зворотнього дзвінка змінено"
 msgid "Type"
 msgstr "Тип"
 
-#: templates/administrator/settings_site.tpl:496
-#: templates/administrator/settings_site.tpl:511
+#: templates/administrator/settings_site.tpl:553
+#: templates/administrator/settings_site.tpl:568
 msgid "Contact type"
 msgstr "Тип контакту"
 
@@ -7151,7 +7183,7 @@ msgstr "Тип контакту"
 msgid "Field type"
 msgstr "Тип поля"
 
-#: templates/administrator/settings_site.tpl:450
+#: templates/administrator/settings_site.tpl:502
 msgid "Company type"
 msgstr "Тип підприємства"
 
@@ -7171,16 +7203,16 @@ msgstr "Товар"
 msgid "product"
 msgstr "товар"
 
-#: application/modules/shop/admin/orders.php:1233
+#: application/modules/shop/admin/orders.php:1268
 msgid "Item has been added to the order"
 msgstr "Товар доданий до замовлення"
 
-#: application/modules/shop/admin/products.php:475
+#: application/modules/shop/admin/products.php:503
 msgid "Product not found"
 msgstr "Товар не знайдений"
 
-#: application/modules/shop/admin/products.php:248
-#: application/modules/shop/admin/products.php:384
+#: application/modules/shop/admin/products.php:267
+#: application/modules/shop/admin/products.php:408
 msgid "The product was successfully created"
 msgstr "Товар створено"
 
@@ -7206,7 +7238,7 @@ msgstr "Товари в наборі"
 msgid "Adult products"
 msgstr "Товари для дорослих"
 
-#: application/modules/shop/admin/orders.php:1409
+#: application/modules/shop/admin/orders.php:1458
 msgid "Items not selected "
 msgstr "Товари не обранi"
 
@@ -7231,15 +7263,15 @@ msgstr "Тільки для зареєстрованих користувачі�
 #: templates/administrator/widget_edit_html.tpl:43
 #: templates/administrator/groups.tpl:38
 #: templates/administrator/add_page.tpl:112
-#: templates/administrator/edit_page.tpl:147
+#: templates/administrator/edit_page.tpl:150
 #: templates/administrator/widget_edit_module.tpl:39
 msgid "Only Latin characters"
 msgstr "Тільки латинські символи"
 
-#: templates/administrator/js/scripts.js:904
+#: templates/administrator/inc/php_to_js_variables.tpl:25
+#: templates/administrator/js/scripts.js:909
 #: templates/administrator/js/scripts_elfinder.js:847
 #: templates/administrator/main_elfinder.tpl:452
-#: templates/administrator/main.tpl:521
 msgid "numbers only"
 msgstr "тільки цифри"
 
@@ -7255,13 +7287,13 @@ msgstr "Тільки шрифти-файли можуть бути завант�
 msgid "Products catalog"
 msgstr "У каталозі товарів"
 
-#: templates/administrator/category_edit.tpl:236
-#: templates/administrator/create_cat.tpl:189
+#: templates/administrator/category_edit.tpl:239
+#: templates/administrator/create_cat.tpl:216
 msgid "In ascending order"
 msgstr "У порядку зростання"
 
-#: templates/administrator/category_edit.tpl:235
-#: templates/administrator/create_cat.tpl:188
+#: templates/administrator/category_edit.tpl:238
+#: templates/administrator/create_cat.tpl:215
 msgid "In descending order"
 msgstr "У порядку спадання"
 
@@ -7285,7 +7317,7 @@ msgstr "Увага! Всі сторінки цією мовою будуть в�
 msgid "Warning! Files will be deleted automaticly on backup creating"
 msgstr "Увага! Файли будуть видалені автоматично при створенні резервної копії"
 
-#: application/modules/admin/login.php:78
+#: application/modules/admin/login.php:81
 msgid "Entered the IP control panel"
 msgstr "Увійдено в панель керування IP"
 
@@ -7305,7 +7337,6 @@ msgstr "Увімкнути інтеграцію з ВКонтакте?"
 msgid "Unique key"
 msgstr "Унікальний ключ"
 
-#: templates/administrator/desktop.tpl:121
 #: templates/administrator/new_desktop.tpl:84
 msgid "Management"
 msgstr "Управління"
@@ -7315,7 +7346,7 @@ msgstr "Управління"
 msgid "Managing design"
 msgstr "Управління дизайном"
 
-#: templates/administrator/settings_site.tpl:21
+#: templates/administrator/settings_site.tpl:22
 msgid "Management of Meta Tags"
 msgstr "Управління мета-тегами"
 
@@ -7362,7 +7393,7 @@ msgstr "Файл"
 msgid "The file {$filename} is not writable"
 msgstr "Файл {$filename} не записано"
 
-#: application/modules/shop/admin/categories.php:567
+#: application/modules/admin/categories.php:502
 msgid "The file has been successfully created"
 msgstr "Файл був успішно створений"
 
@@ -7370,7 +7401,7 @@ msgstr "Файл був успішно створений"
 msgid "File will be saved in the directory"
 msgstr "Файл буде збережений в каталозі"
 
-#: application/modules/shop/admin/categories.php:579
+#: application/modules/admin/categories.php:512
 msgid "File with the same name is already exist."
 msgstr "Файл з таким ім'ям вже існує"
 
@@ -7402,7 +7433,7 @@ msgstr "Файл шрифту повинен підтримувати всі с�
 msgid "Files"
 msgstr "Файли"
 
-#: application/modules/admin/admin.php:89
+#: application/modules/admin/admin.php:97
 msgid "Files deleted"
 msgstr "Файли видалені"
 
@@ -7411,7 +7442,7 @@ msgid "Files that will be changed"
 msgstr "Файли, які будуть змінені"
 
 #: application/modules/shop/admin/templates/products/default_edit.tpl:632
-#: application/modules/shop/admin/templates/products/create.tpl:320
+#: application/modules/shop/admin/templates/products/create.tpl:321
 msgid "Format date: yyyy-mm-dd h:mm:ss"
 msgstr "Формат дати: yyyy-mm-dd h:mm:ss"
 
@@ -7457,8 +7488,8 @@ msgstr "хіт"
 #: application/modules/shop/admin/templates/search/list.tpl:205
 #: application/modules/shop/admin/templates/search/list.tpl:329
 #: application/modules/shop/admin/templates/search/list.tpl:331
-#: application/modules/shop/admin/templates/search/list.tpl:456
-#: application/modules/shop/admin/templates/search/list.tpl:458
+#: application/modules/shop/admin/templates/search/list.tpl:464
+#: application/modules/shop/admin/templates/search/list.tpl:466
 #: application/modules/shop/admin/templates/search/form.tpl:45
 #: application/modules/shop/admin/templates/search/form.tpl:46
 #: application/modules/shop/admin/templates/products/_create.tpl:147
@@ -7502,7 +7533,7 @@ msgstr "Цей значок означає поле, яке можна пере�
 msgid " This product has been deleted from the shop! You can only change the quantity or replace by another product"
 msgstr "Цей продукт був вилучений з магазину! Ви можете змінити кількість або замінити іншим продуктом"
 
-#: application/modules/shop/admin/orders.php:1236
+#: application/modules/shop/admin/orders.php:1271
 msgid "This product does not exist"
 msgstr "Цей продукт не існує"
 
@@ -7516,9 +7547,9 @@ msgstr "Цитати"
 msgid "quotes"
 msgstr "цитати"
 
-#: application/modules/shop/admin/products.php:1482
-#: application/modules/shop/admin/brands.php:143
-#: application/modules/shop/admin/brands.php:251
+#: application/modules/shop/admin/products.php:1436
+#: application/modules/shop/admin/brands.php:138
+#: application/modules/shop/admin/brands.php:245
 msgid "This URL is already in use"
 msgstr "Ця адреса вже використовується"
 
@@ -7539,7 +7570,7 @@ msgstr "Цікаві статті з блогу ImageCMS"
 msgid "Price"
 msgstr "Ціна"
 
-#: application/modules/shop/admin/products.php:995
+#: application/modules/shop/admin/products.php:944
 msgid "Price updated"
 msgstr "Ціна оновлюється"
 
@@ -7561,7 +7592,7 @@ msgstr "Ціна уточнюється"
 msgid "Price to be confirmed message"
 msgstr "Ціна уточнюється в повідомленні"
 
-#: application/modules/shop/admin/currencies.php:357
+#: application/modules/shop/admin/currencies.php:363
 msgid "Prices updated"
 msgstr "Ціни оновлено"
 
@@ -7571,8 +7602,7 @@ msgstr "Ціни оновлено"
 msgid "Time of the order"
 msgstr "Час замовлення"
 
-#: application/modules/shop/admin/templates/notifications/list.tpl:68
-#: application/modules/shop/admin/templates/notifications/list.tpl:192
+#: application/modules/shop/admin/templates/notifications/list.tpl:63
 msgid "Time of addition"
 msgstr "Час подання"
 
@@ -7586,7 +7616,7 @@ msgid "Time register"
 msgstr "Час реєстрації"
 
 #: application/modules/shop/admin/templates/users/edit_1.tpl:32
-#: application/modules/shop/admin/templates/users/list.tpl:64
+#: application/modules/shop/admin/templates/users/list.tpl:95
 #: application/modules/shop/admin/templates/users/edit.tpl:107
 msgid "Time of registration"
 msgstr "Час реєстрації"
@@ -7599,7 +7629,7 @@ msgstr "Час створення"
 #: templates/administrator/dashboard.tpl:24
 #: templates/administrator/dashboard.tpl:72
 #: templates/administrator/add_page.tpl:232
-#: templates/administrator/edit_page.tpl:265
+#: templates/administrator/edit_page.tpl:268
 msgid "Time and date of creation"
 msgstr "Час і дата створення"
 
@@ -7607,7 +7637,7 @@ msgstr "Час і дата створення"
 msgid "Wait for resize ending"
 msgstr "Чекати закінчення зміни розміру"
 
-#: templates/administrator/settings_site.tpl:290
+#: templates/administrator/settings_site.tpl:320
 msgid "Whether to display the site name in the title page"
 msgstr "Чи буде відображатися назва сайту в title сторінки"
 
@@ -7624,11 +7654,11 @@ msgstr "Чистий"
 msgid "Read all"
 msgstr "Читати все"
 
-#: application/modules/shop/admin/users.php:573
+#: application/modules/shop/admin/users.php:606
 msgid "Members removed"
 msgstr "Члени видалені"
 
-#: application/modules/admin/categories.php:137
+#: application/modules/admin/categories.php:147
 #: application/modules/admin/languages.php:76
 #: application/modules/admin/languages.php:384
 msgid "Template"
@@ -7642,24 +7672,24 @@ msgstr "Шаблон carrency"
 msgid "Template output currency"
 msgstr "Шаблон виводу обміну"
 
-#: templates/administrator/category_edit.tpl:287
-#: templates/administrator/create_cat.tpl:230
+#: templates/administrator/category_edit.tpl:305
+#: templates/administrator/create_cat.tpl:279
 msgid "Category template"
 msgstr "Шаблон категорії"
 
-#: application/modules/admin/categories.php:138
+#: application/modules/admin/categories.php:148
 #: application/modules/admin/pages.php:153
 #: application/modules/admin/pages.php:495
 msgid "Page template"
 msgstr "Шаблон сторінки"
 
 #: templates/administrator/add_page.tpl:171
-#: templates/administrator/edit_page.tpl:206
+#: templates/administrator/edit_page.tpl:209
 msgid "Page Template"
 msgstr "Шаблон сторінки"
 
 #: templates/administrator/main_elfinder.tpl:109
-#: templates/administrator/main.tpl:117
+#: templates/administrator/main.tpl:120
 msgid "Шаблоны для Shop"
 msgstr "Шаблони для краси"
 
@@ -7700,9 +7730,9 @@ msgstr "Шлях до шрифту"
 msgid "Font is not uploaded"
 msgstr "Шрифт не завантажений"
 
-#: application/modules/shop/admin/templates/orders/check.tpl:77
-#: application/modules/shop/admin/templates/orders/check.tpl:93
-#: application/modules/shop/admin/templates/orders/check.tpl:130
+#: application/modules/shop/admin/templates/orders/check.tpl:75
+#: application/modules/shop/admin/templates/orders/check.tpl:91
+#: application/modules/shop/admin/templates/orders/check.tpl:128
 #: application/modules/shop/admin/templates/orders/cart_list.tpl:12
 msgid "Pieces."
 msgstr "Шт."
@@ -7714,11 +7744,11 @@ msgstr "Шт."
 
 #: application/modules/shop/admin/templates/users/edit_orders_list.tpl:75
 #: application/modules/shop/admin/templates/dashboard/dashboard.tpl:74
-#: application/modules/shop/admin/templates/orders/list.tpl:219
+#: application/modules/shop/admin/templates/orders/list.tpl:238
 msgid "pcs"
 msgstr "шт."
 
-#: templates/administrator/js/admin_base_i.js:996
+#: templates/administrator/js/admin_base_i.js:1023
 msgid "More"
 msgstr "Ще"
 
@@ -7727,13 +7757,9 @@ msgstr "Ще"
 msgid "Another small image variant"
 msgstr "Ще один невеликий варіант зображення"
 
-#: templates/administrator/settings_site.tpl:488
+#: templates/administrator/settings_site.tpl:544
 msgid "that you entered as a contact type"
 msgstr "що Ви ввели в якості контактного типу"
-
-#: templates/administrator/desktop.tpl:69
-msgid "To use your personal account, activate JavaScript, please."
-msgstr "Щоб використовувати ваш особистий обліковий запис, увімкніть, будь ласка, JavaScript"
 
 #: templates/administrator/inc/javascriptVars.tpl:9
 msgid "Something went wrong. URL access is not changed."
@@ -7756,11 +7782,11 @@ msgstr "Як і число 10"
 msgid "Failure to remove variant"
 msgstr "Якщо не видалити варіант"
 
-#: templates/administrator/settings_site.tpl:335
+#: templates/administrator/settings_site.tpl:373
 msgid "If not specified"
 msgstr "Якщо не вказано"
 
-#: templates/administrator/settings_site.tpl:323
+#: templates/administrator/settings_site.tpl:359
 msgid "If not given or specified"
 msgstr "Якщо не вказані"
 
@@ -7768,7 +7794,7 @@ msgstr "Якщо не вказані"
 msgid "Quality"
 msgstr "Якість"
 
-#: templates/administrator/settings_site.tpl:184
+#: templates/administrator/settings_site.tpl:200
 msgid "Ya.Webmaster"
 msgstr "Яндекс. Вебмастер"
 
@@ -7785,14 +7811,14 @@ msgstr "Із помилки перевірки: <br />"
 #: application/modules/admin/widgets_manager.php:169
 #: application/modules/admin/widgets_manager.php:265
 #: application/modules/admin/widgets_manager.php:332
-#: application/modules/admin/settings.php:111
+#: application/modules/admin/settings.php:113
 msgid "Name"
 msgstr "Ім'я"
 
-#: application/modules/admin/categories.php:128
-#: application/modules/admin/categories.php:136
-#: application/modules/admin/categories.php:329
-#: application/modules/admin/categories.php:459
+#: application/modules/admin/categories.php:138
+#: application/modules/admin/categories.php:146
+#: application/modules/admin/categories.php:339
+#: application/modules/admin/categories.php:527
 #: application/modules/admin/widgets_manager.php:103
 #: application/modules/admin/languages.php:72
 #: application/modules/admin/languages.php:380
@@ -7810,13 +7836,13 @@ msgstr "Ім'я замовника"
 msgid "Username of the customer"
 msgstr "Ім'я клієнта"
 
-#: application/modules/admin/admin.php:207
+#: application/modules/admin/admin.php:220
 msgid "user name"
 msgstr "ім'я користувача"
 
 #: application/modules/shop/admin/templates/notifications/edit.tpl:69
-#: application/modules/shop/admin/templates/callbacks/list.tpl:44
-#: application/modules/shop/admin/templates/callbacks/list.tpl:184
+#: application/modules/shop/admin/templates/callbacks/list.tpl:54
+#: application/modules/shop/admin/templates/callbacks/list.tpl:195
 #: application/modules/shop/admin/templates/callbacks/edit.tpl:61
 #: application/modules/shop/admin/templates/callbacks/_list.tpl:41
 #: application/modules/shop/admin/templates/callbacks/_list.tpl:112
@@ -7832,7 +7858,7 @@ msgstr "ім'я користувача"
 msgid "User name"
 msgstr "Ім'я користувача"
 
-#: application/modules/admin/login.php:82
+#: application/modules/admin/login.php:88
 msgid "Username and password have not been found"
 msgstr "Ім'я користувача та пароль не знайдені"
 
@@ -7871,7 +7897,7 @@ msgstr "Ім'я продуктів"
 msgid "Hostname"
 msgstr "Ім'я хоста"
 
-#: application/modules/shop/admin/categories.php:554
+#: application/modules/admin/categories.php:487
 msgid "Template name"
 msgstr "Ім'я шаблону"
 
@@ -7900,7 +7926,7 @@ msgstr "Імпорт продуктів"
 msgid "Import-Export CSV/XLS"
 msgstr "Імпорт-експорт в CSV/XLS"
 
-#: application/modules/shop/models2/generated-classes/CustomFields.php:33
+#: application/modules/shop/models2/generated-classes/CustomFields.php:30
 msgid "Сustom private field"
 msgstr "Індивідуальне поле"
 
@@ -7910,7 +7936,7 @@ msgstr "Інтеграція з соціальними мережами"
 
 #: templates/administrator/new_desktop.tpl:144
 #: templates/administrator/main_elfinder.tpl:355
-#: templates/administrator/main.tpl:395
+#: templates/administrator/main.tpl:398
 msgid "Interface"
 msgstr "Інтерфейс"
 
@@ -7928,8 +7954,8 @@ msgstr "Інформація покупця про зміну статусу"
 msgid "Update information"
 msgstr "Інформація про оновлення"
 
-#: templates/administrator/settings_site.tpl:23
-#: templates/administrator/settings_site.tpl:425
+#: templates/administrator/settings_site.tpl:24
+#: templates/administrator/settings_site.tpl:474
 msgid "Site information"
 msgstr "Інформація про сайт"
 
@@ -7947,7 +7973,7 @@ msgstr "Інший варіант основного зображення"
 msgid "Others"
 msgstr "Інші"
 
-#: application/modules/admin/admin.php:207
+#: application/modules/admin/admin.php:220
 msgid "ip-address"
 msgstr "ІР-адреса"
 

@@ -81,7 +81,7 @@ class ModuleSettings {
         $settings = json_decode($settingsString, true);
         if ($settings == null) {
             // for old formats ( modules that uses serialize() )
-            $settings = unserialize($settingsString, true);
+            $settings = unserialize($settingsString);
         }
 
         if (!is_array($settings)) {

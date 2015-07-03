@@ -18,10 +18,12 @@
         "patchwork/jsqueeze": "~2.0",
         "tecnick.com/tcpdf": ">=6",
         "google/apiclient": ">=1.1.2",
-        "greenlion/php-sql-parser": ">=4.0"
-
+        "retailcrm/api-client-php": ">=3.0",
+        "greenlion/php-sql-parser": ">=4.0",
+        "sonata-project/cache": ">1.0"
     },
     "require-dev": {
+        "eventviva/php-image-resize": ">=1.4",
         "squizlabs/php_codesniffer": ">=2",
         "phpmd/phpmd": ">=2.2.2",
         "nubera-ebusiness/intercom-php": "dev-master",

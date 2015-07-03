@@ -487,8 +487,58 @@ abstract class BaseEvents {
         return $this;
     }
 
+    final public function onShopUserBeforeEdit() {
+        $this->key = 'ShopAdminUsers:beforeEdit';
+        return $this;
+    }
+
+    final public function onShopUserAfterEdit() {
+        $this->key = 'ShopAdminUsers:afterEdit';
+        return $this;
+    }
+
+    final public function onAuthUserRegister() {
+        $this->key = 'AuthUser:register';
+        return $this;
+    }
+
+    final public function onProfileApiChangeInfo() {
+        $this->key = 'ProfileApi:changeInfo';
+        return $this;
+    }
+
+    final public function onFrontOrderUserCreate() {
+        $this->key = 'FrontOrder:userCreate';
+        return $this;
+    }
+
+    final public function onShopAdminOrderUserCreate() {
+        $this->key = 'ShopAdminOrder:createUser';
+        return $this;
+    }
+
+    final public function onAdminOrderUserCreate() {
+        $this->key = 'AdminOrder:userCreate';
+        return $this;
+    }
+
     final public function onShopAdminOrderCreate() {
         $this->key = 'ShopAdminOrder:create';
+        return $this;
+    }
+
+    final public function onShopAdminOrderEdit() {
+        $this->key = 'ShopAdminOrders:edit';
+        return $this;
+    }
+
+    final public function onShopAdminAjaxChangeOrderStatus() {
+        $this->key = 'ShopAdminOrders:ajaxChangeOrdersStatus';
+        return $this;
+    }
+
+    final public function onShopAdminAjaxChangeOrderPaid() {
+        $this->key = 'ShopAdminOrders:ajaxChangeOrdersPaid';
         return $this;
     }
 
@@ -509,6 +559,11 @@ abstract class BaseEvents {
 
     final public function onSearchPageLoad() {
         $this->key = 'search:load';
+        return $this;
+    }
+
+    final public function onPaimentSystemSuccessPaid() {
+        $this->key = 'PaimentSystem:successPaid';
         return $this;
     }
 

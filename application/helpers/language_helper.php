@@ -45,15 +45,18 @@ if (!function_exists('lang')) {
 
         $poFileManager = new translator\classes\PoFileManager();
         $domain = $poFileManager->prepareDomain($domain);
+        $line = str_replace('$', "\\$", $line);
 
         textdomain(getMoFileName($domain));
 
         $CI = & get_instance();
         $line_tmp = $line;
         $line = $CI->lang->line($line);
+
         if (!$line) {
             $line = $line_tmp;
         }
+        $line = str_replace('\$', '$', $line);
 
         if ($wraper && defined('ENABLE_TRANSLATION_API')) {
             $line = "<translate origin='" . $line_tmp . "' domain='" . $domain . "'>" . $line . "</translate>";
@@ -305,6 +308,48 @@ function current_language() {
     return strstr($language['locale'], '_', true);
 }
 
+if (!function_exists('pluralize')) {
+
+    /**
+     * examp:
+     *      pluralize(112, 'пользоват/ель|eля|елей');
+     *      pluralize(1, 'user/|s');
+     *
+     * @param int $count
+     * @param string $string start/|(1)|(0,5+)|(2,3,4)
+     *                          'пользоват/ель|eля|елей' or
+     *                          'пользователь|пользователь|пользователей' or
+     *                          'user/|s' or
+     *                          'user|users'
+     * @return string
+     */
+    function pluralize($count, $string) {
+        $word = explode('/', $string);
+        if (isset($word[1])) {
+            $root = $word[0];
+            $ends = explode('|', $word[1]);
+        } else {
+            $root = '';
+            $ends = explode('|', $word[0]);
+        }
+        $numeric = (int) abs($count);
+        $num = 2;
+        if ($numeric % 100 == 1 || ($numeric % 100 > 20) && ( $numeric % 10 == 1 )) {
+            $num = 0;
+        }
+        if ($numeric % 100 == 2 || ($numeric % 100 > 20) && ( $numeric % 10 == 2 )) {
+            $num = 1;
+        }
+        if ($numeric % 100 == 3 || ($numeric % 100 > 20) && ( $numeric % 10 == 3 )) {
+            $num = 1;
+        }
+        if ($numeric % 100 == 4 || ($numeric % 100 > 20) && ( $numeric % 10 == 4 )) {
+            $num = 1;
+        }
+        return $root . (isset($ends[$num]) ? $ends[$num] : array_pop($ends));
+    }
+
+}
 // ------------------------------------------------------------------------
 /* End of file language_helper.php */
 /* Location: ./system/helpers/language_helper.php */

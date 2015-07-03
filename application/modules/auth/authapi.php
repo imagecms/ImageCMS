@@ -159,6 +159,10 @@ class Authapi extends MY_Controller {
                 } else {
                     $data['auth_message'] = lang("You have successfully registered. ", 'auth') . anchor(site_url($this->dx_auth->login_uri), lang("Login", 'auth'));
                 }
+
+                CMSFactory\Events::create()->registerEvent($last_user, 'AuthUser:register');
+                CMSFactory\Events::create()->runFactory();
+
                 //create json array for ajax request
                 $json = array();
                 $json['status'] = true;

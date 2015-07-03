@@ -267,6 +267,7 @@
                                                 <option value ="{$role.id}">{$role.alt_name}</option>
                                                 {/foreach}
                                             </select>
+                                            <span class="help-block">{lang('Tighten Ctrl to select multiple items', 'admin')}</span>
                                         </div>
                                     </div>
                                 </div>

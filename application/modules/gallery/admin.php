@@ -871,6 +871,12 @@ class Admin extends BaseAdminController {
     public function upload_image($album_id = 0) {
         $temp_conf = $this->conf;
         if (is_array($_FILES['newPic'])) {
+
+            if(count($_FILES['newPic']['name']) > ini_get('max_file_uploads')) {
+                showMessage(langf('You can upload only |max_file_uploads| images at once', 'admin', ['max_file_uploads' => ini_get('max_file_uploads')]), lang('Error', 'admin'), 'r');
+                exit;
+            }
+
             // making transformation of $_FILES array for CodeIgniter's Upload class
             $this->transform_FILES('newPic');
 

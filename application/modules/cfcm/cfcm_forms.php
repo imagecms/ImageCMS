@@ -49,6 +49,7 @@ class Cfcm_forms extends MY_Controller {
                 'label' => lang('Group', 'cfcm') . ':',
                 'initial' => self::prepare_groups_select(),
                 'multiple' => true,
+                'help_text' => lang('Tighten Ctrl to select multiple items', 'admin'),
                 'class' => 'required'
             ),
             'data' => array(
@@ -128,15 +129,15 @@ class Cfcm_forms extends MY_Controller {
             );
         }
 
-//        if ($type == 'textarea')
-//        {
-//                $f['enable_tinymce_editor'] = array(
-//                'type'  => 'checkbox',
-//                'label' => lang('Enable Tinymce editor', 'cfcm'). ':',
-//                'initial'=> '1',
-//                'checked'=> FALSE,
-//            );
-//        }
+        //        if ($type == 'textarea')
+        //        {
+        //                $f['enable_tinymce_editor'] = array(
+        //                'type'  => 'checkbox',
+        //                'label' => lang('Enable Tinymce editor', 'cfcm'). ':',
+        //                'initial'=> '1',
+        //                'checked'=> FALSE,
+        //            );
+        //        }
 
         $f['validation'] = array(
             'type' => 'text',
@@ -148,13 +149,15 @@ class Cfcm_forms extends MY_Controller {
             'label' => lang('Group', 'cfcm') . ': ',
             'initial' => self::prepare_groups_select(),
             'multiple' => true,
+            'help_text' => lang('Tighten Ctrl to select multiple items', 'admin'),
             'class' => 'required'
         );
         return $this->forms->add_fields($f);
     }
 
     public function create_group_form() {
-        return $this->forms->add_fields(array(
+        return $this->forms->add_fields(
+            array(
                     'name' => array(
                         'type' => 'text',
                         'label' => lang('Name', 'cfcm').': '."<span class='must'>*</span>",
@@ -165,10 +168,12 @@ class Cfcm_forms extends MY_Controller {
                         'type' => 'textarea',
                         'label' => lang('Description', 'cfcm'),
                     ),
-        ));
+            )
+        );
     }
 
     // Return groups array: group_id => name
+
     public function prepare_groups_select() {
         $this->db->select('id, name');
         $groups = $this->db->get('content_field_groups');

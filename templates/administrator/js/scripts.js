@@ -402,7 +402,7 @@ function init_2() {
                 dataType: 'jsonp',
                 type: 'POST',
                 data: {
-                    "for": '4.8.1b1 Corporate',
+                    "for": '4.8.1b2 Corporate',
                 },
                 url: atob('aHR0cDovL3JlcXVlc3RzLmltYWdlY21zLm5ldC9pbmRleC5waHAvbmV3cy9hcGk')
             });
@@ -805,7 +805,7 @@ function dropDownMenu() {
         $('input[name=ids]:checked').each(function () {
             arr.push(parseInt($(this).val()));
         });
-        if(arr.length > 0){
+        if (arr.length > 0) {
             $.post('/admin/components/cp/comments/update_status',
                 {
                     id: arr,
@@ -1026,28 +1026,33 @@ handleFileSelect = function (evt) {
 
     document.getElementById('picsToUpload').innerHTML = '';
     // Loop through the FileList and render image files as thumbnails.
-    for (var i = 0, f; f = files[i]; i++) {
+
+    if (files.length > CMS_JS.server_settings.max_file_uploads) {
+        showMessage(lang('Error'), langf('You can upload only |max_file_uploads| images at once', {max_file_uploads: CMS_JS.server_settings.max_file_uploads}), 'r', 10000);
+    } else {
+        for (var i = 0, f; f = files[i]; i++) {
 
 // Only process image files.
-        if (!f.type.match('image.*')) {
-            continue;
-        }
+            if (!f.type.match('image.*')) {
+                continue;
+            }
 
-        var reader = new FileReader();
-        // Closure to capture the file information.
-        reader.onloadend = (function (theFile) {
-            return function (e) {
-                // Render thumbnail.
-                var span = document.createElement('div');
-                span.innerHTML = ['<img style="max-height: 100%;max-width: 100%;" src="', e.target.result,
-                    '" title="', escape(theFile.name), '"/>'].join('');
-                document.getElementById('picsToUpload').insertBefore(span, null);
-                document.getElementById('picsToUpload').className = 'is_content';
-                $('#picsToUpload img').fadeIn(500);
-            };
-        })(f);
-        // Read in the image file as a data URL.
-        reader.readAsDataURL(f);
+            var reader = new FileReader();
+            // Closure to capture the file information.
+            reader.onloadend = (function (theFile) {
+                return function (e) {
+                    // Render thumbnail.
+                    var span = document.createElement('div');
+                    span.innerHTML = ['<img style="max-height: 100%;max-width: 100%;" src="', e.target.result,
+                        '" title="', escape(theFile.name), '"/>'].join('');
+                    document.getElementById('picsToUpload').insertBefore(span, null);
+                    document.getElementById('picsToUpload').className = 'is_content';
+                    $('#picsToUpload img').fadeIn(500);
+                };
+            })(f);
+            // Read in the image file as a data URL.
+            reader.readAsDataURL(f);
+        }
     }
 };
 getChar = function (e) {
@@ -1226,7 +1231,7 @@ function initAdminArea() {
 //data-picker
     if ($.exists('.datepicker')) {
         $(".datepicker").datepicker({
-            dateFormat: 'yy-mm-dd',
+            dateFormat: 'dd-mm-yy',
             firstDay: 1,
             showOtherMonths: true,
             selectOtherMonths: true,
@@ -2387,18 +2392,18 @@ function createCatFast(name, catId, url, actEl) {
 var PropertyFastCreator = {
     showAddForm: function (curElem) {
         var propertyForm = $(curElem).closest('div.control-group').find('.addPropertyToProduct');
-        if($(curElem).find('.icon-plus').length){
+        if ($(curElem).find('.icon-plus').length) {
             $(curElem).find('.icon-plus').removeClass('icon-plus').addClass('icon-remove');
             $('.addPropertyToProduct').hide();
             $(propertyForm).show();
             $(propertyForm).find('input').trigger('focus');
-        }else{
+        } else {
             $(curElem).find('.icon-remove').removeClass('icon-remove').addClass('icon-plus');
             $(propertyForm).hide();
         }
     },
-    addPropertyValue: function (curElem) {
-        event = event || window.event;
+    addPropertyValue: function (e, curElem) {
+        event = e || window.event;
         if (event.type === 'keypress' && event.keyCode !== 13) {
             return false;
         }
@@ -2429,9 +2434,9 @@ var PropertyFastCreator = {
 
         if (!alreadyExist) {
             propertyValue = escapeHtml(propertyValue);
-            if(propertyValue.indexOf('"') !== -1){
+            if (propertyValue.indexOf('"') !== -1) {
                 $(propertySelect).append("<option value='" + propertyValue + "' selected='selected'>" + propertyValue + "</option>");
-            }else{
+            } else {
                 $(propertySelect).append('<option value="' + propertyValue + '" selected="selected">' + propertyValue + '</option>');
             }
 
@@ -2466,20 +2471,20 @@ var Users = {
         var usersIds = [];
         var roleSelect = $(curElem).closest('div.modal_role_change').find('.roleSelect');
 
-        $('input[name=ids]:checked').each(function() {
+        $('input[name=ids]:checked').each(function () {
             usersIds.push($(this).val());
         });
 
         this.changeRoleId(roleSelect, usersIds);
 
         var roleId = $(roleSelect).val();
-        for(var userId in usersIds){
+        for (var userId in usersIds) {
             $('.userRoleSelect_' + usersIds[userId]).find('option').removeAttr('selected');
             $('.userRoleSelect_' + usersIds[userId]).find('option[value="' + roleId + '"]').attr('selected', 'selected');
             $('.userRoleSelect_' + usersIds[userId]).trigger('chosen:updated')
         }
 
-        $('input[name=ids]:checked').each(function() {
+        $('input[name=ids]:checked').each(function () {
             $(this).removeAttr('checked');
             $(this).closest('.frame_label').removeClass('active');
             $(this).closest('tr').removeClass('active');

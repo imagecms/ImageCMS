@@ -39,6 +39,7 @@ class Categories extends BaseAdminController {
         $this->template->assign('tree', $this->lib_category->build());
         $this->template->assign('parent_id', $parent_id);
         $this->template->assign('include_cats', $this->sub_cats($this->lib_category->build()));
+        $this->template->assign('template_files', $this->getTemplateFiles());
 
         /** Init Event. Pre Create Category */
         \CMSFactory\Events::create()->registerEvent('', 'BaseAdminCategory:preCreate');
@@ -55,14 +56,14 @@ class Categories extends BaseAdminController {
     }
 
     public function save_positions() {
-        $positions = $_POST['positions'];
+        $positions = $this->input->post('positions');
 
-        if (sizeof($positions) == 0) {
+        if (count($positions) == 0) {
             return false;
         }
 
-        if ($_POST['positions']) {
-            foreach ($_POST['positions'] as $pos => $id) {
+        if ($this->input->post('positions')) {
+            foreach ($this->input->post('positions') as $pos => $id) {
                 $query = "UPDATE `category` SET `position`='" . $pos . "' WHERE `id`='" . (int) $id . "';";
                 $this->db->query($query);
             }
@@ -118,7 +119,7 @@ class Categories extends BaseAdminController {
      * @param string $tpl
      */
     public function tpl_validation($tpl) {
-        if (preg_match('/^[A-Za-z\_\.]{0,50}$/', $tpl)) {
+        if (preg_match('/^[0-9A-Za-z\_\.]{0,50}$/', $tpl)) {
             return TRUE;
         }
         $this->form_validation->set_message('tpl_validation', lang('The %s field can only contain Latin characters', 'admin'));
@@ -230,7 +231,7 @@ class Categories extends BaseAdminController {
                     /** End init Event. Create new Page */
                     showMessage(lang("Pages category created", "admin"));
 
-                    $act = $_POST['action'];
+                    $act = $this->input->post('action');
                     if ($act == 'close') {
                         pjax('/admin/categories/cat_list');
                     } else {
@@ -272,7 +273,7 @@ class Categories extends BaseAdminController {
                     \CMSFactory\Events::create()->registerEvent(array_merge($data, array('userId' => $this->dx_auth->get_user_id())), 'Categories:update');
 
                     showMessage(lang('Changes saved', 'admin'));
-                    $act = $_POST['action'];
+                    $act = $this->input->post('action');
                     if ($act == 'close') {
                         pjax('/admin/categories/cat_list');
                     } else {
@@ -444,14 +445,8 @@ class Categories extends BaseAdminController {
 
             $categories = $this->lib_category->build();
 
-            $tree = array();
-            foreach ($categories as $one) {
-                if($one['id'] !== $cat['id']) {
-                    array_push($tree, $one);
-                }
-            }
-
-            $this->template->assign('tree', $tree);
+            $this->template->assign('tree', $categories);
+            $this->template->assign('template_files', $this->getTemplateFiles());
             $this->template->assign('include_cats', $this->sub_cats($this->lib_category->build()));
             $this->template->assign('settings', $settings);
             ($hook = get_hook('admin_show_category_edit')) ? eval($hook) : NULL;
@@ -462,12 +457,64 @@ class Categories extends BaseAdminController {
         }
     }
 
+    /**
+     * Return template files names for main, page or category template
+     * @return array
+     */
+    public function getTemplateFiles() {
+        $currentTemplate = \template_manager\classes\TemplateManager::getInstance()->getCurentTemplate()->name;
+        $pathToFind = TEMPLATES_PATH . $currentTemplate;
+
+        $files = [];
+        foreach (new DirectoryIterator($pathToFind) as $entity) {
+            if ($entity->isFile() & !$entity->isDot() & $entity->getExtension() == 'tpl') {
+                $files[] = array_shift(explode('.', $entity->getFilename()));
+            }
+        }
+        return $files;
+    }
+
+    public function create_tpl() {
+        $file = trim($this->input->post('filename'));
+
+        $this->form_validation->set_rules('filename', lang('Template name', 'admin'), 'required|alpha_numeric|min_length[1]|max_length[250]');
+
+        if ($this->form_validation->run() == FALSE) {
+            $responce = showMessage(validation_errors(), '', 'r', true);
+            $result = false;
+            echo json_encode(array('responce' => $responce, 'result' => $result));
+            return FALSE;
+        }
+
+        $currentTemplate = \template_manager\classes\TemplateManager::getInstance()->getCurentTemplate()->name;
+        $file = TEMPLATES_PATH . $currentTemplate . '/' . $file . '.tpl';
+
+        if (!file_exists($file)) {
+            $fp = fopen($file, "w");
+            if ($fp) {
+                $responce = showMessage(lang('The file has been successfully created', 'admin'), '', '', true);
+                $result = true;
+            } else {
+                $responce = showMessage(lang('Could not create file', 'admin'), '', 'r', true);
+                $result = false;
+            }
+            fwrite($fp, "/* new ImageCMS Tpl file */");
+            fclose($fp);
+            echo json_encode(array('responce' => $responce, 'result' => $result));
+        } else {
+            $responce = showMessage(lang('File with the same name is already exist.'), '', 'r', true);
+            $result = false;
+            echo json_encode(array('responce' => $responce, 'result' => $result));
+            return FALSE;
+        }
+    }
+
     public function translate($id, $lang) {
         $cat = $this->cms_admin->get_category($id);
 
         ($hook = get_hook('admin_on_translate_cat')) ? eval($hook) : NULL;
 
-        if (count($_POST) > 0) {
+        if ($this->input->post()) {
             $this->load->library('form_validation');
 
             $this->form_validation->set_rules('name', lang("Title", "admin"), 'trim|required|min_length[1]|max_length[160]');
@@ -486,11 +533,11 @@ class Categories extends BaseAdminController {
                 $data['alias'] = $id;
                 $data['lang'] = $lang;
                 $data['name'] = $this->input->post('name');
-                $data['image'] = $_POST['image'];
-                $data['description'] = $_POST['description'];
-                $data['keywords'] = $_POST['keywords'];
-                $data['short_desc'] = $_POST['short_desc'];
-                $data['title'] = $_POST['title'];
+                $data['image'] = $this->input->post('image');
+                $data['description'] = $this->input->post('description');
+                $data['keywords'] = $this->input->post('keywords');
+                $data['short_desc'] = $this->input->post('short_desc');
+                $data['title'] = $this->input->post('title');
 
                 $this->db->where('alias', $id);
                 $this->db->where('lang', $lang);
@@ -521,7 +568,7 @@ class Categories extends BaseAdminController {
                 $this->cache->delete_all();
                 showMessage(lang("Category translation updated", "admin"));
 
-                $active = $_POST['action'];
+                $active = $this->input->post('action');
 
                 if ($active == 'close') {
                     pjax('/admin/categories/translate/' . $id . '/' . $lang);
@@ -575,7 +622,7 @@ class Categories extends BaseAdminController {
     public function delete() {
         //cp_check_perm('category_delete');
 
-        foreach ($_POST['ids'] as $p) {
+        foreach ($this->input->post('ids') as $p) {
 
             $cat_id = $p;
             //if (0)
@@ -652,7 +699,7 @@ class Categories extends BaseAdminController {
 
         $this->cache->delete_all();
 
-        if (count($_POST['ids']) > 1) {
+        if (count($this->input->post('ids')) > 1) {
             showMessage(lang("Pages categories deleted", "admin"));
         } else {
             showMessage(lang("Pages category deleted", "admin"));

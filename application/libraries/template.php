@@ -193,10 +193,12 @@ class Template extends Mabilis {
     }
 
     public function include_tpl($name, $path, $data = array(), $processOutput = true) {
+        $path = $path ? $path : TEMPLATES_PATH.$this->CI->config->item('template');
         $this->display('file:' . $path . '/' . $name, $data, $processOutput);
     }
 
     public function include_shop_tpl($name, $path, $data = array(), $processOutput = true) {
+        $path = $path ? $path : TEMPLATES_PATH.$this->CI->config->item('template');
         $this->display('file:' . $path . '/shop/' . $name, $data, $processOutput);
     }
 

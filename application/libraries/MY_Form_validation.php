@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 class MY_Form_validation extends CI_Form_validation {
 
@@ -10,6 +11,11 @@ class MY_Form_validation extends CI_Form_validation {
 
         $this->set_message('valid_date', 'Поле %s должно содержать правильную дату.');
         $this->set_message('valid_time', 'Поле %s должно содержать правильное время.');
+        $this->set_message('phone', 'Поле %s должно содержать корректный номер.');
+    }
+
+    public function getErrorsArray() {
+        return $this->_error_array;
     }
 
     // --------------------------------------------------------------------
@@ -40,8 +46,8 @@ class MY_Form_validation extends CI_Form_validation {
 
     /**
      * Validate time string
-     * 
-     * @param mixed $str time str. 
+     *
+     * @param mixed $str time str.
      * @access public
      * @return boolean
      */
@@ -60,8 +66,7 @@ class MY_Form_validation extends CI_Form_validation {
      * @return boolean
      */
     public function phone($number) {
-        return (bool)!preg_match('/[^\d\-\+\s\)\(]/', $number);
-        
+        return (bool) !preg_match('/[^\d\-\+\s\)\(]/', $number);
     }
 
 }

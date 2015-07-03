@@ -1,5 +1,37 @@
 $(document).ready(function () {
 
+    var autocomp_opt = {
+        source: function (request, response) {
+            var locale = $('select#langs').val();
+            var types = $('select#types').val();
+            var modules_templates = $('select#modules_templates').val();
+
+            $.ajax({
+                url: "/admin/components/cp/translator/searchPoFileAutocomplete",
+                dataType: "json",
+                type: "post",
+                data: {
+                    locale: locale,
+                    types: types,
+                    modules_templates: modules_templates,
+                    maxRows: 15,
+                    term: request.term
+                },
+                success: function (data) {
+                    response($.map(data.results, function (item) {
+                        return {
+                            label: item.label,
+                            value: item.value
+                        }
+                    }))
+                }
+            })
+        },
+        minLength: 2,
+    };
+
+    $('#appendedInputButtons').autocomplete(autocomp_opt);
+
     $('#update_mode').live('change', function () {
         if (!parseInt($(this).val())) {
             $('.one_file_mode').show();
@@ -534,8 +566,8 @@ var Search = {
             });
         }
     },
-    run: function(curElement){
-        if(event.keyCode===13){
+    run: function (curElement) {
+        if (event.keyCode === 13) {
             $(curElement).closest('form').submit();
         }
     }

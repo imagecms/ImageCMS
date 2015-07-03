@@ -44,7 +44,7 @@
                                     </span>
                                 </th>
                                 <th>{lang("ID", "menu")}</th>
-                                <th>{lang("Denotation", "menu")}</th>
+                                <th>{lang("Title", "menu")}</th>
                                 <th>{lang("Name", "menu")}</th>
                                 <th>{lang("Description", "menu")}</th>
                                 <th>{lang("Created", "menu")}</th>

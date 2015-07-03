@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 class Base extends CI_Model {
 
@@ -75,6 +76,24 @@ class Base extends CI_Model {
         return TRUE;
     }
 
+    public function setYes($id) {
+        $row = $this->db->where('id', $id)->get('comments')->row();
+        $like = $row->like + 1;
+        $data = array('like' => $like);
+        $this->db->where('id', $id);
+        $res = $this->db->update('comments', $data);
+        return $res ? $like : false;
+    }
+
+    public function setNo($id) {
+        $row = $this->db->where('id', $id)->get('comments')->row();
+        $disslike = $row->disslike + 1;
+        $data = array('disslike' => $disslike);
+        $this->db->where('id', $id);
+        $res = $this->db->update('comments', $data);
+        return $res ? $disslike : false;
+    }
+
     function delete($id) {
         if (is_array($id)) {
             $this->db->where_in('id', $id);
@@ -97,8 +116,8 @@ class Base extends CI_Model {
         $this->db->where('status', $status);
         $this->db->from('comments');
 
-//        if($status == 0)
-//            var_dumps($this->db->get()->result_array());
+        //        if($status == 0)
+        //            var_dumps($this->db->get()->result_array());
 
         return $this->db->count_all_results();
     }
@@ -116,8 +135,9 @@ class Base extends CI_Model {
     }
 
     function get_many($ids) {
-        if (is_array($ids))
+        if (is_array($ids)) {
             return $this->db->where_in('id', $ids)->get('comments')->row_array();
+        }
     }
 
 }

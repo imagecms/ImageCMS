@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Image CMS
@@ -31,6 +32,33 @@ class Comments extends MY_Controller {
         $obj->load('comments');
     }
 
+    public function show() {
+
+        $url = $this->uri->uri_string();
+        $comments = $this->load->module('comments/commentsapi')->getComments($url);
+        if (($result = $this->session->flashdata('result'))) {
+            $comments = (array_merge($result, $comments));
+        }
+        \CMSFactory\assetManager::create()
+                //                ->registerScript('comments')
+                //                ->registerStyle('comments')
+                ->setData($comments)
+                ->render('comments', TRUE);
+    }
+
+    public function addPost() {
+        $result = $this->load->module('comments/commentsapi')->addPost();
+        $result['parent_id'] = $this->input->post('comment_parent');
+        if ('error' == $result['answer']) {
+            $result['old_text'] = $this->input->post('comment_text');
+            $result['old_ratec'] = $this->input->post('ratec');
+            $result['old_author'] = $this->input->post('comment_author');
+            $result['old_email'] = $this->input->post('comment_email');
+        }
+        $this->session->set_flashdata(['result' => $result]);
+        redirect($this->input->server('HTTP_REFERER'));
+    }
+
     /**
      * Default function to access module by URL
      */
@@ -47,14 +75,16 @@ class Comments extends MY_Controller {
 
     public function commentsDeleteFromCategory($product) {
 
-        if (!$product)
+        if (!$product) {
             return;
+        }
 
         $CI = &get_instance();
 
         $ids = array();
-        foreach ($product[ShopCategoryId] as $key => $p)
+        foreach ($product[ShopCategoryId] as $key => $p) {
             $ids[$key] = $p;
+        }
 
         $array = $CI->db
                 ->select('item_id')
@@ -66,8 +96,9 @@ class Comments extends MY_Controller {
                 ->result_array();
 
         $ids = array();
-        foreach ($array as $key => $a)
+        foreach ($array as $key => $a) {
             $ids[$key] = $a['item_id'];
+        }
 
         $CI->db->where_in('item_id', $ids);
         $CI->db->where('module', 'shop');
@@ -75,15 +106,17 @@ class Comments extends MY_Controller {
     }
 
     public function commentsDeleteFromProduct($product) {
-        if (!$product)
+        if (!$product) {
             return;
+        }
 
         $CI = &get_instance();
 
         $product = $product[model];
         $ids = array();
-        foreach ($product as $key => $p)
+        foreach ($product as $key => $p) {
             $ids[$key] = $p->id;
+        }
 
         $CI->db->join('shop_products', 'comments.item_id=shop_products.id');
         $CI->db->where_in('item_id', $ids);
@@ -101,15 +134,17 @@ class Comments extends MY_Controller {
             $ids = array();
             if ($this->core->core_data['module'] != 'shop') {
                 foreach ((array) $model as $key => $id) {
-                    if (is_array($id))
+                    if (is_array($id)) {
                         $ids[$key] = $id[id];
-                    else
+                    } else {
                         $ids[$key] = $id;
+                    }
                 }
                 $productsCount = $this->load->module('comments/commentsapi')->getTotalCommentsForProducts($ids, 'core');
             } else {
-                foreach ($model as $id)
+                foreach ($model as $id) {
                     $ids[] = $id->getId();
+                }
                 $productsCount = $this->load->module('comments/commentsapi')->getTotalCommentsForProducts($ids);
             }
         }
@@ -120,19 +155,19 @@ class Comments extends MY_Controller {
      * Autoload function. Load language and comments.
      */
     public function autoload() {
-//        ($hook = get_hook('comments_on_autoload')) ? eval($hook) : NULL;
-//
-//        $this->load->helper('cookie');
-//
-//        // Load language
-//        $this->load->language('comments');
-//
-//        // Build comments only for pages with comments_status 1
-//        if ($this->core->core_data['data_type'] == 'page' AND $this->core->page_content['comments_status'] == 1) {
-//            $this->build_comments($this->core->page_content['id']);
-//        } else {
-//            return FALSE;
-//        }
+        //        ($hook = get_hook('comments_on_autoload')) ? eval($hook) : NULL;
+        //
+        //        $this->load->helper('cookie');
+        //
+        //        // Load language
+        //        $this->load->language('comments');
+        //
+        //        // Build comments only for pages with comments_status 1
+        //        if ($this->core->core_data['data_type'] == 'page' AND $this->core->page_content['comments_status'] == 1) {
+        //            $this->build_comments($this->core->page_content['id']);
+        //        } else {
+        //            return FALSE;
+        //        }
     }
 
     private function init_settings() {
@@ -156,10 +191,10 @@ class Comments extends MY_Controller {
         $this->load->model('base');
         $this->init_settings();
 
-//        if (($comments = $this->cache->fetch('comments_' . $item_id . $this->module, 'comments')) !== FALSE) {
-//            ($hook = get_hook('comments_fetch_cache_ok')) ? eval($hook) : NULL;
-//            // Comments fetched from cahce file
-//        } else {
+        //        if (($comments = $this->cache->fetch('comments_' . $item_id . $this->module, 'comments')) !== FALSE) {
+        //            ($hook = get_hook('comments_fetch_cache_ok')) ? eval($hook) : NULL;
+        //            // Comments fetched from cahce file
+        //        } else {
         $this->db->where('module', $this->module);
         $comments = $this->base->get($item_id);
 
@@ -181,15 +216,15 @@ class Comments extends MY_Controller {
                 $i++;
             }
         }
-//        $this->load->library('pagination');
-//
-//        $config['base_url'] = '';
-//        $config['total_rows'] = '200';
-//        $config['per_page'] = '20';
-//
-//        $this->pagination->initialize($config);
-//
-//        echo $this->pagination->create_links();
+        //        $this->load->library('pagination');
+        //
+        //        $config['base_url'] = '';
+        //        $config['total_rows'] = '200';
+        //        $config['per_page'] = '20';
+        //
+        //        $this->pagination->initialize($config);
+        //
+        //        echo $this->pagination->create_links();
 
         if ($comments != null) {
             $comments_count = count($comments);
@@ -219,9 +254,11 @@ class Comments extends MY_Controller {
         ($hook = get_hook('comments_assign_tpl_data')) ? eval($hook) : NULL;
         //$this->render('comments_list', array('comments'=>$comments));
 
-        $this->template->add_array(array(
-            'comments' => $comments,
-        ));
+        $this->template->add_array(
+                array(
+                    'comments' => $comments,
+                )
+        );
     }
 
     /**
@@ -253,13 +290,14 @@ class Comments extends MY_Controller {
 
         $this->load->library('user_agent');
         $this->load->library('form_validation');
-//        $this->form_validation->CI = & $this;
+        //        $this->form_validation->CI = & $this;
         // Check post comment period.
-        if ($this->period > 0)
+        if ($this->period > 0) {
             if ($this->check_comment_period() == FALSE) {
                 ($hook = get_hook('comments_period_error')) ? eval($hook) : NULL;
                 $this->core->error(sprintf(lang('Allowed to comment once in %s minutes.', 'comments'), $this->period));
             }
+        }
 
         // Validate email and nickname from unregistered users.
         if ($this->dx_auth->is_logged_in() == FALSE) {
@@ -273,10 +311,11 @@ class Comments extends MY_Controller {
         // Check captcha code if captcha_check enabled and user in not admin.
         if ($this->use_captcha == TRUE AND $this->dx_auth->is_admin() == FALSE) {
             ($hook = get_hook('comments_set_captcha')) ? eval($hook) : NULL;
-            if ($this->dx_auth->use_recaptcha)
+            if ($this->dx_auth->use_recaptcha) {
                 $this->form_validation->set_rules('recaptcha_response_field', lang("Code protection"), 'trim|required|xss_clean|callback_captcha_check');
-            else
+            } else {
                 $this->form_validation->set_rules('captcha', lang("Code protection"), 'trim|required|xss_clean|callback_captcha_check');
+            }
         }
 
         $this->form_validation->set_rules('comment_text', lang('Comment', 'comments'), 'trim|required|xss_clean|max_length[' . $this->max_comment_length . ']');
@@ -360,12 +399,12 @@ class Comments extends MY_Controller {
                 ($hook = get_hook('comments_goes_redirect')) ? eval($hook) : NULL;
                 // Redirect back to page
                 //redirect($this->input->post('redirect'));
-                if ($_POST['redirect'])
+                if ($_POST['redirect']) {
                     redirect((substr($this->input->post('redirect'), 0, 1) == '/') ? $this->input->post('redirect') : '/' . $this->input->post('redirect'), 301);
-                else
+                } else {
                     redirect('/');
-            }
-            else {
+                }
+            } else {
                 ($hook = get_hook('comments_empty_text')) ? eval($hook) : NULL;
                 $this->core->error(lang('Fill text in comment.', 'comments'));
             }
@@ -424,7 +463,6 @@ class Comments extends MY_Controller {
             'expire' => '30000000',
         );
 
-
         set_cookie($cookie_name);
         set_cookie($cookie_email);
         set_cookie($cookie_site);
@@ -469,10 +507,11 @@ class Comments extends MY_Controller {
     public function captcha_check($code) {
         ($hook = get_hook('comments_captcha_check')) ? eval($hook) : NULL;
 
-        if (!$this->dx_auth->captcha_check($code))
+        if (!$this->dx_auth->captcha_check($code)) {
             return FALSE;
-        else
+        } else {
             return TRUE;
+        }
     }
 
     function get_comments_number($id) {
@@ -481,42 +520,39 @@ class Comments extends MY_Controller {
         return count($query);
     }
 
-    public function setyes() {
-        $comid = $this->input->post('comid');
+    public function setyes($id = false) {
+        $like = false;
+        $comid = $this->input->post('comid') ? : $id;
         if ($this->session->userdata('commentl' . $comid) != 1) {
-            $row = $this->db->where('id', $comid)->get('comments')->row();
-            $like = $row->like;
-            $like = $like + 1;
-            $data = array('like' => $like);
-            $this->db->where('id', $comid);
-            $this->db->update('comments', $data);
+            $like = $this->load->model('base')->setYes($comid);
             $this->session->set_userdata('commentl' . $comid, 1);
-            if ($this->input->is_ajax_request()) {
-                return json_encode(array("y_count" => "$like"));
-            }
+        }
+        if ($this->input->is_ajax_request()) {
+            return json_encode(array("y_count" => $like));
+        } else {
+            redirect($this->input->server('HTTP_REFERER'));
         }
     }
 
-    public function setno() {
-        $comid = $this->input->post('comid');
+    public function setno($id = false) {
+        $disslike = false;
+        $comid = $this->input->post('comid') ? : $id;
         if ($this->session->userdata('commentl' . $comid) != 1) {
-            $row = $this->db->where('id', $comid)->get('comments')->row();
-            $disslike = $row->disslike;
-            $disslike = $disslike + 1;
-            $data = array('disslike' => $disslike);
-            $this->db->where('id', $comid);
-            $this->db->update('comments', $data);
+            $disslike = $this->load->model('base')->setNo($comid);
             $this->session->set_userdata('commentl' . $comid, 1);
-            if ($this->input->is_ajax_request()) {
-                return json_encode(array("n_count" => "$disslike"));
-            }
+        }
+        if ($this->input->is_ajax_request()) {
+            return json_encode(array("n_count" => $disslike));
+        } else {
+            redirect($this->input->server('HTTP_REFERER'));
         }
     }
 
     public function _install() {
 
-        if ($this->dx_auth->is_admin() == FALSE)
+        if ($this->dx_auth->is_admin() == FALSE) {
             exit;
+        }
 
         $this->load->dbforge();
 
@@ -613,7 +649,7 @@ class Comments extends MY_Controller {
     }
 
     public function getWaitingForMaderationCount() {
-        $count = $this->db->where("status",1)->count_all_results('comments');
+        $count = $this->db->where("status", 1)->count_all_results('comments');
         return $count;
     }
 

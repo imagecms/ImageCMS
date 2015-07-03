@@ -8,7 +8,6 @@
  * @author <dev@imagecms.net>
  * @version 0.3 PHP5
  ************************************************* */
-
 class Mabilis_Compiler extends Mabilis {
 
     public $config = NULL;
@@ -21,8 +20,8 @@ class Mabilis_Compiler extends Mabilis {
 
     // Constructor
 
-    function __construct(&$config_obj) {
-        $this->config = & $config_obj;
+    public function __construct(&$config_obj) {
+        $this->config = &$config_obj;
     }
 
     /**
@@ -123,8 +122,21 @@ class Mabilis_Compiler extends Mabilis {
             $tpl_data = preg_replace('/<\?php.*while(.*).*\?>/', '<?php while ($1){ ?>', $tpl_data);
 
             // Include_tpl
-            $tpl_data = preg_replace('/<\?php.*include\_tpl.*\((.*)\).*\?>/', '<?php $this->include_tpl($1, \'' . $curFilePath . '\'); ?>', $tpl_data);
-            $tpl_data = preg_replace('/<\?php.*include\_shop\_tpl.*\((.*)\).*\?>/', '<?php $this->include_shop_tpl($1, \'' . $curFilePath . '\'); ?>', $tpl_data);
+            $tpl_data = preg_replace_callback(
+                "/<\?php.*include\_tpl.*\((.*)\).*\?>/",
+                function ($arr) use ($curFilePath) {
+                    return '<?php $this->include_tpl(' . $arr[1] . ', \'' . $curFilePath . '\'); ?>';
+                },
+                $tpl_data
+            );
+
+            $tpl_data = preg_replace_callback(
+                '/<\?php.*include\_shop\_tpl.*\((.*)\).*\?>/',
+                function ($arr) use ($curFilePath) {
+                    return '<?php $this->include_shop_tpl(' . $arr[1] . ', \'' . $curFilePath . '\'); ?>';
+                },
+                $tpl_data
+            );
 
             preg_match_all("/<\!user_php(.*)\s*user_php\!>/", $tpl_data, $_match);
 

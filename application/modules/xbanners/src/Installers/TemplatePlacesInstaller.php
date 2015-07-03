@@ -3,6 +3,7 @@
 namespace Banners\Installers;
 
 use Banners\Models\Banners;
+use Banners\Models\BannersQuery;
 use template_manager\classes\TemplateManager;
 use Banners\Entities\BannerEffects;
 
@@ -40,6 +41,21 @@ final class TemplatePlacesInstaller {
             $bannerModel->fromArray($banner, \Propel\Runtime\Map\TableMap::TYPE_FIELDNAME);
 
             $bannerModel->setEffects((new BannerEffects($banner['effects'], TRUE))->toArray());//default effects
+
+            $bannerModel->save();
+        }
+    }
+
+    public function update() {
+        foreach ($this->getBanners() as $place => $banner) {
+            $bannerModel = BannersQuery::create()->findOneByPlace($place);
+            if (!count($bannerModel)) {
+                $bannerModel = new Banners();
+                $bannerModel->setPlace($place);
+                $bannerModel->setName($banner['name']);//for i18n
+                $bannerModel->setEffects((new BannerEffects($banner['effects'], TRUE))->toArray());//default effects
+            }
+            $bannerModel->fromArray($banner, \Propel\Runtime\Map\TableMap::TYPE_FIELDNAME);
 
             $bannerModel->save();
         }

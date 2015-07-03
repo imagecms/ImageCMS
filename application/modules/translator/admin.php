@@ -8,10 +8,10 @@ use translator\classes\YandexTranslate as YandexTranslate;
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /**
- * Image CMS 
+ * Image CMS
  * Translator Module Admin
  * @version 1.0
- * 
+ *
  */
 class Admin extends BaseAdminController {
 
@@ -79,11 +79,11 @@ class Admin extends BaseAdminController {
             }
         } else {
             \CMSFactory\assetManager::create()
-                    ->registerScript('admin')
-                    ->registerStyle('admin')
-                    ->setData('settings', getSettings())
-                    ->setData('languages_names', get_language_names())
-                    ->renderAdmin('settings');
+                ->registerScript('admin')
+                ->registerStyle('admin')
+                ->setData('settings', getSettings())
+                ->setData('languages_names', get_language_names())
+                ->renderAdmin('settings');
         }
     }
 
@@ -121,16 +121,16 @@ class Admin extends BaseAdminController {
 
 
         \CMSFactory\assetManager::create()
-                ->registerScript('admin')
-                ->registerStyle('admin')
-                ->setData('langs', $this->langs)
-                ->setData('settings', getSettings())
-                ->setData('languages_names', get_language_names())
-                ->setData('editorStyles', getEditorStyles())
-                ->setData('BILING', self::$BILING)
-                ->setData('modules', $modules)
-                ->setData('names', $names)
-                ->renderAdmin('list');
+            ->registerScript('admin')
+            ->registerStyle('admin')
+            ->setData('langs', $this->langs)
+            ->setData('settings', getSettings())
+            ->setData('languages_names', get_language_names())
+            ->setData('editorStyles', getEditorStyles())
+            ->setData('BILING', self::$BILING)
+            ->setData('modules', $modules)
+            ->setData('names', $names)
+            ->renderAdmin('list');
 
 //        var_dumps_exit('33333');
 
@@ -182,19 +182,19 @@ class Admin extends BaseAdminController {
             }
 
             \CMSFactory\assetManager::create()
-                    ->setData(
-                            array(
-                                'searchResult' => $searchResult ? $searchResult : $this->session->flashdata('searchResult'),
-                                'searchError' => $searchError ? $searchError : $this->session->flashdata('searchError'),
-                                'searchResultsCount' => $searchResultsCount ? $searchResultsCount : $this->session->flashdata('searchResultsCount'),
-                                'languages' => $languages_data,
-                                'search' => $search,
-                                'searchType' => $searchType,
-                            )
+                ->setData(
+                    array(
+                        'searchResult' => $searchResult ? $searchResult : $this->session->flashdata('searchResult'),
+                        'searchError' => $searchError ? $searchError : $this->session->flashdata('searchError'),
+                        'searchResultsCount' => $searchResultsCount ? $searchResultsCount : $this->session->flashdata('searchResultsCount'),
+                        'languages' => $languages_data,
+                        'search' => $search,
+                        'searchType' => $searchType,
                     )
-                    ->registerScript('admin')
-                    ->registerStyle('admin')
-                    ->renderAdmin('search');
+                )
+                ->registerScript('admin')
+                ->registerStyle('admin')
+                ->renderAdmin('search');
         }
     }
 
@@ -288,10 +288,10 @@ class Admin extends BaseAdminController {
                 foreach ($langArray as $origin) {
                     $quote = strstr($origin, '"') ? "'" : '"';
                     $php_string = '<?php echo addslashes(lang(' . $quote . $origin . $quote . ', "' . $domain . '", FALSE))?>';
-                    $js_content .='langs[' . $quote . mb_ereg_replace('([\s]+{.*?})', "<?php echo '\\0'?>", $origin) . $quote . '] = \'' . $php_string . '\';' . PHP_EOL;
+                    $js_content .= 'langs[' . $quote . mb_ereg_replace('([\s]+{.*?})', "<?php echo '\\0'?>", $origin) . $quote . '] = \'' . $php_string . '\';' . PHP_EOL;
                 }
             }
-            $js_content .='</script>';
+            $js_content .= '</script>';
 
             if ($domain == "admin") {
                 file_put_contents($base_dir . '/templates/administrator/inc/jsLangs.tpl', $js_content);
@@ -319,7 +319,7 @@ class Admin extends BaseAdminController {
      * @return type
      */
     public function update($module_template, $type, $lang) {
-        $strings = (array) json_decode($this->input->post('results'));
+        $strings = (array)json_decode($this->input->post('results'));
         $translations = $this->makeCorrectPoPaths($module_template, $type, $lang, TRUE);
 
         if (!$translations) {
@@ -327,8 +327,8 @@ class Admin extends BaseAdminController {
         }
 
         $translationTEMP = array();
-        $newStringsArray = (array) $strings['new'];
-        $oldStringsArray = (array) $strings['old'];
+        $newStringsArray = (array)$strings['new'];
+        $oldStringsArray = (array)$strings['old'];
 
         foreach ($newStringsArray as $origin => $newStrings) {
             $translationTEMP[$origin]['translation'] = '';
@@ -348,9 +348,9 @@ class Admin extends BaseAdminController {
         $result_array = array_merge($translationTEMP, $translations);
         $this->setSession($module_template, $type, $lang);
         return \CMSFactory\assetManager::create()
-                        ->setData('po_array', $result_array)
-                        ->setData('can_edit_file', $can_edit_file)
-                        ->fetchAdminTemplate('po_table', FALSE);
+            ->setData('po_array', $result_array)
+            ->setData('can_edit_file', $can_edit_file)
+            ->fetchAdminTemplate('po_table', FALSE);
     }
 
     /**
@@ -407,11 +407,11 @@ class Admin extends BaseAdminController {
             $this->setSession($module_template, $type, $lang);
             $can_edit_file = can_edit_file($module_template, $type);
             return \CMSFactory\assetManager::create()
-                            ->setData('po_array', $currentLangs)
-                            ->setData('page', 1)
-                            ->setData('rows_count', ceil(count($currentLangs) / 11))
-                            ->setData('can_edit_file', $can_edit_file)
-                            ->fetchAdminTemplate('po_table', FALSE);
+                ->setData('po_array', $currentLangs)
+                ->setData('page', 1)
+                ->setData('rows_count', ceil(count($currentLangs) / 11))
+                ->setData('can_edit_file', $can_edit_file)
+                ->fetchAdminTemplate('po_table', FALSE);
         }
     }
 
@@ -448,22 +448,22 @@ class Admin extends BaseAdminController {
                 $can_edit_file = can_edit_file($module_template, $type);
 
                 $this->exchangePoArray = \CMSFactory\assetManager::create()
-                        ->setData('po_settings', $resultReceiver['settings'])
-                        ->setData('po_array', $receiverPoArray)
-                        ->setData('languages_names', get_language_names())
-                        ->setData('page', 1)
-                        ->setData('can_edit_file', $can_edit_file)
-                        ->fetchAdminTemplate('po_table', FALSE);
+                    ->setData('po_settings', $resultReceiver['settings'])
+                    ->setData('po_array', $receiverPoArray)
+                    ->setData('languages_names', get_language_names())
+                    ->setData('page', 1)
+                    ->setData('can_edit_file', $can_edit_file)
+                    ->fetchAdminTemplate('po_table', FALSE);
                 return $this->index(TRUE);
             }
         } else {
             $this->getExistingLocales();
             \CMSFactory\assetManager::create()
-                    ->registerScript('admin')
-                    ->registerStyle('admin')
-                    ->setData('langs', $this->langs)
-                    ->setData('languages_names', get_language_names())
-                    ->renderAdmin('exchange');
+                ->registerScript('admin')
+                ->registerStyle('admin')
+                ->setData('langs', $this->langs)
+                ->setData('languages_names', get_language_names())
+                ->renderAdmin('exchange');
         }
     }
 
@@ -495,20 +495,20 @@ class Admin extends BaseAdminController {
             $this->setSession($module_template, $type, $lang);
 
             return \CMSFactory\assetManager::create()
-                            ->setData('po_settings', $result['settings'])
-                            ->setData('po_array', $translations)
-                            ->setData('can_edit_file', $can_edit_file)
-                            ->fetchAdminTemplate('po_table', FALSE);
+                ->setData('po_settings', $result['settings'])
+                ->setData('po_array', $translations)
+                ->setData('can_edit_file', $can_edit_file)
+                ->fetchAdminTemplate('po_table', FALSE);
         } else {
             if (!$this->fileError && !$translations) {
                 $this->setSession($module_template, $type, $lang);
 
                 return \CMSFactory\assetManager::create()
-                                ->setData('po_settings', $result['settings'])
-                                ->setData('po_array', $translations)
-                                ->setData('error', $this->fileError)
-                                ->setData('can_edit_file', $can_edit_file)
-                                ->fetchAdminTemplate('po_table', FALSE);
+                    ->setData('po_settings', $result['settings'])
+                    ->setData('po_array', $translations)
+                    ->setData('error', $this->fileError)
+                    ->setData('can_edit_file', $can_edit_file)
+                    ->fetchAdminTemplate('po_table', FALSE);
             }
             return json_encode(array('error' => TRUE, 'errors' => $this->fileError, 'type' => $this->filePermissionsErrors));
         }
@@ -544,10 +544,10 @@ class Admin extends BaseAdminController {
             $this->getExistingLocales();
 
             \CMSFactory\assetManager::create()
-                    ->registerScript('admin')
-                    ->registerStyle('admin')
-                    ->setData('langs', $this->langs)
-                    ->renderAdmin('create');
+                ->registerScript('admin')
+                ->registerStyle('admin')
+                ->setData('langs', $this->langs)
+                ->renderAdmin('create');
 
             if ($module_template && $type && $lang) {
                 switch ($type) {
@@ -577,8 +577,8 @@ class Admin extends BaseAdminController {
      * @param type $lang
      */
     public function savePoArray($module_template, $type, $lang) {
-        $po_array = (array) json_decode($this->input->post('po_array'));
-        $showMessage = (bool) $this->input->post('showMessage');
+        $po_array = (array)json_decode($this->input->post('po_array'));
+        $showMessage = (bool)$this->input->post('showMessage');
 
         if ($this->poFileManager->save($module_template, $type, $lang, $po_array)) {
             if ($showMessage)
@@ -613,9 +613,9 @@ class Admin extends BaseAdminController {
         $this->langs_main = FilesParser::getInstatce()->parseMain();
 
         $this->langs = array_unique(
-                array_merge(
-                        array_keys($this->langs_templates), array_keys($this->langs_main)
-                )
+            array_merge(
+                array_keys($this->langs_templates), array_keys($this->langs_main)
+            )
         );
 
         $this->session->set_userdata('langs', $this->langs);
@@ -644,8 +644,8 @@ class Admin extends BaseAdminController {
             }
         }
         return \CMSFactory\assetManager::create()
-                        ->setData('langs', $langs)
-                        ->fetchAdminTemplate('modules_names', FALSE);
+            ->setData('langs', $langs)
+            ->fetchAdminTemplate('modules_names', FALSE);
     }
 
     /**
@@ -657,8 +657,8 @@ class Admin extends BaseAdminController {
         $langs = $this->session->userdata('langs_templates');
         $langs = $langs[$lang];
         return \CMSFactory\assetManager::create()
-                        ->setData('langs', $langs)
-                        ->fetchAdminTemplate('templates_names', FALSE);
+            ->setData('langs', $langs)
+            ->fetchAdminTemplate('templates_names', FALSE);
     }
 
     /**
@@ -677,8 +677,8 @@ class Admin extends BaseAdminController {
      * @return json
      */
     public function translate() {
-        $po_array = (array) json_decode($this->input->post('po_array'));
-        $result = (array) json_decode($this->input->post('results'));
+        $po_array = (array)json_decode($this->input->post('po_array'));
+        $result = (array)json_decode($this->input->post('results'));
         $withEmptyTranslation = $this->input->post('withEmptyTranslation');
 
         $addUpdatedStrings = array();
@@ -687,7 +687,7 @@ class Admin extends BaseAdminController {
             $counter = 0;
             foreach ($po_array as $origin => $value) {
                 if ($origin) {
-                    $po_array[$origin] = (array) $po_array[$origin];
+                    $po_array[$origin] = (array)$po_array[$origin];
                     if ($withEmptyTranslation != 'false') {
                         if (!strlen($po_array[$origin]['translation'])) {
                             $po_array[$origin]['translation'] = $result[$counter];
@@ -696,7 +696,7 @@ class Admin extends BaseAdminController {
                     } else {
                         $po_array[$origin]['translation'] = $result[$counter];
                     }
-                    $counter+=1;
+                    $counter += 1;
                 }
             }
 
@@ -704,11 +704,11 @@ class Admin extends BaseAdminController {
 
             return json_encode(array(
                 'data' => \CMSFactory\assetManager::create()
-                        ->setData('po_array', $po_array)
-                        ->setData('page', 1)
-                        ->setData('rows_count', ceil(count($po_array) / 11))
-                        ->setData('can_edit_file', $can_edit_file)
-                        ->fetchAdminTemplate('po_table', FALSE)
+                    ->setData('po_array', $po_array)
+                    ->setData('page', 1)
+                    ->setData('rows_count', ceil(count($po_array) / 11))
+                    ->setData('can_edit_file', $can_edit_file)
+                    ->fetchAdminTemplate('po_table', FALSE)
             ));
         }
     }
@@ -828,6 +828,21 @@ class Admin extends BaseAdminController {
         } else {
             return json_encode(array('errors' => TRUE, 'message' => lang('Not valid translation file attributes.', 'translator')));
         }
+    }
+
+    public function searchPoFileAutocomplete() {
+        $data = $this->input->post();
+        $result = $this->poFileManager->searchPoFileAutocomplete($data['modules_templates'], $data['types'], $data['locale'], $data['term']);
+
+        $returnsData = [];
+        foreach ($result as $item) {
+            $returnsData[] = [
+                'label' => $item,
+                'value' => $item,
+            ];
+        }
+
+        return json_encode(['results' => $returnsData]);
     }
 
 }

@@ -111,13 +111,26 @@
     langs.remove = "{lang('Remove','admin')}";
 
     {literal}
-        function lang(value) {
-            if (langs[value]) {
-                return  langs[value];
-            } else {
-                return value;
-            }
+    function lang(value) {
+        if (langs[value]) {
+            return langs[value];
+        } else {
+            return value;
         }
+    }
+    {/literal}
+
+
+    {literal}
+    function langf(value, replacements) {
+        var langValue = lang(value);
+
+        for (var replace in replacements) {
+            langValue = langValue.replace('|' + replace + '|', replacements[replace]);
+        }
+
+        return langValue;
+    }
     {/literal}
 
 

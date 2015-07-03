@@ -9,6 +9,6 @@ langs["Variable is not added"] = '<?php echo addslashes(lang("Variable is not ad
 langs["Variable successfully added"] = '<?php echo addslashes(lang("Variable successfully added", "cmsemail", FALSE))?>';
 langs["Enter variable"] = '<?php echo addslashes(lang("Enter variable", "cmsemail", FALSE))?>';
 langs["Variable should contain only Latin characters"] = '<?php echo addslashes(lang("Variable should contain only Latin characters", "cmsemail", FALSE))?>';
-langs["Variable must be surrounded by $"] = '<?php echo addslashes(lang("Variable must be surrounded by $", "cmsemail", FALSE))?>';
+langs["Variable must be surrounded by"] = '<?php echo addslashes(lang("Variable must be surrounded by", "cmsemail", FALSE))?>';
 langs["Variable must have a value"] = '<?php echo addslashes(lang("Variable must have a value", "cmsemail", FALSE))?>';
 </script>

@@ -113,7 +113,13 @@ function changeDefaultValute(id) {
 }
 function changeMainValute(id, curElement) {
     $('.btn-danger').removeAttr('disabled');
-
+   
+   curElement.closest('table').find('.currencies-value').each(function(){
+       $(this).removeClass('disabled').removeAttr('disabled');
+   });
+    
+    curElement.closest('tr').find('.currencies-value').addClass('disabled').attr('disabled', 'disabled');
+   
     $(curElement).closest('tr').find('.btn-danger').attr('disabled', 'disabled');
 
     $('.frame_prod-on_off').removeClass('d_n');
@@ -197,8 +203,9 @@ function ChangeSortActive(el, sortId)
 
 var shopAdminMenuCache = false;
 
-function showMessage(title, text, messageType)
+function showMessage(title, text, messageType, delay)
 {
+    delay = delay || 6000;
     text = '<h4>' + title + '</h4>' + text;
     messageType = typeof messageType !== 'undefined' ? messageType : 'success';
     if (messageType == 'r')
@@ -207,7 +214,11 @@ function showMessage(title, text, messageType)
         message: {
             html: text
         },
-        type: messageType
+        type: messageType,
+        fadeOut: {
+            enabled: true,
+            delay: delay
+        }
     }).show();
 }
 
@@ -1240,11 +1251,11 @@ var callbacks = new Object({
             $(element).closest('tr').find('.prod-on_off').css('left', '0');
         }
 
-
         $.post('/admin/components/run/shop/callbacks/setDefaultStatus', {
             id: id
         }, function (data) {
             $('.notifications').append(data);
+            location.reload();
         });
 
         return true;

@@ -130,6 +130,15 @@ class MY_Controller extends MX_Controller {
     }
 
     /**
+     * Returns admin interface locale(used for langs translation)
+     * @return string
+     */
+    public static function getAdminInterfaceLocale() {
+        $locale = CI::$APP->config->item('language') ? CI::$APP->config->item('language') : 'ru_RU';
+        return array_shift(explode('_', $locale));
+    }
+
+    /**
      * Get current language
      * @return type
      */
