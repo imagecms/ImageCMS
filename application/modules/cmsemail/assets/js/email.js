@@ -103,7 +103,7 @@ function mailTest() {
 var EmailTemplateVariables = {
     insertVariable: function(curElem) {
         var activeEditor = tinyMCE.activeEditor.contentAreaContainer;
-        var curEditor = $(curElem).closest('.control-group').find('div[id*="mceu_"].mce-edit-area');
+        var curEditor = $(curElem).closest('.control-group').find('div[id*="tinymce"].mce-edit-area');
 
         if ($(activeEditor).is(curEditor)) {
             tinyMCE.execCommand("mceInsertContent", false, ' ' + $(curElem).val() + ' ');

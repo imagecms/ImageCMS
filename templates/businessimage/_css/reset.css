@@ -1,0 +1,414 @@
+/* inline-block extra space hack font */
+@font-face {
+	font-family: 'zerospaceregular';
+	src: url('../_lib/zerofont/zerospace-regular-webfont.woff') format('woff'),
+	url('../_lib/zerofont/zerospace-regular-webfont.ttf') format('truetype'),
+	url('../_lib/zerofont/zerospace-regular-webfont.svg#zerospaceregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+
+/*********************************************/
+/***** Default styles reset BEGIN *****/
+/*********************************************/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	outline: none;
+}
+
+img,
+fieldset,
+hr,
+legend
+{
+	border: 0;
+}
+
+object,
+video,
+embed,
+img{
+	max-width:100%;
+	height:auto;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+audio, canvas, video, figure{
+	display: inline-block;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+tr{
+	page-break-inside: avoid
+}
+
+blockquote{
+	quotes: none;
+}
+blockquote:before,
+blockquote:after{
+	content: '';
+	content: none;
+}
+
+[hidden] {
+    display: none;
+}
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+
+/* Form normalize BEGIN */
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+    font-size: 100%;
+    margin: 0;
+    outline: none;
+}
+button,
+input {
+    line-height: normal;
+}
+button,
+select {
+    text-transform: none;
+}
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+    -webkit-appearance: button;
+    cursor: pointer;    
+}
+button[disabled],
+html input[disabled] {
+    cursor: default;
+}
+input[type="checkbox"],
+input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0;
+}
+input[type="search"] {
+    -webkit-appearance: textfield;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+textarea {
+    overflow: auto;
+    vertical-align: top;
+}
+/* END Form normalize */
+/*********************************************/
+/***** END Default styles reset *****/
+/*********************************************/
+
+
+
+
+
+/*********************************************/
+/***** FancyBox reset BEGIN *****/
+/*********************************************/
+.fancybox-nav,
+#fancybox-loading,
+.fancybox-close{
+	font: normal normal normal 14px/1 FontAwesome;
+	font-size: inherit;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	transform: translate(0, 0);
+}
+.fancybox-nav,
+.fancybox-close{
+	text-decoration: none;
+	color: #000;
+}
+
+.fancybox-skin{
+	position: relative;
+	background: #fff; /*color of padding box*/
+}
+
+.fancybox-wrap{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 8020;
+}
+
+.fancybox-opened{
+	z-index: 8030;
+}
+
+.fancybox-outer,
+.fancybox-inner{
+	position: relative;
+}
+
+.fancybox-inner{
+	overflow: hidden;
+}
+
+.fancybox-type-iframe .fancybox-inner {
+	-webkit-overflow-scrolling: touch;
+}
+
+.fancybox-image,
+.fancybox-iframe {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.fancybox-image {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.fancybox-lock {
+    overflow: hidden !important;
+    width: auto;
+}
+
+.fancybox-lock body {
+    overflow: hidden !important;
+}
+
+.fancybox-lock-test {
+    overflow-y: hidden !important;
+}
+
+.fancybox-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	display: none;
+	z-index: 8010;	
+}
+
+.fancybox-overlay-fixed {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+}
+
+.fancybox-lock .fancybox-overlay {
+	overflow: auto;
+	overflow-y: scroll;
+}
+
+.fancybox-nav {
+	position: absolute;
+	top: 0;
+	width: 40%;
+	height: 100%;
+	cursor: pointer;
+}
+.fancybox-nav span{
+	position: absolute;
+	top: 50%;	
+	cursor: pointer;
+	z-index: 8040;
+	visibility: hidden;
+}
+
+.fancybox-nav:hover span {
+	visibility: visible;
+}
+
+.fancybox-opened .fancybox-title {
+	visibility: visible;
+}
+
+.fancybox-title {
+	visibility: hidden;
+	position: relative;
+	z-index: 8050;
+}
+
+.fancybox-tmp {
+	position: absolute;
+	top: -99999px;
+	left: -99999px;
+	visibility: hidden;
+	max-width: 99999px;
+	max-height: 99999px;
+	overflow: visible !important;
+}
+/*********************************************/
+/***** END fancyBox *****/
+/*********************************************/
+
+
+
+
+/*********************************************/
+/***** Slik carusel reset BEGIN *****/
+/*********************************************/
+.slick-slider{
+	position: relative;
+	display: block;
+
+	-moz-box-sizing: border-box;
+		box-sizing: border-box;
+
+	-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+			user-select: none;
+
+	-webkit-touch-callout: none;
+	-khtml-user-select: none;
+	-ms-touch-action: pan-y;
+		touch-action: pan-y;
+	-webkit-tap-highlight-color: transparent;
+}
+
+.slick-list{
+	position: relative;
+
+	display: block;
+	overflow: hidden;
+
+	margin: 0;
+	padding: 0;
+}
+
+.slick-list.dragging{
+	cursor: pointer;
+	cursor: hand;
+}
+
+.slick-slider .slick-track,
+.slick-slider .slick-list{
+	-webkit-transform: translate3d(0, 0, 0);
+		-moz-transform: translate3d(0, 0, 0);
+		-ms-transform: translate3d(0, 0, 0);
+		-o-transform: translate3d(0, 0, 0);
+			transform: translate3d(0, 0, 0);
+}
+
+.slick-track{
+	position: relative;
+	top: 0;
+	left: 0;
+
+	display: block;
+}
+.slick-track:before,
+.slick-track:after{
+	display: table;
+	content: '';
+}
+.slick-track:after{
+	clear: both;
+}
+
+.slick-loading .slick-track{
+	visibility: hidden;
+}
+
+.slick-slide{
+	display: none;
+	float: left;
+	
+	height: 100%;
+	min-height: 1px;
+}
+[dir='rtl'] .slick-slide{
+	float: right;
+}
+.slick-slide img{
+	display: block;
+}
+.slick-slide.slick-loading img{
+	display: none;
+}
+.slick-slide.dragging img{
+	pointer-events: none;
+}
+.slick-initialized .slick-slide{
+	display: block;
+}
+.slick-loading .slick-slide{
+	visibility: hidden;
+}
+.slick-vertical .slick-slide{
+	display: block;
+
+	height: auto;
+
+	border: 1px solid transparent;
+}
+/*********************************************/
+/***** END Slik carusel reset *****/
+/*********************************************/
+
+
+
+
+
+/*********************************************/
+/* Social buttons reset BEGIN */
+/*********************************************/
+span.b-share{
+	font:  inherit !important;
+	padding: 0px 0px 0px 0px !important;
+}
+a.b-share__handle{
+	padding: 0px 0px 0px 0px !important;
+}
+span.b-share__text{
+	margin: 0;
+}
+span.b-share-btn__wrap{
+	margin: 0 !important;
+}
+/*********************************************/
+/* END Social buttons reset */
+/*********************************************/

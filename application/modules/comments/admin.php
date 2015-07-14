@@ -139,25 +139,25 @@ class Admin extends BaseAdminController {
 
 
         if ($comments) {
-            $comments = array_splice($comments, (int) $off_set, (int) $this->per_page);
+            $comments = array_splice($comments, (int)$off_set, (int)$this->per_page);
         } else {
             $comments = array();
         }
 
 //        $all_comments = count($this->db->get('comments')->result_array());
         \CMSFactory\assetManager::create()
-                ->setData(array(
-                    'comments_cur_url' => site_url(trim_slashes($this->uri->uri_string())),
-                    'comments' => $comments,
-                    'status' => $status,
-                    'children' => $children,
-                    'total_waiting' => $this->comments->count_by_status(1),
-                    'total_spam' => $this->comments->count_by_status(2),
-                    'total_app' => $this->comments->count_by_status(0),
-                    'all_comm_show' => $total,
-                ))
-                ->registerScript('admin')
-                ->renderAdmin('comments_list');
+            ->setData(array(
+                'comments_cur_url' => site_url(trim_slashes($this->uri->uri_string())),
+                'comments' => $comments,
+                'status' => $status,
+                'children' => $children,
+                'total_waiting' => $this->comments->count_by_status(1),
+                'total_spam' => $this->comments->count_by_status(2),
+                'total_app' => $this->comments->count_by_status(0),
+                'all_comm_show' => $total,
+            ))
+            ->registerScript('admin')
+            ->renderAdmin('comments_list');
     }
 
     public function proccess_child_comments($comments = array()) {
@@ -200,7 +200,7 @@ class Admin extends BaseAdminController {
             'text' => $this->input->post('text'),
             'user_name' => htmlspecialchars($this->input->post('user_name')),
             'user_mail' => htmlspecialchars($this->input->post('user_mail')),
-            'status' => (int) $this->input->post('status'),
+            'status' => (int)$this->input->post('status'),
         );
 
         $this->comments->update($this->input->post('id'), $data);
@@ -232,7 +232,7 @@ class Admin extends BaseAdminController {
 
           $this->_recount_comments($comment['item_id'], $comment['module']);
          */
-         
+
         $ids = is_array($this->input->post('id')) ? implode(', ', $this->input->post('id')) : $this->input->post('id');
         $this->lib_admin->log(lang("Comments status was updated", "comments") . '. Ids: ' . $ids);
         showMessage(lang('Status updated', 'comments'), lang('Message', 'comments'));
@@ -302,18 +302,20 @@ class Admin extends BaseAdminController {
         $settings = $this->comments->get_settings();
 
         \CMSFactory\assetManager::create()
-                ->setData('settings', $settings)
-                ->renderAdmin('settings');
+            ->setData('settings', $settings)
+            ->renderAdmin('settings');
     }
 
     public function update_settings() {
         $data = array(
-            'max_comment_length' => (int) $this->input->post('max_comment_length'),
-            'period' => (int) $this->input->post('period'),
-            'can_comment' => (int) $this->input->post('can_comment'),
-            'use_captcha' => (bool) $this->input->post('use_captcha'),
-            'use_moderation' => (bool) $this->input->post('use_moderation'),
+            'max_comment_length' => (int)$this->input->post('max_comment_length'),
+            'period' => (int)$this->input->post('period'),
+            'can_comment' => (int)$this->input->post('can_comment'),
+            'use_captcha' => (bool)$this->input->post('use_captcha'),
+            'use_moderation' => (bool)$this->input->post('use_moderation'),
+            'order_by' => $this->input->post('order_by'),
         );
+
 
         $this->comments->save_settings($data);
         $this->lib_admin->log(lang("Comments settings was edited", "comments"));

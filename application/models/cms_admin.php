@@ -93,8 +93,19 @@ class Cms_admin extends CI_Model {
      * @return integer
      */
     public function update_page($id, $data) {
+        $lang_id = $this->input->post('lang_id');
+        $pageExists = (int)$this->input->post('pageExists');
+
+        if (!$pageExists) {
+            unset($data['id']);
+            $data['lang_alias'] = $id;
+            $data['lang'] = $lang_id;
+            $id = $this->add_page($data);
+            $inserted = $id ? true : false;
+        }
+
         $page = $this->get_page($id);
-        $alias = $page['lang_alias'];
+        $alias = $page['lang_alias'] ;
 
         if ($alias == 0) {
             $this->db->where('lang_alias', $page['id']);
@@ -116,7 +127,7 @@ class Cms_admin extends CI_Model {
         // end update page
 
         $affectedRows = $this->db->affected_rows();
-        return $affectedRows;
+        return $affectedRows || $inserted;
     }
 
     /*     * ***********************************************************

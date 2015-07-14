@@ -9,7 +9,7 @@
                 <a href="{$BASE_URL}admin/components/cp/comments" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back", 'comments')}</span></a>
                 <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#comment_settings_form" data-action="tomain" data-submit><i class="icon-ok"></i>{lang("Save", 'comments')}</button>
             </div>
-        </div>                            
+        </div>
     </div>
     <form method="post" action="{site_url('admin/components/cp/comments/update_settings')}" class="form-horizontal m-t_10" id="comment_settings_form">
         <table class="table  table-bordered table-hover table-condensed content_big_td">
@@ -36,6 +36,15 @@
                                 <div class="controls number">
                                     <input type="text" value="{$settings.period}" name="period" id="period"/>
                                     <span class="help-block">{lang("Comment frequency restriction per minute . O - check off", 'comments')}</span>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="order_by">{lang("Comments sorting method", 'comments')}:</label>
+                                <div class="controls number">
+                                    <select id="order_by" name="order_by">
+                                        <option {if $settings.order_by == 'date.desc'}selected{/if} value="date.desc">{lang('Newest first')}</option>
+                                        <option {if $settings.order_by == 'date.asc'}selected{/if} value="date.asc">{lang('Oldest first')}</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="control-group">

@@ -102,6 +102,7 @@ class Menu extends MY_Controller {
 
         $this->get_expand_items($this->current_uri);
 
+
         $array_keys = array_keys($this->menu_array);
         $start_index = $array_keys[0];
         $this->tpl_folder = $this->menu_array[$start_index]['tpl'];
@@ -109,6 +110,7 @@ class Menu extends MY_Controller {
         $this->prepare_menu_recursion(); // Инициализируем первый элемент для начала итераций
 
         $this->display_menu($this->menu_array);
+//        dd($menu);
 
         if ($this->errors) {
             $data = array(
@@ -151,7 +153,6 @@ class Menu extends MY_Controller {
      * @access public
      */
     public function display_menu($menu_array) {
-
         $array_keys = array_keys($menu_array);
         $start_index = $array_keys[0];
         $end_index = $array_keys[count($array_keys) - 1];
@@ -179,14 +180,7 @@ class Menu extends MY_Controller {
                     $exp = explode('/', trim_slashes($this->uri->uri_string()));
                     $exp2 = explode('/', trim_slashes($item['link']));
 
-                    $matches = 0;
-                    foreach ($exp2 as $k => $v) {
-                        if ($v == $exp[$k]) {
-                            $matches++;
-                        }
-                    }
-
-                    if ($matches == count($exp2)) {
+                    if (!array_diff($exp2,$exp)) {
                         $active_cur = TRUE;
                     } else {
                         $active_cur = FALSE;

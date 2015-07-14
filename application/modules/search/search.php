@@ -115,14 +115,14 @@ class Search extends MY_Controller {
             if ($result['total_rows'] > $this->row_count) {
                 $this->load->library('Pagination');
 
-                $pagesSearchPagination['base_url'] = site_url('search/index/' . $result['hash'] . '/');
-                $pagesSearchPagination['total_rows'] = $result['total_rows'];
-                $pagesSearchPagination['per_page'] = $this->row_count;
-                $pagesSearchPagination['uri_segment'] = 4;
-                $pagesSearchPagination['page_query_string'] = FALSE;
+                $paginationConfig['base_url'] = site_url('search/index/' . $result['hash'] . '/');
+                $paginationConfig['total_rows'] = $result['total_rows'];
+                $paginationConfig['per_page'] = $this->row_count;
+                $paginationConfig['uri_segment'] = 4;
                 include_once "./templates/{$this->config->item('template')}/paginations.php";
+                $paginationConfig['page_query_string'] = FALSE;
 
-                $this->pagination->initialize($pagesSearchPagination);
+                $this->pagination->initialize($paginationConfig);
                 $this->template->assign('pagination', $this->pagination->create_links());
             }
             //End pagination

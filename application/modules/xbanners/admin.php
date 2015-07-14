@@ -117,7 +117,7 @@ class Admin extends BaseAdminController {
         try {
             if ($this->input->post()) {
                 $this->form_validation->set_rules('image[name]', lang('Name', 'xbanners'), 'required|min_length[2]|max_length[255]|trim');
-                $this->form_validation->set_rules('image[url]', lang('URL', 'xbanners'), 'required|trim|callback_validate_url');
+                $this->form_validation->set_rules('image[url]', lang('URL', 'xbanners'), 'trim|callback_validate_url');
 
                 if ($this->form_validation->run($this) === FALSE) {
                     showMessage(validation_errors(), '', 'r');

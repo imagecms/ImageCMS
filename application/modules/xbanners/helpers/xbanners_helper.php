@@ -72,9 +72,9 @@ if (!function_exists('getBannerPreviewSrc')) {
 }
 
 
-if (!function_exists('pluralize')) {
+if (!function_exists('xpluralize')) {
 
-    function pluralize($count = 0, array $words = array()) {
+    function xpluralize($count = 0, array $words = array()) {
         if (empty($words)) {
             $words = array(' ', ' ', ' ');
         }

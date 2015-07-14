@@ -47,7 +47,7 @@
                                 /product/tovar
                             </td>
                             <td>
-                                /shop/product/tovar
+                                shop/product/tovar
                             </td>
                             <td>
                                 301

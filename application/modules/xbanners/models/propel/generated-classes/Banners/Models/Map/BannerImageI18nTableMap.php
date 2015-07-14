@@ -59,7 +59,7 @@ class BannerImageI18nTableMap extends TableMap
     /**
      * The total number of columns
      */
-    const NUM_COLUMNS = 5;
+    const NUM_COLUMNS = 6;
 
     /**
      * The number of lazy-loaded columns
@@ -69,7 +69,7 @@ class BannerImageI18nTableMap extends TableMap
     /**
      * The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS)
      */
-    const NUM_HYDRATE_COLUMNS = 5;
+    const NUM_HYDRATE_COLUMNS = 6;
 
     /**
      * the column name for the id field
@@ -97,6 +97,11 @@ class BannerImageI18nTableMap extends TableMap
     const COL_CLICKS = 'banner_image_i18n.clicks';
 
     /**
+     * the column name for the description field
+     */
+    const COL_DESCRIPTION = 'banner_image_i18n.description';
+
+    /**
      * The default string format for model objects of the related table
      */
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -108,11 +113,11 @@ class BannerImageI18nTableMap extends TableMap
      * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        self::TYPE_PHPNAME       => array('Id', 'Locale', 'Src', 'Name', 'Clicks', ),
-        self::TYPE_CAMELNAME     => array('id', 'locale', 'src', 'name', 'clicks', ),
-        self::TYPE_COLNAME       => array(BannerImageI18nTableMap::COL_ID, BannerImageI18nTableMap::COL_LOCALE, BannerImageI18nTableMap::COL_SRC, BannerImageI18nTableMap::COL_NAME, BannerImageI18nTableMap::COL_CLICKS, ),
-        self::TYPE_FIELDNAME     => array('id', 'locale', 'src', 'name', 'clicks', ),
-        self::TYPE_NUM           => array(0, 1, 2, 3, 4, )
+        self::TYPE_PHPNAME       => array('Id', 'Locale', 'Src', 'Name', 'Clicks', 'Description', ),
+        self::TYPE_CAMELNAME     => array('id', 'locale', 'src', 'name', 'clicks', 'description', ),
+        self::TYPE_COLNAME       => array(BannerImageI18nTableMap::COL_ID, BannerImageI18nTableMap::COL_LOCALE, BannerImageI18nTableMap::COL_SRC, BannerImageI18nTableMap::COL_NAME, BannerImageI18nTableMap::COL_CLICKS, BannerImageI18nTableMap::COL_DESCRIPTION, ),
+        self::TYPE_FIELDNAME     => array('id', 'locale', 'src', 'name', 'clicks', 'description', ),
+        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, )
     );
 
     /**
@@ -122,11 +127,11 @@ class BannerImageI18nTableMap extends TableMap
      * e.g. self::$fieldKeys[self::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        self::TYPE_PHPNAME       => array('Id' => 0, 'Locale' => 1, 'Src' => 2, 'Name' => 3, 'Clicks' => 4, ),
-        self::TYPE_CAMELNAME     => array('id' => 0, 'locale' => 1, 'src' => 2, 'name' => 3, 'clicks' => 4, ),
-        self::TYPE_COLNAME       => array(BannerImageI18nTableMap::COL_ID => 0, BannerImageI18nTableMap::COL_LOCALE => 1, BannerImageI18nTableMap::COL_SRC => 2, BannerImageI18nTableMap::COL_NAME => 3, BannerImageI18nTableMap::COL_CLICKS => 4, ),
-        self::TYPE_FIELDNAME     => array('id' => 0, 'locale' => 1, 'src' => 2, 'name' => 3, 'clicks' => 4, ),
-        self::TYPE_NUM           => array(0, 1, 2, 3, 4, )
+        self::TYPE_PHPNAME       => array('Id' => 0, 'Locale' => 1, 'Src' => 2, 'Name' => 3, 'Clicks' => 4, 'Description' => 5, ),
+        self::TYPE_CAMELNAME     => array('id' => 0, 'locale' => 1, 'src' => 2, 'name' => 3, 'clicks' => 4, 'description' => 5, ),
+        self::TYPE_COLNAME       => array(BannerImageI18nTableMap::COL_ID => 0, BannerImageI18nTableMap::COL_LOCALE => 1, BannerImageI18nTableMap::COL_SRC => 2, BannerImageI18nTableMap::COL_NAME => 3, BannerImageI18nTableMap::COL_CLICKS => 4, BannerImageI18nTableMap::COL_DESCRIPTION => 5, ),
+        self::TYPE_FIELDNAME     => array('id' => 0, 'locale' => 1, 'src' => 2, 'name' => 3, 'clicks' => 4, 'description' => 5, ),
+        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, )
     );
 
     /**
@@ -151,6 +156,7 @@ class BannerImageI18nTableMap extends TableMap
         $this->addColumn('src', 'Src', 'VARCHAR', false, 255, null);
         $this->addColumn('name', 'Name', 'VARCHAR', false, 255, null);
         $this->addColumn('clicks', 'Clicks', 'INTEGER', false, 20, null);
+        $this->addColumn('description', 'Description', 'LONGVARCHAR', false, null, null);
     } // initialize()
 
     /**
@@ -375,12 +381,14 @@ class BannerImageI18nTableMap extends TableMap
             $criteria->addSelectColumn(BannerImageI18nTableMap::COL_SRC);
             $criteria->addSelectColumn(BannerImageI18nTableMap::COL_NAME);
             $criteria->addSelectColumn(BannerImageI18nTableMap::COL_CLICKS);
+            $criteria->addSelectColumn(BannerImageI18nTableMap::COL_DESCRIPTION);
         } else {
             $criteria->addSelectColumn($alias . '.id');
             $criteria->addSelectColumn($alias . '.locale');
             $criteria->addSelectColumn($alias . '.src');
             $criteria->addSelectColumn($alias . '.name');
             $criteria->addSelectColumn($alias . '.clicks');
+            $criteria->addSelectColumn($alias . '.description');
         }
     }
 

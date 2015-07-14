@@ -11,9 +11,9 @@
         "php": ">=5.4.0",
         "ext-curl": "*",
         "propel/propel": "2.0.*@dev",
-        "monolog/monolog": "1.12.*@dev",
+        "monolog/monolog": ">1.12",
         "phpoffice/phpexcel": ">1.8",
-        "symfony/var-dumper": "2.6.*",
+        "symfony/var-dumper": "2.*",
         "tubalmartin/cssmin": "dev-master",
         "patchwork/jsqueeze": "~2.0",
         "tecnick.com/tcpdf": ">=6",
@@ -29,6 +29,7 @@
         "nubera-ebusiness/intercom-php": "dev-master",
         "phpunit/phpunit": ">=4.6.6",
         "phpunit/phpunit-skeleton-generator": ">=2.0.1",
-        "halleck45/phpmetrics": ">=1.1.1"
+        "halleck45/phpmetrics": ">=1.1.1",
+        "fzaninotto/faker": "^1.5"
     }
 }

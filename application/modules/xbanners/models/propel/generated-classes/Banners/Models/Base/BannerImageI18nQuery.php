@@ -25,12 +25,14 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildBannerImageI18nQuery orderBySrc($order = Criteria::ASC) Order by the src column
  * @method     ChildBannerImageI18nQuery orderByName($order = Criteria::ASC) Order by the name column
  * @method     ChildBannerImageI18nQuery orderByClicks($order = Criteria::ASC) Order by the clicks column
+ * @method     ChildBannerImageI18nQuery orderByDescription($order = Criteria::ASC) Order by the description column
  *
  * @method     ChildBannerImageI18nQuery groupById() Group by the id column
  * @method     ChildBannerImageI18nQuery groupByLocale() Group by the locale column
  * @method     ChildBannerImageI18nQuery groupBySrc() Group by the src column
  * @method     ChildBannerImageI18nQuery groupByName() Group by the name column
  * @method     ChildBannerImageI18nQuery groupByClicks() Group by the clicks column
+ * @method     ChildBannerImageI18nQuery groupByDescription() Group by the description column
  *
  * @method     ChildBannerImageI18nQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method     ChildBannerImageI18nQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -49,7 +51,8 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildBannerImageI18n findOneByLocale(string $locale) Return the first ChildBannerImageI18n filtered by the locale column
  * @method     ChildBannerImageI18n findOneBySrc(string $src) Return the first ChildBannerImageI18n filtered by the src column
  * @method     ChildBannerImageI18n findOneByName(string $name) Return the first ChildBannerImageI18n filtered by the name column
- * @method     ChildBannerImageI18n findOneByClicks(int $clicks) Return the first ChildBannerImageI18n filtered by the clicks column *
+ * @method     ChildBannerImageI18n findOneByClicks(int $clicks) Return the first ChildBannerImageI18n filtered by the clicks column
+ * @method     ChildBannerImageI18n findOneByDescription(string $description) Return the first ChildBannerImageI18n filtered by the description column *
 
  * @method     ChildBannerImageI18n requirePk($key, ConnectionInterface $con = null) Return the ChildBannerImageI18n by primary key and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildBannerImageI18n requireOne(ConnectionInterface $con = null) Return the first ChildBannerImageI18n matching the query and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
@@ -59,6 +62,7 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildBannerImageI18n requireOneBySrc(string $src) Return the first ChildBannerImageI18n filtered by the src column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildBannerImageI18n requireOneByName(string $name) Return the first ChildBannerImageI18n filtered by the name column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildBannerImageI18n requireOneByClicks(int $clicks) Return the first ChildBannerImageI18n filtered by the clicks column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
+ * @method     ChildBannerImageI18n requireOneByDescription(string $description) Return the first ChildBannerImageI18n filtered by the description column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  *
  * @method     ChildBannerImageI18n[]|ObjectCollection find(ConnectionInterface $con = null) Return ChildBannerImageI18n objects based on current ModelCriteria
  * @method     ChildBannerImageI18n[]|ObjectCollection findById(int $id) Return ChildBannerImageI18n objects filtered by the id column
@@ -66,6 +70,7 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildBannerImageI18n[]|ObjectCollection findBySrc(string $src) Return ChildBannerImageI18n objects filtered by the src column
  * @method     ChildBannerImageI18n[]|ObjectCollection findByName(string $name) Return ChildBannerImageI18n objects filtered by the name column
  * @method     ChildBannerImageI18n[]|ObjectCollection findByClicks(int $clicks) Return ChildBannerImageI18n objects filtered by the clicks column
+ * @method     ChildBannerImageI18n[]|ObjectCollection findByDescription(string $description) Return ChildBannerImageI18n objects filtered by the description column
  * @method     ChildBannerImageI18n[]|\Propel\Runtime\Util\PropelModelPager paginate($page = 1, $maxPerPage = 10, ConnectionInterface $con = null) Issue a SELECT query based on the current ModelCriteria and uses a page and a maximum number of results per page to compute an offset and a limit
  *
  */
@@ -158,7 +163,7 @@ abstract class BannerImageI18nQuery extends ModelCriteria
      */
     protected function findPkSimple($key, ConnectionInterface $con)
     {
-        $sql = 'SELECT id, locale, src, name, clicks FROM banner_image_i18n WHERE id = :p0 AND locale = :p1';
+        $sql = 'SELECT id, locale, src, name, clicks, description FROM banner_image_i18n WHERE id = :p0 AND locale = :p1';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);
@@ -429,6 +434,35 @@ abstract class BannerImageI18nQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(BannerImageI18nTableMap::COL_CLICKS, $clicks, $comparison);
+    }
+
+    /**
+     * Filter the query on the description column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByDescription('fooValue');   // WHERE description = 'fooValue'
+     * $query->filterByDescription('%fooValue%'); // WHERE description LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $description The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return $this|ChildBannerImageI18nQuery The current query, for fluid interface
+     */
+    public function filterByDescription($description = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($description)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $description)) {
+                $description = str_replace('*', '%', $description);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(BannerImageI18nTableMap::COL_DESCRIPTION, $description, $comparison);
     }
 
     /**

@@ -594,7 +594,7 @@ function save_positions(url) {
                     });
                     $('#pages_list_holder').html('<ul>' + st + '</ul>');
                 } else {
-                    $('#pages_list_holder').html(langs.categoryHaveNotPage);
+                    $('#pages_list_holder').html('<span style="position: relative; top: 5px;">' + langs.categoryHaveNotPage + '</span>');
                 }
             }
         });

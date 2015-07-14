@@ -122,7 +122,7 @@ class Banner_model extends CI_Model {
             $locale = MY_Controller::getCurrentLocale();
         }
 
-        $banner = $this->db->query("select * from mod_banner inner join mod_banner_i18n on mod_banner.id = mod_banner_i18n.id where locale = '$locale' and mod_banner.id = '$id'")->result_array();
+        $banner = $this->db->query("select * from mod_banner left join mod_banner_i18n on mod_banner.id = mod_banner_i18n.id AND mod_banner_i18n.locale = '$locale' WHERE mod_banner.id = '$id'")->result_array();
 
         if (count($banner) == 0) {
             return FALSE;

@@ -702,7 +702,7 @@ $(document).ready(function () {
                     });
                     $('#pages_list_holder').html('<ul class="nav myTab nav-tabs nav-stacked">' + st + '</ul>');
                 } else {
-                    $('#pages_list_holder').html(langs.categoryHaveNotPage);
+                    $('#pages_list_holder').html('<span style="position: relative; top: 5px;">' + langs.categoryHaveNotPage + '</span>');
                 }
             }
         });
@@ -875,8 +875,8 @@ $(document).ready(function () {
         mainImageName = imageFile[0].files.length ? imageFile[0].files[0]['name'] : mainImageName;
         mainImageName = mainImageName ? mainImageName : '../../nophoto/nophoto.jpg'
 
-        if(imageFile[0].files.length){
-            clonedVarTr.find('input[name^="image"]')[0].files =imageFile[0].files;
+        if (imageFile[0].files.length) {
+            clonedVarTr.find('input[name^="image"]')[0].files = imageFile[0].files;
             clonedVarTr.find('.changeImage').val(1);
         }
 
@@ -918,7 +918,7 @@ $(document).ready(function () {
                     doReplace = true;
                 }
             })
-        }else{
+        } else {
             var doReplace = false;
             var imageName = '';
             $('div.variantsProduct').find('[type="file"][name^="image"]').each(function () {
@@ -1691,14 +1691,15 @@ $(document).ready(function () {
     });
 
     var siteInfoLocalesDataCache = {};
-    $("#siteinfo_locale").die('change').live("change", function () {
-        //$("#site_info_tab").delegate('#siteinfo_locale', 'change', function() {
+    //$("#siteinfo_locale").die('change').live("change", function () {
+    $("#site_info_tab").off().on('change', '#siteinfo_locale', function () {
+
         var locale = $(this).val();
-        if (typeof siteInfoLocalesDataCache[locale] != 'undefined') {
-            changeSiteInfoLocaleParams(siteInfoLocalesDataCache[locale]);
-        } else {
+        //if (typeof siteInfoLocalesDataCache[locale] != 'undefined') {
+        //    changeSiteInfoLocaleParams(siteInfoLocalesDataCache[locale]);
+        //} else {
             $.post('/admin/settings/getSiteInfoDataJson', {locale: locale}, changeSiteInfoLocaleParams, "json");
-        }
+        //}
 
     });
 
@@ -1707,12 +1708,12 @@ $(document).ready(function () {
         var defaultLocale = $('input[name="default_locale_hidden"]').val();
 
         if (newLocale !== defaultLocale) {
-            $('#siteinfo_contacts_table').find('input').attr('disabled', 'disabled');
+            $('#siteinfo_contacts_table').find('input').attr('readonly', 'readonly');
             $('#siteinfo_contacts_table').find('.si_remove_contact_row').hide();
             $('#siteinfo_addcontact').hide();
 
         } else {
-            $('#siteinfo_contacts_table').find('input').removeAttr('disabled');
+            $('#siteinfo_contacts_table').find('input').removeAttr('readonly');
             $('#siteinfo_contacts_table').find('.si_remove_contact_row').show();
             $('#siteinfo_addcontact').show();
         }

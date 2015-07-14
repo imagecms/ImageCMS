@@ -210,7 +210,7 @@ class Core extends MY_Controller {
             ($hook = get_hook('core_try_find_page')) ? eval($hook) : NULL;
 
             // Select page permissions and page data
-            $this->db->select('content.*');
+            $this->db->select('content.*, count(comments.id) as comments_count');
             $this->db->select('CONCAT(content.cat_url,content.url ) as full_url');
             $this->db->select('content_permissions.data as roles', FALSE);
             $this->db->where('url', $last_element);
@@ -218,6 +218,7 @@ class Core extends MY_Controller {
             $this->db->where('publish_date <=', time());
             $this->db->where('lang', $this->config->item('cur_lang'));
             $this->db->join('content_permissions', 'content_permissions.page_id = content.id', 'left');
+            $this->db->join('comments', "comments.item_id = content.id AND comments.module='core' AND comments.status=0", 'left');
 
             // Search page without category
             if ($cat_path == $last_element) {
@@ -244,7 +245,7 @@ class Core extends MY_Controller {
                 if ($without_cat == FALSE) {
                     // load page and category
                     foreach ($cats_unsorted as $cat) {
-                        if (($cat['path_url'] == $cat_path . $SLASH) AND ( $cat['id'] == $page_info['category'])) {
+                        if (($cat['path_url'] == $cat_path . $SLASH) AND ($cat['id'] == $page_info['category'])) {
                             $page_found = TRUE;
                             $data_type = 'page';
                             $this->page_content = $page_info;
@@ -287,8 +288,8 @@ class Core extends MY_Controller {
 
         $this->template->add_array(
             array(
-                    'agent' => $agent,
-                )
+                'agent' => $agent,
+            )
         );
 
         //Assign captcha type
@@ -462,9 +463,9 @@ class Core extends MY_Controller {
 
         $this->template->add_array(
             array(
-                    'page' => $page,
-                    'category' => $category
-                )
+                'page' => $page,
+                'category' => $category
+            )
         );
 
         if ($this->input->get()) {
@@ -587,19 +588,20 @@ class Core extends MY_Controller {
             $this->load->library('Pagination');
 
             if (array_key_exists($this->uri->segment(1), $this->langs)) {
-                $pagesCategoryPagination['base_url'] = '/' . $this->uri->segment(1) . "/" . $category['path_url'];
+                $paginationConfig['base_url'] = '/' . $this->uri->segment(1) . "/" . $category['path_url'];
             } else {
-                $pagesCategoryPagination['base_url'] = '/' . $category['path_url'];
+                $paginationConfig['base_url'] = '/' . $category['path_url'];
             }
 
-            $pagesCategoryPagination['total_rows'] = $category['total_pages'];
-            $pagesCategoryPagination['per_page'] = $category['per_page'];
-            $pagesCategoryPagination['uri_segment'] = $segment;
+            $paginationConfig['total_rows'] = $category['total_pages'];
+            $paginationConfig['per_page'] = $category['per_page'];
+            $paginationConfig['uri_segment'] = $segment;
             include_once "./templates/{$this->config->item('template')}/paginations.php";
+            $paginationConfig['page_query_string'] = false;
 
             ($hook = get_hook('core_dispcat_set_pagination')) ? eval($hook) : NULL;
 
-            $this->pagination->initialize($pagesCategoryPagination);
+            $this->pagination->initialize($paginationConfig);
             $this->template->assign('pagination', $this->pagination->create_links());
         }
         // End pagination
@@ -737,7 +739,7 @@ class Core extends MY_Controller {
      * Deny access to modules install/deinstall/rules/etc/ methods
      */
     private function _check_url() {
-        $CI = & get_instance();
+        $CI = &get_instance();
 
         ($hook = get_hook('core_check_url')) ? eval($hook) : NULL;
 
@@ -806,8 +808,8 @@ class Core extends MY_Controller {
 
         $this->template->add_array(
             array(
-                    'content' => $this->template->read('error', array('error_text' => $text, 'back_button' => $back))
-                )
+                'content' => $this->template->read('error', array('error_text' => $text, 'back_button' => $back))
+            )
         );
 
         $this->template->show();
@@ -1002,14 +1004,14 @@ class Core extends MY_Controller {
         if ($this->core_data['data_type'] == 'main') {
             $this->template->add_array(
                 array(
-                        'site_title' => empty($this->settings['site_title']) ? $title : $this->settings['site_title'],
-                        'site_description' => empty($this->settings['site_description']) ? $description : $this->settings['site_description'],
-                        'site_keywords' => empty($this->settings['site_keywords']) ? $keywords : $this->settings['site_keywords']
-                    )
+                    'site_title' => empty($this->settings['site_title']) ? $title : $this->settings['site_title'],
+                    'site_description' => empty($this->settings['site_description']) ? $description : $this->settings['site_description'],
+                    'site_keywords' => empty($this->settings['site_keywords']) ? $keywords : $this->settings['site_keywords']
+                )
             );
         } else {
             if (($page_number > 1) && ($page_number != '')) {
-                $title = lang('Page', 'core') . ' №' .  $page_number . ' - ' . $title;
+                $title = lang('Page', 'core') . ' №' . $page_number . ' - ' . $title;
             }
 
             if ($description != '') {
@@ -1053,14 +1055,14 @@ class Core extends MY_Controller {
                 $keywords = '';
             }
 
-            $page_number = $page_number ? : (int) $this->pagination->cur_page;
+            $page_number = $page_number ?: (int) $this->pagination->cur_page;
             $this->template->add_array(
                 array(
-                        'site_title' => $title,
-                        'site_description' => htmlspecialchars(strip_tags($description)),
-                        'site_keywords' => htmlspecialchars($keywords),
-                        'page_number' => $page_number
-                    )
+                    'site_title' => $title,
+                    'site_description' => htmlspecialchars(strip_tags($description)),
+                    'site_keywords' => htmlspecialchars($keywords),
+                    'page_number' => $page_number
+                )
             );
         }
     }

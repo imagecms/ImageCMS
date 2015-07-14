@@ -69,6 +69,7 @@ CREATE TABLE `banner_image_i18n`
     `src` VARCHAR(255),
     `name` VARCHAR(255),
     `clicks` INTEGER(20),
+    `description` TEXT,
     PRIMARY KEY (`id`,`locale`)
 ) ENGINE=MYISAM CHARACTER SET='utf8';
 

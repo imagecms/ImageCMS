@@ -97,5 +97,7 @@ function translit_url($urlstr) {
         $urlstr = preg_replace('/[^A-Za-z0-9_\-]/', '', $urlstr);
     }
 
-    return strtolower(url_title($urlstr));
+    $url = strtolower(url_title($urlstr));
+    $url = mb_substr($url, 0, 255);
+    return $url;
 }

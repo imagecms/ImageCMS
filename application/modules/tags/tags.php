@@ -144,15 +144,16 @@ class Tags extends MY_Controller {
                 if (count($pages) >= $this->search->row_count) {
                     $this->load->library('Pagination');
 
-                    $tagsModuleSearchPagination['base_url'] = site_url('tags/search/' . $tag . '/');
-                    $tagsModuleSearchPagination['total_rows'] = count($pages_id);
-                    $tagsModuleSearchPagination['per_page'] = $this->search->row_count;
-                    $tagsModuleSearchPagination['uri_segment'] = $this->uri->total_segments();
-                    $tagsModuleSearchPagination['first_link'] = lang("The first", 'tags');
-                    $tagsModuleSearchPagination['last_link'] = lang("Last", 'tags');
+                    $paginationConfig['base_url'] = site_url('tags/search/' . $tag . '/');
+                    $paginationConfig['total_rows'] = count($pages_id);
+                    $paginationConfig['per_page'] = $this->search->row_count;
+                    $paginationConfig['uri_segment'] = $this->uri->total_segments();
+                    $paginationConfig['first_link'] = lang("The first", 'tags');
+                    $paginationConfig['last_link'] = lang("Last", 'tags');
                     include_once "./templates/{$this->config->item('template')}/paginations.php";
+                    $paginationConfig['page_query_string'] = FALSE;
 
-                    $this->pagination->initialize($tagsModuleSearchPagination);
+                    $this->pagination->initialize($paginationConfig);
                     $this->template->assign('pagination', $this->pagination->create_links());
                 }
                 //End pagination

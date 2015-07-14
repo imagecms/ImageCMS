@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-10 12:48+0300\n"
-"PO-Revision-Date: 2015-06-10 12:48+0300\n"
+"POT-Creation-Date: 2015-07-09 02:32+0300\n"
+"PO-Revision-Date: 2015-07-09 02:32+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -31,7 +31,15 @@ msgstr ""
 "X-Poedit-SearchPath-12: ../../../../../application/modules/shop/widgets\n"
 "X-Poedit-SearchPath-13: ../../../../../application/modules/shop/models2\n"
 
-#: application/modules/shop/classes/Cart/BaseOrder.php:277
+#: application/modules/shop/classes/Cart/BaseOrder.php:186
+msgid "Cannot create order with price less than |currencySymbol| |minPrice|"
+msgstr "Не возможно создать заказ с ценой менее |currencySymbol| |minPrice|"
+
+#: application/modules/shop/classes/CustomFieldsHelper.php:59
+msgid "Select file"
+msgstr "Выберите файл"
+
+#: application/modules/shop/classes/Cart/BaseOrder.php:303
 msgid "Number"
 msgstr "Акртикул"
 
@@ -47,31 +55,31 @@ msgstr "Поле URL не может содержать первым симво�
 msgid "Add new property value"
 msgstr "Добавить новое значение свойства"
 
-#: application/modules/shop/classes/Cart/BaseOrder.php:275
+#: application/modules/shop/classes/Cart/BaseOrder.php:301
 msgid "Продукт"
 msgstr ""
 
-#: application/modules/shop/classes/Cart/BaseOrder.php:276
+#: application/modules/shop/classes/Cart/BaseOrder.php:302
 msgid "Вариант"
 msgstr ""
 
-#: application/modules/shop/classes/Cart/BaseOrder.php:278
+#: application/modules/shop/classes/Cart/BaseOrder.php:304
 msgid "Количество"
 msgstr ""
 
-#: application/modules/shop/classes/Cart/BaseOrder.php:279
+#: application/modules/shop/classes/Cart/BaseOrder.php:305
 msgid "Цена"
 msgstr ""
 
-#: application/modules/shop/classes/Cart/BaseOrder.php:280
+#: application/modules/shop/classes/Cart/BaseOrder.php:306
 msgid "Cумма"
 msgstr ""
 
-#: application/modules/shop/classes/Cart/BaseOrder.php:303
+#: application/modules/shop/classes/Cart/BaseOrder.php:345
 msgid "Сумма скидки"
 msgstr ""
 
-#: application/modules/shop/classes/Cart/BaseOrder.php:307
+#: application/modules/shop/classes/Cart/BaseOrder.php:349
 msgid "Общая сумма"
 msgstr ""
 
@@ -108,15 +116,15 @@ msgstr "Конец"
 msgid "Название товара"
 msgstr ""
 
-#: application/libraries/Permitions.php:839
+#: application/libraries/Permitions.php:872
 msgid "Role was deleted"
 msgstr "Роль пользователя удалена"
 
-#: application/libraries/Permitions.php:725
+#: application/libraries/Permitions.php:749
 msgid "Role was edited"
 msgstr "Роль пользователя отредактирована"
 
-#: application/libraries/Permitions.php:555
+#: application/libraries/Permitions.php:566
 msgid "The role is created"
 msgstr "Роль пользователя создана"
 
@@ -233,11 +241,11 @@ msgstr ""
 msgid "Заголовок виджета:"
 msgstr ""
 
-#: application/libraries/Permitions.php:530
+#: application/libraries/Permitions.php:541
 msgid "Важность"
 msgstr ""
 
-#: application/libraries/Permitions.php:841
+#: application/libraries/Permitions.php:874
 msgid "Role(s) successfully deleted"
 msgstr "Роль(и) успешно удалена(ы)"
 
@@ -639,22 +647,22 @@ msgstr "Пароль Мерчанта"
 msgid "Improper protection code"
 msgstr "Неверный код защиты"
 
-#: application/libraries/Permitions.php:556
-#: application/libraries/Permitions.php:654
-#: application/libraries/Permitions.php:726
-#: application/libraries/Permitions.php:930
+#: application/libraries/Permitions.php:567
+#: application/libraries/Permitions.php:672
+#: application/libraries/Permitions.php:750
+#: application/libraries/Permitions.php:960
 msgid "Changes have been saved"
 msgstr "Изменения сохранены"
 
-#: application/libraries/Permitions.php:687
+#: application/libraries/Permitions.php:707
 msgid "Role not found"
 msgstr "Роль не найдена"
 
-#: application/libraries/Permitions.php:880
+#: application/libraries/Permitions.php:911
 msgid "Privilege created"
 msgstr "Привилегия создана"
 
-#: application/libraries/Permitions.php:918
+#: application/libraries/Permitions.php:951
 msgid "The privilege is not found"
 msgstr "Привилегия не найдена"
 
@@ -753,13 +761,13 @@ msgstr "Не возможно построить дерево категорий
 msgid "Compare list"
 msgstr "Список сравнения"
 
-#: application/modules/shop/classes/MediaManager/Image.php:600
-#: application/modules/shop/classes/MediaManager/Image.php:627
+#: application/modules/shop/classes/MediaManager/Image.php:630
+#: application/modules/shop/classes/MediaManager/Image.php:657
 msgid "Image wasnt loaded"
 msgstr "Образ был загружен"
 
-#: application/modules/shop/classes/MediaManager/Image.php:608
-#: application/modules/shop/classes/MediaManager/Image.php:636
+#: application/modules/shop/classes/MediaManager/Image.php:638
+#: application/modules/shop/classes/MediaManager/Image.php:666
 msgid "Wrong variant id"
 msgstr "Неправильный вариант id"
 
@@ -1109,24 +1117,11 @@ msgstr "успешно сохранены."
 msgid "none"
 msgstr "нет"
 
-#: application/modules/shop/helpers/shop_helper.php:258
-#: application/modules/shop/helpers/shop_helper.php:302
-#: application/modules/shop/helpers/shop_helper.php:316
-msgid "Home"
-msgstr "Главная"
-
-#: application/modules/shop/helpers/shop_helper.php:471
-#: application/modules/shop/helpers/shop_helper.php:492
+#: application/modules/shop/widgets/templates/similar_products.tpl:62
+#: application/modules/shop/widgets/templates/view_product.tpl:62
+#: application/modules/shop/widgets/templates/products.tpl:75
 msgid "Buy"
 msgstr "Купить"
-
-#: application/modules/shop/helpers/shop_helper.php:493
-msgid "Formulation order"
-msgstr "Порядок формулирования"
-
-#: application/modules/shop/helpers/shop_helper.php:494
-msgid "Announce a"
-msgstr "Объявить"
 
 #: system/language/form_validation/form_validation.php:9
 msgid "isset"
@@ -1381,10 +1376,6 @@ msgstr "Количество элементов для отображения"
 msgid "Report message"
 msgstr "Сообщить о появлении"
 
-#: application/modules/shop/helpers/shop_helper.php:472
-msgid "Formulation <br/> order"
-msgstr "Порядок <br/> формулирования"
-
 #: application/modules/shop/models2/generated-classes/SCallbacks.php:21
 msgid "Your phone field"
 msgstr "Телефон"
@@ -1394,8 +1385,8 @@ msgstr "Телефон"
 msgid "The %s is required"
 msgstr "Поле %s является обязательным"
 
-#: application/libraries/Permitions.php:529
-#: application/libraries/Permitions.php:691
+#: application/libraries/Permitions.php:540
+#: application/libraries/Permitions.php:711
 msgid "Title"
 msgstr "Название"
 

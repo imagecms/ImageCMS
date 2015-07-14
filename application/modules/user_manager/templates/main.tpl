@@ -25,7 +25,7 @@
                     {lang('Role', 'admin')}:
                 </label>
                 <select class="roleSelect">
-                    <option value ="0">{lang('All groups', 'user_manager')}</option>
+                    <option value ="0">{lang('Without group', 'user_manager')}</option>
                     {foreach $roles as $role}
                         <option value ="{$role.id}">{$role.alt_name}</option>
                     {/foreach}
@@ -105,7 +105,8 @@
                             <td><input type="text" id="emailAutoC" {if isset($_GET['s_email'])}value="{echo $_GET['s_email']}"{/if} name="s_email"/></td>
 
                             <td><select name="role" id="role">
-                                <option value ="0">{lang('All groups', 'user_manager')}</option>
+                                <option {if $_GET['role']==0}selected{/if} value ="0">{lang('All groups', 'user_manager')}</option>
+                                <option {if $_GET['role']==="without"}selected{/if} value ="without">{lang('Without group', 'user_manager')}</option>
                                 {foreach $roles as $role}
                                 <option value ="{$role.id}"{if $role.id==$role_id || $_GET['s_role'] == $role.id} selected="selected"{/if}>{$role.alt_name}</option>
                                 {/foreach}
@@ -136,7 +137,7 @@
                                 {foreach $roles as $role}
                                     <option {if $role.id == $user.role_id} selected {/if}value="{echo $role.id}">{echo $role.alt_name}</option>
                                 {/foreach}
-                                <option {if !$user.role_id}selected{/if} value="0">{lang('All groups', 'user_manager')}</option>
+                                <option {if !$user.role_id}selected{/if} value ="0">{lang('Without group', 'user_manager')}</option>
                             </select>
                         </td>
                         <td>

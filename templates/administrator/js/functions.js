@@ -113,13 +113,13 @@ function changeDefaultValute(id) {
 }
 function changeMainValute(id, curElement) {
     $('.btn-danger').removeAttr('disabled');
-   
-   curElement.closest('table').find('.currencies-value').each(function(){
-       $(this).removeClass('disabled').removeAttr('disabled');
-   });
-    
+
+    curElement.closest('table').find('.currencies-value').each(function () {
+        $(this).removeClass('disabled').removeAttr('disabled');
+    });
+
     curElement.closest('tr').find('.currencies-value').addClass('disabled').attr('disabled', 'disabled');
-   
+
     $(curElement).closest('tr').find('.btn-danger').attr('disabled', 'disabled');
 
     $('.frame_prod-on_off').removeClass('d_n');
@@ -578,16 +578,17 @@ function initTinyMCE()
         tinymce.init({
             fontsize_formats: "8pt 10pt 12pt 14pt 18pt 24pt 36pt",
             selector: "textarea.elRTE",
-            skin: 'light',
+//            skin: 'light',
             verify_html: false,
             forced_root_block: 'p',
+            browser_spellcheck: true,
             language: (-1 != availableLocales.indexOf(locale.substr(0, 2))) ? locale.substr(0, 2) : 'en',
             toolbar_items_size: 'small',
             plugins: [
                 "advlist autolink link image lists charmap print preview hr anchor pagebreak",
                 "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking",
                 "table contextmenu directionality emoticons paste textcolor responsivefilemanager",
-                "fullscreen",
+                "fullscreen imagetools",
                 "code save"
             ],
             convert_urls: false,
@@ -597,7 +598,7 @@ function initTinyMCE()
                 });
             },
             image_advtab: true,
-            toolbar: "undo redo | fontsizeselect | fontselect | styleselect | bold italic underline | forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | highlightcode | danger | spellchecker | save_button | fullscreen",
+            toolbar: "undo redo | fontsizeselect | fontselect | bold italic underline | backcolor forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | fullscreen",
             external_filemanager_path: "/application/third_party/filemanager/",
             filemanager_title: "Responsive Filemanager",
             external_plugins: {"filemanager": "/application/third_party/filemanager/plugin.min.js"}

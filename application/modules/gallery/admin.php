@@ -357,8 +357,9 @@ class Admin extends BaseAdminController {
             $this->lib_admin->log(lang("Gallery album was updated", "gallery") . '. Id: ' . $id);
             showMessage(lang("Changes have been saved", 'gallery'));
         }
+        
         $data = array(
-            'category_id' => (int) $this->input->post('category_id'),
+            'category_id' => (int) $this->input->post('cat_id'),
             // 'name' => $this->input->post('name'),
             // 'description' => trim($this->input->post('description')),
             'position' => (int) $this->input->post('position'),

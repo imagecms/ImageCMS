@@ -470,10 +470,10 @@
             <script src="{$THEME}js/pjax/jquery.pjax.min.js" type="text/javascript"></script>
             <script src="{$THEME}js/jquery-ui-1.8.23.custom.min.js" type="text/javascript"></script>
             <script src="{$THEME}js/timepicker/jquery-ui-timepicker-addon.js" type="text/javascript"></script>
+            <script src="{$THEME}js/jquery-i18n/timepicker/jquery-ui-timepicker-{echo MY_Controller::getAdminInterfaceLocale()}.js" type="text/javascript"></script>
             <script src="{$THEME}js/bootstrap.min.js" type="text/javascript"></script>
             <script async="async" src="{$THEME}js/bootstrap-notify.js" type="text/javascript"></script>
             <script src="{$THEME}js/jquery.form.js" type="text/javascript"></script>
-
 
             <script src="{$THEME}js/chosen.js" type="text/javascript"></script>
             <script src="{$THEME}js/jquery.synctranslit.min.js" type="text/javascript"></script>

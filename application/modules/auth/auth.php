@@ -318,9 +318,11 @@ class Auth extends MY_Controller {
         if ($val->run() AND $this->dx_auth->forgot_password($val->set_value('email'))) {
             $data['auth_message'] = lang('Please check your email for instructions on how to activate the new password.', 'auth');
             $this->template->assign('info_message', $data['auth_message']);
+            $this->template->assign('success', $data['auth_message']);
         }
 
         if ($this->dx_auth->_auth_error != NULL) {
+            $this->template->assign('errors', $this->dx_auth->_auth_error);
             $this->template->assign('info_message', $this->dx_auth->_auth_error);
         }
 

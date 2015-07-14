@@ -86,10 +86,10 @@ class SiteInfo {
                 if (in_array($key, $this->nonLocaleKeys)) {
                     $this->siteinfo[$key] = $value;
                 } else {
-                    foreach ($languages as $lang){
+                    foreach ($languages as $lang) {
                         if ($lang['identif'] == $this->locale) {
                             $this->siteinfo[$this->locale][$key] = $value;
-                        } elseif($key == 'contacts') {
+                        } elseif ($key == 'contacts') {
                             $this->contactsKeys($key, $lang);
                         }
                     }
@@ -113,7 +113,7 @@ class SiteInfo {
         foreach ($keysMain as $contacts) {
             if (isset($siteinfoAll[$locale][$key][$contacts])) {
                 $this->siteinfo[$lang['identif']][$key][$contacts] = $siteinfoAll[$lang['identif']][$key][$contacts];
-            }else{
+            } else {
                 $this->siteinfo[$lang['identif']][$key][$contacts] = '';
             }
         }
@@ -121,7 +121,7 @@ class SiteInfo {
         foreach ($this->siteinfo as $language => $datas) {
             foreach ($datas['contacts'] as $k => $data) {
                 $data = $data;
-                if(!in_array($k, $keysMain)) {
+                if (!in_array($k, $keysMain)) {
                     unset($this->siteinfo[$language][$key][$k]);
                 }
 
@@ -208,6 +208,14 @@ class SiteInfo {
             }
             if (key_exists($locale, $this->siteinfo)) {
                 $returnArray = $this->siteinfo[$locale];
+
+                $defaultContacts = $this->siteinfo[MY_Controller::defaultLocale()]['contacts'];
+                foreach ($defaultContacts as $contactKey => $contactValue) {
+                    if (!$returnArray['contacts'][$contactKey]) {
+                        $returnArray['contacts'][$contactKey] = '';
+                    }
+                }
+
                 foreach ($this->siteinfo as $key => $value) {
                     if (in_array($key, $this->nonLocaleKeys)) {
                         $returnArray[$key] = $value;
@@ -217,6 +225,7 @@ class SiteInfo {
             }
             //return FALSE;
         }
+
         return $this->siteinfo;
     }
 

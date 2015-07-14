@@ -2084,6 +2084,30 @@ abstract class BannerImage implements ActiveRecordInterface
         return $this;
     }
 
+
+        /**
+         * Get the [description] column value.
+         *
+         * @return string
+         */
+        public function getDescription()
+        {
+        return $this->getCurrentTranslation()->getDescription();
+    }
+
+
+        /**
+         * Set the value of [description] column.
+         *
+         * @param string $v new value
+         * @return $this|\Banners\Models\BannerImageI18n The current object (for fluent API support)
+         */
+        public function setDescription($v)
+        {    $this->getCurrentTranslation()->setDescription($v);
+
+        return $this;
+    }
+
     /**
      * Code to be run before persisting the object
      * @param  ConnectionInterface $con

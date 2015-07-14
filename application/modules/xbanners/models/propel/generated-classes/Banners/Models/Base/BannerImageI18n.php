@@ -93,6 +93,12 @@ abstract class BannerImageI18n implements ActiveRecordInterface
     protected $clicks;
 
     /**
+     * The value for the description field.
+     * @var        string
+     */
+    protected $description;
+
+    /**
      * @var        ChildBannerImage
      */
     protected $aBannerImage;
@@ -386,6 +392,16 @@ abstract class BannerImageI18n implements ActiveRecordInterface
     }
 
     /**
+     * Get the [description] column value.
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
      * Set the value of [id] column.
      *
      * @param int $v new value
@@ -490,6 +506,26 @@ abstract class BannerImageI18n implements ActiveRecordInterface
     } // setClicks()
 
     /**
+     * Set the value of [description] column.
+     *
+     * @param string $v new value
+     * @return $this|\Banners\Models\BannerImageI18n The current object (for fluent API support)
+     */
+    public function setDescription($v)
+    {
+        if ($v !== null) {
+            $v = (string) $v;
+        }
+
+        if ($this->description !== $v) {
+            $this->description = $v;
+            $this->modifiedColumns[BannerImageI18nTableMap::COL_DESCRIPTION] = true;
+        }
+
+        return $this;
+    } // setDescription()
+
+    /**
      * Indicates whether the columns in this object are only set to default values.
      *
      * This method can be used in conjunction with isModified() to indicate whether an object is both
@@ -543,6 +579,9 @@ abstract class BannerImageI18n implements ActiveRecordInterface
 
             $col = $row[TableMap::TYPE_NUM == $indexType ? 4 + $startcol : BannerImageI18nTableMap::translateFieldName('Clicks', TableMap::TYPE_PHPNAME, $indexType)];
             $this->clicks = (null !== $col) ? (int) $col : null;
+
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 5 + $startcol : BannerImageI18nTableMap::translateFieldName('Description', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->description = (null !== $col) ? (string) $col : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -551,7 +590,7 @@ abstract class BannerImageI18n implements ActiveRecordInterface
                 $this->ensureConsistency();
             }
 
-            return $startcol + 5; // 5 = BannerImageI18nTableMap::NUM_HYDRATE_COLUMNS.
+            return $startcol + 6; // 6 = BannerImageI18nTableMap::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException(sprintf('Error populating %s object', '\\Banners\\Models\\BannerImageI18n'), 0, $e);
@@ -775,6 +814,9 @@ abstract class BannerImageI18n implements ActiveRecordInterface
         if ($this->isColumnModified(BannerImageI18nTableMap::COL_CLICKS)) {
             $modifiedColumns[':p' . $index++]  = 'clicks';
         }
+        if ($this->isColumnModified(BannerImageI18nTableMap::COL_DESCRIPTION)) {
+            $modifiedColumns[':p' . $index++]  = 'description';
+        }
 
         $sql = sprintf(
             'INSERT INTO banner_image_i18n (%s) VALUES (%s)',
@@ -800,6 +842,9 @@ abstract class BannerImageI18n implements ActiveRecordInterface
                         break;
                     case 'clicks':
                         $stmt->bindValue($identifier, $this->clicks, PDO::PARAM_INT);
+                        break;
+                    case 'description':
+                        $stmt->bindValue($identifier, $this->description, PDO::PARAM_STR);
                         break;
                 }
             }
@@ -871,6 +916,9 @@ abstract class BannerImageI18n implements ActiveRecordInterface
             case 4:
                 return $this->getClicks();
                 break;
+            case 5:
+                return $this->getDescription();
+                break;
             default:
                 return null;
                 break;
@@ -906,6 +954,7 @@ abstract class BannerImageI18n implements ActiveRecordInterface
             $keys[2] => $this->getSrc(),
             $keys[3] => $this->getName(),
             $keys[4] => $this->getClicks(),
+            $keys[5] => $this->getDescription(),
         );
         $virtualColumns = $this->virtualColumns;
         foreach ($virtualColumns as $key => $virtualColumn) {
@@ -977,6 +1026,9 @@ abstract class BannerImageI18n implements ActiveRecordInterface
             case 4:
                 $this->setClicks($value);
                 break;
+            case 5:
+                $this->setDescription($value);
+                break;
         } // switch()
 
         return $this;
@@ -1017,6 +1069,9 @@ abstract class BannerImageI18n implements ActiveRecordInterface
         }
         if (array_key_exists($keys[4], $arr)) {
             $this->setClicks($arr[$keys[4]]);
+        }
+        if (array_key_exists($keys[5], $arr)) {
+            $this->setDescription($arr[$keys[5]]);
         }
     }
 
@@ -1073,6 +1128,9 @@ abstract class BannerImageI18n implements ActiveRecordInterface
         }
         if ($this->isColumnModified(BannerImageI18nTableMap::COL_CLICKS)) {
             $criteria->add(BannerImageI18nTableMap::COL_CLICKS, $this->clicks);
+        }
+        if ($this->isColumnModified(BannerImageI18nTableMap::COL_DESCRIPTION)) {
+            $criteria->add(BannerImageI18nTableMap::COL_DESCRIPTION, $this->description);
         }
 
         return $criteria;
@@ -1180,6 +1238,7 @@ abstract class BannerImageI18n implements ActiveRecordInterface
         $copyObj->setSrc($this->getSrc());
         $copyObj->setName($this->getName());
         $copyObj->setClicks($this->getClicks());
+        $copyObj->setDescription($this->getDescription());
         if ($makeNew) {
             $copyObj->setNew(true);
         }
@@ -1273,6 +1332,7 @@ abstract class BannerImageI18n implements ActiveRecordInterface
         $this->src = null;
         $this->name = null;
         $this->clicks = null;
+        $this->description = null;
         $this->alreadyInSave = false;
         $this->clearAllReferences();
         $this->applyDefaultValues();

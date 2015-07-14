@@ -109,10 +109,10 @@ $(document).ready(function () {
                         var messageText = '';
                         if ($.isArray(data.message)) {
                             for (var message in data.message) {
-                                messageText += '<p style="color: rgb(194, 13, 13)">' + lang(data.message[message]) + '</p>';
+                                messageText += '<p style="color: rgb(194, 13, 13)">' + data.message[message] + '</p>';
                             }
                         } else {
-                            messageText = '<p style="color: rgb(194, 13, 13)">' + lang(data.message) + '</p>';
+                            messageText = '<p style="color: rgb(194, 13, 13)">' + data.message + '</p>';
                         }
 
                         $('#trabslateForm').find('.error_text .text-el').html('');

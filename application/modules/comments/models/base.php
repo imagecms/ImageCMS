@@ -10,11 +10,15 @@ class Base extends CI_Model {
         parent::__construct();
     }
 
-    function get($item_id, $status = 0, $module, $limit = 999999) {
+    function get($item_id, $status = 0, $module, $limit = 999999, $order_by) {
         $this->db->where('item_id', $item_id);
         $this->db->where('status', $status);
         $this->db->where('module', $module);
-        $this->db->order_by('date', 'asc');
+
+        $order_by = $order_by ? $order_by : 'date.desc';
+        $order_column = array_shift(explode('.', $order_by));
+        $order_way = array_pop(explode('.', $order_by));
+        $this->db->order_by($order_column, $order_way);
         $query = $this->db->get('comments', $limit);
 
         if ($query->num_rows() > 0) {

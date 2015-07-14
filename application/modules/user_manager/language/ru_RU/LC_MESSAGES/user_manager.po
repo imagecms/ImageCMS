@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-12 02:32+0300\n"
-"PO-Revision-Date: 2014-09-12 02:32+0300\n"
+"POT-Creation-Date: 2015-07-06 04:37+0300\n"
+"PO-Revision-Date: 2015-07-06 04:37+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -17,6 +17,10 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/user_manager/templates/create_user.tpl:80
+msgid "No group"
+msgstr "Без группы"
 
 #: ./application/modules/user_manager/templates/main.tpl:26
 msgid "Corporate site users"
@@ -276,10 +280,6 @@ msgstr "Номер телефона"
 #: ./application/modules/user_manager/admin.php:174
 msgid "Confirm the password"
 msgstr "Подтвердите пароль"
-
-#: ./application/modules/user_manager/templates/create_user.tpl:80
-msgid "No group"
-msgstr "Нет групп"
 
 #: ./application/modules/user_manager/templates/create_group.tpl:6
 msgid "Creating a group"

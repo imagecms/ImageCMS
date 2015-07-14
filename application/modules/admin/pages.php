@@ -94,7 +94,7 @@ class Pages extends BaseAdminController {
         $this->_set_page_roles($page['id'], $this->input->post('roles'));
 
         /** Update page tags */
-        $this->load->module('tags')->_set_page_tags($_POST['search_tags'], (int) $page['id']);
+        $this->load->module('tags')->_set_page_tags($_POST['search_tags'], (int)$page['id']);
 
         /** Init CMS Events system */
         \CMSFactory\Events::create()->registerEvent($page, 'Page:update');
@@ -145,7 +145,7 @@ class Pages extends BaseAdminController {
     public function add() {
 
         //cp_check_perm('page_create');
-        
+
         $this->form_validation->set_rules('page_title', lang("Title", "admin"), 'trim|required|min_length[1]|max_length[500]');
         $this->form_validation->set_rules('page_url', lang("URL", "admin"), 'alpha_dash');
         $this->form_validation->set_rules('prev_text', lang("Preliminary contents", "admin"), 'trim|required');
@@ -272,8 +272,8 @@ class Pages extends BaseAdminController {
             $this->on_page_add($data);
 
             $this->lib_admin->log(
-                    lang("Created a page", "admin") . " " .
-                    '<a href="/admin/pages/edit/' . $page_id . '">' . $data['title'] . '</a>'
+                lang("Created a page", "admin") . " " .
+                '<a href="/admin/pages/edit/' . $page_id . '">' . $data['title'] . '</a>'
             );
 
             $action = $this->input->post('action');
@@ -303,8 +303,10 @@ class Pages extends BaseAdminController {
                 array_push($page_roles, $data);
             }
 
-            $n_data = array('page_id' => $page_id,
-                'data' => serialize($page_roles));
+            $n_data = array(
+                'page_id' => $page_id,
+                'data' => serialize($page_roles)
+            );
 
             // Delete page roles
             $this->db->where('page_id', $page_id);
@@ -330,7 +332,6 @@ class Pages extends BaseAdminController {
      */
     function edit($page_id, $lang = 0) {
         //cp_check_perm('page_edit');
-//        CI::$APP->config->set_item('cur_lang', $lang);
         if ($this->cms_admin->get_page($page_id) == FALSE) {
             showMessage(lang("Page", "admin") . $page_id . lang("Not found", "admin"), false, 'r');
             exit;
@@ -356,6 +357,21 @@ class Pages extends BaseAdminController {
         \CMSFactory\Events::runFactory();
 
         ($hook = get_hook('admin_page_edit_found')) ? eval($hook) : NULL;
+
+        $pageExists = 1;
+        if (!$data) {
+            $defpage = $this->cms_admin->get_page($page_id);
+            $defpage['author'] = $this->dx_auth->get_username();
+            $defpage['lang'] = $lang;
+            $defpage['title'] = '';
+            $defpage['keywords'] = '';
+            $defpage['description'] = '';
+            $defpage['prev_text'] = '';
+            $defpage['full_text'] = '';
+            $defpage['meta_title'] = '';
+            $data = $defpage;
+            $pageExists = 0;
+        }
 
         if ($data) {
             $this->template->assign('page_id', $page_id);
@@ -410,12 +426,13 @@ class Pages extends BaseAdminController {
 
             $this->template->add_array(array(
                 'page_lang' => $data['lang'],
-                'page_identif' => $data[identif],
+                'page_identif' => $data['identif'],
                 'tree' => $this->lib_category->build(),
                 'parent_id' => $data['category'],
                 'langs' => $langs,
                 'defLang' => $def_lang,
-                'category' => $category
+                'category' => $category,
+                'pageExists' => $pageExists
             ));
 
             if ($data['lang_alias'] != 0) {
@@ -427,44 +444,6 @@ class Pages extends BaseAdminController {
             ($hook = get_hook('admin_show_edit_page_tpl')) ? eval($hook) : NULL;
 
             $this->template->show('edit_page', FALSE);
-        } else {
-
-            // create page copy for $lang
-            $cur_lang = $this->cms_admin->get_lang($lang);
-
-            if ($cur_lang != FALSE) { // lang exists
-                $defpage = $this->cms_admin->get_page($page_id);
-                $new_data = array(
-                    'author' => $this->dx_auth->get_username(),
-                    'comments_status' => $defpage['comments_status'],
-                    'category' => $defpage['category'],
-                    'cat_url' => $defpage['cat_url'],
-                    'url' => $defpage['url'],
-                    'created' => $defpage['created'],
-                    'publish_date' => $defpage['publish_date'],
-                    'post_status' => $defpage['post_status'],
-                    'lang' => $lang,
-                    'lang_alias' => $defpage['id'],
-                    'full_tpl' => $defpage['full_tpl'],
-                    'main_tpl' => $defpage['main_tpl'],
-                );
-
-                ($hook = get_hook('admin_page_create_empty_translation')) ? eval($hook) : NULL;
-
-                $new_p_id = $this->cms_admin->add_page($new_data);
-
-                if ($new_p_id > 0) {
-                    showMessage(lang("Language of the page", "admin") . '<b> ' . $cur_lang['lang_name'] . '. </b>' . lang("ID", 'admin') . ' <b>' . $new_p_id . '.</b>');
-                    if ($this->pjaxRequest) {
-                        pjax('/admin/pages/edit/' . $page_id . '/' . $lang);
-                    } else {
-                        redirect('/admin/pages/edit/' . $page_id . '/' . $lang);
-                    }
-                    //exit;
-                } else {
-                    die('Cant get page id!');
-                }
-            }
         }
     }
 
@@ -565,16 +544,6 @@ class Pages extends BaseAdminController {
             $keywords = $this->lib_admin->db_post('page_keywords');
             $description = $this->lib_admin->db_post('page_description');
 
-            // create keywords
-//            if ($keywords == '' AND $settings['create_keywords'] == 'auto') {
-//                $keywords = $this->lib_seo->get_keywords($this->input->post('prev_text') . ' ' . $this->input->post('full_text'));
-//            }
-            // create description
-//            if ($description == '' AND $settings['create_description'] == 'auto') {
-//                $description = $this->lib_seo->get_description($this->input->post('prev_text') . ' ' . $this->input->post('full_text'));
-//            }
-//            mb_substr($keywords, -1) == ',' ? $keywords = mb_substr($keywords, 0, -1) : TRUE;
-
             $publish_date = $this->input->post('publish_date') . ' ' . $this->input->post('publish_time');
             $create_date = $this->input->post('create_date') . ' ' . $this->input->post('create_time');
 
@@ -610,23 +579,31 @@ class Pages extends BaseAdminController {
             $this->cache->delete_all();
 
             //($hook = get_hook('admin_page_update')) ? eval($hook) : NULL;
-
             if ($this->cms_admin->update_page($page_id, $data) >= 1) {
                 $this->lib_admin->log(
-                        lang("Changed the page", "admin") . " " .
-                        '<a href="/admin/pages/edit/' . $page_id . '">' . $data['title'] . '</a>'
+                    lang("Changed the page", "admin") . " " .
+                    '<a href="/admin/pages/edit/' . $page_id . '">' . $data['title'] . '</a>'
                 );
 
                 $action = $this->input->post('action');
                 $path = '/admin/pages/GetPagesByCategory';
 
                 if ($action == 'edit')
-                    $path = '/admin/pages/edit/' . $page_id;
+                    $path = "/admin/pages/edit/$page_id";
 
                 showMessage(lang("Page contents have been updated", "admin"));
+
+                $page = $this->cms_admin->get_page($page_id);
+                if ($page) {
+                    $page_id = $page['lang_alias'] ? $page['lang_alias'] : $page_id;
+                    $lang_id = $this->input->post('lang_id');
+                    if ($action == 'edit')
+                        $path = "/admin/pages/edit/$page_id/$lang_id";
+                }
+
                 pjax($path);
             } else {
-                showMessage('', false, 'r');
+//                showMessage('', false, 'r');
             }
         }
     }
@@ -735,13 +712,13 @@ class Pages extends BaseAdminController {
         $this->db->select('category');
         $page = $this->db->get_where('content', array('id' => substr($_POST['pages'][0], 5)))->row_array();
 
-        if ((int) $_POST['new_cat'] > 0)
+        if ((int)$_POST['new_cat'] > 0)
             $category = $this->lib_category->get_category($_POST['new_cat']);
         else {
             $category['id'] = 0;
             $category['path_url'] = '';
         }
-        
+
         if (count($ids) > 0) {
             foreach ($ids as $k => $v) {
                 $page_id = substr($v, 5);
@@ -800,14 +777,13 @@ class Pages extends BaseAdminController {
                         break;
                 }
             }
-            $catName = $category['name']?' -> '.$category['name']:'';
-            if ($action == 'copy'){
+            $catName = $category['name'] ? ' -> ' . $category['name'] : '';
+            if ($action == 'copy') {
                 showMessage(lang('Page successfuly copied', 'admin'));
-                $this->lib_admin->log(lang("Pages was copied", "admin").'. Id: '.implode(', ',$ids_key).''.$catName);
-            }
-            else if ($action == 'move'){
+                $this->lib_admin->log(lang("Pages was copied", "admin") . '. Id: ' . implode(', ', $ids_key) . '' . $catName);
+            } else if ($action == 'move') {
                 showMessage(lang("Successfull moving", "admin"));
-                $this->lib_admin->log(lang("Pages was moving", "admin").'. Id: '.implode(', ',$ids_key).''.$catName);
+                $this->lib_admin->log(lang("Pages was moving", "admin") . '. Id: ' . implode(', ', $ids_key) . '' . $catName);
             }
             pjax($_SERVER["HTTP_REFERER"]);
         } else
@@ -965,13 +941,13 @@ class Pages extends BaseAdminController {
     function GetPagesByCategory($cat_id = 'all', $cur_page = 0) {
         $def_lang = $this->cms_admin->get_default_lang();
         CI::$APP->config->set_item('cur_lang', $def_lang['id']);
-        if ($cat_id != 'all'){
+        if ($cat_id != 'all') {
             $db_where = array(
                 'category' => $cat_id,
                 //'lang_alias' => 0,
                 'lang' => (int)$def_lang['id']
             );
-        }else {
+        } else {
             //$this->db->select('content.*, category.name as cat_name');
             $db_where = array(
                 'category >=' => 0,
@@ -996,34 +972,34 @@ class Pages extends BaseAdminController {
         $this->db->order_by('content.id', 'desc');
 
         //filter
-        if ($this->input->post('id')){
-            $this->db->where('content.id', $this->input->post('id'));  
+        if ($this->input->post('id')) {
+            $this->db->where('content.id', $this->input->post('id'));
             $flagPOST = true;
         }
-        if ($this->input->post('title')){
+        if ($this->input->post('title')) {
             $this->db->where('content.title LIKE ', '%' . $this->input->post('title') . '%');
             $flagPOST = true;
         }
-        if ($this->input->post('url')){
-            $this->db->where('content.url LIKE ', '%' . $this->input->post('url') . '%'); 
+        if ($this->input->post('url')) {
+            $this->db->where('content.url LIKE ', '%' . $this->input->post('url') . '%');
             $flagPOST = true;
         }
 
         if ($cat_id == NULL)
             $this->db->join('category', 'category.id = content.category');
 
-        if(!$flagPOST){
+        if (!$flagPOST) {
             $query = $this->db->get_where('content', $db_where, $row_count, $offset);
-        }else{
-            $query = $this->db->get_where('content', $db_where);            
+        } else {
+            $query = $this->db->get_where('content', $db_where);
         }
         $this->db->where($db_where);
         $this->db->from('content');
         $total_pages = $this->db->count_all_results();
-        
+
         if ($query->num_rows > 0) {
             // При пагинации при поиске ломался поиск.
-            if(!$flagPOST){
+            if (!$flagPOST) {
                 // Begin pagination
                 $config['base_url'] = site_url('admin/pages/GetPagesByCategory/' . $cat_id . '/');
                 $config['container'] = 'page';
@@ -1071,7 +1047,8 @@ class Pages extends BaseAdminController {
             $this->template->show('pages_list', FALSE);
         } else {
 
-            $this->template->add_array(array('no_pages' => TRUE,
+            $this->template->add_array(array(
+                'no_pages' => TRUE,
                 'category' => $category,
                 'total_pages' => $total_pages,
                 'tree' => $this->lib_category->build(),

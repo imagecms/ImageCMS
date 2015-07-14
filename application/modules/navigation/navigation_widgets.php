@@ -16,25 +16,32 @@ class Navigation_Widgets extends MY_Controller {
         $lang = new MY_Lang();
         $lang->load('navigation');
     }
+    
+    private function pathGallery(){
+        if ($this->core->langs[$this->uri->segment(1)]) {
+            $data_type = $this->uri->segment(1) !== $this->defaultLocale() ? $this->uri->segment(2) : $this->uri->segment(1);
+        } else {
+            $data_type = $this->uri->segment(1);
+        }
+        return $data_type;
+    }
 
     public function widget_navigation($widget = array()) {
         $this->load->module('core');
-
+        
         if ($widget['settings'] == FALSE) {
             $settings = $this->defaults;
         } else {
             $settings = $widget['settings'];
         }
-        if ($this->core->core_data['data_type'] == '404') {
-            if ($this->core->langs[$this->uri->segment(1)]) {
-                $data_type = $this->uri->segment(1) !== $this->defaultLocale() ? $this->uri->segment(2) : $this->uri->segment(1);
-            } else {
-                $data_type = $this->uri->segment(1);
-            }
+        
+        $segmentGallery = $this->pathGallery();        
+        if ($this->core->core_data['data_type'] == '404' || !$this->core->core_data['data_type'] || $segmentGallery == 'gallery') {
+            $data_type = $segmentGallery;
         } else {
             $data_type = $this->core->core_data['data_type'];
         }
-
+        
         switch ($data_type) {
             case 'category':
                 $cur_category = $this->core->cat_content;

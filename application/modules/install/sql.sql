@@ -2,10 +2,10 @@
 -- version 3.4.10.1deb1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: May 28, 2014 at 11:46 AM
--- Server version: 5.5.32
--- PHP Version: 5.4.25-1+sury.org~precise+2
+-- Хост: localhost
+-- Время создания: Июл 14 2015 г., 11:14
+-- Версия сервера: 5.5.43
+-- Версия PHP: 5.5.26-1+deb.sury.org~precise+1
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -16,14 +16,136 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
+-- --------------------------------------------------------
+
 --
--- Database: `imagecms`
+-- Структура таблицы `banners`
 --
+
+DROP TABLE IF EXISTS `banners`;
+CREATE TABLE IF NOT EXISTS `banners` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `place` varchar(255) NOT NULL,
+  `width` int(5) NOT NULL,
+  `height` int(5) NOT NULL,
+  `effects` text,
+  `page_type` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- Дамп данных таблицы `banners`
+--
+
+INSERT INTO `banners` (`id`, `place`, `width`, `height`, `effects`, `page_type`) VALUES
+(1, 'main_banner', 1980, 572, '{"autoplay":1,"autoplaySpeed":"3","arrows":1,"centerMode":0,"dots":1,"draggable":0,"fade":0,"easing":"linear","infinite":0,"pauseOnHover":0,"pauseOnDotsHover":0,"speed":0,"swipe":0,"touchMove":0,"vertical":0,"rtl":0}', 'main'),
+(2, 'partners', 164, 45, '{"autoplay":0,"autoplaySpeed":"3","arrows":1,"centerMode":0,"dots":0,"draggable":1,"fade":0,"easing":"linear","infinite":1,"pauseOnHover":1,"pauseOnDotsHover":0,"speed":0,"swipe":1,"touchMove":1,"vertical":0,"rtl":0}', 'main');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `category`
+-- Структура таблицы `banners_i18n`
+--
+
+DROP TABLE IF EXISTS `banners_i18n`;
+CREATE TABLE IF NOT EXISTS `banners_i18n` (
+  `id` int(11) NOT NULL,
+  `locale` varchar(5) NOT NULL DEFAULT 'ru',
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`,`locale`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `banners_i18n`
+--
+
+INSERT INTO `banners_i18n` (`id`, `locale`, `name`) VALUES
+(1, 'ru', 'Main page big banner'),
+(2, 'ru', 'Наши партнеры'),
+(2, 'uk', 'Наші партнери');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `banner_image`
+--
+
+DROP TABLE IF EXISTS `banner_image`;
+CREATE TABLE IF NOT EXISTS `banner_image` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `banner_id` int(11) NOT NULL,
+  `target` int(2) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `allowed_page` int(11) DEFAULT NULL,
+  `position` int(11) DEFAULT NULL,
+  `active_from` int(11) DEFAULT NULL,
+  `active_to` int(11) DEFAULT NULL,
+  `active` int(1) DEFAULT NULL,
+  `permanent` int(1) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `banner_image_fi_0bb916` (`banner_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+
+--
+-- Дамп данных таблицы `banner_image`
+--
+
+INSERT INTO `banner_image` (`id`, `banner_id`, `target`, `url`, `allowed_page`, `position`, `active_from`, `active_to`, `active`, `permanent`) VALUES
+(5, 1, 1, '/uslugi/business-consulting', 0, 1, NULL, NULL, 1, 1),
+(4, 1, 0, '/uslugi/business-consulting', 0, 0, NULL, NULL, 1, 1),
+(3, 1, 0, '/uslugi/business-consulting', 0, 2, NULL, NULL, 1, 1),
+(6, 2, 0, '', 0, 22, NULL, NULL, 1, 1),
+(7, 2, 0, '', 0, 20, NULL, NULL, 1, 1),
+(9, 2, 0, '', 0, 21, NULL, NULL, 1, 1),
+(10, 2, 1, '', 0, 24, NULL, NULL, 1, 1),
+(11, 2, 0, '', 0, 23, NULL, NULL, 1, 1),
+(13, 2, 0, '', 0, 25, NULL, NULL, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `banner_image_i18n`
+--
+
+DROP TABLE IF EXISTS `banner_image_i18n`;
+CREATE TABLE IF NOT EXISTS `banner_image_i18n` (
+  `id` int(11) NOT NULL,
+  `locale` varchar(5) NOT NULL DEFAULT 'ru',
+  `src` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `clicks` int(20) DEFAULT NULL,
+  `description` text,
+  PRIMARY KEY (`id`,`locale`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `banner_image_i18n`
+--
+
+INSERT INTO `banner_image_i18n` (`id`, `locale`, `src`, `name`, `clicks`, `description`) VALUES
+(4, 'ru', '1436278876.jpg', 'Индивидуальные решения', 0, '<p>Мы подходим к каждой компании и бизнес-стратегии индивидуально, обеспечивая решения, гарантирующие успех вашей компании на протяжении длительного периода.</p>'),
+(3, 'ru', '1436278673.jpg', 'Комплексное сопровождение', 0, '<p>Мы полностью включаемся в проект и берем на себя весь комплекс работ, в который входит бизнес-консалтинг, стратегия, маркетинговые решения и реализации проекта в будущем. </p>'),
+(5, 'ru', '1436279003.jpg', 'Независимые консультанты', 0, '<p><span>Наши консультанты всегда являются независимыми объективными экспертами, дающими свежий взгляд со стороны и остающимися беспристрастными в любой ситуации. </span></p>'),
+(6, 'ru', '1436284401.png', 'Business', 0, ''),
+(7, 'ru', '1436284377.png', 'Techstart', 0, ''),
+(9, 'ru', '1436284440.png', 'Besttech', 0, ''),
+(10, 'ru', '1436284464.png', 'Beststart', 0, ''),
+(11, 'ru', '1436284479.png', 'Webcreate', 0, ''),
+(13, 'ru', '1436285526.png', 'NewAgency', 0, ''),
+(5, 'uk', '1436388314.jpg', 'Незалежні консультанти', 0, '<p>Наші консультанти завжди є незалежними об''єктивними експертами, що дають свіжий погляд з боку і залишаються неупередженими в будь-якій ситуації.</p>'),
+(4, 'uk', '1436388489.jpg', 'Індивідуальні рішення', 0, '<p>Ми підходимо до кожної компанії і бізнес-стратегії індивідуально, забезпечуючи рішення, що гарантують успіх вашої компанії протягом тривалого періоду.</p>'),
+(3, 'uk', '1436388690.jpg', 'Комплексний супровід', 0, '<p>Ми повністю включаємось в проект і беремо на себе весь комплекс робіт, в який входить бізнес-консалтинг, стратегія, маркетингові рішення і реалізації проекту в майбутньому.</p>'),
+(7, 'uk', '1436389393.png', 'Techstart', 0, ''),
+(9, 'uk', '1436389407.png', 'Business', 0, ''),
+(6, 'uk', '1436389432.png', 'Besttech', 0, ''),
+(11, 'uk', '1436389449.png', 'Beststart', 0, ''),
+(10, 'uk', '1436389467.png', 'Webcreate', 0, ''),
+(13, 'uk', '1436389486.png', 'NewAgency', 0, '');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `category`
 --
 
 DROP TABLE IF EXISTS `category`;
@@ -54,25 +176,24 @@ CREATE TABLE IF NOT EXISTS `category` (
   PRIMARY KEY (`id`),
   KEY `name` (`name`),
   KEY `url` (`url`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=62 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=75 ;
 
 --
--- Dumping data for table `category`
+-- Дамп данных таблицы `category`
 --
 
 INSERT INTO `category` (`id`, `parent_id`, `position`, `name`, `title`, `short_desc`, `url`, `image`, `keywords`, `description`, `fetch_pages`, `main_tpl`, `tpl`, `page_tpl`, `per_page`, `order_by`, `sort_order`, `comments_default`, `field_group`, `category_field_group`, `settings`, `created`, `updated`) VALUES
-(56, 0, 0, 'Услуги', '', '<p>Помимо разработки и продажи роботов различных конфигураций, наша компания предоставляет также полный спектр услуг связанных с работоспособностью роботов. Со всем списком Вы можете ознакомиться ниже.</p>', 'usluhi', '', '', '', 'b:0;', '', 'category_services', 'page_service', 15, 'position', 'asc', 0, 7, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}', 1401265119, 1401265119),
-(57, 0, 0, 'Новости', '', '<p>В данном разделе Вы можете ознакомиться со списком последних новостей нашей компании, а возможно и с последними галактическими новостями в мире роботехники.</p>', 'novosti', '', '', '', 'b:0;', '', 'news', '', 1, 'publish_date', 'desc', 0, -1, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}', 1401265119, 1401265119),
-(55, 0, 0, 'Продукция', '', '<p>В данном разделе представлена вся продукция компании <strong>ImageRobotics</strong>, раздел постоянно пополняется, мы не стоим на месте и скоро наши роботы смогу еще больше.</p>', 'produktsiia', '', '', '', 'b:0;', '', 'category_products', 'page_product', 1, 'position', 'asc', 0, 7, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}', 1401265119, 1401265119),
-(58, 0, 0, 'Вакансии', '', '<p>В данном разделе собраны вакансии компании ImageRobotics. Ко всем кандидатам очень строгие требования. Для работы в нашей компании, Вам нужно как минимум обладать всеми знаниями нашей Галактики. <strong>"Простым вундеркиндам" просьба не беспокоить!!!</strong></p>\n<p><strong>Все, кто хотят подать свое резюме, должны для начала разгадать номер факса нашего HR отдела, который зашифрован следующим кодом: 8822001112008382288018280444322211081 (подсказка 784).<br /></strong></p>', 'vakansii', '', '', '', 'b:0;', '', 'category_vacancies', 'page_vacancy', 15, 'publish_date', 'desc', 0, -1, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}', 1401265119, 1401265119),
-(59, 0, 0, 'Блог', '', '', 'bloh', '', '', '', 'a:2:{i:0;s:2:"60";i:1;s:2:"61";}', '', 'blog', '', 2, 'publish_date', 'desc', 1, -1, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}', 1401265119, 1401265119),
-(60, 59, 0, 'Кухонные роботы', '', '', 'kuhonnye_roboty', '', '', '', 'b:0;', '', 'blog', '', 15, 'publish_date', 'desc', 1, 7, -1, NULL, 1401265119, 1401265119),
-(61, 59, 0, 'Человеко роботы', '', '', 'cheloveko_roboty', '', '', '', 'b:0;', '', 'blog', '', 15, 'publish_date', 'desc', 1, 7, -1, NULL, 1401265119, 1401265119);
+(64, 0, 0, 'Блог', '', '', 'blog', '', '', '', 'a:4:{i:0;s:2:"70";i:1;s:2:"67";i:2;s:2:"68";i:3;s:2:"69";}', '', 'category_blog', 'page_blog', 15, 'position', 'asc', 1, 11, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";s:1:"1";}', 1428164812, 1436214625),
+(66, 0, 4, 'Клиенты о нас', '', '', 'klienty-o-nas', '', '', '', 'b:0;', '', '', '', 15, 'publish_date', 'desc', 0, 12, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}', 1429361818, 1429362509),
+(67, 64, 1, 'Бизнес', '', '', 'biznes', '', '', '', 'b:0;', '', 'category_blog', 'page_blog', 15, 'publish_date', 'desc', 1, 11, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}', 1429885611, 1436384636),
+(74, 64, 2, 'Финансы', '', '', 'finansy', '', '', '', 'b:0;', '', '', '', 15, 'publish_date', 'desc', 0, -1, 11, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}', 1436384618, 1436384641),
+(69, 64, 3, 'Экономика', '', '', 'ekonomika', '', '', '', 'b:0;', '', 'category_blog', 'page_blog', 15, 'publish_date', 'desc', 1, 11, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}', 1429885646, 1436384648),
+(62, 0, 5, 'Услуги', '', '<p>Консалтинг (консультирование) &mdash; деятельность по консультированию руководителей, управленцев по широкому кругу вопросов в сфере финансовой, коммерческой, юридической, технологической, технической, экспертной деятельности. Цель консалтинга &mdash; помочь системе управления (менеджменту) в достижении заявленных целей.</p>\n<p>Иными словами: консалтинг &mdash; это управленческое консультирование по широкому кругу вопросов в сфере финансовой, юридической, технологической, технической, экспертной деятельности, оказываемое внешними консультантами для решения той или иной проблемы. Консалтинговые компании специализируются по отдельным направлениям деятельности (например, финансовому, кадровому, организационному, стратегическому).</p>\n<p>Основная задача консалтинга заключается в анализе, обосновании перспектив развития и использования научно-технических и организационно-экономических решений с учётом предметной области и проблем клиента.</p>', 'uslugi', '', '', '', 'b:0;', '', '', '', 10, 'publish_date', 'desc', 1, 13, -1, 'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";s:1:"1";}', 1428164759, 1436384496);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `category_translate`
+-- Структура таблицы `category_translate`
 --
 
 DROP TABLE IF EXISTS `category_translate`;
@@ -88,12 +209,24 @@ CREATE TABLE IF NOT EXISTS `category_translate` (
   `lang` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`,`lang`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+
+--
+-- Дамп данных таблицы `category_translate`
+--
+
+INSERT INTO `category_translate` (`id`, `alias`, `name`, `title`, `short_desc`, `image`, `keywords`, `description`, `lang`) VALUES
+(6, 64, 'Блог', '', '', '', '', '', 32),
+(7, 66, 'Клієнти про нас', '', '', '', '', '', 32),
+(10, 67, 'Бізнес', '', '', '', '', '', 32),
+(9, 62, 'Послуги', '', '<p>Консалтинг (консультування) - діяльність з консультування керівників, управлінців з широкого кола питань у сфері фінансової, комерційної, юридичної, технологічної, технічної, експертної діяльності. Мета консалтингу - допомогти системі управління (менеджменту) в досягненні заявлених цілей.</p>\n<p>Іншими словами: консалтинг - це управлінське консультування з широкого кола питань у сфері фінансової, юридичної, технологічної, технічної, експертної діяльності, який чиниться зовнішніми консультантами для вирішення тієї чи іншої проблеми. Консалтингові компанії спеціалізуються за окремими напрямами діяльності (наприклад, фінансовому, кадрового, організаційного, стратегічному).</p>\n<p>Основне завдання консалтингу полягає в аналізі, обгрунтуванні перспектив розвитку і використання науково-технічних і організаційно-економічних рішень з урахуванням предметної області і проблем клієнта.</p>', '', '', '', 32),
+(11, 74, 'Фінанси', '', '', '', '', '', 32),
+(12, 69, 'Економіка', '', '', '', '', '', 32);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comments`
+-- Структура таблицы `comments`
 --
 
 DROP TABLE IF EXISTS `comments`;
@@ -120,20 +253,29 @@ CREATE TABLE IF NOT EXISTS `comments` (
   KEY `module` (`module`),
   KEY `item_id` (`item_id`),
   KEY `date` (`date`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=68 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=113 ;
 
 --
--- Dumping data for table `comments`
+-- Дамп данных таблицы `comments`
 --
 
 INSERT INTO `comments` (`id`, `module`, `user_id`, `user_name`, `user_mail`, `user_site`, `item_id`, `text`, `date`, `status`, `agent`, `user_ip`, `rate`, `text_plus`, `text_minus`, `like`, `disslike`, `parent`) VALUES
-(21, 'core', 0, 'Funstarter', 'admin@localhost.loc', 'siteimage.com.ua', 80, 'Многие противоречат этой новинке, говоря, что робот не приготовит, так как человек. Он берет все в точности, не фантазирует и не добавляет ингредиенты по вкусу.  Но мы утверждаем, что такой прогресс необходим.', 1291637744, 0, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; ru; rv:1.9.2.12) Gecko/20101026 Firefox/3.6.12 ( .NET CLR 3.5.30729)', '127.0.0.1', 0, NULL, NULL, 1, 0, NULL),
-(22, 'core', 0, 'Funstarter', 'admin@localhost.loc', 'siteimage.com.ua', 80, 'Первые кухонные роботы обладали возможностью готовить только простые блюда или блюда дополненные покупателем. Но теперь все кухонные роботы имеют в памяти все рецепты, которые были вынесены на публику.', 1291637760, 0, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; ru; rv:1.9.2.12) Gecko/20101026 Firefox/3.6.12 ( .NET CLR 3.5.30729)', '127.0.0.1', 0, NULL, NULL, 0, 0, NULL);
+(99, 'core', 61, 'Александра', 'aleksandra@gmail.com', '0', 89, 'Абсолютно согласна с данной статьей, сталкивались с таким в собственной компании. Пришли консультанты, нарисовали бизнес-процессы за кругленькую сумму и ушли. Никому эти бизнес-процессы не нужны, они так и остались на бумаге, в бухгалтерии все деньги расписали.', 1436523850, 0, 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0', '178.136.237.181', 5, '', '', 0, 0, 0),
+(100, 'core', 61, 'Александра', 'aleksandra@gmail.com', '0', 109, 'От того насколько квалифицированно решаются задачи в области ИТ напрямую зависит успешность и конкурентоспособность бизнеса. Появление большого количества программных продуктов зачастую приводит непосвященного в состояние полной неразберихи.', 1436523933, 0, 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0', '178.136.237.181', 4, '', '', 0, 0, 0),
+(101, 'core', 62, 'Евгений', 'eugene@gmail.com', '0', 121, 'Но почему при этом не использовать легальные способы оптимизации налогообложения? Налоговая оптимизация – это легитимное, эффективное налоговое планирование начислений в бюджет.', 1436524177, 0, 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0', '178.136.237.181', 4, '', '', 0, 0, 0),
+(103, 'core', 62, 'Евгений', 'eugene@gmail.com', '0', 109, 'Хорошо если рядом есть доверенный профессионал, который поможет советом и даст ответы на насущные вопросы квалифицированно и понятно, с многолетним практическим опытом в предметных областях.', 1436524291, 0, 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0', '178.136.237.181', 4, '', '', 0, 0, 0),
+(105, 'core', 63, 'Ольга', 'olga@gmail.com', '0', 109, 'Представить область человеческой деятельности очень сложно, где бы информационные технологии не использовались в той или иной мере. От того насколько квалифицированно решаются задачи в области ИТ напрямую зависит успешность и конкурентоспособность бизнеса.', 1436524554, 0, 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0', '178.136.237.181', 5, '', '', 0, 0, 0),
+(106, 'core', 63, 'Ольга', 'olga@gmail.com', '0', 121, 'Следует ориентироваться на такие пункты налогового планирования, которые позволят составить индивидуальные схемы оптимизации налогообложения. На нашем рынке можно встретить много различных предложений об оказании налоговых услуг. Но большинство из них помогают устранить только часть проблем.', 1436524858, 0, 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0', '178.136.237.181', 5, '', '', 0, 0, 0),
+(107, 'core', 63, 'Ольга', 'olga@gmail.com', '0', 90, 'Хотела уточнить, что потребители и конкуренты видели необоснованный риск и отступление с занятых позиций. Жертвуя каналом сбыта, компания в то же время сбросила оковы территориальных ограничений, а также замедляющие рост арендные выплаты.', 1436525042, 0, 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0', '178.136.237.181', 5, '', '', 0, 0, 0),
+(108, 'core', 64, 'Михаил', 'michail@gmail.com', '0', 89, 'Но ведь бизнес-процессы это не квадратики на бумаге, это реально работающие процессы на предприятии. Дальше нечестность порождает еще большую нечестность, у консультантов в голове крутятся доллары, бессмысленность и ненужность работы, и в итоге пошел процесс «нужно побольше придумать себе работы и побольше взять денег».', 1436525133, 0, 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0', '178.136.237.181', 3, '', '', 0, 0, 0),
+(112, 'core', 63, 'Ольга', 'olga@gmail.com', '0', 89, 'В итоге получается забавная картина, когда говорят о бизнес-процессах, многие руководители представляет себе толстенную (и надо сказать дорогую) пачку бумаги с нарисованными квадратиками и стрелочками.', 1436525540, 0, 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0', '178.136.237.181', 5, '', '', 0, 0, 0),
+(110, 'core', 64, 'Михаил', 'michail@gmail.com', '0', 121, 'Помните, что представитель налоговой инспекции приходит для того, чтобы найти ошибки в ведении бухгалтерского или налогового учета, а причина возникновения ошибки – случайно или специально – для налоговиков не имеет значения.', 1436525309, 0, 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0', '178.136.237.181', 3, '', '', 0, 0, 0),
+(111, 'core', 64, 'Михаил', 'michail@gmail.com', '0', 90, 'Можно еще сказать о том, что для того, чтобы быть успешным, не всегда следует оставаться упрямым. Потребуется мобилизация всех запасов смелости для отказа от первичного плана в пользу роста.', 1436525379, 0, 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0', '178.136.237.181', 3, '', '', 0, 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `components`
+-- Структура таблицы `components`
 --
 
 DROP TABLE IF EXISTS `components`;
@@ -151,44 +293,44 @@ CREATE TABLE IF NOT EXISTS `components` (
   KEY `identif` (`identif`),
   KEY `enabled` (`enabled`),
   KEY `autoload` (`autoload`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=270 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=276 ;
 
 --
--- Dumping data for table `components`
+-- Дамп данных таблицы `components`
 --
 
-INSERT INTO `components` (`name`, `identif`, `enabled`, `autoload`, `in_menu`, `settings`, `position`) VALUES
-('user_manager', 'user_manager', 0, 0, 0, NULL, 19),
-('auth', 'auth', 1, 0, 0, NULL, 28),
-('comments', 'comments', 1, 1, 1, 'a:5:{s:18:"max_comment_length";i:0;s:6:"period";i:0;s:11:"can_comment";i:0;s:11:"use_captcha";b:0;s:14:"use_moderation";b:0;}', 9),
-('navigation', 'navigation', 0, 0, 0, NULL, 29),
-('tags', 'tags', 1, 1, 0, NULL, 27),
-('gallery', 'gallery', 1, 0, 0, 'a:26:{s:14:"max_image_size";s:1:"5";s:9:"max_width";s:1:"0";s:10:"max_height";s:1:"0";s:7:"quality";s:2:"95";s:14:"maintain_ratio";b:1;s:19:"maintain_ratio_prev";b:1;s:19:"maintain_ratio_icon";b:1;s:4:"crop";b:0;s:9:"crop_prev";b:0;s:9:"crop_icon";b:0;s:14:"prev_img_width";s:3:"500";s:15:"prev_img_height";s:3:"500";s:11:"thumb_width";s:3:"100";s:12:"thumb_height";s:3:"100";s:14:"watermark_text";s:0:"";s:16:"wm_vrt_alignment";s:6:"bottom";s:16:"wm_hor_alignment";s:4:"left";s:19:"watermark_font_size";s:2:"14";s:15:"watermark_color";s:6:"ffffff";s:17:"watermark_padding";s:2:"-5";s:19:"watermark_font_path";s:25:"./uploads/defaultFont.ttf";s:15:"watermark_image";s:0:"";s:23:"watermark_image_opacity";s:2:"50";s:14:"watermark_type";s:4:"text";s:8:"order_by";s:4:"date";s:10:"sort_order";s:4:"desc";}', 13),
-('rss', 'rss', 1, 0, 0, 'a:5:{s:5:"title";s:9:"Image CMS";s:11:"description";s:35:"Тестируем модуль RSS";s:10:"categories";a:1:{i:0;s:1:"3";}s:9:"cache_ttl";i:60;s:11:"pages_count";i:10;}', 14),
-('menu', 'menu', 0, 1, 1, NULL, 0),
-('sitemap', 'sitemap', 1, 1, 0, 'a:6:{s:18:"main_page_priority";b:0;s:13:"cats_priority";b:0;s:14:"pages_priority";b:0;s:20:"main_page_changefreq";b:0;s:21:"categories_changefreq";b:0;s:16:"pages_changefreq";b:0;}', 15),
-('search', 'search', 1, 0, 0, NULL, 22),
-('feedback', 'feedback', 1, 0, 0, 'a:2:{s:5:"email";s:19:"admin@localhost.loc";s:15:"message_max_len";i:550;}', 25),
-('template_editor', 'template_editor', 0, 0, 0, NULL, 17),
-('group_mailer', 'group_mailer', 0, 0, 1, NULL, 10),
-('cfcm', 'cfcm', 0, 0, 0, NULL, 16),
-('sample_mail', 'sample_mail', 0, 0, 0, NULL, 20),
-('mailer', 'mailer', 1, 0, 0, NULL, 21),
-('share', 'share', 1, 0, 1, 'a:10:{s:5:"vkcom";s:1:"1";s:8:"facebook";s:1:"1";s:7:"twitter";s:1:"1";s:2:"gg";s:1:"1";s:4:"type";s:4:"none";s:13:"facebook_like";s:1:"1";s:7:"vk_like";s:1:"1";s:8:"vk_apiid";s:7:"3901548";s:7:"gg_like";s:1:"1";s:12:"twitter_like";s:1:"1";}', 8),
-('banners', 'banners', 1, 0, 1, 'a:1:{s:8:"show_tpl";i:1;}', 1),
-('cmsemail', 'cmsemail', 1, 0, 1, 'a:3:{s:2:"ru";a:13:{s:4:"from";s:41:"Интернет-магазин ImageShop";s:10:"from_email";s:18:"noreplay@client.ru";s:11:"admin_email";s:14:"info@client.ru";s:5:"theme";s:41:"Интернет-магазин ImageShop";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:304:"<h2>Интернет-магазин "ImageShop"</h2>\n<div>$content</div>\n<hr />\n<p>С уважением, Интернет-магазин "ImageShop"</p>\n<p><small>Данное письмо создано автоматически, пожалуйста не отвечайте на него.</small></p>";s:8:"mailpath";s:0:"";s:8:"protocol";s:4:"mail";s:9:"smtp_host";s:0:"";s:9:"smtp_user";s:10:"ad@min.com";s:9:"smtp_pass";s:5:"admin";s:4:"port";s:0:"";s:10:"encryption";s:0:"";}s:2:"en";a:13:{s:4:"from";s:22:"Online store ImageShop";s:10:"from_email";s:19:"noreplay@client.com";s:11:"admin_email";s:15:"info@client.com";s:5:"theme";s:22:"Online store ImageShop";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:159:"<h2>Online store "ImageShop"</h2>\n<div>$content</div>\n<hr />\n<p>Sincerely, online store "ImageShop"</p>\n<p>This is an automated email, please do not reply.</p>";s:8:"mailpath";s:0:"";s:8:"protocol";s:4:"mail";s:9:"smtp_host";s:0:"";s:9:"smtp_user";s:10:"ad@min.com";s:9:"smtp_pass";s:5:"admin";s:4:"port";s:0:"";s:10:"encryption";s:0:"";}s:2:"ua";a:13:{s:4:"from";s:41:"Інтернет-магазин ImageShop";s:10:"from_email";s:22:"noreplay@client.com.ua";s:11:"admin_email";s:18:"info@client.com.ua";s:5:"theme";s:41:"Інтернет-магазин ImageShop";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:284:"<h2>Інтернет-магазин "ImageShop"</h2>\n<div>$content</div>\n<hr />\n<p>З повагою, Інтернет-магазин "ImageShop"</p>\n<p>Даний лист створено автоматично, будь ласка не відповідайте на нього.</p>";s:8:"mailpath";s:0:"";s:8:"protocol";s:4:"mail";s:9:"smtp_host";s:0:"";s:9:"smtp_user";s:10:"ad@min.com";s:9:"smtp_pass";s:5:"admin";s:4:"port";s:0:"";s:10:"encryption";s:0:"";}}', 4),
-('language_switch', 'language_switch', 0, 0, 0, NULL, 23),
-('star_rating', 'star_rating', 1, 0, 0, NULL, 12),
-('translator', 'translator', 1, 1, 1, 'a:2:{s:11:"originsLang";s:2:"en";s:11:"editorTheme";s:6:"chrome";}', 11),
-('imagebox', 'imagebox', 0, 1, 0, NULL, 18),
-('sample_module', 'sample_module', 1, 1, 0, NULL, NULL),
-('seo_snippets', 'seo_snippets', 1, 1, 0, NULL, NULL),
-('template_manager', 'template_manager', 1, 1, 1, NULL, NULL);
+INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_menu`, `settings`, `position`) VALUES
+(1, 'user_manager', 'user_manager', 0, 0, 0, NULL, 19),
+(2, 'auth', 'auth', 1, 0, 0, NULL, 28),
+(4, 'comments', 'comments', 1, 1, 1, 'a:5:{s:18:"max_comment_length";i:0;s:6:"period";i:0;s:11:"can_comment";i:0;s:11:"use_captcha";b:0;s:14:"use_moderation";b:0;}', 9),
+(7, 'navigation', 'navigation', 0, 0, 0, NULL, 29),
+(30, 'tags', 'tags', 1, 1, 0, NULL, 27),
+(92, 'gallery', 'gallery', 1, 0, 1, 'a:26:{s:14:"max_image_size";s:1:"5";s:9:"max_width";s:1:"0";s:10:"max_height";s:1:"0";s:7:"quality";s:2:"95";s:14:"maintain_ratio";b:1;s:19:"maintain_ratio_prev";b:1;s:19:"maintain_ratio_icon";b:1;s:4:"crop";b:0;s:9:"crop_prev";b:0;s:9:"crop_icon";b:1;s:14:"prev_img_width";s:4:"1200";s:15:"prev_img_height";s:3:"900";s:11:"thumb_width";s:3:"480";s:12:"thumb_height";s:3:"350";s:14:"watermark_text";s:0:"";s:16:"wm_vrt_alignment";s:6:"bottom";s:16:"wm_hor_alignment";s:4:"left";s:19:"watermark_font_size";s:2:"14";s:15:"watermark_color";s:6:"ffffff";s:17:"watermark_padding";s:2:"-5";s:15:"watermark_image";s:10:"./uploads/";s:23:"watermark_image_opacity";s:2:"50";s:14:"watermark_type";s:4:"text";s:8:"order_by";s:4:"date";s:10:"sort_order";s:4:"desc";s:19:"watermark_font_path";s:25:"./uploads/defaultFont.ttf";}', 13),
+(55, 'rss', 'rss', 1, 0, 0, 'a:5:{s:5:"title";s:9:"Image CMS";s:11:"description";s:35:"Тестируем модуль RSS";s:10:"categories";a:1:{i:0;s:1:"3";}s:9:"cache_ttl";i:60;s:11:"pages_count";i:10;}', 14),
+(60, 'menu', 'menu', 0, 1, 1, NULL, 0),
+(58, 'sitemap', 'sitemap', 1, 1, 0, 'a:6:{s:18:"main_page_priority";b:0;s:13:"cats_priority";b:0;s:14:"pages_priority";b:0;s:20:"main_page_changefreq";b:0;s:21:"categories_changefreq";b:0;s:16:"pages_changefreq";b:0;}', 15),
+(80, 'search', 'search', 1, 1, 0, NULL, 22),
+(84, 'feedback', 'feedback', 1, 0, 0, 'a:2:{s:5:"email";s:19:"admin@localhost.loc";s:15:"message_max_len";i:550;}', 25),
+(117, 'template_editor', 'template_editor', 0, 0, 0, NULL, 17),
+(86, 'group_mailer', 'group_mailer', 0, 0, 1, NULL, 10),
+(96, 'cfcm', 'cfcm', 0, 0, 0, NULL, 16),
+(135, 'sample_mail', 'sample_mail', 0, 0, 0, NULL, 20),
+(137, 'mailer', 'mailer', 1, 0, 0, NULL, 21),
+(153, 'share', 'share', 1, 0, 1, 'a:10:{s:5:"vkcom";s:1:"1";s:8:"facebook";s:1:"1";s:7:"twitter";s:1:"1";s:2:"gg";s:1:"1";s:4:"type";s:7:"counter";s:13:"facebook_like";s:1:"1";s:7:"vk_like";s:1:"1";s:8:"vk_apiid";s:7:"3901548";s:7:"gg_like";s:1:"1";s:12:"twitter_like";s:1:"1";}', 8),
+(266, 'banners', 'banners', 1, 0, 1, 'a:1:{s:8:"show_tpl";i:1;}', 1),
+(188, 'cmsemail', 'cmsemail', 1, 0, 1, 'a:3:{s:2:"ru";a:13:{s:4:"from";s:18:"Corporate UniTheme";s:10:"from_email";s:19:"noreplay@mysite.com";s:11:"admin_email";s:15:"info@mysite.com";s:5:"theme";s:18:"Corporate UniTheme";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:255:"<h2>Corporate UniTheme</h2>\n<div>$content</div>\n<hr />\n<p>С уважением, Corporate UniTheme</p>\n<p><small>Данное письмо создано автоматически, пожалуйста не отвечайте на него.</small></p>";s:8:"mailpath";s:0:"";s:8:"protocol";s:4:"mail";s:9:"smtp_host";s:0:"";s:9:"smtp_user";s:10:"ad@min.com";s:9:"smtp_pass";s:5:"admin";s:4:"port";s:0:"";s:10:"encryption";s:0:"";}s:2:"en";a:13:{s:4:"from";s:22:"Online store ImageShop";s:10:"from_email";s:19:"noreplay@client.com";s:11:"admin_email";s:15:"info@client.com";s:5:"theme";s:22:"Online store ImageShop";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:159:"<h2>Online store "ImageShop"</h2>\n<div>$content</div>\n<hr />\n<p>Sincerely, online store "ImageShop"</p>\n<p>This is an automated email, please do not reply.</p>";s:8:"mailpath";s:0:"";s:8:"protocol";s:4:"mail";s:9:"smtp_host";s:0:"";s:9:"smtp_user";s:10:"ad@min.com";s:9:"smtp_pass";s:5:"admin";s:4:"port";s:0:"";s:10:"encryption";s:0:"";}s:2:"ua";a:13:{s:4:"from";s:41:"Інтернет-магазин ImageShop";s:10:"from_email";s:22:"noreplay@client.com.ua";s:11:"admin_email";s:18:"info@client.com.ua";s:5:"theme";s:41:"Інтернет-магазин ImageShop";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:284:"<h2>Інтернет-магазин "ImageShop"</h2>\n<div>$content</div>\n<hr />\n<p>З повагою, Інтернет-магазин "ImageShop"</p>\n<p>Даний лист створено автоматично, будь ласка не відповідайте на нього.</p>";s:8:"mailpath";s:0:"";s:8:"protocol";s:4:"mail";s:9:"smtp_host";s:0:"";s:9:"smtp_user";s:10:"ad@min.com";s:9:"smtp_pass";s:5:"admin";s:4:"port";s:0:"";s:10:"encryption";s:0:"";}}', 4),
+(264, 'language_switch', 'language_switch', 0, 0, 0, NULL, 23),
+(265, 'star_rating', 'star_rating', 1, 0, 0, NULL, 12),
+(267, 'translator', 'translator', 1, 1, 1, 'a:2:{s:11:"originsLang";s:2:"en";s:11:"editorTheme";s:6:"chrome";}', 11),
+(268, 'imagebox', 'imagebox', 0, 1, 0, NULL, 18),
+(269, 'sample_module', 'sample_module', 1, 1, 0, NULL, NULL),
+(272, 'template_manager', 'template_manager', 1, 1, 1, NULL, NULL),
+(275, 'xbanners', 'xbanners', 1, 1, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `content`
+-- Структура таблицы `content`
 --
 
 DROP TABLE IF EXISTS `content`;
@@ -225,38 +367,46 @@ CREATE TABLE IF NOT EXISTS `content` (
   KEY `category` (`category`),
   KEY `created` (`created`),
   KEY `updated` (`updated`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=84 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=142 ;
 
 --
--- Dumping data for table `content`
+-- Дамп данных таблицы `content`
 --
 
 INSERT INTO `content` (`id`, `title`, `meta_title`, `url`, `cat_url`, `keywords`, `description`, `prev_text`, `full_text`, `category`, `full_tpl`, `main_tpl`, `position`, `comments_status`, `comments_count`, `post_status`, `author`, `publish_date`, `created`, `updated`, `showed`, `lang`, `lang_alias`) VALUES
-(35, 'Приветствуем на сайте ImageRobotics', 'ImageRobotics - Лидер в производстве роботов', 'privetstvuem_na_saite_imagerobitics', '', 'это, базовый, шаблон, imagecms, котором, релизованы, следующие, функции, вывод, фотогалереи, статической, статьи, блога', 'Мы разрабатываем и усовершенствуем такие виды роботов: человеко роботы, боевые роботы, космические роботы, кухонные роботы, рабочие роботы.Наши службы по ремонту , прокату и апгрейду роботов всегда рады приветствовать любого клиента.Мы систематически расш', '<p>Мы разрабатываем и усовершенствуем такие виды роботов: человеко роботы, боевые роботы, космические роботы, кухонные роботы, рабочие роботы.<br /><br />Наши службы по ремонту , прокату и апгрейду роботов всегда рады приветствовать любого клиента.<br /><br />Мы систематически расширяемся и захватываем все новые сегменты рынка, потому постоянно пополняем наши ряды новыми сотрудниками.<br /><br />Мы рады представлять вам все новые виды робототехники, которые Вы можете приобрести в кредит. Для этого \nнужен только мульти паспорт!<br /><br />Будем рады, если вы станете нашим постоянным клиентом и надеемся, наш сайт поможет в информировании о деятельности компании!</p>', '', 0, 'homepage', '', 0, 0, 0, 'publish', 'admin', 1267203253, 1267203328, 1291735384, 7, 3, 0),
-(63, 'О компании', '', 'o_kompanii', '', 'компания, image, robotics, создана, высокой, цели, ndash, продавать, роботов, всегда, заботимся, качестве, нашей, продукции, безопасности, нашего, товара, существуем, рынке, начала, времен, потому, опыт, накопленный, время, дает, нам, право, считаться, лучшими', 'Компания Image Robotics создана для высокой цели – продавать роботов!  Мы всегда заботимся о качестве нашей продукции и безопасности нашего товара.  Мы существуем на рынке еще с начала времен. Потому опыт, накопленный за это время, дает нам право счи', '<p><strong>Компания Image Robotics создана для высокой цели &ndash; продавать роботов!</strong></p>\n<p><img style="float: right; margin-left: 10px;" src="/uploads/images/o-kompanii.jpg" alt="" width="210" height="158" /></p>\n<ul>\n<li>Мы всегда заботимся о качестве нашей продукции и&nbsp; безопасности нашего товара. </li>\n<li>Мы существуем на рынке еще с начала времен. Потому опыт, накопленный за это время, дает нам право считаться лучшими в своей сфере.</\nli>\n<li>Мы можем в любое время вернуть вам всю сумму, оплаченную за товар, если он еще не привык к Вам и Вашей семье!</li>\n<li>Мы заботимся не только о правах человека, но и о правах роботов, согласно галактического законодательства.</li>\n<li>Мы боремся с теми, кто выгоняет роботов на улицу и согласны на бесплатную утилизацию ввиду отсутствия интереса к таковому.</li>\n</ul>', '', 0, '', '', 0, 0, 0, 'publish', 'admin', 1291378533, 1291378992, 1291721377, 236, 3, 0),
-(64, 'Человеко роботы', '', 'cheloveko_roboty', 'produktsiia/', 'вам, надоели, ваши, друзья, подруги, достало, ваше, окружение, закажите, человеко, робота, нас, получите, чего, хватало, надоедливых, людей, роботы, работают, законам, которые, укажите, схожи, людьми, тоже, время, обладают, механизмом, управления, подчинения', 'Вам надоели ваши друзья и подруги? Вас достало ваше окружение? Закажите человеко робота у нас, и вы получите все, чего вам не хватало от надоедливых людей! Человеко роботы работают по законам, которые укажите вы. Они схожи с людьми, но в тоже время облада', '<p><img style="float: left; margin-right: 10px; margin-top:2px" src="/uploads/images/cheloveko-roboty.jpg" alt="" width="190" height="143" />Вам надоели ваши друзья и подруги? Вас достало ваше окружение? Закажите человеко робота у нас, и вы получите все, чего вам не хватало от надоедливых людей!</p>\r\n<p>Человеко роботы работают&nbsp; по законам, которые укажите вы. Они схожи с людьми, но в тоже время обладают механизмом управления \nи подчинения вашим приказам.</p>\r\n<p>Наши новые человеко роботы обладают инновационными разговорными функциями. Они могут оказывать полноценную психологическую поддержку, вести беседу обо всем, быть хорошими советчиками и пунктами необходимых&nbsp; знаний!</p>\r\n<p>Любого человеко робота можно взять в кредит и вернуть, если он вас не устроит.</p>', '', 55, '', '', 0, 0, 0, 'publish', 'admin', 1291379033, 1291379069, 1291634370, 59, 3, 0),
-(65, 'Боевые роботы', '', 'boevye_roboty', 'produktsiia/', 'если, нужна, настоящая, мощная, защита, ndash, боевые, роботы, нужно, наши, обладают, различными, комплектациями, вооружения, кроме, базового, оружия, возможна, установка, плазменной, ультрафиолетовой, лазерной, лептонной, пушки, важно, перед, покупкой, получить, форму, galaxy', 'Если вам нужна настоящая и мощная защита – боевые роботы это то, что вам нужно! Наши боевые роботы обладают различными комплектациями вооружения. Кроме базового оружия возможна установка плазменной, ультрафиолетовой, лазерной или лептонной пушки. ВАЖ', '<p><img style="float: left; margin-right: 10px; margin-top:2px" src="/uploads/images/boeviye-roboty.jpg" alt="" width="300" height="268" />Если вам нужна настоящая и мощная защита &ndash; боевые роботы это то, что вам нужно!</p>\r\n<p>Наши боевые роботы обладают различными комплектациями вооружения. Кроме базового оружия возможна установка плазменной, ультрафиолетовой, лазерной или лептонной пушки.</p>\r\n<p>ВАЖНО! Перед \nпокупкой Вам нужно получить форму GALAXY-837,&nbsp; для удостоверения психологической уравновешенности, не судимости и т.п. Приходите в наш отдел с данной формой и мульти паспортом, мы продадим вам боевого робота, который будет служить лучше, чем любая сторожевая собака или телохранитель высшего ранга.</p>', '', 55, '', '', 0, 0, 0, 'publish', 'admin', 1291379073, 1291379097, 1291634533, 21, 3, 0),
-(66, 'Космические роботы', '', 'kosmicheskie_roboty', 'produktsiia/', 'image, robotics, выпускает, лучших, космических, роботов, нашей, галактике, дальность, полетов, составляет, более, световых, лет, скорость, полета, близка, скорости, света, космические, роботы, могут, перевозить, довольно, большие, объемы, грузов, удаленно, выполнять, различные', 'Image Robotics выпускает лучших космических роботов в нашей галактике. Их дальность полетов составляет более 10 световых лет, а скорость полета близка к скорости света. Космические роботы могут перевозить довольно большие объемы грузов, удаленно выполнять', '<p><img style="float: left; margin-right: 10px; margin-top:2px" src="/uploads/images/kosmicheskie-roboty.jpg" alt="" width="298" height="293" />Image Robotics выпускает лучших космических роботов в нашей галактике. Их дальность полетов составляет более 10 световых лет, а скорость полета близка к скорости света.</p>\r\n<p>Космические роботы могут перевозить довольно большие объемы грузов, удаленно выполнять \nразличные задания на ближних планетах.</p>\r\n<p>Если вы купите более трех роботов или приведете к нам двух своих друзей , которые станут клиентами, Ваш робот будет оборудован дополнительным сверхмощным телескопом!</p>\r\n<p>С нашей инновационной продукцией Вам подчинится космос!</p>', '', 55, '', '', 0, 0, 0, 'publish', 'admin', 1291379102, 1291379142, 1291634589, 21, 3, 0),
-(67, 'Кухонные роботы', '', 'kuhonnye_roboty', 'produktsiia/', 'наши, кухонные, роботы, сделают, всю, грязную, работу, image, robotics, заставляет, людей, забыть, мытье, посуды, уборке, кухне, готовке, закажите, блюдо, робот, сам, найдет, ингредиенты, взвесит, измельчит, продолжит, крутиться, вашего, блага, кроме', 'Наши кухонные роботы сделают всю грязную работу за Вас! Image Robotics заставляет людей забыть о мытье посуды, уборке на кухне и даже готовке. Закажите блюдо. Робот сам найдет ингредиенты, взвесит, измельчит и продолжит крутиться на кухне для вашего блага', '<p><img style="float: left; margin-right: 10px; margin-top:5px" src="/uploads/images/kuhonniye-roboty.jpg" alt="" width="280" height="236" />Наши кухонные роботы сделают всю грязную работу за Вас! Image Robotics заставляет людей забыть о мытье посуды, уборке на кухне и даже готовке.</p>\r\n<p>Закажите блюдо. Робот сам найдет ингредиенты,&nbsp; взвесит, измельчит и продолжит крутиться на кухне для вашего блага.</p>\r\n<p>Наши роботы кроме \nстандартных функций обладают мощными программами&nbsp; обучения своему мастерству. То есть, ели вы любите готовить сами, робот станет учителем и партнером.</p>\r\n<p>Если вы знаете уникальный рецепт, научите робота этому! Любая модель легко воспринимает материал и учиться на лету.</p>', '', 55, '', '', 0, 0, 1, 'publish', 'admin', 1291379159, 1291379184, 1291634767, 29, 3, 0),
-(68, 'Рабочие роботы', '', 'rabochie_roboty', 'produktsiia/', 'наши, рабочие, роботы, работают, лучше, любого, рабочего, просто, слова, нужно, вынести, мусор, перетащить, шкаф, позвольте, мужу, отдохнуть, сами, избавьте, себя, сложностей, купите, робота, который, возложит, всевозможные, функции, тяжкие, мучения, человечества', 'Наши рабочие роботы, работают лучше любого рабочего! И это не просто слова. Нужно вынести мусор? Перетащить шкаф? Позвольте мужу отдохнуть или сами избавьте себя от сложностей. Купите рабочего робота, который возложит на себя всевозможные функции и тяжкие', '<p><img style="float: left; margin-right: 10px; margin-top:5px" src="/uploads/images/rabochiye-roboty.jpg" alt="" width="200" height="160" />Наши рабочие роботы, работают лучше любого рабочего! И это не просто слова.</p>\r\n<p>Нужно вынести мусор? Перетащить шкаф? Позвольте мужу отдохнуть или сами избавьте себя от сложностей. Купите рабочего робота, который возложит на себя всевозможные функции и тяжкие мучения человечества.</p>\r\nn<p>Каждая наша продукция обладает исключительными характеристиками. Рабочие роботы не остались без внимания. Функция таджикский&nbsp; гастарбайтер поможет на автопилоте проводить строительные работы, тратя на это малое количество энергии. Таким образом, вы экономите огромное количество средств.</p>\r\n<p>С Image Robotics легко сделать жизнь проще!</p>', '', 55, '', '', 0, 0, 0, 'publish', 'admin', 1291379213, 1291379236, 1291634846, 15, 3, 0),
-(69, 'Ремонт роботов', '', 'remont_robotov', 'usluhi/', 'даже, лучшие, роботы, иногда, выходят, строя, такое, случилось, гарантийный, срок, починим, робота, любого, класса, бесплатно, приобрели, нас, гарантии, вышел, предоставим, сервис, высшего, уровня, некоторое, маленькое, вознаграждение, диагностика, проблемы, ремонт, роботов', 'Даже лучшие роботы иногда выходят из строя. И если такое случилось в гарантийный срок, мы починим робота любого класса бесплатно! Если вы приобрели робота у нас, но срок гарантии вышел, мы предоставим сервис высшего уровня за некоторое маленькое вознаграж', '<p><img style="float:left;margin-right:10px;margin-top:5px" src="/uploads/images/remont-robotov.jpg" height="216" width="150">Даже лучшие роботы иногда выходят из строя.&nbsp; И если такое случилось в гарантийный срок, мы починим робота любого класса бесплатно!</p>\n<p>Если вы приобрели робота у нас, но срок гарантии вышел, мы предоставим сервис высшего уровня за некоторое маленькое вознаграждение.</p><p>\nn</p><p>Диагностика проблемы и ремонт роботов&nbsp; проходит под средством нано техники от&nbsp; Image Robotics. Ее нельзя приобрети на свободном рынке, такие возможности есть только у нас.</p>\n<p>Диагностика любой проблемы занимает несколько секунд, а ремонт составляет не более десяти минут с момента обнаружения проблемы. Если на складе есть ресурсы.</p>', '', 56, '', '', 0, 1, 1, 'publish', 'admin', 1291379278, 1291379309, 1363612852, 80, 3, 0),
-(70, 'Апгрейд роботов', '', 'aphreid_robotov', 'usluhi/', 'нам, систематически, обращаются, постоянные, клиенты, просьбой, усовершенствовать, робота, помогаем, только, своим, работая, клиентами, других, компаний, латаем, дыры, которые, привели, неудобству, проблемам, наша, модернизация, помогает, всегда, быть, пике, науки, инновационных, технологий', 'К нам систематически обращаются постоянные клиенты с просьбой усовершенствовать их робота. Мы помогаем не только своим. Работая с клиентами других компаний, мы латаем дыры, которые привели к неудобству и проблемам. Наша модернизация помогает всегда быть н', '<p><img style="float: left; margin-right: 10px; margin-top:5px" src="/uploads/images/apgreyder-robotov.jpg" alt="" width="260" height="186" />К нам систематически обращаются постоянные клиенты с просьбой усовершенствовать их робота.</p>\r\n<p>Мы помогаем не только своим. Работая с клиентами других компаний, мы латаем дыры, которые привели к неудобству и проблемам. Наша модернизация помогает всегда быть на \nпике науки и инновационных технологий.</p>\r\n<p>Любой робот может быть усовершенствован, как программно , так и технически.</p>\r\n<p>Не бойтесь становиться лучше вместе со своим помощником! Сразу после апгрейда вы смело можете говорить, что стоите на вершине технологического прогресса и ликвидировали свое отставание! Это модно и продуктивно. И пусть остальные завидуют вашему роботу, у которого такой отличный собственник.</p>', '', 56, '', '', 0, 0, 0, 'publish', 'admin', 1291379312, 1291379338, 1291635033, 19, 3, 0),
-(71, 'Прокат роботов', '', 'prokat_robotov', 'usluhi/', 'хорошая, робототехника, стоит, довольно, приличные, деньги, покупать, других, компаний, ndash, пылесос, вместо, настоящего, робота, хочется, потому, следует, воспользоваться, нашей, услугой, прокат, роботов, нас, возможен, любого, вида, зависимости, ваших, нынешних, потребностей', 'Хорошая робототехника стоит довольно приличные деньги. Покупать у других компаний – пылесос, вместо настоящего робота не хочется. И потому, следует воспользоваться нашей услугой Прокат роботов! У нас возможен прокат любого вида роботов в зависимости', '<p><img style="float: left; margin-right: 10px; margin-top:5px" src="/uploads/images/prokat-robotov.jpg" alt="" width="220" height="165" />Хорошая робототехника стоит довольно приличные деньги. Покупать у других компаний &ndash; пылесос, вместо настоящего робота не хочется. И потому, следует воспользоваться нашей услугой &laquo;Прокат роботов&raquo;!</p>\r\n<p>У нас возможен прокат любого вида роботов в зависимости от ваших \nнынешних потребностей.</p>\r\n<p>Если вас достали, вы хотите проучить обидчиков, возьмите у нас на прокат боевого робота&nbsp; и он легко всех накажет.</p>\r\n<p>Если вам лень выполнить временные работы по дому, возьмите в прокат нашего рабочего робота с инновационной функцией таджикский гастарбайтер.</p>\r\n<p>Если вы хотите временно оставить о себе хорошее впечатление перед мужчиной или женщиной, закажите в прокат кухонного робота. Он приготовит ужин, помоет посуду и почистит вашу кухню.</p>\r\n<p>Если вам не хватает рядом нормального человека, возьмите в прокат нашего человеко робота! Он составит достойную компанию.</p>\r\n<p>К сожалению, космических роботов в прокат мы не передаем, поскольку минимальный срок проката по соотношению равен цене. Рекомендуем Вам только покупать роботов данного типа!</p>', '', 56, '', '', 0, 0, 0, 'publish', 'admin', 1291379343, 1291379392, 1291635447, 16, 3, 0),
-(72, 'Новое в мире боевых роботов', '', 'novoe_v_mire_boevyh_robotov', 'novosti/', 'наконец, закончили, усовершенствование, лептонной, пушки, создали, нее, новый, комплекс, бесперебойной, самонаводной, стрельбы, теперь, время, между, выстрелами, заметно, сократилось, разрушать, стало, проще, быстрее, также, разработали, новое, гравитонное, орудие, которым, вскоре, будет', 'Мы наконец закончили усовершенствование лептонной пушки и создали для нее новый комплекс бесперебойной самонаводной стрельбы. Теперь время между выстрелами заметно сократилось, разрушать стало проще и быстрее. Также мы разработали новое гравитонное орудие', '<p><img style="float: left; margin-right: 10px; margin-top:5px" src="/uploads/images/novoe-v-mire-boevih-robotov.jpg" alt="" width="200" height="133" />Мы наконец закончили усовершенствование&nbsp; лептонной пушки и создали для нее новый комплекс бесперебойной самонаводной стрельбы. Теперь время между выстрелами заметно сократилось, разрушать стало проще и быстрее.</p>\r\n<p>Также мы \nразработали новое гравитонное орудие, которым вскоре будет укомплектована новая партия боевых роботов.</p>\r\n<p>Если вы хотите модернизировать своего друга, напоминаем о функции &ndash; апгрейд роботов. Если вы приобретали робота у нас, то вы получите скидку 15% на усовершенствование.</p>\r\n<p>Следите за нашими новостями и Вы всегда будете в курсе самых последних событий в мире робототехники!</p>', '', 57, '', '', 0, 0, 0, 'publish', 'admin', 1291379411, 1291379439, 1291636399, 5, 3, 0),
-(73, 'День робототехники в компании Image Robotics', '', 'den_robototehniki_v_kompanii_image_robotics', 'novosti/', 'через, несколько, недель, будет, один, самых, ожидаемых, дней, году, нашей, компании, хотим, поделиться, своей, радостью, ощущением, праздника, всеми, своими, покупателями, протяжении, часов, этого, удивительного, дня, предоставляем, любые, услуги, продаем, товары', 'Через несколько недель будет один из самых ожидаемых дней в году для нашей компании. И мы хотим поделиться своей радостью и ощущением праздника со всеми своими покупателями. На протяжении всех 24 часов этого удивительного дня мы предоставляем вам любые ус', '<p><img style="float: left; margin-right: 10px; margin-top:2px" src="/uploads/images/deny-robotehniki-v-imagerobotics.jpg" alt="" width="160" height="120" />Через несколько недель будет один из самых ожидаемых дней в году для нашей компании. И мы хотим поделиться своей радостью и ощущением праздника со всеми своими покупателями.</p>\n<p>На протяжении всех 24 часов этого \nудивительного дня мы предоставляем вам любые услуги и продаем любые товары со скидкой 10%! Удивлены? Но это так!</p>\n<p>Соберите ваши желания и мечты в кулак и ждите этого знаменательного события. Купите то, о чем давно мечтали, воспользуйтесь той услугой, которая вам так необходима! Зовите друзей, подруг и знакомых и получайте дополнительный купон на скидку годовую в 3% на все дополнительные услуги нашей компании*.</p>\n<p><em>*дополнительные услуги это все услуги предоставляемые компанией кроме непосредственной продажи робототехники.</em></p>', '', 57, '', '', 0, 0, 0, 'publish', 'admin', 1291379443, 1291379484, 1291636965, 18, 3, 0),
-(74, 'Новые космические роботы станут летать быстрее, а «носить» больше!', '', 'novye_kosmicheskie_roboty_stanut_letat_bystree_a_nosit_bolshe', 'novosti/', 'рады, сообщить, удивительную, новость, благодаря, нашим, инновационным, разработкам, течение, месяца, рынке, появиться, обновленная, версия, космического, робота, обновленной, модели, будет, встроен, ускоренный, тип, двигателя, который, позволит, увеличить, скорость, очередной, шаг, скорости', 'Мы рады сообщить вам удивительную новость. Благодаря нашим инновационным разработкам в течение месяца на рынке появиться обновленная версия космического робота. В обновленной модели будет встроен ускоренный тип двигателя, который позволит увеличить скорос', '<p><img style="float: left; margin-right: 10px; margin-top:2px" src="/uploads/images/novie-kosmicheskie-roboty.jpg" alt="" width="175" height="142" />Мы рады сообщить вам удивительную новость. Благодаря нашим инновационным разработкам в течение месяца на рынке появиться обновленная версия космического робота.</\np>\n<p>В обновленной модели будет&nbsp; встроен ускоренный тип двигателя, который позволит увеличить скорость еще на 152 848 км/ч.&nbsp; Это очередной шаг к скорости света и рано или поздно мы с Вами этого добьемся.</p>\n<p>Обновление не закончилось на улучшении двигателя. Благодаря новым сплавам мы облегчили космического робота и усовершенствовали механизм грузоподъемности. Таким образом, наши роботы станут перемещать на 2 тонны больше грузов, чем прежние!</p>', '', 57, '', '', 0, 0, 0, 'publish', 'admin', 1291379494, 1291379513, 1303820817, 44, 3, 0),
-(75, 'Главный ремонтник роботов', '', 'hlavnyi_remontnik_robotov', 'vakansii/', 'претендентов, эту, высокую, должность, просим, ознакомиться, нашими, требованиями, занятость, полная, образование, высшее, робототехническое, возраст, самом, расцвете, сил, зарплата, договоримся, должностные, обязанности, условия, ремонтировать, роботов, понедельника, пятницу, требования, знание, инновационной, робототехники', 'Всех претендентов на эту высокую должность просим ознакомиться с нашими требованиями.  Занятость: полная Образование: высшее робототехническое Возраст: в самом расцвете сил Зарплата: как договоримся  Должностные обязанности  Условия: ремонтировать роботов', '<p>Всех претендентов на эту высокую должность просим ознакомиться с нашими требованиями.</p>\r\n<ul>\r\n<li>Занятость:&nbsp; полная</li>\r\n<li>Образование: высшее робототехническое</li>\r\n<li>Возраст: в самом расцвете сил</li>\r\n<li>Зарплата:&nbsp; как договоримся</li>\r\n</ul>\r\n<p>Должностные обязанности</p>\r\n<ul>\r\n<li>Условия: ремонтировать \nроботов с понедельника по пятницу&nbsp; от 8 до 17. </li>\r\n<li>Требования: знание инновационной робототехники, знание всех моделей Image Robotics и их особенностей</li>\r\n<li>Обязанности: самостоятельно ремонтировать роботов, а также управлять другими ремонтными работами.</li>\r\n</ul>\r\n<p>Дополнительная информация</p>\r\n<ul>\r\n<li>Опыт работы от года, расторопность в диагностике и решении проблемы.</li>\r\n</ul>', '', 58, '', '', 0, 0, 0, 'publish', 'admin', 1291379557, 1291379629, 0, 2, 3, 0),
-(76, 'Апгрейдер роботов', '', 'aphreider_robotov', 'vakansii/', 'связи, участившимися, заказами, апгрейд, роботов, вынуждены, расширить, штат, сотрудников, публикуя, данную, вакансию, гарантируем, максимально, плотную, занятость, высокую, зарплату, полная, образование, высшее, робототехническое, возраст, самом, расцвете, сил, зарплата, высокая, должностные, обязанности', 'В связи с участившимися заказами на апгрейд роботов, мы вынуждены расширить штат сотрудников. Публикуя данную вакансию, мы гарантируем максимально плотную занятость и высокую зарплату.  Занятость: полная Образование: высшее робототехническое Возраст: в са', '<p>В связи с участившимися заказами на апгрейд роботов, мы вынуждены расширить штат сотрудников. Публикуя данную вакансию, мы гарантируем максимально плотную занятость и высокую зарплату.</p>\r\n<ul>\r\n<li>Занятость:&nbsp; полная</li>\r\n<li>Образование: высшее робототехническое</li>\r\n<li>Возраст: в самом расцвете сил</li>\r\n<li>Зарплата:&nbsp; высокая</li>\r\n</ul>\r\nn<p>Должностные обязанности</p>\r\n<ul>\r\n<li>Условия: Работа в течение 10-16 часов в день</li>\r\n<li>Требования: знания технологий укомплектования современной робототехники, знание программ для обновления программного обеспечения роботов Image Robotics.</li>\r\n</ul>\r\n<p>Обязанности</p>\r\n<ul>\r\n<li>Проводить установку новых технических и программных элементов.</li>\r\n</ul>', '', 58, '', '', 0, 0, 0, 'publish', 'admin', 1291379639, 1291379680, 0, 2, 3, 0),
-(77, 'Менеджер роботов', '', 'menedzher_robotov', 'vakansii/', 'нашей, компании, нужен, человек, который, способен, управлять, роботами, роботизированной, техникой, занятость, совместительству, образование, высшее, робототехническое, возраст, самом, расцвете, сил, зарплата, выработки, должностные, обязанности, условия, возможность, работать, выходным, требования, знание, технологий', 'Нашей компании нужен человек, который способен управлять роботами и роботизированной техникой.  Занятость: по совместительству Образование: высшее робототехническое Возраст: в самом расцвете сил Зарплата: от выработки  Должностные обязанности:  Условия: В', '<p>Нашей компании нужен человек, который способен управлять роботами и роботизированной техникой.</p>\r\n<ul>\r\n<li>Занятость: по совместительству</li>\r\n<li>Образование: высшее робототехническое</li>\r\n<li>Возраст: в самом расцвете сил</li>\r\n<li>Зарплата:&nbsp; от выработки</li>\r\n</ul>\r\n<p>Должностные обязанности:</p>\r\n<ul>\r\n<li>Условия: Возможность работать \nпо выходным</li>\r\n<li>Требования: знание технологий руководства роботизированным процессом, знание программ &laquo;Эффективное управление роботами от Image Robotics&raquo;.</li>\r\n</ul>\r\n<p>Обязанности</p>\r\n<ul>\r\n<li>организовывать управления группами роботизированных систем покупателя, настройка слаженной работы роботов оптовых покупателей.</li>\r\n</ul>\r\n<p>Дополнительная информация:</p>\r\n<ul>\r\n<li>Опыт работы менеджером в любой сфере деятельности приветствуется.</li>\r\n</ul>', '', 58, '', '', 0, 0, 0, 'publish', 'admin', 1291379686, 1291379740, 0, 3, 3, 0),
-(78, 'В каждый дом по 4 робота!', '', 'v_kazhdyi_dom_po_4_robota', 'bloh/cheloveko_roboty/', 'развитием, роботостроения, больше, людей, приобретают, себе, несколько, типов, роботов, семью, обусловлено, тем, роботы, становятся, доступнее, старые, модели, сейчас, может, позволить, гражданин, имеющий, минимальную, заработную, плату, рады, наша, компания, вносит, свой', 'С развитием роботостроения все больше людей приобретают себе по несколько типов роботов на семью. Это обусловлено тем, что роботы становятся доступнее. Старые модели сейчас может позволить себе даже гражданин, имеющий минимальную заработную плату. Мы рады', '<p><img style="float: left; margin-right: 10px; margin-top:5px" src="/uploads/images/v-kazhdiy-dom-po-chetire-robota.jpg" alt="" width="195" height="133" />С развитием роботостроения все больше людей приобретают себе по несколько типов роботов на семью. Это обусловлено тем, что роботы становятся доступнее. Старые модели сейчас может позволить себе даже гражданин, имеющий минимальную \nзаработную плату.</p>\n<p>Мы рады, что наша компания вносит свой огромный&nbsp; вклад в обесценивание старых моделей, пополняя рынок лучшими инновационными решениями.</p>\n<p>Наша статистика показывает, что с предыдущим годом количество семей, купивших более трех роботов выросло на 37%. И это отличный результат для всего мира!</p>', '', 61, '', '', 0, 1, 0, 'publish', 'admin', 1291379768, 1291379793, 1291731038, 37, 3, 0),
-(79, 'Ускоренные системы диагностики и ремонта роботов', '', '18uskorennye_sistemy_diahnostiki_i_remonta_robotov', 'bloh/kuhonnye_roboty/', 'компания, image, robotics, совместно, imaxi, life, разработали, концептуально, новые, системы, диагностики, проблем, робототехнике, устранению, основой, решения, которому, теперь, прибегает, сообщество, имеющее, отношение, ремонту, диагностике, стал, инновационный, наносборщик, помог, разработать, наносистемы', 'Компания Image Robotics совместно с IMAXI T-Life разработали концептуально новые системы диагностики проблем в робототехнике и их устранению. Основой решения, к которому теперь прибегает все сообщество, имеющее отношение к ремонту и диагностике проблем в', '<p><img style="float: left; margin-right: 10px; margin-top:5px" src="/uploads/images/uskorenniye-sistemy-diagnostiki-robotov.jpg" alt="" width="270" height="175" />Компания Image Robotics совместно с IMAXI T-Life разработали концептуально новые системы диагностики проблем в робототехнике и их устранению.</p>\nn<p>Основой решения, к которому теперь прибегает все сообщество, имеющее отношение к ремонту и диагностике проблем в робототехнике, стал инновационный наносборщик. Наносборщик помог разработать наносистемы,&nbsp; которые участвуют во всех вышеупомянутых работах.</p>\n<p>Наши&nbsp; наносистемы , почти моментально, находят любую проблему или неполадку в робототехнике и также участвуют в микро-ремонте систем. Микро-ремонт проходит за несколько минут в отличие от раннего порога в несколько часов. Технология уже доступна на рынке и продается большим корпорациям отрасли.</p>', '', 60, '', '', 0, 1, 0, 'publish', 'admin', 1291379797, 1291379825, 1291730993, 15, 3, 0),
-(80, 'Кухонная энциклопедия, интегрированная в робота', '', 'kuhonnaia_entsiklopediia_intehrirovannaia_v_robota', 'bloh/kuhonnye_roboty/', 'первые, кухонные, роботы, обладали, возможностью, готовить, только, простые, блюда, дополненные, покупателем, теперь, имеют, памяти, рецепты, которые, были, вынесены, публику, многие, противоречат, этой, новинке, говоря, робот, приготовит, человек, берет, точности, фантазирует', 'Первые кухонные роботы обладали возможностью готовить только простые блюда или блюда дополненные покупателем. Но теперь все кухонные роботы имеют в памяти все рецепты, которые были вынесены на публику. Многие противоречат этой новинке, говоря, что робот н', '<p><img style="float: left; margin-right: 10px; margin-top:5px" src="/uploads/images/kuhonnaya-enziklopediya-integr-v-robota.jpg" alt="" width="240" height="177" />Первые кухонные роботы обладали возможностью готовить только простые блюда или блюда дополненные покупателем. Но теперь все кухонные роботы имеют в памяти все рецепты, которые \nбыли вынесены на публику.</p>\n<p>Многие противоречат этой новинке, говоря, что робот не приготовит, так как человек. Он берет все в точности, не фантазирует и не добавляет ингредиенты по вкусу.&nbsp; Но мы утверждаем, что такой прогресс необходим.</p>\n<p>Создавая инновационных кухонных роботов, мы не удаляем человека из процесса готовки, а предоставляем ему помощника!</p>', '', 60, '', '', 0, 1, 3, 'publish', 'admin', 1291379842, 1291379866, 1291730975, 269, 3, 0),
-(83, 'homepage', '', 'homepage', '', 'страница, стадии, разработки', 'Страница на стадии разработки. Страница на стадии разработки.', '<p>Страница на стадии разработки.</p>', '<p><span>Страница на стадии разработки.</span></p>', 0, 'homepage', '', 0, 0, 0, 'publish', 'admin', 1388067839, 1388067839, 0, 0, 3, 0);
+(85, 'Налоговые консультации', '', 'nalogovye-konsultatsii', 'uslugi/', '', 'Налоог  обязательный, индивидуально безвозмездный платёж, принудительно взимаемый органами государственной власти различных уровней с организаций и физических лиц в целях финансового обеспечения деятельности государства и (или) муниципальных образований.', '<p><span>Сегодня ни одно предприятие не обходится без минимальной налоговой консультации. Наша компания предлагает полный спектр услуг в плане правильного построения и составления налоговых обложений, очередности их выплачивания, а также оценивания рисков.</span></p>', '<p>Наша юридическая фирма проводит налоговые консультации по налоговому законодательству для физических и для юридических лиц. Организациям предоставляются выгодные условия сотрудничества при возникновении налоговых споров.<br /> <br />Юридические консультации по налогообложению, проводятся профессиональными адвокатами в Киеве, которые имеют опыт как в консультировании по налоговым вопросам, так и опыт в досудебном и судебном разрешении налоговых споров. Консультирование по налогам всегда узкоспециализированная сфера, поэтому задействуется адвокат по определенному правовому направлению, например: консультация по возмещению налога на добавленную стоимость, проводит один адвокат, а по консультацию по обжалованию налогового уведомления-решения, другой налоговый юрист. Такой подход, существенно повышает качество юридической консультации за счет использования опыта адвоката в специфических налоговых спорах.<br /> <br />Обратившись в нашу юридическую компанию за юридической консультацией по налогообложению, мы всегда подтвердим на практике грамотную квалификацию налогового адвоката. Если Вы ищите качественную юридическую консультацию по налогам, вы двигаетесь в нужном направлении. Мы поможем получить гарантированно квалифицированную помощь адвокатов по различным вопросам налогового права, начиная от выезда адвоката на предприятие при проведении налоговой проверки до разрешения налогового спора в судебном порядке.</p>', 62, '', '', 9, 0, 0, 'publish', 'Administrator', 1428164860, 1428164860, 1436456492, 38, 3, 0),
+(86, 'Услуги адвоката', '', 'uslugi-advokata', 'uslugi/', '', 'Адвокат (лат. advocatus  от advoco  приглашаю)  лицо, профессией которого является оказание квалифицированной юридической помощи физическим лицам (гражданам, лицам без гражданства) и юридическим лицам (организациям), в том числе защита их интересов и прав', '<p><span>У Вас возникли правовые проблемы и вам нужна юридическая поддержка? Обратитесь к квалифицированному адвокату. Наш&nbsp;город включает в себя достаточно разнообразный рынок юридических услуг, которые предоставляют квалифицированные адвокаты. Но довольно сложно найти опытного юриста, знающего свое дело и разбирающегося в действующем законодательстве.&nbsp;</span></p>\n<p></p>', '<p>Впервые адвокаты появились в Древнем Риме. Как отмечал русский юрист и историк права польского происхождения Е. В. Васьковский, &laquo;&hellip; первыми юристами в Риме были патроны. В лице их совмещались две профессии: юрисконсультов и адвокатов&raquo;. Долгое время услуги адвоката выполняли ораторы, которые часто не были знатоками права.</p>\n<p>Цицерон посвятил адвокатам, плохо разбирающимся в правовых вопросов, немало едких слов. Адвокатура республиканского периода Древнего Рима была свободной профессией и никакого корпоративного устройства не имела. Корпорация профессиональных защитников в суде сформировалась в Риме в эпоху Империи, то есть до нашей эры.</p>\n<p>Документально зафиксированная коллегия юристов-защитников формировалась на основе хорошо известных в позднейшие времена принципов: требовалось быть занесённым в матрикулы (официальный список лиц с определённым уровнем доходов) и успешно сдать испытания (экзамены) по праву. Устройство адвокатуры, сложившееся в эпоху Империи, было классическим. Оно стало основой всех последующих видоизменений адвокатуры, вплоть до новейшего времени.</p>', 62, '', '', 7, 0, 0, 'publish', 'Administrator', 1428164894, 1428164894, 1436456711, 319, 3, 0),
+(87, 'Контакты', '', 'kontakty', '', 'контакты', 'Контакты', '<h3>Телефон горячей линии</h3>\n<p>8&nbsp;(800) 269-12-42</p>\n<h3><span>Телефоны нашего офиса</span></h3>\n<p><span>(044) 269-12-42</span></p>\n<p><span>(044) 269-12-43</span></p>\n<h3>Пишите нам на e-mail</h3>\n<p><span></span></p>\n<p>info@businessimage.com</p>\n<h3><span>Адрес нашего офиса</span></h3>\n<p>Минск, ул. Красочная 22а</p>', '', 0, '', '', 6, 0, 0, 'publish', 'Administrator', 1428165320, 1428165320, 1436521040, 121, 3, 0),
+(89, 'Объективность как одна из самых важных составляющих', '', 'obektivnost-kak-odna-iz-samyh-vazhnyh-sostavliaiushchih', 'blog/biznes/', 'марта, года, архиве, электронных, препринтов, появилась, статья, хартмана, hartman, коллегами, посвященная, открытию, четырех, транзитных, планет, три, них, являются, горячими, юпитерами, одна, ndash, горячим, сатурном, hat, gsc, слегка, проэволюционировавшая, звезда, спектрального', '16 марта 2015 года в Архиве электронных препринтов появилась статья Дж. Хартмана (J. D. Hartman) с коллегами, посвященная открытию еще четырех транзитных планет. Три из них являются горячими юпитерами, еще одна  горячим сатурном. HAT-P-50 (GSC 0787-00340)', '<p><span>Эффективность принимаемых решений можно оценить только спустя какое-то время, и нередко нельзя точно определить, что явилось причиной улучшений или, наоборот,&nbsp;негативных изменений.</span></p>', '<p><img src="/uploads/images/articles/chair-designer-desk-4927.jpg" alt="" width="900" height="460" /></p>\n<p>Обычно под ненужной работой подразумевается &laquo;мы это могли сделать сами&raquo;. Ненужность также заключается в том, и это особенность самого консалтинга, что результаты работы консультантов зачастую сразу невидны. Эффективность принимаемых решений можно оценить только спустя какое-то время, и нередко нельзя точно определить, что явилось причиной улучшений. Руководству предприятия часто кажется, что это оно само смогло скорректировать и улучшить ситуацию, а консультанты здесь ни причем. В общем, это вопрос больше исторический, чем риторический.</p>\n<p>Не так&nbsp;далеки те времена, когда бизнес в нашей стране заключался в приобретении и наращивании активов и их последующей перепродаже. Некоторыми предприятиями услуги консалтинга по большому счету использовались как инструмент &laquo;отмывания&raquo; денег. Вот, типа, пришли консультанты, нарисовали бизнес-процессы за кругленькую сумму и ушли. Никому эти бизнес-процессы не нужны, они так и остались на бумаге, деньги &laquo;распилены&raquo; &ndash; все счастливы.</p>\n<p>С другой стороны (и это продолжается до сих пор) многие предприятия приглашают консультантов с целью &laquo;это модно&raquo; или для возможности помахать флагом (особенно, когда приглашают какую-нибудь западную и широкоизвестную компанию) - &laquo;у нас поработали консультанты, нарисовали процессы, а значит мы на мировом уровне&raquo;. В итоге получается забавная картина, когда говорят о бизнес-процессах, многие руководители представляет себе толстенную (и надо сказать дорогую) пачку бумаги с нарисованными квадратиками и стрелочками. Но ведь бизнес-процессы это не квадратики на бумаге, это реально работающие процессы на предприятии. Дальше нечестность порождает еще большую нечестность, у консультантов в голове крутятся доллары, бессмысленность и ненужность работы, и в итоге пошел процесс &laquo;нужно побольше придумать себе работы и побольше взять денег&raquo;. В итоге, получается, что мощный инструмент бизнес-консалтинга используется абсолютно не по назначению.</p>\n<p></p>', 67, '', '', 5, 1, 3, 'publish', 'Administrator', 1429529033, 1429529033, 1436527746, 198, 3, 0),
+(90, 'Не откладывайте запуск лучших бизнес-идей', '', 'ne-otkladyvaite-zapusk-luchshih-biznes-idei', 'blog/biznes/', 'изучение, планетных, систем, звезд, различной, массы, находящихся, разных, стадиях, эволюции, позволяет, глубже, понимать, весь, комплекс, процессов, планетообразования, важной, частью, подобных, исследований, является, поиск, планет, промежуточной, массой, солнечных, будучи, главной, последовательности', 'Изучение планетных систем у звезд различной массы и находящихся на разных стадиях эволюции позволяет глубже понимать весь комплекс процессов планетообразования. Важной частью подобных исследований является поиск и изучение планет у звезд промежуточной мас', '<p>В прошлом году предприниматель и специалист по маркетингу Ной Каган бросил вызов самому себе, запустив бизнес и заработав первые $1000 в течение 24 часов. Тем самым он хотел доказать тот факт, что нет ни единой причины не начать свое предприятие именно сегодня.</p>', '<p><img src="/uploads/images/articles/chair-designer-desk-4929.jpg" alt="" width="900" height="460" /></p>\n<p>В прошлом году предприниматель и специалист по маркетингу Ной Каган бросил вызов самому себе, запустив бизнес и заработав первые $1000 в течение 24 часов. Тем самым он хотел доказать тот факт, что нет ни единой причины не начать свое предприятие именно сегодня. Используя только домен, наскоро созданную landing page и привлеченное к проекту внимание, Каган удивил скептиков и основал прибыльный стартап еще до того, как создал свой первый продукт.</p>\n<p>Лучшие бизнес идеи имеют свойство видоизменяться вместе с бизнес-ландшафтом, об этом стоит помнить. Чтобы быть успешным, не всегда следует оставаться упрямым. Потребуется мобилизация всех запасов смелости для отказа от первичного плана в пользу роста.</p>\n<p>Многие решения предпринимателей могут казаться со стороны безрассудными. Например, оффлайн-ритейлер Amerisleep в один момент полностью отказался от реальных магазинов, сделав ставку на электронную коммерцию. Руководство решило, что лучшие бизнес идеи могут быть воплощены в жизнь в контексте интернета. Потребители и конкуренты видели в этом необоснованный риск и отступление с занятых позиций. Жертвуя каналом сбыта, компания в то же время сбросила оковы территориальных ограничений, а также замедляющие рост арендные выплаты. Помните, стабильность и выгода в краткосрочной перспективе &mdash; главные враги развития и масштабирования бизнеса.</p>', 67, '', '', 4, 1, 2, 'publish', 'Administrator', 1423830381, 1423830381, 1436527719, 35, 3, 0),
+(92, 'Андрей Павличенко', '', 'andrei-pavlichenko', 'klienty-o-nas/', 'компания, показала, себя, надежного, партнера, вовремя, были, сделаны, запланированные, работы, организованы, рекламные, кампании, чувствуется, профессионализм', 'Компания показала себя как надежного партнера, вовремя были сделаны все запланированные работы и организованы рекламные кампании, чувствуется профессионализм', 'Компания показала себя как надежного партнера, вовремя были сделаны все запланированные работы и организованы рекламные кампании, чувствуется профессионализм', '', 66, '', '', 3, 0, 0, 'publish', 'Administrator', 1429362249, 1429362249, 1436386855, 0, 3, 0),
+(93, 'Артур Рудковский', '', 'artur-rudkovskii', 'klienty-o-nas/', 'выражаю, благодарность, компании, реализацию, проекта, повышению, эффективности, бизнес, процессов, нашей, проектированию, новой, организационной, структуры', 'Выражаю благодарность компании за реализацию проекта по повышению эффективности бизнес-процессов в нашей компании и проектированию новой организационной структуры.', '<p>Выражаю благодарность компании за реализацию проекта по повышению эффективности бизнес-процессов в нашей компании и проектированию новой организационной структуры.</p>', '', 66, '', '', 2, 0, 0, 'publish', 'Administrator', 1429362954, 1429362954, 1429376272, 3, 3, 0),
+(84, 'Бизнес-консалтинг', '', 'business-consulting', 'uslugi/', '', 'Бизнес-консалтинг  вид услуг, связанный с подготовкой рекомендаций по достижению поставленных целей в экономической деятельности. Бизнес-консалтинг может включать в себя не только консультационную поддержку, но и саму реализацию управленческих решений. Та', '<p>Бизнес-консалтинг &ndash; вид услуг, связанный с подготовкой рекомендаций по достижению поставленных целей в экономической деятельности. Бизнес-консалтинг может включать в себя не только консультационную поддержку, но и саму реализацию управленческих решений.</p>', '<p>Сообщения для потребителей отправляются бизнесом по традиционным каналам в надежде быть услышанным. Интернет-маркетинг же инициирует постоянный диалог между компаниями и клиентами. При этом охват собеседников может быть по-настоящему широким, но, говоря о качественном составе аудитории, следует отметить тот факт, что не все ее сегменты доступны в рамках цифровых коммуникаций. Кроме того, далеко не каждая группа пользователей интернет является платежеспособной, а, значит, теряется контакт с людьми, представляющими наибольший интерес для бизнеса. Таким образом, конечных пользователей многих брендов до сих пор можно достичь лишь традиционными методами, какими бы технически устаревшими те не были.</p>\n<p>Цифровой маркетинг динамичен, он характеризуется высокой скоростью доставки любых видов контента. Аудитория в мгновение ока может получить информацию, представленную в текстовом или графическом виде. К тому же, эффективность коммуникации может быть измерена в режиме реального времени, что позволяет очень быстро адаптироваться в соответствие с малейшими изменениями для улучшения результатов.</p>', 62, '', '', 11, 0, 0, 'publish', 'Administrator', 1428164555, 1428164555, 1436456692, 66, 3, 0),
+(109, 'Консультирование по управлению компьютерной структурой', '', 'konsultirovanie-po-upravleniiu-kompiuternoi-strukturoi', 'blog/ekonomika/', 'марта, архиве, электронных, препринтов, появилась, статья, посвященная, итогам, мониторинга, наблюдательной, площадки, кампания, который, проводился, мая, августа, года, обнаружено, транзитных, кандидатов, звезды, прошли, процедуру, валидации, статистического, подтверждения, причем, ndash, впервые, достоверность', '26 марта в Архиве электронных препринтов появилась статья, посвященная итогам мониторинга 1-й наблюдательной площадки (Кампания 1), который проводился с 30 мая по 21 августа 2014 года. Обнаружено 36 транзитных кандидатов у 31 звезды. 18 кандидатов прошли', '<p><span>Стремительный прогресс в области информационных технологий привел к тому, что они прочно вошли в нашу повседневную жизнь.&nbsp;</span><span>Сложно представить область человеческой деятельности, где бы информационные технологии не использовались в той или иной мере.&nbsp;</span></p>', '<p><img src="/uploads/images/articles/chair-designer-desk-4936.jpg" alt="" width="900" height="460" /></p>\n<p>Стремительный прогресс в области информационных технологий привел к тому, что они прочно вошли в нашу повседневную жизнь.&nbsp;Сложно представить область человеческой деятельности, где бы информационные технологии не использовались в той или иной мере.&nbsp;От того насколько квалифицированно решаются задачи в области ИТ напрямую зависит успешность и конкурентоспособность бизнеса.&nbsp;В наше время лавинообразного роста предложений на рынке ИТ услуг, появления большого колличества программных продуктов, технических решений от именитых так и не очень производителей зачастую приводит непосвященного в состояние полной неразберихи.&nbsp;Пытаясь принять решение, перед руководителем предприятия зачастую встают вопросы с чего начать,&nbsp;как делать&nbsp;и&nbsp;кому делать?<br /><br />Эти и многие другие вопросы возникают не только у начинающих руководителей малых и средних предприятий, но и у куда более опытных их коллег.&nbsp;Хорошо если рядом есть доверенный профессионал, который поможет советом и даст ответы на насущные вопросы квалифицированно и понятно.&nbsp;Наши консультанты готовы помочь вам. Имея многолетний практический опыт в предметных областях, предлагаем выверенные временем решения.<br /><br />Наша компания&nbsp;осуществляет консультирование предприятий по вопросам управления компьютерной структурой, автоматизации бизнес-процессов, выбора программных, аппаратных платформ и поставщиков оборудования.&nbsp;На основе многолетнего опыта работы предлагаем выверенные временем решения.</p>', 69, '', '', 0, 1, 3, 'publish', 'Administrator', 1427887795, 1427887795, 1436527614, 154, 3, 0),
+(110, 'Главная вещь, которая стоит между вами и успехом', '', 'glavnaia-veshch-kotoraia-stoit-mezhdu-vami-i-uspehom', 'blog/ekonomika/', 'марта, года, архиве, электронных, препринтов, появилась, статья, луиджи, манчини, luigi, mancini, коллегами, посвященная, открытию, двух, новых, экзопланет, hats, подавляющее, большинство, других, обнаруженных, наземными, транзитными, обзорами, обе, планеты, являются, горячими, юпитерами', '12 марта 2015 года в Архиве электронных препринтов появилась статья Луиджи Манчини (Luigi Mancini) с коллегами, посвященная открытию двух новых экзопланет HATS-13 b и HATS-14 b. Как и подавляющее большинство других экзопланет, обнаруженных наземными транз', '<p>Чтобы начать бизнес, нужно сделать очень много действительно важных вещей: исследовать рынок, найти целевую аудиторию, определить ее&nbsp;потребности, разработать удовлетворяющий их продукт, продумать маркетинг, посчитать бюджет.</p>', '<p><img src="/uploads/images/articles/chair-designer-desk-4928.jpg" alt="" width="900" height="460" /></p>\n<p>Мало кто был способен настолько метко формулировать великие мысли, как Генри Форд (Henry Ford), который подметил: &laquo;Верите вы, что сможете, либо верите, что не сможете &ndash; вы правы&raquo;. Kюди не пробуют! Многие талантливые и подающие надежды бизнесмены в самом начале своего пути не добиваются успеха, потому что не верят в свои силы и боятся рисковать. Предпосылки могут быть самые разные:&nbsp;Затянувшиеся размышления, после которых не остается сил &laquo;нажать на курок&raquo;, то есть начать действовать. Консервативные родственники, друзья или &laquo;советчики&raquo;, которые боятся сделать это сами и &laquo;предупреждают&raquo; других. Слишком долгая подготовка, которая не дает желаемого результата и дает преимущество тем, кто действует.</p>\n<p>Если у вас есть идея &mdash; реализуйте ее как можно скорее и с минимальными денежными вложениями. И наблюдайте за происходящим. Возможно, вы поймете, что на правильном пути. В большинстве случаев этот этап показывает, что нужно изменить и над чем поработать, чтобы развиваться в правильном направлении. Это естественно &mdash; и через это проходят все. И даже если у вас не получилось &mdash; в этом нет никакой катастрофы, ведь вы минимизировали свои затраты. Поэтому у вас еще должно остаться достаточно сил и средств на новые попытки.</p>\n<p>Главное препятствие к вашему успеху &mdash; страх. Чтобы добиться успеха в новом бизнесе, не бойтесь идти на риск. У баскетболистов и хоккеистов есть выражение: &laquo;Ты промахиваешься в 100% случаев, когда не пробуешь&raquo;. Думаем, оно лучше всего передает смысл нашего сегодняшнего материала. Действуйте!</p>', 69, '', '', 1, 1, 0, 'publish', 'Administrator', 1426335738, 1426335738, 1436527679, 25, 3, 0),
+(129, 'Контакти', '', 'kontakty', '', '', '', '<h3>Телефон гарячої лінії</h3>\n<p>8&nbsp;(800) 269-12-42</p>\n<h3><span>Телефони нашого&nbsp;офісу</span></h3>\n<p><span>(044) 269-12-42</span></p>\n<p><span>(044) 269-12-43</span></p>\n<h3>Пишіть нам на e-mail</h3>\n<p>info@businessimage.com<br /><span></span></p>\n<h3><span>Адреса нашого офісу</span></h3>\n<p>Мінськ, вул. Барвиста 22а</p>', '', 0, '', '', 0, 0, 0, 'publish', 'Administrator', 1428165320, 1428165320, 1436777787, 4, 32, 87),
+(130, 'Послуги адвоката', '', 'uslugi-advokata', 'uslugi/', '', '', '<p>У Вас виникли правові проблеми і вам потрібна юридична підтримка? Зверніться до кваліфікованого адвоката. Наше місто включає в себе досить різноманітний ринок юридичних послуг, які надають кваліфіковані адвокати. Але досить складно знайти досвідченого юриста, який знає свою справу і розбирається в чинному законодавстві.</p>', '<p>Вперше адвокати з''явилися в Стародавньому Римі. Як зазначав російський юрист і історик права польського походження Е. В. Васьковський, &laquo;... першими юристами в Римі були патрони. В особі їх поєднувалися дві професії: юрисконсультів і адвокатів &raquo;. Довгий час послуги адвоката виконували оратори, які часто вже не були знавцями права.</p>\n<p>Цицерон присвятив адвокатам, погано розбирається в правових питань, чимало їдких слів. Адвокатура республіканського періоду Стародавнього Риму була вільною професією і ніякого корпоративного пристрою не мала. Корпорація професійних захисників у суді сформувалася в Римі в епоху Імперії, тобто до нашої ери.</p>\n<p>Документально зафіксована колегія юристів-захисників формувалася на основі добре відомих в пізніші часи принципів: вимагалося бути занесеним в матрикули (офіційний список осіб з певним рівнем доходів) та успішно скласти випробування (іспити) по праву. Пристрій адвокатури, що склалося в епоху Імперії, було класичним. Воно стало основою всіх подальших видозмін адвокатури, аж до новітнього часу.</p>', 62, '', '', 0, 0, 0, 'publish', 'Administrator', 1428164894, 1428164894, 1436779421, 12, 32, 86),
+(131, '', NULL, 'uslugi-advokata', 'uslugi/', NULL, NULL, NULL, '', 62, '', '', 0, 0, 0, 'publish', 'Administrator', 1428164894, 1428164894, 0, 3, 33, 86),
+(132, 'Податкові консультації', '', 'nalogovye-konsultatsii', 'uslugi/', '', 'Податок - обов''язковий, індивідуально безвідплатний платіж, примусово стягується органами державної влади різних рівнів з організацій і фізичних осіб з метою фінансового забезпечення діяльності держави і (або) муніципальних утворень. Податки бувають офіці', '<p>Cьогодні жодне підприємство не обходиться без мінімальної податкової консультації. Наша компанія пропонує повний спектр послуг в плані правильної побудови і складання податкових обкладань, черговості їх виплачування, а також оцінювання ризиків.</p>', '<p>Наша юридична фірма проводить податкові консультації з податкового законодавства для фізичних і для юридичних осіб. Організаціям надаються вигідні умови співпраці при виникненні податкових спорів.</p>\n<p>Юридичні консультації з оподаткування, проводяться професійними адвокатами в Києві, які мають досвід як у консультуванні з податкових питань, так і досвід в досудовому та судовому вирішенні податкових спорів. Консультування з податків завжди вузькоспеціалізована сфера, тому задіюється адвокат по певному правовому напрямку, наприклад: консультація з відшкодування податку на додану вартість, проводить один адвокат, а по консультацію щодо оскарження податкового повідомлення-рішення, інший податковий юрист. Такий підхід, істотно підвищує якість юридичної консультації за рахунок використання досвіду адвоката в специфічних податкових суперечках.</p>\n<p>Звернувшись в нашу юридичну компанію за юридичною консультацією з оподаткування, ми завжди підтвердимо на практиці грамотну кваліфікацію податкового адвоката. Якщо Ви шукайте якісну юридичну консультацію з податків, ви рухаєтеся в потрібному напрямку. Ми допоможемо отримати гарантовано кваліфіковану допомогу адвокатів з різних питань податкового права, починаючи від виїзду адвоката на підприємство при проведенні податкової перевірки до дозволу податкового спору в судовому порядку.</p>', 62, '', '', 0, 0, 0, 'publish', 'Administrator', 1428164860, 1428164860, 1436779320, 5, 32, 85),
+(136, 'Не відкладайте запуск кращих бізнес-ідей', '', 'ne-otkladyvaite-zapusk-luchshih-biznes-idei', 'blog/biznes/', '', '', '<p>Торік підприємець і фахівець з маркетингу Ной Каган кинув виклик самому собі, запустивши бізнес і заробивши перші $ 1000 протягом 24 годин. Тим самим він хотів довести той факт, що немає жодної причини не почати своє підприємство саме сьогодні.</p>', '<p><img src="/uploads/images/articles/chair-designer-desk-4929.jpg" alt="" width="900" height="460" /></p>\n<p>Торік підприємець і фахівець з маркетингу Ной Каган кинув виклик самому собі, запустивши бізнес і заробивши перші $ 1000 протягом 24 годин. Тим самим він хотів довести той факт, що немає жодної причини не почати своє підприємство саме сьогодні. Використовуючи тільки домен, нашвидку створену landing page і притягнуте до проекту увагу, Каган здивував скептиків і заснував прибутковий стартап ще до того, як створив свій перший продукт.</p>\n<p>Кращі бізнес ідеї мають властивість видозмінюватися разом з бізнес-ландшафтом, про це варто пам''ятати. Щоб бути успішним, не завжди слід залишатися впертим. Буде потрібно мобілізація всіх запасів сміливості для відмови від первинного плану на користь зростання.</p>\n<p>Багато рішень підприємців можуть здаватися з боку безрозсудними. Наприклад, оффлайн-рітейлер Amerisleep в один момент повністю відмовився від реальних магазинів, зробивши ставку на електронну комерцію. Керівництво вирішило, що кращі бізнес ідеї можуть бути втілені в життя в контексті інтернету. Споживачі і конкуренти бачили в цьому необгрунтований ризик і відступ із зайнятих позицій. Жертвуючи каналом збуту, компанія в той же час скинула окови територіальних обмежень, а також сповільнюють ріст орендні виплати. Пам''ятайте, стабільність і вигода в короткостроковій перспективі - головні вороги розвитку і масштабування бізнесу.</p>', 67, '', '', 0, 0, 0, 'publish', 'Administrator', 1423830381, 1423830381, 1436776826, 0, 32, 90),
+(133, 'Артур Рудковський', '', 'artur-rudkovskii', 'klienty-o-nas/', '', '', '<p>Висловлюю подяку компанії за реалізацію проекту з підвищення ефективності бізнес-процесів в нашій компанії і проектування нової організаційної структури.</p>', '', 66, '', '', 0, 0, 0, 'publish', 'Administrator', 1429362954, 1429362954, 1436777676, 1, 32, 93),
+(134, 'Андрій Павличенко', '', 'andrei-pavlichenko', 'klienty-o-nas/', '', '', '<p>Компанія показала себе як надійного партнера, вчасно були зроблені всі заплановані роботи і організовані рекламні кампанії, відчувається професіоналізм</p>', '', 66, '', '', 0, 0, 0, 'publish', 'Administrator', 1429362249, 1429362249, 1436386848, 1, 32, 92),
+(135, '', NULL, 'andrei-pavlichenko', 'klienty-o-nas/', NULL, NULL, NULL, '', 66, '', '', 0, 0, 0, 'publish', 'Administrator', 1429362249, 1429362249, 0, 0, 33, 92),
+(121, 'Оптимизация налогов и управление налоговыми рисками', '', 'optimizatsiia-nalogov-i-upravlenie-nalogovymi-riskami', 'blog/', 'марта, архиве, электронных, препринтов, появилась, статья, посвященная, итогам, мониторинга, наблюдательной, площадки, кампания, который, проводился, мая, августа, года, обнаружено, транзитных, кандидатов, звезды, прошли, процедуру, валидации, статистического, подтверждения, причем, ndash, впервые, достоверность', '26 марта в Архиве электронных препринтов появилась статья, посвященная итогам мониторинга 1-й наблюдательной площадки (Кампания 1), который проводился с 30 мая по 21 августа 2014 года. Обнаружено 36 транзитных кандидатов у 31 звезды. 18 кандидатов прошли', '<p>Реалии нашего бизнеса таковы, что стремление к снижению налоговой нагрузки присуще практически каждому предприятию, независимо от рода и географии его деятельности. Но почему при этом не использовать легальные способы оптимизации налогообложения?&nbsp;</p>', '<p><img src="/uploads/images/articles/woman-typing-writing-windows-4.jpg" alt="" width="900" height="460" /></p>\n<p>Как правило, общение с контролирующими органами не всегда является удовольствием для бухгалтеров или руководителей компаний. Почему так? Потому, что представитель налоговой инспекции приходит для того, чтобы найти ошибки в ведении бухгалтерского или налогового учета, а причина возникновения ошибки &ndash; случайно или специально &ndash; для налоговиков не имеет значения.</p>\n<p>Реалии нашего бизнеса таковы, что стремление к снижению налоговой нагрузки присуще практически каждому предприятию, независимо от рода и географии его деятельности. Но почему при этом не использовать легальные способы оптимизации налогообложения? Налоговая оптимизация &ndash; это легитимное, эффективное налоговое планирование начислений и уплат в бюджет. Использование легальной оптимизации налогов позволит избежать множества проблем и негативных последствий.</p>\n<p>Для того, чтобы правильно использовать методы минимизации налогов, следует ориентироваться на такие пункты налогового планирования, которые позволят составить индивидуальные схемы оптимизации налогообложения. На российском рынке можно встретить много различных предложений об оказании налоговых услуг. Но большинство из них помогают устранить только часть проблем, связанных с налогами. Поэтому необходимо обращаться к экспертам, которые комплексно подойдут к решению данной задачи.</p>', 64, '', '', 1, 1, 3, 'publish', 'Administrator', 1427887795, 1427887795, 1436527811, 119, 3, 0);
+INSERT INTO `content` (`id`, `title`, `meta_title`, `url`, `cat_url`, `keywords`, `description`, `prev_text`, `full_text`, `category`, `full_tpl`, `main_tpl`, `position`, `comments_status`, `comments_count`, `post_status`, `author`, `publish_date`, `created`, `updated`, `showed`, `lang`, `lang_alias`) VALUES
+(124, 'Про компанию', '', 'pro-kompaniiu', '', 'heading, lorem, ipsum, dolor, sit, amet, consectetuer, adipiscing, elit, aenean, commodo, ligula, eget, massa, cum, sociis, natoque, penatibus, text, level, semantics, this, should, hidden, all, bsysrowsers, apart, from, the, element', 'Heading 1 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et m. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa', '<p>Компания&nbsp;<span>Business </span><span>Image&nbsp;</span>является передовым экспертом в области повышения эффективности ведения бизнеса и управления проектами. Мы разрабатываем и внедряем маркетинговые кейсы, предоставляя уникальное качество услуг бизнес консалтинга. Мы&nbsp;обладаем&nbsp;навыками системного мышления и многолетним опытом в реализации маркетинговых проектов.&nbsp;</p>\n<p>Нашей специализацией являются&nbsp;информационные технологии в связке с уникальными маркетинговыми инструментами. Мы полностью включаемся в проект и берем на себя его комплексное сопровождение, а не просто раздаем умные советы.&nbsp;</p>', '<p>Разработка стратегий и внедрение проектов по развитию бизнеса, повышению эффективности и автоматизации процессов&nbsp;&mdash; наш профиль.&nbsp;Превращаем свой опыт и знания в вашу прибыль&nbsp;и&nbsp;будем для вас надежным партнером в сфере услуг бизнес-консалтинга!</p>\n<h2>Специализация</h2>\n<p>Информационные технологии в связке с уникальными маркетинговыми инструментами являются нашим главным вектором. Наша отличительная черта &mdash; реализация проектов на основе методов процессного консалтинга, т.е. мы полностью включаемся в проект и берем на себя его комплексное сопровождение, а не просто раздаем умные советы. Мы действуем исключительно в рамках интереса клиента, используя только рабочие и эффективные решения.</p>\n<p>Компания Business Image&nbsp;является передовым экспертом в области повышения эффективности ведения бизнеса и управления проектами. Мы разрабатываем и внедряем передовые маркетинговые и ИТ кейсы, предоставляя уникальное качество услуг бизнес консалтинга. Мы &mdash; команда профессионалов, обладающая навыками системного мышления и многолетним опытом в реализации информационно-технических и маркетинговых проектов. Основная цель, которую мы преследуем &mdash; развитие бизнеса и достижение новых высот наших клиентов, путем разработки и внедрения сложных маркетинговых стратегий и передовых систем автоматизации.&nbsp;</p>\n<h2>Наши&nbsp;возможности</h2>\n<p>Если вы еще размышляете, прибегать к услугам нашей компании, обратиться к конкурентам, или же выполнять задачи собственными силами, мы можем продемонстрировать вам&nbsp;краткий перечень аргументов, которые позволят вам сделать правильный выбор.</p>\n<h4>Эффективные решения</h4>\n<p>Безусловно, наши решения отличаются свежестью и современностью, но в первую очередь они являются эффективными и приносящими реально ощутимую выгоду. Проверенные многолетним опытом и критическими ситуациями,&nbsp;наши решения помогут найти выход в любом положении и, кроме того, обеспечит устойчивое положение вашей компании в будущем.</p>\n<h4>Специалисты</h4>\n<p>Наши специалисты обладают особыми знаниями и навыками, которые практически невозможно получить выполняя задачи в рамках одной компании.&nbsp;Для реализации поставленной задачи вам требуется либо отвлечь Вашего штатного специалиста от текущих задач, либо нанять нового. Мы же готовы тратить столько времени, сколько необходимо, ни больше, ни меньше.</p>\n<h4>Консультанты</h4>\n<p>Наши консультанты всегда являются независимыми объективными экспертами, дающими свежий взгляд со стороны и остающимися беспристрастными в любой ситуации.&nbsp;Консультанты нашей компании, конечно, смогут подержать вас и выслушать, но их решение будет основано только на профессионализме и опыте, поэтому будьте готовы к решениям, которые не совсем отвечают вашим ожиданиям.&nbsp;</p>', 0, '', '', 0, 0, 0, 'publish', 'Administrator', 1433755063, 1433755063, 1436437101, 384, 3, 0),
+(122, 'Kepler spacecraft', '', 'business-consulting', 'uslugi/', '', '', '<p>Kepler is a space observatory launched by NASA to discover Earth-like planets orbiting other stars. The spacecraft, named after the Renaissance astronomer Johannes Kepler, was launched on March 7, 2009.</p>', '<p>Designed to survey a portion of our region of the Milky Way to discover dozens of Earth-size extrasolar planets in or near the habitable zone and estimate how many of the billions of stars in our galaxy have such planets, Kepler''s sole instrument is a photometer that continually monitors the brightness of over 145,000 main sequence stars in a fixed field of view. These data are transmitted to Earth, then analyzed to detect periodic dimming caused by extrasolar planets that cross in front of their host star.</p>\n<p>Kepler is part of NASA''s Discovery Program of relatively low-cost, focused primary science missions. The telescope''s construction and initial operation were managed by NASA''s Jet Propulsion Laboratory, with Ball Aerospace responsible for developing the Kepler flight system. The Ames Research Center is responsible for the ground system development, mission operations since December 2009, and scientific data analysis. The initial planned lifetime was 3.5 years, but greater-than-expected noise in the data, from both the stars and the spacecraft, meant additional time was needed to fulfill all mission goals. Initially, in 2012, the mission was expected to last until 2016, but this would only have been possible if all remaining reaction wheels used for pointing the spacecraft remained reliable. On May 11, 2013, a second of four reaction wheels failed, disabling the collection of science data and threatening the continuation of the mission.</p>', 62, '', '', 0, 0, 0, 'publish', 'Administrator', 1428164555, 1428164555, 1431860696, 2, 33, 84),
+(123, 'Бізнес-консалтинг', '', 'business-consulting', 'uslugi/', '', 'Бізнес-консалтинг - вид послуг, пов''язаний з підготовкою рекомендацій щодо досягнення поставлених цілей в економічній діяльності. Бізнес-консалтинг може включати в себе не тільки консультаційну підтримку, а й саму реалізацію управлінських рішень. Також до', '<p>Бізнес-консалтинг - вид послуг, пов''язаний з підготовкою рекомендацій щодо досягнення поставлених цілей в економічній діяльності. Бізнес-консалтинг може включати в себе не тільки консультаційну підтримку, а й саму реалізацію управлінських рішень.</p>', '<p>Повідомлення для споживачів відправляються бізнесом за традиційними каналами в надії бути почутим. Інтернет-маркетинг же ініціює постійний діалог між компаніями і клієнтами. При цьому охоплення співрозмовників може бути по-справжньому широким, але, говорячи про якісний склад аудиторії, слід відзначити той факт, що не всі її сегменти доступні в рамках цифрових комунікацій. Крім того, далеко не кожна група користувачів інтернет є платоспроможною, а, значить, втрачається контакт з людьми, що представляють найбільший інтерес для бізнесу. Таким чином, кінцевих користувачів багатьох брендів досі можна досягти лише традиційними методами, якими б технічно застарілими ті були.</p>\n<p>Цифровий маркетинг динамічний, він характеризується високою швидкістю доставки будь-яких видів контенту. Аудиторія миттю може отримати інформацію, представлену в текстовому або графічному вигляді. До того ж, ефективність комунікації може бути виміряна в режимі реального часу, що дозволяє дуже швидко адаптуватися у відповідність із найменшими змінами для покращення результатів.</p>', 62, '', '', 0, 0, 0, 'publish', 'Administrator', 1428164555, 1428164555, 1436779379, 6, 32, 84),
+(126, 'Про компанію', '', 'pro-kompaniiu', '', '', '', '<p>Компанія Business Image є передовим експертом в галузі підвищення ефективності ведення бізнесу та управління проектами. Ми розробляємо і впроваджуємо маркетингові кейси, надаючи унікальну якість послуг бізнес консалтингу. Ми володіємо навичками системного мислення і багаторічним досвідом в реалізації маркетингових проектів.</p>\n<p>Нашою спеціалізацією є інформаційні технології в зв''язці з унікальними маркетинговими інструментами. Ми повністю включаємось в проект і беремо на себе його комплексний супровід, а не просто роздаємо розумні поради.</p>', '<p>Розробка стратегій та впровадження проектів з розвитку бізнесу, підвищенню ефективності та автоматизації процесів - наш профіль. Перетворюємо свій досвід і знання в вашу прибуток і будемо для вас надійним партнером у сфері послуг бізнес-консалтингу!</p>\n<h2>Спеціалізація</h2>\n<p>Інформаційні технології в зв''язці з унікальними маркетинговими інструментами є нашим головним вектором. Наша відмінна риса - реалізація проектів на основі методів процесного консалтингу, тобто ми повністю включаємось в проект і беремо на себе його комплексний супровід, а не просто роздаємо розумні поради. Ми діємо виключно в рамках інтересу клієнта, використовуючи тільки робітники і ефективні рішення.</p>\n<p>Компанія Business Image є передовим експертом в галузі підвищення ефективності ведення бізнесу та управління проектами. Ми розробляємо і впроваджуємо передові маркетингові та ІТ кейси, надаючи унікальну якість послуг бізнес консалтингу. Ми - команда професіоналів, що володіє навичками системного мислення і багаторічним досвідом в реалізації інформаційно-технічних і маркетингових проектів. Основна мета, яку ми переслідуємо - розвиток бізнесу і досягнення нових висот наших клієнтів, шляхом розробки та впровадження складних маркетингових стратегій і передових систем автоматизації.</p>\n<h2>Наші можливості</h2>\n<p>Якщо ви ще роздумуєте, вдаватися до послуг нашої компанії, звернутися до конкурентів, або ж виконувати завдання власними силами, ми можемо продемонструвати вам короткий перелік аргументів, які дозволять вам зробити правильний вибір.</p>\n<h4>Эфективні рішення</h4>\n<p>Безумовно, наші рішення відрізняються свіжістю і сучасністю, але в першу чергу вони є ефективними і приносять реально відчутну вигоду. Перевірені багаторічним досвідом і критичними ситуаціями, наші рішення допоможуть знайти вихід у будь-якому положенні і, крім того, забезпечить стійке положення вашої компанії в майбутньому.</p>\n<h4>Спеціалісти</h4>\n<p>Наші фахівці володіють особливими знаннями і навичками, які практично неможливо отримати виконуючи завдання в рамках однієї компанії. Для реалізації поставленого завдання вам потрібно або відвернути Вашої штатного фахівця від поточних завдань, або найняти нового. Ми ж готові витрачати стільки часу, скільки необхідно, ні більше, ні менше.</p>\n<h4>Консультанти</h4>\n<p>Наші консультанти завжди є незалежними об''єктивними експертами, що дають свіжий погляд з боку і залишаються неупередженими в будь-якій ситуації. Консультанти нашої компанії, звичайно, зможуть потримати вас і вислухати, але їхнє рішення буде засновано тільки на професіоналізм і досвід, тому будьте готові до рішень, які не зовсім відповідають вашим очікуванням.</p>', 0, '', '', 0, 0, 0, 'publish', 'Administrator', 1433755063, 1433755063, 1436779227, 13, 32, 124),
+(137, 'Об''єктивність як одна з найважливіших складових', '', 'obektivnost-kak-odna-iz-samyh-vazhnyh-sostavliaiushchih', 'blog/biznes/', '', '', '<p>Ефективність прийнятих рішень можна оцінити тільки через якийсь час, і нерідко можна точно визначити, що стало причиною поліпшень або, навпаки, негативних змін.</p>', '<p><img src="/uploads/images/articles/chair-designer-desk-4927.jpg" alt="" width="900" height="460" /></p>\n<p>Зазвичай під непотрібною роботою мається на увазі &laquo;ми це могли зробити самі&raquo;. Непотрібність також полягає в тому, і це особливість самого консалтингу, що результати роботи консультантів найчастіше відразу невидно. Ефективність прийнятих рішень можна оцінити тільки через якийсь час, і нерідко можна точно визначити, що стало причиною поліпшень. Керівництву підприємства часто здається, що це воно саме змогло скорегувати й поліпшити ситуацію, а консультанти тут ні причому. Загалом, це питання більше історичний, ніж риторичне.</p>\n<p>Не так далекі ті часи, коли бізнес у нашій країні полягав у придбанні та нарощуванні активів та їх подальшої перепродажі. Деякими підприємствами послуги консалтингу за великим рахунком використовувалися як інструмент &laquo;відмивання&raquo; грошей. Ось, типу, прийшли консультанти, намалювали бізнес-процеси за кругленьку суму і пішли. Нікому ці бізнес-процеси не потрібні, вони так і залишилися на папері, гроші &laquo;розпиляні&raquo; - всі щасливі.</p>\n<p>З іншого боку (і це триває досі) багато підприємств запрошують консультантів з метою &laquo;це модно&raquo; або для можливості помахати прапором (особливо, коли запрошують якусь західну і широковідомих компанію) - &laquo;у нас попрацювали консультанти, намалювали процеси, а значить ми на світовому рівні &raquo;. У підсумку виходить кумедна картина, коли говорять про бізнес-процеси, багато керівників уявляє собі толстенную (і треба сказати дорогу) пачку паперу з намальованими квадратиками і стрілочками. Але ж бізнес-процеси це не квадратики на папері, це реально працюючі процеси на підприємстві. Далі нечесність породжує ще більшу нечесність, у консультантів в голові крутяться долари, безглуздість і непотрібність роботи, і в підсумку пішов процес &laquo;потрібно побільше придумати собі роботи і побільше взяти грошей&raquo;. У результаті, виходить, що потужний інструмент бізнес-консалтингу використовується абсолютно не за призначенням.</p>', 67, '', '', 0, 0, 0, 'publish', 'Administrator', 1429529033, 1429529033, 1436776981, 0, 32, 89),
+(139, 'Консультування з управління комп''ютерної структурою', '', 'konsultirovanie-po-upravleniiu-kompiuternoi-strukturoi', 'blog/ekonomika/', '', '', '<p>Стрімкий прогрес у галузі інформаційних технологій призвів до того, що вони міцно увійшли в наше повсякденне життя. Складно уявити галузь людської діяльності, де б інформаційні технології не використовувалися в тій чи іншій мірі.</p>', '<p><img src="/uploads/images/articles/chair-designer-desk-4936.jpg" alt="" width="900" height="460" /></p>\n<p>Стрімкий прогрес у галузі інформаційних технологій призвів до того, що вони міцно увійшли в наше повсякденне життя. Складно уявити галузь людської діяльності, де б інформаційні технології не використовувалися в тій чи іншій мірі. Від того наскільки кваліфіковано вирішуються завдання в галузі ІТ безпосередньо залежить успішність і конкурентоспроможність бізнесу. У наш час лавиноподібного зростання пропозицій на ринку ІТ послуг, появи безлічі програмних продуктів, технічних рішень від іменитих так і не дуже виробників часто призводить необізнаного в стан повної плутанини. Намагаючись прийняти рішення, перед керівником підприємства часто постають питання з чого почати, як робити і кому робити?</p>\n<p>Ці та багато інших питань виникають не тільки у початківців керівників малих і середніх підприємств, а й у куди більш досвідчених їхніх колег. Добре якщо поруч є довірений професіонал, який допоможе порадою і дасть відповіді на нагальні питання кваліфіковано і зрозуміло. Наші консультанти готові допомогти вам. Маючи багаторічний практичний досвід у предметних областях, пропонуємо вивірені часом рішення.</p>\n<p>Наша компанія здійснює консультування підприємств з питань управління комп''ютерною структурою, автоматизації бізнес-процесів, вибору програмних, апаратних платформ і постачальників устаткування. На основі багаторічного досвіду роботи пропонуємо вивірені часом рішення.</p>', 69, '', '', 0, 1, 0, 'publish', 'Administrator', 1427887795, 1427887795, 1436546533, 1, 32, 109),
+(140, 'Оптимізація податків та управління податковими ризиками', '', 'optimizatsiia-nalogov-i-upravlenie-nalogovymi-riskami', 'blog/', '', '', '<p>Реалії нашого бізнесу такі, що прагнення до зниження податкового навантаження притаманне практично кожному підприємству, незалежно від роду та географії його діяльності. Але чому при цьому не використовувати легальні способи оптимізації оподаткування?</p>', '<p><img src="/uploads/images/articles/woman-typing-writing-windows-4.jpg" alt="" width="900" height="460" /></p>\n<p>Як правило, спілкування з контролюючими органами не завжди є задоволенням для бухгалтерів чи керівників компаній. Чому так? Тому, що представник податкової інспекції приходить для того, щоб знайти помилки у веденні бухгалтерського або податкового обліку, а причина виникнення помилки - випадково чи спеціально - для податківців не має значення.</p>\n<p>Реалії нашого бізнесу такі, що прагнення до зниження податкового навантаження притаманне практично кожному підприємству, незалежно від роду та географії його діяльності. Але чому при цьому не використовувати легальні способи оптимізації оподаткування? Податкова оптимізація - це легітимне, ефективне податкове планування нарахувань і сплат до бюджету. Використання легальної оптимізації податків дозволить уникнути безлічі проблем і негативних наслідків.</p>\n<p>Для того, щоб правильно використовувати методи мінімізації податків, слід орієнтуватися на такі пункти податкового планування, які дозволять скласти індивідуальні схеми оптимізації оподаткування. На російському ринку можна зустріти багато різних пропозицій про надання податкових послуг. Але більшість з них допомагають усунути тільки частина проблем, пов''язаних з податками. Тому необхідно звертатися до експертів, які комплексно підійдуть до вирішення даного завдання.</p>', 64, '', '', 0, 1, 0, 'publish', 'Administrator', 1427887795, 1427887795, 1436776332, 4, 32, 121),
+(141, 'Головна річ, яка стоїть між вами та успіхом', '', 'glavnaia-veshch-kotoraia-stoit-mezhdu-vami-i-uspehom', 'blog/ekonomika/', '', '', '<p>Щоб розпочати бізнес, потрібно зробити дуже багато дійсно важливих речей: дослідити ринок, знайти цільову аудиторію, визначити її потреби, розробити зрозумілий для них&nbsp;продукт, продумати маркетинг, порахувати бюджет.</p>', '<p><img src="/uploads/images/articles/chair-designer-desk-4928.jpg" alt="" width="900" height="460" /></p>\n<p>Мало хто був здатний настільки влучно формулювати великі думки, як Генрі Форд (Henry Ford), який помітив: &laquo;Чи вірите ви, що зможете, або вірите, що не зможете - ви праві&raquo;. Люди не пробують! Багато талановитих і подають надії бізнесмени на самому початку свого шляху не домагаються успіху, бо не вірять у свої сили і бояться ризикувати. Передумови можуть бути самі різні: Тривалі роздуми, після яких не залишається сил &laquo;натиснути на курок&raquo;, тобто почати діяти. Консервативні родичі, друзі або &laquo;порадники&raquo;, які бояться зробити це самі і &laquo;попереджають&raquo; інших. Занадто довга підготовка, яка не дає бажаного результату і дає перевагу тим, хто діє.</p>\n<p>Якщо у вас є ідея - реалізуйте її якомога швидше і з мінімальними грошовими вкладеннями. І спостерігайте за подіями. Можливо, ви зрозумієте, що на правильному шляху. У більшості випадків цей етап показує, що потрібно змінити і над чим попрацювати, щоб розвиватися в правильному напрямку. Це природно - і через це проходять всі. І навіть якщо у вас не вийшло - в цьому немає ніякої катастрофи, адже ви мінімізували свої витрати. Тому у вас ще повинно залишитися достатньо сил і засобів на нові спроби.</p>\n<p>Головна перешкода до вашого успіху - страх. Щоб домогтися успіху в новому бізнесі, не бійтеся йти на ризик. У баскетболістів і хокеїстів є вираз: &laquo;Ти промахується в 100% випадках, коли не поробиш&raquo;. Думаємо, воно найкраще передає зміст нашого сьогоднішнього матеріалу. Дійте!</p>', 69, '', '', 0, 1, 0, 'publish', 'Administrator', 1426335738, 1426335738, 1436776661, 3, 32, 110);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `content_fields`
+-- Структура таблицы `content_fields`
 --
 
 DROP TABLE IF EXISTS `content_fields`;
@@ -274,16 +424,17 @@ CREATE TABLE IF NOT EXISTS `content_fields` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `content_fields`
+-- Дамп данных таблицы `content_fields`
 --
 
 INSERT INTO `content_fields` (`field_name`, `type`, `label`, `data`, `weight`, `in_search`) VALUES
-('field_image', 'text', 'Рисунок', 'a:7:{s:5:"label";s:14:"Рисунок";s:7:"initial";s:1:" ";s:9:"help_text";s:0:"";s:4:"type";s:4:"text";s:20:"enable_image_browser";s:1:"1";s:10:"validation";s:0:"";s:6:"groups";a:1:{i:0;s:1:"7";}}', 1, 0);
+('field_image', 'text', 'Изображение', 'a:7:{s:5:"label";s:22:"Изображение";s:7:"initial";s:0:"";s:9:"help_text";s:0:"";s:4:"type";s:4:"text";s:20:"enable_image_browser";s:1:"1";s:10:"validation";s:0:"";s:6:"groups";a:4:{i:0;s:2:"-1";i:1;s:2:"11";i:2;s:2:"12";i:3;s:2:"13";}}', 1, 0),
+('field_url', 'text', 'URL-адрес', 'a:5:{s:10:"field_name";s:3:"url";s:5:"label";s:14:"URL-адрес";s:4:"type";s:4:"text";s:6:"groups";a:2:{i:0;s:2:"11";i:1;s:2:"12";}s:4:"data";s:0:"";}', 2, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `content_fields_data`
+-- Структура таблицы `content_fields_data`
 --
 
 DROP TABLE IF EXISTS `content_fields_data`;
@@ -297,28 +448,60 @@ CREATE TABLE IF NOT EXISTS `content_fields_data` (
   KEY `item_id` (`item_id`),
   KEY `item_type` (`item_type`),
   KEY `field_name` (`field_name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=89 ;
 
 --
--- Dumping data for table `content_fields_data`
+-- Дамп данных таблицы `content_fields_data`
 --
 
 INSERT INTO `content_fields_data` (`id`, `item_id`, `item_type`, `field_name`, `data`) VALUES
-(1, 64, 'page', 'field_image', '/uploads/images/small/cheloveko-roboty.jpg'),
-(2, 65, 'page', 'field_image', '/uploads/images/small/boeviye-roboty.jpg'),
-(3, 66, 'page', 'field_image', '/uploads/images/small/kosmicheskie-roboty.jpg'),
-(4, 67, 'page', 'field_image', '/uploads/images/small/kuhonniye-roboty.jpg'),
-(5, 68, 'page', 'field_image', '/uploads/images/small/rabochiye-roboty.jpg'),
-(6, 69, 'page', 'field_image', '/uploads/images/small/remont-robotov.jpg'),
-(7, 70, 'page', 'field_image', '/uploads/images/small/apgreyder-robotov.jpg'),
-(8, 71, 'page', 'field_image', '/uploads/images/small/prokat-robotov.jpg'),
-(9, 60, 'category', 'field_image', ''),
-(10, 59, 'category', 'field_image', '');
+(21, 92, 'page', 'field_image', '/uploads/images/clients/client_tmp1.png'),
+(22, 92, 'page', 'field_url', ''),
+(23, 93, 'page', 'field_image', '/uploads/images/clients/client_tmp2.png'),
+(24, 93, 'page', 'field_url', 'http://www.mysite.com'),
+(65, 74, 'category', 'field_url', ''),
+(64, 74, 'category', 'field_image', ''),
+(35, 90, 'page', 'field_image', '/uploads/images/articles/chair-designer-desk-3929.jpg'),
+(36, 90, 'page', 'field_url', ''),
+(67, 132, 'page', 'field_image', ''),
+(66, 130, 'page', 'field_image', '/uploads/images/articles/business-consulting.png'),
+(68, 123, 'page', 'field_image', ''),
+(69, 133, 'page', 'field_image', '/uploads/images/clients/client_tmp2.png'),
+(70, 133, 'page', 'field_url', 'http://www.mysite.com'),
+(47, 121, 'page', 'field_image', '/uploads/images/articles/woman-typing-writing-windows.jpg'),
+(48, 121, 'page', 'field_url', ''),
+(49, 84, 'page', 'field_image', '/uploads/images/articles/woman-typing-writing-windows.jpg'),
+(50, 85, 'page', 'field_image', '/uploads/images/articles/business-consulting.png'),
+(51, 86, 'page', 'field_image', ''),
+(52, 89, 'page', 'field_image', '/uploads/images/articles/chair-designer-desk-3927.jpg'),
+(53, 89, 'page', 'field_url', ''),
+(71, 134, 'page', 'field_image', '/uploads/images/clients/client_tmp1.png'),
+(72, 134, 'page', 'field_url', ''),
+(60, 110, 'page', 'field_image', '/uploads/images/articles/chair-designer-desk-3928.jpg'),
+(61, 110, 'page', 'field_url', ''),
+(62, 109, 'page', 'field_image', '/uploads/images/articles/chair-designer-desk-3926%20copy.jpg'),
+(63, 109, 'page', 'field_url', ''),
+(73, 124, 'page', 'field_image', '/uploads/images/articles/business-consulting.png'),
+(74, 138, 'page', 'field_image', ''),
+(75, 138, 'page', 'field_url', ''),
+(76, 87, 'page', 'field_image', ''),
+(77, 139, 'page', 'field_image', '/uploads/images/articles/chair-designer-desk-3926%20copy.jpg'),
+(78, 139, 'page', 'field_url', ''),
+(79, 140, 'page', 'field_image', '/uploads/images/articles/woman-typing-writing-windows.jpg'),
+(80, 140, 'page', 'field_url', ''),
+(81, 141, 'page', 'field_image', '/uploads/images/articles/chair-designer-desk-3928.jpg'),
+(82, 141, 'page', 'field_url', ''),
+(83, 136, 'page', 'field_image', '/uploads/images/articles/chair-designer-desk-3929.jpg'),
+(84, 136, 'page', 'field_url', ''),
+(85, 137, 'page', 'field_image', '/uploads/images/articles/chair-designer-desk-3927.jpg'),
+(86, 137, 'page', 'field_url', ''),
+(87, 126, 'page', 'field_image', '/uploads/images/articles/business-consulting.png'),
+(88, 129, 'page', 'field_image', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `content_fields_groups_relations`
+-- Структура таблицы `content_fields_groups_relations`
 --
 
 DROP TABLE IF EXISTS `content_fields_groups_relations`;
@@ -328,17 +511,22 @@ CREATE TABLE IF NOT EXISTS `content_fields_groups_relations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `content_fields_groups_relations`
+-- Дамп данных таблицы `content_fields_groups_relations`
 --
 
 INSERT INTO `content_fields_groups_relations` (`field_name`, `group_id`) VALUES
 ('field_doc', 9),
-('field_image', 7);
+('field_url', 11),
+('field_url', 12),
+('field_image', -1),
+('field_image', 11),
+('field_image', 12),
+('field_image', 13);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `content_field_groups`
+-- Структура таблицы `content_field_groups`
 --
 
 DROP TABLE IF EXISTS `content_field_groups`;
@@ -348,19 +536,21 @@ CREATE TABLE IF NOT EXISTS `content_field_groups` (
   `description` text,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 --
--- Dumping data for table `content_field_groups`
+-- Дамп данных таблицы `content_field_groups`
 --
 
 INSERT INTO `content_field_groups` (`id`, `name`, `description`) VALUES
-(7, 'main', '');
+(11, 'blog', 'Поля для категории новостей'),
+(12, 'reviews', 'Поля для категории отзывов пользователей'),
+(13, 'services', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `content_permissions`
+-- Структура таблицы `content_permissions`
 --
 
 DROP TABLE IF EXISTS `content_permissions`;
@@ -370,19 +560,12 @@ CREATE TABLE IF NOT EXISTS `content_permissions` (
   `data` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `page_id` (`page_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `content_permissions`
---
-
-INSERT INTO `content_permissions` (`id`, `page_id`, `data`) VALUES
-(1, 63, 'a:1:{i:0;a:1:{s:7:"role_id";s:1:"0";}}');
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `content_tags`
+-- Структура таблицы `content_tags`
 --
 
 DROP TABLE IF EXISTS `content_tags`;
@@ -393,26 +576,48 @@ CREATE TABLE IF NOT EXISTS `content_tags` (
   PRIMARY KEY (`id`),
   KEY `page_id` (`page_id`),
   KEY `tag_id` (`tag_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=127 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=373 ;
 
 --
--- Dumping data for table `content_tags`
+-- Дамп данных таблицы `content_tags`
 --
 
 INSERT INTO `content_tags` (`id`, `page_id`, `tag_id`) VALUES
-(119, 80, 25),
-(120, 80, 26),
-(121, 80, 27),
-(122, 79, 25),
-(123, 79, 28),
-(124, 79, 27),
-(125, 78, 25),
-(126, 78, 29);
+(344, 90, 38),
+(343, 90, 37),
+(342, 90, 36),
+(350, 121, 31),
+(349, 121, 30),
+(347, 89, 31),
+(346, 89, 30),
+(345, 89, 33),
+(209, 138, 34),
+(210, 138, 35),
+(348, 121, 33),
+(341, 110, 31),
+(340, 110, 30),
+(339, 110, 33),
+(335, 109, 31),
+(334, 109, 30),
+(333, 109, 33),
+(351, 139, 33),
+(352, 139, 34),
+(353, 139, 35),
+(362, 140, 35),
+(361, 140, 34),
+(360, 140, 33),
+(368, 141, 35),
+(367, 141, 34),
+(366, 141, 33),
+(369, 136, 39),
+(370, 137, 34),
+(371, 137, 35),
+(372, 137, 33);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `custom_fields`
+-- Структура таблицы `custom_fields`
 --
 
 DROP TABLE IF EXISTS `custom_fields`;
@@ -434,7 +639,7 @@ CREATE TABLE IF NOT EXISTS `custom_fields` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `custom_fields_data`
+-- Структура таблицы `custom_fields_data`
 --
 
 DROP TABLE IF EXISTS `custom_fields_data`;
@@ -450,7 +655,7 @@ CREATE TABLE IF NOT EXISTS `custom_fields_data` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `custom_fields_i18n`
+-- Структура таблицы `custom_fields_i18n`
 --
 
 DROP TABLE IF EXISTS `custom_fields_i18n`;
@@ -466,7 +671,7 @@ CREATE TABLE IF NOT EXISTS `custom_fields_i18n` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gallery_albums`
+-- Структура таблицы `gallery_albums`
 --
 
 DROP TABLE IF EXISTS `gallery_albums`;
@@ -483,21 +688,24 @@ CREATE TABLE IF NOT EXISTS `gallery_albums` (
   PRIMARY KEY (`id`),
   KEY `category_id` (`category_id`),
   KEY `created` (`created`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
--- Dumping data for table `gallery_albums`
+-- Дамп данных таблицы `gallery_albums`
 --
 
 INSERT INTO `gallery_albums` (`id`, `category_id`, `name`, `description`, `cover_id`, `position`, `created`, `updated`, `tpl_file`) VALUES
-(2, 5, 'Космические роботы', '<p>Image Robotics выпускает лучших космических роботов в нашей галактике.  Их дальность полетов составляет более 10 световых лет, а скорость полета  близка к скорости света.</p>', 0, 0, 1291645421, 1291655903, ''),
-(3, 5, 'Человеко роботы', '', 0, 0, 1291645434, 1291656661, ''),
-(4, 5, 'Боевые роботы', '', 0, 0, 1291645444, 1291656595, '');
+(5, 6, NULL, NULL, 163, 0, 1428422810, 1436514341, ''),
+(6, 6, NULL, NULL, 165, 1, 1428422886, 1436516014, ''),
+(7, 7, NULL, NULL, 154, 0, 1428423364, 1436513465, ''),
+(8, 7, NULL, NULL, 158, 3, 1428423407, 1436513812, ''),
+(10, 7, NULL, NULL, 162, 1, 1436513897, 1436513927, ''),
+(11, 7, NULL, NULL, 169, 2, 1436516700, 1436516924, '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gallery_albums_i18n`
+-- Структура таблицы `gallery_albums_i18n`
 --
 
 DROP TABLE IF EXISTS `gallery_albums_i18n`;
@@ -510,18 +718,27 @@ CREATE TABLE IF NOT EXISTS `gallery_albums_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `gallery_albums_i18n`
+-- Дамп данных таблицы `gallery_albums_i18n`
 --
 
 INSERT INTO `gallery_albums_i18n` (`id`, `locale`, `description`, `name`) VALUES
-(2, 'ru', '<p>Image Robotics выпускает лучших космических роботов в нашей галактике.  Их дальность полетов составляет более 10 световых лет, а скорость полета  близка к скорости света.</p>', 'Космические роботы'),
-(3, 'ru', '', 'Человеко роботы'),
-(4, 'ru', '', 'Боевые роботы');
+(5, 'ru', '<p><span>Горы &ndash; территория тренировки на результат и успех. Горы - отличный повод отказаться от лени и неработающих разговоров. Здесь, как никогда, видно, что в команде зачет по последнему.&nbsp;</span></p>', 'Путешествие в горы'),
+(6, 'ru', '<p>Озеро Атитлан является одной из визитных карточек Гватемалы, притягивающем в эту страну любителей медиативного отдыха, завораживающих видов и культуры коренных народов Центральной Америки.</p>', 'Озеро Атитлан'),
+(11, 'ru', '<p>Несколько фотографий путешествия наших сотрудников вокруг света</p>', 'Вокруг света'),
+(5, 'uk', '<p>Гори - територія тренування на результат і успіх. Гори - відмінний привід відмовитися від ліні і непрацюючих розмов. Тут, як ніколи, видно, що в команді залік за останнім.</p>', 'Подорож у гори'),
+(7, 'ru', '<p>Впервые мы представляем новую технологию ведения и управления бизнеса</p>', 'Презентация проекта'),
+(8, 'ru', '<p>Бизнес-проект для компании по организации&nbsp;технологического менеджмента</p>', 'Бизнес-проект'),
+(10, 'ru', '<p>Разработка стратегии для маркетинговой компании</p>', 'Предложение по маркетингу'),
+(6, 'uk', '<p>Озеро Атитлан є однією з візитних карток Гватемали, притягує в цю країну любителів медіативного відпочинку, що зачаровуються видами і культурою корінних народів Центральної Америки.</p>', 'Озеро Атитлан'),
+(7, 'uk', '<p>Вперше ми представляємо нову технологію ведення та управління бізнесу</p>', 'Презентація проекту'),
+(10, 'uk', '<p>Розробка стратегії для маркетингової компанії</p>', 'Пропозиція по маркетингу'),
+(11, 'uk', '<p>Кілька фотографій подорожі наших співробітників навколо світу</p>', 'Навколо світу'),
+(8, 'uk', '<p>Бізнес-проект для компанії з організації технологічного менеджменту</p>', 'Бізнес-проект');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gallery_category`
+-- Структура таблицы `gallery_category`
 --
 
 DROP TABLE IF EXISTS `gallery_category`;
@@ -535,19 +752,20 @@ CREATE TABLE IF NOT EXISTS `gallery_category` (
   PRIMARY KEY (`id`),
   KEY `created` (`created`),
   KEY `position` (`position`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
--- Dumping data for table `gallery_category`
+-- Дамп данных таблицы `gallery_category`
 --
 
 INSERT INTO `gallery_category` (`id`, `name`, `description`, `cover_id`, `position`, `created`) VALUES
-(5, 'Галерея', '', 0, 0, 1291645412);
+(6, NULL, NULL, 0, 0, 1428422691),
+(7, NULL, NULL, 0, 0, 1428423332);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gallery_category_i18n`
+-- Структура таблицы `gallery_category_i18n`
 --
 
 DROP TABLE IF EXISTS `gallery_category_i18n`;
@@ -560,16 +778,19 @@ CREATE TABLE IF NOT EXISTS `gallery_category_i18n` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `gallery_category_i18n`
+-- Дамп данных таблицы `gallery_category_i18n`
 --
 
 INSERT INTO `gallery_category_i18n` (`id`, `locale`, `description`, `name`) VALUES
-(5, 'ru', '', 'Галерея');
+(6, 'ru', '<p>Мы дружная команда профессионалов, которая умеет не только качественно работать, но и отдыхать! Ведь хороший отдых &mdash; залог успешной работы. А хороший отдых всегда должен быть активным.</p>', 'Наша компания'),
+(7, 'ru', '<p>Предлагаем просмотреть фотографии с наших последних презентаций,&nbsp;которые мы проводим для наших клиентов на всемирно&nbsp;известных форумах и выставках.&nbsp;Работа с иностранными заказчики помогает нам набраться еще большего опыта, исследовать разные ситуации в разных странах, что в целом повышает квалификацию нашей компании.</p>', 'Презентации'),
+(6, 'uk', '<p>Ми дружна команда професіоналів, яка вміє не тільки якісно працювати, а й відпочивати! Адже хороший відпочинок - запорука успішної роботи. А хороший відпочинок завжди повинен бути активним.</p>', 'Наша компанія'),
+(7, 'uk', '<p>Пропонуємо переглянути фотографії з наших останніх презентацій, які ми проводимо для наших клієнтів на всесвітньо відомих форумах і виставках. Робота з іноземними замовники допомагає нам набратися ще більшого досвіду, досліджувати різні ситуації в різних країнах, що в цілому підвищує кваліфікацію нашої компанії.</p>', 'Презентації');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gallery_images`
+-- Структура таблицы `gallery_images`
 --
 
 DROP TABLE IF EXISTS `gallery_images`;
@@ -588,51 +809,107 @@ CREATE TABLE IF NOT EXISTS `gallery_images` (
   PRIMARY KEY (`id`),
   KEY `album_id` (`album_id`),
   KEY `position` (`position`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=93 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=171 ;
 
 --
--- Dumping data for table `gallery_images`
+-- Дамп данных таблицы `gallery_images`
 --
 
 INSERT INTO `gallery_images` (`id`, `album_id`, `file_name`, `file_ext`, `file_size`, `position`, `width`, `height`, `description`, `uploaded`, `views`) VALUES
-(86, 4, 'kuhonnaya-enziklopediya-integr-v-robota', '.jpg', '26.7 Кб', 43, 450, 332, NULL, 1291656595, 0),
-(85, 4, 'kosmicheskie-roboty', '.jpg', '20.6 Кб', 42, 298, 293, NULL, 1291656592, 0),
-(84, 4, 'glavniy-remontnik-robotov', '.jpg', '32.3 Кб', 41, 310, 400, NULL, 1291656587, 0),
-(83, 4, 'deny-robotehniki-v-imagerobotics', '.jpg', '36.1 Кб', 40, 500, 375, NULL, 1291656584, 5),
-(82, 4, 'cheloveko-roboty', '.jpg', '69.5 Кб', 39, 800, 600, NULL, 1291656581, 4),
-(81, 4, 'boeviye-roboty', '.jpg', '39.2 Кб', 38, 500, 446, NULL, 1291656576, 3),
-(89, 3, 'novie-kosmicheskie-roboty', '.jpg', '17.5 Кб', 46, 400, 324, NULL, 1291656648, 2),
-(88, 3, 'menedger-robotov', '.jpg', '31.0 Кб', 45, 553, 301, NULL, 1291656645, 4),
-(75, 2, 'remont-robotov', '.jpg', '43.9 Кб', 33, 400, 576, NULL, 1291655890, 3),
-(76, 2, 'upgrade-robotov', '.jpg', '40.8 Кб', 34, 468, 348, NULL, 1291655894, 2),
-(77, 2, 'uskorenniye-sistemy-diagnostiki-robotov', '.jpg', '82.9 Кб', 35, 800, 519, NULL, 1291655898, 1),
-(78, 2, 'v-kazhdiy-dom-po-chetire-robota', '.jpg', '41.1 Кб', 36, 800, 547, NULL, 1291655902, 2),
-(92, 3, 'prokat-robotov', '.jpg', '58.0 Кб', 49, 500, 375, NULL, 1291656661, 0),
-(91, 3, 'o-kompanii', '.jpg', '47.4 Кб', 48, 495, 372, NULL, 1291656658, 0),
-(90, 3, 'novoe-v-mire-boevih-robotov', '.jpg', '82.0 Кб', 47, 750, 500, NULL, 1291656653, 5),
-(80, 4, 'apgreyder-robotov', '.jpg', '95.5 Кб', 37, 800, 573, NULL, 1291656573, 9),
-(87, 3, 'kuhonniye-roboty', '.jpg', '29.1 Кб', 44, 450, 380, NULL, 1291656641, 18),
-(74, 2, 'rabochiye-roboty', '.jpg', '34.9 Кб', 32, 500, 400, NULL, 1291655886, 4);
+(149, 7, '871fbac6a42c05f5a22f8b913f349f3f', '.jpeg', '881.8 kilobyte_abbr', 1, 2507, 1674, NULL, 1433857897, 78),
+(148, 6, '6f5762bcb3eda6a70c610a01a801b12f', '.jpeg', '450.7 kilobyte_abbr', 18, 2509, 1673, NULL, 1433857872, 0),
+(166, 11, '3be099ecbc48c3a92597f836f46d98ef', '.jpg', '919.4 kilobyte_abbr', 36, 2580, 1716, NULL, 1436516920, 12),
+(146, 6, 'f5d7d797b41b1409cdd3791fcbadb64e', '.jpeg', '881.8 kilobyte_abbr', 16, 2507, 1674, NULL, 1433857862, 0),
+(152, 6, '2b004f8bc4195d7e03d3da3ace4ee5cf', '.jpeg', '5.9 megabyte_abbr', 22, 4000, 2667, NULL, 1436439453, 0),
+(165, 6, '780549bdad49cf6e670acdc72d20aca9', '.jpg', '216.2 kilobyte_abbr', 35, 900, 600, NULL, 1436516014, 0),
+(137, 5, '38af37da7a648eb9ed771d777bfcf07d', '.jpg', '919.4 kilobyte_abbr', 3, 2580, 1716, NULL, 1432914498, 3),
+(138, 5, '05a672cf0fee47d300dba63eb0ce2ff7', '.jpg', '3.6 megabyte_abbr', 5, 5472, 3648, NULL, 1432914505, 0),
+(164, 6, '4adfe6586bf5112b4c1ea780f7619c62', '.jpg', '421.5 kilobyte_abbr', 34, 900, 600, NULL, 1436516014, 0),
+(163, 5, '6959cb6d4fb1df64e9db8c2b0794f18b', '.jpg', '142.3 kilobyte_abbr', 33, 900, 600, NULL, 1436514341, 0),
+(141, 5, 'd994f7108b8b4fcf899be3cde29266c2', '.jpeg', '450.7 kilobyte_abbr', 11, 2509, 1673, NULL, 1432914517, 0),
+(167, 11, '05420a1b196e16d21b19266def9825d7', '.jpg', '3.6 megabyte_abbr', 37, 5472, 3648, NULL, 1436516923, 0),
+(143, 6, '0e153a7bbdea2f3df7c890c69aba27ce', '.jpg', '919.4 kilobyte_abbr', 13, 2580, 1716, NULL, 1433857849, 4),
+(144, 6, 'c13ea30e08e26f9a696446fe6e3a1f0c', '.jpg', '3.6 megabyte_abbr', 14, 5472, 3648, NULL, 1433857855, 0),
+(150, 7, '30526e4305ae53ac3b330cf09510ffa5', '.jpg', '12.1 megabyte_abbr', 3, 5616, 3744, NULL, 1433857905, 0),
+(151, 7, '0796b80c02543659bd6b9dede9aa9515', '.jpeg', '450.7 kilobyte_abbr', 5, 2509, 1673, NULL, 1433857907, 0),
+(153, 6, '9e8270a52a13050b725165739ae43d84', '.jpg', '3.3 megabyte_abbr', 23, 4000, 2667, NULL, 1436439662, 0),
+(154, 7, '427cf6eb12e903d30d43b418dec3bf67', '.jpg', '352.1 kilobyte_abbr', 24, 900, 600, NULL, 1436513465, 0),
+(155, 8, 'b10f60899afddf7db7318fff156c2705', '.jpg', '472.8 kilobyte_abbr', 25, 900, 600, NULL, 1436513811, 8),
+(156, 8, 'd9201888c54090fd24c8be1a7f5dc181', '.jpg', '367.4 kilobyte_abbr', 26, 900, 600, NULL, 1436513811, 0),
+(157, 8, 'bf8dab48331e368d80fc17d6e0e072a7', '.jpg', '333.8 kilobyte_abbr', 27, 900, 600, NULL, 1436513812, 0),
+(158, 8, '865eba768a9642497808309b22d615f8', '.jpg', '398.6 kilobyte_abbr', 28, 900, 600, NULL, 1436513812, 0),
+(159, 10, '920bda68d067982dbc958e3594c371c7', '.jpg', '333.8 kilobyte_abbr', 29, 900, 600, NULL, 1436513924, 9),
+(160, 10, 'a694befe10283ed38bcc3edac546cded', '.jpg', '12.1 megabyte_abbr', 30, 5616, 3744, NULL, 1436513927, 0),
+(161, 10, '79718f31bb96f751a95455adf894f22c', '.jpg', '280.2 kilobyte_abbr', 31, 900, 600, NULL, 1436513927, 0),
+(162, 10, '0d9f970309fb252acbf6d2baed31b94e', '.jpg', '336.0 kilobyte_abbr', 32, 900, 600, NULL, 1436513927, 0),
+(168, 11, '3dca83c68ff7f8006ce866631eb5a857', '.jpg', '142.3 kilobyte_abbr', 38, 900, 600, NULL, 1436516923, 0),
+(169, 11, 'f3351562c25a58a7616e1a866af13f08', '.jpg', '421.5 kilobyte_abbr', 39, 900, 600, NULL, 1436516923, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gallery_images_i18n`
+-- Структура таблицы `gallery_images_i18n`
 --
 
 DROP TABLE IF EXISTS `gallery_images_i18n`;
 CREATE TABLE IF NOT EXISTS `gallery_images_i18n` (
   `id` int(11) NOT NULL,
   `locale` varchar(5) NOT NULL,
-  `title` varchar(255) DEFAULT NULL,
   `description` text,
+  `title` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`,`locale`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `gallery_images_i18n`
+--
+
+INSERT INTO `gallery_images_i18n` (`id`, `locale`, `description`, `title`) VALUES
+(94, 'ru', 'Kepler 64 by Dirk Terrell, Boulder, CO', ''),
+(95, 'ru', '<p>Starship arriving to Gliese 667C, by L. Nubian, NY, NY</p>', NULL),
+(96, 'ru', '<p>3,000 light years, by Kilo Mora, Atlanta, GA</p>', NULL),
+(97, 'ru', '<p>Kepler 64 Moon by D. Terrell, Boulder, CO</p>', NULL),
+(98, 'ru', '<p>Pale Blue Dots by K. Mora, Atlanta, GA</p>', NULL),
+(99, 'ru', '<p>Edge of Existence by L. Nendza, Leesburg, FL</p>', ''),
+(102, 'ru', '<p>This image from NASA''s Kepler mission shows the telescope''s full field of view -- an expansive star-rich patch of sky in the constellations Cygnus and Lyra stretching across 100 square degrees, or the equivalent of two side-by-side dips of the Big Dipper.</p>', ''),
+(103, 'ru', '<p>Inverted image (dark stars on light sky) Stars in the image are all brighter than magnitude 18.5. Stars brighter than 11.5 are "saturated" (all look the same brightness in the image).</p>', NULL),
+(104, 'ru', '<p>This image from NASA''s Kepler mission shows the telescope''s full field of view -- an expansive star-rich patch of sky in the constellations Cygnus and Lyra stretching across 100 square degrees, or the equivalent of two side-by-side dips of the Big Dipper.</p>', NULL),
+(105, 'ru', '<p>A single Kepler science module with two CCDs and a single field flattening lens mounted onto an Invar carrier. Each of the 21 CCD science modules are covered with lenses of sapphire.</p>', NULL),
+(106, 'ru', '<p>The Kepler focal plane is approximately one foot square. It''s composed of 25 individually mounted modules. The four corner modules are used for fine guiding and the other 21 modules are used for science observing.</p>\n<p>Note that the four fine guidance modules in the corners of the focal plane are much smaller CCDs than the science modules. Each module and its electronics convert light into digital numbers that is analyzed for planet transits.</p>', ''),
+(107, 'ru', '', ''),
+(108, 'ru', '', ''),
+(119, 'ru', '', ''),
+(120, 'ru', '', ''),
+(121, 'ru', '', ''),
+(122, 'ru', '', ''),
+(123, 'ru', '', ''),
+(124, 'ru', '', ''),
+(125, 'ru', '', ''),
+(126, 'ru', '', ''),
+(127, 'ru', '', ''),
+(128, 'ru', '', ''),
+(129, 'ru', '', ''),
+(130, 'ru', '', ''),
+(131, 'ru', '', ''),
+(132, 'ru', '', ''),
+(133, 'ru', '', ''),
+(134, 'ru', '', ''),
+(135, 'ru', '', ''),
+(137, 'ru', '', ''),
+(138, 'ru', '', ''),
+(141, 'ru', '', ''),
+(150, 'ru', '', ''),
+(154, 'ru', '', ''),
+(158, 'ru', '', ''),
+(162, 'ru', '', ''),
+(163, 'ru', '', ''),
+(165, 'ru', '', ''),
+(169, 'ru', '', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `languages`
+-- Структура таблицы `languages`
 --
 
 DROP TABLE IF EXISTS `languages`;
@@ -648,21 +925,21 @@ CREATE TABLE IF NOT EXISTS `languages` (
   PRIMARY KEY (`id`),
   KEY `identif` (`identif`),
   KEY `default` (`default`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=31 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=34 ;
 
 --
--- Dumping data for table `languages`
+-- Дамп данных таблицы `languages`
 --
 
 INSERT INTO `languages` (`id`, `lang_name`, `identif`, `image`, `folder`, `template`, `default`, `locale`) VALUES
-(3, 'Русский', 'ru', '', 'russian', 'commerce', 1, 'ru_RU'),
-(4, 'Английский', 'en', '', 'english', 'commerce', 0, 'en_US'),
-(5, 'Украинский', 'ua', '', 'ukrainian', 'commerce', 0, 'uk_UA');
+(3, 'Rus', 'ru', '/uploads/images/flags/Russia.png', 'russian', '0', 1, 'ru_RU'),
+(33, 'Eng', 'en', '/uploads/images/flags/United-States.png', '', '0', 0, 'en_US'),
+(32, 'Ukr', 'uk', '/uploads/images/flags/Ukraine.png', '', '0', 0, 'uk_UA');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `login_attempts`
+-- Структура таблицы `login_attempts`
 --
 
 DROP TABLE IF EXISTS `login_attempts`;
@@ -673,12 +950,12 @@ CREATE TABLE IF NOT EXISTS `login_attempts` (
   PRIMARY KEY (`id`),
   KEY `ip_address` (`ip_address`),
   KEY `time` (`time`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=44 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=84 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `logs`
+-- Структура таблицы `logs`
 --
 
 DROP TABLE IF EXISTS `logs`;
@@ -690,12 +967,2271 @@ CREATE TABLE IF NOT EXISTS `logs` (
   `date` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `date` (`date`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=124 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2373 ;
+
+--
+-- Дамп данных таблицы `logs`
+--
+
+INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
+(124, 1, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1425914022),
+(125, 1, 'Administrator', 'Кэш очищен', 1425915413),
+(126, 1, 'Administrator', 'Настройки сайта изменены', 1425915885),
+(127, 1, 'Administrator', 'Настройки сайта изменены', 1425915972),
+(128, 1, 'Administrator', 'Настройки сайта изменены', 1425915982),
+(129, 1, 'Administrator', 'Кэш очищен', 1425918019),
+(130, 1, 'Administrator', 'Кэш очищен', 1425918037),
+(131, 1, 'Administrator', 'Кэш очищен', 1425918051),
+(132, 1, 'Administrator', 'Кэш очищен', 1425918069),
+(133, 1, 'Administrator', 'Кэш очищен', 1425918093),
+(134, 1, 'Administrator', 'Кэш очищен', 1425918177),
+(135, 1, 'Administrator', 'Кэш очищен', 1425918235),
+(136, 1, 'Administrator', 'Кэш очищен', 1425918250),
+(137, 1, 'Administrator', 'Кэш очищен', 1425918263),
+(138, 1, 'Administrator', 'Кэш очищен', 1425918279),
+(139, 1, 'Administrator', 'Кэш очищен', 1425918287),
+(140, 1, 'Administrator', 'Настройки сайта изменены', 1425918577),
+(141, 1, 'Administrator', 'Настройки сайта изменены', 1425918589),
+(142, 1, 'Administrator', 'Настройки сайта изменены', 1425918591),
+(143, 1, 'Administrator', 'Настройки сайта изменены', 1425918597),
+(144, 1, 'Administrator', 'Настройки сайта изменены', 1425918767),
+(145, 1, 'Administrator', 'Кэш очищен', 1425919306),
+(146, 1, 'Administrator', 'Настройки сайта изменены', 1425919400),
+(147, 1, 'Administrator', 'Логотип и Favicon изменены.', 1425919443),
+(148, 1, 'Administrator', 'Логотип и Favicon изменены.', 1425919476),
+(149, 1, 'Administrator', 'Логотип и Favicon изменены.', 1425919481),
+(150, 1, 'Administrator', 'Кэш очищен', 1425919507),
+(151, 1, 'Administrator', 'Логотип и Favicon изменены.', 1425919520),
+(152, 1, 'Administrator', 'Кэш очищен', 1425919525),
+(153, 1, 'Administrator', 'Логотип и Favicon изменены.', 1425919545),
+(154, 1, 'Administrator', 'Кэш очищен', 1425919549),
+(155, 1, 'Administrator', 'Кэш очищен', 1425919567),
+(156, 1, 'Administrator', 'Логотип и Favicon изменены.', 1425919572),
+(157, 1, 'Administrator', 'Логотип и Favicon изменены.', 1425919585),
+(158, 1, 'Administrator', 'Кэш очищен', 1425919590),
+(159, 1, 'Administrator', 'Кэш очищен', 1425919625),
+(160, 1, 'Administrator', 'Кэш очищен', 1425919637),
+(161, 1, 'Administrator', 'Кэш очищен', 1425919655),
+(162, 1, 'Administrator', 'Кэш очищен', 1425919672),
+(163, 1, 'Administrator', 'Кэш очищен', 1425919787),
+(164, 1, 'Administrator', 'Кэш очищен', 1425919878),
+(165, 1, 'Administrator', 'Кэш очищен', 1425925202),
+(166, 1, 'Administrator', 'Кэш очищен', 1425925228),
+(167, 1, 'Administrator', 'Кэш очищен', 1425925295),
+(168, 1, 'Administrator', 'Кэш очищен', 1425926282),
+(169, 1, 'Administrator', 'Кэш очищен', 1425926345),
+(170, 1, 'Administrator', 'Кэш очищен', 1425926604),
+(171, 1, 'Administrator', 'Кэш очищен', 1425926624),
+(172, 1, 'Administrator', 'Кэш очищен', 1425927560),
+(173, 1, 'Administrator', 'Кэш очищен', 1425927587),
+(174, 1, 'Administrator', 'Кэш очищен', 1425927804),
+(175, 1, 'Administrator', 'Кэш очищен', 1425927925),
+(176, 1, 'Administrator', 'Кэш очищен', 1425928122),
+(177, 1, 'Administrator', 'Кэш очищен', 1425928212),
+(178, 1, 'Administrator', 'Кэш очищен', 1425928825),
+(179, 1, 'Administrator', 'Кэш очищен', 1425928879),
+(180, 1, 'Administrator', 'Кэш очищен', 1425928897),
+(181, 1, 'Administrator', 'Кэш очищен', 1425929081),
+(182, 1, 'Administrator', 'Кэш очищен', 1425929403),
+(183, 1, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1425932933),
+(184, 1, 'Administrator', 'Кэш очищен', 1426282615),
+(185, 1, 'Administrator', 'Кэш очищен', 1426282814),
+(186, 1, 'Administrator', 'Кэш очищен', 1426282957),
+(187, 1, 'Administrator', 'Кэш очищен', 1426282965),
+(188, 1, 'Administrator', 'Кэш очищен', 1426283029),
+(189, 1, 'Administrator', 'Кэш очищен', 1426283066),
+(190, 1, 'Administrator', 'Кэш очищен', 1426283314),
+(191, 1, 'Administrator', 'Кэш очищен', 1426283659),
+(192, 1, 'Administrator', 'Кэш очищен', 1426283679),
+(193, 1, 'Administrator', 'Кэш очищен', 1426283689),
+(194, 1, 'Administrator', 'Кэш очищен', 1426283929),
+(195, 1, 'Administrator', 'Кэш очищен', 1426284256),
+(196, 1, 'Administrator', 'Кэш очищен', 1426284283),
+(197, 1, 'Administrator', 'Кэш очищен', 1426284312),
+(198, 1, 'Administrator', 'Кэш очищен', 1426284418),
+(199, 1, 'Administrator', 'Кэш очищен', 1426284455),
+(200, 1, 'Administrator', 'Кэш очищен', 1426285192),
+(201, 1, 'Administrator', 'Кэш очищен', 1426285201),
+(202, 1, 'Administrator', 'Кэш очищен', 1426285225),
+(203, 1, 'Administrator', 'Кэш очищен', 1426285377),
+(204, 1, 'Administrator', 'Кэш очищен', 1426285445),
+(205, 1, 'Administrator', 'Кэш очищен', 1426289529),
+(206, 1, 'Administrator', 'Кэш очищен', 1426289540),
+(207, 1, 'Administrator', 'Кэш очищен', 1426289571),
+(208, 1, 'Administrator', 'Кэш очищен', 1426289599),
+(209, 1, 'Administrator', 'Кэш очищен', 1426289738),
+(210, 1, 'Administrator', 'Кэш очищен', 1426290013),
+(211, 1, 'Administrator', 'Кэш очищен', 1426290034),
+(212, 1, 'Administrator', 'Кэш очищен', 1426290048),
+(213, 1, 'Administrator', 'Кэш очищен', 1426290581),
+(214, 1, 'Administrator', 'Кэш очищен', 1426290605),
+(215, 1, 'Administrator', 'Кэш очищен', 1426290621),
+(216, 1, 'Administrator', 'Кэш очищен', 1426290637),
+(217, 1, 'Administrator', 'Кэш очищен', 1426290662),
+(218, 1, 'Administrator', 'Кэш очищен', 1426290676),
+(219, 1, 'Administrator', 'Кэш очищен', 1426291168),
+(220, 1, 'Administrator', 'Кэш очищен', 1426291192),
+(221, 1, 'Administrator', 'Кэш очищен', 1426291246),
+(222, 1, 'Administrator', 'Кэш очищен', 1426291495),
+(223, 1, 'Administrator', 'Кэш очищен', 1426291541),
+(224, 1, 'Administrator', 'Кэш очищен', 1426291577),
+(225, 1, 'Administrator', 'Кэш очищен', 1426291599),
+(226, 1, 'Administrator', 'Кэш очищен', 1426291634),
+(227, 1, 'Administrator', 'Кэш очищен', 1426291707),
+(228, 1, 'Administrator', 'Кэш очищен', 1426291989),
+(229, 1, 'Administrator', 'Кэш очищен', 1426292021),
+(230, 1, 'Administrator', 'Кэш очищен', 1426292090),
+(231, 1, 'Administrator', 'Кэш очищен', 1426292105),
+(232, 1, 'Administrator', 'Кэш очищен', 1426292572),
+(233, 1, 'Administrator', 'Кэш очищен', 1426292685),
+(234, 1, 'Administrator', 'Кэш очищен', 1426292731),
+(235, 1, 'Administrator', 'Кэш очищен', 1426292774),
+(236, 1, 'Administrator', 'Кэш очищен', 1426293065),
+(237, 1, 'Administrator', 'Кэш очищен', 1426293104),
+(238, 1, 'Administrator', 'Кэш очищен', 1426293222),
+(239, 1, 'Administrator', 'Кэш очищен', 1426293251),
+(240, 1, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1426600210),
+(241, 1, 'Administrator', 'Кэш очищен', 1426601921),
+(242, 1, 'Administrator', 'Кэш очищен', 1426602087),
+(243, 1, 'Administrator', 'Кэш очищен', 1426602134),
+(244, 1, 'Administrator', 'Кэш очищен', 1426602143),
+(245, 1, 'Administrator', 'Кэш очищен', 1426602162),
+(246, 1, 'Administrator', 'Кэш очищен', 1426602196),
+(247, 1, 'Administrator', 'Кэш очищен', 1426602244),
+(248, 1, 'Administrator', 'Кэш очищен', 1426602278),
+(249, 1, 'Administrator', 'Кэш очищен', 1426602322),
+(250, 1, 'Administrator', 'Кэш очищен', 1426602415),
+(251, 1, 'Administrator', 'Кэш очищен', 1426602529),
+(252, 1, 'Administrator', 'Кэш очищен', 1426602563),
+(253, 1, 'Administrator', 'Кэш очищен', 1426603593),
+(254, 1, 'Administrator', 'Кэш очищен', 1426604810),
+(255, 1, 'Administrator', 'Кэш очищен', 1426604856),
+(256, 1, 'Administrator', 'Кэш очищен', 1426604868),
+(257, 1, 'Administrator', 'Кэш очищен', 1426604897),
+(258, 1, 'Administrator', 'Кэш очищен', 1426605001),
+(259, 1, 'Administrator', 'Кэш очищен', 1426605201),
+(260, 1, 'Administrator', 'Кэш очищен', 1426605344),
+(261, 1, 'Administrator', 'Кэш очищен', 1426605376),
+(262, 1, 'Administrator', 'Кэш очищен', 1426605401),
+(263, 1, 'Administrator', 'Кэш очищен', 1426605432),
+(264, 1, 'Administrator', 'Кэш очищен', 1426605498),
+(265, 1, 'Administrator', 'Кэш очищен', 1426605518),
+(266, 1, 'Administrator', 'Кэш очищен', 1426605535),
+(267, 1, 'Administrator', 'Кэш очищен', 1426605549),
+(268, 1, 'Administrator', 'Кэш очищен', 1426605592),
+(269, 1, 'Administrator', 'Кэш очищен', 1426605658),
+(270, 1, 'Administrator', 'Кэш очищен', 1426605685),
+(271, 1, 'Administrator', 'Кэш очищен', 1426605727),
+(272, 1, 'Administrator', 'Кэш очищен', 1426606160),
+(273, 1, 'Administrator', 'Кэш очищен', 1426606324),
+(274, 1, 'Administrator', 'Кэш очищен', 1426606442),
+(275, 1, 'Administrator', 'Кэш очищен', 1426606479),
+(276, 1, 'Administrator', 'Кэш очищен', 1426606601),
+(277, 1, 'Administrator', 'Кэш очищен', 1426606618),
+(278, 1, 'Administrator', 'Кэш очищен', 1426606635),
+(279, 1, 'Administrator', 'Кэш очищен', 1426606764),
+(280, 1, 'Administrator', 'Кэш очищен', 1426606796),
+(281, 1, 'Administrator', 'Кэш очищен', 1426606811),
+(282, 1, 'Administrator', 'Кэш очищен', 1426606867),
+(283, 1, 'Administrator', 'Кэш очищен', 1426606904),
+(284, 1, 'Administrator', 'Кэш очищен', 1426606921),
+(285, 1, 'Administrator', 'Кэш очищен', 1426606948),
+(286, 1, 'Administrator', 'Кэш очищен', 1426607112),
+(287, 1, 'Administrator', 'Кэш очищен', 1426607122),
+(288, 1, 'Administrator', 'Кэш очищен', 1426607143),
+(289, 1, 'Administrator', 'Кэш очищен', 1426607150),
+(290, 1, 'Administrator', 'Кэш очищен', 1426607165),
+(291, 1, 'Administrator', 'Кэш очищен', 1426607181),
+(292, 1, 'Administrator', 'Кэш очищен', 1426607228),
+(293, 1, 'Administrator', 'Кэш очищен', 1426607242),
+(294, 1, 'Administrator', 'Кэш очищен', 1426607309),
+(295, 1, 'Administrator', 'Кэш очищен', 1426607320),
+(296, 1, 'Administrator', 'Кэш очищен', 1426608577),
+(297, 1, 'Administrator', 'Кэш очищен', 1426608605),
+(298, 1, 'Administrator', 'Кэш очищен', 1426608625),
+(299, 1, 'Administrator', 'Кэш очищен', 1426608653),
+(300, 1, 'Administrator', 'Кэш очищен', 1426609266),
+(301, 1, 'Administrator', 'Кэш очищен', 1426609286),
+(302, 1, 'Administrator', 'Кэш очищен', 1426609303),
+(303, 1, 'Administrator', 'Кэш очищен', 1426609601),
+(304, 1, 'Administrator', 'Кэш очищен', 1426609642),
+(305, 1, 'Administrator', 'Кэш очищен', 1426609741),
+(306, 1, 'Administrator', 'Кэш очищен', 1426610218),
+(307, 1, 'Administrator', 'Кэш очищен', 1426610258),
+(308, 1, 'Administrator', 'Кэш очищен', 1426610279),
+(309, 1, 'Administrator', 'Кэш очищен', 1426610303),
+(310, 1, 'Administrator', 'Кэш очищен', 1426610384),
+(311, 1, 'Administrator', 'Кэш очищен', 1426693363),
+(312, 1, 'Administrator', 'Кэш очищен', 1426693401),
+(313, 1, 'Administrator', 'Кэш очищен', 1426693425),
+(314, 1, 'Administrator', 'Кэш очищен', 1426693479),
+(315, 1, 'Administrator', 'Кэш очищен', 1426698302),
+(316, 1, 'Administrator', 'Кэш очищен', 1426698320),
+(317, 1, 'Administrator', 'Кэш очищен', 1426698343),
+(318, 1, 'Administrator', 'Кэш очищен', 1426758014),
+(319, 1, 'Administrator', 'Кэш очищен', 1426758050),
+(320, 1, 'Administrator', 'Кэш очищен', 1426758535),
+(321, 1, 'Administrator', 'Кэш очищен', 1426758547),
+(322, 1, 'Administrator', 'Кэш очищен', 1426758783),
+(323, 1, 'Administrator', 'Кэш очищен', 1426758814),
+(324, 1, 'Administrator', 'Кэш очищен', 1426758934),
+(325, 1, 'Administrator', 'Кэш очищен', 1426777271),
+(326, 1, 'Administrator', 'Кэш очищен', 1426777560),
+(327, 1, 'Administrator', 'Кэш очищен', 1426777579),
+(328, 1, 'Administrator', 'Кэш очищен', 1426777588),
+(329, 1, 'Administrator', 'Кэш очищен', 1426777630),
+(330, 1, 'Administrator', 'Кэш очищен', 1426777761),
+(331, 1, 'Administrator', 'Кэш очищен', 1426777783),
+(332, 1, 'Administrator', 'Кэш очищен', 1426777802),
+(333, 1, 'Administrator', 'Кэш очищен', 1426777843),
+(334, 1, 'Administrator', 'Кэш очищен', 1426777990),
+(335, 1, 'Administrator', 'Кэш очищен', 1426778005),
+(336, 1, 'Administrator', 'Кэш очищен', 1426778071),
+(337, 1, 'Administrator', 'Кэш очищен', 1426778106),
+(338, 1, 'Administrator', 'Кэш очищен', 1426778218),
+(339, 1, 'Administrator', 'Кэш очищен', 1426778239),
+(340, 1, 'Administrator', 'Кэш очищен', 1426778258),
+(341, 1, 'Administrator', 'Кэш очищен', 1426778751),
+(342, 1, 'Administrator', 'Кэш очищен', 1426778852),
+(343, 1, 'Administrator', 'Кэш очищен', 1426783336),
+(344, 1, 'Administrator', 'Кэш очищен', 1426783465),
+(345, 1, 'Administrator', 'Кэш очищен', 1426865612),
+(346, 1, 'Administrator', 'Кэш очищен', 1426866935),
+(347, 1, 'Administrator', 'Кэш очищен', 1426866953),
+(348, 1, 'Administrator', 'Кэш очищен', 1426869001),
+(349, 1, 'Administrator', 'Кэш очищен', 1426869022),
+(350, 1, 'Administrator', 'Кэш очищен', 1426869064),
+(351, 1, 'Administrator', 'Кэш очищен', 1426869264),
+(352, 1, 'Administrator', 'Кэш очищен', 1426870042),
+(353, 1, 'Administrator', 'Кэш очищен', 1427208299),
+(354, 1, 'Administrator', 'Кэш очищен', 1427208327),
+(355, 1, 'Administrator', 'Кэш очищен', 1427208440),
+(356, 1, 'Administrator', 'Кэш очищен', 1427208517),
+(357, 1, 'Administrator', 'Кэш очищен', 1427208620),
+(358, 1, 'Administrator', 'Логотип и Favicon изменены.', 1427212579),
+(359, 1, 'Administrator', 'Кэш очищен', 1427213000),
+(360, 1, 'Administrator', 'Кэш очищен', 1427213020),
+(361, 1, 'Administrator', 'Кэш очищен', 1427213220),
+(362, 1, 'Administrator', 'Кэш очищен', 1427213282),
+(363, 1, 'Administrator', 'Кэш очищен', 1427213938),
+(364, 1, 'Administrator', 'Кэш очищен', 1427214340),
+(365, 1, 'Administrator', 'Кэш очищен', 1427214373),
+(366, 1, 'Administrator', 'Кэш очищен', 1427214394),
+(367, 1, 'Administrator', 'Кэш очищен', 1427214506),
+(368, 1, 'Administrator', 'Кэш очищен', 1427214540),
+(369, 1, 'Administrator', 'Кэш очищен', 1427214562),
+(370, 1, 'Administrator', 'Кэш очищен', 1427214642),
+(371, 1, 'Administrator', 'Кэш очищен', 1427214664),
+(372, 1, 'Administrator', 'Кэш очищен', 1427214749),
+(373, 1, 'Administrator', 'Кэш очищен', 1427214757),
+(374, 1, 'Administrator', 'Кэш очищен', 1427214940),
+(375, 1, 'Administrator', 'Кэш очищен', 1427214960),
+(376, 1, 'Administrator', 'Кэш очищен', 1427215035),
+(377, 1, 'Administrator', 'Кэш очищен', 1427215051),
+(378, 1, 'Administrator', 'Кэш очищен', 1427215113),
+(379, 1, 'Administrator', 'Кэш очищен', 1427215129),
+(380, 1, 'Administrator', 'Кэш очищен', 1427215151),
+(381, 1, 'Administrator', 'Кэш очищен', 1427215196),
+(382, 1, 'Administrator', 'Кэш очищен', 1427215243),
+(383, 1, 'Administrator', 'Кэш очищен', 1427215258),
+(384, 1, 'Administrator', 'Кэш очищен', 1427215277),
+(385, 1, 'Administrator', 'Кэш очищен', 1427215294),
+(386, 1, 'Administrator', 'Кэш очищен', 1427215514),
+(387, 1, 'Administrator', 'Кэш очищен', 1427215531),
+(388, 1, 'Administrator', 'Кэш очищен', 1427215548),
+(389, 1, 'Administrator', 'Кэш очищен', 1427215591),
+(390, 1, 'Administrator', 'Кэш очищен', 1427215603),
+(391, 1, 'Administrator', 'Кэш очищен', 1427215629),
+(392, 1, 'Administrator', 'Кэш очищен', 1427215645),
+(393, 1, 'Administrator', 'Кэш очищен', 1427215664),
+(394, 1, 'Administrator', 'Кэш очищен', 1427216393),
+(395, 1, 'Administrator', 'Кэш очищен', 1427216692),
+(396, 1, 'Administrator', 'Кэш очищен', 1427216731),
+(397, 1, 'Administrator', 'Кэш очищен', 1427217418),
+(398, 1, 'Administrator', 'Кэш очищен', 1427217527),
+(399, 1, 'Administrator', 'Кэш очищен', 1427217642),
+(400, 1, 'Administrator', 'Кэш очищен', 1427217812),
+(401, 1, 'Administrator', 'Кэш очищен', 1427217862),
+(402, 1, 'Administrator', 'Кэш очищен', 1427217988),
+(403, 1, 'Administrator', 'Кэш очищен', 1427218065),
+(404, 1, 'Administrator', 'Кэш очищен', 1427218129),
+(405, 1, 'Administrator', 'Кэш очищен', 1427218368),
+(406, 1, 'Administrator', 'Кэш очищен', 1427219073),
+(407, 1, 'Administrator', 'Кэш очищен', 1427219089),
+(408, 1, 'Administrator', 'Кэш очищен', 1427219379),
+(409, 1, 'Administrator', 'Кэш очищен', 1427219946),
+(410, 1, 'Administrator', 'Кэш очищен', 1427220982),
+(411, 1, 'Administrator', 'Кэш очищен', 1427388584),
+(412, 1, 'Administrator', 'Кэш очищен', 1427388726),
+(413, 1, 'Administrator', 'Кэш очищен', 1427390743),
+(414, 1, 'Administrator', 'Кэш очищен', 1427391190),
+(415, 1, 'Administrator', 'Кэш очищен', 1427391364),
+(416, 1, 'Administrator', 'Логотип и Favicon изменены.', 1427391510),
+(417, 1, 'Administrator', 'Кэш очищен', 1427391513),
+(418, 1, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1427391882),
+(419, 1, 'Administrator', 'Логотип и Favicon изменены.', 1427391931),
+(420, 1, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1427391998),
+(421, 1, 'Administrator', 'Виджет отредактирован', 1427392183),
+(422, 1, 'Administrator', 'Виджет удален path', 1427392264),
+(423, 1, 'Administrator', 'Виджет удален news', 1427392264),
+(424, 1, 'Administrator', 'Виджет удален blog', 1427392264),
+(425, 1, 'Administrator', 'Виджет удален products', 1427392264),
+(426, 1, 'Administrator', 'Виджет удален offers', 1427392264),
+(427, 1, 'Administrator', 'Виджет удален comments', 1427392264),
+(428, 1, 'Administrator', 'Виджет удален tags', 1427392264),
+(429, 1, 'Administrator', 'Виджет удален contacts', 1427392264),
+(430, 1, 'Administrator', 'Виджет удален product_all', 1427392264),
+(431, 1, 'Administrator', 'Виджет удален offers_all', 1427392264),
+(432, 1, 'Administrator', 'Виджет удален works', 1427392264),
+(433, 1, 'Administrator', 'Виджет удален rand_images', 1427392264),
+(434, 1, 'Administrator', 'Виджет удален benefits', 1427392264),
+(435, 1, 'Administrator', 'Виджет удален works_all', 1427392264),
+(436, 1, 'Administrator', 'Виджет удален header', 1427392264),
+(437, 1, 'Administrator', 'Виджет удален footer', 1427392264),
+(438, 1, 'Administrator', 'Виджет создан tagline', 1427392654),
+(439, 1, 'Administrator', 'Виджет отредактирован', 1427392658),
+(440, 1, 'Administrator', 'Настройки виджета отредактированы ', 1427392678),
+(441, 1, 'Administrator', 'Виджет отредактирован', 1427392678),
+(442, 1, 'Administrator', 'Виджет отредактирован', 1427392696),
+(443, 1, 'Administrator', 'Кэш очищен', 1427392819),
+(444, 1, 'Administrator', 'Кэш очищен', 1427392830),
+(445, 1, 'Administrator', 'Кэш очищен', 1427392837),
+(446, 1, 'Administrator', 'Кэш очищен', 1427392942),
+(447, 1, 'Administrator', 'Виджет отредактирован', 1427392952),
+(448, 1, 'Administrator', 'Виджет отредактирован', 1427393097),
+(449, 1, 'Administrator', 'Виджет отредактирован', 1427393105),
+(450, 1, 'Administrator', 'Настройки виджета отредактированы ', 1427393117),
+(451, 1, 'Administrator', 'Виджет отредактирован', 1427393118),
+(452, 1, 'Administrator', 'Кэш очищен', 1427393122),
+(453, 1, 'Administrator', 'Кэш очищен', 1427393137),
+(454, 1, 'Administrator', 'Настройки виджета отредактированы ', 1427393154),
+(455, 1, 'Administrator', 'Виджет отредактирован', 1427393154),
+(456, 1, 'Administrator', 'Кэш очищен', 1427393159),
+(457, 1, 'Administrator', 'Настройки виджета отредактированы ', 1427393171),
+(458, 1, 'Administrator', 'Виджет отредактирован', 1427393172),
+(459, 1, 'Administrator', 'Настройки виджета отредактированы ', 1427393378),
+(460, 1, 'Administrator', 'Виджет отредактирован', 1427393382),
+(461, 1, 'Administrator', 'Настройки виджета отредактированы ', 1427393387),
+(462, 1, 'Administrator', 'Виджет отредактирован', 1427393387),
+(463, 1, 'Administrator', 'Кэш очищен', 1427394082),
+(464, 1, 'Administrator', 'Кэш очищен', 1427394116),
+(465, 1, 'Administrator', 'Кэш очищен', 1427394254),
+(466, 1, 'Administrator', 'Кэш очищен', 1427394307),
+(467, 1, 'Administrator', 'Кэш очищен', 1427394385),
+(468, 1, 'Administrator', 'Кэш очищен', 1427394416),
+(469, 1, 'Administrator', 'Кэш очищен', 1427394432),
+(470, 1, 'Administrator', 'Кэш очищен', 1427394445),
+(471, 1, 'Administrator', 'Кэш очищен', 1427394485),
+(472, 1, 'Administrator', 'Кэш очищен', 1427394514),
+(473, 1, 'Administrator', 'Кэш очищен', 1427394545),
+(474, 1, 'Administrator', 'Кэш очищен', 1427394566),
+(475, 1, 'Administrator', 'Кэш очищен', 1427394598),
+(476, 1, 'Administrator', 'Настройки виджета отредактированы ', 1427394640),
+(477, 1, 'Administrator', 'Виджет отредактирован', 1427394640),
+(478, 1, 'Administrator', 'Кэш очищен', 1427394675),
+(479, 1, 'Administrator', 'Кэш очищен', 1427394965),
+(480, 1, 'Administrator', 'Кэш очищен', 1427395178),
+(481, 1, 'Administrator', 'Кэш очищен', 1427395232),
+(482, 1, 'Administrator', 'Кэш очищен', 1427395591),
+(483, 1, 'Administrator', 'Кэш очищен', 1427395865),
+(484, 1, 'Administrator', 'Настройки виджета отредактированы ', 1427395983),
+(485, 1, 'Administrator', 'Виджет отредактирован', 1427395983),
+(486, 1, 'Administrator', 'Настройки виджета отредактированы ', 1427395992),
+(487, 1, 'Administrator', 'Виджет отредактирован', 1427395992),
+(488, 1, 'Administrator', 'Кэш очищен', 1427396504),
+(489, 1, 'Administrator', 'Кэш очищен', 1427396795),
+(490, 1, 'Administrator', 'Настройки виджета отредактированы ', 1427397080),
+(491, 1, 'Administrator', 'Виджет отредактирован', 1427397080),
+(492, 1, 'Administrator', 'Кэш очищен', 1427397083),
+(493, 1, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1427400551),
+(494, 1, 'Administrator', 'Настройки сайта изменены', 1427403368),
+(495, 1, 'Administrator', 'Виджет отредактирован', 1427403533),
+(496, 1, 'Administrator', 'Виджет удален tagline', 1427403545),
+(497, 1, 'Administrator', 'Кэш очищен', 1427403759),
+(498, 1, 'Administrator', 'Настройки сайта изменены', 1427403764),
+(499, 1, 'Administrator', 'Кэш очищен', 1427403786),
+(500, 1, 'Administrator', 'Настройки сайта изменены', 1427404036),
+(501, 1, 'Administrator', 'Настройки сайта изменены', 1427404533),
+(502, 1, 'Administrator', 'Кэш очищен', 1427405214),
+(503, 1, 'Administrator', 'Настройки сайта изменены', 1427701893),
+(504, 1, 'Administrator', 'Настройки сайта изменены', 1427702268),
+(505, 1, 'Administrator', 'Настройки сайта изменены', 1427702440),
+(506, 1, 'Administrator', 'Настройки сайта изменены', 1427703308),
+(507, 1, 'Administrator', 'Меню отредактировано. Id: 1', 1427717442),
+(508, 1, 'Administrator', 'Кэш очищен', 1427717446),
+(509, 1, 'Administrator', 'Баннер был удален. Ids: 4, 5', 1427721480),
+(510, 1, 'Administrator', 'Кэш очищен', 1427721644),
+(511, 1, 'Administrator', 'Кэш очищен', 1427821828),
+(512, 1, 'Administrator', 'Кэш очищен', 1428142088),
+(513, 1, 'Administrator', 'Кэш очищен', 1428142468),
+(514, 1, 'Administrator', 'Кэш очищен', 1428142621),
+(515, 1, 'Administrator', 'Настройки сайта изменены', 1428153056),
+(516, 1, 'Administrator', 'Настройки сайта изменены', 1428153591),
+(517, 1, 'Administrator', 'Настройки сайта изменены', 1428156435),
+(518, 1, 'Administrator', 'Настройки сайта изменены', 1428156897),
+(519, 1, 'Administrator', 'Настройки сайта изменены', 1428156926),
+(520, 1, 'Administrator', 'Настройки сайта изменены', 1428162340),
+(521, 1, 'Administrator', 'Настройки сайта изменены', 1428162497),
+(522, 1, 'Administrator', 'Настройки сайта изменены', 1428162620),
+(523, 1, 'Administrator', 'Настройки сайта изменены', 1428163169),
+(524, 1, 'Administrator', 'Настройки сайта изменены', 1428163438),
+(525, 1, 'Administrator', 'Настройки сайта изменены', 1428163459),
+(526, 1, 'Administrator', 'Страница удалена ID 35', 1428163639),
+(527, 1, 'Administrator', 'Страница удалена ID 63', 1428163639),
+(528, 1, 'Administrator', 'Страница удалена ID 64', 1428163639),
+(529, 1, 'Administrator', 'Страница удалена ID 65', 1428163639),
+(530, 1, 'Administrator', 'Страница удалена ID 66', 1428163639),
+(531, 1, 'Administrator', 'Страница удалена ID 67', 1428163639),
+(532, 1, 'Administrator', 'Страница удалена ID 68', 1428163639),
+(533, 1, 'Administrator', 'Страница удалена ID 70', 1428163639),
+(534, 1, 'Administrator', 'Страница удалена ID 71', 1428163639),
+(535, 1, 'Administrator', 'Страница удалена ID 72', 1428163639),
+(536, 1, 'Administrator', 'Страница удалена ID 73', 1428163639),
+(537, 1, 'Administrator', 'Страница удалена ID 74', 1428163639),
+(538, 1, 'Administrator', 'Страница удалена ID 75', 1428163639),
+(539, 1, 'Administrator', 'Страница удалена ID 76', 1428163639),
+(540, 1, 'Administrator', 'Страница удалена ID 77', 1428163639),
+(541, 1, 'Administrator', 'Страница удалена ID 78', 1428163639),
+(542, 1, 'Administrator', 'Страница удалена ID 79', 1428163639),
+(543, 1, 'Administrator', 'Страница удалена ID 80', 1428163639),
+(544, 1, 'Administrator', 'Страница удалена ID 83', 1428163639),
+(545, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/69">Ремонт роботов</a>', 1428164428),
+(546, 1, 'Administrator', 'Удалено категорию с ID 56', 1428164437),
+(547, 1, 'Administrator', 'Удалено категорию с ID 57', 1428164437),
+(548, 1, 'Administrator', 'Удалено категорию с ID 55', 1428164437),
+(549, 1, 'Administrator', 'Удалено категорию с ID 58', 1428164437),
+(550, 1, 'Administrator', 'Удалено категорию с ID 59', 1428164437),
+(551, 1, 'Administrator', 'Удалено категорию с ID 60', 1428164437),
+(552, 1, 'Administrator', 'Удалено категорию с ID 61', 1428164437),
+(553, 1, 'Administrator', 'Удалено категорию с ID 60', 1428164437),
+(554, 1, 'Administrator', 'Удалено категорию с ID 61', 1428164437),
+(555, 1, 'Administrator', 'Удалено категорию с ID 60', 1428164437),
+(556, 1, 'Administrator', 'Удалено категорию с ID 61', 1428164437),
+(557, 1, 'Administrator', 'Страница создана <a href="http://corporate/admin/pages/edit/84">О телескопе</a>', 1428164702),
+(558, 1, 'Administrator', 'Настройки сайта изменены', 1428164719),
+(559, 1, 'Administrator', 'Категория товаров создана <a href="/admin/categories/edit/62"> Телескоп Кеплер</a>', 1428164759),
+(560, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/84">Описание</a>', 1428164774),
+(561, 1, 'Administrator', 'Страница удалена ID 69', 1428164780),
+(562, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/84">Описание</a>', 1428164793),
+(563, 1, 'Administrator', 'Категория товаров создана <a href="/admin/categories/edit/63"> Открытия</a>', 1428164805),
+(564, 1, 'Administrator', 'Категория товаров создана <a href="/admin/categories/edit/64"> Новости</a>', 1428164812),
+(565, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/62"> Телескоп</a>', 1428164842),
+(566, 1, 'Administrator', 'Страница создана <a href="http://corporate/admin/pages/edit/85">Характеристики</a>', 1428164888),
+(567, 1, 'Administrator', 'Страница создана <a href="http://corporate/admin/pages/edit/86">Ход миссии</a>', 1428164940),
+(568, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/86">Миссия</a>', 1428164969),
+(569, 1, 'Administrator', 'Альбом галереи был удален. Id: 4', 1428165019),
+(570, 1, 'Administrator', 'Альбом галереи был удален. Id: 3', 1428165019),
+(571, 1, 'Administrator', 'Альбом галереи был удален. Id: 2', 1428165019),
+(572, 1, 'Administrator', 'Категория галереи удалена. Ids: 5', 1428165019),
+(573, 1, 'Administrator', 'Меню удалено', 1428165032),
+(574, 1, 'Administrator', 'Пункт меню удалён. Ids 1, 8, 9, 17, 18, 19, 20, 21, 10, 14, 15, 16, 4, 11, 12, 2', 1428165039),
+(575, 1, 'Administrator', 'Пункт меню создан. Id: 33', 1428165048),
+(576, 1, 'Administrator', 'Пункт меню создан. Id: 34', 1428165057),
+(577, 1, 'Administrator', 'Пункт меню создан. Id: 35', 1428165064),
+(578, 1, 'Administrator', 'Настройки сайта изменены', 1428165081),
+(579, 1, 'Administrator', 'Настройки сайта изменены', 1428165183),
+(580, 1, 'Administrator', 'Кэш очищен', 1428165186),
+(581, 1, 'Administrator', 'Категория товаров создана <a href="/admin/categories/edit/65"> Видео</a>', 1428165301),
+(582, 1, 'Administrator', 'Пункт меню создан. Id: 36', 1428165313),
+(583, 1, 'Administrator', 'Страница создана <a href="http://corporate/admin/pages/edit/87">Контакты</a>', 1428165336),
+(584, 1, 'Administrator', 'Пункт меню создан. Id: 37', 1428165344),
+(585, 1, 'Administrator', 'Пункт меню создан. Id: 38', 1428165367),
+(586, 1, 'Administrator', 'Настройки сайта изменены', 1428182631),
+(587, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/84">Телескоп «Кеплер»</a>', 1428182654),
+(588, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/84">Телескоп «Кеплер»</a>', 1428182667),
+(589, 1, 'Administrator', 'Настройки сайта изменены', 1428182935),
+(590, 1, 'Administrator', 'Настройки сайта изменены', 1428182938),
+(591, 1, 'Administrator', 'Кэш очищен', 1428182965),
+(592, 1, 'Administrator', 'Настройки сайта изменены', 1428182990),
+(593, 1, 'Administrator', 'Меню создано. Id: 6', 1428183148),
+(594, 1, 'Administrator', 'Пункт меню создан. Id: 39', 1428183220),
+(595, 1, 'Administrator', 'Пункт меню создан. Id: 40', 1428183237),
+(596, 1, 'Administrator', 'Пункт меню создан. Id: 41', 1428183246),
+(597, 1, 'Administrator', 'Меню отредактировано. Id: 6', 1428183515),
+(598, 1, 'Administrator', 'Меню отредактировано. Id: 6', 1428183567),
+(599, 1, 'Administrator', 'Меню отредактировано. Id: 6', 1428183583),
+(600, 1, 'Administrator', 'Баннер успешно создан. Id: 1', 1428184745),
+(601, 1, 'Administrator', 'Баннер был отредактирован. Id: 1', 1428184884),
+(602, 1, 'Administrator', 'Баннер был отредактирован. Id: 1', 1428184889),
+(603, 1, 'Administrator', 'Баннер успешно создан. Id: 2', 1428184939),
+(604, 1, 'Administrator', 'Баннер был отредактирован. Id: 2', 1428184955),
+(605, 1, 'Administrator', 'Баннер был отредактирован. Id: 1', 1428184966),
+(606, 1, 'Administrator', 'Баннер был отредактирован. Id: 1', 1428184976),
+(607, 1, 'Administrator', 'Баннер успешно создан. Id: 3', 1428185043),
+(608, 1, 'Administrator', 'Баннер был отредактирован. Id: 3', 1428185059),
+(609, 1, 'Administrator', 'Кэш очищен', 1428185455),
+(610, 1, 'Administrator', 'Кэш очищен', 1428185472),
+(611, 1, 'Administrator', 'Кэш очищен', 1428185484),
+(612, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 1', 1428186212),
+(613, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 1', 1428186218),
+(614, 1, 'Administrator', 'Баннер успешно создан. Id: 4', 1428186228),
+(615, 1, 'Administrator', 'Кэш очищен', 1428186236),
+(616, 1, 'Administrator', 'Баннер был отредактирован. Id: 4', 1428186257),
+(617, 1, 'Administrator', 'Баннер успешно создан. Id: 5', 1428186276),
+(618, 1, 'Administrator', 'Баннер был отредактирован. Id: 5', 1428186285),
+(619, 1, 'Administrator', 'Баннер был отредактирован. Id: 5', 1428186287),
+(620, 1, 'Administrator', 'Кэш очищен', 1428186297),
+(621, 1, 'Administrator', 'Кэш очищен', 1428186365),
+(622, 1, 'Administrator', 'Кэш очищен', 1428186938),
+(623, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 1', 1428187059),
+(624, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 2', 1428187064),
+(625, 1, 'Administrator', 'Кэш очищен', 1428187093),
+(626, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 2', 1428187098),
+(627, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 2', 1428187099),
+(628, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 3', 1428187099),
+(629, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 4', 1428187103),
+(630, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 4', 1428187106),
+(631, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 3', 1428187107),
+(632, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 2', 1428187107),
+(633, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 1', 1428187111),
+(634, 1, 'Administrator', 'Баннер успешно создан. Id: 6', 1428187503),
+(635, 1, 'Administrator', 'Баннер был отредактирован. Id: 6', 1428187508),
+(636, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 6', 1428188485),
+(637, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 5', 1428188488),
+(638, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 4', 1428188491),
+(639, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 3', 1428188495),
+(640, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 2', 1428188499),
+(641, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 1', 1428188502),
+(642, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 6', 1428188520),
+(643, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 5', 1428188520),
+(644, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 4', 1428188520),
+(645, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 3', 1428188521),
+(646, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 2', 1428188521),
+(647, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 1', 1428188522),
+(648, 1, 'Administrator', 'Баннер успешно создан. Id: 7', 1428311658),
+(649, 1, 'Administrator', 'Баннер успешно создан. Id: 8', 1428311726),
+(650, 1, 'Administrator', 'Баннер успешно создан. Id: 9', 1428311759),
+(651, 1, 'Administrator', 'Баннер успешно создан. Id: 10', 1428311791),
+(652, 1, 'Administrator', 'Баннер был отредактирован. Id: 7', 1428311807),
+(653, 1, 'Administrator', 'Баннер был отредактирован. Id: 7', 1428311837),
+(654, 1, 'Administrator', 'Баннер был отредактирован. Id: 8', 1428311844),
+(655, 1, 'Administrator', 'Баннер был отредактирован. Id: 9', 1428311850),
+(656, 1, 'Administrator', 'Баннер был отредактирован. Id: 10', 1428311857),
+(657, 1, 'Administrator', 'Кэш очищен', 1428312041),
+(658, 1, 'Administrator', 'Баннер был отредактирован. Id: 8', 1428312886),
+(659, 1, 'Administrator', 'Кэш очищен', 1428312952),
+(660, 1, 'Administrator', 'Страница создана <a href="http://corporate/admin/pages/edit/88">Еще два транзитных горячих гиганта от обзора HATSouth</a>', 1428319410),
+(661, 1, 'Administrator', 'Страница создана <a href="http://corporate/admin/pages/edit/89">Три горячих юпитера и один горячий сатурн от обзора HATNet</a>', 1428319496),
+(662, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/88">Еще два транзитных горячих гиганта от обзора HATSouth</a>', 1428319532),
+(663, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/89">Три горячих юпитера и один горячий сатурн от обзора HATNet</a>', 1428319555),
+(664, 1, 'Administrator', 'Страница создана <a href="http://corporate/admin/pages/edit/90">Три планеты-гиганта у красных гигантов HD 216536, HD 95127 и BD+49 828</a>', 1428319653),
+(665, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/90">Три планеты-гиганта у красных гигантов HD 216536, HD 95127 и BD+49 828</a>', 1428319664),
+(666, 1, 'Administrator', 'Страница создана <a href="http://corporate/admin/pages/edit/91">36 транзитных кандидатов (из них – 18 планет) от миссии K2</a>', 1428319819),
+(667, 1, 'Administrator', 'Группа полей удалена. Id: 7', 1428319992),
+(668, 1, 'Administrator', 'Поле успешно удалено - field_image', 1428320003),
+(669, 1, 'Administrator', 'Кэш очищен', 1428320158),
+(670, 1, 'Administrator', 'Группа полей создана. Id: 11', 1428320169),
+(671, 1, 'Administrator', 'Поле создано - field_image', 1428320268),
+(672, 1, 'Administrator', 'Поле обновлено - field_image', 1428320349),
+(673, 1, 'Administrator', 'Виджет создан news', 1428320393),
+(674, 1, 'Administrator', 'Настройки виджета отредактированы', 1428320397),
+(675, 1, 'Administrator', 'Виджет отредактирован', 1428320397),
+(676, 1, 'Administrator', 'Настройки виджета отредактированы', 1428320406),
+(677, 1, 'Administrator', 'Виджет создан test', 1428320467),
+(678, 1, 'Administrator', 'Настройки виджета отредактированы', 1428320536),
+(679, 1, 'Administrator', 'Виджет отредактирован', 1428320536),
+(680, 1, 'Administrator', 'Настройки виджета отредактированы', 1428320557),
+(681, 1, 'Administrator', 'Виджет удален test', 1428320564),
+(682, 1, 'Administrator', 'Настройки виджета отредактированы', 1428320569),
+(683, 1, 'Administrator', 'Настройки виджета отредактированы', 1428320580),
+(684, 1, 'Administrator', 'Кэш очищен', 1428320615),
+(685, 1, 'Administrator', 'Кэш очищен', 1428321262),
+(686, 1, 'Administrator', 'Кэш очищен', 1428321286),
+(687, 1, 'Administrator', 'Кэш очищен', 1428321335),
+(688, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/88">Еще два транзитных горячих гиганта от обзора HATSouth</a>', 1428321667),
+(689, 1, 'Administrator', 'Настройки виджета отредактированы', 1428321698),
+(690, 1, 'Administrator', 'Настройки виджета отредактированы', 1428321704),
+(691, 1, 'Administrator', 'Кэш очищен', 1428323076),
+(692, 1, 'Administrator', 'Кэш очищен', 1428323112),
+(693, 1, 'Administrator', 'Виджет отредактирован', 1428323601),
+(694, 1, 'Administrator', 'Виджет отредактирован', 1428323608),
+(695, 1, 'Administrator', 'Кэш очищен', 1428325518),
+(696, 1, 'Administrator', 'Категория галереи создана', 1428422691),
+(697, 1, 'Administrator', 'Категория галереи отредактирована. Id: 6', 1428422762),
+(698, 1, 'Administrator', 'Альбом галереи был создан', 1428422810),
+(699, 1, 'Administrator', 'Альбом галереи был создан', 1428422886),
+(700, 1, 'Administrator', 'Категория галереи создана', 1428423332),
+(701, 1, 'Administrator', 'Альбом галереи был создан', 1428423364),
+(702, 1, 'Administrator', 'Альбом галереи был создан', 1428423407),
+(703, 1, 'Administrator', 'Настройки галереи были отредактированы', 1428424016),
+(704, 1, 'Administrator', 'Настройки галереи были отредактированы', 1428424030),
+(705, 1, 'Administrator', 'Фотографии в альбоме галереи сохранены', 1428424070),
+(706, 1, 'Administrator', 'Фотографии в альбоме галереи сохранены', 1428424081),
+(707, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 93', 1428424086),
+(708, 1, 'Administrator', 'Фотографии в альбоме галереи сохранены', 1428424253),
+(709, 1, 'Administrator', 'Фотографии в альбоме галереи сохранены', 1428424470),
+(710, 1, 'Administrator', 'Фотографии в альбоме галереи сохранены', 1428424539),
+(711, 1, 'Administrator', 'Виджет создан gallery', 1428425077),
+(712, 1, 'Administrator', 'Настройки виджета отредактированы', 1428425080),
+(713, 1, 'Administrator', 'Настройки виджета отредактированы', 1428425082),
+(714, 1, 'Administrator', 'Настройки виджета отредактированы', 1428425085),
+(715, 1, 'Administrator', 'Настройки виджета отредактированы', 1428425092),
+(716, 1, 'Administrator', 'Виджет отредактирован', 1428425096),
+(717, 1, 'Administrator', 'Виджет создан gal2', 1428425141),
+(718, 1, 'Administrator', 'Настройки виджета отредактированы', 1428425146),
+(719, 1, 'Administrator', 'Настройки виджета отредактированы', 1428425149),
+(720, 1, 'Administrator', 'Настройки виджета отредактированы', 1428425150),
+(721, 1, 'Administrator', 'Настройки виджета отредактированы', 1428425152),
+(722, 1, 'Administrator', 'Виджет отредактирован', 1428425159),
+(723, 1, 'Administrator', 'Виджет отредактирован', 1428425162),
+(724, 1, 'Administrator', 'Виджет удален gal2', 1428425224),
+(725, 1, 'Administrator', 'Виджет создан sdfsadf', 1428425288),
+(726, 1, 'Administrator', 'Настройки виджета отредактированы', 1428425300),
+(727, 1, 'Administrator', 'Виджет удален sdfsadf', 1428425467),
+(728, 1, 'Administrator', 'Кэш очищен', 1428425490),
+(729, 1, 'Administrator', 'Кэш очищен', 1428426140),
+(730, 1, 'Administrator', 'Кэш очищен', 1428426255),
+(731, 1, 'Administrator', 'Поле создано - field_asdas', 1428500522),
+(732, 1, 'Administrator', 'Альбом галереи был создан', 1428501188),
+(733, 1, 'Administrator', 'Альбом галереи был удален. Id: 9', 1428503164),
+(734, 1, 'Administrator', 'Поле успешно удалено - field_asdas', 1428503172),
+(735, 1, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1428593627),
+(736, 1, 'Administrator', 'Кэш очищен', 1428661268),
+(737, 1, 'Administrator', 'Настройки сайта изменены', 1428662509),
+(738, 1, 'Administrator', 'Настройки сайта изменены', 1428662528),
+(739, 1, 'Administrator', 'Настройки сайта изменены', 1428662589),
+(740, 1, 'Administrator', 'Настройки сайта изменены', 1428662596),
+(741, 1, 'Administrator', 'Виджет создан h_text', 1428662972),
+(742, 1, 'Administrator', 'Виджет отредактирован', 1428663224),
+(743, 1, 'Administrator', 'Настройки виджета отредактированы ', 1428663335),
+(744, 1, 'Administrator', 'Виджет отредактирован', 1428663336),
+(745, 1, 'Administrator', 'Кэш очищен', 1428663428),
+(746, 1, 'Administrator', 'Настройки виджета отредактированы ', 1428663586),
+(747, 1, 'Administrator', 'Виджет отредактирован', 1428663586),
+(748, 1, 'Administrator', 'Настройки виджета отредактированы ', 1428663622),
+(749, 1, 'Administrator', 'Виджет отредактирован', 1428663622),
+(750, 1, 'Administrator', 'Виджет создан h_text2', 1428663824),
+(751, 1, 'Administrator', 'Виджет отредактирован', 1428663827),
+(752, 1, 'Administrator', 'Настройки виджета отредактированы ', 1428663887),
+(753, 1, 'Administrator', 'Виджет отредактирован', 1428663887),
+(754, 1, 'Administrator', 'Кэш очищен', 1428663952),
+(755, 1, 'Administrator', 'Настройки виджета отредактированы ', 1428664027),
+(756, 1, 'Administrator', 'Виджет отредактирован', 1428664027),
+(757, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 3', 1428665006),
+(758, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 4', 1428665006),
+(759, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 5', 1428665007),
+(760, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 3', 1428665024),
+(761, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 4', 1428665025),
+(762, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 5', 1428665025),
+(763, 1, 'Administrator', 'Кэш очищен', 1428665028),
+(764, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 3', 1428665034),
+(765, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 2', 1428665035);
+INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
+(766, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 2', 1428665043),
+(767, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 3', 1428665044),
+(768, 1, 'Administrator', 'Виджет отредактирован', 1428665317),
+(769, 1, 'Administrator', 'Настройки виджета отредактированы ', 1428665344),
+(770, 1, 'Administrator', 'Виджет отредактирован', 1428665347),
+(771, 1, 'Administrator', 'Настройки виджета отредактированы ', 1428665371),
+(772, 1, 'Administrator', 'Виджет отредактирован', 1428665374),
+(773, 1, 'Administrator', 'Виджет отредактирован', 1428665377),
+(774, 1, 'Administrator', 'Настройки виджета отредактированы ', 1428665387),
+(775, 1, 'Administrator', 'Виджет отредактирован', 1428665388),
+(776, 1, 'Administrator', 'Настройки виджета отредактированы ', 1428665403),
+(777, 1, 'Administrator', 'Кэш очищен', 1428666060),
+(778, 1, 'Administrator', 'Баннер был отредактирован. Id: 7', 1428666147),
+(779, 1, 'Administrator', 'Баннер был отредактирован. Id: 8', 1428666155),
+(780, 1, 'Administrator', 'Баннер был отредактирован. Id: 9', 1428666162),
+(781, 1, 'Administrator', 'Баннер был отредактирован. Id: 10', 1428666167),
+(782, 1, 'Administrator', 'Кэш очищен', 1428666177),
+(783, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/85">Характеристики</a>', 1428667864),
+(784, 1, 'Administrator', 'Категория товаров создана <a href="/admin/categories/edit/66"> Клиенты о нас</a>', 1429361818),
+(785, 1, 'Administrator', 'Группа полей создана. Id: 12', 1429361922),
+(786, 1, 'Administrator', 'Группа полей отредактирована. Id: 12', 1429361956),
+(787, 1, 'Administrator', 'Группа полей отредактирована. Id: 11', 1429361971),
+(788, 1, 'Administrator', 'Поле обновлено - field_image', 1429362043),
+(789, 1, 'Administrator', 'Поле создано - field_url', 1429362103),
+(790, 1, 'Administrator', 'Страница создана <a href="http://corporate/admin/pages/edit/92">Андрей Павличенко</a>', 1429362494),
+(791, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/66"> Клиенты о нас</a>', 1429362509),
+(792, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/92">Андрей Павличенко</a>', 1429362949),
+(793, 1, 'Administrator', 'Страница создана <a href="http://corporate/admin/pages/edit/93">Артур Рудковский</a>', 1429363206),
+(794, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/93">Артур Рудковский</a>', 1429363228),
+(795, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/92">Андрей Павличенко</a>', 1429363243),
+(796, 1, 'Administrator', 'Виджет создан reviews', 1429363341),
+(797, 1, 'Administrator', 'Виджет отредактирован', 1429363349),
+(798, 1, 'Administrator', 'Настройки виджета отредактированы', 1429363364),
+(799, 1, 'Administrator', 'Виджет отредактирован', 1429363428),
+(800, 1, 'Administrator', 'Баннер успешно создан. Id: 11', 1429363844),
+(801, 1, 'Administrator', 'Баннер был отредактирован. Id: 11', 1429363860),
+(802, 1, 'Administrator', 'Баннер был отредактирован. Id: 11', 1429363877),
+(803, 1, 'Administrator', 'Баннер был отредактирован. Id: 11', 1429363880),
+(804, 1, 'Administrator', 'Баннер был отредактирован. Id: 11', 1429363885),
+(805, 1, 'Administrator', 'Баннер был отредактирован. Id: 11', 1429363912),
+(806, 1, 'Administrator', 'Баннер успешно создан. Id: 12', 1429363934),
+(807, 1, 'Administrator', 'Баннер успешно создан. Id: 13', 1429363962),
+(808, 1, 'Administrator', 'Баннер был отредактирован. Id: 13', 1429363967),
+(809, 1, 'Administrator', 'Баннер был отредактирован. Id: 12', 1429363973),
+(810, 1, 'Administrator', 'Баннер успешно создан. Id: 14', 1429363996),
+(811, 1, 'Administrator', 'Баннер был отредактирован. Id: 14', 1429363998),
+(812, 1, 'Administrator', 'Баннер успешно создан. Id: 15', 1429364011),
+(813, 1, 'Administrator', 'Баннер был отредактирован. Id: 15', 1429364013),
+(814, 1, 'Administrator', 'Баннер успешно создан. Id: 16', 1429364042),
+(815, 1, 'Administrator', 'Баннер был отредактирован. Id: 16', 1429364045),
+(816, 1, 'Administrator', 'Баннер успешно создан. Id: 17', 1429364209),
+(817, 1, 'Administrator', 'Баннер был отредактирован. Id: 17', 1429364213),
+(818, 1, 'Administrator', 'Баннер успешно создан. Id: 18', 1429364228),
+(819, 1, 'Administrator', 'Баннер был отредактирован. Id: 18', 1429364234),
+(820, 1, 'Administrator', 'Баннер успешно создан. Id: 19', 1429364248),
+(821, 1, 'Administrator', 'Баннер был отредактирован. Id: 19', 1429364251),
+(822, 1, 'Administrator', 'Кэш очищен', 1429364258),
+(823, 1, 'Administrator', 'Кэш очищен', 1429364387),
+(824, 1, 'Administrator', 'Кэш очищен', 1429364921),
+(825, 1, 'Administrator', 'Кэш очищен', 1429365007),
+(826, 1, 'Administrator', 'Кэш очищен', 1429365038),
+(827, 1, 'Administrator', 'Кэш очищен', 1429365145),
+(828, 1, 'Administrator', 'Кэш очищен', 1429365489),
+(829, 1, 'Administrator', 'Кэш очищен', 1429367152),
+(830, 1, 'Administrator', 'Кэш очищен', 1429368541),
+(831, 1, 'Administrator', 'Кэш очищен', 1429369786),
+(832, 1, 'Administrator', 'Кэш очищен', 1429370119),
+(833, 1, 'Administrator', 'Кэш очищен', 1429370742),
+(834, 1, 'Administrator', 'Кэш очищен', 1429370830),
+(835, 1, 'Administrator', 'Кэш очищен', 1429371780),
+(836, 1, 'Administrator', 'Кэш очищен', 1429371813),
+(837, 1, 'Administrator', 'Кэш очищен', 1429371854),
+(838, 1, 'Administrator', 'Баннер был отредактирован. Id: 11', 1429371885),
+(839, 1, 'Administrator', 'Кэш очищен', 1429371896),
+(840, 1, 'Administrator', 'Баннер был отредактирован. Id: 11', 1429371917),
+(841, 1, 'Administrator', 'Кэш очищен', 1429371938),
+(842, 1, 'Administrator', 'Кэш очищен', 1429371993),
+(843, 1, 'Administrator', 'Кэш очищен', 1429372174),
+(844, 1, 'Administrator', 'Баннер был отредактирован. Id: 12', 1429372232),
+(845, 1, 'Administrator', 'Баннер был отредактирован. Id: 11', 1429372239),
+(846, 1, 'Administrator', 'Баннер был отредактирован. Id: 12', 1429372245),
+(847, 1, 'Administrator', 'Кэш очищен', 1429372248),
+(848, 1, 'Administrator', 'Кэш очищен', 1429372594),
+(849, 1, 'Administrator', 'Кэш очищен', 1429373290),
+(850, 1, 'Administrator', 'Кэш очищен', 1429373367),
+(851, 1, 'Administrator', 'Кэш очищен', 1429373481),
+(852, 1, 'Administrator', 'Кэш очищен', 1429373547),
+(853, 1, 'Administrator', 'Кэш очищен', 1429373976),
+(854, 1, 'Administrator', 'Кэш очищен', 1429374572),
+(855, 1, 'Administrator', 'Кэш очищен', 1429374633),
+(856, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/92">Андрей Павличенко</a>', 1429376264),
+(857, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/93">Артур Рудковский</a>', 1429376272),
+(858, 1, 'Administrator', 'Баннер был отредактирован. Id: 19', 1429376283),
+(859, 1, 'Administrator', 'Баннер был отредактирован. Id: 18', 1429376289),
+(860, 1, 'Administrator', 'Баннер был отредактирован. Id: 17', 1429376296),
+(861, 1, 'Administrator', 'Баннер был отредактирован. Id: 16', 1429376302),
+(862, 1, 'Administrator', 'Баннер был отредактирован. Id: 15', 1429376309),
+(863, 1, 'Administrator', 'Баннер был отредактирован. Id: 14', 1429376318),
+(864, 1, 'Administrator', 'Баннер был отредактирован. Id: 13', 1429376324),
+(865, 1, 'Administrator', 'Баннер был отредактирован. Id: 12', 1429376331),
+(866, 1, 'Administrator', 'Баннер был отредактирован. Id: 11', 1429376338),
+(867, 1, 'Administrator', 'Баннер был отредактирован. Id: 11', 1429376345),
+(868, 1, 'Administrator', 'Кэш очищен', 1429381156),
+(869, 1, 'Administrator', 'Кэш очищен', 1429382674),
+(870, 1, 'Administrator', 'Кэш очищен', 1429382935),
+(871, 1, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1429542856),
+(872, 1, 'Administrator', 'Страницы были скопированы. Id: 88, 89, 90, 91 -> Новости', 1429542874),
+(873, 1, 'Administrator', 'Страницы были скопированы. Id: 88, 89, 90, 91, 94, 95, 96, 97 -> Новости', 1429542880),
+(874, 1, 'Administrator', 'Страницы были скопированы. Id: 88, 89, 90, 91, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105 -> Новости', 1429542898),
+(875, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/64"> Новости</a>', 1429542983),
+(876, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/64"> Новости</a>', 1429543325),
+(877, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/64"> Новости</a>', 1429543371),
+(878, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/64"> Новости</a>', 1429543477),
+(879, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/99">Три горячих юпитера и один горячий сатурн от обзора HATNet</a>', 1429543501),
+(880, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/89">Три горячих юпитера и один горячий сатурн от обзора HATNet</a>', 1429544660),
+(881, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/105">36 транзитных кандидатов (из них – 18 планет) от миссии K2</a>', 1429545098),
+(882, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/105">36 транзитных кандидатов (из них – 18 планет) от миссии K2</a>', 1429545122),
+(883, 1, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1429647510),
+(884, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/100">Три планеты-гиганта у красных гигантов HD 216536, HD 95127 и BD+49 828</a>', 1429712985),
+(885, 1, 'Administrator', 'Виджет создан bredkrumbs', 1429807112),
+(886, 1, 'Administrator', 'Кэш очищен', 1429812705),
+(887, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/64"> Новости</a>', 1429862722),
+(888, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/100">Три планеты-гиганта у красных гигантов HD 216536, HD 95127 и BD+49 828</a>', 1429862876),
+(889, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/98">Еще два транзитных горячих гиганта от обзора HATSouth</a>', 1429862897),
+(890, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/100">Три планеты-гиганта у красных гигантов HD 216536, HD 95127 и BD+49 828</a>', 1429862906),
+(891, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/98">Еще два транзитных горячих гиганта от обзора HATSouth</a>', 1429862920),
+(892, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/64"> Новости</a>', 1429863400),
+(893, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/64"> Новости</a>', 1429865578),
+(894, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/100">Три планеты-гиганта у красных гигантов HD 216536, HD 95127 и BD+49 828</a>', 1429865607),
+(895, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/97">36 транзитных кандидатов (из них – 18 планет) от миссии K2</a>', 1429865739),
+(896, 1, 'Administrator', 'Кэш очищен', 1429883969),
+(897, 1, 'Administrator', 'Категория товаров создана <a href="/admin/categories/edit/67"> Бизнес-консалтинг</a>', 1429885611),
+(898, 1, 'Administrator', 'Категория товаров создана <a href="/admin/categories/edit/68"> Разработка предложений</a>', 1429885626),
+(899, 1, 'Administrator', 'Категория товаров создана <a href="/admin/categories/edit/69"> Экономическая деятельность</a>', 1429885646),
+(900, 1, 'Administrator', 'Категория товаров создана <a href="/admin/categories/edit/70"> Сфера услуг</a>', 1429885656),
+(901, 1, 'Administrator', 'Кэш очищен', 1429885660),
+(902, 1, 'Administrator', 'Страницы были перемещены. Id: 88, 97, 98, 99, 100 -> Сфера услуг', 1429885689),
+(903, 1, 'Administrator', 'Страницы были перемещены. Id: 89, 90 -> Бизнес-консалтинг', 1429885701),
+(904, 1, 'Administrator', 'Страницы были перемещены. Id: 109, 110, 111, 112 -> Экономическая деятельность', 1429885712),
+(905, 1, 'Administrator', 'Настройки виджета отредактированы', 1429885736),
+(906, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/91">36 транзитных кандидатов (из них – 18 планет) от миссии K2</a>', 1429885773),
+(907, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/90">Три планеты-гиганта у красных гигантов HD 216536, HD 95127 и BD+49 828</a>', 1429885792),
+(908, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/64"> Новости</a>', 1429885817),
+(909, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/100">Три планеты-гиганта у красных гигантов HD 216536, HD 95127 и BD+49 828</a>', 1429886826),
+(910, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/100">Три планеты-гиганта у красных гигантов HD 216536, HD 95127 и BD+49 828</a>', 1429886962),
+(911, 1, 'Administrator', 'Страницы были перемещены. Id: 91, 94, 95, 96, 101, 102, 103, 104, 105, 106, 107, 108, 113, 114, 115, 116, 117, 118, 119, 120 -> Сфера услуг', 1429886997),
+(912, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/70"> Сфера услуг</a>', 1429887149),
+(913, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/100">Три планеты-гиганта у красных гигантов HD 216536, HD 95127 и BD+49 828</a>', 1429887171),
+(914, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/64"> Новости</a>', 1429887247),
+(915, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/70"> Сфера услуг</a>', 1429887696),
+(916, 1, 'Administrator', 'Кэш очищен', 1429887714),
+(917, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/64"> Новости</a>', 1429887867),
+(918, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/64"> Новости</a>', 1429887875),
+(919, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/70"> Сфера услуг</a>', 1429887995),
+(920, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/67"> Бизнес-консалтинг</a>', 1429888003),
+(921, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/68"> Разработка предложений</a>', 1429888011),
+(922, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/69"> Экономическая деятельность</a>', 1429888020),
+(923, 1, 'Administrator', 'Виджет создан popular_blog_posts', 1429890743),
+(924, 1, 'Administrator', 'Настройки виджета отредактированы', 1429890746),
+(925, 1, 'Administrator', 'Виджет отредактирован', 1429890746),
+(926, 1, 'Administrator', 'Настройки виджета отредактированы', 1429890761),
+(927, 1, 'Administrator', 'Настройки виджета отредактированы', 1429890768),
+(928, 1, 'Administrator', 'Настройки виджета отредактированы', 1429890778),
+(929, 1, 'Administrator', 'Настройки виджета отредактированы', 1429890782),
+(930, 1, 'Administrator', 'Виджет отредактирован', 1429890830),
+(931, 1, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1430125442),
+(932, 1, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1430125469),
+(933, 1, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1430125515),
+(934, 1, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1430148830),
+(935, 1, 'Administrator', 'Страница отредактирована <a href="http://businessimage/admin/pages/edit/120">Три планеты-гиганта у красных гигантов HD 216536, HD 95127 и BD+49 828</a>', 1430148937),
+(936, 1, 'Administrator', 'Страница отредактирована <a href="http://businessimage/admin/pages/edit/120">Три планеты-гиганта у красных гигантов HD 216536, HD 95127 и BD+49 828</a>', 1430148946),
+(937, 1, 'Administrator', 'Страница отредактирована <a href="http://businessimage/admin/pages/edit/90">Три планеты-гиганта у красных гигантов HD 216536, HD 95127 и BD+49 828</a>', 1430148956),
+(938, 1, 'Administrator', 'Страница отредактирована <a href="http://businessimage/admin/pages/edit/90">Три планеты-гиганта у красных гигантов HD 216536, HD 95127 и BD+49 828</a>', 1430148961),
+(939, 1, 'Administrator', 'Страница отредактирована <a href="http://businessimage/admin/pages/edit/119">Три горячих юпитера и один горячий сатурн от обзора HATNet</a>', 1430148970),
+(940, 1, 'Administrator', 'Страница отредактирована <a href="http://businessimage/admin/pages/edit/116">Три планеты-гиганта у красных гигантов HD 216536, HD 95127 и BD+49 828</a>', 1430148979),
+(941, 1, 'Administrator', 'Страница отредактирована <a href="http://businessimage/admin/pages/edit/113">36 транзитных кандидатов (из них – 18 планет) от миссии K2</a>', 1430149001),
+(942, 1, 'Administrator', 'Страница отредактирована <a href="http://businessimage/admin/pages/edit/99">Три горячих юпитера и один горячий сатурн от обзора HATNet</a>', 1430149020),
+(943, 1, 'Administrator', 'Страница отредактирована <a href="http://businessimage/admin/pages/edit/108">Три планеты-гиганта у красных гигантов HD 216536, HD 95127 и BD+49 828</a>', 1430149035),
+(944, 1, 'Administrator', 'Страница отредактирована <a href="http://businessimage/admin/pages/edit/97">36 транзитных кандидатов (из них – 18 планет) от миссии K2</a>', 1430149047),
+(945, 1, 'Administrator', 'Страница отредактирована <a href="http://businessimage/admin/pages/edit/90">Три планеты-гиганта у красных гигантов HD 216536, HD 95127 и BD+49 828</a>', 1430149059),
+(946, 1, 'Administrator', 'Виджет создан tags', 1430149101),
+(947, 1, 'Administrator', 'Кэш очищен', 1430150006),
+(948, 1, 'Administrator', 'Настройки виджета отредактированы', 1430150867),
+(949, 1, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1430233328),
+(950, 1, 'Administrator', 'Кэш очищен', 1430234965),
+(951, 1, 'Administrator', 'Категория товаров создана <a href="/admin/categories/edit/71"> Услуги по дому</a>', 1430235083),
+(952, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/71"> Услуги по дому</a>', 1430235085),
+(953, 1, 'Administrator', 'Категория товаров создана <a href="/admin/categories/edit/72"> Услуги по работе</a>', 1430235103),
+(954, 1, 'Administrator', 'Категория товаров создана <a href="/admin/categories/edit/73"> Особняки</a>', 1430235114),
+(955, 1, 'Administrator', 'Кэш очищен', 1430235449),
+(956, 1, 'Administrator', 'Виджет создан last_comments', 1430237623),
+(957, 1, 'Administrator', 'Виджет создан aaa', 1430237892),
+(958, 1, 'Administrator', 'Кэш очищен', 1430237911),
+(959, 1, 'Administrator', 'Виджет удален aaa', 1430237929),
+(960, 1, 'Administrator', 'Кэш очищен', 1430238105),
+(961, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/64"> Новости</a>', 1430238210),
+(962, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/70"> Сфера услуг</a>', 1430238278),
+(963, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/67"> Бизнес-консалтинг</a>', 1430238287),
+(964, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/68"> Разработка предложений</a>', 1430238293),
+(965, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/69"> Экономическая деятельность</a>', 1430238298),
+(966, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/71"> Услуги по дому</a>', 1430238318),
+(967, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/72"> Услуги по работе</a>', 1430238331),
+(968, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/73"> Особняки</a>', 1430238350),
+(969, 1, 'Administrator', 'Страница отредактирована <a href="http://businessimage/admin/pages/edit/121">36 транзитных кандидатов (из них – 18 планет) от миссии K2</a>', 1430238393),
+(970, 1, 'Administrator', 'Кэш очищен', 1430239353),
+(971, 1, 'Administrator', 'Кэш очищен', 1430239570),
+(972, 1, 'Administrator', 'Кэш очищен', 1430239943),
+(973, 1, 'Administrator', 'Кэш очищен', 1430240031),
+(974, 1, 'Administrator', 'Кэш очищен', 1430240177),
+(975, 1, 'Administrator', 'Кэш очищен', 1430240199),
+(976, 1, 'Administrator', 'Кэш очищен', 1430240559),
+(977, 1, 'Administrator', 'Кэш очищен', 1430241050),
+(978, 1, 'Administrator', 'Кэш очищен', 1430241067),
+(979, 1, 'Administrator', 'Кэш очищен', 1430241092),
+(980, 1, 'Administrator', 'Кнопки социальных сетей обновлены', 1430246998),
+(981, 1, 'Administrator', 'Кнопки социальных сетей обновлены', 1430247826),
+(982, 1, 'Administrator', 'Кнопки социальных сетей обновлены', 1430247862),
+(983, 1, 'Administrator', 'Кнопки социальных сетей обновлены', 1430247929),
+(984, 1, 'Administrator', 'Кнопки социальных сетей обновлены', 1430248144),
+(985, 1, 'Administrator', 'Кнопки социальных сетей обновлены', 1430248159),
+(986, 1, 'Administrator', 'Кнопки социальных сетей обновлены', 1430248167),
+(987, 1, 'Administrator', 'Кнопки социальных сетей обновлены', 1430248209),
+(988, 1, 'Administrator', 'Кнопки социальных сетей обновлены', 1430249766),
+(989, 1, 'Administrator', 'Кнопки социальных сетей обновлены', 1430249792),
+(990, 1, 'Administrator', 'Кнопки социальных сетей обновлены', 1430249818),
+(991, 1, 'Administrator', 'Кнопки социальных сетей обновлены', 1430249840),
+(992, 1, 'Administrator', 'Кнопки социальных сетей обновлены', 1430249859),
+(993, 1, 'Administrator', 'Кнопки социальных сетей обновлены', 1430249870),
+(994, 1, 'Administrator', 'Кнопки социальных сетей обновлены', 1430250727),
+(995, 1, 'Administrator', 'Кнопки социальных сетей обновлены', 1430250755),
+(996, 1, 'Administrator', 'Кнопки социальных сетей обновлены', 1430250797),
+(997, 1, 'Administrator', 'Кнопки социальных сетей обновлены', 1430250846),
+(998, 1, 'Administrator', 'Кнопки социальных сетей обновлены', 1430250890),
+(999, 1, 'Administrator', 'Кнопки социальных сетей обновлены', 1430251034),
+(1000, 1, 'Administrator', 'Кнопки социальных сетей обновлены', 1430251039),
+(1001, 1, 'Administrator', 'Кнопки социальных сетей обновлены', 1430251048),
+(1002, 1, 'Administrator', 'Кнопки социальных сетей обновлены', 1430251241),
+(1003, 1, 'Administrator', 'Кнопки социальных сетей обновлены', 1430251311),
+(1004, 1, 'Administrator', 'Кнопки социальных сетей обновлены', 1430251800),
+(1005, 1, 'Administrator', 'Страница отредактирована <a href="http://businessimage/admin/pages/edit/120">Три планеты-гиганта у красных гигантов HD 216536, HD 95127 и BD+49 828</a>', 1430252537),
+(1006, 1, 'Administrator', 'Кнопки социальных сетей обновлены', 1430253395),
+(1007, 1, 'Administrator', 'Кнопки социальных сетей обновлены', 1430253405),
+(1008, 1, 'Administrator', 'Кнопки социальных сетей обновлены', 1430253450),
+(1009, 1, 'Administrator', 'Кнопки социальных сетей обновлены', 1430253456),
+(1010, 1, 'Administrator', 'Кнопки социальных сетей обновлены', 1430253465),
+(1011, 1, 'Administrator', 'Кнопки социальных сетей обновлены', 1430253471),
+(1012, 1, 'Administrator', 'Кэш очищен', 1430416210),
+(1013, 1, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1430572239),
+(1014, 1, 'Administrator', 'Кэш очищен', 1430572731),
+(1015, 1, 'Administrator', 'Кэш очищен', 1430581216),
+(1016, 1, 'Administrator', 'Кэш очищен', 1430584892),
+(1017, 1, 'Administrator', 'Виджет удален bredkrumbs', 1430585509),
+(1018, 1, 'Administrator', 'Виджет создан breadcrumbs', 1430585552),
+(1019, 1, 'Administrator', 'Кэш очищен', 1430585638),
+(1020, 1, 'Administrator', 'Кэш очищен', 1430586362),
+(1021, 1, 'Administrator', 'Виджет создан latest_comments', 1430586517),
+(1022, 1, 'Administrator', 'Виджет удален last_comments', 1430586586),
+(1023, 1, 'Administrator', 'Кэш очищен', 1430586591),
+(1024, 1, 'Administrator', 'Кэш очищен', 1430586692),
+(1025, 1, 'Administrator', 'Кэш очищен', 1430587640),
+(1026, 1, 'Administrator', 'Кэш очищен', 1430589082),
+(1027, 1, 'Administrator', 'Кэш очищен', 1430590776),
+(1028, 1, 'Administrator', 'Кэш очищен', 1430593687),
+(1029, 1, 'Administrator', 'Кэш очищен', 1430594243),
+(1030, 1, 'Administrator', 'Кэш очищен', 1430594799),
+(1031, 1, 'Administrator', 'Кэш очищен', 1430594814),
+(1032, 1, 'Administrator', 'Кэш очищен', 1430594887),
+(1033, 1, 'Administrator', 'Кэш очищен', 1430594902),
+(1034, 1, 'Administrator', 'Кэш очищен', 1430595040),
+(1035, 1, 'Administrator', 'Кэш очищен', 1430595131),
+(1036, 1, 'Administrator', 'Кэш очищен', 1430595195),
+(1037, 1, 'Administrator', 'Кэш очищен', 1430595320),
+(1038, 1, 'Administrator', 'Кэш очищен', 1430595341),
+(1039, 1, 'Administrator', 'Кэш очищен', 1430595361),
+(1040, 1, 'Administrator', 'Кэш очищен', 1430595384),
+(1041, 1, 'Administrator', 'Кэш очищен', 1430595503),
+(1042, 1, 'Administrator', 'Кэш очищен', 1430595543),
+(1043, 1, 'Administrator', 'Кэш очищен', 1430595563),
+(1044, 1, 'Administrator', 'Кэш очищен', 1430595575),
+(1045, 1, 'Administrator', 'Кэш очищен', 1430595633),
+(1046, 1, 'Administrator', 'Кэш очищен', 1430595971),
+(1047, 1, 'Administrator', 'Кэш очищен', 1430596132),
+(1048, 1, 'Administrator', 'Кэш очищен', 1430598621),
+(1049, 1, 'Administrator', 'Кэш очищен', 1430598806),
+(1050, 1, 'Administrator', 'Кэш очищен', 1430598825),
+(1051, 1, 'Administrator', 'Кэш очищен', 1430598842),
+(1052, 1, 'Administrator', 'Кэш очищен', 1430599362),
+(1053, 1, 'Administrator', 'Кэш очищен', 1430601180),
+(1054, 1, 'Administrator', 'Кэш очищен', 1430602286),
+(1055, 1, 'Administrator', 'Кэш очищен', 1430602352),
+(1056, 1, 'Administrator', 'Кэш очищен', 1430602583),
+(1057, 1, 'Administrator', 'Кэш очищен', 1430758778),
+(1058, 1, 'Administrator', 'Кэш очищен', 1430758846),
+(1059, 1, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1430845906),
+(1060, 1, 'Administrator', 'Кэш очищен', 1430846321),
+(1061, 1, 'Administrator', 'Кэш очищен', 1430846969),
+(1062, 1, 'Administrator', 'Виджет отредактирован', 1430911375),
+(1063, 1, 'Administrator', 'Виджет отредактирован', 1430913099),
+(1064, 1, 'Administrator', 'Виджет удален h_text', 1430913115),
+(1065, 1, 'Administrator', 'Виджет удален h_text2', 1430913115),
+(1066, 1, 'Administrator', 'Кэш очищен', 1430913120),
+(1067, 1, 'Administrator', 'Кэш очищен', 1430920440),
+(1068, 1, 'Administrator', 'Кэш очищен', 1430920567),
+(1069, 1, 'Administrator', 'Кэш очищен', 1430920865),
+(1070, 1, 'Administrator', 'Шаблон письма был отредактирован - create_user', 1430925057),
+(1071, 1, 'Administrator', 'Настройки шаблонов писем были изменены. Id: ', 1430925162),
+(1072, 1, 'Administrator', 'Шаблон письма был отредактирован - forgot_password', 1430925204),
+(1073, 1, 'Administrator', 'Шаблон письма был отредактирован - forgot_password', 1430925219),
+(1074, 1, 'Administrator', 'Шаблон письма был отредактирован - change_password', 1430925255),
+(1075, 1, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1430926404),
+(1076, 1, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1430926409),
+(1077, 1, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1430926420),
+(1078, 1, 'Administrator', 'Кэш очищен', 1430927751),
+(1079, 1, 'Administrator', 'Кэш очищен', 1430935592),
+(1080, 1, 'Administrator', 'Кэш очищен', 1430937591),
+(1081, 1, 'Administrator', 'Кэш очищен', 1431004296),
+(1082, 1, 'Administrator', 'Кэш очищен', 1431009276),
+(1083, 1, 'Administrator', 'Кэш очищен', 1431009760),
+(1084, 1, 'Administrator', 'Кэш очищен', 1431009923),
+(1085, 1, 'Administrator', 'Виджет создан lang_switcher', 1431017113),
+(1086, 1, 'Administrator', 'Кнопки социальных сетей обновлены', 1431417932),
+(1087, 1, 'Administrator', 'Кэш очищен', 1431417933),
+(1088, 1, 'Administrator', 'Кнопки социальных сетей обновлены', 1431418140),
+(1089, 1, 'Administrator', 'Страница отредактирована <a href="http://businessimage/admin/pages/edit/91">36 транзитных кандидатов (из них – 18 планет) от миссии K2</a>', 1431437805),
+(1090, 1, 'Administrator', 'Язык отредактирован Русский', 1431439231),
+(1091, 1, 'Administrator', 'Язык отредактирован Украинский', 1431439240),
+(1092, 1, 'Administrator', 'Язык отредактирован Английский', 1431439255),
+(1093, 1, 'Administrator', 'Кэш очищен', 1431439353),
+(1094, 1, 'Administrator', 'Кэш очищен', 1431439426),
+(1095, 1, 'Administrator', 'Кэш очищен', 1431441431),
+(1096, 1, 'Administrator', 'Кэш очищен', 1431441516),
+(1097, 1, 'Administrator', 'Кэш очищен', 1431441598),
+(1098, 1, 'Administrator', 'Кэш очищен', 1431441656),
+(1099, 1, 'Administrator', 'Кэш очищен', 1431441732),
+(1100, 1, 'Administrator', 'Кэш очищен', 1431442062),
+(1101, 1, 'Administrator', 'Установлен язык Английский по умолчанию', 1431447985),
+(1102, 1, 'Administrator', 'Установлен язык Русский по умолчанию', 1431448009),
+(1103, 1, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1431451696),
+(1104, 1, 'Administrator', 'Настройки сайта изменены', 1431451706),
+(1105, 1, 'Administrator', 'Настройки сайта изменены', 1431451804),
+(1106, 1, 'Administrator', 'Страница отредактирована <a href="http://businessimage/admin/pages/edit/120">Три планеты-гиганта у красных гигантов HD 216536, HD 95127 и BD+49 828</a>', 1431451919),
+(1107, 1, 'Administrator', 'Страница отредактирована <a href="http://businessimage/admin/pages/edit/120">Три планеты-гиганта у красных гигантов HD 216536, HD 95127 и BD+49 828</a>', 1431453043),
+(1108, 1, 'Administrator', 'Страница отредактирована <a href="http://businessimage/admin/pages/edit/120">Три планеты-гиганта у красных гигантов HD 216536, HD 95127 и BD+49 828</a>', 1431453056),
+(1109, 1, 'Administrator', 'Страница отредактирована <a href="http://businessimage/admin/pages/edit/120">Три планеты-гиганта у красных гигантов HD 216536, HD 95127 и BD+49 828</a>', 1431453065),
+(1110, 1, 'Administrator', 'Страница отредактирована <a href="http://businessimage/admin/pages/edit/120">Три планеты-гиганта у красных гигантов HD 216536, HD 95127 и BD+49 828</a>', 1431453178),
+(1111, 1, 'Administrator', 'Страница отредактирована <a href="http://businessimage/admin/pages/edit/120">Три планеты-гиганта у красных гигантов HD 216536, HD 95127 и BD+49 828</a>', 1431453200),
+(1112, 1, 'Administrator', 'Страница отредактирована <a href="http://businessimage/admin/pages/edit/120">Три планеты-гиганта у красных гигантов HD 216536, HD 95127 и BD+49 828</a>', 1431453337),
+(1113, 1, 'Administrator', 'Страница отредактирована <a href="http://businessimage/admin/pages/edit/120">Три планеты-гиганта у красных гигантов HD 216536, HD 95127 и BD+49 828</a>', 1431453371),
+(1114, 1, 'Administrator', 'Страница отредактирована <a href="http://businessimage/admin/pages/edit/120">Три планеты-гиганта у красных гигантов HD 216536, HD 95127 и BD+49 828</a>', 1431453387),
+(1115, 1, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1431460416),
+(1116, 1, 'Administrator', 'Установлен язык Английский по умолчанию', 1431610021),
+(1117, 1, 'Administrator', 'Установлен язык Русский по умолчанию', 1431610531),
+(1118, 1, 'Administrator', 'Установлен язык Украинский по умолчанию', 1431610577),
+(1119, 1, 'Administrator', 'Установлен язык Английский по умолчанию', 1431610578),
+(1120, 1, 'Administrator', 'Кэш очищен', 1431610608),
+(1121, 1, 'Administrator', 'Кэш очищен', 1431610614),
+(1122, 1, 'Administrator', 'Установлен язык Русский по умолчанию', 1431610661),
+(1123, 1, 'Administrator', 'Язык удалён ID 4', 1431611353),
+(1124, 1, 'Administrator', 'Язык удалён ID 5', 1431611353),
+(1125, 1, 'Administrator', 'Язык создан Українська', 1431611409),
+(1126, 1, 'Administrator', 'Язык удалён ID 31', 1431611430),
+(1127, 1, 'Administrator', 'Язык создан Українська', 1431611449),
+(1128, 1, 'Administrator', 'Файл перевода был успешно сохранен. - main | uk_UA', 1431612282),
+(1129, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431612424),
+(1130, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431612488),
+(1131, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431613088),
+(1132, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431613313),
+(1133, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431613593),
+(1134, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431613595),
+(1135, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431613598),
+(1136, 1, 'Administrator', 'Кэш очищен', 1431623462),
+(1137, 1, 'Administrator', 'Кэш очищен', 1431626744),
+(1138, 1, 'Administrator', 'Кэш очищен', 1431626827),
+(1139, 1, 'Administrator', 'Кэш очищен', 1431626841),
+(1140, 1, 'Administrator', 'Кэш очищен', 1431627727),
+(1141, 1, 'Administrator', 'Кэш очищен', 1431628149),
+(1142, 1, 'Administrator', 'Кэш очищен', 1431628200),
+(1143, 1, 'Administrator', 'Кэш очищен', 1431628217),
+(1144, 1, 'Administrator', 'Кэш очищен', 1431782896),
+(1145, 1, 'Administrator', 'Кэш очищен', 1431783001),
+(1146, 1, 'Administrator', 'Кэш очищен', 1431783408),
+(1147, 1, 'Administrator', 'Кэш очищен', 1431783480),
+(1148, 1, 'Administrator', 'Кэш очищен', 1431783566),
+(1149, 1, 'Administrator', 'Кэш очищен', 1431783657),
+(1150, 1, 'Administrator', 'Кэш очищен', 1431783817),
+(1151, 1, 'Administrator', 'Кэш очищен', 1431784008),
+(1152, 1, 'Administrator', 'Кэш очищен', 1431784545),
+(1153, 1, 'Administrator', 'Язык создан English', 1431815590),
+(1154, 1, 'Administrator', 'Язык отредактирован Українська', 1431815609),
+(1155, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | en_US', 1431815997),
+(1156, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | en_US', 1431816001),
+(1157, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | en_US', 1431816026),
+(1158, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | en_US', 1431816037),
+(1159, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431816090),
+(1160, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431816095),
+(1161, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431816097),
+(1162, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431816325),
+(1163, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431816950),
+(1164, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | en_US', 1431816959),
+(1165, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431816970),
+(1166, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431816971),
+(1167, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | en_US', 1431816981),
+(1168, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | en_US', 1431816983),
+(1169, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | en_US', 1431816985),
+(1170, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431816993),
+(1171, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431816998),
+(1172, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431817000),
+(1173, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | en_US', 1431817022),
+(1174, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431817025),
+(1175, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431817037),
+(1176, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431817060),
+(1177, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431817108),
+(1178, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431817135),
+(1179, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431817154),
+(1180, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431817157),
+(1181, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431817178),
+(1182, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431817179),
+(1183, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | en_US', 1431817185),
+(1184, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | en_US', 1431817187),
+(1185, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431817202),
+(1186, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431817204),
+(1187, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431817211),
+(1188, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431817213),
+(1189, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | en_US', 1431817220),
+(1190, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | en_US', 1431817222),
+(1191, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431817237),
+(1192, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431848830),
+(1193, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431849301),
+(1194, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431849316),
+(1195, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431849325),
+(1196, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431849355),
+(1197, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431849393),
+(1198, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431849511),
+(1199, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431849585),
+(1200, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431849618),
+(1201, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431849631),
+(1202, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431849636),
+(1203, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431849647),
+(1204, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431849661),
+(1205, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431849698),
+(1206, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431850720),
+(1207, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | en_US', 1431850729),
+(1208, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | en_US', 1431850731),
+(1209, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431850735),
+(1210, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431850737),
+(1211, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431850741),
+(1212, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431850742),
+(1213, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431850819),
+(1214, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431850841),
+(1215, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431850846),
+(1216, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431850901),
+(1217, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431851026),
+(1218, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431851100),
+(1219, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431851115),
+(1220, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431851118);
+INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
+(1221, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | en_US', 1431851121),
+(1222, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | en_US', 1431851122),
+(1223, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431851126),
+(1224, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431851127),
+(1225, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431851195),
+(1226, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431851439),
+(1227, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431851811),
+(1228, 1, 'Administrator', 'Настройки сайта изменены', 1431851823),
+(1229, 1, 'Administrator', 'Настройки сайта изменены', 1431851854),
+(1230, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431852233),
+(1231, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431852233),
+(1232, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431852259),
+(1233, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431852268),
+(1234, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431852334),
+(1235, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431852354),
+(1236, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431852398),
+(1237, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431852402),
+(1238, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431852404),
+(1239, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | en_US', 1431852408),
+(1240, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | en_US', 1431852410),
+(1241, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431852416),
+(1242, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431852418),
+(1243, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431852433),
+(1244, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431852453),
+(1245, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431852481),
+(1246, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431852493),
+(1247, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431852596),
+(1248, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431852932),
+(1249, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431853021),
+(1250, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431853067),
+(1251, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431853235),
+(1252, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431853296),
+(1253, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431853334),
+(1254, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431853369),
+(1255, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431853412),
+(1256, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431853480),
+(1257, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431853573),
+(1258, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431853661),
+(1259, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431853713),
+(1260, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431853778),
+(1261, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431853791),
+(1262, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431853834),
+(1263, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431853903),
+(1264, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431853974),
+(1265, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431853986),
+(1266, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431854061),
+(1267, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431854073),
+(1268, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431854094),
+(1269, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431854137),
+(1270, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431854160),
+(1271, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431854315),
+(1272, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431854335),
+(1273, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431854353),
+(1274, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431855075),
+(1275, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431855098),
+(1276, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431855110),
+(1277, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431855193),
+(1278, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431855293),
+(1279, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431855333),
+(1280, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431855379),
+(1281, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431855470),
+(1282, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431855484),
+(1283, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431855503),
+(1284, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431855530),
+(1285, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431855596),
+(1286, 1, 'Administrator', 'Настройки сайта изменены', 1431856329),
+(1287, 1, 'Administrator', 'Установлен язык English по умолчанию', 1431858010),
+(1288, 1, 'Administrator', 'Настройки сайта изменены', 1431858124),
+(1289, 1, 'Administrator', 'Установлен язык Русский по умолчанию', 1431858141),
+(1290, 1, 'Administrator', 'Настройки сайта изменены', 1431858405),
+(1291, 1, 'Administrator', 'Настройки сайта изменены', 1431858715),
+(1292, 1, 'Administrator', 'Настройки сайта изменены', 1431858766),
+(1293, 1, 'Administrator', 'Настройки сайта изменены', 1431858945),
+(1294, 1, 'Administrator', 'Настройки сайта изменены', 1431858985),
+(1295, 1, 'Administrator', 'Настройки сайта изменены', 1431859032),
+(1296, 1, 'Administrator', 'Настройки сайта изменены', 1431859066),
+(1297, 1, 'Administrator', 'Настройки сайта изменены', 1431859137),
+(1298, 1, 'Administrator', 'Настройки сайта изменены', 1431859158),
+(1299, 1, 'Administrator', 'Настройки сайта изменены', 1431859200),
+(1300, 1, 'Administrator', 'Настройки сайта изменены', 1431859274),
+(1301, 1, 'Administrator', 'Настройки сайта изменены', 1431859950),
+(1302, 1, 'Administrator', 'Настройки сайта изменены', 1431859989),
+(1303, 1, 'Administrator', 'Настройки сайта изменены', 1431860008),
+(1304, 1, 'Administrator', 'Настройки сайта изменены', 1431860079),
+(1305, 1, 'Administrator', 'Настройки сайта изменены', 1431860107),
+(1306, 1, 'Administrator', 'Настройки сайта изменены', 1431860120),
+(1307, 1, 'Administrator', 'Настройки сайта изменены', 1431860213),
+(1308, 1, 'Administrator', 'Настройки сайта изменены', 1431860248),
+(1309, 1, 'Administrator', 'Настройки сайта изменены', 1431860276),
+(1310, 1, 'Administrator', 'Страница отредактирована <a href="http://businessimage/admin/pages/edit/122">Kepler spacecraft</a>', 1431860642),
+(1311, 1, 'Administrator', 'Страница отредактирована <a href="http://businessimage/admin/pages/edit/122">Kepler spacecraft</a>', 1431860696),
+(1312, 1, 'Administrator', 'Страница отредактирована <a href="http://businessimage/admin/pages/edit/123">Орбітальний телескоп Кеплер</a>', 1431861226),
+(1313, 1, 'Administrator', 'Страница отредактирована <a href="http://businessimage/admin/pages/edit/123">Орбітальний телескоп Кеплер</a>', 1431861390),
+(1314, 1, 'Administrator', 'Кэш очищен', 1431888074),
+(1315, 1, 'Administrator', 'Кэш очищен', 1431888171),
+(1316, 1, 'Administrator', 'Кэш очищен', 1431888558),
+(1317, 1, 'Administrator', 'Кэш очищен', 1431888583),
+(1318, 1, 'Administrator', 'Кэш очищен', 1431898748),
+(1319, 1, 'Administrator', 'Кэш очищен', 1431898802),
+(1320, 1, 'Administrator', 'Кэш очищен', 1431898817),
+(1321, 1, 'Administrator', 'Кэш очищен', 1431898854),
+(1322, 1, 'Administrator', 'Кэш очищен', 1431898880),
+(1323, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 10', 1431899463),
+(1324, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 9', 1431899464),
+(1325, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 8', 1431899465),
+(1326, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 7', 1431899641),
+(1327, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 7', 1431899646),
+(1328, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 8', 1431899767),
+(1329, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 9', 1431899767),
+(1330, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 10', 1431899768),
+(1331, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431954147),
+(1332, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431954149),
+(1333, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431954153),
+(1334, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431954154),
+(1335, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | en_US', 1431954160),
+(1336, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431954220),
+(1337, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431954224),
+(1338, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431954225),
+(1339, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431954241),
+(1340, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431954243),
+(1341, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/62"> Телескоп</a>', 1432218171),
+(1342, 1, 'Administrator', 'Кэш очищен', 1432226343),
+(1343, 1, 'Administrator', 'Кэш очищен', 1432560636),
+(1344, 1, 'Administrator', 'Кэш очищен', 1432560675),
+(1345, 1, 'Administrator', 'Кэш очищен', 1432560716),
+(1346, 1, 'Administrator', 'Кэш очищен', 1432560730),
+(1347, 1, 'Administrator', 'Кэш очищен', 1432560753),
+(1348, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1432569399),
+(1349, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1432569402),
+(1350, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1432569407),
+(1351, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1432569409),
+(1352, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | en_US', 1432569413),
+(1353, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | en_US', 1432569415),
+(1354, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1432569479),
+(1355, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1432569484),
+(1356, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1432569496),
+(1357, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1432569538),
+(1358, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1432569562),
+(1359, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1432569576),
+(1360, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1432569579),
+(1361, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1432569588),
+(1362, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1432569614),
+(1363, 1, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1432581621),
+(1364, 1, 'Administrator', 'Кэш очищен', 1432581625),
+(1365, 1, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1432629986),
+(1366, 1, 'Administrator', 'Кэш очищен', 1432630086),
+(1367, 1, 'Administrator', 'Шаблон был успешно установлен. - businessimage', 1432630453),
+(1368, 1, 'Administrator', 'Кэш очищен', 1432630688),
+(1369, 1, 'Administrator', 'Файл перевода был успешно сохранен. - businessimage | ru_RU', 1432630709),
+(1370, 1, 'Administrator', 'Файл перевода был успешно сохранен. - businessimage | ru_RU', 1432630722),
+(1371, 1, 'Administrator', 'Язык отредактирован Rus', 1432635449),
+(1372, 1, 'Administrator', 'Язык отредактирован Eng', 1432635457),
+(1373, 1, 'Administrator', 'Язык отредактирован Укр', 1432635468),
+(1374, 1, 'Administrator', 'Язык отредактирован Ukr', 1432635484),
+(1375, 1, 'Administrator', 'Настройки сайта изменены', 1432636268),
+(1376, 1, 'Administrator', 'Настройки сайта изменены', 1432636865),
+(1377, 1, 'Administrator', 'Настройки сайта изменены', 1432636883),
+(1378, 1, 'Administrator', 'Настройки сайта изменены', 1432637058),
+(1379, 1, 'Administrator', 'Настройки сайта изменены', 1432639162),
+(1380, 1, 'Administrator', 'Баннер был удален. Ids: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19', 1432645546),
+(1381, 1, 'Administrator', 'Модуль установлен xbanners', 1432645567),
+(1382, 1, 'Administrator', 'Баннер успешно создан. Id: 20', 1432645866),
+(1383, 1, 'Administrator', 'Баннер был отредактирован. Id: 20', 1432645878),
+(1384, 1, 'Administrator', 'Баннер успешно создан. Id: 21', 1432646570),
+(1385, 1, 'Administrator', 'Баннер был отредактирован. Id: 21', 1432646575),
+(1386, 1, 'Administrator', 'Логотип и Favicon изменены.', 1432646768),
+(1387, 1, 'Administrator', 'Баннер был отредактирован. Id: 20', 1432649237),
+(1388, 1, 'Administrator', 'Баннер успешно создан. Id: 22', 1432655451),
+(1389, 1, 'Administrator', 'Баннер был отредактирован. Id: 22', 1432655453),
+(1390, 1, 'Administrator', 'Баннер был удален. Ids: 22', 1432656036),
+(1391, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 21', 1432726854),
+(1392, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 21', 1432726869),
+(1393, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 21', 1432726917),
+(1394, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 21', 1432726924),
+(1395, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 21', 1432726948),
+(1396, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 21', 1432726967),
+(1397, 1, 'Administrator', 'Кэш очищен', 1432727010),
+(1398, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 21', 1432727024),
+(1399, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 21', 1432727030),
+(1400, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 21', 1432727066),
+(1401, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 21', 1432727072),
+(1402, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 21', 1432727246),
+(1403, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 21', 1432727252),
+(1404, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 21', 1432727430),
+(1405, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 21', 1432727434),
+(1406, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 21', 1432727479),
+(1407, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 21', 1432727483),
+(1408, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 21', 1432727522),
+(1409, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 21', 1432727526),
+(1410, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 21', 1432727720),
+(1411, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 21', 1432727724),
+(1412, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 21', 1432728173),
+(1413, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 21', 1432728178),
+(1414, 1, 'Administrator', 'Баннер успешно создан. Id: 22', 1432728304),
+(1415, 1, 'Administrator', 'Баннер был отредактирован. Id: 22', 1432728315),
+(1416, 1, 'Administrator', 'Баннер успешно создан. Id: 23', 1432731288),
+(1417, 1, 'Administrator', 'Баннер был отредактирован. Id: 23', 1432731297),
+(1418, 1, 'Administrator', 'Удаленный модуль xbanners', 1432732229),
+(1419, 1, 'Administrator', 'Модуль установлен xbanners', 1432732237),
+(1420, 1, 'Administrator', 'Удаленный модуль xbanners', 1432733446),
+(1421, 1, 'Administrator', 'Баннер был удален. Ids: 23', 1432733938),
+(1422, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 22', 1432733940),
+(1423, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 21', 1432733941),
+(1424, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 21', 1432733950),
+(1425, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 22', 1432733950),
+(1426, 1, 'Administrator', 'Баннер успешно создан. Id: 24', 1432734562),
+(1427, 1, 'Administrator', 'Баннер был отредактирован. Id: 24', 1432734567),
+(1428, 1, 'Administrator', 'Баннер успешно создан. Id: 25', 1432734605),
+(1429, 1, 'Administrator', 'Баннер был отредактирован. Id: 25', 1432734611),
+(1430, 1, 'Administrator', 'Баннер успешно создан. Id: 26', 1432734674),
+(1431, 1, 'Administrator', 'Баннер был отредактирован. Id: 26', 1432734677),
+(1432, 1, 'Administrator', 'Баннер успешно создан. Id: 27', 1432737566),
+(1433, 1, 'Administrator', 'Баннер был отредактирован. Id: 27', 1432737570),
+(1434, 1, 'Administrator', 'Баннер успешно создан. Id: 28', 1432737751),
+(1435, 1, 'Administrator', 'Баннер был отредактирован. Id: 28', 1432737755),
+(1436, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 28', 1432737785),
+(1437, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 28', 1432737825),
+(1438, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 28', 1432737832),
+(1439, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 27', 1432737833),
+(1440, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 27', 1432737838),
+(1441, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 28', 1432737839),
+(1442, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 28', 1432737848),
+(1443, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 27', 1432737849),
+(1444, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 26', 1432737849),
+(1445, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 25', 1432737857),
+(1446, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 25', 1432737862),
+(1447, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 26', 1432737863),
+(1448, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 27', 1432737867),
+(1449, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 28', 1432737872),
+(1450, 1, 'Administrator', 'Баннер был отредактирован. Id: 24', 1432738037),
+(1451, 1, 'Administrator', 'Баннер был отредактирован. Id: 27', 1432738049),
+(1452, 1, 'Administrator', 'Баннер был отредактирован. Id: 27', 1432738056),
+(1453, 1, 'Administrator', 'Баннер был отредактирован. Id: 26', 1432738061),
+(1454, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 28', 1432742060),
+(1455, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 27', 1432742061),
+(1456, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 26', 1432742062),
+(1457, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 24', 1432742063),
+(1458, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 25', 1432742063),
+(1459, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 24', 1432742071),
+(1460, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 25', 1432742072),
+(1461, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 26', 1432742072),
+(1462, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 27', 1432742073),
+(1463, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 28', 1432742074),
+(1464, 1, 'Administrator', 'Баннер был отредактирован. Id: 24', 1432750182),
+(1465, 1, 'Administrator', 'Баннер был отредактирован. Id: 27', 1432829159),
+(1466, 1, 'Administrator', 'Баннер был отредактирован. Id: 27', 1432829163),
+(1467, 1, 'Administrator', 'Баннер был отредактирован. Id: 24', 1432829171),
+(1468, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/84">Бизнес-консалтинг</a>', 1432833076),
+(1469, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/84">Бизнес-консалтинг</a>', 1432833117),
+(1470, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/84">Бизнес-консалтинг</a>', 1432833170),
+(1471, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/84">Бизнес-консалтинг</a>', 1432833176),
+(1472, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/62"> Услуги</a>', 1432833240),
+(1473, 1, 'Administrator', 'Группа полей создана. Id: 13', 1432833274),
+(1474, 1, 'Administrator', 'Поле обновлено - field_image', 1432833282),
+(1475, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/62"> Услуги</a>', 1432833572),
+(1476, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/84">Бизнес-консалтинг</a>', 1432834028),
+(1477, 1, 'Administrator', 'Баннер был отредактирован. Id: 20', 1432834199),
+(1478, 1, 'Administrator', 'Баннер был отредактирован. Id: 21', 1432834206),
+(1479, 1, 'Administrator', 'Баннер был отредактирован. Id: 22', 1432834212),
+(1480, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/84">Бизнес-консалтинг</a>', 1432834284),
+(1481, 1, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1432839313),
+(1482, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 20', 1432840416),
+(1483, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 21', 1432840416),
+(1484, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 22', 1432840417),
+(1485, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 24', 1432840417),
+(1486, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 25', 1432840418),
+(1487, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 26', 1432840418),
+(1488, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 27', 1432840419),
+(1489, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 28', 1432840419),
+(1490, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/84">Бизнес-консалтинг</a>', 1432840718),
+(1491, 1, 'Administrator', 'Кэш очищен', 1432841992),
+(1492, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/84">Бизнес-консалтинг</a>', 1432842022),
+(1493, 1, 'Administrator', 'Настройки сайта изменены', 1432842913),
+(1494, 1, 'Administrator', 'Настройки сайта изменены', 1432843362),
+(1495, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 20', 1432843378),
+(1496, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 21', 1432843379),
+(1497, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 22', 1432843379),
+(1498, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 24', 1432843380),
+(1499, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 25', 1432843381),
+(1500, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 26', 1432843381),
+(1501, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 27', 1432843382),
+(1502, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 28', 1432843382),
+(1503, 1, 'Administrator', 'Настройки сайта изменены', 1432845705),
+(1504, 1, 'Administrator', 'Настройки сайта изменены', 1432845896),
+(1505, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/85">Налоговые консультации</a>', 1432905069),
+(1506, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/85">Налоговые консультации</a>', 1432905073),
+(1507, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/85">Налоговые консультации</a>', 1432905080),
+(1508, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/85">Налоговые консультации</a>', 1432905086),
+(1509, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/85">Налоговые консультации</a>', 1432905196),
+(1510, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/86">Услуги адвоката</a>', 1432905242),
+(1511, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/86">Услуги адвоката</a>', 1432905267),
+(1512, 1, 'Administrator', 'Пункт меню отредактирован. Id 33', 1432905288),
+(1513, 1, 'Administrator', 'Настройки сайта изменены', 1432905322),
+(1514, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/86">Услуги адвоката</a>', 1432905384),
+(1515, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/84">Бизнес-консалтинг</a>', 1432905865),
+(1516, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/84">Бизнес-консалтинг</a>', 1432905869),
+(1517, 1, 'Administrator', 'Кэш очищен', 1432905872),
+(1518, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/84">Бизнес-консалтинг</a>', 1432905882),
+(1519, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/84">Бизнес-консалтинг</a>', 1432905891),
+(1520, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/86">Услуги адвоката</a>', 1432906076),
+(1521, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/86">Услуги адвоката</a>', 1432906182),
+(1522, 1, 'Administrator', 'Настройки сайта изменены', 1432906494),
+(1523, 1, 'Administrator', 'Настройки сайта изменены', 1432907382),
+(1524, 1, 'Administrator', 'Настройки сайта изменены', 1432907404),
+(1525, 1, 'Administrator', 'Настройки сайта изменены', 1432907431),
+(1526, 1, 'Administrator', 'Настройки сайта изменены', 1432907440),
+(1527, 1, 'Administrator', 'Кэш очищен', 1432907510),
+(1528, 1, 'Administrator', 'Настройки сайта изменены', 1432907530),
+(1529, 1, 'Administrator', 'Настройки сайта изменены', 1432907538),
+(1530, 1, 'Administrator', 'Настройки сайта изменены', 1432907576),
+(1531, 1, 'Administrator', 'Настройки галереи были отредактированы', 1432907725),
+(1532, 1, 'Administrator', 'Настройки галереи были отредактированы', 1432907765),
+(1533, 1, 'Administrator', 'Настройки галереи были отредактированы', 1432907775),
+(1534, 1, 'Administrator', 'Настройки галереи были отредактированы', 1432907785),
+(1535, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 94', 1432909703),
+(1536, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 95', 1432909703),
+(1537, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 96', 1432909703),
+(1538, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 97', 1432909703),
+(1539, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 98', 1432909703),
+(1540, 1, 'Administrator', 'Фотографии в альбоме галереи сохранены', 1432909750),
+(1541, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 99', 1432909789),
+(1542, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 100', 1432909789),
+(1543, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 101', 1432909789),
+(1544, 1, 'Administrator', 'Кэш очищен', 1432909838),
+(1545, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 102', 1432909931),
+(1546, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 103', 1432909931),
+(1547, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 104', 1432909931),
+(1548, 1, 'Administrator', 'Фотографии в альбоме галереи сохранены', 1432909938),
+(1549, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 105', 1432909941),
+(1550, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 106', 1432909941),
+(1551, 1, 'Administrator', 'Фотографии в альбоме галереи сохранены', 1432910020),
+(1552, 1, 'Administrator', 'Настройки виджета отредактированы', 1432910415),
+(1553, 1, 'Administrator', 'Настройки виджета отредактированы', 1432910422),
+(1554, 1, 'Administrator', 'Кэш очищен', 1432910608),
+(1555, 1, 'Administrator', 'Кэш очищен', 1432910827),
+(1556, 1, 'Administrator', 'Кэш очищен', 1432910848),
+(1557, 1, 'Administrator', 'Кэш очищен', 1432910865),
+(1558, 1, 'Administrator', 'Кэш очищен', 1432910876),
+(1559, 1, 'Administrator', 'Фотографии в альбоме галереи сохранены', 1432911331),
+(1560, 1, 'Administrator', 'Настройки виджета отредактированы', 1432911433),
+(1561, 1, 'Administrator', 'Настройки виджета отредактированы', 1432911439),
+(1562, 1, 'Administrator', 'Настройки галереи были отредактированы', 1432911652),
+(1563, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 119', 1432911664),
+(1564, 1, 'Administrator', 'Фотографии в альбоме галереи сохранены', 1432911666),
+(1565, 1, 'Administrator', 'Фотографии в альбоме галереи сохранены', 1432911700),
+(1566, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 120', 1432911723),
+(1567, 1, 'Administrator', 'Фотографии в альбоме галереи сохранены', 1432911724),
+(1568, 1, 'Administrator', 'Настройки галереи были отредактированы', 1432911735),
+(1569, 1, 'Administrator', 'Фотографии в альбоме галереи сохранены', 1432911770),
+(1570, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 121', 1432911827),
+(1571, 1, 'Administrator', 'Фотографии в альбоме галереи сохранены', 1432911952),
+(1572, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 116', 1432912038),
+(1573, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 117', 1432912038),
+(1574, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 118', 1432912038),
+(1575, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 122', 1432912038),
+(1576, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 107', 1432912048),
+(1577, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 108', 1432912048),
+(1578, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 109', 1432912048),
+(1579, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 110', 1432912048),
+(1580, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 111', 1432912048),
+(1581, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 112', 1432912048),
+(1582, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 113', 1432912048),
+(1583, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 114', 1432912069),
+(1584, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 115', 1432912069),
+(1585, 1, 'Administrator', 'Установлен язык Eng по умолчанию', 1432912121),
+(1586, 1, 'Administrator', 'Установлен язык Rus по умолчанию', 1432912145),
+(1587, 1, 'Administrator', 'Фотографии в альбоме галереи сохранены', 1432912876),
+(1588, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 123', 1432912984),
+(1589, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 124', 1432912984),
+(1590, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 125', 1432912984),
+(1591, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 126', 1432912984),
+(1592, 1, 'Administrator', 'Настройки галереи были отредактированы', 1432913029),
+(1593, 1, 'Administrator', 'Фотографии в альбоме галереи сохранены', 1432913074),
+(1594, 1, 'Administrator', 'Фотографии в альбоме галереи сохранены', 1432913352),
+(1595, 1, 'Administrator', 'Настройки виджета отредактированы', 1432913383),
+(1596, 1, 'Administrator', 'Настройки виджета отредактированы', 1432913393),
+(1597, 1, 'Administrator', 'Настройки виджета отредактированы', 1432914207),
+(1598, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 130', 1432914348),
+(1599, 1, 'Administrator', 'Фотографии в альбоме галереи сохранены', 1432914351),
+(1600, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 132', 1432914357),
+(1601, 1, 'Administrator', 'Фотографии в альбоме галереи сохранены', 1432914358),
+(1602, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 131', 1432914430),
+(1603, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 133', 1432914430),
+(1604, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 134', 1432914430),
+(1605, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 135', 1432914430),
+(1606, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 127', 1432914437),
+(1607, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 128', 1432914437),
+(1608, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 129', 1432914437),
+(1609, 1, 'Administrator', 'Фотографии в альбоме галереи сохранены', 1432914517),
+(1610, 1, 'Administrator', 'Кэш очищен', 1432914529),
+(1611, 1, 'Administrator', 'Баннер был отредактирован. Id: 20', 1432914896),
+(1612, 1, 'Administrator', 'Кэш очищен', 1433165787),
+(1613, 1, 'Administrator', 'Настройки виджета отредактированы', 1433172346),
+(1614, 1, 'Administrator', 'Настройки виджета отредактированы', 1433172421),
+(1615, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/64"> Блог</a>', 1433172674),
+(1616, 1, 'Administrator', 'Группа полей отредактирована. Id: 11', 1433172686),
+(1617, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/120">Три планеты-гиганта у красных гигантов HD 216536, HD 95127 и BD+49 828</a>', 1433173145),
+(1618, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/89">Три горячих юпитера и один горячий сатурн от обзора HATNet</a>', 1433173158),
+(1619, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/105">36 транзитных кандидатов (из них – 18 планет) от миссии K2</a>', 1433173165),
+(1620, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/97">36 транзитных кандидатов (из них – 18 планет) от миссии K2</a>', 1433173174),
+(1621, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/91">36 транзитных кандидатов (из них – 18 планет) от миссии K2</a>', 1433174861),
+(1622, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/100">Три планеты-гиганта у красных гигантов HD 216536, HD 95127 и BD+49 828</a>', 1433174931),
+(1623, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/98">Еще два транзитных горячих гиганта от обзора HATSouth</a>', 1433174940),
+(1624, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/89">Три горячих юпитера и один горячий сатурн от обзора HATNet</a>', 1433175057),
+(1625, 1, 'Administrator', 'Настройки виджета отредактированы', 1433176073),
+(1626, 1, 'Administrator', 'Настройки виджета отредактированы', 1433176110),
+(1627, 1, 'Administrator', 'Настройки виджета отредактированы', 1433176117),
+(1628, 1, 'Administrator', 'Настройки виджета отредактированы', 1433176123),
+(1629, 1, 'Administrator', 'Настройки виджета отредактированы', 1433176125),
+(1630, 1, 'Administrator', 'Настройки виджета отредактированы', 1433176130),
+(1631, 1, 'Administrator', 'Настройки виджета отредактированы', 1433176136),
+(1632, 1, 'Administrator', 'Настройки виджета отредактированы', 1433176161),
+(1633, 1, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1433186084),
+(1634, 1, 'Administrator', 'Баннер успешно создан. Id: 29', 1433186267),
+(1635, 1, 'Administrator', 'Баннер был отредактирован. Id: 29', 1433186271),
+(1636, 1, 'Administrator', 'Баннер успешно создан. Id: 30', 1433186285),
+(1637, 1, 'Administrator', 'Баннер был отредактирован. Id: 30', 1433186287),
+(1638, 1, 'Administrator', 'Баннер успешно создан. Id: 31', 1433186303),
+(1639, 1, 'Administrator', 'Баннер был отредактирован. Id: 31', 1433186306),
+(1640, 1, 'Administrator', 'Баннер успешно создан. Id: 32', 1433186315),
+(1641, 1, 'Administrator', 'Баннер был отредактирован. Id: 32', 1433186333),
+(1642, 1, 'Administrator', 'Баннер успешно создан. Id: 33', 1433186345),
+(1643, 1, 'Administrator', 'Баннер был отредактирован. Id: 33', 1433186348),
+(1644, 1, 'Administrator', 'Баннер успешно создан. Id: 34', 1433186409),
+(1645, 1, 'Administrator', 'Баннер был отредактирован. Id: 34', 1433186412),
+(1646, 1, 'Administrator', 'Кэш очищен', 1433186430),
+(1647, 1, 'Administrator', 'Баннер успешно создан. Id: 35', 1433186454),
+(1648, 1, 'Administrator', 'Баннер был отредактирован. Id: 35', 1433186463),
+(1649, 1, 'Administrator', 'Баннер был отредактирован. Id: 35', 1433186465),
+(1650, 1, 'Administrator', 'Баннер был отредактирован. Id: 34', 1433186471),
+(1651, 1, 'Administrator', 'Баннер был отредактирован. Id: 30', 1433190499),
+(1652, 1, 'Administrator', 'Кэш очищен', 1433236015),
+(1653, 1, 'Administrator', 'Кэш очищен', 1433236209),
+(1654, 1, 'Administrator', 'Кэш очищен', 1433236335),
+(1655, 1, 'Administrator', 'Кэш очищен', 1433236435),
+(1656, 1, 'Administrator', 'Кэш очищен', 1433236474),
+(1657, 1, 'Administrator', 'Кэш очищен', 1433236510),
+(1658, 1, 'Administrator', 'Кэш очищен', 1433236533),
+(1659, 1, 'Administrator', 'Кэш очищен', 1433236558),
+(1660, 1, 'Administrator', 'Кэш очищен', 1433236645),
+(1661, 1, 'Administrator', 'Кэш очищен', 1433236675),
+(1662, 1, 'Administrator', 'Кэш очищен', 1433236693),
+(1663, 1, 'Administrator', 'Кэш очищен', 1433236760),
+(1664, 1, 'Administrator', 'Кэш очищен', 1433236927),
+(1665, 1, 'Administrator', 'Кэш очищен', 1433237013),
+(1666, 1, 'Administrator', 'Кэш очищен', 1433237082),
+(1667, 1, 'Administrator', 'Кэш очищен', 1433237190),
+(1668, 1, 'Administrator', 'Кэш очищен', 1433237315);
+INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
+(1669, 1, 'Administrator', 'Кэш очищен', 1433237348),
+(1670, 1, 'Administrator', 'Кэш очищен', 1433237462),
+(1671, 1, 'Administrator', 'Кэш очищен', 1433237478),
+(1672, 1, 'Administrator', 'Кэш очищен', 1433238580),
+(1673, 1, 'Administrator', 'Кэш очищен', 1433238735),
+(1674, 1, 'Administrator', 'Настройки сайта изменены', 1433245341),
+(1675, 1, 'Administrator', 'Настройки сайта изменены', 1433245416),
+(1676, 1, 'Administrator', 'Меню создано. Id: 7', 1433246593),
+(1677, 1, 'Administrator', 'Кэш очищен', 1433246631),
+(1678, 1, 'Administrator', 'Пункт меню создан. Id: 42', 1433246753),
+(1679, 1, 'Administrator', 'Пункт меню создан. Id: 43', 1433246766),
+(1680, 1, 'Administrator', 'Пункт меню создан. Id: 44', 1433246776),
+(1681, 1, 'Administrator', 'Пункт меню создан. Id: 45', 1433246799),
+(1682, 1, 'Administrator', 'Пункт меню создан. Id: 46', 1433246810),
+(1683, 1, 'Administrator', 'Меню отредактировано. Id: 7', 1433246878),
+(1684, 1, 'Administrator', 'Кэш очищен', 1433249617),
+(1685, 1, 'Administrator', 'Кэш очищен', 1433253949),
+(1686, 1, 'Administrator', 'Кэш очищен', 1433254082),
+(1687, 1, 'Administrator', 'Кэш очищен', 1433254105),
+(1688, 1, 'Administrator', 'Кэш очищен', 1433254124),
+(1689, 1, 'Administrator', 'Настройки сайта изменены', 1433254405),
+(1690, 1, 'Administrator', 'Кэш очищен', 1433254436),
+(1691, 1, 'Administrator', 'Настройки сайта изменены', 1433254454),
+(1692, 1, 'Administrator', 'Настройки сайта изменены', 1433259326),
+(1693, 1, 'Administrator', 'Кэш очищен', 1433265245),
+(1694, 1, 'Administrator', 'Настройки сайта изменены', 1433425440),
+(1695, 1, 'Administrator', 'Настройки сайта изменены', 1433425453),
+(1696, 1, 'Administrator', 'Файл перевода был успешно сохранен. - businessimage | ru_RU', 1433425827),
+(1697, 1, 'Administrator', 'Файл перевода был успешно сохранен. - businessimage | ru_RU', 1433425833),
+(1698, 1, 'Administrator', 'Файл перевода был успешно сохранен. - businessimage | ru_RU', 1433425892),
+(1699, 1, 'Administrator', 'Файл перевода был успешно сохранен. - businessimage | ru_RU', 1433425972),
+(1700, 1, 'Administrator', 'Файл перевода был успешно сохранен. - businessimage | en_US', 1433425978),
+(1701, 1, 'Administrator', 'Файл перевода был успешно сохранен. - businessimage | en_US', 1433425981),
+(1702, 1, 'Administrator', 'Файл перевода был успешно сохранен. - businessimage | uk_UA', 1433425987),
+(1703, 1, 'Administrator', 'Файл перевода был успешно сохранен. - businessimage | uk_UA', 1433426094),
+(1704, 1, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1433669181),
+(1705, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/64"> Блог</a>', 1433669205),
+(1706, 1, 'Administrator', 'Страница создана <a href="http://corporate/admin/pages/edit/124">Про компанию</a>', 1433755216),
+(1707, 1, 'Administrator', 'Удалено категорию с ID 63', 1433755230),
+(1708, 1, 'Administrator', 'Пункт меню создан. Id: 47', 1433755250),
+(1709, 1, 'Administrator', 'Пункт меню удалён. Ids 34', 1433755265),
+(1710, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/64"> Блог</a>', 1433756886),
+(1711, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/62"> Услуги</a>', 1433757010),
+(1712, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/62"> Услуги</a>', 1433757216),
+(1713, 1, 'Administrator', 'Кэш очищен', 1433775456),
+(1714, 1, 'Administrator', 'Кэш очищен', 1433775506),
+(1715, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/70"> Сфера услуг</a>', 1433845990),
+(1716, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/71"> Услуги по дому</a>', 1433846000),
+(1717, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/72"> Услуги по работе</a>', 1433846007),
+(1718, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/73"> Особняки</a>', 1433846016),
+(1719, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/67"> Бизнес-консалтинг</a>', 1433846023),
+(1720, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/65"> Видео</a>', 1433846029),
+(1721, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/62"> Услуги</a>', 1433846034),
+(1722, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/105">36 транзитных кандидатов</a>', 1433846184),
+(1723, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/97">36 транзитных кандидатов 2</a>', 1433846227),
+(1724, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/87">Контакты</a>', 1433846419),
+(1725, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/87">Контакты</a>', 1433846431),
+(1726, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/87">Контакты</a>', 1433849990),
+(1727, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/87">Контакты</a>', 1433850000),
+(1728, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/87">Контакты</a>', 1433850056),
+(1729, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/87">Контакты</a>', 1433850194),
+(1730, 1, 'Administrator', 'Кэш очищен', 1433854797),
+(1731, 1, 'Administrator', 'Кэш очищен', 1433854831),
+(1732, 1, 'Administrator', 'Фотографии в альбоме галереи сохранены', 1433857872),
+(1733, 1, 'Administrator', 'Фотографии в альбоме галереи сохранены', 1433857907),
+(1734, 1, 'Administrator', 'Кэш очищен', 1433858916),
+(1735, 1, 'Administrator', 'Кэш очищен', 1433858933),
+(1736, 1, 'Administrator', 'Кэш очищен', 1434394564),
+(1737, 1, 'Administrator', 'Кэш очищен', 1434396641),
+(1738, 1, 'Administrator', 'Кэш очищен', 1434396981),
+(1739, 1, 'Administrator', 'Кэш очищен', 1434447737),
+(1740, 1, 'Administrator', 'Кэш очищен', 1434476894),
+(1741, 1, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1434527134),
+(1742, 1, 'Administrator', 'Кэш очищен', 1434527140),
+(1743, 1, 'Administrator', 'Кэш очищен', 1434630050),
+(1744, 1, 'Administrator', 'Настройки сайта изменены', 1434632117),
+(1745, 1, 'Administrator', 'Страница удалена ID 112', 1434632277),
+(1746, 1, 'Administrator', 'Настройки сайта изменены', 1434632772),
+(1747, 1, 'Administrator', 'Настройки сайта изменены', 1434632796),
+(1748, 1, 'Administrator', 'Кэш очищен', 1434633303),
+(1749, 1, 'Administrator', 'Кэш очищен', 1434633328),
+(1750, 1, 'Administrator', 'Кэш очищен', 1434633351),
+(1751, 1, 'Administrator', 'Кэш очищен', 1434633381),
+(1752, 1, 'Administrator', 'Кэш очищен', 1434633407),
+(1753, 1, 'Administrator', 'Настройки сайта изменены', 1434707544),
+(1754, 1, 'Administrator', 'Настройки сайта изменены', 1434707559),
+(1755, 1, 'Administrator', 'Виджет создан related_posts', 1434725468),
+(1756, 1, 'Administrator', 'Кэш очищен', 1434979111),
+(1757, 1, 'Administrator', 'Файл перевода был успешно сохранен. - businessimage | uk_UA', 1434979438),
+(1758, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/64"> Блог</a>', 1434985435),
+(1759, 1, 'Administrator', 'Альбом галереи был обновлен. Id: 5', 1434992518),
+(1760, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/87">Контакты</a>', 1434992956),
+(1761, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/87">Контакты</a>', 1434993092),
+(1762, 1, 'Administrator', 'Кэш очищен', 1434994906),
+(1763, 1, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1435052812),
+(1764, 1, 'Administrator', 'Кэш очищен', 1435140015),
+(1765, 1, 'Administrator', 'Кэш очищен', 1435140792),
+(1766, 1, 'Administrator', 'Кэш очищен', 1435140923),
+(1767, 1, 'Administrator', 'Кэш очищен', 1435141007),
+(1768, 1, 'Administrator', 'Кэш очищен', 1435142057),
+(1769, 1, 'Administrator', 'Кэш очищен', 1435142170),
+(1770, 1, 'Administrator', 'Кэш очищен', 1435142189),
+(1771, 1, 'Administrator', 'Кэш очищен', 1435142218),
+(1772, 1, 'Administrator', 'Кэш очищен', 1435142244),
+(1773, 1, 'Administrator', 'Кэш очищен', 1435142267),
+(1774, 1, 'Administrator', 'Кэш очищен', 1435142282),
+(1775, 1, 'Administrator', 'Кэш очищен', 1435142296),
+(1776, 1, 'Administrator', 'Кэш очищен', 1435142323),
+(1777, 1, 'Administrator', 'Кэш очищен', 1435142336),
+(1778, 1, 'Administrator', 'Кэш очищен', 1435142372),
+(1779, 1, 'Administrator', 'Кэш очищен', 1435142958),
+(1780, 1, 'Administrator', 'Кэш очищен', 1435143144),
+(1781, 1, 'Administrator', 'Кэш очищен', 1435143394),
+(1782, 1, 'Administrator', 'Кэш очищен', 1435143589),
+(1783, 1, 'Administrator', 'Кэш очищен', 1435143945),
+(1784, 1, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1435216960),
+(1785, 1, 'Administrator', 'Кэш очищен', 1435219763),
+(1786, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 28', 1435220919),
+(1787, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 27', 1435220920),
+(1788, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 26', 1435220920),
+(1789, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 25', 1435220921),
+(1790, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 25', 1435220922),
+(1791, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 26', 1435220933),
+(1792, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 27', 1435220934),
+(1793, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 28', 1435220935),
+(1794, 1, 'Administrator', 'Кэш очищен', 1435222920),
+(1795, 1, 'Administrator', 'Кэш очищен', 1435222929),
+(1796, 1, 'Administrator', 'Кэш очищен', 1435222943),
+(1797, 1, 'Administrator', 'Кэш очищен', 1435222984),
+(1798, 1, 'Administrator', 'Кэш очищен', 1435223002),
+(1799, 1, 'Administrator', 'Кэш очищен', 1435223040),
+(1800, 1, 'Administrator', 'Кэш очищен', 1435223059),
+(1801, 1, 'Administrator', 'Кэш очищен', 1435223136),
+(1802, 1, 'Administrator', 'Кэш очищен', 1435223189),
+(1803, 1, 'Administrator', 'Кэш очищен', 1435223209),
+(1804, 1, 'Administrator', 'Кэш очищен', 1435223249),
+(1805, 1, 'Administrator', 'Кэш очищен', 1435223282),
+(1806, 1, 'Administrator', 'Кэш очищен', 1435223405),
+(1807, 1, 'Administrator', 'Кэш очищен', 1435224579),
+(1808, 1, 'Administrator', 'Кэш очищен', 1435230707),
+(1809, 1, 'Administrator', 'Кэш очищен', 1435233374),
+(1810, 1, 'Administrator', 'Кэш очищен', 1435235013),
+(1811, 1, 'Administrator', 'Кэш очищен', 1435235623),
+(1812, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/69"> Экономическая деятельность</a>', 1435240293),
+(1813, 1, 'Administrator', 'Страница создана <a href="/admin/pages/edit/125">sdafsadf</a>', 1435240322),
+(1814, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/69"> Экономическая деятельность</a>', 1435241146),
+(1815, 1, 'Administrator', 'Страница удалена ID 125', 1435241580),
+(1816, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/111">Три горячих юпитера и один горячий сатурн от обзора HATNet</a>', 1435243396),
+(1817, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/111">Три горячих юпитера и один горячий сатурн от обзора HATNet</a>', 1435243419),
+(1818, 1, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1435244880),
+(1819, 1, 'Administrator', 'Настройки комментариев были отредактированы', 1435244938),
+(1820, 1, 'Administrator', 'Настройки комментариев были отредактированы', 1435245897),
+(1821, 1, 'Administrator', 'Настройки комментариев были отредактированы', 1435246280),
+(1822, 1, 'Administrator', 'Настройки комментариев были отредактированы', 1435246692),
+(1823, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/110">Еще два транзитных горячих гиганта от обзора HATSouth</a>', 1435319161),
+(1824, 1, 'Administrator', 'Кэш очищен', 1435325291),
+(1825, 1, 'Administrator', 'Кэш очищен', 1435325365),
+(1826, 1, 'Administrator', 'Настройки комментариев были отредактированы', 1435331296),
+(1827, 1, 'Administrator', 'Кэш очищен', 1435332457),
+(1828, 1, 'Administrator', 'Кэш очищен', 1435334032),
+(1829, 1, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1435505693),
+(1830, 1, 'Administrator', 'Кэш очищен', 1435507013),
+(1831, 1, 'Administrator', 'Кэш очищен', 1435512331),
+(1832, 1, 'Administrator', 'Кэш очищен', 1435513573),
+(1833, 1, 'Administrator', 'Кэш очищен', 1435513588),
+(1834, 1, 'Administrator', 'Кэш очищен', 1435513600),
+(1835, 1, 'Administrator', 'Кэш очищен', 1435513609),
+(1836, 1, 'Administrator', 'Кэш очищен', 1435513617),
+(1837, 1, 'Administrator', 'Кэш очищен', 1435513634),
+(1838, 1, 'Administrator', 'Кэш очищен', 1435590531),
+(1839, 1, 'Administrator', 'Кэш очищен', 1435591661),
+(1840, 1, 'Administrator', 'Кэш очищен', 1435593874),
+(1841, 1, 'Administrator', 'Кэш очищен', 1435593928),
+(1842, 1, 'Administrator', 'Кэш очищен', 1435593977),
+(1843, 1, 'Administrator', 'Настройки комментариев были отредактированы', 1435596077),
+(1844, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/109">36 транзитных кандидатов (из них – 18 планет) от миссии K2</a>', 1435596608),
+(1845, 1, 'Administrator', 'Кэш очищен', 1435596968),
+(1846, 1, 'Administrator', 'Настройки комментариев были отредактированы', 1435597370),
+(1847, 1, 'Administrator', 'Кэш очищен', 1435597534),
+(1848, 1, 'Administrator', 'Настройки комментариев были отредактированы', 1435598941),
+(1849, 1, 'Administrator', 'Настройки комментариев были отредактированы', 1435599563),
+(1850, 1, 'Administrator', 'Настройки комментариев были отредактированы', 1435599844),
+(1851, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/124">Про компанию</a>', 1435603785),
+(1852, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/124">Про компанию</a>', 1435603837),
+(1853, 1, 'Administrator', 'Кэш очищен', 1435762666),
+(1854, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/64"> Блог</a>', 1435765862),
+(1855, 1, 'Administrator', 'Пункт меню создан. Id: 48', 1435766682),
+(1856, 1, 'Administrator', 'Пункт меню отредактирован. Id 48', 1435766691),
+(1857, 1, 'Administrator', 'Пункт меню отредактирован. Id 48', 1435766698),
+(1858, 1, 'Administrator', 'Пункт меню удалён. Ids 48', 1435766757),
+(1859, 1, 'Administrator', 'Пункт меню создан. Id: 49', 1435766883),
+(1860, 1, 'Administrator', 'Пункт меню удалён. Ids 49', 1435767442),
+(1861, 1, 'Administrator', 'Пункт меню создан. Id: 50', 1435767457),
+(1862, 1, 'Administrator', 'Пункт меню создан. Id: 51', 1435767475),
+(1863, 1, 'Administrator', 'Пункт меню отредактирован. Id 35', 1435767485),
+(1864, 1, 'Administrator', 'Пункт меню отредактирован. Id 51', 1435767510),
+(1865, 1, 'Administrator', 'Пункт меню удалён. Ids 35', 1435767517),
+(1866, 1, 'Administrator', 'Пункт меню создан. Id: 52', 1435767526),
+(1867, 1, 'Administrator', 'Пункт меню отредактирован. Id 50', 1435767537),
+(1868, 1, 'Administrator', 'Пункт меню удалён. Ids 37', 1435767576),
+(1869, 1, 'Administrator', 'Пункт меню создан. Id: 53', 1435767582),
+(1870, 1, 'Administrator', 'Пункт меню отредактирован. Id 51', 1435767641),
+(1871, 1, 'Administrator', 'Пункт меню создан. Id: 54', 1435767663),
+(1872, 1, 'Administrator', 'Пункт меню создан. Id: 55', 1435767679),
+(1873, 1, 'Administrator', 'Пункт меню создан. Id: 56', 1435767695),
+(1874, 1, 'Administrator', 'Пункт меню создан. Id: 57', 1435767727),
+(1875, 1, 'Administrator', 'Пункт меню создан. Id: 58', 1435767742),
+(1876, 1, 'Administrator', 'Пункт меню удалён. Ids 33', 1435769420),
+(1877, 1, 'Administrator', 'Пункт меню создан. Id: 59', 1435769426),
+(1878, 1, 'Administrator', 'Пункт меню создан. Id: 60', 1435769449),
+(1879, 1, 'Administrator', 'Пункт меню создан. Id: 61', 1435769467),
+(1880, 1, 'Administrator', 'Пункт меню создан. Id: 62', 1435769502),
+(1881, 1, 'Administrator', 'Пункт меню создан. Id: 63', 1435769680),
+(1882, 1, 'Administrator', 'Пункт меню создан. Id: 64', 1435769690),
+(1883, 1, 'Administrator', 'Меню отредактировано. Id: 1', 1435769897),
+(1884, 1, 'Administrator', 'Кэш очищен', 1435769909),
+(1885, 1, 'Administrator', 'Статус пункта меню изменен. Id: 52', 1435769993),
+(1886, 1, 'Administrator', 'Пункт меню создан. Id: 65', 1435770288),
+(1887, 1, 'Administrator', 'Статус пункта меню изменен. Id: 52', 1435771094),
+(1888, 1, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1435918318),
+(1889, 1, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1435918407),
+(1890, 1, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1435918423),
+(1891, 1, 'Administrator', 'Кэш очищен', 1436170143),
+(1892, 1, 'Administrator', 'Кэш очищен', 1436170160),
+(1893, 1, 'Administrator', 'Кэш очищен', 1436170234),
+(1894, 1, 'Administrator', 'Кэш очищен', 1436170275),
+(1895, 1, 'Administrator', 'Кэш очищен', 1436170294),
+(1896, 1, 'Administrator', 'Кэш очищен', 1436170438),
+(1897, 1, 'Administrator', 'Кэш очищен', 1436170480),
+(1898, 1, 'Administrator', 'Кэш очищен', 1436170499),
+(1899, 1, 'Administrator', 'Кэш очищен', 1436170519),
+(1900, 1, 'Administrator', 'Настройки виджета отредактированы', 1436202771),
+(1901, 1, 'Administrator', 'Настройки виджета отредактированы', 1436202801),
+(1902, 1, 'Administrator', 'Настройки виджета отредактированы', 1436202811),
+(1903, 1, 'Administrator', 'Настройки виджета отредактированы', 1436202826),
+(1904, 1, 'Administrator', 'Настройки виджета отредактированы', 1436202908),
+(1905, 1, 'Administrator', 'Настройки виджета отредактированы', 1436204287),
+(1906, 1, 'Administrator', 'Настройки виджета отредактированы', 1436204298),
+(1907, 1, 'Administrator', 'Настройки виджета отредактированы', 1436204309),
+(1908, 1, 'Administrator', 'Настройки виджета отредактированы', 1436204315),
+(1909, 1, 'Administrator', 'Настройки виджета отредактированы', 1436204470),
+(1910, 1, 'Administrator', 'Настройки виджета отредактированы', 1436204616),
+(1911, 1, 'Administrator', 'Настройки виджета отредактированы', 1436204623),
+(1912, 1, 'Administrator', 'Настройки виджета отредактированы', 1436204682),
+(1913, 1, 'Administrator', 'Настройки виджета отредактированы', 1436204712),
+(1914, 1, 'Administrator', 'Настройки виджета отредактированы', 1436205031),
+(1915, 1, 'Administrator', 'Кэш очищен', 1436205054),
+(1916, 1, 'Administrator', 'Кэш очищен', 1436205085),
+(1917, 1, 'Administrator', 'Кэш очищен', 1436205123),
+(1918, 1, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1436214515),
+(1919, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/64"> Блог</a>', 1436214540),
+(1920, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/64"> Блог</a>', 1436214625),
+(1921, 1, 'Administrator', 'Виджет удален tags', 1436272873),
+(1922, 1, 'Administrator', 'Виджет создан tags', 1436272896),
+(1923, 1, 'Administrator', 'Виджет удален tags', 1436273261),
+(1924, 1, 'Administrator', 'Виджет создан tags', 1436273298),
+(1925, 1, 'Administrator', 'Виджет удален tags', 1436273325),
+(1926, 1, 'Administrator', 'Виджет создан page_tag_cloud', 1436273814),
+(1927, 1, 'Administrator', 'Модуль установлен xbanners', 1436275967),
+(1928, 1, 'Administrator', 'Кэш очищен', 1436279366),
+(1929, 1, 'Administrator', 'Кэш очищен', 1436279405),
+(1930, 1, 'Administrator', 'Кэш очищен', 1436279538),
+(1931, 1, 'Administrator', 'Кэш очищен', 1436279588),
+(1932, 1, 'Administrator', 'Кэш очищен', 1436279636),
+(1933, 1, 'Administrator', 'Кэш очищен', 1436280344),
+(1934, 1, 'Administrator', 'Кэш очищен', 1436280399),
+(1935, 1, 'Administrator', 'Кэш очищен', 1436280516),
+(1936, 1, 'Administrator', 'Кэш очищен', 1436280525),
+(1937, 1, 'Administrator', 'Кэш очищен', 1436280544),
+(1938, 1, 'Administrator', 'Кэш очищен', 1436280562),
+(1939, 1, 'Administrator', 'Кэш очищен', 1436281075),
+(1940, 1, 'Administrator', 'Кэш очищен', 1436281095),
+(1941, 1, 'Administrator', 'Кэш очищен', 1436281119),
+(1942, 1, 'Administrator', 'Кэш очищен', 1436281143),
+(1943, 1, 'Administrator', 'Кэш очищен', 1436281161),
+(1944, 1, 'Administrator', 'Кэш очищен', 1436281182),
+(1945, 1, 'Administrator', 'Кэш очищен', 1436281228),
+(1946, 1, 'Administrator', 'Кэш очищен', 1436281521),
+(1947, 1, 'Administrator', 'Кэш очищен', 1436283540),
+(1948, 1, 'Administrator', 'Кэш очищен', 1436283557),
+(1949, 1, 'Administrator', 'Кэш очищен', 1436283609),
+(1950, 1, 'Administrator', 'Кэш очищен', 1436283644),
+(1951, 1, 'Administrator', 'Кэш очищен', 1436283774),
+(1952, 1, 'Administrator', 'Кэш очищен', 1436283805),
+(1953, 1, 'Administrator', 'Кэш очищен', 1436284541),
+(1954, 1, 'Administrator', 'Кэш очищен', 1436284583),
+(1955, 1, 'Administrator', 'Кэш очищен', 1436286107),
+(1956, 1, 'Administrator', 'Виджет удален page_tag_cloud', 1436347748),
+(1957, 1, 'Administrator', 'Виджет создан page_tag_cloud', 1436347788),
+(1958, 1, 'Administrator', 'Баннер был удален. Ids: 20, 21, 22, 29, 30, 31, 32, 33, 34, 35', 1436348319),
+(1959, 1, 'Administrator', 'Шаблон письма был отредактирован - create_user', 1436356432),
+(1960, 1, 'Administrator', 'Шаблон письма был отредактирован - create_user', 1436356599),
+(1961, 1, 'Administrator', 'Шаблон письма был отредактирован - create_user', 1436356605),
+(1962, 1, 'Administrator', 'Шаблон письма был отредактирован - forgot_password', 1436356623),
+(1963, 1, 'Administrator', 'Шаблон письма был отредактирован - change_password', 1436356637),
+(1964, 1, 'Administrator', 'Шаблон письма был отредактирован - forgot_password', 1436356873),
+(1965, 1, 'Administrator', 'Настройки виджета отредактированы', 1436357769),
+(1966, 1, 'Administrator', 'Настройки виджета отредактированы', 1436357797),
+(1967, 1, 'Administrator', 'Настройки виджета отредактированы', 1436357813),
+(1968, 1, 'Administrator', 'Настройки виджета отредактированы', 1436357821),
+(1969, 1, 'Administrator', 'Настройки виджета отредактированы', 1436357829),
+(1970, 1, 'Administrator', 'Настройки виджета отредактированы', 1436357845),
+(1971, 1, 'Administrator', 'Настройки виджета отредактированы', 1436357857),
+(1972, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/124">Про компанию</a>', 1436366902),
+(1973, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/124">Про компанию</a>', 1436367783),
+(1974, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/124">Про компанию</a>', 1436367815),
+(1975, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/124">Про компанию</a>', 1436367860),
+(1976, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/124">Про компанию</a>', 1436367881),
+(1977, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/124">Про компанию</a>', 1436367987),
+(1978, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/124">Про компанию</a>', 1436368008),
+(1979, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/124">Про компанию</a>', 1436368028),
+(1980, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/124">Про компанию</a>', 1436368084),
+(1981, 1, 'Administrator', 'Настройки сайта изменены', 1436378997),
+(1982, 1, 'Administrator', 'Настройки сайта изменены', 1436379029),
+(1983, 1, 'Administrator', 'Настройки сайта изменены', 1436379047),
+(1984, 1, 'Administrator', 'Настройки сайта изменены', 1436379232),
+(1985, 1, 'Administrator', 'Настройки сайта изменены', 1436379368),
+(1986, 1, 'Administrator', 'Настройки сайта изменены', 1436379617),
+(1987, 1, 'Administrator', 'Настройки сайта изменены', 1436379626),
+(1988, 1, 'Administrator', 'Файл перевода был успешно сохранен. - businessimage | ru_RU', 1436379787),
+(1989, 1, 'Administrator', 'Меню удалено', 1436379836),
+(1990, 1, 'Administrator', 'Пункт меню удалён. Ids 63, 64, 65', 1436379848),
+(1991, 1, 'Administrator', 'Пункт меню удалён. Ids 50, 56, 57, 58, 51, 54, 55', 1436379857),
+(1992, 1, 'Administrator', 'Файл перевода был успешно сохранен. - businessimage | ru_RU', 1436379927),
+(1993, 1, 'Administrator', 'Файл перевода был успешно сохранен. - businessimage | ru_RU', 1436379929),
+(1994, 1, 'Administrator', 'Файл перевода был успешно сохранен. - businessimage | ru_RU', 1436379934),
+(1995, 1, 'Administrator', 'Файл перевода был успешно сохранен. - businessimage | ru_RU', 1436380054),
+(1996, 1, 'Administrator', 'Файл перевода был успешно сохранен. - businessimage | ru_RU', 1436380106),
+(1997, 1, 'Administrator', 'Файл перевода был успешно сохранен. - businessimage | ru_RU', 1436380272),
+(1998, 1, 'Administrator', 'Файл перевода был успешно сохранен. - businessimage | ru_RU', 1436380283),
+(1999, 1, 'Administrator', 'Файл перевода был успешно сохранен. - businessimage | ru_RU', 1436380287),
+(2000, 1, 'Administrator', 'Файл перевода был успешно сохранен. - businessimage | uk_UA', 1436380306),
+(2001, 1, 'Administrator', 'Файл перевода был успешно сохранен. - businessimage | uk_UA', 1436380310),
+(2002, 1, 'Administrator', 'Файл перевода был успешно сохранен. - businessimage | uk_UA', 1436380312),
+(2003, 1, 'Administrator', 'Файл перевода был успешно сохранен. - businessimage | ru_RU', 1436380341),
+(2004, 1, 'Administrator', 'Файл перевода был успешно сохранен. - businessimage | uk_UA', 1436380606),
+(2005, 1, 'Administrator', 'Файл перевода был успешно сохранен. - businessimage | uk_UA', 1436380621),
+(2006, 1, 'Administrator', 'Файл перевода был успешно сохранен. - businessimage | uk_UA', 1436380690),
+(2007, 1, 'Administrator', 'Файл перевода был успешно сохранен. - businessimage | ru_RU', 1436380724),
+(2008, 1, 'Administrator', 'Файл перевода был успешно сохранен. - businessimage | en_US', 1436380739),
+(2009, 1, 'Administrator', 'Файл перевода был успешно сохранен. - businessimage | en_US', 1436380742),
+(2010, 1, 'Administrator', 'Файл перевода был успешно сохранен. - businessimage | en_US', 1436380760),
+(2011, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/87">Контакты</a>', 1436381506),
+(2012, 1, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1436384091),
+(2013, 1, 'Administrator', 'Категории переведена <a href="/admin/categories/edit/64"> Блог</a>', 1436384246),
+(2014, 1, 'Administrator', 'Категории переведена <a href="/admin/categories/edit/66"> Клиенты о нас</a>', 1436384326),
+(2015, 1, 'Administrator', 'Категории переведена <a href="/admin/categories/edit/65"> Видео</a>', 1436384346),
+(2016, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/62"> Услуги</a>', 1436384440),
+(2017, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/62"> Услуги</a>', 1436384496),
+(2018, 1, 'Administrator', 'Категории переведена <a href="/admin/categories/edit/62"> Услуги</a>', 1436384511),
+(2019, 1, 'Administrator', 'Удалено категорию с ID 70', 1436384552),
+(2020, 1, 'Administrator', 'Страница удалена ID 100', 1436384552),
+(2021, 1, 'Administrator', 'Страница удалена ID 99', 1436384552),
+(2022, 1, 'Administrator', 'Страница удалена ID 98', 1436384552),
+(2023, 1, 'Administrator', 'Страница удалена ID 97', 1436384552),
+(2024, 1, 'Administrator', 'Страница удалена ID 88', 1436384552),
+(2025, 1, 'Administrator', 'Страница удалена ID 91', 1436384552),
+(2026, 1, 'Administrator', 'Страница удалена ID 94', 1436384552),
+(2027, 1, 'Administrator', 'Страница удалена ID 95', 1436384552),
+(2028, 1, 'Administrator', 'Страница удалена ID 96', 1436384552),
+(2029, 1, 'Administrator', 'Страница удалена ID 101', 1436384552),
+(2030, 1, 'Administrator', 'Страница удалена ID 102', 1436384552),
+(2031, 1, 'Administrator', 'Страница удалена ID 103', 1436384552),
+(2032, 1, 'Administrator', 'Страница удалена ID 104', 1436384552),
+(2033, 1, 'Administrator', 'Страница удалена ID 105', 1436384552),
+(2034, 1, 'Administrator', 'Страница удалена ID 106', 1436384552),
+(2035, 1, 'Administrator', 'Страница удалена ID 107', 1436384552),
+(2036, 1, 'Administrator', 'Страница удалена ID 108', 1436384552),
+(2037, 1, 'Administrator', 'Страница удалена ID 113', 1436384552),
+(2038, 1, 'Administrator', 'Страница удалена ID 114', 1436384552),
+(2039, 1, 'Administrator', 'Страница удалена ID 115', 1436384552),
+(2040, 1, 'Administrator', 'Страница удалена ID 116', 1436384552),
+(2041, 1, 'Administrator', 'Страница удалена ID 117', 1436384552),
+(2042, 1, 'Administrator', 'Страница удалена ID 118', 1436384552),
+(2043, 1, 'Administrator', 'Страница удалена ID 119', 1436384552),
+(2044, 1, 'Administrator', 'Страница удалена ID 120', 1436384552),
+(2045, 1, 'Administrator', 'Удалено категорию с ID 71', 1436384552),
+(2046, 1, 'Administrator', 'Удалено категорию с ID 73', 1436384552),
+(2047, 1, 'Administrator', 'Удалено категорию с ID 72', 1436384552),
+(2048, 1, 'Administrator', 'Удалено категорию с ID 71', 1436384552),
+(2049, 1, 'Administrator', 'Удалено категорию с ID 73', 1436384552),
+(2050, 1, 'Administrator', 'Удалено категорию с ID 72', 1436384552),
+(2051, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/67"> Бизнес</a>', 1436384565),
+(2052, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/69"> Экономика</a>', 1436384578),
+(2053, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/69"> Экономика</a>', 1436384586),
+(2054, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/67"> Бизнес</a>', 1436384592),
+(2055, 1, 'Administrator', 'Удалено категорию с ID 68', 1436384599),
+(2056, 1, 'Administrator', 'Категория товаров создана <a href="/admin/categories/edit/74"> Финансы</a>', 1436384618),
+(2057, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/69"> Экономика</a>', 1436384624),
+(2058, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/74"> Финансы</a>', 1436384630),
+(2059, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/67"> Бизнес</a>', 1436384636),
+(2060, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/74"> Финансы</a>', 1436384641),
+(2061, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/69"> Экономика</a>', 1436384649),
+(2062, 1, 'Administrator', 'Комментарий(ии) удален. Ids: 97, 96, 95, 94, 93, 92, 91, 90, 89, 88, 87, 86', 1436384688),
+(2063, 1, 'Administrator', 'Комментарий(ии) удален. Ids: 85, 84, 83, 82, 81, 80, 79, 78, 77, 76, 75, 74', 1436384690),
+(2064, 1, 'Administrator', 'Комментарий(ии) удален. Ids: 73, 72, 71, 70, 69, 68, 22, 21', 1436384693),
+(2065, 1, 'Administrator', 'Удалено категорию с ID 65', 1436385555),
+(2066, 1, 'Administrator', 'Страница создана <a href="/admin/pages/edit/127">Обычная страница</a>', 1436385992),
+(2067, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/128">Звичайна сторінка</a>', 1436386012),
+(2068, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/124">Про компанию</a>', 1436386070),
+(2069, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/127">Страница</a>', 1436386094),
+(2070, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/127">Страница</a>', 1436386099),
+(2071, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/128">Сторінка</a>', 1436386159),
+(2072, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/124">Про компанию</a>', 1436386270),
+(2073, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/126">Про компанію</a>', 1436386285),
+(2074, 1, 'Administrator', 'Страница удалена ID 127', 1436386291),
+(2075, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/129">Контакти</a>', 1436386314),
+(2076, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/130">Послуги адвоката</a>', 1436386476),
+(2077, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/130">Послуги адвоката</a>', 1436386512),
+(2078, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/130">Послуги адвоката</a>', 1436386523),
+(2079, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/85">Налоговые консультации</a>', 1436386558),
+(2080, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/132">Податкові консультації</a>', 1436386579),
+(2081, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/123">Бізнес-консалтинг</a>', 1436386620),
+(2082, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/123">Бізнес-консалтинг</a>', 1436386631),
+(2083, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/84">Бизнес-консалтинг</a>', 1436386639),
+(2084, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/85">Налоговые консультации</a>', 1436386648),
+(2085, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/85">Налоговые консультации</a>', 1436386656),
+(2086, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/132">Податкові консультації</a>', 1436386663),
+(2087, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/132">Податкові консультації</a>', 1436386664),
+(2088, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/133">Артур Рудковський</a>', 1436386741),
+(2089, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/133">Артур Рудковський</a>', 1436386746),
+(2090, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/133">Артур Рудковський</a>', 1436386755),
+(2091, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/133">Артур Рудковський</a>', 1436386758),
+(2092, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/133">Артур Рудковський</a>', 1436386769),
+(2093, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/134">Андрій Павличенко</a>', 1436386822),
+(2094, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/134">Андрій Павличенко</a>', 1436386833),
+(2095, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/134">Андрій Павличенко</a>', 1436386848),
+(2096, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/92">Андрей Павличенко</a>', 1436386854),
+(2097, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/92">Андрей Павличенко</a>', 1436386855),
+(2098, 1, 'Administrator', 'Пункт меню удалён. Ids 36', 1436387377),
+(2099, 1, 'Administrator', 'Пункт меню создан. Id: 66', 1436387384),
+(2100, 1, 'Administrator', 'Баннер был удален. Ids: 27, 28', 1436389576),
+(2101, 1, 'Administrator', 'Баннер был отредактирован. Id: 24', 1436389625),
+(2102, 1, 'Administrator', 'Баннер был отредактирован. Id: 25', 1436390204),
+(2103, 1, 'Administrator', 'Баннер был отредактирован. Id: 25', 1436390233),
+(2104, 1, 'Administrator', 'Баннер был отредактирован. Id: 24', 1436390268),
+(2105, 1, 'Administrator', 'Баннер был отредактирован. Id: 26', 1436390310),
+(2106, 1, 'Administrator', 'Баннер был отредактирован. Id: 26', 1436390329),
+(2107, 1, 'Administrator', 'Баннер был отредактирован. Id: 26', 1436390350),
+(2108, 1, 'Administrator', 'Баннер был отредактирован. Id: 25', 1436390401),
+(2109, 1, 'Administrator', 'Баннер был отредактирован. Id: 24', 1436390415),
+(2110, 1, 'Administrator', 'Баннер был отредактирован. Id: 24', 1436390468),
+(2111, 1, 'Administrator', 'Баннер был отредактирован. Id: 24', 1436390473),
+(2112, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 24', 1436390547),
+(2113, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/130">Послуги адвоката</a>', 1436390615),
+(2114, 1, 'Administrator', 'Категории переведена <a href="/admin/categories/edit/67"> Бизнес</a>', 1436391066),
+(2115, 1, 'Administrator', 'Перевод категории изменен <a href="/admin/categories/edit/67"> Бизнес</a>', 1436391067),
+(2116, 1, 'Administrator', 'Категории переведена <a href="/admin/categories/edit/74"> Финансы</a>', 1436391083),
+(2117, 1, 'Administrator', 'Категории переведена <a href="/admin/categories/edit/69"> Экономика</a>', 1436391095),
+(2118, 1, 'Administrator', 'Введен IP панели управления 178.136.237.181', 1436427768),
+(2119, 1, 'Administrator', 'Кэш очищен', 1436427771),
+(2120, 1, 'Administrator', 'Введен IP панели управления 178.136.237.181', 1436428195),
+(2121, 1, 'Administrator', 'Кэш очищен', 1436429262),
+(2122, 1, 'Administrator', 'Введен IP панели управления 178.136.237.181', 1436432293),
+(2123, 1, 'Administrator', 'Введен IP панели управления 178.136.237.181', 1436432622),
+(2124, 1, 'Administrator', 'Настройки виджета отредактированы', 1436432634),
+(2125, 1, 'Administrator', 'Настройки сайта изменены', 1436433107),
+(2126, 1, 'Administrator', 'Настройки сайта изменены', 1436433128),
+(2127, 1, 'Administrator', 'Настройки сайта изменены', 1436433135),
+(2128, 1, 'Administrator', 'Настройки сайта изменены', 1436433148),
+(2129, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/86">Услуги адвоката</a>', 1436433302),
+(2130, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/86">Услуги адвоката</a>', 1436433352),
+(2131, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/86">Услуги адвоката</a>', 1436433372),
+(2132, 1, 'Administrator', 'Настройки сайта изменены', 1436433972),
+(2133, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/124">Про компанию</a>', 1436434002),
+(2134, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/126">Про компанію</a>', 1436434040),
+(2135, 1, 'Administrator', 'Поле обновлено - field_image', 1436434219),
+(2136, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/124">Про компанию</a>', 1436434235),
+(2137, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/86">Услуги адвоката</a>', 1436434254),
+(2138, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/124">Про компанию</a>', 1436434361),
+(2139, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/124">Про компанию</a>', 1436434375),
+(2140, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/124">Про компанию</a>', 1436435429),
+(2141, 1, 'Administrator', 'Настройки сайта изменены', 1436435486),
+(2142, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/124">Про компанию</a>', 1436436087),
+(2143, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/124">Про компанию</a>', 1436436160),
+(2144, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/124">Про компанию</a>', 1436436214),
+(2145, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/124">Про компанию</a>', 1436436235),
+(2146, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/124">Про компанию</a>', 1436436255),
+(2147, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/124">Про компанию</a>', 1436436297),
+(2148, 1, 'Administrator', 'Баннер был отредактирован. Id: 24', 1436436934),
+(2149, 1, 'Administrator', 'Введен IP панели управления 178.136.237.181', 1436436953),
+(2150, 1, 'Administrator', 'Баннер был отредактирован. Id: 25', 1436436966),
+(2151, 1, 'Administrator', 'Баннер был отредактирован. Id: 25', 1436436974),
+(2152, 1, 'Administrator', 'Баннер был отредактирован. Id: 26', 1436436991),
+(2153, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/124">Про компанию</a>', 1436437037),
+(2154, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/124">Про компанию</a>', 1436437101),
+(2155, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 145', 1436439166),
+(2156, 1, 'Administrator', 'Фотографии в альбоме галереи сохранены', 1436439453),
+(2157, 1, 'Administrator', 'Фотографии в альбоме галереи сохранены', 1436439662);
+INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
+(2158, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/89">Объективность как одна из самых важных составляющих</a>', 1436440804),
+(2159, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/89">Объективность как одна из самых важных составляющих</a>', 1436440836),
+(2160, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/89">Объективность как одна из самых важных составляющих</a>', 1436440859),
+(2161, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/89">Объективность как одна из самых важных составляющих</a>', 1436440920),
+(2162, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/89">Объективность как одна из самых важных составляющих</a>', 1436440973),
+(2163, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/89">Объективность как одна из самых важных составляющих</a>', 1436441170),
+(2164, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/89">Объективность как одна из самых важных составляющих</a>', 1436442888),
+(2165, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/89">Объективность как одна из самых важных составляющих</a>', 1436442930),
+(2166, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/89">Объективность как одна из самых важных составляющих</a>', 1436442952),
+(2167, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/89">Объективность как одна из самых важных составляющих</a>', 1436443441),
+(2168, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/109">Консультирование предприятий по вопросам управления компьютерной структурой</a>', 1436443655),
+(2169, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/109">Консультирование по управлению компьютерной структурой</a>', 1436443685),
+(2170, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/109">Консультирование по управлению компьютерной структурой</a>', 1436443699),
+(2171, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/121">Оптимизация налогов и управление налоговыми рисками</a>', 1436443833),
+(2172, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/121">Оптимизация налогов и управление налоговыми рисками</a>', 1436443910),
+(2173, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/121">Оптимизация налогов и управление налоговыми рисками</a>', 1436443935),
+(2174, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/121">Оптимизация налогов и управление налоговыми рисками</a>', 1436443949),
+(2175, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/84">Бизнес-консалтинг</a>', 1436444011),
+(2176, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/84">Бизнес-консалтинг</a>', 1436444068),
+(2177, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/84">Бизнес-консалтинг</a>', 1436444251),
+(2178, 1, 'Administrator', 'Настройки виджета отредактированы', 1436445385),
+(2179, 1, 'Administrator', 'Настройки виджета отредактированы', 1436445409),
+(2180, 1, 'Administrator', 'Настройки виджета отредактированы', 1436445436),
+(2181, 1, 'Administrator', 'Настройки виджета отредактированы', 1436445444),
+(2182, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/111">Три горячих юпитера и один горячий сатурн от обзора HATNet</a>', 1436445677),
+(2183, 1, 'Administrator', 'Введен IP панели управления 178.136.237.181', 1436452320),
+(2184, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/130">Послуги адвоката</a>', 1436452349),
+(2185, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/138">Тест</a>', 1436452448),
+(2186, 1, 'Administrator', 'Страница удалена ID 111', 1436452721),
+(2187, 1, 'Administrator', 'Введен IP панели управления 178.136.237.181', 1436454640),
+(2188, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/90">Не откладывайте запуск лучших бизнес-идей</a>', 1436454790),
+(2189, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/110">Главная вещь, которая стоит между вами и успехом</a>', 1436454908),
+(2190, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/110">Главная вещь, которая стоит между вами и успехом</a>', 1436454925),
+(2191, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/121">Оптимизация налогов и управление налоговыми рисками</a>', 1436454936),
+(2192, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/90">Не откладывайте запуск лучших бизнес-идей</a>', 1436454954),
+(2193, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/109">Консультирование по управлению компьютерной структурой</a>', 1436454960),
+(2194, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/85">Традиционный или цифровой маркетинг: что работает эффективнее?</a>', 1436455094),
+(2195, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/109">Консультирование по управлению компьютерной структурой</a>', 1436455122),
+(2196, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/109">Консультирование по управлению компьютерной структурой</a>', 1436455131),
+(2197, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/109">Консультирование по управлению компьютерной структурой</a>', 1436455204),
+(2198, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/84">Бизнес-консалтинг как основной инструмент для моделирования</a>', 1436455325),
+(2199, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/121">Оптимизация налогов и управление налоговыми рисками</a>', 1436455426),
+(2200, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/90">Не откладывайте запуск лучших бизнес-идей</a>', 1436455442),
+(2201, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/85">Традиционный или цифровой маркетинг: что работает эффективнее?</a>', 1436456463),
+(2202, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/85">Традиционный или цифровой маркетинг: что работает эффективнее?</a>', 1436456473),
+(2203, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/85">Налоговые консультации</a>', 1436456492),
+(2204, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/84">Бизнес-консалтинг</a>', 1436456507),
+(2205, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/84">Бизнес-консалтинг</a>', 1436456692),
+(2206, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/86">Услуги адвоката</a>', 1436456711),
+(2207, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/121">Оптимизация налогов и управление налоговыми рисками</a>', 1436456758),
+(2208, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/89">Объективность как одна из самых важных составляющих</a>', 1436456778),
+(2209, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/110">Главная вещь, которая стоит между вами и успехом</a>', 1436456826),
+(2210, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/109">Консультирование по управлению компьютерной структурой</a>', 1436456837),
+(2211, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/109">Консультирование по управлению компьютерной структурой</a>', 1436456915),
+(2212, 1, 'Administrator', 'Кэш очищен', 1436457723),
+(2213, 1, 'Administrator', 'Введен IP панели управления 178.136.237.181', 1436511673),
+(2214, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/90">Не откладывайте запуск лучших бизнес-идей</a>', 1436512086),
+(2215, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/90">Не откладывайте запуск лучших бизнес-идей</a>', 1436512120),
+(2216, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/90">Не откладывайте запуск лучших бизнес-идей</a>', 1436512293),
+(2217, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/89">Объективность как одна из самых важных составляющих</a>', 1436512317),
+(2218, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/110">Главная вещь, которая стоит между вами и успехом</a>', 1436512353),
+(2219, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/109">Консультирование по управлению компьютерной структурой</a>', 1436512385),
+(2220, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/89">Объективность как одна из самых важных составляющих</a>', 1436512407),
+(2221, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/121">Оптимизация налогов и управление налоговыми рисками</a>', 1436512441),
+(2222, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/121">Оптимизация налогов и управление налоговыми рисками</a>', 1436512470),
+(2223, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/121">Оптимизация налогов и управление налоговыми рисками</a>', 1436512554),
+(2224, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/110">Главная вещь, которая стоит между вами и успехом</a>', 1436512583),
+(2225, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/109">Консультирование по управлению компьютерной структурой</a>', 1436512599),
+(2226, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/90">Не откладывайте запуск лучших бизнес-идей</a>', 1436512804),
+(2227, 1, 'Administrator', 'Категория галереи отредактирована. Id: 7', 1436513120),
+(2228, 1, 'Administrator', 'Альбом галереи был обновлен. Id: 7', 1436513346),
+(2229, 1, 'Administrator', 'Альбом галереи был обновлен. Id: 7', 1436513358),
+(2230, 1, 'Administrator', 'Альбом галереи был обновлен. Id: 7', 1436513372),
+(2231, 1, 'Administrator', 'Фотографии в альбоме галереи сохранены', 1436513465),
+(2232, 1, 'Administrator', 'Альбом галереи был обновлен. Id: 8', 1436513729),
+(2233, 1, 'Administrator', 'Альбом галереи был обновлен. Id: 8', 1436513779),
+(2234, 1, 'Administrator', 'Фотографии в альбоме галереи сохранены', 1436513812),
+(2235, 1, 'Administrator', 'Альбом галереи был создан', 1436513897),
+(2236, 1, 'Administrator', 'Альбом галереи был обновлен. Id: 10', 1436513900),
+(2237, 1, 'Administrator', 'Фотографии в альбоме галереи сохранены', 1436513927),
+(2238, 1, 'Administrator', 'Категория галереи отредактирована. Id: 6', 1436514043),
+(2239, 1, 'Administrator', 'Категория галереи отредактирована. Id: 7', 1436514060),
+(2240, 1, 'Administrator', 'Категория галереи отредактирована. Id: 7', 1436514065),
+(2241, 1, 'Administrator', 'Категория галереи отредактирована. Id: 7', 1436514074),
+(2242, 1, 'Administrator', 'Альбом галереи был обновлен. Id: 5', 1436514199),
+(2243, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 136', 1436514282),
+(2244, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 139', 1436514285),
+(2245, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 140', 1436514289),
+(2246, 1, 'Administrator', 'Фотографии в альбоме галереи сохранены', 1436514341),
+(2247, 1, 'Administrator', 'Альбом галереи был обновлен. Id: 5', 1436514374),
+(2248, 1, 'Administrator', 'Альбом галереи был обновлен. Id: 5', 1436514381),
+(2249, 1, 'Administrator', 'Альбом галереи был обновлен. Id: 5', 1436514389),
+(2250, 1, 'Administrator', 'Альбом галереи был обновлен. Id: 6', 1436515424),
+(2251, 1, 'Administrator', 'Альбом галереи был обновлен. Id: 6', 1436515884),
+(2252, 1, 'Administrator', 'Фотографии в альбоме галереи сохранены', 1436516014),
+(2253, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 142', 1436516048),
+(2254, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 147', 1436516050),
+(2255, 1, 'Administrator', 'Фотографии в альбоме галереи сохранены', 1436516053),
+(2256, 1, 'Administrator', 'Альбом галереи был создан', 1436516700),
+(2257, 1, 'Administrator', 'Альбом галереи был обновлен. Id: 11', 1436516702),
+(2258, 1, 'Administrator', 'Альбом галереи был обновлен. Id: 11', 1436516724),
+(2259, 1, 'Administrator', 'Альбом галереи был обновлен. Id: 11', 1436516745),
+(2260, 1, 'Administrator', 'Альбом галереи был обновлен. Id: 11', 1436516768),
+(2261, 1, 'Administrator', 'Альбом галереи был обновлен. Id: 11', 1436516774),
+(2262, 1, 'Administrator', 'Альбом галереи был обновлен. Id: 11', 1436516782),
+(2263, 1, 'Administrator', 'Альбом галереи был обновлен. Id: 11', 1436516817),
+(2264, 1, 'Administrator', 'Альбом галереи был обновлен. Id: 11', 1436516825),
+(2265, 1, 'Administrator', 'Альбом галереи был обновлен. Id: 11', 1436516879),
+(2266, 1, 'Administrator', 'Фотографии в альбоме галереи сохранены', 1436516924),
+(2267, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 170', 1436516931),
+(2268, 1, 'Administrator', 'Альбом галереи был обновлен. Id: 11', 1436516954),
+(2269, 1, 'Administrator', 'Альбом галереи был обновлен. Id: 11', 1436517015),
+(2270, 1, 'Administrator', 'Фотографии в альбоме галереи сохранены', 1436517123),
+(2271, 1, 'Administrator', 'Альбом галереи был обновлен. Id: 11', 1436518018),
+(2272, 1, 'Administrator', 'Альбом галереи был обновлен. Id: 11', 1436518167),
+(2273, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/109">Консультирование по управлению компьютерной структурой</a>', 1436518197),
+(2274, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/87">Контакты</a>', 1436518897),
+(2275, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/87">Контакты</a>', 1436518929),
+(2276, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/87">Контакты</a>', 1436518945),
+(2277, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/87">Контакты</a>', 1436518955),
+(2278, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/87">Контакты</a>', 1436519350),
+(2279, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/87">Контакты</a>', 1436519407),
+(2280, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/87">Контакты</a>', 1436519430),
+(2281, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/87">Контакты</a>', 1436521040),
+(2282, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/89">Объективность как одна из самых важных составляющих</a>', 1436521781),
+(2283, 1, 'Administrator', 'Введен IP панели управления 178.136.237.181', 1436522620),
+(2284, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/89">Объективность как одна из самых важных составляющих</a>', 1436523551),
+(2285, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/89">Объективность как одна из самых важных составляющих</a>', 1436523575),
+(2286, 1, 'Administrator', 'Комментарий(ии) удален. Ids: 98', 1436523843),
+(2287, 1, 'Administrator', 'Комментарий(ии) удален. Ids: 102', 1436524259),
+(2288, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/110">Главная вещь, которая стоит между вами и успехом</a>', 1436524380),
+(2289, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/110">Главная вещь, которая стоит между вами и успехом</a>', 1436524584),
+(2290, 1, 'Administrator', 'Настройки виджета отредактированы', 1436524621),
+(2291, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/90">Не откладывайте запуск лучших бизнес-идей</a>', 1436524704),
+(2292, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/121">Оптимизация налогов и управление налоговыми рисками</a>', 1436524800),
+(2293, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/90">Не откладывайте запуск лучших бизнес-идей</a>', 1436524957),
+(2294, 1, 'Administrator', 'Комментарий(ии) удален. Ids: 109, 104', 1436525426),
+(2295, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/90">Не откладывайте запуск лучших бизнес-идей</a>', 1436525689),
+(2296, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/90">Не откладывайте запуск лучших бизнес-идей</a>', 1436525736),
+(2297, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/90">Не откладывайте запуск лучших бизнес-идей</a>', 1436525968),
+(2298, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/90">Не откладывайте запуск лучших бизнес-идей</a>', 1436525986),
+(2299, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/109">Консультирование по управлению компьютерной структурой</a>', 1436526010),
+(2300, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/121">Оптимизация налогов и управление налоговыми рисками</a>', 1436526032),
+(2301, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/121">Оптимизация налогов и управление налоговыми рисками</a>', 1436526045),
+(2302, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/110">Главная вещь, которая стоит между вами и успехом</a>', 1436526069),
+(2303, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/89">Объективность как одна из самых важных составляющих</a>', 1436526091),
+(2304, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/89">Объективность как одна из самых важных составляющих</a>', 1436526138),
+(2305, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/109">Консультирование по управлению компьютерной структурой</a>', 1436526152),
+(2306, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/121">Оптимизация налогов и управление налоговыми рисками</a>', 1436526164),
+(2307, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/110">Главная вещь, которая стоит между вами и успехом</a>', 1436526175),
+(2308, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/90">Не откладывайте запуск лучших бизнес-идей</a>', 1436526188),
+(2309, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/89">Объективность как одна из самых важных составляющих</a>', 1436526198),
+(2310, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/109">Консультирование по управлению компьютерной структурой</a>', 1436526333),
+(2311, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/121">Оптимизация налогов и управление налоговыми рисками</a>', 1436526346),
+(2312, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/110">Главная вещь, которая стоит между вами и успехом</a>', 1436526371),
+(2313, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/90">Не откладывайте запуск лучших бизнес-идей</a>', 1436526394),
+(2314, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/89">Объективность как одна из самых важных составляющих</a>', 1436526407),
+(2315, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/109">Консультирование по управлению компьютерной структурой</a>', 1436527614),
+(2316, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/121">Оптимизация налогов и управление налоговыми рисками</a>', 1436527642),
+(2317, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/110">Главная вещь, которая стоит между вами и успехом</a>', 1436527679),
+(2318, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/90">Не откладывайте запуск лучших бизнес-идей</a>', 1436527719),
+(2319, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/89">Объективность как одна из самых важных составляющих</a>', 1436527746),
+(2320, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/121">Оптимизация налогов и управление налоговыми рисками</a>', 1436527811),
+(2321, 1, 'Administrator', 'Введен IP панели управления 178.136.237.181', 1436528318),
+(2322, 1, 'Administrator', 'amt_updated_user <a href="http://kepler.siteimage.com.ua/admin/components/cp/user_manager/edit_user/1">Administrator</a>', 1436528343),
+(2323, 1, 'Administrator', 'amt_updated_user <a href="http://kepler.siteimage.com.ua/admin/components/cp/user_manager/edit_user/1">Administrator</a>', 1436528345),
+(2324, 1, 'Administrator', 'Введен IP панели управления 178.136.237.181', 1436528401),
+(2325, 1, 'Administrator', 'Введен IP панели управления 178.136.237.181', 1436528791),
+(2326, 1, 'Administrator', 'Введен IP панели управления 178.136.237.181', 1436532445),
+(2327, 1, 'Administrator', 'Введен IP панели управления 178.136.237.181', 1436546167),
+(2328, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/139">Консультування з управління комп''ютерної структурою</a>', 1436546533),
+(2329, 1, 'Administrator', 'Введен IP панели управления 178.136.237.181', 1436774108),
+(2330, 1, 'Administrator', 'Настройки сайта изменены', 1436774161),
+(2331, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/140">Оптимізація податків та управління податковими ризиками</a>', 1436775240),
+(2332, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/140">Оптимізація податків та управління податковими ризиками</a>', 1436776307),
+(2333, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/140">Оптимізація податків та управління податковими ризиками</a>', 1436776332),
+(2334, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/141">Головна річ, яка стоїть між вами та успіхом</a>', 1436776602),
+(2335, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/141">Головна річ, яка стоїть між вами та успіхом</a>', 1436776661),
+(2336, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/136">Не відкладайте запуск кращих бізнес-ідей</a>', 1436776826),
+(2337, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/137">Об''єктивність як одна з найважливіших складових</a>', 1436776981),
+(2338, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/126">Про компанію</a>', 1436777496),
+(2339, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/126">Про компанію</a>', 1436777541),
+(2340, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/126">Про компанію</a>', 1436777586),
+(2341, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/126">Про компанію</a>', 1436777608),
+(2342, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/133">Артур Рудковський</a>', 1436777676),
+(2343, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/129">Контакти</a>', 1436777787),
+(2344, 1, 'Administrator', 'Настройки сайта изменены', 1436778169),
+(2345, 1, 'Administrator', 'Настройки сайта изменены', 1436778180),
+(2346, 1, 'Administrator', 'Настройки сайта изменены', 1436778197),
+(2347, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/126">Про компанію</a>', 1436779031),
+(2348, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/126">Про компанію</a>', 1436779227),
+(2349, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/132">Податкові консультації</a>', 1436779293),
+(2350, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/132">Податкові консультації</a>', 1436779320),
+(2351, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/123">Бізнес-консалтинг</a>', 1436779358),
+(2352, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/123">Бізнес-консалтинг</a>', 1436779379),
+(2353, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/130">Послуги адвоката</a>', 1436779421),
+(2354, 1, 'Administrator', 'Настройки сайта изменены', 1436779691),
+(2355, 1, 'Administrator', 'Категория галереи отредактирована. Id: 6', 1436780215),
+(2356, 1, 'Administrator', 'Категория галереи отредактирована. Id: 6', 1436780234),
+(2357, 1, 'Administrator', 'Категория галереи отредактирована. Id: 7', 1436780286),
+(2358, 1, 'Administrator', 'Альбом галереи был обновлен. Id: 5', 1436780385),
+(2359, 1, 'Administrator', 'Альбом галереи был обновлен. Id: 6', 1436780485),
+(2360, 1, 'Administrator', 'Альбом галереи был обновлен. Id: 7', 1436780548),
+(2361, 1, 'Administrator', 'Альбом галереи был обновлен. Id: 10', 1436780575),
+(2362, 1, 'Administrator', 'Альбом галереи был обновлен. Id: 11', 1436780602),
+(2363, 1, 'Administrator', 'Альбом галереи был обновлен. Id: 8', 1436780637),
+(2364, 1, 'Administrator', 'Альбом галереи был обновлен. Id: 8', 1436780646),
+(2365, 1, 'Administrator', 'Введен IP панели управления 178.136.237.181', 1436782924),
+(2366, 1, 'Administrator', 'Файл перевода был успешно сохранен. - businessimage | ru_RU', 1436786995),
+(2367, 1, 'Administrator', 'Файл перевода был успешно сохранен. - businessimage | ru_RU', 1436787141),
+(2368, 1, 'Administrator', 'Файл перевода был успешно сохранен. - businessimage | en_US', 1436787243),
+(2369, 1, 'Administrator', 'Введен IP панели управления 127.0.0.1', 1436861085),
+(2370, 1, 'Administrator', 'Установлен язык Eng по умолчанию', 1436861093),
+(2371, 1, 'Administrator', 'Установлен язык Rus по умолчанию', 1436861094),
+(2372, 1, 'Administrator', 'Кэш очищен', 1436861211);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mail`
+-- Структура таблицы `mail`
 --
 
 DROP TABLE IF EXISTS `mail`;
@@ -709,7 +3245,7 @@ CREATE TABLE IF NOT EXISTS `mail` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `menus`
+-- Структура таблицы `menus`
 --
 
 DROP TABLE IF EXISTS `menus`;
@@ -723,21 +3259,20 @@ CREATE TABLE IF NOT EXISTS `menus` (
   `created` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
--- Dumping data for table `menus`
+-- Дамп данных таблицы `menus`
 --
 
 INSERT INTO `menus` (`id`, `name`, `main_title`, `tpl`, `expand_level`, `description`, `created`) VALUES
-(1, 'main_menu', 'Главное меню', 'main_menu', 1, '', '2012-11-12 21:57:53'),
-(4, 'bottom_menu', 'Нижнее меню', '', 0, '', '2010-12-07 13:56:59'),
-(5, 'top_menu', 'Верхнее меню', '', 0, '', '2013-12-26 16:03:58');
+(1, 'main_menu', 'Главное меню', 'menus/main_menu', 4, '', '2015-07-01 19:58:17'),
+(7, 'footer_menu', 'Меню в подвале', 'menus/footer_menu', 0, '', '2015-06-02 15:07:58');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `menus_data`
+-- Структура таблицы `menus_data`
 --
 
 DROP TABLE IF EXISTS `menus_data`;
@@ -757,41 +3292,32 @@ CREATE TABLE IF NOT EXISTS `menus_data` (
   PRIMARY KEY (`id`),
   KEY `menu_id` (`menu_id`),
   KEY `position` (`position`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=67 ;
 
 --
--- Dumping data for table `menus_data`
+-- Дамп данных таблицы `menus_data`
 --
 
 INSERT INTO `menus_data` (`id`, `menu_id`, `item_id`, `item_type`, `item_image`, `roles`, `hidden`, `title`, `parent_id`, `position`, `description`, `add_data`) VALUES
-(1, 1, 0, 'url', '', '', 0, 'Главная', 0, 1, NULL, 'a:2:{s:3:"url";s:1:"/";s:7:"newpage";N;}'),
-(2, 1, 59, 'category', '', '', 0, 'Блог', 0, 8, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
-(4, 1, 0, 'module', '', '', 0, 'Галерея', 0, 5, NULL, 'a:2:{s:8:"mod_name";s:7:"gallery";s:6:"method";s:0:"";}'),
-(8, 1, 63, 'page', '', '', 0, 'О компании', 0, 2, NULL, NULL),
-(9, 1, 55, 'category', '', '', 0, 'Продукция', 0, 3, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
-(10, 1, 56, 'category', '', '', 0, 'Услуги', 0, 4, NULL, NULL),
-(11, 1, 57, 'category', '', '', 0, 'Новости', 0, 6, NULL, NULL),
-(12, 1, 58, 'category', '', '', 0, 'Вакансии', 0, 7, NULL, NULL),
-(14, 1, 69, 'page', '', '', 0, 'Ремонт роботов', 10, 1, NULL, NULL),
-(15, 1, 70, 'page', '', '', 0, 'Апгрейд роботов', 10, 3, NULL, NULL),
-(16, 1, 71, 'page', '', '', 0, 'Прокат роботов', 10, 4, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
-(17, 1, 64, 'page', '', '', 0, 'Человеко роботы', 9, 1, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
-(18, 1, 65, 'page', '', '', 0, 'Боевые роботы', 9, 2, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
-(19, 1, 66, 'page', '', '', 0, 'Космические роботы', 9, 3, NULL, NULL),
-(20, 1, 67, 'page', '', '', 0, 'Кухонные роботы', 9, 4, NULL, 'a:1:{s:7:"newpage";s:1:"0";}'),
-(21, 1, 68, 'page', '', '', 0, 'Рабочие роботы', 9, 5, NULL, NULL),
-(26, 4, 0, 'module', '', '', 0, 'Обратная связь', 0, 5, NULL, 'a:2:{s:8:"mod_name";s:8:"feedback";s:6:"method";s:0:"";}'),
-(27, 4, 57, 'category', '', '', 0, 'Новости', 0, 2, NULL, NULL),
-(28, 4, 58, 'category', '', '', 0, 'Вакансии', 0, 3, NULL, NULL),
-(29, 4, 59, 'category', '', '', 0, 'Блог', 0, 4, NULL, NULL),
-(30, 5, 57, 'category', '', '', 0, 'Новости', 0, 3, NULL, 'N;'),
-(31, 5, 59, 'category', '', '', 0, 'Блог', 0, 2, NULL, 'a:1:{s:7:"newpage";i:0;}'),
-(32, 5, 63, 'page', '', '', 0, 'О компании', 0, 1, NULL, 'a:1:{s:7:"newpage";i:0;}');
+(59, 1, 62, 'category', '', '', 0, 'Услуги', 0, 2, NULL, 'a:1:{s:7:"newpage";i:0;}'),
+(52, 1, 64, 'category', '', '', 0, 'Блог', 0, 8, NULL, 'a:1:{s:7:"newpage";i:0;}'),
+(66, 1, 66, 'category', '', '', 0, 'Клиенты о нас', 0, 6, NULL, 'a:1:{s:7:"newpage";i:0;}'),
+(53, 1, 87, 'page', '', '', 0, 'Контакты', 0, 9, NULL, 'a:1:{s:7:"newpage";i:0;}'),
+(38, 1, 0, 'module', '', '', 0, 'Галерея', 0, 7, NULL, 'a:3:{s:8:"mod_name";s:7:"gallery";s:6:"method";s:0:"";s:7:"newpage";i:0;}'),
+(42, 7, 86, 'page', '', '', 0, 'Услуги адвоката', 0, 1, NULL, 'a:1:{s:7:"newpage";i:0;}'),
+(43, 7, 85, 'page', '', '', 0, 'Налоговые консультации', 0, 2, NULL, 'a:1:{s:7:"newpage";i:0;}'),
+(44, 7, 84, 'page', '', '', 0, 'Бизнес-консалтинг', 0, 3, NULL, 'a:1:{s:7:"newpage";i:0;}'),
+(45, 7, 64, 'category', '', '', 0, 'Блог', 0, 4, NULL, 'a:1:{s:7:"newpage";i:0;}'),
+(46, 7, 0, 'module', '', '', 0, 'Галерея', 0, 5, NULL, 'a:3:{s:8:"mod_name";s:7:"gallery";s:6:"method";s:0:"";s:7:"newpage";i:0;}'),
+(47, 1, 124, 'page', '', '', 0, 'Про компанию', 0, 1, NULL, 'a:1:{s:7:"newpage";i:0;}'),
+(60, 1, 86, 'page', '', '', 0, 'Услуги адвоката', 59, 3, NULL, 'a:1:{s:7:"newpage";i:0;}'),
+(61, 1, 85, 'page', '', '', 0, 'Налоговые консультации', 59, 4, NULL, 'a:1:{s:7:"newpage";i:0;}'),
+(62, 1, 84, 'page', '', '', 0, 'Бизнес-консалтинг', 59, 5, NULL, 'a:1:{s:7:"newpage";i:0;}');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `menu_translate`
+-- Структура таблицы `menu_translate`
 --
 
 DROP TABLE IF EXISTS `menu_translate`;
@@ -803,37 +3329,53 @@ CREATE TABLE IF NOT EXISTS `menu_translate` (
   PRIMARY KEY (`id`),
   KEY `item_id` (`item_id`),
   KEY `lang_id` (`lang_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=47 ;
 
-INSERT INTO `menu_translate` (`item_id`, `lang_id`, `title`) VALUES
-(1, 3, 'Главная'),
-(2, 3, 'Блог'),
-(4, 3, 'Галерея'),
-(8, 3, 'О компании'),
-(9, 3, 'Продукция'),
-(10, 3, 'Услуги'),
-(11, 3, 'Новости'),
-(12, 3, 'Вакансии'),
-(14, 3, 'Ремонт роботов'),
-(15, 3, 'Апгрейд роботов'),
-(16, 3, 'Прокат роботов'),
-(17, 3, 'Человеко роботы'),
-(18, 3, 'Боевые роботы'),
-(19, 3, 'Космические роботы'),
-(20, 3, 'Кухонные роботы'),
-(21, 3, 'Рабочие роботы'),
-(26, 3, 'Обратная связь'),
-(27, 3, 'Новости'),
-(28, 3, 'Вакансии'),
-(29, 3, 'Блог'),
-(30, 3, 'Новости'),
-(31, 3, 'Блог'),
-(32, 3, 'О компании');
+--
+-- Дамп данных таблицы `menu_translate`
+--
+
+INSERT INTO `menu_translate` (`id`, `item_id`, `lang_id`, `title`) VALUES
+(34, 42, 3, 'Услуги адвоката'),
+(36, 43, 3, 'Налоговые консультации'),
+(38, 44, 3, 'Бизнес-консалтинг'),
+(40, 45, 3, 'Блог'),
+(5, 46, 3, 'Галерея'),
+(25, 47, 3, 'Про компанию'),
+(7, 48, 3, 'Разработка предложений'),
+(8, 49, 3, 'Услуги по дому'),
+(9, 50, 3, 'Сфера услуг'),
+(10, 51, 3, 'Бизнес-консалтинг'),
+(11, 52, 3, 'Блог'),
+(32, 53, 3, 'Контакты'),
+(13, 54, 3, 'Разработка предложений'),
+(14, 55, 3, 'Экономическая деятельность'),
+(15, 56, 3, 'Услуги по дому'),
+(16, 57, 3, 'Особняки'),
+(17, 58, 3, 'Услуги по работе'),
+(27, 59, 3, 'Услуги'),
+(45, 60, 3, 'Услуги адвоката'),
+(43, 61, 3, 'Налоговые консультации'),
+(41, 62, 3, 'Бизнес-консалтинг'),
+(22, 63, 3, 'Про компанию'),
+(23, 64, 3, 'Контакты'),
+(24, 65, 3, 'Видео'),
+(26, 47, 32, 'Про компанію'),
+(28, 59, 32, 'Послуги'),
+(30, 66, 3, 'Клиенты о нас'),
+(31, 66, 32, 'Клієнти про нас'),
+(33, 53, 32, 'Контакти'),
+(35, 42, 32, 'Послуги адвоката'),
+(37, 43, 32, 'Податкові консультації'),
+(39, 44, 32, 'Бізнес-консалтинг'),
+(42, 62, 32, 'Бізнес-консалтинг'),
+(44, 61, 32, 'Податкові консультації'),
+(46, 60, 32, 'Послуги адвоката');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_banner`
+-- Структура таблицы `mod_banner`
 --
 
 DROP TABLE IF EXISTS `mod_banner`;
@@ -845,20 +3387,21 @@ CREATE TABLE IF NOT EXISTS `mod_banner` (
   `group` text,
   `position` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
 
 --
--- Dumping data for table `mod_banner`
+-- Дамп данных таблицы `mod_banner`
 --
 
 INSERT INTO `mod_banner` (`id`, `active`, `active_to`, `where_show`, `group`, `position`) VALUES
-(4, 1, -1, 'a:1:{i:0;s:6:"main_0";}', NULL, 0),
-(5, 1, -1, 'a:1:{i:0;s:6:"main_0";}', NULL, 0);
+(24, 1, -1, 'a:0:{}', 'a:1:{i:0;s:9:"dashboard";}', 0),
+(25, 1, -1, 'a:0:{}', 'a:1:{i:0;s:9:"dashboard";}', 1),
+(26, 1, -1, 'a:0:{}', 'a:1:{i:0;s:9:"dashboard";}', 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_banner_groups`
+-- Структура таблицы `mod_banner_groups`
 --
 
 DROP TABLE IF EXISTS `mod_banner_groups`;
@@ -866,12 +3409,19 @@ CREATE TABLE IF NOT EXISTS `mod_banner_groups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Дамп данных таблицы `mod_banner_groups`
+--
+
+INSERT INTO `mod_banner_groups` (`id`, `name`) VALUES
+(1, 'dashboard');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_banner_i18n`
+-- Структура таблицы `mod_banner_i18n`
 --
 
 DROP TABLE IF EXISTS `mod_banner_i18n`;
@@ -886,17 +3436,18 @@ CREATE TABLE IF NOT EXISTS `mod_banner_i18n` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `mod_banner_i18n`
+-- Дамп данных таблицы `mod_banner_i18n`
 --
 
 INSERT INTO `mod_banner_i18n` (`id`, `url`, `locale`, `name`, `description`, `photo`) VALUES
-(4, '', 'ru', 'corporate1', '', '/uploads/images/banners/boeviye-roboty.jpg'),
-(5, '', 'ru', 'corporate2', '', '/uploads/images/banners/boeviye-roboty2.jpg');
+(24, 'uslugi', 'ru', 'Управленческий консалтинг', '<p>Деятельность, направленная на повышение эффективности фирм, компаний, организаци. В процессе управленческого консалтинга может решаться самый широкий круг задач.</p>', 'fa-diamond'),
+(25, '', 'ru', 'Экологический консалтинг', '<p>Комплекс работ, связанный с экологическим обеспечением деятельности строительных и проектных организаций, предприятий всех отраслей деятельности.</p>', 'fa-bicycle'),
+(26, '', 'ru', 'Управленческий консалтинг', '<p>Деятельность, направленная на повышение эффективности фирм, компаний, организаци. В процессе управленческого консалтинга может решаться самый широкий круг задач.</p>', 'fa-file-text-o');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_email_paterns`
+-- Структура таблицы `mod_email_paterns`
 --
 
 DROP TABLE IF EXISTS `mod_email_paterns`;
@@ -911,21 +3462,21 @@ CREATE TABLE IF NOT EXISTS `mod_email_paterns` (
   `user_message_active` tinyint(1) NOT NULL,
   `admin_message_active` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
--- Dumping data for table `mod_email_paterns`
+-- Дамп данных таблицы `mod_email_paterns`
 --
 
 INSERT INTO `mod_email_paterns` (`id`, `name`, `patern`, `from`, `from_email`, `admin_email`, `type`, `user_message_active`, `admin_message_active`) VALUES
-(4, 'create_user', '', 'Admin', 'no-replay@shop.com', '', 'HTML', 1, 1),
-(5, 'forgot_password', '', 'Администрация сайта', 'no-replay@shop.com', '', 'HTML', 1, 0),
-(6, 'change_password', '', 'Администрация сайта', 'no-replay@shop.com', '', 'HTML', 1, 0);
+(4, 'create_user', '', 'Admin', 'no-replay@mysite.com', '', 'HTML', 1, 1),
+(5, 'forgot_password', '', 'Администрация сайта', 'no-replay@mysite.com', '', 'HTML', 1, 0),
+(6, 'change_password', '', 'Администрация сайта', 'no-replay@mysite.com', '', 'HTML', 1, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_email_paterns_i18n`
+-- Структура таблицы `mod_email_paterns_i18n`
 --
 
 DROP TABLE IF EXISTS `mod_email_paterns_i18n`;
@@ -941,18 +3492,18 @@ CREATE TABLE IF NOT EXISTS `mod_email_paterns_i18n` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `mod_email_paterns_i18n`
+-- Дамп данных таблицы `mod_email_paterns_i18n`
 --
 
 INSERT INTO `mod_email_paterns_i18n` (`id`, `locale`, `theme`, `user_message`, `admin_message`, `description`, `variables`) VALUES
-(4, 'ru', 'Создание пользователя', '<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Здравствуйте, $user_name$!</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Поздравляем! Ваша регистрация прошла успешно.</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 20px;">Данные для входа в магазин:</p>\n<div style="font-family: arial; font-size: 13px; margin-top: 10px;"><span style="color: #666;">Email адрес: </span>$user_email$</div>\n<div style="font-family: arial; font-size: 13px; margin-top: 10px;"><span style="color: #666;">Пароль: </span>$user_password$</div>', '<p><span>Создан пользователь $user_name$:</span><br /><span>С паролем: $user_password$</span><br /><span>Адресом: &nbsp;$<span>user_</span>address$</span><br /><span>Email пользователя: $user_email$</span><br /><span>Телефон пользователя: $user_phone$</span></p>', '<p>Шаблон письма на создание пользователя</p>', 'a:7:{s:10:"$userName$";s:31:"Имя пользователя";s:11:"$userEmail$";s:30:"Email Пользователя";s:11:"$userPhone$";s:39:"Телефон Пользователя";s:13:"$userDeliver$";s:27:"Адрес доставки";s:11:"$orderLink$";s:28:"Ссылка на заказ";s:16:"$deliveryMethod$";s:29:"Способ доставки";s:15:"$paymentMethod$";s:25:"Способ оплаты";}'),
-(5, 'ru', 'Восстановление пароля', '<p><span>Здравствуйте!</span><br /><br /><span>На сайте $webSiteName$ создан запрос на восстановление пароля для Вашего аккаунта.</span><br /><br /><span>Для завершения процедуры восстановления пароля перейдите по ссылке $resetPasswordUri$</span><br /><br /><span>Ваш новый пароль для входа: $password$</span><br /><br /><span>Если это письмо попало к Вам по ошибке просто проигнорируйте его.</span><br /><br /><span>При возникновении любых вопросов, обращайтесь по телефонам:</span><br /><br /><span>(012)&nbsp; 345-67-89 , (012)&nbsp; 345-67-89</span><br /><br /><span>---</span><br /><br /><span>С уважением,</span><br /><br /><span>сотрудники службы продаж $webSiteName$</span></p>', '', 'Шаблон письма на  восстановление пароля', 'a:5:{s:13:"$webSiteName$";s:17:"Имя сайта";s:18:"$resetPasswordUri$";s:59:"Ссылка на восстановления пароля";s:10:"$password$";s:12:"Пароль";s:5:"$key$";s:8:"Ключ";s:16:"$webMasterEmail$";s:54:"Email сотрудников службы продаж";}'),
-(6, 'ru', 'Смена пароля', '<p><span>Здравствуйте $user_name$!</span><br /><br /><span>Ваш новый пароль для входа: $password$</span><br /><br /><span>Если это письмо попало к Вам по ошибке просто проигнорируйте его.</span><br /><br /><span><br /></span></p>', '', '<p>Шаблон письма изменения пароля</p>', 'a:2:{s:11:"$user_name$";s:31:"Имя пользователя";s:10:"$password$";s:23:"новый пароль";}');
+(4, 'ru', 'Создание пользователя', '<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Здравствуйте, $user_name$!</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Поздравляем! Ваша регистрация прошла успешно.</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 20px;">Данные для входа в магазин:</p>\n<div style="font-family: arial; font-size: 13px; margin-top: 10px;"><span style="color: #666;">Email адрес: </span>$user_email$</div>\n<div style="font-family: arial; font-size: 13px; margin-top: 10px;"><span style="color: #666;">Пароль: </span>$user_password$</div>', '<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Здравствуйте!</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 10px;">На сайте был зарегистрирован новый пользователь.</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 20px;">Данные пользователя:</p>\n<div style="font-family: arial; font-size: 13px; margin-top: 10px;"><span style="color: #666;">Имя: </span>$user_name$</div>\n<div style="font-family: arial; font-size: 13px; margin-top: 10px;"><span style="color: #666;">Email адрес: </span>$user_email$</div>', '<p>Шаблон письма на создание пользователя</p>', 'a:5:{s:11:"$user_name$";s:31:"Имя пользователя";s:15:"$user_password$";s:12:"Пароль";s:14:"$user_address$";s:12:"Адресс";s:12:"$user_email$";s:5:"Email";s:12:"$user_phone$";s:14:"Телефон";}'),
+(5, 'ru', 'Восстановление пароля', '<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Здравствуйте!</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 10px;">На сайте $webSiteName$ создан запрос на восстановление пароля для Вашего аккаунта.</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Для завершения процедуры восстановления пароля перейдите по ссылке $resetPasswordUri$</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 10px;">После перехода по ссылке Ваш новый пароль для входа будет: $password$</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Если это письмо попало к Вам по ошибке просто проигнорируйте его</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 10px;">С уважением, сотрудники службы продаж $webSiteName$</p>', '', '<p>Шаблон письма на восстановление пароля</p>', 'a:5:{s:13:"$webSiteName$";s:17:"Имя сайта";s:18:"$resetPasswordUri$";s:59:"Ссылка на восстановления пароля";s:10:"$password$";s:12:"Пароль";s:5:"$key$";s:8:"Ключ";s:16:"$webMasterEmail$";s:54:"Email сотрудников службы продаж";}'),
+(6, 'ru', 'Смена пароля', '<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Здравствуйте $user_name$!</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Ваш пароль был успешно восстановлен.</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Новый пароль: $password$</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Если это письмо попало к Вам по ошибке просто проигнорируйте его.</p>', '', '<p>Шаблон письма изменения пароля</p>', 'a:2:{s:11:"$user_name$";s:31:"Имя пользователя";s:10:"$password$";s:23:"новый пароль";}');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_sample_settings`
+-- Структура таблицы `mod_sample_settings`
 --
 
 DROP TABLE IF EXISTS `mod_sample_settings`;
@@ -964,7 +3515,7 @@ CREATE TABLE IF NOT EXISTS `mod_sample_settings` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- Dumping data for table `mod_sample_settings`
+-- Дамп данных таблицы `mod_sample_settings`
 --
 
 INSERT INTO `mod_sample_settings` (`id`, `name`, `value`) VALUES
@@ -975,7 +3526,7 @@ INSERT INTO `mod_sample_settings` (`id`, `name`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `permissions`
+-- Структура таблицы `permissions`
 --
 
 DROP TABLE IF EXISTS `permissions`;
@@ -988,7 +3539,7 @@ CREATE TABLE IF NOT EXISTS `permissions` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `permissions`
+-- Дамп данных таблицы `permissions`
 --
 
 INSERT INTO `permissions` (`id`, `role_id`, `data`) VALUES
@@ -997,7 +3548,7 @@ INSERT INTO `permissions` (`id`, `role_id`, `data`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `propel_migration`
+-- Структура таблицы `propel_migration`
 --
 
 DROP TABLE IF EXISTS `propel_migration`;
@@ -1006,7 +3557,7 @@ CREATE TABLE IF NOT EXISTS `propel_migration` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `propel_migration`
+-- Дамп данных таблицы `propel_migration`
 --
 
 INSERT INTO `propel_migration` (`version`) VALUES
@@ -1015,7 +3566,7 @@ INSERT INTO `propel_migration` (`version`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rating`
+-- Структура таблицы `rating`
 --
 
 DROP TABLE IF EXISTS `rating`;
@@ -1031,7 +3582,7 @@ CREATE TABLE IF NOT EXISTS `rating` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `roles`
+-- Структура таблицы `roles`
 --
 
 DROP TABLE IF EXISTS `roles`;
@@ -1047,7 +3598,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC AUTO_INCREMENT=19 ;
 
 --
--- Dumping data for table `roles`
+-- Дамп данных таблицы `roles`
 --
 
 INSERT INTO `roles` (`id`, `parent_id`, `name`, `alt_name`, `desc`) VALUES
@@ -1057,7 +3608,7 @@ INSERT INTO `roles` (`id`, `parent_id`, `name`, `alt_name`, `desc`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `search`
+-- Структура таблицы `search`
 --
 
 DROP TABLE IF EXISTS `search`;
@@ -1076,12 +3627,35 @@ CREATE TABLE IF NOT EXISTS `search` (
   PRIMARY KEY (`id`),
   KEY `hash` (`hash`),
   KEY `datetime` (`datetime`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
+
+--
+-- Дамп данных таблицы `search`
+--
+
+INSERT INTO `search` (`id`, `hash`, `datetime`, `where_array`, `select_array`, `table_name`, `order_by`, `row_count`, `total_rows`, `ids`, `search_title`) VALUES
+(4, '528c695c8924024642f110e994786dc43ff79887', 1436379995, 'a:4:{i:0;a:2:{s:11:"post_status";s:7:"publish";s:8:"operator";s:5:"WHERE";}i:1;a:2:{s:15:"publish_date <=";s:16:"UNIX_TIMESTAMP()";s:9:"backticks";b:0;}i:2;a:1:{s:4:"lang";s:1:"3";}i:3;a:2:{s:6:"group1";s:82:"(title LIKE "%три%" OR prev_text LIKE "%три%" OR full_text LIKE "%три%" )";s:5:"group";b:1;}}', 'a:2:{i:0;s:9:"content.*";i:1;s:57:"CONCAT_WS( "", content.cat_url, content.url ) as full_url";}', 'content', 'a:1:{s:12:"publish_date";s:4:"DESC";}', 15, 24, 'a:24:{i:0;s:3:"120";i:1;s:2:"89";i:2;s:2:"86";i:3;s:2:"99";i:4;s:2:"95";i:5;s:3:"103";i:6;s:3:"107";i:7;s:3:"111";i:8;s:3:"115";i:9;s:3:"119";i:10;s:2:"98";i:11;s:2:"88";i:12;s:2:"94";i:13;s:3:"102";i:14;s:3:"106";i:15;s:3:"110";i:16;s:3:"114";i:17;s:3:"118";i:18;s:3:"100";i:19;s:2:"90";i:20;s:2:"96";i:21;s:3:"104";i:22;s:3:"108";i:23;s:3:"116";}', 'три'),
+(5, '13d58d9588b1da98c8231b23ccc2d2069bfd5869', 1431007535, 'a:4:{i:0;a:2:{s:11:"post_status";s:7:"publish";s:8:"operator";s:5:"WHERE";}i:1;a:2:{s:15:"publish_date <=";s:16:"UNIX_TIMESTAMP()";s:9:"backticks";b:0;}i:2;a:1:{s:4:"lang";s:1:"3";}i:3;a:2:{s:6:"group1";s:88:"(title LIKE "%один%" OR prev_text LIKE "%один%" OR full_text LIKE "%один%" )";s:5:"group";b:1;}}', 'a:2:{i:0;s:9:"content.*";i:1;s:57:"CONCAT_WS( "", content.cat_url, content.url ) as full_url";}', 'content', 'a:1:{s:12:"publish_date";s:4:"DESC";}', 15, 16, 'a:16:{i:0;s:2:"89";i:1;s:2:"99";i:2;s:2:"95";i:3;s:3:"103";i:4;s:3:"107";i:5;s:3:"111";i:6;s:3:"115";i:7;s:3:"119";i:8;s:3:"100";i:9;s:2:"90";i:10;s:2:"96";i:11;s:3:"104";i:12;s:3:"108";i:13;s:3:"112";i:14;s:3:"116";i:15;s:3:"120";}', 'один'),
+(6, 'ae7698221cd4cef00ca2ec98e6885333577f265c', 1431007732, 'a:4:{i:0;a:2:{s:11:"post_status";s:7:"publish";s:8:"operator";s:5:"WHERE";}i:1;a:2:{s:15:"publish_date <=";s:16:"UNIX_TIMESTAMP()";s:9:"backticks";b:0;}i:2;a:1:{s:4:"lang";s:1:"3";}i:3;a:2:{s:6:"group1";s:82:"(title LIKE "%два%" OR prev_text LIKE "%два%" OR full_text LIKE "%два%" )";s:5:"group";b:1;}}', 'a:2:{i:0;s:9:"content.*";i:1;s:57:"CONCAT_WS( "", content.cat_url, content.url ) as full_url";}', 'content', 'a:1:{s:12:"publish_date";s:4:"DESC";}', 15, 8, 'a:8:{i:0;s:2:"98";i:1;s:2:"88";i:2;s:2:"94";i:3;s:3:"102";i:4;s:3:"106";i:5;s:3:"110";i:6;s:3:"114";i:7;s:3:"118";}', 'два'),
+(7, '3f5f7a64ec455a69c620360398d152161f78048b', 1431007919, 'a:4:{i:0;a:2:{s:11:"post_status";s:7:"publish";s:8:"operator";s:5:"WHERE";}i:1;a:2:{s:15:"publish_date <=";s:16:"UNIX_TIMESTAMP()";s:9:"backticks";b:0;}i:2;a:1:{s:4:"lang";s:1:"3";}i:3;a:2:{s:6:"group1";s:298:"(title LIKE "%главной последовательности спектрального%" OR prev_text LIKE "%главной последовательности спектрального%" OR full_text LIKE "%главной последовательности спектрального%" )";s:5:"group";b:1;}}', 'a:2:{i:0;s:9:"content.*";i:1;s:57:"CONCAT_WS( "", content.cat_url, content.url ) as full_url";}', 'content', 'a:1:{s:12:"publish_date";s:4:"DESC";}', 15, 8, 'a:8:{i:0;s:2:"89";i:1;s:2:"99";i:2;s:2:"95";i:3;s:3:"103";i:4;s:3:"107";i:5;s:3:"111";i:6;s:3:"115";i:7;s:3:"119";}', 'главной последовательности спектрального'),
+(8, 'cefd1da7cc8df641e921fa60238a98a1127a6bb9', 1431008621, 'a:4:{i:0;a:2:{s:11:"post_status";s:7:"publish";s:8:"operator";s:5:"WHERE";}i:1;a:2:{s:15:"publish_date <=";s:16:"UNIX_TIMESTAMP()";s:9:"backticks";b:0;}i:2;a:1:{s:4:"lang";s:1:"3";}i:3;a:2:{s:6:"group1";s:76:"(title LIKE "%****%" OR prev_text LIKE "%****%" OR full_text LIKE "%****%" )";s:5:"group";b:1;}}', 'a:2:{i:0;s:9:"content.*";i:1;s:57:"CONCAT_WS( "", content.cat_url, content.url ) as full_url";}', 'content', 'a:1:{s:12:"publish_date";s:4:"DESC";}', 15, 0, 'a:0:{}', '****'),
+(9, '8b6d1f850aaff71402190e96dd5b67a07d32e08f', 1431008632, 'a:4:{i:0;a:2:{s:11:"post_status";s:7:"publish";s:8:"operator";s:5:"WHERE";}i:1;a:2:{s:15:"publish_date <=";s:16:"UNIX_TIMESTAMP()";s:9:"backticks";b:0;}i:2;a:1:{s:4:"lang";s:1:"3";}i:3;a:2:{s:6:"group1";s:103:"(title LIKE "%.............%" OR prev_text LIKE "%.............%" OR full_text LIKE "%.............%" )";s:5:"group";b:1;}}', 'a:2:{i:0;s:9:"content.*";i:1;s:57:"CONCAT_WS( "", content.cat_url, content.url ) as full_url";}', 'content', 'a:1:{s:12:"publish_date";s:4:"DESC";}', 15, 0, 'a:0:{}', '.............'),
+(10, '10b3af3e370a1dbf950751a9c62900368f74d470', 1431008636, 'a:4:{i:0;a:2:{s:11:"post_status";s:7:"publish";s:8:"operator";s:5:"WHERE";}i:1;a:2:{s:15:"publish_date <=";s:16:"UNIX_TIMESTAMP()";s:9:"backticks";b:0;}i:2;a:1:{s:4:"lang";s:1:"3";}i:3;a:2:{s:6:"group1";s:88:"(title LIKE "%////////%" OR prev_text LIKE "%////////%" OR full_text LIKE "%////////%" )";s:5:"group";b:1;}}', 'a:2:{i:0;s:9:"content.*";i:1;s:57:"CONCAT_WS( "", content.cat_url, content.url ) as full_url";}', 'content', 'a:1:{s:12:"publish_date";s:4:"DESC";}', 15, 0, 'a:0:{}', '////////'),
+(11, 'fb810483a7d0cfc4a883831580dc14ded9592fed', 1435762599, 'a:4:{i:0;a:2:{s:11:"post_status";s:7:"publish";s:8:"operator";s:5:"WHERE";}i:1;a:2:{s:15:"publish_date <=";s:16:"UNIX_TIMESTAMP()";s:9:"backticks";b:0;}i:2;a:1:{s:4:"lang";s:1:"3";}i:3;a:2:{s:6:"group1";s:82:"(title LIKE "%три%" OR prev_text LIKE "%три%" OR full_text LIKE "%три%" )";s:5:"group";b:1;}}', 'a:2:{i:0;s:9:"content.*";i:1;s:57:"CONCAT_WS( "", content.cat_url, content.url ) as full_url";}', 'content', 'a:1:{s:12:"publish_date";s:4:"DESC";}', 1, 24, 'a:24:{i:0;s:3:"120";i:1;s:2:"89";i:2;s:2:"86";i:3;s:2:"99";i:4;s:2:"95";i:5;s:3:"103";i:6;s:3:"107";i:7;s:3:"111";i:8;s:3:"115";i:9;s:3:"119";i:10;s:2:"98";i:11;s:2:"88";i:12;s:2:"94";i:13;s:3:"102";i:14;s:3:"106";i:15;s:3:"110";i:16;s:3:"114";i:17;s:3:"118";i:18;s:3:"100";i:19;s:2:"90";i:20;s:2:"96";i:21;s:3:"104";i:22;s:3:"108";i:23;s:3:"116";}', 'три'),
+(12, '45b0c6bf6e04bcf8934f352be04f5a7f84787ce2', 1431451616, 'a:4:{i:0;a:2:{s:11:"post_status";s:7:"publish";s:8:"operator";s:5:"WHERE";}i:1;a:2:{s:15:"publish_date <=";s:16:"UNIX_TIMESTAMP()";s:9:"backticks";b:0;}i:2;a:1:{s:4:"lang";s:1:"3";}i:3;a:2:{s:6:"group1";s:124:"(title LIKE "%консалтинг%" OR prev_text LIKE "%консалтинг%" OR full_text LIKE "%консалтинг%" )";s:5:"group";b:1;}}', 'a:2:{i:0;s:9:"content.*";i:1;s:57:"CONCAT_WS( "", content.cat_url, content.url ) as full_url";}', 'content', 'a:1:{s:12:"publish_date";s:4:"DESC";}', 15, 0, 'a:0:{}', 'консалтинг'),
+(13, '6c3d75b2e68d75056de7020386e5da06c4c99c25', 1431855385, 'a:4:{i:0;a:2:{s:11:"post_status";s:7:"publish";s:8:"operator";s:5:"WHERE";}i:1;a:2:{s:15:"publish_date <=";s:16:"UNIX_TIMESTAMP()";s:9:"backticks";b:0;}i:2;a:1:{s:4:"lang";s:2:"32";}i:3;a:2:{s:6:"group1";s:82:"(title LIKE "%три%" OR prev_text LIKE "%три%" OR full_text LIKE "%три%" )";s:5:"group";b:1;}}', 'a:2:{i:0;s:9:"content.*";i:1;s:57:"CONCAT_WS( "", content.cat_url, content.url ) as full_url";}', 'content', 'a:1:{s:12:"publish_date";s:4:"DESC";}', 15, 0, 'a:0:{}', 'три'),
+(14, '2eba28bc09f3d2a3e55ff3c1854800036ba1262e', 1431628817, 'a:4:{i:0;a:2:{s:11:"post_status";s:7:"publish";s:8:"operator";s:5:"WHERE";}i:1;a:2:{s:15:"publish_date <=";s:16:"UNIX_TIMESTAMP()";s:9:"backticks";b:0;}i:2;a:1:{s:4:"lang";s:1:"3";}i:3;a:2:{s:6:"group1";s:100:"(title LIKE "%триdsfsdf%" OR prev_text LIKE "%триdsfsdf%" OR full_text LIKE "%триdsfsdf%" )";s:5:"group";b:1;}}', 'a:2:{i:0;s:9:"content.*";i:1;s:57:"CONCAT_WS( "", content.cat_url, content.url ) as full_url";}', 'content', 'a:1:{s:12:"publish_date";s:4:"DESC";}', 15, 0, 'a:0:{}', 'триdsfsdf'),
+(15, '20470c4e48d28031a141e1433c8430f958d2b4f1', 1431855448, 'a:4:{i:0;a:2:{s:11:"post_status";s:7:"publish";s:8:"operator";s:5:"WHERE";}i:1;a:2:{s:15:"publish_date <=";s:16:"UNIX_TIMESTAMP()";s:9:"backticks";b:0;}i:2;a:1:{s:4:"lang";s:1:"3";}i:3;a:2:{s:6:"group1";s:130:"(title LIKE "%трифывфывфы%" OR prev_text LIKE "%трифывфывфы%" OR full_text LIKE "%трифывфывфы%" )";s:5:"group";b:1;}}', 'a:2:{i:0;s:9:"content.*";i:1;s:57:"CONCAT_WS( "", content.cat_url, content.url ) as full_url";}', 'content', 'a:1:{s:12:"publish_date";s:4:"DESC";}', 15, 0, 'a:0:{}', 'трифывфывфы'),
+(16, '451fb92a0dd6d8dae9fe2aa5a5d26f54026b2ded', 1433416535, 'a:4:{i:0;a:2:{s:11:"post_status";s:7:"publish";s:8:"operator";s:5:"WHERE";}i:1;a:2:{s:15:"publish_date <=";s:16:"UNIX_TIMESTAMP()";s:9:"backticks";b:0;}i:2;a:1:{s:4:"lang";s:1:"3";}i:3;a:2:{s:6:"group1";s:136:"(title LIKE "%іфвфівфівфів%" OR prev_text LIKE "%іфвфівфівфів%" OR full_text LIKE "%іфвфівфівфів%" )";s:5:"group";b:1;}}', 'a:2:{i:0;s:9:"content.*";i:1;s:57:"CONCAT_WS( "", content.cat_url, content.url ) as full_url";}', 'content', 'a:1:{s:12:"publish_date";s:4:"DESC";}', 15, 0, 'a:0:{}', 'іфвфівфівфів'),
+(17, 'e87baf2d95aa7623409d11c69d3c0ab0c1adca2e', 1433770455, 'a:4:{i:0;a:2:{s:11:"post_status";s:7:"publish";s:8:"operator";s:5:"WHERE";}i:1;a:2:{s:15:"publish_date <=";s:16:"UNIX_TIMESTAMP()";s:9:"backticks";b:0;}i:2;a:1:{s:4:"lang";s:1:"3";}i:3;a:2:{s:6:"group1";s:82:"(title LIKE "%sdfsdf%" OR prev_text LIKE "%sdfsdf%" OR full_text LIKE "%sdfsdf%" )";s:5:"group";b:1;}}', 'a:2:{i:0;s:9:"content.*";i:1;s:57:"CONCAT_WS( "", content.cat_url, content.url ) as full_url";}', 'content', 'a:1:{s:12:"publish_date";s:4:"DESC";}', 15, 0, 'a:0:{}', 'sdfsdf'),
+(18, 'dea13c2a3c9ccdaed130cc4dd15b6aa852f11d4e', 1436608397, 'a:4:{i:0;a:2:{s:11:"post_status";s:7:"publish";s:8:"operator";s:5:"WHERE";}i:1;a:2:{s:15:"publish_date <=";s:16:"UNIX_TIMESTAMP()";s:9:"backticks";b:0;}i:2;a:1:{s:4:"lang";s:1:"3";}i:3;a:2:{s:6:"group1";s:82:"(title LIKE "%Три%" OR prev_text LIKE "%Три%" OR full_text LIKE "%Три%" )";s:5:"group";b:1;}}', 'a:2:{i:0;s:9:"content.*";i:1;s:57:"CONCAT_WS( "", content.cat_url, content.url ) as full_url";}', 'content', 'a:1:{s:12:"publish_date";s:4:"DESC";}', 15, 2, 'a:2:{i:0;s:3:"124";i:1;s:2:"86";}', 'Три'),
+(19, '8650dd45e60cada8317cd36f7eed14ee2bd8f996', 1434111978, 'a:4:{i:0;a:2:{s:11:"post_status";s:7:"publish";s:8:"operator";s:5:"WHERE";}i:1;a:2:{s:15:"publish_date <=";s:16:"UNIX_TIMESTAMP()";s:9:"backticks";b:0;}i:2;a:1:{s:4:"lang";s:1:"3";}i:3;a:2:{s:6:"group1";s:100:"(title LIKE "%asdasdasdasd%" OR prev_text LIKE "%asdasdasdasd%" OR full_text LIKE "%asdasdasdasd%" )";s:5:"group";b:1;}}', 'a:2:{i:0;s:9:"content.*";i:1;s:57:"CONCAT_WS( "", content.cat_url, content.url ) as full_url";}', 'content', 'a:1:{s:12:"publish_date";s:4:"DESC";}', 15, 0, 'a:0:{}', 'asdasdasdasd'),
+(20, '425161489acd931de78c74348d29a7d00b0a4dd1', 1436385715, 'a:4:{i:0;a:2:{s:11:"post_status";s:7:"publish";s:8:"operator";s:5:"WHERE";}i:1;a:2:{s:15:"publish_date <=";s:16:"UNIX_TIMESTAMP()";s:9:"backticks";b:0;}i:2;a:1:{s:4:"lang";s:1:"3";}i:3;a:2:{s:6:"group1";s:82:"(title LIKE "%asdasd%" OR prev_text LIKE "%asdasd%" OR full_text LIKE "%asdasd%" )";s:5:"group";b:1;}}', 'a:2:{i:0;s:9:"content.*";i:1;s:57:"CONCAT_WS( "", content.cat_url, content.url ) as full_url";}', 'content', 'a:1:{s:12:"publish_date";s:4:"DESC";}', 15, 0, 'a:0:{}', 'asdasd');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `settings`
+-- Структура таблицы `settings`
 --
 
 DROP TABLE IF EXISTS `settings`;
@@ -1124,16 +3698,16 @@ CREATE TABLE IF NOT EXISTS `settings` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `settings`
+-- Дамп данных таблицы `settings`
 --
 
-INSERT INTO `settings` (`id`, `s_name`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`, `google_webmaster`, `yandex_webmaster`, `yandex_metric`, `ss`, `cat_list`, `text_editor`, `siteinfo`, `update`, `backup`, `robots_status`, `robots_settings_status`, `robots_settings`) VALUES
-(2, 'main', 'auto', 'auto', '0', '0', 1, 1, '/', '0', 'corporate', 'no', '', 'page', 69, '63', '', '', '', 'ru_RU', '', '', '', '', 'yes', 'tinymce', 'a:3:{s:13:"siteinfo_logo";a:1:{s:9:"corporate";s:8:"logo.png";}s:16:"siteinfo_favicon";a:1:{s:9:"corporate";s:11:"favicon.ico";}s:2:"ru";a:5:{s:20:"siteinfo_companytype";s:97:"© Интернет-магазин «<a href="http://www.imagecms.net/">ImageCMS Shop</a>», 2013";s:16:"siteinfo_address";s:63:"Улица Шевченка, Буд. 22, офис: 39, Київ";s:18:"siteinfo_mainphone";s:15:"(097) 567-43-21";s:19:"siteinfo_adminemail";s:19:"webmaster@local.com";s:8:"contacts";a:2:{s:5:"Skype";s:8:"imagecms";s:5:"Email";s:20:"partner@imagecms.net";}}}', '', NULL, 0, 0, '');
+INSERT INTO `settings` (`id`, `s_name`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`, `google_webmaster`, `yandex_webmaster`, `yandex_metric`, `ss`, `cat_list`, `text_editor`, `siteinfo`, `update`, `backup`, `robots_status`, `robots_settings_status`, `robots_settings`, `google_analytics_ee`) VALUES
+(2, 'main', 'auto', 'auto', '0', '0', 1, 1, '/', '0', 'businessimage', 'no', '', 'page', 124, '62', 'menu', '', '', 'ru_RU', '', '', '', '', 'yes', 'tinymce', 'a:5:{s:13:"siteinfo_logo";s:8:"logo.png";s:16:"siteinfo_favicon";s:11:"favicon.ico";s:2:"ru";a:5:{s:20:"siteinfo_companytype";s:28:"© Business Image, 2014-2015";s:16:"siteinfo_address";s:41:"Минск ул. Красочная 22 а";s:18:"siteinfo_mainphone";s:15:"8 800 123-45-67";s:19:"siteinfo_adminemail";s:0:"";s:8:"contacts";a:7:{s:8:"schedule";s:37:"Работаем Пн-Сб 9:00-20:00";s:9:"copytight";s:28:"© Business Image, 2014-2015";s:14:"copytight_desc";s:239:"Разработка стратегий и внедрение проектов по развитию бизнеса, повышению эффективности и автоматизации процессов — наш профиль. ";s:8:"vk_group";s:3:"#vk";s:8:"fb_group";s:3:"#fb";s:13:"youtube_group";s:8:"#youtube";s:12:"google_group";s:7:"#google";}}s:2:"en";a:5:{s:8:"contacts";a:7:{s:8:"schedule";N;s:9:"copytight";N;s:14:"copytight_desc";N;s:8:"vk_group";N;s:8:"fb_group";N;s:13:"youtube_group";N;s:12:"google_group";N;}s:20:"siteinfo_companytype";s:28:"© Business Image, 2014-2015";s:16:"siteinfo_address";s:41:"Минск ул. Красочная 22 а";s:18:"siteinfo_mainphone";s:15:"8 800 123-45-67";s:19:"siteinfo_adminemail";s:0:"";}s:2:"uk";a:5:{s:8:"contacts";a:7:{s:8:"schedule";s:37:"Працюємо Пн-Сб 9:00-20:00";s:9:"copytight";s:28:"© Business Image, 2014-2015";s:14:"copytight_desc";s:238:"Розробка стратегій та впровадження проектів з розвитку бізнесу, підвищенню ефективності та автоматизації процесів - наш профіль.";s:8:"vk_group";s:3:"#vk";s:8:"fb_group";s:3:"#fb";s:13:"youtube_group";s:8:"#youtube";s:12:"google_group";s:7:"#google";}s:20:"siteinfo_companytype";s:28:"© Business Image, 2014-2015";s:16:"siteinfo_address";s:43:"Мінськ вул. Барвиста 22 а";s:18:"siteinfo_mainphone";s:15:"8 800 123-45-67";s:19:"siteinfo_adminemail";s:0:"";}}', 'a:3:{i:0;b:0;s:10:"newVersion";s:1:"0";s:9:"checkTime";i:1435216967;}', NULL, 0, 1, '', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `settings_i18n`
+-- Структура таблицы `settings_i18n`
 --
 
 DROP TABLE IF EXISTS `settings_i18n`;
@@ -1145,14 +3719,16 @@ CREATE TABLE IF NOT EXISTS `settings_i18n` (
   `description` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `keywords` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
--- Dumping data for table `settings_i18n`
+-- Дамп данных таблицы `settings_i18n`
 --
 
 INSERT INTO `settings_i18n` (`id`, `lang_ident`, `name`, `short_name`, `description`, `keywords`) VALUES
-(1, 3, 'ImageCMS DemoShop', 'ImageCMS', 'Продажа качественной техники с гарантией и доставкой', 'магазин техники, покупка техники, доставка техники');
+(1, 3, 'ImageCMS - базовый адаптивный шаблон', 'ImageCMS', 'Базовый адаптивный шаблон для движка ImageCMS', 'ImageCMS, шаблон, адаптивный шаблон'),
+(2, 32, 'ImageCMS - базовий адаптивний шаблон', 'ImageCMS', 'Базовий адаптивний шаблон для системи ImageCMS', 'ImageCMS, шаблон, Адаптивний шаблон'),
+(3, 33, 'ImageCMS - responsive template', 'ImageCMS', 'Responsive template for ImageCMS', 'ImageCMS, template, Responsive template');
 
 -- --------------------------------------------------------
 
@@ -1167,13 +3743,40 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_group` (
   `name` varchar(100) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=78 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=79 ;
 
 --
 -- Дамп данных таблицы `shop_rbac_group`
 --
 
 INSERT INTO `shop_rbac_group` (`id`, `type`, `name`, `description`) VALUES
+(1, 'shop', 'ShopAdminBanners', NULL),
+(2, 'shop', 'ShopAdminBrands', NULL),
+(3, 'shop', 'ShopAdminCallbacks', NULL),
+(4, 'shop', 'ShopAdminCategories', NULL),
+(5, 'shop', 'ShopAdminCharts', NULL),
+(6, 'shop', 'ShopAdminComulativ', NULL),
+(7, 'shop', 'ShopAdminCurrencies', NULL),
+(8, 'shop', 'ShopAdminCustomfields', NULL),
+(9, 'shop', 'ShopAdminDashboard', NULL),
+(10, 'shop', 'ShopAdminDeliverymethods', NULL),
+(11, 'shop', 'ShopAdminDiscounts', NULL),
+(12, 'shop', 'ShopAdminGifts', NULL),
+(13, 'shop', 'ShopAdminKits', NULL),
+(14, 'shop', 'ShopAdminNotifications', NULL),
+(15, 'shop', 'ShopAdminNotificationstatuses', NULL),
+(16, 'shop', 'ShopAdminOrders', NULL),
+(17, 'shop', 'ShopAdminOrderstatuses', NULL),
+(18, 'shop', 'ShopAdminPaymentmethods', NULL),
+(19, 'shop', 'ShopAdminProducts', NULL),
+(20, 'shop', 'ShopAdminProductspy', NULL),
+(21, 'shop', 'ShopAdminProperties', NULL),
+(22, 'shop', 'ShopAdminRbac', NULL),
+(23, 'shop', 'ShopAdminSearch', NULL),
+(24, 'shop', 'ShopAdminSettings', NULL),
+(25, 'shop', 'ShopAdminSystem', NULL),
+(26, 'shop', 'ShopAdminUsers', NULL),
+(27, 'shop', 'ShopAdminWarehouses', NULL),
 (28, 'base', 'Admin', NULL),
 (29, 'base', 'Admin_logs', NULL),
 (30, 'base', 'Admin_search', NULL),
@@ -1204,15 +3807,24 @@ INSERT INTO `shop_rbac_group` (`id`, `type`, `name`, `description`) VALUES
 (57, 'module', 'Trash', NULL),
 (58, 'module', 'User_manager', NULL),
 (59, 'base', 'Widgets_manager', NULL),
+(60, 'module', 'Import_export', NULL),
 (61, 'module', 'Template_manager', NULL),
 (62, 'module', 'Banners', NULL),
+(63, 'module', 'Mod_discount', NULL),
 (64, 'module', 'Cmsemail', NULL),
+(65, 'module', 'Mod_seo', NULL),
+(66, 'module', 'Exchange', NULL),
 (67, 'module', 'Translator', NULL),
 (68, 'module', 'Imagebox', NULL),
 (69, 'module', 'Star_rating', NULL),
+(70, 'module', 'Mobile', NULL),
+(71, 'module', 'Mod_stats', NULL),
+(72, 'module', 'Wishlist', NULL),
 (73, 'base', 'Sys_update', NULL),
 (74, 'base', 'Sys_info', NULL),
+(75, 'module', 'Ymarket', NULL),
 (76, 'module', 'Module_frame', NULL),
+(77, 'module', 'Hotline', NULL),
 (78, 'module', 'Admin_menu', NULL);
 
 -- --------------------------------------------------------
@@ -1291,7 +3903,8 @@ INSERT INTO `shop_rbac_group_i18n` (`id`, `description`, `locale`) VALUES
 (56, 'Управление модулем редактор шаблонов', 'ru'),
 (57, 'Управление модулем перенаправления', 'ru'),
 (58, 'Управление пользователями', 'ru'),
-(59, 'Управление виджетами', 'ru');
+(59, 'Управление виджетами', 'ru'),
+(59, 'Импорт/Експорт', 'ru');
 
 -- --------------------------------------------------------
 
@@ -1308,7 +3921,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_privileges` (
   PRIMARY KEY (`id`),
   KEY `shop_rbac_privileges_I_1` (`name`),
   KEY `shop_rbac_privileges_FI_1` (`group_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=672 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=732 ;
 
 --
 -- Дамп данных таблицы `shop_rbac_privileges`
@@ -2017,24 +4630,15 @@ INSERT INTO `shop_rbac_privileges` (`id`, `name`, `group_id`, `description`) VAL
 (714, 'admin_menu::uploadTariffsMenus', 78, NULL),
 (715, 'admin_menu::ajaxUpdateItemTitle', 78, NULL),
 (716, 'admin_menu::ajaxGetNewMenuItem', 78, NULL),
-(717 , 'ShopAdminSystem::downExpUsers', '25', NULL),
-(718 , 'Settings::getSiteInfoDataJson', '41', NULL),
-(719 , 'ShopAdminSettings::changeSortActive', '24', NULL),
-(720 , 'ShopAdminSettings::checkGDLib', '24', NULL),
-(721 , 'ShopAdminSettings::runResizeById', '24', NULL),
-(722 , 'ShopAdminSettings::getAllProductsVariantsIds', '24', NULL),
-(723 , 'ShopAdminSettings::getAllProductsIds', '24', NULL),
-(724 , 'ShopAdminSettings::runResizeAllAdditionalJsone', '24', NULL),
-(725 , 'Widgets_manager::update_html_widget', '59', NULL),
-(726 , 'ShopAdminSystem::getCategoryProperties', '25', NULL),
-(727 , 'Backup::file_actions', '31', NULL),
-(728 , 'Backup::save_settings', '31', NULL),
-(729 , 'ShopAdminSettings::runResizeAllJsone', '24', NULL),
-(730 , 'ShopAdminSearch::per_page_cookie', '23', NULL),
-(731 , 'ShopAdminSettings::setSorting', '24', NULL),
-(732 , 'ShopAdminProducts::fastBrandCreate', 19, NULL),
-(733 , 'ShopAdminProducts::fastCategoryCreate', 19, NULL);
-
+(717, 'ShopAdminSystem::downExpUsers', 25, NULL),
+(718, 'Settings::getSiteInfoDataJson', 41, NULL),
+(725, 'Widgets_manager::update_html_widget', 59, NULL),
+(726, 'ShopAdminSystem::getCategoryProperties', 25, NULL),
+(727, 'Backup::file_actions', 31, NULL),
+(728, 'Backup::save_settings', 31, NULL),
+(729, 'ShopAdminSettings::runResizeAllJsone', 24, NULL),
+(730, 'ShopAdminSearch::per_page_cookie', 23, NULL),
+(731, 'ShopAdminSettings::setSorting', 24, NULL);
 
 -- --------------------------------------------------------
 
@@ -2594,7 +5198,7 @@ CREATE TABLE IF NOT EXISTS `shop_rbac_roles_privileges` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `rolepriv` (`role_id`,`privilege_id`),
   KEY `shop_rbac_roles_privileges_FK_2` (`privilege_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1773 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2476 ;
 
 --
 -- Дамп данных таблицы `shop_rbac_roles_privileges`
@@ -3294,28 +5898,20 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 (1770, 1, 596),
 (1771, 1, 597),
 (1772, 1, 598),
-(3160, 1, 717),
-(3171, 1, 726),
-(3172, 1, 719),
-(3173, 1, 720),
-(3174, 1, 721),
-(3175, 1, 722),
-(3176, 1, 723),
-(3177, 1, 724),
-(3178, 1, 718),
-(3179, 1, 725),
-(3182, 1, 727),
-(3183, 1, 728),
-(3184, 1, 729),
-(3185, 1, 730),
-(3186, 1, 731),
-(3187, 1, 732),
-(3188, 1, 733);
+(2467, 1, 717),
+(2468, 1, 726),
+(2469, 1, 718),
+(2470, 1, 725),
+(2471, 1, 727),
+(2472, 1, 728),
+(2473, 1, 729),
+(2474, 1, 730),
+(2475, 1, 731);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `support_comments`
+-- Структура таблицы `support_comments`
 --
 
 DROP TABLE IF EXISTS `support_comments`;
@@ -3331,7 +5927,7 @@ CREATE TABLE IF NOT EXISTS `support_comments` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `support_comments`
+-- Дамп данных таблицы `support_comments`
 --
 
 INSERT INTO `support_comments` (`id`, `ticket_id`, `user_id`, `user_status`, `user_name`, `text`, `date`) VALUES
@@ -3340,7 +5936,7 @@ INSERT INTO `support_comments` (`id`, `ticket_id`, `user_id`, `user_status`, `us
 -- --------------------------------------------------------
 
 --
--- Table structure for table `support_departments`
+-- Структура таблицы `support_departments`
 --
 
 DROP TABLE IF EXISTS `support_departments`;
@@ -3351,7 +5947,7 @@ CREATE TABLE IF NOT EXISTS `support_departments` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `support_departments`
+-- Дамп данных таблицы `support_departments`
 --
 
 INSERT INTO `support_departments` (`id`, `name`) VALUES
@@ -3360,7 +5956,7 @@ INSERT INTO `support_departments` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `support_tickets`
+-- Структура таблицы `support_tickets`
 --
 
 DROP TABLE IF EXISTS `support_tickets`;
@@ -3379,7 +5975,7 @@ CREATE TABLE IF NOT EXISTS `support_tickets` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `support_tickets`
+-- Дамп данных таблицы `support_tickets`
 --
 
 INSERT INTO `support_tickets` (`id`, `user_id`, `last_comment_author`, `text`, `theme`, `department`, `status`, `priority`, `date`, `updated`) VALUES
@@ -3388,7 +5984,7 @@ INSERT INTO `support_tickets` (`id`, `user_id`, `last_comment_author`, `text`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tags`
+-- Структура таблицы `tags`
 --
 
 DROP TABLE IF EXISTS `tags`;
@@ -3397,23 +5993,41 @@ CREATE TABLE IF NOT EXISTS `tags` (
   `value` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `value` (`value`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=40 ;
 
 --
--- Dumping data for table `tags`
+-- Дамп данных таблицы `tags`
 --
 
 INSERT INTO `tags` (`id`, `value`) VALUES
-(25, 'робот'),
-(26, 'кухонный робот'),
-(27, 'достижения'),
-(28, 'диагностика'),
-(29, 'инновации');
+(33, 'консалтинг'),
+(30, 'бизнес'),
+(31, 'стратегия'),
+(34, 'бізнес'),
+(35, 'стратегія'),
+(36, 'идея'),
+(37, 'стартап'),
+(38, 'перспектива'),
+(39, 'ідея');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Структура таблицы `template_settings`
+--
+
+DROP TABLE IF EXISTS `template_settings`;
+CREATE TABLE IF NOT EXISTS `template_settings` (
+  `id` int(11) NOT NULL,
+  `component` varchar(255) NOT NULL,
+  `key` text,
+  `data` text
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `users`
 --
 
 DROP TABLE IF EXISTS `users`;
@@ -3442,12 +6056,12 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`),
   KEY `role_id` (`role_id`),
   KEY `users_I_1` (`key`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=53 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=65 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_autologin`
+-- Структура таблицы `user_autologin`
 --
 
 DROP TABLE IF EXISTS `user_autologin`;
@@ -3464,7 +6078,7 @@ CREATE TABLE IF NOT EXISTS `user_autologin` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_temp`
+-- Структура таблицы `user_temp`
 --
 
 DROP TABLE IF EXISTS `user_temp`;
@@ -3482,7 +6096,7 @@ CREATE TABLE IF NOT EXISTS `user_temp` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `widgets`
+-- Структура таблицы `widgets`
 --
 
 DROP TABLE IF EXISTS `widgets`;
@@ -3498,34 +6112,27 @@ CREATE TABLE IF NOT EXISTS `widgets` (
   `created` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
 
 --
--- Dumping data for table `widgets`
+-- Дамп данных таблицы `widgets`
 --
 
 INSERT INTO `widgets` (`id`, `name`, `type`, `data`, `method`, `settings`, `description`, `roles`, `created`) VALUES
-(8, 'comments', 'module', 'comments', 'recent_comments', 'a:2:{s:14:"comments_count";s:1:"3";s:13:"symbols_count";s:2:"70";}', '', '', 1291642223),
-(9, 'tags', 'module', 'tags', 'tags_cloud', '', '', '', 1291642240),
-(3, 'path', 'module', 'navigation', 'widget_navigation', '', '', '', 1291381939),
-(4, 'news', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:1:"3";s:11:"max_symdols";s:1:"0";s:10:"categories";a:1:{i:0;s:2:"57";}s:7:"display";s:6:"recent";}', '', '', 1291387530),
-(5, 'blog', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:1:"3";s:11:"max_symdols";s:1:"0";s:10:"categories";a:3:{i:0;s:2:"59";i:1;s:2:"60";i:2;s:2:"61";}s:7:"display";s:6:"recent";}', '', '', 1291387932),
-(6, 'products', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:1:"5";s:11:"max_symdols";s:1:"0";s:10:"categories";a:1:{i:0;s:2:"55";}s:7:"display";s:6:"recent";}', '', '', 1291630787),
-(7, 'offers', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:1:"3";s:11:"max_symdols";s:1:"0";s:10:"categories";a:1:{i:0;s:2:"56";}s:7:"display";s:6:"recent";}', '', '', 1291630796),
-(10, 'contacts', 'html', '<p>Адрес: Федерация Орион, 12.23.22.22.2233.3</p>\n<p>Телефон: 0 800 345-56-12</p>', '', '', '', '', 1291646375),
-(11, 'product_all', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:5:"10000";s:11:"max_symdols";s:3:"150";s:10:"categories";a:1:{i:0;s:2:"55";}s:7:"display";s:6:"recent";}', '', '', 1291648944),
-(12, 'offers_all', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:3:"100";s:11:"max_symdols";s:3:"150";s:10:"categories";a:1:{i:0;s:2:"56";}s:7:"display";s:6:"recent";}', '', '', 1291649245),
-(13, 'works', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:3:"100";s:11:"max_symdols";s:3:"150";s:10:"categories";a:1:{i:0;s:2:"58";}s:7:"display";s:6:"recent";}', '', '', 1291657789),
-(14, 'rand_images', 'module', 'gallery', 'latest_fotos', 'a:2:{s:5:"limit";s:1:"3";s:5:"order";s:6:"random";}', '', '', 1291658084),
-(15, 'benefits', 'html', '', '', '', 'benefits', '', 1388066812),
-(16, 'works_all', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:4:"1000";s:11:"max_symdols";s:3:"150";s:10:"categories";a:1:{i:0;s:2:"58";}s:7:"display";s:6:"recent";}', 'works_all', '', 1388066954),
-(17, 'header', 'html', '', '', '', 'header', '', 1388066997),
-(18, 'footer', 'html', '', '', '', 'footer', '', 1388067026);
+(29, 'popular_blog_posts', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:1:"4";s:11:"max_symdols";s:3:"200";s:10:"categories";a:3:{i:0;s:2:"64";i:1;s:2:"67";i:2;s:2:"69";}s:7:"display";s:7:"popular";}', 'Выводит несколько записей категории по количеству просмотров', '', 1429890743),
+(33, 'breadcrumbs', 'module', 'navigation', 'widget_navigation', '', '', '', 1430585551),
+(27, 'main_reviews', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:1:"3";s:11:"max_symdols";s:5:"99999";s:10:"categories";a:1:{i:0;s:2:"66";}s:7:"display";s:6:"recent";}', 'Вывод последних записей из категории отзывов клиентов', '', 1429363341),
+(20, 'main_blog', 'module', 'core', 'recent_news', 'a:4:{s:10:"news_count";s:1:"4";s:11:"max_symdols";s:3:"200";s:10:"categories";a:3:{i:0;s:2:"64";i:1;s:2:"67";i:2;s:2:"69";}s:7:"display";s:6:"recent";}', '', '', 1428320393),
+(22, 'main_gallery', 'module', 'gallery', 'latest_fotos', 'a:2:{s:5:"limit";s:2:"15";s:5:"order";s:6:"latest";}', '', '', 1428425077),
+(35, 'lang_switcher', 'module', 'language_switch', 'language_switch_show', '', '', '', 1431017112),
+(36, 'page_related_posts', 'module', 'core', 'similar_posts', 'a:4:{s:11:"search_type";s:4:"tags";s:5:"limit";s:1:"8";s:19:"min_compare_symbols";s:11:"99999999999";s:27:"max_short_description_words";s:3:"300";}', '', '', 1434725468),
+(34, 'latest_comments', 'module', 'comments', 'recent_comments', 'a:2:{s:14:"comments_count";s:1:"4";s:13:"symbols_count";s:2:"50";}', '', '', 1430586517),
+(40, 'page_tag_cloud', 'module', 'tags', 'pages_tags_cloud', '', '', '', 1436347788);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `widget_i18n`
+-- Структура таблицы `widget_i18n`
 --
 
 DROP TABLE IF EXISTS `widget_i18n`;
@@ -3539,91 +6146,43 @@ CREATE TABLE IF NOT EXISTS `widget_i18n` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `widget_i18n`
+-- Дамп данных таблицы `widget_i18n`
 --
 
-INSERT INTO `widget_i18n` (`id`, `locale`, `data`) VALUES
-(10, 'ru', '<p>Адрес: Федерация Орион, 12.23.22.22.2233.3</p>\n<p>Телефон: 0 800 345-56-12</p>'),
-(15, 'ru', '<div class="frame-benefits">\n<div class="container">\n<ul class="items items-benefits">\n<li class="d_i-b">\n<div class="photo-block"><span class="helper">&nbsp;</span><img src="/uploads/images/benefits/benef1.jpg" alt="Предоставление сервиса" /></div>\n<h3>Предоставление сервиса</h3>\n<p>Если вы приобрели робота у нас, но срок гарантии вышел, мы предоставим сервис высшего уровня за некоторое маленькое вознаграждение.</p>\n</li>\n<li class="d_i-b">\n<div class="photo-block"><span class="helper">&nbsp;</span><img src="/uploads/images/benefits/benef2.jpg" alt="Нано технология" /></div>\n<h3>Нано технология</h3>\n<p>Диагностика проблемы и ремонт роботов проходит под средством нано техники от Image Robotics. Ее нельзя приобрети на свободном рынке, такие возможности есть только у нас.</p>\n</li>\n<li class="d_i-b">\n<div class="photo-block"><span class="helper">&nbsp;</span><img src="/uploads/images/benefits/benef3.jpg" alt="Предоставление сервиса" /></div>\n<h3>Диагностика</h3>\n<p>Диагностика любой проблемы занимает несколько секунд, а ремонт составляет не более десяти минут с момента обнаружения проблемы. Если на складе есть ресурсы.</p>\n</li>\n</ul>\n</div>\n</div>'),
-(17, 'ru', '<div class="d_i-b phones-header"><span>8 800 <span class="f-w_b">772-22-22</span></span>\n<p class="phones-info">бесплатно по Украине</p>\n</div>\n<div class="d_i-b phones-header phones-header-last"><span>097 <span class="f-w_b">772-22-22</span></span>\n<p class="phones-info">Мобильный телефон</p>\n</div>'),
-(18, 'ru', '<p>&copy; 2014 Image Robotics - лидер в производстве роботов</p>\n<p>Powered by <a href="http://www.imagecms.net/free-cms-corporate">ImageCMS Corporate</a></p>');
-
---
--- Структура таблиці `template_settings`
---
-
-DROP TABLE IF EXISTS `template_settings`;
-CREATE TABLE IF NOT EXISTS `template_settings` (
-`id` int(11) NOT NULL,
-  `component` varchar(255) NOT NULL,
-  `key` text,
-  `data` text
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
-
-DROP TABLE IF EXISTS `mod_sitemap_blocked_urls`;
-CREATE TABLE IF NOT EXISTS `mod_sitemap_blocked_urls` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `url` varchar(255) NOT NULL,
-  `robots_check` int(11) DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `mod_sitemap_changefreq`
---
-
-DROP TABLE IF EXISTS `mod_sitemap_changefreq`;
-CREATE TABLE IF NOT EXISTS `mod_sitemap_changefreq` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `main_page_changefreq` varchar(255) DEFAULT NULL,
-  `pages_changefreq` varchar(255) DEFAULT NULL,
-  `product_changefreq` varchar(255) DEFAULT NULL,
-  `categories_changefreq` varchar(255) DEFAULT NULL,
-  `products_categories_changefreq` varchar(255) DEFAULT NULL,
-  `products_sub_categories_changefreq` varchar(255) DEFAULT NULL,
-  `brands_changefreq` varchar(255) DEFAULT NULL,
-  `sub_categories_changefreq` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- Дамп данных таблицы `mod_sitemap_changefreq`
---
-
-INSERT INTO `mod_sitemap_changefreq` (`id`, `main_page_changefreq`, `pages_changefreq`, `product_changefreq`, `categories_changefreq`, `products_categories_changefreq`, `products_sub_categories_changefreq`, `brands_changefreq`, `sub_categories_changefreq`) VALUES
-(1, 'weekly', 'weekly', 'weekly', 'weekly', 'weekly', 'weekly', 'weekly', 'weekly');
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `mod_sitemap_priorities`
---
-
-DROP TABLE IF EXISTS `mod_sitemap_priorities`;
-CREATE TABLE IF NOT EXISTS `mod_sitemap_priorities` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `main_page_priority` float DEFAULT '1',
-  `cats_priority` float DEFAULT '1',
-  `pages_priority` float DEFAULT '1',
-  `sub_cats_priority` float DEFAULT '1',
-  `products_priority` float DEFAULT '1',
-  `products_categories_priority` float DEFAULT '1',
-  `products_sub_categories_priority` float DEFAULT '1',
-  `brands_priority` float DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- Дамп данных таблицы `mod_sitemap_priorities`
---
-
-INSERT INTO `mod_sitemap_priorities` (`id`, `main_page_priority`, `cats_priority`, `pages_priority`, `sub_cats_priority`, `products_priority`, `products_categories_priority`, `products_sub_categories_priority`, `brands_priority`) VALUES
-(1, 1, 0.8, 0.9, 0.7, 0.4, 0.6, 0.5, 0.3);
-
-
+INSERT INTO `widget_i18n` (`id`, `locale`, `title`, `data`) VALUES
+(10, 'ru', NULL, '<p>Адрес: Федерация Орион, 12.23.22.22.2233.3</p>\n<p>Телефон: 0 800 345-56-12</p>'),
+(15, 'ru', NULL, '<div class="frame-benefits">\n<div class="container">\n<ul class="items items-benefits">\n<li class="d_i-b">\n<div class="photo-block"><span class="helper">&nbsp;</span><img src="/uploads/images/benefits/benef1.jpg" alt="Предоставление сервиса" /></div>\n<h3>Предоставление сервиса</h3>\n<p>Если вы приобрели робота у нас, но срок гарантии вышел, мы предоставим сервис высшего уровня за некоторое маленькое вознаграждение.</p>\n</li>\n<li class="d_i-b">\n<div class="photo-block"><span class="helper">&nbsp;</span><img src="/uploads/images/benefits/benef2.jpg" alt="Нано технология" /></div>\n<h3>Нано технология</h3>\n<p>Диагностика проблемы и ремонт роботов проходит под средством нано техники от Image Robotics. Ее нельзя приобрети на свободном рынке, такие возможности есть только у нас.</p>\n</li>\n<li class="d_i-b">\n<div class="photo-block"><span class="helper">&nbsp;</span><img src="/uploads/images/benefits/benef3.jpg" alt="Предоставление сервиса" /></div>\n<h3>Диагностика</h3>\n<p>Диагностика любой проблемы занимает несколько секунд, а ремонт составляет не более десяти минут с момента обнаружения проблемы. Если на складе есть ресурсы.</p>\n</li>\n</ul>\n</div>\n</div>'),
+(17, 'ru', NULL, '<div class="d_i-b phones-header"><span>8 800 <span class="f-w_b">772-22-22</span></span>\n<p class="phones-info">бесплатно по Украине</p>\n</div>\n<div class="d_i-b phones-header phones-header-last"><span>097 <span class="f-w_b">772-22-22</span></span>\n<p class="phones-info">Мобильный телефон</p>\n</div>'),
+(18, 'ru', NULL, '<p>&copy; 2014 Image Robotics - лидер в производстве роботов</p>\n<p>Powered by <a href="http://www.imagecms.net/free-cms-corporate">ImageCMS Corporate</a></p>'),
+(19, 'ru', 'Логотип, слоган', '<p>Показать вашу услугу или<br />товар буквально просто</p>'),
+(20, 'ru', 'Последнее из блога', ''),
+(20, 'uk', 'Останнє з блогу', ''),
+(21, 'ru', 'test', ''),
+(22, 'ru', 'Галерея фотографий', ''),
+(22, 'uk', 'Галерея фотографій', ''),
+(23, 'ru', 'галерея2', ''),
+(24, 'ru', 'safasdf', ''),
+(25, 'ru', 'Информация о сайте 1', '<div style="text-align: left;">+38 097 57 25 818</div>\n<div style="text-align: left;">+38 097 57 25 818<br />\n<div style="text-align: left;">+38 097 57 25 818</div>\n</div>'),
+(26, 'ru', 'Информация о сайте 2', 'Адрес: г. Львов. ул. Антоныча, дом 12, квартира 53:<br />Пн-Сб 9:00-20:00<br />Вс выходной'),
+(27, 'ru', 'Клиенты о нас', ''),
+(27, 'uk', 'Клієнти про нас', ''),
+(28, 'ru', 'Хлебные крошки', ''),
+(29, 'ru', 'Популярные посты', ''),
+(29, 'uk', 'Популярні записи', ''),
+(30, 'ru', 'Теги', ''),
+(31, 'ru', 'Последние комментарии', ''),
+(32, 'ru', 'asdsad', ''),
+(33, 'ru', 'Хлебные крошки', ''),
+(34, 'ru', 'Последние комментарии', ''),
+(34, 'uk', 'Останні коментарі', ''),
+(35, 'ru', 'Выбор языка', ''),
+(36, 'ru', 'Похожие посты', ''),
+(36, 'uk', 'Схожі записи', ''),
+(37, 'ru', 'Облако тегов', ''),
+(38, 'ru', 'Облако тегов', ''),
+(39, 'ru', 'Теги', ''),
+(40, 'ru', 'Теги', ''),
+(40, 'uk', 'Теги', '');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

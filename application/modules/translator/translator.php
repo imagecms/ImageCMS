@@ -6,7 +6,7 @@ use translator\classes\PoFileManager as PoFileManager;
 
 /**
  * Image CMS
- * Translator Module 
+ * Translator Module
  */
 class Translator extends MY_Controller {
 
@@ -85,7 +85,7 @@ class Translator extends MY_Controller {
         }
 
         $pofilePathRu = str_replace('en_US', 'ru_RU', $pofilePath);
-        file_put_contents($pofilePath, implode("", $poFile));
+        file_put_contents($pofilePathRu, implode("", $poFile));
 
         foreach ($poFile as $key => $line) {
             if (strstr($line, 'msgstr') && $key > 5) {
@@ -109,8 +109,7 @@ class Translator extends MY_Controller {
     }
 
     private static function fetchApiTpl() {
-        $CI = & get_instance();
-        $obj = $this ? $this : $CI;
+        $obj = CI::$APP;
 
         if (!$obj->input->is_ajax_request() || $obj->input->get('_pjax')) {
             $translator = $obj->db->where('name', 'translator')->get('components');
@@ -158,7 +157,9 @@ class Translator extends MY_Controller {
             if ($poFileManager->update($po_Attributes['name'], $po_Attributes['type'], $po_Attributes['lang'], $data)) {
                 return json_encode(array('success' => TRUE, 'message' => lang('Successfully translated.', 'translator')));
             } else {
-                return json_encode(array('errors' => TRUE, 'message' => $poFileManager->getErrors()));
+                $errors = $poFileManager->getErrors();
+                $errors = $errors ? array_pop($errors) : '';
+                return json_encode(array('errors' => TRUE, 'message' => $errors));
             }
         } else {
             return json_encode(array('errors' => TRUE, 'message' => lang('Not valid translation file attributes.', 'translator')));
@@ -224,14 +225,14 @@ class Translator extends MY_Controller {
     }
 
     public function copyLangs(){
-        
+
         $it = new RecursiveDirectoryIterator("/var/www/_image.loc/");
-        
+
         foreach(new RecursiveIteratorIterator($it) as $file)
         {
             $file = (string)$file;
             $ext = end(explode('.', $file));
-            
+
             if(strstr($file, '/uk_UA/')){
                 if ($ext == 'po'){
                     $copyTo = str_replace('_image.loc', 'image.loc', $file);
@@ -246,13 +247,13 @@ class Translator extends MY_Controller {
                     mkdir($path);
                     chmod($path, 0777);
                    // var_dumps_exit($path);
-                    
+
                     //var_dumps($path);
                     unlink($copyTo);
                     copy($file, $copyTo);
                     chmod($copyTo, 0777);
-                }               
-            
+                }
+
 
                 if ($ext == 'mo'){
                     $copyTo = str_replace('_image.loc', 'image.loc', $file);
@@ -269,9 +270,9 @@ class Translator extends MY_Controller {
                     unlink($copyTo);
                     copy($file, $copyTo);
                     chmod($copyTo, 0777);
-                }    
+                }
             }
-            
+
         }
     }
 

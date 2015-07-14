@@ -124,6 +124,8 @@
 
                                     <div class="d_n">
                                         <p>{echo lang('Slide url. Search to find url to your site page or paste remote one.', 'xbanners')}</p>
+                                        <br>
+                                        <p>{echo lang('External url must be start with http(s)://', 'xbanners')}</p
                                     </div>
                                 </div>
                             </div>
@@ -171,6 +173,20 @@
                                     </div>
                                 </div>
                             {/if}
+
+                            <div class="control-group">
+                                <label class="control-label" for="Name">{lang('Description', 'xbanners')}:</label>
+
+                                <div class="controls">
+
+                                    <textarea name="image[description]" class="elRTE"></textarea>
+                                    <i class="icon-info-sign popover_ref" data-title="" data-original-title=""></i>
+
+                                    <div class="d_n">
+                                        <p>{echo lang('Slide description text.', 'xbanners')}</p>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="control-group">
                                 <div class="controls">
                                     <button type="button"

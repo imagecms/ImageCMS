@@ -62,7 +62,7 @@ class ImagesManager {
     private static $instance = NULL;
 
     private function __construct() {
-        
+
     }
 
     /**
@@ -70,7 +70,7 @@ class ImagesManager {
      * @return ImagesManager instance
      */
     public static function getInstance() {
-        if (is_null(self::$instance)) {
+        if (self::$instance === null) {
             self::$instance = new self();
         }
         return self::$instance;
@@ -124,10 +124,10 @@ class ImagesManager {
         }
 
         $images = BannerImageQuery::create()
-                ->_if(!is_null($locale))
-                ->joinWithI18n($locale)
-                ->_endif()
-                ->findPk($imageId);
+            ->_if($locale)
+            ->joinWithI18n($locale)
+            ->_endif()
+            ->findPk($imageId);
 
         if (!$images) {
             return FALSE;
@@ -188,8 +188,7 @@ class ImagesManager {
 
         if (!\CI::$APP->upload->do_upload(self::IMAGE_FILE_FIELD)) {
             throw new Exception(strip_tags(\CI::$APP->upload->display_errors()));
-        }
-        else {
+        } else {
             if ($imageId && $locale) {
                 $this->delete($imageId, $locale);
             }
@@ -219,13 +218,12 @@ class ImagesManager {
                 $pictureCut = \PictureCut::createSingleton();
 
                 if ($pictureCut->upload()) {
-                    print $pictureCut->toJson();
-                }
-                else {
-                    print $pictureCut->exceptionsToJson();
+                    echo $pictureCut->toJson();
+                } else {
+                    echo $pictureCut->exceptionsToJson();
                 }
             } catch (Exception $e) {
-                print $e->getMessage();
+                echo $e->getMessage();
             }
         }
     }
@@ -247,10 +245,12 @@ class ImagesManager {
         }
 
         if ($error_message) {
-            print  json_encode(array(
-                "status" => false,
-                "errorMessage" => $error_message,
-            ));
+            echo json_encode(
+                array(
+                    "status" => false,
+                    "errorMessage" => $error_message,
+                )
+            );
 
             return FALSE;
         }
@@ -272,7 +272,7 @@ class ImagesManager {
 
         $images = $banner->getBannerImages($orderCriteria);
 
-        if (is_null($pages) && count($images)) {
+        if ($pages === null && count($images)) {
             $pagesGroupName = lang('Images', 'xbanners');
             $resultImages[$pagesGroupName]['images'] = [];
 
@@ -328,14 +328,14 @@ class ImagesManager {
         $host = \CI::$APP->input->server('HTTP_HOST');
 
         $data['url'] = (false === strpos($data['url'], $host)) ? $data['url'] : preg_replace("/^(https?:\/\/)?$host\/?/i", '/', $data['url']);
-        $data['url'] = strstr($data['url'], 'http') || $data['url'][0] === '/' ? $data['url'] : '/' . $data['url'];
+        $data['url'] = strstr($data['url'], 'http') || $data['url'][0] === '/' ? $data['url'] : '' . $data['url'];
 
-        $data['allowed_page'] = !$data['allowed_page_all'] && $data['allowed_page'] ? (int)$data['allowed_page'] : 0;
+        $data['allowed_page'] = !$data['allowed_page_all'] && $data['allowed_page'] ? (int) $data['allowed_page'] : 0;
         $data['target'] = $data['target'] ? 1 : 0;
         $data['permanent'] = $data['permanent'] ? 1 : 0;
         $data['active'] = isset($data['active']) ? 1 : 0;
-        $data['active_from'] = $data['active_from'] & !$data['permanent'] ? strtotime($data['active_from']) : NULL;
-//        $data['active_from'] = $data['active_to'] && !$data['active_from'] ? time() : $data['active_from'];
+        $data['active_from'] = $data['active_from'] && !$data['permanent'] ? strtotime($data['active_from']) : NULL;
+        //        $data['active_from'] = $data['active_to'] && !$data['active_from'] ? time() : $data['active_from'];
         $data['active_to'] = $data['active_to'] & !$data['permanent'] ? strtotime($data['active_to']) : NULL;
 
         if (($data['active_from'] > $data['active_to'] && ($data['active_from'] && $data['active_to']))
@@ -343,11 +343,10 @@ class ImagesManager {
         ) {
             $data['active'] = 0;
         }
-
         $data['banner_id'] = $bannerId;
         $data['locale'] = $locale ? $locale : \MY_Controller::defaultLocale();
         $data['src'] = $data['src'] ? $data['src'] : NULL;
-        $data['clicks'] = $data['clicks'] ? (int)$data['clicks'] : 0;
+        $data['clicks'] = $data['clicks'] ? (int) $data['clicks'] : 0;
 
         return $data;
     }
@@ -357,9 +356,9 @@ class ImagesManager {
      */
     public function setInactiveOnTimeOut() {
         return BannerImageQuery::create()
-                        ->filterByActive(1)
-                        ->where('BannerImage.ActiveTo < ?', time())
-                        ->update(['Active' => 0]);
+            ->filterByActive(1)
+            ->where('BannerImage.ActiveTo < ?', time())
+            ->update(['Active' => 0]);
     }
 
 }

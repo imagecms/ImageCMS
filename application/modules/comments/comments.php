@@ -18,6 +18,7 @@ class Comments extends MY_Controller {
     public $use_captcha = FALSE;  // Possible values TRUE/FALSE;
     public $cache_ttl = 86400;
     public $module = 'core';
+    public $order_by = 'date.desc';
     public $comment_controller = 'comments/add';
     public $tpl_name = 'comments'; // Use comments.tpl
     public $use_moderation = TRUE;
@@ -40,10 +41,10 @@ class Comments extends MY_Controller {
             $comments = (array_merge($result, $comments));
         }
         \CMSFactory\assetManager::create()
-                //                ->registerScript('comments')
-                //                ->registerStyle('comments')
-                ->setData($comments)
-                ->render('comments', TRUE);
+            //                ->registerScript('comments')
+            //                ->registerStyle('comments')
+            ->setData($comments)
+            ->render('comments', TRUE);
     }
 
     public function addPost() {
@@ -87,13 +88,13 @@ class Comments extends MY_Controller {
         }
 
         $array = $CI->db
-                ->select('item_id')
-                ->join('shop_products', 'comments.item_id=shop_products.id')
-                ->where_in('shop_products.category_id', $ids)
-                ->where('module', 'shop')
-                ->group_by('item_id')
-                ->get('comments')
-                ->result_array();
+            ->select('item_id')
+            ->join('shop_products', 'comments.item_id=shop_products.id')
+            ->where_in('shop_products.category_id', $ids)
+            ->where('module', 'shop')
+            ->group_by('item_id')
+            ->get('comments')
+            ->result_array();
 
         $ids = array();
         foreach ($array as $key => $a) {
@@ -126,14 +127,14 @@ class Comments extends MY_Controller {
 
     public function init($model) {
         \CMSFactory\assetManager::create()
-                ->registerScript('comments', TRUE);
+            ->registerScript('comments', TRUE);
 
         if ($model instanceof SProducts) {
             $productsCount = $this->load->module('comments/commentsapi')->getTotalCommentsForProducts($model->getId());
         } else {
             $ids = array();
             if ($this->core->core_data['module'] != 'shop') {
-                foreach ((array) $model as $key => $id) {
+                foreach ((array)$model as $key => $id) {
                     if (is_array($id)) {
                         $ids[$key] = $id[id];
                     } else {
@@ -196,7 +197,7 @@ class Comments extends MY_Controller {
         //            // Comments fetched from cahce file
         //        } else {
         $this->db->where('module', $this->module);
-        $comments = $this->base->get($item_id);
+        $comments = $this->base->get($item_id, 0, $this->module, $_POST['countcomment'], $this->order_by);
 
         // Read comments template
         // Set page id for comments form
@@ -255,9 +256,9 @@ class Comments extends MY_Controller {
         //$this->render('comments_list', array('comments'=>$comments));
 
         $this->template->add_array(
-                array(
-                    'comments' => $comments,
-                )
+            array(
+                'comments' => $comments,
+            )
         );
     }
 
@@ -522,7 +523,7 @@ class Comments extends MY_Controller {
 
     public function setyes($id = false) {
         $like = false;
-        $comid = $this->input->post('comid') ? : $id;
+        $comid = $this->input->post('comid') ?: $id;
         if ($this->session->userdata('commentl' . $comid) != 1) {
             $like = $this->load->model('base')->setYes($comid);
             $this->session->set_userdata('commentl' . $comid, 1);
@@ -536,7 +537,7 @@ class Comments extends MY_Controller {
 
     public function setno($id = false) {
         $disslike = false;
-        $comid = $this->input->post('comid') ? : $id;
+        $comid = $this->input->post('comid') ?: $id;
         if ($this->session->userdata('commentl' . $comid) != 1) {
             $disslike = $this->load->model('base')->setNo($comid);
             $this->session->set_userdata('commentl' . $comid, 1);

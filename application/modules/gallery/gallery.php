@@ -176,11 +176,11 @@ class Gallery extends MY_Controller {
 
             \CMSFactory\assetManager::create()
                 ->setData($data)
-                ->registerStyle('jquery.fancybox-1.3.4', FAlSE)
+                // ->registerStyle('jquery.fancybox-1.3.4', FAlSE)
                 ->registerStyle('style', FAlSE)
-                ->registerScript('jquery.fancybox-1.3.4.pack', TRUE)
-                ->registerScript('jquery.easing-1.3.pack', TRUE)
-                ->registerScript('jquery.mousewheel-3.0.4.pack', TRUE)
+                // ->registerScript('jquery.fancybox-1.3.4.pack', TRUE)
+                // ->registerScript('jquery.easing-1.3.pack', TRUE)
+                // ->registerScript('jquery.mousewheel-3.0.4.pack', TRUE)
                 ->render($album['tpl_file'] ? : 'album');
     }
 
@@ -197,15 +197,15 @@ class Gallery extends MY_Controller {
         }
         $this->load->library('Pagination');
         $this->pagination = new \CI_Pagination();
-        $galleryThumbnailsPagination['uri_segment'] = 4;
-        $galleryThumbnailsPagination['base_url'] = site_url('gallery/thumbnails/' . $id);
-        $galleryThumbnailsPagination['page_query_string'] = false;
-        $galleryThumbnailsPagination['total_rows'] = ceil($album[count] / 15);
-        $galleryThumbnailsPagination['last_link'] = ceil($album[count] / 15);
-        $galleryThumbnailsPagination['per_page'] = 1;
+        $paginationConfig['uri_segment'] = 4;
+        $paginationConfig['base_url'] = site_url('gallery/thumbnails/' . $id);
+        $paginationConfig['page_query_string'] = false;
+        $paginationConfig['total_rows'] = ceil($album[count] / 15);
+        $paginationConfig['last_link'] = ceil($album[count] / 15);
+        $paginationConfig['per_page'] = 1;
         include_once "./templates/{$this->config->item('template')}/paginations.php";
 
-        $this->pagination->initialize($galleryThumbnailsPagination);
+        $this->pagination->initialize($paginationConfig);
 
         $data = array(
             'album' => $album,
@@ -273,14 +273,6 @@ class Gallery extends MY_Controller {
             exit;
         }
         $this->load->model('install')->deinstall();
-    }
-
-    /**
-     * Fetch template file
-     */
-    private function fetch_tpl($file = '') {
-        $file = realpath(dirname(__FILE__)) . '/templates/public/' . $file . '.tpl';
-        return $this->template->fetch('file:' . $file);
     }
 
 }

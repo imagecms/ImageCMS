@@ -54,6 +54,9 @@
         </div>
     </div>
     <form method="post" action="{$BASE_URL}admin/pages/update/{$update_page_id}/{$page_lang}" id="edit_page_form" class="form-horizontal" data-pageid="{$update_page_id}">
+        <input type="hidden" name="lang_id" value="{echo $page_lang}">
+        <input type="hidden" name="lang_alias" value="{echo $pageExists}">
+        <input type="hidden" name="pageExists" value="{echo $pageExists}">
         <div class="tab-content">
             <div class="tab-pane active" id="content_article">
                 <table class="table  table-bordered table-hover table-condensed content_big_td">

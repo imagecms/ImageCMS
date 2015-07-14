@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 use Propel\Runtime\Propel;
 use Propel\Runtime\Connection\ConnectionManagerSingle;
@@ -106,7 +107,7 @@ class Lib_init {
             return false;
         }
 
-        // Something went bad during installation in past. Both of this variables 
+        // Something went bad during installation in past. Both of this variables
         // should be either true (not installed) or false (install was complete)
         if ($isNotInstalledInConfig && !$installControllerExists) {
             show_error('Something went wrong during installation... It could be repaired only mannually.');
@@ -138,14 +139,16 @@ class Lib_init {
         $serviceContainer->setAdapterClass('Shop', 'mysql');
         $manager = new ConnectionManagerSingle();
 
-        $manager->setConfiguration(array(
-            'dsn' => 'mysql:host=' . $this->CI->db->hostname . ';dbname=' . $this->CI->db->database,
-            'user' => $this->CI->db->username,
-            'password' => $this->CI->db->password,
-            'settings' => array(
-                'charset' => 'utf8'
-            ),
-        ));
+        $manager->setConfiguration(
+                array(
+                    'dsn' => 'mysql:host=' . $this->CI->db->hostname . ';dbname=' . $this->CI->db->database,
+                    'user' => $this->CI->db->username,
+                    'password' => $this->CI->db->password,
+                    'settings' => array(
+                        'charset' => 'utf8'
+                    ),
+                )
+        );
 
         $serviceContainer->setConnectionManager('Shop', $manager);
 
@@ -153,32 +156,32 @@ class Lib_init {
 
         //
         //----------MONOLOG-----------------------------------------------------
-//        $con = Propel::getWriteConnection('Shop');
-//            if (ENVIRONMENT != 'production') {
-//                $con->useDebug(true);
-//                $logger = new Logger('defaultLogger');
-//                $logger->pushHandler(new StreamHandler(APPPATH . 'logs/propel.log'));
-//                $serviceContainer->setLogger('defaultLogger', $logger);
-//            }
+        //        $con = Propel::getWriteConnection('Shop');
+        //            if (ENVIRONMENT != 'production') {
+        //                $con->useDebug(true);
+        //                $logger = new Logger('defaultLogger');
+        //                $logger->pushHandler(new StreamHandler(APPPATH . 'logs/propel.log'));
+        //                $serviceContainer->setLogger('defaultLogger', $logger);
+        //            }
         //----------MONOLOG-----------------------------------------------------
     }
 
     private function bootstrapInitAutoloading() {
 
-        require_once APPPATH . 'libraries' . DIRECTORY_SEPARATOR . 'ClassLoader.php';
+        include_once APPPATH . 'libraries' . DIRECTORY_SEPARATOR . 'ClassLoader.php';
         ClassLoader::getInstance()
                 ->registerNamespacedPath(APPPATH);
 
         /**
-         * @todo Code is from Codeigniter 3 Dev... On updating to 3 version 
-         * this functionallity will be present in framework, so this shoud 
-         * be deleted. 
+         * @todo Code is from Codeigniter 3 Dev... On updating to 3 version
+         * this functionallity will be present in framework, so this shoud
+         * be deleted.
          */
         if ($composer_autoload = $this->CI->config->item('composer_autoload')) {
             if ($composer_autoload === TRUE && file_exists(APPPATH . 'vendor/autoload.php')) {
-                require_once(APPPATH . 'vendor/autoload.php');
+                include_once APPPATH . 'vendor/autoload.php';
             } elseif (file_exists($composer_autoload)) {
-                require_once($composer_autoload);
+                include_once $composer_autoload;
             }
         }
 

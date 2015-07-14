@@ -24,7 +24,6 @@ if (!defined('BASEPATH')) {
  * @property Languages $languages
  * @property Login $login
  * @property Mod_search $mod_search
- * @property Mod_search $mod_search
  * @property Pages $pages
  * @property Rbac $rbac
  * @property Settings $settings

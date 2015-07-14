@@ -497,6 +497,11 @@ abstract class BaseEvents {
         return $this;
     }
 
+    final public function onShopCallback() {
+        $this->key = 'Shop:callback';
+        return $this;
+    }
+
     final public function onAuthUserRegister() {
         $this->key = 'AuthUser:register';
         return $this;
@@ -564,6 +569,11 @@ abstract class BaseEvents {
 
     final public function onPaimentSystemSuccessPaid() {
         $this->key = 'PaimentSystem:successPaid';
+        return $this;
+    }
+
+    final public function onNotifyingRequest() {
+        $this->key = 'Shop:notifyingRequest';
         return $this;
     }
 
