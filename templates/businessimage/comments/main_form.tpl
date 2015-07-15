@@ -60,7 +60,7 @@
         <div class="b-star-rating__wrap">
           {for $i = 5; $i > 0; $i--}
           <input class="b-star-rating__input" id="star-rating-{$i}" type="radio" name="ratec" value="{$i}" {if $i == $old_ratec} checked{/if}>
-          <label class="b-star-rating__ico fa fa-star-o fa-lg" for="star-rating-{$i}" title="{tlang($i .' out of 5 stars')}"></label>
+          <label class="b-star-rating__ico fa fa-star-o fa-lg" for="star-rating-{$i}" title="{$i . tlang(' out of 5 stars')}"></label>
           {/for}
         </div>
       </div>

@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-08 09:38+0300\n"
-"PO-Revision-Date: 2015-07-08 09:38+0300\n"
+"POT-Creation-Date: 2015-07-15 12:43+0300\n"
+"PO-Revision-Date: 2015-07-15 12:43+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -17,6 +17,56 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: templates/businessimage/comments/main_form.tpl:28
+#: templates/businessimage/comments/main_form.tpl:30
+#: templates/businessimage/comments/main_form.tpl:35
+#: templates/businessimage/feedback/feedback.tpl:19
+#: templates/businessimage/register.tpl:28
+msgid "Name"
+msgstr "Имя"
+
+#: templates/businessimage/comments/main_form.tpl:45
+#: templates/businessimage/comments/main_form.tpl:47
+#: templates/businessimage/feedback/feedback.tpl:28
+#: templates/businessimage/forgot_password.tpl:25
+#: templates/businessimage/login.tpl:19
+#: templates/businessimage/register.tpl:19
+msgid "E-mail"
+msgstr "Электронная почта"
+
+#: templates/businessimage/comments/main_form.tpl:57
+msgid "Rating"
+msgstr "Рейтинг"
+
+#: templates/businessimage/comments/main_form.tpl:73
+msgid "Review"
+msgstr "Отзыв"
+
+#: templates/businessimage/comments/main_form.tpl:83
+#: templates/businessimage/feedback/feedback.tpl:56
+#: templates/businessimage/forgot_password.tpl:36
+#: templates/businessimage/login.tpl:38
+#: templates/businessimage/register.tpl:56
+msgid "Security code"
+msgstr "Защитный код"
+
+#: templates/businessimage/feedback/feedback.tpl:37
+msgid "Subject"
+msgstr "Тема"
+
+#: templates/businessimage/feedback/feedback.tpl:46
+msgid "Message"
+msgstr "Сообщение"
+
+#: templates/businessimage/login.tpl:28
+#: templates/businessimage/register.tpl:37
+msgid "Password"
+msgstr "Пароль"
+
+#: templates/businessimage/register.tpl:46
+msgid "Reenter password"
+msgstr "Повторите пароль"
 
 #: templates/businessimage/comments/comments.tpl:3
 msgid "Comments"
@@ -42,14 +92,6 @@ msgstr "Ваш комментарий был успешно опубликова
 msgid "Your comment will be published after moderation "
 msgstr "Ваш комментарий будет опубликован после модерации"
 
-#: templates/businessimage/comments/main_form.tpl:57
-msgid "Rating:"
-msgstr "Рейтинг"
-
-#: templates/businessimage/comments/main_form.tpl:73
-msgid "Review:"
-msgstr "Отзыв"
-
 #: templates/businessimage/comments/main_form.tpl:75
 msgid "Your review"
 msgstr "Текст отзыва"
@@ -63,17 +105,13 @@ msgid "Company"
 msgstr "Компания"
 
 #: templates/businessimage/widgets/main_banner.tpl:21
-#: templates/businessimage/widgets/main_page.tpl:14
+#: templates/businessimage/widgets/main_page.tpl:18
 msgid "Read more"
 msgstr "Подробнее"
 
 #: templates/businessimage/widgets/main_footer.tpl:48
 msgid "Contacts"
 msgstr "Контакты"
-
-#: templates/businessimage/login.tpl:23
-msgid "Enter your email address"
-msgstr "Введите e-mail"
 
 #: templates/businessimage/widgets/main_footer.tpl:102
 msgid "ImageCMS"
@@ -88,14 +126,6 @@ msgstr "Обратная связь"
 msgid "Your message has been sent"
 msgstr "Ваше сообщение успешно отправлено! Мы обязательно свяжемся с Вами в ближайшее время."
 
-#: templates/businessimage/feedback/feedback.tpl:37
-msgid "Subject:"
-msgstr "Тема:"
-
-#: templates/businessimage/feedback/feedback.tpl:46
-msgid "Message:"
-msgstr "Сообщение:"
-
 #: templates/businessimage/comments/main_form.tpl:97
 #: templates/businessimage/feedback/feedback.tpl:70
 msgid "Send"
@@ -109,11 +139,11 @@ msgstr "Зарегистрироваться"
 msgid "Request new password"
 msgstr "Восстановление пароля"
 
-#: templates/businessimage/forgot_password.tpl:45
+#: templates/businessimage/forgot_password.tpl:50
 msgid "Send request"
 msgstr "Продолжить"
 
-#: templates/businessimage/login.tpl:54
+#: templates/businessimage/login.tpl:52
 msgid "Log in"
 msgstr "Войти"
 
@@ -126,8 +156,8 @@ msgid "Sorry, the page you’re looking for doesn’t exist!"
 msgstr "К сожалению, страница, которую вы ищите, не существует!"
 
 #: templates/businessimage/category.tpl:26
-#: templates/businessimage/category_blog.tpl:44
-#: templates/businessimage/gallery/album.tpl:50
+#: templates/businessimage/category_blog.tpl:43
+#: templates/businessimage/gallery/album.tpl:57
 #: templates/businessimage/gallery/index.tpl:57
 msgid "There are no items to display. Please come back later!"
 msgstr "К сожалению, на странице нет записей."
@@ -136,37 +166,20 @@ msgstr "К сожалению, на странице нет записей."
 msgid "Password retrieval"
 msgstr "Восстановление пароля"
 
-#: templates/businessimage/comments/main_form.tpl:45
-#: templates/businessimage/comments/main_form.tpl:47
-#: templates/businessimage/feedback/feedback.tpl:28
-#: templates/businessimage/forgot_password.tpl:20
-#: templates/businessimage/login.tpl:19
-#: templates/businessimage/register.tpl:19
-msgid "E-mail:"
-msgstr "Эл. почта:"
-
-#: templates/businessimage/forgot_password.tpl:27
+#: templates/businessimage/forgot_password.tpl:32
 msgid "Please enter the e-mail associated with your account."
 msgstr "Укажите электронную почту, для которой вы хотите восстановить пароль."
 
-#: templates/businessimage/comments/main_form.tpl:83
-#: templates/businessimage/feedback/feedback.tpl:56
-#: templates/businessimage/forgot_password.tpl:31
-#: templates/businessimage/login.tpl:40
-#: templates/businessimage/register.tpl:56
-msgid "Security code:"
-msgstr "Защитный код:"
-
 #: templates/businessimage/comments/comments.tpl:17
-#: templates/businessimage/forgot_password.tpl:47
+#: templates/businessimage/forgot_password.tpl:52
 #: templates/businessimage/login.tpl:3
 #: templates/businessimage/register.tpl:73
 #: templates/businessimage/widgets/main_profile.tpl:5
 msgid "Sign in"
 msgstr "Вход"
 
-#: templates/businessimage/forgot_password.tpl:48
-#: templates/businessimage/login.tpl:57
+#: templates/businessimage/forgot_password.tpl:53
+#: templates/businessimage/login.tpl:55
 #: templates/businessimage/register.tpl:3
 #: templates/businessimage/widgets/main_profile.tpl:9
 msgid "Create Account"
@@ -176,20 +189,15 @@ msgstr "Регистрация"
 msgid "Gallery"
 msgstr "Галерея"
 
-#: templates/businessimage/login.tpl:30
-#: templates/businessimage/register.tpl:37
-msgid "Password:"
-msgstr "Пароль:"
-
 #: templates/businessimage/comments/main_form.tpl:87
 #: templates/businessimage/feedback/feedback.tpl:60
-#: templates/businessimage/forgot_password.tpl:35
-#: templates/businessimage/login.tpl:44
+#: templates/businessimage/forgot_password.tpl:40
+#: templates/businessimage/login.tpl:42
 #: templates/businessimage/register.tpl:60
 msgid "Type the characters you see in this image."
 msgstr "Введите символы с картинки."
 
-#: templates/businessimage/login.tpl:56
+#: templates/businessimage/login.tpl:54
 #: templates/businessimage/register.tpl:72
 msgid "Forgot password?"
 msgstr "Забыли пароль?"
@@ -202,18 +210,6 @@ msgstr "Не было найдено шаблона меню"
 #: templates/businessimage/offline.tpl:1
 msgid "This website is offline"
 msgstr "На данный момент сайт находится на реконструкции. После завершения всех работ сайт снова будет открыт. Приносим свои извинения за предоставленные неудобства!"
-
-#: templates/businessimage/comments/main_form.tpl:28
-#: templates/businessimage/comments/main_form.tpl:30
-#: templates/businessimage/comments/main_form.tpl:35
-#: templates/businessimage/feedback/feedback.tpl:19
-#: templates/businessimage/register.tpl:28
-msgid "Name:"
-msgstr "Имя:"
-
-#: templates/businessimage/register.tpl:46
-msgid "Reenter password:"
-msgstr "Повторите пароль:"
 
 #: templates/businessimage/register_success.tpl:3
 msgid "Thank You for Registration!"

@@ -6184,6 +6184,32 @@ INSERT INTO `widget_i18n` (`id`, `locale`, `title`, `data`) VALUES
 (40, 'ru', 'Теги', ''),
 (40, 'uk', 'Теги', '');
 
+
+--
+-- Структура таблицы `mod_sitemap_priorities`
+--
+
+DROP TABLE IF EXISTS `mod_sitemap_priorities`;
+CREATE TABLE IF NOT EXISTS `mod_sitemap_priorities` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `main_page_priority` float DEFAULT '1',
+  `cats_priority` float DEFAULT '1',
+  `pages_priority` float DEFAULT '1',
+  `sub_cats_priority` float DEFAULT '1',
+  `products_priority` float DEFAULT '1',
+  `products_categories_priority` float DEFAULT '1',
+  `products_sub_categories_priority` float DEFAULT '1',
+  `brands_priority` float DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Дамп данных таблицы `mod_sitemap_priorities`
+--
+
+INSERT INTO `mod_sitemap_priorities` (`id`, `main_page_priority`, `cats_priority`, `pages_priority`, `sub_cats_priority`, `products_priority`, `products_categories_priority`, `products_sub_categories_priority`, `brands_priority`) VALUES
+(1, 1, 0.8, 0.9, 0.7, 0.4, 0.6, 0.5, 0.3);
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

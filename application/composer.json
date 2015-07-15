@@ -18,9 +18,7 @@
         "patchwork/jsqueeze": "~2.0",
         "tecnick.com/tcpdf": ">=6",
         "google/apiclient": ">=1.1.2",
-        "retailcrm/api-client-php": ">=3.0",
-        "greenlion/php-sql-parser": ">=4.0",
-        "sonata-project/cache": ">1.0"
+        "greenlion/php-sql-parser": ">=4.0"
     },
     "require-dev": {
         "eventviva/php-image-resize": ">=1.4",
@@ -30,6 +28,8 @@
         "phpunit/phpunit": ">=4.6.6",
         "phpunit/phpunit-skeleton-generator": ">=2.0.1",
         "halleck45/phpmetrics": ">=1.1.1",
-        "fzaninotto/faker": "^1.5"
+        "fzaninotto/faker": "^1.5",
+        "retailcrm/api-client-php": ">=3.0",
+        "sensiolabs/insight": ">=1.1"
     }
 }

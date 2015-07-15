@@ -43,9 +43,9 @@
 .b-siteinfo{
 	font-size: 0;
 }
-.b-siteinfo__item {	
+.b-siteinfo__item {
 	display: inline-block;
-	margin-left: 30px;	
+	margin-left: 30px;
 	position: relative;
 	font-size: 13px;
 	vertical-align: middle;
@@ -148,7 +148,7 @@
 .b-menu__item{
 	position: relative;
 	display: inline-block;
-	margin: 8px 0 8px 30px;	
+	margin: 8px 0 8px 30px;
 	font-size: 14px;
 	text-align: left;
 	vertical-align: top;
@@ -180,7 +180,7 @@
 	.b-menu__item{
 		display: block;
 		margin: 0;
-		border-top: 1px solid #e4e4e4;	
+		border-top: 1px solid #e4e4e4;
 	}
 	.b-menu__item_arrow:after{
 		content: '\f105';
@@ -199,9 +199,9 @@
 .b-menu__link{
 	position: relative;
 	display: inline-block;
-	vertical-align: top;	
+	vertical-align: top;
 	font-weight: bold;
-	text-decoration: none;	
+	text-decoration: none;
 	color: #000;
 }
 .b-menu__link:hover{
@@ -250,7 +250,6 @@
 .b-submenu{
 	border: 1px solid #e4e4e4;
 	background: #fff;
-	font-size: 13px;
 }
 /* S */
 @media(max-width:768px){
@@ -288,7 +287,7 @@
 
 .b-submenu__link{
 	display: block;
-	padding: 5px 20px;
+	padding: 10px 20px;
 	white-space: nowrap;
 	text-decoration: none;
 	color: #000;
@@ -310,7 +309,7 @@
 
 .b-submenu__submenu{
 	display: none;
-	position: absolute;	
+	position: absolute;
 	top: -1px;
 	left: 100%;
 }
@@ -413,13 +412,17 @@
 		background-color: transparent;
 		background-color: rgba(0,0,0,0);
 	}
+	.b-banner-main__button:hover{
+		background-color: transparent;
+		background-color: rgba(0,0,0,0);
+	}
 }
 
 .b-banner-main__prev,
 .b-banner-main__next{
 	position: absolute;
 	top: 45%;
-	display: block;	
+	display: block;
 }
 .b-banner-main__prev{
 	left: 5%;
@@ -439,7 +442,7 @@
 .b-banner-main .slick-dots li{
 	position: relative;
 	display: inline-block;
-	margin: 0 3px;	
+	margin: 0 3px;
 }
 .b-banner-main .slick-dots button{
 	font-size: 0;
@@ -472,17 +475,17 @@
 .b-dashboard{
 
 }
-.b-dashboard__item{	
+.b-dashboard__item{
 	margin-bottom: 50px;
 }
 .b-dashboard__item:after{
 	content: "";
 	display: table;
-	clear: both;	
+	clear: both;
 }
 .b-dashboard__ico{
 	float: left;
-	margin-right: 20px;	
+	margin-right: 20px;
 }
 .b-dashboard__info{
 	overflow: hidden;
@@ -554,7 +557,7 @@
 .b-gallery-w:after{
 	content: "";
 	display: table;
-	clear: both;	
+	clear: both;
 }
 .b-gallery-w__item{
 	position: relative;
@@ -581,7 +584,7 @@
 }
 .b-gallery-w__zoom{
 	display: none;
-	position: absolute;	
+	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -671,7 +674,7 @@
 	display: block;
 	margin-bottom: 5px;
 	font-size: 11px;
-	text-transform: uppercase;	
+	text-transform: uppercase;
 	color: #999;
 }
 .b-blog-w__title{
@@ -695,7 +698,7 @@
 	text-align: center;
 }
 
-.b-partner-w__item{	
+.b-partner-w__item{
 	margin: 0 20px 0 20px;
 }
 
@@ -793,7 +796,7 @@
 .b-socgroups:after{
 	content: "";
 	display: table;
-	clear: both;	
+	clear: both;
 }
 .b-socgroups__item{
 	float: left;
@@ -852,7 +855,7 @@
 
 /****** b-userbar BEGIN ******/
 .b-userbar{
-	font-size: 0;	
+	font-size: 0;
 }
 .b-userbar__item{
 	display: inline-block;
@@ -960,7 +963,7 @@
 .b-content__item-title{
 	font-size: 1.7em;
 	margin-bottom: 0.6em;
-	line-height: 1.2;	
+	line-height: 1.2;
 }
 
 .b-content__item-title-link{
@@ -1048,7 +1051,7 @@
 .b-tags:after{
 	content: "";
 	display: table;
-	clear: both;	
+	clear: both;
 }
 .b-tags__item{
 	float: left;
@@ -1180,7 +1183,7 @@
 /***** Comments BEGIN *****/
 /*********************************************/
 .b-comments{
-	
+
 }
 .b-comments__message_info{
 	margin-bottom: 1.5em;
@@ -1277,13 +1280,13 @@
 .b-star-rating__wrap:after{
 	content: "";
 	display: table;
-	clear: both;	
+	clear: both;
 }
 .b-star-rating__ico{
 	float: right;
 	padding-left: 2px;
 	cursor: pointer;
-	color: #FFB300;	
+	color: #FFB300;
 }
 .b-star-rating__ico:last-child{
 	padding-left: 0;
@@ -1294,7 +1297,7 @@
 .b-star-rating__ico:hover:before,
 .b-star-rating__ico:hover ~ .b-star-rating__ico:before,
 .b-star-rating__input:checked ~ .b-star-rating__ico:before
-{	
+{
 	content: "\f005";
 }
 /*********************************************/
@@ -1369,7 +1372,7 @@
 
 .b-gallery__photo{
 	position: relative;
-	margin-bottom: 4em;	
+	margin-bottom: 4em;
 }
 /* XS */
 @media(max-width:480px){
@@ -1404,7 +1407,7 @@
 
 .b-gallery__zoom{
 	display: none;
-	position: absolute;	
+	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -1478,7 +1481,7 @@
 	background: rgba(0,0,0,0.7);
 }
 .fancybox-nav span{
-	font-size: 3em;	
+	font-size: 3em;
 	margin-top: -1em;
 	display: block;
 }

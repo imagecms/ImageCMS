@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-09 02:32+0300\n"
-"PO-Revision-Date: 2015-07-09 02:32+0300\n"
+"POT-Creation-Date: 2015-07-15 12:36+0300\n"
+"PO-Revision-Date: 2015-07-15 12:36+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -33,7 +33,7 @@ msgstr ""
 
 #: application/modules/shop/classes/Cart/BaseOrder.php:186
 msgid "Cannot create order with price less than |currencySymbol| |minPrice|"
-msgstr "Не возможно создать заказ с ценой менее |currencySymbol| |minPrice|"
+msgstr "Невозможно создать заказ со стоимостью товаров меньше |minPrice| |currencySymbol|"
 
 #: application/modules/shop/classes/CustomFieldsHelper.php:59
 msgid "Select file"

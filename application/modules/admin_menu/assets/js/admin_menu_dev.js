@@ -237,7 +237,7 @@ $(function () {
             editMenuItem: {
                 name: lang('Edit menu item'),
                 callback: function (key, options) {
-                    $('.modal').modal('show');
+                    $('.modal_edit_menu_item').modal('show');
                     $('#workPlace .editing').removeClass();
                     $(this).addClass('editing');
                     var itemData = AdminMenu.getData(this);

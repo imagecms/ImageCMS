@@ -3,13 +3,13 @@
 	<div class="b-header__line">
 		<div class="g-container">
 			<div class="g-row g-row_valign-mid">
-				<div class="g-col-2">
+				<div class="g-col-2 g-col-6_xs">
 
 					<!-- Lang switcher widget -->
 					{widget('lang_switcher')}
 
 				</div>
-				<div class="g-col-10 g-col_align-right">
+				<div class="g-col-10 g-col-6_xs g-col_align-right">
 					
 					<!-- Site info -->
 					{include_tpl('main_siteinfo')}
