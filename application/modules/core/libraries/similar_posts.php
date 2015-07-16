@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Class Similar_Posts
@@ -95,9 +96,12 @@ class Similar_Posts {
 
         $titleParts = array_map('trim', $titleParts);
 
-        $titleParts = array_filter($titleParts, function ($part) {
-            return mb_strlen($part) >= $this->settings['min_compare_symbols'];
-        });
+        $titleParts = array_filter(
+            $titleParts,
+            function ($part) {
+                return mb_strlen($part) >= $this->settings['min_compare_symbols'];
+            }
+        );
 
         return $titleParts;
     }
@@ -116,7 +120,8 @@ class Similar_Posts {
                 JOIN content_tags  AS page_tags
                 ON page_tags.page_id = page.id
                 WHERE tag_id IN (SELECT tag_id FROM content_tags WHERE page_id = " . $this->pageId . ")  AND `page`.`post_status`='publish'
-                AND page.id != " . $this->pageId;
+                AND page.id != " . $this->pageId
+                . " AND page.lang = " .CI::$APP->config->item('cur_lang');
 
         if (!in_array('all', $this->settings['categories'])) {
             $query .= ' AND page.category IN (' . implode(',', $this->settings['categories']) . ')';
@@ -150,14 +155,20 @@ class Similar_Posts {
             }
         }
 
-        usort($results, function ($a, $b) {
-            return $a["count"] < $b["count"];
-        });
+        usort(
+            $results,
+            function ($a, $b) {
+                return $a["count"] < $b["count"];
+            }
+        );
 
         $pages = [];
-        array_walk($results, function ($item) use (&$pages) {
-            $pages[] = $item['page'];
-        });
+        array_walk(
+            $results,
+            function ($item) use (&$pages) {
+                $pages[] = $item['page'];
+            }
+        );
 
         return $pages;
     }

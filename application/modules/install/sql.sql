@@ -6217,6 +6217,15 @@ INSERT INTO `widget_i18n` (`id`, `locale`, `title`, `data`) VALUES
 (40, 'uk', 'Теги', '');
 
 
+
+DROP TABLE IF EXISTS `mod_sitemap_blocked_urls`;
+CREATE TABLE IF NOT EXISTS `mod_sitemap_blocked_urls` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `url` varchar(255) NOT NULL,
+  `robots_check` int(11) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+
 --
 -- Структура таблицы `mod_sitemap_changefreq`
 --
