@@ -49,3 +49,4 @@ exclude_paths:
 - application/cms_bridge.php
 - tests/**
 - hooks/**
+- application/libraries/elfinder/**
