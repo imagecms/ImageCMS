@@ -47,3 +47,5 @@ exclude_paths:
 - system/**
 - third_party/**
 - application/cms_bridge.php
+- tests/**
+- hooks/**
