@@ -57,7 +57,7 @@
                             {form_csrf()}
 
                             <label>
-                                <input type="text" name="login" value="{if $_POST['login']}{echo $_POST['login']}{/if}" placeholder="{lang("E-mail", "admin")}"/>{$login_error}
+                                <input type="text" name="login" value="{if $_POST.login}{echo $_POST.login}{/if}" placeholder="{lang("E-mail", "admin")}"/>{$login_error}
                             </label>
                             <label>
                                 <input type="password" name="password" placeholder="{lang("Password", "admin")}"/>{$password_error}

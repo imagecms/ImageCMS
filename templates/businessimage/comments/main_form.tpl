@@ -18,12 +18,12 @@
     <p class="g-form-m__message g-form-m__message_success">{tlang('Your comment will be published after moderation ')}</p>
   {/if}
   <!-- END Messages -->
-  
-  
+
+
   <div class="g-row g-row_indent-20">
     <div class="g-col-6">
       <!-- Name field input BEGIN -->
-      {if !$is_logged_in}  
+      {if !$is_logged_in}
       <div class="g-form-m__field">
         <div class="g-form-m__field-title g-form-m__field-title_req">{tlang('Name')}</div>
         <div class="g-form-m__field-section">
@@ -40,19 +40,19 @@
     </div>
     {if !$is_logged_in}
     <div class="g-col-6">
-      <!-- Email field input BEGIN -->      
+      <!-- Email field input BEGIN -->
       <div class="g-form-m__field">
         <div class="g-form-m__field-title g-form-m__field-title_req">{tlang('E-mail')}</div>
         <div class="g-form-m__field-section">
           <input class="g-form-m__field-input" type="email" name="comment_email" value="{$old_email}" placeholder="{tlang('E-mail')}" required>
       </div>
-      </div>      
+      </div>
       <!-- END Name field input -->
     </div>
     {/if}
-  </div>  
+  </div>
 
-  <!-- Rating field radio box BEGIN -->
+  <!-- Rating field BEGIN -->
   <div class="g-form-m__field g-form-m__field_title-left">
     <div class="g-form-m__field-title">{tlang('Rating')}</div>
     <div class="g-form-m__field-section">
@@ -60,14 +60,14 @@
         <div class="b-star-rating__wrap">
           {for $i = 5; $i > 0; $i--}
           <input class="b-star-rating__input" id="star-rating-{$i}" type="radio" name="ratec" value="{$i}" {if $i == $old_ratec} checked{/if}>
-          <label class="b-star-rating__ico fa fa-star-o fa-lg" for="star-rating-{$i}" title="{$i . tlang(' out of 5 stars')}"></label>
+          <label class="b-star-rating__ico fa fa-star-o fa-lg" for="star-rating-{$i}" title="{$i} {tlang('out of 5 stars')}"></label>
           {/for}
         </div>
       </div>
     </div>
   </div>
-  <!-- END Name field input -->
-  
+  <!-- END Rating field -->
+
   <!-- Review field textarea BEGIN -->
   <div class="g-form-m__field">
     <div class="g-form-m__field-title g-form-m__field-title_req">{tlang('Review')}</div>
@@ -77,7 +77,7 @@
   </div>
   <!-- END Review field textarea -->
 
-  <!-- Captcha field textarea BEGIN -->
+  <!-- Captcha field BEGIN -->
   {if $use_captcha}
   <div class="g-form-m__field">
     <div class="g-form-m__field-title g-form-m__field-title_req">{tlang('Security code')}</div>
@@ -90,8 +90,8 @@
     </div>
   </div>
   {/if}
-  <!-- END Captcha field textarea -->
-  
+  <!-- END Captcha field -->
+
   <!-- Submit button BEGIN -->
   <div class="g-form-m__buttons">
     <input class="g-form-m__button-submit g-btn_l" type="submit" value="{tlang('Send')}">

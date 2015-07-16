@@ -7,9 +7,9 @@
 			<div class="b-star-number g-clearfix">
 				{for $i = 1; $i <= 5; $i++}
 					{if $i <= $comment.rate}
-					<i class="b-star-number__ico fa fa-star" title="{tlang($comment.rate .' out of 5 stars')}"></i>
+					<i class="b-star-number__ico fa fa-star" title="{$comment.rate} {tlang('out of 5 stars')}"></i>
 					{else:}
-					<i class="b-star-number__ico fa fa-star-o" title="{tlang($comment.rate .' out of 5 stars')}"></i>
+					<i class="b-star-number__ico fa fa-star-o" title="{$comment.rate} {tlang('out of 5 stars')}"></i>
 					{/if}
 				{/for}
 			</div>

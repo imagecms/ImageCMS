@@ -299,33 +299,63 @@ CREATE TABLE IF NOT EXISTS `components` (
 -- Дамп данных таблицы `components`
 --
 
-INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_menu`, `settings`, `position`) VALUES
-(1, 'user_manager', 'user_manager', 0, 0, 0, NULL, 19),
-(2, 'auth', 'auth', 1, 0, 0, NULL, 28),
-(4, 'comments', 'comments', 1, 1, 1, 'a:5:{s:18:"max_comment_length";i:0;s:6:"period";i:0;s:11:"can_comment";i:0;s:11:"use_captcha";b:0;s:14:"use_moderation";b:0;}', 9),
-(7, 'navigation', 'navigation', 0, 0, 0, NULL, 29),
-(30, 'tags', 'tags', 1, 1, 0, NULL, 27),
-(92, 'gallery', 'gallery', 1, 0, 1, 'a:26:{s:14:"max_image_size";s:1:"5";s:9:"max_width";s:1:"0";s:10:"max_height";s:1:"0";s:7:"quality";s:2:"95";s:14:"maintain_ratio";b:1;s:19:"maintain_ratio_prev";b:1;s:19:"maintain_ratio_icon";b:1;s:4:"crop";b:0;s:9:"crop_prev";b:0;s:9:"crop_icon";b:1;s:14:"prev_img_width";s:4:"1200";s:15:"prev_img_height";s:3:"900";s:11:"thumb_width";s:3:"480";s:12:"thumb_height";s:3:"350";s:14:"watermark_text";s:0:"";s:16:"wm_vrt_alignment";s:6:"bottom";s:16:"wm_hor_alignment";s:4:"left";s:19:"watermark_font_size";s:2:"14";s:15:"watermark_color";s:6:"ffffff";s:17:"watermark_padding";s:2:"-5";s:15:"watermark_image";s:10:"./uploads/";s:23:"watermark_image_opacity";s:2:"50";s:14:"watermark_type";s:4:"text";s:8:"order_by";s:4:"date";s:10:"sort_order";s:4:"desc";s:19:"watermark_font_path";s:25:"./uploads/defaultFont.ttf";}', 13),
-(55, 'rss', 'rss', 1, 0, 0, 'a:5:{s:5:"title";s:9:"Image CMS";s:11:"description";s:35:"Тестируем модуль RSS";s:10:"categories";a:1:{i:0;s:1:"3";}s:9:"cache_ttl";i:60;s:11:"pages_count";i:10;}', 14),
-(60, 'menu', 'menu', 0, 1, 1, NULL, 0),
-(58, 'sitemap', 'sitemap', 1, 1, 0, 'a:6:{s:18:"main_page_priority";b:0;s:13:"cats_priority";b:0;s:14:"pages_priority";b:0;s:20:"main_page_changefreq";b:0;s:21:"categories_changefreq";b:0;s:16:"pages_changefreq";b:0;}', 15),
-(80, 'search', 'search', 1, 1, 0, NULL, 22),
-(84, 'feedback', 'feedback', 1, 0, 0, 'a:2:{s:5:"email";s:19:"admin@localhost.loc";s:15:"message_max_len";i:550;}', 25),
-(117, 'template_editor', 'template_editor', 0, 0, 0, NULL, 17),
-(86, 'group_mailer', 'group_mailer', 0, 0, 1, NULL, 10),
-(96, 'cfcm', 'cfcm', 0, 0, 0, NULL, 16),
-(135, 'sample_mail', 'sample_mail', 0, 0, 0, NULL, 20),
-(137, 'mailer', 'mailer', 1, 0, 0, NULL, 21),
-(153, 'share', 'share', 1, 0, 1, 'a:10:{s:5:"vkcom";s:1:"1";s:8:"facebook";s:1:"1";s:7:"twitter";s:1:"1";s:2:"gg";s:1:"1";s:4:"type";s:7:"counter";s:13:"facebook_like";s:1:"1";s:7:"vk_like";s:1:"1";s:8:"vk_apiid";s:7:"3901548";s:7:"gg_like";s:1:"1";s:12:"twitter_like";s:1:"1";}', 8),
-(266, 'banners', 'banners', 1, 0, 1, 'a:1:{s:8:"show_tpl";i:1;}', 1),
-(188, 'cmsemail', 'cmsemail', 1, 0, 1, 'a:3:{s:2:"ru";a:13:{s:4:"from";s:18:"Corporate UniTheme";s:10:"from_email";s:19:"noreplay@mysite.com";s:11:"admin_email";s:15:"info@mysite.com";s:5:"theme";s:18:"Corporate UniTheme";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:255:"<h2>Corporate UniTheme</h2>\n<div>$content</div>\n<hr />\n<p>С уважением, Corporate UniTheme</p>\n<p><small>Данное письмо создано автоматически, пожалуйста не отвечайте на него.</small></p>";s:8:"mailpath";s:0:"";s:8:"protocol";s:4:"mail";s:9:"smtp_host";s:0:"";s:9:"smtp_user";s:10:"ad@min.com";s:9:"smtp_pass";s:5:"admin";s:4:"port";s:0:"";s:10:"encryption";s:0:"";}s:2:"en";a:13:{s:4:"from";s:22:"Online store ImageShop";s:10:"from_email";s:19:"noreplay@client.com";s:11:"admin_email";s:15:"info@client.com";s:5:"theme";s:22:"Online store ImageShop";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:159:"<h2>Online store "ImageShop"</h2>\n<div>$content</div>\n<hr />\n<p>Sincerely, online store "ImageShop"</p>\n<p>This is an automated email, please do not reply.</p>";s:8:"mailpath";s:0:"";s:8:"protocol";s:4:"mail";s:9:"smtp_host";s:0:"";s:9:"smtp_user";s:10:"ad@min.com";s:9:"smtp_pass";s:5:"admin";s:4:"port";s:0:"";s:10:"encryption";s:0:"";}s:2:"ua";a:13:{s:4:"from";s:41:"Інтернет-магазин ImageShop";s:10:"from_email";s:22:"noreplay@client.com.ua";s:11:"admin_email";s:18:"info@client.com.ua";s:5:"theme";s:41:"Інтернет-магазин ImageShop";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:284:"<h2>Інтернет-магазин "ImageShop"</h2>\n<div>$content</div>\n<hr />\n<p>З повагою, Інтернет-магазин "ImageShop"</p>\n<p>Даний лист створено автоматично, будь ласка не відповідайте на нього.</p>";s:8:"mailpath";s:0:"";s:8:"protocol";s:4:"mail";s:9:"smtp_host";s:0:"";s:9:"smtp_user";s:10:"ad@min.com";s:9:"smtp_pass";s:5:"admin";s:4:"port";s:0:"";s:10:"encryption";s:0:"";}}', 4),
-(264, 'language_switch', 'language_switch', 0, 0, 0, NULL, 23),
-(265, 'star_rating', 'star_rating', 1, 0, 0, NULL, 12),
-(267, 'translator', 'translator', 1, 1, 1, 'a:2:{s:11:"originsLang";s:2:"en";s:11:"editorTheme";s:6:"chrome";}', 11),
-(268, 'imagebox', 'imagebox', 0, 1, 0, NULL, 18),
-(269, 'sample_module', 'sample_module', 1, 1, 0, NULL, NULL),
-(272, 'template_manager', 'template_manager', 1, 1, 1, NULL, NULL),
-(275, 'xbanners', 'xbanners', 1, 1, 1, NULL, NULL);
+INSERT INTO `components` (`name`, `identif`, `enabled`, `autoload`, `in_menu`, `settings`, `position`) VALUES
+('user_manager', 'user_manager', 0, 0, 0, NULL, 19),
+('auth', 'auth', 1, 0, 0, NULL, 28),
+('comments', 'comments', 1, 1, 1, 'a:5:{s:18:"max_comment_length";i:0;s:6:"period";i:0;s:11:"can_comment";i:0;s:11:"use_captcha";b:0;s:14:"use_moderation";b:0;}', 9),
+('navigation', 'navigation', 0, 0, 0, NULL, 29),
+( 'tags', 'tags', 1, 1, 0, NULL, 27),
+('mod_seo', 'mod_seo', 0, 1, 1, NULL, 5),
+('gallery', 'gallery', 1, 0, 1, 'a:26:{s:14:"max_image_size";s:1:"5";s:9:"max_width";s:1:"0";s:10:"max_height";s:1:"0";s:7:"quality";s:2:"95";s:14:"maintain_ratio";b:1;s:19:"maintain_ratio_prev";b:1;s:19:"maintain_ratio_icon";b:1;s:4:"crop";b:0;s:9:"crop_prev";b:0;s:9:"crop_icon";b:1;s:14:"prev_img_width";s:4:"1200";s:15:"prev_img_height";s:3:"900";s:11:"thumb_width";s:3:"480";s:12:"thumb_height";s:3:"350";s:14:"watermark_text";s:0:"";s:16:"wm_vrt_alignment";s:6:"bottom";s:16:"wm_hor_alignment";s:4:"left";s:19:"watermark_font_size";s:2:"14";s:15:"watermark_color";s:6:"ffffff";s:17:"watermark_padding";s:2:"-5";s:15:"watermark_image";s:10:"./uploads/";s:23:"watermark_image_opacity";s:2:"50";s:14:"watermark_type";s:4:"text";s:8:"order_by";s:4:"date";s:10:"sort_order";s:4:"desc";s:19:"watermark_font_path";s:25:"./uploads/defaultFont.ttf";}', 13),
+('rss', 'rss', 1, 0, 0, 'a:5:{s:5:"title";s:9:"Image CMS";s:11:"description";s:35:"Тестируем модуль RSS";s:10:"categories";a:1:{i:0;s:1:"3";}s:9:"cache_ttl";i:60;s:11:"pages_count";i:10;}', 14),
+('menu', 'menu', 0, 1, 1, NULL, 0),
+('sitemap', 'sitemap', 1, 1, 0, 'a:6:{s:18:"main_page_priority";b:0;s:13:"cats_priority";b:0;s:14:"pages_priority";b:0;s:20:"main_page_changefreq";b:0;s:21:"categories_changefreq";b:0;s:16:"pages_changefreq";b:0;}', 15),
+('search', 'search', 1, 1, 0, NULL, 22),
+( 'feedback', 'feedback', 1, 0, 0, 'a:2:{s:5:"email";s:19:"admin@localhost.loc";s:15:"message_max_len";i:550;}', 25),
+('template_editor', 'template_editor', 0, 0, 0, NULL, 17),
+( 'group_mailer', 'group_mailer', 0, 0, 1, NULL, 10),
+( 'cfcm', 'cfcm', 0, 0, 0, NULL, 16),
+( 'sample_mail', 'sample_mail', 0, 0, 0, NULL, 20),
+( 'mailer', 'mailer', 1, 0, 0, NULL, 21),
+( 'share', 'share', 1, 0, 1, 'a:10:{s:5:"vkcom";s:1:"1";s:8:"facebook";s:1:"1";s:7:"twitter";s:1:"1";s:2:"gg";s:1:"1";s:4:"type";s:7:"counter";s:13:"facebook_like";s:1:"1";s:7:"vk_like";s:1:"1";s:8:"vk_apiid";s:7:"3901548";s:7:"gg_like";s:1:"1";s:12:"twitter_like";s:1:"1";}', 8),
+( 'banners', 'banners', 1, 0, 1, 'a:1:{s:8:"show_tpl";i:1;}', 1),
+( 'cmsemail', 'cmsemail', 1, 0, 1, 'a:3:{s:2:"ru";a:13:{s:4:"from";s:18:"Corporate UniTheme";s:10:"from_email";s:19:"noreplay@mysite.com";s:11:"admin_email";s:15:"info@mysite.com";s:5:"theme";s:18:"Corporate UniTheme";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:255:"<h2>Corporate UniTheme</h2>\n<div>$content</div>\n<hr />\n<p>С уважением, Corporate UniTheme</p>\n<p><small>Данное письмо создано автоматически, пожалуйста не отвечайте на него.</small></p>";s:8:"mailpath";s:0:"";s:8:"protocol";s:4:"mail";s:9:"smtp_host";s:0:"";s:9:"smtp_user";s:10:"ad@min.com";s:9:"smtp_pass";s:5:"admin";s:4:"port";s:0:"";s:10:"encryption";s:0:"";}s:2:"en";a:13:{s:4:"from";s:22:"Online store ImageShop";s:10:"from_email";s:19:"noreplay@client.com";s:11:"admin_email";s:15:"info@client.com";s:5:"theme";s:22:"Online store ImageShop";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:159:"<h2>Online store "ImageShop"</h2>\n<div>$content</div>\n<hr />\n<p>Sincerely, online store "ImageShop"</p>\n<p>This is an automated email, please do not reply.</p>";s:8:"mailpath";s:0:"";s:8:"protocol";s:4:"mail";s:9:"smtp_host";s:0:"";s:9:"smtp_user";s:10:"ad@min.com";s:9:"smtp_pass";s:5:"admin";s:4:"port";s:0:"";s:10:"encryption";s:0:"";}s:2:"ua";a:13:{s:4:"from";s:41:"Інтернет-магазин ImageShop";s:10:"from_email";s:22:"noreplay@client.com.ua";s:11:"admin_email";s:18:"info@client.com.ua";s:5:"theme";s:41:"Інтернет-магазин ImageShop";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:284:"<h2>Інтернет-магазин "ImageShop"</h2>\n<div>$content</div>\n<hr />\n<p>З повагою, Інтернет-магазин "ImageShop"</p>\n<p>Даний лист створено автоматично, будь ласка не відповідайте на нього.</p>";s:8:"mailpath";s:0:"";s:8:"protocol";s:4:"mail";s:9:"smtp_host";s:0:"";s:9:"smtp_user";s:10:"ad@min.com";s:9:"smtp_pass";s:5:"admin";s:4:"port";s:0:"";s:10:"encryption";s:0:"";}}', 4),
+( 'language_switch', 'language_switch', 0, 0, 0, NULL, 23),
+( 'star_rating', 'star_rating', 1, 0, 0, NULL, 12),
+( 'translator', 'translator', 1, 1, 1, 'a:2:{s:11:"originsLang";s:2:"en";s:11:"editorTheme";s:6:"chrome";}', 11),
+( 'imagebox', 'imagebox', 0, 1, 0, NULL, 18),
+( 'sample_module', 'sample_module', 1, 1, 0, NULL, NULL),
+( 'template_manager', 'template_manager', 1, 1, 1, NULL, NULL),
+( 'xbanners', 'xbanners', 1, 1, 1, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `mod_seo`
+--
+
+DROP TABLE IF EXISTS `mod_seo`;
+CREATE TABLE IF NOT EXISTS `mod_seo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `locale` varchar(5) DEFAULT NULL,
+  `settings` text,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `mod_seo_inflect`
+--
+
+DROP TABLE IF EXISTS `mod_seo_inflect`;
+CREATE TABLE IF NOT EXISTS `mod_seo_inflect` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `original` varchar(250) NOT NULL,
+  `inflection_id` int(11) NOT NULL,
+  `inflected` varchar(250) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -933,7 +963,6 @@ CREATE TABLE IF NOT EXISTS `languages` (
 
 INSERT INTO `languages` (`id`, `lang_name`, `identif`, `image`, `folder`, `template`, `default`, `locale`) VALUES
 (3, 'Rus', 'ru', '/uploads/images/flags/Russia.png', 'russian', '0', 1, 'ru_RU'),
-(33, 'Eng', 'en', '/uploads/images/flags/United-States.png', '', '0', 0, 'en_US'),
 (32, 'Ukr', 'uk', '/uploads/images/flags/Ukraine.png', '', '0', 0, 'uk_UA');
 
 -- --------------------------------------------------------
@@ -3440,9 +3469,12 @@ CREATE TABLE IF NOT EXISTS `mod_banner_i18n` (
 --
 
 INSERT INTO `mod_banner_i18n` (`id`, `url`, `locale`, `name`, `description`, `photo`) VALUES
-(24, 'uslugi', 'ru', 'Управленческий консалтинг', '<p>Деятельность, направленная на повышение эффективности фирм, компаний, организаци. В процессе управленческого консалтинга может решаться самый широкий круг задач.</p>', 'fa-diamond'),
-(25, '', 'ru', 'Экологический консалтинг', '<p>Комплекс работ, связанный с экологическим обеспечением деятельности строительных и проектных организаций, предприятий всех отраслей деятельности.</p>', 'fa-bicycle'),
-(26, '', 'ru', 'Управленческий консалтинг', '<p>Деятельность, направленная на повышение эффективности фирм, компаний, организаци. В процессе управленческого консалтинга может решаться самый широкий круг задач.</p>', 'fa-file-text-o');
+(24, 'uslugi', 'ru', 'Управленческий консалтинг', '<p>Деятельность, направленная на повышение эффективности фирм, компаний, организаций. В процессе управленческого консалтинга может решаться самый широкий круг задач.</p>', 'fa-diamond'),
+(25, '', 'ru', 'Экологический консалтинг', '<p>Комплекс работ, связанных с экологическим обеспечением деятельности строительных и проектных организаций, предприятий всех отраслей деятельности.</p>', 'fa-bicycle'),
+(26, '', 'ru', 'ИТ-консалтинг', '<p>Проектно-ориентированная деятельность, связанная с информационной поддержкой бизнес-процессов, позволяющая дать независимую экспертную оценку.</p>', 'fa-file-text-o'),
+(24, '', 'uk', 'Управлінський консалтинг', '<p>Діяльність, спрямована на підвищення ефективності фірм, компаній, організацій. У процесі управлінського консалтингу може вирішуватися найширше коло завдань.</p>', 'fa-diamond'),
+(25, '', 'uk', 'Екологічний консалтинг', '<p>Комплекс робіт, пов''язаних з екологічним забезпеченням діяльності будівельних і проектних організацій, підприємств всіх галузей діяльності.</p>', 'fa-bicycle'),
+(26, '', 'uk', 'ІТ-консалтинг', '<p>Проектно-орієнтована діяльність, пов''язана з інформаційною підтримкою бізнес-процесів, що дозволяє дати незалежну експертну оцінку.</p>', 'fa-file-text-o');
 
 -- --------------------------------------------------------
 
@@ -6184,6 +6216,33 @@ INSERT INTO `widget_i18n` (`id`, `locale`, `title`, `data`) VALUES
 (40, 'ru', 'Теги', ''),
 (40, 'uk', 'Теги', '');
 
+
+--
+-- Структура таблицы `mod_sitemap_changefreq`
+--
+
+DROP TABLE IF EXISTS `mod_sitemap_changefreq`;
+CREATE TABLE IF NOT EXISTS `mod_sitemap_changefreq` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `main_page_changefreq` varchar(255) DEFAULT NULL,
+  `pages_changefreq` varchar(255) DEFAULT NULL,
+  `product_changefreq` varchar(255) DEFAULT NULL,
+  `categories_changefreq` varchar(255) DEFAULT NULL,
+  `products_categories_changefreq` varchar(255) DEFAULT NULL,
+  `products_sub_categories_changefreq` varchar(255) DEFAULT NULL,
+  `brands_changefreq` varchar(255) DEFAULT NULL,
+  `sub_categories_changefreq` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Дамп данных таблицы `mod_sitemap_changefreq`
+--
+
+INSERT INTO `mod_sitemap_changefreq` (`id`, `main_page_changefreq`, `pages_changefreq`, `product_changefreq`, `categories_changefreq`, `products_categories_changefreq`, `products_sub_categories_changefreq`, `brands_changefreq`, `sub_categories_changefreq`) VALUES
+(1, 'weekly', 'weekly', 'weekly', 'weekly', 'weekly', 'weekly', 'weekly', 'weekly');
+
+-- --------------------------------------------------------
 
 --
 -- Структура таблицы `mod_sitemap_priorities`

@@ -231,7 +231,9 @@ class Core extends MY_Controller {
             ($hook = get_hook('core_get_page_query')) ? eval($hook) : NULL;
             $query = $this->db->get('content', 1);
 
-            if ($query->num_rows() > 0) {
+            $page_info = $query->num_rows() > 0 ? $query->row_array() : NULL;
+
+            if ($page_info['id']) {
                 ($hook = get_hook('core_page_found')) ? eval($hook) : NULL;
 
                 if (substr($cat_path, -1) == '/') {
@@ -239,13 +241,12 @@ class Core extends MY_Controller {
                 }
                 $cat_path = substr($cat_path, 0, strripos($cat_path, '/'));
 
-                $page_info = $query->row_array();
                 $page_info['roles'] = unserialize($page_info['roles']);
 
                 if ($without_cat == FALSE) {
                     // load page and category
                     foreach ($cats_unsorted as $cat) {
-                        if (($cat['path_url'] == $cat_path . $SLASH) AND ($cat['id'] == $page_info['category'])) {
+                        if (($cat['path_url'] == $cat_path . $SLASH) AND ( $cat['id'] == $page_info['category'])) {
                             $page_found = TRUE;
                             $data_type = 'page';
                             $this->page_content = $page_info;
@@ -288,8 +289,8 @@ class Core extends MY_Controller {
 
         $this->template->add_array(
             array(
-                'agent' => $agent,
-            )
+                    'agent' => $agent,
+                )
         );
 
         //Assign captcha type
@@ -463,9 +464,9 @@ class Core extends MY_Controller {
 
         $this->template->add_array(
             array(
-                'page' => $page,
-                'category' => $category
-            )
+                    'page' => $page,
+                    'category' => $category
+                )
         );
 
         if ($this->input->get()) {
@@ -808,8 +809,8 @@ class Core extends MY_Controller {
 
         $this->template->add_array(
             array(
-                'content' => $this->template->read('error', array('error_text' => $text, 'back_button' => $back))
-            )
+                    'content' => $this->template->read('error', array('error_text' => $text, 'back_button' => $back))
+                )
         );
 
         $this->template->show();
@@ -1004,10 +1005,10 @@ class Core extends MY_Controller {
         if ($this->core_data['data_type'] == 'main') {
             $this->template->add_array(
                 array(
-                    'site_title' => empty($this->settings['site_title']) ? $title : $this->settings['site_title'],
-                    'site_description' => empty($this->settings['site_description']) ? $description : $this->settings['site_description'],
-                    'site_keywords' => empty($this->settings['site_keywords']) ? $keywords : $this->settings['site_keywords']
-                )
+                        'site_title' => empty($this->settings['site_title']) ? $title : $this->settings['site_title'],
+                        'site_description' => empty($this->settings['site_description']) ? $description : $this->settings['site_description'],
+                        'site_keywords' => empty($this->settings['site_keywords']) ? $keywords : $this->settings['site_keywords']
+                    )
             );
         } else {
             if (($page_number > 1) && ($page_number != '')) {
@@ -1055,14 +1056,14 @@ class Core extends MY_Controller {
                 $keywords = '';
             }
 
-            $page_number = $page_number ?: (int) $this->pagination->cur_page;
+            $page_number = $page_number ? : (int) $this->pagination->cur_page;
             $this->template->add_array(
                 array(
-                    'site_title' => $title,
-                    'site_description' => htmlspecialchars(strip_tags($description)),
-                    'site_keywords' => htmlspecialchars($keywords),
-                    'page_number' => $page_number
-                )
+                        'site_title' => $title,
+                        'site_description' => htmlspecialchars(strip_tags($description)),
+                        'site_keywords' => htmlspecialchars($keywords),
+                        'page_number' => $page_number
+                    )
             );
         }
     }

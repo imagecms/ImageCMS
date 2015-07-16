@@ -53,9 +53,9 @@ class Banner_model extends CI_Model {
                 ->update('mod_banner');
 
         if ($this->db->where('locale', $data['locale'])->where('id', $data['id'])->get('mod_banner_i18n')->num_rows()) {
-            $sql = "update mod_banner_i18n set url = '" . $data['url'] . "', name = '" . $data['name'] . "', description = '" . $data['description'] . "', photo = '" . $data['photo'] . "' where id = '" . $data['id'] . "' and locale = '" . $data['locale'] . "'";
+            $sql = "update mod_banner_i18n set url = '" . $data['url'] . "', name = '" . $data['name'] . "', description = '" . str_replace("'", "\'", $data['description']) . "', photo = '" . $data['photo'] . "' where id = '" . $data['id'] . "' and locale = '" . $data['locale'] . "'";
         } else {
-            $sql = "insert into mod_banner_i18n(url, name, description, photo, locale, id) values('" . $data['url'] . "','" . $data['name'] . "','" . $data['description'] . "','" . $data['photo'] . "','" . $data['locale'] . "','" . $data['id'] . "')";
+            $sql = "insert into mod_banner_i18n(url, name, description, photo, locale, id) values('" . $data['url'] . "','" . $data['name'] . "','" . str_replace("'", "\'", $data['description'])  . "','" . $data['photo'] . "','" . $data['locale'] . "','" . $data['id'] . "')";
         }
         $this->db->query($sql);
     }

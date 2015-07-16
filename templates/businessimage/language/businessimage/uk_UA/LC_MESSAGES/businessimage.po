@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-15 12:47+0300\n"
-"PO-Revision-Date: 2015-07-15 12:47+0300\n"
+"POT-Creation-Date: 2015-07-15 01:43+0300\n"
+"PO-Revision-Date: 2015-07-15 01:43+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -17,6 +17,12 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: templates/businessimage/comments/comments_list.tpl:10
+#: templates/businessimage/comments/comments_list.tpl:12
+#: templates/businessimage/comments/main_form.tpl:63
+msgid "out of 5 stars"
+msgstr "з 5 зірок"
 
 #: templates/businessimage/comments/main_form.tpl:28
 #: templates/businessimage/comments/main_form.tpl:30
