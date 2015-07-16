@@ -50,3 +50,6 @@ exclude_paths:
 - tests/**
 - hooks/**
 - application/libraries/elfinder/**
+- js/**
+- application/modules/translator/assets/js/**
+- application/modules/admin_menu/menus/**
