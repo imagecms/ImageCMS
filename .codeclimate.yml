@@ -53,3 +53,7 @@ exclude_paths:
 - js/**
 - application/modules/translator/assets/js/**
 - application/modules/admin_menu/menus/**
+- generated-classes/Base/**
+- generated-classes/Map/**
+- Models/Base/**
+- Models/Map/**
