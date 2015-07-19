@@ -59,7 +59,6 @@ class Docs extends BaseAdminController {
             
             echo $path . "\n";
             $pageFromDatabase = file_put_contents($path, $cont);
-            var_dump($pageFromDatabase);
         }
         file_put_contents($this->jsonListFile, json_encode($jsonsDataArray));
     }
