@@ -139,19 +139,23 @@ class Cms_base extends CI_Model {
      * @return array
      */
     public function get_categories() {
-        //        $this->db->cache_on();
         $this->db->order_by('position', 'ASC');
         $query = $this->db->get('category');
 
         if ($query->num_rows() > 0) {
             $categories = $query->result_array();
 
-            ($hook = get_hook('cmsbase_return_categories')) ? eval($hook) : NULL;
+            $n = 0;
+            $ci = & get_instance();
+            $ci->load->library('DX_Auth');
+            foreach ($categories as $c) {
+                $categories[$n] = $ci->load->module('cfcm')->connect_fields($c, 'category');
+                $n++;
+            }
 
             return $categories;
         }
 
-        //        $this->db->cache_on();
         return FALSE;
     }
 
