@@ -4,7 +4,6 @@ languages:
 
 exclude_paths:
 - "system/**"
-- "third_party/**"
 - "application/cms_bridge.php"
 - "tests/**"
 - "hooks/**"
@@ -16,3 +15,4 @@ exclude_paths:
 - "generated-classes/Map/**"
 - "Models/Base/**"
 - "Models/Map/**"
+- "application/third_party/**"
