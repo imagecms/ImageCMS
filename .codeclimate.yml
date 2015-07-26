@@ -1,7 +1,6 @@
 languages:
   JavaScript: true
   PHP: true
-
 exclude_paths:
 - "system/**"
 - "application/cms_bridge.php"
@@ -13,6 +12,9 @@ exclude_paths:
 - "application/modules/admin_menu/menus/**"
 - "generated-classes/Base/**"
 - "generated-classes/Map/**"
+- "generated-classes/**/Base/**"
+- "generated-classes/**/Map/**"
 - "Models/Base/**"
 - "Models/Map/**"
 - "application/third_party/**"
+- "application/modules/banners/assets/js/cycle.js"
