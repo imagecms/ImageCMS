@@ -13,25 +13,15 @@ if (!defined('BASEPATH')) {
 class Core extends MY_Controller {
 
     public $langs = array(); // Langs array
-
     public $def_lang = array(); // Default language array
-
     public $page_content = array(); // Page data
-
     public $cat_content = array(); // Category data
-
     public $settings = array(); // Site settings
-
     public $modules = array(); // Modules array
-
     public $action = '';
-
     public $by_pages = FALSE;
-
     public $cat_page = 0;
-
     public $tpl_data = array();
-
     public $core_data = array('data_type' => null);
 
     public function __construct() {
@@ -288,7 +278,7 @@ class Core extends MY_Controller {
         $agent = $this->user_browser();
 
         $this->template->add_array(
-            array(
+                array(
                     'agent' => $agent,
                 )
         );
@@ -463,7 +453,7 @@ class Core extends MY_Controller {
         empty($page_tpl) ? $page_tpl = 'page_full' : TRUE;
 
         $this->template->add_array(
-            array(
+                array(
                     'page' => $page,
                     'category' => $category
                 )
@@ -480,15 +470,8 @@ class Core extends MY_Controller {
         }
         if ($this->settings['create_keywords'] == 'auto' && !$page['keywords']) {
             $keywords = $this->lib_seo->get_keywords($page['full_text'], TRUE);
-            $i = FALSE;
-            foreach ($keywords as $key => $value) {
-                if (!$i) {
-                    $page['keywords'] .= $key;
-                    $i = TRUE;
-                } else {
-                    $page['keywords'] .= ', ' . $key;
-                }
-            }
+
+            $page['keywords'] = implode(', ', array_keys($keywords));
         }
 
         $this->set_meta_tags($page['meta_title'] == NULL ? $page['title'] : $page['meta_title'], $page['keywords'], $page['description']);
@@ -643,15 +626,8 @@ class Core extends MY_Controller {
         }
         if ($this->settings['create_keywords'] == 'auto' && !$category['keywords']) {
             $keywords = $this->lib_seo->get_keywords($category['short_desc'], TRUE);
-            $i = FALSE;
-            foreach ($keywords as $key => $value) {
-                if (!$i) {
-                    $category['keywords'] .= $key;
-                    $i = TRUE;
-                } else {
-                    $category['keywords'] .= ', ' . $key;
-                }
-            }
+
+            $category['keywords'] = implode(', ', array_keys($keywords));
         }
 
         // adding page number for pages with pagination (from second page)
@@ -808,7 +784,7 @@ class Core extends MY_Controller {
         ($hook = get_hook('core_display_errors_tpl')) ? eval($hook) : NULL;
 
         $this->template->add_array(
-            array(
+                array(
                     'content' => $this->template->read('error', array('error_text' => $text, 'back_button' => $back))
                 )
         );
@@ -1004,7 +980,7 @@ class Core extends MY_Controller {
         ($hook = get_hook('core_set_meta_tags')) ? eval($hook) : NULL;
         if ($this->core_data['data_type'] == 'main') {
             $this->template->add_array(
-                array(
+                    array(
                         'site_title' => empty($this->settings['site_title']) ? $title : $this->settings['site_title'],
                         'site_description' => empty($this->settings['site_description']) ? $description : $this->settings['site_description'],
                         'site_keywords' => empty($this->settings['site_keywords']) ? $keywords : $this->settings['site_keywords']
@@ -1058,7 +1034,7 @@ class Core extends MY_Controller {
 
             $page_number = $page_number ? : (int) $this->pagination->cur_page;
             $this->template->add_array(
-                array(
+                    array(
                         'site_title' => $title,
                         'site_description' => htmlspecialchars(strip_tags($description)),
                         'site_keywords' => htmlspecialchars($keywords),
