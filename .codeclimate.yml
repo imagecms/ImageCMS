@@ -1,6 +1,7 @@
 languages:
   JavaScript: true
   PHP: true
+
 exclude_paths:
 - "system/**"
 - "application/cms_bridge.php"
@@ -31,3 +32,5 @@ exclude_paths:
 - "application/modules/mod_stats/assets/js/nv.d3.js"
 - "application/modules/mod_stats/assets/js/d3.v3.js"
 - "application/modules/translate/**"
+- "application/modules/shop/obf/**"
+- "**/module_info.php"
