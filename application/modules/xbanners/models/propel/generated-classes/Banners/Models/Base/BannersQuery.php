@@ -41,13 +41,29 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildBannersQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
  * @method     ChildBannersQuery innerJoin($relation) Adds a INNER JOIN clause to the query
  *
+ * @method     ChildBannersQuery leftJoinWith($relation) Adds a LEFT JOIN clause and with to the query
+ * @method     ChildBannersQuery rightJoinWith($relation) Adds a RIGHT JOIN clause and with to the query
+ * @method     ChildBannersQuery innerJoinWith($relation) Adds a INNER JOIN clause and with to the query
+ *
  * @method     ChildBannersQuery leftJoinBannerImage($relationAlias = null) Adds a LEFT JOIN clause to the query using the BannerImage relation
  * @method     ChildBannersQuery rightJoinBannerImage($relationAlias = null) Adds a RIGHT JOIN clause to the query using the BannerImage relation
  * @method     ChildBannersQuery innerJoinBannerImage($relationAlias = null) Adds a INNER JOIN clause to the query using the BannerImage relation
  *
+ * @method     ChildBannersQuery joinWithBannerImage($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the BannerImage relation
+ *
+ * @method     ChildBannersQuery leftJoinWithBannerImage() Adds a LEFT JOIN clause and with to the query using the BannerImage relation
+ * @method     ChildBannersQuery rightJoinWithBannerImage() Adds a RIGHT JOIN clause and with to the query using the BannerImage relation
+ * @method     ChildBannersQuery innerJoinWithBannerImage() Adds a INNER JOIN clause and with to the query using the BannerImage relation
+ *
  * @method     ChildBannersQuery leftJoinBannersI18n($relationAlias = null) Adds a LEFT JOIN clause to the query using the BannersI18n relation
  * @method     ChildBannersQuery rightJoinBannersI18n($relationAlias = null) Adds a RIGHT JOIN clause to the query using the BannersI18n relation
  * @method     ChildBannersQuery innerJoinBannersI18n($relationAlias = null) Adds a INNER JOIN clause to the query using the BannersI18n relation
+ *
+ * @method     ChildBannersQuery joinWithBannersI18n($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the BannersI18n relation
+ *
+ * @method     ChildBannersQuery leftJoinWithBannersI18n() Adds a LEFT JOIN clause and with to the query using the BannersI18n relation
+ * @method     ChildBannersQuery rightJoinWithBannersI18n() Adds a RIGHT JOIN clause and with to the query using the BannersI18n relation
+ * @method     ChildBannersQuery innerJoinWithBannersI18n() Adds a INNER JOIN clause and with to the query using the BannersI18n relation
  *
  * @method     \Banners\Models\BannerImageQuery|\Banners\Models\BannersI18nQuery endUse() Finalizes a secondary criteria and merges it with its primary Criteria
  *

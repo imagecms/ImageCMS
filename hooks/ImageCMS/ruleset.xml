@@ -3,7 +3,7 @@
     <description>
         The ImageCMS coding standard. 
         Autor Gula Andriy
-        Created with the PHP Coding Standard Generator. http://edorian.github.com/php-coding-standard-generator/
+        Created with the PHP Coding Standard Generator. http://edorian.github.com/php-coding-standard-generator/#phpcs
     </description>
     
     <exclude-pattern>*/generated-classes/Base/*</exclude-pattern>
@@ -51,7 +51,7 @@
         </properties>
     </rule>
     <rule ref="Generic.WhiteSpace.ScopeIndent"/>
-    <!--<rule ref="Generic.Arrays.DisallowLongArraySyntax"/>-->
+    <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
     <rule ref="MySource.PHP.EvalObjectFactory"/>
     <!--<rule ref="MySource.PHP.GetRequestData"/>-->
     <rule ref="MySource.PHP.ReturnFunctionValue"/>

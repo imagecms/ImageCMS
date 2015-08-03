@@ -17,7 +17,7 @@ if (!function_exists('get_page')) {
         $ci = &get_instance();
 
         $ci->db->limit(1);
-        $ci->db->select('CONCAT_WS("", content.cat_url, content.url) as full_url, content.id, content.title, prev_text, publish_date, showed, comments_count, author', FALSE);
+        $ci->db->select('CONCAT_WS("", content.cat_url, content.url) as full_url, category, content.id, content.title, full_text, prev_text, publish_date, showed, comments_count, author', FALSE);
 
         if ($lang_identif == $ci->uri->segment(1)) {
             $ci->db->where('lang_alias', $id);
@@ -25,13 +25,13 @@ if (!function_exists('get_page')) {
         } else {
             $ci->db->where('id', $id);
         }
-            $query = $ci->db->get('content');
+        $query = $ci->db->get('content');
 
         if ($query->num_rows() == 1) {
             return $query->row_array();
         }
 
-            return FALSE;
+        return FALSE;
     }
 
 }
@@ -57,15 +57,15 @@ if (!function_exists('category_pages')) {
             $ci->db->where('category', $category['id']);
         }
 
-            $ci->db->select('content.*');
-            $ci->db->select('CONCAT_WS("", content.cat_url, content.url) as full_url', FALSE);
-            $ci->db->order_by($category['order_by'], $category['sort_order']);
+        $ci->db->select('content.*');
+        $ci->db->select('CONCAT_WS("", content.cat_url, content.url) as full_url', FALSE);
+        $ci->db->order_by($category['order_by'], $category['sort_order']);
 
         if ($limit > 0) {
             $ci->db->limit($limit);
         }
 
-            $query = $ci->db->get('content');
+        $query = $ci->db->get('content');
 
         if ($query->num_rows()) {
             return $query->result_array();

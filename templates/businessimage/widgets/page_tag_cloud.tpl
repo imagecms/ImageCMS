@@ -1,3 +1,4 @@
+{if count($tags) > 0}
 <div class="b-sidebar__section">
 	<div class="g-section-s">
 		<h4 class="g-section-s__title">
@@ -12,5 +13,6 @@
 				</div>
 			</div>
 		</div>
+	</div>
 </div>
-</div>
+{/if}

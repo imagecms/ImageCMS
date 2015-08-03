@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Image CMS
@@ -11,6 +12,7 @@ if (!defined('BASEPATH'))
 class Cfcm extends MY_Controller {
 
     public function __construct() {
+
         parent::__construct();
         $obj = new MY_Lang();
         $obj->load('cfcm');
@@ -21,44 +23,14 @@ class Cfcm extends MY_Controller {
     }
 
     public function _set_forms_config() {
-        $config = array();
-        $config['filter_xss_post'] = TRUE;
-        $config['error_inline'] = TRUE;
-        $config['upload_file'] = array(
-            'upload_path' => './uploads/files',
-            'allowed_types' => 'zip|rar|txt',
-            'max_size' => '2048',
-        );
-        $config['upload_image'] = array(
-            'upload_path' => './uploads/images',
-            'allowed_types' => 'gif|jpg|png',
-            'max_size' => '2048',
-            'max_width' => '1024',
-            'max_height' => '768',
-        );
-        $config['error_inline_html'] = '<div class="error_field_text el_magrin">%s</div>';
-        $config['error_block_html'] = '<div class="errors">%s</div>';
-        $config['help_text_html'] = '<span class="help-block">%s</span>';
-        $config['validation_errors_prefix'] = '';
-        $config['validation_errors_suffix'] = '<br />';
-        $config['field_error_class'] = 'field_error';
-        $config['element_prefix'] = '<p class="clear">';
-        $config['element_suffix'] = '</p>';
-        $config['label_class'] = '';
-        $config['required_flag'] = ' *';
-        $config['required_label_class'] = 'required';
-        $config['checkgroup_delimiter'] = '';
-        $config['radiogroup_delimiter'] = '';
-        $config['default_attr'] = array(
-            'captcha' => array(
-                'label' => lang("Protection code", 'cfcm'),
-            ),
-        );
 
-        $this->forms->set_config($config);
+        $this->load->config('cfcm');
+
+        $this->forms->set_config($this->config->item('cfcm'));
     }
 
     public function save_item_data($item_id, $type = 'page') {
+
         $this->load->module('forms');
 
         $group = (int) $this->input->post('cfcm_use_group');
@@ -92,7 +64,8 @@ class Cfcm extends MY_Controller {
         }
     }
 
-    public function get_form($category_id = FALSE, $item_id = FALSE, $item_type = FALSE, $tpl = '_onpage_form') {
+    public function get_form($category_id = false, $item_id = false, $item_type = false, $tpl = '_onpage_form') {
+
         if ('page' === $category_id) {
             $item_type = 'page';
             $item_id = 0;
@@ -106,11 +79,13 @@ class Cfcm extends MY_Controller {
         }
 
         $category = (object) $this->lib_category->get_category($category_id);
-        if ($item_type == 'category')
+        if ($item_type == 'category') {
             $category->field_group = $category->category_field_group;
+        }
 
-        if ($category_id == '0')
+        if ($category_id == '0') {
             $category->field_group = -1;
+        }
 
         if ($category->field_group != '0') {
             // Get group
@@ -119,11 +94,11 @@ class Cfcm extends MY_Controller {
             // Get all fields in group
             $fg = (int) $category->field_group;
             $query = $this->db->select('*')
-                    ->from('content_fields')
-                    ->join('content_fields_groups_relations', 'content_fields_groups_relations.field_name = content_fields.field_name')
-                    ->where("content_fields_groups_relations.group_id = $category->field_group")
-                    ->order_by('weight', 'ASC')
-                    ->get();
+                ->from('content_fields')
+                ->join('content_fields_groups_relations', 'content_fields_groups_relations.field_name = content_fields.field_name')
+                ->where("content_fields_groups_relations.group_id = $category->field_group")
+                ->order_by('weight', 'ASC')
+                ->get();
 
             if ($query->num_rows() > 0) {
                 $form_fields = array();
@@ -131,8 +106,9 @@ class Cfcm extends MY_Controller {
 
                 foreach ($fields as $field) {
                     $f_data = unserialize($field['data']);
-                    if ($f_data == FALSE)
+                    if ($f_data == false) {
                         $f_data = array();
+                    }
 
                     $form_fields[$field['field_name']] = array(
                         'type' => $field['type'],
@@ -145,7 +121,7 @@ class Cfcm extends MY_Controller {
                 $form = $this->forms->add_fields($form_fields);
 
                 // Set form attributes
-                if ($item_id != FALSE AND $item_type != FALSE) {
+                if ($item_id != false AND $item_type != false) {
 
                     $attributes = $this->get_form_attributes($fields, $item_id, $item_type);
 
@@ -159,25 +135,29 @@ class Cfcm extends MY_Controller {
 
                 $hiddenField = '<input type="hidden" name="cfcm_use_group" value="' . $gid . '" />';
             } else {
-               $form = array();
+                $form = array();
             }
-        } 
+        }
 
-        $this->template->add_array(array(
-            'form' => $form,
-            'hf' => $hiddenField
-        ));
+        $this->template->add_array(
+            array(
+                    'form' => $form,
+                    'hf' => $hiddenField
+                )
+        );
 
         $this->display_tpl($tpl);
     }
 
     public function get_form_attributes($fields, $item_id, $item_type) {
+
         $this->db->where('item_id', $item_id);
         $this->db->where('item_type', $item_type);
         $query = $this->db->get('content_fields_data');
 
-        if ($query->num_rows() == 0)
-            return FALSE;
+        if ($query->num_rows() == 0) {
+            return false;
+        }
 
         $result = array();
         $data = $query->result_array();
@@ -195,27 +175,28 @@ class Cfcm extends MY_Controller {
     }
 
     public function get_group_fields($group_id = -1) {
-//        if (!$group_id)
-//            $group_id = -1;
+
+        //        if (!$group_id)
+        //            $group_id = -1;
         //Chech if we need fields without group
-//        if ($group_id == 0)
-//        {
-//            $queryStr = "SELECT * 
-//                FROM  `content_fields` 
-//                WHERE field_name NOT 
-//                IN (
-//                    SELECT field_name
-//                    FROM content_fields_groups_relations
-//                )";
-//            $query = $this->db->query($queryStr);
-//        }
-//        else
+        //        if ($group_id == 0)
+        //        {
+        //            $queryStr = "SELECT *
+        //                FROM  `content_fields`
+        //                WHERE field_name NOT
+        //                IN (
+        //                    SELECT field_name
+        //                    FROM content_fields_groups_relations
+        //                )";
+        //            $query = $this->db->query($queryStr);
+        //        }
+        //        else
         // Get all fields in group
         $query = $this->db
-                ->where('group_id', $group_id)
-                ->join('content_fields', 'content_fields_groups_relations.field_name = content_fields.field_name')
-                ->order_by('weight', 'ASC')
-                ->get('content_fields_groups_relations');
+            ->where('group_id', $group_id)
+            ->join('content_fields', 'content_fields_groups_relations.field_name = content_fields.field_name')
+            ->order_by('weight', 'ASC')
+            ->get('content_fields_groups_relations');
 
         if ($query->num_rows() > 0) {
             $form_fields = array();
@@ -223,8 +204,9 @@ class Cfcm extends MY_Controller {
 
             foreach ($fields as $field) {
                 $f_data = unserialize($field['data']);
-                if ($f_data == FALSE)
+                if ($f_data == false) {
                     $f_data = array();
+                }
 
                 $form_fields[$field['field_name']] = array(
                     'type' => $field['type'],
@@ -235,16 +217,17 @@ class Cfcm extends MY_Controller {
             }
 
             return $form_fields;
-        }
-        else {
-            return FALSE;
+        } else {
+            return false;
         }
     }
 
     // Merge item array with fields data
     // select/checkgroup/radiogroup always returned as array
+
     public function connect_fields($item_data, $item_type) {
-        if (($cache_result = $this->cache->fetch('cfcm_field_' . $item_data['id'] . $item_type)) !== FALSE) {
+
+        if (($cache_result = $this->cache->fetch('cfcm_field_' . $item_data['id'] . $item_type)) !== false) {
             $item_data = array_merge($item_data, $cache_result);
             return $item_data;
         }
@@ -259,8 +242,9 @@ class Cfcm extends MY_Controller {
         $this->db->where('item_type', $item_type);
         $query = $this->db->get('content_fields_data');
 
-        if ($query->num_rows() == 0)
+        if ($query->num_rows() == 0) {
             return $item_data;
+        }
 
         $result = array();
         $data = $query->result_array();
@@ -301,8 +285,9 @@ class Cfcm extends MY_Controller {
         if (count($result) > 0) {
             // Display many many values
             foreach ($result as $key => $val) {
-                if (is_array($val))
+                if (is_array($val)) {
                     $result[$key] = implode(', ', $val);
+                }
             }
 
             $this->cache->store('cfcm_field_' . $item_data['id'] . $item_type, $result);
@@ -313,7 +298,9 @@ class Cfcm extends MY_Controller {
     }
 
     // Save fields data in DB
+
     private function update_fields_data($item_id, $data, $type) {
+
         if (count($data) > 0) {
             foreach ($data as $key => $val) {
                 $field_data = array(
@@ -346,7 +333,9 @@ class Cfcm extends MY_Controller {
     }
 
     // Get field info.
+
     public function get_field($name) {
+
         $this->db->limit(1);
         $this->db->where('field_name', $name);
         $query = $this->db->get('content_fields');
@@ -357,7 +346,7 @@ class Cfcm extends MY_Controller {
 
             return $data;
         } else {
-            return FALSE;
+            return false;
         }
     }
 
@@ -365,16 +354,9 @@ class Cfcm extends MY_Controller {
      * Display template file
      */
     private function display_tpl($file = '') {
+
         $file = realpath(dirname(__FILE__)) . '/templates/public/' . $file . '.tpl';
         $this->template->display('file:' . $file);
-    }
-
-    /**
-     * Fetch template file
-     */
-    private function fetch_tpl($file = '') {
-        $file = realpath(dirname(__FILE__)) . '/templates/public/' . $file . '.tpl';
-        return $this->template->fetch('file:' . $file);
     }
 
 }

@@ -137,19 +137,6 @@ if (count($pages) > 0 AND is_array($pages))
 ]]>
 </hook>
 
-<hook id="cmsbase_return_categories">
-<![CDATA[
-    $n = 0;
-    $ci =& get_instance();
-    $ci->load->library('DX_Auth');
-    foreach ($categories as $c)
-    {
-        $categories[$n] = $ci->load->module('cfcm')->connect_fields($c, 'category');
-        $n++;
-    }
-]]>
-</hook>
-
 <hook id="admin_on_page_delete">
 <![CDATA[
     $this->db->where('item_id', $page_id);

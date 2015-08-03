@@ -6,8 +6,8 @@ $(document).ready(function(){
 		openEffect	: 'none',
 		closeEffect	: 'none',
         padding : [0,0,0,0]
-	});    
-    
+	});
+
 	$('.b-banner-main.js').removeClass('no-js').slick({
         dots: true,
         arrows: true,
@@ -34,12 +34,13 @@ $(document).ready(function(){
         slidesToShow: 5,
         autoplay: false,
         autoplaySpeed: 4000,
+        swipeToSlide: true,
         responsive: [
         {
             breakpoint: 1200,
             settings: {
                 slidesToShow: 4
-            }            
+            }
         },
         {
             breakpoint: 960,
@@ -61,7 +62,7 @@ $(document).ready(function(){
         }
         ]
     });
-    
+
     $('.b-review-w.js').slick({
         dots: false,
         arrows: true,
@@ -73,8 +74,8 @@ $(document).ready(function(){
         nextArrow: ' <i class="b-review-w__next g-arrow-m fa fa-angle-right fa-lg"></i>'
 
     });
-    
-    $('.b-partner-w.js').slick({        
+
+    $('.b-partner-w.js').slick({
         infinite: true,
         slidesToShow: 5,
         slidesToScroll: 1,
@@ -103,7 +104,7 @@ $(document).ready(function(){
                 breakpoint: 480,
                 settings: {
                     slidesToShow: 1
-                }  
+                }
             }
         ]
     });
@@ -112,6 +113,6 @@ $(document).ready(function(){
 
     $('.b-toggle-menu.js').on('click', function(){
         $('.b-menu').toggleClass('js-toggle', 300, "easeOutSine");
-    })
+    });
 
 });

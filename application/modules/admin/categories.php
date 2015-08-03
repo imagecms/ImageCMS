@@ -64,8 +64,9 @@ class Categories extends BaseAdminController {
 
         if ($this->input->post('positions')) {
             foreach ($this->input->post('positions') as $pos => $id) {
-                $query = "UPDATE `category` SET `position`='" . $pos . "' WHERE `id`='" . (int) $id . "';";
-                $this->db->query($query);
+                $this->db->where('id', (int) $id);
+                $this->db->set('position', $pos);
+                $this->db->update('category');
             }
 
             showMessage(lang("The position has been successfully saved", "admin"));

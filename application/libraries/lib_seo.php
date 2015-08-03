@@ -12,13 +12,9 @@ if (!defined('BASEPATH')) {
 class Lib_seo {
 
     protected $orderJustMaked = FALSE;
-
     public $origin_arr;
-
     public $modif_arr;
-
     public $min_word_length = 3;
-
     public $desc_chars = 160;
 
     /**
@@ -61,10 +57,8 @@ class Lib_seo {
         $str = "";
 
         if ($as_array == FALSE) {
-            foreach ($arr as $key => $val) {
-                $str .= $key . ", ";
-            }
-            return trim(mb_substr($str, 0, mb_strlen($str, 'utf-8') - 2));
+            $str = implode(', ', array_keys($arr));
+            return $str;
         } else {
             return $arr;
         }

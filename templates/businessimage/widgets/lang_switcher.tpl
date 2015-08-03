@@ -1,3 +1,4 @@
+{if count($languages) > 0}
 <ul class="b-langs g-clearfix">
 	{foreach $languages as $lang}
 	{$loc_page_url = "/" . $lang.identif . $current_address}
@@ -12,3 +13,4 @@
 		</li>
 	{/foreach}
 </ul>
+{/if}

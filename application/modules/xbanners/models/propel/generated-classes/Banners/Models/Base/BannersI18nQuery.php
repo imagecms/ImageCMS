@@ -32,9 +32,19 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildBannersI18nQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
  * @method     ChildBannersI18nQuery innerJoin($relation) Adds a INNER JOIN clause to the query
  *
+ * @method     ChildBannersI18nQuery leftJoinWith($relation) Adds a LEFT JOIN clause and with to the query
+ * @method     ChildBannersI18nQuery rightJoinWith($relation) Adds a RIGHT JOIN clause and with to the query
+ * @method     ChildBannersI18nQuery innerJoinWith($relation) Adds a INNER JOIN clause and with to the query
+ *
  * @method     ChildBannersI18nQuery leftJoinBanners($relationAlias = null) Adds a LEFT JOIN clause to the query using the Banners relation
  * @method     ChildBannersI18nQuery rightJoinBanners($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Banners relation
  * @method     ChildBannersI18nQuery innerJoinBanners($relationAlias = null) Adds a INNER JOIN clause to the query using the Banners relation
+ *
+ * @method     ChildBannersI18nQuery joinWithBanners($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the Banners relation
+ *
+ * @method     ChildBannersI18nQuery leftJoinWithBanners() Adds a LEFT JOIN clause and with to the query using the Banners relation
+ * @method     ChildBannersI18nQuery rightJoinWithBanners() Adds a RIGHT JOIN clause and with to the query using the Banners relation
+ * @method     ChildBannersI18nQuery innerJoinWithBanners() Adds a INNER JOIN clause and with to the query using the Banners relation
  *
  * @method     \Banners\Models\BannersQuery endUse() Finalizes a secondary criteria and merges it with its primary Criteria
  *

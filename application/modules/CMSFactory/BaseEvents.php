@@ -109,7 +109,7 @@ abstract class BaseEvents {
      * @author Kaero
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
      */
-    public function runFactory($eventAlias = null, $cleanQueue = false) {
+    public static function runFactory($eventAlias = null, $cleanQueue = false) {
         (defined('BASEPATH')) OR exit('No direct script access allowed');
         foreach (Events::create()->storage as $storageKey => $value) {
             if ($eventAlias != null && $eventAlias != $storageKey) {
