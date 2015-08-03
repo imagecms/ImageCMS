@@ -1,0 +1,433 @@
+﻿msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-03-12 01:40+0200\n"
+"PO-Revision-Date: 2015-03-12 01:40+0200\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: application/modules/template_manager/admin.php:127
+#: application/modules/template_manager/admin.php:128
+msgid "Template demo data was successfully installed"
+msgstr "Демо-данные были успешно установлены"
+
+#: application/modules/template_manager/assets/admin/main.tpl:575
+msgid "Be careful, installing demo data can damage your data."
+msgstr "Будьте осторожны, установка демо-данных может привести к повреждению данных."
+
+#: application/modules/template_manager/assets/admin/main.tpl:382
+#: application/modules/template_manager/assets/admin/main.tpl:468
+msgid "Demo online"
+msgstr "Онлайн демо"
+
+#: application/modules/template_manager/assets/admin/main.tpl:587
+msgid "Installing full demo data can destroy all your database and uploads data."
+msgstr "Полная установка демо-данных может разрушить вашу базу данных и данные папки uploads."
+
+#: application/modules/template_manager/assets/admin/main.tpl:584
+msgid "Full demo data install"
+msgstr "Установить полные демо-данные"
+
+#: application/modules/template_manager/assets/admin/main.tpl:84
+#: application/modules/template_manager/assets/admin/main.tpl:595
+msgid "Install full demodata"
+msgstr "Установить полные демо-данные"
+
+#: application/modules/template_manager/assets/admin/main.tpl:576
+msgid "Install with demodata"
+msgstr "Установить с демо-данными"
+
+#: application/modules/template_manager/admin.php:194
+msgid "Template Logo and Favicon changed."
+msgstr "Логотип и Favicon изменены."
+
+#: application/modules/template_manager/admin.php:357
+#: application/modules/template_manager/admin.php:358
+msgid "Component settings successfuly updated"
+msgstr "Настройки дизайна отредактированы"
+
+#: application/modules/template_manager/admin.php:360
+msgid "Component settings can not update"
+msgstr "Не возможно обновить настройки компонента"
+
+#: application/modules/template_manager/classes/Template.php:135
+msgid "Class Template has no |0| property"
+msgstr "Класс шаблона нет имеет |0| свойства"
+
+#: application/modules/template_manager/classes/Template.php:172
+msgid "Component |0| not found"
+msgstr "Компонент |0| не найден"
+
+#: application/modules/template_manager/classes/Template.php:336
+msgid "Component |component_name| is broken"
+msgstr "Компонент |component_name| сломан"
+
+#: application/modules/template_manager/assets/admin/main.tpl:208
+#: application/modules/template_manager/assets/admin/main.tpl:268
+#: application/modules/template_manager/assets/admin/main.tpl:359
+#: application/modules/template_manager/assets/admin/main.tpl:445
+msgid "Платный"
+msgstr "Платный"
+
+#: application/modules/template_manager/assets/admin/main.tpl:203
+#: application/modules/template_manager/assets/admin/main.tpl:264
+#: application/modules/template_manager/assets/admin/main.tpl:353
+#: application/modules/template_manager/assets/admin/main.tpl:441
+msgid "Дизайн интернет-магазина"
+msgstr "Дизайн интернет-магазина"
+
+#: application/modules/template_manager/assets/admin/main.tpl:210
+#: application/modules/template_manager/assets/admin/main.tpl:270
+#: application/modules/template_manager/assets/admin/main.tpl:361
+#: application/modules/template_manager/assets/admin/main.tpl:447
+msgid "Бесплатный"
+msgstr "Бесплатный"
+
+#: application/modules/template_manager/assets/admin/main.tpl:318
+msgid "Add design"
+msgstr "Добавить дизайн"
+
+#: application/modules/template_manager/assets/admin/main.tpl:300
+msgid "Date"
+msgstr "Дата"
+
+#: application/modules/template_manager/assets/admin/main.tpl:3
+msgid "Please use function siteinfo() with the parameter"
+msgstr "Пожалуйста, используйте функцию электронной почты: siteinfo() с параметром"
+
+#: application/modules/template_manager/assets/admin/main.tpl:294
+msgid "Status"
+msgstr "Статус"
+
+#: application/modules/template_manager/assets/admin/main.tpl:277
+msgid "Pay"
+msgstr "Оплатить"
+
+#: application/modules/template_manager/assets/admin/main.tpl:295
+msgid "No"
+msgstr "Нет"
+
+#: application/modules/template_manager/classes/Template.php:272
+msgid "XML-file read error"
+msgstr "XML-файл ошибка чтения"
+
+#: application/modules/template_manager/assets/admin/main.tpl:303
+msgid "System Pay"
+msgstr "Система Оплаты"
+
+#: application/modules/template_manager/assets/admin/main.tpl:297
+msgid "Number"
+msgstr "Номер"
+
+#: application/modules/template_manager/assets/admin/main.tpl:512
+msgid "Enter URL"
+msgstr "Введите URL-адрес"
+
+#: application/modules/template_manager/assets/admin/main.tpl:238
+#: application/modules/template_manager/assets/admin/main.tpl:396
+#: application/modules/template_manager/assets/admin/main.tpl:481
+msgid "Version"
+msgstr "Версия"
+
+#: application/modules/template_manager/admin.php:380
+msgid "Can not delete installed template."
+msgstr "Вы не можете удалить установленный шаблон."
+
+#: application/modules/template_manager/admin.php:385
+msgid "Can not delete template. Check files permissions."
+msgstr "Вы не можете удалить шаблон. Проверьте права на файлы."
+
+#: application/modules/template_manager/assets/admin/main.tpl:113
+#: application/modules/template_manager/assets/admin/main.tpl:117
+#: application/modules/template_manager/assets/admin/main.tpl:146
+#: application/modules/template_manager/assets/admin/main.tpl:150
+msgid "Click to select the image"
+msgstr "Выберите изображение,"
+
+#: application/modules/template_manager/assets/admin/main.tpl:534
+msgid "Choose file"
+msgstr "Выберите файл"
+
+#: application/modules/template_manager/installer/WidgetDependence.php:234
+msgid "This widget is required"
+msgstr "Данный виджет является обязательным"
+
+#: application/modules/template_manager/assets/admin/main.tpl:521
+#: application/modules/template_manager/assets/admin/main.tpl:541
+msgid "Upload"
+msgstr "Загрузить"
+
+#: application/modules/template_manager/assets/admin/main.tpl:37
+msgid "Upload template"
+msgstr "Загрузить шаблон"
+
+#: application/modules/template_manager/admin.php:68
+msgid "Changes saved."
+msgstr "Изменения сохранены."
+
+#: application/modules/template_manager/admin.php:375
+msgid "Template name is not set."
+msgstr "Имя шаблона не установлено."
+
+#: application/modules/template_manager/assets/admin/main.tpl:376
+#: application/modules/template_manager/assets/admin/main.tpl:462
+msgid "Buy"
+msgstr "Купить"
+
+#: application/modules/template_manager/assets/admin/main.tpl:556
+msgid "License agreement"
+msgstr "Лицензионное соглашение"
+
+#: application/modules/template_manager/assets/admin/main.tpl:101
+msgid "Logo"
+msgstr "Логотип"
+
+#: application/modules/template_manager/assets/admin/main.tpl:62
+msgid "Logo & Favicon"
+msgstr "Логотип & Favicon"
+
+#: application/modules/template_manager/assets/admin/main.tpl:528
+msgid "Local file"
+msgstr "Локальный файл"
+
+#: application/modules/template_manager/module_info.php:8
+msgid "Module for simpler templates managing"
+msgstr "Модуль для упрощения управления шаблонами"
+
+#: application/modules/template_manager/component_pattern/TComponentName/assets/admin/main.tpl:15
+#: application/modules/template_manager/assets/admin/main.tpl:16
+msgid "Back"
+msgstr "Назад"
+
+#: application/modules/template_manager/component_pattern/TComponentName/TComponentName.php:22
+msgid "Component Name"
+msgstr "Название Компонента"
+
+#: application/modules/template_manager/component_pattern/TComponentName/assets/admin/main.tpl:10
+msgid "Component name"
+msgstr "Название компонента"
+
+#: application/modules/template_manager/assets/admin/main.tpl:34
+msgid "Templates properties"
+msgstr "Настройки дизайна"
+
+#: application/modules/template_manager/assets/admin/main.tpl:42
+msgid "Start typing name here..."
+msgstr "Начните вводить название здесь..."
+
+#: application/modules/template_manager/admin.php:440
+#: application/modules/template_manager/admin.php:443
+msgid "Can not upload template."
+msgstr "Не возможно загрузить шаблон."
+
+#: application/modules/template_manager/installer/DemodataBanners.php:88
+msgid "Can not install banner."
+msgstr "Не возможно установить баннер."
+
+#: application/modules/template_manager/installer/DemodataCustomfields.php:76
+msgid "Can not install custom field."
+msgstr "Не возможно установить дополнительное поле."
+
+#: application/modules/template_manager/admin.php:269
+msgid "Failed to download the archive"
+msgstr "Не удалось загрузить архив"
+
+#: application/modules/template_manager/classes/TArchive.php:87
+msgid "Unable to extract archive"
+msgstr "Не удалось распаковать архив"
+
+#: application/modules/template_manager/admin.php:288
+msgid "Wrong file type"
+msgstr "Неправильный тип файла"
+
+#: application/modules/template_manager/admin.php:141
+msgid "Wrong filetype. Zip-archives only"
+msgstr "Неправильный тип файла. Zip-архивы только"
+
+#: application/modules/template_manager/admin.php:259
+msgid "No input data specified"
+msgstr "Нет данных для загрузки"
+
+#: application/modules/template_manager/classes/TArchive.php:79
+msgid "No params.xml file"
+msgstr "Нет файла params.xml"
+
+#: application/modules/template_manager/assets/admin/main.tpl:502
+msgid "No templates"
+msgstr "Нет шаблонов"
+
+#: application/modules/template_manager/assets/admin/main.tpl:491
+msgid "Description"
+msgstr "Описание"
+
+#: application/modules/template_manager/assets/admin/main.tpl:569
+#: application/modules/template_manager/assets/admin/main.tpl:591
+msgid "Cancel"
+msgstr "Отменить"
+
+#: application/modules/template_manager/assets/js/script_admin.js:35
+#: application/modules/template_manager/assets/js/script_admin.js:115
+#: application/modules/template_manager/admin.php:130
+msgid "Error"
+msgstr "Ошибка"
+
+#: application/modules/template_manager/admin.php:235
+msgid "Error - template not specified"
+msgstr "Ошибка - шаблон не указан"
+
+#: application/modules/template_manager/admin.php:199
+msgid "DB Error"
+msgstr "Ошибка Базы Данных"
+
+#: application/modules/template_manager/classes/TemplateManager.php:136
+#: application/modules/template_manager/classes/TemplateManager.php:147
+msgid "One or more dependency error"
+msgstr "Ошибка в зависимостях шаблона"
+
+#: application/modules/template_manager/installer/WidgetDependence.php:221
+msgid "Error on adding to DB"
+msgstr "Ошибка при добавлении в Базу данных"
+
+#: application/modules/template_manager/classes/TArchive.php:74
+msgid "Bad archive structure"
+msgstr "Плохая структура архива"
+
+#: application/modules/template_manager/assets/admin/main.tpl:401
+#: application/modules/template_manager/assets/admin/main.tpl:486
+msgid "Support from"
+msgstr "Поддержка с"
+
+#: application/modules/template_manager/assets/admin/main.tpl:565
+msgid "Accept license agreement"
+msgstr "Примите лицензионное соглашение"
+
+#: application/modules/template_manager/components/TTemplateEditor/TTemplateEditor.php:23
+msgid "Template Editor"
+msgstr "Редактор шаблонов"
+
+#: application/modules/template_manager/assets/admin/main.tpl:76
+msgid "User Guide"
+msgstr "Руководство Пользователя"
+
+#: application/modules/template_manager/assets/admin/main.tpl:370
+#: application/modules/template_manager/assets/admin/main.tpl:456
+msgid "Download"
+msgstr "Скачать"
+
+#: application/modules/template_manager/component_pattern/TComponentName/assets/admin/main.tpl:21
+msgid "Component body"
+msgstr "Содержание компонента"
+
+#: application/modules/template_manager/assets/js/script_admin.js:113
+msgid "Message"
+msgstr "Сообщение"
+
+#: application/modules/template_manager/assets/admin/main.tpl:165
+msgid "Save"
+msgstr "Сохранить"
+
+#: application/modules/template_manager/assets/admin/main.tpl:35
+msgid "Template list"
+msgstr "Список дизайнов"
+
+#: application/modules/template_manager/classes/TemplateManager.php:126
+msgid "Current installed template can not be installed again"
+msgstr "Текущий установленный шаблон не может быть установлена заново"
+
+#: application/modules/template_manager/assets/admin/main.tpl:234
+#: application/modules/template_manager/assets/admin/main.tpl:391
+#: application/modules/template_manager/assets/admin/main.tpl:476
+msgid "Type"
+msgstr "Тип"
+
+#: application/modules/template_manager/assets/js/script_admin.js:35
+msgid "Only image can be loaded"
+msgstr "Только изображение может быть загружено"
+
+#: application/modules/template_manager/classes/TArchive.php:51
+msgid "Specified zip file does not exists"
+msgstr "Указанный zip файл не существует"
+
+#: application/modules/template_manager/assets/admin/main.tpl:9
+#: application/modules/template_manager/module_info.php:7
+msgid "Templates manager"
+msgstr "Управление дизайном"
+
+#: application/modules/template_manager/assets/admin/main.tpl:220
+#: application/modules/template_manager/assets/admin/main.tpl:573
+msgid "Install"
+msgstr "Установить"
+
+#: application/modules/template_manager/assets/admin/main.tpl:215
+msgid "Installed"
+msgstr "Установлен"
+
+#: application/modules/template_manager/assets/admin/main.tpl:56
+msgid "Template"
+msgstr "Шаблон"
+
+#: application/modules/template_manager/admin.php:80
+msgid "Template was successfully downloaded."
+msgstr "Шаблон был успешно загружен."
+
+#: application/modules/template_manager/admin.php:59
+msgid "Template was successfully uploaded."
+msgstr "Шаблон был успешно загружен."
+
+#: application/modules/template_manager/admin.php:74
+msgid "Template was successfully deleted."
+msgstr "Шаблон был успешно удален."
+
+#: application/modules/template_manager/admin.php:239
+#: application/modules/template_manager/admin.php:240
+msgid "Template was successfully installed."
+msgstr "Шаблон был успешно установлен."
+
+#: application/modules/template_manager/classes/Template.php:89
+msgid "Template does not exist in templates folder"
+msgstr "Шаблон не находится в папке шаблона"
+
+#: application/modules/template_manager/admin.php:390
+msgid "Template does not exists."
+msgstr "Шаблон не существует."
+
+#: application/modules/template_manager/classes/TArchive.php:83
+msgid "Template already exists"
+msgstr "Шаблон уже существует"
+
+#: application/modules/template_manager/assets/admin/main.tpl:38
+msgid "Repository templates"
+msgstr "Шаблоны с репозитория"
+
+#: application/modules/template_manager/admin.php:140
+#: application/modules/template_manager/admin.php:232
+msgid "Templates are the intellectual property, so if you <br /> want to install it, you must accept the license agreement."
+msgstr "Шаблоны являются интеллектуальной собственностью, так что если вы <br /> хотите установить его, Вам необходимо принять лицензионное соглашение."
+
+#: application/modules/template_manager/installer/WidgetDependence.php:246
+msgid "This widget is wishful"
+msgstr "Этот виджет является желаемым"
+
+#: application/modules/template_manager/installer/ModuleDependence.php:129
+msgid "This module is not exists"
+msgstr "Этот модуль не существует"
+
+#: application/modules/template_manager/installer/ModuleDependence.php:88
+msgid "This module is required"
+msgstr "Этот модуль нужен бить установлен"
+
+#: application/modules/template_manager/installer/ModuleDependence.php:100
+msgid "This module is wishful"
+msgstr "Этот модуль является желательным"
