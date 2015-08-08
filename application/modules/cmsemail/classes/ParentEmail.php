@@ -34,7 +34,7 @@ class ParentEmail extends \MY_Controller {
 
     /**
      * Attachment file
-     * @var type 
+     * @var type
      */
     protected $attachment;
 
@@ -141,11 +141,11 @@ class ParentEmail extends \MY_Controller {
      * @return bool
      */
     public function sendEmail($send_to, $patern_name, $variables, $attachment = FALSE) {
-        //loading CodeIgniter Email library 
+        //loading CodeIgniter Email library
         $this->load->library('email');
         $locale = \MY_Controller::getCurrentLocale();
 
-        //Getting settings 
+        //Getting settings
         $patern_settings = $this->cmsemail_model->getPaternSettings($patern_name);
         $default_settings = $this->cmsemail_model->getSettings($locale);
 
@@ -186,14 +186,16 @@ class ParentEmail extends \MY_Controller {
             } else {
                 //Registering event is success
                 \CMSFactory\Events::create()->registerEvent(
-                        array(
+                    array(
                     'from' => $this->from,
                     'from_email' => $this->from_email,
                     'send_to' => $this->send_to,
                     'theme' => $this->theme,
                     'message' => $this->message
-                        ), 'ParentEmail:userSend');
-                \CMSFactory\Events::runFactory();
+                        ),
+                    'ParentEmail:userSend'
+                );
+                        \CMSFactory\Events::runFactory();
             }
         }
         //Sending administrator email if active in options
@@ -216,18 +218,20 @@ class ParentEmail extends \MY_Controller {
             } else {
                 //Registering event is success
                 \CMSFactory\Events::create()->registerEvent(
-                        array(
+                    array(
                     'from' => $this->from,
                     'from_email' => $this->from_email,
                     'send_to' => $this->send_to,
                     'theme' => $this->theme,
                     'message' => $this->message
-                        ), 'ParentEmail:adminSend');
-                \CMSFactory\Events::runFactory();
+                        ),
+                    'ParentEmail:adminSend'
+                );
+                        \CMSFactory\Events::runFactory();
             }
         }
 
-        //Returning status 
+        //Returning status
         if ($this->errors) {
             return FALSE;
         } else {
@@ -384,7 +388,7 @@ class ParentEmail extends \MY_Controller {
 
         $config['mailtype'] = strtolower($settings['type']);
         $config['mailpath'] = $settings['mailpath'];
-        
+
         return $this->email->initialize($config);
     }
 

@@ -34,3 +34,5 @@ exclude_paths:
 - "application/modules/translate/**"
 - "application/modules/shop/obf/**"
 - "**/module_info.php"
+- "**/vendor/**"
+

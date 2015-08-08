@@ -568,17 +568,17 @@ function isEditorInitialized(editor) {
     return editor && editor.initialized;
 }
 
-function initTinyMCE()
+function initTinyMCE(selector)
 {
-    tinymce.remove('textarea.elRTE');
+    selector = selector ? selector : 'textarea.elRTE';
+    tinymce.remove(selector);
     tinymce.editors = [];
     console.log('initTinyMCE');
     var availableLocales = ['uk', 'ru', 'en'];
     try {
         tinymce.init({
             fontsize_formats: "8pt 10pt 12pt 14pt 18pt 24pt 36pt",
-            selector: "textarea.elRTE",
-//            skin: 'light',
+            selector: selector,
             verify_html: false,
             forced_root_block: 'p',
             browser_spellcheck: true,

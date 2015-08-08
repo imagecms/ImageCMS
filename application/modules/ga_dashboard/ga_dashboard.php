@@ -88,13 +88,17 @@ class Ga_dashboard extends MY_Controller {
         /* @var $model SProducts */
         $model = $data['model'];
         $brand = $model->getBrand() ? $model->getBrand()->getName() : '';
+        $name = SCategoryI18nQuery::create()
+                ->filterByLocale(MY_Controller::getCurrentLocale())
+                ->findOneById($model->getCategoryId())
+                ->getName();
 
         \CMSFactory\assetManager::create()
                 ->registerJsScript("var id = '{$model->getId()}';", FALSE, 'before')
                 ->registerJsScript("var name = '{$model->getName()}';", FALSE, 'before')
                 ->registerJsScript("var price = '{$model->firstVariant->toCurrency()}';", FALSE, 'before')
                 ->registerJsScript("var brand = '$brand';", FALSE, 'before')
-                ->registerJsScript("var category = '{$model->getCategories()->getData()[0]->getName()}';", FALSE, 'before')
+                ->registerJsScript("var category = '$name';", FALSE, 'before')
                 ->registerScript('product', FALSE, 'after');
     }
 
@@ -115,7 +119,7 @@ class Ga_dashboard extends MY_Controller {
          */
         $this->db
             ->where('name', 'ga_dashboard')
-            ->update('components', array('autoload' => '1', 'enabled' => '1'));
+            ->update('components', ['autoload' => '1', 'enabled' => '1']);
     }
 
     public function _deinstall() {

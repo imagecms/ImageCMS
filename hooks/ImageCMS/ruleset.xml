@@ -9,6 +9,7 @@
     <exclude-pattern>*/generated-classes/Base/*</exclude-pattern>
     <exclude-pattern>*/generated-classes/Map/*</exclude-pattern>
     <exclude-pattern>*/application/third_party/*</exclude-pattern>
+    <exclude-pattern>*/vendor/*</exclude-pattern>
     <exclude-pattern>*/application/modules/shop/obf/*</exclude-pattern>
  
     <arg name="extensions" value="php,js"/>
