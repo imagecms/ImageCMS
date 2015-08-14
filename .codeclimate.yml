@@ -35,4 +35,4 @@ exclude_paths:
 - "application/modules/shop/obf/**"
 - "**/module_info.php"
 - "**/vendor/**"
-
+- "uploads_site/**"

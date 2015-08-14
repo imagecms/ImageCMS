@@ -867,6 +867,28 @@ var orders = new Object({
         });
         return true;
     },
+    
+    chPrint: function () {
+        var ids = new Array();
+        $('input[name=ids]:checked').each(function () {
+            ids.push($(this).val());
+        });
+        $.post('/admin/components/run/shop/orders/ajaxPrint', {
+            ids: ids
+        }, function (data) {
+//            $('#mainContent').after(data);
+
+            $('#pastUrlPrint').html(data);            
+            $('.manyPrints').click();
+            $.pjax({
+                url: window.location.href,
+                container: '#mainContent',
+                timeout: 3000
+            });
+        });
+        return true;
+    },
+    
     deleteOrders: function () {
         $('#delete-orders-modal').modal();
     },

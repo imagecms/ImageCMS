@@ -2,25 +2,6 @@
 
 if (!function_exists('check_admin_redirect')) {
 
-    function get_lang_admin_folders() {
-        $new_arr = array();
-
-        if ($handle = opendir(APPPATH . 'language/admin/')) {
-            while (false !== ($file = readdir($handle))) {
-                if ($file != "." && $file != ".." && $file != 'administrator') {
-
-                    if (!is_file(APPPATH . 'language/admin/' . $file)) {
-                        $new_arr[$file] = $file;
-                    }
-                }
-            }
-            closedir($handle);
-        } else {
-            return FALSE;
-        }
-        return $new_arr;
-    }
-
     function create_language_select($languages, $locale, $url, $pjax = FALSE) {
         if (count($languages) > 1) {
             $html = "<div class='dropdown d-i_b'>";
@@ -85,7 +66,7 @@ if (!function_exists('check_admin_redirect')) {
         return $html;
     }
 
-    function build_cats_tree($cats, $selected_cats = array()) {
+    function build_cats_tree($cats, $selected_cats = []) {
         if (is_array($cats)) {
             foreach ($cats as $cat) {
                 echo "<option";

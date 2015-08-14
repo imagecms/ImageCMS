@@ -8,7 +8,7 @@
 
         <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
-        <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
         <link rel="stylesheet" type="text/css" href="{$THEME}css/bootstrap_complete.css">
         <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css">

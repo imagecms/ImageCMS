@@ -34,8 +34,8 @@ then
 	echo "Running Code Sniffer..."
 	echo "================="
 	
-	./application/third_party/bin/phpcbf --standard=$PROJECT/hooks/ImageCMS $FILES
-	./application/third_party/bin/phpcs --standard=$PROJECT/hooks/ImageCMS $FILES
+	./application/third_party/bin/phpcbf --standard=$PROJECT/hooks/ImageCMS $FILES 
+	./application/third_party/bin/phpcs --standard=$PROJECT/hooks/ImageCMS $FILES 
 	if [ $? != 0 ]
 	then
 		EXIT=1

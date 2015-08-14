@@ -9,35 +9,6 @@
                 <a href="{$BASE_URL}admin/rbac/roleList" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back","admin")}</span></a>
                 <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#role_ed_form" data-action="edit" data-submit><i class="icon-ok icon-white"></i>{lang("Save","admin")}</button>
                 <button type="button" class="btn btn-small formSubmit" data-form="#role_ed_form" data-action="exit"><i class="icon-check"></i>{lang("Save and exit","admin")}</button>
-
-                <div class="dropdown d-i_b">
-                    {$arr = get_lang_admin_folders()}
-                    {foreach $arr as $a}
-                        {if $lang_sel->lang_sel == $a}
-                            <a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
-                                {if $a == 'english_lang'}
-                                    {lang('English', 'admin')}
-                                {else:}
-                                    {lang('Russian', 'admin')}
-                                {/if}
-                                <span class="caret"></span>
-                            </a>
-                        {/if}
-                    {/foreach}
-                    <ul class="dropdown-menu pull-right">
-                        {foreach $arr as $a}
-                            <li>
-                                <a href="{$BASE_URL}admin/rbac/translateRole/{echo $model->id}/{if $a == 'russian_lang'}en{else:}ru{/if}">
-                                    {if $a == 'english_lang'}
-                                        {lang('Russian', 'admin')}
-                                    {else:}
-                                        {lang('English', 'admin')} (beta)
-                                    {/if}
-                                </a>
-                            </li>
-                        {/foreach}
-                    </ul>
-                </div>
             </div>
         </div>
     </div>

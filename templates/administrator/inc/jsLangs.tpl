@@ -24,8 +24,8 @@ langs["Please enter a value between<?php echo ' {0}'?> and<?php echo ' {1}'?>."]
 langs["Please enter a value less than or equal to<?php echo ' {0}'?>."] = '<?php echo addslashes(lang("Please enter a value less than or equal to {0}.", "admin", FALSE))?>';
 langs["Please enter a value greater than or equal to<?php echo ' {0}'?>."] = '<?php echo addslashes(lang("Please enter a value greater than or equal to {0}.", "admin", FALSE))?>';
 langs["numbers only"] = '<?php echo addslashes(lang("numbers only", "admin", FALSE))?>';
+langs["You can upload only |max_file_uploads| images at once"] = '<?php echo addslashes(lang("You can upload only |max_file_uploads| images at once", "admin", FALSE))?>';
 langs["Not supported file format"] = '<?php echo addslashes(lang("Not supported file format", "admin", FALSE))?>';
 langs["Message"] = '<?php echo addslashes(lang("Message", "admin", FALSE))?>';
 langs["Sorting method updated"] = '<?php echo addslashes(lang("Sorting method updated", "admin", FALSE))?>';
-langs["You can upload only |max_file_uploads| images at once"] = '<?php echo addslashes(lang("You can upload only |max_file_uploads| images at once", "admin", FALSE))?>';
 </script>
