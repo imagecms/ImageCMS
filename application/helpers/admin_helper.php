@@ -110,3 +110,33 @@ if (!function_exists('check_admin_redirect')) {
     }
 
 }
+
+if (!function_exists('get_templates')) {
+
+    function get_templates() {
+        $new_arr_shop = [];
+        if ($handle = opendir(TEMPLATES_PATH)) {
+            while (false !== ($file = readdir($handle))) {
+                if ($file != "." && $file != ".." && $file != 'administrator' && $file != 'modules' && !stristr($file, '_mobile')) {
+                    if (!is_file(TEMPLATES_PATH . $file)) {
+                        if (SHOP_INSTALLED && is_dir(TEMPLATES_PATH . $file . '/shop/')) {
+                            $new_arr_shop[$file] = $file;
+                        }
+                        $new_arr[$file] = $file;
+                    }
+                }
+            }
+            closedir($handle);
+        } else {
+            return FALSE;
+        }
+
+        if (SHOP_INSTALLED) {
+            array_multisort($new_arr_shop);
+            return $new_arr_shop;
+        } else {
+            array_multisort($new_arr);
+            return $new_arr;
+        }
+    }
+}

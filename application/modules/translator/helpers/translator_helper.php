@@ -201,8 +201,7 @@ if (!function_exists('updateSettings')) {
                     ['settings' => serialize($settings)
                     ]
                 );
-        }
-        else {
+        } else {
             return FALSE;
         }
     }
@@ -403,7 +402,3 @@ if (!function_exists('getModulePathForTranslator')) {
     }
 
 }
-
-
-//________________________________________________________
-?>
