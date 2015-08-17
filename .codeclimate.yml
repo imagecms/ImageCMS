@@ -38,7 +38,7 @@ engines:
 # exclude_paths key.
 
 exclude_paths:
-- "system/*"
+- system/**
 #- "application/cms_bridge.php"
 #- "tests/**"
 #- "**/tests/**"
