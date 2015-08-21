@@ -42,8 +42,8 @@
                                 <label class="control-label" for="order_by">{lang("Comments sorting method", 'comments')}:</label>
                                 <div class="controls number">
                                     <select id="order_by" name="order_by">
-                                        <option {if $settings.order_by == 'date.desc'}selected{/if} value="date.desc">{lang('Newest first')}</option>
-                                        <option {if $settings.order_by == 'date.asc'}selected{/if} value="date.asc">{lang('Oldest first')}</option>
+                                        <option {if $settings.order_by == 'date.desc'}selected{/if} value="date.desc">{lang('Newest first', 'comments')}</option>
+                                        <option {if $settings.order_by == 'date.asc'}selected{/if} value="date.asc">{lang('Oldest first', 'comments')}</option>
                                     </select>
                                 </div>
                             </div>

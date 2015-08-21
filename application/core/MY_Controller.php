@@ -61,9 +61,9 @@ class MY_Controller extends MX_Controller {
 
     public static $currentLanguage = null;
 
-    public static $detect_load_admin = array();
+    public static $detect_load_admin = [];
 
-    public static $detect_load = array();
+    public static $detect_load = [];
 
     public function __construct() {
         parent::__construct();

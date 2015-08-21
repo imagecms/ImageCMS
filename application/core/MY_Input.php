@@ -31,14 +31,14 @@ class MY_Input extends CI_Input {
      */
     public function _sanitize_globals() {
         // It would be "wrong" to unset any of these GLOBALS.
-        $protected = array('_SERVER', '_GET', '_POST', '_FILES', '_REQUEST',
+        $protected = ['_SERVER', '_GET', '_POST', '_FILES', '_REQUEST',
             '_SESSION', '_ENV', 'GLOBALS', 'HTTP_RAW_POST_DATA',
             'system_folder', 'application_folder', 'BM', 'EXT',
-            'CFG', 'URI', 'RTR', 'OUT', 'IN');
+            'CFG', 'URI', 'RTR', 'OUT', 'IN'];
 
         // Unset globals for securiy.
         // This is effectively the same as register_globals = off
-        foreach (array($_GET, $_POST, $_COOKIE) as $global) {
+        foreach ([$_GET, $_POST, $_COOKIE] as $global) {
             if (!is_array($global)) {
                 if (!in_array($global, $protected)) {
                     global $$global;
@@ -56,7 +56,7 @@ class MY_Input extends CI_Input {
 
         // Is $_GET data allowed? If not we'll set the $_GET to an empty array
         if ($this->_allow_get_array == FALSE) {
-            $_GET = array();
+            $_GET = [];
         } else {
             if (is_array($_GET) AND count($_GET) > 0) {
                 foreach ($_GET as $key => $val) {

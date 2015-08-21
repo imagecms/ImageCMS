@@ -60,7 +60,7 @@
 
         <div class="tab-content">
             {foreach $types as $key => $type}
-                {if  strpos(getCmsNumber(), 'Premium') OR $key!='shop'}
+                {// Был забран IF с проверкой на версию и добавлен checked="checked" чтобы в версии PRO не отваливались роли на shop при сохранении}
                 <div class="tab-pane row {if $key == 'base'}active{/if}" id="{echo $key}">
                     {foreach $type as $k => $groups} 
                         <div class="span3">
@@ -83,7 +83,7 @@
                                             <td class="t-a_c">
                                                 <span class="frame_label">
                                                     <span class="niceCheck b_n">  
-                                                        <input type="checkbox" class="chldcheck"  value="{echo $privilege['id']}" name="Privileges[]"/>
+                                                        <input type="checkbox" class="chldcheck" checked="checked" value="{echo $privilege['id']}" name="Privileges[]"/>
                                                     </span>
                                                 </span>
                                             </td>
@@ -97,7 +97,6 @@
                         </div>
                     {/foreach}
                 </div>
-                {/if}
             {/foreach}
         </div>
         {form_csrf()}

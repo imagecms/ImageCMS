@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * MY_Lang
@@ -15,7 +16,9 @@ if (!defined('BASEPATH'))
 class MY_Lang extends MX_Lang {
 
     public $gettext_language;
+
     public $gettext_domain;
+
     static $LANG;
 
     /**
@@ -38,11 +41,11 @@ class MY_Lang extends MX_Lang {
 
         foreach ($languages as $lang) {
             if (in_array($language, $lang)) {
-                return array($lang['identif'], $lang['locale']);
+                return [$lang['identif'], $lang['locale']];
             }
         }
 
-        return array('ru', 'ru_RU');
+        return ['ru', 'ru_RU'];
     }
 
     private function _init() {

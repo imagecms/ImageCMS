@@ -3,6 +3,8 @@ Open source php CMS based on CodeIgniter
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/d1f4928d-7cce-4aad-937f-2aa5d91ebf14/mini.png)](https://insight.sensiolabs.com/projects/d1f4928d-7cce-4aad-937f-2aa5d91ebf14)
 [![Code Climate](https://codeclimate.com/github/imagecms/ImageCMS/badges/gpa.svg)](https://codeclimate.com/github/imagecms/ImageCMS)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/imagecms/ImageCMS/badges/quality-score.png?b=development)](https://scrutinizer-ci.com/g/imagecms/ImageCMS/?branch=development)
+[![Build Status](https://scrutinizer-ci.com/g/imagecms/ImageCMS/badges/build.png?b=development)](https://scrutinizer-ci.com/g/imagecms/ImageCMS/build-status/development)
 
 ##Installation
 ###Database

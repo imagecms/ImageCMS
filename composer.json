@@ -5,7 +5,7 @@
     "homepage": "http://www.imagecms.net",
     "type": "project",
     "config": {
-        "vendor-dir": "third_party"
+        "vendor-dir": "application/third_party"
     },
     "require": {
         "php": ">=5.4.0",

@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-19 10:59+0200\n"
-"PO-Revision-Date: 2015-02-19 10:59+0200\n"
+"POT-Creation-Date: 2015-08-20 04:36+0300\n"
+"PO-Revision-Date: 2015-08-20 04:36+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -18,7 +18,75 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: application/modules/comments/admin.php:235
+#: application/modules/comments/assets/admin/settings.tpl:42
+msgid "Comments sorting method"
+msgstr "Способ сортировки комментариев"
+
+#: application/modules/comments/assets/admin/settings.tpl:45
+msgid "Newest first"
+msgstr "Сначала новые"
+
+#: application/modules/comments/assets/admin/settings.tpl:46
+msgid "Oldest first"
+msgstr "Сначала старые"
+
+#: application/modules/comments/assets/comments.tpl:8
+msgid "Пожалуйста, войдите для комментирования"
+msgstr "Пожалуйста, войдите для комментирования"
+
+#: application/modules/comments/assets/comments.tpl:10
+msgid "Войти"
+msgstr "Войти"
+
+#: application/modules/comments/assets/comments.tpl:18
+msgid "Написать отзыв"
+msgstr "Написать отзыв"
+
+#: application/modules/comments/assets/comments.tpl:33
+#: application/modules/comments/assets/comments.tpl:82
+msgid "Ваше имя"
+msgstr "Ваше имя"
+
+#: application/modules/comments/assets/comments.tpl:34
+#: application/modules/comments/assets/comments.tpl:83
+msgid "E-mail"
+msgstr "E-mail"
+
+#: application/modules/comments/assets/comments.tpl:37
+msgid "Ваша оценка"
+msgstr "Ваша оценка"
+
+#: application/modules/comments/assets/comments.tpl:43
+msgid "Текст отзыва"
+msgstr "Текст отзыва"
+
+#: application/modules/comments/assets/comments.tpl:46
+#: application/modules/comments/assets/comments.tpl:89
+msgid "Код защиты"
+msgstr "Код защиты"
+
+#: application/modules/comments/assets/comments.tpl:48
+#: application/modules/comments/assets/comments.tpl:92
+msgid "Отправить"
+msgstr ""
+
+#: application/modules/comments/assets/comments.tpl:59
+msgid "Полезно"
+msgstr ""
+
+#: application/modules/comments/assets/comments.tpl:60
+msgid "Не полезно"
+msgstr ""
+
+#: application/modules/comments/assets/comments.tpl:85
+msgid "Текст ответа"
+msgstr ""
+
+#: application/modules/comments/assets/comments.tpl:123
+msgid "Ваш комментарий будет опубликован после модерации администратором"
+msgstr ""
+
+#: application/modules/comments/admin.php:237
 msgid "Comments status was updated"
 msgstr "Статус комментария обновлён"
 
@@ -38,7 +106,7 @@ msgstr "Последние отзывы о товарах"
 msgid "Showing latest product reviews."
 msgstr "Отображение последних отзывов о товарах."
 
-#: application/modules/comments/admin.php:316
+#: application/modules/comments/admin.php:321
 msgid "Comments settings was edited"
 msgstr "Настройки комментариев были отредактированы"
 
@@ -46,12 +114,14 @@ msgstr "Настройки комментариев были отредакти�
 msgid "Customer comments"
 msgstr "Комментарии пользователей"
 
-#: application/modules/comments/templates/edit.tpl:13
+#: application/modules/comments/templates/recent_product_comments_form.tpl:11
+#: application/modules/comments/templates/edit.tpl:14
 #: application/modules/comments/assets/admin/recent_product_comments_form.tpl:11
 msgid "Save and exit"
 msgstr "Сохранить и выйти"
 
-#: application/modules/comments/commentsapi.php:306
+#: application/modules/comments/commentsapi.php:363
+#: application/modules/comments/commentsapi.php:481
 msgid "Wrong code protection"
 msgstr "Неверный код защиты"
 
@@ -67,12 +137,12 @@ msgstr "В ожидающие"
 msgid "Pending approval"
 msgstr "В ожидании одобрения"
 
-#: application/modules/comments/assets/admin/comments_list.tpl:109
+#: application/modules/comments/assets/admin/comments_list.tpl:113
 msgid "Waiting moderation"
 msgstr "В ожидающие"
 
 # �
-#: application/modules/comments/assets/admin/comments_list.tpl:384
+#: application/modules/comments/assets/admin/comments_list.tpl:392
 msgid "No data has been found"
 msgstr "Комментарии отсутствуют"
 
@@ -81,21 +151,23 @@ msgstr "Комментарии отсутствуют"
 msgid "Comment frequency restriction per minute . O - check off"
 msgstr "Ограничение частоты комментирования в минутах. 0 - отключить ограничение"
 
-#: application/modules/comments/commentsapi.php:288
+#: application/modules/comments/commentsapi.php:350
+#: application/modules/comments/commentsapi.php:462
 msgid "The following comment can be left through"
 msgstr "Следующий комментарий можно оставить через"
 
-#: application/modules/comments/commentsapi.php:288
+#: application/modules/comments/commentsapi.php:350
+#: application/modules/comments/commentsapi.php:462
 msgid "minutes"
 msgstr "минут"
 
 #: application/modules/comments/assets/js/admin.js:30
 #: application/modules/comments/assets/admin/comments_list.tpl:3
-#: application/modules/comments/assets/admin/comments_list.tpl:287
+#: application/modules/comments/assets/admin/comments_list.tpl:294
 msgid "Show answers"
 msgstr "Показать ответы"
 
-#: application/modules/comments/comments.php:241
+#: application/modules/comments/comments.php:279
 msgid "log in, please."
 msgstr "Войдите, пожалуйста."
 
@@ -108,9 +180,9 @@ msgstr "Скрыть ответы"
 msgid "Recent reviews"
 msgstr "Последние отзывы"
 
-#: application/modules/comments/commentsapi.php:177
-#: application/modules/comments/commentsapi.php:592
-#: application/modules/comments/commentsapi.php:596
+#: application/modules/comments/commentsapi.php:227
+#: application/modules/comments/commentsapi.php:775
+#: application/modules/comments/commentsapi.php:780
 msgid "reviews"
 msgstr "комментариев"
 
@@ -120,19 +192,21 @@ msgid "Comments"
 msgstr "Комментарии"
 
 #: application/modules/comments/assets/admin/comments_list.tpl:20
-#: application/modules/comments/assets/admin/comments_list.tpl:107
-#: application/modules/comments/assets/admin/comments_list.tpl:206
-#: application/modules/comments/assets/admin/comments_list.tpl:313
+#: application/modules/comments/assets/admin/comments_list.tpl:111
+#: application/modules/comments/assets/admin/comments_list.tpl:212
+#: application/modules/comments/assets/admin/comments_list.tpl:320
 msgid "Into spam"
 msgstr "В спам"
 
 #: application/modules/comments/assets/admin/comments_list.tpl:22
-#: application/modules/comments/assets/admin/comments_list.tpl:104
-#: application/modules/comments/assets/admin/comments_list.tpl:203
-#: application/modules/comments/assets/admin/comments_list.tpl:311
+#: application/modules/comments/assets/admin/comments_list.tpl:108
+#: application/modules/comments/assets/admin/comments_list.tpl:209
+#: application/modules/comments/assets/admin/comments_list.tpl:318
 msgid "In approve"
 msgstr "В одобренные"
 
+#: application/modules/comments/templates/recent_comments_form.tpl:20
+#: application/modules/comments/templates/recent_product_comments_form.tpl:20
 #: application/modules/comments/templates/edit.tpl:23
 #: application/modules/comments/assets/admin/recent_comments_form.tpl:20
 #: application/modules/comments/assets/admin/recent_product_comments_form.tpl:20
@@ -140,40 +214,42 @@ msgstr "В одобренные"
 msgid "Settings"
 msgstr "Настройки"
 
-#: application/modules/comments/assets/admin/comments_list.tpl:76
+#: application/modules/comments/assets/admin/comments_list.tpl:80
 msgid "Mark"
 msgstr "Оценка"
 
-#: application/modules/comments/assets/admin/comments_list.tpl:78
+#: application/modules/comments/assets/admin/comments_list.tpl:82
 msgid "User Email"
 msgstr "E-mail пользователя"
 
-#: application/modules/comments/templates/edit.tpl:12
+#: application/modules/comments/templates/recent_comments_form.tpl:10
+#: application/modules/comments/templates/recent_product_comments_form.tpl:10
+#: application/modules/comments/templates/edit.tpl:13
 #: application/modules/comments/templates/settings.tpl:10
 #: application/modules/comments/assets/admin/recent_comments_form.tpl:10
 #: application/modules/comments/assets/admin/recent_product_comments_form.tpl:10
 #: application/modules/comments/assets/admin/settings.tpl:10
-#: application/modules/comments/assets/admin/comments_list.tpl:100
-#: application/modules/comments/assets/admin/comments_list.tpl:196
-#: application/modules/comments/assets/admin/comments_list.tpl:308
+#: application/modules/comments/assets/admin/comments_list.tpl:104
+#: application/modules/comments/assets/admin/comments_list.tpl:202
+#: application/modules/comments/assets/admin/comments_list.tpl:315
 msgid "Save"
 msgstr "Сохранить"
 
-#: application/modules/comments/assets/admin/comments_list.tpl:102
-#: application/modules/comments/assets/admin/comments_list.tpl:200
-#: application/modules/comments/assets/admin/comments_list.tpl:310
+#: application/modules/comments/assets/admin/comments_list.tpl:106
+#: application/modules/comments/assets/admin/comments_list.tpl:206
+#: application/modules/comments/assets/admin/comments_list.tpl:317
 msgid "Cancel"
 msgstr "Отмена"
 
 #: application/modules/comments/assets/admin/comments_list.tpl:25
-#: application/modules/comments/assets/admin/comments_list.tpl:111
-#: application/modules/comments/assets/admin/comments_list.tpl:210
-#: application/modules/comments/assets/admin/comments_list.tpl:317
+#: application/modules/comments/assets/admin/comments_list.tpl:115
+#: application/modules/comments/assets/admin/comments_list.tpl:216
+#: application/modules/comments/assets/admin/comments_list.tpl:324
 msgid "Delete"
 msgstr "Удалить"
 
-#: application/modules/comments/assets/admin/comments_list.tpl:208
-#: application/modules/comments/assets/admin/comments_list.tpl:315
+#: application/modules/comments/assets/admin/comments_list.tpl:214
+#: application/modules/comments/assets/admin/comments_list.tpl:322
 msgid "Wait moderation"
 msgstr "Подождите модерацию"
 
@@ -182,7 +258,7 @@ msgid "Comment editing"
 msgstr "Редактирование комментария"
 
 #: application/modules/comments/assets/comments_api.tpl:3
-#: application/modules/comments/comments.php:241
+#: application/modules/comments/comments.php:279
 msgid "Only authorized users can leave comments."
 msgstr "Только авторизованные пользователи могут оставлять комментарии"
 
@@ -217,62 +293,76 @@ msgstr "Ваш рейтинг"
 msgid "The comment will be sent for moderation"
 msgstr "Комментарий будет отправлен на модерацию"
 
-#: application/modules/comments/commentsapi.php:299
+#: application/modules/comments/commentsapi.php:357
+#: application/modules/comments/commentsapi.php:474
 #: application/modules/comments/assets/comments_api.tpl:134
 #: application/modules/comments/assets/comments_api.tpl:210
-#: application/modules/comments/comments.php:269
+#: application/modules/comments/comments.php:308
 msgid "Your name"
 msgstr "Ваше имя"
 
-#: application/modules/comments/commentsapi.php:298
+#: application/modules/comments/commentsapi.php:356
+#: application/modules/comments/commentsapi.php:473
 #: application/modules/comments/assets/comments_api.tpl:140
 #: application/modules/comments/assets/comments_api.tpl:216
-#: application/modules/comments/comments.php:268
+#: application/modules/comments/comments.php:307
 msgid "Email"
 msgstr "Email"
 
-#: application/modules/comments/commentsapi.php:300
+#: application/modules/comments/commentsapi.php:358
+#: application/modules/comments/commentsapi.php:475
 #: application/modules/comments/assets/comments_api.tpl:147
-#: application/modules/comments/comments.php:270
+#: application/modules/comments/comments.php:309
 msgid "Site"
 msgstr "Сайт"
 
-#: application/modules/comments/commentsapi.php:314
-#: application/modules/comments/commentsapi.php:316
+#: application/modules/comments/commentsapi.php:372
+#: application/modules/comments/commentsapi.php:374
+#: application/modules/comments/commentsapi.php:490
+#: application/modules/comments/commentsapi.php:492
 #: application/modules/comments/assets/comments_api.tpl:156
 #: application/modules/comments/assets/comments_api.tpl:234
-#: application/modules/comments/comments.php:282
+#: application/modules/comments/comments.php:322
 msgid "Comment"
 msgstr "Комментарий"
 
-#: application/modules/comments/commentsapi.php:308
-#: application/modules/comments/commentsapi.php:310
+#: application/modules/comments/commentsapi.php:365
+#: application/modules/comments/commentsapi.php:367
+#: application/modules/comments/commentsapi.php:483
+#: application/modules/comments/commentsapi.php:485
 #: application/modules/comments/assets/comments_api.tpl:177
-#: application/modules/comments/comments.php:277
-#: application/modules/comments/comments.php:279
+#: application/modules/comments/comments.php:316
+#: application/modules/comments/comments.php:318
 msgid "Code protection"
 msgstr "Код защиты"
 
-#: application/modules/comments/commentsapi.php:106
+#: application/modules/comments/commentsapi.php:155
 #: application/modules/comments/assets/comments_api.tpl:188
 #: application/modules/comments/assets/comments_api.tpl:243
 msgid "Leave comment"
 msgstr "Оставить комментарий"
 
+#: application/modules/comments/templates/recent_comments_form.tpl:5
+#: application/modules/comments/templates/recent_product_comments_form.tpl:5
 #: application/modules/comments/assets/admin/recent_comments_form.tpl:5
 #: application/modules/comments/assets/admin/recent_product_comments_form.tpl:5
 msgid "Widget settings"
 msgstr "Настройки виджета"
 
+#: application/modules/comments/templates/recent_comments_form.tpl:11
 #: application/modules/comments/assets/admin/recent_comments_form.tpl:11
 msgid "Save and go back"
 msgstr "Сохранить и вернуться"
 
+#: application/modules/comments/templates/recent_comments_form.tpl:28
+#: application/modules/comments/templates/recent_product_comments_form.tpl:28
 #: application/modules/comments/assets/admin/recent_comments_form.tpl:28
 #: application/modules/comments/assets/admin/recent_product_comments_form.tpl:28
 msgid "Number of comments for display"
 msgstr "Количество комментариев для отображения"
 
+#: application/modules/comments/templates/recent_comments_form.tpl:34
+#: application/modules/comments/templates/recent_product_comments_form.tpl:34
 #: application/modules/comments/assets/admin/recent_comments_form.tpl:34
 #: application/modules/comments/assets/admin/recent_product_comments_form.tpl:34
 msgid "Maximum number of characters"
@@ -283,7 +373,10 @@ msgstr "Максимальное количество символов"
 msgid "Comment settings"
 msgstr "Настройки комментариев"
 
+#: application/modules/comments/templates/recent_comments_form.tpl:9
+#: application/modules/comments/templates/recent_product_comments_form.tpl:9
 #: application/modules/comments/templates/edit.tpl:11
+#: application/modules/comments/templates/edit.tpl:12
 #: application/modules/comments/templates/settings.tpl:9
 #: application/modules/comments/assets/admin/recent_comments_form.tpl:9
 #: application/modules/comments/assets/admin/recent_product_comments_form.tpl:9
@@ -312,17 +405,17 @@ msgid "Comment restrictions"
 msgstr "Ограничение комментирования"
 
 #: application/modules/comments/templates/settings.tpl:48
-#: application/modules/comments/assets/admin/settings.tpl:48
+#: application/modules/comments/assets/admin/settings.tpl:57
 msgid "Forbid comments for unregistered users"
 msgstr "Запретить комментирование для незарегистрированных пользователей"
 
 #: application/modules/comments/templates/settings.tpl:59
-#: application/modules/comments/assets/admin/settings.tpl:59
+#: application/modules/comments/assets/admin/settings.tpl:68
 msgid "Enable administrator comments approval"
 msgstr "Включить одобрение комментариев администратором."
 
 #: application/modules/comments/templates/settings.tpl:70
-#: application/modules/comments/assets/admin/settings.tpl:70
+#: application/modules/comments/assets/admin/settings.tpl:79
 msgid "Use the protection code"
 msgstr "Использовать защитный код"
 
@@ -330,32 +423,32 @@ msgstr "Использовать защитный код"
 msgid "All comments"
 msgstr "Все комментарии"
 
-#: application/modules/comments/assets/admin/comments_list.tpl:39
+#: application/modules/comments/assets/admin/comments_list.tpl:41
 msgid "Waiting for moderation"
 msgstr "Ожидают модерации"
 
-#: application/modules/comments/assets/admin/comments_list.tpl:44
+#: application/modules/comments/assets/admin/comments_list.tpl:46
 msgid "Approval"
 msgstr "Одобренные"
 
 #: application/modules/comments/templates/edit.tpl:55
-#: application/modules/comments/assets/admin/comments_list.tpl:52
+#: application/modules/comments/assets/admin/comments_list.tpl:56
 msgid "Spam"
 msgstr "Спам"
 
-#: application/modules/comments/assets/admin/comments_list.tpl:74
+#: application/modules/comments/assets/admin/comments_list.tpl:78
 msgid "ID"
 msgstr "ID"
 
-#: application/modules/comments/assets/admin/comments_list.tpl:75
+#: application/modules/comments/assets/admin/comments_list.tpl:79
 msgid "Text"
 msgstr "Текст"
 
-#: application/modules/comments/assets/admin/comments_list.tpl:77
+#: application/modules/comments/assets/admin/comments_list.tpl:81
 msgid "User"
 msgstr "Пользователь"
 
-#: application/modules/comments/assets/admin/comments_list.tpl:79
+#: application/modules/comments/assets/admin/comments_list.tpl:83
 msgid "Page"
 msgstr "Страница"
 
@@ -388,31 +481,32 @@ msgstr "войдите"
 msgid "please"
 msgstr "пожалуйста"
 
-#: application/modules/comments/commentsapi.php:80
-#: application/modules/comments/commentsapi.php:150
-#: application/modules/comments/comments.php:204
+#: application/modules/comments/commentsapi.php:74
+#: application/modules/comments/commentsapi.php:129
+#: application/modules/comments/commentsapi.php:199
+#: application/modules/comments/comments.php:240
 msgid "Total comments: "
 msgstr "Всего комментариев:"
 
-#: application/modules/comments/commentsapi.php:106
-#: application/modules/comments/commentsapi.php:106
+#: application/modules/comments/commentsapi.php:155
+#: application/modules/comments/commentsapi.php:155
 msgid "comment"
 msgstr "комментарий"
 
-#: application/modules/comments/commentsapi.php:106
-#: application/modules/comments/commentsapi.php:596
+#: application/modules/comments/commentsapi.php:155
+#: application/modules/comments/commentsapi.php:780
 msgid "comments"
 msgstr "комментарии"
 
-#: application/modules/comments/commentsapi.php:177
-#: application/modules/comments/commentsapi.php:177
-#: application/modules/comments/commentsapi.php:592
-#: application/modules/comments/commentsapi.php:592
-#: application/modules/comments/commentsapi.php:596
+#: application/modules/comments/commentsapi.php:227
+#: application/modules/comments/commentsapi.php:227
+#: application/modules/comments/commentsapi.php:775
+#: application/modules/comments/commentsapi.php:775
+#: application/modules/comments/commentsapi.php:780
 msgid "review"
 msgstr "просмотр"
 
-#: application/modules/comments/commentsapi.php:177
+#: application/modules/comments/commentsapi.php:227
 msgid "Leave a comment"
 msgstr "Оставить коментарий"
 
@@ -430,33 +524,33 @@ msgid "Comment successfully updated"
 msgstr "Комментарий успешно обновлен"
 
 #: application/modules/comments/admin.php:215
-#: application/modules/comments/admin.php:236
+#: application/modules/comments/admin.php:238
 msgid "Message"
 msgstr "Сообщение"
 
-#: application/modules/comments/admin.php:236
+#: application/modules/comments/admin.php:238
 msgid "Status updated"
 msgstr "Статус обновлен"
 
-#: application/modules/comments/admin.php:259
-#: application/modules/comments/admin.php:260
+#: application/modules/comments/admin.php:262
+#: application/modules/comments/admin.php:263
 msgid "Comment(s) deleted"
 msgstr "Комментарий(ии) удален"
 
-#: application/modules/comments/admin.php:317
+#: application/modules/comments/admin.php:322
 msgid "Changes saved"
 msgstr "Изменения сохранены"
 
-#: application/modules/comments/comments.php:250
+#: application/modules/comments/comments.php:288
 msgid "Commenting on recording is prohibited."
 msgstr "Комментирования запрещено."
 
-#: application/modules/comments/comments.php:261
+#: application/modules/comments/comments.php:299
 #, fuzzy
 msgid "Allowed to comment once in %s minutes."
 msgstr "Оставлять комментарии раз в %s минут."
 
-#: application/modules/comments/comments.php:370
+#: application/modules/comments/comments.php:410
 msgid "Fill text in comment."
 msgstr "Заполните текст комментария."
 
@@ -464,20 +558,20 @@ msgstr "Заполните текст комментария."
 msgid "User comments management module"
 msgstr "Модуль управления комментариями пользователей"
 
-#: application/modules/comments/comments_widgets.php:82
+#: application/modules/comments/comments_widgets.php:81
 msgid "Number of comments"
 msgstr "Количество комментариев"
 
-#: application/modules/comments/comments_widgets.php:83
-#: application/modules/comments/comments_widgets.php:151
+#: application/modules/comments/comments_widgets.php:82
+#: application/modules/comments/comments_widgets.php:150
 msgid "Number of characters"
 msgstr "Количество символов"
 
-#: application/modules/comments/comments_widgets.php:94
-#: application/modules/comments/comments_widgets.php:162
+#: application/modules/comments/comments_widgets.php:93
+#: application/modules/comments/comments_widgets.php:161
 msgid "Settings have been saved"
 msgstr "Настройки сохранены"
 
-#: application/modules/comments/comments_widgets.php:150
+#: application/modules/comments/comments_widgets.php:149
 msgid "Number of responses"
 msgstr "Количество ответов"

@@ -590,6 +590,8 @@ span.must{color:red;}
     height: 28px;border: 1px solid #ccc!important;border-radius: 0;line-height: 26px;background: #fff!important;padding-left: 5px;
     -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
 }
+.modal .chosen-container-single.chosen-with-drop .chosen-drop {left: 0; position: relative;}
+.modal.modalSelect, .modal.modalSelect .modal-body {overflow: visible;}
 .chosen-container-single .chosen-single div{width: 26px;height: 26px;background: #f0f0f0!important;border-left: 1px solid #dedede!important;}
 .chosen-container-single .chosen-single span{margin-right: 29px;}
 .chosen-container-single .chosen-single div b{width: 7px; height: 5px; background-position: -2px -7px; background-repeat: no-repeat; display: block; z-index: 2; position: absolute; top: 50%; left: 50%; margin-left: -3px; margin-top: -3px;}

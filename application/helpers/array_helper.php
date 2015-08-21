@@ -6,7 +6,7 @@ if (!defined('BASEPATH')) {
 
 if (!function_exists('my_print_r')) {
 
-    function my_print_r($array = array()) {
+    function my_print_r($array = []) {
         echo "<pre>";
         print_r($array);
         echo "</pre>";
@@ -40,7 +40,7 @@ if (!function_exists('result_column')) {
     function result_column($result) {
 
         if (count($result) == 0) {
-            return array();
+            return [];
         }
 
         $key = key($result[0]);
@@ -97,15 +97,14 @@ if (!function_exists('array_to_file')) {
 
 if (!function_exists('user_function_sort')) {
 
-    function user_function_sort($arr) {
+    function user_function_sort($arr, $key = 'value') {
         usort(
             $arr,
-            function($a, $b) {
-                    return strnatcmp($a['value'], $b['value']);
+            function($a, $b) use ($key) {
+                    return strnatcmp($a[$key], $b[$key]);
             }
         );
         return $arr;
     }
 
 }
-?>

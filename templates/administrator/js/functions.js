@@ -867,28 +867,15 @@ var orders = new Object({
         });
         return true;
     },
-    
     chPrint: function () {
         var ids = new Array();
+        var orderIds = '';
         $('input[name=ids]:checked').each(function () {
-            ids.push($(this).val());
+            orderIds += "/" + parseInt($(this).val());
         });
-        $.post('/admin/components/run/shop/orders/ajaxPrint', {
-            ids: ids
-        }, function (data) {
-//            $('#mainContent').after(data);
 
-            $('#pastUrlPrint').html(data);            
-            $('.manyPrints').click();
-            $.pjax({
-                url: window.location.href,
-                container: '#mainContent',
-                timeout: 3000
-            });
-        });
-        return true;
+        location.href = "/admin/components/run/shop/orders/ajaxPrint" + orderIds;
     },
-    
     deleteOrders: function () {
         $('#delete-orders-modal').modal();
     },

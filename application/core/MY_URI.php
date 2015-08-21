@@ -1,11 +1,12 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 class MY_URI extends CI_URI {
 
-    private $GET_params_arr = array();
+    private $GET_params_arr = [];
 
     public function __construct() {
         parent::__construct();
@@ -21,7 +22,8 @@ class MY_URI extends CI_URI {
     }
 
     // Create from array string like: ?var1=value&var2=value
-    public function array_to_uri($arr = array()) {
+
+    public function array_to_uri($arr = []) {
         $n = 0;
         $str = '?';
         $cnt = count($arr);
@@ -30,8 +32,9 @@ class MY_URI extends CI_URI {
             foreach ($arr as $k => $v) {
                 $str .= $k . '=' . $v;
                 $n++;
-                if ($n < $cnt)
+                if ($n < $cnt) {
                     $str .= '&';
+                }
             }
         }
 
@@ -41,7 +44,7 @@ class MY_URI extends CI_URI {
     /**
      * Enable Russian charaters in url
      */
-    function _filter_uri($str) {
+    public function _filter_uri($str) {
         if ($str != '' AND $this->config->item('permitted_uri_chars') != '') {
             if (!preg_match("|^[" . ($this->config->item('permitted_uri_chars')) . "]+$|iu", rawurlencode($str))) {
                 exit('The URI you submitted has disallowed characters.');

@@ -33,7 +33,7 @@ class Search extends MY_Controller {
 
     public $hash_data = FALSE;
 
-    public $select = array();
+    public $select = [];
 
     public $title_delimiter = ' - ';
 
@@ -41,9 +41,9 @@ class Search extends MY_Controller {
 
     public $min_s_len = 3; // Min. length to make search request.
 
-    private $where = array();
+    private $where = [];
 
-    private $order_by = array();
+    private $order_by = [];
 
     private $search_table = 'search';
 
@@ -71,31 +71,31 @@ class Search extends MY_Controller {
         $text_len = mb_strlen(trim($s_text), 'UTF-8');
 
         if ($text_len >= $this->min_s_len AND $text_len < 50) {
-            $config = array(
+            $config = [
                 'table' => 'content',
-                'order_by' => array('publish_date' => 'DESC'),
-                'select' => array('content.*', 'CONCAT_WS( "", content.cat_url, content.url ) as full_url'),
-            );
+                'order_by' => ['publish_date' => 'DESC'],
+                'select' => ['content.*', 'CONCAT_WS( "", content.cat_url, content.url ) as full_url'],
+            ];
 
             $this->init($config);
 
-            $where = array(
-                array(
+            $where = [
+                [
                     'post_status' => 'publish',
                     'operator' => 'WHERE',
-                ),
-                array(
+                ],
+                [
                     'publish_date <=' => 'UNIX_TIMESTAMP()',
                     'backticks' => FALSE,
-                ),
-                array(
+                ],
+                [
                     'lang' => $this->config->item('cur_lang'),
-                ),
-                array(
+                ],
+                [
                     'group1' => '(title LIKE "%' . $this->db->escape_str($s_text) . '%" OR prev_text LIKE "%' . $this->db->escape_str($s_text) . '%" OR full_text LIKE "%' . $this->db->escape_str($s_text) . '%" )',
                     'group' => TRUE,
-                ),
-            );
+                ],
+            ];
 
             /** Data for categories in search * */
             $dataForFoundInCategories = $this->countSearchResults($where);
@@ -142,7 +142,7 @@ class Search extends MY_Controller {
 
         $data = $this->_highlight_text($data, $s_text);
 
-        $this->core->set_meta_tags(array(lang("Search", 'search'), $this->search_title));
+        $this->core->set_meta_tags([lang("Search", 'search'), $this->search_title]);
         $this->core->core_data['data_type'] = 'search';
         $this->_display($data, $dataForFoundInCategories);
     }
@@ -181,7 +181,7 @@ class Search extends MY_Controller {
 
     // Init search settings
 
-    public function init($config = array()) {
+    public function init($config = []) {
         foreach ($config as $key => $val) {
             if (isset($this->$key)) {
                 $this->$key = $val;
@@ -213,8 +213,8 @@ class Search extends MY_Controller {
         $this->table = '';
         $this->cache_on = FALSE;
         $this->default_operator = 'where';
-        $this->where = array();
-        $this->order_by = array();
+        $this->where = [];
+        $this->order_by = [];
         $this->search_table = 'search';
         $this->query_hash = '';
         $this->hash_data = FALSE;
@@ -239,7 +239,7 @@ class Search extends MY_Controller {
 
     // Search
 
-    public function execute($where = array(), $offset = 0) {
+    public function execute($where = [], $offset = 0) {
         $collect_ids = FALSE;
 
         if ($this->table == '') {
@@ -267,7 +267,7 @@ class Search extends MY_Controller {
                     $this->search_title = $this->input->post('text');
                 }
 
-                $q_data = array(
+                $q_data = [
                     'hash' => $this->query_hash,
                     'datetime' => time(),
                     'where_array' => serialize($where),
@@ -276,7 +276,7 @@ class Search extends MY_Controller {
                     'order_by' => serialize($this->order_by),
                     'row_count' => $this->row_count,
                     'search_title' => $this->search_title,
-                );
+                ];
 
                 $this->db->insert($this->search_table, $q_data);
             }
@@ -285,8 +285,8 @@ class Search extends MY_Controller {
                 $this->hash_data->ids = unserialize($this->hash_data->ids);
             }
 
-            $where = array();
-            $ids = array();
+            $where = [];
+            $ids = [];
 
             for ($i = $offset; $i < $offset + $this->row_count; $i++) {
                 if (isset($this->hash_data->ids[$i])) {
@@ -352,7 +352,7 @@ class Search extends MY_Controller {
         }
 
         if ($collect_ids == TRUE) {
-            $ids = array();
+            $ids = [];
 
             $this->db->select($this->table_pk);
             $query = $this->db->get($this->table)->result_array();
@@ -362,7 +362,7 @@ class Search extends MY_Controller {
             }
 
             $this->db->where('hash', $this->query_hash);
-            $this->db->update('search', array('datetime' => time(), 'ids' => serialize($ids), 'total_rows' => count($ids)));
+            $this->db->update('search', ['datetime' => time(), 'ids' => serialize($ids), 'total_rows' => count($ids)]);
 
             return $this->execute($where, $offset);
         } else {
@@ -370,12 +370,12 @@ class Search extends MY_Controller {
                 $this->search_title = $this->input->post('text');
             }
 
-            $data = array(
+            $data = [
                 'query' => $this->db->get($this->table),
                 'total_rows' => $this->hash_data->total_rows,
                 'hash' => $this->query_hash,
                 'search_title' => $this->search_title,
-            );
+            ];
 
             return $data;
         }
@@ -423,7 +423,7 @@ class Search extends MY_Controller {
 
     // Generate search hash
 
-    private function generate_hash($where = array()) {
+    private function generate_hash($where = []) {
         return sha1($this->hash_prefix . $this->table . serialize($this->order_by) . serialize($where) . $this->row_count . serialize($this->select));
     }
 
@@ -450,15 +450,15 @@ class Search extends MY_Controller {
 
     // Display search template file
 
-    public function _display($pages = array(), $foundInCategories = null) {
+    public function _display($pages = [], $foundInCategories = null) {
         /*         * Prepare categories for search results * */
         $categoriesInSearchResults = null;
         $tree = null;
-        $categories = array();
+        $categories = [];
 
         if ($foundInCategories != null) {
             $this->load->library('lib_category');
-            foreach ($foundInCategories as $key => $value) {
+            foreach ($foundInCategories as $value) {
                 if (array_key_exists($value['category'], $categories)) {
                     $categories[$value['category']]['count']++;
                 } else {
@@ -476,13 +476,13 @@ class Search extends MY_Controller {
             ($hook = get_hook('core_return_category_pages')) ? eval($hook) : NULL;
 
             $this->template->add_array(
-                array(
+                [
                     'items' => $pages,
                     'categoriesInSearchResults' => $categoriesInSearchResults,
                     'tree' => $tree,
                     'countAll' => count($foundInCategories),
                     'categoriesInfo' => $categoriesInfo
-                )
+                ]
             );
         }
 
@@ -495,7 +495,7 @@ class Search extends MY_Controller {
      * @return boolean|array
      */
     private function prepareCategoriesForSearchResults($foundInCategories) {
-        $categoriesArray = array();
+        $categoriesArray = [];
         $categoriesAll = $this->lib_category->unsorted();
         foreach ($categoriesAll as $key => $value) {
             /** Count of found pages in category * */
@@ -528,49 +528,49 @@ class Search extends MY_Controller {
 
         $this->load->dbforge();
 
-        $fields = array(
-            'id' => array(
+        $fields = [
+            'id' => [
                 'type' => 'INT',
                 'constraint' => 11,
                 'auto_increment' => TRUE,
-            ),
-            'hash' => array(
+            ],
+            'hash' => [
                 'type' => 'VARCHAR',
                 'constraint' => 264,
-            ),
-            'datetime' => array(
+            ],
+            'datetime' => [
                 'type' => 'INT',
                 'constraint' => 11,
-            ),
-            'where_array' => array(
+            ],
+            'where_array' => [
                 'type' => 'TEXT',
-            ),
-            'select_array' => array(
+            ],
+            'select_array' => [
                 'type' => 'TEXT',
-            ),
-            'table_name' => array(
+            ],
+            'table_name' => [
                 'type' => 'VARCHAR',
                 'constraint' => 100,
-            ),
-            'order_by' => array(
+            ],
+            'order_by' => [
                 'type' => 'TEXT',
-            ),
-            'row_count' => array(
+            ],
+            'row_count' => [
                 'type' => 'INT',
                 'constraint' => 11,
-            ),
-            'total_rows' => array(
+            ],
+            'total_rows' => [
                 'type' => 'INT',
                 'constraint' => 11,
-            ),
-            'ids' => array(
+            ],
+            'ids' => [
                 'type' => 'TEXT',
-            ),
-            'search_title' => array(
+            ],
+            'search_title' => [
                 'type' => 'VARCHAR',
                 'constraint' => '250',
-            ),
-        );
+            ],
+        ];
 
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_field($fields);
