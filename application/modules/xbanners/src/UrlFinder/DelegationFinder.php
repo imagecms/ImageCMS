@@ -2,12 +2,12 @@
 
 namespace Banners\UrlFinder;
 
-use Banners\UrlFinder\Finders\FinderInterface;
+use Banners\UrlFinder\Finders\BaseFinder;
 
-class DelegationFinder implements FinderInterface {
+class DelegationFinder extends BaseFinder {
 
     /**
-     * @var FinderInterface[]
+     * @var BaseFinder[]
      */
     protected $finders = [];
 
@@ -34,6 +34,10 @@ class DelegationFinder implements FinderInterface {
     }
 
     public function getGroupName() {
+        return null;
+    }
+
+    public function formUrl($url) {
         return null;
     }
 

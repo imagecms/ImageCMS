@@ -20,13 +20,13 @@ class TemplateManager {
      *
      * @var array
      */
-    public $defaultComponents = array();
+    public $defaultComponents = [];
 
     /**
      * May have messages
      * @var array
      */
-    public $messages = array();
+    public $messages = [];
 
     /**
      * Current template
@@ -44,15 +44,15 @@ class TemplateManager {
      *
      * @var array
      */
-    public $loadedComponents = array();
+    public $loadedComponents = [];
 
     /**
      * Folders that not be included in local templates list
      * @var array
      */
-    public $ignoreTemplates = array(
+    public $ignoreTemplates = [
         'administrator'
-    );
+    ];
 
     public $current_template_components;
 
@@ -67,9 +67,7 @@ class TemplateManager {
      * @return TemplateManager
      */
     public static function getInstance() {
-        if (is_null(self::$instance)) {
-            self::$instance = new self;
-        }
+        self::$instance = self::$instance ? self::$instance : new self;
         return self::$instance;
     }
 
@@ -90,7 +88,7 @@ class TemplateManager {
         }
         $componentsPath = __DIR__ . '/../components/';
 
-        $dirList = array();
+        $dirList = [];
         if ($handle = opendir($componentsPath)) {
             while (false !== ($componentName = readdir($handle))) {
                 if ($componentName != "." && $componentName != ".." && !in_array($componentName, $except)) {
@@ -108,10 +106,10 @@ class TemplateManager {
     public static function getTemplateToPay() {
         if (MAINSITE) {
 
-            preg_match('/\/var\/www\/[a-zA-Z\d]+\/data\/www\/([a-zA-Z\d\.\-]+)\//', $_SERVER['SCRIPT_FILENAME'], $matches);
+            preg_match('/\/var\/www\/[a-zA-Z\d]+\/data\/www\/([a-zA-Z\d\.\-]+)\//', \CI::$APP->input->server('SCRIPT_FILENAME'), $matches);
             $dirToPay = MAINSITE . '/application/config/' . $matches[1] . '/payments/template';
             if ($handle = opendir($dirToPay)) {
-                $templateList = array();
+                $templateList = [];
                 while (false !== ($template = readdir($handle))) {
                     if ($template != '.' && $template != '..') {
                         $templateList[$template] = file_get_contents($dirToPay . '/' . $template);
@@ -160,8 +158,8 @@ class TemplateManager {
             $instance->setParamsXml($component);
         }
 
-        \CI::$APP->db->where('name', 'systemTemplatePath')->update('shop_settings', array('value' => './templates/' . $template->name . '/shop/'));
-        \CI::$APP->db->update('settings', array('site_template' => $template->name));
+        \CI::$APP->db->where('name', 'systemTemplatePath')->update('shop_settings', ['value' => './templates/' . $template->name . '/shop/']);
+        \CI::$APP->db->update('settings', ['site_template' => $template->name]);
 
         $this->currentTemplate = $template;
 
@@ -207,7 +205,7 @@ class TemplateManager {
                 }
                 $zip->close();
 
-                $changedDir = array();
+                $changedDir = [];
                 $uploads_folder = realpath('uploads');
                 foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($uploads_folder)) as $entity) {
                     $directory = dirname($entity->getPathname());
@@ -306,7 +304,7 @@ class TemplateManager {
      * @return Template
      */
     public function getCurentTemplate() {
-        if (is_null($this->currentTemplate)) {
+        if ($this->currentTemplate === null) {
             $currentTemplateName = \CI::$APP->db->get('settings')->row()->site_template;
             $this->currentTemplate = new Template($currentTemplateName);
         }
@@ -314,7 +312,7 @@ class TemplateManager {
     }
 
     public function getCurrentTemplateComponents() {
-        if (is_null($this->current_template_components)) {
+        if ($this->current_template_components === null) {
             $this->current_template_components = $this->getCurentTemplate()
                 ->getComponents();
         }
@@ -328,55 +326,22 @@ class TemplateManager {
      * @return array arrsy of Template objects
      */
     public function listLocal($validOnly = TRUE) {
-        $templates = array();
-        foreach ($this->_get_templates() as $templateName) {
+        $templates = [];
+        foreach (get_templates() as $templateName) {
             $templates[] = new Template($templateName);
         }
 
         usort(
             $templates,
             function($t1, $t2) {
-                $names1 = array($t1->name, $t2->name);
-                $names2 = $names1;
-                sort($names1);
-                return ($names1 === $names2) ? -1 : 1;
+                    $names1 = [$t1->name, $t2->name];
+                    $names2 = $names1;
+                    sort($names1);
+                    return ($names1 === $names2) ? -1 : 1;
             }
         );
 
         return $templates;
-    }
-
-    /**
-     * Search templates in TEMPLATES_PATH folder
-     *
-     * @access private
-     * @return array
-     */
-    function _get_templates() {
-        $new_arr_shop = array();
-        if ($handle = opendir(TEMPLATES_PATH)) {
-            while (false !== ($file = readdir($handle))) {
-                if (0 !== strpos($file, '.') && $file != 'administrator' && $file != 'modules' && !stristr($file, '_mobile')) {
-                    if (!is_file(TEMPLATES_PATH . $file)) {
-                        if (SHOP_INSTALLED && is_dir(TEMPLATES_PATH . $file . '/shop/')) {
-                            $new_arr_shop[$file] = $file;
-                        }
-                        $new_arr[$file] = $file;
-                    }
-                }
-            }
-            closedir($handle);
-        } else {
-            return FALSE;
-        }
-
-        if (SHOP_INSTALLED) {
-            array_multisort($new_arr_shop);
-            return $new_arr_shop;
-        } else {
-            array_multisort($new_arr);
-            return $new_arr;
-        }
     }
 
     /**
@@ -388,7 +353,7 @@ class TemplateManager {
         if (!$sourceUrl) {
             $sourceUrl = self::$ImageCMSRepositoryURL;
         }
-        //        var_dumps_exit(self::$ImageCMSRepositoryURL);
+
         $pathToCachedFile = FCPATH . '/uploads/templates/' . md5($sourceUrl);
         if (file_exists($pathToCachedFile) && time() < (filemtime($pathToCachedFile) + self::REMORE_UPDATE_INTERVAL)) {
             $templatesXML = file_get_contents($pathToCachedFile);

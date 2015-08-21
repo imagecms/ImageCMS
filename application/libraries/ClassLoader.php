@@ -5,7 +5,7 @@
  * ClassLoader::getInstance()
  *     ->registerNamespacedPath(APPPATH)
  *     ->registerNamespacedPath(APPPATH . 'modules');
- * 
+ *
  * @author ailok <m.kecha@imagecms.net>
  *
  */
@@ -15,20 +15,23 @@ class ClassLoader {
     const DS = DIRECTORY_SEPARATOR;
 
     private static $instance;
-    private $namespacedPaths = array();
-    private $aliases = array();
-    private $classesPaths = array();
+
+    private $namespacedPaths = [];
+
+    private $aliases = [];
+
+    private $classesPaths = [];
 
     private function __construct() {
         spl_autoload_register([$this, 'autoload'], false);
     }
 
     private function __clone() {
-        
+
     }
 
     /**
-     * 
+     *
      * @return ClassLoader
      */
     public static function getInstance() {
@@ -39,7 +42,7 @@ class ClassLoader {
     }
 
     /**
-     * 
+     *
      * @param array $array
      * @param string $path
      * @param string (optional) $key
@@ -53,7 +56,7 @@ class ClassLoader {
             return;
         }
 
-        if (is_null($key)) {
+        if ($key == null) {
             $array[] = $path;
         } else {
             $array[$key] = $path;
@@ -61,7 +64,7 @@ class ClassLoader {
     }
 
     /**
-     * 
+     *
      * @param string $path
      * @return \ClassLoader
      */
@@ -71,7 +74,7 @@ class ClassLoader {
     }
 
     /**
-     * 
+     *
      * @param string $path
      * @return \ClassLoader
      */
@@ -81,7 +84,7 @@ class ClassLoader {
     }
 
     /**
-     * 
+     *
      * @param string $path
      * @param string $name
      * @return \ClassLoader
@@ -124,7 +127,7 @@ class ClassLoader {
     }
 
     /**
-     * 
+     *
      * @param string $className
      * @return array [namespace, fileName]
      */
@@ -139,7 +142,8 @@ class ClassLoader {
             return;
         }
         $namespacedClassPath = str_replace('\\', self::DS, $className);
-        for ($i = 0; $i < count($this->namespacedPaths); $i++) {
+        $namespacedPathsCount = count($this->namespacedPaths);
+        for ($i = 0; $i < $namespacedPathsCount; $i++) {
             $classPath = rtrim($this->namespacedPaths[$i], self::DS) . self::DS . $namespacedClassPath . self::EXT;
             if (true == $this->includeClass($classPath)) {
                 return;
@@ -148,7 +152,9 @@ class ClassLoader {
     }
 
     private function loadClass($className) {
-        for ($i = 0; $i < count($this->classesPaths); $i++) {
+        $classesPathsCount = count($this->classesPaths);
+
+        for ($i = 0; $i < $classesPathsCount; $i++) {
             $classPath = rtrim($this->classesPaths[$i], self::DS) . self::DS . $className . self::EXT;
             if (true == $this->includeClass($classPath)) {
                 return;
@@ -158,7 +164,7 @@ class ClassLoader {
 
     private function includeClass($classPath) {
         if (file_exists($classPath)) {
-            require_once $classPath;
+            include_once $classPath;
             return true;
         }
         return false;
