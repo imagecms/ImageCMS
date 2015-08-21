@@ -5,8 +5,7 @@ if (!defined('BASEPATH')) {
 }
 
 //class Pages extends MY_Controller {
-class Pages extends BaseAdminController
-{
+class Pages extends BaseAdminController {
 
     public $_Config = [
         'per_page' => 20 // Show news per one page
@@ -24,7 +23,6 @@ class Pages extends BaseAdminController
         $this->load->library('pagination');
         $this->load->library('lib_seo');
         $this->lib_admin->init_settings();
-
     }
 
     public function index() {
@@ -40,11 +38,11 @@ class Pages extends BaseAdminController
 
         $this->template->add_array(
             [
-                'tree' => $this->lib_category->build(), // Load category tree
-                'cur_time' => date('H:i:s'),
-                'cur_date' => date('Y-m-d'),
-                'sel_cat' => $uri_segs['category']
-            ]
+                    'tree' => $this->lib_category->build(), // Load category tree
+                    'cur_time' => date('H:i:s'),
+                    'cur_date' => date('Y-m-d'),
+                    'sel_cat' => $uri_segs['category']
+                ]
         );
         /** Init Event. Pre Create Page */
         \CMSFactory\Events::create()->registerEvent('', 'BaseAdminPage:preCreate');
@@ -93,7 +91,6 @@ class Pages extends BaseAdminController
      * This event occurs right after page deleted
      */
     private function on_page_delete($page_id) {
-
         $this->db->where('item_id', $page_id);
         $this->db->where('item_type', 'page');
         $this->db->delete('content_fields_data');
@@ -106,10 +103,7 @@ class Pages extends BaseAdminController
         $this->db->delete('content_permissions');
 
         // Delete page tags
-        $this->db->where('page_id', $page_id);
-        $this->db->delete('content_tags');
-
-        $this->load->module('tags')->_remove_orphans();
+        $this->load->module('tags')->_remove_orphans($page_id);
 
         /** Init CMS Events system */
         \CMSFactory\Events::create()->registerEvent(['pageId' => $page_id, 'userId' => $this->dx_auth->get_user_id()], 'Page:delete');
@@ -409,15 +403,15 @@ class Pages extends BaseAdminController
 
             $this->template->add_array(
                 [
-                    'page_lang' => $data['lang'],
-                    'page_identif' => $data['identif'],
-                    'tree' => $this->lib_category->build(),
-                    'parent_id' => $data['category'],
-                    'langs' => $langs,
-                //                    'defLang' => $def_lang, //??
-                    'category' => $category,
-                    'pageExists' => $pageExists
-                ]
+                        'page_lang' => $data['lang'],
+                        'page_identif' => $data['identif'],
+                        'tree' => $this->lib_category->build(),
+                        'parent_id' => $data['category'],
+                        'langs' => $langs,
+                        //                    'defLang' => $def_lang, //??
+                        'category' => $category,
+                        'pageExists' => $pageExists
+                    ]
             );
 
             if ($data['lang_alias'] != 0) {
@@ -1032,28 +1026,28 @@ class Pages extends BaseAdminController
 
             $this->template->add_array(
                 [
-                    'paginator' => $this->pagination->create_links_ajax(),
-                    'total_pages' => $total_pages,
-                    'pages' => $pages,
-                    'cat_id' => $cat_id,
-                    'category' => $category,
-                    'cats' => $allCats,
-                    'tree' => $this->lib_category->build(),
-                    'show_cat_list' => $main_settings['cat_list'],
-                ]
+                        'paginator' => $this->pagination->create_links_ajax(),
+                        'total_pages' => $total_pages,
+                        'pages' => $pages,
+                        'cat_id' => $cat_id,
+                        'category' => $category,
+                        'cats' => $allCats,
+                        'tree' => $this->lib_category->build(),
+                        'show_cat_list' => $main_settings['cat_list'],
+                    ]
             );
             $this->template->show('pages_list', FALSE);
         } else {
 
             $this->template->add_array(
                 [
-                    'no_pages' => TRUE,
-                    'category' => $category,
-                    'total_pages' => $total_pages,
-                    'tree' => $this->lib_category->build(),
-                    'cat_id' => $cat_id,
-                    'show_cat_list' => $main_settings['cat_list'],
-                ]
+                        'no_pages' => TRUE,
+                        'category' => $category,
+                        'total_pages' => $total_pages,
+                        'tree' => $this->lib_category->build(),
+                        'cat_id' => $cat_id,
+                        'show_cat_list' => $main_settings['cat_list'],
+                    ]
             );
 
             $this->template->show('pages_list', FALSE);

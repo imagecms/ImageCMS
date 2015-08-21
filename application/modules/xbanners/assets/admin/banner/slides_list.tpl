@@ -248,7 +248,7 @@
 
                                     <div class="controls" style="margin-top: 4px;">
                                         {echo $image->getClicks()}
-                                        {echo xpluralize($image->getClicks(), array(lang('transitions1',"xbanners"),lang('transitions2',"xbanners"),lang('transitions3',"xbanners"), lang('transitions3',"xbanners")))}
+                                        {echo SStringHelper::Pluralize($image->getClicks(), array(lang('transitions1',"xbanners"),lang('transitions2',"xbanners"),lang('transitions3',"xbanners"), lang('transitions3',"xbanners")))}
                                     </div>
                                 </div>
 

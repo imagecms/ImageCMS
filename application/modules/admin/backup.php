@@ -41,7 +41,7 @@ class Backup extends BaseAdminController {
         }
 
         if (count($bad) > 0) {
-            showMessage(lang('Some of settings not saved', 'admin'), 'Error');
+            showMessage(lang('Some of settings not saved', 'admin'), 'Error', 'r');
         } else {
             showMessage(lang('Settings saved', 'admin'));
         }

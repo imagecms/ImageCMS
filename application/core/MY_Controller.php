@@ -142,29 +142,27 @@ class MY_Controller extends MX_Controller {
      * Get current language
      * @return type
      */
-    public static function getCurrentLanguage() {
-        if (self::$currentLanguage) {
-            return self::$currentLanguage;
+    public static function getCurrentLanguage($field = null) {
+        if (!self::$currentLanguage) {
+            $ci = get_instance();
+            if (preg_match('/^\/install/', $ci->input->server('PATH_INFO'))) {
+                return;
+            }
+
+            $language = $ci->db
+                ->where('identif', self::getCurrentLocale())
+                ->get('languages')
+                ->row_array();
+
+            if ($language) {
+                self::$currentLanguage = $language;
+            } else {
+                $defaultLanguage = self::getDefaultLanguage();
+                self::$currentLanguage = $defaultLanguage;
+            }
         }
 
-        $ci = get_instance();
-        if (preg_match('/^\/install/', $ci->input->server('PATH_INFO'))) {
-            return;
-        }
-
-        $language = $ci->db
-            ->where('identif', self::getCurrentLocale())
-            ->get('languages')
-            ->row_array();
-
-        if ($language) {
-            self::$currentLanguage = $language;
-        } else {
-            $defaultLanguage = self::getDefaultLanguage();
-            self::$currentLanguage = $defaultLanguage;
-        }
-
-        return self::$currentLanguage;
+        return $field ? self::$currentLanguage[$field] : self::$currentLanguage;
     }
 
     public static function defaultLocale() {
