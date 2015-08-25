@@ -240,8 +240,8 @@ class assetManager {
             $data = array();
             if ($fetchJsTpl) {
                 /** Start. If file doesn't exists thorow exception */
-                $js_langs_path = $this->_buildTemplatePath($this->module_js);
                 if (file_exists($js_langs_path . '.tpl')) {
+                    $js_langs_path = $this->_buildTemplatePath($this->module_js);
                     /** Start. Load template file */
                     if (MAINSITE) {
                         $data = array('js_langs_path' => 'file:' . $js_langs_path);

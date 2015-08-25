@@ -72,7 +72,6 @@ class Similar_Posts {
      * @return array
      */
     private function search() {
-        $pages = [];
         $pages = $this->getPagesByTags();
 
         $prevTextLimit = $this->settings['max_short_description_words'];

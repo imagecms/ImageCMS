@@ -4,27 +4,9 @@
 
 class Commentsapi extends Comments {
 
-    public $tpl_name = 'comments_api';
-
-    public $period = 5;      // Post comment period in minutes. If user is unregistered, check will be made by ip address. 0 - To disable this method.
-
-    public $can_comment = 0;      // Possible values: 0 - all, 1 - registered only.
-
-    public $max_comment_length = 500;    // Max. comments text lenght.
-
-    public $use_captcha = FALSE;  // Possible values TRUE/FALSE;
-
-    public $cache_ttl = 86400;
-
-    public $comment_controller = 'comments/add';
-
-    public $use_moderation = TRUE;
-
     public $validation_errors;
 
     public $enable_comments = true;
-
-    public $module = 'core';
 
     public function __construct() {
         parent::__construct();
@@ -32,19 +14,8 @@ class Commentsapi extends Comments {
         $this->module = $this->getModule($this->input->server('HTTP_REFERER'));
         $lang = new MY_Lang();
         $lang->load('comments');
-    }
 
-    private function init_settings() {
-        $settings = $this->base->get_settings();
-
-        ($hook = get_hook('comments_settigs_init')) ? eval($hook) : NULL;
-        if (is_array($settings)) {
-            foreach ($settings as $k => $v) {
-                $this->$k = $v;
-            }
-        }
-        $this->use_moderation = $this->dx_auth->is_admin() ? FALSE : $settings['use_moderation'];
-        $this->use_captcha = $this->dx_auth->is_admin() ? FALSE : $settings['use_captcha'];
+        $this->tpl_name = 'comments_api';
     }
 
     /**
@@ -605,47 +576,6 @@ class Commentsapi extends Comments {
         }
     }
 
-    private function _recount_comments($page_id, $module) {
-        if ($module != 'core') {
-            return FALSE;
-        }
-
-        $this->db->where('item_id', $page_id);
-        $this->db->where('status', 0);
-        $this->db->where('module', 'core');
-        $this->db->from('comments');
-        $total = $this->db->count_all_results();
-
-        $this->db->limit(1);
-        $this->db->where('id', $page_id);
-        $this->db->update('content', ['comments_count' => $total]);
-    }
-
-    /**
-     * Determinate comment status.
-     *
-     *  Comment statuses
-     *  0 - Normal(approved) comment.
-     *  1 - Waiting for moderation(pending).
-     *  2 - Spam.
-     */
-    private function _comment_status() {
-        ($hook = get_hook('comments_on_get_status')) ? eval($hook) : NULL;
-
-        $status = 0;
-
-        if ($this->dx_auth->is_admin() == TRUE) {
-            return 0;
-        }
-
-        if ($this->use_moderation == TRUE) {
-            $status = 1;
-        } elseif ($this->use_moderation == FALSE)
-            $status = 0;
-
-        return $status;
-    }
-
     public function setyes() {
         $comid = $this->input->post('comid');
         if ($this->session->userdata('commentl' . $comid) != 1) {
@@ -682,58 +612,6 @@ class Commentsapi extends Comments {
                 return json_encode(["n_count" => "$disslike"]);
             }
         }
-    }
-
-    private function check_comment_period() {
-        ($hook = get_hook('comments_on_check_period')) ? eval($hook) : NULL;
-
-        if ($this->dx_auth->is_admin() == TRUE) {
-            return TRUE;
-        }
-
-        $this->db->select('id, date');
-        $this->db->order_by('date', 'desc');
-
-        if ($this->dx_auth->is_logged_in() == TRUE) {
-            $this->db->where('user_id', $this->dx_auth->get_user_id());
-        } else {
-            $this->db->where('user_ip', $this->input->ip_address());
-        }
-
-        $query = $this->db->get('comments', 1);
-
-        if ($query->num_rows() == 1) {
-            $query = $query->row_array();
-
-            $latest_comment = $query['date'];
-            $allow_time = $latest_comment + ($this->period * 60);
-            //            var_dumps(time());
-            //            var_dumps($allow_time);
-            //var_dumps_exit($query);
-            if ($allow_time > time()) {
-                return FALSE;
-            } else {
-                return TRUE;
-            }
-        } else {
-            return TRUE;
-        }
-    }
-
-    public function captcha_check($code) {
-        ($hook = get_hook('comments_captcha_check')) ? eval($hook) : NULL;
-
-        if (!$this->dx_auth->captcha_check($code)) {
-            return FALSE;
-        } else {
-            return TRUE;
-        }
-    }
-
-    public function get_comments_number($id) {
-        $this->where('item_id', $id);
-        $query = $this->db->get('comments')->result_array();
-        return count($query);
     }
 
     private function _write_cookie($name, $email, $site) {
