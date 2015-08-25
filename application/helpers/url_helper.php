@@ -20,9 +20,10 @@ if (!function_exists('site_url')) {
         $CI =& get_instance();
         return $CI->config->site_url($uri);
     }
+
 }
 
 /**
  * Use system url_helper methods
  */
-include_once(__DIR__ . './../../system/helpers/url_helper.php');
+require_once __DIR__ . './../../system/helpers/url_helper.php';

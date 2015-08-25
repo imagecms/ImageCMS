@@ -116,7 +116,7 @@ class Lib_init {
 
     private function checkDatabase() {
         $db = \CI::$APP->db;
-        if (is_null($db)) {
+        if ($db == null) {
             throw new \Exception('Database object not inited');
         }
 
@@ -140,7 +140,7 @@ class Lib_init {
         $manager = new ConnectionManagerSingle();
 
         $manager->setConfiguration(
-                array(
+            array(
                     'dsn' => 'mysql:host=' . $this->CI->db->hostname . ';dbname=' . $this->CI->db->database,
                     'user' => $this->CI->db->username,
                     'password' => $this->CI->db->password,

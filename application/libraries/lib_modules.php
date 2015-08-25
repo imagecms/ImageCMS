@@ -1,18 +1,19 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 class Lib_modules {
 
     /**
      *
-     * @var type 
+     * @var type
      */
     private $modules = array();
 
     /**
-     * 
+     *
      * @var array
      */
     private $modulesAppRelPath = array();
@@ -47,7 +48,7 @@ class Lib_modules {
             $modulesInLocation = get_dir_file_info($path);
             foreach ($modulesInLocation as $name => $info) {
                 $fullModulePath = $path . $name . '/';
-//                var_dump($fullModulePath);
+                //                var_dump($fullModulePath);
                 if (is_dir($fullModulePath)) {
                     $this->modules[$name] = $fullModulePath;
                     $this->modulesAppRelPath[$name] = trim(str_replace(APPPATH, '', $path), '/');
@@ -59,12 +60,12 @@ class Lib_modules {
     // ------------ useful methods section -------------
 
     /**
-     * 
+     *
      * @param type $moduleName
      * @return boolean
      */
     public function getModulePath($moduleName) {
-        if (!is_string($moduleName) || empty($moduleName)) {            
+        if (!is_string($moduleName) || empty($moduleName)) {
             throw new \InvalidArgumentException('Module name must be string');
         }
         if (!isset($this->modules[$moduleName])) {
@@ -74,7 +75,7 @@ class Lib_modules {
     }
 
     /**
-     * 
+     *
      * @return type
      */
     public function getModulesPaths() {
@@ -82,7 +83,7 @@ class Lib_modules {
     }
 
     /**
-     * 
+     *
      * @return type
      */
     public function getModulesNames() {
@@ -90,7 +91,7 @@ class Lib_modules {
     }
 
     /**
-     * 
+     *
      * @param type $moduleName
      * @return type
      */
@@ -103,11 +104,11 @@ class Lib_modules {
 
     /**
      * Get module containing dir name
-     * 
+     *
      * @param string $moduleName
      */
     public function getModContDirName($moduleName) {
-        if(!SHOP_INSTALLED && $moduleName=='shop'){
+        if (!SHOP_INSTALLED && $moduleName == 'shop') {
             return;
         }
         if (!is_string($moduleName) || empty($moduleName)) {

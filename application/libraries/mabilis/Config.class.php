@@ -22,10 +22,10 @@ class Mabilis_Config {
     public $use_filemtime = TRUE; // Recompile if tpl file modification time changed
 
     public $compiled_ttl = 120; // Time to live compiled files
-    
+
     /**
      * Delimiters will be rewrited as php open/close tags
-     * @var type 
+     * @var type
      */
     public $l_delim = '{'; // Left delimiter
 

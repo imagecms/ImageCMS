@@ -8,7 +8,9 @@
 class Update {
 
     private $arr_files;
+
     private $files_dates = array();
+
     private $restore_files = array();
 
     /**
@@ -67,6 +69,7 @@ class Update {
      * @var SoapClient
      */
     public $client;
+
     public $settings;
 
     public function __construct() {
@@ -140,10 +143,10 @@ class Update {
         $xml = "<?xml version='1.0' encoding='UTF-8'?>" . "\n" .
                 "<КонтейнерСписков ВерсияСхемы='0.1'  ДатаФормирования='" . date('Y-m-d') . "'>" . "\n";
         foreach ($array as $key => $arr) {
-            $xml.='<modul>';
-            $xml.="<name>$key</name>";
-            $xml.="<version>$arr</version>";
-            $xml.='</modul>';
+            $xml .= '<modul>';
+            $xml .= "<name>$key</name>";
+            $xml .= "<version>$arr</version>";
+            $xml .= '</modul>';
         }
         $xml .= "</КонтейнерСписков>\n";
         echo $xml;
@@ -179,8 +182,8 @@ class Update {
             $zip->addFile('.' . $key, $key);
         }
 
-//        echo "numfiles: " . $zip->numFiles . "\n";
-//        echo "status:" . $zip->status . "\n";
+        //        echo "numfiles: " . $zip->numFiles . "\n";
+        //        echo "status:" . $zip->status . "\n";
 
         $zip->close();
     }
@@ -389,8 +392,6 @@ class Update {
                 if (!$this->ci->db->query($query)) {
                     echo 'Невозможно виполнить запрос: <br>';
                     return FALSE;
-                } else {
-//                    return TRUE;
                 }
             }
         }
@@ -406,8 +407,8 @@ class Update {
 
     public function getSettings($param = false) {
         $settings = $this->ci->db
-                ->get('settings')
-                ->row_array();
+            ->get('settings')
+            ->row_array();
         $settings = unserialize($settings['update']);
 
         if (!$param) {
@@ -433,8 +434,8 @@ class Update {
         }
 
         return $this->ci->db
-                        ->set('update', serialize($s))
-                        ->update('settings');
+            ->set('update', serialize($s))
+            ->update('settings');
     }
 
 }

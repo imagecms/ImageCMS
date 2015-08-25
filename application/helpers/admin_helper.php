@@ -139,4 +139,5 @@ if (!function_exists('get_templates')) {
             return $new_arr;
         }
     }
+
 }

@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Image CMS
@@ -10,15 +11,22 @@ if (!defined('BASEPATH'))
 class Lib_csrf {
 
     public $ci = NULL;
+
     private $enc_key = '';
+
     private $tokens = array();     // User token.
+
     private $sess_id = NULL;     // Session id.
+
     private $hidden_name = 'cms_token';
+
     private $max_tokens = 10;
+
     public $log_errors = FALSE;
+
     public $log_ajax_requests = FALSE;
 
-    public function Lib_csrf() {
+    public function __construct() {
         $this->ci = & get_instance();
 
         $this->_generate_token();
@@ -36,8 +44,8 @@ class Lib_csrf {
 
     private function check_token() {
         if (count($_POST) > 0) {
-//            if ($this->ci->uri->segment(2) == 'elfinder_init')
-//                return TRUE;
+            //            if ($this->ci->uri->segment(2) == 'elfinder_init')
+            //                return TRUE;
             if (defined('ICMS_DISBALE_CSRF') AND ICMS_DISBALE_CSRF === TRUE) {
                 return TRUE;
             }

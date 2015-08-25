@@ -12,9 +12,13 @@ if (!defined('BASEPATH')) {
 class Lib_seo {
 
     protected $orderJustMaked = FALSE;
+
     public $origin_arr;
+
     public $modif_arr;
+
     public $min_word_length = 3;
+
     public $desc_chars = 160;
 
     /**

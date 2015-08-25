@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 class Cache_html {
 
@@ -21,7 +22,7 @@ class Cache_html {
 
     public static function get_html($file) {
         self::$path = PUBPATH . 'system/cache/templates_c/HTML/';
-        
+
         if (!\CI_Controller::get_instance()->config->item('tpl_force_compile')) {
             $file = $file . MY_Controller::getCurrentLocale();
             $file = self::$path . md5($file) . '.html';
@@ -41,7 +42,7 @@ class Cache_html {
     }
 
     public static function clear_html_cache() {
-        
+
     }
 
 }

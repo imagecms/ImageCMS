@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /* * *
  * XML library for CodeIgniter
@@ -16,11 +17,12 @@ class Lib_xml {
 
     public $CI;
 
-    function Lib_xml() {
+    public function __construct() {
         $this->CI = & get_instance();
     }
 
     private $document;
+
     private $filename;
 
     public function load($file) {
@@ -43,7 +45,7 @@ class Lib_xml {
         return true;
     }
 
-/* END load */
+    /* END load */
 
     public function parse() {
         /*         * *
@@ -55,7 +57,7 @@ class Lib_xml {
             return false;
         }
 
-        $doc = new DOMDocument ();
+        $doc = new DOMDocument();
         $doc->preserveWhiteSpace = false;
         if ($doc->loadXML($xml)) {
             $array = $this->flatten_node($doc);
@@ -67,7 +69,7 @@ class Lib_xml {
         return false;
     }
 
-/* END parse */
+    /* END parse */
 
     private function flatten_node($node) {
         /*         * *
@@ -100,5 +102,5 @@ class Lib_xml {
         return $array;
     }
 
-/* END node_to_array */
+    /* END node_to_array */
 }

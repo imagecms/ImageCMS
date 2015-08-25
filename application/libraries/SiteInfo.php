@@ -52,7 +52,7 @@ class SiteInfo {
     public function __construct($locale = NULL) {
 
         if ($this->useLocales == TRUE) {
-            $this->locale = !is_null($locale) ? $locale : MY_Controller::getCurrentLocale();
+            $this->locale = $locale != null ? $locale : MY_Controller::getCurrentLocale();
         }
 
         $locales_ = CI::$APP->db->select('identif,id')->get('languages')->result_array();
@@ -65,8 +65,6 @@ class SiteInfo {
         $siteinfo = @unserialize($result['siteinfo']);
         if (is_array($siteinfo)) {
             $this->siteinfo = $siteinfo;
-        } else {
-            // throw new Exception();
         }
     }
 
@@ -124,10 +122,8 @@ class SiteInfo {
                 if (!in_array($k, $keysMain)) {
                     unset($this->siteinfo[$language][$key][$k]);
                 }
-
             }
         }
-
     }
 
     /**

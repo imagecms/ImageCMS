@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 class Cms_hooks {
 
@@ -26,7 +27,7 @@ class Cms_hooks {
         }
 
         if (file_exists($this->hooks_file)) {
-            include($this->hooks_file);
+            include $this->hooks_file;
         } else {
             show_error('Ошибка загрузки файла хуков.');
         }
@@ -84,7 +85,6 @@ class Cms_hooks {
                 }
             }
         }
-
 
         $this->create_hooks_file($tmp);
     }
