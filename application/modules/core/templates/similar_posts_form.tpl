@@ -36,30 +36,10 @@
                         </div>
 
                         <div class="control-group">
-                            <label class="control-label" for="search_type">{lang("Search type", 'core')}:</label>
-
-                            <div class="controls">
-                                <select name="settings[search_type]" id="search_type">
-                                    <option value="title"  {if $widget.settings.search_type == 'title'} selected="selected" {/if} >{lang("By page title", 'core')}</option>
-                                    <option value="tags" {if $widget.settings.search_type == 'tags'} selected="selected" {/if}>{lang("By pages tags", 'core')}</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="control-group">
                             <label class="control-label" for="limit">{lang("Similar pages limit", 'core')}:</label>
 
                             <div class="controls">
                                 <input type="text" name="settings[limit]" value="{$widget.settings.limit}" id="limit"/>
-                            </div>
-                        </div>
-
-                        <div class="control-group">
-                            <label class="control-label" for="min_compare_symbols">{lang("Minimum symbol in words to compare", 'core')}
-                                :</label>
-
-                            <div class="controls">
-                                <input type="text" name="settings[min_compare_symbols]" value="{$widget.settings.min_compare_symbols}" id="min_compare_symbols"/>
                             </div>
                         </div>
 

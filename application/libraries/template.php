@@ -132,6 +132,10 @@ class Template extends Mabilis {
         $this->template_vars = array();
     }
 
+    public function clear_assign($name) {
+        $this->template_vars[$name] = null;
+    }
+
     public function get_var($var) {
         return isset($this->template_vars[$var]) ? $this->template_vars[$var] : false;
     }
@@ -193,12 +197,12 @@ class Template extends Mabilis {
     }
 
     public function include_tpl($name, $path, $data = array(), $processOutput = true) {
-        $path = $path ? $path : TEMPLATES_PATH.$this->CI->config->item('template');
+        $path = $path ? $path : TEMPLATES_PATH . $this->CI->config->item('template');
         $this->display('file:' . $path . '/' . $name, $data, $processOutput);
     }
 
     public function include_shop_tpl($name, $path, $data = array(), $processOutput = true) {
-        $path = $path ? $path : TEMPLATES_PATH.$this->CI->config->item('template');
+        $path = $path ? $path : TEMPLATES_PATH . $this->CI->config->item('template');
         $this->display('file:' . $path . '/shop/' . $name, $data, $processOutput);
     }
 

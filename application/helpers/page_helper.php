@@ -40,10 +40,10 @@ if (!function_exists('category_pages')) {
 
     // Get pages by category
 
-    function category_pages($category, $limit = 0) {
+    function category_pages($categoryId, $limit = 0) {
         $ci = &get_instance();
 
-        $category = $ci->lib_category->get_category($category);
+        $category = $ci->lib_category->get_category($categoryId);
         $category['fetch_pages'] = unserialize($category['fetch_pages']);
 
         $ci->db->where('post_status', 'publish');
@@ -67,7 +67,7 @@ if (!function_exists('category_pages')) {
 
         $query = $ci->db->get('content');
 
-        if ($query->num_rows()) {
+        if ($query) {
             return $query->result_array();
         } else {
             return array();

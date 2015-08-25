@@ -135,10 +135,8 @@ class Core_Widgets extends MY_Controller {
             case 'update_settings':
                 $settings = $this->input->post('settings');
 
-                $this->form_validation->set_rules('settings[limit]', lang("Similar pages limit", "core"), 'trim|required|is_natural_no_zero|min_length[1]');
-                $this->form_validation->set_rules('settings[min_compare_symbols]', lang("Minimum symbol in words to compare", "core"), 'trim|required|is_natural_no_zero|min_length[1]');
-                $this->form_validation->set_rules('settings[max_short_description_words]', lang("Maximum short description words count", "core"), 'trim|required|is_natural_no_zero|min_length[1]');
-
+                $this->form_validation->set_rules('settings[limit]', lang("Similar pages limit", "core"), 'trim');
+                $this->form_validation->set_rules('settings[max_short_description_words]', lang("Maximum short description words count", "core"), 'trim');
 
                 if (!$this->form_validation->run($this)) {
                     showMessage(validation_errors(), '', 'r');
