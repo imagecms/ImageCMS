@@ -13,23 +13,14 @@ if (!defined('BASEPATH')) {
 class Comments extends MY_Controller {
 
     public $period = 5;      // Post comment period in minutes. If user is unregistered, check will be made by ip address. 0 - To disable this method.
-
     public $can_comment = 0;      // Possible values: 0 - all, 1 - registered only.
-
     public $max_comment_length = 500;    // Max. comments text lenght.
-
     public $use_captcha = FALSE;  // Possible values TRUE/FALSE;
-
     public $cache_ttl = 86400;
-
     public $module = 'core';
-
     public $order_by = 'date.desc';
-
     public $comment_controller = 'comments/add';
-
     public $tpl_name = 'comments'; // Use comments.tpl
-
     public $use_moderation = TRUE;
 
     public function __construct() {
@@ -97,13 +88,13 @@ class Comments extends MY_Controller {
         }
 
         $array = $CI->db
-            ->select('item_id')
-            ->join('shop_products', 'comments.item_id=shop_products.id')
-            ->where_in('shop_products.category_id', $ids)
-            ->where('module', 'shop')
-            ->group_by('item_id')
-            ->get('comments')
-            ->result_array();
+                ->select('item_id')
+                ->join('shop_products', 'comments.item_id=shop_products.id')
+                ->where_in('shop_products.category_id', $ids)
+                ->where('module', 'shop')
+                ->group_by('item_id')
+                ->get('comments')
+                ->result_array();
 
         $ids = array();
         foreach ($array as $key => $a) {
@@ -115,6 +106,12 @@ class Comments extends MY_Controller {
         $CI->db->delete('comments');
     }
 
+    /**
+     * 
+     * @param string $page_id
+     * @param string $module
+     * @return boolean
+     */
     public function _recount_comments($page_id, $module) {
         if ($module != 'core') {
             return FALSE;
@@ -129,6 +126,7 @@ class Comments extends MY_Controller {
         $this->db->limit(1);
         $this->db->where('id', $page_id);
         $this->db->update('content', ['comments_count' => $total]);
+        return TRUE;
     }
 
     public function commentsDeleteFromProduct($product) {
@@ -177,7 +175,7 @@ class Comments extends MY_Controller {
         return $productsCount;
     }
 
-    private function init_settings() {
+    public function _init_settings() {
         $settings = $this->base->get_settings();
 
         ($hook = get_hook('comments_settigs_init')) ? eval($hook) : NULL;
@@ -199,7 +197,7 @@ class Comments extends MY_Controller {
         ($hook = get_hook('comments_on_build_comments')) ? eval($hook) : NULL;
 
         $this->load->model('base');
-        $this->init_settings();
+        $this->_init_settings();
 
         //        if (($comments = $this->cache->fetch('comments_' . $item_id . $this->module, 'comments')) !== FALSE) {
         //            ($hook = get_hook('comments_fetch_cache_ok')) ? eval($hook) : NULL;
@@ -265,7 +263,7 @@ class Comments extends MY_Controller {
         //$this->render('comments_list', array('comments'=>$comments));
 
         $this->template->add_array(
-            array(
+                array(
                     'comments' => $comments,
                 )
         );
@@ -280,7 +278,7 @@ class Comments extends MY_Controller {
 
         // Load comments model
         $this->load->model('base');
-        $this->init_settings();
+        $this->_init_settings();
 
         // Check access only for registered users
         if ($this->can_comment === 1 AND $this->dx_auth->is_logged_in() == FALSE) {
@@ -429,7 +427,7 @@ class Comments extends MY_Controller {
      *  1 - Waiting for moderation(pending).
      *  2 - Spam.
      */
-    private function _comment_status() {
+    public function _comment_status() {
         ($hook = get_hook('comments_on_get_status')) ? eval($hook) : NULL;
 
         $status = 0;
@@ -449,6 +447,11 @@ class Comments extends MY_Controller {
 
     /**
      * Write in cookie author nickname and email
+     * 
+     * @param string $name
+     * @param string $email
+     * @param string $site
+     * @return boolean
      */
     private function _write_cookie($name, $email, $site) {
         $this->load->helper('cookie');

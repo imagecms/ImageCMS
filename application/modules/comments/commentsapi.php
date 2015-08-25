@@ -25,7 +25,7 @@ class Commentsapi extends Comments {
      */
     public function getComments($url) {
         $this->load->model('base');
-        $this->init_settings();
+        $this->_init_settings();
         $this->module = $this->getModule($url);
         $item_id = $this->parsUrl($url);
 
@@ -71,7 +71,7 @@ class Commentsapi extends Comments {
         ($hook = get_hook('comments_on_build_comments')) ? eval($hook) : NULL;
 
         $this->load->model('base');
-        $this->init_settings();
+        $this->_init_settings();
 
         $this->module = $this->getModule($url);
         $item_id = $this->parsUrl($url);
@@ -141,7 +141,7 @@ class Commentsapi extends Comments {
         $comments = [];
         ($hook = get_hook('comments_on_build_comments')) ? eval($hook) : NULL;
         $this->load->model('base');
-        $this->init_settings();
+        $this->_init_settings();
 
         $item_id = $this->parsUrl($this->input->server('HTTP_REFERER'));
 
@@ -316,7 +316,7 @@ class Commentsapi extends Comments {
     public function addPost() {
 
         $this->load->model('base');
-        $this->init_settings();
+        $this->_init_settings();
         $this->load->library('user_agent');
         $this->load->library('form_validation');
         $this->load->model('base');
@@ -424,7 +424,7 @@ class Commentsapi extends Comments {
 
     public function newPost() {
         $this->load->model('base');
-        $this->init_settings();
+        $this->_init_settings();
 
         ($hook = get_hook('comments_on_add')) ? eval($hook) : NULL;
 
