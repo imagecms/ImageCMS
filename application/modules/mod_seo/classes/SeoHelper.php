@@ -72,7 +72,7 @@ class SeoHelper extends \MY_Controller {
         if ($categories != false) {
             foreach ($categories as $category) {
                 $response[] = array(
-                    'value' => $category['name'],
+                    'value' => html_entity_decode($category['name']),
                     'id' => $category['id'],
                 );
             }
