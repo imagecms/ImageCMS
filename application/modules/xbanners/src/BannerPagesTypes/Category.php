@@ -1,19 +1,19 @@
 <?php
 
 namespace Banners\BannerPagesTypes;
+
 /**
  * Created by PhpStorm.
  * User: mark
  * Date: 23.03.15
  * Time: 19:19
  */
-
 class Category extends BasePageType {
 
     public function __construct($locale) {
         $this->locale = $locale;
         $this->localeId = $this->getLocaleId($locale);
-        $this->tpl_name = 'product';
+        $this->tpl_name = 'category';
     }
 
     private function getCategories() {
@@ -32,11 +32,6 @@ class Category extends BasePageType {
         }
 
         return $data;
-    }
-
-    public function getView() {
-        $tree = $this->getCategories();
-        return parent::getView($this->tpl_name, ['tree' => $tree]);
     }
 
 }

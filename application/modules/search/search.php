@@ -51,7 +51,6 @@ class Search extends MY_Controller {
         parent::__construct();
         $lang = new MY_Lang();
         $lang->load('search');
-
     }
 
     // Search pages
@@ -65,7 +64,7 @@ class Search extends MY_Controller {
             $hash_data = $this->query($hash, $offset);
             $s_text = $this->search_title;
         } else {
-            $s_text = trim($this->input->post('text'));
+            $s_text = $this->getSearchText();
         }
 
         $text_len = mb_strlen(trim($s_text), 'UTF-8');
@@ -108,7 +107,7 @@ class Search extends MY_Controller {
             }
 
             if (!$this->search_title) {
-                $this->search_title = $this->input->post('text');
+                $this->search_title = $s_text;
             }
 
             //Pagination
@@ -145,6 +144,11 @@ class Search extends MY_Controller {
         $this->core->set_meta_tags([lang("Search", 'search'), $this->search_title]);
         $this->core->core_data['data_type'] = 'search';
         $this->_display($data, $dataForFoundInCategories);
+    }
+
+    public function getSearchText() {
+        $text = $this->input->post('text') ? $this->input->post('text') : $this->input->get('text');
+        return trim($text);
     }
 
     /**
@@ -264,7 +268,7 @@ class Search extends MY_Controller {
             if ($refresh == FALSE) {
                 // Store query data
                 if (!$this->search_title) {
-                    $this->search_title = $this->input->post('text');
+                    $this->search_title = $this->getSearchText();
                 }
 
                 $q_data = [
@@ -458,9 +462,9 @@ class Search extends MY_Controller {
 
         if ($foundInCategories != null) {
             $this->load->library('lib_category');
-            foreach ($foundInCategories as $value) {
+            foreach ($foundInCategories as $key => $value) {
                 if (array_key_exists($value['category'], $categories)) {
-                    $categories[$value['category']]['count']++;
+                    $categories[$value['category']]['count'] ++;
                 } else {
                     $value['count'] = 1;
                     $categories[$value['category']] = $value;
@@ -477,12 +481,12 @@ class Search extends MY_Controller {
 
             $this->template->add_array(
                 [
-                    'items' => $pages,
-                    'categoriesInSearchResults' => $categoriesInSearchResults,
-                    'tree' => $tree,
-                    'countAll' => count($foundInCategories),
-                    'categoriesInfo' => $categoriesInfo
-                ]
+                        'items' => $pages,
+                        'categoriesInSearchResults' => $categoriesInSearchResults,
+                        'tree' => $tree,
+                        'countAll' => count($foundInCategories),
+                        'categoriesInfo' => $categoriesInfo
+                    ]
             );
         }
 

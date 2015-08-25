@@ -12,7 +12,9 @@ namespace Banners\BannerPagesTypes;
 class BasePageType {
 
     protected $locale;
+
     protected $localeId;
+
     protected $tpl_name;
 
     protected function getLocaleId() {
@@ -21,10 +23,10 @@ class BasePageType {
         return $this->localeId;
     }
 
-    protected function getView($tpl_name, $data = array()) {
-        
-        $assetpath = 'file:' . APPPATH . '/modules/xbanners/assets/admin/banner_pages_types/';
-        return \CI::$APP->template->fetch($assetpath . $tpl_name, $data);
+    public function getView() {
+        $tree = $this->getPages();
+        $assetpath = 'file:' . APPPATH . 'modules/xbanners/assets/admin/banner_pages_types/';
+        return \CI::$APP->template->fetch($assetpath . $this->tpl_name, ['tree' => $tree]);
     }
 
 }

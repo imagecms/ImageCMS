@@ -88,7 +88,6 @@ class Admin extends BaseAdminController {
         } else {
             $bannerImages = \Banners\Managers\ImagesManager::getInstance()->getImagesByPageType($banner, $locale);
             $allowedPagesOptions = BannerPageTypesManager::getInstance()->getView($banner->getPageType(), $locale);
-
             $options = $banner->getEffects();
 
             \CMSFactory\assetManager::create()->setData(

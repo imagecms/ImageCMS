@@ -52,7 +52,6 @@ class Install extends MY_Controller {
             './uploads/' => 'ok',
             './uploads/images' => 'ok',
             './uploads/files' => 'ok',
-            './uploads/media' => 'ok',
         );
 
         foreach ($dir_array as $k => $v) {

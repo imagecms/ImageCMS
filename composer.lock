@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2ddc58dc102df39d15deab1e39b87c4c",
+    "hash": "d4804352cf6139c8985d41f82583913e",
     "packages": [
         {
             "name": "google/apiclient",
@@ -103,6 +103,31 @@
                 "sql"
             ],
             "time": "2014-04-16 10:03:29"
+        },
+        {
+            "name": "imagecms/coding-standard",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/imagecms/CodingStandard.git",
+                "reference": "d391974b14d42fc8db22c71e2cb2962fc30b79a3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/imagecms/CodingStandard/zipball/d391974b14d42fc8db22c71e2cb2962fc30b79a3",
+                "reference": "d391974b14d42fc8db22c71e2cb2962fc30b79a3",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "gylaandrij",
+                    "email": "gyla.andrij@gmail.com"
+                }
+            ],
+            "description": "ImageCMS Coding Standard",
+            "time": "2015-08-25 08:06:51"
         },
         {
             "name": "monolog/monolog",

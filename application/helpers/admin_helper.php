@@ -27,7 +27,7 @@ if (!function_exists('check_admin_redirect')) {
                 $html .= "</ul></div>";
             }
         }
-        return $html;
+        return $html ? : '';
     }
 
     function create_admin_language_select() {
@@ -63,7 +63,7 @@ if (!function_exists('check_admin_redirect')) {
                     '</ul>
             </div>';
         }
-        return $html;
+        return $html ? : '';
     }
 
     function build_cats_tree($cats, $selected_cats = []) {

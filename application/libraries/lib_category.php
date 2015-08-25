@@ -26,6 +26,8 @@ class Lib_category {
 
     protected $defaultLocaleId;
 
+    public $CI;
+
     /**
      *
      * @var array [category_id => [parent_id=>category_id, pages_count=?],...]

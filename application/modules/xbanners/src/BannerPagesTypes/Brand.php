@@ -1,13 +1,13 @@
 <?php
 
 namespace Banners\BannerPagesTypes;
+
 /**
  * Created by PhpStorm.
  * User: mark
  * Date: 23.03.15
  * Time: 19:19
  */
-
 class Brand extends BasePageType {
 
     public function __construct($locale) {
@@ -17,8 +17,8 @@ class Brand extends BasePageType {
 
     public function getPages() {
         $brands = \SBrandsQuery::create()
-            ->joinWithI18n($this->locale)
-            ->find();
+                ->joinWithI18n($this->locale)
+                ->find();
 
         $data = [];
         foreach ($brands as $brand) {
@@ -29,11 +29,6 @@ class Brand extends BasePageType {
         }
 
         return $data;
-    }
-
-    public function getView() {
-        $tree = $this->getPages();
-        return parent::getView($this->tpl_name, ['tree' => $tree]);
     }
 
 }

@@ -29,7 +29,8 @@ class Lib_modules {
 
         if (FALSE !== $modulesLocations = \CI::$APP->config->item('modules_locations')) {
             $locationsToSet = array();
-            for ($i = 0; $i < count($modulesLocations); $i++) {
+            $countModulesLocations = count($modulesLocations);
+            for ($i = 0; $i < $countModulesLocations; $i++) {
                 $withinPath = trim($modulesLocations[$i], '/') . '/';
                 $locationsToSet[APPPATH . $withinPath] = "../{$withinPath}";
             }

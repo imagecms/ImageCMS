@@ -29,7 +29,7 @@ class Commentsapi extends Comments {
     public function __construct() {
         parent::__construct();
         $this->load->module('core');
-        $this->module = $this->getModule($this->input->serever('HTTP_REFERER'));
+        $this->module = $this->getModule($this->input->server('HTTP_REFERER'));
         $lang = new MY_Lang();
         $lang->load('comments');
     }
@@ -172,7 +172,7 @@ class Commentsapi extends Comments {
         $this->load->model('base');
         $this->init_settings();
 
-        $item_id = $this->parsUrl($this->input->serever('HTTP_REFERER'));
+        $item_id = $this->parsUrl($this->input->server('HTTP_REFERER'));
 
         $commentsCount = $this->getTotalCommentsForProducts($item_id);
         $comments = $this->base->get($item_id, 0, $this->module, $this->input->post('countcomment'), $this->order_by);
@@ -461,7 +461,7 @@ class Commentsapi extends Comments {
         $this->load->library('form_validation');
         $this->load->model('base');
 
-        $item_id = $this->parsUrl($this->input->serever('HTTP_REFERER'));
+        $item_id = $this->parsUrl($this->input->server('HTTP_REFERER'));
 
         if ($this->period > 0) {
             if ($this->check_comment_period() == FALSE) {

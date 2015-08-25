@@ -112,12 +112,6 @@ if (!function_exists('getMoFileName')) {
                     }
                     break;
                 default :
-                    if (strstr($domain, 'admin') && MAINSITE) {
-                        $begin = MAINSITE;
-                    } else {
-                        $begin = '.';
-                    }
-
                     $module_path = correctUrl('./application/modules/' . $domain . '/language/' . $locale);
                     if (is_dir($module_path)) {
                         $searched = glob($module_path . '/' . $locale . '/LC_MESSAGES/' . $domain . '*.mo');
