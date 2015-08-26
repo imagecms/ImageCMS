@@ -24,6 +24,8 @@ php:
 env:
   - DB=mysql
   - DB=pgsql
+install:
+   - compose /home/travis/.phpenv/versions/5.4/bin/composer self-update
 
 # optionally set up exclutions and allowed failures in the matrix
 matrix:
@@ -42,8 +44,9 @@ before_script:
 
 # omitting "script:" will default to phpunit
 # use the $DB env variable to determine the phpunit.xml to use
-script: phpunit --configuration phpunit_$DB.xml --coverage-text
+#script: phpunit --configuration phpunit_$DB.xml --coverage-text
+script: phpunit --configuration $DB.phpunit.xml
 
 # configure notifications (email, IRC, campfire etc)
 notifications:
-  irc: "irc.freenode.org#yourfavouriteroomfortravis"
+  #irc: "irc.freenode.org#yourfavouriteroomfortravis"
