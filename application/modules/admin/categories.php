@@ -481,7 +481,7 @@ class Categories extends BaseAdminController {
         $this->form_validation->set_rules('filename', lang('Template name', 'admin'), 'required|alpha_numeric|min_length[1]|max_length[250]');
 
         if ($this->form_validation->run() == FALSE) {
-            $responce = showMessage(validation_errors(), '', 'r', true);
+            $responce = showMessage(validation_errors(), false, 'r', true);
             $result = false;
             echo json_encode(array('responce' => $responce, 'result' => $result));
             return FALSE;
@@ -528,7 +528,7 @@ class Categories extends BaseAdminController {
             ($hook = get_hook('admin_set_cat_translate_rules')) ? eval($hook) : NULL;
 
             if ($this->form_validation->run($this) == FALSE) {
-                showMessage(validation_errors(), '' . 'r');
+                showMessage(validation_errors(), false, 'r');
             } else {
                 $data = array();
                 $data['alias'] = $id;
@@ -617,7 +617,6 @@ class Categories extends BaseAdminController {
     /**
      * Delete category and its pages
      *
-     * @param integer $cat_id
      * @access public
      */
     public function delete() {

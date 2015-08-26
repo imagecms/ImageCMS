@@ -9,6 +9,12 @@ if (!defined('BASEPATH')) {
 
 /**
  * Show Roar message
+ *
+ * @param string $message
+ * @param string|boolean $title
+ * @param string $class
+ * @param boolean $ret
+ * @return type
  */
 function showMessage($message, $title = FALSE, $class = '', $ret = false) {
     $del = array("'", '"');

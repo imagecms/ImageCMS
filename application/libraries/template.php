@@ -16,6 +16,30 @@ class Template extends Mabilis {
 
     public $template_vars = array();
 
+    private $_css_files = array();
+
+    private $_js_files = array();
+
+    private $_links = array();
+
+    private $_css_str = array();
+
+    private $_metas = array();
+
+    private $_canonicals = array();
+
+    private static $arr = array();
+
+    private static $result_before = '';
+
+    private static $result_after = '';
+
+    /**
+     * is tpl trimed
+     * @var bool
+     */
+    public $trimed = false;
+
     public function __construct() {
         $this->load();
         if (file_exists('templates/' . $this->CI->config->item('template') . '/shop/helpers/helper.php')) {
@@ -95,6 +119,9 @@ class Template extends Mabilis {
      * Display template file included in main.tpl if $load_main is TRUE
      *
      * @access public
+     * @param string|boolean $file
+     * @param boolean $load_main
+     * @param array $data
      * @return true
      */
     public function show($file = FALSE, $load_main = TRUE, $data = array()) {
@@ -211,33 +238,6 @@ class Template extends Mabilis {
         $path = $path ? $path : TEMPLATES_PATH . $this->CI->config->item('template');
         $this->display('file:' . $path . '/shop/' . $name, $data, $processOutput);
     }
-
-    /////////////////////////////////////////////////////////////////////////////////////////
-    private $_css_files = array();
-
-    private $_js_files = array();
-
-    private $_links = array();
-
-    private $_css_str = array();
-
-    private $_metas = array();
-
-    private $_canonicals = array();
-
-    private static $arr = array();
-
-    private static $result_before = '';
-
-    private static $result_after = '';
-
-    /**
-     * is tpl trimed
-     * @var bool
-     */
-    public $trimed = false;
-
-    // $position possible values: before, after
 
     public function registerCssFile($url, $position = 'before') {
         $position = $this->_check_postion($position);
