@@ -15,7 +15,7 @@
                 <div id="module_list">
                     {foreach $modules as $module}
                         <a href="#" onclick="set_module_data('{$module.name}');
-                                    return false;" id="module_{$module.name}" title="{$module.description}" style="display:block;font-size:13px;padding:5px;">{$module.menu_name}</a>
+                                return false;" id="module_{$module.name}" title="{$module.description}" style="display:block;font-size:13px;padding:5px;">{$module.menu_name}</a>
                     {/foreach}
                 </div>
             </td>
@@ -105,7 +105,7 @@
                 <div class="form_overflow"></div>
 
                 <div class="field_text">
-                     {lang("Open in the new window", "menu")}
+                    {lang("Open in the new window", "menu")}
                 </div>
                 <div class="field_input">
                     <input type="radio" name="modnew_page" id="mod_newpage"  onclick="mod_newpage = 1;" /> {lang('Yes', "menu")}
@@ -117,9 +117,9 @@
                 <div class="field_text"></div>
                 <div class="field_input">
                     <input type="button" value="{lang('Create', "menu")}" id="mod_btn" class="button" onclick="insert_module();
-                                    return false;" />
+                            return false;" />
                     <input type="button" value="{lang('Cancel', "menu")}" class="button" onclick="MochaUI.closeWindow($('createnewlink'));
-                                    return false;" />
+                            return false;" />
                 </div>
 
                 <div class="form_overflow"></div>
@@ -130,95 +130,95 @@
 
 {literal}
     <script type="text/javascript">
-                            //<![CDATA[
-                            var module_hidden = 0;
-                            var mod_newpage = 0;
+        //<![CDATA[
+        var module_hidden = 0;
+        var mod_newpage = 0;
 
-                            function set_module_data(name)
-                            {
-                                item = $('module_' + name);
+        function set_module_data(name)
+        {
+            item = $('module_' + name);
 
-                                items = $('module_list').getElements('a');
-                                items.each(function(el, i) {
-                                    el.removeClass('clicked');
-                                });
+            items = $('module_list').getElements('a');
+            items.each(function (el, i) {
+                el.removeClass('clicked');
+            });
 
-                                item.set('class', 'clicked');
+            item.set('class', 'clicked');
 
-                                $('module_name').set('html', name);
-                                $('module_title').value = item.get('html');
+            $('module_name').set('html', name);
+            $('module_title').value = item.get('html');
 
-                                return false;
-                            }
+            return false;
+        }
 
-                            function insert_module()
-                            {
-                                mod_name = $('module_name').get('text');
+        function insert_module()
+        {
+            mod_name = $('module_name').get('text');
 
-                                if (mod_name == '')
-                                {
-                                    showMessage('Ошибка', 'Выбирите модуль.');
-                                    return false;
-                                }
+            if (mod_name == '')
+            {
+                showMessage('Ошибка', 'Выбирите модуль.');
+                return false;
+            }
 
 
-                                mod_title = $('module_title').value;
+            mod_title = $('module_title').value;
 
-                                if (mod_title == '')
-                                {
-                                    showMessage('Ошибка', 'Введите заголовк.');
-                                    return false;
-                                }
+            if (mod_title == '')
+            {
+                showMessage('Ошибка', 'Введите заголовк.');
+                return false;
+            }
 
-                                mod_method = $('module_method').value;
-                                mod_menu_id = $('owner_id').value;
-                                mod_hidden = module_hidden;
-                                mod_parent_id = $('module_parent_id').value;
-                                mod_position_after = $('module_position_after').value;
-                                item_image = $('mod_image').value;
+            mod_method = $('module_method').value;
+            mod_menu_id = $('owner_id').value;
+            mod_hidden = module_hidden;
+            mod_parent_id = $('module_parent_id').value;
+            mod_position_after = $('module_position_after').value;
+            item_image = $('mod_image').value;
 
-                                var mod_roles = new Array();
-                                $('module_roles').getSelected().each(function(el) {
-                                    mod_roles.include(el.value);
-                                });
+            var mod_roles = new Array();
+            $('module_roles').getSelected().each(function (el) {
+                mod_roles.include(el.value);
+            });
 
-                                var req = new Request.HTML({
-                                    method: 'post',
-                                    url: base_url + 'admin/components/cp/menu/insert_menu_item/',
-                                    onRequest: function() {
-                                    },
-                                    onComplete: function(response) {
-                                        refresh_menu_list(mod_menu_id);
-                                    }
-                                }).post({
-                                    'menu_id': mod_menu_id,
-                                    'item_type': 'module',
-                                    'item_id': mod_name,
-                                    'method': mod_method,
-                                    'title': mod_title,
-                                    'hidden': mod_hidden,
-                                    'newpage': mod_newpage,
-                                    'item_image': item_image,
-                                    'roles': mod_roles,
-                                    'parent_id': mod_parent_id,
-                                    'position_after': mod_position_after,
-                                    'update_id': menu_update_id
-                                });
+            var req = new Request.HTML({
+                method: 'post',
+                url: base_url + 'admin/components/cp/menu/insert_menu_item/',
+                onRequest: function () {
+                },
+                onComplete: function (response) {
+                    refresh_menu_list(mod_menu_id);
+                }
+            }).post({
+                'menu_id': mod_menu_id,
+                'item_type': 'module',
+                'item_id': mod_name,
+                'method': mod_method,
+                'title': mod_title,
+                'hidden': mod_hidden,
+                'newpage': mod_newpage,
+                'item_image': item_image,
+                'roles': mod_roles,
+                'parent_id': mod_parent_id,
+                'position_after': mod_position_after,
+                'update_id': menu_update_id
+            });
 
-                                if (menu_update_id > 0 && menu_action == 'update')
-                                {
-                                    MochaUI.closeWindow($('createnewlink'));
-                                }
+            if (menu_update_id > 0 && menu_action == 'update')
+            {
+                MochaUI.closeWindow($('createnewlink'));
+            }
 
-                            }
+        }
 
-                            window.addEvent('domready', function() {
-                                if (menu_action == 'update')
-                                {
-                                    $('mod_btn').value = 'Сохранить';
-                                }
-                            });
+        window.addEvent('domready', function () {
+            if (menu_action == 'update')
+            {
+                $('mod_btn').value = 'Сохранить';
+            }
+        });
 
-                            //]]>
+        //]]>
     </script>
 {/literal}

@@ -2,7 +2,7 @@
 
 class Pricespy_model extends CI_Model {
 
-    function __construct() {
+    public function __construct() {
         parent::__construct();
     }
 
@@ -11,10 +11,10 @@ class Pricespy_model extends CI_Model {
      */
     public function getSettings() {
         $settings = $this->db
-                ->select('settings')
-                ->where('identif', 'pricespy')
-                ->get('components')
-                ->row_array();
+            ->select('settings')
+            ->where('identif', 'pricespy')
+            ->get('components')
+            ->row_array();
         $settings = unserialize($settings[settings]);
         return $settings;
     }
@@ -44,10 +44,10 @@ class Pricespy_model extends CI_Model {
      * @return type
      */
     public function getProductById($varId) {
-        return $product = $this->db
-                ->where('id', $varId)
-                ->get('shop_product_variants')
-                ->row();
+        return $this->db
+            ->where('id', $varId)
+            ->get('shop_product_variants')
+            ->row();
     }
 
     /**
@@ -59,13 +59,13 @@ class Pricespy_model extends CI_Model {
      */
     public function setSpy($id, $varId, $productPrice) {
         return $this->db
-                        ->set('userId', $this->dx_auth->get_user_id())
-                        ->set('productId', $id)
-                        ->set('productVariantId', $varId)
-                        ->set('productPrice', $productPrice)
-                        ->set('oldProductPrice', $productPrice)
-                        ->set('hash', random_string('unique', 15))
-                        ->insert('mod_price_spy');
+            ->set('userId', $this->dx_auth->get_user_id())
+            ->set('productId', $id)
+            ->set('productVariantId', $varId)
+            ->set('productPrice', $productPrice)
+            ->set('oldProductPrice', $productPrice)
+            ->set('hash', random_string('unique', 15))
+            ->insert('mod_price_spy');
     }
 
 }

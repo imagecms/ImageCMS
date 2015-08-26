@@ -11,6 +11,7 @@
 class Pricespy extends MY_Controller {
 
     public $product;
+
     public $isInSpy;
 
     public function __construct() {
@@ -20,7 +21,7 @@ class Pricespy extends MY_Controller {
         $lang = new MY_Lang();
         $lang->load('pricespy');
     }
-    
+
     /**
      * send email to user
      * @param type $email
@@ -35,9 +36,11 @@ class Pricespy extends MY_Controller {
         $CI->email->to($email);
         $CI->email->set_mailtype('html');
         $CI->email->subject(lang('Price changing', 'pricespy'));
-        $CI->email->message(lang('Price on', 'pricespy') . $name . lang('for which you watch on site', 'pricespy') . $CI->input->server('HTTP_HOST') .  lang('changed', 'pricespy') . ".<br>
+        $CI->email->message(
+            lang('Price on', 'pricespy') . $name . lang('for which you watch on site', 'pricespy') . $CI->input->server('HTTP_HOST') . lang('changed', 'pricespy') . ".<br>
                 <a href='" . site_url('pricespy') . "' title='" . lang('View watch list', 'pricespy') . "'>" . lang('View watch list', 'pricespy') . "</a><br>
-                <a href='" . site_url("pricespy/$hash") . "' title='" . lang('Unsubscribe tracking', 'pricespy') . "'>" . lang('Unsubscribe tracking', 'pricespy') . "</a><br>");
+                <a href='" . site_url("pricespy/$hash") . "' title='" . lang('Unsubscribe tracking', 'pricespy') . "'>" . lang('Unsubscribe tracking', 'pricespy') . "</a><br>"
+        );
         $CI->email->send();
     }
 
@@ -56,9 +59,9 @@ class Pricespy extends MY_Controller {
             \CMSFactory\assetManager::create()
                     ->registerScript('spy');
             $this->renderUserSpys();
-        }
-        else
+        } else {
             $this->core->error_404();
+        }
     }
 
     /**
@@ -66,15 +69,17 @@ class Pricespy extends MY_Controller {
      * @param type $product
      */
     public static function priceDelete($product) {
-        if (!$product)
+        if (!$product) {
             return;
+        }
 
         $CI = &get_instance();
 
         $product = $product['model'];
         $ids = array();
-        foreach ($product as $key => $p)
+        foreach ($product as $key => $p) {
             $ids[$key] = $p->id;
+        }
 
         $CI->db->where_in('productId', $ids);
         $CI->db->delete('mod_price_spy');
@@ -85,19 +90,19 @@ class Pricespy extends MY_Controller {
      * @param type $product
      */
     public static function priceUpdate($product) {
-        if (!$product){
+        if (!$product) {
             return;
         }
 
         $CI = &get_instance();
         $spys = $CI->db
-                ->from('mod_price_spy')
-                ->join('shop_product_variants', 'mod_price_spy.productVariantId=shop_product_variants.id')
-                ->join('users', 'mod_price_spy.userId=users.id')
-                ->join('shop_products_i18n', 'shop_products_i18n.id=mod_price_spy.productId')
-                ->where('mod_price_spy.productId', $product['productId'])
-                ->get()
-                ->result();
+            ->from('mod_price_spy')
+            ->join('shop_product_variants', 'mod_price_spy.productVariantId=shop_product_variants.id')
+            ->join('users', 'mod_price_spy.userId=users.id')
+            ->join('shop_products_i18n', 'shop_products_i18n.id=mod_price_spy.productId')
+            ->where('mod_price_spy.productId', $product['productId'])
+            ->get()
+            ->result();
 
         foreach ($spys as $spy) {
             if ($spy->price != $spy->productPrice) {
@@ -121,14 +126,19 @@ class Pricespy extends MY_Controller {
     public function spy($id, $varId) {
         $product = $this->pricespy_model->getProductById($varId);
 
-        if ($this->pricespy_model->setSpy($id, $varId, $product->price))
-            echo json_encode(array(
-                'answer' => 'sucesfull',
-            ));
-        else
-            echo json_encode(array(
-                'answer' => 'error',
-            ));
+        if ($this->pricespy_model->setSpy($id, $varId, $product->price)) {
+            echo json_encode(
+                array(
+                        'answer' => 'sucesfull',
+                    )
+            );
+        } else {
+            echo json_encode(
+                array(
+                        'answer' => 'error',
+                    )
+            );
+        }
     }
 
     /**
@@ -136,14 +146,19 @@ class Pricespy extends MY_Controller {
      * @param type $hash
      */
     public function unSpy($hash) {
-        if ($this->pricespy_model->delSpyByHash($hash))
-            echo json_encode(array(
-                'answer' => 'sucesfull',
-            ));
-        else
-            echo json_encode(array(
-                'answer' => 'error',
-            ));
+        if ($this->pricespy_model->delSpyByHash($hash)) {
+            echo json_encode(
+                array(
+                        'answer' => 'sucesfull',
+                    )
+            );
+        } else {
+            echo json_encode(
+                array(
+                        'answer' => 'error',
+                    )
+            );
+        }
     }
 
     public function init($model) {
@@ -159,13 +174,14 @@ class Pricespy extends MY_Controller {
             }
 
             $products = $this->db
-                    ->where_in('productVariantId', $varId)
-                    ->where('userId', $this->dx_auth->get_user_id())
-                    ->get('mod_price_spy')
-                    ->result_array();
+                ->where_in('productVariantId', $varId)
+                ->where('userId', $this->dx_auth->get_user_id())
+                ->get('mod_price_spy')
+                ->result_array();
 
-            foreach ($products as $p)
+            foreach ($products as $p) {
                 $this->isInSpy[$p['productVariantId']] = $p;
+            }
 
             \CMSFactory\assetManager::create()
                     ->registerScript('spy');
@@ -185,18 +201,19 @@ class Pricespy extends MY_Controller {
                 'varId' => $varId,
             );
 
-            if ($this->isInSpy[$varId] == '')
+            if ($this->isInSpy[$varId] == '') {
                 \CMSFactory\assetManager::create()
                         ->setData('data', $data)
                         ->setData('value', lang('Notify about price cut', 'pricespy'))
                         ->setData('class', 'btn')
                         ->render('button', true);
-            else
+            } else {
                 \CMSFactory\assetManager::create()
                         ->setData('data', $data)
                         ->setData('value', lang('Already in tracking', 'pricespy'))
                         ->setData('class', 'btn inSpy')
                         ->render('button', true);
+            }
         }
     }
 
@@ -205,12 +222,12 @@ class Pricespy extends MY_Controller {
      */
     private function renderUserSpys() {
         $products = $this->db
-                ->where('userId', $this->dx_auth->get_user_id())
-                ->join('shop_product_variants', 'shop_product_variants.id=mod_price_spy.productVariantId')
-                ->join('shop_products_i18n', 'shop_products_i18n.id=mod_price_spy.productId')
-                ->join('shop_products', 'shop_products.id=mod_price_spy.productId')
-                ->get('mod_price_spy')
-                ->result_array();
+            ->where('userId', $this->dx_auth->get_user_id())
+            ->join('shop_product_variants', 'shop_product_variants.id=mod_price_spy.productVariantId')
+            ->join('shop_products_i18n', 'shop_products_i18n.id=mod_price_spy.productId')
+            ->join('shop_products', 'shop_products.id=mod_price_spy.productId')
+            ->get('mod_price_spy')
+            ->result_array();
 
         \CMSFactory\assetManager::create()
                 ->setData('products', $products)
@@ -255,9 +272,12 @@ class Pricespy extends MY_Controller {
         $this->dbforge->create_table('mod_price_spy');
 
         $this->db->where('name', 'pricespy');
-        $this->db->update('components', array(
+        $this->db->update(
+            'components',
+            array(
             'enabled' => 1,
-            'autoload' => 1));
+            'autoload' => 1)
+        );
     }
 
     public function _deinstall() {

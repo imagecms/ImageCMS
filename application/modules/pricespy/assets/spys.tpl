@@ -22,7 +22,7 @@
                                         id='{echo $data[varId]}' 
                                         value="{lang('Unsubscribe', 'pricespy')}" 
                                         onclick="unspy('{$product[hash]}')">
-                                <span class="text-el d_l">{lang('Unsubscribe', 'pricespy')}</span>
+                                    <span class="text-el d_l">{lang('Unsubscribe', 'pricespy')}</span>
                                 </button>
                             </td>
                             <td>

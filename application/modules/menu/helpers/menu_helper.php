@@ -1,4 +1,8 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+
+if (!defined('BASEPATH')) {
+    exit('No direct script access allowed');
+}
 
 
 /**
@@ -6,13 +10,11 @@
  *
  * @param string $menu_name
  */
- 
-if ( ! function_exists('load_menu'))
-{
-	function load_menu($menu_name = '')
-    {
-        if ($menu_name != '')
-        {
+if (!function_exists('load_menu')) {
+
+    function load_menu($menu_name = '') {
+
+        if ($menu_name != '') {
             return modules::run('menu/render', $menu_name);
         }
     }
@@ -20,25 +22,24 @@ if ( ! function_exists('load_menu'))
 }
 
 /**
-* Inject menu into string
-*/
-if (!function_exists('menu_inject'))
-{
-    function menu_inject($str)
-    {
+ * Inject menu into string
+ */
+if (!function_exists('menu_inject')) {
+
+    function menu_inject($str) {
+
         preg_match_all("/\{load_menu\((.*?)\)\}/", $str, $matches);
 
-        if (count($matches[1]) > 0)
-        {
-            foreach($matches[1] as $k => $v)
-            {               
+        if (count($matches[1]) > 0) {
+            foreach ($matches[1] as $k => $v) {
                 $html = modules::run('menu/render', $v);
-                $str = str_replace('{load_menu('.$v.')}', $html, $str);
+                $str = str_replace('{load_menu(' . $v . ')}', $html, $str);
             }
         }
 
         return $str;
     }
+
 }
 
 

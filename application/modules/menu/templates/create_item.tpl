@@ -72,8 +72,8 @@
                                                 <div id="pages_list_holder" class="span3">
                                                     <ul class="nav myTab nav-tabs nav-stacked">
                                                         {foreach $pages.pages_list as $p}
-                                                        <li><a class="page_title" data-url="{$p.cat_url}/{$p.url}" href="#" data-title="{$p.title}" data-id="{$p.id}">{echo $p.title}</a></li>
-                                                        {/foreach}
+                                                            <li><a class="page_title" data-url="{$p.cat_url}/{$p.url}" href="#" data-title="{$p.title}" data-id="{$p.id}">{echo $p.title}</a></li>
+                                                            {/foreach}
                                                     </ul>
                                                 </div>
                                             </div>
@@ -123,7 +123,7 @@
                                                 <select name="parent_id" id="item_parent_id">
                                                     <option value="0">{lang("No", "menu")}</option>
                                                     {foreach $parents as $par}
-                                                    <option value="{$par.id}" {if $item.parent_id != 0 AND $item.parent_id == $par.id}selected="selected"{/if}> - {$par.title}</option>
+                                                        <option value="{$par.id}" {if $item.parent_id != 0 AND $item.parent_id == $par.id}selected="selected"{/if}> - {$par.title}</option>
                                                     {/foreach}
                                                 </select>
                                             </div>
@@ -136,7 +136,7 @@
                                                 <div class="group_icon pull-right">
                                                     {if MAINSITE != ''}
                                                         <button class="btn btn-small" onclick="elFinderPopup('image', 'Img0');
-                                                            return false;"><i class="icon-picture"></i>  {lang('Choose an image ', "menu")}</button>
+                                                                return false;"><i class="icon-picture"></i>  {lang('Choose an image ', "menu")}</button>
                                                     {else:}
                                                         <a href="{echo site_url('application/third_party/filemanager/dialog.php?type=1&field_id=Img0');}" class="btn  iframe-btn" type="button">
                                                             <i class="icon-picture"></i>
@@ -154,12 +154,12 @@
                                             <div class="controls">
                                                 {$r  = unserialize($item.roles)}
                                                 {if !is_array($r)}
-                                                {$r = array()}
+                                                    {$r = array()}
                                                 {/if}
                                                 <select id="item_roles" name="item_roles[]" multiple="multiple">
                                                     <option value="0">{lang("All", "menu")}</option>
                                                     {foreach $roles as $role}
-                                                    <option value ="{$role.id}" {if in_array($role.id, $r)}selected="selected"{/if}>{$role.alt_name}</option>
+                                                        <option value ="{$role.id}" {if in_array($role.id, $r)}selected="selected"{/if}>{$role.alt_name}</option>
                                                     {/foreach}
                                                 </select>
                                             </div>
@@ -273,7 +273,7 @@
                                                 <select name="parent_id" id="item_parent_id">
                                                     <option value="0">{lang("No", "menu")}</option>
                                                     {foreach $parents as $p}
-                                                    <option value="{$p.id}" {if $item.parent_id != 0 AND $item.parent_id == $p.id}selected="selected"{/if}> - {$p.title}</option>
+                                                        <option value="{$p.id}" {if $item.parent_id != 0 AND $item.parent_id == $p.id}selected="selected"{/if}> - {$p.title}</option>
                                                     {/foreach}
                                                 </select>
                                             </div>
@@ -286,7 +286,7 @@
                                                 <div class="group_icon pull-right">
                                                     {if MAINSITE != ''}
                                                         <button class="btn btn-small" onclick="elFinderPopup('image', 'Img1');
-                                                            return false;"><i class="icon-picture"></i>  {lang('Choose an image ', "menu")}</button>
+                                                                return false;"><i class="icon-picture"></i>  {lang('Choose an image ', "menu")}</button>
                                                     {else:}
                                                         <a href="{echo site_url('application/third_party/filemanager/dialog.php?type=1&field_id=Img1');}" class="btn  iframe-btn" type="button">
                                                             <i class="icon-picture"></i>
@@ -305,7 +305,7 @@
                                                 <select id="item_roles" name="item_roles[]" multiple="multiple">
                                                     <option value="0">{lang("All", "menu")}</option>
                                                     {foreach $roles as $role}
-                                                    <option value ="{$role.id}" {if in_array($role.id, $r)}selected="selected"{/if}>{$role.alt_name}</option>
+                                                        <option value ="{$role.id}" {if in_array($role.id, $r)}selected="selected"{/if}>{$role.alt_name}</option>
                                                     {/foreach}
                                                 </select>
                                             </div>
@@ -365,8 +365,8 @@
                         <input type="hidden" name="mod_name" value="{$data.mod_name}"/>
                         <ul class="nav myTab nav-tabs nav-stacked">
                             {foreach $modules as $module}
-                            <li><a href="#" class="module_item" data-mname="{$module.name}" id="module_{$module.name}" title="{$module.description}">{$module.menu_name}</a></li>
-                            {/foreach}
+                                <li><a href="#" class="module_item" data-mname="{$module.name}" id="module_{$module.name}" title="{$module.description}">{$module.menu_name}</a></li>
+                                {/foreach}
                         </ul>
                     </div>
                     <div class="span9">
@@ -416,7 +416,7 @@
                                                         <select name="parent_id" id="item_parent_id">
                                                             <option value="0">{lang("No", "menu")}</option>
                                                             {foreach $parents as $p}
-                                                            <option value="{$p.id}" {if $item.position != 0 AND $item.postion == $p.postion + 1}selected="selected"{/if}> - {$p.title}</option>
+                                                                <option value="{$p.id}" {if $item.position != 0 AND $item.postion == $p.postion + 1}selected="selected"{/if}> - {$p.title}</option>
                                                             {/foreach}
                                                         </select>
                                                     </div>
@@ -429,7 +429,7 @@
                                                         <div class="group_icon pull-right">
                                                             {if MAINSITE != ''}
                                                                 <button class="btn btn-small" onclick="elFinderPopup('image', 'Img2');
-                                                                    return false;"><i class="icon-picture"></i>  {lang('Choose an image ', "menu")}</button>
+                                                                        return false;"><i class="icon-picture"></i>  {lang('Choose an image ', "menu")}</button>
                                                             {else:}
                                                                 <a href="{echo site_url('application/third_party/filemanager/dialog.php?type=1&field_id=Img2');}" class="btn  iframe-btn" type="button">
                                                                     <i class="icon-picture"></i>
@@ -448,7 +448,7 @@
                                                         <select id="item_roles" name="item_roles[]" multiple="multiple">
                                                             <option value="0">{lang("All", "menu")}</option>
                                                             {foreach $roles as $role}
-                                                            <option value ="{$role.id}" {if in_array($role.id, $r)}selected="selected"le{/if}>{$role.alt_name}</option>
+                                                                <option value ="{$role.id}" {if in_array($role.id, $r)}selected="selected"le{/if}>{$role.alt_name}</option>
                                                             {/foreach}
                                                         </select>
                                                     </div>
@@ -557,7 +557,7 @@
                                                 <select name="parent_id" id="item_parent_id">
                                                     <option value="0">{lang("No", "menu")}</option>
                                                     {foreach $parents as $p}
-                                                    <option value="{$p.id}" {if $item.position != 0 AND $item.postion == $p.postion + 1}selected="selected"{/if}> - {$p.title}</option>
+                                                        <option value="{$p.id}" {if $item.position != 0 AND $item.postion == $p.postion + 1}selected="selected"{/if}> - {$p.title}</option>
                                                     {/foreach}
                                                 </select>
                                             </div>
@@ -570,7 +570,7 @@
                                                 <div class="group_icon pull-right">
                                                     {if MAINSITE != ''}
                                                         <button class="btn btn-small" onclick="elFinderPopup('image', 'Img3');
-                                                            return false;"><i class="icon-picture"></i>  {lang('Choose an image ', "menu")}</button>
+                                                                return false;"><i class="icon-picture"></i>  {lang('Choose an image ', "menu")}</button>
                                                     {else:}
                                                         <a href="{echo site_url('application/third_party/filemanager/dialog.php?type=1&field_id=Img3');}" class="btn  iframe-btn" type="button">
                                                             <i class="icon-picture"></i>
@@ -589,7 +589,7 @@
                                                 <select id="item_roles" name="item_roles[]" multiple="multiple">
                                                     <option value="0">{lang("All", "menu")}</option>
                                                     {foreach $roles as $role}
-                                                    <option value ="{$role.id}" {if @in_array($role.id, $r)}selected="selected"{/if}>{$role.alt_name}</option>
+                                                        <option value ="{$role.id}" {if @in_array($role.id, $r)}selected="selected"{/if}>{$role.alt_name}</option>
                                                     {/foreach}
                                                 </select>
                                             </div>

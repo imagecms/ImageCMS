@@ -31,7 +31,7 @@ class DiscountManager extends \MY_Controller {
      * create brand discount
      * @access public
      * @author DevImageCms
-     * @param array $postArray input params:
+     * @param array $data input params:
      * - (string) key: discount key optional
      * - (string) name: discount name
      * - (int) max_apply: max apply discount default null - infinity
@@ -61,7 +61,7 @@ class DiscountManager extends \MY_Controller {
      * create category discount
      * @access public
      * @author DevImageCms
-     * @param array $postArray input params:
+     * @param array $data input params:
      * - (string) key: discount key optional
      * - (string) name: discount name
      * - (int) max_apply: max apply discount default null - infinity
@@ -93,7 +93,7 @@ class DiscountManager extends \MY_Controller {
      * create product discount
      * @access public
      * @author DevImageCms
-     * @param array $postArray input params:
+     * @param array $data input params:
      * - (string) key: discount key optional
      * - (string) name: discount name
      * - (int) max_apply: max apply discount default null - infinity
@@ -123,7 +123,7 @@ class DiscountManager extends \MY_Controller {
      * create user discount
      * @access public
      * @author DevImageCms
-     * @param array $postArray input params:
+     * @param array $data input params:
      * - (string) key: discount key optional
      * - (string) name: discount name
      * - (int) max_apply: max apply discount default null - infinity
@@ -153,7 +153,7 @@ class DiscountManager extends \MY_Controller {
      * create user group discount discount
      * @access public
      * @author DevImageCms
-     * @param array $postArray input params:
+     * @param array $data input params:
      * - (string) key: discount key optional
      * - (string) name: discount name
      * - (int) max_apply: max apply discount default null - infinity
@@ -183,7 +183,7 @@ class DiscountManager extends \MY_Controller {
      * create comulativ discount
      * @access public
      * @author DevImageCms
-     * @param array $postArray input params:
+     * @param array $data input params:
      * - (string) key: discount key optional
      * - (string) name: discount name
      * - (int) max_apply: max apply discount default null - infinity
@@ -213,7 +213,7 @@ class DiscountManager extends \MY_Controller {
      * create gift discount
      * @access public
      * @author DevImageCms
-     * @param array $postArray input params:
+     * @param array $data input params:
      * - (string) key: discount key optional
      * - (string) name: discount name
      * - (int) max_apply: max apply discount default null - infinity
@@ -473,7 +473,7 @@ class DiscountManager extends \MY_Controller {
         $result = array();
         if ($charsCount > 0) {
             $randCharsKeys = array_rand($chars, $charsCount);
-            foreach ($randCharsKeys as $key => $val) {
+            foreach ($randCharsKeys as $val) {
                 array_push($result, $chars[$val]);
             }
         }

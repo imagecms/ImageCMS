@@ -16,21 +16,37 @@ use translator\classes\YandexTranslate as YandexTranslate;
 class Admin extends BaseAdminController {
 
     public $modules_path = "./application/modules/";
+
     public $templates_path = "./templates/";
+
     public $main_path = "./application/language/main/";
+
     public $langs = array();
+
     public $langs_modules = array();
+
     public $langs_templates = array();
+
     public $langs_main = array();
+
     public $parsed_langs = array();
+
     public $exchangePoArray;
+
     public $js_langs = array();
+
     public $domain;
+
     public $fileError = '';
+
     public $filePermissionsErrors;
+
     public $allowed_extentions = array('php', 'tpl', 'js');
+
     public $poFileManager;
+
     private static $SAAS;
+
     private static $BILING;
 
     public function __construct() {
@@ -119,7 +135,6 @@ class Admin extends BaseAdminController {
                 $names = '';
         }
 
-
         \CMSFactory\assetManager::create()
             ->registerScript('admin')
             ->registerStyle('admin')
@@ -132,7 +147,7 @@ class Admin extends BaseAdminController {
             ->setData('names', $names)
             ->renderAdmin('list');
 
-//        var_dumps_exit('33333');
+        //        var_dumps_exit('33333');
 
         if ($translation) {
             $data = trim($po_table);
@@ -227,13 +242,15 @@ class Admin extends BaseAdminController {
             if (MAINSITE && !is_client_module($module_template)) {
                 $parsedLangs_base = FilesParser::getInstatce()->getParsedPathsLangs($url_base, $paths);
                 if (!empty($parsedLangs_base)) {
-                    if (isset($parsedLangs['parsed_langs'][0]))
+                    if (isset($parsedLangs['parsed_langs'][0])) {
                         $parsedLangs['parsed_langs'][0] = array_merge($parsedLangs['parsed_langs'][0], $parsedLangs_base['parsed_langs'][0]);
+                    }
                 }
             }
 
-            if (isset($parsedLangs['js_langs']))
+            if (isset($parsedLangs['js_langs'])) {
                 $this->updateJsLangsFile($parsedLangs['js_langs'], $domain, $type);
+            }
         }
 
         $all_langs = array();
@@ -247,7 +264,6 @@ class Admin extends BaseAdminController {
         $result = $this->poFileManager->toArray($module_template, $type, $lang);
         $currentLangs = $result['po_array'];
 
-
         foreach ($all_langs as $key => $newLang) {
             if (!isset($currentLangs[$key]) && trim($key)) {
                 $results['new'][encode($key)] = $newLang;
@@ -256,9 +272,9 @@ class Admin extends BaseAdminController {
             }
         }
 
-//        foreach ($results['new'] as $key => $langNew) {
-//            $results['new'][encode($key)] = $langNew;
-//        }
+        //        foreach ($results['new'] as $key => $langNew) {
+        //            $results['new'][encode($key)] = $langNew;
+        //        }
 
         $results['old'] = $currentLangs;
         foreach ($results['old'] as $key => $langOld) {
@@ -319,7 +335,7 @@ class Admin extends BaseAdminController {
      * @return type
      */
     public function update($module_template, $type, $lang) {
-        $strings = (array)json_decode($this->input->post('results'));
+        $strings = (array) json_decode($this->input->post('results'));
         $translations = $this->makeCorrectPoPaths($module_template, $type, $lang, TRUE);
 
         if (!$translations) {
@@ -327,8 +343,8 @@ class Admin extends BaseAdminController {
         }
 
         $translationTEMP = array();
-        $newStringsArray = (array)$strings['new'];
-        $oldStringsArray = (array)$strings['old'];
+        $newStringsArray = (array) $strings['new'];
+        $oldStringsArray = (array) $strings['old'];
 
         foreach ($newStringsArray as $origin => $newStrings) {
             $translationTEMP[$origin]['translation'] = '';
@@ -363,9 +379,9 @@ class Admin extends BaseAdminController {
      */
     public function makeCorrectPoPaths($module_template, $type, $lang, $returnArray = FALSE) {
         $url = dirname($this->poFileManager->getPoFileUrl($module_template, $type, $lang));
-//______________________________________________________
+        //______________________________________________________
         $url = get_mainsite_url($url);
-//______________________________________________________        
+        //______________________________________________________
         $paths = $this->input->post('paths');
         $parsedLangs = FilesParser::getInstatce()->getParsedPathsLangs($url, $paths);
         $parsedLangs = $parsedLangs['parsed_langs'];
@@ -444,7 +460,7 @@ class Admin extends BaseAdminController {
 
                 $this->setSession($modules_templatesReceiver, $typeReceiver, $langReceiver);
 
-//                $this->setSession($module_template, $type, $lang);
+                //                $this->setSession($module_template, $type, $lang);
                 $can_edit_file = can_edit_file($module_template, $type);
 
                 $this->exchangePoArray = \CMSFactory\assetManager::create()
@@ -577,12 +593,13 @@ class Admin extends BaseAdminController {
      * @param type $lang
      */
     public function savePoArray($module_template, $type, $lang) {
-        $po_array = (array)json_decode($this->input->post('po_array'));
-        $showMessage = (bool)$this->input->post('showMessage');
+        $po_array = (array) json_decode($this->input->post('po_array'));
+        $showMessage = (bool) $this->input->post('showMessage');
 
         if ($this->poFileManager->save($module_template, $type, $lang, $po_array)) {
-            if ($showMessage)
+            if ($showMessage) {
                 showMessage(lang('Translation file was successfuly saved.', 'translator'), lang('Message', 'translator'));
+            }
             $this->lib_admin->log(lang('Translation file was successfuly saved.', 'translator') . ' - ' . $module_template . ' | ' . $lang);
         } else {
             foreach ($this->poFileManager->getErrors() as $error) {
@@ -614,7 +631,8 @@ class Admin extends BaseAdminController {
 
         $this->langs = array_unique(
             array_merge(
-                array_keys($this->langs_templates), array_keys($this->langs_main)
+                array_keys($this->langs_templates),
+                array_keys($this->langs_main)
             )
         );
 
@@ -677,8 +695,8 @@ class Admin extends BaseAdminController {
      * @return json
      */
     public function translate() {
-        $po_array = (array)json_decode($this->input->post('po_array'));
-        $result = (array)json_decode($this->input->post('results'));
+        $po_array = (array) json_decode($this->input->post('po_array'));
+        $result = (array) json_decode($this->input->post('results'));
         $withEmptyTranslation = $this->input->post('withEmptyTranslation');
 
         $addUpdatedStrings = array();
@@ -687,7 +705,7 @@ class Admin extends BaseAdminController {
             $counter = 0;
             foreach ($po_array as $origin => $value) {
                 if ($origin) {
-                    $po_array[$origin] = (array)$po_array[$origin];
+                    $po_array[$origin] = (array) $po_array[$origin];
                     if ($withEmptyTranslation != 'false') {
                         if (!strlen($po_array[$origin]['translation'])) {
                             $po_array[$origin]['translation'] = $result[$counter];
@@ -702,14 +720,16 @@ class Admin extends BaseAdminController {
 
             $can_edit_file = can_edit_file($module_template, $type);
 
-            return json_encode(array(
+            return json_encode(
+                array(
                 'data' => \CMSFactory\assetManager::create()
                     ->setData('po_array', $po_array)
                     ->setData('page', 1)
                     ->setData('rows_count', ceil(count($po_array) / 11))
                     ->setData('can_edit_file', $can_edit_file)
                     ->fetchAdminTemplate('po_table', FALSE)
-            ));
+                )
+            );
         }
     }
 
@@ -782,11 +802,14 @@ class Admin extends BaseAdminController {
      * @param type $lang
      */
     private function setSession($name = '', $type = '', $lang = '') {
-        $this->session->set_userdata('translation', array(
+        $this->session->set_userdata(
+            'translation',
+            array(
             'name' => $name,
             'type' => $type,
             'lang' => $lang,
-        ));
+            )
+        );
     }
 
     /**

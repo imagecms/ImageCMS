@@ -24,19 +24,20 @@ class Admin extends BaseAdminController {
         $this->init();
 
         $spys = $this->db
-                ->from('users')
-                ->join('mod_price_spy', 'mod_price_spy.userId=users.id')
-                ->join('shop_product_variants', 'mod_price_spy.productVariantId=shop_product_variants.id')
-                ->join('shop_products_i18n', 'shop_products_i18n.id=mod_price_spy.productId')
-                ->join('shop_products', 'shop_products.id=mod_price_spy.productId')
-                ->order_by('users.id')
-                ->get()
-                ->result();
+            ->from('users')
+            ->join('mod_price_spy', 'mod_price_spy.userId=users.id')
+            ->join('shop_product_variants', 'mod_price_spy.productVariantId=shop_product_variants.id')
+            ->join('shop_products_i18n', 'shop_products_i18n.id=mod_price_spy.productId')
+            ->join('shop_products', 'shop_products.id=mod_price_spy.productId')
+            ->order_by('users.id')
+            ->get()
+            ->result();
 
         $this->template->add_array(array('spys' => $spys));
 
-        if (!$this->ajaxRequest)
+        if (!$this->ajaxRequest) {
             $this->display_tpl('list');
+        }
     }
 
     private function display_tpl($file = '') {

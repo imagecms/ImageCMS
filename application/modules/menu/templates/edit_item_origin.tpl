@@ -72,7 +72,7 @@
                                                     <ul class="nav myTab nav-tabs nav-stacked">
                                                         {foreach $pages.pages_list as $p}
                                                             <li><a class="page_title" data-url="{$p.cat_url}/{$p.url}" data-title="{$p.title}" data-id="{$p.id}">{echo $p.title}</a></li>
-                                                        {/foreach}
+                                                            {/foreach}
                                                     </ul>
                                                 </div>
                                             </div>
@@ -140,11 +140,12 @@
                                         </div>
                                         <div class="control-group">
                                             <label class="control-label" for="Img0">
-                                               {lang("Image", "menu")}:
+                                                {lang("Image", "menu")}:
                                             </label>
                                             <div class="controls">
                                                 <div class="group_icon pull-right">
-                                                    <button class="btn btn-small" onclick="elFinderPopup('image', 'Img0');return false;"><i class="icon-picture"></i> {lang("Choose an image ", "menu")}</button>
+                                                    <button class="btn btn-small" onclick="elFinderPopup('image', 'Img0');
+                                                            return false;"><i class="icon-picture"></i> {lang("Choose an image ", "menu")}</button>
                                                 </div>
                                                 <div class="o_h">
                                                     <input type="text" name="item_image" id="Img0" value="{$item.item_image}">
@@ -216,7 +217,7 @@
                                             <label class="control-label">{lang("Choose a category", "menu")}:</label>
                                             <div class="controls">
                                                 <ul>
-                                                   {build_cats_tree_ul_li($cats)}
+                                                    {build_cats_tree_ul_li($cats)}
                                                 </ul>
                                             </div>
                                         </div>
@@ -282,11 +283,12 @@
                                         </div>
                                         <div class="control-group">
                                             <label class="control-label" for="Img1">
-                                               {lang("Image", "menu")}:
+                                                {lang("Image", "menu")}:
                                             </label>
                                             <div class="controls">
                                                 <div class="group_icon pull-right">
-                                                    <button class="btn btn-small" onclick="elFinderPopup('image', 'Img1');return false;"><i class="icon-picture"></i>  {lang("Choose an image ", "menu")}</button>
+                                                    <button class="btn btn-small" onclick="elFinderPopup('image', 'Img1');
+                                                            return false;"><i class="icon-picture"></i>  {lang("Choose an image ", "menu")}</button>
                                                 </div>
                                                 <div class="o_h">
                                                     <input type="text" name="item_image" id="Img1" value="{$item.item_image}">
@@ -360,7 +362,7 @@
                         <ul class="nav myTab nav-tabs nav-stacked">
                             {foreach $modules as $module}
                                 <li><a href="#" class="module_item" data-mname="{$module.name}" id="module_{$module.name}" title="{$module.description}">{$module.menu_name}</a></li>
-                            {/foreach}
+                                {/foreach}
                         </ul>
                     </div>
                     <div class="span9">
@@ -429,11 +431,12 @@
                                                 </div>
                                                 <div class="control-group">
                                                     <label class="control-label" for="Img2">
-                                                       {lang("Image", "menu")}:
+                                                        {lang("Image", "menu")}:
                                                     </label>
                                                     <div class="controls">
                                                         <div class="group_icon pull-right">
-                                                            <button class="btn btn-small" onclick="elFinderPopup('image', 'Img2');return false;"><i class="icon-picture"></i>  {lang("Choose an image ", "menu")}</button>
+                                                            <button class="btn btn-small" onclick="elFinderPopup('image', 'Img2');
+                                                                    return false;"><i class="icon-picture"></i>  {lang("Choose an image ", "menu")}</button>
                                                         </div>
                                                         <div class="o_h">
                                                             <input type="text" name="item_image" id="Img2" value="{$item.item_image}">
@@ -578,7 +581,8 @@
                                             </label>
                                             <div class="controls">
                                                 <div class="group_icon pull-right">
-                                                    <button class="btn btn-small" onclick="elFinderPopup('image', 'Img3');return false;"><i class="icon-picture"></i>  {lang("Choose an image ", "menu")}</button>
+                                                    <button class="btn btn-small" onclick="elFinderPopup('image', 'Img3');
+                                                            return false;"><i class="icon-picture"></i>  {lang("Choose an image ", "menu")}</button>
                                                 </div>
                                                 <div class="o_h">
                                                     <input type="text" name="item_image" id="Img3" value="{$item.item_image}">

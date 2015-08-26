@@ -1,5 +1,7 @@
 <?php
 
+use CMSFactory\assetManager;
+
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
@@ -49,7 +51,7 @@ class Comments extends MY_Controller {
         if (($result = $this->session->flashdata('result'))) {
             $comments = (array_merge($result, $comments));
         }
-        \CMSFactory\assetManager::create()
+        assetManager::create()
                 //                ->registerScript('comments')
                 //                ->registerStyle('comments')
                 ->setData($comments)
@@ -158,7 +160,7 @@ class Comments extends MY_Controller {
     }
 
     public function init($model) {
-        \CMSFactory\assetManager::create()
+        assetManager::create()
                 ->registerScript('comments', TRUE);
 
         if ($model instanceof SProducts) {
@@ -202,7 +204,6 @@ class Comments extends MY_Controller {
      * Fetch comments and load template
      */
     public function build_comments($item_id = 0) {
-        $comments = array();
         ($hook = get_hook('comments_on_build_comments')) ? eval($hook) : NULL;
 
         $this->load->model('base');
