@@ -57,7 +57,7 @@ class Wishlist_model extends CI_Model {
     /**
      * get all users
      *
-     * @return array/false
+     * @return array|boolean
      */
     public function getAllUsers() {
         $users = $this->db
@@ -815,5 +815,3 @@ class Wishlist_model extends CI_Model {
     }
 
 }
-
-?>
