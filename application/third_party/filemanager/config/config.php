@@ -3,6 +3,12 @@ session_start();
 mb_internal_encoding('UTF-8');
 date_default_timezone_set('Europe/Rome');
 
+// Set content charset to Windows-1251 if current OS is Windows and locale in 1251
+$currentLocale = setLocale(LC_ALL, '');
+if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' && strstr($currentLocale, '1251')) {
+    header('Content-Type: text/html; charset=Windows-1251');
+} 
+
 /*
 |--------------------------------------------------------------------------
 | Optional security

@@ -1,10 +1,5 @@
 <?php
 
-$currentLocale = setLocale(LC_ALL, '');
-if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' && strstr($currentLocale, '1251')) {
-    header('Content-Type: text/html; charset=Windows-1251');
-} 
-
 $config = include 'config/config.php';
 //TODO switch to array
 extract($config, EXTR_OVERWRITE);

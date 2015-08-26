@@ -614,36 +614,6 @@ class Commentsapi extends Comments {
         }
     }
 
-    private function _write_cookie($name, $email, $site) {
-        $this->load->helper('cookie');
-
-        ($hook = get_hook('comments_write_cookie')) ? eval($hook) : NULL;
-
-        $cookie_name = [
-            'name' => 'comment_author',
-            'value' => $name,
-            'expire' => '30000000',
-        ];
-
-        $cookie_email = [
-            'name' => 'comment_email',
-            'value' => $email,
-            'expire' => '30000000',
-        ];
-
-        $cookie_site = [
-            'name' => 'comment_site',
-            'value' => $site,
-            'expire' => '30000000',
-        ];
-
-        set_cookie($cookie_name);
-        set_cookie($cookie_email);
-        set_cookie($cookie_site);
-
-        return TRUE;
-    }
-
     public function getTotalCommentsForProducts($ids, $module = 'shop', $status = 0) {
         if ($ids == null) {
             return;
