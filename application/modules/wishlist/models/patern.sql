@@ -1,0 +1,2 @@
+INSERT INTO `mod_email_paterns` (`id`, `name`, `patern`, `from`, `from_email`, `admin_email`, `type`, `user_message_active`, `admin_message_active`) VALUES
+(111, 'wish_list', '', 'ImageCMS Shop', 'no-replay@shop.com', '', 'HTML', 1, 1);

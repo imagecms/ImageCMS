@@ -1,0 +1,485 @@
+﻿msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-01-27 03:08+0200\n"
+"PO-Revision-Date: 2015-01-27 03:08+0200\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:235
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:245
+msgid "ID / Name / Number"
+msgstr "ID / Product name / SKU"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:194
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:205
+msgid "ID / Name / E-mail"
+msgstr "ID / Full name / E-mail"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:126
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:130
+#: ./application/modules/mod_discount/assets/admin/list.tpl:25
+#: ./application/modules/mod_discount/classes/BaseDiscount.php:182
+msgid "Brand"
+msgstr "Manufacturer"
+
+#: ./application/modules/mod_discount/admin.php:127
+#: ./application/modules/mod_discount/classes/DiscountManager.php:270
+msgid "Has been already created with the cumulative discount value"
+msgstr "Сumulative discount already been created with this value"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:16
+#: ./application/modules/mod_discount/assets/admin/create.tpl:29
+msgid "Create"
+msgstr "Create"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:19
+msgid "Create and exit"
+msgstr "Create and exit"
+
+#: ./application/modules/mod_discount/admin.php:57
+msgid "Discount successfully created!"
+msgstr "Discount has been successfully created!"
+
+#: ./application/modules/mod_discount/assets/admin/list.tpl:11
+msgid "Create discount"
+msgstr "Add discount"
+
+#: ./application/modules/mod_discount/module_info.php:5
+msgid "Manage all discounts of online store"
+msgstr "Manage all online store discounts"
+
+#: ./application/modules/mod_discount/assets/admin/list.tpl:5
+#: ./application/modules/mod_discount/module_info.php:4
+msgid "Discounts of online store"
+msgstr "Discounts"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:265
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:275
+msgid "Allowed time for discounts"
+msgstr "Discount period"
+
+#: ./application/modules/mod_discount/assets/admin/list.tpl:101
+msgid "Discounts list is empty"
+msgstr "Discount list is empty"
+
+# ?
+#: ./application/modules/mod_discount/classes/DiscountManager.php:361
+#: ./application/modules/mod_discount/classes/DiscountManager.php:364
+msgid "Invalid type value!"
+msgstr "Invalid type value"
+
+#: ./application/modules/mod_discount/classes/DiscountManager.php:328
+msgid "End value must be numeric"
+msgstr "End value must be numeric"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:68
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:72
+msgid "Unlimit"
+msgstr "unlimited"
+
+#: ./application/modules/mod_discount/assets/admin/list.tpl:39
+msgid "Beggining time"
+msgstr "Discount starts"
+
+#: ./application/modules/mod_discount/classes/DiscountManager.php:340
+msgid "Value must be numeric"
+msgstr "Value must be numeric"
+
+#: ./application/modules/mod_discount/assets/admin/list.tpl:41
+msgid "Active"
+msgstr "Active"
+
+#: ./application/modules/mod_discount/assets/admin/list.tpl:37
+msgid "Limit"
+msgstr "Limit"
+
+#: ./application/modules/mod_discount/assets/admin/list.tpl:40
+msgid "End time"
+msgstr "Discount finishes"
+
+# ?
+#: ./application/modules/mod_discount/assets/discount_order.tpl:4
+msgid "Maximum possible discount is using"
+msgstr "Maximum possible discount is being used/ Maximum possible discount is used "
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:223
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:234
+msgid "Change child category"
+msgstr "Use for subcategory"
+
+# ?
+#: ./application/modules/mod_discount/assets/discount_order.tpl:12
+msgid "discount name"
+msgstr "Discount name/title"
+
+#: ./application/modules/mod_discount/classes/DiscountManager.php:358
+msgid "There can be more than one discount with said upper threshold as a <>!"
+msgstr "There can be only one comulative discount with maximum threshold"
+
+#: ./application/modules/mod_discount/classes/DiscountManager.php:51
+#: ./application/modules/mod_discount/classes/DiscountManager.php:81
+#: ./application/modules/mod_discount/classes/DiscountManager.php:111
+#: ./application/modules/mod_discount/classes/DiscountManager.php:140
+#: ./application/modules/mod_discount/classes/DiscountManager.php:169
+msgid "Entity does not exists!"
+msgstr "Entity does not exist"
+
+#: ./application/modules/mod_discount/assets/discount_order.tpl:15
+msgid "discount charge type"
+msgstr "Discount type"
+
+#: ./application/modules/mod_discount/assets/discount_order.tpl:13
+msgid "discount key"
+msgstr "Discount key"
+
+#: ./application/modules/mod_discount/classes/DiscountManager.php:358
+msgid "There can be more than one discount with said upper threshold as a <<maximum>>!"
+msgstr "There can be only one comulative discount with maximum threshold"
+
+#: ./application/modules/mod_discount/classes/DiscountManager.php:331
+#: ./application/modules/mod_discount/classes/DiscountManager.php:334
+msgid "Begin value must be numeric"
+msgstr "Value must be numeric"
+
+#: ./application/modules/mod_discount/assets/gift.tpl:5
+msgid "Apply sertificate"
+msgstr "Use the certificate"
+
+#: ./application/modules/mod_discount/classes/DiscountManager.php:343
+msgid "Amount <<from>> can not be greater than the sum <<to>>"
+msgstr "Amount can not be greater than <<to>>"
+
+#: ./application/modules/mod_discount/classes/DiscountManager.php:309
+msgid "Error creating discount"
+msgstr "Error occured when creating the discount"
+
+# ?  сертификат на сумму
+#: ./application/modules/mod_discount/assets/gift_succes.tpl:6
+msgid "on amount"
+msgstr "on amount"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:121
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:125
+#: ./application/modules/mod_discount/assets/admin/list.tpl:20
+#: ./application/modules/mod_discount/classes/BaseDiscount.php:177
+msgid "Cumulative discount"
+msgstr "Cumulative discount"
+
+#: ./application/modules/mod_discount/classes/DiscountManager.php:337
+msgid "Max apply must be numeric"
+msgstr "Maximum usage count must be numeric"
+
+#: ./application/modules/mod_discount/classes/DiscountManager.php:346
+msgid "Enter a product that is in the database"
+msgstr "Enter a product that is in the database"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:116
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:121
+msgid "Choose type"
+msgstr "Choose a type/Choose type"
+
+#: ./application/modules/mod_discount/assets/discount_order.tpl:14
+msgid "discount type"
+msgstr "Discount type"
+
+#: ./application/modules/mod_discount/classes/DiscountManager.php:349
+msgid "Enter the user who is in the database"
+msgstr "Enter the user who is in the database"
+
+#: ./application/modules/mod_discount/assets/admin/list.tpl:35
+msgid "Key"
+msgstr "Key"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:147
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:151
+msgid "Only for registered"
+msgstr "Only for registered users"
+
+#: ./application/modules/mod_discount/assets/admin/list.tpl:36
+msgid "Name"
+msgstr "Name"
+
+#: ./application/modules/mod_discount/classes/DiscountManager.php:367
+#: ./application/modules/mod_discount/classes/DiscountManager.php:370
+#: ./application/modules/mod_discount/classes/DiscountManager.php:373
+msgid "Invalid date range!"
+msgstr "Invalid date range"
+
+#: ./application/modules/mod_discount/assets/admin/list.tpl:38
+msgid "Used"
+msgstr "Used"
+
+#: ./application/modules/mod_discount/admin.php:133
+msgid "Changes saved"
+msgstr "Changes saved/ Changes have been saved"
+
+#: ./application/modules/mod_discount/assets/admin/list.tpl:42
+msgid "Delete"
+msgstr "Delete"
+
+#: ./application/modules/mod_discount/discount_api.php:67
+msgid "Invalid code try again"
+msgstr "Invalid code. Please try again."
+
+#: ./application/modules/mod_discount/assets/admin/list.tpl:49
+msgid "Edit discount"
+msgstr "Edit discount"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:86
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:90
+msgid "Choose method"
+msgstr "Choose a method"
+
+#: ./application/modules/mod_discount/assets/admin/list.tpl:58
+msgid "Unlimited"
+msgstr "Unlimited"
+
+#: ./application/modules/mod_discount/models/discount_model_admin.php:508
+#: ./application/modules/mod_discount/models/discount_model_admin.php:520
+msgid "Value"
+msgstr "Value"
+
+#: ./application/modules/mod_discount/assets/admin/list.tpl:79
+#: ./application/modules/mod_discount/assets/js/adminScripts.js:255
+#: ./application/modules/mod_discount/assets/js/adminScripts.js:257
+msgid "Yes"
+msgstr "Yes"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:179
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:186
+msgid "Maximum"
+msgstr "Maximum"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:123
+#: ./application/modules/mod_discount/classes/BaseDiscount.php:179
+msgid "Users group"
+msgstr "User group"
+
+#: ./application/modules/mod_discount/assets/discount_order.tpl:6
+msgid "discount type: product"
+msgstr "Discount type: product"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:14
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:14
+msgid "Back"
+msgstr "Back"
+
+#: ./application/modules/mod_discount/assets/discount_order.tpl:7
+#: ./application/modules/mod_discount/assets/discount_order.tpl:17
+msgid "discount amount"
+msgstr "Discount amount"
+
+#: ./application/modules/mod_discount/assets/discount_order.tpl:10
+msgid "number"
+msgstr "Number"
+
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:127
+#: ./application/modules/mod_discount/assets/admin/list.tpl:22
+msgid "User group"
+msgstr "User group"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:268
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:278
+msgid "Period of the discount from"
+msgstr "Discount period from"
+
+#: ./application/modules/mod_discount/assets/discount_order.tpl:16
+msgid "discount size"
+msgstr "Discount size"
+
+#: ./application/modules/mod_discount/admin.php:151
+msgid "Discount not found"
+msgstr "Discount not found/ Discount has not been found"
+
+#: ./application/modules/mod_discount/assets/gift.tpl:3
+#: ./application/modules/mod_discount/assets/gift_succes.tpl:3
+msgid "Certificate code"
+msgstr "Certificate code"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:290
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:302
+msgid "Constant discount"
+msgstr "Constant discount"
+
+#: ./application/modules/mod_discount/assets/js/adminScripts.js:185
+msgid "Discount deleted"
+msgstr "Discount deleted"
+
+#: ./application/modules/mod_discount/admin.php:189
+#: ./application/modules/mod_discount/admin.php:197
+#: ./application/modules/mod_discount/admin.php:202
+msgid "Error"
+msgstr "Error"
+
+#: ./application/modules/mod_discount/classes/DiscountManager.php:325
+msgid "Wrong type discount"
+msgstr "Wrong discount type"
+
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:10
+msgid "Discount editing"
+msgstr "Discount editing"
+
+#: ./application/modules/mod_discount/classes/DiscountManager.php:343
+msgid "Amount <> can not be greater than the sum <>"
+msgstr "Amount <> can not be greater than the sum <>"
+
+#: ./application/modules/mod_discount/admin.php:202
+#: ./application/modules/mod_discount/classes/DiscountManager.php:355
+msgid "This group of users already have active discount"
+msgstr "This user group already has an active discount"
+
+#: ./application/modules/mod_discount/assets/admin/list.tpl:18
+msgid "All"
+msgstr "All"
+
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:16
+msgid "Save"
+msgstr "Save"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:124
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:128
+#: ./application/modules/mod_discount/assets/admin/list.tpl:23
+#: ./application/modules/mod_discount/classes/BaseDiscount.php:180
+msgid "Category"
+msgstr "Category"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:10
+msgid "Discount creating"
+msgstr "Creating a discount"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:155
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:159
+msgid "Gift Certificate"
+msgstr "Gift certificate"
+
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:19
+msgid "Save and exit"
+msgstr "Save and exit"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:191
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:198
+msgid "Current user"
+msgstr "Current user"
+
+#: ./application/modules/mod_discount/admin.php:189
+msgid "Discount don't exists"
+msgstr "Discount does not exist"
+
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:30
+msgid "Edit"
+msgstr "Edit"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:40
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:41
+msgid "Discount details"
+msgstr "Discount details"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:91
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:95
+msgid "Fixed"
+msgstr "Fixed"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:125
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:129
+#: ./application/modules/mod_discount/assets/admin/list.tpl:24
+#: ./application/modules/mod_discount/classes/BaseDiscount.php:181
+msgid "Product"
+msgstr "Product"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:47
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:48
+msgid "Discount code"
+msgstr "Discount code"
+
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:202
+msgid "User does not exist"
+msgstr "User does not exist"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:43
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:44
+msgid "Discount name"
+msgstr "Discount name"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:83
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:87
+msgid "Method of calculation"
+msgstr "Method of calculation"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:232
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:242
+msgid "Current product"
+msgstr "Current product"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:90
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:94
+msgid "Percents"
+msgstr "Percent"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:58
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:59
+msgid "Count of usage"
+msgstr "Count of usage"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:164
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:168
+msgid "from"
+msgstr "from"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:112
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:117
+msgid "Discount type"
+msgstr "Discount type"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:122
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:126
+#: ./application/modules/mod_discount/assets/admin/list.tpl:21
+#: ./application/modules/mod_discount/classes/BaseDiscount.php:178
+msgid "User"
+msgstr "User"
+
+#: ./application/modules/mod_discount/assets/admin/list.tpl:15
+msgid "Choose discount type"
+msgstr "Choose a discount type"
+
+#: ./application/modules/mod_discount/admin.php:209
+msgid "Status changed"
+msgstr "Status changed/ Status has been changed"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:119
+#: ./application/modules/mod_discount/assets/admin/list.tpl:81
+#: ./application/modules/mod_discount/assets/js/adminScripts.js:248
+#: ./application/modules/mod_discount/assets/js/adminScripts.js:249
+msgid "No"
+msgstr "No"
+
+#: ./application/modules/mod_discount/admin.php:197
+#: ./application/modules/mod_discount/classes/DiscountManager.php:352
+msgid "This user already have active discount"
+msgstr "This user already has an active discount"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:120
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:124
+#: ./application/modules/mod_discount/assets/admin/list.tpl:19
+#: ./application/modules/mod_discount/classes/BaseDiscount.php:176
+msgid "Order amount of more than"
+msgstr "Order the amount of more than"
+
+#: ./application/modules/mod_discount/assets/admin/create.tpl:169
+#: ./application/modules/mod_discount/assets/admin/create.tpl:277
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:176
+#: ./application/modules/mod_discount/assets/admin/edit.tpl:287
+msgid "to"
+msgstr "to"

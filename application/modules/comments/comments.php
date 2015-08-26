@@ -462,7 +462,7 @@ class Comments extends MY_Controller {
      * @param string $site
      * @return boolean
      */
-    private function _write_cookie($name, $email, $site) {
+    public function _write_cookie($name, $email, $site) {
         $this->load->helper('cookie');
 
         ($hook = get_hook('comments_write_cookie')) ? eval($hook) : NULL;
