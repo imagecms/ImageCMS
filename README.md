@@ -25,3 +25,7 @@ Open source php CMS based on CodeIgniter
 - open openserver termainl - http://prntscr.com/833pmi
 - cd to project folder
 - run “composer_update.bat”. Note: if you’ll see this http://prntscr.com/833tvj kind of message while installing just ignore it and push enter
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/imagecms/imagecms/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
