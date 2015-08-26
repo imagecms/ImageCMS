@@ -192,5 +192,3 @@ class Permissions Extends CI_Model {
     }
 
 }
-
-?>

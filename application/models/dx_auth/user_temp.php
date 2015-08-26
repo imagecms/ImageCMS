@@ -69,5 +69,3 @@ class User_Temp extends CI_Model {
     }
 
 }
-
-?>

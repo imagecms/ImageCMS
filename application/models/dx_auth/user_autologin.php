@@ -64,5 +64,3 @@ class User_Autologin extends CI_Model {
     }
 
 }
-
-?>

@@ -94,7 +94,7 @@ class Cms_admin extends CI_Model {
      */
     public function update_page($id, $data) {
         $lang_id = $this->input->post('lang_id');
-        $pageExists = (int)$this->input->post('pageExists');
+        $pageExists = (int) $this->input->post('pageExists');
 
         if (!$pageExists) {
             unset($data['id']);
@@ -105,7 +105,7 @@ class Cms_admin extends CI_Model {
         }
 
         $page = $this->get_page($id);
-        $alias = $page['lang_alias'] ;
+        $alias = $page['lang_alias'];
 
         if ($alias == 0) {
             $this->db->where('lang_alias', $page['id']);

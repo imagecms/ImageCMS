@@ -265,4 +265,3 @@ class Native_session {
 
 }
 
-?>

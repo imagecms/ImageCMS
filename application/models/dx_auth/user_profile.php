@@ -37,5 +37,3 @@ class User_Profile extends CI_Model {
     }
 
 }
-
-?>

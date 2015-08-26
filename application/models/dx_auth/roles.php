@@ -35,5 +35,3 @@ class Roles extends CI_Model {
     }
 
 }
-
-?>

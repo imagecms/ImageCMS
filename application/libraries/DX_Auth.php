@@ -1335,4 +1335,3 @@ class DX_Auth {
     /* End of Recaptcha function */
 }
 
-?>

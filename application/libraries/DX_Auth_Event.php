@@ -124,4 +124,3 @@ class DX_Auth_Event {
 
 }
 
-?>

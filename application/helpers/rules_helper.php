@@ -161,4 +161,3 @@ if (!function_exists('get_permissions_array')) {
     }
 
 }
-?>
