@@ -5,6 +5,7 @@ Open source php CMS based on CodeIgniter
 [![Code Climate](https://codeclimate.com/github/imagecms/ImageCMS/badges/gpa.svg)](https://codeclimate.com/github/imagecms/ImageCMS)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/imagecms/ImageCMS/badges/quality-score.png?b=development)](https://scrutinizer-ci.com/g/imagecms/ImageCMS/?branch=development)
 [![Build Status](https://scrutinizer-ci.com/g/imagecms/ImageCMS/badges/build.png?b=development)](https://scrutinizer-ci.com/g/imagecms/ImageCMS/build-status/development)
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/imagecms/imagecms/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 ##Installation
 ###Database
