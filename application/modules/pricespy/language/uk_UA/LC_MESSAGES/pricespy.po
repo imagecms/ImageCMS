@@ -1,0 +1,105 @@
+﻿msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-08 03:54+0300\n"
+"PO-Revision-Date: 2015-07-08 03:54+0300\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: application/modules/pricespy/assets/js/spy.js:9
+#: application/modules/pricespy/pricespy.php:195
+msgid "Already in tracking"
+msgstr "Вже відстеження"
+
+#: application/modules/pricespy/assets/spys.tpl:7
+#: application/modules/pricespy/assets/spys.tpl:21
+#: application/modules/pricespy/templates/admin/list.tpl:18
+#: application/modules/pricespy/templates/admin/list.tpl:33
+msgid "Unsubscribe"
+msgstr "Відписатися"
+
+#: application/modules/pricespy/assets/spys.tpl:8
+#: application/modules/pricespy/templates/admin/list.tpl:19
+msgid "Product"
+msgstr "Продукт"
+
+#: application/modules/pricespy/assets/spys.tpl:9
+#: application/modules/pricespy/templates/admin/list.tpl:20
+msgid "New price"
+msgstr "Нова ціна"
+
+#: application/modules/pricespy/assets/spys.tpl:10
+#: application/modules/pricespy/templates/admin/list.tpl:21
+msgid "Old price"
+msgstr "Стара ціна"
+
+#: application/modules/pricespy/assets/spys.tpl:11
+#: application/modules/pricespy/templates/admin/list.tpl:22
+msgid "Percentage of price reduction"
+msgstr "Відсоток зниження ціни"
+
+#: application/modules/pricespy/assets/spys.tpl:38
+msgid "Watch list is empty"
+msgstr "Дивитися список порожній"
+
+#: application/modules/pricespy/module_info.php:7
+msgid "Tracking for price"
+msgstr "Відстеження цінової"
+
+#: application/modules/pricespy/module_info.php:8
+msgid "Tracking for price module"
+msgstr "Відстеження цінової модуль"
+
+#: application/modules/pricespy/pricespy.php:35
+msgid "Price changing"
+msgstr "Ціна змінюється"
+
+#: application/modules/pricespy/pricespy.php:36
+msgid "Price on"
+msgstr "Ціна на"
+
+#: application/modules/pricespy/pricespy.php:36
+msgid "for which you watch on site"
+msgstr "за що ви дивитеся на сайт"
+
+#: application/modules/pricespy/pricespy.php:36
+msgid "changed"
+msgstr "змінилося"
+
+#: application/modules/pricespy/pricespy.php:37
+#: application/modules/pricespy/pricespy.php:37
+msgid "View watch list"
+msgstr "Перегляд списку"
+
+#: application/modules/pricespy/pricespy.php:38
+#: application/modules/pricespy/pricespy.php:38
+msgid "Unsubscribe tracking"
+msgstr "Відписатися стеження"
+
+#: application/modules/pricespy/pricespy.php:189
+msgid "Notify about price cut"
+msgstr "Повідомити про зниження ціни"
+
+#: application/modules/pricespy/templates/admin/list.tpl:5
+msgid "List of users subscribed to the products"
+msgstr "Список користувачів, підписаних на продукти"
+
+#: application/modules/pricespy/templates/admin/list.tpl:9
+msgid "Back"
+msgstr "Тому"
+
+#: application/modules/pricespy/templates/admin/list.tpl:17
+msgid "User"
+msgstr "Користувач"

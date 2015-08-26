@@ -1,0 +1,183 @@
+﻿msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-11-05 12:59+0200\n"
+"PO-Revision-Date: 2014-11-05 12:59+0200\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/socauth/admin.php:53
+msgid "Settings are saved"
+msgstr "Налаштування зберігаються"
+
+#: ./application/modules/socauth/assets/admin/settings.tpl:14
+msgid "Save"
+msgstr "Зберегти"
+
+#: ./application/modules/socauth/assets/admin/settings.tpl:9
+msgid "Back"
+msgstr "Повернутися"
+
+#: ./application/modules/socauth/module_info.php:7
+msgid "Authorization module"
+msgstr "Модуль авторизації"
+
+#: ./application/modules/socauth/module_info.php:8
+msgid "Module for authorization via popular social networks"
+msgstr "Модуль для авторизації через популярні соціальні мережі"
+
+#: ./application/modules/socauth/socauth.php:36
+msgid "Your password to access the site"
+msgstr "Ваш пароль для доступу до сайту"
+
+#: ./application/modules/socauth/assets/vklogin.tpl:8
+#: ./application/modules/socauth/assets/login.tpl:25
+msgid "Login page"
+msgstr "Сторінка входу"
+
+#: ./application/modules/socauth/assets/vklogin.tpl:15
+#: ./application/modules/socauth/assets/login.tpl:33
+msgid "Email"
+msgstr "Адреса"
+
+#: ./application/modules/socauth/assets/vklogin.tpl:19
+#: ./application/modules/socauth/assets/vklogin.tpl:19
+#: ./application/modules/socauth/assets/vklogin.tpl:21
+msgid "Enter your email"
+msgstr "Введіть ваш email"
+
+#: ./application/modules/socauth/assets/vklogin.tpl:29
+#: ./application/modules/socauth/assets/login.tpl:86
+msgid "Enter"
+msgstr "Введіть"
+
+#: ./application/modules/socauth/assets/loginButtons.tpl:10
+#: ./application/modules/socauth/assets/linkButtons.tpl:18
+msgid "VK"
+msgstr "VK"
+
+#: ./application/modules/socauth/assets/loginButtons.tpl:24
+#: ./application/modules/socauth/assets/linkButtons.tpl:46
+msgid "Yandex"
+msgstr "Яндекс"
+
+#: ./application/modules/socauth/assets/login.tpl:17
+msgid "Mistake, maybe the email is already in use"
+msgstr "Помилка, може бути, email вже використовується"
+
+#: ./application/modules/socauth/assets/login.tpl:18
+msgid "Try to use a different method to enter."
+msgstr "Спробуйте використовувати інший метод, щоб увійти."
+
+#: ./application/modules/socauth/assets/login.tpl:37
+#: ./application/modules/socauth/assets/login.tpl:37
+#: ./application/modules/socauth/assets/login.tpl:39
+msgid "Enter your login"
+msgstr "Введіть Ваш логін"
+
+#: ./application/modules/socauth/assets/login.tpl:45
+#: ./application/modules/socauth/assets/login.tpl:49
+#: ./application/modules/socauth/assets/login.tpl:49
+#: ./application/modules/socauth/assets/login.tpl:51
+msgid "Password"
+msgstr "Пароль"
+
+#: ./application/modules/socauth/assets/login.tpl:59
+#: ./application/modules/socauth/assets/login.tpl:62
+#: ./application/modules/socauth/assets/login.tpl:62
+#: ./application/modules/socauth/assets/login.tpl:64
+msgid "Code protection"
+msgstr "Код захисту"
+
+#: ./application/modules/socauth/assets/login.tpl:72
+msgid "Remember me"
+msgstr "Згадай мене"
+
+#: ./application/modules/socauth/assets/login.tpl:82
+msgid "Forgot password"
+msgstr "Забув пароль"
+
+#: ./application/modules/socauth/assets/login.tpl:84
+msgid "Registration"
+msgstr "Реєстрація"
+
+#: ./application/modules/socauth/assets/linkButtons.tpl:12
+#: ./application/modules/socauth/assets/linkButtons.tpl:26
+#: ./application/modules/socauth/assets/linkButtons.tpl:40
+#: ./application/modules/socauth/assets/linkButtons.tpl:54
+msgid "Unsubscribe"
+msgstr "Відписатися"
+
+#: ./application/modules/socauth/assets/admin/settings.tpl:5
+msgid "Authorization settings through third-party services"
+msgstr "Параметри авторизації через сторонні сервіси"
+
+#: ./application/modules/socauth/assets/admin/settings.tpl:24
+msgid "Authorization settings using your Google account"
+msgstr "Параметри авторизації за допомогою облікового запису Google"
+
+#: ./application/modules/socauth/assets/admin/settings.tpl:37
+#: ./application/modules/socauth/assets/admin/settings.tpl:88
+#: ./application/modules/socauth/assets/admin/settings.tpl:139
+#: ./application/modules/socauth/assets/admin/settings.tpl:190
+msgid "Need to get 1 time"
+msgstr "Потрібно отримати 1 раз"
+
+#: ./application/modules/socauth/assets/admin/settings.tpl:37
+#: ./application/modules/socauth/assets/admin/settings.tpl:40
+#: ./application/modules/socauth/assets/admin/settings.tpl:88
+#: ./application/modules/socauth/assets/admin/settings.tpl:91
+#: ./application/modules/socauth/assets/admin/settings.tpl:139
+#: ./application/modules/socauth/assets/admin/settings.tpl:142
+#: ./application/modules/socauth/assets/admin/settings.tpl:190
+#: ./application/modules/socauth/assets/admin/settings.tpl:193
+msgid "Get"
+msgstr "Отримати"
+
+#: ./application/modules/socauth/assets/admin/settings.tpl:56
+msgid "Use authorization via Google"
+msgstr "Використання авторизації через Google"
+
+#: ./application/modules/socauth/assets/admin/settings.tpl:75
+msgid "Use authorization via VK account"
+msgstr "Використання авторизації через акаунт ВК"
+
+#: ./application/modules/socauth/assets/admin/settings.tpl:107
+msgid "Use authorization via VK"
+msgstr "Використання авторизації через ВК"
+
+#: ./application/modules/socauth/assets/admin/settings.tpl:126
+msgid "Authorization settings using your FaceBook account"
+msgstr "Параметри авторизації, використовуючи ваш FaceBook аккаунт"
+
+#: ./application/modules/socauth/assets/admin/settings.tpl:158
+msgid "Use authorization via FaceBook"
+msgstr "Використання авторизації через FaceBook"
+
+#: ./application/modules/socauth/assets/admin/settings.tpl:177
+msgid "Authorization settings using your Yandex account"
+msgstr "Параметри авторизації за допомогою логіна на Яндексі"
+
+#: ./application/modules/socauth/assets/admin/settings.tpl:197
+msgid "Appication Id"
+msgstr "Appication Id"
+
+#: ./application/modules/socauth/assets/admin/settings.tpl:203
+msgid "Appication password"
+msgstr "Appication пароль"
+
+#: ./application/modules/socauth/assets/admin/settings.tpl:209
+msgid "Use authorization via Yandex"
+msgstr "Використання авторизації через Яндекс"

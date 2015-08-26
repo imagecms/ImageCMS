@@ -2,11 +2,11 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-11 02:35+0300\n"
-"PO-Revision-Date: 2014-09-11 02:35+0300\n"
-"Last-Translator:  \n"
-"Language-Team:  \n"
-"Language: uk_UA\n"
+"POT-Creation-Date: 2014-11-05 01:01+0200\n"
+"PO-Revision-Date: 2014-11-05 01:01+0200\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,3 +17,89 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/red_helper/admin.php:30
+msgid "Settings saved"
+msgstr "Налаштування зберігаються"
+
+#: ./application/modules/red_helper/assets/admin/main.tpl:20
+msgid "Save settings"
+msgstr "Зберегти параметри"
+
+#: ./application/modules/red_helper/module_info.php:6
+#: ./application/modules/red_helper/assets/admin/main.tpl:80
+msgid "Red Helper"
+msgstr "Red Helper"
+
+#: ./application/modules/red_helper/assets/admin/main.tpl:4
+#: ./application/modules/red_helper/assets/admin/main.tpl:92
+msgid "Settings"
+msgstr "Параметри"
+
+#: ./application/modules/red_helper/assets/admin/main.tpl:9
+#: ./application/modules/red_helper/assets/admin/main.tpl:35
+msgid "Your login"
+msgstr "Ваш логін"
+
+#: ./application/modules/red_helper/assets/admin/main.tpl:15
+#: ./application/modules/red_helper/assets/admin/main.tpl:70
+msgid "Close"
+msgstr "Закрити"
+
+#: ./application/modules/red_helper/assets/admin/main.tpl:31
+#: ./application/modules/red_helper/assets/admin/main.tpl:71
+#: ./application/modules/red_helper/assets/admin/main.tpl:95
+msgid "Registration"
+msgstr "Реєстрація"
+
+#: ./application/modules/red_helper/assets/admin/main.tpl:37
+msgid "Create your own unique login. Username can only consist of letters and numbers, login itself must be at least 3 characters."
+msgstr "Створити свій унікальний логін. Ім'я користувача може складатися тільки з букв і цифр, логін повинен бути не менше 3 символів."
+
+#: ./application/modules/red_helper/assets/admin/main.tpl:41
+msgid "Choose password"
+msgstr "Вибрати пароль"
+
+#: ./application/modules/red_helper/assets/admin/main.tpl:43
+msgid "Use a password to connect service RedHelper. For security reasons, the password should be different from the password ImageCMS."
+msgstr "Використовуйте пароль для підключення сервісу RedHelper. В цілях безпеки, пароль повинен відрізнятися від пароля ImageCMS."
+
+#: ./application/modules/red_helper/assets/admin/main.tpl:47
+msgid "Your email"
+msgstr "Ваш email"
+
+#: ./application/modules/red_helper/assets/admin/main.tpl:49
+msgid "Enter your email address to be used for communication with you."
+msgstr "Введіть адресу вашої електронної пошти буде використовуватися для зв'язку з вами."
+
+#: ./application/modules/red_helper/assets/admin/main.tpl:53
+msgid "Your name"
+msgstr "Ваше ім'я"
+
+#: ./application/modules/red_helper/assets/admin/main.tpl:55
+msgid "Enter your name."
+msgstr "Введіть ваше ім'я."
+
+#: ./application/modules/red_helper/assets/admin/main.tpl:58
+msgid "Your phone"
+msgstr "Телефон"
+
+#: ./application/modules/red_helper/assets/admin/main.tpl:60
+msgid "Your contact phone number."
+msgstr "Ваш контактний номер телефону."
+
+#: ./application/modules/red_helper/assets/admin/main.tpl:63
+msgid "* - Fields are required"
+msgstr "* - Поля обов'язкові для заповнення"
+
+#: ./application/modules/red_helper/assets/admin/main.tpl:88
+msgid "Back"
+msgstr "Тому"
+
+#: ./application/modules/red_helper/assets/js/red_helper_admin.js:85
+msgid "Message"
+msgstr "Повідомлення"
+
+#: ./application/modules/red_helper/assets/js/red_helper_admin.js:85
+msgid "Регистрация прошла успешно! Введите свой логин в Параметры"
+msgstr "Реєстрація пройшла успішно! Введіть свій логін Параметри"

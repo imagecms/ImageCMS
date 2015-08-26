@@ -10,7 +10,8 @@ $com_info = array(
     'w' => 600,                     // Window width
     'h' => 550,                     // Window height
     'version' => '0.1',             // Module version
-    'author' => 'a.gula@imagecms.net'  // Author info
+    'author' => 'a.gula@imagecms.net',  // Author info
+    'icon_class' => 'icon-heart'
 );
 
 /* End of file module_info.php */
