@@ -4,13 +4,17 @@ php:
     - 5.4
     - 5.5
 
-
+env:
+  - DB=mysql
+  - DB=pgsql
+  
 before_script:
   - curl -s http://getcomposer.org/installer | php
   - php composer.phar install  --dev --no-interaction --prefer-source
-  #- composer self-update
-  #- bin/composer install
-  #composer install
+  - composer self-update
+  - bin/composer install
+  - composer install
+  
 script:
 - ./vendor/bin/phpunit
 notifications:
