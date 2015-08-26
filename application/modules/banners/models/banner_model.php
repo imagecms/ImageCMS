@@ -53,9 +53,9 @@ class Banner_model extends CI_Model {
                 ->update('mod_banner');
 
         if ($this->db->where('locale', $data['locale'])->where('id', $data['id'])->get('mod_banner_i18n')->num_rows()) {
-            $sql = "update mod_banner_i18n set url = '" . $data['url'] . "', name = '" . $data['name'] . "', description = '" . $data['description'] . "', photo = '" . $data['photo'] . "' where id = '" . $data['id'] . "' and locale = '" . $data['locale'] . "'";
+            $sql = "update mod_banner_i18n set url = '" . $data['url'] . "', name = '" . $data['name'] . "', description = '" . str_replace("'", "\'", $data['description']) . "', photo = '" . $data['photo'] . "' where id = '" . $data['id'] . "' and locale = '" . $data['locale'] . "'";
         } else {
-            $sql = "insert into mod_banner_i18n(url, name, description, photo, locale, id) values('" . $data['url'] . "','" . $data['name'] . "','" . $data['description'] . "','" . $data['photo'] . "','" . $data['locale'] . "','" . $data['id'] . "')";
+            $sql = "insert into mod_banner_i18n(url, name, description, photo, locale, id) values('" . $data['url'] . "','" . $data['name'] . "','" . str_replace("'", "\'", $data['description'])  . "','" . $data['photo'] . "','" . $data['locale'] . "','" . $data['id'] . "')";
         }
         $this->db->query($sql);
     }
@@ -90,6 +90,7 @@ class Banner_model extends CI_Model {
         if ($query) {
             $query = $query->result_array();
 
+
             if ($group != '0') {
                 foreach ($query as $key => $banner) {
                     if (!in_array($group, unserialize($banner['group']))) {
@@ -100,7 +101,17 @@ class Banner_model extends CI_Model {
                         unset($query[$key]);
                     }
                 }
+            }else{
+                
+           
+                 foreach ($query as $key => $banner) {
+                    if (unserialize($banner['group']) && !strstr($_SERVER['REQUEST_URI'],'/admin/')) {
+                       unset($query[$key]);
+                    }
+                }
+            
             }
+  
         }
 
         return $query;
@@ -111,7 +122,7 @@ class Banner_model extends CI_Model {
             $locale = MY_Controller::getCurrentLocale();
         }
 
-        $banner = $this->db->query("select * from mod_banner inner join mod_banner_i18n on mod_banner.id = mod_banner_i18n.id where locale = '$locale' and mod_banner.id = '$id'")->result_array();
+        $banner = $this->db->query("select * from mod_banner left join mod_banner_i18n on mod_banner.id = mod_banner_i18n.id AND mod_banner_i18n.locale = '$locale' WHERE mod_banner.id = '$id'")->result_array();
 
         if (count($banner) == 0) {
             return FALSE;
@@ -148,13 +159,27 @@ class Banner_model extends CI_Model {
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->create_table('mod_banner_groups');
 
-        $fields = array(
-            'group' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '255',
-                'null' => TRUE,
-        ));
-        $this->dbforge->add_column('mod_banner', $fields);
+        if (!in_array('group', $this->getColumnNamesOfTable('mod_banner'))) {
+            $this->dbforge->add_column('mod_banner', array(
+                'group' => array(
+                    'type' => 'VARCHAR',
+                    'constraint' => '255',
+                    'null' => TRUE,
+            )));
+        }
+    }
+
+    protected function getColumnNamesOfTable($tableName) {
+        $result = $this->db->query('SHOW COLUMNS FROM `' . $tableName . '`');
+        $fields = array();
+        if ($result) {
+            $tableFields = $result->result_array();
+            for ($i = 0; $i < count($tableFields); $i++) {
+                $fields[] = $tableFields[$i]['Field'];
+            }
+            return $fields;
+        }
+        return [];
     }
 
 }

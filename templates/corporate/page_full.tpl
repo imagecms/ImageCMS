@@ -7,7 +7,7 @@
             <div class="text left">
                 <h1>{$page.title}</h1>
                 <!-- Start. Show banner. -->
-                {$CI->load->module('banners')->render()}
+                {$CI->load->module('banners')->render($page.id)}
                 <!-- End. Show banner. -->
                 <div class="description">
                     {$page.full_text}

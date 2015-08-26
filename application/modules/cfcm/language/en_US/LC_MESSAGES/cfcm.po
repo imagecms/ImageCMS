@@ -2,11 +2,11 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-05 11:24+0300\n"
-"PO-Revision-Date: 2014-06-05 11:24+0300\n"
-"Last-Translator:  \n"
-"Language-Team:  \n"
-"Language: en_US\n"
+"POT-Creation-Date: 2015-01-30 11:09+0200\n"
+"PO-Revision-Date: 2015-01-30 11:09+0200\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,3 +17,368 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/cfcm/admin.php:177
+#: ./application/modules/cfcm/admin.php:263
+#: ./application/modules/cfcm/admin.php:264
+msgid "Field has been updated"
+msgstr "Field has been updated"
+
+#: ./application/modules/cfcm/admin.php:138
+#: ./application/modules/cfcm/admin.php:139
+msgid "Field created"
+msgstr "Field has been created"
+
+#: ./application/modules/cfcm/admin.php:211
+#: ./application/modules/cfcm/admin.php:212
+msgid "Field deleted successfuly"
+msgstr "Field has been deleted successfully"
+
+#: ./application/modules/cfcm/admin.php:323
+#: ./application/modules/cfcm/admin.php:324
+msgid "Group has been created"
+msgstr "Group has been created"
+
+#: ./application/modules/cfcm/admin.php:365
+#: ./application/modules/cfcm/admin.php:366
+msgid "Group has been updated"
+msgstr "Group has been updated"
+
+#: ./application/modules/cfcm/admin.php:400
+#: ./application/modules/cfcm/admin.php:401
+msgid "Group deleted successfuly"
+msgstr "Group has been deleted successfully"
+
+#: ./application/modules/cfcm/cfcm_forms.php:176
+msgid "Without group"
+msgstr ""
+
+#: ./application/modules/cfcm/admin.php:117
+msgid "Select another  name"
+msgstr ""
+
+#: ./application/modules/cfcm/templates/public/additional_services_form.tpl:100
+#: ./application/modules/cfcm/templates/public/additional_services_form_min.tpl:101
+msgid "Send"
+msgstr ""
+
+#: ./application/modules/cfcm/templates/public/additional_services_form.tpl:104
+#: ./application/modules/cfcm/templates/public/additional_services_form_min.tpl:105
+msgid "Attach"
+msgstr ""
+
+#: ./application/modules/cfcm/templates/public/additional_services_form.tpl:105
+#: ./application/modules/cfcm/templates/public/additional_services_form_min.tpl:106
+msgid "Choose file"
+msgstr ""
+
+#: ./application/modules/cfcm/templates/public/additional_services_form.tpl:110
+#: ./application/modules/cfcm/templates/public/additional_services_form_min.tpl:111
+msgid "Empty page."
+msgstr ""
+
+#: ./application/modules/cfcm/templates/admin/top_navigation.tpl:3
+msgid "Field Constructor"
+msgstr "Field Constructor/Field constructor"
+
+#: ./application/modules/cfcm/templates/admin/group_list.tpl:5
+#: ./application/modules/cfcm/templates/admin/index.tpl:5
+msgid "Field constructor"
+msgstr "Additional fields"
+
+#: ./application/modules/cfcm/module_info.php:4
+msgid "Fields constructor"
+msgstr "Field constructor"
+
+#: ./application/modules/cfcm/admin.php:355
+msgid "ID group editing"
+msgstr "Group editing"
+
+# ?
+#: ./application/modules/cfcm/cfcm_forms.php:28
+msgid "To name will be prefixed with"
+msgstr "The name will be prefixed with"
+
+#: ./application/modules/cfcm/cfcm_forms.php:39
+msgid "Participate in search"
+msgstr "Include in search"
+
+#: ./application/modules/cfcm/templates/admin/index.tpl:19
+msgid "Add field"
+msgstr "Add field"
+
+#: ./application/modules/cfcm/admin.php:315
+msgid "Specify the group name"
+msgstr "Specify the group name/ Indicate the group name"
+
+#: ./application/modules/cfcm/templates/admin/index.tpl:30
+msgid "Categories"
+msgstr "Categories"
+
+#: ./application/modules/cfcm/admin.php:100
+msgid "Specify <b>Label</b> field"
+msgstr "Specify <b>Label</b> field"
+
+#: ./application/modules/cfcm/templates/public/_onpage_form.tpl:6
+#: ./application/modules/cfcm/templates/admin/fields_tab.tpl:1
+#: ./application/modules/cfcm/templates/admin/_onpage_form.tpl:5
+#: ./application/modules/cfcm/templates/admin/index.tpl:9
+#: ./application/modules/cfcm/templates/admin/index.tpl:22
+msgid "Additional fields"
+msgstr "Additional fields"
+
+#: ./application/modules/cfcm/templates/admin/group_list.tpl:101
+msgid "Empty group list or group list is empty"
+msgstr "Empty group list"
+
+#: ./application/modules/cfcm/templates/admin/index.tpl:38
+msgid "Edit custom field"
+msgstr "Edit custom field"
+
+#: ./application/modules/cfcm/templates/admin/index.tpl:69
+msgid "List of additional fields is empty"
+msgstr "List of additional fields is empty"
+
+#: ./application/modules/cfcm/templates/admin/group_list.tpl:11
+msgid "Go back"
+msgstr "Go back"
+
+#: ./application/modules/cfcm/admin.php:104
+msgid "Field Name cant contain only Latin alphanumeric characters"
+msgstr "Field Name cannot contain only Latin alphanumeric characters"
+
+#: ./application/modules/cfcm/templates/admin/index.tpl:47
+msgid "Without catagory"
+msgstr "Without a category/Without category"
+
+#: ./application/modules/cfcm/templates/admin/_form.tpl:12
+#: ./application/modules/cfcm/templates/admin/group_list.tpl:13
+msgid "Save and exit"
+msgstr "Save and exit"
+
+#: ./application/modules/cfcm/admin.php:349
+msgid "Group has not been found"
+msgstr "Group has not been found"
+
+#: ./application/modules/cfcm/cfcm_forms.php:166
+#: ./application/modules/cfcm/templates/admin/group_list.tpl:56
+#: ./application/modules/cfcm/templates/admin/index.tpl:96
+msgid "Description"
+msgstr "Description"
+
+#: ./application/modules/cfcm/templates/public/_onpage_form.tpl:56
+msgid "Group without any fields"
+msgstr "Group without any fields"
+
+#: ./application/modules/cfcm/templates/admin/index.tpl:81
+msgid "Create group"
+msgstr "Create a group"
+
+#: ./application/modules/cfcm/admin.php:91
+msgid "Field creating"
+msgstr "Field creating"
+
+#: ./application/modules/cfcm/cfcm_forms.php:26
+#: ./application/modules/cfcm/cfcm_forms.php:160
+#: ./application/modules/cfcm/templates/admin/group_list.tpl:55
+#: ./application/modules/cfcm/templates/admin/index.tpl:28
+#: ./application/modules/cfcm/templates/admin/index.tpl:95
+msgid "Name"
+msgstr "Name"
+
+#: ./application/modules/cfcm/templates/admin/index.tpl:85
+msgid "Field groups"
+msgstr "Field groups"
+
+#: ./application/modules/cfcm/cfcm_forms.php:44
+#: ./application/modules/cfcm/cfcm_forms.php:89
+#: ./application/modules/cfcm/templates/admin/index.tpl:29
+msgid "Type"
+msgstr "Type"
+
+#: ./application/modules/cfcm/cfcm_forms.php:49
+#: ./application/modules/cfcm/cfcm_forms.php:148
+msgid "Group"
+msgstr "Group"
+
+#: ./application/modules/cfcm/templates/admin/index.tpl:88
+msgid "No groups"
+msgstr "No groups"
+
+#: ./application/modules/cfcm/cfcm_forms.php:80
+msgid "Field description "
+msgstr "Field description"
+
+#: ./application/modules/cfcm/cfcm_forms.php:84
+msgid "Required field"
+msgstr "Required field"
+
+#: ./application/modules/cfcm/cfcm_forms.php:100
+msgid "Multiple"
+msgstr "Multiple"
+
+#: ./application/modules/cfcm/cfcm_forms.php:109
+msgid "Checked"
+msgstr "Checked"
+
+#: ./application/modules/cfcm/cfcm_forms.php:118
+msgid "Enable images viewing"
+msgstr "Enable image viewing"
+
+#: ./application/modules/cfcm/templates/admin/top_navigation.tpl:4
+msgid "Field list"
+msgstr "Field list"
+
+#: ./application/modules/cfcm/cfcm_forms.php:143
+msgid "Check conditions"
+msgstr "Check conditions"
+
+#: ./application/modules/cfcm/cfcm_forms.php:144
+msgid "For example"
+msgstr "For example"
+
+#: ./application/modules/cfcm/templates/admin/top_navigation.tpl:5
+msgid "Create a field"
+msgstr "Create a field"
+
+#: ./application/modules/cfcm/templates/admin/index.tpl:10
+msgid "Fields groups"
+msgstr "Field groups"
+
+#: ./application/modules/cfcm/module_info.php:5
+msgid "Allows you to create additional fields in ImageCMS Corporate"
+msgstr "Allows you to create additional fields in ImageCMS Corporate"
+
+#: ./application/modules/cfcm/templates/admin/top_navigation.tpl:6
+msgid "Group list"
+msgstr "Group list"
+
+#: ./application/modules/cfcm/cfcm_forms.php:135
+msgid "Enable Tinymce editor"
+msgstr "Enable Tinymce editor"
+
+#: ./application/modules/cfcm/templates/admin/_form.tpl:11
+#: ./application/modules/cfcm/templates/admin/group_list.tpl:12
+msgid "Save"
+msgstr "Save"
+
+#: ./application/modules/cfcm/templates/admin/group_list.tpl:21
+msgid "English"
+msgstr "English"
+
+#: ./application/modules/cfcm/templates/admin/_form.tpl:10
+msgid "Back"
+msgstr "Back"
+
+#: ./application/modules/cfcm/templates/admin/group_list.tpl:57
+#: ./application/modules/cfcm/templates/admin/index.tpl:97
+msgid "Fields"
+msgstr "Fields"
+
+#: ./application/modules/cfcm/admin.php:60
+#: ./application/modules/cfcm/cfcm.php:54
+msgid "Protection code"
+msgstr "Protection code"
+
+#: ./application/modules/cfcm/templates/admin/group_list.tpl:72
+msgid "Edit"
+msgstr "Edit"
+
+#: ./application/modules/cfcm/templates/admin/_form.tpl:11
+msgid "Create"
+msgstr "Create"
+
+#: ./application/modules/cfcm/admin.php:311
+msgid "Creating a group"
+msgstr "Creating a group"
+
+#: ./application/modules/cfcm/admin.php:159
+#: ./application/modules/cfcm/admin.php:226
+msgid "Field editing"
+msgstr "Field editing"
+
+#: ./application/modules/cfcm/templates/admin/group_list.tpl:109
+msgid "Delete group"
+msgstr "Delete group/ Delete a group"
+
+#: ./application/modules/cfcm/templates/admin/_form.tpl:12
+msgid "Create and exit"
+msgstr "Create and exit"
+
+#: ./application/modules/cfcm/templates/admin/index.tpl:10
+msgid "Install modules"
+msgstr "Install modules"
+
+#: ./application/modules/cfcm/cfcm_forms.php:125
+msgid "Enable file viewing"
+msgstr "Enable file viewing"
+
+#: ./application/modules/cfcm/templates/admin/_form.tpl:20
+msgid "Information"
+msgstr "Information"
+
+#: ./application/modules/cfcm/cfcm_forms.php:79
+msgid "Hint"
+msgstr "Hint"
+
+#: ./application/modules/cfcm/templates/admin/group_list.tpl:54
+msgid "ID"
+msgstr "ID"
+
+#: ./application/modules/cfcm/templates/public/_onpage_form.tpl:24
+#: ./application/modules/cfcm/templates/admin/_onpage_form.tpl:25
+msgid "Select an image"
+msgstr "Select an image"
+
+#: ./application/modules/cfcm/templates/admin/group_list.tpl:73
+#: ./application/modules/cfcm/templates/admin/index.tpl:31
+#: ./application/modules/cfcm/templates/admin/index.tpl:61
+#: ./application/modules/cfcm/templates/admin/index.tpl:98
+#: ./application/modules/cfcm/templates/admin/index.tpl:114
+msgid "Delete"
+msgstr "Delete"
+
+#: ./application/modules/cfcm/cfcm_forms.php:33
+#: ./application/modules/cfcm/cfcm_forms.php:69
+#: ./application/modules/cfcm/templates/admin/index.tpl:27
+msgid "Label"
+msgstr "Label"
+
+#: ./application/modules/cfcm/templates/admin/index.tpl:9
+msgid "All modules"
+msgstr "All modules"
+
+#: ./application/modules/cfcm/templates/public/_onpage_form.tpl:31
+#: ./application/modules/cfcm/templates/admin/_onpage_form.tpl:32
+msgid "Select a file"
+msgstr "Select a file"
+
+#: ./application/modules/cfcm/cfcm_forms.php:75
+msgid "The initial value"
+msgstr "The initial value"
+
+#: ./application/modules/cfcm/admin.php:279
+msgid "Field has not been found"
+msgstr "Field has not been found"
+
+#: ./application/modules/cfcm/templates/admin/group_list.tpl:65
+#: ./application/modules/cfcm/templates/admin/index.tpl:106
+msgid "Edit custom group"
+msgstr "Edit custom group"
+
+#: ./application/modules/cfcm/cfcm_forms.php:94
+msgid "Specify the possible values in the new row"
+msgstr "Specify the possible values in the new row/ Indicate the possible values in the new row"
+
+#: ./application/modules/cfcm/admin.php:96
+msgid "Specify the field name"
+msgstr "Specify the field name/ Indicate the field name"
+
+#: ./application/modules/cfcm/templates/admin/top_navigation.tpl:7
+#: ./application/modules/cfcm/templates/admin/group_list.tpl:101
+msgid "Create a group"
+msgstr "Create a group"
+
+#: ./application/modules/cfcm/templates/admin/group_list.tpl:17
+msgid "Russian"
+msgstr "Russian"

@@ -2,11 +2,11 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-20 01:58+0200\n"
-"PO-Revision-Date: 2014-03-20 01:58+0200\n"
-"Last-Translator:  \n"
-"Language-Team:  \n"
-"Language: ru_RU\n"
+"POT-Creation-Date: 2015-03-02 02:43+0200\n"
+"PO-Revision-Date: 2015-03-02 02:43+0200\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,69 +18,76 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: ./application/modules/star_rating/assets/admin/settings.tpl:11
-msgid "Save and exit"
-msgstr "Сохранить и выйти"
+#: application/modules/star_rating/assets/admin/settings.tpl:29
+msgid "Show on"
+msgstr "Показать на"
 
-#: ./application/modules/star_rating/assets/admin/settings.tpl:9
-msgid "Back"
-msgstr "Вернуться"
-
-#: ./application/modules/star_rating/assets/star_rating.tpl:9
-#: ./application/modules/star_rating/assets/star_rating.tpl:18
-msgid "Leav"
-msgstr "Оставить"
-
-#: ./application/modules/star_rating/assets/star_rating.tpl:9
-#: ./application/modules/star_rating/assets/star_rating.tpl:19
-msgid "people(s)"
-msgstr "человек (ов)"
-
-#: ./application/modules/star_rating/assets/admin/settings.tpl:21
+#: application/modules/star_rating/assets/admin/settings.tpl:21
 msgid "Show on pages"
 msgstr "Показать на страницах"
 
-#: ./application/modules/star_rating/assets/admin/settings.tpl:32
+#: application/modules/star_rating/admin.php:41
+msgid "Star rating was edited"
+msgstr "Рейтинг был отредактирован"
+
+#: application/modules/star_rating/assets/admin/settings.tpl:11
+msgid "Save and exit"
+msgstr "Сохранить и выйти"
+
+#: application/modules/star_rating/assets/admin/settings.tpl:9
+msgid "Back"
+msgstr "Вернуться"
+
+#: application/modules/star_rating/assets/star_rating.tpl:8
+#: application/modules/star_rating/assets/star_rating.tpl:17
+msgid "Leav"
+msgstr "Оставить"
+
+#: application/modules/star_rating/assets/star_rating.tpl:8
+#: application/modules/star_rating/assets/star_rating.tpl:18
+msgid "people(s)"
+msgstr "человек (ов)"
+
+#: application/modules/star_rating/assets/admin/settings.tpl:35
 msgid "Main"
 msgstr "Главная"
 
-#: ./application/modules/star_rating/assets/admin/settings.tpl:40
+#: application/modules/star_rating/assets/admin/settings.tpl:42
 msgid "Contains"
 msgstr "Содержимое"
 
-#: ./application/modules/star_rating/assets/admin/settings.tpl:48
+#: application/modules/star_rating/assets/admin/settings.tpl:50
 msgid "Category"
 msgstr "Категория"
 
-#: ./application/modules/star_rating/assets/admin/settings.tpl:57
+#: application/modules/star_rating/assets/admin/settings.tpl:58
 msgid "Product"
 msgstr "Товар"
 
-#: ./application/modules/star_rating/assets/admin/settings.tpl:64
+#: application/modules/star_rating/assets/admin/settings.tpl:65
 msgid "Products category"
 msgstr "Категория товаров"
 
-#: ./application/modules/star_rating/assets/admin/settings.tpl:71
+#: application/modules/star_rating/assets/admin/settings.tpl:72
 msgid "Brands"
 msgstr "Бренды"
 
-#: ./application/modules/star_rating/assets/admin/settings.tpl:5
+#: application/modules/star_rating/assets/admin/settings.tpl:5
 msgid "Module settings starRating"
 msgstr "Настройки модуля Рейтинг"
 
-#: ./application/modules/star_rating/assets/admin/settings.tpl:10
+#: application/modules/star_rating/assets/admin/settings.tpl:10
 msgid "Save"
 msgstr "Сохранить"
 
-#: ./application/modules/star_rating/admin.php:39
+#: application/modules/star_rating/admin.php:42
 msgid "Settings saved success"
 msgstr "Сохранение настроек прошло успешно"
 
-#: ./application/modules/star_rating/module_info.php:4
+#: application/modules/star_rating/module_info.php:7
 msgid "Rating"
 msgstr "Рейтинг"
 
-#: ./application/modules/star_rating/module_info.php:5
+#: application/modules/star_rating/module_info.php:8
 msgid "Allows you to display products, categories and pages rating"
 msgstr "Позволяет отображать рейтинг продуктов, категорий и страниц"
-

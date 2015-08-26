@@ -1,1 +1,0 @@
-<ul class="nav navHorizontal headerMenu">{$wrapper}</ul>

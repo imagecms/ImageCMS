@@ -17,7 +17,7 @@
 
         <!----------------------------------------------------- CREATE GROUP-------------------------------------------------------------->
         <div class="tab-pane">
-            <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+            <table class="table  table-bordered table-hover table-condensed content_big_td">
                 <thead>
                     <tr>
                         <th colspan="6">
@@ -28,7 +28,7 @@
                 <tbody>
                     <tr>
                         <td colspan="6">
-                            <div class="inside_padd span9">
+                            <div class="inside_padd">
                                 <div class="form-horizontal">
                                     <form id="create" method="post" active="{$BASE_URL}admin/components/cp/user_manager/create">
                                         <div class="control-group">

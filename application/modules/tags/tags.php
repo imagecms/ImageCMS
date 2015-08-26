@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Image CMS
@@ -11,19 +12,24 @@ if (!defined('BASEPATH'))
 class Tags extends MY_Controller {
 
     public $min_font_size = 10;
+
     public $max_font_size = 26;
+
     public $min_count = -1;
+
     public $max_count = -1;
+
     public $delimiter = ' ';
+
     public $tag_url_prefix = '/tags/search/';
-    public $tags = array();
+
+    public $tags = [];
 
     public function __construct() {
         parent::__construct();
         $this->load->module('core');
         $lang = new MY_Lang();
-            $lang->load('tags');
-        // $this->output->enable_profiler(TRUE);
+        $lang->load('tags');
     }
 
     public function index() {
@@ -47,11 +53,12 @@ class Tags extends MY_Controller {
     }
 
     // Autoload default function
+
     public function autoload() {
         $this->load->helper('tags');
     }
 
-    public function initialize($config = array()) {
+    public function initialize($config = []) {
         if (count($config) > 0) {
             foreach ($config as $k => $v) {
                 if (isset($this->$k)) {
@@ -78,9 +85,9 @@ class Tags extends MY_Controller {
 
         $tag = urldecode($tag);
         $tags = explode(':', $tag);
-
-        if (count($tags) > 0) {
-            for ($i = 0; $i < count($tags); $i++) {
+        $countTags = count($tags);
+        if ($countTags > 0) {
+            for ($i = 0; $i < $countTags; $i++) {
                 $tags[$i] = urldecode($tags[$i]);
             }
 
@@ -95,8 +102,8 @@ class Tags extends MY_Controller {
             $error = TRUE;
         } else {
             // Get pages
-            $pages_id = array();
-            $tags_ids = array();
+            $pages_id = [];
+            $tags_ids = [];
 
             foreach ($ids->result_array() as $row) {
                 $tags_ids[] = $row['id'];
@@ -115,7 +122,7 @@ class Tags extends MY_Controller {
 
             if (count($pages_id) > 0) {
                 $this->db->select('content.*');
-                $this->db->select('CONCAT_WS("", content.cat_url, content.url) as full_url');
+                $this->db->select('CONCAT_WS( "", content.cat_url, content.url ) as full_url');
                 $this->db->where('post_status', 'publish');
                 $this->db->where('publish_date <=', time());
                 $this->db->where('lang', $this->config->item('cur_lang'));
@@ -137,18 +144,16 @@ class Tags extends MY_Controller {
                 if (count($pages) >= $this->search->row_count) {
                     $this->load->library('Pagination');
 
-                    $config['base_url'] = site_url('tags/search/' . $tag . '/');
-                    $config['total_rows'] = count($pages_id);
-                    $config['per_page'] = $this->search->row_count;
-                    $config['uri_segment'] = $this->uri->total_segments();
-                    $config['first_link']  = lang("The first", 'tags');
-                    $config['last_link']   = lang("Last", 'tags');
+                    $paginationConfig['base_url'] = site_url('tags/search/' . $tag . '/');
+                    $paginationConfig['total_rows'] = count($pages_id);
+                    $paginationConfig['per_page'] = $this->search->row_count;
+                    $paginationConfig['uri_segment'] = $this->uri->total_segments();
+                    $paginationConfig['first_link'] = lang("The first", 'tags');
+                    $paginationConfig['last_link'] = lang("Last", 'tags');
+                    include_once "./templates/{$this->config->item('template')}/paginations.php";
+                    $paginationConfig['page_query_string'] = FALSE;
 
-                    $config['cur_tag_open'] = '<span class="active">';
-                    $config['cur_tag_close'] = '</span>';
-
-                    $this->pagination->num_links = 5;
-                    $this->pagination->initialize($config);
+                    $this->pagination->initialize($paginationConfig);
                     $this->template->assign('pagination', $this->pagination->create_links());
                 }
                 //End pagination
@@ -168,9 +173,8 @@ class Tags extends MY_Controller {
         }
     }
 
-    public function prepare_tags($array = array()) {
-        $unique_tags = array();
-        $result = array();
+    public function prepare_tags($array = []) {
+        $result = [];
 
         if (count($array) > 0) {
             $result = $array;
@@ -178,30 +182,34 @@ class Tags extends MY_Controller {
             $tags = $this->get_all_tags();
 
             if (count($tags) > 0) {
-                $frequency = array();
-                $tag_values = array();
+                $frequency = [];
+                $currentLanguageId = MY_Controller::getCurrentLanguage('id');
 
-                $this->db->select('tag_id');
-                $content_tags = $this->db->get('content_tags')->result_array();
+                $content_tags = $this->db
+                    ->select('tag_id')
+                    ->join('content', "content_tags.page_id=content.id AND content.lang=$currentLanguageId")
+                    ->get('content_tags')->result_array();
 
                 foreach ($content_tags as $val) {
                     $tag_id = $val['tag_id'];
 
                     if (isset($frequency[$tag_id])) {
-                        $frequency[$tag_id]++;
+                        $frequency[$tag_id] ++;
                     } else {
                         $frequency[$tag_id] = 1;
                     }
                 }
 
                 foreach ($tags as $tag) {
-                    array_push($result, array('value' => $tag['value'], 'count' => $frequency[$tag['id']]));
+                    if ($frequency[$tag['id']]) {
+                        array_push($result, ['value' => $tag['value'], 'count' => $frequency[$tag['id']]]);
+                    }
                 }
             }
         }
 
         // Find min. and max. tag count value
-        foreach ($result as $k => $v) {
+        foreach ($result as $v) {
             $count = $v['count'];
 
             if ($count > $this->max_count) {
@@ -230,7 +238,7 @@ class Tags extends MY_Controller {
                 break;
 
             case 'array':
-                $tags_cloud = array();
+                $tags_cloud = [];
                 break;
         }
         $tags = $this->tags;
@@ -245,15 +253,16 @@ class Tags extends MY_Controller {
                 $increase = 0;
             }
 
-            $n = 0;
             foreach ($tags as $tag) {
                 $font_size = round($this->min_font_size + ($tag['count'] * $increase));
 
-                if ($font_size > $this->max_font_size)
+                if ($font_size > $this->max_font_size) {
                     $font_size = $this->max_font_size;
+                }
 
-                if ($font_size < $this->min_font_size)
+                if ($font_size < $this->min_font_size) {
                     $font_size = $this->max_font_size;
+                }
 
                 if ($return_type == 'html') {
                     //$tags_cloud .= $this->delimiter.'<span style="font-size:'.$font_size.'px">'.anchor($this->tag_url_prefix.$tag['value'], $tag['value']).'</span>';
@@ -275,7 +284,7 @@ class Tags extends MY_Controller {
      * @param string $order - possible values: SORT_DESC, SORT_ASC
      */
     public function _sort_tags($sort_var = 'count', $order = SORT_DESC) {
-        $values = array();
+        $values = [];
 
         if ($sort_var != 'count' AND $sort_var != 'value') {
             $sort_var = 'count';
@@ -291,38 +300,60 @@ class Tags extends MY_Controller {
     public function _set_page_tags($tags_str = '', $page_id) {
         $tags_arr = explode(',', $tags_str);
 
-        $this->db->delete('content_tags', array('page_id' => $page_id));
+        $this->db->delete('content_tags', ['page_id' => $page_id]);
 
         if (count($tags_arr) > 0) {
-            foreach ($tags_arr as $k => $v) {
+            foreach ($tags_arr as $v) {
                 if (trim($v) != '') {
                     // Check if tag exits
-                    if ($this->db->get_where('tags', array('value' => trim($v)))->num_rows() > 0) {
+                    if ($this->db->get_where('tags', ['value' => trim($v)])->num_rows() > 0) {
                         $this->db->limit(1);
-                        $query = $this->db->get_where('tags', array('value' => trim($v)))->row();
+                        $query = $this->db->get_where('tags', ['value' => trim($v)])->row();
                         $tag_id = $query->id;
                     } else {
                         // Create new tag
-                        $this->db->insert('tags', array('value' => trim($v)));
+                        $this->db->insert('tags', ['value' => trim($v)]);
                         $tag_id = $this->db->insert_id();
                     }
 
-                    if (mb_strlen($v, 'utf-8') > 1)
-                        $this->db->insert('content_tags', array('page_id' => $page_id, 'tag_id' => $tag_id));
+                    if (mb_strlen($v, 'utf-8') > 1) {
+                        $this->db->insert('content_tags', ['page_id' => $page_id, 'tag_id' => $tag_id]);
+                    }
                 }
             }
         }
 
-        $this->_remove_orphans();
+//        $this->_remove_orphans();
     }
 
-    public function _remove_orphans() {
+    public function _remove_orphans($page_id = null) {
+        $page = $this->db->where('id', $page_id)->get('content');
+        $page = $page ? $page->row_array() : [];        
+        $page_id = $page['lang_alias'] ? $page['lang_alias'] : $page_id;
+        
+        if ($page_id) {
+            $content_tags = $this->db
+                ->select('content_tags.id')
+                ->where('content.id', $page_id)
+                ->or_where('content.lang_alias', $page_id)
+                ->join('content', "content_tags.page_id=content.id")
+                ->get('content_tags');
+        
+            $content_tags = $content_tags ? $content_tags->result_array() : [];
+            $content_tags_ids = [];
+            foreach ($content_tags as $tag) {
+                $content_tags_ids[] = $tag['id'];
+            }
+
+            $this->db->where_in('id', $content_tags_ids)->delete('content_tags');
+        }
+
         $this->db->select('page_id, tag_id');
         $query = $this->db->get('content_tags');
 
         if (NULL != $query) {
             if ($query->num_rows() > 0) {
-                $tags = array();
+                $tags = [];
 
                 foreach ($query->result_array() as $tag) {
                     $tags[] = $tag['tag_id'];
@@ -330,6 +361,8 @@ class Tags extends MY_Controller {
 
                 $this->db->where_not_in('id', $tags);
                 $this->db->delete('tags');
+            } else {
+                $this->db->where('id > 0')->delete('tags');
             }
         }
     }
@@ -340,7 +373,7 @@ class Tags extends MY_Controller {
 
         if (NULL != $query) {
             if ($query->num_rows() > 0) {
-                $tags = array();
+                $tags = [];
 
                 foreach ($query->result_array() as $val) {
                     $tags[] = $val['tag_id'];
@@ -363,45 +396,47 @@ class Tags extends MY_Controller {
 
     // Create content_tags table
     // TODO: move install/deinstall to model.
+
     public function _install() {
-        if ($this->dx_auth->is_admin() == FALSE)
+        if ($this->dx_auth->is_admin() == FALSE) {
             exit;
+        }
 
         $this->load->dbforge();
 
         //content tags
-        $fields = array(
-            'id' => array(
+        $fields = [
+            'id' => [
                 'type' => 'INT',
                 'constraint' => 11,
                 'auto_increment' => TRUE,
-            ),
-            'page_id' => array(
+            ],
+            'page_id' => [
                 'type' => 'INT',
                 'constraint' => 11,
-            ),
-            'tag_id' => array(
+            ],
+            'tag_id' => [
                 'type' => 'INT',
                 'constraint' => 11,
-            ),
-        );
+            ],
+        ];
 
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_field($fields);
         $this->dbforge->create_table('content_tags', TRUE);
 
         //tags
-        $fields = array(
-            'id' => array(
+        $fields = [
+            'id' => [
                 'type' => 'INT',
                 'constraint' => 11,
                 'auto_increment' => TRUE,
-            ),
-            'value' => array(
+            ],
+            'value' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
-            )
-        );
+            ]
+        ];
 
         $this->dbforge->add_key('id', true);
         $this->dbforge->add_key('value');
@@ -410,13 +445,15 @@ class Tags extends MY_Controller {
 
         //autoload
         $this->db->where('name', 'tags');
-        $this->db->update('components', array('autoload' => '1'));
+        $this->db->update('components', ['autoload' => '1']);
     }
 
     // Delete tags table
+
     public function _deinstall() {
-        if ($this->dx_auth->is_admin() == FALSE)
+        if ($this->dx_auth->is_admin() == FALSE) {
             exit;
+        }
 
         $this->load->dbforge();
         $this->dbforge->drop_table('content_tags');

@@ -23,14 +23,14 @@ class Cfcm_forms extends MY_Controller {
         $fields = array(
             'field_name' => array(
                 'type' => 'text',
-                'label' => lang('Name', 'cfcm') . ':',
+                'label' => lang('Name', 'cfcm') . ': '."<span class='must'>*</span>",
                 'validation' => 'alpha_dash|max_length[255]',
                 'help_text' => lang('To name will be prefixed with', 'cfcm') . ' field_',
                 'class' => 'required alphanumeric'
             ),
             'label' => array(
                 'type' => 'text',
-                'label' => lang('Label', 'cfcm') . ':',
+                'label' => lang('Label', 'cfcm') . ': '."<span class='must'>*</span>",
                 'validation' => 'max_length[255]',
                 'class' => 'required'
             ),
@@ -49,6 +49,7 @@ class Cfcm_forms extends MY_Controller {
                 'label' => lang('Group', 'cfcm') . ':',
                 'initial' => self::prepare_groups_select(),
                 'multiple' => true,
+                'help_text' => lang('Tighten Ctrl to select multiple items', 'admin'),
                 'class' => 'required'
             ),
             'data' => array(
@@ -66,7 +67,7 @@ class Cfcm_forms extends MY_Controller {
 
         $f['label'] = array(
             'type' => 'text',
-            'label' => lang('Label', 'cfcm') . ':',
+            'label' => lang('Label', 'cfcm') . ': '."<span class='must'>*</span>",
             'validation' => 'max_length[255]',
             'class' => 'required',
         );
@@ -81,7 +82,7 @@ class Cfcm_forms extends MY_Controller {
         );
         $f['required'] = array(
             'type' => 'checkbox',
-            'label' => lang('Required field', 'cfcm') . ':',
+            'label' => lang('Required field', 'cfcm'),
             'initial' => '1',
         );
         $f['type'] = array(
@@ -128,15 +129,15 @@ class Cfcm_forms extends MY_Controller {
             );
         }
 
-//        if ($type == 'textarea')
-//        {
-//                $f['enable_tinymce_editor'] = array(
-//                'type'  => 'checkbox',
-//                'label' => lang('Enable Tinymce editor', 'cfcm'). ':',
-//                'initial'=> '1',
-//                'checked'=> FALSE,
-//            );
-//        }
+        //        if ($type == 'textarea')
+        //        {
+        //                $f['enable_tinymce_editor'] = array(
+        //                'type'  => 'checkbox',
+        //                'label' => lang('Enable Tinymce editor', 'cfcm'). ':',
+        //                'initial'=> '1',
+        //                'checked'=> FALSE,
+        //            );
+        //        }
 
         $f['validation'] = array(
             'type' => 'text',
@@ -145,19 +146,21 @@ class Cfcm_forms extends MY_Controller {
         );
         $f['groups'] = array(
             'type' => 'select',
-            'label' => lang('Group', 'cfcm') . ':',
+            'label' => lang('Group', 'cfcm') . ': ',
             'initial' => self::prepare_groups_select(),
             'multiple' => true,
+            'help_text' => lang('Tighten Ctrl to select multiple items', 'admin'),
             'class' => 'required'
         );
         return $this->forms->add_fields($f);
     }
 
     public function create_group_form() {
-        return $this->forms->add_fields(array(
+        return $this->forms->add_fields(
+            array(
                     'name' => array(
                         'type' => 'text',
-                        'label' => lang('Name', 'cfcm'),
+                        'label' => lang('Name', 'cfcm').': '."<span class='must'>*</span>",
                         'validation' => 'max_length[255]',
                         'class' => 'required'
                     ),
@@ -165,10 +168,12 @@ class Cfcm_forms extends MY_Controller {
                         'type' => 'textarea',
                         'label' => lang('Description', 'cfcm'),
                     ),
-        ));
+            )
+        );
     }
 
     // Return groups array: group_id => name
+
     public function prepare_groups_select() {
         $this->db->select('id, name');
         $groups = $this->db->get('content_field_groups');

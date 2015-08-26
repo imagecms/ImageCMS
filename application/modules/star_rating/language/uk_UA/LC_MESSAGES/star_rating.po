@@ -1,0 +1,93 @@
+﻿msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-03-02 02:43+0200\n"
+"PO-Revision-Date: 2015-03-02 02:43+0200\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: application/modules/star_rating/assets/admin/settings.tpl:29
+msgid "Show on"
+msgstr "Показувати на"
+
+#: application/modules/star_rating/admin.php:41
+msgid "Star rating was edited"
+msgstr "Рейтинг був відредагований"
+
+#: application/modules/star_rating/module_info.php:8
+msgid "Allows you to display products, categories and pages rating"
+msgstr "Дозволяє відображати рейтинг продуктів, категорій і сторінок"
+
+#: application/modules/star_rating/module_info.php:7
+msgid "Rating"
+msgstr "Рейтинг"
+
+#: application/modules/star_rating/admin.php:42
+msgid "Settings saved success"
+msgstr "Налаштування успішно збережені"
+
+#: application/modules/star_rating/assets/star_rating.tpl:8
+#: application/modules/star_rating/assets/star_rating.tpl:17
+msgid "Leav"
+msgstr "Доплачувати"
+
+#: application/modules/star_rating/assets/star_rating.tpl:8
+#: application/modules/star_rating/assets/star_rating.tpl:18
+msgid "people(s)"
+msgstr "люди"
+
+#: application/modules/star_rating/assets/admin/settings.tpl:5
+msgid "Module settings starRating"
+msgstr "Налаштування модулю starRating"
+
+#: application/modules/star_rating/assets/admin/settings.tpl:9
+msgid "Back"
+msgstr "Повернутися"
+
+#: application/modules/star_rating/assets/admin/settings.tpl:10
+msgid "Save"
+msgstr "Зберегти"
+
+#: application/modules/star_rating/assets/admin/settings.tpl:11
+msgid "Save and exit"
+msgstr "Зберегти і вийти"
+
+#: application/modules/star_rating/assets/admin/settings.tpl:21
+msgid "Show on pages"
+msgstr "Показувати на сторінках"
+
+#: application/modules/star_rating/assets/admin/settings.tpl:35
+msgid "Main"
+msgstr "Головна"
+
+#: application/modules/star_rating/assets/admin/settings.tpl:42
+msgid "Contains"
+msgstr "Вміст"
+
+#: application/modules/star_rating/assets/admin/settings.tpl:50
+msgid "Category"
+msgstr "Категорія"
+
+#: application/modules/star_rating/assets/admin/settings.tpl:58
+msgid "Product"
+msgstr "Товар"
+
+#: application/modules/star_rating/assets/admin/settings.tpl:65
+msgid "Products category"
+msgstr "Товарна категорія"
+
+#: application/modules/star_rating/assets/admin/settings.tpl:72
+msgid "Brands"
+msgstr "Бренди"

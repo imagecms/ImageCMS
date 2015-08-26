@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 /**
  * CodeIgniter
  *
@@ -184,11 +185,11 @@ if (!function_exists('create_captcha')) {
 
         }
 
-        $defaults = array('word' => '', 'img_path' => '', 'img_url' => '', 'img_width' => '150', 'img_height' => '30', 'font_size' => '', 'font_path' => '', 'show_grid' => true, 'skew' => true, 'expiration' => 7200);
+        $defaults = array('word' => '', 'img_path' => '', 'img_url' => '', 'img_width' => '150', 'img_height' => '30', 'font_size' => '', 'font_path' => '', 'show_grid' => true, 'skew' => true, 'expiration' => 7200, 'alt' => 'captcha');
 
         foreach ($defaults as $key => $val) {
             if (!is_array($data)) {
-                if (!isset($$key) OR $$key == '') {
+                if (!isset($$key) OR $ $key == '') {
                     $$key = $val;
                 }
             } else {
@@ -278,7 +279,7 @@ if (!function_exists('create_captcha')) {
         // Create image
         // -----------------------------------
 
-        $im = ImageCreateTruecolor($img_width, $img_height);
+        $im = imagecreatetruecolor($img_width, $img_height);
 
         // -----------------------------------
         //  Assign colors
@@ -297,7 +298,7 @@ if (!function_exists('create_captcha')) {
         //  Create the rectangle
         // -----------------------------------
 
-        ImageFilledRectangle($im, 0, 0, $img_width, $img_height, $bg_color);
+        imagefilledrectangle($im, 0, 0, $img_width, $img_height, $bg_color);
 
         if ($show_grid == TRUE) {
             // X grid
@@ -330,8 +331,8 @@ if (!function_exists('create_captcha')) {
             $x = rand(4, $img_width - (($font_size + ($font_size >> 1)) * $length));
             // y isnt used here
         }
-
-        for ($i = 0; $i < strlen($word); $i++) {
+        $wordLen = strlen($word);
+        for ($i = 0; $i < $wordLen; $i++) {
             if ($use_font == FALSE) {
                 $y = rand(0, $img_height / 2);
                 imagestring($im, $font_size, $x, $y, substr($word, $i, 1), $text_color);
@@ -340,14 +341,13 @@ if (!function_exists('create_captcha')) {
                 $letter = substr($word, $i, 1);
                 $less_rotate = array('c', 'N', 'U', 'Z', '7', '6', '9'); //letters that we don't want rotated too much...
 
-                $angle = $skew == TRUE ? (in_array($letter, $less_rotate)) ? rand(-5, 5) : rand(-15, 15)  : 0;
+                $angle = $skew == TRUE ? (in_array($letter, $less_rotate)) ? rand(-5, 5) : rand(-15, 15) : 0;
                 $y = $img_height / 2 + ($font_size >> 1) + ($skew == TRUE ? rand(-9, 9) : 0);
                 $x += ($font_size >> 2);
                 imagettftext($im, $font_size, $angle, $x, $y, $text_color, $font_file, $letter);
                 $x += $font_size + ($font_size >> 2);
             }
         }
-
 
         // -----------------------------------
         //  Create the border
@@ -361,14 +361,13 @@ if (!function_exists('create_captcha')) {
 
         $img_name = $now . '.png';
 
-        ImagePNG($im, $img_path . $img_name);
+        imagepng($im, $img_path . $img_name);
 
-        $img = "<img src=\"$img_url$img_name\" width=\"$img_width\" height=\"$img_height\" style=\"border:0;\" alt=\" \" />";
+        $img = "<img src=\"$img_url$img_name\" width=\"$img_width\" height=\"$img_height\" style=\"border:0;\" alt=\"$alt\" />";
 
-        ImageDestroy($im);
+        imagedestroy($im);
 
         return array('word' => $word, 'time' => $now, 'image' => $img);
     }
 
 }
-

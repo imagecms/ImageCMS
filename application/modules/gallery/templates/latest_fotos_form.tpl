@@ -15,14 +15,14 @@
     <div class="tab-content">
         <div class="row-fluid">
             <form action="{$BASE_URL}admin/widgets_manager/update_widget/{$widget.id}" id="widget_form" method="post" class="form-horizontal">
-                <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                     <th>{lang("Settings", 'gallery')}</th>
                     </thead>
                     <tbody>
                         <tr>
                             <td>
-                                <div class="inside_padd span9">
+                                <div class="inside_padd">
                                     <div class="row-fluid">
                                         <div class="control-group">
                                             <label class="control-label" for="comcount">{lang("Images limit", 'gallery')}:</label>

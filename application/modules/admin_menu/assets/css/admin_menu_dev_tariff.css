@@ -1,0 +1,69 @@
+.table-admin-menu{
+    min-height: 800px; 
+}
+.table-admin-menu td{
+    padding: 0px;
+}
+
+.table-admin-menu h4{
+    margin-left: 20px;
+    line-height: 1;
+    font-size: 18px;
+}
+
+.table-admin-menu hr{
+    margin-top: 0px;
+}
+
+.table-admin-menu ul > li{
+    cursor: pointer;
+}
+
+.sortableMenu li{
+    opacity: 1;
+}
+
+#workPlace .frame_nav{
+    position: relative;min-height: 39px;margin-bottom: 23px;
+    box-shadow: inset 0 1px #4bb8e3;
+    background: rgb(18,163,208); /* Old browsers */
+    background: -moz-linear-gradient(left,  rgba(18,163,208,1) 0%, rgba(10,142,195,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(18,163,208,1)), color-stop(100%,rgba(10,142,195,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left,  rgba(18,163,208,1) 0%,rgba(10,142,195,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left,  rgba(18,163,208,1) 0%,rgba(10,142,195,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(left,  rgba(18,163,208,1) 0%,rgba(10,142,195,1) 100%); /* IE10+ */
+    background: linear-gradient(to right,  rgba(18,163,208,1) 0%,rgba(10,142,195,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#12a3d0', endColorstr='#0a8ec3',GradientType=1 ); /* IE6-9 */
+}
+
+#workPlace .frame_nav table{border-right: 1px solid #3cb2da;/*table-layout: auto;*/}
+#workPlace .frame_nav td{vertical-align: middle;border-left: 1px solid #3cb2da;}
+#workPlace .frame_nav td > a{display: block;font-weight: bold;color: #fff;text-decoration: none;text-align: center;padding: 11px 0 10px;}
+#workPlace .frame_nav td > a:hover{background-color: #1aafde;}
+#workPlace .frame_nav td.active{background-color: #1aafde;}
+#workPlace .frame_nav .dropdown-menu{left: -1px;border-top: 0;}
+
+#workPlace .dropdown-menu a{text-decoration: none;}
+#workPlace .dropdown-menu li>a:hover,#workPlace .dropdown-menu li>a:focus,#workPlace  .dropdown-submenu:hover>a{background-color: #f2f2f2;}
+
+.mini-layout{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.mini-layout > .frame_title{
+    margin-left: 0px;
+}
+
+div.search{
+    text-align: right;
+    margin-bottom: 0;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+div.search input#searchTariff{
+    width: 300px!important;
+    margin-bottom: 0;
+}
+

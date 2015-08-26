@@ -78,6 +78,7 @@ class BaseEmail extends ParentEmail {
         if (parent::sendEmail($send_to, $patern_name, $variables, $attachment)) {
             return TRUE;
         } else {
+//            echo $this->email->print_debugger();
             return $this->errors;
         }
     }
@@ -87,18 +88,41 @@ class BaseEmail extends ParentEmail {
      * @return string
      */
     public function mailTest() {
-        $this->from = $this->input->post('from');
-        $this->from_email = $this->input->post('from_email');
-        $this->send_to = $this->input->post('send_to');
-        $this->theme = $this->input->post('theme');
-        $this->port = $this->input->post('port');
-        $this->protocol = $this->input->post('protocol');
-        $this->mailpath = $this->input->post('mailpath');
-        $this->type = 'text';
-        $config = array('port' => $this->port, 'protocol' => $this->protocol, 'mailpath' => $this->mailpath, 'type' => $this->type);
+        if ('smtp' == strtolower($this->input->post('protocol'))) {
+            $this->smtpMailTest();
 
-        return parent::mailTest($config);
+            return;
+        } else {
+            $this->from = $this->input->post('from');
+            $this->from_email = $this->input->post('from_email');
+            $this->send_to = $this->input->post('send_to');
+            $this->theme = $this->input->post('theme');
+            $this->port = $this->input->post('port');
+            $this->protocol = $this->input->post('protocol');
+            $this->mailpath = $this->input->post('mailpath');
+            $this->type = 'text';
+            $config = array('port' => $this->port, 'protocol' => $this->protocol, 'mailpath' => $this->mailpath, 'type' => $this->type);
+
+            return parent::mailTest($config);
+        }
     }
 
+    public function smtpMailTest() {
+        $config = Array(
+            'protocol' => 'smtp', //smtp
+            'smtp_host' => $this->input->post('smtp_host'), //'smtp.gmail.com',
+            'smtp_port' => $this->input->post('smtp_port'), // 587, 465
+            'smtp_crypto' => $this->input->post('smtp_crypto'), //tls||ssl
+            'smtp_user' => $this->input->post('smtp_user'),
+            'smtp_pass' => $this->input->post('smtp_pass'),
+        );
+        $this->load->library('email', $config);
+        $this->email->from($this->input->post('from_email'), $this->input->post('from'));
+        $this->email->to($this->input->post('send_to'));
+        $this->email->subject($this->input->post('theme'));
+        $this->email->message(lang('Check email sending', 'cmsemail'));
+        $this->email->set_newline("\r\n");
+        $this->email->send();
+        echo $this->email->print_debugger();
+    }
 }
-

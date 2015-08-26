@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-29 04:20+0300\n"
-"PO-Revision-Date: 2014-05-29 04:20+0300\n"
+"POT-Creation-Date: 2015-06-03 01:27+0300\n"
+"PO-Revision-Date: 2015-06-03 01:27+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -18,340 +18,373 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: ./application/modules/cfcm/templates/admin/index.tpl:105
-#: ./application/modules/cfcm/templates/admin/group_list.tpl:65
+#: application/modules/cfcm/templates/admin/index.tpl:92
+msgid "No groups"
+msgstr "Список групп пуст"
+
+#: application/modules/cfcm/cfcm_forms.php:176
+msgid "Without group"
+msgstr "Без группы"
+
+#: application/modules/cfcm/templates/public/additional_services_form_min.tpl:101
+#: application/modules/cfcm/templates/public/additional_services_form.tpl:100
+msgid "Send"
+msgstr ""
+
+#: application/modules/cfcm/templates/public/additional_services_form_min.tpl:105
+#: application/modules/cfcm/templates/public/additional_services_form.tpl:104
+msgid "Attach"
+msgstr ""
+
+#: application/modules/cfcm/templates/public/additional_services_form_min.tpl:106
+#: application/modules/cfcm/templates/public/additional_services_form.tpl:105
+msgid "Choose file"
+msgstr ""
+
+#: application/modules/cfcm/templates/public/additional_services_form_min.tpl:111
+#: application/modules/cfcm/templates/public/additional_services_form.tpl:110
+msgid "Empty page."
+msgstr ""
+
+#: application/modules/cfcm/admin.php:414
+#: application/modules/cfcm/admin.php:415
+msgid "Group deleted successfuly"
+msgstr "Группа полей удалена"
+
+#: application/modules/cfcm/admin.php:374
+#: application/modules/cfcm/admin.php:376
+msgid "Group has been updated"
+msgstr "Группа полей отредактирована"
+
+#: application/modules/cfcm/admin.php:329
+#: application/modules/cfcm/admin.php:330
+msgid "Group has been created"
+msgstr "Группа полей создана"
+
+#: application/modules/cfcm/templates/admin/index.tpl:110
+#: application/modules/cfcm/templates/admin/group_list.tpl:65
 msgid "Edit custom group"
 msgstr "Редактировать группу полей"
 
-#: ./application/modules/cfcm/admin.php:117
+#: application/modules/cfcm/admin.php:117
 msgid "Select another  name"
 msgstr "Выберите другое имя"
 
-#: ./application/modules/cfcm/templates/admin/_form.tpl:10
+#: application/modules/cfcm/templates/admin/_form.tpl:10
 msgid "Back"
 msgstr "Вернуться"
 
-#: ./application/modules/cfcm/templates/admin/_form.tpl:11
+#: application/modules/cfcm/templates/admin/_form.tpl:11
 msgid "Create"
 msgstr "Создать"
 
-#: ./application/modules/cfcm/templates/admin/_form.tpl:12
+#: application/modules/cfcm/templates/admin/_form.tpl:12
 msgid "Create and exit"
 msgstr "Создание поля"
 
-#: ./application/modules/cfcm/admin.php:91
+#: application/modules/cfcm/admin.php:91
 msgid "Field creating"
 msgstr "Создание поля"
 
-#: ./application/modules/cfcm/cfcm_forms.php:108
+#: application/modules/cfcm/cfcm_forms.php:109
 msgid "Checked"
 msgstr "Отмечен"
 
-#: ./application/modules/cfcm/admin.php:158
-#: ./application/modules/cfcm/admin.php:224
+#: application/modules/cfcm/admin.php:163
+#: application/modules/cfcm/admin.php:230
 msgid "Field editing"
 msgstr "Редактирование поля"
 
-#: ./application/modules/cfcm/admin.php:104
+#: application/modules/cfcm/admin.php:104
 msgid "Field Name cant contain only Latin alphanumeric characters"
 msgstr "Поле Название может содержать только латинские алфавитно-цифровые символы"
 
-#: ./application/modules/cfcm/cfcm_forms.php:133
+#: application/modules/cfcm/cfcm_forms.php:135
 msgid "Enable Tinymce editor"
 msgstr "Включить редактор Tinymce"
 
-#: ./application/modules/cfcm/templates/admin/index.tpl:47
+#: application/modules/cfcm/templates/admin/index.tpl:49
 msgid "Without catagory"
 msgstr "Без категории"
 
-#: ./application/modules/cfcm/templates/admin/index.tpl:19
+#: application/modules/cfcm/templates/admin/index.tpl:19
 msgid "Add field"
 msgstr "Создать поле"
 
-#: ./application/modules/cfcm/templates/admin/index.tpl:10
+#: application/modules/cfcm/templates/admin/index.tpl:10
 msgid "Fields groups"
 msgstr "Группы полей"
 
-#: ./application/modules/cfcm/templates/admin/index.tpl:69
+#: application/modules/cfcm/templates/admin/index.tpl:71
 msgid "List of additional fields is empty"
 msgstr "Список дополнительных полей пуст"
 
-#: ./application/modules/cfcm/templates/admin/index.tpl:81
+#: application/modules/cfcm/templates/admin/index.tpl:83
 msgid "Create group"
 msgstr "Создать группу"
 
-#: ./application/modules/cfcm/templates/admin/index.tpl:84
+#: application/modules/cfcm/templates/admin/index.tpl:88
 msgid "Field groups"
 msgstr "Группы полей"
 
-#: ./application/modules/cfcm/templates/admin/index.tpl:96
-#: ./application/modules/cfcm/templates/admin/group_list.tpl:57
+#: application/modules/cfcm/templates/admin/index.tpl:101
+#: application/modules/cfcm/templates/admin/group_list.tpl:57
 msgid "Fields"
 msgstr "Поля"
 
-#: ./application/modules/cfcm/templates/admin/group_list.tpl:109
+#: application/modules/cfcm/templates/admin/group_list.tpl:109
 msgid "Delete group"
 msgstr "Удалить группу"
 
-#: ./application/modules/cfcm/templates/admin/index.tpl:5
-#: ./application/modules/cfcm/templates/admin/group_list.tpl:5
+#: application/modules/cfcm/templates/admin/index.tpl:5
+#: application/modules/cfcm/templates/admin/group_list.tpl:5
 msgid "Field constructor"
 msgstr "Конструктор полей"
 
-#: ./application/modules/cfcm/templates/admin/index.tpl:9
+#: application/modules/cfcm/templates/admin/index.tpl:9
 msgid "All modules"
 msgstr "Все модули"
 
-#: ./application/modules/cfcm/templates/admin/index.tpl:9
-#: ./application/modules/cfcm/templates/admin/index.tpl:22
-#: ./application/modules/cfcm/templates/admin/fields_tab.tpl:1
-#: ./application/modules/cfcm/templates/admin/_onpage_form.tpl:5
+#: application/modules/cfcm/templates/public/_onpage_form_elfinder.tpl:6
+#: application/modules/cfcm/templates/public/_onpage_form.tpl:6
+#: application/modules/cfcm/templates/admin/_onpage_form_elfinder.tpl:5
+#: application/modules/cfcm/templates/admin/_onpage_form.tpl:5
+#: application/modules/cfcm/templates/admin/fields_tab.tpl:1
+#: application/modules/cfcm/templates/admin/index.tpl:9
+#: application/modules/cfcm/templates/admin/index.tpl:23
 msgid "Additional fields"
 msgstr "Дополнительные поля"
 
-#: ./application/modules/cfcm/templates/admin/index.tpl:10
+#: application/modules/cfcm/templates/admin/index.tpl:10
 msgid "Install modules"
 msgstr "Установите модули"
 
-#: ./application/modules/cfcm/templates/admin/index.tpl:27
-#: ./application/modules/cfcm/cfcm_forms.php:34
-#: ./application/modules/cfcm/cfcm_forms.php:70
+#: application/modules/cfcm/cfcm_forms.php:33
+#: application/modules/cfcm/cfcm_forms.php:69
+#: application/modules/cfcm/templates/admin/index.tpl:29
 msgid "Label"
 msgstr "Метка"
 
-#: ./application/modules/cfcm/templates/admin/index.tpl:28
-#: ./application/modules/cfcm/templates/admin/index.tpl:94
-#: ./application/modules/cfcm/templates/admin/group_list.tpl:55
-#: ./application/modules/cfcm/cfcm_forms.php:27
-#: ./application/modules/cfcm/cfcm_forms.php:158
+#: application/modules/cfcm/cfcm_forms.php:26
+#: application/modules/cfcm/cfcm_forms.php:160
+#: application/modules/cfcm/templates/admin/index.tpl:30
+#: application/modules/cfcm/templates/admin/index.tpl:99
+#: application/modules/cfcm/templates/admin/group_list.tpl:55
 msgid "Name"
 msgstr "Название"
 
-#: ./application/modules/cfcm/templates/admin/index.tpl:29
-#: ./application/modules/cfcm/cfcm_forms.php:45
-#: ./application/modules/cfcm/cfcm_forms.php:90
+#: application/modules/cfcm/cfcm_forms.php:44
+#: application/modules/cfcm/cfcm_forms.php:89
+#: application/modules/cfcm/templates/admin/index.tpl:31
 msgid "Type"
 msgstr "Тип"
 
-#: ./application/modules/cfcm/templates/admin/index.tpl:30
+#: application/modules/cfcm/templates/admin/index.tpl:32
 msgid "Categories"
 msgstr "Категории"
 
-#: ./application/modules/cfcm/templates/admin/index.tpl:31
-#: ./application/modules/cfcm/templates/admin/index.tpl:61
-#: ./application/modules/cfcm/templates/admin/index.tpl:97
-#: ./application/modules/cfcm/templates/admin/index.tpl:113
-#: ./application/modules/cfcm/templates/admin/group_list.tpl:73
+#: application/modules/cfcm/templates/admin/index.tpl:33
+#: application/modules/cfcm/templates/admin/index.tpl:63
+#: application/modules/cfcm/templates/admin/index.tpl:102
+#: application/modules/cfcm/templates/admin/index.tpl:118
+#: application/modules/cfcm/templates/admin/group_list.tpl:73
 msgid "Delete"
 msgstr "Удалить"
 
-#: ./application/modules/cfcm/templates/admin/index.tpl:87
-msgid "No groups"
-msgstr "Список груп пуст"
-
-#: ./application/modules/cfcm/templates/admin/index.tpl:95
-#: ./application/modules/cfcm/templates/admin/group_list.tpl:56
-#: ./application/modules/cfcm/cfcm_forms.php:164
+#: application/modules/cfcm/cfcm_forms.php:166
+#: application/modules/cfcm/templates/admin/index.tpl:100
+#: application/modules/cfcm/templates/admin/group_list.tpl:56
 msgid "Description"
 msgstr "Описание"
 
-#: ./application/modules/cfcm/templates/admin/group_list.tpl:11
+#: application/modules/cfcm/templates/admin/group_list.tpl:11
 msgid "Go back"
 msgstr "Назад"
 
-#: ./application/modules/cfcm/templates/admin/_form.tpl:11
-#: ./application/modules/cfcm/templates/admin/group_list.tpl:12
+#: application/modules/cfcm/templates/admin/_form.tpl:11
+#: application/modules/cfcm/templates/admin/group_list.tpl:12
 msgid "Save"
 msgstr "Сохранить"
 
-#: ./application/modules/cfcm/templates/admin/_form.tpl:21
+#: application/modules/cfcm/templates/admin/_form.tpl:20
 msgid "Information"
 msgstr "Информация"
 
-#: ./application/modules/cfcm/templates/admin/_onpage_form.tpl:25
+#: application/modules/cfcm/templates/public/_onpage_form_elfinder.tpl:24
+#: application/modules/cfcm/templates/public/_onpage_form.tpl:25
+#: application/modules/cfcm/templates/admin/_onpage_form_elfinder.tpl:25
+#: application/modules/cfcm/templates/admin/_onpage_form.tpl:26
 msgid "Select an image"
 msgstr "Выберите изображение"
 
-#: ./application/modules/cfcm/templates/admin/_onpage_form.tpl:31
+#: application/modules/cfcm/templates/public/_onpage_form_elfinder.tpl:31
+#: application/modules/cfcm/templates/public/_onpage_form.tpl:34
+#: application/modules/cfcm/templates/admin/_onpage_form_elfinder.tpl:32
+#: application/modules/cfcm/templates/admin/_onpage_form.tpl:35
 msgid "Select a file"
 msgstr "Выберите файл"
 
-#: ./application/modules/cfcm/templates/admin/top_navigation.tpl:3
+#: application/modules/cfcm/templates/admin/top_navigation.tpl:3
 msgid "Field Constructor"
 msgstr "Конструктор поля"
 
-#: ./application/modules/cfcm/templates/admin/top_navigation.tpl:4
+#: application/modules/cfcm/templates/admin/top_navigation.tpl:4
 msgid "Field list"
 msgstr "Список полей"
 
-#: ./application/modules/cfcm/templates/admin/top_navigation.tpl:5
+#: application/modules/cfcm/templates/admin/top_navigation.tpl:5
 msgid "Create a field"
 msgstr "Создать поле"
 
-#: ./application/modules/cfcm/templates/admin/top_navigation.tpl:6
+#: application/modules/cfcm/templates/admin/top_navigation.tpl:6
 msgid "Group list"
 msgstr "Список групп"
 
-#: ./application/modules/cfcm/templates/admin/top_navigation.tpl:7
-#: ./application/modules/cfcm/templates/admin/group_list.tpl:101
+#: application/modules/cfcm/templates/admin/top_navigation.tpl:7
+#: application/modules/cfcm/templates/admin/group_list.tpl:101
 msgid "Create a group"
 msgstr "Создать группу"
 
-#: ./application/modules/cfcm/templates/admin/_form.tpl:12
-#: ./application/modules/cfcm/templates/admin/group_list.tpl:13
+#: application/modules/cfcm/templates/admin/_form.tpl:12
+#: application/modules/cfcm/templates/admin/group_list.tpl:13
 msgid "Save and exit"
 msgstr "Сохранить и выйти"
 
-#: ./application/modules/cfcm/templates/admin/group_list.tpl:17
+#: application/modules/cfcm/templates/admin/group_list.tpl:17
 msgid "Russian"
 msgstr "Русский"
 
-#: ./application/modules/cfcm/templates/admin/group_list.tpl:21
+#: application/modules/cfcm/templates/admin/group_list.tpl:21
 msgid "English"
 msgstr "Английский"
 
-#: ./application/modules/cfcm/templates/admin/group_list.tpl:54
+#: application/modules/cfcm/templates/admin/group_list.tpl:54
 msgid "ID"
 msgstr "ID"
 
-#: ./application/modules/cfcm/templates/admin/group_list.tpl:72
+#: application/modules/cfcm/templates/admin/group_list.tpl:72
 msgid "Edit"
 msgstr "Редактировать"
 
-#: ./application/modules/cfcm/templates/admin/group_list.tpl:101
+#: application/modules/cfcm/templates/admin/group_list.tpl:101
 msgid "Empty group list or group list is empty"
 msgstr "Пустой список группы или группы список пуст"
 
-#: ./application/modules/cfcm/cfcm_forms.php:29
+#: application/modules/cfcm/cfcm_forms.php:28
 msgid "To name will be prefixed with"
 msgstr "К имени будет добавлен префикс"
 
-#: ./application/modules/cfcm/cfcm_forms.php:40
+#: application/modules/cfcm/cfcm_forms.php:39
 msgid "Participate in search"
 msgstr "Участвует в поиске"
 
-#: ./application/modules/cfcm/cfcm_forms.php:50
-#: ./application/modules/cfcm/cfcm_forms.php:146
+#: application/modules/cfcm/cfcm_forms.php:49
+#: application/modules/cfcm/cfcm_forms.php:148
 msgid "Group"
 msgstr "Группа"
 
-#: ./application/modules/cfcm/cfcm_forms.php:76
+#: application/modules/cfcm/cfcm_forms.php:75
 msgid "The initial value"
 msgstr "Начальное значение"
 
-#: ./application/modules/cfcm/cfcm_forms.php:80
+#: application/modules/cfcm/cfcm_forms.php:79
 msgid "Hint"
 msgstr "Подсказка"
 
-#: ./application/modules/cfcm/cfcm_forms.php:81
+#: application/modules/cfcm/cfcm_forms.php:80
 msgid "Field description "
 msgstr "Описание поля"
 
-#: ./application/modules/cfcm/cfcm_forms.php:85
+#: application/modules/cfcm/cfcm_forms.php:84
 msgid "Required field"
 msgstr "Обязательное поле"
 
-#: ./application/modules/cfcm/cfcm_forms.php:95
+#: application/modules/cfcm/cfcm_forms.php:94
 msgid "Specify the possible values in the new row"
 msgstr "Укажите возможные значения в новой строке"
 
-#: ./application/modules/cfcm/cfcm_forms.php:100
+#: application/modules/cfcm/cfcm_forms.php:100
 msgid "Multiple"
 msgstr ""
 
-#: ./application/modules/cfcm/cfcm_forms.php:116
+#: application/modules/cfcm/cfcm_forms.php:118
 msgid "Enable images viewing"
 msgstr "Включить просмотр изображений"
 
-#: ./application/modules/cfcm/cfcm_forms.php:123
+#: application/modules/cfcm/cfcm_forms.php:125
 msgid "Enable file viewing"
 msgstr "Включить просмотр файлов"
 
-#: ./application/modules/cfcm/cfcm_forms.php:141
+#: application/modules/cfcm/cfcm_forms.php:143
 msgid "Check conditions"
 msgstr "Условия проверки"
 
-#: ./application/modules/cfcm/cfcm_forms.php:142
+#: application/modules/cfcm/cfcm_forms.php:144
 msgid "For example"
 msgstr "Например"
 
-#: ./application/modules/cfcm/admin.php:60
+#: application/modules/cfcm/admin.php:60
+#: application/modules/cfcm/cfcm.php:54
 msgid "Protection code"
 msgstr "Защитный код"
 
-#: ./application/modules/cfcm/admin.php:96
+#: application/modules/cfcm/admin.php:96
 msgid "Specify the field name"
 msgstr "Укажите имя поля"
 
-#: ./application/modules/cfcm/admin.php:100
+#: application/modules/cfcm/admin.php:100
 msgid "Specify <b>Label</b> field"
 msgstr "Укажите <b> Метка</ B> поле"
 
-#: ./application/modules/cfcm/admin.php:138
+#: application/modules/cfcm/admin.php:138
+#: application/modules/cfcm/admin.php:139
 msgid "Field created"
 msgstr "Поле создано"
 
-#: ./application/modules/cfcm/admin.php:176
-#: ./application/modules/cfcm/admin.php:260
+#: application/modules/cfcm/admin.php:181
+#: application/modules/cfcm/admin.php:267
+#: application/modules/cfcm/admin.php:268
 msgid "Field has been updated"
 msgstr "Поле обновлено"
 
-#: ./application/modules/cfcm/admin.php:210
+#: application/modules/cfcm/admin.php:215
+#: application/modules/cfcm/admin.php:216
 msgid "Field deleted successfuly"
 msgstr "Поле успешно удалено"
 
-#: ./application/modules/cfcm/admin.php:275
+#: application/modules/cfcm/admin.php:284
 msgid "Field has not been found"
 msgstr "Поле не найдено"
 
-#: ./application/modules/cfcm/admin.php:307
+#: application/modules/cfcm/admin.php:317
 msgid "Creating a group"
 msgstr "Создание группы"
 
-#: ./application/modules/cfcm/admin.php:311
+#: application/modules/cfcm/admin.php:321
 msgid "Specify the group name"
 msgstr "Укажите название группы"
 
-#: ./application/modules/cfcm/admin.php:317
-msgid "Group has been created"
-msgstr "Группа была создана"
-
-#: ./application/modules/cfcm/admin.php:342
+#: application/modules/cfcm/admin.php:358
 msgid "Group has not been found"
 msgstr "Группа не была найдена"
 
-#: ./application/modules/cfcm/admin.php:348
+#: application/modules/cfcm/admin.php:364
 msgid "ID group editing"
 msgstr "Редактирование группы ID"
 
-#: ./application/modules/cfcm/admin.php:357
-msgid "Group has been updated"
-msgstr "Группа обновлена"
-
-#: ./application/modules/cfcm/admin.php:391
-msgid "Group deleted successfuly"
-msgstr "Группа успешно удалена"
-
-#: ./application/modules/cfcm/admin.php:472
+#: application/modules/cfcm/templates/public/_onpage_form_elfinder.tpl:56
+#: application/modules/cfcm/templates/public/_onpage_form.tpl:60
 msgid "Group without any fields"
 msgstr "Группа без полей"
 
-#: ./application/modules/cfcm/admin.php:477
-msgid "For category"
-msgstr "Для категории"
-
-#: ./application/modules/cfcm/admin.php:477
-msgid "Field group has not been selected"
-msgstr "Группа полей не выбрана"
-
-#: ./application/modules/cfcm/module_info.php:4
+#: application/modules/cfcm/module_info.php:7
 msgid "Fields constructor"
 msgstr "Конструктор полей"
 
-#: ./application/modules/cfcm/module_info.php:5
+#: application/modules/cfcm/module_info.php:8
 msgid "Allows you to create additional fields in ImageCMS Corporate"
 msgstr "Позволяет создавать дополнительные поля в ImageCMS Corporate"
 
-#: ./application/modules/cfcm/templates/admin/index.tpl:38
+#: application/modules/cfcm/templates/admin/index.tpl:40
 msgid "Edit custom field"
 msgstr "Редактировать дополнительное поле"

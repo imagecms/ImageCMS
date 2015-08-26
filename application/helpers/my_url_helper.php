@@ -8,10 +8,11 @@ if (!function_exists('media_url')) {
 
     function media_url($url = '') {
         $CI = & get_instance();
+        /* @var $config CI_Config */
         $config = $CI->config;
 
         if (is_array($url)) {
-            $uri = implode('/', $url);
+            $url = implode('/', $url);
         }
 
         $index_page = $config->slash_item('index_page');
@@ -19,10 +20,15 @@ if (!function_exists('media_url')) {
             $index_page = '';
         }
 
-        if (MAINSITE and $config->item('template') == 'administrator') {
-            $return = 'http://' . str_replace('../', '', MAINSITE) . '/' . $index_page . preg_replace("|^/*(.+?)/*$|", "\\1", $url);
+        if ($CI->uri->segment(1) == MY_Controller::getCurrentLocale()) {
+            $lenstr = strlen(MY_Controller::getCurrentLocale() . '/');
+            $cut = 0 - (int) $lenstr;
+            $mediaUrl = substr($config->slash_item('base_url'), 0, $cut);
+            $return = $mediaUrl . '/' . $index_page . preg_replace("|^/*(.+?)/*$|", "\\1", $url);
+
+            //            $return = rtrim($config->slash_item('base_url'), MY_Controller::getCurrentLocale() . '/') . '/' . $index_page . preg_replace("|^/*(.+?)/*$|", "\\1", $url); // отпадает когда домен .ua и локаль ua
         } else {
-            $return = $config->slash_item('static_base_url') . $index_page . preg_replace("|^/*(.+?)/*$|", "\\1", $url);
+            $return = $config->slash_item('base_url') . $index_page . preg_replace("|^/*(.+?)/*$|", "\\1", $url);
         }
 
         return $return;

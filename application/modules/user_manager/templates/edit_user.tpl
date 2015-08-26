@@ -14,7 +14,7 @@
             </div>                            
         </div>
         <div class="tab-pane">
-            <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+            <table class="table  table-bordered table-hover table-condensed content_big_td">
                 <thead>
                     <tr>
                         <th colspan="6">
@@ -25,7 +25,7 @@
                 <tbody>
                     <tr>
                         <td colspan="6">
-                            <div class="inside_padd span9">
+                            <div class="inside_padd">
                                 <div class="form-horizontal">
                                     <form id="update" method="post" action="{$SELF_URL}/update_user/{$id}">
 

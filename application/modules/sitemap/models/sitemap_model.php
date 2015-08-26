@@ -79,7 +79,7 @@ class Sitemap_model extends CI_Model {
 
     /**
      * Update sitemap module settings
-     * @param array $data  - data array
+     * @param array $data - data array
      * @return bool
      */
     public function updateSettings($data = array()) {
@@ -159,8 +159,12 @@ class Sitemap_model extends CI_Model {
      * @return array
      */
     public function get_shop_products() {
-        $this->db->select('url, updated, created');
-        $result = $this->db->where('active', 1)->get('shop_products');
+        $this->db->select('shop_products.url, shop_products.updated, shop_products.created, shop_category.active, shop_category.id');
+        $result = $this->db
+            ->join('shop_category', 'shop_category.id=shop_products.category_id')
+            ->where('shop_category.active', 1)
+            ->where('shop_products.active', 1)
+            ->get('shop_products');
 
         return $this->returnData($result);
     }
@@ -346,12 +350,12 @@ class Sitemap_model extends CI_Model {
         );
 
         return $this->db->insert('components', array(
-                    'name' => 'sitemap',
-                    'identif' => 'sitemap',
-                    'autoload' => '1',
-                    'enabled' => '1',
-                    'settings' => serialize($data)
-                        )
+                'name' => 'sitemap',
+                'identif' => 'sitemap',
+                'autoload' => '1',
+                'enabled' => '1',
+                'settings' => serialize($data)
+            )
         );
     }
 

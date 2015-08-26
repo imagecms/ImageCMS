@@ -17,15 +17,14 @@
                 <ul class="nav myTab nav-tabs nav-stacked">
                     <li><a href="#backup_list">{lang('List',"admin")}</a></li>
                     <li class="active"><a href="#backup_create">{lang('Create','admin')}</a></li>
-                    <li><a href="#backup_settings">{lang('Settings','admin')}</a></li>  
+                    <li><a href="#backup_settings">{lang('Settings','admin')}</a></li>
                 </ul>
             </div>
-            <div class="span9 content_big_td">
-
+            <div class="span9">
                 <div class="tab-content">
                     <div class="tab-pane" id="backup_list">
 
-                        <table id="backups_list" class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                        <table id="backups_list" class="table  table-bordered table-hover table-condensed t-l_a">
                             <thead>
                             <th>{lang('File name', 'admin')}</th>
                             <th>{lang('Source', 'admin')}</th>
@@ -50,14 +49,23 @@
                                                 <button class="backup_delete btn btn-small{if $file.allowDelete == 0} disabled{/if}"><i class="icon-trash"></i></button>
                                             </td>
                                             <td>
-                                                <button class="backup_lock file_action btn btn-small{if $file.locked == 1} active{/if} {if $file.allowDelete == 0} active disabled{/if}" data-toggle="button"><i class="icon-lock"></i></button>
+                                                {if $file.locked == 1}
+                                                    <button class="backup_lock file_action btn btn-small active {if $file.allowDelete == 0} active disabled{/if}" data-original-title="{lang("unlock", "admin")}" data-placement="top" data-rel="tooltip" data-toggle="button">
+                                                        <i class="fa fa-lock"></i></button>
+                                                    {else: }
+                                                    <button class="backup_lock file_action btn btn-small {if $file.allowDelete == 0} active disabled{/if}" data-original-title="{lang("lock", "admin")}" data-placement="top" data-rel="tooltip" data-toggle="button">
+                                                        <i class="fa fa-unlock"></i></button>
+                                                    {/if}
+
                                             </td>
                                         </tr>
                                     {/foreach}
                                 {else:}
                                     <tr>
-                                        <td colspan='5' style='text-align:center;'>{lang('No files','admin')}</td>
-                                    </tr> 
+                                        <td colspan='6' style='text-align:center;'>
+                                            <div class="alert-info-backup">{lang('No files','admin')}</div>
+                                        </td>
+                                    </tr>
                                 {/if}
 
                             </tbody>
@@ -67,7 +75,7 @@
                     </div>
 
                     <div class="tab-pane active" id="backup_create">
-                        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                        <table class="table  table-bordered table-hover table-condensed content_big_td">
                             <thead>
                                 <tr>
                                     <th colspan="6">
@@ -80,7 +88,7 @@
                                     <td colspan="6">
                                         <form action="{$BASE_URL}admin/backup/create" method="post" id="createBackup">
                                             <div class="form-horizontal">
-                                                <div class="inside_padd span9">
+                                                <div class="inside_padd">
                                                     <div class="control-group m-t_10">
                                                         <div class="control-label"></div>
                                                         <div class="controls">
@@ -98,7 +106,7 @@
                                                         <div class="controls">
                                                             <span class="frame_label no_connection">
                                                                 <span class="niceRadio b_n">
-                                                                    <input type="radio" name="save_type" value="server" /> 
+                                                                    <input type="radio" name="save_type" value="server" />
                                                                 </span>
                                                                 {lang("Save on the server","admin")}
                                                             </span>
@@ -141,10 +149,10 @@
                                                                 sql
                                                             </span>
                                                             <div style="margin-top: 30px;">
-                                                                <button type="button" class="btn btn-small btn-success action_on formSubmit" data-form="#createBackup" data-submit><i class="icon-plus-sign icon-white"></i>{lang("Create","admin")}</button>
+                                                                <button type="button" class="btn btn-small btn-success action_on formSubmit" data-form="#createBackup" data-submit><i class="icon-plus-sign icon-white m-r_5"></i>{lang("Create","admin")}</button>
                                                             </div>
                                                         </div>
-                                                    </div> 
+                                                    </div>
                                                 </div>
                                             </div>
                                         </form>
@@ -155,7 +163,7 @@
                     </div>
 
                     <div class="tab-pane" id="backup_settings">
-                        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                        <table class="table  table-bordered table-hover table-condensed content_big_td">
                             <thead>
                                 <tr>
                                     <th colspan="6">
@@ -166,7 +174,7 @@
                             <tbody>
                                 <tr>
                                     <td colspan="6">
-                                        <div class="inside_padd span9">
+                                        <div class="inside_padd">
                                             <div class="form-horizontal">
                                                 <div class="row-fluid">
                                                     <div class="control-group">
@@ -201,7 +209,7 @@
 
                                                     <div class="control-group">
                                                         <div class="controls">
-                                                            <button class="btn" id="backup_save_settings">Сохранить</button>
+                                                            <button class="btn btn-success" id="backup_save_settings"><i class="icon-ok icon-white"></i>{lang('Save','admin')}</button>
                                                         </div>
                                                     </div>
 

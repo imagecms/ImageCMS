@@ -8,18 +8,20 @@
  * @author <dev@imagecms.net>
  * @version 0.3 PHP5
  ************************************************* */
-
 class Mabilis_Compiler extends Mabilis {
 
     public $config = NULL;
+
     // Array with functions that are in ./functions/ folder
     // Each of this function will be renamed as tpl_$func
     private $func_prefix = 'func_';
+
     private $func_array = array('counter', 'truncate');
 
     // Constructor
-    function __construct(&$config_obj) {
-        $this->config = & $config_obj;
+
+    public function __construct(&$config_obj) {
+        $this->config = &$config_obj;
     }
 
     /**
@@ -92,7 +94,6 @@ class Mabilis_Compiler extends Mabilis {
             $tpl_data = preg_replace('/(\s*)\{(\s*)/', '$1<?php$2', $tpl_data);
             $tpl_data = preg_replace('/(\s*)\}(\s*)/', '$1?>$2', $tpl_data);
 
-
             /*             * ****************************************
              * Functions
              * Replace all between php tags to php code
@@ -121,8 +122,21 @@ class Mabilis_Compiler extends Mabilis {
             $tpl_data = preg_replace('/<\?php.*while(.*).*\?>/', '<?php while ($1){ ?>', $tpl_data);
 
             // Include_tpl
-            $tpl_data = preg_replace('/<\?php.*include\_tpl.*\((.*)\).*\?>/', '<?php $this->include_tpl($1, \'' . $curFilePath . '\'); ?>', $tpl_data);
-            $tpl_data = preg_replace('/<\?php.*include\_shop\_tpl.*\((.*)\).*\?>/', '<?php $this->include_shop_tpl($1, \'' . $curFilePath . '\'); ?>', $tpl_data);
+            $tpl_data = preg_replace_callback(
+                "/<\?php.*include\_tpl.*\((.*)\).*\?>/",
+                function ($arr) use ($curFilePath) {
+                    return '<?php $this->include_tpl(' . $arr[1] . ', \'' . $curFilePath . '\'); ?>';
+                },
+                $tpl_data
+            );
+
+            $tpl_data = preg_replace_callback(
+                '/<\?php.*include\_shop\_tpl.*\((.*)\).*\?>/',
+                function ($arr) use ($curFilePath) {
+                    return '<?php $this->include_shop_tpl(' . $arr[1] . ', \'' . $curFilePath . '\'); ?>';
+                },
+                $tpl_data
+            );
 
             preg_match_all("/<\!user_php(.*)\s*user_php\!>/", $tpl_data, $_match);
 
@@ -181,6 +195,7 @@ class Mabilis_Compiler extends Mabilis {
     }
 
     // Read template file
+
     public function read_tpl_file($file) {
         if (file_exists($file)) {
             return file_get_contents($file);
@@ -191,6 +206,7 @@ class Mabilis_Compiler extends Mabilis {
     }
 
     // Write compiled template file
+
     private function write_compiled_file($file, $data) {
         if (!$fp = fopen($this->config->compile_path . md5($file) . $this->config->compiled_ext, 'w')) {
             return FALSE;

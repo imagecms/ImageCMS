@@ -8,11 +8,11 @@
             <div class="d-i_b">
                 <a href="/admin/components/init_window/trash" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back", 'admin')}</span></a>
                 <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#edit" data-action="save" data-submit><i class="icon-ok icon-white"></i>{lang("Save", 'trash')}</button>
-                <button type="button" class="btn btn-small action_on formSubmit" data-form="#edit" data-action="exit"><i class="icon-check"></i>{lang("Save and exit", 'trash')}</button>                    
+                <button type="button" class="btn btn-small action_on formSubmit" data-form="#edit" data-action="exit"><i class="icon-check"></i>{lang("Save and exit", 'trash')}</button>
             </div>
-        </div>                            
+        </div>
     </div>
-    <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+    <table class="table table-bordered table-hover table-condensed content_big_td m-t_15">
         <thead>
             <tr>
                 <th colspan="6">
@@ -23,10 +23,10 @@
         <tbody>
             <tr>
                 <td colspan="6">
-                    <div class="inside_padd span9">
+                    <div class="inside_padd">
                         <div class="form-horizontal">
                             <form id="edit" method="post" action="{$SELF_URL}/edit_trash/{echo $trash->id}">
-                                <div class="span9">
+                                <div class="span12">
                                     <div class="control-group">
                                         <label class="control-label" for="id">id:</label>
                                         <div class="controls">
@@ -35,11 +35,11 @@
                                     </div>
 
                                     <div class="control-group">
-                                        <label class="control-label" for="old_url">{lang('Old URL', 'trash')}:</label>
+                                        <label class="control-label" for="old_url">{lang('Old URL', 'trash')}: <span class="must">*</span></label>
                                         <div class="controls">
                                             <div class="input-prepend">
                                                 <span class="add-on">{site_url()}</span>
-                                                <input name="old_url" type="text" value="{echo $trash->trash_url}" required>
+                                                <input name="old_url" class="span6" type="text" value="{echo $trash->trash_url}" required="required">
                                             </div>
                                         </div>
                                     </div>
@@ -51,7 +51,7 @@
                                                 <span class="niceRadio b_n">
                                                     <input type="radio" name="redirect_type" value="url" {if $trash->trash_redirect_type == 'url'}checked="checked"{/if}/>
                                                 </span>
-                                                Url 
+                                                Url
                                             </span>
                                             {if count($CI->db->get_where('components', array('name' => 'shop'))->row()) > 0}
                                                 <span class="frame_label no_connection m-r_15" id="prod">
@@ -89,7 +89,7 @@
                                                 <span class="niceRadio b_n">
                                                     <input type="radio" name="type" value="301" {if $trash->trash_type == '301'}checked="checked"{/if}/>
                                                 </span>
-                                                301 
+                                                301
                                             </span>
                                             <span class="frame_label no_connection m-r_15">
                                                 <span class="niceRadio b_n">
@@ -112,7 +112,7 @@
                                             <div class="controls">
                                                 <select id="inputMainC" value="" name="products">
                                                     {foreach $products as $item}
-                                                        <option {if $trash->trash_id == $item->id}selected{/if} value="{echo $item->id}">{echo $item->name}</option> 
+                                                        <option {if $trash->trash_id == $item->id}selected{/if} value="{echo $item->id}">{echo $item->name}</option>
                                                     {/foreach}
                                                 </select>
                                             </div>
@@ -123,7 +123,7 @@
                                             <div class="controls">
                                                 <select id="inputMainC" value="" name="category">
                                                     {foreach $category as $item}
-                                                        <option {if $trash->trash_id == $item->id}selected{/if} value="{echo $item->id}">{echo $item->name}</option> 
+                                                        <option {if $trash->trash_id == $item->id}selected{/if} value="{echo $item->id}">{echo $item->name}</option>
                                                     {/foreach}
                                                 </select>
                                             </div>
@@ -134,7 +134,7 @@
                                         <div class="controls">
                                             <select id="inputMainC" value="" name="category_base">
                                                 {foreach $category_base as $item}
-                                                    <option {if $trash->trash_id == $item->id}selected{/if} value="{echo $item->id}">{echo $item->name}</option> 
+                                                    <option {if $trash->trash_id == $item->id}selected{/if} value="{echo $item->id}">{echo $item->name}</option>
                                                 {/foreach}
                                             </select>
                                         </div>
@@ -146,5 +146,5 @@
                 </td>
             </tr>
         </tbody>
-    </table>                               
+    </table>
 </section>

@@ -11,17 +11,18 @@ class BaseAdminController extends MY_Controller {
         $lang->load('admin');
 
         $this->load->library('Permitions');
-        Permitions::checkPermitions();
+        if (PHP_SAPI != 'cli') {
+            Permitions::checkPermitions();
+        }
+
         $this->load->library('lib_admin');
         $this->lib_admin->init_settings();
         $this->autoloadModules();
 
-
-//        if(!$_SESSION['GETTEXT_EXIST']){
-//            showMessage(lang('To improve performance set php_gettext.dll extension'), lang('Advice'));
-//        }
-
-//        $this->lang->load('admin');
+        //        if(!$_SESSION['GETTEXT_EXIST']){
+        //            showMessage(lang('To improve performance set php_gettext.dll extension'), lang('Advice'));
+        //        }
+        //        $this->lang->load('admin');
     }
 
     /**
@@ -32,9 +33,9 @@ class BaseAdminController extends MY_Controller {
     private function autoloadModules() {
         /** Search module with autoload */
         $query = $this->db
-                ->select('name')
-                ->where('autoload', 1)
-                ->get('components');
+            ->select('name')
+            ->where('autoload', 1)
+            ->get('components');
 
         if ($query) {
             $moduleName = null;
@@ -46,7 +47,7 @@ class BaseAdminController extends MY_Controller {
                 if (class_exists($moduleName)) {
                     if (method_exists($moduleName, 'adminAutoload')) {
                         $moduleName::adminAutoload();
-                       // self::$detect_load_admin[$moduleName] = 1;
+                        // self::$detect_load_admin[$moduleName] = 1;
                     }
                 }
             }
@@ -54,5 +55,3 @@ class BaseAdminController extends MY_Controller {
     }
 
 }
-
-?>

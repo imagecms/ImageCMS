@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template label='corporate' name='corporate' version="0.1">
+    <author>SiteImage</author>
+
+    <screenshots>
+        <screenshot url="/templates/corporate/screenshots/1.png" main="1" />
+        <screenshot url="/templates/corporate/screenshots/2.png" main="0" />
+    </screenshots>
+
+</template>

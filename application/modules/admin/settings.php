@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * @property CI_Cache $cache
@@ -21,7 +22,7 @@ class Settings extends BaseAdminController {
      */
     protected $uploadPath = 'uploads/images/';
 
-    function __construct() {
+    public function __construct() {
         parent::__construct();
 
         $this->load->library('DX_Auth');
@@ -32,10 +33,7 @@ class Settings extends BaseAdminController {
         $this->lib_admin->init_settings();
     }
 
-    function index() {
-        
-//        $this->cms_admin->get_langs();
-        //cp_check_perm('cp_site_settings');
+    public function index() {
 
         $settings = $this->cms_admin->get_settings();
         unset($settings['siteinfo']);
@@ -53,42 +51,55 @@ class Settings extends BaseAdminController {
         $this->template->assign('templates', $this->_get_templates());
         $this->template->assign('template_selected', $settings['site_template']);
 
-        $this->template->assign('work_values', array('yes' => lang("Yes", "admin"), 'no' => lang("No", "admin")));
+        // Передає змінну статусу роботів
+
+        $this->template->assign('robots_settings_status', $settings['robots_settings_status']);
+        $this->template->assign('robots_settings', $settings['robots_settings']);
+        $this->template->assign('robots_status', $settings['robots_status']);
+
+        $this->template->assign('work_values', ['yes' => lang("Yes", "admin"), 'no' => lang("No", "admin")]);
         $this->template->assign('site_offline', $settings['site_offline']);
 
-
+        $this->config->set_item('cur_lang', $this->load->module('core')->def_lang[0]['id']);
         $this->template->assign('tree', $this->lib_category->build());
 
         $this->template->assign('parent_id', $settings['main_page_cat']);
         $this->template->assign('id', 0);
 
-///++++++++++++++++++++
+        ///++++++++++++++++++++
 
         $langs = $this->db->get('languages')->result_array();
-        $lang_meta = array();
+        $lang_meta = [];
         foreach ($langs as $lang) {
             $meta = $this->db->where('lang_ident', $lang['id'])->limit(1)->get('settings_i18n')->result_array();
-            if (count($meta) > 0)
+            if (count($meta) > 0) {
                 $lang_meta[$lang['id']] = $meta[0];
-            else
+            } else {
                 $lang_meta[$lang['id']] = null;
+            }
         }
-        
+
         $this->template->assign('langs', $langs);
 
         $this->template->assign('meta_langs', $lang_meta);
 
-//++++++++++++++++++++
-
-        ($hook = get_hook('admin_show_settings_tpl')) ? eval($hook) : NULL;
-
-// Load modules list
-        $this->template->assign('modules', $this->db->get('components')->result_array());
+        //++++++++++++++++++++
+        // Load modules list
+        $notAvailableModules = [
+            'mainsaas', 'saas', 'translator', 'auth', 'user_manager', 'comments', 'navigation', 'tags', 'rss', 'menu', 'sitemap', 'search', 'template_editor',
+            'filter', 'cfcm', 'sample_mail', 'mailer', 'share', 'banners', 'new_level', 'shop_news', 'categories_settings', 'exchange', 'cmsemail', 'mod_stats',
+            'mod_seo', 'mod_discount', 'smart_filter', 'mobile', 'trash', 'language_switch', 'star_rating', 'imagebox', 'sample_module', 'template_manager',
+            'payment_method_2checkout', 'payment_method_oschadbank', 'payment_method_robokassa', 'payment_method_webmoney', 'payment_method_paypal',
+            'payment_method_liqpay', 'payment_method_privat24', 'payment_method_sberbank', 'payment_method_qiwi', 'payment_method_interkassa',
+            'import_export', 'admin_menu', 'related_products', 'ymarket', 'xbanners', 'moy_sklad',
+        ];
+        $this->template->assign('modules', $this->db->where_not_in('name', $notAvailableModules)->get('components')->result_array());
 
         $this->template->show('settings_site', FALSE);
     }
 
-//++++++++++++++
+    //++++++++++++++
+
     public function translate_meta() {
 
         $this->load->library('form_validation');
@@ -98,24 +109,27 @@ class Settings extends BaseAdminController {
         $this->form_validation->set_rules('description', lang('Description', 'admin'), 'trim|xss_clean');
         $this->form_validation->set_rules('keywords', lang('Keywords', 'admin'), 'trim|xss_clean');
 
-        if ($this->form_validation->run($this) == FALSE)
+        if ($this->form_validation->run($this) == FALSE) {
             showMessage(validation_errors(), false, 'r');
-        else {
+        } else {
             $name = $this->input->post('name');
             $short_name = $this->input->post('short_name');
             $desk = $this->input->post('description');
             $key = $this->input->post('keywords');
             $lang = $this->input->post('lang_ident');
-            if (count($this->db->where('lang_ident', $lang)->get('settings_i18n')->result_array()))
-                $this->db->query("UPDATE settings_i18n
+            if (count($this->db->where('lang_ident', $lang)->get('settings_i18n')->result_array())) {
+                $this->db->query(
+                    "UPDATE settings_i18n
                                                             SET
                                                                 name = '$name',
                                                                 short_name = '$short_name',
                                                                 description = '$desk',
                                                                 keywords = '$key'
-                                                            WHERE lang_ident = '$lang'");
-            else
-                $this->db->query("INSERT INTO settings_i18n(
+                                                            WHERE lang_ident = '$lang'"
+                );
+            } else {
+                $this->db->query(
+                    "INSERT INTO settings_i18n(
                                                                 lang_ident,
                                                                 name,
                                                                 short_name,
@@ -127,15 +141,18 @@ class Settings extends BaseAdminController {
                                                                 '$name',
                                                                 '$short_name',
                                                                 '$desk',
-                                                                '$key')");
+                                                                '$key')"
+                );
+            }
         }
     }
 
-//+++++++++++++++++++++++++++++++++++++++++
+    //+++++++++++++++++++++++++++++++++++++++++
+
     /**
      * Main Page settings
      */
-    function main_page() {
+    public function main_page() {
         $this->template->assign('tree', $this->lib_category->build());
 
         $settings = $this->cms_admin->get_settings();
@@ -153,31 +170,8 @@ class Settings extends BaseAdminController {
      * @access private
      * @return array
      */
-    function _get_templates() {
-        $new_arr_shop = array();
-        if ($handle = opendir(TEMPLATES_PATH)) {
-            while (false !== ($file = readdir($handle))) {
-                if ($file != "." && $file != ".." && $file != 'administrator' && $file != 'modules' && !stristr($file, '_mobile')) {
-                    if (!is_file(TEMPLATES_PATH . $file)) {
-                        if (SHOP_INSTALLED && is_dir(TEMPLATES_PATH . $file . '/shop/')) {
-                            $new_arr_shop[$file] = $file;
-                        }
-                        $new_arr[$file] = $file;
-                    }
-                }
-            }
-            closedir($handle);
-        } else {
-            return FALSE;
-        }
-
-        if (SHOP_INSTALLED) {
-            array_multisort($new_arr_shop);
-            return $new_arr_shop;
-        } else {
-            array_multisort($new_arr);
-            return $new_arr;
-        }
+    public function _get_templates() {
+        return get_templates();
     }
 
     /**
@@ -185,24 +179,30 @@ class Settings extends BaseAdminController {
      *
      * @access public
      */
-    function save() {
-//cp_check_perm('cp_site_settings');
+    public function save() {
+        //cp_check_perm('cp_site_settings');
+
+        $this->form_validation->set_rules('siteinfo_adminemail', lang('Admin email', 'admin'), 'valid_email');
+        if (!$this->form_validation->run($this)) {
+            showMessage(validation_errors(), lang('Error', 'admin'), 'r');
+            return;
+        }
         switch ($this->input->post('main_type')) {
             case 'category':
-                $data = array(
+                $data = [
                     'main_type' => 'category',
                     'main_page_cat' => $this->input->post('main_page_cat'),
-                );
+                ];
 
                 $this->cms_admin->save_settings($data);
                 break;
 
             case 'page':
                 if ($this->cms_admin->page_exists($this->input->post('main_page_pid'))) {
-                    $data = array(
+                    $data = [
                         'main_type' => 'page',
                         'main_page_id' => $this->input->post('main_page_pid')
-                    );
+                    ];
 
                     $this->cms_admin->save_settings($data);
                 } else {
@@ -212,17 +212,17 @@ class Settings extends BaseAdminController {
                 break;
 
             case 'module':
-                $data = array(
+                $data = [
                     'main_type' => 'module',
                     'main_page_module' => $this->input->post('main_page_module'),
-                );
+                ];
                 $this->cms_admin->save_settings($data);
                 break;
         }
 
-        $res = $this->processSiteInfo();
+        $this->processSiteInfo();
 
-        $data_m = array(
+        $data_m = [
             'create_keywords' => $this->input->post('create_keywords'),
             'create_description' => $this->input->post('create_description'),
             'create_cat_keywords' => $this->input->post('create_cat_keywords'),
@@ -230,7 +230,6 @@ class Settings extends BaseAdminController {
             'add_site_name' => $this->input->post('add_site_name'),
             'add_site_name_to_cat' => $this->input->post('add_site_name_to_cat'),
             'delimiter' => $this->input->post('delimiter'),
-            'site_template' => $this->input->post('template'),
             'cat_list' => $this->input->post('cat_list'),
             'editor_theme' => $this->input->post('editor_theme'),
             'site_offline' => $this->input->post('site_offline'),
@@ -238,84 +237,36 @@ class Settings extends BaseAdminController {
             'google_webmaster' => $this->input->post('google_webmaster'),
             'yandex_webmaster' => $this->input->post('yandex_webmaster'),
             'yandex_metric' => $this->input->post('yandex_metric'),
+            'site_template' => $this->input->post('template'),
             'lang_sel' => $this->input->post('lang_sel'),
             'text_editor' => $this->input->post('text_editor'),
-            'robots_status' => (int) $this->input->post('robots_status')
-                //'siteinfo' => serialize($siData)
-        );
-
-        $this->replaceRobots($data_m['robots_status']);
+            'robots_status' => (int) $this->input->post('robots_status'),
+            'robots_settings_status' => (int) $this->input->post('robots_settings_status'),
+            'robots_settings' => $this->input->post('robots_settings'),
+            'google_analytics_ee' => $this->input->post('google_analytics_ee') == 'on' ? 1 : 0
+        ];
 
         /** Save template path for shop * */
         if ($this->db->table_exists('shop_settings')) {
             $shopTemplatePath = './templates/' . $this->input->post('template') . '/shop/';
-            $this->db->where('name', 'systemTemplatePath')->update('shop_settings', array('value' => $shopTemplatePath));
+            $this->db->where('name', 'systemTemplatePath')->update('shop_settings', ['value' => $shopTemplatePath]);
         }
 
         $this->translate_meta();
 
+        //$this->replaceRobots($data_m['robots_status']);
         //($hook = get_hook('admin_save_settings')) ? eval($hook) : NULL;
 
-
         $this->cms_admin->save_settings($data_m);
-
 
         $this->cache->delete_all();
 
         $this->lib_admin->log(lang("Changed wesite settings", "admin"));
 
         echo "<script>var textEditor = '{$data_m['text_editor']}';</script>";
-        if (!validation_errors())
+        if (!validation_errors()) {
             showMessage(lang("Settings have been saved", "admin"));
-    }
-
-    /**
-     * Replace robots
-     * @param int $robotsStatus - robots status(turn on - 1, turn off - 0)
-     * @return int
-     */
-    private function replaceRobots($robotsStatus = 0) {
-        $robots = file('robots.txt');
-
-        if ((int) $robotsStatus) {
-            // Turn on robots
-            $turnOnRobot = TRUE;
-
-            foreach ($robots as $key => $robot) {
-                if (trim($robot) == 'Disallow: /') {
-                    $turnOnRobot = FALSE;
-                    break;
-                }
-
-                if (trim($robot) == 'Disallow:') {
-                    unset($robots[$key]);
-                }
-            }
-
-            if ($turnOnRobot) {
-                array_splice($robots, 1, 0, 'Disallow: /' . PHP_EOL);
-            }
-        } else {
-            // Turn off robots
-            $turnOffRobot = TRUE;
-
-            foreach ($robots as $key => $robot) {
-                if (trim($robot) == 'Disallow:') {
-                    $turnOffRobot = FALSE;
-                    break;
-                }
-
-                if (trim($robot) == 'Disallow: /') {
-                    unset($robots[$key]);
-                }
-            }
-
-            if ($turnOffRobot) {
-                array_splice($robots, 1, 0, 'Disallow:' . PHP_EOL);
-            }
         }
-
-        return file_put_contents('robots.txt', $robots);
     }
 
     /**
@@ -325,20 +276,21 @@ class Settings extends BaseAdminController {
      */
     protected function processSiteInfo() {
 
-        $this->load->library('SiteInfo', $_POST['siteinfo_locale']);
-        unset($_POST['siteinfo_locale']);
+        $this->load->library('SiteInfo', $this->input->post('siteinfo_locale'));
 
         // getting all parameters with keys
-        $siteinfo = array();
-        foreach ($_POST as $key => $value) {
+        $siteinfo = [];
+        $postData = $this->input->post();
+        unset($postData['siteinfo_locale']);
+        foreach ($postData as $key => $value) {
             if (0 === strpos($key, "siteinfo_")) {
                 $siteinfo[$key] = $value;
-                unset($_POST[$key]);
+                unset($postData[$key]);
             }
         }
 
         // remap additional fields
-        $additional = array();
+        $additional = [];
         $countKeys = count($siteinfo['siteinfo_contactkey']);
         $countValues = count($siteinfo['siteinfo_contactvalue']);
         if ($countKeys == $countValues & $countValues > 0) {
@@ -362,19 +314,19 @@ class Settings extends BaseAdminController {
         $config['overwrite'] = TRUE;
         $this->load->library('upload', $config);
 
-
-
         // upload or delete (or do nothing) favicon and logo
-        if ($_POST['si_delete_favicon'] == 1) {
-            if (isset($siteinfo['siteinfo_favicon']))
+        if ($this->input->post('si_delete_favicon') == 1) {
+            if (isset($siteinfo['siteinfo_favicon'])) {
                 unset($siteinfo['siteinfo_favicon']);
+            }
         } else {
             $this->processLogoOrFavicon('siteinfo_favicon', $siteinfo);
         }
 
-        if ($_POST['si_delete_logo'] == 1) {
-            if (isset($siteinfo['siteinfo_logo']))
+        if ($this->input->post('si_delete_logo') == 1) {
+            if (isset($siteinfo['siteinfo_logo'])) {
                 unset($siteinfo['siteinfo_logo']);
+            }
         } else {
             $this->processLogoOrFavicon('siteinfo_logo', $siteinfo);
         }
@@ -382,7 +334,7 @@ class Settings extends BaseAdminController {
         // saving admin's email in application/config/auth.php
         $authFullPath = "./application/config/auth.php";
         $authContents = file_get_contents($authFullPath);
-        $pattern = '/(\$config\[\'DX_webmaster_email\'\][\s\=]{1,})[\'\"0-9A-Za-z\@\.\-]+/i';
+        $pattern = '/(\$config\[\'DX_webmaster_email\'\][\s\=]{1,})[\'\"0-9A-Za-z\@\.\-\_]+/i';
         $replacement = '$1\'' . $siteinfo['siteinfo_adminemail'] . '\'';
         $newAuthContents = preg_replace($pattern, $replacement, $authContents);
         if (is_writable($authFullPath)) {
@@ -391,23 +343,23 @@ class Settings extends BaseAdminController {
         }
 
         $this->siteinfo->setSiteInfoData($siteinfo);
-        if ($_POST['si_delete_favicon'] == 1) {
+        if ($this->input->post('si_delete_favicon') == 1) {
             $this->siteinfo->deleteSiteInfoValue('favicon');
         }
-        if ($_POST['si_delete_logo'] == 1) {
+        if ($this->input->post('si_delete_logo') == 1) {
             $this->siteinfo->deleteSiteInfoValue('logo');
         }
         return $this->siteinfo->save();
     }
 
     public function getSiteInfoDataJson() {
-        $this->load->library('SiteInfo', $_POST['locale']);
+        $this->load->library('SiteInfo', $this->input->post('locale'));
         $data = $this->siteinfo->getSiteInfoData(TRUE);
-        echo json_encode(array_merge($data, array('locale' => $_POST['locale'])));
+        echo json_encode(array_merge($data, ['locale' => $this->input->post('locale')]));
     }
 
     /**
-     * 
+     *
      * @param type $paramName
      * @param type $siteinfo
      */
@@ -428,25 +380,25 @@ class Settings extends BaseAdminController {
     public function switch_admin_lang($lang) {
         if ($lang) {
             $this->db->set('lang_sel', $lang)
-                    ->update('settings');
+                ->update('settings');
             $this->session->set_userdata('language', $lang);
         }
-        redirect($_SERVER['HTTP_REFERER'] ? $_SERVER['HTTP_REFERER'] : '/admin/dashboard');
+        redirect($this->input->server('HTTP_REFERER') ? $this->input->server('HTTP_REFERER') : '/admin/dashboard');
     }
 
     /**
      * Returns license agreement from template, or default agreement
-     * @return string 
+     * @return string
      */
     public function license_agreement() {
         header('Content-Type: text/plain; charset=utf-8');
-        $template = new \template_manager\classes\Template($_GET['template_name']);
+        $template = new \template_manager\classes\Template($this->input->get('template_name'));
         echo $template->getLicenseAgreement();
     }
 
     public function template_has_license($templateName = null) {
-        if (is_null($templateName)) {
-            $templateName = $_GET['template_name'];
+        if (!$templateName) {
+            $templateName = $this->input->get('template_name');
         }
 
         if (empty($templateName)) {
@@ -465,4 +417,3 @@ class Settings extends BaseAdminController {
 }
 
 /* End of settings.php */
-

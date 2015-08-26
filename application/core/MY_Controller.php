@@ -54,21 +54,28 @@
 class MY_Controller extends MX_Controller {
 
     public $pjaxRequest = false;
+
     public $ajaxRequest = false;
+
     public static $currentLocale = null;
-    public static $detect_load_admin = array();
-    public static $detect_load = array();
+
+    public static $currentLanguage = null;
+
+    public static $detect_load_admin = [];
+
+    public static $detect_load = [];
 
     public function __construct() {
         parent::__construct();
 
-        if (isset($_SERVER['HTTP_X_PJAX']) && $_SERVER['HTTP_X_PJAX'] == true) {
+        if ($this->input->server('HTTP_X_PJAX') && $this->input->server('HTTP_X_PJAX') == true) {
             $this->pjaxRequest = true;
             header('X-PJAX: true');
         }
 
-        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
+        if ($this->input->server('HTTP_X_REQUESTED_WITH') && strtolower($this->input->server('HTTP_X_REQUESTED_WITH')) == 'xmlhttprequest') {
             $this->ajaxRequest = true;
+        }
 
         defined('SHOP_INSTALLED') OR define('SHOP_INSTALLED', $this->checkForShop());
     }
@@ -77,13 +84,20 @@ class MY_Controller extends MX_Controller {
         if ($this->db) {
             $this->db->cache_on();
             $res = $this->db->where('identif', 'shop')
-                    ->get('components')
-                    ->result_array();
+                ->get('components');
+
+            if ($res) {
+                $res = $res->result_array();
+            } else {
+                show_error($this->db->_error_message());
+            }
+
             $this->db->cache_off();
 
             return (bool) count($res);
-        } else
+        } else {
             return false;
+        }
     }
 
     /**
@@ -91,30 +105,64 @@ class MY_Controller extends MX_Controller {
      * @return type
      */
     public static function getCurrentLocale() {
-
-        if (self::$currentLocale)
-            return self::$currentLocale;
-
-        if (strstr($_SERVER['PATH_INFO'], 'install'))
-            return;
-
         $ci = get_instance();
+        if (self::$currentLocale) {
+            return self::$currentLocale;
+        }
+        if (preg_match('/^\/install/', $ci->input->server('PATH_INFO'))) {
+            return;
+        }
         $lang_id = $ci->config->item('cur_lang');
-
         if ($lang_id) {
             $query = $ci->db
-                    ->query("SELECT `identif` FROM `languages` WHERE `id`=$lang_id")
-                    ->result();
+                ->query("SELECT `identif` FROM `languages` WHERE `id`=$lang_id")
+                ->result();
             if ($query) {
                 self::$currentLocale = $query[0]->identif;
             } else {
                 $defaultLanguage = self::getDefaultLanguage();
                 self::$currentLocale = $defaultLanguage['identif'];
             }
-        } else
+        } else {
             self::$currentLocale = chose_language();
-
+        }
         return self::$currentLocale;
+    }
+
+    /**
+     * Returns admin interface locale(used for langs translation)
+     * @return string
+     */
+    public static function getAdminInterfaceLocale() {
+        $locale = CI::$APP->config->item('language') ? CI::$APP->config->item('language') : 'ru_RU';
+        return array_shift(explode('_', $locale));
+    }
+
+    /**
+     * Get current language
+     * @return type
+     */
+    public static function getCurrentLanguage($field = null) {
+        if (!self::$currentLanguage) {
+            $ci = get_instance();
+            if (preg_match('/^\/install/', $ci->input->server('PATH_INFO'))) {
+                return;
+            }
+
+            $language = $ci->db
+                ->where('identif', self::getCurrentLocale())
+                ->get('languages')
+                ->row_array();
+
+            if ($language) {
+                self::$currentLanguage = $language;
+            } else {
+                $defaultLanguage = self::getDefaultLanguage();
+                self::$currentLanguage = $defaultLanguage;
+            }
+        }
+
+        return $field ? self::$currentLanguage[$field] : self::$currentLanguage;
     }
 
     public static function defaultLocale() {
@@ -128,11 +176,12 @@ class MY_Controller extends MX_Controller {
     private function getDefaultLanguage() {
         $ci = get_instance();
         $languages = $ci->db
-                ->where('default', 1)
-                ->get('languages');
+            ->where('default', 1)
+            ->get('languages');
 
-        if ($languages)
+        if ($languages) {
             $languages = $languages->row_array();
+        }
 
         return $languages;
     }
@@ -143,6 +192,46 @@ class MY_Controller extends MX_Controller {
      */
     public static function adminAutoload() {
         /** Must be an empty */
+    }
+
+    /**
+     * Check for premium CMS version
+     * @return bool
+     * @throws Exception
+     */
+    public static function isPremiumCMS() {
+        return self::checkCMSVersion('premium');
+    }
+
+    /**
+     * Check for professional CMS version
+     * @return bool
+     * @throws Exception
+     */
+    public static function isProCMS() {
+        return self::checkCMSVersion('pro');
+    }
+
+    /**
+     * Check for corporate CMS version
+     * @return bool
+     * @throws Exception
+     */
+    public static function isCorporateCMS() {
+        return self::checkCMSVersion('corporate');
+    }
+
+    /**
+     * Check current CMS version
+     * @param $version - version name: premium, pro, corporate
+     * @return bool
+     * @throws Exception
+     */
+    private static function checkCMSVersion($version) {
+        if (!in_array($version, ['premium', 'pro', 'corporate'])) {
+            throw new Exception('You must specify version to define it: premium, pro, corporate');
+        }
+        return strstr(strtolower(IMAGECMS_NUMBER), $version) ? true : false;
     }
 
 }

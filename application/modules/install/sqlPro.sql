@@ -673,7 +673,8 @@ CREATE TABLE IF NOT EXISTS `languages` (
 
 INSERT INTO `languages` (`id`, `lang_name`, `identif`, `image`, `folder`, `template`, `default`, `locale`) VALUES
 (3, 'Русский', 'ru', '', 'russian', 'commerce', 1, 'ru_RU'),
-(4, 'Английский', 'en', '', 'english', 'commerce', 0, 'en_US');
+(4, 'Английский', 'en', '', 'english', 'commerce', 0, 'en_US'),
+(5, 'Украинский', 'ua', '', 'ukrainian', 'commerce', 0, 'uk_UA');
 
 -- --------------------------------------------------------
 
@@ -2297,7 +2298,8 @@ CREATE TABLE IF NOT EXISTS `shop_currencies` (
   `code` varchar(5) DEFAULT NULL,
   `symbol` varchar(5) DEFAULT NULL,
   `rate` float(10,4) DEFAULT '1.0000',
-  `showOnSite` int(1) DEFAULT '0',
+  `showOnSite` int(1) DEFAULT '0',  
+  `currency_template` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `shop_currencies_I_1` (`name`),
   KEY `shop_currencies_I_2` (`main`),
@@ -2308,9 +2310,9 @@ CREATE TABLE IF NOT EXISTS `shop_currencies` (
 -- Dumping data for table `shop_currencies`
 --
 
-INSERT INTO `shop_currencies` (`id`, `name`, `main`, `is_default`, `code`, `symbol`, `rate`, `showOnSite`) VALUES
-(1, 'Dollars', 0, 0, 'USD', '$', 0.0310, 1),
-(2, 'Рубль', 1, 1, 'RUR', 'руб', 1.0000, 0);
+INSERT INTO `shop_currencies` (`id`, `name`, `main`, `is_default`, `code`, `symbol`, `rate`, `showOnSite`, `currency_template`) VALUES
+(1, 'Dollars', 0, 0, 'USD', '$', 0.0310, 1, 'a:5:{s:19:"Thousands_separator";s:1:" ";s:14:"Separator_tens";s:1:",";s:14:"Decimal_places";s:1:"2";s:4:"Zero";s:1:"0";s:6:"Format";s:3:"$ #";}'),
+(2, 'Рубль', 1, 1, 'RUR', 'руб', 1.0000, 0, 'a:5:{s:19:"Thousands_separator";s:1:".";s:14:"Separator_tens";s:1:",";s:14:"Decimal_places";s:1:"2";s:4:"Zero";s:1:"0";s:6:"Format";s:8:"# руб";}');
 
 -- --------------------------------------------------------
 
@@ -8320,7 +8322,7 @@ INSERT INTO `shop_settings` (`name`, `value`, `locale`) VALUES
 ('userInfoSenderName', '', ''),
 ('userInfoMessageTheme', '', ''),
 ('topSalesBlockFormulaCoef', '1', ''),
-('pricePrecision', '0', ''),
+('pricePrecision', '4', ''),
 ('smallAddImageWidth', '90', ''),
 ('smallAddImageHeight', '90', ''),
 ('forgotPasswordMessageText', 'Здравствуйте!\n\nНа сайте %webSiteName% создан запрос на восстановление пароля для Вашего аккаунта.\n\nДля завершения процедуры восстановления пароля перейдите по ссылке %resetPasswordUri% \n\nВаш новый пароль для входа: %password%\n\nЕсли это письмо попало к Вам по ошибке просто проигнорируйте его.\n\n\nПри возникновении любых вопросов, обращайтесь по телефонам:  \n(012)  345-67-89 , (012)  345-67-89 \n---\n\nС уважением, \nсотрудники службы продаж %webSiteName%', ''),

@@ -15,7 +15,7 @@
         <div class="tab-pane active" id="modules">
             <div class="row-fluid">
                 <form method="post" enctype="multipart/form-data" action="{site_url('admin/components/cp/gallery/settings/update')}" id="gallery_settings_form">
-                    <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <tr>
                                 <th colspan="6">
@@ -26,7 +26,7 @@
                         <tbody>
                             <tr>
                                 <td colspan="6">
-                                    <div class="inside_padd span9">
+                                    <div class="inside_padd">
                                         <div class="row-fluid">
                                             <div class="control-group">
                                                 <div class="control-label">{lang("Sort", 'gallery')}:</div>
@@ -48,7 +48,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <tr>
                                 <th colspan="6">
@@ -59,7 +59,7 @@
                         <tbody>
                             <tr>
                                 <td colspan="6">
-                                    <div class="inside_padd span9">
+                                    <div class="inside_padd">
                                         <div class="row-fluid">
                                             <div class="control-group">
                                                 <label class="control-label" for="max_image_size">{lang("maximum file size", 'gallery')}</label>
@@ -116,7 +116,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <tr>
                                 <th colspan="6">
@@ -127,7 +127,7 @@
                         <tbody>
                             <tr>
                                 <td colspan="6">
-                                    <div class="inside_padd span9">
+                                    <div class="inside_padd">
                                         <div class="row-fluid">
                                             <div class="control-group">
                                                 <label class="control-label" for="prev_img_width">{lang("Width", 'gallery')}</label>
@@ -167,7 +167,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <tr>
                                 <th colspan="6">
@@ -178,7 +178,7 @@
                         <tbody>
                             <tr>
                                 <td colspan="6">
-                                    <div class="inside_padd span9">
+                                    <div class="inside_padd">
                                         <div class="row-fluid">
                                             <div class="control-group">
                                                 <label class="control-label" for="thumb_width">{lang("Width", 'gallery')}</label>
@@ -218,7 +218,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <tr>
                                 <th colspan="6">
@@ -229,7 +229,7 @@
                         <tbody>
                             <tr>
                                 <td colspan="6">
-                                    <div class="inside_padd span9">
+                                    <div class="inside_padd">
                                         <div class="row-fluid">
                                             <div class="control-group">
                                                 <label class="control-label" for="wm_hor_alignment">{lang("horizontal alignment", 'gallery')}</label>
@@ -339,7 +339,7 @@
                                                                         {lang('Font is not uploaded','admin')}
                                                                     {else:}
                                                                         <a href="{site_url(str_replace('./','',$settings.watermark_font_path))}">{$settings.watermark_font_path}</a>
-                                                                        <a href="javascript:$('#delete_watermark_font_path').val(1); $('.watermark_path_info div').html(langs.fontNotUploaded)"><i class="icon-remove"></i></a>
+                                                                        <a href="javascript:$('#delete_watermark_font_path').val(1); $('.watermark_path_info div').html(langs.fontNotUploaded)"><i class="icon-trash"></i></a>
                                                                         {/if}
                                                                 </div>
                                                             </div>

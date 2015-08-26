@@ -36,13 +36,13 @@ class Admin extends BaseAdminController {
         if (!empty($data))
             $this->template->add_array($data);
 
-        $this->template->show('file:' . 'application/modules/rss/templates/admin/' . $viewName);
+                $this->template->show('file:' . realpath(dirname(__FILE__)) . '/templates/admin/' . $viewName);
         exit;
 
         if ($return === false)
-            $this->template->show('file:' . 'application/modules/rss/templates/admin/' . $viewName);
+            $this->template->show('file:' . realpath(dirname(__FILE__)) . '/templates/admin/' . $viewName);
         else
-            return $this->template->fetch('file:' . 'application/modules/rss/templates/admin/' . $viewName);
+            return $this->template->fetch('file:' . realpath(dirname(__FILE__)) . '/templates/admin/' . $viewName);
     }
 
     public function settings_update() {
@@ -56,7 +56,8 @@ class Admin extends BaseAdminController {
 
         $this->db->where('name', 'rss');
         $this->db->update('components', array('settings' => serialize($data)));
-
+        
+        $this->lib_admin->log(lang("RSS was edited", "rss"));
         showMessage(lang("Changes have been saved", 'rss'));
     }
 

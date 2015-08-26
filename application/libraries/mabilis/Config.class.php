@@ -12,20 +12,34 @@
 class Mabilis_Config {
 
     public $tpl_path; // Path to template files
+
     public $compile_path; // Path to compiled files
+
     public $function_path; // Path to compiled files
+
     public $function_ext = '.php';
+
     public $use_filemtime = TRUE; // Recompile if tpl file modification time changed
-    public $compiled_ttl = 30; // Time to live compiled files
-    // Delimiters will be rewrited as php open/close tags
+
+    public $compiled_ttl = 120; // Time to live compiled files
+
+    /**
+     * Delimiters will be rewrited as php open/close tags
+     * @var type
+     */
     public $l_delim = '{'; // Left delimiter
+
     public $r_delim = '}'; // Right delimiter
+
     public $force_compile = TRUE;
+
     public $compiled_ext = '.php';
+
     public $delimiters = array('{', '}');
+
     public $php_delimiters = array('<?php ', ' ?>');
 
-    function __construct($config = array()) {
+    public function __construct($config = array()) {
         $this->function_path = realpath(dirname(__FILE__)) . '/functions/';
 
         if (count($config) > 0) {

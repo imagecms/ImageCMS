@@ -15,7 +15,7 @@
                     </a>
                 </div>
                 <div class="d-i_b">
-                    <button type="button" class="btn btn-small btn-success action_on formSubmit" data-form="#settings_form">
+                    <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-form="#settings_form">
                         <i class="icon-ok"></i>
                         {lang('Save', 'translator')}
                     </button>
@@ -26,9 +26,9 @@
                 </div>
             </div>
         </div>
-        <div class="content_big_td row-fluid">
+        <div class="row-fluid">
             <form method="post" action="{site_url('admin/components/init_window/translator/settings')}" class="form-horizontal" id="settings_form">
-                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -39,16 +39,16 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd span9">
+                                <div class="inside_padd">
 
                                     <div class="control-group">
-                                        <label for="file" style="float: left;width: 180px;padding-top: 5px;text-align: right;">
+                                        <label for="file" style="" class="control-label">
                                             <span class="span4">
                                                 <span data-title="{lang('Information', 'translator')}:" class="popover_ref" data-original-title="">
                                                     <i class="icon-info-sign"></i>
                                                 </span>
                                                 <div class="d_n">
-                                                    {lang('Language name of source string which need to translate.', 'translator')} 
+                                                    {lang('Language name of source string which need to translate.', 'translator')}
                                                 </div>
                                                 {lang('Origins language', 'translator')}:
                                             </span>
@@ -68,14 +68,14 @@
                                                     <i class="icon-info-sign"></i>
                                                 </span>
                                                 <div class="d_n">
-                                                    {lang('Key that needed for translation with Yandex Translation Api service.', 'translator')} 
+                                                    {lang('Key that needed for translation with Yandex Translation Api service.', 'translator')}
                                                 </div>
                                                 {lang('Yandex Api Key', 'translator')}:
                                             </span>
                                         </label>
                                         <div class="controls">
                                             <textarea class="YandexApiKey" cols="80" name="settings[YandexApiKey]">{echo $settings['YandexApiKey']}</textarea>
-                                            <a href="http://api.yandex.ru/translate/" target="blanck">{lang('Get Yandex Api key', 'translator')}</a>
+                                            <a href="https://tech.yandex.ru/keys/get/?service=trnsl" target="blanck">{lang('Get Yandex Api key', 'translator')}</a>
                                         </div>
                                     </div>
 
@@ -86,7 +86,7 @@
                                                     <i class="icon-info-sign"></i>
                                                 </span>
                                                 <div class="d_n">
-                                                    {lang('To display translation form press Ctrl+Alt and move mouse cursor on string title.', 'translator')} 
+                                                    {lang('To display translation form press Ctrl+Alt and move mouse cursor on string title.', 'translator')}
                                                 </div>
                                                 {lang('Show fast translation form', 'translator')}:
                                             </span>

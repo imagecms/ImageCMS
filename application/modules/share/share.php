@@ -12,6 +12,7 @@ if (!defined('BASEPATH'))
 class Share extends MY_Controller {
 
     public $settings = array();
+    public static $i;
 
     public function __construct() {
         parent::__construct();
@@ -82,65 +83,87 @@ class Share extends MY_Controller {
             $type = ' data-yashareType="' . $settings['type'] . '" ';
         }
 
-        $html = '<script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
-                <div class="yashare-auto-init" data-yashareL10n="ru" data-yashareLink="' . $url . '"'
+        \CI_Controller::get_instance()->template->registerJsScript('<script async="async" type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>', 'before');
+
+        $html = '<div class="yashare-auto-init" data-yashareL10n="ru" data-yashareLink="' . $url . '"'
                 . $type . ' data-yashareQuickServices="' . $html . '"></div>';
 
         return $html;
     }
 
-    public function _make_like_buttons() {
+    public function _make_like_buttons_fb($url = '') {
         $settings = $this->settings;
+
         if ($settings['facebook_like'] == 1) {
-            $string['facebook'] = '<li>   <div id="fb-root"></div>
-                        <script async="async" defer="defer">(function(d, s, id) {
+            $fbsrc = '(function(d, s, id) {
                         var js, fjs = d.getElementsByTagName(s)[0];
                         if (d.getElementById(id)) return;
                         js = d.createElement(s); js.id = id;
                         js.src = "//connect.facebook.net/en_EN/all.js#xfbml=1";
                         fjs.parentNode.insertBefore(js, fjs);
-                        }(document, "script", "facebook-jssdk"));</script>
-                        <div class="fb-like" data-send="false" data-layout="button_count" data-width="60" data-show-faces="true"></div></li>';
+                        }(document, "script", "facebook-jssdk"));';
+            \CMSFactory\assetManager::create()->registerJsScript($fbsrc, FALSE, 'before');
+            return $string['facebook'] = '  
+                <div id="fb-root"></div>
+                <div class="fb-like" data-send="false" data-layout="button_count" data-width="60" data-show-faces="true" data-href="' . $url . '"></div>';
         }
+    }
+
+    public function _make_like_buttons_vk($url = '') {
+        self::$i++;
+$settings = $this->settings;
+
         if ($settings['vk_like'] == 1 && $settings['vk_apiid']) {
-            $string['vk'] = "<li>
-
-                        <!-- Put this script tag to the <head> of your page -->
-                        <script type='text/javascript' src='//vk.com/js/api/openapi.js?101'></script>
-
+            \CI_Controller::get_instance()->template->registerJsScript("<script type='text/javascript' src='//vk.com/js/api/openapi.js?101'></script>
                         <script type='text/javascript'>
                           VK.init({apiId: '{$settings['vk_apiid']}', onlyWidgets: true});
-                        </script>
+                        </script>", 'before');
 
-                        <!-- Put this div tag to the place, where the Like block will be -->
-                        <div id='vk_like'></div>
+            return $string['vk'] = "<!-- Put this div tag to the place, where the Like block will be -->
+                        <div id='vk_like" . self::$i . "'></div>
                         <script type='text/javascript'>
-                        VK.Widgets.Like('vk_like', {type: 'mini', height: 18});
-                        </script>
-                        </li>";
+                        VK.Widgets.Like('vk_like" . self::$i . "', {
+                                                    type: 'mini', 
+                                                    height: 18,
+                                                    pageUrl: '$url'
+                                                    }
+                                                );
+                        </script>";
         }
-        if ($settings['gg_like'] == 1) {
-            $string['google'] = "<li><!-- Place this tag in your head or just before your close body tag. -->
-                        <script type='text/javascript' src='https://apis.google.com/js/plusone.js'>
-                          {lang: 'ru', parsetags: 'explicit'}
-                        </script>
+    }
 
+    public function _make_like_buttons_google($url = '') {
+        $settings = $this->settings;
+
+        if ($settings['gg_like'] == 1) {
+            \CI_Controller::get_instance()->template->registerJsScript("<script type='text/javascript' src='https://apis.google.com/js/plusone.js'>
+                          {lang: 'ru', parsetags: 'explicit' }
+                        </script>", 'before');
+            return $string['google'] = "
                         <!-- Place this tag where you want the +1 button to render. -->
-                        <div class='g-plusone' data-size='medium'></div>
+                        <div class='g-plusone' data-size='medium' data-href='$url'></div>
 
                         <!-- Place this render call where appropriate. -->
-                        <script type='text/javascript'>gapi.plusone.go();</script></li>";
+                        <script type='text/javascript'>gapi.plusone.go();</script>";
         }
+    }
+
+    public function _make_like_buttons_twitter($url = '') {
+        $settings = $this->settings;
+
         if ($settings['twitter_like'] == 1) {
-            $string['twitter'] = '<li><a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
-                    <script async="async" defer="defer">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id))
-                    {js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>';
+            \CI_Controller::get_instance()->template->registerJsScript('<script async="async" defer="defer">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id))
+                    {js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>', 'before');
+            return $string['twitter'] = '<a href="https://twitter.com/share" class="twitter-share-button" data-url="' . $url . '">Tweet</a>';
         }
+    }
+
+    public function _make_like_buttons($url = '') {
         $html = '<ul class="items items-social">'
-                . $string['facebook']
-                . $string['vk']
-                . $string['google']
-                . $string['twitter'] .
+                . '<li>' . $this->_make_like_buttons_fb($url) . '</li>'
+                . '<li>' . $this->_make_like_buttons_vk($url) . '</li>'
+                . '<li>' . $this->_make_like_buttons_google($url) . '</li>'
+                . '<li>' . $this->_make_like_buttons_twitter($url) . '</li>' .
                 '</ul>';
         return $html;
     }

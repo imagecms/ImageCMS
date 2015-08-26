@@ -1,11 +1,12 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 if (!function_exists('my_print_r')) {
 
-    function my_print_r($array = array()) {
+    function my_print_r($array = []) {
         echo "<pre>";
         print_r($array);
         echo "</pre>";
@@ -16,10 +17,11 @@ if (!function_exists('my_print_r')) {
 if (!function_exists('is_true_array')) {
 
     function is_true_array($array) {
-        if ($array == false)
+        if ($array == false) {
             return false;
-
-        if (sizeof($array) > 0) {
+        }
+        $arraySize = count($array);
+        if ($arraySize > 0) {
             return TRUE;
         } else {
             return FALSE;
@@ -31,19 +33,19 @@ if (!function_exists('is_true_array')) {
 if (!function_exists('result_column')) {
 
     /**
-     * For 
+     * For
      * @param array $result array of arrays
      * @return array
      */
     function result_column($result) {
 
         if (count($result) == 0) {
-            return array();
+            return [];
         }
 
-        $key = key($result[0]); 
-       
-        for ($i = 0; $i < count($result); $i++) {
+        $key = key($result[0]);
+        $countResult = count($result);
+        for ($i = 0; $i < $countResult; $i++) {
             $result[$i] = $result[$i][$key];
         }
 
@@ -82,7 +84,7 @@ if (!function_exists('array_to_file')) {
 
     /**
      * Write array in file.
-     * 
+     *
      * @param string $file
      * @param array $array
      * @return bool
@@ -95,12 +97,14 @@ if (!function_exists('array_to_file')) {
 
 if (!function_exists('user_function_sort')) {
 
-    function user_function_sort($arr) {
-        usort($arr, function($a, $b) {
-                    return strnatcmp($a['value'], $b['value']);
-                });
+    function user_function_sort($arr, $key = 'value') {
+        usort(
+            $arr,
+            function($a, $b) use ($key) {
+                    return strnatcmp($a[$key], $b[$key]);
+            }
+        );
         return $arr;
     }
 
 }
-?>

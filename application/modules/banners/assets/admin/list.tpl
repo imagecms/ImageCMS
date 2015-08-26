@@ -8,23 +8,23 @@
             <div class="pull-right">
                 <div class="d-i_b">
 
-                    <span style="position: relative">
+                    <span style="position: relative" class="d-i_b v-a_m">
                         <a href="#" onclick="$(this).next().slideToggle();
                                 return false" class="btn btn-small">{lang('Template settings', 'banners')}</a>
-                        <div style="position: absolute; display: none; background-color: white; padding: 8px; margin-top: 5px; border-radius: 5px; width: 335px;">
+                        <div style="position: absolute; display: none; background-color: white; padding: 8px; margin-top: 5px;width: 335px;border: 1px solid #ccc;">
                             <input {if $show_tpl}checked='checked'{/if}type="checkbox" onclick="chckTplParam(this);" /> {lang('Use different templates for different pages', 'banners')}
                         </div>
                     </span>
 
-                    <a href="/admin/components/init_window/banners/create" class="btn btn-small btn-success pjax"><i class="icon-plus-sign icon-white"></i>{lang('Create a banner', 'banners')}</a>
-                    <button type="button" class="btn btn-small btn-danger disabled action_on" id="banner_del" onclick="DeleteSliderBanner()"><i class="icon-trash icon-white"></i>{lang('Delete', 'banners')}</button>
+                    <a href="/admin/components/init_window/banners/create" class="btn btn-small btn-success"><i class="icon-plus-sign icon-white"></i>{lang('Create a banner', 'banners')}</a>
+                    <button type="button" class="btn btn-small btn-danger disabled action_on" id="banner_del" onclick="DeleteSliderBanner()"><i class="icon-trash"></i>{lang('Delete', 'banners')}</button>
                 </div>
             </div>
         </div>
         <div class="tab-content">
             <div class="row-fluid">
                 {if count($banners) > 0}
-                    <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                    <table class="table  table-bordered table-hover table-condensed t-l_a">
                         <thead>
                             <tr>
                                 <th class="t-a_c span1">
@@ -56,7 +56,7 @@
                                         {echo $b['id']}
                                     </td>
                                     <td>
-                                        <a class="pjax" href="/admin/components/init_window/banners/edit/{echo $b['id']}/{$locale}" data-rel="tooltip" data-title="{lang('Edit banner', 'banners')}">{echo $b['name']}</a>
+                                        <a href="/admin/components/init_window/banners/edit/{echo $b['id']}/{$locale}" data-rel="tooltip" data-title="{lang('Edit banner', 'banners')}">{echo $b['name']}</a>
                                     </td>
                                     <td>
                                         {echo implode(', ',unserialize($b['group']))}

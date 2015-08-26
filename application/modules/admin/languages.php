@@ -1,11 +1,14 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
-class Languages extends BaseAdminController {
+class Languages extends BaseAdminController
+{
 
-    function __construct() {
+    public function __construct() {
+
         parent::__construct();
 
         $this->load->library('DX_Auth');
@@ -16,7 +19,8 @@ class Languages extends BaseAdminController {
         $this->lib_admin->init_settings();
     }
 
-    function index() {
+    public function index() {
+
         $settings = $this->cms_admin->get_settings();
         $this->template->assign('template_selected', $settings['site_template']);
         $langs = $this->cms_admin->get_langs();
@@ -25,10 +29,11 @@ class Languages extends BaseAdminController {
     }
 
     /**
-     * return set of locales 
+     * return set of locales
      * @return array - locales
      */
-    function getLocales() {
+    public function getLocales() {
+
         $langs_config = $this->config->item('locales');
         $langs = $langs_config;
 
@@ -48,7 +53,8 @@ class Languages extends BaseAdminController {
     /**
      * Show lang_create form
      */
-    function create_form() {
+    public function create_form() {
+
         //cp_check_perm('lang_create');
 
         $settings = $this->cms_admin->get_settings();
@@ -66,34 +72,35 @@ class Languages extends BaseAdminController {
     /**
      * Insert new language
      */
-    function insert() {
+    public function insert() {
+
         //cp_check_perm('lang_create');
 
         $this->form_validation->set_rules('name', lang("Title", "admin"), 'trim|required|min_length[1]|max_length[100]');
         $this->form_validation->set_rules('identif', lang("Identifier", "admin"), 'trim|required|min_length[1]|max_length[100]|alpha_dash');
         $this->form_validation->set_rules('image', lang("Image", "admin"), 'max_length[250]');
         $this->form_validation->set_rules('locale', lang("Locale", "admin"), 'required|max_length[250]');
-        $this->form_validation->set_rules('template', lang("Template", "admin"), 'required|max_length[250]');
+        //        $this->form_validation->set_rules('template', lang("Template", "admin"), 'max_length[250]');
 
         if ($this->form_validation->run($this) == FALSE) {
             showMessage(validation_errors(), '', 'r');
         } else {
 
-            $data = array(
+            $data = [
                 'lang_name' => $this->input->post('name'),
                 'identif' => $this->input->post('identif'),
                 //'image' => $this->lib_admin->db_post('image'),
                 'image' => $this->input->post('image'),
                 'locale' => $this->input->post('locale'),
-//                'folder' => $this->input->post('folder'),
+                //                'folder' => $this->input->post('folder'),
                 'template' => $this->input->post('template')
-            );
+            ];
 
             ($hook = get_hook('admin_language_create')) ? eval($hook) : NULL;
 
             $this->cms_admin->insert_lang($data);
 
-            $this->lib_admin->log(lang("Create a language", "admin") . " " . $data['lang_name']);
+            $this->lib_admin->log(lang("Create a language ", "admin") . " " . $data['lang_name']);
 
             $this->cache->delete('main_site_langs');
 
@@ -101,37 +108,41 @@ class Languages extends BaseAdminController {
 
             showMessage(lang("Language has been created", "admin"));
 
-            pjax('/admin/languages/');
+            if ($this->input->post('create_exit')) {
+                pjax('/admin/languages/');
+            } else {
+                $lastLangId = $this->db->query("SELECT id FROM languages ORDER BY id DESC")->row()->id;
+                pjax('/admin/languages/edit/' . $lastLangId);
+            }
         }
     }
 
-    function getPoFileSettingsText($lang = '', $type = '', $module = NULL) {
-        $content =
-                b"\xEF\xBB\xBF" .
-                'msgid ""' . PHP_EOL .
-                'msgstr ""' . PHP_EOL .
-                '"Project-Id-Version: \n"' . PHP_EOL .
-                '"Report-Msgid-Bugs-To: \n"' . PHP_EOL .
-                '"POT-Creation-Date: ' . date('Y-m-d h:iO', time()) . '\n"' . PHP_EOL .
-                '"PO-Revision-Date: ' . date('Y-m-d h:iO', time()) . '\n"' . PHP_EOL .
-                '"Last-Translator:  \n"' . PHP_EOL .
-                '"Language-Team:  \n"' . PHP_EOL .
-                '"Language: ' . $lang . '\n"' . PHP_EOL .
-                '"MIME-Version: 1.0\n"' . PHP_EOL .
-                '"Content-Type: text/plain; charset=UTF-8\n"' . PHP_EOL .
-                '"Content-Transfer-Encoding: 8bit\n"' . PHP_EOL .
-                '"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"' . PHP_EOL;
+    public function getPoFileSettingsText($lang = '', $type = '', $module = NULL) {
+
+        $content = b"\xEF\xBB\xBF" .
+            'msgid ""' . PHP_EOL .
+            'msgstr ""' . PHP_EOL .
+            '"Project-Id-Version: \n"' . PHP_EOL .
+            '"Report-Msgid-Bugs-To: \n"' . PHP_EOL .
+            '"POT-Creation-Date: ' . date('Y-m-d h:iO', time()) . '\n"' . PHP_EOL .
+            '"PO-Revision-Date: ' . date('Y-m-d h:iO', time()) . '\n"' . PHP_EOL .
+            '"Last-Translator:  \n"' . PHP_EOL .
+            '"Language-Team:  \n"' . PHP_EOL .
+            '"Language: ' . $lang . '\n"' . PHP_EOL .
+            '"MIME-Version: 1.0\n"' . PHP_EOL .
+            '"Content-Type: text/plain; charset=UTF-8\n"' . PHP_EOL .
+            '"Content-Transfer-Encoding: 8bit\n"' . PHP_EOL .
+            '"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"' . PHP_EOL;
         switch ($type) {
             case 'main':
                 if (file_exists('./application/language/main/ru_RU/LC_MESSAGES/main.po')) {
                     $main_content = file('./application/language/main/ru_RU/LC_MESSAGES/main.po');
 
-                    $content .=
-                            '"X-Poedit-Basepath: .\n"' . PHP_EOL .
-                            '"X-Poedit-SourceCharset: utf-8\n"' . PHP_EOL .
-                            '"X-Generator: Poedit 1.5.7\n"' . PHP_EOL .
-                            '"X-Poedit-Language: \n"' . PHP_EOL .
-                            '"X-Poedit-Country: \n"' . PHP_EOL;
+                    $content .= '"X-Poedit-Basepath: .\n"' . PHP_EOL .
+                        '"X-Poedit-SourceCharset: utf-8\n"' . PHP_EOL .
+                        '"X-Generator: Poedit 1.5.7\n"' . PHP_EOL .
+                        '"X-Poedit-Language: \n"' . PHP_EOL .
+                        '"X-Poedit-Country: \n"' . PHP_EOL;
 
                     foreach ($main_content as $line) {
                         if (strstr($line, 'X-Poedit-SearchPath')) {
@@ -142,50 +153,44 @@ class Languages extends BaseAdminController {
                         }
                     }
                 } else {
-                    $content .=
-                            '"X-Poedit-Basepath: .\n"' . PHP_EOL .
-                            '"X-Poedit-SourceCharset: utf-8\n"' . PHP_EOL .
-                            '"X-Generator: Poedit 1.5.7\n"' . PHP_EOL .
-                            '"X-Poedit-Language: \n"' . PHP_EOL .
-                            '"X-Poedit-Country: \n"' . PHP_EOL .
-                            '"X-Poedit-SearchPath-0: ..\n"' . PHP_EOL;
+                    $content .= '"X-Poedit-Basepath: .\n"' . PHP_EOL .
+                        '"X-Poedit-SourceCharset: utf-8\n"' . PHP_EOL .
+                        '"X-Generator: Poedit 1.5.7\n"' . PHP_EOL .
+                        '"X-Poedit-Language: \n"' . PHP_EOL .
+                        '"X-Poedit-Country: \n"' . PHP_EOL .
+                        '"X-Poedit-SearchPath-0: ..\n"' . PHP_EOL;
                 }
-
 
                 break;
             case 'module':
 
                 if ($module == 'admin') {
-                    $content .=
-                            '"X-Poedit-Basepath: ../../..\n"' . PHP_EOL .
-                            '"X-Poedit-SourceCharset: utf-8\n"' . PHP_EOL .
-                            '"X-Generator: Poedit 1.5.7\n"' . PHP_EOL .
-                            '"X-Poedit-Language: \n"' . PHP_EOL .
-                            '"X-Poedit-Country: \n"' . PHP_EOL .
-                            '"X-Poedit-SearchPath-0: .\n"' . PHP_EOL .
-                            '"X-Poedit-SearchPath-1: ../../../templates/administrator\n"' . PHP_EOL .
-                            '"X-Poedit-SearchPath-2: ../../modules/shop/admin\n"' . PHP_EOL .
-                            'X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n' . PHP_EOL;
+                    $content .= '"X-Poedit-Basepath: ../../..\n"' . PHP_EOL .
+                        '"X-Poedit-SourceCharset: utf-8\n"' . PHP_EOL .
+                        '"X-Generator: Poedit 1.5.7\n"' . PHP_EOL .
+                        '"X-Poedit-Language: \n"' . PHP_EOL .
+                        '"X-Poedit-Country: \n"' . PHP_EOL .
+                        '"X-Poedit-SearchPath-0: .\n"' . PHP_EOL .
+                        '"X-Poedit-SearchPath-1: ../../../templates/administrator\n"' . PHP_EOL .
+                        '"X-Poedit-SearchPath-2: ../../' . getModContDirName('shop') . '/shop/admin\n"' . PHP_EOL .
+                        'X-Poedit-SearchPath-3: ../../../application/' . getModContDirName('shop') . '/shop/models/build/classes\n' . PHP_EOL;
                 } else {
-                    $content .=
-                            '"X-Poedit-Basepath: ../../..\n"' . PHP_EOL .
-                            '"X-Poedit-SourceCharset: utf-8\n"' . PHP_EOL .
-                            '"X-Generator: Poedit 1.5.7\n"' . PHP_EOL .
-                            '"X-Poedit-Language: \n"' . PHP_EOL .
-                            '"X-Poedit-Country: \n"' . PHP_EOL .
-                            '"X-Poedit-SearchPath-0: .\n"' . PHP_EOL;
-                }
-
-
-                break;
-            case 'template':
-                $content .=
-                        '"X-Poedit-Basepath: ../../../..\n"' . PHP_EOL .
+                    $content .= '"X-Poedit-Basepath: ../../..\n"' . PHP_EOL .
                         '"X-Poedit-SourceCharset: utf-8\n"' . PHP_EOL .
                         '"X-Generator: Poedit 1.5.7\n"' . PHP_EOL .
                         '"X-Poedit-Language: \n"' . PHP_EOL .
                         '"X-Poedit-Country: \n"' . PHP_EOL .
                         '"X-Poedit-SearchPath-0: .\n"' . PHP_EOL;
+                }
+
+                break;
+            case 'template':
+                $content .= '"X-Poedit-Basepath: ../../../..\n"' . PHP_EOL .
+                    '"X-Poedit-SourceCharset: utf-8\n"' . PHP_EOL .
+                    '"X-Generator: Poedit 1.5.7\n"' . PHP_EOL .
+                    '"X-Poedit-Language: \n"' . PHP_EOL .
+                    '"X-Poedit-Country: \n"' . PHP_EOL .
+                    '"X-Poedit-SearchPath-0: .\n"' . PHP_EOL;
                 break;
         }
         return $content;
@@ -195,11 +200,12 @@ class Languages extends BaseAdminController {
      * Create language folders for templates, front, and modules
      * @param string $lang - locale identifier: ru_RU, en_US, de_DC
      */
-    function createLanguageFolders($lang) {
+    public function createLanguageFolders($lang) {
+
         $templates_dir = './templates';
         $main_dir = './application/language/main';
         $modules_dir = './application/modules';
-//        $module_content = $this->getPoFileSettingsText($lang, 'module');
+        //        $module_content = $this->getPoFileSettingsText($lang, 'module');
         $template_content = $this->getPoFileSettingsText($lang, 'template');
         $main_content = $this->getPoFileSettingsText($lang, 'main');
         if (is_dir($templates_dir)) {
@@ -233,7 +239,7 @@ class Languages extends BaseAdminController {
                         $module_content = $this->getPoFileSettingsText($lang, 'module', $module);
                         file_put_contents($modules_dir . '/' . $module . '/language/' . $lang . '/LC_MESSAGES/' . $module . '.po', $module_content);
                         // to delete lang folders
-//                         system("rm -rf " . escapeshellarg($modules_dir . '/' . $module . '/language/de_DE'));
+                        //                         system("rm -rf " . escapeshellarg($modules_dir . '/' . $module . '/language/de_DE'));
                     }
                 }
             }
@@ -243,10 +249,11 @@ class Languages extends BaseAdminController {
     /**
      * Rename locales folders (example ./application/modules/module_name/langauge/lo_LO)
      * @param string $from_locale - locale name to rename
-     * @param string $to_locale - locale name rename by 
+     * @param string $to_locale - locale name rename by
      * @return boolean
      */
     private function renameLocaleFolders($from_locale, $to_locale) {
+
         if ($from_locale && $to_locale) {
             $templates_dir = './templates';
             $main_dir = './application/language/main';
@@ -295,16 +302,19 @@ class Languages extends BaseAdminController {
     }
 
     private function rrmdir($dir) {
+
         foreach (glob($dir . '/*') as $file) {
-            if (is_dir($file))
+            if (is_dir($file)) {
                 $this->rrmdir($file);
-            else
+            } else {
                 unlink($file);
+            }
         }
         rmdir($dir);
     }
 
     private function deleteLanguageFolders($lang) {
+
         $templates_dir = './templates';
         $main_dir = './application/language/main';
         $modules_dir = './application/modules';
@@ -343,7 +353,8 @@ class Languages extends BaseAdminController {
     /**
      * Show lang_edit form
      */
-    function edit($lang_id) {
+    public function edit($lang_id) {
+
         //cp_check_perm('lang_edit');
         // get lang params
         $lang = $this->cms_admin->get_lang($lang_id);
@@ -355,7 +366,11 @@ class Languages extends BaseAdminController {
         $this->template->assign('folder_selected', $lang['folder']);
         $this->template->assign('locales', $this->getLocales());
         $this->template->assign('locale', $lang['locale']);
+        $this->template->assign('is_default', $lang['default']);
         $this->template->assign('template_selected', $lang['template']);
+
+        $settings = $this->cms_admin->get_settings();
+        $this->template->assign('template_installed', $settings['site_template']);
 
         $this->template->show('lang_edit', FALSE);
     }
@@ -363,14 +378,15 @@ class Languages extends BaseAdminController {
     /**
      * Update language
      */
-    function update($lang_id) {
+    public function update($lang_id) {
+
         //cp_check_perm('lang_edit');
 
         $this->form_validation->set_rules('lang_name', lang("Title", "admin"), 'trim|required|min_length[1]|max_length[100]');
         $this->form_validation->set_rules('identif', lang("Identifier", "admin"), 'trim|required|min_length[1]|max_length[100]|alpha_dash');
         $this->form_validation->set_rules('image', lang("Image", "admin"), 'max_length[250]');
         $this->form_validation->set_rules('locale', lang("Locale", "admin"), 'required|max_length[250]');
-        $this->form_validation->set_rules('template', lang("Template", "admin"), 'required|max_length[250]');
+        //        $this->form_validation->set_rules('template', lang("Template", "admin"), 'max_length[250]');
 
         if ($this->form_validation->run($this) == FALSE) {
             showMessage(validation_errors(), '', 'r');
@@ -379,15 +395,15 @@ class Languages extends BaseAdminController {
             $lang = $this->cms_admin->get_lang($lang_id);
             $post_locale = trim($this->input->post('locale'));
 
-            $data = array(
+            $data = [
                 'lang_name' => $this->input->post('lang_name'),
                 'identif' => $this->input->post('identif'),
                 //'image' => $this->lib_admin->db_post('image'),
                 'image' => $this->input->post('image'),
                 'locale' => $post_locale,
-//                'folder' => $this->input->post('folder'),
+                //                'folder' => $this->input->post('folder'),
                 'template' => $this->input->post('template')
-            );
+            ];
 
             ($hook = get_hook('admin_language_update')) ? eval($hook) : NULL;
 
@@ -402,11 +418,11 @@ class Languages extends BaseAdminController {
                 $this->renameLocaleFolders($lang['locale'], $post_locale);
                 $this->createLanguageFolders($post_locale);
             }
-//            $this->deleteLanguageFolders2($post_locale);
+            //            $this->deleteLanguageFolders2($post_locale);
 
             showMessage(lang("Changes has been saved", "admin"));
 
-            $action = $_POST['action'];
+            $action = $this->input->post('action');
             if ($action == 'close') {
                 pjax('/admin/languages');
             }
@@ -416,7 +432,8 @@ class Languages extends BaseAdminController {
     /**
      * Delete language
      */
-    function delete() {
+    public function delete() {
+
         //cp_check_perm('lang_delete');
         //$id = $this->input->post('lang_id');
         $id = $this->input->post('ids');
@@ -465,7 +482,8 @@ class Languages extends BaseAdminController {
     /**
      * Set default language
      */
-    function set_default() {
+    public function set_default() {
+
         //cp_check_perm('lang_edit');
 
         $lang_id = $this->input->post('lang');
@@ -490,7 +508,8 @@ class Languages extends BaseAdminController {
      * @return array
      */
     private function _get_lang_folders() {
-        $new_arr = array();
+
+        $new_arr = [];
 
         if ($handle = opendir(APPPATH . 'language/')) {
             while (false !== ($file = readdir($handle))) {
@@ -514,32 +533,9 @@ class Languages extends BaseAdminController {
      * @access private
      * @return array
      */
-    function _get_templates() {
-        $new_arr_shop = array();
-        if ($handle = opendir(TEMPLATES_PATH)) {
-            while (false !== ($file = readdir($handle))) {
-                if ($file != "." && $file != ".." && $file != 'administrator' && $file != 'modules' && !stristr($file, '_mobile')) {
-                    if (!is_file(TEMPLATES_PATH . $file)) {
-                        if (SHOP_INSTALLED && is_dir(TEMPLATES_PATH . $file . '/shop/')) {
-                            $new_arr_shop[$file] = $file;
-                        }
+    public function _get_templates() {
 
-                        $new_arr[$file] = $file;
-                    }
-                }
-            }
-            closedir($handle);
-        } else {
-            return FALSE;
-        }
-
-        if (SHOP_INSTALLED) {
-            return $new_arr_shop;
-        } else {
-            return $new_arr;
-        }
+        return get_templates();
     }
 
 }
-
-/* End of languages.php */

@@ -11,8 +11,8 @@
             </div>
         </div>                            
     </div>
-    <form method="post" action="{site_url('admin/components/cp/comments/update_settings')}" class="form-horizontal" id="comment_settings_form">
-        <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+    <form method="post" action="{site_url('admin/components/cp/comments/update_settings')}" class="form-horizontal m-t_10" id="comment_settings_form">
+        <table class="table  table-bordered table-hover table-condensed content_big_td">
             <thead>
                 <tr>
                     <th colspan="6">
@@ -23,7 +23,7 @@
             <tbody>
                 <tr>
                     <td colspan="6">
-                        <div class="inside_padd span9">
+                        <div class="inside_padd">
                             <div class="control-group m-t_10">
                                 <label class="control-label" for="max_comment_length">{lang("Maximum comment length", 'comments')}:</label>
                                 <div class="controls number">

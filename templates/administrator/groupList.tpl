@@ -6,16 +6,16 @@
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="$('.modal').modal();"><i class="icon-trash icon-white"></i>{lang("Delete","admin")}</button>
+                <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="$('.modal:not(.addNotificationMessage)').modal();"><i class="icon-trash"></i>{lang("Delete","admin")}</button>
                 <a class="btn btn-small btn-success pjax" href="/admin/rbac/groupCreate" ><i class="icon-plus-sign icon-white"></i>{lang('Create role group','admin')}</a>
             </div>
-        </div>  
+        </div>
     </div>
     <div class="tab-content">
         {if count($model) > 0}
-            <div class="row-fluid">            
+            <div class="row-fluid">
                 <form method="post" action="#" class="form-horizontal" data-url-delete="/admin/rbac/groupDelete">
-                    <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed">
                         <thead>
                             <tr>
                                 <th class="span1">
@@ -28,7 +28,7 @@
                                 <th class="span1">{lang("ID","admin")}</th>
                                 <th>{lang("Name","admin")}</th>
                                 <th>{lang("Description","admin")}</th>
-                            </tr>    
+                            </tr>
                         </thead>
                         <tbody id="rltbl">
                             {foreach $model as $item}
@@ -42,7 +42,7 @@
                                     </td>
                                     <td>{echo $item->id}</td>
                                     <td>
-                                        <a class="pjax" href="/admin/rbac/groupEdit/{echo $item->id}">{echo ShopCore::encode($item->name)}</a>
+                                        <a href="/admin/rbac/groupEdit/{echo $item->id}">{echo ShopCore::encode($item->name)}</a>
                                     </td>
                                     <td>
                                         {echo $item->description}
@@ -61,7 +61,7 @@
         {/if}
     </div>
 </section>
-<!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->    
+<!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->
 <div class="modal hide fade modal_del">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

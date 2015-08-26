@@ -1,5 +1,4 @@
-
-<div class="container ">
+<div class="container">
     <section class="mini-layout">
         <div class="frame_title clearfix">
             <div class="pull-left">
@@ -14,9 +13,9 @@
             </div>
         </div>
         <div class="row-fluid">
-            <div class="span8 content_big_td">
+            <div class="span8">
                 <h4>{lang("New pages","admin")}</h4>
-                <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                <table class="table  table-bordered table-hover table-condensed">
                     <thead>
                     <th>{lang("Title","admin")}</th>
                         {if count($latest)>0}
@@ -43,8 +42,8 @@
                                     </td>
                                     <td>{date('Y-m-d H:i:s', $l['created'])}</td>
                                     <td>
-                                        <a class="btn btn-small my_btn_s pjax" data-rel="tooltip" data-title="{lang("Editing","admin")}" href="{$BASE_URL}admin/pages/edit/{$l.id}/{$l.lang}">
-                                            <i class="icon-edit"></i>
+                                        <a class="btn btn-small" data-rel="tooltip" data-title="{lang("Editing","admin")}" href="{$BASE_URL}admin/pages/edit/{$l.id}/{$l.lang}">
+                                            <i class="icon-edit" style="top:-2px!important;"></i>
                                         </a>
                                     </td>
                                 </tr>
@@ -62,7 +61,7 @@
                     </tbody>
                 </table>
                 <h4>{lang("Updated pages","admin")}</h4>
-                <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                <table class="table  table-bordered table-hover table-condensed">
                     <thead>
                     <th>
                         {lang("Title","admin")}
@@ -92,8 +91,8 @@
                                     </td>
                                     <td>{date('Y-m-d H:i:s', $l['created'])}</td>
                                     <td>
-                                        <a class="btn btn-small my_btn_s pjax" data-rel="tooltip" data-title="{lang("Editing","admin")}" href="{$BASE_URL}admin/pages/edit/{$l.id}/{$l.lang}">
-                                            <i class="icon-edit"></i>
+                                        <a class="btn btn-small" data-rel="tooltip" data-title="{lang("Editing","admin")}" href="{$BASE_URL}admin/pages/edit/{$l.id}/{$l.lang}">
+                                            <i class="icon-edit" style="top:-2px!important;"></i>
                                         </a>
                                     </td>
                                 </tr>
@@ -112,7 +111,7 @@
                 </table>
             </div>
             <div class="span4">
-                <table class="table table-striped table-bordered table-hover table-condensed content_big_td" style="margin-top: 40px;">
+                <table class="table table-bordered table-hover table-condensed content_big_td" style="margin-top: 40px;">
                     <thead>
                     <th>{lang("System","admin")}</th>
                     </thead>
@@ -121,7 +120,7 @@
                             <td>
                                 <p>
                                     {lang("Version","admin")}: {$cms_number} <br />
-                                    <a class="pjax" href="/admin/sys_update">
+                                    <a href="/admin/sys_update">
                                         {lang('Check version update' , 'admin')}
                                     </a>
                                     <br/>
@@ -131,7 +130,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                     <th>{lang("Statistics","admin")}</th>
                     </thead>
@@ -149,7 +148,7 @@
                 </table>
                 {if count($comments)>0}
 
-                    <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                         <th>{lang('Latest/recent comments', 'admin')}</th>
                         </thead>
@@ -160,7 +159,7 @@
                                         <span style="font-size:11px;">{date('d-m-Y H:i', $c.date)}</span>
                                         <br/>
                                         <i>{$c.user_name}:</i>
-                                        <a class="pjax" href="/admin/components/cp/comments">
+                                        <a href="/admin/components/cp/comments">
                                             {truncate($c.text, 50, '...')}
                                         </a>
                                     </td>
@@ -170,7 +169,7 @@
                     </table>
                 {/if}
                 {if count($api_news) > 1}
-                    <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                         <th>{lang('Interesting articles with blog ImageCMS',"admin")}</th>
                         </thead>

@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Image CMS
@@ -10,11 +11,15 @@ if (!defined('BASEPATH'))
 class Cache {
 
     public $CI;
+
     public $get = 0;
+
     public $set = 0;
+
     public $disableCache = 0;
-//Cache config
-// TODO: Rewrite auto_clean to fetch date from DB
+
+    //Cache config
+    // TODO: Rewrite auto_clean to fetch date from DB
     public $_Config = array('store' => 'cache',
         'auto_clean' => 500, //Random number to run _Clean();
         'auto_clean_life' => 3600,
@@ -32,12 +37,12 @@ class Cache {
         }
         $this->disableCache = (boolean) $this->CI->config->item('disable_cache');
 
-// Is cache folder wratible?
+        // Is cache folder wratible?
         if (!is_writable($this->_Config['store'])) {
             $this->log_cache_error('Constructor :: Store ' . $this->_Config['store'] . ' is not writable');
         }
 
-// autoclean if random is 1
+        // autoclean if random is 1
         if (($this->_Config['auto_clean'] !== false) && (rand(1, $this->_Config['auto_clean']) === 1)) {
             $this->Clean();
         }
@@ -68,22 +73,23 @@ class Cache {
         $file = $this->_Config['store'] . 'cache_' . $this->generatekey($key);
         $this->set_default_group();
 
-        if (!file_exists($file))
+        if (!file_exists($file)) {
             return FALSE;
+        }
 
         if (!($fp = fopen($file, 'r'))) {
             $this->log_cache_error('Fetch :: Error Opening File ' . $file);
             return FALSE;
         }
 
-// Only reading
+        // Only reading
         flock($fp, LOCK_SH);
 
-// Cache data
+        // Cache data
         $data = unserialize(file_get_contents($file));
         fclose($fp);
 
-// if cache not expried return cache file
+        // if cache not expried return cache file
         if (time() < $data['expire']) {
             $this->get++;
             return $data['cache'];
@@ -100,8 +106,9 @@ class Cache {
         $file = $this->_Config['store'] . 'cache_' . $this->generatekey(get_class($object) . '::' . $func . '::' . serialize($args));
         $this->set_default_group();
 
-        if (!file_exists($file))
+        if (!file_exists($file)) {
             return false;
+        }
 
         if (!($fp = fopen($file, 'r'))) {
             $this->log_cache_error('Fetch :: Error Opening File ' . $file);
@@ -131,23 +138,26 @@ class Cache {
      * @return bool
      */
     public function store($key, $data, $ttl = false, $group = false) {
-        if (!$ttl)
+        if (!$ttl) {
             $ttl = $this->_Config['ttl'];
+        }
 
         $this->set_group($group);
 
         $file = $this->_Config['store'] . 'cache_' . $this->generatekey($key);
         $data = serialize(array('expire' => ($ttl + time()), 'cache' => $data));
 
-        if (!($fp = fopen($file, 'a+')))
+        if (!($fp = fopen($file, 'a+'))) {
             $this->log_cache_error('Store :: Error Opening file ' . $file);
+        }
 
         flock($fp, LOCK_EX);
         fseek($fp, 0);
         ftruncate($fp, 0);   // Clear file
 
-        if (fwrite($fp, $data) === false)
+        if (fwrite($fp, $data) === false) {
             $this->log_cache_error('Store :: Error writing to file ' . $file);
+        }
 
         fclose($fp);
 
@@ -187,14 +197,14 @@ class Cache {
      * @return mixed
      * @access public
      */
-    function call($func = array(), $args = array(), $ttl = false) {
+    public function call($func = array(), $args = array(), $ttl = false) {
         if ($ttl == false) {
             $ttl = $this->_Config['ttl'];
         }
 
         $arguments = func_get_args();
 
-//class_name::function
+        //class_name::function
         $key = get_class($arguments[0][0]) . '::' . $arguments[0][1] . '::' . serialize($args);
 
         if (($cache = $this->fetch($key)) !== false) {
@@ -207,8 +217,9 @@ class Cache {
 
             $this->set_default_group();
 
-            if (!$this->store($key, $result, false))
+            if (!$this->store($key, $result, false)) {
                 return false;
+            }
 
             return $result;
         }
@@ -233,7 +244,7 @@ class Cache {
                     $files_all = opendir("./system/cache/" . $file);
                     while (false !== ($fileT = readdir($files_all))) {
                         $stat = stat($this->_Config['store']);
-// echo $stat['mtime'];
+                        // echo $stat['mtime'];
                         if ($fileT != "." && $fileT != ".." && $fileT != "/" && (time() - @$stat['mtime']) > $this->_Config['auto_clean_life']) {
                             @unlink("./system/cache/" . $file . "/" . $fileT);
                             $n++;
@@ -297,10 +308,11 @@ class Cache {
         $file = $this->_Config['store'] . 'cache_' . $this->generatekey(get_class($object) . '::' . $func . '::' . serialize($args));
         $this->set_default_group();
 
-        if (file_exists($file))
+        if (file_exists($file)) {
             return @unlink($file);
-        else
+        } else {
             return false;
+        }
     }
 
     /**
@@ -313,12 +325,12 @@ class Cache {
         $n = 0;
 
         $cache_store_dir = $this->_Config['store'] . "/";
-        if (is_dir($cache_store_dir) and ($root_dir_handle = opendir($cache_store_dir))) {
+        if (is_dir($cache_store_dir) and ( $root_dir_handle = opendir($cache_store_dir))) {
             while (false !== ($file = readdir($root_dir_handle))) {
 
                 if (substr($file, 0, 6) != 'cache_' && $file != 'hooks.php' && $file != "." && $file != ".." && $file != "/") {
                     $cache_sub_dir = $cache_store_dir . $file . "/";
-                    if (is_dir($cache_sub_dir) and ($sub_dir_handle = opendir($cache_sub_dir))) {
+                    if (is_dir($cache_sub_dir) and ( $sub_dir_handle = opendir($cache_sub_dir))) {
                         while (FALSE !== ($fileT = readdir($sub_dir_handle))) {
 
                             if ($fileT != "." && $fileT != ".." && $fileT != "/") {
@@ -338,7 +350,7 @@ class Cache {
         }
 
         $cache_sub_dir = $cache_store_dir . "templates_c/HTML/";
-        if (is_dir($cache_sub_dir) and ($sub_dir_handle = opendir($cache_sub_dir))) {
+        if (is_dir($cache_sub_dir) and ( $sub_dir_handle = opendir($cache_sub_dir))) {
             while (false !== ($fileT = readdir($sub_dir_handle))) {
 
                 if ($fileT != "." && $fileT != ".." && $fileT != "/") {
@@ -347,7 +359,6 @@ class Cache {
                 }
             }
         }
-
 
         $this->log_cache_error('All cache files deleted');
 
@@ -378,12 +389,12 @@ class Cache {
         $n = 0;
 
         $cache_store_dir = $this->_Config['store'] . "/";
-        if (is_dir($cache_store_dir) and ($root_dir_handle = opendir($cache_store_dir))) {
+        if (is_dir($cache_store_dir) and ( $root_dir_handle = opendir($cache_store_dir))) {
             while (false !== ($file = readdir($root_dir_handle))) {
 
                 if (substr($file, 0, 6) != 'cache_' && $file != 'hooks.php' && $file != "." && $file != ".." && $file != "/") {
                     $cache_sub_dir = $cache_store_dir . $file . "/";
-                    if (is_dir($cache_sub_dir) and ($sub_dir_handle = opendir($cache_sub_dir))) {
+                    if (is_dir($cache_sub_dir) and ( $sub_dir_handle = opendir($cache_sub_dir))) {
                         while (false !== ($fileT = readdir($sub_dir_handle))) {
 
                             if ($fileT != "." && $fileT != ".." && $fileT != "/" && strstr($fileT, '~') != TRUE) {

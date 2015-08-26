@@ -1,9 +1,12 @@
+<div class="frame-crumbs">
+    {widget('path')}
+</div>
 <div class="frame-inside page-text">
     <div class="container">
         <div class="text">
             <div class="container">
                 <div class="content center">
-                    <div id="titleExt"><h1>{widget('path')}<span class="ext">{lang('Contacts', 'feedback')}</span></h1></div>
+                    <div id="titleExt"><h1><span class="ext">{lang('Contacts', 'feedback')}</span></h1></div>
                     <div id="contact">
                         <div class="left">
                             {if $form_errors}
@@ -56,7 +59,7 @@
 
                                 <div style="margin-top: 15px; margin-left: -5px; float: left;">
                                     <div class="btn s-p btn-form m-b_15">
-                                        <input type="submit" id="submit" class="submit" value="{lang('Send', 'feedback')}" />
+                                        <input type="submit" id="submit" class="submit" value="{lang('Send', 'feedback')}"/>
                                     </div>
                                 </div>
                         </div>

@@ -1,0 +1,599 @@
+﻿msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-01-19 10:39+0200\n"
+"PO-Revision-Date: 2015-01-19 10:39+0200\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/banners/admin.php:217
+msgid "Data is saved"
+msgstr "Зміни збережені"
+
+#: ./application/modules/banners/admin.php:103
+msgid "Banner status was edited"
+msgstr "Статус банера був відредагований"
+
+#: ./application/modules/banners/admin.php:119
+msgid "Banner was removed"
+msgstr "Банер був видалений"
+
+#: ./application/modules/banners/admin.php:216
+msgid "Banner was edited"
+msgstr "Банер був відредагований"
+
+#: ./application/modules/banners/cfcm_2/templates/admin/_form.tpl:20
+msgid "Information"
+msgstr "Інформація"
+
+#: ./application/modules/banners/cfcm_2/templates/admin/group_list.tpl:5
+#: ./application/modules/banners/cfcm_2/templates/admin/index.tpl:5
+msgid "Field constructor"
+msgstr "Полі конструктора"
+
+#: ./application/modules/banners/cfcm_2/templates/admin/group_list.tpl:11
+msgid "Go back"
+msgstr "Повернутися"
+
+#: ./application/modules/banners/cfcm_2/templates/admin/group_list.tpl:17
+msgid "Russian"
+msgstr "Російська"
+
+#: ./application/modules/banners/cfcm_2/templates/admin/group_list.tpl:21
+msgid "English"
+msgstr "Англійська"
+
+#: ./application/modules/banners/cfcm_2/templates/admin/group_list.tpl:56
+#: ./application/modules/banners/cfcm_2/templates/admin/index.tpl:96
+#: ./application/modules/banners/cfcm_2/cfcm_forms.php:166
+msgid "Description"
+msgstr "Опис"
+
+#: ./application/modules/banners/cfcm_2/templates/admin/group_list.tpl:57
+#: ./application/modules/banners/cfcm_2/templates/admin/index.tpl:97
+msgid "Fields"
+msgstr "Поля"
+
+#: ./application/modules/banners/cfcm_2/templates/admin/group_list.tpl:65
+#: ./application/modules/banners/cfcm_2/templates/admin/index.tpl:106
+msgid "Edit custom group"
+msgstr "Редагувати користувальницькі групи"
+
+#: ./application/modules/banners/cfcm_2/templates/admin/group_list.tpl:72
+msgid "Edit"
+msgstr "Редагувати"
+
+#: ./application/modules/banners/cfcm_2/templates/admin/group_list.tpl:101
+msgid "Empty group list or group list is empty"
+msgstr "Порожній список груп або групи список порожній"
+
+#: ./application/modules/banners/cfcm_2/templates/admin/group_list.tpl:101
+#: ./application/modules/banners/cfcm_2/templates/admin/top_navigation.tpl:7
+msgid "Create a group"
+msgstr "Створити групу"
+
+#: ./application/modules/banners/cfcm_2/templates/admin/group_list.tpl:109
+msgid "Delete group"
+msgstr "Вилучити групу"
+
+#: ./application/modules/banners/cfcm_2/templates/admin/top_navigation.tpl:3
+msgid "Field Constructor"
+msgstr "Полі Конструктора"
+
+#: ./application/modules/banners/cfcm_2/templates/admin/top_navigation.tpl:4
+msgid "Field list"
+msgstr "Список полів"
+
+#: ./application/modules/banners/cfcm_2/templates/admin/top_navigation.tpl:5
+msgid "Create a field"
+msgstr "Створити поле"
+
+#: ./application/modules/banners/cfcm_2/templates/admin/top_navigation.tpl:6
+msgid "Group list"
+msgstr "Список груп"
+
+#: ./application/modules/banners/cfcm_2/templates/admin/fields_tab.tpl:1
+#: ./application/modules/banners/cfcm_2/templates/admin/index.tpl:9
+#: ./application/modules/banners/cfcm_2/templates/admin/index.tpl:22
+#: ./application/modules/banners/cfcm_2/templates/admin/_onpage_form.tpl:5
+#: ./application/modules/banners/cfcm_2/templates/public/_onpage_form.tpl:6
+msgid "Additional fields"
+msgstr "Додаткові поля"
+
+#: ./application/modules/banners/cfcm_2/templates/admin/index.tpl:9
+msgid "All modules"
+msgstr "Всі модулі"
+
+#: ./application/modules/banners/cfcm_2/templates/admin/index.tpl:10
+msgid "Install modules"
+msgstr "Установка модулів"
+
+#: ./application/modules/banners/cfcm_2/templates/admin/index.tpl:10
+msgid "Fields groups"
+msgstr "Поля групи"
+
+#: ./application/modules/banners/cfcm_2/templates/admin/index.tpl:19
+msgid "Add field"
+msgstr "Додати поле"
+
+#: ./application/modules/banners/cfcm_2/templates/admin/index.tpl:27
+#: ./application/modules/banners/cfcm_2/cfcm_forms.php:33
+#: ./application/modules/banners/cfcm_2/cfcm_forms.php:69
+msgid "Label"
+msgstr "Мітки"
+
+#: ./application/modules/banners/cfcm_2/templates/admin/index.tpl:29
+#: ./application/modules/banners/cfcm_2/cfcm_forms.php:44
+#: ./application/modules/banners/cfcm_2/cfcm_forms.php:89
+msgid "Type"
+msgstr "Тип"
+
+#: ./application/modules/banners/cfcm_2/templates/admin/index.tpl:30
+msgid "Categories"
+msgstr "Категорії"
+
+#: ./application/modules/banners/cfcm_2/templates/admin/index.tpl:38
+msgid "Edit custom field"
+msgstr "Зміна настроюваного поля"
+
+#: ./application/modules/banners/cfcm_2/templates/admin/index.tpl:47
+msgid "Without catagory"
+msgstr "Без категорії"
+
+#: ./application/modules/banners/cfcm_2/templates/admin/index.tpl:69
+msgid "List of additional fields is empty"
+msgstr "Список додаткових полів порожній"
+
+#: ./application/modules/banners/cfcm_2/templates/admin/index.tpl:85
+msgid "Field groups"
+msgstr "Групи полів"
+
+#: ./application/modules/banners/cfcm_2/templates/admin/index.tpl:88
+msgid "No groups"
+msgstr "Немає груп"
+
+#: ./application/modules/banners/cfcm_2/templates/admin/_onpage_form.tpl:25
+#: ./application/modules/banners/cfcm_2/templates/public/_onpage_form.tpl:24
+msgid "Select an image"
+msgstr "Виберіть зображення"
+
+#: ./application/modules/banners/cfcm_2/templates/admin/_onpage_form.tpl:32
+#: ./application/modules/banners/cfcm_2/templates/public/_onpage_form.tpl:31
+msgid "Select a file"
+msgstr "Виберіть файл"
+
+#: ./application/modules/banners/cfcm_2/templates/public/additional_services_form.tpl:100
+#: ./application/modules/banners/cfcm_2/templates/public/additional_services_form_min.tpl:101
+msgid "Send"
+msgstr "Відправити"
+
+#: ./application/modules/banners/cfcm_2/templates/public/additional_services_form.tpl:104
+#: ./application/modules/banners/cfcm_2/templates/public/additional_services_form_min.tpl:105
+msgid "Attach"
+msgstr "Прикріпіть"
+
+#: ./application/modules/banners/cfcm_2/templates/public/additional_services_form.tpl:105
+#: ./application/modules/banners/cfcm_2/templates/public/additional_services_form_min.tpl:106
+msgid "Choose file"
+msgstr "Вибрати файл"
+
+#: ./application/modules/banners/cfcm_2/templates/public/additional_services_form.tpl:110
+#: ./application/modules/banners/cfcm_2/templates/public/additional_services_form_min.tpl:111
+msgid "Empty page."
+msgstr "Порожня сторінка."
+
+#: ./application/modules/banners/cfcm_2/templates/public/_onpage_form.tpl:56
+msgid "Group without any fields"
+msgstr "Група без будь-яких полів"
+
+#: ./application/modules/banners/cfcm_2/cfcm_forms.php:28
+msgid "To name will be prefixed with"
+msgstr "Щоб ім'я з префіксом"
+
+#: ./application/modules/banners/cfcm_2/cfcm_forms.php:39
+msgid "Participate in search"
+msgstr "Беруть участь в пошуку"
+
+#: ./application/modules/banners/cfcm_2/cfcm_forms.php:49
+#: ./application/modules/banners/cfcm_2/cfcm_forms.php:148
+msgid "Group"
+msgstr "Група"
+
+#: ./application/modules/banners/cfcm_2/cfcm_forms.php:75
+msgid "The initial value"
+msgstr "Початкове значення"
+
+#: ./application/modules/banners/cfcm_2/cfcm_forms.php:79
+msgid "Hint"
+msgstr "Підказка"
+
+#: ./application/modules/banners/cfcm_2/cfcm_forms.php:80
+msgid "Field description "
+msgstr "Поле опис "
+
+#: ./application/modules/banners/cfcm_2/cfcm_forms.php:84
+msgid "Required field"
+msgstr "Обов'язкове поле"
+
+#: ./application/modules/banners/cfcm_2/cfcm_forms.php:94
+msgid "Specify the possible values in the new row"
+msgstr "Вказати можливі значення в новій рядку"
+
+#: ./application/modules/banners/cfcm_2/cfcm_forms.php:100
+msgid "Multiple"
+msgstr "Кілька"
+
+#: ./application/modules/banners/cfcm_2/cfcm_forms.php:109
+msgid "Checked"
+msgstr "Перевірив"
+
+#: ./application/modules/banners/cfcm_2/cfcm_forms.php:118
+msgid "Enable images viewing"
+msgstr "Включити перегляд зображень"
+
+#: ./application/modules/banners/cfcm_2/cfcm_forms.php:125
+msgid "Enable file viewing"
+msgstr "Включити перегляд файлу"
+
+#: ./application/modules/banners/cfcm_2/cfcm_forms.php:135
+msgid "Enable Tinymce editor"
+msgstr "Включити редактор Tinymce"
+
+#: ./application/modules/banners/cfcm_2/cfcm_forms.php:143
+msgid "Check conditions"
+msgstr "Перевірте умови"
+
+#: ./application/modules/banners/cfcm_2/cfcm_forms.php:144
+msgid "For example"
+msgstr "Наприклад"
+
+#: ./application/modules/banners/cfcm_2/cfcm_forms.php:176
+msgid "Without group"
+msgstr "Без групи"
+
+#: ./application/modules/banners/cfcm_2/admin.php:60
+#: ./application/modules/banners/cfcm_2/cfcm.php:54
+msgid "Protection code"
+msgstr "Код протекції"
+
+#: ./application/modules/banners/cfcm_2/admin.php:91
+msgid "Field creating"
+msgstr "Галузі створення"
+
+#: ./application/modules/banners/cfcm_2/admin.php:96
+msgid "Specify the field name"
+msgstr "Вкажіть ім'я поля"
+
+#: ./application/modules/banners/cfcm_2/admin.php:100
+msgid "Specify <b>Label</b> field"
+msgstr "Вкажіть <b>Label</b> полі"
+
+#: ./application/modules/banners/cfcm_2/admin.php:104
+msgid "Field Name cant contain only Latin alphanumeric characters"
+msgstr "Ім'я поля не можу містити тільки буквено-цифрових символів латинського"
+
+#: ./application/modules/banners/cfcm_2/admin.php:117
+msgid "Select another  name"
+msgstr "Виберіть інше ім'я"
+
+#: ./application/modules/banners/cfcm_2/admin.php:138
+msgid "Field created"
+msgstr "Поля, створюваного"
+
+#: ./application/modules/banners/cfcm_2/admin.php:158
+#: ./application/modules/banners/cfcm_2/admin.php:224
+msgid "Field editing"
+msgstr "Поле редагування"
+
+#: ./application/modules/banners/cfcm_2/admin.php:176
+#: ./application/modules/banners/cfcm_2/admin.php:260
+msgid "Field has been updated"
+msgstr "Поле оновлено"
+
+#: ./application/modules/banners/cfcm_2/admin.php:210
+msgid "Field deleted successfuly"
+msgstr "Поле успішно видалений"
+
+#: ./application/modules/banners/cfcm_2/admin.php:275
+msgid "Field has not been found"
+msgstr "Поле не знайдене"
+
+#: ./application/modules/banners/cfcm_2/admin.php:307
+msgid "Creating a group"
+msgstr "Створення групи"
+
+#: ./application/modules/banners/cfcm_2/admin.php:311
+msgid "Specify the group name"
+msgstr "Вкажіть ім'я групи"
+
+#: ./application/modules/banners/cfcm_2/admin.php:317
+msgid "Group has been created"
+msgstr "Група створена"
+
+#: ./application/modules/banners/cfcm_2/admin.php:342
+msgid "Group has not been found"
+msgstr "Група не знайдено"
+
+#: ./application/modules/banners/cfcm_2/admin.php:348
+msgid "ID group editing"
+msgstr "ID групи редагування"
+
+#: ./application/modules/banners/cfcm_2/admin.php:357
+msgid "Group has been updated"
+msgstr "Група була оновлена"
+
+#: ./application/modules/banners/cfcm_2/admin.php:391
+msgid "Group deleted successfuly"
+msgstr "Група успішно видалена"
+
+#: ./application/modules/banners/cfcm_2/module_info.php:4
+msgid "Fields constructor"
+msgstr "Поля, конструктор"
+
+#: ./application/modules/banners/cfcm_2/module_info.php:5
+msgid "Allows you to create additional fields in ImageCMS Corporate"
+msgstr "Дозволяє створювати додаткові поля в ImageCMS Corporate"
+
+#: ./application/modules/banners/module_info.php:5
+msgid "Allows you to create banners for any page on the site or online store"
+msgstr "Дозволяє створювати банери для будь-яких сторінок на сайті або в інтернет-магазині"
+
+#: ./application/modules/banners/admin.php:134
+#: ./application/modules/banners/admin.php:194
+msgid "Banner name"
+msgstr "Назва банеру"
+
+#: ./application/modules/banners/assets/admin/edit.tpl:151
+#: ./application/modules/banners/assets/admin/create.tpl:109
+#: ./application/modules/banners/admin.php:135
+msgid "Image"
+msgstr "Зображення"
+
+#: ./application/modules/banners/admin.php:153
+#: ./application/modules/banners/admin.php:154
+msgid "Banner created"
+msgstr "Створено банер"
+
+#: ./application/modules/banners/admin.php:195
+msgid "Photo"
+msgstr "Фото"
+
+#: ./application/modules/banners/assets/admin/edit.tpl:111
+#: ./application/modules/banners/assets/admin/create.tpl:73
+#: ./application/modules/banners/helpers/banners_helper.php:54
+#: ./application/modules/banners/admin.php:273
+msgid "Main"
+msgstr "Головна"
+
+#: ./application/modules/banners/admin.php:299
+msgid "Positions saved"
+msgstr "Позиції збережені"
+
+#: ./application/modules/banners/banners.php:186
+#: ./application/modules/banners/banners.php:192
+#: ./application/modules/banners/assets/admin/list.tpl:6
+#: ./application/modules/banners/module_info.php:4
+msgid "Banners management"
+msgstr "Управління банерами"
+
+#: ./application/modules/banners/assets/admin/create.tpl:5
+msgid "Banner creating"
+msgstr "Створення банера"
+
+#: ./application/modules/banners/assets/admin/edit.tpl:24
+#: ./application/modules/banners/assets/admin/create.tpl:9
+#: ./application/modules/banners/cfcm_2/templates/admin/_form.tpl:10
+msgid "Back"
+msgstr "Повернутися"
+
+#: ./application/modules/banners/assets/admin/edit.tpl:12
+#: ./application/modules/banners/assets/admin/create.tpl:10
+#: ./application/modules/banners/cfcm_2/templates/admin/_form.tpl:11
+msgid "Create"
+msgstr "Створити"
+
+#: ./application/modules/banners/assets/admin/create.tpl:11
+#: ./application/modules/banners/cfcm_2/templates/admin/_form.tpl:12
+msgid "Create and exit"
+msgstr "Створення і вихід"
+
+#: ./application/modules/banners/assets/admin/edit.tpl:36
+#: ./application/modules/banners/assets/admin/create.tpl:20
+msgid "Options"
+msgstr "Варіанти"
+
+#: ./application/modules/banners/assets/admin/edit.tpl:46
+#: ./application/modules/banners/assets/admin/create.tpl:30
+#: ./application/modules/banners/assets/admin/list.tpl:38
+#: ./application/modules/banners/cfcm_2/templates/admin/group_list.tpl:55
+#: ./application/modules/banners/cfcm_2/templates/admin/index.tpl:28
+#: ./application/modules/banners/cfcm_2/templates/admin/index.tpl:95
+#: ./application/modules/banners/cfcm_2/cfcm_forms.php:26
+#: ./application/modules/banners/cfcm_2/cfcm_forms.php:160
+msgid "Name"
+msgstr "Ім'я"
+
+#: ./application/modules/banners/assets/admin/edit.tpl:55
+#: ./application/modules/banners/assets/admin/create.tpl:39
+msgid "Active"
+msgstr "Активний"
+
+#: ./application/modules/banners/assets/admin/edit.tpl:61
+#: ./application/modules/banners/assets/admin/create.tpl:45
+msgid "Text banner"
+msgstr "Текст банеру"
+
+#: ./application/modules/banners/assets/admin/edit.tpl:67
+#: ./application/modules/banners/assets/admin/create.tpl:51
+msgid "URL"
+msgstr "URL"
+
+#: ./application/modules/banners/assets/admin/edit.tpl:95
+#: ./application/modules/banners/assets/admin/create.tpl:58
+msgid "Selected items"
+msgstr "Вибрані елементи"
+
+#: ./application/modules/banners/assets/admin/edit.tpl:90
+#: ./application/modules/banners/assets/admin/edit.tpl:102
+#: ./application/modules/banners/assets/admin/create.tpl:64
+msgid "Double click to deleting"
+msgstr "Подвійний клік для видалення"
+
+#: ./application/modules/banners/assets/admin/edit.tpl:107
+#: ./application/modules/banners/assets/admin/create.tpl:69
+msgid "Show in categories (select items)"
+msgstr "Показувати в категоріях (вибрати об'єкти)"
+
+#: ./application/modules/banners/assets/admin/edit.tpl:110
+#: ./application/modules/banners/assets/admin/create.tpl:72
+msgid "select essence"
+msgstr "виберіть сутність"
+
+#: ./application/modules/banners/assets/admin/edit.tpl:113
+#: ./application/modules/banners/assets/admin/create.tpl:75
+msgid "Product"
+msgstr "Продукт"
+
+#: ./application/modules/banners/assets/admin/edit.tpl:114
+#: ./application/modules/banners/assets/admin/create.tpl:76
+msgid "Product category"
+msgstr "Категорія продукту"
+
+#: ./application/modules/banners/assets/admin/edit.tpl:115
+#: ./application/modules/banners/assets/admin/create.tpl:77
+msgid "Brand"
+msgstr "Бренд"
+
+#: ./application/modules/banners/assets/admin/edit.tpl:117
+#: ./application/modules/banners/assets/admin/create.tpl:79
+msgid "Pages categories"
+msgstr "Сторінки категорій"
+
+#: ./application/modules/banners/assets/admin/edit.tpl:118
+#: ./application/modules/banners/assets/admin/create.tpl:80
+msgid "Pages"
+msgstr "Сторінки"
+
+#: ./application/modules/banners/assets/admin/edit.tpl:126
+#: ./application/modules/banners/assets/admin/create.tpl:90
+msgid "Active until"
+msgstr "Активний до"
+
+#: ./application/modules/banners/assets/admin/edit.tpl:136
+#: ./application/modules/banners/assets/admin/create.tpl:100
+msgid "Banner permanent"
+msgstr "Банер постійний"
+
+#: ./application/modules/banners/assets/admin/edit.tpl:157
+#: ./application/modules/banners/assets/admin/create.tpl:116
+msgid "Choose an image "
+msgstr "Вибрати зображення"
+
+#: ./application/modules/banners/assets/admin/list.tpl:13
+msgid "Template settings"
+msgstr "Налаштування шаблону"
+
+#: ./application/modules/banners/assets/admin/list.tpl:15
+msgid "Use different templates for different pages"
+msgstr "Використовувати різні шаблони для різних сторінок"
+
+#: ./application/modules/banners/banners.php:202
+#: ./application/modules/banners/assets/admin/list.tpl:19
+msgid "Create a banner"
+msgstr "Створити банер"
+
+#: ./application/modules/banners/assets/admin/list.tpl:20
+#: ./application/modules/banners/cfcm_2/templates/admin/group_list.tpl:73
+#: ./application/modules/banners/cfcm_2/templates/admin/index.tpl:31
+#: ./application/modules/banners/cfcm_2/templates/admin/index.tpl:61
+#: ./application/modules/banners/cfcm_2/templates/admin/index.tpl:98
+#: ./application/modules/banners/cfcm_2/templates/admin/index.tpl:114
+msgid "Delete"
+msgstr "Видалити"
+
+#: ./application/modules/banners/assets/admin/list.tpl:37
+#: ./application/modules/banners/cfcm_2/templates/admin/group_list.tpl:54
+msgid "ID"
+msgstr "ID"
+
+#: ./application/modules/banners/assets/admin/list.tpl:39
+msgid "Groups"
+msgstr "Групи"
+
+#: ./application/modules/banners/assets/admin/list.tpl:40
+msgid "Active to"
+msgstr "Активно"
+
+#: ./application/modules/banners/assets/admin/list.tpl:41
+msgid "Status"
+msgstr "Статус"
+
+#: ./application/modules/banners/assets/admin/list.tpl:59
+msgid "Edit banner"
+msgstr "Редагувати банер"
+
+#: ./application/modules/banners/assets/admin/list.tpl:69
+msgid "Permanent"
+msgstr "Постійний"
+
+#: ./application/modules/banners/assets/admin/list.tpl:73
+msgid "don't show"
+msgstr "не показувати"
+
+#: ./application/modules/banners/assets/admin/list.tpl:73
+msgid "show"
+msgstr "подивитися"
+
+#: ./application/modules/banners/assets/admin/list.tpl:85
+msgid "Empty banner list."
+msgstr "Список банерів порожній"
+
+#: ./application/modules/banners/assets/admin/edit.tpl:4
+#: ./application/modules/banners/assets/admin/edit.tpl:88
+#: ./application/modules/banners/cfcm_2/templates/admin/index.tpl:81
+msgid "Create group"
+msgstr "Створити групу"
+
+#: ./application/modules/banners/assets/admin/edit.tpl:7
+msgid "Group name"
+msgstr "Назва групи"
+
+#: ./application/modules/banners/assets/admin/edit.tpl:20
+msgid "Editing banner"
+msgstr "Редагування банеру"
+
+#: ./application/modules/banners/assets/admin/edit.tpl:25
+#: ./application/modules/banners/cfcm_2/templates/admin/_form.tpl:11
+#: ./application/modules/banners/cfcm_2/templates/admin/group_list.tpl:12
+msgid "Save"
+msgstr "Зберегти"
+
+#: ./application/modules/banners/assets/admin/edit.tpl:26
+#: ./application/modules/banners/cfcm_2/templates/admin/_form.tpl:12
+#: ./application/modules/banners/cfcm_2/templates/admin/group_list.tpl:13
+msgid "Save and exit"
+msgstr "Зберегти і вийти"
+
+#: ./application/modules/banners/assets/admin/edit.tpl:74
+msgid "Banner group"
+msgstr "Банер групи"
+
+#: ./application/modules/banners/assets/js/main.js:17
+msgid "Message"
+msgstr "Повідомлення"
+
+#: ./application/modules/banners/assets/js/main.js:17
+msgid "Banner (s) successfully removed"
+msgstr "Банер (и) успішно видалені"

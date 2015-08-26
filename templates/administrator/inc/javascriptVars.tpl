@@ -20,6 +20,8 @@
     langs.discount = "{lang('Discount','admin')}";
     langs.needToEnterName = "{lang('You need to enter a string','admin')}";
     langs.needToFillField = "{lang('This field is required.','admin')}";
+    langs.needToFillFields = "{lang('Fill in the required fields.','admin')}";
+    langs.notFound = "{lang('Your search did not found','admin')}";
     langs.please = "{lang('Please','admin')}";
     langs.enterCorrectValue = "{lang('enter the correct value','admin')}";
     langs.enterValidEmailAddress = "{lang('enter a valid email address','admin')}";
@@ -88,6 +90,7 @@
     langs.checkAndFillAll = "{lang('Check the input data and fill in all mandatory fields','admin')}";
     langs.curCertificate = "{lang('Current certificate (amount):','admin')}";
     langs.sortMethodUpdated = "{lang('Sort method updated','admin')}";
+    langs.selectSomeOptions = "{lang("Select Some Options", 'admin')}";
 
     // shopFunctions.js
     langs.manageShop = "{lang('Manage shop','admin')}";
@@ -105,15 +108,29 @@
 
     langs.onlyFontsFilesAllowed = "{lang('Only fonts-files can be uploaded','admin')}";
     langs.fontNotUploaded = "{lang('Font is not uploaded', 'admin')}";
+    langs.remove = "{lang('Remove','admin')}";
 
     {literal}
-        function lang(value) {
-            if (langs[value]) {
-                return  langs[value];
-            } else {
-                return value;
-            }
+    function lang(value) {
+        if (langs[value]) {
+            return langs[value];
+        } else {
+            return value;
         }
+    }
+    {/literal}
+
+
+    {literal}
+    function langf(value, replacements) {
+        var langValue = lang(value);
+
+        for (var replace in replacements) {
+            langValue = langValue.replace('|' + replace + '|', replacements[replace]);
+        }
+
+        return langValue;
+    }
     {/literal}
 
 

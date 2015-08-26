@@ -1,5 +1,5 @@
 
-<!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->    
+<!-- ---------------------------------------------------Блок видалення---------------------------------------------------- -->
 <div class="modal hide fade modal_del">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -23,20 +23,20 @@
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()" id="del_sel_wid"><i class="icon-trash icon-white"></i>{lang("Delete","admin")}</button>
+                <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()" id="del_sel_wid"><i class="icon-trash"></i>{lang("Delete","admin")}</button>
                 <a href="/admin/widgets_manager/create_tpl" type="button" class="btn btn-small btn-success pjax"><i class="icon-plus-sign icon-white"></i>{lang("Create a widget","admin")}</a>
             </div>
-        </div>  
+        </div>
     </div>
     {if $error}
         <br>
         <div class="alert alert-error">
             {$error}
         </div>
-    {else:}   
+    {else:}
         {if count($widgets)>0}
             <form method="post" action="#" class="form-horizontal">
-                <table class="table table-striped table-bordered table-hover table-condensed content_big_td t-l_a">
+                <table class="table  table-bordered table-hover table-condensed t-l_a">
                     <thead>
                         <tr>
                             <th class="t-a_c span1">
@@ -47,11 +47,12 @@
                                 </span>
                             </th>
                             <th>{lang("ID","admin")}</th>
-                            <th>{lang("Name","admin")}</th>
+                            <th>{lang("Title","admin")}</th>
+                            <th>{lang("Key","admin")}</th>
                             <th>{lang("Type","admin")}</th>
                             <th>{lang("Description","admin")}</th>
                             <th class="t-a_c">{lang("Settings","admin")}</th>
-                        </tr>    
+                        </tr>
                     </thead>
                     <tbody>
                         {foreach $widgets as $widget}
@@ -64,16 +65,22 @@
                                     </span>
                                 </td>
                                 <td>{$widget.id}</td>
-                                <td> 
-                                    <a 
-                                        {if $widget.config == TRUE} 
-                                            class="pjax" href="/admin/widgets_manager/edit_module_widget/{$widget.id}" 
-                                            data-rel="tooltip" data-title="{lang("Editing","admin")}"
-                                        {/if}  
-                                        {if $widget.type == 'html'} 
-                                            class="pjax" href="/admin/widgets_manager/edit_html_widget/{$widget.id}"
-                                        {/if}
-                                        >{$widget.name}</a>
+                                <td>{$widget.title}</td>
+                                <td>
+                                        <a
+                                            {if $widget.type == 'module'}
+                                                href="/admin/widgets_manager/edit_module_widget/{$widget.id}/info"
+                                                data-rel="tooltip" data-title="{lang("Editing","admin")}"
+                                            {/if}
+                                            {if $widget.type == 'html'}
+                                                href="/admin/widgets_manager/edit_html_widget/{$widget.id}/info"
+                                            {/if}
+                                            >
+
+                                        {$widget.name}
+
+                                        </a>
+
                                 </td>
                                 <td>
                                     {switch $widget.type}
@@ -89,7 +96,7 @@
                                 <td class="span2 t-a_c">
                                     {if $widget.config == TRUE}
                                         <a class="btn-small btn pjax" href="/admin/widgets_manager/edit/{$widget.id}" data-rel="tooltip" data-title="{lang("Settings","admin")}"><i class="icon-wrench"></i></a>
-                                    {/if}
+                                        {/if}
                                 </td>
                             </tr>
                         {/foreach}
@@ -102,5 +109,5 @@
                 {lang("No widgets created","admin")}
             </div>
         {/if}
-    {/if}        
+    {/if}
 </section>

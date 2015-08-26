@@ -7,15 +7,15 @@
         <div class="pull-right">
             <div class="d-i_b">
                 <a href="{$BASE_URL}admin/widgets_manager/index/" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back","admin")}</span></a>
-                <button type="button" class="btn btn-small btn-success formSubmit" data-form="#wid_cr_form" data-action="tomain" data-submit><i class="icon-plus-sign icon-white"></i>{lang("Create","admin")}</button>
-                <!--<button type="button" class="btn btn-small formSubmit" data-form="#wid_cr_form" data-action="tomain"><i class="icon-check"></i>{lang("Save and go back","admin")}</button>-->
+                <button type="button" class="btn btn-small btn-success formSubmit" data-form="#wid_cr_form" data-submit><i class="icon-plus-sign icon-white"></i>{lang("Create","admin")}</button>
+                <button type="button" class="btn btn-small formSubmit" data-form="#wid_cr_form" data-action="tomain"><i class="icon-check"></i>{lang("Create and exit","admin")}</button>
             </div>
-        </div>                            
+        </div>
     </div>
     <div class="tab-content">
         <div class="tab-pane active" id="modules">
             <form method="post" action="{$BASE_URL}admin/widgets_manager/create" class="form-horizontal" id="wid_cr_form">
-                <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -26,9 +26,15 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd span9">
+                                <div class="inside_padd">
                                     <div class="control-group m-t_10">
-                                        <label class="control-label" for="inputName">{lang("Name","admin")}:</label>
+                                        <label class="control-label" for="inputtitle">{lang("Title","admin")}: <span class="must">*</span></label>
+                                        <div class="controls">
+                                            <input type="text" name="title" id="inputtitle" class="required"/>
+                                        </div>
+                                    </div>
+                                    <div class="control-group m-t_10">
+                                        <label class="control-label" for="inputName">{lang("Key","admin")}: <span class="must">*</span></label>
                                         <div class="controls">
                                             <input type="text" name="name" id="inputName" class="required"/>
                                         </div>
@@ -51,7 +57,7 @@
                                     </div>
 
                                     <div class="control-group" id="mod_name">
-                                        <label class="control-label">{lang("Module name","admin")}:</label>
+                                        <label class="control-label">{lang("Module name","admin")}: <span class="must">*</span></label>
                                         <div class="controls">
                                             <span class="selmod">{lang('Select the module type to the table below','admin')}</span>
                                             <input type="hidden" class="required" name="module" value="" id="sw">
@@ -71,7 +77,7 @@
                     </tbody>
                 </table>
                 <div class="row-fluid">
-                    <table class="table table-striped table-bordered table-hover table-condensed t-l_a" id="moduleholder">
+                    <table class="table  table-bordered table-hover table-condensed t-l_a" id="moduleholder">
                         <thead>
                             <tr>
                                 <th class="t-a_c span1"></th>

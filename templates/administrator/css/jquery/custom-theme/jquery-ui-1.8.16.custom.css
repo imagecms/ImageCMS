@@ -713,8 +713,8 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
   opacity: 0.25;
 }
 
-.ui-dialog .ui-dialog-titlebar-close span { 
-  display: block; 
+.ui-dialog .ui-dialog-titlebar-close span {
+  display: block;
   margin: 1px;
   text-indent: 9999px;
 }
@@ -829,7 +829,7 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
 
 
 .ui-tabs .ui-tabs-nav { margin: 0; padding: .2em .2em 0; border-bottom:1px solid #DDD; }
-.ui-tabs .ui-tabs-nav li {  text-decoration: none; list-style: none; float: left; position: relative; top: 1px; padding: 0px 0px 1px 0px; white-space: nowrap; background:none; border:0px; 
+.ui-tabs .ui-tabs-nav li {  text-decoration: none; list-style: none; float: left; position: relative; top: 1px; padding: 0px 0px 1px 0px; white-space: nowrap; background:none; border:0px;
 
 }
 
@@ -871,7 +871,7 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
   outline:none;
 }
 
-.ui-tabs .ui-tabs-nav li a, .ui-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a { cursor: pointer; color:#0069D6; background:none; font-weight:normal; margin-bottom:-1px;} 
+.ui-tabs .ui-tabs-nav li a, .ui-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a { cursor: pointer; color:#0069D6; background:none; font-weight:normal; margin-bottom:-1px;}
 /* first selector in group seems obsolete, but required to overcome bug in Opera applying cursor: text overall if defined elsewhere... */
 .ui-tabs .ui-tabs-panel { display: block; border-width: 0; padding: 1em 1.4em; background: none; }
 .ui-tabs-panel .ui-button{text-decoration:none;}
@@ -1001,7 +1001,7 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
   margin-bottom:0px;
   font-size:normal;
   text-shadow: 0px;
-  color:white;  
+  color:white;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
@@ -1072,20 +1072,18 @@ input[type=file]:focus, input[type=checkbox]:focus, select:focus {
   outline: 1px dotted #666;
 }
 
-input[type="text"],
+input[type="text"], input[type="number"],
 input[type="password"],
 .ui-autocomplete-input,
 textarea,
 .uneditable-input {
   display: inline-block;
-  padding: 4px;
-  font-size: 13px;
+  padding: 4px 8px;
+  font-size: 12px;
   line-height: 18px;
-  color: #808080;
+  color: #333;
   border: 1px solid #ccc;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0;
 }
 
 
@@ -1177,7 +1175,7 @@ div.wijmo-wijmenu{
   color:#BFBFBF;
 }
 
-.wijmo-wijmenu .ui-state-default .wijmo-wijmenu-text{    
+.wijmo-wijmenu .ui-state-default .wijmo-wijmenu-text{
   color:#BFBFBF;
 }
 

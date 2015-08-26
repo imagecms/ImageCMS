@@ -31,7 +31,6 @@ class Sys_info extends BaseAdminController {
             '/uploads/' => FALSE,
             '/uploads/images' => FALSE,
             '/uploads/files' => FALSE,
-            '/uploads/media' => FALSE,
             '/captcha/' => FALSE,
         );
 

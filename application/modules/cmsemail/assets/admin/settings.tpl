@@ -1,3 +1,20 @@
+<div class="modal hide fade modal_del">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>{lang('Install standart templates','cmsemail')}</h3>
+    </div>
+    <div class="modal-body">
+        <h5>{lang('Do you really want to install standart templates?','cmsemail')}</h5>
+        <h5 style="color:red">
+            <b>{lang('All your changes in them will be removed!!','cmsemail')}</b>
+        </h5>
+        <!--<p>{lang(a_products_del_body_warning)}</p>-->
+    </div>
+    <div class="modal-footer">
+        <a href="{site_url('admin/components/cp/cmsemail/import_templates')}" onclick="$('.modal').modal('hide');" class="btn btn-primary" >{lang('Install','cmsemail')}</a>
+        <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang('Cancel','cmsemail')}</a>
+    </div>
+</div>
 <div class="container">
     <section class="mini-layout">
         <div class="frame_title clearfix">
@@ -12,17 +29,19 @@
                         <span class="f-s_14">←</span>
                         <span class="t-d_u">{lang('Back', 'cmsemail')}</span>
                     </a>
+                    <a href="#" onclick="$('.modal:not(.addNotificationMessage)').modal('show')" class="btn m-r_5" style="">{lang('Install', 'cmsemail')}</a>
                     <button type="button"
                             class="btn btn-small btn-primary action_on formSubmit"
                             data-form="#wishlist_settings_form"
                             data-action="tomain">
                         <i class="icon-ok"></i>{lang('Save', 'cmsemail')}
                     </button>
+                    {echo create_language_select($languages, $locale, "/admin/components/cp/cmsemail/settings", FALSE)}
                 </div>
             </div>
         </div>
-        <form method="post" action="{site_url('admin/components/cp/cmsemail/update_settings')}" class="form-horizontal" id="wishlist_settings_form">
-            <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+        <form method="post" action="{site_url('admin/components/cp/cmsemail/update_settings')}/{echo $locale}" class="form-horizontal m-t_15" id="wishlist_settings_form">
+            <table class="table  table-bordered table-hover table-condensed content_big_td">
                 <thead>
                     <tr>
                         <th colspan="6">
@@ -34,13 +53,6 @@
                     <tr>
                         <td colspan="6">
                             <div class="inside_padd">
-
-                                <div class="control-group">
-                                    <div class="controls">
-                                        <a href="{site_url('admin/components/cp/cmsemail/import_templates')}" style="float:right">{lang('Install standart templates', 'cmsemail')}</a>
-                                    </div>
-                                </div>
-
                                 <div class="control-group">
                                     <label class="control-label" for="settings[from]">{lang('From', 'cmsemail')}:</label>
                                     <div class="controls">
@@ -118,12 +130,17 @@
                                     <br>
                                     <label class="control-label" for="settings[smtp_pass]">{lang('Password', 'cmsemail')}:</label>
                                     <div class="controls ">
-                                        <input type = "text" name = "settings[smtp_pass]" class=""  value="{$settings['smtp_pass']}"  id="smtp_pass"/>
+                                        <input type = "password" name = "settings[smtp_pass]" class=""  value="{$settings['smtp_pass']}"  id="smtp_pass"/>
                                     </div>
                                     <br>
                                     <label class="control-label" for="settings[port]">{lang('Port', 'cmsemail')}:</label>
                                     <div class="controls ">
-                                        <input type = "text" name = "settings[port]" class="portSettings"  value="{$settings['port']}"  id="port"/>
+                                        <input type = "text" name = "settings[port]" class="portSettings"  value="{$settings['port']}"  id="smtp_port"/>
+                                    </div>
+                                    <br>
+                                    <label class="control-label" for="settings[encryption]">{lang('Encryption', 'cmsemail')}:</label>
+                                    <div class="controls ">
+                                        <input type = "text" name = "settings[encryption]" class="portSettings"  value="{$settings['encryption']}"  id="encryption"/>
                                     </div>
                                 </div>
 

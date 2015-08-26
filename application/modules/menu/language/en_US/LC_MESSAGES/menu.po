@@ -2,11 +2,11 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-05 11:24+0300\n"
-"PO-Revision-Date: 2014-06-05 11:24+0300\n"
-"Last-Translator:  \n"
-"Language-Team:  \n"
-"Language: en_US\n"
+"POT-Creation-Date: 2015-02-05 03:19+0200\n"
+"PO-Revision-Date: 2015-02-05 03:19+0200\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,3 +17,814 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/menu/templates/edit_item.tpl:5
+#: ./application/modules/menu/templates/edit_item_origin.tpl:5
+#: ./application/modules/menu/templates/_menulistitem.tpl:29
+msgid "Edit menu item"
+msgstr "Edit menu item"
+
+#: ./application/modules/menu/templates/create_item.tpl:11
+#: ./application/modules/menu/templates/create_menu.tpl:12
+msgid "Create and exit"
+msgstr "Create and exit"
+
+#: ./application/modules/menu/templates/create_item.tpl:5
+msgid "Create a menu item"
+msgstr "Create a menu item"
+
+#: ./application/modules/menu/templates/main.tpl:30
+msgid "Create link"
+msgstr "Add menu item"
+
+#: ./application/modules/menu/assets/admin/menu_list.tpl:29
+#: ./application/modules/menu/templates/menu_list.tpl:29
+msgid "Create a menu"
+msgstr "Add new menu"
+
+# ?
+#: ./application/modules/menu/admin.php:224
+msgid "The menu item was successfully created"
+msgstr "The menu item successfully created"
+
+#: ./application/modules/menu/admin.php:842
+msgid "Menu created"
+msgstr "Menu created"
+
+#: ./application/modules/menu/assets/admin/menu_list.tpl:50
+#: ./application/modules/menu/templates/menu_list.tpl:50
+msgid "Created"
+msgstr "Created"
+
+#: ./application/modules/menu/admin.php:896
+msgid "The menu with the same name has been created yet"
+msgstr "The menu with the same name has been created yet"
+
+#: ./application/modules/menu/templates/category_selector.tpl:108
+#: ./application/modules/menu/templates/create_item.tpl:10
+#: ./application/modules/menu/templates/create_menu.tpl:11
+#: ./application/modules/menu/templates/module_selector.tpl:119
+#: ./application/modules/menu/templates/url_selector.tpl:98
+msgid "Create"
+msgstr "Create"
+
+#: ./application/modules/menu/assets/admin/menu_list.tpl:51
+#: ./application/modules/menu/assets/admin/menu_list.tpl:73
+#: ./application/modules/menu/templates/menu_list.tpl:51
+#: ./application/modules/menu/templates/menu_list.tpl:73
+msgid "Editing"
+msgstr "Edit"
+
+#: ./application/modules/menu/assets/admin/menu_list.tpl:47
+#: ./application/modules/menu/templates/menu_list.tpl:47
+msgid "Denotation"
+msgstr "Title"
+
+#: ./application/modules/menu/templates/category_selector.tpl:56
+#: ./application/modules/menu/templates/create_item.tpl:132
+#: ./application/modules/menu/templates/create_item.tpl:286
+#: ./application/modules/menu/templates/create_item.tpl:433
+#: ./application/modules/menu/templates/create_item.tpl:578
+#: ./application/modules/menu/templates/edit_item.tpl:132
+#: ./application/modules/menu/templates/edit_item.tpl:286
+#: ./application/modules/menu/templates/edit_item.tpl:433
+#: ./application/modules/menu/templates/edit_item.tpl:578
+#: ./application/modules/menu/templates/edit_item_origin.tpl:130
+#: ./application/modules/menu/templates/edit_item_origin.tpl:272
+#: ./application/modules/menu/templates/edit_item_origin.tpl:419
+#: ./application/modules/menu/templates/edit_item_origin.tpl:564
+#: ./application/modules/menu/templates/module_selector.tpl:65
+#: ./application/modules/menu/templates/pages_selector.tpl:124
+#: ./application/modules/menu/templates/url_selector.tpl:44
+msgid "Position after"
+msgstr "Position after"
+
+#: ./application/modules/menu/templates/translate_item.tpl:5
+msgid "Menu item translate"
+msgstr "Menu item translation"
+
+#: ./application/modules/menu/templates/public/error.tpl:13
+msgid "Not found the required template file for menu"
+msgstr "The requaired template file for menu not found"
+
+# ?
+#: ./application/modules/menu/admin.php:815
+msgid "Name field sieve"
+msgstr "Field name saved/ Field name has been saved"
+
+#: ./application/modules/menu/templates/create_item.tpl:535
+#: ./application/modules/menu/templates/edit_item.tpl:535
+#: ./application/modules/menu/templates/edit_item_origin.tpl:521
+#: ./application/modules/menu/templates/url_selector.tpl:5
+msgid "Specify or select a link to the page"
+msgstr "Specify or select a link to the page"
+
+# ?
+#: ./application/modules/menu/admin.php:612
+msgid "Can not be root menu in subparagraph"
+msgstr "Root menu cannot be used as a child item"
+
+#: ./application/modules/menu/templates/create_menu.tpl:56
+#: ./application/modules/menu/templates/edit_menu.tpl:60
+msgid "Open a menu, level"
+msgstr "Open menu, level"
+
+#: ./application/modules/menu/templates/edit_item.tpl:149
+msgid "Choose image "
+msgstr "Choose an image"
+
+#: ./application/modules/menu/admin.php:824
+#: ./application/modules/menu/admin.php:861
+#: ./application/modules/menu/templates/create_menu.tpl:50
+#: ./application/modules/menu/templates/edit_menu.tpl:54
+msgid "Template folder"
+msgstr "Template folder"
+
+#: ./application/modules/menu/templates/edit_item.tpl:10
+#: ./application/modules/menu/templates/edit_item_origin.tpl:10
+#: ./application/modules/menu/templates/edit_menu.tpl:13
+#: ./application/modules/menu/templates/pages_selector.tpl:10
+#: ./application/modules/menu/templates/translate_item.tpl:10
+msgid "Save"
+msgstr "Save"
+
+#: ./application/modules/menu/templates/edit_item.tpl:415
+#: ./application/modules/menu/templates/edit_item_origin.tpl:401
+msgid "Method"
+msgstr "Method"
+
+#: ./application/modules/menu/admin.php:453
+msgid "Category ID"
+msgstr "Category ID"
+
+#: ./application/modules/menu/admin.php:883
+#: ./application/modules/menu/admin.php:1135
+msgid "Changes saved"
+msgstr "Changes saved"
+
+#: ./application/modules/menu/admin.php:618
+msgid "Changes successfully saved"
+msgstr "Changes successfully saved"
+
+#: ./application/modules/menu/templates/edit_item.tpl:418
+#: ./application/modules/menu/templates/edit_item_origin.tpl:404
+msgid "Example"
+msgstr "Example"
+
+#: ./application/modules/menu/admin.php:822
+#: ./application/modules/menu/admin.php:823
+#: ./application/modules/menu/admin.php:859
+#: ./application/modules/menu/admin.php:860
+#: ./application/modules/menu/assets/admin/menu_list.tpl:48
+#: ./application/modules/menu/templates/create_item.tpl:403
+#: ./application/modules/menu/templates/create_menu.tpl:32
+#: ./application/modules/menu/templates/edit_item.tpl:403
+#: ./application/modules/menu/templates/edit_item_origin.tpl:389
+#: ./application/modules/menu/templates/edit_menu.tpl:36
+#: ./application/modules/menu/templates/main.tpl:47
+#: ./application/modules/menu/templates/menu_list.tpl:48
+#: ./application/modules/menu/templates/module_selector.tpl:33
+msgid "Name"
+msgstr "Name"
+
+#: ./application/modules/menu/admin.php:1029
+msgid "Without category"
+msgstr "Without category/ Without a category"
+
+#: ./application/modules/menu/admin.php:825
+#: ./application/modules/menu/admin.php:862
+#: ./application/modules/menu/assets/admin/menu_list.tpl:49
+#: ./application/modules/menu/templates/create_menu.tpl:44
+#: ./application/modules/menu/templates/edit_menu.tpl:48
+#: ./application/modules/menu/templates/menu_list.tpl:49
+msgid "Description"
+msgstr "Description"
+
+#: ./application/modules/menu/templates/edit_item_origin.tpl:11
+msgid "Save and go back"
+msgstr "Save and go back"
+
+#: ./application/modules/menu/assets/admin/menu_list.tpl:10
+#: ./application/modules/menu/templates/menu_list.tpl:10
+msgid "Delete selected menu?"
+msgstr "Delete the selected menu?"
+
+#: ./application/modules/menu/admin.php:891
+msgid "The field is required to be filled in"
+msgstr "The field is required to be filled in"
+
+#: ./application/modules/menu/templates/edit_menu.tpl:7
+#: ./application/modules/menu/templates/edit_menu.tpl:26
+msgid "Edit a menu"
+msgstr "Edit menu"
+
+#: ./application/modules/menu/admin.php:920
+#: ./application/modules/menu/admin.php:937
+msgid "Menu removed"
+msgstr "Menu removed"
+
+#: ./application/modules/menu/admin.php:1178
+#: ./application/modules/menu/templates/category_selector.tpl:46
+#: ./application/modules/menu/templates/category_selector.tpl:59
+#: ./application/modules/menu/templates/category_selector.tpl:91
+#: ./application/modules/menu/templates/category_selector.tpl:101
+#: ./application/modules/menu/templates/create_item.tpl:124
+#: ./application/modules/menu/templates/create_item.tpl:135
+#: ./application/modules/menu/templates/create_item.tpl:183
+#: ./application/modules/menu/templates/create_item.tpl:198
+#: ./application/modules/menu/templates/create_item.tpl:278
+#: ./application/modules/menu/templates/create_item.tpl:289
+#: ./application/modules/menu/templates/create_item.tpl:334
+#: ./application/modules/menu/templates/create_item.tpl:353
+#: ./application/modules/menu/templates/create_item.tpl:425
+#: ./application/modules/menu/templates/create_item.tpl:436
+#: ./application/modules/menu/templates/create_item.tpl:483
+#: ./application/modules/menu/templates/create_item.tpl:502
+#: ./application/modules/menu/templates/create_item.tpl:570
+#: ./application/modules/menu/templates/create_item.tpl:581
+#: ./application/modules/menu/templates/create_item.tpl:628
+#: ./application/modules/menu/templates/create_item.tpl:647
+#: ./application/modules/menu/templates/edit_item.tpl:124
+#: ./application/modules/menu/templates/edit_item.tpl:135
+#: ./application/modules/menu/templates/edit_item.tpl:183
+#: ./application/modules/menu/templates/edit_item.tpl:198
+#: ./application/modules/menu/templates/edit_item.tpl:278
+#: ./application/modules/menu/templates/edit_item.tpl:289
+#: ./application/modules/menu/templates/edit_item.tpl:334
+#: ./application/modules/menu/templates/edit_item.tpl:353
+#: ./application/modules/menu/templates/edit_item.tpl:425
+#: ./application/modules/menu/templates/edit_item.tpl:436
+#: ./application/modules/menu/templates/edit_item.tpl:483
+#: ./application/modules/menu/templates/edit_item.tpl:502
+#: ./application/modules/menu/templates/edit_item.tpl:570
+#: ./application/modules/menu/templates/edit_item.tpl:581
+#: ./application/modules/menu/templates/edit_item.tpl:628
+#: ./application/modules/menu/templates/edit_item.tpl:647
+#: ./application/modules/menu/templates/edit_item_origin.tpl:122
+#: ./application/modules/menu/templates/edit_item_origin.tpl:133
+#: ./application/modules/menu/templates/edit_item_origin.tpl:177
+#: ./application/modules/menu/templates/edit_item_origin.tpl:185
+#: ./application/modules/menu/templates/edit_item_origin.tpl:264
+#: ./application/modules/menu/templates/edit_item_origin.tpl:275
+#: ./application/modules/menu/templates/edit_item_origin.tpl:320
+#: ./application/modules/menu/templates/edit_item_origin.tpl:339
+#: ./application/modules/menu/templates/edit_item_origin.tpl:411
+#: ./application/modules/menu/templates/edit_item_origin.tpl:422
+#: ./application/modules/menu/templates/edit_item_origin.tpl:469
+#: ./application/modules/menu/templates/edit_item_origin.tpl:488
+#: ./application/modules/menu/templates/edit_item_origin.tpl:556
+#: ./application/modules/menu/templates/edit_item_origin.tpl:567
+#: ./application/modules/menu/templates/edit_item_origin.tpl:614
+#: ./application/modules/menu/templates/edit_item_origin.tpl:633
+#: ./application/modules/menu/templates/module_selector.tpl:55
+#: ./application/modules/menu/templates/module_selector.tpl:68
+#: ./application/modules/menu/templates/module_selector.tpl:102
+#: ./application/modules/menu/templates/module_selector.tpl:112
+#: ./application/modules/menu/templates/pages_selector.tpl:116
+#: ./application/modules/menu/templates/pages_selector.tpl:127
+#: ./application/modules/menu/templates/pages_selector.tpl:156
+#: ./application/modules/menu/templates/pages_selector.tpl:163
+#: ./application/modules/menu/templates/url_selector.tpl:34
+#: ./application/modules/menu/templates/url_selector.tpl:47
+#: ./application/modules/menu/templates/url_selector.tpl:81
+#: ./application/modules/menu/templates/url_selector.tpl:91
+msgid "No"
+msgstr "No"
+
+#: ./application/modules/menu/templates/main.tpl:7
+msgid "Menu items deleting"
+msgstr "Menu items deleting..."
+
+#: ./application/modules/menu/assets/admin/menu_list.tpl:7
+#: ./application/modules/menu/templates/menu_list.tpl:7
+msgid "Menu deleting"
+msgstr "Menu deleting..."
+
+#: ./application/modules/menu/assets/admin/menu_list.tpl:13
+#: ./application/modules/menu/assets/admin/menu_list.tpl:30
+#: ./application/modules/menu/templates/main.tpl:13
+#: ./application/modules/menu/templates/main.tpl:31
+#: ./application/modules/menu/templates/menu_list.tpl:13
+#: ./application/modules/menu/templates/menu_list.tpl:30
+msgid "Delete"
+msgstr "Delete"
+
+#: ./application/modules/menu/templates/main.tpl:10
+msgid "Delete selected menu items?"
+msgstr "Delete selected menu items?"
+
+#: ./application/modules/menu/assets/admin/menu_list.tpl:25
+#: ./application/modules/menu/templates/menu_list.tpl:25
+msgid "Menu list"
+msgstr "Menu list"
+
+#: ./application/modules/menu/templates/category_selector.tpl:9
+#: ./application/modules/menu/templates/create_item.tpl:92
+#: ./application/modules/menu/templates/create_item.tpl:247
+#: ./application/modules/menu/templates/module_selector.tpl:9
+#: ./application/modules/menu/templates/url_selector.tpl:9
+msgid "Options"
+msgstr "Options"
+
+#: ./application/modules/menu/assets/admin/menu_list.tpl:46
+#: ./application/modules/menu/templates/category_selector.tpl:29
+#: ./application/modules/menu/templates/create_item.tpl:109
+#: ./application/modules/menu/templates/create_item.tpl:263
+#: ./application/modules/menu/templates/edit_item.tpl:109
+#: ./application/modules/menu/templates/edit_item.tpl:263
+#: ./application/modules/menu/templates/edit_item_origin.tpl:107
+#: ./application/modules/menu/templates/edit_item_origin.tpl:249
+#: ./application/modules/menu/templates/main.tpl:46
+#: ./application/modules/menu/templates/menu_list.tpl:46
+#: ./application/modules/menu/templates/pages_selector.tpl:101
+msgid "ID"
+msgstr "ID"
+
+#: ./application/modules/menu/templates/category_selector.tpl:67
+#: ./application/modules/menu/templates/create_item.tpl:145
+#: ./application/modules/menu/templates/create_item.tpl:299
+#: ./application/modules/menu/templates/create_item.tpl:446
+#: ./application/modules/menu/templates/create_item.tpl:591
+#: ./application/modules/menu/templates/edit_item.tpl:145
+#: ./application/modules/menu/templates/edit_item.tpl:299
+#: ./application/modules/menu/templates/edit_item.tpl:446
+#: ./application/modules/menu/templates/edit_item.tpl:591
+#: ./application/modules/menu/templates/edit_item_origin.tpl:143
+#: ./application/modules/menu/templates/edit_item_origin.tpl:285
+#: ./application/modules/menu/templates/edit_item_origin.tpl:432
+#: ./application/modules/menu/templates/edit_item_origin.tpl:577
+#: ./application/modules/menu/templates/module_selector.tpl:78
+#: ./application/modules/menu/templates/pages_selector.tpl:136
+#: ./application/modules/menu/templates/url_selector.tpl:57
+msgid "Image"
+msgstr "Image"
+
+#: ./application/modules/menu/module_info.php:4
+#: ./application/modules/menu/templates/main.tpl:25
+msgid "Menu"
+msgstr "Menu"
+
+#: ./application/modules/menu/templates/main.tpl:50
+msgid "Show"
+msgstr "Show"
+
+#: ./application/modules/menu/templates/category_selector.tpl:5
+#: ./application/modules/menu/templates/create_item.tpl:230
+#: ./application/modules/menu/templates/edit_item.tpl:230
+#: ./application/modules/menu/templates/edit_item_origin.tpl:216
+msgid "Choose a category"
+msgstr "Choose a category"
+
+#: ./application/modules/menu/templates/category_selector.tpl:87
+#: ./application/modules/menu/templates/create_item.tpl:172
+#: ./application/modules/menu/templates/create_item.tpl:322
+#: ./application/modules/menu/templates/create_item.tpl:469
+#: ./application/modules/menu/templates/create_item.tpl:614
+#: ./application/modules/menu/templates/edit_item.tpl:172
+#: ./application/modules/menu/templates/edit_item.tpl:322
+#: ./application/modules/menu/templates/edit_item.tpl:469
+#: ./application/modules/menu/templates/edit_item.tpl:614
+#: ./application/modules/menu/templates/edit_item_origin.tpl:170
+#: ./application/modules/menu/templates/edit_item_origin.tpl:308
+#: ./application/modules/menu/templates/edit_item_origin.tpl:455
+#: ./application/modules/menu/templates/edit_item_origin.tpl:600
+#: ./application/modules/menu/templates/module_selector.tpl:98
+#: ./application/modules/menu/templates/pages_selector.tpl:153
+#: ./application/modules/menu/templates/url_selector.tpl:77
+msgid "Hide"
+msgstr "Hide"
+
+#: ./application/modules/menu/templates/category_selector.tpl:23
+#: ./application/modules/menu/templates/create_item.tpl:102
+#: ./application/modules/menu/templates/create_item.tpl:257
+#: ./application/modules/menu/templates/create_item.tpl:395
+#: ./application/modules/menu/templates/edit_item.tpl:103
+#: ./application/modules/menu/templates/edit_item.tpl:257
+#: ./application/modules/menu/templates/edit_item.tpl:395
+#: ./application/modules/menu/templates/edit_item_origin.tpl:101
+#: ./application/modules/menu/templates/edit_item_origin.tpl:243
+#: ./application/modules/menu/templates/edit_item_origin.tpl:381
+#: ./application/modules/menu/templates/main.tpl:49
+#: ./application/modules/menu/templates/module_selector.tpl:27
+#: ./application/modules/menu/templates/pages_selector.tpl:95
+msgid "Type"
+msgstr "Type"
+
+#: ./application/modules/menu/templates/module_selector.tpl:81
+msgid "Select Image"
+msgstr "Select an image"
+
+#: ./application/modules/menu/templates/category_selector.tpl:43
+#: ./application/modules/menu/templates/create_item.tpl:121
+#: ./application/modules/menu/templates/create_item.tpl:275
+#: ./application/modules/menu/templates/create_item.tpl:422
+#: ./application/modules/menu/templates/create_item.tpl:567
+#: ./application/modules/menu/templates/edit_item.tpl:121
+#: ./application/modules/menu/templates/edit_item.tpl:275
+#: ./application/modules/menu/templates/edit_item.tpl:422
+#: ./application/modules/menu/templates/edit_item.tpl:567
+#: ./application/modules/menu/templates/edit_item_origin.tpl:119
+#: ./application/modules/menu/templates/edit_item_origin.tpl:261
+#: ./application/modules/menu/templates/edit_item_origin.tpl:408
+#: ./application/modules/menu/templates/edit_item_origin.tpl:553
+#: ./application/modules/menu/templates/module_selector.tpl:52
+#: ./application/modules/menu/templates/pages_selector.tpl:113
+#: ./application/modules/menu/templates/url_selector.tpl:31
+msgid "Parent"
+msgstr "Parent"
+
+#: ./application/modules/menu/templates/_menulistitem.tpl:38
+msgid "don't show"
+msgstr "Do not show/ Don't show"
+
+#: ./application/modules/menu/templates/category_selector.tpl:70
+#: ./application/modules/menu/templates/url_selector.tpl:60
+msgid "Select an image"
+msgstr "Select an image"
+
+#: ./application/modules/menu/templates/pages_selector.tpl:5
+msgid "Edit link"
+msgstr "Edit the link/ Edit link"
+
+#: ./application/modules/menu/templates/category_selector.tpl:77
+#: ./application/modules/menu/templates/create_item.tpl:164
+#: ./application/modules/menu/templates/create_item.tpl:314
+#: ./application/modules/menu/templates/create_item.tpl:461
+#: ./application/modules/menu/templates/create_item.tpl:606
+#: ./application/modules/menu/templates/edit_item.tpl:164
+#: ./application/modules/menu/templates/edit_item.tpl:314
+#: ./application/modules/menu/templates/edit_item.tpl:461
+#: ./application/modules/menu/templates/edit_item.tpl:606
+#: ./application/modules/menu/templates/edit_item_origin.tpl:162
+#: ./application/modules/menu/templates/edit_item_origin.tpl:300
+#: ./application/modules/menu/templates/edit_item_origin.tpl:447
+#: ./application/modules/menu/templates/edit_item_origin.tpl:592
+#: ./application/modules/menu/templates/module_selector.tpl:88
+#: ./application/modules/menu/templates/pages_selector.tpl:145
+#: ./application/modules/menu/templates/url_selector.tpl:67
+msgid "All"
+msgstr "All"
+
+#: ./application/modules/menu/admin.php:826
+#: ./application/modules/menu/admin.php:863
+msgid "Nesting level"
+msgstr "Nesting level"
+
+#: ./application/modules/menu/templates/_menulistitem.tpl:38
+msgid "show"
+msgstr "Show"
+
+#: ./application/modules/menu/templates/pages_selector.tpl:18
+msgid "Category"
+msgstr "Category"
+
+#: ./application/modules/menu/admin.php:117
+#: ./application/modules/menu/admin.php:457
+msgid "Module name"
+msgstr "Module name"
+
+#: ./application/modules/menu/admin.php:1179
+#: ./application/modules/menu/templates/category_selector.tpl:60
+#: ./application/modules/menu/templates/create_item.tpl:136
+#: ./application/modules/menu/templates/create_item.tpl:290
+#: ./application/modules/menu/templates/create_item.tpl:437
+#: ./application/modules/menu/templates/create_item.tpl:582
+#: ./application/modules/menu/templates/edit_item.tpl:136
+#: ./application/modules/menu/templates/edit_item.tpl:290
+#: ./application/modules/menu/templates/edit_item.tpl:437
+#: ./application/modules/menu/templates/edit_item.tpl:582
+#: ./application/modules/menu/templates/edit_item_origin.tpl:134
+#: ./application/modules/menu/templates/edit_item_origin.tpl:276
+#: ./application/modules/menu/templates/edit_item_origin.tpl:423
+#: ./application/modules/menu/templates/edit_item_origin.tpl:568
+#: ./application/modules/menu/templates/module_selector.tpl:69
+#: ./application/modules/menu/templates/pages_selector.tpl:128
+#: ./application/modules/menu/templates/url_selector.tpl:48
+msgid "First"
+msgstr "First"
+
+#: ./application/modules/menu/admin.php:610
+msgid "Invalid parent identifier"
+msgstr "Invalid parent identifier/ Invalid parent ID"
+
+#: ./application/modules/menu/templates/public/error.tpl:12
+msgid "Attention"
+msgstr "Attention"
+
+#: ./application/modules/menu/admin.php:347
+#: ./application/modules/menu/admin.php:360
+msgid "Menu item successfuly deleted"
+msgstr "Menu item successfuly deleted/ Menu item has been successfully deleted"
+
+#: ./application/modules/menu/templates/create_item.tpl:9
+#: ./application/modules/menu/templates/create_menu.tpl:10
+#: ./application/modules/menu/templates/edit_item.tpl:9
+#: ./application/modules/menu/templates/edit_item_origin.tpl:9
+#: ./application/modules/menu/templates/edit_menu.tpl:11
+#: ./application/modules/menu/templates/main.tpl:29
+#: ./application/modules/menu/templates/pages_selector.tpl:9
+#: ./application/modules/menu/templates/translate_item.tpl:9
+msgid "Go back"
+msgstr "Go back"
+
+#: ./application/modules/menu/templates/public/error.tpl:21
+msgid "Check file or change the settings menu"
+msgstr "Check file or change the settings menu/ Check the file or change the settings menu"
+
+#: ./application/modules/menu/templates/create_item.tpl:19
+#: ./application/modules/menu/templates/create_item.tpl:104
+#: ./application/modules/menu/templates/edit_item.tpl:18
+#: ./application/modules/menu/templates/edit_item.tpl:105
+#: ./application/modules/menu/templates/edit_item_origin.tpl:18
+#: ./application/modules/menu/templates/edit_item_origin.tpl:103
+#: ./application/modules/menu/templates/pages_selector.tpl:17
+#: ./application/modules/menu/templates/pages_selector.tpl:97
+msgid "Page"
+msgstr "Page"
+
+#: ./application/modules/menu/templates/category_selector.tpl:25
+#: ./application/modules/menu/templates/create_item.tpl:20
+#: ./application/modules/menu/templates/create_item.tpl:47
+#: ./application/modules/menu/templates/create_item.tpl:259
+#: ./application/modules/menu/templates/edit_item.tpl:19
+#: ./application/modules/menu/templates/edit_item.tpl:46
+#: ./application/modules/menu/templates/edit_item.tpl:259
+#: ./application/modules/menu/templates/edit_item_origin.tpl:19
+#: ./application/modules/menu/templates/edit_item_origin.tpl:46
+#: ./application/modules/menu/templates/edit_item_origin.tpl:245
+#: ./application/modules/menu/templates/pages_selector.tpl:39
+msgid "Categories"
+msgstr "Categories"
+
+#: ./application/modules/menu/templates/create_item.tpl:22
+#: ./application/modules/menu/templates/edit_item.tpl:21
+#: ./application/modules/menu/templates/edit_item_origin.tpl:21
+#: ./application/modules/menu/templates/main.tpl:48
+#: ./application/modules/menu/templates/pages_selector.tpl:20
+msgid "Link"
+msgstr "Link"
+
+#: ./application/modules/menu/templates/public/error.tpl:23
+msgid "Reinstall the module menu"
+msgstr "Reinstall the module menu"
+
+#: ./application/modules/menu/templates/create_item.tpl:50
+#: ./application/modules/menu/templates/edit_item.tpl:49
+#: ./application/modules/menu/templates/edit_item_origin.tpl:49
+#: ./application/modules/menu/templates/pages_selector.tpl:42
+msgid "Root"
+msgstr "Root"
+
+#: ./application/modules/menu/admin.php:111
+#: ./application/modules/menu/admin.php:449
+#: ./application/modules/menu/admin.php:459
+msgid "Page ID"
+msgstr "Page ID"
+
+#: ./application/modules/menu/templates/create_item.tpl:70
+#: ./application/modules/menu/templates/edit_item.tpl:69
+#: ./application/modules/menu/templates/edit_item_origin.tpl:69
+#: ./application/modules/menu/templates/pages_selector.tpl:61
+msgid "Pages list"
+msgstr "Page list"
+
+#: ./application/modules/menu/templates/_menulistitem.tpl:18
+msgid "hide menu"
+msgstr "hide menu/ Hide the menu/ Hide menu"
+
+#: ./application/modules/menu/templates/create_item.tpl:367
+#: ./application/modules/menu/templates/edit_item.tpl:367
+#: ./application/modules/menu/templates/edit_item_origin.tpl:353
+#: ./application/modules/menu/templates/module_selector.tpl:5
+msgid "Select module"
+msgstr "Select a module"
+
+#: ./application/modules/menu/templates/create_item.tpl:415
+#: ./application/modules/menu/templates/module_selector.tpl:44
+msgid "Function"
+msgstr "Function"
+
+#: ./application/modules/menu/templates/_menulistitem.tpl:23
+msgid "expand menu"
+msgstr "expand menu/Expand the menu"
+
+#: ./application/modules/menu/templates/create_item.tpl:525
+#: ./application/modules/menu/templates/edit_item.tpl:525
+#: ./application/modules/menu/templates/edit_item_origin.tpl:511
+#: ./application/modules/menu/templates/url_selector.tpl:16
+msgid "URL"
+msgstr "URL"
+
+#: ./application/modules/menu/module_info.php:5
+msgid "Site Menu Editor"
+msgstr "Site Menu Editor"
+
+#: ./application/modules/menu/templates/create_menu.tpl:6
+msgid "Creating menu"
+msgstr "Creating menu..."
+
+#: ./application/modules/menu/templates/_menulistitem.tpl:30
+msgid "Translate menu item"
+msgstr "Translate menu item/ tramslate the menu item  "
+
+#: ./application/modules/menu/templates/category_selector.tpl:90
+#: ./application/modules/menu/templates/category_selector.tpl:100
+#: ./application/modules/menu/templates/create_item.tpl:177
+#: ./application/modules/menu/templates/create_item.tpl:193
+#: ./application/modules/menu/templates/create_item.tpl:328
+#: ./application/modules/menu/templates/create_item.tpl:346
+#: ./application/modules/menu/templates/create_item.tpl:477
+#: ./application/modules/menu/templates/create_item.tpl:495
+#: ./application/modules/menu/templates/create_item.tpl:621
+#: ./application/modules/menu/templates/create_item.tpl:640
+#: ./application/modules/menu/templates/edit_item.tpl:177
+#: ./application/modules/menu/templates/edit_item.tpl:193
+#: ./application/modules/menu/templates/edit_item.tpl:328
+#: ./application/modules/menu/templates/edit_item.tpl:346
+#: ./application/modules/menu/templates/edit_item.tpl:477
+#: ./application/modules/menu/templates/edit_item.tpl:495
+#: ./application/modules/menu/templates/edit_item.tpl:621
+#: ./application/modules/menu/templates/edit_item.tpl:640
+#: ./application/modules/menu/templates/edit_item_origin.tpl:173
+#: ./application/modules/menu/templates/edit_item_origin.tpl:184
+#: ./application/modules/menu/templates/edit_item_origin.tpl:314
+#: ./application/modules/menu/templates/edit_item_origin.tpl:332
+#: ./application/modules/menu/templates/edit_item_origin.tpl:463
+#: ./application/modules/menu/templates/edit_item_origin.tpl:481
+#: ./application/modules/menu/templates/edit_item_origin.tpl:607
+#: ./application/modules/menu/templates/edit_item_origin.tpl:626
+#: ./application/modules/menu/templates/module_selector.tpl:101
+#: ./application/modules/menu/templates/module_selector.tpl:111
+#: ./application/modules/menu/templates/pages_selector.tpl:155
+#: ./application/modules/menu/templates/pages_selector.tpl:162
+#: ./application/modules/menu/templates/url_selector.tpl:80
+#: ./application/modules/menu/templates/url_selector.tpl:90
+msgid "Yes"
+msgstr "Yes"
+
+#: ./application/modules/menu/admin.php:804
+msgid "Positions updated"
+msgstr "Positions updated/ Positions have been updated"
+
+#: ./application/modules/menu/admin.php:219
+#: ./application/modules/menu/templates/category_selector.tpl:148
+#: ./application/modules/menu/templates/category_selector.tpl:157
+msgid "Error"
+msgstr "Error"
+
+#: ./application/modules/menu/templates/category_selector.tpl:74
+#: ./application/modules/menu/templates/create_item.tpl:157
+#: ./application/modules/menu/templates/create_item.tpl:311
+#: ./application/modules/menu/templates/create_item.tpl:458
+#: ./application/modules/menu/templates/create_item.tpl:603
+#: ./application/modules/menu/templates/edit_item.tpl:157
+#: ./application/modules/menu/templates/edit_item.tpl:311
+#: ./application/modules/menu/templates/edit_item.tpl:458
+#: ./application/modules/menu/templates/edit_item.tpl:603
+#: ./application/modules/menu/templates/edit_item_origin.tpl:155
+#: ./application/modules/menu/templates/edit_item_origin.tpl:297
+#: ./application/modules/menu/templates/edit_item_origin.tpl:444
+#: ./application/modules/menu/templates/edit_item_origin.tpl:589
+#: ./application/modules/menu/templates/module_selector.tpl:85
+#: ./application/modules/menu/templates/pages_selector.tpl:142
+#: ./application/modules/menu/templates/url_selector.tpl:64
+msgid "Access level"
+msgstr "Access level"
+
+#: ./application/modules/menu/assets/admin/menu_list.tpl:14
+#: ./application/modules/menu/templates/category_selector.tpl:109
+#: ./application/modules/menu/templates/main.tpl:14
+#: ./application/modules/menu/templates/menu_list.tpl:14
+#: ./application/modules/menu/templates/module_selector.tpl:121
+#: ./application/modules/menu/templates/url_selector.tpl:99
+msgid "Cancel"
+msgstr "Cancel"
+
+#: ./application/modules/menu/templates/create_item.tpl:37
+#: ./application/modules/menu/templates/create_item.tpl:220
+#: ./application/modules/menu/templates/edit_item.tpl:36
+#: ./application/modules/menu/templates/edit_item.tpl:220
+#: ./application/modules/menu/templates/edit_item_origin.tpl:36
+#: ./application/modules/menu/templates/edit_item_origin.tpl:206
+#: ./application/modules/menu/templates/pages_selector.tpl:29
+msgid "Pages"
+msgstr "Pages"
+
+#: ./application/modules/menu/templates/category_selector.tpl:97
+#: ./application/modules/menu/templates/create_item.tpl:188
+#: ./application/modules/menu/templates/create_item.tpl:339
+#: ./application/modules/menu/templates/create_item.tpl:488
+#: ./application/modules/menu/templates/create_item.tpl:633
+#: ./application/modules/menu/templates/edit_item.tpl:188
+#: ./application/modules/menu/templates/edit_item.tpl:339
+#: ./application/modules/menu/templates/edit_item.tpl:488
+#: ./application/modules/menu/templates/edit_item.tpl:633
+#: ./application/modules/menu/templates/edit_item_origin.tpl:182
+#: ./application/modules/menu/templates/edit_item_origin.tpl:325
+#: ./application/modules/menu/templates/edit_item_origin.tpl:474
+#: ./application/modules/menu/templates/edit_item_origin.tpl:619
+#: ./application/modules/menu/templates/module_selector.tpl:108
+#: ./application/modules/menu/templates/pages_selector.tpl:160
+#: ./application/modules/menu/templates/url_selector.tpl:87
+msgid "Open in the new window"
+msgstr "Open in the new window"
+
+#: ./application/modules/menu/templates/create_item.tpl:149
+#: ./application/modules/menu/templates/create_item.tpl:303
+#: ./application/modules/menu/templates/create_item.tpl:450
+#: ./application/modules/menu/templates/create_item.tpl:595
+#: ./application/modules/menu/templates/edit_item.tpl:303
+#: ./application/modules/menu/templates/edit_item.tpl:450
+#: ./application/modules/menu/templates/edit_item.tpl:595
+#: ./application/modules/menu/templates/edit_item_origin.tpl:147
+#: ./application/modules/menu/templates/edit_item_origin.tpl:289
+#: ./application/modules/menu/templates/edit_item_origin.tpl:436
+#: ./application/modules/menu/templates/edit_item_origin.tpl:581
+msgid "Choose an image "
+msgstr "Choose an image"
+
+#: ./application/modules/menu/admin.php:108
+#: ./application/modules/menu/admin.php:445
+#: ./application/modules/menu/admin.php:448
+#: ./application/modules/menu/templates/category_selector.tpl:36
+#: ./application/modules/menu/templates/create_item.tpl:115
+#: ./application/modules/menu/templates/create_item.tpl:269
+#: ./application/modules/menu/templates/create_item.tpl:409
+#: ./application/modules/menu/templates/create_item.tpl:561
+#: ./application/modules/menu/templates/create_menu.tpl:38
+#: ./application/modules/menu/templates/edit_item.tpl:115
+#: ./application/modules/menu/templates/edit_item.tpl:269
+#: ./application/modules/menu/templates/edit_item.tpl:409
+#: ./application/modules/menu/templates/edit_item.tpl:561
+#: ./application/modules/menu/templates/edit_item_origin.tpl:113
+#: ./application/modules/menu/templates/edit_item_origin.tpl:255
+#: ./application/modules/menu/templates/edit_item_origin.tpl:395
+#: ./application/modules/menu/templates/edit_item_origin.tpl:547
+#: ./application/modules/menu/templates/edit_menu.tpl:42
+#: ./application/modules/menu/templates/module_selector.tpl:38
+#: ./application/modules/menu/templates/pages_selector.tpl:107
+#: ./application/modules/menu/templates/url_selector.tpl:24
+msgid "Title"
+msgstr "Title"
+
+#: ./application/modules/menu/templates/create_item.tpl:418
+msgid "For example"
+msgstr "For example"
+
+#: ./application/modules/menu/admin.php:114
+msgid "category ID"
+msgstr "category ID/ Category ID"
+
+#: ./application/modules/menu/templates/category_selector.tpl:148
+msgid "Choose category."
+msgstr "Choose a category."
+
+#: ./application/modules/menu/templates/create_item.tpl:57
+#: ./application/modules/menu/templates/edit_item.tpl:56
+#: ./application/modules/menu/templates/edit_item_origin.tpl:56
+#: ./application/modules/menu/templates/pages_selector.tpl:48
+msgid "On page"
+msgstr "On page"
+
+#: ./application/modules/menu/admin.php:119
+msgid "Module ID"
+msgstr "Module ID"
+
+#: ./application/modules/menu/templates/create_item.tpl:550
+#: ./application/modules/menu/templates/create_menu.tpl:22
+#: ./application/modules/menu/templates/edit_item.tpl:550
+#: ./application/modules/menu/templates/edit_item_origin.tpl:536
+#: ./application/modules/menu/templates/translate_item.tpl:19
+msgid "Settings"
+msgstr "Settings"
+
+#: ./application/modules/menu/templates/category_selector.tpl:157
+msgid "Enter title."
+msgstr "Enter the title/ Enter title"
+
+#: ./application/modules/menu/templates/create_item.tpl:21
+#: ./application/modules/menu/templates/create_item.tpl:398
+#: ./application/modules/menu/templates/edit_item.tpl:20
+#: ./application/modules/menu/templates/edit_item.tpl:398
+#: ./application/modules/menu/templates/edit_item_origin.tpl:20
+#: ./application/modules/menu/templates/edit_item_origin.tpl:384
+#: ./application/modules/menu/templates/module_selector.tpl:29
+#: ./application/modules/menu/templates/pages_selector.tpl:19
+msgid "Module"
+msgstr "Module"
+
+#: ./application/modules/menu/templates/edit_item.tpl:11
+#: ./application/modules/menu/templates/edit_menu.tpl:14
+msgid "Save and exit"
+msgstr "Save and exit"
+
+#: ./application/modules/menu/templates/create_item.tpl:385
+#: ./application/modules/menu/templates/edit_item.tpl:93
+#: ./application/modules/menu/templates/edit_item.tpl:247
+#: ./application/modules/menu/templates/edit_item.tpl:385
+#: ./application/modules/menu/templates/edit_item_origin.tpl:91
+#: ./application/modules/menu/templates/edit_item_origin.tpl:233
+#: ./application/modules/menu/templates/edit_item_origin.tpl:371
+#: ./application/modules/menu/templates/pages_selector.tpl:85
+msgid "Parameters"
+msgstr "Parameters"

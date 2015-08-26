@@ -1,28 +1,23 @@
 <section class="mini-layout">
     <div class="frame_title clearfix">
         <div class="pull-left">
+            <span class="help-inline"></span>
             <span class="title">{lang('Widget editing',"admin")}<b> {$widget.name}</b></span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                {if $widget.id == 16 || $widget.id == 17}
-                    <a href="/admin/widgets_manager" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back','admin')}</span></a>
-                 {else:}
-                    <a href="{$BASE_URL}admin/widgets_manager/index/" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back','admin')}</span></a>
-                 {/if}
-                <button type="button" class="btn btn-small btn-success formSubmit" data-form="#wid_ed_form"><i class="icon-list-alt icon-white"></i>{lang('Save','admin')}</button>
-                {if !$widget.id == 16 and $widget.id != 17}
+                <a href="{$BASE_URL}admin/widgets_manager/" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Back','admin')}</span></a>
+                <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#wid_ed_form"><i class="icon-ok icon-white"></i>{lang('Save','admin')}</button>
                 <button type="button" class="btn btn-small formSubmit" data-form="#wid_ed_form" data-action="tomain"><i class="icon-check"></i>{lang('Save and exit','admin')}</button>
-                {/if}
-                    {echo create_language_select($languages, $locale, "/admin/widgets_manager/edit_html_widget/".$widget.id)}
+                    {echo create_language_select($languages, $locale, "/admin/widgets_manager/edit_html_widget/".$widget.id . '/info')}
             </div>
         </div>                            
     </div>
     <div class="tab-content">
         <div class="tab-pane active" id="modules">
             <div class="row-fluid">
-                <form method="post" action="{$BASE_URL}admin/widgets_manager/update_html_widget/{$widget.id}/{echo $locale}" class="form-horizontal" id="wid_ed_form">
-                    <table class="table table-striped table-bordered table-hover table-condensed content_big_td">
+                <form method="post" action="{$BASE_URL}admin/widgets_manager/update_html_widget/{echo $widget.id}/{echo $locale}" class="form-horizontal" id="wid_ed_form">
+                    <table class="table  table-bordered table-hover table-condensed content_big_td">
                         <thead>
                             <tr>
                                 <th colspan="6">
@@ -36,9 +31,16 @@
                                     <div class="inside_padd">
                                         <div class="row-fluid">
                                             <div class="control-group m-t_10">
-                                                <label class="control-label" for="inputName">{lang("Name","admin")}:</label>
+                                                <label class="control-label" for="inputtitle">{lang("Title","admin")}: <span class="must">*</span></label>
                                                 <div class="controls">
-                                                    <input type="text" name="name" id="inputName" value="{$widget.name}"/>
+                                                    <input type="text" name="title" id="inputtitle" value="{$widget.title}" required="required"/>
+                                                </div>
+                                            </div>
+                                            <div class="control-group m-t_10">
+                                                <label class="control-label" for="inputName">{lang("Key","admin")}: <span class="must">*</span></label>
+                                                <div class="controls">
+                                                    <input type="text" name="name" id="inputName" value="{$widget.name}" required="required"/>
+                                                    <p class="help-block">{lang("Only Latin characters","admin")}</p>
                                                 </div>
                                             </div>
                                             <div class="control-group">

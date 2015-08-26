@@ -7,6 +7,7 @@
         </div>
         <div class="modal-body">
             <p>{lang("Remove selected categories","admin")}?</p>
+            <p>{lang('Attention! Will also remove all the pages from this category.','admin')}</p>
         </div>
         <div class="modal-footer">
             <a href="#" class="btn btn-primary" onclick="delete_function.deleteFunctionConfirm('{$BASE_URL}admin/categories/delete')" >{lang("Delete","admin")}</a>
@@ -28,12 +29,12 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()"><i class="icon-trash icon-white"></i>{lang("Delete","admin")}</button>
+                    <button type="button" class="btn btn-small btn-danger disabled action_on" onclick="delete_function.deleteFunction()"><i class="icon-trash"></i>{lang("Delete","admin")}</button>
                     <button type="button" class="btn btn-small btn-success" onclick="window.location.href = '{$BASE_URL}admin/categories/create_form'"><i class="icon-plus-sign icon-white"></i>{lang("Create category","admin")}</button>
                 </div>
             </div>                            
         </div>       
-        <div class="frame_table table table-striped table-bordered table-hover table-condensed pages-table">
+        <div class="frame_table table  table-bordered table-hover table-condensed pages-table">
             <div id="category">
                 <div class="row-category head">
                     <div class="t-a_c">

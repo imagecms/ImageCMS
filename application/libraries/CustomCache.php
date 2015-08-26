@@ -1,16 +1,16 @@
 <?php
 
 /**
- * Simple class that helps caching data 
+ * Simple class that helps caching data
  * created mostly for illustrative purposes
- * 
+ *
  * Usage:
  * $cache = new CustomCache(360, 'some_remote_data', function(){
  *      return file_get_contents('http://imagecms.net/some_controller/get_some_xml');
  * });
- * 
+ *
  * $myXml = $cache->getData(); // you don't know if data was from cache, or from remote source
- * 
+ *
  * @author kolia
  */
 class CustomCache {
@@ -33,13 +33,13 @@ class CustomCache {
 
     /**
      * Function that returns the actual data
-     * @var Closure 
+     * @var Closure
      */
     protected $dataSourceCallback;
 
     /**
-     * 
-     * @param int $interval update interval in seconds 
+     *
+     * @param int $interval update interval in seconds
      * @param string $cacheFilename file name that will be stored cache
      * @param Closure $dataSourceCallback function that returns actual data
      * @throws \Exception
@@ -76,7 +76,7 @@ class CustomCache {
     public function getData() {
         $dataSourceCallback = $this->dataSourceCallback;
         // if it's production and configuratin has errors data always will be from source
-        if (is_null($this->cacheFilepath) || is_null($this->dataSourceCallback)) {
+        if ($this->cacheFilepath == null || $this->dataSourceCallback == null) {
             return $dataSourceCallback();
         }
         // if chached file exists and has actual data it's content will be returned

@@ -27,7 +27,6 @@ class Language_switch_Widgets extends MY_Controller {
         $current_address = '';
         $current_address .= $this->uri->uri_string();
 
-
         if ($this->input->server('QUERY_STRING')) {
             $current_address .= '?' . $this->input->server('QUERY_STRING');
         }
@@ -47,7 +46,9 @@ class Language_switch_Widgets extends MY_Controller {
             } else {
                 $languages[$key]['current'] = 0;
             }
+
         }
+
         return $this->template->fetch('widgets/' . $widget['name'], array('languages' => $languages, 'current_address' => $current_address));
     }
 

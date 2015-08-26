@@ -1,1 +1,0 @@
-<ul class="sf-menu">{$wrapper}</ul>

@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Image CMS
@@ -10,33 +11,40 @@ if (!defined('BASEPATH'))
  */
 class Navigation_Widgets extends MY_Controller {
 
-    function __construct() {
+    public function __construct() {
         parent::__construct();
         $lang = new MY_Lang();
         $lang->load('navigation');
     }
+    
+    private function pathGallery(){
+        if ($this->core->langs[$this->uri->segment(1)]) {
+            $data_type = $this->uri->segment(1) !== $this->defaultLocale() ? $this->uri->segment(2) : $this->uri->segment(1);
+        } else {
+            $data_type = $this->uri->segment(1);
+        }
+        return $data_type;
+    }
 
-    function widget_navigation($widget = array()) {
+    public function widget_navigation($widget = array()) {
         $this->load->module('core');
-
+        
         if ($widget['settings'] == FALSE) {
             $settings = $this->defaults;
         } else {
             $settings = $widget['settings'];
         }
-        if ($this->core->core_data['data_type'] == '404') {
-            $data_type = $this->uri->segment(2);
+        
+        $segmentGallery = $this->pathGallery();        
+        if ($this->core->core_data['data_type'] == '404' || !$this->core->core_data['data_type'] || $segmentGallery == 'gallery') {
+            $data_type = $segmentGallery;
         } else {
             $data_type = $this->core->core_data['data_type'];
         }
-
+        
         switch ($data_type) {
             case 'category':
                 $cur_category = $this->core->cat_content;
-
-                $i = 0;
-                $path_count = count($cur_category['path']);
-
                 $path_categories = $this->lib_category->get_category(array_keys($cur_category['path']));
 
                 $tpl_data = array('navi_cats' => $path_categories);
@@ -46,7 +54,6 @@ class Navigation_Widgets extends MY_Controller {
 
             case 'page':
                 $cur_category = $this->core->cat_content;
-
                 $path_categories = $this->lib_category->get_category(array_keys($cur_category['path']));
 
                 // Insert Page data
@@ -61,15 +68,11 @@ class Navigation_Widgets extends MY_Controller {
                 break;
             case 'brand':
                 if ($this->core->core_data['id'] != null) {
-                    $ci = &get_instance();
-                    $brand = $ci->db->select(array('url', 'name'))
-                                    ->where(array('shop_brands.id' => $this->core->core_data['id'],
-                                        'shop_brands_i18n.locale' => MY_Controller::getCurrentLocale()))
-                                    ->join('shop_brands_i18n', 'shop_brands_i18n.id=shop_brands.id')
-                                    ->limit(1)
-                                    ->get('shop_brands')->row_array();
+                    $brand = SBrandsQuery::create()->joinWithI18n(MY_Controller::getCurrentLocale())->findOneById($this->core->core_data['id']);
+
                     $navi_cats[] = array('path_url' => 'shop/brand/', 'name' => lang('Brands', 'navigation'));
-                    $navi_cats[] = array('path_url' => $brand['url'], 'name' => $brand['name']);
+                    $navi_cats[] = array('path_url' => 'shop/brand/' . $brand->getUrl(), 'name' => $brand->getName());
+
                     $tpl_data = array('navi_cats' => $navi_cats);
                     return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
                 } else {
@@ -105,117 +108,179 @@ class Navigation_Widgets extends MY_Controller {
                 $tpl_data = array('navi_cats' => $navi_cats);
                 return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
                 break;
+            case 'feedback':
+                $navi_cats[] = array('path_url' => 'feedback', 'name' => lang('Feedback', 'feedback'));
+                $tpl_data = array('navi_cats' => $navi_cats);
+                return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
+                break;
             case 'shop_category':
                 if ($this->core->core_data['id'] != null && $this->core->core_data > 0) {
-                    //get category object
-                    $ci = &get_instance();
-                    $shop_category = $ci->db->select(array('full_path_ids', 'url', 'name'))
-                            ->where(array('shop_category.id' => $this->core->core_data['id'],
-                                'shop_category_i18n.locale' => MY_Controller::getCurrentLocale()))
-                            ->join('shop_category_i18n', 'shop_category_i18n.id=shop_category.id')
-                            ->limit(1)
-                            ->get('shop_category');
-                    if ($shop_category) {
-                        $shop_category = $shop_category->result();
-                        $full_path_ids = $shop_category[0]->full_path_ids;
-                        $full_path_ids = unserialize($full_path_ids);
-                        $result = array();
-                        if (is_array($full_path_ids) && !empty($full_path_ids)) {
-                            $result = $ci->db->select('*')
-                                    ->where('locale', MY_Controller::getCurrentLocale())
-                                    ->where_in('shop_category.id', $full_path_ids)
-                                    ->order_by('full_path_ids')
-                                    ->join('shop_category_i18n', 'shop_category_i18n.id=shop_category.id')
-                                    ->get('shop_category');
-                            if ($result) {
-                                $result = $result->result_array();
-                                foreach ($result as $key => $value) {
-                                    $result[$key]['path_url'] = 'shop/category/' . $result[$key]['full_path'];
-                                    unset($result[$key]['url']);
-                                }
-                                $result[] = array('path_url' => $shop_category[0]->url,
-                                    'name' => $shop_category[0]->name);
-                            }
-                        } else {
-                            //current category is first level category
-                            $result[] = array('path_url' => $shop_category[0]->url, 'name' => $shop_category[0]->name);
-                        }
-                        $tpl_data = array('navi_cats' => $result);
-                        return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
-                    } else {
-                        throw new Exception("Category not found");
+
+                    $category = SCategoryQuery::create()->findOneById($this->core->core_data['id']);
+                    $categories = $category->buildCategoryPath(\Propel\Runtime\ActiveQuery\Criteria::ASC, MY_Controller::getCurrentLocale());
+                    $paths = [];
+
+                    foreach ($categories as $category) {
+                        $paths[] = [
+                            'path_url' => 'shop/category/' . $category->getFullPath(),
+                            'name' => $category->getName(),
+                        ];
                     }
+
+                    $tpl_data = array('navi_cats' => $paths);
+                    return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
+                } else {
+                    throw new Exception("Category not found");
                 }
+
                 break;
             case 'product':
                 if ($this->core->core_data['id'] != null && $this->core->core_data['id'] > 0) {
-                    $ci = &get_instance();
                     //get product model
-                    $product = $ci->db->select(array('name', 'category_id'))
-                            ->where(array('shop_products.id' => $this->core->core_data['id'],
-                                'locale' => MY_Controller::getCurrentLocale()))
-                            ->join('shop_products_i18n', 'shop_products_i18n.id=shop_products.id')
-                            ->get('shop_products');
+                    $product = SProductsQuery::create()
+                        ->joinWithI18n(MY_Controller::getCurrentLocale())
+                        ->findOneById($this->core->core_data['id']);
+
                     if ($product) {
-                        $product = $product->result_array();
-                        $product = $product[0];
 
-                        if ($product['category_id'] == null && $product['category_id'] == 0)
+                        if ($product->getCategoryId() == null && $product->getCategoryId() == 0) {
                             throw new Exception("Category not found");
-
-                        // getting categories
-                        $ci->db->cache_on();
-                        $result = $ci->db
-                                ->select(array('shop_category.id', 'parent_id', 'full_path', 'name'))
-                                ->where(array('shop_category_i18n.locale' => MY_Controller::getCurrentLocale()))
-                                ->join('shop_category_i18n', 'shop_category_i18n.id=shop_category.id')
-                                ->get('shop_category');
-                        $ci->db->cache_off();
-
-                        if (!$result)
-                            return;
-
-                        $categories = array();
-                        foreach ($result->result_array() as $row) {
-                            $categories[$row['id']] = $row;
                         }
 
-                        // building path 
-                        $neededCid = $product['category_id'];
-                        $path = array(
-                            array('path_url' => '', 'name' => $product['name'])
+                        $category = SCategoryQuery::create()->findOneById($product->getCategoryId());
+                        $categories = $category->buildCategoryPath(\Propel\Runtime\ActiveQuery\Criteria::ASC, MY_Controller::getCurrentLocale());
+
+                        foreach ($categories as $category) {
+                            $path[] = [
+                                'path_url' => 'shop/category/' . $category->getFullPath(),
+                                'name' => $category->getName(),
+                            ];
+                        }
+
+                        $path[] = array(
+                            'path_url' => '',
+                            'name' => $product->getName()
                         );
 
-                        while ($neededCid != 0) {
-                            $path[] = array(
-                                'path_url' => 'shop/category/' . $categories[$neededCid]['full_path'],
-                                'name' => $categories[$neededCid]['name'],
-                            );
-                            $neededCid = $categories[$neededCid]['parent_id'];
-                        }
-
-                        // path is using from back, so...
-                        $fromBack = array_reverse($path);
-
-                        $tpl_data = array('navi_cats' => $fromBack);
+                        $tpl_data = array('navi_cats' => $path);
                         return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
                     } else {
                         throw new Exception("Product not found");
                     }
                 }
                 break;
+            case 'gallery':
+                $uri_segments = $this->uri->segment_array();
+                $template_vars = $this->template->get_vars();
+
+                $path = [];
+                foreach ($uri_segments as $segment) {
+                    switch ($segment) {
+                        case 'gallery':
+                            $path[] = array(
+                                'path_url' => $segment,
+                                'name' => lang('Gallery', 'navigation'),
+                            );
+                            break;
+                        case 'category':
+                            $path[] = array(
+                                'path_url' => 'gallery/category/' . $template_vars['current_category']['id'],
+                                'name' => $template_vars['current_category']['name'],
+                            );
+                            break;
+                        case 'album':
+                            $path[] = array(
+                                'path_url' => 'gallery/category/' . $template_vars['current_category']['id'],
+                                'name' => $template_vars['current_category']['name'],
+                            );
+
+                            $path[] = array(
+                                'path_url' => "gallery/$segment/" . $template_vars['album']['id'],
+                                'name' => $template_vars['album']['name'],
+                            );
+                            break;
+                        case 'albums':
+                            $path[] = array(
+                                'path_url' => "gallery/$segment/",
+                                'name' => lang('All albums', 'navigation'),
+                            );
+                            break;
+                    }
+
+                }
+
+                $tpl_data = array('navi_cats' => $path);
+                return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
+                break;
+
+            case 'auth':
+                $uri_segments = $this->uri->segment_array();
+
+                $path = [];
+                foreach ($uri_segments as $segment) {
+                    switch ($segment) {
+                        case 'auth':
+                            $path[] = array(
+                                'path_url' => $segment,
+                                'name' => lang('Login', 'navigation'),
+                            );
+                            break;
+                        case 'register':
+                            $path = [];
+                            $path[] = array(
+                                'path_url' => "auth/$segment",
+                                'name' => lang('Registration', 'navigation'),
+                            );
+                            break;
+                        case 'activate':
+                            $path = [];
+                            $path[] = array(
+                                'path_url' => "auth/$segment",
+                                'name' => lang('Activation', 'navigation'),
+                            );
+                            break;
+                        case 'forgot_password':
+                            $path = [];
+                            $path[] = array(
+                                'path_url' => "auth/$segment",
+                                'name' => lang('Remind password', 'navigation'),
+                            );
+                            break;
+                        case 'reset_password':
+                            $path = [];
+                            $path[] = array(
+                                'path_url' => "auth/$segment",
+                                'name' => lang('Reset password', 'navigation'),
+                            );
+                            break;
+                        case 'change_password':
+                            $path = [];
+                            $path[] = array(
+                                'path_url' => "auth/$segment",
+                                'name' => lang('Change password', 'navigation'),
+                            );
+                            break;
+                    }
+
+                }
+
+                $tpl_data = array('navi_cats' => $path);
+                return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
+                break;
+
         }
     }
 
     // Template functions
-    function display_tpl($file, $vars = array()) {
+
+    public function display_tpl($file, $vars = array()) {
         $this->template->add_array($vars);
 
         $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';
         $this->template->display('file:' . $file);
     }
 
-    function fetch_tpl($file, $vars = array()) {
+    public function fetch_tpl($file, $vars = array()) {
         $this->template->add_array($vars);
 
         $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';

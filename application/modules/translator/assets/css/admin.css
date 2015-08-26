@@ -17,9 +17,9 @@ div.notifications{
 }
 .searched{
     color: white;
-    background: linear-gradient(to bottom, 
+    background: linear-gradient(to bottom,
         rgba(55,146,185,1) 0%,
-        rgba(8,127,173,1) 100%); 
+        rgba(8,127,173,1) 100%);
 }
 .removePath{
     position: relative;
@@ -35,14 +35,22 @@ div.notifications{
     border: solid 1px rgb(201, 201, 201);
 }
 div[class="tooltip-inner"] {
-    min-width: 325px;
-    text-align: left;
+
 }
 #po_table textarea{
     resize: vertical;
-    max-height: 250px;
-    margin-bottom: 0px;
+    max-height: 50px;
+    margin: -1px;
+    width: 100%;
 }
+
+#po_table textarea.comment{
+    margin-top: -1px;
+    margin-bottom: -1px;
+    height: 115px;
+    max-height: 115px;
+}
+
 
 .translateWord i:hover{
     background-color: #93D3E5;
@@ -52,8 +60,8 @@ div[class="tooltip-inner"] {
 }
 
 .translateWord{
-    float: right; 
-    margin-right: 5px; 
+    float: right;
+    margin-right: 5px;
     margin-bottom: -30px;
 }
 
@@ -70,51 +78,51 @@ div[class="tooltip-inner"] {
 }
 
 #po_table  select.links{
-    min-height: 97px;
+    min-height: 114px;
     width: 100%;
 }
 
 #po_table .translationCancel{
-    display: none; 
-    float: right; 
-    /*margin-left: 600px;*/ 
+    display: none;
+    float: right;
+    /*margin-left: 600px;*/
     margin-bottom: -30px;
 }
 
 #po_table .translationTEMP{
-    display: none; 
+    display: none;
 }
 
 #po_table .alert{
-    margin: 0px; 
+    margin: 0px;
     text-align: center;
 }
 
 .po_settingsClone{
-    margin: 0px; 
+    margin: 0px;
     display:none;
 }
 
 .pathHolder .pathNumber{
-    float: left; 
-    font-size: 15px; 
-    margin-right: 10px; 
+    float: left;
+    font-size: 15px;
+    margin-right: 10px;
     margin-top: 3px;
 }
 
 .pathHolder .basePath{
-    width: 390px!important; 
+    width: 390px!important;
     margin-bottom: 25px;
 }
 
 .pathHolder .baseTitle{
-    font-size: 15px; 
-    margin-right: -10px; 
+    font-size: 15px;
+    margin-right: -10px;
     float: right;
 }
 
 .pathHolder .otherPaths{
-    width: 390px!important; 
+    width: 390px!important;
     margin-bottom: -10px;
 }
 
@@ -124,31 +132,31 @@ div[class="tooltip-inner"] {
 }
 
 .modal_file_edit > .modal-header div{
-    float: right; 
-    margin-top: -30px; 
-    width: 225px; 
+    float: right;
+    margin-top: -30px;
+    width: 225px;
     margin-right: 42px;
 }
 
 .modal_file_edit > .modal-header h5{
-    float: left; 
-    margin-top: 4px; 
+    float: left;
+    margin-top: 4px;
     font-weight: bold;
 }
 
 .modal_file_edit > .modal-header select.editorTheme{
-    float: right; 
+    float: right;
     width: 120px;
 }
 
 .modal_file_edit > .modal-body > .fileEdit{
-    color: black; 
-    border-radius: initial; 
+    color: black;
+    border-radius: initial;
     float: left;
-    height: 390px; 
-    width: 995px; 
+    height: 390px;
+    width: 995px;
     margin-top: -15px;
-    margin-bottom: -15px; 
+    margin-bottom: -15px;
     margin-left: -15px;
 }
 
@@ -156,34 +164,29 @@ div[class="tooltip-inner"] {
     font-weight: bold;
 }
 
-.content_big_td .statistic{
-    display: none; 
-    width: 302px; 
-    height: 50px; 
-    float: right; 
-    margin-top: 2px; 
+.statistic{
+    display: none;
+    width: 100%;
+    height: 36px;
     margin-bottom: 2px;
 }
 
-.content_big_td .statistic > .statisticTitle{
-    position: absolute; 
-    margin-left: -90px; 
+.statistic > .statisticTitle{
+    position: absolute;
+    margin-left: -90px;
     margin-top: 5px;
 }
 
-.content_big_td .statistic table{
-    width: 140px!important; 
-    height: 50px!important;
-    padding-left: 10px; 
+.statistic table{
     border-left: 1px solid #ddd;
 }
 
-.content_big_td .statistic table td{
+/*.statistic table td{
     border: none!important;
-}
+}*/
 
 #poTab > .pull-right{
-    position: relative; 
+    position: relative;
     right: 2px;
 }
 
@@ -194,7 +197,7 @@ div[class="tooltip-inner"] {
 
 
 #poTab .searchTranslatorOptions{
-    width: 430px!important; 
+    width: 430px!important;
     padding-left: 20px;
 }
 
@@ -206,8 +209,13 @@ div[class="tooltip-inner"] {
     display: none;
 }
 
+#po_table tbody td{
+    padding-top: 4px;
+    padding-bottom: 0px;
+}
+
 .fileNotExist{
-    display: none; 
+    display: none;
     margin-top: 70px;
 }
 
@@ -216,14 +224,14 @@ div[class="tooltip-inner"] {
 }
 
 .fileNotExist .needToCreate{
-    color: #5bb75b; 
-    font-size: 15px; 
+    color: #5bb75b;
+    font-size: 15px;
     display: none;
 }
 
 .originLangHolder > label{
-    float: left; 
-    margin-top: -7px; 
+    float: left;
+    margin-top: -7px;
     margin-right: 10px;
 }
 
@@ -233,13 +241,13 @@ div[class="tooltip-inner"] {
 }
 
 .YandexApiKeyHolder{
-    float: right; 
+    float: right;
     margin-top: -35px;
 }
 
 .YandexApiKeyHolder > label{
-    float: left; 
-    margin-top: -7px; 
+    float: left;
+    margin-top: -7px;
     margin-right: 10px;
 }
 
@@ -248,9 +256,11 @@ div[class="tooltip-inner"] {
     height: 52px;
 }
 .modal_yandex_translate > .modal-header input.languageSelect{
-    width: 100px;
+    width: 240px;
     margin-top: 7px;
     margin-left: 15px;
+
+    border: 1px solid #ccc;
 }
 
 .modal_yandex_translate > .modal-header button{
@@ -259,11 +269,14 @@ div[class="tooltip-inner"] {
     height: 28px;
     border-bottom-left-radius: 0px;
     border-top-left-radius: 0px
-} 
+}
 
 .modal_yandex_translate > .modal-header h5{
-    float: left; 
+    float: left;width: 80px;
 }
+
+.modal_yandex_translate textarea{height: 100px;}
+
 .modal_yandex_translate > .modal-body .icon-chevron-down{
     margin-left: 50%;
     margin-bottom: -15px;
@@ -279,6 +292,10 @@ div[class="tooltip-inner"] {
 
 .poSelectorsHolder  #modules_templates{
     max-width: 300px;
+}
+
+.poSelectorsHolder  #modules_templates_chosen{
+    margin-top: -10px;
 }
 
 .poSelectorsHolder  select{
@@ -301,4 +318,12 @@ div[class="tooltip-inner"] {
 #poTab hr{
     margin-top: 40px;
     margin-bottom: 10px;
+}
+
+#searchPanel .control-group{
+    margin-left: -130px;
+}
+
+#searchPanel .control-group > label{
+    font-weight: bold;
 }

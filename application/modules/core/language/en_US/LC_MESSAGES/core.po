@@ -2,11 +2,11 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-05 11:24+0300\n"
-"PO-Revision-Date: 2014-06-05 11:24+0300\n"
-"Last-Translator:  \n"
-"Language-Team:  \n"
-"Language: en_US\n"
+"POT-Creation-Date: 2014-07-29 12:11+0300\n"
+"PO-Revision-Date: 2014-07-29 12:11+0300\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,3 +17,103 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+# ?
+#: ./application/modules/core/core.php:355
+msgid "Home page not found."
+msgstr "Home page not found / Home page has not been  found."
+
+# ?
+#: ./application/modules/core/core.php:402
+msgid "Module uploading or loading  error"
+msgstr "Module uploading or loading  error"
+
+#: ./application/modules/core/core.php:572
+msgid "The first"
+msgstr "First"
+
+#: ./application/modules/core/core.php:573
+msgid "Last"
+msgstr "Last"
+
+#: ./application/modules/core/core.php:599
+msgid "Can't locate category template file."
+msgstr "Cannot locate category template file"
+
+# ?
+#: ./application/modules/core/core.php:607
+msgid "In the category has no pages."
+msgstr "The category has no pages"
+
+# ?
+#: ./application/modules/core/core.php:766
+msgid "Page not found"
+msgstr "Page not found/Page has not been found"
+
+# ?
+#: ./application/modules/core/core.php:768
+msgid "Page not found."
+msgstr "Page not found/Page has not been found"
+
+# ?
+#: ./application/modules/core/core_widgets.php:88
+msgid "Amount of news"
+msgstr "Amount of news"
+
+#: ./application/modules/core/core_widgets.php:89
+#: ./application/modules/core/templates/recent_news_form.tpl:50
+msgid "Maximum number of characters"
+msgstr "Maximum number of characters"
+
+#: ./application/modules/core/core_widgets.php:103
+msgid "Settings have been saved"
+msgstr "Settings have been saved"
+
+#: ./application/modules/core/templates/recent_news_form.tpl:5
+msgid "Widget settings"
+msgstr "Widget settings"
+
+#: ./application/modules/core/templates/recent_news_form.tpl:9
+msgid "Go back"
+msgstr "Go back"
+
+#: ./application/modules/core/templates/recent_news_form.tpl:10
+msgid "Save"
+msgstr "Save"
+
+#: ./application/modules/core/templates/recent_news_form.tpl:11
+msgid "Save and go back"
+msgstr "Save and go back"
+
+#: ./application/modules/core/templates/recent_news_form.tpl:18
+msgid "Settings"
+msgstr "Settings"
+
+#: ./application/modules/core/templates/recent_news_form.tpl:25
+msgid "Pages"
+msgstr "Pages"
+
+#: ./application/modules/core/templates/recent_news_form.tpl:28
+msgid "Latest"
+msgstr "Latest"
+
+#: ./application/modules/core/templates/recent_news_form.tpl:29
+msgid "Popular"
+msgstr "Popular"
+
+#: ./application/modules/core/templates/recent_news_form.tpl:34
+msgid "Categories"
+msgstr "Categories"
+
+#: ./application/modules/core/templates/recent_news_form.tpl:37
+msgid "Without a category"
+msgstr "Without a category"
+
+# ?
+#: ./application/modules/core/templates/recent_news_form.tpl:44
+msgid "Number of news for display"
+msgstr "Number of news posts  for display"
+
+#: ./application/modules/core/templates/similar_posts.tpl:2
+msgid "Related topics"
+msgstr "Related topics"

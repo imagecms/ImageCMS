@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Image CMS
@@ -9,10 +10,10 @@ if (!defined('BASEPATH'))
  *
  * TODO:
  * check local ip;
- * 
+ *
  * @property Lib_admin $lib_admin
  * @property Lib_category $lib_category
- * 
+ *
  * @property Admin_logs $admin_logs
  * @property Admin_search $admin_search
  * @property Backup $backup
@@ -22,7 +23,6 @@ if (!defined('BASEPATH'))
  * @property Dashboard $dashboard
  * @property Languages $languages
  * @property Login $login
- * @property Mod_search $mod_search
  * @property Mod_search $mod_search
  * @property Pages $pages
  * @property Rbac $rbac
@@ -38,22 +38,26 @@ class Admin extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
+        $this->load->library('DX_Auth');
 
         $lang = new MY_Lang();
         $lang->load('admin');
 
-        $this->load->library('DX_Auth');
         admin_or_redirect();
 
         $this->load->library('lib_admin');
         $this->load->library('lib_category');
         $this->lib_admin->init_settings();
-
-// 		$this->output->enable_profiler(true);
     }
 
-
     public function init() {
+
+        if (isset($_SESSION['redirect_after_login'])) {
+            $redirectAfterLogin = $_SESSION['redirect_after_login'];
+            unset($_SESSION['redirect_after_login']);
+            redirect($redirectAfterLogin);
+        }
+
         if (SHOP_INSTALLED) {
             redirect('/admin/components/run/shop/dashboard');
         } else {
@@ -62,6 +66,9 @@ class Admin extends MY_Controller {
     }
 
     public function index() {
+        if ($this->dx_auth->is_admin() == true and SHOP_INSTALLED) {
+            redirect('/admin/components/run/shop/orders/index');
+        }
         //just show dashboard
         $this->load->module('admin/dashboard');
         $this->dashboard->index();
@@ -85,44 +92,49 @@ class Admin extends MY_Controller {
         switch ($param) {
             case 'all':
                 $files = $this->cache->delete_all();
-                if ($files)
+                if ($files) {
                     $message = lang("Files deleted", "admin") . ':' . $files;
-                else
+                } else {
                     $message = lang("Cache has been cleared", "admin");
+                }
                 break;
 
             case 'expried':
                 $files = $this->cache->Clean();
-                if ($files)
+                if ($files) {
                     $message = lang("Outdated files have been deleted", "admin") . $files;
-                else
+                } else {
                     $message = lang("Cache has been cleared", "admin");
+                }
                 break;
             default: {
                     $message = lang("Clearing cache error", "admin");
                     $result = false;
-                }
+            }
         }
-        echo json_encode(array(
-            'message' => $message,
-            'result' => $result,
-            'color' => 'r',
-            'filesCount' => $this->cache->cache_file()));
+        echo json_encode(
+            array(
+                    'message' => $message,
+                    'result' => $result,
+                    'color' => 'r',
+                    'filesCount' => $this->cache->cache_file())
+        );
     }
 
     //initialyze elFinder
+
     public function elfinder_init($edMode = false) {
         $this->load->helper('path');
 
-        if (!$edMode)
+        if (!$edMode) {
             $path = 'uploads';
-        else
+        } else {
             $path = 'templates';
+        }
 
-        if ($this->input->get('path'))
+        if ($this->input->get('path')) {
             $path = $this->input->get('path');
-
-
+        }
 
         $opts = array(
             // 'debug' => true,
@@ -139,14 +151,14 @@ class Admin extends MY_Controller {
                             'write' => false,
                             'locked' => true
                         ),
-//                        array(
-//                            'pattern' => '/commerce/', //You can also set permissions for file types by adding, for example, .jpg inside pattern.
-//                            'read'    => true,
-//                            'write'   => true,
-//                            'locked'  => false
-//                        )
+                        //                        array(
+                        //                            'pattern' => '/commerce/', //You can also set permissions for file types by adding, for example, .jpg inside pattern.
+                        //                            'read'    => true,
+                        //                            'write'   => true,
+                        //                            'locked'  => false
+                        //                        )
                     )
-                // more elFinder options here
+                    // more elFinder options here
                 )
             )
         );
@@ -170,7 +182,7 @@ class Admin extends MY_Controller {
         }
 
         $this->template->assign('tree', $this->lib_category->build());
-        $this->template->show('cats_sidebar', FALSE);
+        $this->template->show('cats_sidebar', false);
         echo '</div>';
     }
 
@@ -200,12 +212,11 @@ class Admin extends MY_Controller {
 
             $config['charset'] = 'utf-8';
             $config['mailtype'] = 'html';
-            $config['wordwrap'] = TRUE;
+            $config['wordwrap'] = true;
             $this->email->initialize($config);
 
             /* pack message */
             $message .= lang("Site address", "admin") . trim(strip_tags($_GET['hostname'])) . ';' . lang("page", "admin") . ': ' . trim(strip_tags($_GET['pathname'])) . ';' . lang("ip-address") . ': ' . trim(strip_tags($_GET['ip_address'])) . '; ' . lang("user name", "admin") . ': ' . trim(strip_tags($_GET['user_name'])) . '; <br/> ' . lang("Message", "admin") . ': ' . trim(strip_tags($_GET['text']));
-            $text = trim($val->set_value('text'));
 
             $this->email->from('bugs@imagecms.net', 'Admin Robot');
             $this->email->to('report@imagecms.net');

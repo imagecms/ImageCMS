@@ -26,7 +26,9 @@ class Admin extends BaseAdminController {
             'settings' => $settings,
             'is_shop' => $this->rating_model->is_shop(),
         ));
-        $this->render('settings');
+        \CMSFactory\assetManager::create()
+                ->renderAdmin('settings');
+//        $this->render('settings');
     }
 
     public function update_settings() {
@@ -36,6 +38,7 @@ class Admin extends BaseAdminController {
         
         if ($this->input->post('action') == 'tomain')
             pjax('/admin/components/modules_table');
+        $this->lib_admin->log(lang("Star rating was edited", "star_rating"));
         showMessage(lang("Settings saved success", 'star_rating'));
     }
 
@@ -43,7 +46,7 @@ class Admin extends BaseAdminController {
         if (!empty($data))
             $this->template->add_array($data);
 
-        $this->template->show('file:' . 'application/modules/star_rating/assets/admin/' . $viewName);
+        $this->template->show('file:' .  realpath(dirname(__FILE__)) . '/templates/admin/' . $viewName);
         exit;
     }
     

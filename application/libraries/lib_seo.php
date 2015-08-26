@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * ImageCMS
@@ -11,18 +12,34 @@ if (!defined('BASEPATH'))
 class Lib_seo {
 
     protected $orderJustMaked = FALSE;
+
     public $origin_arr;
+
     public $modif_arr;
+
     public $min_word_length = 3;
+
     public $desc_chars = 160;
 
-    function Lib_seo() {
+    /**
+     * GA custom params
+     * @var array
+     */
+    private $custom = array();
+
+    public function __construct() {
         if (CI::$APP->session->flashdata('makeOrderForGA') == true) {
             $this->orderJustMaked = TRUE;
         }
+
+        CI::$APP->load->library('DX_Auth');
+
+        if (CI::$APP->dx_auth->is_logged_in()) {
+            $this->setCustomParams('userId', md5(CI::$APP->dx_auth->get_user_id()));
+        }
     }
 
-    function init($settings) {
+    public function init($settings) {
         $CI = & get_instance();
         if (!strstr($CI->uri->uri_string(), '/cart/')) {
             $CI->template->registerJsScript($this->renderGA($settings));
@@ -35,7 +52,7 @@ class Lib_seo {
     /**
      * Create keywrods from text
      */
-    function get_keywords($text, $as_array = FALSE) {
+    public function get_keywords($text, $as_array = FALSE) {
         $text = strip_tags($text);
         $text = mb_strtolower($text, 'utf-8');
         $this->explode_str_on_words($text);
@@ -44,21 +61,19 @@ class Lib_seo {
         $str = "";
 
         if ($as_array == FALSE) {
-            foreach ($arr as $key => $val) {
-                $str .= $key . ", ";
-            }
-            return trim(mb_substr($str, 0, mb_strlen($str, 'utf-8') - 2));
+            $str = implode(', ', array_keys($arr));
+            return $str;
         } else {
             return $arr;
         }
     }
 
-    function get_description($text) {
+    public function get_description($text) {
         $delete = array(';', '"', '&mdash', '&nbsp;');
 
         $tags = get_html_translation_table(HTML_ENTITIES);
 
-        foreach ($tags as $k => $v) {
+        foreach ($tags as $v) {
             $text = str_replace($v, '', $text);
         }
 
@@ -72,7 +87,7 @@ class Lib_seo {
     /**
      * 	Explode text on words
      */
-    function explode_str_on_words($text) {
+    public function explode_str_on_words($text) {
         $search = array("'ё'",
             "'<script[^>]*?>.*?</script>'si",
             "'<[\/\!]*?[^<>]*?>'si",
@@ -86,7 +101,8 @@ class Lib_seo {
             "'&(cent|#162);'i",
             "'&(pound|#163);'i",
             "'&(copy|#169);'i",
-            "'&#(\d+);'e");
+            "'&#(\d+);'i"
+        );
         $replace = array("е",
             " ",
             " ",
@@ -100,7 +116,9 @@ class Lib_seo {
             chr(162),
             chr(163),
             chr(169),
-            "chr(\\1)");
+            "chr(\\1)"
+        );
+
         $text = preg_replace($search, $replace, $text);
         $del_symbols = array(",", ".", ";", ":", "\"", "#", "\$", "%", "^",
             "!", "@", "`", "~", "*", "-", "=", "+", "\\",
@@ -122,7 +140,7 @@ class Lib_seo {
     /**
      * Count words in text
      */
-    function count_words() {
+    public function count_words() {
         $tmp_arr = array();
         foreach ($this->origin_arr as $val) {
             if (strlen(utf8_decode($val)) >= $this->min_word_length) {
@@ -135,48 +153,62 @@ class Lib_seo {
                 }
             }
         }
-//arsort ($tmp_arr);
+        //arsort ($tmp_arr);
         $this->modif_arr = $tmp_arr;
     }
 
-    function renderGA($GAid = null) {
+    public function renderGA($GAid = null) {
         /* Show Google Analytics code if some value inserted in admin panel */
-
         if ($GAid['google_analytics_id']) {
+            if ($this->getCustomParams()) {
+                $custom = ', ' . $this->getCustomParams();
+            }
+
+            if ($GAid['google_analytics_ee'] == 1) {
+                $require = "ga('require', 'ec');";
+            } else {
+                $require = "ga('require', 'ecommerce', 'ecommerce.js');";
+            }
             $ga = "<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', '" . $GAid['google_analytics_id'] . "', '" . str_replace('www.', '', $_SERVER['HTTP_HOST']) . "');
+  ga('create', '{$GAid['google_analytics_id']}', 'auto' $custom);
   ga('require', 'displayfeatures');
   ga('send', 'pageview');
   
-  ga('require', 'ecommerce', 'ecommerce.js');
+  $require
 
 </script>";
-
 
             return $ga;
         }
     }
 
-    function renderGAForCart($model = null, $GAid = null) {
-        $CI = & get_instance();
+    public function renderGAForCart($model = null, $GAid = null) {
         /* Show Google Analytics code if some value inserted in admin panel */
         if ($GAid['google_analytics_id']) {
+            if ($this->getCustomParams()) {
+                $custom = ', ' . $this->getCustomParams();
+            }
+            if ($GAid['google_analytics_ee'] == '1') {
+                $require = "ga('require', 'ec');";
+            } else {
+                $require = "ga('require', 'ecommerce', 'ecommerce.js');";
+            }
             $ga = "<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', '" . $GAid['google_analytics_id'] . "', '" . str_replace('www.', '', $_SERVER['HTTP_HOST']) . "');
+  ga('create', '{$GAid['google_analytics_id']}', 'auto' $custom);
   ga('require', 'displayfeatures');
   ga('send', 'pageview');
   
-  ga('require', 'ecommerce', 'ecommerce.js');
+  $require
 
 </script>";
             /* @var $model SOrders */
@@ -204,7 +236,7 @@ class Lib_seo {
                             break;
                         }
                     }
-                    $ga .="ga('ecommerce:addItem', {
+                    $ga .= "ga('ecommerce:addItem', {
     'id': '" . $model->getId() . "',
     'name': '" . encode($product->getName()) . " " . encode($item->getVariantName()) . "',
     'sku': '" . encode($Variant->getNumber()) . "',
@@ -213,16 +245,14 @@ class Lib_seo {
     'quantity': '" . $item->getQuantity() . "',
   });";
                 }
-                $ga .="ga('ecommerce:send');</script>";
+                $ga .= "ga('ecommerce:send');</script>";
             }
-
 
             return $ga;
         }
     }
 
-    function makeOrderForGoogle($model) {
-        $CI = & get_instance();
+    public function makeOrderForGoogle($model) {
         if ($model && $this->orderJustMaked) {
             $ga = "
                     <script>
@@ -238,7 +268,7 @@ class Lib_seo {
                 $total = $total + $item->getQuantity() * $item->toCurrency();
                 $product = $item->getSProducts();
 
-                $ga .="ga('ecommerce:addItem', {
+                $ga .= "ga('ecommerce:addItem', {
     'id': '" . $model->id . "',
     'name': '" . encode($product->getName()) . " " . encode($item->getVariantName()) . "',
     'sku': '" . $product->getUrl() . "',
@@ -247,13 +277,14 @@ class Lib_seo {
     'quantity': '" . $item->getQuantity() . "',
   });";
             }
-            $ga .="ga('ecommerce:send');</script>";
+            $ga .= "ga('ecommerce:send');</script>";
 
             return $ga;
         }
     }
 
-    function renderYaMetrica($YaMetricaId = null) {
+    public function renderYaMetrica($YaMetricaId = null) {
+        $YandexMetrik = '';
         if ($YaMetricaId['yandex_metric']) {
             $YandexMetrik = '<!-- Yandex.Metrika counter -->
 
@@ -261,7 +292,7 @@ class Lib_seo {
                     (function (d, w, c) {
                         (w[c] = w[c] || []).push(function() {
                             try {
-                                w.yaCounter24267703 = new Ya.Metrika({id:' . $YaMetricaId['yandex_metric'] . ',
+                                w.yaCounter24267703 = new Ya.Metrika({id:"' . $YaMetricaId['yandex_metric'] . '",
                                         webvisor:true,
                                         clickmap:true,
                                         trackLinks:true,
@@ -287,18 +318,41 @@ class Lib_seo {
         return $YandexMetrik;
     }
 
-    function renderYandexWebmaster($YaWebmasterId = null) {
-        if ($YaWebmasterId['yandex_webmaster'])
+    public function renderYandexWebmaster($YaWebmasterId = null) {
+        $YaWebmaster = '';
+        if ($YaWebmasterId['yandex_webmaster']) {
             $YaWebmaster = '<meta name=\'yandex-verification\' content=\'' . $YaWebmasterId['yandex_webmaster'] . '\' />';
+        }
 
         return $YaWebmaster;
     }
 
-    function renderGoogleWebmaster($GWebmasterId = null) {
-        if ($GWebmasterId['google_webmaster'])
+    public function renderGoogleWebmaster($GWebmasterId = null) {
+        $GWebmaster = '';
+        if ($GWebmasterId['google_webmaster']) {
             $GWebmaster = '<meta name="google-site-verification" content="' . $GWebmasterId['google_webmaster'] . '" />';
+        }
 
         return $GWebmaster;
+    }
+
+    public function getCustomParams($type = 'json') {
+        if (empty($this->custom)) {
+            return;
+        }
+        switch ($type) {
+            case 'json':
+                return json_encode($this->custom);
+
+            default:
+                return $this->custom;
+        }
+    }
+
+    public function setCustomParams($name, $val) {
+        if ($name != '') {
+            $this->custom[$name] = $val;
+        }
     }
 
 }

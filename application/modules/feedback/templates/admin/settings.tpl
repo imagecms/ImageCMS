@@ -7,7 +7,7 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <a href="/admin/components/modules_table/" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Go back", 'feedback')}</span></a>
+                    <a href="/admin/components/modules_table/" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back", 'admin')}</span></a>
                     <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#save" data-submit><i class="icon-ok icon-white"></i>{lang("Save", 'feedback')}</button>
                 </div>
             </div>                            
@@ -15,7 +15,7 @@
         <div class="tab-content">
             <!-----------------------------------------------------SETTINGS-------------------------------------------------------------->
             <div class="tab-pane active" id="mail">
-                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -26,7 +26,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd span9">
+                                <div class="inside_padd">
                                     <div class="form-horizontal">
                                         <form id="save" method="post" action="{site_url('admin/components/cp/feedback/settings/update')}">
                                             <div class="control-group">

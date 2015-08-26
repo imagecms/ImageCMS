@@ -25,81 +25,72 @@
         {/if}
 
         <div class="main_body">
-            <div class="form_login t-a_c">
-                <!--
-                <div class="o_h" style="margin-top: 20px; text-align: right; margin-right: -50px">
-                    <a href="/admin/login/switch_admin_lang/english" class="d-i_b">
-                {if $CI->config->item('language') == 'english'}
-                    <img  width="100%" height="100p%" src="{$THEME}img/EN.png"/>
-                {else:}
-                    <img  style="height: 13px; width: 22px; margin-top: 3px; margin-right: 10px " width="70%" height="70p%" src="{$THEME}img/EN.png"/>
-                {/if}
-            </a>
-            <a href="/admin/login/switch_admin_lang/russian" class="d-i_b">
-                {if $CI->config->item('language') == 'russian'}
-                    <img width="100%" height="100%"  src="{$THEME}img/Ru.png"/>
-                {else:}
-                    <img width="70%" height="70%" src="{$THEME}img/Ru.png"/>
-                {/if}
-            </a>
-        </div>
-                -->
-                <a href="/admin/dashboard" class="d-i_b">
-                    <img src="{$THEME}img/logo.png"/>
-                </a>
 
-                <form method="post" action="{$BASE_URL}admin/login/" class="standart_form t-a_l" id="with_out_article">
-                    {if $login_failed}
-                        <label>
-                            {echo $login_failed}
-                        </label>
-                        {$login_failed}
-                    {/if}
-                    <label>
-                        <input type="text" name="login" placeholder="{lang("E-mail", "admin")}"/>{$login_error}
-                        <span class="icon-user"></span>
-                    </label>
-                    <label>
-                        <input type="password" name="password" placeholder="{lang("Password", "admin")}"/>{$password_error}
-                        <span class="icon-lock"></span>
-                    </label>
-                    {if $use_captcha == "1"}
+            <div class="form_login_out">
 
-                        <label style="margin-bottom:50px">
-                            {lang('Security code', 'admin')}:<br/>
-                            <div id="captcha">{$cap_image}</div>
-                            <a href="" onclick="ajax_div('captcha', '{$BASE_URL}/admin/login/update_captcha');
-                                    return false;">{lang('Update the code',"admin")}</a>
-                            <input type="text" name="captcha" />{$captcha_error}
-                        </label>
-                    {/if}
-                    <div class="o_h">
-                        <div class="pull-left frame_label">
-                            <span class="frame_label">
-                                <span class="niceCheck">
-                                    <input type="checkbox" name="remember" value="1"/>
-                                </span>
-                                {lang('Remember',"admin")}
-                            </span>
-                        </div>
-                        <a href="{$BASE_URL}admin/login/forgot_password/" class="pull-right">{lang('Forgot your password?',"admin")}</a>
-                    </div>
-                    <input type="submit" value="{lang('Log in',"admin")}" class="btn btn-info" style="margin-top: 26px;"/>
-                    {form_csrf()}
-                </form>
-                { /* }
-                <div class="o_h" style="margin-bottom: -20px;">
-                    <form action="/admin/login/switch_admin_lang" method="GET">
-                        <select name="language" onchange="this.form.submit()" style="float: right; width: 100px; margin-top: 25px;">
-                            <option value="russian" {if $CI->config->item('language') == 'russian'} {echo 'selected';}{/if}>{echo lang('Russian', 'install')}</option>
-                            <option value="english" {if $CI->config->item('language') == 'english' || !$CI->config->item('language')} {echo 'selected';}{/if}>{echo lang('English', 'install')}</option>
-                        </select>
-                        <div style="text-align: right; font-size: 17px; float: right; margin-right: 10px; margin-top: 20px;"><h5><b>{echo lang('Language', 'admin')}:</b></h5></div>
-                                    {form_csrf()}
-                    </form>
+                <div class="logo-login">
+                    <a href="/admin/dashboard" class="d-i_b">
+                        {if MAINSITE}
+                            <!-- if premmerce store login -->
+                            <img src="{$THEME}img/logo_login_premmerce.png"/>
+                            <!-- if premmerce store login end -->
+                        {else:}
+                            <img src="{$THEME}img/logo_login_imagecms.png"/>
+                        {/if}
+                    </a>
                 </div>
-                { */ }
+
+                <div class="form_login t-a_c">
+                    <div class="inside-padd">
+                        <div class="frame-title">
+                            <div class="title">{lang('Admin panel',"admin")}</div>
+                            <!-- if premmerce store login -->
+                            <div class="subtitle">{echo rtrim(site_url(),'/')}</div>
+                            <!-- if premmerce store login end -->
+                        </div>
+                        <form method="post" action="{$BASE_URL}admin/login/" class="standart_form t-a_l" id="with_out_article">
+                            {if $login_failed}
+                                <label>
+                                    <div class="alert alert-error">{echo $login_failed}</div>
+                                </label>
+                            {/if}
+                            {form_csrf()}
+
+                            <label>
+                                <input type="text" name="login" value="{if $_POST.login}{echo $_POST.login}{/if}" placeholder="{lang("E-mail", "admin")}"/>{$login_error}
+                            </label>
+                            <label>
+                                <input type="password" name="password" placeholder="{lang("Password", "admin")}"/>{$password_error}
+                            </label>
+                            {if $use_captcha == "1"}
+
+                                <label style="margin-bottom:50px">
+                                    {lang('Security code', 'admin')}:<br/>
+                                    <div id="captcha">{$cap_image}</div>
+                                    <a href="" onclick="ajax_div('captcha', '{$BASE_URL}/admin/login/update_captcha');
+                                            return false;">{lang('Update the code',"admin")}</a>
+                                    <input type="text" name="captcha" />{$captcha_error}
+                                </label>
+                            {/if}
+                            <button type="submit" class="btn btn-primary btn-signin">{lang('Log in',"admin")}</button>
+                            <div class="o_h">
+                                <div class="pull-left">
+                                    <label class="frame_label">
+                                        <span class="f-s_0 m-t_0 d-i_b v-a_m l-h_1" style=""> {/* class="niceCheck" */}
+                                            <input type="checkbox" name="remember" value="1"/>
+                                        </span>
+                                        <span class="text-el d-i_b v-a_m">{lang('Remember me',"admin")}</span>
+                                    </label>
+                                </div>
+                                <a href="{$BASE_URL}admin/login/forgot_password/" class="pull-right">{lang('Forgot your password?',"admin")}</a>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
             </div>
+
+
         </div>
         <script src="{$THEME}js/jquery-1.8.2.min.js" type="text/javascript"></script>
         <script src="{$THEME}js/scripts.js" type="text/javascript"></script>

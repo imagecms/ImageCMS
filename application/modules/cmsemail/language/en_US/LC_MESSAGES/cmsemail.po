@@ -2,11 +2,11 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-05 11:24+0300\n"
-"PO-Revision-Date: 2014-06-05 11:24+0300\n"
-"Last-Translator:  \n"
-"Language-Team:  \n"
-"Language: en_US\n"
+"POT-Creation-Date: 2015-01-28 01:14+0200\n"
+"PO-Revision-Date: 2015-01-28 01:14+0200\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,3 +17,572 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/cmsemail/assets/admin/create.tpl:113
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:136
+msgid "Send email to admin"
+msgstr "Send email to admin"
+
+#: application/modules/banners/module_info.php:4
+#: application/modules/banners/assets/admin/list.tpl:6
+#: application/modules/banners/banners.php:186
+#: application/modules/banners/banners.php:192
+msgid "Banners management"
+msgstr "Banners"
+
+#: application/modules/banners/module_info.php:5
+msgid "Allows you to create banners for any page on the site or online store"
+msgstr "Allows you to create banners for any page of a site or online store"
+
+#: ./application/modules/cmsemail/assets/admin/list.tpl:23
+#: ./application/modules/cmsemail/module_info.php:6
+msgid "Email-notifications managing"
+msgstr "E-mail Notifications"
+
+#: ./application/modules/cmsemail/admin.php:62
+msgid "email_sent"
+msgstr "e-mail has been sent"
+
+#: ./application/modules/cmsemail/admin.php:68
+msgid "Email template deleted"
+msgstr "E-mail template has been deleted"
+
+#: ./application/modules/cmsemail/admin.php:109
+#: ./application/modules/cmsemail/assets/admin/settings.tpl:59
+msgid "Admin email"
+msgstr "Admin's e-mail"
+
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:5
+msgid "Email template editing"
+msgstr "E-mail template editing"
+
+#: ./application/modules/cmsemail/assets/admin/settings.tpl:136
+#: ./application/modules/cmsemail/classes/ParentEmail.php:396
+msgid "Check email sending"
+msgstr "Check e-mail sending"
+
+#: ./application/modules/cmsemail/admin.php:110
+msgid "Email sender"
+msgstr "Sender's e-mail"
+
+#: ./application/modules/cmsemail/assets/admin/list.tpl:6
+msgid "Template email deleting"
+msgstr "E-mail template deleting..."
+
+#: ./application/modules/cmsemail/assets/admin/create.tpl:88
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:104
+msgid "Send email to user"
+msgstr "Send e-mail to user"
+
+#: ./application/modules/cmsemail/admin.php:112
+#: ./application/modules/cmsemail/assets/admin/create.tpl:49
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:58
+#: ./application/modules/cmsemail/assets/admin/settings.tpl:52
+#: ./application/modules/cmsemail/classes/ParentEmail.php:249
+#: ./application/modules/cmsemail/classes/ParentEmail.php:303
+msgid "From email"
+msgstr "From e-mail"
+
+#: application/modules/banners/admin.php:103
+msgid "Banner status was edited"
+msgstr ""
+
+#: application/modules/banners/admin.php:119
+msgid "Banner was removed"
+msgstr ""
+
+#: application/modules/banners/admin.php:216
+msgid "Banner was edited"
+msgstr ""
+
+#: application/modules/banners/admin.php:217
+msgid "Data is saved"
+msgstr ""
+
+#: application/modules/banners/assets/admin/edit.tpl:136
+#: application/modules/banners/assets/admin/create.tpl:100
+msgid "Banner permanent"
+msgstr "Permanent"
+
+#: application/modules/banners/assets/admin/list.tpl:69
+msgid "Permanent"
+msgstr "Permanent"
+
+#: application/modules/banners/assets/admin/edit.tpl:126
+#: application/modules/banners/assets/admin/create.tpl:90
+msgid "Active until"
+msgstr "Active untill"
+
+# deleted
+#: application/modules/banners/assets/admin/list.tpl:40
+msgid "Active to"
+msgstr "Active untill"
+
+#: application/modules/banners/assets/admin/edit.tpl:61
+#: application/modules/banners/assets/admin/create.tpl:45
+msgid "Text banner"
+msgstr "Banner description"
+
+# ?
+#: application/modules/banners/assets/admin/create.tpl:5
+msgid "Banner creating"
+msgstr "Add banner"
+
+#: application/modules/banners/admin.php:153
+#: application/modules/banners/admin.php:154
+msgid "Banner created"
+msgstr "Banner has been created"
+
+#: application/modules/banners/assets/admin/list.tpl:19
+#: application/modules/banners/banners.php:202
+msgid "Create a banner"
+msgstr "Add banner"
+
+#: application/modules/banners/assets/admin/edit.tpl:20
+msgid "Editing banner"
+msgstr "Banner editing"
+
+#: application/modules/banners/assets/admin/list.tpl:59
+msgid "Edit banner"
+msgstr "Edit banner"
+
+#: application/modules/banners/assets/js/main.js:17
+msgid "Banner (s) successfully removed"
+msgstr "Banner(s) have been successfully removed"
+
+#: application/modules/banners/assets/admin/edit.tpl:74
+msgid "Banner group"
+msgstr "Banner group"
+
+#: application/modules/banners/assets/admin/list.tpl:85
+msgid "Empty banner list."
+msgstr "Empty banner list."
+
+#: application/modules/banners/admin.php:134
+#: application/modules/banners/admin.php:194
+msgid "Banner name"
+msgstr "Banner name"
+
+#: application/modules/banners/assets/admin/edit.tpl:4
+#: application/modules/banners/assets/admin/edit.tpl:88
+msgid "Create group"
+msgstr "Create a group"
+
+#: ./application/modules/cmsemail/assets/admin/create.tpl:14
+msgid "Create"
+msgstr "Create"
+
+#: ./application/modules/cmsemail/assets/admin/create.tpl:17
+msgid "Create and exit"
+msgstr "Create and exit"
+
+#: application/modules/banners/assets/admin/edit.tpl:95
+#: application/modules/banners/assets/admin/create.tpl:58
+msgid "Selected items"
+msgstr "Selected items"
+
+#: application/modules/banners/assets/admin/list.tpl:73
+msgid "show"
+msgstr "Show"
+
+#: application/modules/banners/assets/admin/edit.tpl:115
+#: application/modules/banners/assets/admin/create.tpl:77
+msgid "Brand"
+msgstr "Brand"
+
+#: application/modules/banners/assets/admin/edit.tpl:111
+#: application/modules/banners/assets/admin/create.tpl:73
+#: application/modules/banners/admin.php:273
+#: application/modules/banners/helpers/banners_helper.php:54
+msgid "Main"
+msgstr "Main"
+
+#: application/modules/banners/assets/admin/edit.tpl:110
+#: application/modules/banners/assets/admin/create.tpl:72
+msgid "select essence"
+msgstr "select item"
+
+#: application/modules/banners/assets/admin/edit.tpl:107
+#: application/modules/banners/assets/admin/create.tpl:69
+msgid "Show in categories (select items)"
+msgstr "Show in categories "
+
+#: application/modules/banners/admin.php:299
+msgid "Positions saved"
+msgstr "Positions saved/ Positions have been saved"
+
+#: application/modules/banners/assets/admin/list.tpl:73
+msgid "don't show"
+msgstr "Do not display"
+
+#: application/modules/banners/assets/admin/list.tpl:39
+msgid "Groups"
+msgstr "Groups"
+
+#: ./application/modules/cmsemail/assets/admin/list.tpl:30
+#: ./application/modules/cmsemail/assets/admin/settings.tpl:13
+msgid "Back"
+msgstr "Back"
+
+#: application/modules/banners/assets/admin/edit.tpl:36
+#: application/modules/banners/assets/admin/create.tpl:20
+msgid "Options"
+msgstr "Options"
+
+#: application/modules/banners/admin.php:195
+msgid "Photo"
+msgstr "Photo"
+
+#: application/modules/banners/assets/admin/edit.tpl:118
+#: application/modules/banners/assets/admin/create.tpl:80
+msgid "Pages"
+msgstr "Pages"
+
+#: application/modules/banners/assets/admin/edit.tpl:67
+#: application/modules/banners/assets/admin/create.tpl:51
+msgid "URL"
+msgstr "URL"
+
+#: application/modules/banners/assets/admin/list.tpl:41
+msgid "Status"
+msgstr "Status"
+
+#: application/modules/banners/assets/admin/edit.tpl:90
+#: application/modules/banners/assets/admin/edit.tpl:102
+#: application/modules/banners/assets/admin/create.tpl:64
+msgid "Double click to deleting"
+msgstr "Doubleclick to delete"
+
+#: application/modules/banners/assets/admin/edit.tpl:55
+#: application/modules/banners/assets/admin/create.tpl:39
+msgid "Active"
+msgstr "Active"
+
+#: application/modules/banners/assets/admin/list.tpl:15
+msgid "Use different templates for different pages"
+msgstr "Use different templates for different pages"
+
+#: application/modules/banners/assets/admin/edit.tpl:7
+msgid "Group name"
+msgstr "Group name"
+
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:14
+#: ./application/modules/cmsemail/assets/admin/settings.tpl:19
+msgid "Save"
+msgstr "Save"
+
+#: application/modules/banners/assets/admin/edit.tpl:114
+#: application/modules/banners/assets/admin/create.tpl:76
+msgid "Product category"
+msgstr "Product category"
+
+#: application/modules/banners/assets/admin/edit.tpl:26
+msgid "Save and exit"
+msgstr "Save and exit"
+
+#: ./application/modules/cmsemail/admin.php:68
+#: ./application/modules/cmsemail/admin.php:120
+#: ./application/modules/cmsemail/admin.php:123
+#: ./application/modules/cmsemail/assets/js/email.js:106
+#: ./application/modules/cmsemail/assets/js/email.js:137
+#: ./application/modules/cmsemail/assets/js/email.js:164
+msgid "Message"
+msgstr "Message"
+
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:26
+msgid "Template settings"
+msgstr "Template settings"
+
+#: application/modules/banners/assets/admin/edit.tpl:117
+#: application/modules/banners/assets/admin/create.tpl:79
+msgid "Pages categories"
+msgstr "Page category"
+
+#: application/modules/banners/assets/admin/edit.tpl:157
+#: application/modules/banners/assets/admin/create.tpl:116
+msgid "Choose an image "
+msgstr "Choose an image"
+
+#: application/modules/banners/assets/admin/edit.tpl:113
+#: application/modules/banners/assets/admin/create.tpl:75
+msgid "Product"
+msgstr "Product"
+
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:185
+#: ./application/modules/cmsemail/assets/admin/list.tpl:12
+#: ./application/modules/cmsemail/assets/admin/list.tpl:40
+msgid "Delete"
+msgstr "Delete"
+
+#: ./application/modules/cmsemail/assets/admin/list.tpl:62
+msgid "Name"
+msgstr "Template name"
+
+#: application/modules/banners/assets/admin/edit.tpl:151
+#: application/modules/banners/assets/admin/create.tpl:109
+#: application/modules/banners/admin.php:135
+msgid "Image"
+msgstr "Image"
+
+#: application/modules/banners/assets/admin/list.tpl:37
+msgid "ID"
+msgstr "ID"
+
+#: ./application/modules/cmsemail/assets/admin/list.tpl:43
+msgid "Create template"
+msgstr "Add template"
+
+#: ./application/modules/cmsemail/admin.php:44
+msgid "Template created"
+msgstr "Template created/Template has been created"
+
+#: ./application/modules/cmsemail/classes/ParentEmail.php:248
+msgid "Template name"
+msgstr "Template name"
+
+#: ./application/modules/cmsemail/assets/admin/create.tpl:35
+msgid "Template name (only latin)"
+msgstr "Template name ( only Latin)"
+
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:44
+msgid "Template name(only latin)"
+msgstr "Template name (only Latin)"
+
+#: ./application/modules/cmsemail/assets/admin/settings.tpl:73
+msgid "Use wraper"
+msgstr "Use wrapper"
+
+#: ./application/modules/cmsemail/admin.php:115
+#: ./application/modules/cmsemail/admin.php:117
+#: ./application/modules/cmsemail/assets/admin/settings.tpl:84
+msgid "Wraper"
+msgstr "Wrapper"
+
+# ?
+#: ./application/modules/cmsemail/assets/js/email.js:128
+msgid "Variable is not updated"
+msgstr "Variable is not updated/Variable has not been updated"
+
+#: ./application/modules/cmsemail/assets/admin/create.tpl:81
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:90
+#: ./application/modules/cmsemail/classes/ParentEmail.php:253
+#: ./application/modules/cmsemail/classes/ParentEmail.php:307
+msgid "Template user mail"
+msgstr "User mail template"
+
+#: ./application/modules/cmsemail/assets/js/email.js:198
+msgid "Variable must be surrounded by $"
+msgstr "Variable must be surrounded by $"
+
+#: ./application/modules/cmsemail/classes/ParentEmail.php:257
+#: ./application/modules/cmsemail/classes/ParentEmail.php:311
+msgid "Template admin mail"
+msgstr "Administrator mail template"
+
+#: ./application/modules/cmsemail/module_info.php:7
+msgid "Allows you to customize letters templates to be sent to users when certain actions"
+msgstr "Allows you to customize mail templates to be sent to users during certain actions"
+
+#: ./application/modules/cmsemail/assets/admin/create.tpl:5
+msgid "Creating mail template"
+msgstr "Creating mail template"
+
+#: ./application/modules/cmsemail/assets/admin/list.tpl:9
+msgid "Delete selected templates"
+msgstr "Delete selected templates"
+
+#: ./application/modules/cmsemail/assets/admin/list.tpl:13
+msgid "Cancel"
+msgstr "Cancel"
+
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:184
+msgid "Edit"
+msgstr "Edit"
+
+#: ./application/modules/cmsemail/admin.php:86
+msgid "Template edited"
+msgstr "Template edited/ Template has been edited"
+
+#: ./application/modules/cmsemail/admin.php:134
+msgid "Field"
+msgstr "Field"
+
+#: ./application/modules/cmsemail/assets/admin/create.tpl:27
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:36
+#: ./application/modules/cmsemail/assets/admin/list.tpl:34
+#: ./application/modules/cmsemail/assets/admin/settings.tpl:6
+#: ./application/modules/cmsemail/assets/admin/settings.tpl:29
+msgid "Settings"
+msgstr "Settings"
+
+#: ./application/modules/cmsemail/assets/admin/list.tpl:63
+msgid "Template variable"
+msgstr "Template variable"
+
+#: ./application/modules/cmsemail/assets/admin/create.tpl:56
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:65
+#: ./application/modules/cmsemail/assets/admin/list.tpl:64
+#: ./application/modules/cmsemail/assets/admin/settings.tpl:66
+msgid "Theme"
+msgstr "Theme"
+
+#: ./application/modules/cmsemail/assets/admin/list.tpl:98
+msgid "Templates list empty"
+msgstr "Template list empty"
+
+#: ./application/modules/cmsemail/assets/admin/settings.tpl:40
+msgid "Install standart templates"
+msgstr "Install standart templates"
+
+#: ./application/modules/cmsemail/assets/admin/create.tpl:90
+#: ./application/modules/cmsemail/assets/admin/create.tpl:115
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:106
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:138
+msgid "Yes"
+msgstr "Yes"
+
+#: ./application/modules/cmsemail/assets/admin/create.tpl:106
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:122
+msgid "Admin mail template"
+msgstr "Admin mail template"
+
+#: ./application/modules/cmsemail/assets/admin/settings.tpl:91
+msgid "Server path to sendmail"
+msgstr "Server path to sendmail"
+
+#: ./application/modules/cmsemail/assets/admin/create.tpl:131
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:154
+#: ./application/modules/cmsemail/classes/ParentEmail.php:260
+#: ./application/modules/cmsemail/classes/ParentEmail.php:314
+msgid "Admin address"
+msgstr "Admin address/ Admin e-mail address"
+
+#: ./application/modules/cmsemail/assets/admin/settings.tpl:98
+msgid "Protocol"
+msgstr "Protocol"
+
+#: ./application/modules/cmsemail/assets/admin/settings.tpl:109
+msgid "Host"
+msgstr "Host"
+
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:17
+msgid "Save and go back"
+msgstr "Save and go back"
+
+#: ./application/modules/cmsemail/assets/admin/settings.tpl:114
+msgid "User"
+msgstr "User"
+
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:27
+msgid "Template variables"
+msgstr "Template variables"
+
+#: ./application/modules/cmsemail/assets/admin/settings.tpl:119
+msgid "Password"
+msgstr "Password"
+
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:182
+msgid "Variables"
+msgstr "Variables"
+
+#: ./application/modules/cmsemail/assets/admin/settings.tpl:124
+msgid "Port"
+msgstr "Port"
+
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:231
+msgid "Add new variable"
+msgstr "Add a new variable/ Add new variable"
+
+#: ./application/modules/cmsemail/assets/js/email.js:102
+#: ./application/modules/cmsemail/assets/js/email.js:128
+#: ./application/modules/cmsemail/assets/js/email.js:157
+#: ./application/modules/cmsemail/assets/js/email.js:188
+#: ./application/modules/cmsemail/assets/js/email.js:193
+#: ./application/modules/cmsemail/assets/js/email.js:198
+#: ./application/modules/cmsemail/assets/js/email.js:203
+msgid "Error"
+msgstr "Error"
+
+#: ./application/modules/cmsemail/assets/js/email.js:102
+msgid "Variable is not removed"
+msgstr "Variable is not removed"
+
+#: ./application/modules/cmsemail/admin.php:134
+msgid "Must contain variable"
+msgstr "Must contain a variable"
+
+#: ./application/modules/cmsemail/assets/js/email.js:106
+msgid "Variable successfully removed"
+msgstr "Variable successfully removed"
+
+#: ./application/modules/cmsemail/assets/admin/create.tpl:63
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:72
+msgid "Message type"
+msgstr "Message type"
+
+#: ./application/modules/cmsemail/assets/js/email.js:137
+msgid "Variable successfully updated"
+msgstr "Variable successfully updated/ Variable has successfully been updated"
+
+#: ./application/modules/cmsemail/assets/admin/create.tpl:96
+#: ./application/modules/cmsemail/assets/admin/create.tpl:121
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:112
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:144
+msgid "No"
+msgstr "No"
+
+#: ./application/modules/cmsemail/assets/js/email.js:157
+msgid "Variable is not added"
+msgstr "Variable is not added/ Variable has not been added"
+
+#: ./application/modules/cmsemail/assets/admin/create.tpl:138
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:161
+msgid "Template description"
+msgstr "Template description"
+
+#: ./application/modules/cmsemail/assets/js/email.js:164
+msgid "Variable successfully added"
+msgstr "Variable successfully added"
+
+#: ./application/modules/cmsemail/assets/js/email.js:188
+msgid "Enter variable"
+msgstr "Enter  a variable"
+
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:183
+msgid "Values"
+msgstr "Values"
+
+#: ./application/modules/cmsemail/assets/js/email.js:193
+msgid "Variable should contain only Latin characters"
+msgstr "Variable must contain only Latin characters"
+
+#: ./application/modules/cmsemail/admin.php:111
+#: ./application/modules/cmsemail/assets/admin/create.tpl:42
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:51
+#: ./application/modules/cmsemail/assets/admin/list.tpl:65
+#: ./application/modules/cmsemail/assets/admin/settings.tpl:45
+msgid "From"
+msgstr "From"
+
+#: ./application/modules/cmsemail/assets/admin/create.tpl:11
+#: ./application/modules/cmsemail/assets/admin/edit.tpl:11
+msgid "Go back"
+msgstr "Go back"
+
+#: ./application/modules/cmsemail/assets/js/email.js:203
+msgid "Variable must have a value"
+msgstr "Variable must have a value"
+
+#: ./application/modules/cmsemail/classes/ParentEmail.php:177
+#: ./application/modules/cmsemail/classes/ParentEmail.php:207
+msgid "User message doesnt send"
+msgstr "User message has not been sent"
+
+#: ./application/modules/cmsemail/classes/ParentEmail.php:250
+#: ./application/modules/cmsemail/classes/ParentEmail.php:304
+msgid "Template theme"
+msgstr "Template theme"
+
+#: ./application/modules/cmsemail/admin.php:123
+msgid "Settings saved"
+msgstr "Settings saved/Settings have been saved"

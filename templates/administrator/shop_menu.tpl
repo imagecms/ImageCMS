@@ -17,8 +17,8 @@
                 <li class="nav-header">{lang("Arrival notification","admin")}</li>
                 <li><a href="{$ADMIN_URL}notifications" class="pjax">{lang('Reports of the appearance','admin')}</a></li>
                 <li><a href="{$ADMIN_URL}notificationstatuses/index" class="pjax">{lang('Statuses of the appearance','admin')}</a></li>
-                <li class="nav-header">{lang('Others','admin')}</li>                                  
-                <li><a class="pjax" href="/admin/components/cp/comments">{lang('Comments','admin')}</a></li>
+                <li class="nav-header">{lang('Others','admin')}</li>
+                <li><a href="/admin/components/cp/comments">{lang('Comments','admin')}</a></li>
 
             </ul>
         </li>

@@ -1,16 +1,15 @@
+<div class="frame-crumbs">
+    {widget('path')}
+</div>
+
 <div class="frame-inside page-text">
     <div class="container">
         <div class="text">
             <div class="container">
                 <div class="content center">
-                    <div id="titleExt"><h1>{widget('path')}<span class="ext">{lang('Contacts', 'feedback')}</span></h1></div>
+                    <div id="titleExt"><h1><span class="ext">{lang('Contacts', 'feedback')}</span></h1></div>
                     <div id="contact">
                         <div class="left">
-                            {if $form_errors}
-                                <div class="errors">
-                                    {$form_errors}
-                                </div>
-                            {/if}
 
                             {if $message_sent}
                                 <div style="color: green;">

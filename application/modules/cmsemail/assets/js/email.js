@@ -18,12 +18,12 @@ $(document).ready(function() {
     });
 
     $('#userMailVariables').die().live('click', function() {
-        tinyMCE.execInstanceCommand('userMailText', "mceInsertContent", false, ' ' + $(this).val() + ' ');
+        EmailTemplateVariables.insertVariable(this);
     });
 
 
     $('#adminMailVariables').die().live('click', function() {
-        tinyMCE.execInstanceCommand('adminMailText', "mceInsertContent", false, ' ' + $(this).val() + ' ');
+        EmailTemplateVariables.insertVariable(this);
     });
 
     $('.mailTestResultsHide').on('click', function() {
@@ -32,7 +32,8 @@ $(document).ready(function() {
 
     });
 
-    $('table.variablesTable .icon-edit').die().live('click', function() {
+
+    $('body').on('click', 'table.variablesTable .editVariable', function() {
         var editor = $(this).closest('tr').find('div.variable');
 
         var editValue = $.trim(editor.text());
@@ -44,13 +45,14 @@ $(document).ready(function() {
         editor.empty();
         editor.parent().find('.variableValueEdit').css('display', 'block').val(editValue);
 
-        $(this).parent('.editVariable').css('display', 'none');
+        $(this).css('display', 'none');
         $(this).closest('tr').find('.refreshVariable').css('display', 'block');
 
     });
 
-    $('.addVariable').on('click', function() {
+    $('body').on('click', '.addVariable', function() {
         $('.addVariableContainer').show();
+        $(this).hide();
     });
 });
 
@@ -59,18 +61,28 @@ function mailTest() {
     var from_email = $('#from_email').val();
     var theme = $('#theme').val();
     var protocol = $('#protocol').val();
-    var port = $('#port').val();
     var mailpath = $('#mailpath').val();
     var send_to = $('#admin_email').val();
+
+    //SMTP SETTINGS
+    var smtp_host = $('#smtp_host').val();
+    var smtp_user = $('#smtp_user').val();
+    var smtp_pass = $('#smtp_pass').val();
+    var smtp_port = $('#smtp_port').val();
+    var encryption = $('#encryption').val();
 
     $.ajax({
         type: 'POST',
         data: {
+            smtp_host: smtp_host,
+            smtp_user: smtp_user,
+            smtp_pass: smtp_pass,
+            smtp_port: smtp_port,
+            smtp_crypto: encryption,
             from: from,
             from_email: from_email,
             theme: theme,
             protocol: protocol,
-            port: port,
             mailpath: mailpath,
             send_to: send_to
         },
@@ -89,6 +101,14 @@ function mailTest() {
 }
 
 var EmailTemplateVariables = {
+    insertVariable: function(curElem) {
+        var activeEditor = tinyMCE.activeEditor.contentAreaContainer;
+        var curEditor = $(curElem).closest('.control-group').find('div[id*="tinymce"].mce-edit-area');
+
+        if ($(activeEditor).is(curEditor)) {
+            tinyMCE.execCommand("mceInsertContent", false, ' ' + $(curElem).val() + ' ');
+        }
+    },
     delete: function(template_id, variable, curElement, locale) {
         $.ajax({
             type: 'POST',
@@ -159,7 +179,8 @@ var EmailTemplateVariables = {
                 }
                 curElement.parent('div').find('.typeVariable').val('');
                 $('.addVariableContainer').css('display', 'none');
-//                $('.addVariableContainer button').data('variable', $.trim(variable.val()));
+                $('.addVariableContainer').find('input').val('');
+                $('.addVariable').show();
                 $(data).insertBefore('table.variablesTable .addVariableContainer');
                 showMessage(lang('Message'), lang('Variable successfully added'));
             }
@@ -195,10 +216,10 @@ var EmailTemplateVariables = {
         }
 
         if ((variable[0] != '$' || variable[variable.length - 1] != '$') || variable.length < 3) {
-            showMessage(lang('Error'), lang('Variable must be surrounded by $'), 'r');
+            showMessage(lang('Error'), lang('Variable must be surrounded by') + ' $', 'r');
             exit;
         }
-        
+
         if (!variableValue) {
             showMessage(lang('Error'), lang('Variable must have a value'), 'r');
             exit;

@@ -8,9 +8,9 @@
             <div class="d-i_b">
                 <a href="/admin/components/cp/menu/menu_item/{$menu.name}" class="t-d_n m-r_15 pjax"><span class="f-s_14"></span>←<span class="t-d_u">{lang("Go back", "menu")}</span></a>
                 <button type="button" class="btn btn-small btn-primary formSubmit submit_link" data-form="#{$item.item_type}_form" data-submit><i class="icon-ok"></i>{lang("Save", "menu")}</button>
-                <button type="button" class="btn btn-small formSubmit submit_link" data-form="#{$item.item_type}_form" data-action="tomain"><i class="icon-ok"></i>{lang("Save and go back", "menu")}</button>
+                <button type="button" class="btn btn-small formSubmit submit_link" data-form="#{$item.item_type}_form" data-action="tomain"><i class="icon-check"></i>{lang("Save and go back", "menu")}</button>
             </div>
-        </div>                            
+        </div>
     </div>
     <div class="row">
         <div class="span5">
@@ -22,14 +22,14 @@
             </ul>
         </div>
     </div>
-    <div class="tab-content content_big_td form-horizontal">
+    <div class="tab-content form-horizontal">
         <div id="page" class="tab-pane {if $item.item_type == 'page'}active{/if}">
             <form method="post" action="/admin/components/cp/menu/edit_item/{$item.id}" id="page_form">
                 {$data = unserialize($item.add_data)}
                 <input type="hidden" name="menu_id" value="{$menu.id}"/>
                 <input type="hidden" name="item_id" value="{$item.item_id}" id="item_page_id"/>
                 <input type="hidden" name="item_type" value="page"/>
-                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -40,7 +40,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd span9">
+                                <div class="inside_padd">
                                     <div class="span12">
                                         <div class="control-group">
                                             <label class="control-label">{lang("Categories", "menu")}:</label>
@@ -75,7 +75,7 @@
                                                         {/foreach}
                                                     </ul>
                                                 </div>
-                                            </div>        
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -84,7 +84,7 @@
                     </tbody>
                 </table>
                 <input type="hidden" id="owner_id" value="{$insert_id}" />
-                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -95,7 +95,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd span9">
+                                <div class="inside_padd">
                                     <div class="span12">
                                         <div class="control-group">
                                             <label class="control-label">{lang("Type", "menu")}:</label>
@@ -104,17 +104,17 @@
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label">{lang("ID", "menu")}:</label>
+                                            <label class="control-label">{lang("ID", "menu")}: <span class="must">*</span></label>
                                             <div class="controls">
                                                 <span id="page_id_holder" class="help-block">{$item.id}</span>
                                             </div>
-                                        </div>    
+                                        </div>
                                         <div class="control-group">
-                                            <label class="control-label">{lang("Title", "menu")}:</label>
+                                            <label class="control-label">{lang("Title", "menu")}: <span class="must">*</span></label>
                                             <div class="controls">
                                                 <input type="text" value="{$item.title}" name="title"  id="item_title" />
                                             </div>
-                                        </div>        
+                                        </div>
                                         <div class="control-group">
                                             <label class="control-label">{lang("Parent", "menu")}:</label>
                                             <div class="controls">
@@ -125,7 +125,7 @@
                                                     {/foreach}
                                                 </select>
                                             </div>
-                                        </div>            
+                                        </div>
                                         <div class="control-group">
                                             <label class="control-label">{lang("Position after", "menu")}:</label>
                                             <div class="controls">
@@ -143,14 +143,14 @@
                                                {lang("Image", "menu")}:
                                             </label>
                                             <div class="controls">
-                                                <div class="group_icon pull-right">            
+                                                <div class="group_icon pull-right">
                                                     <button class="btn btn-small" onclick="elFinderPopup('image', 'Img0');return false;"><i class="icon-picture"></i> {lang("Choose an image ", "menu")}</button>
                                                 </div>
-                                                <div class="o_h">		            
+                                                <div class="o_h">
                                                     <input type="text" name="item_image" id="Img0" value="{$item.item_image}">
                                                 </div>
                                             </div>
-                                        </div>  
+                                        </div>
                                         <div class="control-group">
                                             <label class="control-label">{lang("Access level", "menu")}:</label>
                                             <div class="controls">
@@ -165,7 +165,7 @@
                                                     {/foreach}
                                                 </select>
                                             </div>
-                                        </div>    
+                                        </div>
                                         <div class="control-group">
                                             <label class="control-label">{lang("Hide", "menu")}:</label>
                                             <div class="controls">
@@ -177,14 +177,14 @@
                                                         {lang("No", "menu")}
                                                 </span>
                                             </div>
-                                        </div>            
+                                        </div>
                                         <div class="control-group">
                                             <label class="control-label">{lang("Open in the new window", "menu")}:</label>
                                             <div class="controls">
                                                 <span class="m-r_15 frame_label no_connection"><span class="niceRadio"><input type="radio" name="newpage" value="1" {if $data.newpage == 1}checked="checked"{/if}/></span> {lang("Yes", "menu")}</span>
                                                 <span class="frame_label no_connection"><span class="niceRadio"><input type="radio" name="newpage" value="0" {if $data.newpage == 0}checked="checked"{/if}/></span> {lang("No", "menu")}</span>
                                             </div>
-                                        </div>    
+                                        </div>
                                     </div>
                                 </div>
                             </td>
@@ -199,7 +199,7 @@
                 <input type="hidden" name="menu_id" value="{$menu.id}"/>
                 <input type="hidden" name="item_id" value="{$item.item_id}" id="cat_input"/>
                 <input type="hidden" name="item_type" value="category"/>
-                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -210,13 +210,13 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd span9">
+                                <div class="inside_padd">
                                     <div class="span12">
                                         <div class="control-group">
                                             <label class="control-label">{lang("Choose a category", "menu")}:</label>
                                             <div class="controls">
                                                 <ul>
-                                                   {build_cats_tree_ul_li($cats)}  
+                                                   {build_cats_tree_ul_li($cats)}
                                                 </ul>
                                             </div>
                                         </div>
@@ -226,7 +226,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -237,7 +237,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd span9">
+                                <div class="inside_padd">
                                     <div class="span12">
                                         <div class="control-group">
                                             <label class="control-label">{lang("Type", "menu")}:</label>
@@ -246,17 +246,17 @@
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label">{lang("ID", "menu")}:</label>
+                                            <label class="control-label">{lang("ID", "menu")}: <span class="must">*</span></label>
                                             <div class="controls">
                                                 <span id="cat_id_holder" class="help-block">{$item.item_id}</span>
                                             </div>
-                                        </div>    
+                                        </div>
                                         <div class="control-group">
-                                            <label class="control-label">{lang("Title", "menu")}:</label>
+                                            <label class="control-label">{lang("Title", "menu")}: <span class="must">*</span></label>
                                             <div class="controls">
                                                 <input type="text" value="{$item.title}" name="title"  id="item_cat_title" />
                                             </div>
-                                        </div>        
+                                        </div>
                                         <div class="control-group">
                                             <label class="control-label">{lang("Parent", "menu")}:</label>
                                             <div class="controls">
@@ -267,7 +267,7 @@
                                                     {/foreach}
                                                 </select>
                                             </div>
-                                        </div>            
+                                        </div>
                                         <div class="control-group">
                                             <label class="control-label">{lang("Position after", "menu")}:</label>
                                             <div class="controls">
@@ -285,14 +285,14 @@
                                                {lang("Image", "menu")}:
                                             </label>
                                             <div class="controls">
-                                                <div class="group_icon pull-right">            
+                                                <div class="group_icon pull-right">
                                                     <button class="btn btn-small" onclick="elFinderPopup('image', 'Img1');return false;"><i class="icon-picture"></i>  {lang("Choose an image ", "menu")}</button>
                                                 </div>
-                                                <div class="o_h">		            
+                                                <div class="o_h">
                                                     <input type="text" name="item_image" id="Img1" value="{$item.item_image}">
                                                 </div>
                                             </div>
-                                        </div>  
+                                        </div>
                                         <div class="control-group">
                                             <label class="control-label">{lang("Access level", "menu")}:</label>
                                             <div class="controls">
@@ -303,7 +303,7 @@
                                                     {/foreach}
                                                 </select>
                                             </div>
-                                        </div>    
+                                        </div>
                                         <div class="control-group">
                                             <label class="control-label">{lang("Hide", "menu")}:</label>
                                             <div class="controls">
@@ -320,7 +320,7 @@
                                                     {lang("No", "menu")}
                                                 </span>
                                             </div>
-                                        </div>            
+                                        </div>
                                         <div class="control-group">
                                             <label class="control-label">{lang("Open in the new window", "menu")}:</label>
                                             <div class="controls">
@@ -339,7 +339,7 @@
                                                     {lang("No", "menu")}
                                                 </span>
                                             </div>
-                                        </div>    
+                                        </div>
                                     </div>
                                 </div>
                             </td>
@@ -360,11 +360,11 @@
                         <ul class="nav myTab nav-tabs nav-stacked">
                             {foreach $modules as $module}
                                 <li><a href="#" class="module_item" data-mname="{$module.name}" id="module_{$module.name}" title="{$module.description}">{$module.menu_name}</a></li>
-                            {/foreach}   
+                            {/foreach}
                         </ul>
                     </div>
                     <div class="span9">
-                        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                        <table class="table  table-bordered table-hover table-condensed content_big_td">
                             <thead>
                                 <tr>
                                     <th colspan="6">
@@ -375,7 +375,7 @@
                             <tbody>
                                 <tr>
                                     <td colspan="6">
-                                        <div class="inside_padd span9">
+                                        <div class="inside_padd">
                                             <div class="span12">
                                                 <div class="control-group">
                                                     <label class="control-label">{lang("Type", "menu")}:</label>
@@ -386,13 +386,13 @@
                                                     </div>
                                                 </div>
                                                 <div class="control-group">
-                                                    <label class="control-label">{lang("Name", "menu")}:</label>
+                                                    <label class="control-label">{lang("Name", "menu")}: <span class="must">*</span></label>
                                                     <div class="controls">
                                                         <span id="module_name_holder" class="help-block">{$data.mod_name}</span>
                                                     </div>
-                                                </div>    
+                                                </div>
                                                 <div class="control-group">
-                                                    <label class="control-label">{lang("Title", "menu")}:</label>
+                                                    <label class="control-label">{lang("Title", "menu")}: <span class="must">*</span></label>
                                                     <div class="controls">
                                                         <input type="text" value="{$item.title}" name="title"  id="module_item_title" />
                                                     </div>
@@ -401,9 +401,9 @@
                                                     <label class="control-label">{lang('Method', 'menu')}::</label>
                                                     <div class="controls">
                                                         <input type="text" value="{$data.method}" name="mod_method"/>
-                                                        <span class="help-inline">{lang('Example', 'menu')}:: func_name/param1/param2</span>
+                                                        <span class="help-block">{lang('Example', 'menu')}:: func_name/param1/param2</span>
                                                     </div>
-                                                </div>    
+                                                </div>
                                                 <div class="control-group">
                                                     <label class="control-label">{lang("Parent", "menu")}:</label>
                                                     <div class="controls">
@@ -414,7 +414,7 @@
                                                             {/foreach}
                                                         </select>
                                                     </div>
-                                                </div>            
+                                                </div>
                                                 <div class="control-group">
                                                     <label class="control-label">{lang("Position after", "menu")}:</label>
                                                     <div class="controls">
@@ -432,14 +432,14 @@
                                                        {lang("Image", "menu")}:
                                                     </label>
                                                     <div class="controls">
-                                                        <div class="group_icon pull-right">            
+                                                        <div class="group_icon pull-right">
                                                             <button class="btn btn-small" onclick="elFinderPopup('image', 'Img2');return false;"><i class="icon-picture"></i>  {lang("Choose an image ", "menu")}</button>
                                                         </div>
-                                                        <div class="o_h">		            
+                                                        <div class="o_h">
                                                             <input type="text" name="item_image" id="Img2" value="{$item.item_image}">
                                                         </div>
                                                     </div>
-                                                </div>  
+                                                </div>
                                                 <div class="control-group">
                                                     <label class="control-label">{lang("Access level", "menu")}:</label>
                                                     <div class="controls">
@@ -450,7 +450,7 @@
                                                             {/foreach}
                                                         </select>
                                                     </div>
-                                                </div>    
+                                                </div>
                                                 <div class="control-group">
                                                     <label class="control-label">{lang("Hide", "menu")}:</label>
                                                     <div class="controls">
@@ -469,7 +469,7 @@
                                                             {lang("No", "menu")}
                                                         </span>
                                                     </div>
-                                                </div>            
+                                                </div>
                                                 <div class="control-group">
                                                     <label class="control-label">{lang("Open in the new window", "menu")}:</label>
                                                     <div class="controls">
@@ -488,7 +488,7 @@
                                                             {lang("No", "menu")}
                                                         </span>
                                                     </div>
-                                                </div>    
+                                                </div>
                                             </div>
                                         </div>
                                     </td>
@@ -504,7 +504,7 @@
                 <input type="hidden" name="menu_id" value="{$menu.id}">
                 <input type="hidden" name="item_id" value="0"/>
                 <input type="hidden" name="item_type" value="url"/>
-                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -515,10 +515,10 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd span9">
+                                <div class="inside_padd">
                                     <div class="span12">
                                         <div class="control-group">
-                                            <label class="control-label">{lang("Specify or select a link to the page", "menu")}:</label>
+                                            <label class="control-label">{lang("Specify or select a link to the page", "menu")}: <span class="must">*</span></label>
                                             <div class="controls">
                                                 <input type="text" id="url_to_page" value="{echo $data.url}" name="item_url"/>
                                             </div>
@@ -529,7 +529,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -541,10 +541,10 @@
                         <tr>
                             <td colspan="6">
                                 {$r = unserialize($item.roles)}
-                                <div class="inside_padd span9">
+                                <div class="inside_padd">
                                     <div class="span12">
                                         <div class="control-group">
-                                            <label class="control-label">{lang("Title", "menu")}:</label>
+                                            <label class="control-label">{lang("Title", "menu")}: <span class="must">*</span></label>
                                             <div class="controls">
                                                 <input type="text" value="{$item.title}" name="title"  id="item_title" />
                                             </div>
@@ -559,7 +559,7 @@
                                                     {/foreach}
                                                 </select>
                                             </div>
-                                        </div>            
+                                        </div>
                                         <div class="control-group">
                                             <label class="control-label">{lang("Position after", "menu")}:</label>
                                             <div class="controls">
@@ -577,14 +577,14 @@
                                                 {lang("Image", "menu")}:
                                             </label>
                                             <div class="controls">
-                                                <div class="group_icon pull-right">            
+                                                <div class="group_icon pull-right">
                                                     <button class="btn btn-small" onclick="elFinderPopup('image', 'Img3');return false;"><i class="icon-picture"></i>  {lang("Choose an image ", "menu")}</button>
                                                 </div>
-                                                <div class="o_h">		            
+                                                <div class="o_h">
                                                     <input type="text" name="item_image" id="Img3" value="{$item.item_image}">
                                                 </div>
                                             </div>
-                                        </div>  
+                                        </div>
                                         <div class="control-group">
                                             <label class="control-label">{lang("Access level", "menu")}:</label>
                                             <div class="controls">
@@ -595,7 +595,7 @@
                                                     {/foreach}
                                                 </select>
                                             </div>
-                                        </div>    
+                                        </div>
                                         <div class="control-group">
                                             <label class="control-label">{lang("Hide", "menu")}:</label>
                                             <div class="controls">
@@ -614,7 +614,7 @@
                                                     {lang("No", "menu")}
                                                 </span>
                                             </div>
-                                        </div>            
+                                        </div>
                                         <div class="control-group">
                                             <label class="control-label">{lang("Open in the new window", "menu")}:</label>
                                             <div class="controls">
@@ -633,7 +633,7 @@
                                                     {lang("No", "menu")}
                                                 </span>
                                             </div>
-                                        </div>    
+                                        </div>
                                     </div>
                                 </div>
                             </td>
@@ -642,6 +642,6 @@
                 </table>
             </form>
         </div>
-    </div> 
+    </div>
 </section>
 <div id="elFinder"></div>

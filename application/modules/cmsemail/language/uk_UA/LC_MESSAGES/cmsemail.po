@@ -1,0 +1,409 @@
+﻿msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-03-04 11:42+0200\n"
+"PO-Revision-Date: 2015-03-04 11:42+0200\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: application/modules/cmsemail/assets/admin/edit.tpl:102
+#: application/modules/cmsemail/assets/admin/edit.tpl:139
+msgid "Click with mouse on editor place where you want to add variable"
+msgstr "Вкажіть лівою кнопкою миші на місце в редакторі, де ви хочете додати змінну"
+
+#: application/modules/cmsemail/assets/admin/settings.tpl:141
+msgid "Encryption"
+msgstr "Шифрування"
+
+#: application/modules/cmsemail/assets/admin/settings.tpl:7
+msgid "Do you really want to install standart templates?"
+msgstr "Ви дійсно хочете встановити стандартні шаблони?"
+
+#: application/modules/cmsemail/assets/admin/settings.tpl:9
+msgid "All your changes in them will be removed!!"
+msgstr "Всі зміни в них будуть видалені!!"
+
+#: application/modules/cmsemail/assets/admin/settings.tpl:14
+#: application/modules/cmsemail/assets/admin/settings.tpl:32
+msgid "Install"
+msgstr "Встановити"
+
+#: application/modules/cmsemail/admin.php:52
+msgid "E-mail template created"
+msgstr "E-mail шаблон створено"
+
+#: application/modules/cmsemail/admin.php:109
+msgid "Email template was edited"
+msgstr "Шаблон листа був відредагований"
+
+#: application/modules/cmsemail/admin.php:157
+msgid "Template customization mails have been changed"
+msgstr "Налаштування шаблонів листів були змінені"
+
+#: application/modules/cmsemail/assets/admin/list.tpl:43
+msgid "Create template"
+msgstr "Створити шаблон"
+
+#: application/modules/cmsemail/assets/js/email.js:124
+#: application/modules/cmsemail/assets/js/email.js:155
+#: application/modules/cmsemail/assets/js/email.js:182
+#: application/modules/cmsemail/admin.php:88
+#: application/modules/cmsemail/admin.php:148
+#: application/modules/cmsemail/admin.php:156
+msgid "Message"
+msgstr "Сповіщення"
+
+#: application/modules/cmsemail/module_info.php:6
+#: application/modules/cmsemail/assets/admin/list.tpl:23
+msgid "Email-notifications managing"
+msgstr "Управління е-mail-сповіщеннями"
+
+#: application/modules/cmsemail/assets/admin/create.tpl:5
+msgid "Creating mail template"
+msgstr "Створити шаблон повідомлення"
+
+#: application/modules/cmsemail/assets/admin/edit.tpl:72
+#: application/modules/cmsemail/assets/admin/create.tpl:61
+msgid "Message type"
+msgstr "Тип повідомлення"
+
+#: application/modules/cmsemail/classes/ParentEmail.php:261
+#: application/modules/cmsemail/classes/ParentEmail.php:315
+#: application/modules/cmsemail/assets/admin/edit.tpl:93
+#: application/modules/cmsemail/assets/admin/create.tpl:79
+msgid "Template user mail"
+msgstr "Шаблон повідомлення користувачу"
+
+#: application/modules/cmsemail/assets/admin/edit.tpl:112
+#: application/modules/cmsemail/assets/admin/create.tpl:86
+msgid "Send email to user"
+msgstr "Надіслати повідомлення користувачу"
+
+#: application/modules/cmsemail/assets/admin/edit.tpl:132
+#: application/modules/cmsemail/assets/admin/create.tpl:104
+msgid "Admin mail template"
+msgstr "Шаблон повідомлення адміністратору"
+
+#: application/modules/cmsemail/assets/admin/edit.tpl:148
+#: application/modules/cmsemail/assets/admin/create.tpl:111
+msgid "Send email to admin"
+msgstr "Надіслати повідомлення адміністратору"
+
+#: application/modules/cmsemail/assets/admin/list.tpl:6
+msgid "Template email deleting"
+msgstr "Шаблон повідомлення електронної пошти, видалення"
+
+#: application/modules/cmsemail/classes/ParentEmail.php:185
+#: application/modules/cmsemail/classes/ParentEmail.php:215
+msgid "User message doesnt send"
+msgstr "Повідомлення користувачу  не відправлене"
+
+#: application/modules/cmsemail/admin.php:53
+msgid "Template created"
+msgstr "Шаблон створено"
+
+#: application/modules/cmsemail/admin.php:72
+msgid "email_sent"
+msgstr "email_sent"
+
+#: application/modules/cmsemail/admin.php:87
+#: application/modules/cmsemail/admin.php:88
+msgid "Email template deleted"
+msgstr "Шаблон листа видалено"
+
+#: application/modules/cmsemail/admin.php:110
+msgid "Template edited"
+msgstr "Редагувати шаблон"
+
+#: application/modules/cmsemail/assets/admin/settings.tpl:71
+#: application/modules/cmsemail/admin.php:136
+msgid "Admin email"
+msgstr "Е-mail адміна"
+
+#: application/modules/cmsemail/admin.php:137
+msgid "Email sender"
+msgstr "E-mail відправника"
+
+#: application/modules/cmsemail/assets/admin/list.tpl:65
+#: application/modules/cmsemail/assets/admin/edit.tpl:51
+#: application/modules/cmsemail/assets/admin/create.tpl:40
+#: application/modules/cmsemail/assets/admin/settings.tpl:57
+#: application/modules/cmsemail/admin.php:138
+msgid "From"
+msgstr "Від"
+
+#: application/modules/cmsemail/classes/ParentEmail.php:257
+#: application/modules/cmsemail/classes/ParentEmail.php:311
+#: application/modules/cmsemail/assets/admin/edit.tpl:58
+#: application/modules/cmsemail/assets/admin/create.tpl:47
+#: application/modules/cmsemail/assets/admin/settings.tpl:64
+#: application/modules/cmsemail/admin.php:139
+msgid "From email"
+msgstr "З Е-mail"
+
+#: application/modules/cmsemail/assets/admin/settings.tpl:96
+#: application/modules/cmsemail/admin.php:142
+#: application/modules/cmsemail/admin.php:144
+msgid "Wraper"
+msgstr "Обгортка"
+
+#: application/modules/cmsemail/admin.php:156
+msgid "Settings saved"
+msgstr "Налаштування зберігаються"
+
+#: application/modules/cmsemail/admin.php:170
+msgid "Field"
+msgstr "Поле"
+
+#: application/modules/cmsemail/admin.php:170
+msgid "Must contain variable"
+msgstr "Повинен містити змінну"
+
+#: application/modules/cmsemail/module_info.php:7
+msgid "Allows you to customize letters templates to be sent to users when certain actions"
+msgstr "Дозволяє налаштувати шаблони листів для відправлення користувачам після певних дій"
+
+#: application/modules/cmsemail/assets/admin/list.tpl:34
+#: application/modules/cmsemail/assets/admin/edit.tpl:36
+#: application/modules/cmsemail/assets/admin/create.tpl:25
+#: application/modules/cmsemail/assets/admin/settings.tpl:23
+#: application/modules/cmsemail/assets/admin/settings.tpl:48
+msgid "Settings"
+msgstr "Параметри"
+
+#: application/modules/cmsemail/assets/admin/list.tpl:30
+#: application/modules/cmsemail/assets/admin/settings.tpl:30
+msgid "Back"
+msgstr "Повернутися"
+
+#: application/modules/cmsemail/assets/admin/edit.tpl:14
+#: application/modules/cmsemail/assets/admin/settings.tpl:37
+msgid "Save"
+msgstr "Зберегти"
+
+#: application/modules/cmsemail/assets/admin/settings.tpl:4
+msgid "Install standart templates"
+msgstr "Установка стандартних шаблонів"
+
+#: application/modules/cmsemail/assets/admin/list.tpl:64
+#: application/modules/cmsemail/assets/admin/edit.tpl:65
+#: application/modules/cmsemail/assets/admin/create.tpl:54
+#: application/modules/cmsemail/assets/admin/settings.tpl:78
+msgid "Theme"
+msgstr "Тема"
+
+#: application/modules/cmsemail/assets/admin/settings.tpl:85
+msgid "Use wraper"
+msgstr "Використовувати обгортку"
+
+#: application/modules/cmsemail/assets/admin/settings.tpl:103
+msgid "Server path to sendmail"
+msgstr "Серверний шлях до відправлення листа"
+
+#: application/modules/cmsemail/assets/admin/settings.tpl:110
+msgid "Protocol"
+msgstr "Протокол"
+
+#: application/modules/cmsemail/assets/admin/settings.tpl:121
+msgid "Host"
+msgstr "Хост"
+
+#: application/modules/cmsemail/assets/admin/settings.tpl:126
+msgid "User"
+msgstr "Користувач"
+
+#: application/modules/cmsemail/assets/admin/settings.tpl:131
+msgid "Password"
+msgstr "Пароль"
+
+#: application/modules/cmsemail/assets/admin/settings.tpl:136
+msgid "Port"
+msgstr "Порт"
+
+#: application/modules/cmsemail/classes/BaseEmail.php:123
+#: application/modules/cmsemail/classes/ParentEmail.php:410
+#: application/modules/cmsemail/assets/admin/settings.tpl:153
+msgid "Check email sending"
+msgstr "Перевірити відправку пошти"
+
+#: application/modules/cmsemail/assets/admin/edit.tpl:11
+#: application/modules/cmsemail/assets/admin/create.tpl:11
+msgid "Go back"
+msgstr "Повернутися"
+
+#: application/modules/cmsemail/assets/admin/create.tpl:14
+msgid "Create"
+msgstr "Створити"
+
+#: application/modules/cmsemail/assets/admin/create.tpl:17
+msgid "Create and exit"
+msgstr "Створити і вийти"
+
+#: application/modules/cmsemail/assets/admin/create.tpl:33
+msgid "Template name (only latin)"
+msgstr "Назва шаблону (тільки латинські символи)"
+
+#: application/modules/cmsemail/assets/admin/edit.tpl:118
+#: application/modules/cmsemail/assets/admin/edit.tpl:154
+#: application/modules/cmsemail/assets/admin/create.tpl:88
+#: application/modules/cmsemail/assets/admin/create.tpl:113
+msgid "Yes"
+msgstr "Так"
+
+#: application/modules/cmsemail/assets/admin/edit.tpl:125
+#: application/modules/cmsemail/assets/admin/edit.tpl:161
+#: application/modules/cmsemail/assets/admin/create.tpl:94
+#: application/modules/cmsemail/assets/admin/create.tpl:119
+msgid "No"
+msgstr "Ні"
+
+#: application/modules/cmsemail/classes/ParentEmail.php:268
+#: application/modules/cmsemail/classes/ParentEmail.php:322
+#: application/modules/cmsemail/assets/admin/edit.tpl:167
+#: application/modules/cmsemail/assets/admin/create.tpl:129
+msgid "Admin address"
+msgstr "Адреса адміністратора"
+
+#: application/modules/cmsemail/assets/admin/edit.tpl:174
+#: application/modules/cmsemail/assets/admin/create.tpl:136
+msgid "Template description"
+msgstr "Опис шаблону"
+
+#: application/modules/cmsemail/assets/admin/edit.tpl:5
+msgid "Email template editing"
+msgstr "Шаблон листа редагується"
+
+#: application/modules/cmsemail/assets/admin/edit.tpl:17
+msgid "Save and go back"
+msgstr "Зберегти і повернутися"
+
+#: application/modules/cmsemail/assets/admin/edit.tpl:26
+msgid "Template settings"
+msgstr "Налаштування шаблону"
+
+#: application/modules/cmsemail/assets/admin/edit.tpl:27
+msgid "Template variables"
+msgstr "Змінні шаблону"
+
+#: application/modules/cmsemail/assets/admin/edit.tpl:44
+msgid "Template name(only latin)"
+msgstr "Назва шаблону (тільки латинські символи)"
+
+#: application/modules/cmsemail/assets/admin/edit.tpl:194
+msgid "Variables"
+msgstr "Змінні"
+
+#: application/modules/cmsemail/assets/admin/edit.tpl:195
+msgid "Values"
+msgstr "Значення"
+
+#: application/modules/cmsemail/assets/admin/edit.tpl:196
+msgid "Edit"
+msgstr "Редагувати"
+
+#: application/modules/cmsemail/assets/admin/list.tpl:12
+#: application/modules/cmsemail/assets/admin/list.tpl:40
+#: application/modules/cmsemail/assets/admin/edit.tpl:197
+msgid "Delete"
+msgstr "Видалити"
+
+#: application/modules/cmsemail/assets/admin/edit.tpl:243
+msgid "Add new variable"
+msgstr "Додати нову змінну"
+
+#: application/modules/cmsemail/assets/admin/list.tpl:9
+msgid "Delete selected templates"
+msgstr "Видалити вибрані шаблони"
+
+#: application/modules/cmsemail/assets/admin/list.tpl:13
+#: application/modules/cmsemail/assets/admin/settings.tpl:15
+msgid "Cancel"
+msgstr "Скасування"
+
+#: application/modules/cmsemail/assets/admin/list.tpl:62
+msgid "Name"
+msgstr "Назва"
+
+#: application/modules/cmsemail/assets/admin/list.tpl:63
+msgid "Template variable"
+msgstr "Змінна шаблону"
+
+#: application/modules/cmsemail/assets/admin/list.tpl:98
+msgid "Templates list empty"
+msgstr "Список шаблонів порожній"
+
+#: application/modules/cmsemail/assets/js/email.js:120
+#: application/modules/cmsemail/assets/js/email.js:146
+#: application/modules/cmsemail/assets/js/email.js:175
+#: application/modules/cmsemail/assets/js/email.js:206
+#: application/modules/cmsemail/assets/js/email.js:211
+#: application/modules/cmsemail/assets/js/email.js:216
+#: application/modules/cmsemail/assets/js/email.js:221
+msgid "Error"
+msgstr "Помилка"
+
+#: application/modules/cmsemail/assets/js/email.js:120
+msgid "Variable is not removed"
+msgstr "Змінна не видаляється"
+
+#: application/modules/cmsemail/assets/js/email.js:124
+msgid "Variable successfully removed"
+msgstr "Змінна успішно видалена"
+
+#: application/modules/cmsemail/assets/js/email.js:146
+msgid "Variable is not updated"
+msgstr "Змінна не оновлюється"
+
+#: application/modules/cmsemail/assets/js/email.js:155
+msgid "Variable successfully updated"
+msgstr "Змінна успішно оновлена"
+
+#: application/modules/cmsemail/assets/js/email.js:175
+msgid "Variable is not added"
+msgstr "Змінна не додана"
+
+#: application/modules/cmsemail/assets/js/email.js:182
+msgid "Variable successfully added"
+msgstr "Змінна успішно додана"
+
+#: application/modules/cmsemail/assets/js/email.js:206
+msgid "Enter variable"
+msgstr "Введіть змінну"
+
+#: application/modules/cmsemail/assets/js/email.js:211
+msgid "Variable should contain only Latin characters"
+msgstr "Змінна повинна містити символи латинської абетки"
+
+#: application/modules/cmsemail/assets/js/email.js:216
+msgid "Variable must be surrounded by $"
+msgstr "Змінна повинна бути оточена $"
+
+#: application/modules/cmsemail/assets/js/email.js:221
+msgid "Variable must have a value"
+msgstr "Змінна повинна мати значення"
+
+#: application/modules/cmsemail/classes/ParentEmail.php:256
+msgid "Template name"
+msgstr "Ім'я шаблону"
+
+#: application/modules/cmsemail/classes/ParentEmail.php:258
+#: application/modules/cmsemail/classes/ParentEmail.php:312
+msgid "Template theme"
+msgstr "Шаблон теми"
+
+#: application/modules/cmsemail/classes/ParentEmail.php:265
+#: application/modules/cmsemail/classes/ParentEmail.php:319
+msgid "Template admin mail"
+msgstr "Шаблон листа адміна"

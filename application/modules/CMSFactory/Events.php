@@ -11,7 +11,9 @@ namespace CMSFactory;
 class Events extends BaseEvents {
 
     protected static $_BehaviorInstance;
+
     public $storage = array();
+
     public $key = null;
 
     private function __construct() {
@@ -22,6 +24,10 @@ class Events extends BaseEvents {
 
     }
 
+    /**
+     *
+     * @return Events
+     */
     public static function create() {
         (null !== self::$_BehaviorInstance) OR self::$_BehaviorInstance = new self();
         self::$_BehaviorInstance->key = null;
@@ -29,6 +35,3 @@ class Events extends BaseEvents {
     }
 
 }
-
-/* End of file /application/modules/CMSFactory/Events.php */
-?>

@@ -9,7 +9,8 @@ $com_info = array(
 	'h'           => 550,                 // Window height
 	'version'     => '1.1',               // Module version
 	'author'      => 'l.andriy@siteimage.com.ua', // Author info Andriy Leshko
-        'type' => 'shop'                // CMS version
+        'type' => 'shop',                // CMS version
+        'icon_class' => 'icon-picture',
 );
 
 /* End of file module_info.php */

@@ -16,7 +16,7 @@
 
         <!----------------------------------------------------- CREATE TRASH-------------------------------------------------------------->
         <div class="tab-pane">
-            <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+            <table class="table  table-bordered table-hover table-condensed content_big_td">
                 <thead>
                     <tr>
                         <th colspan="6">
@@ -27,17 +27,17 @@
                 <tbody>
                     <tr>
                         <td colspan="6">
-                            <div class="inside_padd span9">
+                            <div class="inside_padd">
                                 <div class="form-horizontal">
                                     <div class="row-fluid">
                                         <form id="create" method="post" action="{$SELF_URL}/create_trash">
 
                                             <div class="control-group">
-                                                <label class="control-label" for="url">Url:</label>
+                                                <label class="control-label" for="url">Url: <span class="must">*</span></label>
                                                 <div class="controls">
                                                     <div class="input-prepend">
                                                         <span class="add-on">{site_url()}</span>
-                                                        <input name="url" id="Url" class="span19" id="prependedInput" type="text" >
+                                                        <input name="url" id="Url" class="span19" id="prependedInput" type="text" required="required">
                                                     </div>
                                                 </div> 
                                             </div>

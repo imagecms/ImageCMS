@@ -1,7 +1,6 @@
 <?php
 
-if (!defined('BASEPATH'))
-    exit('No direct script access allowed');
+if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
  * Image CMS
@@ -58,13 +57,13 @@ class Comments_Widgets extends MY_Controller {
         if (!empty($data))
             $this->template->add_array($data);
 
-        $this->template->show('file:' . 'application/modules/comments/templates/' . $viewName);
+        $this->template->show('file:' . 'application/' . getModContDirName('comments') . '/comments/templates/' . $viewName);
         exit;
 
         if ($return === false)
-            $this->template->show('file:' . 'application/modules/comments/templates/' . $viewName);
+            $this->template->show('file:' . 'application/' . getModContDirName('comments') . '/comments/templates/' . $viewName);
         else
-            return $this->template->fetch('file:' . 'application/modules/comments/templates/' . $viewName);
+            return $this->template->fetch('file:' . 'application/' . getModContDirName('comments') . '/comments/templates/' . $viewName);
     }
 
     // Configure widget settings

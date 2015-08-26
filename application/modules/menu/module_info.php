@@ -9,7 +9,8 @@ $com_info = array(
 	'h' => 550,
 	'version' => '1.0',
 	'author' => 'dev@imagecms.net, zloitapok@inbox.ru',
-        'type' => 'shop'                // CMS version
+        'type' => 'shop',                // CMS version
+        'icon_class' => 'icon-align-justify'
 );
 
 /* end of file */

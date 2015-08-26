@@ -16,15 +16,15 @@
                 </div>
                 <div class="d-i_b">
                     <button type="button" class="btn btn-small btn-success" onclick="Exchange.go($(this));">
-                        <i class="icon-ok"></i>
+                        <i class="icon-ok icon-white"></i>
                         {lang('Exchange', 'translator')}
                     </button>
                 </div>
             </div>
         </div>
-        <div class="content_big_td row-fluid">
-            <form method="post" class="form-horizontal">
-                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+        <div class="row-fluid">
+            <form method="post" class="form-horizontal m-t_15">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -35,7 +35,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd span9">
+                                <div class="inside_padd">
                                     <div class="control-group poSelectorsHolder exchanger">
                                         <label class="control-label" for="file">{lang('Choose file exchanger location', 'translator')}:</label>
                                         <div class="controls">

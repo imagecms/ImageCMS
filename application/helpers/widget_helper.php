@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * ImageCMS
@@ -42,7 +43,7 @@ if (!function_exists('widget')) {
                     $locale = MY_Controller::getCurrentLocale();
                     $id = $widget['id'];
                     $sql = "select * from widget_i18n where locale = '$locale' and id = '$id'";
-                    $w_i18 = $ci->db->query($sql)->row_array();      
+                    $w_i18 = $ci->db->query($sql)->row_array();
                     $result = $w_i18['data'];
                     break;
             }
@@ -81,9 +82,9 @@ if (!function_exists('widget_ajax')) {
 
 }
 
-if (!function_exists('getWidgetTitle')) {
+if (!function_exists('getWidgetName')) {
 
-    function getWidgetTitle($name) {
+    function getWidgetName($name) {
         $ci = & get_instance();
 
         $query = $ci->db->limit(1)->get_where('widgets', array('name' => $name));
@@ -101,19 +102,41 @@ if (!function_exists('getWidgetTitle')) {
 
 }
 
+if (!function_exists('getWidgeTitle')) {
+
+    function getWidgetTitle($name) {
+        $ci = & get_instance();
+
+        $locale = MY_Controller::getCurrentLocale();
+        $query = $ci->db
+            ->join('widget_i18n', 'widget_i18n.id=widgets.id AND locale="' . $locale . '"', 'left')
+            ->get_where('widgets', array('name' => $name));
+
+        if ($query->num_rows() == 1) {
+            $widget = $query->row_array();
+            return $widget['title'];
+        } else {
+            log_message('error', 'Can\'t run widget <b>' . $name . '</b>');
+        }
+
+        return '';
+    }
+
+}
+
 if (!function_exists('getProductViewsCount')) {
 
     function getProductViewsCount() {
         $ci = & get_instance();
-        
+
         $views = $ci->session->userdata('page');
 
-        if($views){
+        if ($views) {
             $count = count($views);
-        }else{
+        } else {
             $count = 0;
         }
-        
+
         return $count;
     }
 

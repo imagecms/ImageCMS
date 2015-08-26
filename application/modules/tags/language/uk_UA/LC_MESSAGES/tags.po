@@ -1,0 +1,51 @@
+﻿msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-01-28 11:26+0200\n"
+"PO-Revision-Date: 2015-01-28 11:26+0200\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: application/modules/tags/widgets_info.php:5
+msgid "Tags cloud"
+msgstr "Хмара тегів"
+
+#: application/modules/tags/widgets_info.php:6
+msgid "Displaying the most popular tags cloud to your website."
+msgstr "Відображення хмари найпопулярніших тегів до сторінок сайту."
+
+#: application/modules/tags/tags.php:144
+msgid "The first"
+msgstr "Перший"
+
+#: application/modules/tags/tags.php:145
+msgid "Last"
+msgstr "Останній"
+
+#: application/modules/tags/tags.php:160
+msgid "Search title"
+msgstr "Пошук за назвою"
+
+#: application/modules/tags/module_info.php:7
+msgid "Tags"
+msgstr "Теги"
+
+#: application/modules/tags/module_info.php:8
+msgid "Tags module"
+msgstr "Модуль тегів"
+
+#: application/modules/tags/templates/admin/tags_admin.tpl:5
+msgid "All tags"
+msgstr "Всі теги"

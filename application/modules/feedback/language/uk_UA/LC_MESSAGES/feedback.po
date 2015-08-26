@@ -1,0 +1,161 @@
+﻿msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-12-26 05:27+0200\n"
+"PO-Revision-Date: 2014-12-26 05:27+0200\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/feedback/admin.php:59
+msgid "Feedbacks settings was edited"
+msgstr "Параметри відгуків були відредаговані"
+
+#: ./application/modules/feedback/feedback.php:60
+#: ./application/modules/feedback/module_info.php:4
+msgid "Feedback"
+msgstr "Зворотній зв'язок"
+
+#: ./application/modules/feedback/feedback.php:26
+msgid "Field is required"
+msgstr "Поле є обов'язковим"
+
+#: ./application/modules/feedback/feedback.php:27
+msgid "Length is less than the minimum"
+msgstr "Довжина менша, ніж мінімальна"
+
+#: ./application/modules/feedback/feedback.php:28
+msgid "Email is not valid"
+msgstr "E-mail адреса недійсна"
+
+#: ./application/modules/feedback/feedback.php:29
+msgid "Length greater than the maximum"
+msgstr "Довжина більша, ніж максимальна"
+
+#: ./application/modules/feedback/feedback.php:50
+msgid "Improper protection code"
+msgstr "Неналежний код протекції"
+
+#: ./application/modules/feedback/templates/feedback.tpl:23
+#: ./application/modules/feedback/templates/feedback.tpl:25
+#: ./application/modules/feedback/assets/feedback.tpl:23
+#: ./application/modules/feedback/assets/feedback.tpl:30
+#: ./application/modules/feedback/feedback.php:71
+msgid "Your name"
+msgstr "Ваше ім'я"
+
+#: ./application/modules/feedback/templates/feedback.tpl:29
+#: ./application/modules/feedback/templates/feedback.tpl:30
+#: ./application/modules/feedback/assets/feedback.tpl:35
+#: ./application/modules/feedback/assets/feedback.tpl:41
+#: ./application/modules/feedback/feedback.php:72
+msgid "Email"
+msgstr "E-mail"
+
+#: ./application/modules/feedback/templates/feedback.tpl:34
+#: ./application/modules/feedback/templates/feedback.tpl:35
+#: ./application/modules/feedback/assets/feedback.tpl:46
+#: ./application/modules/feedback/assets/feedback.tpl:52
+#: ./application/modules/feedback/feedback.php:73
+msgid "Subject"
+msgstr "Тема"
+
+#: ./application/modules/feedback/templates/feedback.tpl:40
+#: ./application/modules/feedback/assets/feedback.tpl:58
+#: ./application/modules/feedback/feedback.php:74
+#: ./application/modules/feedback/feedback.php:89
+msgid "Message"
+msgstr "Повідомлення"
+
+#: ./application/modules/feedback/templates/feedback.tpl:48
+#: ./application/modules/feedback/assets/feedback.tpl:71
+#: ./application/modules/feedback/feedback.php:77
+#: ./application/modules/feedback/feedback.php:79
+msgid "Protection code"
+msgstr "Код протекції"
+
+#: ./application/modules/feedback/feedback.php:86
+msgid "Theme"
+msgstr "Тема"
+
+#: ./application/modules/feedback/feedback.php:87
+msgid "Name"
+msgstr "Ім'я"
+
+#: ./application/modules/feedback/feedback.php:88
+msgid "E-mail"
+msgstr "E-mail"
+
+#: ./application/modules/feedback/templates/admin/settings.tpl:33
+#: ./application/modules/feedback/admin.php:46
+msgid "E-Mail"
+msgstr "E-Mail"
+
+#: ./application/modules/feedback/templates/admin/settings.tpl:40
+#: ./application/modules/feedback/admin.php:47
+msgid "Maximum message length"
+msgstr "Максимальна довжина повідомлення"
+
+#: ./application/modules/feedback/admin.php:60
+msgid "Settings have been saved"
+msgstr "Настройки були збережені"
+
+#: ./application/modules/feedback/module_info.php:5
+msgid "Manage and configure the feedback form on the site"
+msgstr "Управління та налаштування форми зворотнього зв'язку на сайті"
+
+#: ./application/modules/feedback/templates/feedback.tpl:6
+#: ./application/modules/feedback/assets/feedback.tpl:6
+msgid "Contacts"
+msgstr "Контакти"
+
+#: ./application/modules/feedback/templates/feedback.tpl:17
+#: ./application/modules/feedback/assets/feedback.tpl:17
+msgid "Your message has been sent."
+msgstr "Ваше повідомлення надіслане"
+
+#: ./application/modules/feedback/templates/feedback.tpl:41
+#: ./application/modules/feedback/assets/feedback.tpl:64
+msgid "Message text"
+msgstr "Текст повідомлення"
+
+#: ./application/modules/feedback/templates/feedback.tpl:52
+#: ./application/modules/feedback/assets/feedback.tpl:78
+msgid "Enter protection code"
+msgstr "Введення коду протекції"
+
+#: ./application/modules/feedback/templates/feedback.tpl:59
+#: ./application/modules/feedback/assets/feedback.tpl:86
+msgid "Send"
+msgstr "Відправити"
+
+#: ./application/modules/feedback/templates/admin/settings.tpl:6
+msgid "Feedback settings"
+msgstr "Налаштування зворотного зв'язку"
+
+#: ./application/modules/feedback/templates/admin/settings.tpl:10
+msgid "Go back"
+msgstr "Повернутися"
+
+#: ./application/modules/feedback/templates/admin/settings.tpl:11
+msgid "Save"
+msgstr "Зберегти"
+
+#: ./application/modules/feedback/templates/admin/settings.tpl:22
+msgid "Properties"
+msgstr "Властивості"
+
+#: ./application/modules/feedback/templates/admin/settings.tpl:36
+msgid "Specify the e-mail address for mailing"
+msgstr "Вкажіть Е-mail адресу для розсилки"

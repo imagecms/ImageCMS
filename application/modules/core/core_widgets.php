@@ -1,10 +1,12 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Image CMS
+ * @property Similar_Posts similar_library
  */
 class Core_Widgets extends MY_Controller {
 
@@ -21,6 +23,7 @@ class Core_Widgets extends MY_Controller {
     }
 
     // Display recent or popular news
+
     public function recent_news($widget = array()) {
         if ($widget['settings'] == FALSE) {
             $settings = $this->defaults;
@@ -28,7 +31,7 @@ class Core_Widgets extends MY_Controller {
             $settings = $widget['settings'];
         }
 
-        $this->db->select('CONCAT_WS("", content.cat_url, content.url) as full_url, content.id, content.title, prev_text, publish_date, showed, comments_count, author, category.name as cat_name', FALSE);
+        $this->db->select('CONCAT_WS("", content.cat_url, content.url) as full_url, content.id, content.title, prev_text, publish_date, showed, comments_count, author, category.name as cat_name, content.cat_url', FALSE);
         $this->db->join('category', 'category.id=content.category');
         $this->db->where('post_status', 'publish');
         $this->db->where('prev_text !=', 'null');
@@ -70,6 +73,7 @@ class Core_Widgets extends MY_Controller {
     }
 
     // Configure form
+
     public function recent_news_configure($action = 'show_settings', $widget_data = array()) {
         if ($this->dx_auth->is_admin() == FALSE) {
             exit;
@@ -92,17 +96,17 @@ class Core_Widgets extends MY_Controller {
                     showMessage(validation_errors());
                 } else {
                     $data = array(
-                        'news_count' => $_POST['news_count'],
-                        'max_symdols' => $_POST['max_symdols'],
-                        'categories' => $_POST['categories'],
-                        'display' => $_POST['display'],
+                        'news_count' => $this->input->post('news_count'),
+                        'max_symdols' => $this->input->post('max_symdols'),
+                        'categories' => $this->input->post('categories'),
+                        'display' => $this->input->post('display'),
                     );
 
                     $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
 
                     showMessage(lang("Settings have been saved", 'core'));
 
-                    if ($_POST['action'] == 'tomain') {
+                    if ($this->input->post('action') == 'tomain') {
                         pjax('/admin/widgets_manager/index');
                     }
                 }
@@ -114,72 +118,88 @@ class Core_Widgets extends MY_Controller {
         }
     }
 
+    public function similar_posts_configure($action = 'show_settings', $widget_data = array()) {
+        if ($this->dx_auth->is_admin() == FALSE) {
+            exit;
+        }
+        $this->load->library('similar_posts', null, 'similar_library');
+
+        switch ($action) {
+            case 'show_settings':
+                $this->load->library('lib_category');
+                $cats = $this->lib_category->build();
+
+                $this->render('similar_posts_form', array('widget' => $widget_data, 'cats' => $cats));
+                break;
+
+            case 'update_settings':
+                $settings = $this->input->post('settings');
+
+                $this->form_validation->set_rules('settings[limit]', lang("Similar pages limit", "core"), 'trim');
+                $this->form_validation->set_rules('settings[max_short_description_words]', lang("Maximum short description words count", "core"), 'trim');
+
+                if (!$this->form_validation->run($this)) {
+                    showMessage(validation_errors(), '', 'r');
+                    exit;
+                } else {
+                    $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $settings);
+
+                    showMessage(lang("Settings have been saved", 'core'));
+
+                    if ($this->input->post('action') == 'tomain') {
+                        pjax('/admin/widgets_manager/index');
+                    }
+                }
+                break;
+
+            case 'install_defaults':
+                $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $this->similar_library->getDefaultSettings());
+                break;
+        }
+    }
+
     // Similar posts
+
+    /**
+     * @param array $widget
+     * @return mixed|string
+     */
     public function similar_posts($widget = array()) {
+        $this->load->library('similar_posts', null, 'similar_library');
+
         $this->load->module('core');
-
         if ($this->core->core_data['data_type'] == 'page') {
-            $sql = array();
-
-            // Get page title
             $title = $this->core->page_content['title'];
+            $similarPages = $this->similar_library->find($this->core->page_content['id'], $title, $widget['settings']);
 
-            // Clean title
-            $title = str_replace(array(',', ';', ':', '-', '+', '=', '@', '.', '/', '\''), '', $title);
-            $titleParts = explode(' ', $title);
-
-            if (!empty($titleParts)) {
-                foreach ($titleParts as $key => $text) {
-                    $text = trim($text);
-                    if ($text != '') {
-                        $sql[] = "title LIKE '%$text%'";
-                    }
-                }
-
-                if (!empty($sql)) {
-                    $this->db->where('(' . implode(' OR ', $sql) . ') AND id != ' . $this->core->page_content['id']);
-
-                    $this->db->limit(5);
-                    $this->db->select('content.*');
-                    $this->db->select('CONCAT_WS("", content.cat_url, content.url) as full_url');
-                    $this->db->where('post_status', 'publish');
-                    $this->db->where('publish_date <=', time());
-                    $this->db->where('lang', $this->config->item('cur_lang'));
-                    $query = $this->db->get('content');
-
-                    if ($query->num_rows() > 0) {
-                        $data = array(
-                            'pages' => $query->result_array(),
-                        );
-
-                        return $this->template->fetch('widgets/' . $widget['name'], $data);
-                    }
-                }
-            }
+            $data = array(
+                'pages' => $similarPages ? $similarPages : [],
+            );
+            return $this->template->fetch('widgets/' . $widget['name'], $data);
         }
     }
 
     // Template functions
-    function display_tpl($file, $vars = array()) {
+
+    public function display_tpl($file, $vars = array()) {
         $this->template->add_array($vars);
 
         $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';
         $this->template->display('file:' . $file);
     }
 
-    function fetch_tpl($file, $vars = array()) {
+    public function fetch_tpl($file, $vars = array()) {
         $this->template->add_array($vars);
 
         $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';
         return $this->template->fetch('file:' . $file);
     }
 
-    public function render($viewName, array $data = array(), $return = false) {
+    public function render($viewName, array $data = array()) {
         if (!empty($data)) {
             $this->template->add_array($data);
         }
-
-        $this->template->show('file:' . APPPATH . 'modules/core/templates/' . $viewName);
+        $this->template->show('file:' . APPPATH . getModContDirName('core') . '/core/templates/' . $viewName);
     }
 
 }

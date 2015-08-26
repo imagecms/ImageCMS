@@ -1,0 +1,306 @@
+﻿msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-15 01:42+0300\n"
+"PO-Revision-Date: 2015-07-15 01:42+0300\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: ../../../..\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: templates/businessimage/comments/comments_list.tpl:10
+#: templates/businessimage/comments/comments_list.tpl:12
+#: templates/businessimage/comments/main_form.tpl:63
+msgid "out of 5 stars"
+msgstr "из 5 звезд"
+
+#: templates/businessimage/comments/main_form.tpl:28
+#: templates/businessimage/comments/main_form.tpl:30
+#: templates/businessimage/comments/main_form.tpl:35
+#: templates/businessimage/feedback/feedback.tpl:19
+#: templates/businessimage/register.tpl:28
+msgid "Name"
+msgstr "Имя"
+
+#: templates/businessimage/comments/main_form.tpl:45
+#: templates/businessimage/comments/main_form.tpl:47
+#: templates/businessimage/feedback/feedback.tpl:28
+#: templates/businessimage/forgot_password.tpl:25
+#: templates/businessimage/login.tpl:19
+#: templates/businessimage/register.tpl:19
+msgid "E-mail"
+msgstr "Электронная почта"
+
+#: templates/businessimage/comments/main_form.tpl:57
+msgid "Rating"
+msgstr "Рейтинг"
+
+#: templates/businessimage/comments/main_form.tpl:73
+msgid "Review"
+msgstr "Отзыв"
+
+#: templates/businessimage/comments/main_form.tpl:83
+#: templates/businessimage/feedback/feedback.tpl:56
+#: templates/businessimage/forgot_password.tpl:36
+#: templates/businessimage/login.tpl:38
+#: templates/businessimage/register.tpl:56
+msgid "Security code"
+msgstr "Защитный код"
+
+#: templates/businessimage/feedback/feedback.tpl:37
+msgid "Subject"
+msgstr "Тема"
+
+#: templates/businessimage/feedback/feedback.tpl:46
+msgid "Message"
+msgstr "Сообщение"
+
+#: templates/businessimage/login.tpl:28
+#: templates/businessimage/register.tpl:37
+msgid "Password"
+msgstr "Пароль"
+
+#: templates/businessimage/register.tpl:46
+msgid "Reenter password"
+msgstr "Повторите пароль"
+
+#: templates/businessimage/comments/comments.tpl:3
+msgid "Comments"
+msgstr "Комментарии"
+
+#: templates/businessimage/comments/comments.tpl:17
+msgid "You have to log in to leave a comment."
+msgstr "Только авторизованные пользователи могут оставлять комментарии"
+
+#: templates/businessimage/comments/comments_list.tpl:20
+msgid "Like"
+msgstr "Нравится"
+
+#: templates/businessimage/comments/comments_list.tpl:24
+msgid "Dislike"
+msgstr "Не нравится"
+
+#: templates/businessimage/comments/main_form.tpl:15
+msgid "Your comment has been successfully published"
+msgstr "Ваш комментарий был успешно опубликован"
+
+#: templates/businessimage/comments/main_form.tpl:18
+msgid "Your comment will be published after moderation "
+msgstr "Ваш комментарий будет опубликован после модерации"
+
+#: templates/businessimage/comments/main_form.tpl:75
+msgid "Your review"
+msgstr "Текст отзыва"
+
+#: templates/businessimage/widgets/main_footer.tpl:75
+msgid "Search for articles"
+msgstr "Поиск по сайту"
+
+#: templates/businessimage/widgets/main_footer.tpl:38
+msgid "Company"
+msgstr "Компания"
+
+#: templates/businessimage/widgets/main_banner.tpl:21
+#: templates/businessimage/widgets/main_page.tpl:18
+msgid "Read more"
+msgstr "Подробнее"
+
+#: templates/businessimage/widgets/main_footer.tpl:48
+msgid "Contacts"
+msgstr "Контакты"
+
+#: templates/businessimage/widgets/main_footer.tpl:102
+msgid "ImageCMS"
+msgstr "ImageCMS"
+
+#: templates/businessimage/feedback/feedback.tpl:3
+#: templates/businessimage/widgets/main_footer.tpl:67
+msgid "Feedback"
+msgstr "Обратная связь"
+
+#: templates/businessimage/feedback/feedback.tpl:10
+msgid "Your message has been sent"
+msgstr "Ваше сообщение успешно отправлено! Мы обязательно свяжемся с Вами в ближайшее время."
+
+#: templates/businessimage/comments/main_form.tpl:97
+#: templates/businessimage/feedback/feedback.tpl:70
+msgid "Send"
+msgstr "Отправить"
+
+#: templates/businessimage/register.tpl:70
+msgid "Sign up"
+msgstr "Зарегистрироваться"
+
+#: templates/businessimage/forgot_password.tpl:4
+msgid "Request new password"
+msgstr "Восстановление пароля"
+
+#: templates/businessimage/forgot_password.tpl:50
+msgid "Send request"
+msgstr "Продолжить"
+
+#: templates/businessimage/login.tpl:52
+msgid "Log in"
+msgstr "Войти"
+
+#: templates/businessimage/404.tpl:4
+msgid "Page not found!"
+msgstr "Страница не найдена!"
+
+#: templates/businessimage/404.tpl:7
+msgid "Sorry, the page you’re looking for doesn’t exist!"
+msgstr "К сожалению, страница, которую вы ищите, не существует!"
+
+#: templates/businessimage/category.tpl:26
+#: templates/businessimage/category_blog.tpl:43
+#: templates/businessimage/gallery/album.tpl:57
+#: templates/businessimage/gallery/index.tpl:57
+msgid "There are no items to display. Please come back later!"
+msgstr "К сожалению, на странице нет записей."
+
+#: templates/businessimage/reset_password.tpl:3
+msgid "Password retrieval"
+msgstr "Восстановление пароля"
+
+#: templates/businessimage/forgot_password.tpl:32
+msgid "Please enter the e-mail associated with your account."
+msgstr "Укажите электронную почту, для которой вы хотите восстановить пароль."
+
+#: templates/businessimage/comments/comments.tpl:17
+#: templates/businessimage/forgot_password.tpl:52
+#: templates/businessimage/login.tpl:3
+#: templates/businessimage/register.tpl:73
+#: templates/businessimage/widgets/main_profile.tpl:5
+msgid "Sign in"
+msgstr "Вход"
+
+#: templates/businessimage/forgot_password.tpl:53
+#: templates/businessimage/login.tpl:55
+#: templates/businessimage/register.tpl:3
+#: templates/businessimage/widgets/main_profile.tpl:9
+msgid "Create Account"
+msgstr "Регистрация"
+
+#: templates/businessimage/gallery/index.tpl:2
+msgid "Gallery"
+msgstr "Галерея"
+
+#: templates/businessimage/comments/main_form.tpl:87
+#: templates/businessimage/feedback/feedback.tpl:60
+#: templates/businessimage/forgot_password.tpl:40
+#: templates/businessimage/login.tpl:42
+#: templates/businessimage/register.tpl:60
+msgid "Type the characters you see in this image."
+msgstr "Введите символы с картинки."
+
+#: templates/businessimage/login.tpl:54
+#: templates/businessimage/register.tpl:72
+msgid "Forgot password?"
+msgstr "Забыли пароль?"
+
+#: templates/businessimage/menus/footer_menu/error.tpl:2
+#: templates/businessimage/menus/main_menu/error.tpl:2
+msgid "Template not found for menu "
+msgstr "Не было найдено шаблона меню"
+
+#: templates/businessimage/offline.tpl:1
+msgid "This website is offline"
+msgstr "На данный момент сайт находится на реконструкции. После завершения всех работ сайт снова будет открыт. Приносим свои извинения за предоставленные неудобства!"
+
+#: templates/businessimage/register_success.tpl:3
+msgid "Thank You for Registration!"
+msgstr "Спасибо за регистрацию!"
+
+#: templates/businessimage/register_success.tpl:6
+msgid "Congratulations! Your registration has been successful."
+msgstr "Поздравляем! Ваша регистрация прошла успешно."
+
+#: templates/businessimage/search.tpl:4
+msgid "Search results"
+msgstr "Результаты поиска"
+
+#: templates/businessimage/search.tpl:8
+msgid "Search for:"
+msgstr "Вы искали:"
+
+#: templates/businessimage/search.tpl:9
+msgid "Result:"
+msgstr "Найдено:"
+
+#: templates/businessimage/search.tpl:22
+msgid "Category:"
+msgstr "Категория:"
+
+#: templates/businessimage/search.tpl:38
+msgid "No results were found! Please try typing something else, or use the menu to find more content"
+msgstr "По вашему запросу ничего не найдено, попробуйте изменить запрос."
+
+#: templates/businessimage/widgets/breadcrumbs.tpl:7
+msgid "Home"
+msgstr "Главная"
+
+#: templates/businessimage/widgets/gallery_menu.tpl:6
+#: templates/businessimage/widgets/gallery_menu.tpl:8
+msgid "All categories"
+msgstr "Все категории"
+
+#: templates/businessimage/widgets/main_profile.tpl:13
+msgid "Hello, "
+msgstr "Здравствуйте, "
+
+#: templates/businessimage/widgets/main_profile.tpl:17
+msgid "Sign out"
+msgstr "Выйти"
+
+#: templates/businessimage/widgets/main_footer.tpl:80
+#: templates/businessimage/widgets/main_footer.tpl:83
+#: templates/businessimage/widgets/search_blog.tpl:5
+msgid "Search"
+msgstr "Поиск"
+
+#: templates/businessimage/widgets/main_footer.tpl:102
+msgid "Powered by "
+msgstr "Сайт работает на"
+
+#: templates/businessimage/widgets/latest_comments.tpl:18
+#: templates/businessimage/widgets/page_add_info.tpl:5
+msgid "Posted by"
+msgstr "Автор"
+
+#: templates/businessimage/widgets/latest_comments.tpl:22
+#: templates/businessimage/widgets/page_add_info.tpl:10
+#: templates/businessimage/widgets/popular_blog_posts.tpl:22
+msgid "Publication Date"
+msgstr "Дата публикации"
+
+#: templates/businessimage/widgets/page_add_info.tpl:14
+#: templates/businessimage/widgets/popular_blog_posts.tpl:18
+msgid "Number of views"
+msgstr "Количество просмотров"
+
+#: templates/businessimage/widgets/page_add_info.tpl:20
+#: templates/businessimage/widgets/page_add_info.tpl:23
+msgid "Number of comments"
+msgstr "Количество комментариев"
+
+#: templates/businessimage/page_blog.tpl:27
+msgid "Tags"
+msgstr "Теги"
+
+#: templates/businessimage/page_blog.tpl:42
+msgid "Share"
+msgstr "Поделиться"
+
+#: templates/businessimage/widgets/sub_categories.tpl:7
+msgid "Categories"
+msgstr "Категории"

@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-16 12:41+0300\n"
-"PO-Revision-Date: 2014-05-16 12:41+0300\n"
+"POT-Creation-Date: 2015-02-19 10:58+0200\n"
+"PO-Revision-Date: 2015-02-19 10:58+0200\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -17,6 +17,10 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/feedback/admin.php:59
+msgid "Feedbacks settings was edited"
+msgstr "Настройки обратной связи отредактированы"
 
 #: ./application/modules/feedback/templates/feedback.tpl:6
 #: ./application/modules/feedback/assets/feedback.tpl:6
@@ -32,7 +36,7 @@ msgstr "Ваше сообщение было отправлено."
 #: ./application/modules/feedback/templates/feedback.tpl:25
 #: ./application/modules/feedback/assets/feedback.tpl:23
 #: ./application/modules/feedback/assets/feedback.tpl:30
-#: ./application/modules/feedback/feedback.php:70
+#: ./application/modules/feedback/feedback.php:71
 msgid "Your name"
 msgstr "Ваше имя"
 
@@ -40,7 +44,7 @@ msgstr "Ваше имя"
 #: ./application/modules/feedback/templates/feedback.tpl:30
 #: ./application/modules/feedback/assets/feedback.tpl:35
 #: ./application/modules/feedback/assets/feedback.tpl:41
-#: ./application/modules/feedback/feedback.php:71
+#: ./application/modules/feedback/feedback.php:72
 msgid "Email"
 msgstr "Email"
 
@@ -48,14 +52,14 @@ msgstr "Email"
 #: ./application/modules/feedback/templates/feedback.tpl:35
 #: ./application/modules/feedback/assets/feedback.tpl:46
 #: ./application/modules/feedback/assets/feedback.tpl:52
-#: ./application/modules/feedback/feedback.php:72
+#: ./application/modules/feedback/feedback.php:73
 msgid "Subject"
 msgstr "Тема"
 
 #: ./application/modules/feedback/templates/feedback.tpl:40
 #: ./application/modules/feedback/assets/feedback.tpl:58
-#: ./application/modules/feedback/feedback.php:73
-#: ./application/modules/feedback/feedback.php:88
+#: ./application/modules/feedback/feedback.php:74
+#: ./application/modules/feedback/feedback.php:89
 msgid "Message"
 msgstr "Сообщение"
 
@@ -66,8 +70,8 @@ msgstr "Текст сообщения"
 
 #: ./application/modules/feedback/templates/feedback.tpl:48
 #: ./application/modules/feedback/assets/feedback.tpl:71
-#: ./application/modules/feedback/feedback.php:76
-#: ./application/modules/feedback/feedback.php:78
+#: ./application/modules/feedback/feedback.php:77
+#: ./application/modules/feedback/feedback.php:79
 msgid "Protection code"
 msgstr "Защитный код"
 
@@ -111,12 +115,12 @@ msgstr "Укажите адрес электронной почты для ра�
 msgid "Maximum message length"
 msgstr "Максимальная длина сообщения"
 
-#: ./application/modules/feedback/admin.php:59
+#: ./application/modules/feedback/admin.php:60
 msgid "Settings have been saved"
 msgstr "Настройки сохранены"
 
+#: ./application/modules/feedback/feedback.php:60
 #: ./application/modules/feedback/module_info.php:4
-#: ./application/modules/feedback/feedback.php:59
 msgid "Feedback"
 msgstr "Обратная связь"
 
@@ -144,14 +148,14 @@ msgstr "Длина больше максимальной"
 msgid "Improper protection code"
 msgstr "Неправильная защита кода"
 
-#: ./application/modules/feedback/feedback.php:86
+#: ./application/modules/feedback/feedback.php:87
 msgid "Name"
 msgstr "Название"
 
-#: ./application/modules/feedback/feedback.php:85
+#: ./application/modules/feedback/feedback.php:86
 msgid "Theme"
 msgstr "Тема"
 
-#: ./application/modules/feedback/feedback.php:87
+#: ./application/modules/feedback/feedback.php:88
 msgid "E-mail"
 msgstr "Электронная почта"

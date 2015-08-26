@@ -1,5 +1,7 @@
 <?php
 
+use Propel\Runtime\Collection\ObjectCollection as PropelObjectCollection;
+
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /**
@@ -21,8 +23,8 @@ class Trash extends MY_Controller {
 
     /**
      * Index method.
-     * 
-     * @return void 
+     *
+     * @return void
      */
     public function index() {
         $this->core->error_404();
@@ -30,8 +32,8 @@ class Trash extends MY_Controller {
 
     /**
      * AdminAutoload method.
-     * 
-     * @return void 
+     *
+     * @return void
      */
     public static function adminAutoload() {
         parent::adminAutoload();
@@ -39,15 +41,23 @@ class Trash extends MY_Controller {
         \CMSFactory\Events::create()->onShopProductCreate()->setListener('delProductWhenCreate');
         \CMSFactory\Events::create()->onShopProductAjaxChangeActive()->setListener('addProductWhenAjaxChangeActive');
         \CMSFactory\Events::create()->onShopCategoryDelete()->setListener('addProductsWhenCatDelete');
+        \CMSFactory\Events::create()->onShopProductUpdate()->setListener('addProductWhenAjaxChangeActive');
+        \CMSFactory\Events::create()->onShopProductCreate()->setListener('addProductWhenAjaxChangeActive');
+        \CMSFactory\Events::create()->on('ShopAdminProducts:fastProdCreate')->setListener('addProductWhenAjaxChangeActive');
     }
 
     /**
      * Autoload method.
-     * 
-     * @return void 
+     *
+     * @return void
      */
     public function autoload() {
-        $row = $this->db->get_where('trash', array('trash_url' => $this->uri->uri_string()))->row();
+        $url = ltrim(str_replace('/' . MY_Controller::getCurrentLocale() . '/', '', $this->input->server('REQUEST_URI')), '/'); //locale fix
+        $row = $this->db
+            ->where('trash_url', $url)
+            ->or_where('trash_url', $this->uri->uri_string())
+            ->get('trash')->row();
+
         if ($row != null) {
             ($row->trash_redirect_type != '404') OR $this->core->error_404();
             redirect($row->trash_redirect, 'location', $row->trash_type);
@@ -55,14 +65,34 @@ class Trash extends MY_Controller {
     }
 
     /**
-     * AddProductsWhenCatDelete - adding redirects on category deleting.
-     *  
-     * @param array $arg
-     * 
-     * @return void 
+     *
+     * @param type $trash_url
+     * @param type $redirect_url
+     * @param type $type
+     * @throws Exception
      */
-    public static function addProductsWhenCatDelete(array $arg) {
-        
+    public function create_redirect($trash_url, $redirect_url, $type = 301) {
+
+        if (!isset($trash_url)) {
+            throw new Exception(lang('Old URL is not specified', 'tresh'));
+        }
+
+        if (!isset($redirect_url)) {
+            throw new Exception(lang('New URL is not specified', 'tresh'));
+        }
+
+        $array = array(
+            'trash_url' => ltrim($trash_url, '/'),
+            'trash_redirect_type' => 'url',
+            'trash_type' => in_array($type, array(301, 302)) ? $type : 301,
+            'trash_redirect' => '/' . str_replace(array('http://', 'https://'), '', $redirect_url)
+        );
+
+        $this->db->insert('trash', $array);
+
+        if ($this->db->_error_message()) {
+            throw new Exception($this->db->_error_message());
+        }
     }
 
     public static function delProductWhenCreate($arg) {
@@ -77,16 +107,19 @@ class Trash extends MY_Controller {
         /* @var $ci MY_Controller */
         $ci = &get_instance();
 
-        if (!$models instanceof \PropelObjectCollection) {
+        if (!$models instanceof PropelObjectCollection) {
             $model = $models;
-            $models = new \PropelObjectCollection();
+            $models = new PropelObjectCollection();
             $models->append($model);
         }
 
         foreach ($models as $model) {
-            if ($model->getActive()) {
-                $ci->db->where('trash_url', 'shop/product/' . $model->getUrl())->delete('trash');
-            } else {
+            if (!$model) {
+                continue;
+            }
+
+            $ci->db->where('trash_url', 'shop/product/' . $model->getUrl())->delete('trash');
+            if (!$model->getActive()) {
                 $array = array(
                     'trash_id' => $model->getCategoryId(),
                     'trash_url' => 'shop/product/' . $model->getUrl(),
@@ -120,37 +153,37 @@ class Trash extends MY_Controller {
         $fields = array(
             'id' => array(
                 'type' => 'INT',
-                'auto_increment' => TRUE
+                'auto_increment' => true
             ),
             'trash_id' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '255',
-                'null' => TRUE,
+                'null' => true,
             ),
             'trash_url' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '255',
-                'null' => TRUE,
+                'null' => true,
             ),
             'trash_redirect_type' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '20',
-                'null' => TRUE,
+                'null' => true,
             ),
             'trash_redirect' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '255',
-                'null' => TRUE,
+                'null' => true,
             ),
             'trash_type' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '3',
-                'null' => TRUE,
+                'null' => true,
             ),
         );
 
         $this->dbforge->add_field($fields);
-        $this->dbforge->add_key('id', TRUE);
+        $this->dbforge->add_key('id', true);
         $this->dbforge->create_table('trash');
 
         $this->db->where('name', 'trash');

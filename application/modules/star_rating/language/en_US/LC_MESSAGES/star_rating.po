@@ -2,11 +2,11 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-05 11:24+0300\n"
-"PO-Revision-Date: 2014-06-05 11:24+0300\n"
-"Last-Translator:  \n"
-"Language-Team:  \n"
-"Language: en_US\n"
+"POT-Creation-Date: 2015-03-02 02:44+0200\n"
+"PO-Revision-Date: 2015-03-02 02:44+0200\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,3 +17,78 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: application/modules/star_rating/assets/admin/settings.tpl:29
+msgid "Show on"
+msgstr "Show on"
+
+#: application/modules/star_rating/admin.php:41
+msgid "Star rating was edited"
+msgstr ""
+
+#: application/modules/star_rating/assets/admin/settings.tpl:72
+msgid "Brands"
+msgstr "Manufacturers"
+
+# ? (Оля)
+#: application/modules/star_rating/admin.php:42
+msgid "Settings saved success"
+msgstr "Settings saved successfully/ Settings have been saved successfully "
+
+#: application/modules/star_rating/assets/star_rating.tpl:8
+#: application/modules/star_rating/assets/star_rating.tpl:17
+msgid "Leav"
+msgstr "Voted"
+
+#: application/modules/star_rating/assets/admin/settings.tpl:42
+msgid "Contains"
+msgstr "Content"
+
+#: application/modules/star_rating/module_info.php:8
+msgid "Allows you to display products, categories and pages rating"
+msgstr "Allows you to display products, categories and page rating"
+
+#: application/modules/star_rating/assets/star_rating.tpl:8
+#: application/modules/star_rating/assets/star_rating.tpl:18
+msgid "people(s)"
+msgstr "customers"
+
+#: application/modules/star_rating/assets/admin/settings.tpl:5
+msgid "Module settings starRating"
+msgstr "Star rating module settings"
+
+#: application/modules/star_rating/assets/admin/settings.tpl:9
+msgid "Back"
+msgstr "Back"
+
+#: application/modules/star_rating/assets/admin/settings.tpl:10
+msgid "Save"
+msgstr "Save"
+
+#: application/modules/star_rating/module_info.php:7
+msgid "Rating"
+msgstr "Rating"
+
+#: application/modules/star_rating/assets/admin/settings.tpl:21
+msgid "Show on pages"
+msgstr "Show on pages"
+
+#: application/modules/star_rating/assets/admin/settings.tpl:35
+msgid "Main"
+msgstr "Main"
+
+#: application/modules/star_rating/assets/admin/settings.tpl:58
+msgid "Product"
+msgstr "Product"
+
+#: application/modules/star_rating/assets/admin/settings.tpl:11
+msgid "Save and exit"
+msgstr "Save and exit"
+
+#: application/modules/star_rating/assets/admin/settings.tpl:65
+msgid "Products category"
+msgstr "Product category"
+
+#: application/modules/star_rating/assets/admin/settings.tpl:50
+msgid "Category"
+msgstr "Category"

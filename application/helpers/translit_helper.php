@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 function translit($str) {
     $tr = array(
@@ -77,6 +78,8 @@ function translit($str) {
         "ї" => "yi",
         "і" => "i",
         "є" => "e",
+        "ё" => "e",
+        "Ё" => "e",
         " " => " ",
         "." => "",
         ":" => "",
@@ -94,5 +97,7 @@ function translit_url($urlstr) {
         $urlstr = preg_replace('/[^A-Za-z0-9_\-]/', '', $urlstr);
     }
 
-    return strtolower(url_title($urlstr));
+    $url = strtolower(url_title($urlstr));
+    $url = mb_substr($url, 0, 255);
+    return $url;
 }

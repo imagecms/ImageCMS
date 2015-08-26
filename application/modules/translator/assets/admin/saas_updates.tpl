@@ -17,15 +17,15 @@
                 <div class="d-i_b">
                     <!--button type="button" class="btn btn-small btn-success action_on formSubmit" data-form="#create_file_form"-->
                     <button type="button" class="btn btn-small btn-success action_on" onclick="SAAS_UPDATES.update($(this))">
-                        <i class="icon-ok"></i>
+                        <i class="icon-ok icon-white"></i>
                         {lang('Update', 'translator')}
                     </button>
                 </div>
             </div>
         </div>
-        <div class="content_big_td row-fluid">
+        <div class="row-fluid">
             <form method="post" action="{site_url('admin/components/init_window/translator/saas_updates')}" class="form-horizontal" id="create_file_form">
-                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -36,7 +36,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd span9">
+                                <div class="inside_padd">
                                     <div class="control-group">
                                         <label class="control-label" for="file">{lang('Update mode', 'translator')}:</label>
                                         <div class="controls">

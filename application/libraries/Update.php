@@ -8,7 +8,9 @@
 class Update {
 
     private $arr_files;
+
     private $files_dates = array();
+
     private $restore_files = array();
 
     /**
@@ -68,10 +70,14 @@ class Update {
      */
     public $client;
 
+    public $settings;
+
     public function __construct() {
         $this->ci = &get_instance();
+        // $this->pathUS = $this->US . "application/" . getModContDirName('update') . "/update/UpdateService.wsdl";
         $this->pathUS = $this->US . "application/modules/update/UpdateService.wsdl";
         $this->client = new SoapClient($this->pathUS);
+        $this->settings = $this->getSettings();
     }
 
     /**
@@ -114,9 +120,9 @@ class Update {
 
     public function getUpdate() {
         ini_set("soap.wsdl_cache_enabled", "0");
-        $domen = $_SERVER['SERVER_NAME'];
-        $href = $this->client->getUpdate($domen, IMAGECMS_NUMBER, $this->getSettings('careKey'));
-        $all_href = $this->US . 'update/takeUpdate/' . $href . '/' . $domen . '/' . IMAGECMS_NUMBER . '/' . BUILD_ID;
+        $domain = $_SERVER['SERVER_NAME'];
+        $href = $this->client->getUpdate($domain, IMAGECMS_NUMBER, $this->settings['careKey']);
+        $all_href = $this->US . 'update/takeUpdate/' . $href . '/' . $domain . '/' . IMAGECMS_NUMBER . '/' . BUILD_ID;
         file_put_contents(BACKUPFOLDER . 'updates.zip', file_get_contents($all_href));
     }
 
@@ -124,12 +130,12 @@ class Update {
      * form XML doc
      */
     public function formXml() {
-        $modules = get_dir_file_info('./application/modules/');
+        $modules = getModulesPaths();
         $array = array();
-        foreach ($modules as $key => $modul) {
-            $ver = read_file("./application/modules/$key/module_info.php");
+        foreach ($modules as $moduleName => $modulePath) {
+            $ver = read_file($modulePath . "module_info.php");
             preg_match("/'version'(\s*)=>(\s*)'(.*)',/", $ver, $find);
-            $array[$key] = end($find);
+            $array[$moduleName] = end($find);
         }
 
         $array['core'] = IMAGECMS_NUMBER;
@@ -137,10 +143,10 @@ class Update {
         $xml = "<?xml version='1.0' encoding='UTF-8'?>" . "\n" .
                 "<КонтейнерСписков ВерсияСхемы='0.1'  ДатаФормирования='" . date('Y-m-d') . "'>" . "\n";
         foreach ($array as $key => $arr) {
-            $xml.='<modul>';
-            $xml.="<name>$key</name>";
-            $xml.="<version>$arr</version>";
-            $xml.='</modul>';
+            $xml .= '<modul>';
+            $xml .= "<name>$key</name>";
+            $xml .= "<version>$arr</version>";
+            $xml .= '</modul>';
         }
         $xml .= "</КонтейнерСписков>\n";
         echo $xml;
@@ -176,8 +182,8 @@ class Update {
             $zip->addFile('.' . $key, $key);
         }
 
-//        echo "numfiles: " . $zip->numFiles . "\n";
-//        echo "status:" . $zip->status . "\n";
+        //        echo "numfiles: " . $zip->numFiles . "\n";
+        //        echo "status:" . $zip->status . "\n";
 
         $zip->close();
     }
@@ -386,8 +392,6 @@ class Update {
                 if (!$this->ci->db->query($query)) {
                     echo 'Невозможно виполнить запрос: <br>';
                     return FALSE;
-                } else {
-//                    return TRUE;
                 }
             }
         }
@@ -403,8 +407,8 @@ class Update {
 
     public function getSettings($param = false) {
         $settings = $this->ci->db
-                ->get('settings')
-                ->row_array();
+            ->get('settings')
+            ->row_array();
         $settings = unserialize($settings['update']);
 
         if (!$param) {
@@ -430,8 +434,8 @@ class Update {
         }
 
         return $this->ci->db
-                        ->set('update', serialize($s))
-                        ->update('settings');
+            ->set('update', serialize($s))
+            ->update('settings');
     }
 
 }

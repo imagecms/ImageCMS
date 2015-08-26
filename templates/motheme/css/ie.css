@@ -1,6 +1,0 @@
-*+html{overflow:auto;}
-#form1 input{padding: 9px 12px 7px 12px;}
-#form1 textarea{padding: 9px 12px 0 12px;}
-.btn, .img_box, img_inner, .img_inner  {behavior:url(js/PIE.htc); position:relative;}
-
-#toTop  {behavior:url(js/PIE.htc); position:fixed;}

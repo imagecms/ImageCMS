@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Image CMS
@@ -26,21 +27,21 @@ class Backup extends BaseAdminController {
     public function save_settings() {
         $backup = \libraries\Backup::create();
 
-        $settings = array(
+        $settings = [
             'backup_del_status' => isset($_POST['backup_del_status']) ? $_POST['backup_del_status'] : 0,
             'backup_term' => isset($_POST['backup_term']) ? $_POST['backup_term'] : 6,
             'backup_maxsize' => isset($_POST['backup_maxsize']) ? $_POST['backup_maxsize'] : 1000,
-        );
+        ];
 
-        $bad = array();
+        $bad = [];
         foreach ($settings as $key => $value) {
-            if (FALSE == $backup->setSetting($key, $value)) {
+            if (false == $backup->setSetting($key, $value)) {
                 $bad[] = $key;
             }
         }
 
         if (count($bad) > 0) {
-            showMessage(lang('Some of settings not saved', 'admin'), 'Error');
+            showMessage(lang('Some of settings not saved', 'admin'), 'Error', 'r');
         } else {
             showMessage(lang('Settings saved', 'admin'));
         }
@@ -48,41 +49,35 @@ class Backup extends BaseAdminController {
 
     public function file_actions() {
         $file = trim($_POST['file']);
-        $locked = isset($_POST['locked']) ? $_POST['locked'] : NULL;
+        $locked = isset($_POST['locked']) ? $_POST['locked'] : null;
         switch ($_POST['action']) {
             case "backup_lock":
                 $this->filesLocking($file, $locked);
+                $dataTitle = $locked ? lang('unlock', 'admin') : lang('lock', 'admin');
+                echo json_encode(['locked' => $locked, 'dataTitle' => lang($dataTitle, 'admin')]);
                 break;
             case "backup_delete":
                 $bool = \libraries\Backup::create()->deleteFile($file);
-                echo json_encode(array('deleted' => $bool ? "deleted" : "error"));
+                echo json_encode(['deleted' => $bool ? "deleted" : "error"]);
                 break;
         }
     }
 
-    public function download_file($file) {
+    public function download_file() {
         echo "file";
-        /* $fileName = trim($fileName);
-          $path = "./application/backups/{$fileName}";
-          if (file_exists($path)) {
-          force_download($file, file_get_contents($path));
-          } */
-        /* $this->load->helper('download');
-          $file = $_POST['filename'];
-          force_download($file, file_get_contents('./application/backups/' . $file)); */
-        //print_r($_POST);
     }
 
     protected function filesLocking($file, $locked) {
         $backup = \libraries\Backup::create();
         $lockedFiles = $backup->getSetting('lockedFiles');
         if (!is_array($lockedFiles)) {
-            $lockedFiles = array();
+            $lockedFiles = [];
         }
         if (in_array($file, $lockedFiles) && (int) $locked == 0) {
             foreach ($lockedFiles as $key => $file_) {
-                if ($file == $file_)
+                if ($file == $file_) {
                     unset($lockedFiles[$key]);
+                }
             }
         } else {
             $lockedFiles[] = $file;
@@ -99,18 +94,21 @@ class Backup extends BaseAdminController {
 
         $files = $backup->backupFiles();
 
-        $this->template->add_array(array(
-            'user' => $this->get_admin_info(),
-            'backup_del_status' => is_null($del_status) ? 0 : $del_status,
-            'backup_term' => is_null($term) ? 6 : $term,
-            'backup_maxsize' => is_null($maxSize) ? 1000 : $maxSize,
-            'files' => $files
-        ));
+        $this->template->add_array(
+            [
+                    'user' => $this->get_admin_info(),
+                    'backup_del_status' => $del_status == null ? 0 : $del_status,
+                    'backup_term' => $term == null ? 6 : $term,
+                    'backup_maxsize' => $maxSize == null ? 1000 : $maxSize,
+                    'files' => $files
+                ]
+        );
 
-        $this->template->show('backup', FALSE);
+        $this->template->show('backup', false);
     }
 
     // Create backup file
+
     public function create() {
         if (!file_exists(BACKUPFOLDER)) {
             mkdir(BACKUPFOLDER);
@@ -118,14 +116,12 @@ class Backup extends BaseAdminController {
         }
 
         if (!is_really_writable(BACKUPFOLDER)) {
-            showMessage(langf('Directory {0} has no writing permission', 'admin', array(BACKUPFOLDER)), false, 'r');
+            showMessage(langf('Directory |0| has no writing permission', 'admin', [BACKUPFOLDER]), false, 'r');
             exit;
         }
-
         switch ($_POST['save_type']) {
             case 'local':
-                jsCode("window.location = '" . site_url('admin/backup/force_download/' . $_POST['file_type']) . "'");
-                break;
+                return jsCode("window.location = '" . site_url('admin/backup/force_download/' . $_POST['file_type']) . "'");
 
             case 'server':
                 $this->load->helper('file');
@@ -135,9 +131,9 @@ class Backup extends BaseAdminController {
                 if ($deleteOld == 1) {
                     $deleteData = $backup->deleteOldFiles();
                 } else {
-                    $deleteData = NULL;
+                    $deleteData = null;
                 }
-                if (FALSE !== $fileName = $backup->createBackup($_POST['file_type'])) {
+                if (FALSE !== $backup->createBackup($_POST['file_type'])) {
                     $message = lang('Backup copying has been completed', 'admin');
                     if (is_array($deleteData)) {
                         $mb = number_format($deleteData['size'] / 1024 / 1024, 2);
@@ -161,7 +157,7 @@ class Backup extends BaseAdminController {
 
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
 
-        if ($this->form_validation->run($this) == FALSE) {
+        if ($this->form_validation->run($this) == false) {
             showMessage(validation_errors(), false, 'r');
         } else {
             $user = $this->get_admin_info();
@@ -183,6 +179,7 @@ class Backup extends BaseAdminController {
     }
 
     // Direct download
+
     public function force_download($file_type) {
         $this->load->helper('download');
         $fileName = \libraries\Backup::create()->createBackup($file_type, "sql");
@@ -195,9 +192,7 @@ class Backup extends BaseAdminController {
     }
 
     private function get_admin_info() {
-        return $this->db->get_where('users', array('id' => $this->dx_auth->get_user_id()))->row_array();
+        return $this->db->get_where('users', ['id' => $this->dx_auth->get_user_id()])->row_array();
     }
 
 }
-
-/* End of backup.php */

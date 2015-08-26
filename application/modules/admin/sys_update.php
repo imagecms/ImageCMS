@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 class Sys_update extends BaseAdminController {
 
@@ -80,7 +81,7 @@ class Sys_update extends BaseAdminController {
                 'restore_files' => $this->sort($this->update->restore_files_list(), $sort_by, $order),
                 'error' => $result['error']
             );
-//            showMessage($result['error'], 'Ошибка', 'r');
+            //            showMessage($result['error'], 'Ошибка', 'r');
         }
         $this->template->show('sys_update', FALSE, $data);
     }
@@ -99,7 +100,7 @@ class Sys_update extends BaseAdminController {
     }
 
     public function properties() {
-        if ($this->input->post("careKey")) {
+        if ($this->input->post()) {
             if ($this->update->setSettings(array("careKey" => trim($this->input->post("careKey"))))) {
                 showMessage(lang('Changes saved', 'admin'));
             } else {
@@ -114,11 +115,16 @@ class Sys_update extends BaseAdminController {
     }
 
     public function get_license() {
-        if (file_exists('application/modules/shop/license.key')) {
-            echo file_get_contents('application/modules/shop/license.key');
-        } else {
+        if (false === $shopPath = getModulePath('shop')) {
             echo 0;
+            return;
         }
+        $licenseFile = $shopPath . 'license.key';
+        if (!file_exists($licenseFile)) {
+            echo 0;
+            return;
+        }
+        echo file_get_contents($licenseFile);
     }
 
     public function backup() {
@@ -126,8 +132,9 @@ class Sys_update extends BaseAdminController {
     }
 
     public function sort($array, $sort_by, $order) {
-        for ($i = 0; $i < count($array); $i++) {
-            for ($y = ($i + 1); $y < count($array); $y++) {
+        $arrayCount = count($array);
+        for ($i = 0; $i < $arrayCount; $i++) {
+            for ($y = ($i + 1); $y < $arrayCount; $y++) {
                 if ($order == 'asc') {
                     if ($array[$i][$sort_by] < $array[$y][$sort_by]) {
                         $c = $array[$i];
@@ -165,9 +172,6 @@ class Sys_update extends BaseAdminController {
                 if (!$this->db->query($query)) {
                     echo 'Невозможно виполнить запрос: <br>';
                     return FALSE;
-                } else {
-//                    echo 'ok';
-//                    return TRUE;
                 }
             }
         }

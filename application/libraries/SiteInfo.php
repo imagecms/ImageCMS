@@ -50,9 +50,9 @@ class SiteInfo {
      * @param string $locale locale to intiate class with
      */
     public function __construct($locale = NULL) {
-        
+
         if ($this->useLocales == TRUE) {
-            $this->locale = !is_null($locale) ? $locale : MY_Controller::getCurrentLocale();
+            $this->locale = $locale != null ? $locale : MY_Controller::getCurrentLocale();
         }
 
         $locales_ = CI::$APP->db->select('identif,id')->get('languages')->result_array();
@@ -65,8 +65,6 @@ class SiteInfo {
         $siteinfo = @unserialize($result['siteinfo']);
         if (is_array($siteinfo)) {
             $this->siteinfo = $siteinfo;
-        } else {
-            // throw new Exception();
         }
     }
 
@@ -75,6 +73,9 @@ class SiteInfo {
      * @param array $siteinfo
      */
     public function setSiteInfoData(array $siteinfo) {
+
+        $languages = CI::$APP->db->get('languages')->result_array();
+
         if ($this->useLocales == TRUE) {
             if (!key_exists($this->locale, $this->siteinfo)) {
                 $this->siteinfo[$this->locale] = array();
@@ -83,11 +84,45 @@ class SiteInfo {
                 if (in_array($key, $this->nonLocaleKeys)) {
                     $this->siteinfo[$key] = $value;
                 } else {
-                    $this->siteinfo[$this->locale][$key] = $value;
+                    foreach ($languages as $lang) {
+                        if ($lang['identif'] == $this->locale) {
+                            $this->siteinfo[$this->locale][$key] = $value;
+                        } elseif ($key == 'contacts') {
+                            $this->contactsKeys($key, $lang);
+                        }
+                    }
                 }
             }
         } else {
             $this->siteinfo = $siteinfo;
+        }
+    }
+
+    private function contactsKeys($key, $lang) {
+        $siteinfoAll = $this->getSiteInfoData(FALSE);
+        $locale = MY_Controller::getCurrentLocale();
+        $keysMain = array();
+
+        foreach ($siteinfoAll[$locale][$key] as $name => $contacts) {
+            $contacts = $contacts;
+            $keysMain[] = $name;
+        }
+
+        foreach ($keysMain as $contacts) {
+            if (isset($siteinfoAll[$locale][$key][$contacts])) {
+                $this->siteinfo[$lang['identif']][$key][$contacts] = $siteinfoAll[$lang['identif']][$key][$contacts];
+            } else {
+                $this->siteinfo[$lang['identif']][$key][$contacts] = '';
+            }
+        }
+
+        foreach ($this->siteinfo as $language => $datas) {
+            foreach ($datas['contacts'] as $k => $data) {
+                $data = $data;
+                if (!in_array($k, $keysMain)) {
+                    unset($this->siteinfo[$language][$key][$k]);
+                }
+            }
         }
     }
 
@@ -169,6 +204,14 @@ class SiteInfo {
             }
             if (key_exists($locale, $this->siteinfo)) {
                 $returnArray = $this->siteinfo[$locale];
+
+                $defaultContacts = $this->siteinfo[MY_Controller::defaultLocale()]['contacts'];
+                foreach ($defaultContacts as $contactKey => $contactValue) {
+                    if (!$returnArray['contacts'][$contactKey]) {
+                        $returnArray['contacts'][$contactKey] = '';
+                    }
+                }
+
                 foreach ($this->siteinfo as $key => $value) {
                     if (in_array($key, $this->nonLocaleKeys)) {
                         $returnArray[$key] = $value;
@@ -178,6 +221,7 @@ class SiteInfo {
             }
             //return FALSE;
         }
+
         return $this->siteinfo;
     }
 

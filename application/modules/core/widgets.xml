@@ -2,14 +2,34 @@
 <widgets>
 
     <widget>
-        <title>Последние новости</title>
-        <description>Отображение последних либо популярных страниц из выбранной категории.</description>
+        <i18n_ru>
+            <title>Последние новости</title>
+            <description>Отображение последних либо популярных страниц из выбранной категории.</description>
+        </i18n_ru>
+        <i18n_en>
+            <title>Latest news</title>
+            <description>Displaying the last or popular pages in the selected category.</description>
+        </i18n_en>
+        <i18n_ua>
+            <title>Останні новини</title>
+            <description>Відображення останніх або популярних сторінок з обраної категорії.</description>
+        </i18n_ua>
         <method>recent_news</method>
     </widget>
 
     <widget>
-        <title>Похожие страницы</title>
-        <description>Выводит список страниц, которые связаны между собой заголовком.</description>
+        <i18n_ru>
+            <title>Похожие страницы</title>
+            <description>Выводит список страниц, которые связаны между собой заголовком.</description>
+        </i18n_ru>
+        <i18n_en>
+            <title>Similar pages</title>
+            <description>Displays a list of pages that are linked title.</description>
+        </i18n_en>
+        <i18n_ua>
+            <title>Схожі сторінки</title>
+            <description>Виводить список сторінок, які пов'язані між собою заголовком.</description>
+        </i18n_ua>
         <method>similar_posts</method>
     </widget>
 

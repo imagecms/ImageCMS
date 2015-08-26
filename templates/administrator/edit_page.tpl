@@ -7,26 +7,27 @@
         <div class="pull-right">
             <span class="help-inline"></span>
             <div class="d-i_b">
-                <a href="/admin/pages/GetPagesByCategory" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back","admin")}</span></a>
+                <a href="/admin/pages/GetPagesByCategory" class="t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back","admin")}</span></a>
                 <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-action="edit" data-form="#edit_page_form" data-submit><i class="icon-ok icon-white"></i>{lang("Save","admin")}</button>
                 <button type="button" class="btn btn-small action_on formSubmit" data-action="close" data-form="#edit_page_form"><i class="icon-check"></i>{lang("Save and go back","admin")}</button>
                 {if count($langs) > 1}
                 <div class="dropdown d-i_b">
                     <a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
                         {foreach $langs as $l}
-                            {if $page_lang == $l.id}
-                                {$l.lang_name}
-                            {/if}
+                        {if $page_lang == $l.id}
+                        {$page_lang_identif = $l.identif}
+                        {$l.lang_name}
+                        {/if}
                         {/foreach}
                         <span class="caret"></span>
                     </a>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu pull-right">
                         {foreach $langs as $l}
-                            {if $l.id != $page_lang}
-                                <li>
-                                    <a href="/admin/pages/edit/{$page_id}/{$l.id}" class="pjax">{$l.lang_name}</a>
-                                </li>
-                            {/if}
+                        {if $l.id != $page_lang}
+                        <li>
+                            <a href="/admin/pages/edit/{$page_id}/{$l.id}">{$l.lang_name}</a>
+                        </li>
+                        {/if}
                         {/foreach}
                     </ul>
                 </div>
@@ -37,9 +38,9 @@
     <div class="clearfix">
         <div class="m-t_20 pull-right">
             {if $CI->uri->total_segments()==5}
-                <a href="/{echo $l.identif}/{$cat_url}{$url}" class="t-d_n m-r_15" target="blank">{lang('Show page','admin')} <span class="f-s_14">&rarr;</span></a>
+            <a href="/{echo $page_lang_identif}/{$cat_url}{$url}" class="t-d_n m-r_15" target="blank">{lang('Show page','admin')} <span class="f-s_14">&rarr;</span></a>
             {else:}
-                <a href="/{$cat_url}{$url}" class="t-d_n m-r_15" target="blank">{lang('Show page','admin')} <span class="f-s_14">&rarr;</span></a>
+            <a href="/{$cat_url}{$url}" class="t-d_n m-r_15" target="blank">{lang('Show page','admin')} <span class="f-s_14">&rarr;</span></a>
             {/if}
         </div>
         <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
@@ -48,18 +49,17 @@
             <a href="#addfields_article" class="btn btn-small">{lang("Additional fields","admin")}</a>
             <a href="#setings_article" class="btn btn-small">{lang("Settings","admin")}</a>
             {if $moduleAdditions}
-                <a href="#modules_additions" class="btn btn-small">{lang('Modules additions', 'admin')}</a>
+            <a href="#modules_additions" class="btn btn-small">{lang('Modules additions', 'admin')}</a>
             {/if}
         </div>
     </div>
     <form method="post" action="{$BASE_URL}admin/pages/update/{$update_page_id}/{$page_lang}" id="edit_page_form" class="form-horizontal" data-pageid="{$update_page_id}">
-        <div class="tab-content content_big_td">
-
+        <input type="hidden" name="lang_id" value="{echo $page_lang}">
+        <input type="hidden" name="lang_alias" value="{echo $pageExists}">
+        <input type="hidden" name="pageExists" value="{echo $pageExists}">
+        <div class="tab-content">
             <div class="tab-pane active" id="content_article">
-
-
-                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
-
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -76,10 +76,10 @@
                                             {lang("Category","admin")}:
                                         </label>
                                         <div class="controls">
-                                            <a onclick="$('.modal').modal();
-                                                    return false;" class="btn btn-success btn-small pull-right" href="#"><i class="icon-plus icon-white"></i> {lang("Create a category","admin")}</a>
-                                            <div class="o_h">
-                                                <select name="category"  id="category_selectbox"  onchange="pagesAdmin.loadCFEditPage()">
+                                            <a onclick="$('.modal:not(.addNotificationMessage)').modal();
+                                            return false;" class="btn m-l_10" style="float:right;" href="#"><i class="icon-plus-sign"></i> {lang("Create a category","admin")}</a>
+                                            <div> <!--class="o_h"-->
+                                                <select style="width:700px" name="category"  id="category_selectbox"  onchange="pagesAdmin.loadCFEditPage()">
                                                     <option value="0" >{lang('No','admin')}</option>
                                                     {$this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'], 'sel_cat' => $this->template_vars['parent_id']));}
                                                 </select>
@@ -90,7 +90,7 @@
 
                                     <div class="control-group">
                                         <label class="control-label" for="page_title_u">
-                                            {lang("Title","admin")}:
+                                            {lang("Title","admin")}: <span class="must">*</span>
                                         </label>
                                         <div class="controls">
                                             <input type="text" name="page_title" value="{encode($title)}" id="page_title_u" />
@@ -99,7 +99,7 @@
 
                                     <div class="control-group">
                                         <label class="control-label">
-                                            {lang("Preliminary contents","admin")}:
+                                            {lang("Preliminary contents","admin")}: <span class="must">*</span>
                                         </label>
                                         <div class="controls">
                                             <textarea id="prev_text" class="elRTE" name="prev_text" rows="10" cols="180" >{encode($prev_text)}</textarea>
@@ -120,13 +120,8 @@
                     </tbody>
                 </table>
             </div>
-
             <div class="tab-pane" id="parameters_article">
-
-
-
-                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
-
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -138,19 +133,22 @@
                         <tr>
                             <td colspan="6">
 
-                                <div class="inside_padd span9">
+                                <div class="inside_padd">
                                     <div class="control-group">
                                         <label class="control-label" for="page_url">
                                             {lang("URL","admin")}:
                                         </label>
                                         <div class="controls">
                                             {if $defLang.id == $page_lang}
-                                                <button onclick="translite_title('#page_title_u', '#page_url');" type="button" class="btn btn-small pull-right" id="translateCategoryTitle"><i class="icon-refresh"></i>&nbsp;&nbsp;{lang('Autocomplete','admin')}</button>
-                                                <div class="o_h">
-                                                    <input type="text" name="page_url" value="{$url}" id="page_url" />
-                                                </div>
-                                            {else:}
+                                            <button onclick="translite_title('#page_title_u', '#page_url');" type="button" class="btn btn-small pull-right" id="translateCategoryTitle"><i class="icon-refresh"></i>&nbsp;&nbsp;{lang('Autocomplete','admin')}</button>
+                                            <div class="o_h">
                                                 <input type="text" name="page_url" value="{$url}" id="page_url" />
+                                            </div>
+                                            {else:}
+                                            <div>
+                                                <input type="text" name="page_url" value="{$url}" id="page_url" />
+                                                <button onclick="translite_title('#page_title_u', '#page_url');" type="button" class="btn btn-small" id="translateCategoryTitle"><i class="icon-refresh"></i>&nbsp;&nbsp;{lang('Autocomplete','admin')}</button>
+                                            </div>
                                             {/if}
                                             <div class="help-block">({lang("Only Latin characters","admin")})</div>
                                         </div>
@@ -180,7 +178,7 @@
                                         </label>
                                         <div class="controls">
                                             <textarea name="page_description" class="textarea" id="page_description" >{$description}</textarea>
-                                            <button  onclick="create_description('#prev_text', '#page_description' );" type="button" class="btn btn-small" ><i class="icon-refresh"></i>&nbsp;&nbsp;{lang('Autocomplete','admin')}</button>
+                                            <button  onclick="create_description('#prev_text', '#page_description');" type="button" class="btn btn-small" ><i class="icon-refresh"></i>&nbsp;&nbsp;{lang('Autocomplete','admin')}</button>
                                         </div>
                                     </div>
 
@@ -190,7 +188,7 @@
                                         </label>
                                         <div class="controls">
                                             <textarea name="page_keywords" id="page_keywords">{$keywords}</textarea>
-                                            <button  onclick="retrive_keywords('#prev_text', '#keywords_list' );"  type="button" class="btn btn-small" ><i class="icon-refresh"></i>&nbsp;&nbsp;{lang('Autocomplete words','admin')}</button>
+                                            <button  onclick="retrive_keywords('#prev_text', '#keywords_list');"  type="button" class="btn btn-small" ><i class="icon-refresh"></i>&nbsp;&nbsp;{lang('Autocomplete words','admin')}</button>
                                             <div id="keywords_list">
                                             </div>
                                         </div>
@@ -238,18 +236,12 @@
                         </tr>
                     </tbody>
                 </table>
-
-
             </div>
-
             <div class="tab-pane" id="addfields_article">
                 <div id="cfcm_fields_block"></div>
             </div>
-
             <div class="tab-pane" id="setings_article">
-
-                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
-
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
                             <th colspan="6">
@@ -260,7 +252,7 @@
                     <tbody>
                         <tr>
                             <td colspan="6">
-                                <div class="inside_padd span9">
+                                <div class="inside_padd">
                                     <div class="control-group">
                                         <label class="control-label" for="post_status">
                                             {lang("Publication status","admin")}:
@@ -276,12 +268,14 @@
                                     <hr />
                                     <div class="control-group">
                                         <label class="control-label" for="create_date">
-                                            {lang("Time and date of creation","admin")}:    
+                                            {lang("Time and date of creation","admin")}:
                                         </label>
                                         <div class="controls">
                                             <div class="pull-left p_r">
-                                                <input id="create_date" name="create_date" tabindex="7" value="{$create_date}" type="text" data-placement="top" data-original-title="{lang('choose date','admin')}" data-rel="tooltip" class="datepicker input-small"  />
-                                                <i class="icon-calendar"></i>
+                                                <label>
+                                                    <input id="create_date" name="create_date" tabindex="7" value="{$create_date}" type="text" data-placement="top" data-original-title="{lang('choose date','admin')}" data-rel="tooltip" class="datepicker input-small" style="width:120px;"/>
+                                                    <i class="icon-calendar"></i>
+                                                </label>
                                             </div>
                                             <input id="create_time" name="create_time" tabindex="8" type="text" value="{$create_time}" class="input-small" />
                                         </div>
@@ -289,12 +283,14 @@
 
                                     <div class="control-group">
                                         <label class="control-label" for="publish_date">
-                                            {lang("Time and date of publication","admin")}:                 
+                                            {lang("Time and date of publication","admin")}:
                                         </label>
                                         <div class="controls">
                                             <div class="pull-left p_r">
-                                                <input id="publish_date" name="publish_date" tabindex="7" value="{$publish_date}" type="text" data-placement="top" data-original-title="{lang('choose date','admin')}" data-rel="tooltip" class="datepicker input-small" />
-                                                <i class="icon-calendar"></i>
+                                                <label>
+                                                    <input id="publish_date" name="publish_date" tabindex="7" value="{$publish_date}" type="text" data-placement="top" data-original-title="{lang('choose date','admin')}" data-rel="tooltip" class="datepicker input-small" style="width:120px;"/>
+                                                    <i class="icon-calendar"></i>
+                                                </label>
                                             </div>
                                             <input id="publish_time" name="publish_time" tabindex="8" type="text" value="{$publish_time}" class="input-small" />
                                         </div>
@@ -302,15 +298,16 @@
 
                                     <div class="control-group">
                                         <label class="control-label" for="roles[]">
-                                            {lang("Access","admin")}:             
+                                            {lang("Access","admin")}:
                                         </label>
                                         <div class="controls">
                                             <select multiple="multiple" name="roles[]" id="roles[]">
                                                 <option value="0" {$all_selected} >{lang("All","admin")}</option>
                                                 {foreach $roles as $role}
-                                                    <option {$role.selected} value="{$role.id}">{$role.alt_name}</option>
+                                                <option {$role.selected} value="{$role.id}">{$role.alt_name}</option>
                                                 {/foreach}
                                             </select>
+                                            <span class="help-block">{lang('Tighten Ctrl to select multiple items', 'admin')}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -360,10 +357,10 @@
     </div>
     <div class="modal-footer">
         <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang('Cancel','admin')}</a>
-        <a href="#" class="btn btn-primary" onclick="pagesAdmin.quickAddCategory()">{lang('Create','admin')}</a>
+        <a href="#" class="btn btn-success" onclick="pagesAdmin.quickAddCategory()">{lang('Create','admin')}</a>
     </div>
 </div>
 <script>
-                                                if (window.hasOwnProperty('pagesAdmin'))
-                                                    pagesAdmin.initialize();
+if (window.hasOwnProperty('pagesAdmin'))
+    pagesAdmin.initialize();
 </script>

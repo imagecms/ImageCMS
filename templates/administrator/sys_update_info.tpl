@@ -29,8 +29,8 @@
     {if $newRelise}
         <div class="row">
             <div class="span4">
-                <form method="post" action="{$BASE_URL}admin/sys_update/update" class="form-horizontal" id="sys_form">
-                    <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                <form method="post" action="{$BASE_URL}admin/sys_update/update" class="form-horizontal m-t_15" id="sys_form">
+                    <table class="table  table-bordered table-hover table-condensed t-l_a">
                         <tbody>
                             <tr>
                                 <td>

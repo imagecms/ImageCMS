@@ -57,7 +57,7 @@
                         {if $diff_files and !$error}
                             <h4>{lang('Files that will be changed', 'admin')} ({echo $filesCount})</h4>
                             <form  action="{$ADMIN_URL}" method="post" id="update_form">
-                                <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                                <table class="table  table-bordered table-hover table-condensed t-l_a">
                                     <thead>
                                         <tr>
                                             <th>
@@ -106,34 +106,34 @@
 
                 <div class="tab-pane" id="restore">
                     {if $restore_files}
-                        <table class="table table-striped table-bordered table-hover table-condensed t-l_a">
+                        <table class="table  table-bordered table-hover table-condensed t-l_a">
                             <thead>
                                 <tr>
                                     <th >{lang('Name', 'admin')}</th>
                                     <th >
                                         {if $sort_by == 'size'}
                                             {if $order == 'asc'}
-                                                <a class="pjax" href="/admin/sys_update/update/size/desc#restore">{lang('Size', 'admin')}(MB)</a>
+                                                <a href="/admin/sys_update/update/size/desc#restore">{lang('Size', 'admin')}(MB)</a>
                                                 <span class="f-s_14">↓</span>
                                             {else:}
-                                                <a class="pjax" href="/admin/sys_update/update/size/asc#restore">{lang('Size', 'admin')}(MB)</a>
+                                                <a href="/admin/sys_update/update/size/asc#restore">{lang('Size', 'admin')}(MB)</a>
                                                 <span class="f-s_14">↑</span>
                                             {/if}
                                         {else:}
-                                            <a class="pjax" href="/admin/sys_update/update/size/asc#restore">{lang('Size', 'admin')}(MB)</a>
+                                            <a href="/admin/sys_update/update/size/asc#restore">{lang('Size', 'admin')}(MB)</a>
                                         {/if}
                                     </th>
                                     <th>
                                         {if $sort_by == 'create_date'}
                                             {if $order == 'asc'}
-                                                <a class="pjax" href="/admin/sys_update/update/create_date/desc#restore">{lang('Creation date', 'admin')}</a>
+                                                <a href="/admin/sys_update/update/create_date/desc#restore">{lang('Creation date', 'admin')}</a>
                                                 <span class="f-s_14">↓</span>
                                             {else:}
-                                                <a class="pjax" href="/admin/sys_update/update/create_date/asc#restore">{lang('Creation date', 'admin')}</a>
+                                                <a href="/admin/sys_update/update/create_date/asc#restore">{lang('Creation date', 'admin')}</a>
                                                 <span class="f-s_14">↑</span>
                                             {/if}
                                         {else:}
-                                            <a class="pjax" href=/update/create_date/asc#restore">{lang('Creation date', 'admin')}</a>
+                                            <a href="/update/create_date/asc#restore">{lang('Creation date', 'admin')}</a>
                                         {/if}
                                     <th>{lang('Restore', 'admin')}</th>
                                     <th>{lang('Deleting', 'admin')}</th>

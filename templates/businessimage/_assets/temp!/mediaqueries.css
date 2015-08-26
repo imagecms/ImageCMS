@@ -1,0 +1,53 @@
+.temp_mq_info{
+	position: fixed;
+	width: 20px;
+	opacity: 0.7;
+	bottom: 20%;
+	right: 0;
+	background: #000;
+	color: #fff;
+}
+/* XL */
+@media(max-width: 1440px){
+.xl{display: block;}
+.l, .m, .s, .xs{display: none;}
+
+
+}
+
+
+
+/* L */
+@media(max-width:1200px){
+.xl, .m, .s, .xs{display: none;}
+.l{display: block;}
+
+}
+
+
+
+/* M */
+@media(max-width:960px){
+.xl, .l, .s, .xs{display: none;}
+.m{display: block;}
+	
+}
+
+
+
+/* S */
+@media(max-width:768px){
+.xl, .l, .m, .xs{display: none;}
+.s{display: block;}
+
+}
+
+
+
+/* XS */
+@media(max-width:480px){
+	.xl, .l, .m, .s{display: none;}
+	.xs{display: block;}
+
+
+}

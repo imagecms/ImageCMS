@@ -1,0 +1,1259 @@
+﻿msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-04-20 12:55+0300\n"
+"PO-Revision-Date: 2015-04-20 12:55+0300\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: application/modules/translator/classes/Replacer.php:215
+msgid "$1"
+msgstr ""
+
+#: application/modules/translator/assets/js/admin.js:514
+msgid "Enter translation value to translate"
+msgstr "Введіть значення перекладу, щоб  перевести"
+
+#: application/modules/translator/assets/admin/search.tpl:45
+msgid "Searched results"
+msgstr "Результатів пошуку"
+
+#: application/modules/translator/assets/admin/search.tpl:106
+msgid "Admin module"
+msgstr "Адміністративна частина"
+
+#: application/modules/translator/classes/PoFileSearch.php:68
+msgid "Search string can not be smaller then 2 symbols."
+msgstr "Фраза пошуку не може бути меншою 2 символів."
+
+#: application/modules/translator/assets/admin/search.tpl:29
+msgid "Search string"
+msgstr "Фраза пошуку"
+
+#: application/modules/translator/assets/admin/search.tpl:51
+msgid "Search type"
+msgstr "Тип пошуку"
+
+#: application/modules/translator/assets/admin/search.tpl:58
+msgid "All"
+msgstr "Всі"
+
+#: application/modules/translator/assets/admin/search.tpl:116
+#: application/modules/translator/assets/admin/search.tpl:173
+#: application/modules/translator/assets/admin/search.tpl:229
+msgid "Actions"
+msgstr "Дії"
+
+#: application/modules/translator/assets/admin/search.tpl:281
+msgid "Empty search."
+msgstr "Порожній пошук."
+
+#: application/modules/translator/assets/admin/search.tpl:7
+#: application/modules/translator/assets/admin/list.tpl:146
+msgid "Full search"
+msgstr "Повний пошук"
+
+#: application/modules/translator/admin.php:166
+msgid "Field Search string cannot be empty."
+msgstr "Поле Фраза пошуку не може бути порожньою."
+
+#: application/modules/translator/assets/js/admin.js:998
+msgid "File was successfuly updated."
+msgstr "Файл успішно оновлено"
+
+#: application/modules/translator/assets/js/admin.js:1134
+msgid "File was successfully rendered."
+msgstr "Файл був успішно переглянутий"
+
+#: application/modules/translator/assets/js/admin.js:1158
+msgid "File was successfully saved."
+msgstr "Файл був вдало збережений"
+
+#: application/modules/translator/admin.php:585
+#: application/modules/translator/admin.php:586
+msgid "Translation file was successfuly saved."
+msgstr "Переклад файлу був вдало збережений"
+
+#: application/modules/translator/admin.php:75
+msgid "Translators settings was successfully updated."
+msgstr "Налаштування перекладача успішно оновлено."
+
+#: application/modules/translator/admin.php:290
+msgid " . $quote . $origin . $quote . "
+msgstr " . $quote . $origin . $quote . "
+
+#: application/modules/translator/assets/js/admin.js:1102
+msgid "File paths was successfuly updated."
+msgstr "Шляхи до файлів успішно оновлено."
+
+#: application/modules/translator/helpers/translator_helper.php:72
+msgid "Italian"
+msgstr "Італійська"
+
+#: application/modules/translator/helpers/translator_helper.php:60
+msgid "Spanish"
+msgstr "Іспанська"
+
+#: application/modules/translator/helpers/translator_helper.php:71
+msgid "Icelandic"
+msgstr "Ісландська"
+
+#: application/modules/translator/helpers/translator_helper.php:66
+msgid "Irish"
+msgstr "Ірландська"
+
+#: application/modules/translator/assets/admin/list.tpl:151
+msgid "Others"
+msgstr "Інше"
+
+#: application/modules/translator/assets/admin/list.tpl:364
+msgid "Translation file information"
+msgstr "Інформація про файл перекладу"
+
+#: application/modules/translator/assets/admin/settings.tpl:47
+#: application/modules/translator/assets/admin/settings.tpl:67
+msgid "Information"
+msgstr "Інформація"
+
+#: application/modules/translator/assets/admin/list.tpl:6
+#: application/modules/translator/assets/admin/list.tpl:160
+msgid "Translation tool"
+msgstr "Інструмент для перекладу"
+
+#: application/modules/translator/helpers/translator_helper.php:70
+msgid "Indonesian"
+msgstr "Індонезійська"
+
+#: application/modules/translator/assets/admin/po_table.tpl:70
+#: application/modules/translator/assets/admin/create.tpl:88
+msgid "Translator name"
+msgstr "Ім'я перекладач"
+
+#: application/modules/translator/helpers/translator_helper.php:124
+msgid "Yiddish"
+msgstr "Ідиш"
+
+#: application/modules/translator/helpers/translator_helper.php:67
+msgid "Hebrew"
+msgstr "Іврит"
+
+#: application/modules/translator/helpers/translator_helper.php:74
+msgid "Japanese"
+msgstr "Японська"
+
+#: application/modules/translator/assets/js/admin.js:1387
+msgid "Yandex Api Key was successfully setted."
+msgstr "Яндекс Api ключ був успішно зафіксований"
+
+#: application/modules/translator/helpers/translator_helper.php:75
+msgid "Javanese"
+msgstr "Яванська"
+
+#: application/modules/translator/assets/admin/list.tpl:387
+msgid "Searched langs paths"
+msgstr "Шляхи пошуку фраз для перекладу"
+
+#: application/modules/translator/assets/admin/list.tpl:289
+msgid "Paths to contains files"
+msgstr "Шлях до файлів"
+
+#: application/modules/translator/admin.php:600
+msgid "Selection path memory was successfuly cleared."
+msgstr "Шлях вибору пам'яті був успішно знятий"
+
+#: application/modules/translator/assets/admin/create.tpl:116
+msgid "Paths"
+msgstr "Шлях"
+
+#: application/modules/translator/assets/admin/list.tpl:414
+msgid "Path"
+msgstr "Шлях"
+
+#: application/modules/translator/helpers/translator_helper.php:115
+msgid "Swedish"
+msgstr "Шведська"
+
+#: application/modules/translator/assets/admin/search.tpl:86
+#: application/modules/translator/assets/admin/list.tpl:210
+#: application/modules/translator/assets/admin/create.tpl:62
+#: application/modules/translator/assets/admin/exchange.tpl:58
+#: application/modules/translator/assets/admin/exchange.tpl:87
+msgid "Templates"
+msgstr "Шаблони"
+
+#: application/modules/translator/helpers/translator_helper.php:432
+msgid "Template"
+msgstr "Шаблон"
+
+#: application/modules/translator/helpers/translator_helper.php:53
+msgid "Chuvash"
+msgstr "Чуваська"
+
+#: application/modules/translator/helpers/translator_helper.php:98
+msgid "Chichewa"
+msgstr "Чичева"
+
+#: application/modules/translator/helpers/translator_helper.php:52
+msgid "Czech"
+msgstr "Чеська"
+
+#: application/modules/translator/helpers/translator_helper.php:63
+msgid "Fijian"
+msgstr "Фіджійська"
+
+#: application/modules/translator/helpers/translator_helper.php:65
+msgid "French"
+msgstr "Французька"
+
+#: application/modules/translator/helpers/translator_helper.php:64
+msgid "Faroese"
+msgstr "Фарерська"
+
+#: application/modules/translator/assets/admin/po_table.tpl:48
+msgid "The file is empty."
+msgstr "Файл є порожнім"
+
+#: application/modules/translator/admin.php:532
+msgid "File was succcessfuly created."
+msgstr "Файл успішно створений"
+
+#: application/modules/translator/assets/admin/search.tpl:144
+#: application/modules/translator/assets/admin/search.tpl:201
+#: application/modules/translator/assets/admin/search.tpl:257
+#: application/modules/translator/assets/admin/list.tpl:187
+msgid "Translation file"
+msgstr "Файл перекладу"
+
+#: application/modules/translator/classes/FileOperator.php:121
+msgid "File does not exist or check perrmissions to the file."
+msgstr "Файл не існує або перевіте дозволи для файлу"
+
+#: application/modules/translator/classes/FileOperator.php:101
+msgid "File cant be read. Please, set read file permissions."
+msgstr "Файл не може бути прочитаний. Будь ласка, вкажіть набір дозволів для читання файлу"
+
+#: application/modules/translator/classes/FileOperator.php:111
+msgid "File cant be written. Please, set write file permissions."
+msgstr "Файл не може бути записаний. Будь ласка, виберіть дозвіл для запису файлу"
+
+#: application/modules/translator/classes/PoFileManager.php:302
+msgid "File is already exists."
+msgstr "Файл вже існує"
+
+#: application/modules/translator/assets/admin/list.tpl:176
+msgid "All strings"
+msgstr "Усіх рядків"
+
+#: application/modules/translator/assets/js/admin.js:228
+msgid "Successfully sorted."
+msgstr "Успішно сортовані"
+
+#: application/modules/translator/translator.php:159
+#: application/modules/translator/translator.php:183
+#: application/modules/translator/admin.php:824
+msgid "Successfully translated."
+msgstr "Успішно перекладені"
+
+#: application/modules/translator/assets/js/admin.js:1319
+#: application/modules/translator/assets/js/admin.js:1834
+#: application/modules/translator/assets/js/admin.js:1906
+msgid "Successfully translated"
+msgstr "Успішно перекладені"
+
+#: application/modules/translator/assets/js/admin.js:1317
+#: application/modules/translator/assets/js/admin.js:1832
+#: application/modules/translator/assets/js/admin.js:1904
+msgid "Successfully defined"
+msgstr "Успішно визначені"
+
+#: application/modules/translator/helpers/translator_helper.php:121
+msgid "Ukrainian"
+msgstr "Українська"
+
+#: application/modules/translator/helpers/translator_helper.php:122
+msgid "Uzbek"
+msgstr "Узбецька"
+
+#: application/modules/translator/helpers/translator_helper.php:68
+msgid "Hungarian"
+msgstr "Угорська"
+
+#: application/modules/translator/helpers/translator_helper.php:85
+msgid "Ganda"
+msgstr "Угандська"
+
+#: application/modules/translator/helpers/translator_helper.php:117
+msgid "Turkmen"
+msgstr "Туркменська"
+
+#: application/modules/translator/helpers/translator_helper.php:119
+msgid "Turkish"
+msgstr "Турецька"
+
+#: application/modules/translator/helpers/translator_helper.php:118
+msgid "Tswana"
+msgstr "Тсвана"
+
+#: application/modules/translator/assets/js/translateSingleLang.js:25
+#: application/modules/translator/assets/js/admin.js:1338
+#: application/modules/translator/assets/js/admin.js:1925
+msgid "Text can not be translated."
+msgstr "Текст не може бути перекладений"
+
+#: application/modules/translator/helpers/translator_helper.php:120
+msgid "Tatar"
+msgstr "Татарська"
+
+#: application/modules/translator/helpers/translator_helper.php:116
+msgid "Tamil"
+msgstr "Тамільська"
+
+#: application/modules/translator/assets/translationApiForm.tpl:130
+msgid "Hide form"
+msgstr "Сховати форму"
+
+#: application/modules/translator/helpers/translator_helper.php:114
+msgid "Sundanese"
+msgstr "Суданська"
+
+#: application/modules/translator/assets/admin/list.tpl:94
+msgid "string(s) will be ignored"
+msgstr "стрічки будуть ігноруватися"
+
+#: application/modules/translator/assets/admin/list.tpl:84
+msgid "string(s) wil be added"
+msgstr "стрічки будуть додані"
+
+#: application/modules/translator/assets/admin/list.tpl:89
+msgid "string(s) will be removed"
+msgstr "стрічки будуть видалені"
+
+#: application/modules/translator/assets/admin/list.tpl:154
+msgid "Create translation file"
+msgstr "Створити файл перекладу"
+
+#: application/modules/translator/assets/admin/create.tpl:7
+msgid "Create Po-file"
+msgstr "Створити файл перекладу"
+
+#: application/modules/translator/assets/admin/list.tpl:302
+msgid "Create file"
+msgstr "Створити файл"
+
+#: application/modules/translator/assets/admin/list.tpl:280
+msgid "Default sort"
+msgstr "Сортувати по замовчуванню"
+
+#: application/modules/translator/helpers/translator_helper.php:111
+msgid "Somali"
+msgstr "Сомалі"
+
+#: application/modules/translator/helpers/translator_helper.php:110
+msgid "Slovenian"
+msgstr "Словенська"
+
+#: application/modules/translator/helpers/translator_helper.php:109
+msgid "Slovak"
+msgstr "Словацька"
+
+#: application/modules/translator/assets/admin/po_table.tpl:34
+msgid "Undo"
+msgstr "Скасувати"
+
+#: application/modules/translator/assets/admin/list.tpl:35
+#: application/modules/translator/assets/admin/list.tpl:69
+#: application/modules/translator/assets/admin/list.tpl:116
+msgid "Cancel"
+msgstr "Скасувати"
+
+#: application/modules/translator/helpers/translator_helper.php:113
+msgid "Serbian"
+msgstr "Сербська"
+
+#: application/modules/translator/helpers/translator_helper.php:107
+msgid "Sanskrit"
+msgstr "Санскрит"
+
+#: application/modules/translator/helpers/translator_helper.php:108
+msgid "Sango"
+msgstr "Санго"
+
+#: application/modules/translator/helpers/translator_helper.php:105
+msgid "Romanian"
+msgstr "Румунська"
+
+#: application/modules/translator/helpers/translator_helper.php:106
+msgid "Russian"
+msgstr "Російська"
+
+#: application/modules/translator/assets/admin/list.tpl:16
+msgid "Result"
+msgstr "Результат"
+
+#: application/modules/translator/assets/admin/list.tpl:47
+msgid "Editor theme"
+msgstr "Редактор теми"
+
+#: application/modules/translator/assets/admin/list.tpl:156
+msgid "Correct paths"
+msgstr "Редагувати шляхи"
+
+#: application/modules/translator/assets/admin/list.tpl:44
+msgid "File editing"
+msgstr "Редагування файлів"
+
+#: application/modules/translator/helpers/translator_helper.php:102
+msgid "Pashto"
+msgstr "Пушту"
+
+#: application/modules/translator/assets/admin/list.tpl:177
+msgid "Fuzzy strings"
+msgstr "Приховані"
+
+#: application/modules/translator/assets/admin/list.tpl:235
+msgid "Whole word search"
+msgstr "Пошук за цілим словом"
+
+#: application/modules/translator/assets/admin/list.tpl:231
+msgid "Sensitive search"
+msgstr "Пошук з урахуванням регістру"
+
+#: application/modules/translator/assets/admin/list.tpl:250
+msgid "Search in translation strings"
+msgstr "Пошук в стрічках перекладу"
+
+#: application/modules/translator/assets/admin/list.tpl:246
+msgid "Search in origin strings"
+msgstr "Пошук в оригінальних стрічках"
+
+#: application/modules/translator/assets/admin/list.tpl:254
+msgid "Search in comments strings"
+msgstr "Пошук в коментарях"
+
+#: application/modules/translator/assets/admin/search.tpl:38
+msgid "Search"
+msgstr "Пошук"
+
+#: application/modules/translator/assets/admin/list.tpl:61
+msgid "Origin string"
+msgstr "Походження рядка"
+
+#: application/modules/translator/assets/js/admin.js:789
+msgid "Origin language was successfully setted."
+msgstr "Походження мови було успішно встановлене"
+
+#: application/modules/translator/helpers/translator_helper.php:103
+msgid "Portuguese"
+msgstr "Португальська"
+
+#: application/modules/translator/assets/js/admin.js:230
+#: application/modules/translator/assets/js/admin.js:488
+#: application/modules/translator/assets/js/admin.js:491
+#: application/modules/translator/assets/js/admin.js:514
+#: application/modules/translator/assets/js/admin.js:529
+#: application/modules/translator/assets/js/admin.js:791
+#: application/modules/translator/assets/js/admin.js:863
+#: application/modules/translator/assets/js/admin.js:1093
+#: application/modules/translator/assets/js/admin.js:1137
+#: application/modules/translator/assets/js/admin.js:1162
+#: application/modules/translator/assets/js/admin.js:1176
+#: application/modules/translator/assets/js/admin.js:1181
+#: application/modules/translator/assets/js/admin.js:1275
+#: application/modules/translator/assets/js/admin.js:1280
+#: application/modules/translator/assets/js/admin.js:1323
+#: application/modules/translator/assets/js/admin.js:1326
+#: application/modules/translator/assets/js/admin.js:1329
+#: application/modules/translator/assets/js/admin.js:1332
+#: application/modules/translator/assets/js/admin.js:1335
+#: application/modules/translator/assets/js/admin.js:1338
+#: application/modules/translator/assets/js/admin.js:1341
+#: application/modules/translator/assets/js/admin.js:1344
+#: application/modules/translator/assets/js/admin.js:1389
+#: application/modules/translator/assets/js/admin.js:1407
+#: application/modules/translator/assets/js/admin.js:1412
+#: application/modules/translator/assets/js/admin.js:1417
+#: application/modules/translator/assets/js/admin.js:1422
+#: application/modules/translator/assets/js/admin.js:1447
+#: application/modules/translator/assets/js/admin.js:1452
+#: application/modules/translator/assets/js/admin.js:1477
+#: application/modules/translator/assets/js/admin.js:1638
+#: application/modules/translator/assets/js/admin.js:1643
+#: application/modules/translator/assets/js/admin.js:1838
+#: application/modules/translator/assets/js/admin.js:1841
+#: application/modules/translator/assets/js/admin.js:1844
+#: application/modules/translator/assets/js/admin.js:1910
+#: application/modules/translator/assets/js/admin.js:1913
+#: application/modules/translator/assets/js/admin.js:1916
+#: application/modules/translator/assets/js/admin.js:1919
+#: application/modules/translator/assets/js/admin.js:1922
+#: application/modules/translator/assets/js/admin.js:1925
+#: application/modules/translator/assets/js/admin.js:1928
+#: application/modules/translator/assets/js/admin.js:1931
+#: application/modules/translator/admin.php:540
+#: application/modules/translator/admin.php:589
+#: application/modules/translator/admin.php:603
+msgid "Error"
+msgstr "Помилка"
+
+#: application/modules/translator/helpers/translator_helper.php:101
+msgid "Polish"
+msgstr "Польська"
+
+#: application/modules/translator/assets/admin/create.tpl:128
+msgid "Double click to deleting"
+msgstr "Подвійний клік видалення"
+
+#: application/modules/translator/assets/js/admin.js:228
+#: application/modules/translator/assets/js/admin.js:482
+#: application/modules/translator/assets/js/admin.js:484
+#: application/modules/translator/assets/js/admin.js:531
+#: application/modules/translator/assets/js/admin.js:789
+#: application/modules/translator/assets/js/admin.js:998
+#: application/modules/translator/assets/js/admin.js:1102
+#: application/modules/translator/assets/js/admin.js:1134
+#: application/modules/translator/assets/js/admin.js:1158
+#: application/modules/translator/assets/js/admin.js:1317
+#: application/modules/translator/assets/js/admin.js:1319
+#: application/modules/translator/assets/js/admin.js:1387
+#: application/modules/translator/assets/js/admin.js:1832
+#: application/modules/translator/assets/js/admin.js:1834
+#: application/modules/translator/assets/js/admin.js:1904
+#: application/modules/translator/assets/js/admin.js:1906
+#: application/modules/translator/admin.php:532
+#: application/modules/translator/admin.php:585
+#: application/modules/translator/admin.php:600
+msgid "Message"
+msgstr "Повідомлення"
+
+#: application/modules/translator/assets/admin/search.tpl:14
+#: application/modules/translator/assets/admin/list.tpl:132
+#: application/modules/translator/assets/admin/create.tpl:14
+#: application/modules/translator/assets/admin/settings.tpl:14
+#: application/modules/translator/assets/admin/exchange.tpl:14
+msgid "Back"
+msgstr "Повернутися"
+
+#: application/modules/translator/assets/js/admin.js:1503
+#: application/modules/translator/assets/js/admin.js:1505
+msgid "First"
+msgstr "Перший"
+
+#: application/modules/translator/assets/admin/list.tpl:159
+msgid "Translate untranslated"
+msgstr "Перекласти неперекладені"
+
+#: application/modules/translator/assets/admin/list.tpl:158
+msgid "Translate all"
+msgstr "Перекласти все"
+
+#: application/modules/translator/assets/admin/po_table.tpl:14
+#: application/modules/translator/assets/admin/list.tpl:34
+#: application/modules/translator/assets/translationApiForm.tpl:148
+msgid "Translate"
+msgstr "Перекласти"
+
+#: application/modules/translator/assets/admin/list.tpl:178
+msgid "Translated"
+msgstr "Перекладено"
+
+#: application/modules/translator/module_info.php:5
+#: application/modules/translator/assets/admin/list.tpl:125
+msgid "Translator"
+msgstr "Перекладач"
+
+#: application/modules/translator/assets/admin/list.tpl:28
+msgid "Translation text"
+msgstr "Переклад тексту"
+
+#: application/modules/translator/assets/js/translateSingleLang.js:31
+#: application/modules/translator/assets/js/admin.js:1344
+#: application/modules/translator/assets/js/admin.js:1844
+#: application/modules/translator/assets/js/admin.js:1931
+msgid "Translation fails."
+msgstr "Переклад не виконується"
+
+#: application/modules/translator/assets/admin/search.tpl:63
+#: application/modules/translator/assets/admin/search.tpl:115
+#: application/modules/translator/assets/admin/search.tpl:172
+#: application/modules/translator/assets/admin/search.tpl:228
+#: application/modules/translator/assets/admin/list.tpl:275
+#: application/modules/translator/assets/translationApiForm.tpl:139
+msgid "Translation"
+msgstr "Переклад"
+
+#: application/modules/translator/assets/js/translateSingleLang.js:19
+#: application/modules/translator/assets/js/admin.js:1332
+#: application/modules/translator/assets/js/admin.js:1919
+msgid "Exceeded the daily limit on the amount of translated text."
+msgstr "Перевищено добовий ліміт на суму переказу тексту"
+
+#: application/modules/translator/assets/js/translateSingleLang.js:16
+#: application/modules/translator/assets/js/admin.js:1329
+#: application/modules/translator/assets/js/admin.js:1916
+msgid "Exceeded the daily limit on the number of requests."
+msgstr "Перевищено денний ліміт на кількість запитів"
+
+#: application/modules/translator/assets/js/translateSingleLang.js:22
+#: application/modules/translator/assets/js/admin.js:1335
+#: application/modules/translator/assets/js/admin.js:1922
+msgid "Exceeded the maximum allowable size of text."
+msgstr "Перевищений максимально допустимий розмір тексту"
+
+#: application/modules/translator/assets/admin/list.tpl:164
+msgid "Clear translator memory"
+msgstr "Очистити пам'ять перекладача"
+
+#: application/modules/translator/assets/admin/list.tpl:348
+#: application/modules/translator/assets/admin/settings.tpl:78
+msgid "Get Yandex Api key"
+msgstr "Отримати Яндекс Api ключ"
+
+#: application/modules/translator/assets/js/admin.js:1519
+msgid "Last "
+msgstr "Останній"
+
+#: application/modules/translator/assets/admin/po_table.tpl:113
+msgid "Basic path"
+msgstr "Основні шляхи"
+
+#: application/modules/translator/helpers/translator_helper.php:435
+msgid "Main file"
+msgstr "Основний файл"
+
+#: application/modules/translator/helpers/translator_helper.php:99
+msgid "Ossetian"
+msgstr "Осетинська"
+
+#: application/modules/translator/assets/admin/search.tpl:61
+#: application/modules/translator/assets/admin/search.tpl:114
+#: application/modules/translator/assets/admin/search.tpl:171
+#: application/modules/translator/assets/admin/search.tpl:227
+#: application/modules/translator/assets/admin/list.tpl:270
+#: application/modules/translator/assets/translationApiForm.tpl:133
+msgid "Origin"
+msgstr "Оригінал"
+
+#: application/modules/translator/admin.php:603
+msgid "Operation failed!"
+msgstr "Операція не вдалася!"
+
+#: application/modules/translator/admin.php:388
+msgid "Update and save translation file befor this action."
+msgstr "Оновіть та збережіть файл перекладу до цієї акції"
+
+#: application/modules/translator/assets/admin/list.tpl:77
+msgid "Update results"
+msgstr "Оновлення результатів"
+
+#: application/modules/translator/assets/admin/search.tpl:138
+#: application/modules/translator/assets/admin/search.tpl:196
+#: application/modules/translator/assets/admin/search.tpl:252
+#: application/modules/translator/assets/admin/list.tpl:115
+#: application/modules/translator/assets/admin/list.tpl:142
+msgid "Update"
+msgstr "Оновити"
+
+#: application/modules/translator/assets/admin/exchange.tpl:31
+msgid "Exchange files"
+msgstr "Обмін файлами"
+
+#: application/modules/translator/assets/admin/list.tpl:155
+#: application/modules/translator/assets/admin/exchange.tpl:7
+msgid "Translation exchange"
+msgstr "Обмін перекладами"
+
+#: application/modules/translator/assets/admin/exchange.tpl:20
+msgid "Exchange"
+msgstr "Обмін"
+
+#: application/modules/translator/helpers/translator_helper.php:56
+msgid "German"
+msgstr "Німецька"
+
+#: application/modules/translator/helpers/translator_helper.php:97
+msgid "Norwegian"
+msgstr "Норвезька"
+
+#: application/modules/translator/assets/admin/list.tpl:64
+msgid "Line number"
+msgstr "Номер рядка"
+
+#: application/modules/translator/assets/admin/list.tpl:264
+msgid "Fuzzy"
+msgstr "Нечітко"
+
+#: application/modules/translator/classes/PoFileManager.php:493
+msgid "Wrong po-file path"
+msgstr "Неправильний шлях до файлу перекладу"
+
+#: application/modules/translator/assets/js/translateSingleLang.js:10
+#: application/modules/translator/assets/js/admin.js:1323
+#: application/modules/translator/assets/js/admin.js:1910
+msgid "Wrong API key."
+msgstr "Неправильний ключ API"
+
+#: application/modules/translator/helpers/translator_helper.php:95
+msgid "Nepali"
+msgstr "Непальська"
+
+#: application/modules/translator/assets/admin/list.tpl:298
+msgid "There is no Po-file in such locale"
+msgstr "Немаєфайлу перекладу в такій локалі"
+
+#: application/modules/translator/assets/admin/list.tpl:202
+#: application/modules/translator/assets/admin/create.tpl:54
+#: application/modules/translator/assets/admin/exchange.tpl:50
+#: application/modules/translator/assets/admin/exchange.tpl:79
+msgid "No locales"
+msgstr "Немає локалей"
+
+#: application/modules/translator/assets/js/admin.js:1838
+msgid "Invalid translations parameters."
+msgstr "Невірні параметри."
+
+#: application/modules/translator/assets/admin/list.tpl:179
+msgid "Not translated"
+msgstr "Не перекладено"
+
+#: application/modules/translator/classes/PoFileManager.php:307
+#: application/modules/translator/classes/PoFileManager.php:315
+msgid "Can not create file. Check if path to the file is correct - "
+msgstr "Не можна створити файл. Перевірте, чи шлях до файлу правильний"
+
+#: application/modules/translator/assets/js/admin.js:230
+msgid "Can not sort."
+msgstr "Не можна сортувати"
+
+#: application/modules/translator/classes/PoFileManager.php:518
+msgid "Can not save po-file."
+msgstr "Не можна зберегти файл перекладу"
+
+#: application/modules/translator/assets/js/admin.js:1389
+msgid "Can not set Yandex Api Key."
+msgstr "Не можна встановити Яндекс Api ключ"
+
+#: application/modules/translator/assets/js/admin.js:791
+msgid "Can not set origin language."
+msgstr "Не можна встановити походження мови"
+
+#: application/modules/translator/assets/js/admin.js:1477
+msgid "Can not define language"
+msgstr "Не можна визначити мову"
+
+#: application/modules/translator/translator.php:164
+#: application/modules/translator/admin.php:829
+msgid "Not valid translation file attributes."
+msgstr "Не допустимий переклад атрибутів файлу"
+
+#: application/modules/translator/classes/PoFileManager.php:514
+msgid "Operation failed. Can not convert to mo-file."
+msgstr "Не вдалося виконати операцію. Не можна перетворити в mo-файл"
+
+#: application/modules/translator/assets/js/admin.js:484
+msgid "Was not found any results"
+msgstr "Не було знайдено жодних результатів"
+
+#: application/modules/translator/assets/admin/list.tpl:188
+msgid "Translation file settings"
+msgstr "Налаштування файлу перекладу"
+
+#: application/modules/translator/admin.php:73
+msgid "Settings was successfully updated"
+msgstr "Налаштування успішно оновлено"
+
+#: application/modules/translator/assets/admin/list.tpl:162
+#: application/modules/translator/assets/admin/settings.tpl:35
+msgid "Settings"
+msgstr "Налаштування"
+
+#: application/modules/translator/assets/admin/po_table.tpl:56
+#: application/modules/translator/assets/admin/create.tpl:74
+msgid "Project Name"
+msgstr "Назва проекту"
+
+#: application/modules/translator/assets/admin/settings.tpl:51
+msgid "Language name of source string which need to translate."
+msgstr "Назва мови вихідного рядка, який потрібно перекласти"
+
+#: application/modules/translator/helpers/translator_helper.php:94
+msgid "Mongolian"
+msgstr "Монгольська"
+
+#: application/modules/translator/assets/admin/search.tpl:81
+#: application/modules/translator/assets/admin/list.tpl:209
+#: application/modules/translator/assets/admin/create.tpl:61
+#: application/modules/translator/assets/admin/exchange.tpl:57
+#: application/modules/translator/assets/admin/exchange.tpl:86
+msgid "Modules"
+msgstr "Модулі"
+
+#: application/modules/translator/module_info.php:6
+msgid "Module for work with po-files translations"
+msgstr "Модуль для роботи з перекладом ро-файлів"
+
+#: application/modules/translator/assets/admin/list.tpl:403
+#: application/modules/translator/helpers/translator_helper.php:429
+msgid "Module"
+msgstr "Модуль"
+
+#: application/modules/translator/assets/admin/list.tpl:332
+#: application/modules/translator/assets/admin/settings.tpl:53
+msgid "Origins language"
+msgstr "Мова оригіналу"
+
+#: application/modules/translator/assets/admin/po_table.tpl:91
+#: application/modules/translator/assets/admin/search.tpl:113
+#: application/modules/translator/assets/admin/search.tpl:170
+#: application/modules/translator/assets/admin/search.tpl:226
+#: application/modules/translator/assets/admin/create.tpl:133
+msgid "Language"
+msgstr "Мова"
+
+#: application/modules/translator/classes/PoFileManager.php:284
+msgid "Settings array is empty"
+msgstr "Масив параметрів порожній"
+
+#: application/modules/translator/helpers/translator_helper.php:91
+msgid "Marshallese"
+msgstr "Маршалльська"
+
+#: application/modules/translator/helpers/translator_helper.php:92
+msgid "Maori"
+msgstr "Маорі"
+
+#: application/modules/translator/helpers/translator_helper.php:93
+msgid "Macedonian"
+msgstr "Македонська"
+
+#: application/modules/translator/assets/admin/po_table.tpl:77
+#: application/modules/translator/assets/admin/create.tpl:95
+msgid "Language-Team name"
+msgstr "Лінгвістична група"
+
+#: application/modules/translator/helpers/translator_helper.php:87
+msgid "Lingala"
+msgstr "Лінгала"
+
+#: application/modules/translator/helpers/translator_helper.php:84
+msgid "Luxembourgish"
+msgstr "Люксембурзька"
+
+#: application/modules/translator/helpers/translator_helper.php:89
+msgid "Lithuanian"
+msgstr "Литовська"
+
+#: application/modules/translator/helpers/translator_helper.php:86
+msgid "Limburgish"
+msgstr "Лимбургська"
+
+#: application/modules/translator/helpers/translator_helper.php:83
+msgid "Latin"
+msgstr "Латинська"
+
+#: application/modules/translator/helpers/translator_helper.php:90
+msgid "Latvian"
+msgstr "Латвійська"
+
+#: application/modules/translator/helpers/translator_helper.php:88
+msgid "Lao"
+msgstr "Лао"
+
+#: application/modules/translator/assets/js/admin.js:482
+msgid "Number of searched matches"
+msgstr "Кількість знайдених збігів"
+
+#: application/modules/translator/assets/admin/list.tpl:224
+msgid "Options"
+msgstr "Критерії"
+
+#: application/modules/translator/helpers/translator_helper.php:51
+msgid "Cree"
+msgstr "Кри"
+
+#: application/modules/translator/assets/admin/po_table.tpl:98
+#: application/modules/translator/assets/admin/create.tpl:140
+msgid "Country"
+msgstr "Країна"
+
+#: application/modules/translator/helpers/translator_helper.php:50
+msgid "Corsican"
+msgstr "Корсиканська"
+
+#: application/modules/translator/helpers/translator_helper.php:81
+msgid "Cornish"
+msgstr "Корніш"
+
+#: application/modules/translator/helpers/translator_helper.php:80
+msgid "Korean"
+msgstr "Корейська"
+
+#: application/modules/translator/assets/admin/list.tpl:283
+#: application/modules/translator/assets/translationApiForm.tpl:144
+msgid "Comment"
+msgstr "Коментар"
+
+#: application/modules/translator/assets/admin/settings.tpl:71
+msgid "Key that needed for translation with Yandex Translation Api service."
+msgstr "Ключ, який знадобиться для перекладу з сервісу Яндекс Translation Api"
+
+#: application/modules/translator/helpers/translator_helper.php:125
+msgid "Chinese"
+msgstr "Китайська"
+
+#: application/modules/translator/helpers/translator_helper.php:82
+msgid "Kirghiz"
+msgstr "Киргизька"
+
+#: application/modules/translator/helpers/translator_helper.php:104
+msgid "Quechua"
+msgstr "Кечуа"
+
+#: application/modules/translator/helpers/translator_helper.php:49
+msgid "Catalan"
+msgstr "Каталонська"
+
+#: application/modules/translator/helpers/translator_helper.php:79
+msgid "Kannada"
+msgstr "Канадська"
+
+#: application/modules/translator/helpers/translator_helper.php:77
+msgid "Kazakh"
+msgstr "Казахська"
+
+#: application/modules/translator/assets/admin/create.tpl:35
+msgid "Values"
+msgstr "Значення"
+
+#: application/modules/translator/assets/admin/create.tpl:24
+msgid "Save and Go to Edit"
+msgstr "Зберегти і перейти до редагування"
+
+#: application/modules/translator/assets/admin/settings.tpl:24
+msgid "Save and exit"
+msgstr "Зберегти і вийти"
+
+#: application/modules/translator/assets/admin/list.tpl:68
+#: application/modules/translator/assets/admin/list.tpl:138
+#: application/modules/translator/assets/admin/list.tpl:353
+#: application/modules/translator/assets/admin/create.tpl:20
+#: application/modules/translator/assets/admin/settings.tpl:20
+msgid "Save"
+msgstr "Зберегти"
+
+#: application/modules/translator/helpers/translator_helper.php:61
+msgid "Estonian"
+msgstr "Естонська"
+
+#: application/modules/translator/helpers/translator_helper.php:59
+msgid "Esperanto"
+msgstr "Есперанто"
+
+#: application/modules/translator/assets/admin/po_table.tpl:63
+#: application/modules/translator/assets/admin/create.tpl:81
+msgid "Translator email"
+msgstr "Еmail перекладача"
+
+#: application/modules/translator/assets/js/admin.js:1841
+msgid "Access Not Configured. The API is not enabled for your project."
+msgstr "Доступ Не Налаштований. API не включений для вашого проекту."
+
+#: application/modules/translator/assets/admin/list.tpl:392
+msgid "Additional searched paths"
+msgstr "Додатковий пошук шляхів"
+
+#: application/modules/translator/assets/admin/create.tpl:123
+msgid "Add path"
+msgstr "Додати шлях"
+
+#: application/modules/translator/assets/admin/list.tpl:400
+msgid "Add additional search place"
+msgstr "Додати додаткове місце для пошуку"
+
+#: application/modules/translator/assets/admin/list.tpl:429
+msgid "Add"
+msgstr "Додати"
+
+#: application/modules/translator/assets/admin/settings.tpl:89
+msgid "To display translation form press Ctrl+Alt and move mouse cursor on string title."
+msgstr "Для відображення форми перекладу натисніть Ctrl+Alt і перемістіть вказівник миші на рядок заголовка"
+
+#: application/modules/translator/assets/admin/list.tpl:23
+msgid "Source text"
+msgstr "Джерело тексту"
+
+#: application/modules/translator/assets/admin/list.tpl:10
+msgid "Source"
+msgstr "Джерело"
+
+#: application/modules/translator/helpers/translator_helper.php:55
+msgid "Danish"
+msgstr "Датська"
+
+#: application/modules/translator/helpers/translator_helper.php:76
+msgid "Georgian"
+msgstr "Грузинська"
+
+#: application/modules/translator/helpers/translator_helper.php:57
+msgid "Greek"
+msgstr "Грецька"
+
+#: application/modules/translator/helpers/translator_helper.php:78
+msgid "Kalaallisut"
+msgstr "Гренландська"
+
+#: application/modules/translator/assets/admin/search.tpl:91
+#: application/modules/translator/assets/admin/search.tpl:222
+#: application/modules/translator/assets/admin/list.tpl:211
+#: application/modules/translator/assets/admin/list.tpl:401
+#: application/modules/translator/assets/admin/create.tpl:63
+#: application/modules/translator/assets/admin/exchange.tpl:59
+#: application/modules/translator/assets/admin/exchange.tpl:88
+msgid "Main"
+msgstr "Головний"
+
+#: application/modules/translator/helpers/translator_helper.php:96
+msgid "Dutch"
+msgstr "Голландський"
+
+#: application/modules/translator/helpers/translator_helper.php:69
+msgid "Armenian"
+msgstr "Вірменська"
+
+#: application/modules/translator/assets/js/translateSingleLang.js:28
+#: application/modules/translator/assets/js/admin.js:1341
+#: application/modules/translator/assets/js/admin.js:1928
+msgid "Set direction of translation is not supported."
+msgstr "Встановлений напрямок перекладу не підтримується"
+
+#: application/modules/translator/assets/admin/settings.tpl:91
+msgid "Show fast translation form"
+msgstr "Використовувати форму швидкого перекладу"
+
+#: application/modules/translator/assets/admin/list.tpl:239
+msgid "Use regular expration search"
+msgstr "Використовувати регулярний вираз"
+
+#: application/modules/translator/assets/admin/settings.tpl:85
+msgid "Usage"
+msgstr "Використання"
+
+#: application/modules/translator/assets/admin/list.tpl:417
+msgid "Delete"
+msgstr "Видалити"
+
+#: application/modules/translator/assets/admin/templates_names.tpl:1
+msgid "Choose template"
+msgstr "Вибрати шаблон"
+
+#: application/modules/translator/assets/admin/exchange.tpl:69
+msgid "Choose file receiver location"
+msgstr "Вибрати файл розташування приймача"
+
+#: application/modules/translator/assets/admin/list.tpl:208
+#: application/modules/translator/assets/admin/create.tpl:60
+#: application/modules/translator/assets/admin/exchange.tpl:56
+#: application/modules/translator/assets/admin/exchange.tpl:85
+msgid "Choose type"
+msgstr "Вибрати тип"
+
+#: application/modules/translator/assets/admin/create.tpl:44
+msgid "Choose file location"
+msgstr "Вибрати розташування файлу"
+
+#: application/modules/translator/assets/admin/exchange.tpl:40
+msgid "Choose file exchanger location"
+msgstr "Вибрати місце файлообмінника"
+
+#: application/modules/translator/assets/admin/modules_names.tpl:1
+msgid "Choose module"
+msgstr "Вибрати модуль"
+
+#: application/modules/translator/assets/admin/list.tpl:197
+#: application/modules/translator/assets/admin/create.tpl:49
+#: application/modules/translator/assets/admin/exchange.tpl:45
+#: application/modules/translator/assets/admin/exchange.tpl:74
+msgid "Choose locale"
+msgstr "Вибрати мову"
+
+#: application/modules/translator/assets/admin/list.tpl:8
+msgid "Choose languages"
+msgstr "Вибрати мови"
+
+#: application/modules/translator/assets/admin/list.tpl:397
+msgid "Choose one from list, it will be added"
+msgstr "Виберіть один зі списку, він буде доданий"
+
+#: application/modules/translator/assets/js/admin.js:1638
+#: application/modules/translator/assets/js/admin.js:1643
+msgid "Select all paths to files."
+msgstr "Виберіть всі шляхи до файлів"
+
+#: application/modules/translator/assets/js/translateSingleLang.js:169
+msgid "You did not specified Yandex Api Key. Please set it in translator module settins."
+msgstr "Ви не уточнили Yandex Api Key. Будь ласка, встановіть його в перекладач модулю налаштувань"
+
+#: application/modules/translator/assets/js/admin.js:1422
+#: application/modules/translator/assets/js/admin.js:1452
+msgid "You have not specified text to translate."
+msgstr "Ви не вказали текст для перекладу"
+
+#: application/modules/translator/assets/js/admin.js:1181
+#: application/modules/translator/assets/js/admin.js:1280
+msgid "You have not specified origins strings language."
+msgstr "Ви не вказали походження рядків мови"
+
+#: application/modules/translator/assets/js/admin.js:1417
+msgid "You have not specified translation text language."
+msgstr "Ви не вказали переклад мови тексту"
+
+#: application/modules/translator/assets/js/admin.js:1412
+msgid "You have not specified source text language."
+msgstr "Ви не вказали джерело мови тексту"
+
+#: application/modules/translator/assets/js/admin.js:1176
+#: application/modules/translator/assets/js/admin.js:1275
+#: application/modules/translator/assets/js/admin.js:1407
+#: application/modules/translator/assets/js/admin.js:1447
+msgid "You have not specified Yandex Api Key."
+msgstr "Ви не вказали Yandex Api Key"
+
+#: application/modules/translator/assets/js/admin.js:491
+msgid "You did not select search criteria"
+msgstr "Ви не вибрати критерії пошуку"
+
+#: application/modules/translator/assets/admin/list.tpl:396
+msgid "You can hold and translate phrases from modules and Main translation file in this file"
+msgstr "Ви можете тримати і переводити фрази з модулів і основного файлу перекладу в цьому файлі"
+
+#: application/modules/translator/helpers/translator_helper.php:54
+msgid "Welsh"
+msgstr "Валлійська"
+
+#: application/modules/translator/helpers/translator_helper.php:123
+msgid "Vietnamese"
+msgstr "В'єтнамська"
+
+#: application/modules/translator/helpers/translator_helper.php:45
+msgid "Bihari"
+msgstr "Біхарі"
+
+#: application/modules/translator/helpers/translator_helper.php:43
+msgid "Belarusian"
+msgstr "Білоруська"
+
+#: application/modules/translator/assets/js/admin.js:863
+msgid "Please set paths to parsing files."
+msgstr "Будь ласка, вкажіть шляхи для аналізу файлів"
+
+#: application/modules/translator/assets/admin/list.tpl:222
+msgid "Please, enter search string..."
+msgstr "Будь ласка, введіть у рядок пошуку..."
+
+#: application/modules/translator/assets/js/admin.js:488
+msgid "Please, enter more than 1 symbol"
+msgstr "Будь ласка, введіть більш ніж 1 символ"
+
+#: application/modules/translator/helpers/translator_helper.php:47
+msgid "Breton"
+msgstr "Бретон"
+
+#: application/modules/translator/helpers/translator_helper.php:48
+msgid "Bosnian"
+msgstr "Боснійська"
+
+#: application/modules/translator/helpers/translator_helper.php:44
+msgid "Bulgarian"
+msgstr "Болгарська"
+
+#: application/modules/translator/helpers/translator_helper.php:46
+msgid "Bengali"
+msgstr "Бенгальська"
+
+#: application/modules/translator/helpers/translator_helper.php:42
+msgid "Bashkir"
+msgstr "Башкирська"
+
+#: application/modules/translator/helpers/translator_helper.php:62
+msgid "Basque"
+msgstr "Баскська"
+
+#: application/modules/translator/assets/admin/create.tpl:109
+msgid "Basepath"
+msgstr "Базовий шлях"
+
+#: application/modules/translator/helpers/translator_helper.php:39
+msgid "Aragonese"
+msgstr "Арагонська"
+
+#: application/modules/translator/helpers/translator_helper.php:40
+msgid "Arabic"
+msgstr "Арабська"
+
+#: application/modules/translator/helpers/translator_helper.php:58
+msgid "English"
+msgstr "Англійська"
+
+#: application/modules/translator/helpers/translator_helper.php:112
+msgid "Albanian"
+msgstr "Албанська"
+
+#: application/modules/translator/helpers/translator_helper.php:41
+msgid "Azerbaijani"
+msgstr "Азербайджанська"
+
+#: application/modules/translator/assets/translationApiForm.tpl:137
+msgid "Autotranslate"
+msgstr "Автопереклад"
+
+#: application/modules/translator/assets/admin/list.tpl:13
+#: application/modules/translator/assets/admin/list.tpl:338
+msgid "Auto define source language"
+msgstr "Автоматичне визначення вихідної мови"
+
+#: application/modules/translator/helpers/translator_helper.php:38
+msgid "Avestan"
+msgstr "Авестійська"
+
+#: application/modules/translator/helpers/translator_helper.php:37
+msgid "Abkhazian"
+msgstr "Абхазький"
+
+#: application/modules/translator/assets/admin/list.tpl:345
+#: application/modules/translator/assets/admin/settings.tpl:73
+msgid "Yandex Api Key"
+msgstr "Yandex Api Key"
+
+#: application/modules/translator/assets/admin/settings.tpl:7
+msgid "Translator settings"
+msgstr "Translator settings"
+
+#: application/modules/translator/helpers/translator_helper.php:100
+msgid "Pali"
+msgstr "Palі"
+
+#: application/modules/translator/helpers/translator_helper.php:73
+msgid "Inuktitut"
+msgstr "Inuktitut"
+
+#: application/modules/translator/assets/admin/po_table.tpl:84
+#: application/modules/translator/assets/admin/create.tpl:102
+msgid "Language-Team email"
+msgstr "email лінгвістичної групи"
+
+#: application/modules/translator/assets/js/translateSingleLang.js:13
+#: application/modules/translator/assets/js/admin.js:1326
+#: application/modules/translator/assets/js/admin.js:1913
+msgid "API key is locked."
+msgstr "API ключ заблокований."

@@ -1,25 +1,33 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+
+if (!defined('BASEPATH')) {
+    exit('No direct script access allowed');
+}
+
 /**
  * Image CMS
  * Memcache Class
  *
  */
-class Mem_cache extends Memcache
-{
+class Mem_cache extends Memcache {
+
     public $CI;
+
     public $get = 0;
+
     public $set = 0;
+
     public $key_prefix = '';
 
-	//Cache config
+    //Cache config
     public $_Config = array(
         'store' => 'cache',
-        'ttl'   => 3600);
+        'ttl' => 3600);
 
-    public function __construct()
-    {
-        $this->CI =& get_instance();
-    	$this->connect('localhost', 11211) or die ("Could not connect to memcache server.");
+    public function __construct() {
+
+        $this->CI = & get_instance();
+        $this->connect('localhost', 11211) or die("Could not connect to memcache server.");
         $this->key_prefix = base_url();
     }
 
@@ -30,18 +38,17 @@ class Mem_cache extends Memcache
      *
      * @return mixed
      */
-    public function fetch($key, $group = FALSE)
-    {
-		if (($ret = $this->_fetch($key)) === false)
-	    {
-	        return false;
-        }else{
-           return $ret;
-        }
-     }
+    public function fetch($key, $group = FALSE) {
 
-    public function _fetch($key)
-    {
+        if (($ret = $this->_fetch($key)) === false) {
+            return false;
+        } else {
+            return $ret;
+        }
+    }
+
+    public function _fetch($key) {
+
         $key = $this->generatekey($key);
 
         $this->get++;
@@ -52,13 +59,13 @@ class Mem_cache extends Memcache
     /**
      * Fetch cached function
      */
-    public function fetch_func($object, $func, $args = array())
-    {
-        $key = $this->generatekey(get_class($object).'::'.$func.'::'.serialize($args));
+    public function fetch_func($object, $func, $args = array()) {
+
+        $key = $this->generatekey(get_class($object) . '::' . $func . '::' . serialize($args));
 
         $this->get++;
 
-	    return $this->get($key);
+        return $this->get($key);
     }
 
     /**
@@ -70,16 +77,15 @@ class Mem_cache extends Memcache
      *
      * @return bool
      */
-    public function store($key, $data, $ttl = false, $group = false)
-    {
-        if (!$ttl)
-        {
+    public function store($key, $data, $ttl = false, $group = false) {
+
+        if (!$ttl) {
             $ttl = $this->_Config['ttl'];
         }
 
         $this->set($this->generatekey($key), $data, FALSE, $ttl);
 
-    	$this->set++;
+        $this->set++;
         return TRUE;
     }
 
@@ -89,29 +95,29 @@ class Mem_cache extends Memcache
      * @return mixed
      * @access public
      */
-    public function call($func = array(), $args = array(),$ttl = FALSE)
-    {
-	    if ($ttl === FALSE)
-    	    $ttl = $this->_Config['ttl'];
+    public function call($func = array(), $args = array(), $ttl = FALSE) {
 
-		    $arguments = func_get_args();
+        if ($ttl === FALSE) {
+            $ttl = $this->_Config['ttl'];
+        }
 
-		    //class_name::metohd
-		    $key = get_class($arguments[0][0]).'::'.$arguments[0][1].'::'.serialize($args);
+        $arguments = func_get_args();
 
-		    if (($cache = $this->fetch($key)) !== false)
-		    {
-		        return $cache;
+        //class_name::metohd
+        $key = get_class($arguments[0][0]) . '::' . $arguments[0][1] . '::' . serialize($args);
+
+        if (($cache = $this->fetch($key)) !== false) {
+            return $cache;
+        } else {
+            $target = array_shift($arguments);
+            $result = call_user_func_array($target, $args);
+
+            if (!$this->store($key, $result, false)) {
+                return FALSE;
             }
-            else
-            {
-		        $target = array_shift($arguments);
-		        $result = call_user_func_array($target, $args);
 
-		        if (!$this->store($key, $result, false))  return FALSE;
-
-		    return $result;
-	    }
+            return $result;
+        }
     }
 
     /**
@@ -119,9 +125,9 @@ class Mem_cache extends Memcache
      *
      * @return void
      */
-    public function Clean()
-    {
-    	$this->flush();
+    public function Clean() {
+
+        $this->flush();
     }
 
     /**
@@ -129,9 +135,9 @@ class Mem_cache extends Memcache
      *
      * @return void
      */
-    public function delete_group()
-    {
-	    $this->flush();
+    public function delete_group() {
+
+        $this->flush();
     }
 
     /**
@@ -141,9 +147,9 @@ class Mem_cache extends Memcache
      *
      * @return bool
      */
-    public function delete($key)
-    {
-    	$this->delete($this->generatekey($key));
+    public function delete($key) {
+
+        $this->delete($this->generatekey($key));
     }
 
     /**
@@ -151,10 +157,10 @@ class Mem_cache extends Memcache
      *
      * @return bool
      */
-    public function delete_func($object, $func, $args = array())
-    {
-	    $file = $this->generatekey(get_class($object).'::'.$func.'::'.serialize($args));
-	    $this->delete($file);
+    public function delete_func($object, $func, $args = array()) {
+
+        $file = $this->generatekey(get_class($object) . '::' . $func . '::' . serialize($args));
+        $this->delete($file);
     }
 
     /**
@@ -163,8 +169,8 @@ class Mem_cache extends Memcache
      * @return bool
      * @access public
      */
-    public function delete_all()
-    {
+    public function delete_all() {
+
         $this->flush();
     }
 
@@ -173,10 +179,11 @@ class Mem_cache extends Memcache
      *
      * @param  $key
      * @return string */
-    public function generatekey($key)
-    {
-        return md5($this->key_prefix.$key);
+    public function generatekey($key) {
+
+        return md5($this->key_prefix . $key);
     }
+
 }
 
 /* End of cache.php */

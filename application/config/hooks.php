@@ -13,24 +13,15 @@ if (!defined('BASEPATH'))
   |
  */
 
-
-$hook['post_controller'][] = array(
-    'class' => 'DebugToolbar',
-    'function' => 'render',
-    'filename' => 'DebugToolbar.php',
-    'filepath' => 'hooks'
-);
-$hook['pre_controller'][] = array(
+$hook['pre_system'][] = array(
     'class' => '',
-    'function' => 'modules_namespaces_initialize',
-    'filename' => 'namespaceses.php',
-    'filepath' => 'third_party/'
+    'function' => 'checkPhpVersionOrDie',
+    'filename' => 'system_validation_hooks.php',
+    'filepath' => 'third_party'
 );
 $hook['post_controller'][] = array(
     'class' => '',
     'function' => 'runFactory',
-    'filename' => 'namespaceses.php',
-    'filepath' => 'third_party/'
+    'filename' => 'hooks.php',
+    'filepath' => 'third_party'
 );
-/* End of file hooks.php */
-/* Location: ./system/application/config/hooks.php */

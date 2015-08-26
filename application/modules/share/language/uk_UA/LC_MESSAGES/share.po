@@ -1,0 +1,142 @@
+﻿msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-12-26 04:52+0200\n"
+"PO-Revision-Date: 2014-12-26 04:52+0200\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/share/admin.php:39
+msgid "Social buttons was updated"
+msgstr "Кнопки соціальних мереж оновлено"
+
+#: ./application/modules/share/module_info.php:5
+msgid "Adds social networks buttons to products and articles"
+msgstr "Додає до товарів і статей кнопки соціальних мереж"
+
+#: ./application/modules/share/assets/admin/settings.tpl:17
+msgid "Buttons I like"
+msgstr "Кнопки "
+
+#: ./application/modules/share/assets/admin/settings.tpl:140
+msgid "only icons"
+msgstr "лише іконки"
+
+#: ./application/modules/share/assets/admin/settings.tpl:139
+msgid "icon and menu"
+msgstr "значок і меню"
+
+#: ./application/modules/share/assets/admin/settings.tpl:113
+msgid "My circle"
+msgstr "Мой круг"
+
+#: ./application/modules/share/assets/admin/settings.tpl:83
+msgid "My World"
+msgstr "Мой Мир"
+
+#: ./application/modules/share/assets/admin/settings.tpl:73
+msgid "Odnoklassniki"
+msgstr "Одноклассники"
+
+#: ./application/modules/share/assets/admin/settings.tpl:43
+msgid "VK"
+msgstr "В.К."
+
+#: ./application/modules/share/assets/admin/settings.tpl:16
+msgid "Share buttons"
+msgstr "Кнопки "
+
+#: ./application/modules/share/admin.php:41
+msgid "Settings successfully saved"
+msgstr "Налаштування успішно збережено"
+
+#: ./application/modules/share/module_info.php:4
+msgid "Social Networking Buttons"
+msgstr "Кнопки соціальних мереж"
+
+#: ./application/modules/share/assets/admin/settings.tpl:5
+msgid "Button social networks module settings"
+msgstr "Налаштування кнопок соціальних мереж"
+
+#: ./application/modules/share/assets/admin/settings.tpl:9
+msgid "Go back"
+msgstr "Повернутися"
+
+#: ./application/modules/share/assets/admin/settings.tpl:10
+msgid "Save"
+msgstr "Зберегти"
+
+#: ./application/modules/share/assets/admin/settings.tpl:11
+msgid "Save and go back"
+msgstr "Зберегти і повернутися"
+
+#: ./application/modules/share/assets/admin/settings.tpl:25
+#: ./application/modules/share/assets/admin/settings.tpl:156
+msgid "Settings"
+msgstr "Налаштування"
+
+#: ./application/modules/share/assets/admin/settings.tpl:33
+msgid "Я.ру"
+msgstr "Я.ру"
+
+#: ./application/modules/share/assets/admin/settings.tpl:53
+#: ./application/modules/share/assets/admin/settings.tpl:164
+msgid "Facebook"
+msgstr "Facebook"
+
+#: ./application/modules/share/assets/admin/settings.tpl:63
+#: ./application/modules/share/assets/admin/settings.tpl:200
+msgid "Twitter"
+msgstr "Twitter"
+
+#: ./application/modules/share/assets/admin/settings.tpl:93
+msgid "Livejournal"
+msgstr "Livejournal"
+
+#: ./application/modules/share/assets/admin/settings.tpl:103
+msgid "Friendfeed"
+msgstr "Friendfeed"
+
+#: ./application/modules/share/assets/admin/settings.tpl:123
+msgid "Google+"
+msgstr "Google+"
+
+#: ./application/modules/share/assets/admin/settings.tpl:133
+msgid "External view"
+msgstr "Зовнішній вигляд"
+
+#: ./application/modules/share/assets/admin/settings.tpl:136
+msgid "counter"
+msgstr "лічильник"
+
+#: ./application/modules/share/assets/admin/settings.tpl:137
+msgid "button"
+msgstr "кнопка"
+
+#: ./application/modules/share/assets/admin/settings.tpl:138
+msgid "link"
+msgstr "посилання"
+
+#: ./application/modules/share/assets/admin/settings.tpl:174
+msgid "Вконтакте"
+msgstr "Вконтакте"
+
+#: ./application/modules/share/assets/admin/settings.tpl:184
+msgid "Ваш API ID"
+msgstr "Ваш API ID"
+
+#: ./application/modules/share/assets/admin/settings.tpl:190
+msgid "Google +"
+msgstr "Google+"

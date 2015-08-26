@@ -2,11 +2,11 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-05 11:24+0300\n"
-"PO-Revision-Date: 2014-06-05 11:24+0300\n"
-"Last-Translator:  \n"
-"Language-Team:  \n"
-"Language: en_US\n"
+"POT-Creation-Date: 2015-01-14 03:51+0200\n"
+"PO-Revision-Date: 2015-01-14 03:51+0200\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,3 +17,16 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: ./application/modules/template_editor/module_info.php:4
+#: ./application/modules/template_editor/templates/admin/index.tpl:11
+msgid "Template editor"
+msgstr "File manager"
+
+#: ./application/modules/template_editor/module_info.php:5
+msgid "Site templates managementing"
+msgstr "Site templates management"
+
+#: ./application/modules/template_editor/templates/admin/index.tpl:16
+msgid "Back"
+msgstr "Back"
