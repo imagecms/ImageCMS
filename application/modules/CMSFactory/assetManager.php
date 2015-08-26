@@ -494,7 +494,7 @@ class assetManager {
 
     /**
      * Compressing css file
-     * @param type $css text of css file
+     * @param string $css text of css file
      * @copyright ImageCMS (c) 2013, a.gula <a.gula@imagecms.net>
      */
     private function compressCss($css) {
