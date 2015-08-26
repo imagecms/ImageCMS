@@ -172,6 +172,12 @@ class Template extends Mabilis {
         return $this->view($file . '.tpl', $this->template_vars, TRUE);
     }
 
+    /**
+     *
+     * @param boolean|string $file
+     * @param array $data
+     * @return type
+     */
     public function fetch($file = FALSE, $data = array()) {
         return $this->read($file, $data);
     }
