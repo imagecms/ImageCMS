@@ -1,6 +1,12 @@
-$('#role').live('change', function() {
-    setTimeout(function() {
-        $('.listFilterSubmitButton').trigger('click');
-    }, 100);
-    
-});
+$('#role').live(
+    'change',
+    function() {
+        setTimeout(
+            function() {
+                $('.listFilterSubmitButton').trigger('click');
+            },
+            100
+        );
+
+    }
+);

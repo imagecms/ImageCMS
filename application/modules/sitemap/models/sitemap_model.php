@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * @property CI_DB_active_record $db
@@ -9,7 +10,7 @@ if (!defined('BASEPATH'))
  */
 class Sitemap_model extends CI_Model {
 
-    function __construct() {
+    public function __construct() {
         parent::__construct();
     }
 
@@ -136,7 +137,7 @@ class Sitemap_model extends CI_Model {
      * @return array
      */
     public function get_shop_categories() {
-//        $this->db->select('full_path, parent_id');
+        //        $this->db->select('full_path, parent_id');
         $this->db->where('active', 1);
         $result = $this->db->get('shop_category');
 
@@ -148,7 +149,7 @@ class Sitemap_model extends CI_Model {
      * @return array
      */
     public function get_shop_brands() {
-//        $this->db->select('url');
+        //        $this->db->select('url');
         $result = $this->db->get('shop_brands');
 
         return $this->returnData($result);
@@ -242,7 +243,9 @@ class Sitemap_model extends CI_Model {
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->create_table('mod_sitemap_priorities');
 
-        $this->db->insert('mod_sitemap_priorities', array(
+        $this->db->insert(
+            'mod_sitemap_priorities',
+            array(
             'main_page_priority' => 1,
             'cats_priority' => 1,
             'pages_priority' => 1,
@@ -251,7 +254,8 @@ class Sitemap_model extends CI_Model {
             'products_categories_priority' => 1,
             'products_sub_categories_priority' => 1,
             'brands_priority' => 1
-        ));
+                )
+        );
 
         $fields = array(
             'id' => array(
@@ -304,7 +308,9 @@ class Sitemap_model extends CI_Model {
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->create_table('mod_sitemap_changefreq');
 
-        $this->db->insert('mod_sitemap_changefreq', array(
+        $this->db->insert(
+            'mod_sitemap_changefreq',
+            array(
             'main_page_changefreq' => 'weekly',
             'pages_changefreq' => 'weekly',
             'product_changefreq' => 'weekly',
@@ -313,8 +319,8 @@ class Sitemap_model extends CI_Model {
             'products_sub_categories_changefreq' => 'weekly',
             'brands_changefreq' => 'weekly',
             'sub_categories_changefreq' => 'weekly'
-        ));
-
+                )
+        );
 
         $fields = array(
             'id' => array(
@@ -337,7 +343,6 @@ class Sitemap_model extends CI_Model {
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->create_table('mod_sitemap_blocked_urls');
 
-
         $this->db->where('name', 'sitemap');
         $this->db->delete('components');
 
@@ -349,13 +354,15 @@ class Sitemap_model extends CI_Model {
             'sendWhenUrlChanged' => 0
         );
 
-        return $this->db->insert('components', array(
-                'name' => 'sitemap',
-                'identif' => 'sitemap',
-                'autoload' => '1',
-                'enabled' => '1',
-                'settings' => serialize($data)
-            )
+        return $this->db->insert(
+            'components',
+            array(
+                    'name' => 'sitemap',
+                    'identif' => 'sitemap',
+                    'autoload' => '1',
+                    'enabled' => '1',
+                    'settings' => serialize($data)
+                        )
         );
     }
 

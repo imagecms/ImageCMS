@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Image CMS
@@ -21,7 +22,9 @@ if (!defined('BASEPATH'))
 class Star_rating extends MY_Controller {
 
     private $new_votes = 0;
+
     private $new_rating = 0;
+
     private $list_for_show = array('main', 'category', 'brand', 'product', 'shop_category', 'page');
 
     public function __construct() {
@@ -37,7 +40,7 @@ class Star_rating extends MY_Controller {
     }
 
     public function autoload() {
-        
+
     }
 
     /**
@@ -57,10 +60,11 @@ class Star_rating extends MY_Controller {
         // product rating
         if ($item != null && $item instanceof SProducts) {
 
-            if ($item->getRating() != null)
+            if ($item->getRating() != null) {
                 $rating_s = (int) $item->getRating() * 20; // rating in percent
-            else
+            } else {
                 $rating_s = 0;
+            }
 
             $data = array(
                 'id_type' => $item->getId(),
@@ -69,7 +73,7 @@ class Star_rating extends MY_Controller {
                 'rating' => $rating_s
             );
             $template = 'product_star_rating';
-        }else {
+        } else {
             if (in_array($type, array_keys($this->list_for_show))) {
                 $rating = $this->rating_model->get_rating($id, $type);
                 if ($rating->votes != 0) {
@@ -92,11 +96,12 @@ class Star_rating extends MY_Controller {
         }
 
         //Show template with prepared parametrs
-        if ($template !== null)
+        if ($template !== null) {
             $renderTemplate = CMSFactory\assetManager::create();
+        }
         $renderTemplate->setData($data)
-                ->registerStyle('style');
-//                    if ($template != 'product_star_rating')$registerScript
+            ->registerStyle('style');
+        //                    if ($template != 'product_star_rating')$registerScript
         if ($registerScript) {
             $renderTemplate->registerScript('scripts');
         }
@@ -158,9 +163,11 @@ class Star_rating extends MY_Controller {
 
             //If ajax request than return data for with new rating and votes
             if ($this->input->is_ajax_request()) {
-                return json_encode(array("rate" => "$rating_res",
-                    "votes" => "$votes_res"
-                ));
+                return json_encode(
+                    array("rate" => "$rating_res",
+                            "votes" => "$votes_res"
+                        )
+                );
             }
         } else {
             return json_encode(array("rate" => null));

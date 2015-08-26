@@ -29,7 +29,7 @@
     <form action="/admin/components/cp/sitemap/settings" id="sitemap_settings_form" method="post" class="form-horizontal m-t_10">
         <table class="table  table-bordered table-hover table-condensed content_big_td">
             <thead>
-                <th>{lang("Settings", 'sitemap')}</th>
+            <th>{lang("Settings", 'sitemap')}</th>
             </thead>
             <tbody>
                 <tr>
@@ -45,22 +45,22 @@
                                     </select>
                                     <div class="savedSitemap m-t_5" style="{if $settings.generateXML}display: none{/if}">
                                         {if $fileSiteMapData}
-                                        <div>
-                                            <a href="{echo site_url('admin/components/init_window/sitemap/sitemapDownload')}">{lang('Saved Site Map', 'sitemap')}</a>
-                                            <b>&nbsp;&nbsp;&nbsp;{lang('Created at', 'sitemap')}:</b> {echo date('Y-m-d  H:i', $fileSiteMapData['time'])}, <b>{lang('Size', 'sitemap')}:</b> {echo number_format($fileSiteMapData['size']/1024, 2)} {lang('Kb', 'sitemap')}
-                                        </div>
+                                            <div>
+                                                <a href="{echo site_url('admin/components/init_window/sitemap/sitemapDownload')}">{lang('Saved Site Map', 'sitemap')}</a>
+                                                <b>&nbsp;&nbsp;&nbsp;{lang('Created at', 'sitemap')}:</b> {echo date('Y-m-d  H:i', $fileSiteMapData['time'])}, <b>{lang('Size', 'sitemap')}:</b> {echo number_format($fileSiteMapData['size']/1024, 2)} {lang('Kb', 'sitemap')}
+                                            </div>
                                         {else:}
-                                        <div>
-                                            <span class="help-block">{lang('There is no saved Site Map.', 'sitemap')}</span>
-                                        </div>
+                                            <div>
+                                                <span class="help-block">{lang('There is no saved Site Map.', 'sitemap')}</span>
+                                            </div>
                                         {/if}
                                         <button type="button" onclick="SiteMap.saveSiteMap()" class="btn btn-small btn-default m-t_15">
                                             {if $fileSiteMapData}
-                                            <i class="icon-refresh"></i>
-                                            {lang("Update", 'sitemap')}
+                                                <i class="icon-refresh"></i>
+                                                {lang("Update", 'sitemap')}
                                             {else:}
-                                            <i class="icon-ok"></i>
-                                            {lang("Save", 'sitemap')}
+                                                <i class="icon-ok"></i>
+                                                {lang("Save", 'sitemap')}
                                             {/if}
                                         </button>
                                     </div>
@@ -98,13 +98,13 @@
                             </div-->
 
                             {if $settings.lastSend}
-                            <div class="control-group">
-                                <label class="control-label" for="comcount">{lang("Last send Site Map time", 'sitemap')}:</label>
-                                <div class="controls number">
-                                    <input type="text" readonly="readonly" value="{echo date('Y-m-d  H:i:s', $settings.lastSend)}">
-                                    <input type="hidden" name="settings[lastSend]" value="{echo $settings.lastSend}">
+                                <div class="control-group">
+                                    <label class="control-label" for="comcount">{lang("Last send Site Map time", 'sitemap')}:</label>
+                                    <div class="controls number">
+                                        <input type="text" readonly="readonly" value="{echo date('Y-m-d  H:i:s', $settings.lastSend)}">
+                                        <input type="hidden" name="settings[lastSend]" value="{echo $settings.lastSend}">
+                                    </div>
                                 </div>
-                            </div>
                             {/if}
                             <div class="control-group">
                                 <span class="control-label">&nbsp;</span>

@@ -1,19 +1,19 @@
 <div class="top-navigation">
-        <div style="float:left;">
-            <ul>
+    <div style="float:left;">
+        <ul>
             <li>
                 <p>{lang('All tags', 'tags')} ({count($tags_cloud)})</p>
             </li>
-            </ul>
-        </div>
+        </ul>
+    </div>
 </div>
 <div style="clear:both;"></div>
 
 <div style="padding:5px;">
     <div class="tags">
-    {foreach $tags_cloud as $tag}
-        <a href="#" style="font-size:{$tag.font_size}px">{$tag.value}<sup style="font-size:12px;">{$tag.count}</sup></a>
-    {/foreach}
+        {foreach $tags_cloud as $tag}
+            <a href="#" style="font-size:{$tag.font_size}px">{$tag.value}<sup style="font-size:12px;">{$tag.count}</sup></a>
+            {/foreach}
     </div>
 </div>
 {literal}

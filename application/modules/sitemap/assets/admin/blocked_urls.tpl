@@ -29,7 +29,7 @@
     <form action="/admin/components/cp/sitemap/blockedUrls" id="sitemap_blockedUrls_form" method="post" class="form-horizontal m-t_10">
         <table class="table  table-bordered table-hover table-condensed content_big_td">
             <thead>
-                <th>{lang('Do not show on Site Map', 'sitemap')}</th>
+            <th>{lang('Do not show on Site Map', 'sitemap')}</th>
             </thead>
             <tbody>
                 <tr>
@@ -51,8 +51,8 @@
                                 <div class="input-prepend span7">
                                     <span class="add-on" style="height: 17px;">{site_url()}</span>
                                     <input id="hide_url" onkeypress="var keycode = (event.keyCode ? event.keyCode : event.which);
-                                    if (keycode == '13')
-                                    SiteMap.addHidenUrl($(this));" class="span5 m-r_15" type="text" >
+                                            if (keycode == '13')
+                                                SiteMap.addHidenUrl($(this));" class="span5 m-r_15" type="text" >
 
                                 </div>
                             </div>
@@ -80,26 +80,26 @@
                         </div>
 
                         {if $hide_urls}
-                        {foreach $hide_urls as $key => $url}
-                        <div class="control-group">
-                            <label class="control-label">URL:</label>
-                            <div class="controls">
-                                <div class="input-prepend">
-                                    <span class="add-on" style="height: 17px;">{site_url()}</span>
-                                    <input class="hide_url m-r_15" name="hide_urls[]" type="text" value="{echo $url['url']}">
-                                    <button type="button" onclick="SiteMap.removeHidenUrl($(this))" class="btn btn-small btn-default"><i class="icon-trash"></i></button>
+                            {foreach $hide_urls as $key => $url}
+                                <div class="control-group">
+                                    <label class="control-label">URL:</label>
+                                    <div class="controls">
+                                        <div class="input-prepend">
+                                            <span class="add-on" style="height: 17px;">{site_url()}</span>
+                                            <input class="hide_url m-r_15" name="hide_urls[]" type="text" value="{echo $url['url']}">
+                                            <button type="button" onclick="SiteMap.removeHidenUrl($(this))" class="btn btn-small btn-default"><i class="icon-trash"></i></button>
+                                        </div>
+                                        <div>
+                                            <span class="frame_label no_connection">
+                                                <span class="niceCheck b_n">
+                                                    <input type="checkbox" class="robots_check" name="robots_check[{echo ++$key}]" {if $url['robots_check']}checked="checked"{/if}>
+                                                </span>
+                                                <span>{lang('Block in robots', 'sitemap')}</span>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div>
-                                    <span class="frame_label no_connection">
-                                        <span class="niceCheck b_n">
-                                            <input type="checkbox" class="robots_check" name="robots_check[{echo ++$key}]" {if $url['robots_check']}checked="checked"{/if}>
-                                        </span>
-                                        <span>{lang('Block in robots', 'sitemap')}</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        {/foreach}
+                            {/foreach}
                         {/if}
                     </td>
                 </tr>

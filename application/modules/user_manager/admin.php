@@ -303,7 +303,7 @@ class Admin extends BaseAdminController {
 
                 for ($i = 0, $users_c = count($users); $i < $users_c; $i++) {
 
-                    if ((int)$role != 0) {
+                    if ((int) $role != 0) {
                         if ($users[$i]['role_id'] != $role) {
                             unset($users[$i]);
                         }

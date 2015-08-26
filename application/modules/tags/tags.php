@@ -323,14 +323,14 @@ class Tags extends MY_Controller {
             }
         }
 
-//        $this->_remove_orphans();
+        //        $this->_remove_orphans();
     }
 
     public function _remove_orphans($page_id = null) {
         $page = $this->db->where('id', $page_id)->get('content');
-        $page = $page ? $page->row_array() : [];        
+        $page = $page ? $page->row_array() : [];
         $page_id = $page['lang_alias'] ? $page['lang_alias'] : $page_id;
-        
+
         if ($page_id) {
             $content_tags = $this->db
                 ->select('content_tags.id')
@@ -338,7 +338,7 @@ class Tags extends MY_Controller {
                 ->or_where('content.lang_alias', $page_id)
                 ->join('content', "content_tags.page_id=content.id")
                 ->get('content_tags');
-        
+
             $content_tags = $content_tags ? $content_tags->result_array() : [];
             $content_tags_ids = [];
             foreach ($content_tags as $tag) {

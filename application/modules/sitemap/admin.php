@@ -24,7 +24,7 @@ class Admin extends BaseAdminController {
      */
     private $site_map_folder_path = './uploads/sitemaps';
 
-    function __construct() {
+    public function __construct() {
         parent::__construct();
 
         $this->load->library('DX_Auth');
@@ -38,7 +38,7 @@ class Admin extends BaseAdminController {
     /**
      * Show sitemap priorities page
      */
-    function index() {
+    public function index() {
         $this->priorities();
     }
 
@@ -84,9 +84,9 @@ class Admin extends BaseAdminController {
                     ->registerScript('admin')
                     ->appendData(
                         array(
-                        'settings' => $settings,
-                        'fileSiteMapData' => $file_data
-                        )
+                                'settings' => $settings,
+                                'fileSiteMapData' => $file_data
+                            )
                     )
                     ->renderAdmin('settings');
         }
@@ -250,15 +250,15 @@ class Admin extends BaseAdminController {
                     ->setData($changefreq)
                     ->appendData(
                         array(
-                        'changefreq_options' => array(
-                            'always' => lang('always', 'sitemap'),
-                            'hourly' => lang('hourly', 'sitemap'),
-                            'daily' => lang('daily', 'sitemap'),
-                            'weekly' => lang('weekly', 'sitemap'),
-                            'monthly' => lang('monthly', 'sitemap'),
-                            'yearly' => lang('yearly', 'sitemap'),
-                            'never' => lang('never', 'sitemap')
-                        )
+                                'changefreq_options' => array(
+                                    'always' => lang('always', 'sitemap'),
+                                    'hourly' => lang('hourly', 'sitemap'),
+                                    'daily' => lang('daily', 'sitemap'),
+                                    'weekly' => lang('weekly', 'sitemap'),
+                                    'monthly' => lang('monthly', 'sitemap'),
+                                    'yearly' => lang('yearly', 'sitemap'),
+                                    'never' => lang('never', 'sitemap')
+                                )
                             )
                     )
                     ->renderAdmin('changefreq');
@@ -417,8 +417,7 @@ class Admin extends BaseAdminController {
 
         if ($return === false) {
             $this->template->show('file:' . 'application/' . getModContDirName('sitemap') . '/sitemap/templates/admin/' . $viewName);
-        }
-        else {
+        } else {
             return $this->template->fetch('file:' . 'application/' . getModContDirName('sitemap') . '/sitemap/templates/admin/' . $viewName);
         }
     }

@@ -208,7 +208,7 @@ class Sitemap extends MY_Controller {
                     'lang' => $this->config->item('cur_lang'),
                     'publish_date <=' => time(),
                     'post_status' => 'publish'
-                    )
+                        )
             )
             ->result_array();
 

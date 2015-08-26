@@ -5,13 +5,13 @@
 /**
  * Image CMS
  * Shop news
- * 
+ *
  * News can be displaying on category and product pages
- * 
+ *
  * in order to display news insert in product.tpl or category.tpl:
- * 
+ *
  * {$CI->load->module('shop_news')->getShopNews()}
- * 
+ *
  */
 class Shop_news extends MY_Controller {
 
@@ -26,7 +26,7 @@ class Shop_news extends MY_Controller {
     }
 
     /**
-     * Display module template on tab "Modules additions" when edit page. 
+     * Display module template on tab "Modules additions" when edit page.
      * @param type $shopNewsData
      */
     public function _extendPageAdmin($shopNewsData) {
@@ -52,7 +52,7 @@ class Shop_news extends MY_Controller {
             $categoryId = $this->shop_news_model->getProductCategory($productId);
         }
 
-        // Get content ids by category 
+        // Get content ids by category
         $contentIds = $this->shop_news_model->getContentIds($categoryId);
 
         // Prepare array with content ids
@@ -71,13 +71,13 @@ class Shop_news extends MY_Controller {
     }
 
     /**
-     * Prepare and return template for module 
+     * Prepare and return template for module
      * @param type $data
      * @param type $pageId
      * @return type
      */
     public function prepareInterface($data, $pageId) {
-        $currentCategories = $this->db->where('content_id', $pageId)->get('mod_shop_news')->row_array(); 
+        $currentCategories = $this->db->where('content_id', $pageId)->get('mod_shop_news')->row_array();
         $currentCategories = explode(',', $currentCategories['shop_categories_ids']);
 
         return \CMSFactory\assetManager::create()
@@ -117,7 +117,7 @@ class Shop_news extends MY_Controller {
 
         /** Update module settings * */
         $this->db->where('name', 'shop_news')
-                ->update('components', array('autoload' => '1', 'enabled' => '1'));
+            ->update('components', array('autoload' => '1', 'enabled' => '1'));
     }
 
     /**
