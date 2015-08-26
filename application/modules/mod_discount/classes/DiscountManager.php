@@ -267,7 +267,7 @@ class DiscountManager extends \MY_Controller {
         }
 
         if (!$postArray['key']) {
-            $postArray['key'] = $this->generateDiscountKey();
+            $postArray['key'] = self::generateDiscountKey();
         }
 
         $typeDiscount = $postArray['type_discount'];
@@ -465,7 +465,7 @@ class DiscountManager extends \MY_Controller {
      * @static
      * @return string
      */
-    private static function generateDiscountKey($charsCount = 8, $digitsCount = 8) {
+    public static function generateDiscountKey($charsCount = 8, $digitsCount = 8) {
         $chars = array('q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm');
         if ($charsCount > count($chars)) {
             $charsCount = count($chars);

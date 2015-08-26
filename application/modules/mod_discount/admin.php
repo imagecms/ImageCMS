@@ -2,6 +2,8 @@
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
+use CMSFactory\assetManager;
+use mod_discount\classes\DiscountManager;
 use Propel\Runtime\ActiveQuery\Criteria;
 
 /**
@@ -12,14 +14,14 @@ use Propel\Runtime\ActiveQuery\Criteria;
  * @package ImageCMSModule
  * @property Discount_model_admin $discount_model_admin
  */
-class Admin extends \ShopAdminController {
+class Admin extends ShopAdminController {
 
     public function __construct() {
         parent::__construct();
         $lang = new MY_Lang();
         $lang->load('mod_discount');
         $this->load->model('discount_model_admin');
-        \CMSFactory\assetManager::create()
+        assetManager::create()
                 ->registerStyle('style')
                 ->registerScript('adminScripts');
     }
@@ -37,7 +39,7 @@ class Admin extends \ShopAdminController {
         //Get list of discounts
         $data = array('discountsList' => $this->discount_model_admin->getDiscountsList($filterParam));
 
-        \CMSFactory\assetManager::create()
+        assetManager::create()
                 ->setData($data)
                 ->renderAdmin('list', true);
     }
@@ -51,7 +53,7 @@ class Admin extends \ShopAdminController {
         if ($this->input->post()) {
             $postArray = $this->input->post();
 
-            $discauntManager = new \mod_discount\classes\DiscountManager();
+            $discauntManager = new DiscountManager();
 
             $result = $discauntManager->create($postArray);
 
@@ -80,7 +82,7 @@ class Admin extends \ShopAdminController {
             );
 
             //Render template and set data
-            \CMSFactory\assetManager::create()
+            assetManager::create()
                     ->setData($data)
                     ->renderAdmin('create');
         }
@@ -95,14 +97,14 @@ class Admin extends \ShopAdminController {
     public function edit($id, $locale = null) {
 
         if (null === $locale) {
-            $locale = \MY_Controller::getCurrentLocale();
+            $locale = MY_Controller::getCurrentLocale();
         }
         if ($this->input->post()) {
 
             $postArray = $this->input->post();
             $typeDiscount = $postArray['type_discount'];
 
-            $discauntManager = new \mod_discount\classes\DiscountManager();
+            $discauntManager = new DiscountManager();
             if ($typeDiscount == 'certificate') {
                 $postArray['max_apply'] = 1;
             }
@@ -112,7 +114,7 @@ class Admin extends \ShopAdminController {
 
                 // If empty field with discount key, then generate key
                 if ($postArray['key'] == null) {
-                    $postArray['key'] = $this->generateDiscountKey();
+                    $postArray['key'] = DiscountManager::generateDiscountKey();
                 }
 
                 //Prepare data for insert in table mod_shop_discounts
@@ -179,7 +181,7 @@ class Admin extends \ShopAdminController {
             );
             $this->cache->delete_all();
             //Render template and set data
-            \CMSFactory\assetManager::create()
+            assetManager::create()
                     ->setData($data)
                     ->renderAdmin('edit');
         }
@@ -201,7 +203,7 @@ class Admin extends \ShopAdminController {
         }
 
         // additional validation for users and groups
-        $dm = new \mod_discount\classes\DiscountManager();
+        $dm = new DiscountManager();
         if ($res['type_discount'] == 'user' && !$dm->validateUserDiscount($res['type_value']) && $res['active'] == 0) {
             $msg = showMessage(lang('This user already have active discount', 'mod_discount'), lang('Error'), 'error', TRUE);
             echo json_encode(array('status' => 0, 'msg' => $msg));
@@ -241,33 +243,7 @@ class Admin extends \ShopAdminController {
      * @return string
      */
     public static function generateDiscountKey($charsCount = 8, $digitsCount = 8) {
-        $chars = array('q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm');
-
-        if ($charsCount > count($chars)) {
-            $charsCount = count($chars);
-        }
-
-        $result = array();
-        if ($charsCount > 0) {
-            $randCharsKeys = array_rand($chars, $charsCount);
-
-            foreach ($randCharsKeys as $key => $val) {
-                array_push($result, $chars[$val]);
-            }
-        }
-
-        for ($i = 0; $i < $digitsCount; $i++) {
-            array_push($result, rand(0, 9));
-        }
-
-        shuffle($result);
-
-        $result = implode('', $result);
-
-        $ci = get_instance();
-        if ($ci->discount_model_admin->checkDiscountCode($result)) {
-            self::generateDiscountKey($charsCount, $digitsCount);
-        }
+        $result = DiscountManager::generateDiscountKey($charsCount, $digitsCount);
 
         return $result;
     }
