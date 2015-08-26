@@ -183,15 +183,15 @@ class Admin extends BaseAdminController {
         $fullName = $variant->getSProducts()->getName() . " ({$variant->getName()})";
 
         return \CMSFactory\assetManager::create()
-                ->registerStyle('style')
-                ->setData('class', 'btn')
-                ->setData('wish_list_id', $wish_list_id)
-                ->setData('varId', $varId)
-                ->setData('user_id', $user_id)
-                ->setData($data)
-                ->setData('max_lists_count', $this->settings['maxListsCount'])
-                ->setData('fullName', $fullName)
-                ->renderAdmin('wishPopup');
+                        ->registerStyle('style')
+                        ->setData('class', 'btn')
+                        ->setData('wish_list_id', $wish_list_id)
+                        ->setData('varId', $varId)
+                        ->setData('user_id', $user_id)
+                        ->setData($data)
+                        ->setData('max_lists_count', $this->settings['maxListsCount'])
+                        ->setData('fullName', $fullName)
+                        ->renderAdmin('wishPopup');
     }
 
     /**

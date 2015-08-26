@@ -55,51 +55,51 @@
                                 {if $discount['max_apply'] != 0}
                                     {echo $discount['max_apply']}
                                 {else:} 
-                                    {if !$discount['max_apply'] && $discount['is_gift']}1{else:}{lang('Unlimited', 'mod_discount')}{/if}
+                                {if !$discount['max_apply'] && $discount['is_gift']}1{else:}{lang('Unlimited', 'mod_discount')}{/if}
+                            {/if}
+                        </td>
+                        <td>
+                            {if $discount['count_apply'] != null}
+                                {echo $discount['count_apply']}
+                            {else:} - 
+                            {/if}
+                        </td>
+                        <td {if time()< (int)$discount['date_begin']}style="color: red;"{/if}>
+                            {echo date("Y-m-d", $discount['date_begin'])}
+                        </td>
+                        <td {if time()> (int)$discount['date_end'] && $discount['date_end'] != '0'}style="color: red;"{/if}>
+                            {if $discount['date_end'] != 0}
+                                {echo date("Y-m-d", $discount['date_end'])}
+                            {else:} - 
+                            {/if}
+                        </td>
+                        <td>
+                            <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="
+                                 {if $discount['active'] == 1}
+                                     {lang('Yes', 'mod_discount')}
+                                 {else:}
+                                     {lang('No', 'mod_discount')}
+                                 {/if}">
+                                {if $discount['active'] == 1}
+                                    <span class="prod-on_off" data-id="{echo $discount['id']}"></span>
+                                {else:}
+                                    <span class="prod-on_off disable_tovar" data-id="{echo $discount['id']}"></span>
                                 {/if}
-                            </td>
-                            <td>
-                                {if $discount['count_apply'] != null}
-                                    {echo $discount['count_apply']}
-                                {else:} - 
-                                {/if}
-                            </td>
-                            <td {if time()< (int)$discount['date_begin']}style="color: red;"{/if}>
-                                {echo date("Y-m-d", $discount['date_begin'])}
-                            </td>
-                            <td {if time()> (int)$discount['date_end'] && $discount['date_end'] != '0'}style="color: red;"{/if}>
-                                {if $discount['date_end'] != 0}
-                                    {echo date("Y-m-d", $discount['date_end'])}
-                                {else:} - 
-                                {/if}
-                            </td>
-                            <td>
-                                <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="
-                                     {if $discount['active'] == 1}
-                                         {lang('Yes', 'mod_discount')}
-                                     {else:}
-                                         {lang('No', 'mod_discount')}
-                                     {/if}">
-                                    {if $discount['active'] == 1}
-                                        <span class="prod-on_off" data-id="{echo $discount['id']}"></span>
-                                    {else:}
-                                        <span class="prod-on_off disable_tovar" data-id="{echo $discount['id']}"></span>
-                                    {/if}
-                                </div>
-                            </td>
-                            <td>
-                                <button class="btn removeDiscountLink btn-small">
-                                    <i class="icon-trash"></i> 
-                                </button>
-                            </td>
-                        </tr>
-                    {/foreach}
-                </tbody>
-            </table>
-        {else:}
+                            </div>
+                        </td>
+                        <td>
+                            <button class="btn removeDiscountLink btn-small">
+                                <i class="icon-trash"></i> 
+                            </button>
+                        </td>
+                    </tr>
+                {/foreach}
+            </tbody>
+        </table>
+    {else:}
 
-            <div class="alert alert-info" style="margin: 18px;" >{lang('Discounts list is empty', 'mod_discount')}</div>
+        <div class="alert alert-info" style="margin: 18px;" >{lang('Discounts list is empty', 'mod_discount')}</div>
 
-        {/if}
-    </div>
+    {/if}
+</div>
 </section>

@@ -14,7 +14,7 @@ use Propel\Runtime\ActiveQuery\Criteria;
  */
 class Admin extends \ShopAdminController {
 
-    function __construct() {
+    public function __construct() {
         parent::__construct();
         $lang = new MY_Lang();
         $lang->load('mod_discount');
@@ -103,7 +103,7 @@ class Admin extends \ShopAdminController {
             $typeDiscount = $postArray['type_discount'];
 
             $discauntManager = new \mod_discount\classes\DiscountManager();
-            if($typeDiscount == 'certificate') {
+            if ($typeDiscount == 'certificate') {
                 $postArray['max_apply'] = 1;
             }
             $discauntManager->validation($postArray, $id);
@@ -125,7 +125,7 @@ class Admin extends \ShopAdminController {
                     'type_discount' => $typeDiscount,
                     'date_begin' => strtotime($postArray['date_begin']),
                     'date_end' => strtotime($postArray['date_end']),
-                //                    'active' => '1'
+                        //                    'active' => '1'
                 );
 
                 //Prepare data for inserting in the table of selected discount type
@@ -139,11 +139,10 @@ class Admin extends \ShopAdminController {
                 //Return to list of discounts, if user clicked 'save and exit'
                 if ($postArray['action'] == 'tomain') {
                     pjax('/admin/components/init_window/mod_discount/index' . $_SESSION['QueryDiscountList']);
-                }
-                else {
+                } else {
                     pjax('/admin/components/init_window/mod_discount/edit/' . $id);
                 }
-            }else {
+            } else {
                 showMessage(implode('<br/> ', $discauntManager->error), '', 'r');
             }
         } else {
@@ -195,7 +194,7 @@ class Admin extends \ShopAdminController {
 
         // checking if discount exists
         $res = CI::$APP->db->get_where('mod_shop_discounts', array('id' => $id))->row_array();
-        if (is_null($res)) {
+        if ($res == null) {
             $msg = showMessage(lang("Discount don't exists", 'mod_discount'), lang('Error'), 'error', TRUE);
             echo json_encode(array('status' => 0, 'msg' => $msg));
             return;
@@ -244,8 +243,8 @@ class Admin extends \ShopAdminController {
     public static function generateDiscountKey($charsCount = 8, $digitsCount = 8) {
         $chars = array('q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm');
 
-        if ($charsCount > sizeof($chars)) {
-            $charsCount = sizeof($chars);
+        if ($charsCount > count($chars)) {
+            $charsCount = count($chars);
         }
 
         $result = array();

@@ -15,7 +15,7 @@
                             {/foreach}
                             <label class="newWishListLable">
                                 <input type="radio" name="wishlist"  value="sd" class="newWishList" data-listsCount="{count($wish_lists)}" data-maxListsCount={$max_lists_count}>
-                                    {lang('Create WishList', 'wishlist')}
+                                {lang('Create WishList', 'wishlist')}
                                 <input type="text"  name="wishListName"  value="" class="wish_list_name">
                             </label>
                             <input type="submit" class="{$class}" id="{$varId}"  value="{if $wish_list_id}{lang('Move in list', 'wishlist')}{else:}{lang('Add to list', 'wishlist')}{/if}"/>

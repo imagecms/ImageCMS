@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Class discount_model_admin for Mod_Discount module
@@ -27,8 +28,8 @@ class Discount_model_admin extends CI_Model {
         $locale = $locale ? $locale : \MY_Controller::getCurrentLocale();
         $query = $this->db->select("*, mod_shop_discounts.id as id")->join('mod_shop_discounts_i18n', "mod_shop_discounts_i18n.id = mod_shop_discounts.id and mod_shop_discounts_i18n.locale = '" . $locale . "'", 'left')
                         //->where("mod_shop_discounts_i18n.locale " , $locale )
-                        ->join('mod_discount_all_order', "mod_discount_all_order.discount_id = mod_shop_discounts.id", 'left')
-                        ->order_by('mod_shop_discounts.active', 'desc')->order_by('mod_shop_discounts.id', 'desc');
+            ->join('mod_discount_all_order', "mod_discount_all_order.discount_id = mod_shop_discounts.id", 'left')
+            ->order_by('mod_shop_discounts.active', 'desc')->order_by('mod_shop_discounts.id', 'desc');
         if ($discountType != null) {
             $query = $query->where('mod_shop_discounts.type_discount', $discountType);
         }
@@ -46,18 +47,21 @@ class Discount_model_admin extends CI_Model {
         $discount = $this->db->where('id', $id)->get('mod_shop_discounts')->row();
 
         // Check is discount with such id
-        if ($discount == null)
+        if ($discount == null) {
             return false;
+        }
 
         $active = $discount->active;
-        if ($active == 1)
+        if ($active == 1) {
             $active = 0;
-        else
+        } else {
             $active = 1;
+        }
 
         // If updated active succes then return TRUE
-        if ($this->db->where('id', $id)->update('mod_shop_discounts', array('active' => $active)))
+        if ($this->db->where('id', $id)->update('mod_shop_discounts', array('active' => $active))) {
             return true;
+        }
 
         return false;
     }
@@ -69,23 +73,25 @@ class Discount_model_admin extends CI_Model {
     public function getMainCurrencySymbol() {
         $query = $this->db->select('symbol')->where('main', 1)->get('shop_currencies')->row_array();
 
-        if ($query)
+        if ($query) {
             return $query['symbol'];
-        else
+        } else {
             return false;
+        }
     }
 
     /**
      * Check have any discoun with given key
-     * @return (bool) 
+     * @return (bool)
      */
     public function checkDiscountCode($key) {
         $query = $this->db->where('key', $key)->get('mod_shop_discounts')->row_array();
 
-        if ($query)
+        if ($query) {
             return true;
-        else
+        } else {
             return false;
+        }
     }
 
     /**
@@ -97,17 +103,18 @@ class Discount_model_admin extends CI_Model {
     public function getUsersByIdNameEmail($term, $limit = 7) {
 
         $query = $this->db
-                ->like('username', $term)
-                ->or_like('email', $term)
-                ->or_like('id', $term)
-                ->limit($limit)
-                ->get('users')
-                ->result_array();
+            ->like('username', $term)
+            ->or_like('email', $term)
+            ->or_like('id', $term)
+            ->limit($limit)
+            ->get('users')
+            ->result_array();
 
-        if ($query)
+        if ($query) {
             return $query;
-        else
+        } else {
             return false;
+        }
     }
 
     /**
@@ -118,36 +125,37 @@ class Discount_model_admin extends CI_Model {
     public function getUserGroups($locale = 'ru') {
 
         $query = $this->db
-                ->select('shop_rbac_roles.id, shop_rbac_roles_i18n.alt_name')
-                ->from('shop_rbac_roles')
-                ->join('shop_rbac_roles_i18n', 'shop_rbac_roles.id=shop_rbac_roles_i18n.id')
-                ->where('locale', $locale)
-                ->get()
-                ->result_array();
+            ->select('shop_rbac_roles.id, shop_rbac_roles_i18n.alt_name')
+            ->from('shop_rbac_roles')
+            ->join('shop_rbac_roles_i18n', 'shop_rbac_roles.id=shop_rbac_roles_i18n.id')
+            ->where('locale', $locale)
+            ->get()
+            ->result_array();
 
-        if ($query)
+        if ($query) {
             return $query;
-        else
+        } else {
             return false;
+        }
     }
 
     /**
-     * 
+     *
      * @param string $term
      * @param int $limit
      * @return boolean|array
      */
-    public function getProductsByIdNameNumber($term, $limit = 7, $locale=NULL) {
+    public function getProductsByIdNameNumber($term, $limit = 7, $locale = NULL) {
         $locale = $locale ? $locale : MY_Controller::getCurrentLocale();
         $query = $this->db
-                ->select('shop_products_i18n.id, shop_products_i18n.name, number, shop_products_i18n.locale')
-                ->join('shop_product_variants', 'shop_product_variants.product_id=shop_products_i18n.id')
-                ->like('shop_products_i18n.id', $term)
-                ->or_like('shop_products_i18n.name', $term)
-                ->or_like('number', $term)
-                ->limit($limit)
-                ->get('shop_products_i18n')
-                ->result_array();
+            ->select('shop_products_i18n.id, shop_products_i18n.name, number, shop_products_i18n.locale')
+            ->join('shop_product_variants', 'shop_product_variants.product_id=shop_products_i18n.id')
+            ->like('shop_products_i18n.id', $term)
+            ->or_like('shop_products_i18n.name', $term)
+            ->or_like('number', $term)
+            ->limit($limit)
+            ->get('shop_products_i18n')
+            ->result_array();
 
         foreach ($query as $key => $product) {
             if ($product['locale'] != $locale) {
@@ -164,8 +172,8 @@ class Discount_model_admin extends CI_Model {
 
     /**
      * Insert data, uses when create discount
-     * @param string $tableName 
-     * @param array $data 
+     * @param string $tableName
+     * @param array $data
      * @return boolean|int
      */
     public function insertDataToDB($tableName, $data) {
@@ -195,10 +203,11 @@ class Discount_model_admin extends CI_Model {
 
         try {
             $this->db->where('id', $id)->update('mod_shop_discounts', $data);
-            if ($this->db->query("select * from mod_shop_discounts_i18n where id = '$id' and locale = '$locale'")->num_rows())
+            if ($this->db->query("select * from mod_shop_discounts_i18n where id = '$id' and locale = '$locale'")->num_rows()) {
                 $this->db->query("update mod_shop_discounts_i18n set name = '$name' where id = '$id' and locale = '$locale'");
-            else
+            } else {
                 $this->db->query("insert into mod_shop_discounts_i18n(id,name,locale) values('$id','$name','$locale')");
+            }
 
             $this->db->where('discount_id', $id)->delete($discountTypeTableNamePrevious);
             $typeDiscountData['discount_id'] = $id;
@@ -212,23 +221,25 @@ class Discount_model_admin extends CI_Model {
     }
 
     /**
-     * Check have any comulativ discount max endValue. 
-     * 
+     * Check have any comulativ discount max endValue.
+     *
      * @param int $editDiscountId uses in order to not counting edited discount
      * @return boolean
      */
     public function checkHaveAnyComulativDiscountMaxEndValue($editDiscountId = null) {
 
         $query = $this->db;
-        if ($editDiscountId)
+        if ($editDiscountId) {
             $query = $query->where('discount_id !=', $editDiscountId);
+        }
 
         $query = $query->where('end_value', null)->or_where('end_value', 0)->get('mod_discount_comulativ')->result_array();
 
-        if (count($query))
+        if (count($query)) {
             return true;
-        else
+        } else {
             return false;
+        }
     }
 
     /**
@@ -237,8 +248,9 @@ class Discount_model_admin extends CI_Model {
      * @return boolean|array
      */
     public function getDiscountAllDataById($id, $locale = null) {
-        if (null === $locale)
+        if (null === $locale) {
             $locale = MY_Controller::getCurrentLocale();
+        }
         $query = $this->db->from('mod_shop_discounts')->where('id', $id)->get()->row_array();
         $query_locale = $this->db->from('mod_shop_discounts_i18n')->where('id', $id)->where('locale', $locale)->get()->row();
         $query['name'] = $query_locale->name;
@@ -249,13 +261,15 @@ class Discount_model_admin extends CI_Model {
             $queryDiscountType = $this->db->from('mod_discount_' . $discountType)->where('discount_id', $id)->get()->row_array();
         }
 
-        if ($queryDiscountType)
+        if ($queryDiscountType) {
             $query[$discountType] = $queryDiscountType;
+        }
 
-        if ($query)
+        if ($query) {
             return $query;
-        else
+        } else {
             return false;
+        }
     }
 
     /**
@@ -282,15 +296,16 @@ class Discount_model_admin extends CI_Model {
     public function getProductById($id) {
         $locale = MY_Controller::getCurrentLocale();
         $query = $this->db
-                ->select('name')
-                ->from('shop_products_i18n')
-                ->where('id', $id)
-                ->where('locale', $locale)
-                ->get()
-                ->row_array();
+            ->select('name')
+            ->from('shop_products_i18n')
+            ->where('id', $id)
+            ->where('locale', $locale)
+            ->get()
+            ->row_array();
 
-        if ($query)
+        if ($query) {
             return $query['name'];
+        }
 
         return false;
     }
@@ -303,8 +318,9 @@ class Discount_model_admin extends CI_Model {
     public function deleteDiscountById($id) {
         $query = $this->db->from('mod_shop_discounts')->where('id', $id)->get()->row_array();
         $discountType = $query['type_discount'];
-        if (!$query)
+        if (!$query) {
             return false;
+        }
         try {
             $this->db->where('id', $id)->delete('mod_shop_discounts');
             $this->db->where('id', $id)->delete('mod_shop_discounts_i18n');
@@ -350,7 +366,6 @@ class Discount_model_admin extends CI_Model {
      */
     public function moduleInstall() {
 
-
         $column = $this->db->query("SHOW COLUMNS FROM `shop_orders` where `Field` = 'discount'")->num_rows();
         if (!$column) {
             $sql = "ALTER TABLE shop_orders ADD discount float(10,2);";
@@ -368,7 +383,6 @@ class Discount_model_admin extends CI_Model {
             $sql = "ALTER TABLE shop_orders ADD origin_price float(10,2);";
             $this->db->query($sql);
         }
-
 
         $sql = "CREATE  TABLE IF NOT EXISTS `mod_shop_discounts` (
                   `id` INT NOT NULL AUTO_INCREMENT ,
@@ -484,8 +498,6 @@ class Discount_model_admin extends CI_Model {
                 COLLATE = utf8_general_ci;";
         $this->db->query($sql);
 
-
-
         $this->db->where('name', 'mod_discount');
         $this->db->update('components', array('enabled' => 1, 'autoload' => 1));
     }
@@ -544,17 +556,17 @@ class Discount_model_admin extends CI_Model {
         $sql = "SELECT * FROM `mod_discount_comulativ` ";
         if ($data['end_value'] != NULL) {
             if ($id != NULL) {
-                $sql .="WHERE `discount_id` <> " . $id . " AND ((`begin_value` BETWEEN  " . $data['begin_value'] . " AND " . $data['end_value'] . ") 
+                $sql .= "WHERE `discount_id` <> " . $id . " AND ((`begin_value` BETWEEN  " . $data['begin_value'] . " AND " . $data['end_value'] . ") 
                 OR (`end_value` BETWEEN " . $data['begin_value'] . " AND " . $data['end_value'] . ")
                 OR (`begin_value` <= " . $data['begin_value'] . " AND `end_value` >= " . $data['end_value'] . "))";
             } else {
-                $sql .="WHERE (`begin_value` BETWEEN  " . $data['begin_value'] . " AND " . $data['end_value'] . ") 
+                $sql .= "WHERE (`begin_value` BETWEEN  " . $data['begin_value'] . " AND " . $data['end_value'] . ") 
                 OR (`end_value` BETWEEN " . $data['begin_value'] . " AND " . $data['end_value'] . ")
                 OR (`begin_value` <= " . $data['begin_value'] . " AND `end_value` >= " . $data['end_value'] . ")";
             }
         } else {
             if ($id != NULL) {
-                $sql .="WHERE `discount_id` <> " . $id . " AND " . $data['begin_value'] . " < `begin_value`";
+                $sql .= "WHERE `discount_id` <> " . $id . " AND " . $data['begin_value'] . " < `begin_value`";
             } else {
                 $sql .= "WHERE " . $data['begin_value'] . " < `begin_value`";
             }

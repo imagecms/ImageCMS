@@ -2,8 +2,9 @@
 
 namespace mod_discount\classes;
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Class BaseDiscount for Mod_Discount module
@@ -15,10 +16,15 @@ if (!defined('BASEPATH'))
 class BaseDiscount {
 
     private static $object;
+
     private static $totalPrice;
+
     private static $reBuild;
+
     private static $ignoreCart;
+
     private static $userId;
+
     private static $moduleInstalled;
 
     /**
@@ -30,7 +36,7 @@ class BaseDiscount {
      */
     public static function checkModuleInstall() {
         $ci = &get_instance();
-        if (is_null(self::$moduleInstalled)) {
+        if (self::$moduleInstalled == null) {
             self::$moduleInstalled = (count($ci->db->where('name', 'mod_discount')->get('components')->result_array()) == 0) ? false : true;
         }
         return self::$moduleInstalled;
@@ -48,14 +54,18 @@ class BaseDiscount {
      * @copyright (c) 2013, ImageCMS
      */
     public static function prepareOption($option) {
-        if (isset($option['price']))
+        if (isset($option['price'])) {
             self::setTotalPrice($option['price']);
-        if (isset($option['userId']))
+        }
+        if (isset($option['userId'])) {
             self::setUserId($option['userId']);
-        if (isset($option['ignoreCart']))
+        }
+        if (isset($option['ignoreCart'])) {
             self::setIgnoreCart($option['ignoreCart']);
-        if (isset($option['reBuild']))
+        }
+        if (isset($option['reBuild'])) {
             self::reBuild();
+        }
     }
 
     /**
@@ -106,8 +116,9 @@ class BaseDiscount {
      * @return object BaseDiscount
      */
     public static function create() {
-        if (!self::$object || self::$reBuild)
+        if (!self::$object || self::$reBuild) {
             self::$object = new self;
+        }
 
         return self::$object;
     }
@@ -123,7 +134,7 @@ class BaseDiscount {
     private function __construct() {
         $this->ci = &get_instance();
         if (\mod_discount\classes\BaseDiscount::checkModuleInstall()) {
-            require_once __DIR__ . '/../models/discount_model_front.php';
+            include_once __DIR__ . '/../models/discount_model_front.php';
             $this->ci->discount_model_front = new \discount_model_front;
             $lang = new \MY_Lang();
             $lang->load('mod_discount');
@@ -135,8 +146,9 @@ class BaseDiscount {
                 $this->userId = self::$userId;
                 $this->userGroupId = $this->ci->db->where('id', $this->userId)->get('users')->row()->role_id;
             }
-            if (!self::$ignoreCart)
+            if (!self::$ignoreCart) {
                 $this->cartData = $this->getCartData();
+            }
 
             $this->amoutUser = $this->ci->discount_model_front->getAmoutUser($this->userId);
             $this->totalPrice = (!self::$totalPrice) ? $this->cart->getOriginTotalPrice() : self::$totalPrice;
@@ -185,7 +197,7 @@ class BaseDiscount {
             "product" => lang('Product', 'mod_discount'),
             "brand" => lang('Brand', 'mod_discount'),
         );
-        if (is_null($type)) {
+        if ($type == null) {
             return $discounts;
         }
         if (isset($discounts[$type])) {
@@ -217,8 +229,9 @@ class BaseDiscount {
      */
     private function joinDiscountSettings($discount) {
 
-        foreach ($discount as $key => $disc)
+        foreach ($discount as $key => $disc) {
             $discount[$key] = array_merge($discount[$key], $this->ci->discount_model_front->joinDiscount($disc['id'], $disc['type_discount']));
+        }
 
         return $discount;
     }
@@ -234,8 +247,9 @@ class BaseDiscount {
     private function collectType($discount) {
 
         $arr = array();
-        foreach ($discount as $disc)
+        foreach ($discount as $disc) {
             $arr[$disc['type_discount']][] = $disc;
+        }
 
         return $this->emptyToArray($arr);
     }
@@ -249,29 +263,37 @@ class BaseDiscount {
      * @copyright (c) 2013, ImageCMS
      */
     private function emptyToArray($discount) {
-        if (!isset($discount['product']))
+        if (!isset($discount['product'])) {
             $discount['product'] = array();
+        }
 
-        if (!isset($discount['brand']))
+        if (!isset($discount['brand'])) {
             $discount['brand'] = array();
+        }
 
-        if (!isset($discount['category']))
+        if (!isset($discount['category'])) {
             $discount['category'] = array();
+        }
 
-        if (!isset($discount['certificate']))
+        if (!isset($discount['certificate'])) {
             $discount['certificate'] = array();
+        }
 
-        if (!isset($discount['all_order']))
+        if (!isset($discount['all_order'])) {
             $discount['all_order'] = array();
+        }
 
-        if (!isset($discount['comulativ']))
+        if (!isset($discount['comulativ'])) {
             $discount['comulativ'] = array();
+        }
 
-        if (!isset($discount['group_user']))
+        if (!isset($discount['group_user'])) {
             $discount['group_user'] = array();
+        }
 
-        if (!isset($discount['user']))
+        if (!isset($discount['user'])) {
             $discount['user'] = array();
+        }
 
         return $discount;
     }
@@ -286,9 +308,11 @@ class BaseDiscount {
      */
     public function getMaxDiscount($discount, $price) {
         $discount = array_filter(
-            $discount, function ($el) {
-            return !empty($el);
-        });
+            $discount,
+            function ($el) {
+                    return !empty($el);
+            }
+        );
         $maxDiscount = 0;
         foreach ($discount as $key => $disc) {
             $discountValue = $this->getDiscountValue($disc, $price);
@@ -333,12 +357,12 @@ class BaseDiscount {
             ->get('mod_shop_discounts')
             ->row_array();
 
-        if (is_null($result['max_apply'])) {
+        if ($result['max_apply'] == null) {
             return null;
         }
 
         if ($result) {
-            return (int)$result['max_apply'] - (int)$result['count_apply'];
+            return (int) $result['max_apply'] - (int) $result['count_apply'];
         }
     }
 
@@ -353,9 +377,11 @@ class BaseDiscount {
     private function getUserDiscount() {
 
         $discountUser = array();
-        foreach ($this->discountType['user'] as $key => $userDisc)
-            if ($userDisc['user_id'] == $this->userId)
+        foreach ($this->discountType['user'] as $key => $userDisc) {
+            if ($userDisc['user_id'] == $this->userId) {
                 $discountUser[] = $userDisc;
+            }
+        }
 
         return (count($discountUser) > 0) ? $this->getMaxDiscount($discountUser, $this->totalPrice) : false;
     }
@@ -371,9 +397,11 @@ class BaseDiscount {
     private function getUserGroupDiscount() {
 
         $discountUserGr = array();
-        foreach ($this->discountType['group_user'] as $userGrDisc)
-            if ($userGrDisc['group_id'] == $this->userGroupId)
+        foreach ($this->discountType['group_user'] as $userGrDisc) {
+            if ($userGrDisc['group_id'] == $this->userGroupId) {
                 $discountUserGr[] = $userGrDisc;
+            }
+        }
 
         return (count($discountUserGr) > 0) ? $this->getMaxDiscount($discountUserGr, $this->totalPrice) : false;
     }
@@ -389,9 +417,11 @@ class BaseDiscount {
     private function getComulativDiscount() {
 
         $discountComulativ = array();
-        foreach ($this->discountType['comulativ'] as $disc)
-            if (($disc['begin_value'] <= (float)$this->amoutUser and $disc['end_value'] > (float)$this->amoutUser) or ($disc['begin_value'] <= (float)$this->amoutUser and !$disc['end_value']))
+        foreach ($this->discountType['comulativ'] as $disc) {
+            if (($disc['begin_value'] <= (float) $this->amoutUser and $disc['end_value'] > (float) $this->amoutUser) or ( $disc['begin_value'] <= (float) $this->amoutUser and ! $disc['end_value'])) {
                 $discountComulativ[] = $disc;
+            }
+        }
 
         return (count($discountComulativ) > 0) ? $this->getMaxDiscount($discountComulativ, $this->totalPrice) : false;
     }
@@ -407,8 +437,9 @@ class BaseDiscount {
     private function getDiscountProducts() {
         foreach ($this->cartData as $item) {
             $priceOrigin = number_format($item->originPrice, \ShopCore::app()->SSettings->pricePrecision, '.', ''); // new Cart
-            if (abs($priceOrigin - $item->price) >= 1)
+            if (abs($priceOrigin - $item->price) >= 1) {
                 $discountValue += ($priceOrigin - $item->price) * $item->quantity;
+            }
         }
         return $discountValue;
     }
@@ -424,10 +455,13 @@ class BaseDiscount {
     private function getAllOrderDiscountRegister() {
 
         $allOrderArrReg = array();
-        foreach ($this->discountType['all_order'] as $disc)
-            if (!$disc['is_gift'])
-                if ($disc['begin_value'] <= (int)$this->totalPrice)
+        foreach ($this->discountType['all_order'] as $disc) {
+            if (!$disc['is_gift']) {
+                if ($disc['begin_value'] <= (int) $this->totalPrice) {
                     $allOrderArrReg[] = $disc;
+                }
+            }
+        }
 
         return (count($allOrderArrReg) > 0) ? $this->getMaxDiscount($allOrderArrReg, $this->totalPrice) : false;
     }
@@ -442,10 +476,13 @@ class BaseDiscount {
      */
     private function getAllOrderDiscountNotRegister() {
         $allOrderArrNotReg = array();
-        foreach ($this->discountType['all_order'] as $disc)
-            if (!$disc['is_gift'])
-                if ($disc['begin_value'] <= $this->totalPrice and !$disc['for_autorized'])
+        foreach ($this->discountType['all_order'] as $disc) {
+            if (!$disc['is_gift']) {
+                if ($disc['begin_value'] <= $this->totalPrice and ! $disc['for_autorized']) {
                     $allOrderArrNotReg[] = $disc;
+                }
+            }
+        }
 
         return (count($allOrderArrNotReg) > 0) ? $this->getMaxDiscount($allOrderArrNotReg, $this->totalPrice) : false;
     }

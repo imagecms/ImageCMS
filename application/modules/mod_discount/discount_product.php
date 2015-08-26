@@ -2,8 +2,9 @@
 
 namespace mod_discount;
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Class Discount_product for Mod_Discount module
@@ -15,6 +16,7 @@ if (!defined('BASEPATH'))
 class Discount_product {
 
     private $discountForProduct;
+
     private static $object;
 
     /**
@@ -22,8 +24,9 @@ class Discount_product {
      * @return object BaseDiscount
      */
     public static function create() {
-        if (!self::$object)
+        if (!self::$object) {
             self::$object = new self;
+        }
         return self::$object;
     }
 
@@ -39,7 +42,7 @@ class Discount_product {
         $this->ci = & get_instance();
         $lang = new \MY_Lang();
         $lang->load('mod_discount');
-        require_once __DIR__ . '/models/discount_model_front.php';
+        include_once __DIR__ . '/models/discount_model_front.php';
         $this->ci->discount_model_front = new \discount_model_front;
         $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
         $this->discountForProduct = array_merge($this->baseDiscount->discountType['product'], $this->baseDiscount->discountType['brand'], $this->createChildDiscount($this->baseDiscount->discountType['category']));
@@ -61,19 +64,20 @@ class Discount_product {
                 $resultDiscount[] = $disc;
                 if ($disc['child']) {
                     $childs = $this->ci->db->like('full_path_ids', ':' . $disc['category_id'] . ';')->get('shop_category')->result_array();
-                    if (count($childs) > 0)
+                    if (count($childs) > 0) {
                         foreach ($childs as $child) {
                             $discAux = $disc;
                             $discAux['category_id'] = $child['id'];
                             $resultDiscount[] = $discAux;
                         }
+                    }
                 }
             }
 
             return $resultDiscount;
-        }
-        else
+        } else {
             return $discount;
+        }
     }
 
     /**
@@ -89,8 +93,9 @@ class Discount_product {
         $discountArray = $this->getDiscountOneProduct($product);
 
         if (count($discountArray) > 0) {
-            if (null === $price)
+            if (null === $price) {
                 $price = $this->ci->discount_model_front->getPrice($product['vid']);
+            }
             $discountMax = $this->baseDiscount->getMaxDiscount($discountArray, $price);
             $discountValue = $this->baseDiscount->getDiscountValue($discountMax, $price);
         } else {
@@ -120,12 +125,15 @@ class Discount_product {
 
         $arrDiscount = array();
 
-        foreach ($this->discountForProduct as $disc)
+        foreach ($this->discountForProduct as $disc) {
             foreach ($product as $key => $value) {
-                if ($disc[$key])
-                    if ($disc[$key] == $value)
+                if ($disc[$key]) {
+                    if ($disc[$key] == $value) {
                         $arrDiscount[] = $disc;
+                    }
+                }
             }
+        }
 
         return $arrDiscount;
     }

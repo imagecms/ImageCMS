@@ -6,7 +6,7 @@
     {if $errors}
         {foreach $errors as $error}
             <div class="msg">
-               <div class="error">{$error}</div>
+                <div class="error">{$error}</div>
             </div>
         {/foreach}
     {/if}
@@ -49,7 +49,7 @@
         <option value="private">{lang('private', 'wishlist')}</option>
     </select>
     <br>
-   {lang('List name', 'wishlist')}
+    {lang('List name', 'wishlist')}
     <input type="text" value="" name="wishListName"/>
     {lang('List description', 'wishlist')}
     <textarea name="wlDescription"></textarea>

@@ -20,16 +20,16 @@
                         </td>
                     </tr>
                     {if $wishlist[0][variant_id]}
-                    <tr>
-                        <th>№</th>
-                        <th>{lang('Product', 'wishlist')}</th>
-                        <th>{lang('Comment', 'wishlist')}</th>
-                    </tr>
+                        <tr>
+                            <th>№</th>
+                            <th>{lang('Product', 'wishlist')}</th>
+                            <th>{lang('Comment', 'wishlist')}</th>
+                        </tr>
                     {/if}
                 </thead>
                 <tbody>
                     {if $wishlist[0][variant_id]}
-                    {foreach $wishlist as $key => $w}
+                        {foreach $wishlist as $key => $w}
                             <tr>
                                 <td>{echo $key+1}</td>
                                 <td>
@@ -42,7 +42,7 @@
                                     {$w[comment]}
                                 </td>
                             </tr>
-                    {/foreach}
+                        {/foreach}
                     {else:}
                         <tr>
                             <td>{lang('Emty list', 'wishlist')}</td>

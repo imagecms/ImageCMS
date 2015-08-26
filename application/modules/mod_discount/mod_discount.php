@@ -242,15 +242,15 @@ class Mod_discount extends \MY_Controller {
                     if ($diff > 0) {
                         \CMSFactory\Events::create()->setListener(
                             function($params) use ($diff) {
-                                $order = $params['order'];
-                                $price = $params['price'];
+                                    $order = $params['order'];
+                                    $price = $params['price'];
                                 if (!Mod_discount::$orderPassOverloadControl) {
                                     $price = $order->getTotalPrice() + $diff;
                                     $discount = $order->getDiscount() - $diff;
                                     $order
-                                        //->setDiscount($discount)
-                                        ->setTotalPrice($price)
-                                        ->save();
+                                    //->setDiscount($discount)
+                                    ->setTotalPrice($price)
+                                    ->save();
                                     Mod_discount::$orderPassOverloadControl = true;
                                 }
                             },

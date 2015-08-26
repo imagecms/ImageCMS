@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Class discount_model_front for Mod_Discount module
@@ -39,8 +40,7 @@ class discount_model_front extends CI_Model {
                            or date_begin is null and date_end = '0')
                       and 
                        active = 1";
-        
-         
+
         return $this->db->query($sql)->result_array();
     }
 
@@ -51,7 +51,7 @@ class discount_model_front extends CI_Model {
      * @return array discount
      */
     public function joinDiscount($id, $type) {
-        $type = $type=='certificate'?'all_order':$type;
+        $type = $type == 'certificate' ? 'all_order' : $type;
         $sql = "select * from mod_discount_$type where discount_id = '$id'";
         return $this->db->query($sql)->row_array();
     }
@@ -75,7 +75,7 @@ class discount_model_front extends CI_Model {
     public function getPrice($id) {
 
         $priceProd = $this->db->query("select price from shop_product_variants where id = '$id'")->row();
-        return number_format($priceProd->price, ShopCore::app()->SSettings->pricePrecision,'.', '');
+        return number_format($priceProd->price, ShopCore::app()->SSettings->pricePrecision, '.', '');
     }
 
     /**
@@ -89,29 +89,26 @@ class discount_model_front extends CI_Model {
         $result = $this->db->query($sql)->row();
         return $result->amout;
     }
-    
+
     /**
      * update apply for discount
      * @param (int) $key
      * @param (boll) $gift
      * @return (float) price
      */
-    public function updateApply($key, $gift = null){
-        
+    public function updateApply($key, $gift = null) {
+
         $sql = "UPDATE mod_shop_discounts SET count_apply = 0 WHERE `key` = '$key' AND max_apply IS NOT NULL AND count_apply IS NULL";
         $this->db->query($sql);
-        
+
         $sql = "UPDATE mod_shop_discounts SET count_apply = count_apply + 1 WHERE `key` = '$key' AND max_apply IS NOT NULL";
         $this->db->query($sql);
-        
-        if ($gift !== Null)
+
+        if ($gift !== Null) {
             $this->db->query("update mod_shop_discounts set active = 0 where `key` = '$key'");
-        
+        }
+
         return true;
-        
     }
-    
-    
-   
 
 }

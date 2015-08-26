@@ -40,10 +40,12 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
      * @return mixed
      */
     public function addItem($varId, $listId, $listName) {
-        if (!$listId)
+        if (!$listId) {
             $listId = $this->input->post('wishlist');
-        if (!$listName)
+        }
+        if (!$listName) {
             $listName = $this->input->post('wishListName');
+        }
 
         if (parent::_addItem($varId, $listId, $listName)) {
             return $this->dataModel;
@@ -150,24 +152,26 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
      */
     public function userUpdate() {
 
-        if ($this->settings['maxDescLenght'] < iconv_strlen($this->input->post('description'), 'UTF-8'))
+        if ($this->settings['maxDescLenght'] < iconv_strlen($this->input->post('description'), 'UTF-8')) {
             $desc = mb_substr($this->input->post('description'), 0, $this->settings['maxDescLenght'], 'UTF-8');
-        else
+        } else {
             $desc = $this->input->post('description');
+        }
 
         if ($this->input->post('user_birthday')) {
-            if (!(strtotime($this->input->post('user_birthday')) + 50000))
+            if (!(strtotime($this->input->post('user_birthday')) + 50000)) {
                 return false;
+            }
             $user_birthday = strtotime($this->input->post('user_birthday')) + 50000;
-        }else {
+        } else {
             $user_birthday = '';
         }
 
-
         $userName = $this->input->post('user_name');
 
-        if ($this->settings['maxUserName'] < iconv_strlen($userName, 'UTF-8'))
+        if ($this->settings['maxUserName'] < iconv_strlen($userName, 'UTF-8')) {
             $desc = mb_substr($userName, 0, $this->settings['maxUserName'], 'UTF-8');
+        }
 
         $updated = parent::userUpdate($this->input->post('user_id'), $userName, $user_birthday, $desc);
         if ($updated) {
@@ -191,17 +195,19 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
         }
 
         foreach ($this->input->post('comment') as $key => $comment) {
-            if ($this->settings['maxCommentLenght'] < iconv_strlen($comment, 'UTF-8'))
+            if ($this->settings['maxCommentLenght'] < iconv_strlen($comment, 'UTF-8')) {
                 $desc[$key] = mb_substr($comment, 0, $this->settings['maxCommentLenght']);
-            else
+            } else {
                 $desc[$key] = $comment;
+            }
         }
         $title = $this->input->post('title');
 
         if ($title) {
-            if ($this->settings['maxListName'] < iconv_strlen($title, 'UTF-8'))
+            if ($this->settings['maxListName'] < iconv_strlen($title, 'UTF-8')) {
                 $title = mb_substr($title, 0, $this->settings['maxListName'], 'UTF-8');
-        }else {
+            }
+        } else {
             $this->errors[] = lang('Wish list title can not be blank.', 'wishlist');
             return FALSE;
         }

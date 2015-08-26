@@ -4,8 +4,9 @@
 
 namespace mod_discount\classes;
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Class DiscountManager for Mod_Discount module
@@ -37,7 +38,7 @@ class DiscountManager extends \MY_Controller {
      * - (int) type_value: 1 - % 2 - float
      * - (int) value: discount value
      * - (string) type_discount: (all_order, comulativ, user, group_user, category, product, brand)
-     * - (string) date_begin: data begin discount 
+     * - (string) date_begin: data begin discount
      * - (string) date_end: data end discount default null - infinity
      * - (int) brand_id: id brand
      * @return array $data params:
@@ -47,8 +48,9 @@ class DiscountManager extends \MY_Controller {
      */
     public function createBrandDiscount($data) {
 
-        if (!$this->discount_model_admin->checkEntityExists('brand', $data['brand_id']))
+        if (!$this->discount_model_admin->checkEntityExists('brand', $data['brand_id'])) {
             $this->error[] = lang('Entity does not exists!', 'mod_discount');
+        }
         $data['type_discount'] = 'brand';
         $data['brand']['brand_id'] = $data['brand_id'];
         unset($data['brand_id']);
@@ -66,7 +68,7 @@ class DiscountManager extends \MY_Controller {
      * - (int) type_value: 1 - % 2 - float
      * - (int) value: discount value
      * - (string) type_discount: (all_order, comulativ, user, group_user, category, product, brand)
-     * - (string) date_begin: data begin discount 
+     * - (string) date_begin: data begin discount
      * - (string) date_end: data end discount default null - infinity
      * - (int) category_id: id category
      * - (int) child: change childs category
@@ -77,8 +79,9 @@ class DiscountManager extends \MY_Controller {
      */
     public function createCategoryDiscount($data) {
 
-        if (!$this->discount_model_admin->checkEntityExists('category', $data['category_id']))
+        if (!$this->discount_model_admin->checkEntityExists('category', $data['category_id'])) {
             $this->error[] = lang('Entity does not exists!', 'mod_discount');
+        }
         $data['type_discount'] = 'category';
         $data['category']['category_id'] = $data['category_id'];
         $data['category']['child'] = $data['child'];
@@ -97,7 +100,7 @@ class DiscountManager extends \MY_Controller {
      * - (int) type_value: 1 - % 2 - float
      * - (int) value: discount value
      * - (string) type_discount: (all_order, comulativ, user, group_user, category, product, brand)
-     * - (string) date_begin: data begin discount 
+     * - (string) date_begin: data begin discount
      * - (string) date_end: data end discount default null - infinity
      * - (int) product_id: id product
      * @return array $data params:
@@ -107,8 +110,9 @@ class DiscountManager extends \MY_Controller {
      */
     public function createProductDiscount($data) {
 
-        if (!$this->discount_model_admin->checkEntityExists('product', $data['product_id']))
+        if (!$this->discount_model_admin->checkEntityExists('product', $data['product_id'])) {
             $this->error[] = lang('Entity does not exists!', 'mod_discount');
+        }
         $data['type_discount'] = 'product';
         $data['product']['product_id'] = $data['product_id'];
         unset($data['product_id']);
@@ -126,7 +130,7 @@ class DiscountManager extends \MY_Controller {
      * - (int) type_value: 1 - % 2 - float
      * - (int) value: discount value
      * - (string) type_discount: (all_order, comulativ, user, group_user, category, product, brand)
-     * - (string) date_begin: data begin discount 
+     * - (string) date_begin: data begin discount
      * - (string) date_end: data end discount default null - infinity
      * - (int) user_id: id user
      * @return array $data params:
@@ -136,8 +140,9 @@ class DiscountManager extends \MY_Controller {
      */
     public function createUserDiscount($data) {
 
-        if (!$this->discount_model_admin->checkEntityExists('user', $data['user_id']))
+        if (!$this->discount_model_admin->checkEntityExists('user', $data['user_id'])) {
             $this->error[] = lang('Entity does not exists!', 'mod_discount');
+        }
         $data['type_discount'] = 'user';
         $data['user']['user_id'] = $data['user_id'];
         unset($data['user_id']);
@@ -155,7 +160,7 @@ class DiscountManager extends \MY_Controller {
      * - (int) type_value: 1 - % 2 - float
      * - (int) value: discount value
      * - (string) type_discount: (all_order, comulativ, user, group_user, category, product, brand)
-     * - (string) date_begin: data begin discount 
+     * - (string) date_begin: data begin discount
      * - (string) date_end: data end discount default null - infinity
      * - (int) group_id: id user group
      * @return array $data params:
@@ -165,8 +170,9 @@ class DiscountManager extends \MY_Controller {
      */
     public function createUserGroupDiscount($data) {
 
-        if (!$this->discount_model_admin->checkEntityExists('group_user', $data['group_id']))
+        if (!$this->discount_model_admin->checkEntityExists('group_user', $data['group_id'])) {
             $this->error[] = lang('Entity does not exists!', 'mod_discount');
+        }
         $data['type_discount'] = 'group_user';
         $data['group_user']['group_id'] = $data['group_id'];
         unset($data['group_id']);
@@ -184,7 +190,7 @@ class DiscountManager extends \MY_Controller {
      * - (int) type_value: 1 - % 2 - float
      * - (int) value: discount value
      * - (string) type_discount: (all_order, comulativ, user, group_user, category, product, brand)
-     * - (string) date_begin: data begin discount 
+     * - (string) date_begin: data begin discount
      * - (string) date_end: data end discount default null - infinity
      * - (float) begin_value: value begin
      * - (float) end_value: value end default null - infinity
@@ -214,7 +220,7 @@ class DiscountManager extends \MY_Controller {
      * - (int) type_value: 1 - % 2 - float
      * - (int) value: discount value
      * - (string) type_discount: (all_order, comulativ, user, group_user, category, product, brand)
-     * - (string) date_begin: data begin discount 
+     * - (string) date_begin: data begin discount
      * - (string) date_end: data end discount default null - infinity
      * @return array $data params:
      * - (boolean) success: result of create gift
@@ -252,15 +258,17 @@ class DiscountManager extends \MY_Controller {
      * - (string) errors: message of error
      * @copyright (c) 2013, ImageCMS
      */
-    public function create($postArray) {  
+    public function create($postArray) {
 
         $this->validation($postArray);
 
-        if (count($this->error) > 0)
+        if (count($this->error) > 0) {
             return array('success' => false, 'error' => $this->error);
+        }
 
-        if (!$postArray['key'])
+        if (!$postArray['key']) {
             $postArray['key'] = $this->generateDiscountKey();
+        }
 
         $typeDiscount = $postArray['type_discount'];
         $typeDiscountTableName = 'mod_discount_' . $typeDiscount;
@@ -279,24 +287,24 @@ class DiscountManager extends \MY_Controller {
             'date_end' => strtotime($postArray['date_end']),
             'active' => '1'
         );
-        
-        if ($postArray['max_apply'])
+
+        if ($postArray['max_apply']) {
             $data['max_apply'] = $postArray['max_apply'];
-        
+        }
+
         // gift correction (just in case)
         if ($postArray['all_order']['is_gift']) {
             $data['max_apply'] = 1;
         }
-        
+
         if ($postArray['certificate']['is_gift']) {
             $data['max_apply'] = 1;
         }
-        
-        if ($postArray['type_discount'] == 'certificate'){
+
+        if ($postArray['type_discount'] == 'certificate') {
             $data['max_apply'] = 1;
             $postArray['all_order']['is_gift'] = 1;
             $postArray['certificate']['is_gift'] = 1;
-            
         }
 
         $discountId = $this->discount_model_admin->insertDataToDB('mod_shop_discounts', $data);
@@ -313,22 +321,22 @@ class DiscountManager extends \MY_Controller {
 
         if ($discountId != false) {
             $typeDiscountData['discount_id'] = $discountId;
-            $typeDiscountTableName = $typeDiscountTableName=='mod_discount_certificate'? 'mod_discount_all_order' : $typeDiscountTableName;
+            $typeDiscountTableName = $typeDiscountTableName == 'mod_discount_certificate' ? 'mod_discount_all_order' : $typeDiscountTableName;
             $result = $this->discount_model_admin->insertDataToDB($typeDiscountTableName, $typeDiscountData);
-            
         }
 
-        if ($result && $discountId)
+        if ($result && $discountId) {
             return array('success' => true, 'id' => $discountId);
-        else
+        } else {
             return array('success' => false, 'error' => array(lang('Error creating discount', 'mod_discount')));
+        }
     }
 
     /**
      * validation data
      * @access public
      * @author DevImageCms
-     * @param array $postArray 
+     * @param array $postArray
      * @param int $id (optional) need to be specified on discount editing
      * @copyright (c) 2013, ImageCMS
      */
@@ -336,65 +344,84 @@ class DiscountManager extends \MY_Controller {
 
         $typeDiscount = $postArray['type_discount'];
 
-        if (!in_array($typeDiscount, array('certificate','all_order', 'comulativ', 'user', 'group_user', 'category', 'product', 'brand')))
+        if (!in_array($typeDiscount, array('certificate', 'all_order', 'comulativ', 'user', 'group_user', 'category', 'product', 'brand'))) {
             $this->error[] = lang('Wrong type discount');
+        }
 
-        if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] && !preg_match('/^[0-9]{1,15}$/', $postArray[$typeDiscount]['end_value']))
+        if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] && !preg_match('/^[0-9]{1,15}$/', $postArray[$typeDiscount]['end_value'])) {
             $this->error[] = lang('End value must be numeric');
+        }
 
-        if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['begin_value'] && !preg_match('/^[0-9]{1,15}$/', $postArray[$typeDiscount]['begin_value']))
+        if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['begin_value'] && !preg_match('/^[0-9]{1,15}$/', $postArray[$typeDiscount]['begin_value'])) {
             $this->error[] = lang('Begin value must be numeric');
+        }
 
-        if ($typeDiscount == 'certificate' && $postArray[$typeDiscount]['begin_value'] && !preg_match('/^[0-9]{1,15}$/', $postArray[$typeDiscount]['begin_value']))
+        if ($typeDiscount == 'certificate' && $postArray[$typeDiscount]['begin_value'] && !preg_match('/^[0-9]{1,15}$/', $postArray[$typeDiscount]['begin_value'])) {
             $this->error[] = lang('Begin value must be numeric');
-        
-        if ($typeDiscount == 'all_order' && $postArray[$typeDiscount]['begin_value'] && !preg_match('/^[0-9]{1,15}$/', $postArray[$typeDiscount]['begin_value']))
-            $this->error[] = lang('Begin value must be numeric');
+        }
 
-        if ($postArray['max_apply'] && !preg_match('/^[0-9]{1,15}$/', $postArray['max_apply']))
+        if ($typeDiscount == 'all_order' && $postArray[$typeDiscount]['begin_value'] && !preg_match('/^[0-9]{1,15}$/', $postArray[$typeDiscount]['begin_value'])) {
+            $this->error[] = lang('Begin value must be numeric');
+        }
+
+        if ($postArray['max_apply'] && !preg_match('/^[0-9]{1,15}$/', $postArray['max_apply'])) {
             $this->error[] = lang('Max apply must be numeric');
+        }
 
-        if (!$postArray['value'] || !preg_match('/^[0-9]{1,15}$/', $postArray['value']))
+        if (!$postArray['value'] || !preg_match('/^[0-9]{1,15}$/', $postArray['value'])) {
             $this->error[] = lang('Value must be numeric');
+        }
 
-        if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] < $postArray[$typeDiscount]['begin_value'] && is_numeric($postArray[$typeDiscount]['end_value']))
+        if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] < $postArray[$typeDiscount]['begin_value'] && is_numeric($postArray[$typeDiscount]['end_value'])) {
             $this->error[] = lang('Amount <<from>> can not be greater than the sum <<to>>', 'mod_discount');
+        }
 
-        if ($typeDiscount == 'product' && !$postArray[$typeDiscount]['product_id'])
+        if ($typeDiscount == 'product' && !$postArray[$typeDiscount]['product_id']) {
             $this->error[] = lang('Enter a product that is in the database', 'mod_discount');
+        }
 
-        if ($typeDiscount == 'user' && !$postArray[$typeDiscount]['user_id'])
+        if ($typeDiscount == 'user' && !$postArray[$typeDiscount]['user_id']) {
             $this->error[] = lang('Enter the user who is in the database', 'mod_discount');
+        }
 
-        if ($typeDiscount == 'user' && !$this->validateUserDiscount($postArray[$typeDiscount]['user_id']) && is_null($id))
+        if ($typeDiscount == 'user' && !$this->validateUserDiscount($postArray[$typeDiscount]['user_id']) && $id == null) {
             $this->error[] = lang('This user already have active discount', 'mod_discount');
+        }
 
-        if ($typeDiscount == 'group_user' && !$this->validateGroupDiscount($postArray[$typeDiscount]['group_id']) && is_null($id))
+        if ($typeDiscount == 'group_user' && !$this->validateGroupDiscount($postArray[$typeDiscount]['group_id']) && $id == null) {
             $this->error[] = lang('This group of users already have active discount', 'mod_discount');
+        }
 
-        if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] == null && $this->discount_model_admin->checkHaveAnyComulativDiscountMaxEndValue($id))
+        if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] == null && $this->discount_model_admin->checkHaveAnyComulativDiscountMaxEndValue($id)) {
             $this->error[] = lang('There can be more than one discount with said upper threshold as a <<maximum>>!', 'mod_discount');
+        }
 
-        if ($postArray['type_value'] != 1 && $postArray['type_value'] != 2)
+        if ($postArray['type_value'] != 1 && $postArray['type_value'] != 2) {
             $this->error[] = lang('Invalid type value!', 'mod_discount');
+        }
 
-        if ($postArray['type_value'] == 1 && $postArray['value'] >= 100)
+        if ($postArray['type_value'] == 1 && $postArray['value'] >= 100) {
             $this->error[] = lang('Invalid type value!', 'mod_discount');
+        }
 
-        if (!preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/', $postArray['date_begin']))
+        if (!preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/', $postArray['date_begin'])) {
             $this->error[] = lang('Invalid date range!', 'mod_discount');
+        }
 
-        if ($postArray['date_end'] && !preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/', $postArray['date_end']))
+        if ($postArray['date_end'] && !preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/', $postArray['date_end'])) {
             $this->error[] = lang('Invalid date range!', 'mod_discount');
+        }
 
-        if ($postArray['date_begin'] >= $postArray['date_end'] && !$postArray['date_end'] == null)
+        if ($postArray['date_begin'] >= $postArray['date_end'] && !$postArray['date_end'] == null) {
             $this->error[] = lang('Invalid date range!', 'mod_discount');
+        }
 
-        if ($typeDiscount == 'comulativ' && $postArray['comulativ']['begin_value'] === $postArray['comulativ']['end_value'])
+        if ($typeDiscount == 'comulativ' && $postArray['comulativ']['begin_value'] === $postArray['comulativ']['end_value']) {
             $this->error[] = lang('Values `from` and `to` can not be equal', 'mod_discount');
+        }
 
         if ($typeDiscount == 'comulativ') {
-            if($this->discount_model_admin->checkRangeForCumulativeDiscount($postArray['comulativ'], $id)){
+            if ($this->discount_model_admin->checkRangeForCumulativeDiscount($postArray['comulativ'], $id)) {
                 $this->error[] = lang('Has been already created with the cumulative discount value', 'mod_discount');
             }
         }
@@ -440,21 +467,25 @@ class DiscountManager extends \MY_Controller {
      */
     private static function generateDiscountKey($charsCount = 8, $digitsCount = 8) {
         $chars = array('q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm');
-        if ($charsCount > sizeof($chars))
-            $charsCount = sizeof($chars);
+        if ($charsCount > count($chars)) {
+            $charsCount = count($chars);
+        }
         $result = array();
         if ($charsCount > 0) {
             $randCharsKeys = array_rand($chars, $charsCount);
-            foreach ($randCharsKeys as $key => $val)
+            foreach ($randCharsKeys as $key => $val) {
                 array_push($result, $chars[$val]);
+            }
         }
-        for ($i = 0; $i < $digitsCount; $i++)
+        for ($i = 0; $i < $digitsCount; $i++) {
             array_push($result, rand(0, 9));
+        }
         shuffle($result);
         $result = implode('', $result);
         $ci = get_instance();
-        if ($ci->discount_model_admin->checkDiscountCode($result))
+        if ($ci->discount_model_admin->checkDiscountCode($result)) {
             self::generateDiscountKey($charsCount, $digitsCount);
+        }
         return $result;
     }
 

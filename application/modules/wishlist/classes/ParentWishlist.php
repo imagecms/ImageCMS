@@ -49,8 +49,9 @@ class ParentWishlist extends \MY_Controller {
         $this->load->language('wishlist');
         $this->settings = $this->wishlist_model->getSettings();
 
-        if ($this->settings)
+        if ($this->settings) {
             $this->userWishProducts = $this->wishlist_model->getUserWishProducts();
+        }
     }
 
     /**
@@ -115,8 +116,9 @@ class ParentWishlist extends \MY_Controller {
      * @return boolean
      */
     public function show($hash, $access = array('shared', 'private', 'public')) {
-        if (!$hash)
+        if (!$hash) {
             return FALSE;
+        }
 
         $wishlist = $this->wishlist_model->getUserWishListByHash($hash, $access);
         $user_data = $this->wishlist_model->getUserByID($wishlist[0]['wl_user_id']);
@@ -272,8 +274,9 @@ class ParentWishlist extends \MY_Controller {
      * @return boolean
      */
     public function createWishList($user_id, $listName, $wlType, $wlDescription) {
-        if ($listName)
+        if ($listName) {
             $count_lists = $this->wishlist_model->getUserWishListCount($user_id);
+        }
 
         if ($count_lists >= $this->settings['maxListsCount']) {
             $this->errors[] = lang('Wish Lists limit exhausted', 'wishlist') . '. ' . lang('List maximum', 'wishlist') . ' - ' . $this->settings['maxListsCount'];
@@ -295,9 +298,9 @@ class ParentWishlist extends \MY_Controller {
             $this->errors[] = lang('Wish List name can not be empty!', 'wishlist');
         }
 
-        if (count($this->errors))
+        if (count($this->errors)) {
             return FALSE;
-        else {
+        } else {
             $this->dataModel = lang('Created', 'wishlist');
             return TRUE;
         }
@@ -319,13 +322,13 @@ class ParentWishlist extends \MY_Controller {
 
         if ($forReturn) {
             $this->wishlist_model->delWishListProductsByWLId($id);
-        }
-        else
+        } else {
             $this->errors[] = lang('You can not delete Wish List', 'wishlist');
+        }
 
-        if (count($this->errors))
+        if (count($this->errors)) {
             return FALSE;
-        else {
+        } else {
             $this->dataModel = lang('Successfully deleted', 'wishlist');
             return TRUE;
         }
@@ -345,16 +348,17 @@ class ParentWishlist extends \MY_Controller {
                 $forReturn = $this->wishlist_model->delWishListById($wl);
                 $forReturn = $this->wishlist_model->delWishListProductsByWLId($wl);
 
-                if (!$forReturn)
+                if (!$forReturn) {
                     $this->errors[] = lang('Can not remove items from wishlist', 'wishlist');
+                }
             }
-        }
-        else
+        } else {
             $this->errors[] = lang('You can not delete Wish List', 'wishlist');
+        }
 
-        if (count($this->errors))
+        if (count($this->errors)) {
             return FALSE;
-        else {
+        } else {
             $this->dataModel = lang('Successfully deleted', 'wishlist');
             return TRUE;
         }
@@ -373,8 +377,9 @@ class ParentWishlist extends \MY_Controller {
      * @return boolean
      */
     public function _addItem($varId, $listId, $listName, $userId = null) {
-        if (!$userId)
+        if (!$userId) {
             $userId = $this->dx_auth->get_user_id();
+        }
         $count_lists = 0;
         $count_items = $this->wishlist_model->getUserWishListItemsCount($userId);
 
@@ -407,12 +412,13 @@ class ParentWishlist extends \MY_Controller {
             return FALSE;
         }
 
-        if (!$this->wishlist_model->addItem($varId, $listId, $listName, $userId))
+        if (!$this->wishlist_model->addItem($varId, $listId, $listName, $userId)) {
             $this->errors[] = lang('You can not add', 'wishlist');
+        }
 
-        if (count($this->errors))
+        if (count($this->errors)) {
             return FALSE;
-        else {
+        } else {
             $this->dataModel = lang('Added to wishlist', 'wishlist');
             return TRUE;
         }
@@ -431,8 +437,9 @@ class ParentWishlist extends \MY_Controller {
      * @return boolean
      */
     public function moveItem($varId, $wish_list_id, $to_listId = '', $to_listName = '', $user_id = null) {
-        if (!$user_id)
+        if (!$user_id) {
             $user_id = $this->dx_auth->get_user_id();
+        }
 
         if ($to_listName) {
             $this->wishlist_model->createWishList($to_listName, $user_id);
@@ -455,10 +462,11 @@ class ParentWishlist extends \MY_Controller {
      */
     public function deleteItem($variant_id, $wish_list_id) {
         $forReturn = $this->wishlist_model->deleteItem($variant_id, $wish_list_id);
-        if ($forReturn == 0)
+        if ($forReturn == 0) {
             $this->errors[] = lang('Can not remove items from wishlist', 'wishlist');
-        else
+        } else {
             $this->dataModel = lang('Item deleted', 'wishlist');
+        }
 
         return $forReturn;
     }
@@ -503,8 +511,9 @@ class ParentWishlist extends \MY_Controller {
         }
         $w = array();
 
-        foreach ($wishlists as $wishlist)
+        foreach ($wishlists as $wishlist) {
             $w[$wishlist['wish_list_id']][] = $wishlist;
+        }
 
         $this->dataModel['wishlists'] = $w;
 
@@ -522,17 +531,20 @@ class ParentWishlist extends \MY_Controller {
      * @return boolean
      */
     public function renderUserWLEdit($wish_list_id, $userID = null) {
-        if ($userID === null)
+        if ($userID === null) {
             $userID = $this->dx_auth->get_user_id();
+        }
 
         if ($wish_list_id) {
             $wishlists = $this->wishlist_model->getUserWishList($userID, $wish_list_id);
-            if (empty($wishlists))
+            if (empty($wishlists)) {
                 return FALSE;
+            }
 
             $w = array();
-            foreach ($wishlists as $wishlist)
+            foreach ($wishlists as $wishlist) {
                 $w[$wishlist['title']][] = $wishlist;
+            }
             $this->dataModel = $w;
             return TRUE;
         }
@@ -548,25 +560,31 @@ class ParentWishlist extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      * @return boolean
      */
-    function do_upload($userID = null) {
+    public function do_upload($userID = null) {
 
-        if (!$userID)
+        if (!$userID) {
             $userID = $this->dx_auth->get_user_id();
+        }
 
         $allowedFileFormats = array('image/gif', 'image/jpeg', 'image/png', 'image/jpg');
 
         list($width, $height, $type, $attr) = getimagesize($_FILES["file"]['tmp_name']);
 
-        if ($this->settings['maxImageSize'] < $_FILES["file"]['size'])
+        if ($this->settings['maxImageSize'] < $_FILES["file"]['size']) {
             $this->errors[] = lang('Maximum image size is exceeded', 'wishlist') . ' (' . lang('max size', 'wishlist') . ' ' . $this->settings['maxImageSize'] . ')';
-        if ($this->settings['maxImageWidth'] < $width)
+        }
+        if ($this->settings['maxImageWidth'] < $width) {
             $this->errors[] = lang('Maximum width of the image is exceeded', 'wishlist') . ' (' . lang('max width', 'wishlist') . ' ' . $this->settings['maxImageWidth'] . 'px)';
-        if ($this->settings['maxImageHeight'] < $height)
+        }
+        if ($this->settings['maxImageHeight'] < $height) {
             $this->errors[] = lang('Max image height exceeded', 'wishlist') . ' (' . lang('max height', 'wishlist') . ' ' . $this->settings['maxImageHeight'] . 'px)';
-        if (!in_array($_FILES["file"]['type'], $allowedFileFormats))
+        }
+        if (!in_array($_FILES["file"]['type'], $allowedFileFormats)) {
             $this->errors[] = lang('Invalid file format', 'wishlist');
-        if ($this->errors)
+        }
+        if ($this->errors) {
             return FALSE;
+        }
 
         if (!file_exists('./uploads/mod_wishlist/')) {
             mkdir('./uploads/mod_wishlist/');
@@ -698,7 +716,7 @@ class ParentWishlist extends \MY_Controller {
     }
 
     public function autoload() {
-        
+
     }
 
     public static function adminAutoload() {

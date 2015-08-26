@@ -1,6 +1,6 @@
 <!--Start. Global js variables -->
 <script type="text/javascript">
-var currencySymbolJS = '{echo $CS}';
+    var currencySymbolJS = '{echo $CS}';
 </script>
 <!--End. Global js variables -->
 <section class="mini-layout">
@@ -216,13 +216,13 @@ var currencySymbolJS = '{echo $CS}';
                                             <div id="group_userBlock" class="forHide" style="display: none;">
                                                 {$checked=TRUE}
                                                 {foreach $userGroups as $group}
-                                                <span class="frame_label">
-                                                    <span class="niceRadio b_n">
-                                                        <input type="radio" name="group_user[group_id]"  value="{echo $group[id]}" {if $checked}checked="checked" {/if}>
+                                                    <span class="frame_label">
+                                                        <span class="niceRadio b_n">
+                                                            <input type="radio" name="group_user[group_id]"  value="{echo $group[id]}" {if $checked}checked="checked" {/if}>
+                                                        </span>
+                                                        {echo $group['alt_name']}
                                                     </span>
-                                                    {echo $group['alt_name']}
-                                                </span>
-                                                {$checked=FALSE}
+                                                    {$checked=FALSE}
                                                 {/foreach}
                                             </div>
                                             <!-- End. Show if discount type is group of users-->
@@ -232,7 +232,7 @@ var currencySymbolJS = '{echo $CS}';
                                             <div id="categoryBlock" class="forHide" style="display: none;">
                                                 <select name="category[category_id]">
                                                     {foreach $categories as $category}
-                                                    <option {if $category->getLevel() == 0}style="font-weight: bold;"{/if} value="{echo $category->getId()}">{str_repeat('-',$category->getLevel())}{echo $category->getName()}</option>
+                                                        <option {if $category->getLevel() == 0}style="font-weight: bold;"{/if} value="{echo $category->getId()}">{str_repeat('-',$category->getLevel())}{echo $category->getName()}</option>
                                                     {/foreach}
                                                 </select></br>
                                                 <span class="frame_label" >
@@ -260,7 +260,7 @@ var currencySymbolJS = '{echo $CS}';
                                             <div id="brandBlock" class="forHide" style="display: none;">
                                                 <select id="selectBrand" name="brand[brand_id]">
                                                     {foreach $brands as $brand}
-                                                    <option value="{echo $brand->getId()}">{echo ShopCore::encode($brand->getName())}</option>
+                                                        <option value="{echo $brand->getId()}">{echo ShopCore::encode($brand->getName())}</option>
                                                     {/foreach}
                                                 </select>
                                             </div>
