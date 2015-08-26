@@ -1,10 +1,16 @@
 language: php
-
+sudo: false
 php:
-    - 5.5
     - 5.4
-    - 5.3
+    - 5.5
+matrix:
+  allow_failures:
+    - php: 5.5
 
-before_script: composer install
 
-script: phpunit --configuration tests/phpunit.xml
+install: composer install --dev
+before_script: 
+  - composer self-update
+  #composer install
+script: phpunit -c app/
+
