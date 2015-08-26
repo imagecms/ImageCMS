@@ -3,14 +3,20 @@ sudo: false
 php:
     - 5.4
     - 5.5
-matrix:
-  allow_failures:
-    - php: 5.5
 
-
-install: composer install --dev
-before_script: 
+env:
+  - DB=mysql
+  - DB=pgsql
+  
+before_script:
+  - curl -s http://getcomposer.org/installer | php
+  - php composer.phar install  --dev --no-interaction --prefer-source
   - composer self-update
-  #composer install
-script: phpunit -c app/
+  - bin/composer install
+  - composer install
+  
+script:
+- ./vendor/bin/phpunit
+notifications:
+    email: false
 
