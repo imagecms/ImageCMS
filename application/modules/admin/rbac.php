@@ -45,7 +45,7 @@ class Rbac extends BaseAdminController {
             $skipPrivilegesIds = [];
             array_map(
                 function ($privilege) use (&$skipPrivilegesIds) {
-                    $skipPrivilegesIds[$privilege['id']] = $privilege;
+                        $skipPrivilegesIds[$privilege['id']] = $privilege;
                 },
                 $skipPrivileges
             );
@@ -54,7 +54,7 @@ class Rbac extends BaseAdminController {
         $privilegesPOSTIds = array_filter(
             $privilegesPOST,
             function ($id) use (&$skipPrivilegesIds, &$privilegesPOST) {
-                return !$skipPrivilegesIds[$id] ? true : false;
+                    return !$skipPrivilegesIds[$id] ? true : false;
             }
         );
         return $privilegesPOSTIds;

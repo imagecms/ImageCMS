@@ -99,9 +99,9 @@ class assetManager {
      * @return assetManager
      * @access public
      * @author Kaero
-     * @param type $name
-     * @param type $useCompress
-     * @param type $position
+     * @param string $name
+     * @param boolean $useCompress
+     * @param string $position
      * @return assetManager
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
@@ -162,8 +162,8 @@ class assetManager {
      * @return assetManager
      * @access public
      * @author Kaero
-     * @param type $name
-     * @param type $useCompress
+     * @param string $name
+     * @param boolean $useCompress
      * @return assetManager
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
@@ -183,8 +183,8 @@ class assetManager {
      * @return assetManager
      * @access public
      * @author a.gula
-     * @param type $css
-     * @param type $useCompress
+     * @param string $css
+     * @param boolean $useCompress
      * @copyright ImageCMS (c) 2013, a.gula <a.gula@imagecms.net>
      */
     public function registerStyleStr($css, $useCompress = FALSE) {

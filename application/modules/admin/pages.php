@@ -37,7 +37,7 @@ class Pages extends BaseAdminController {
         $uri_segs = $this->uri->uri_to_assoc(2);
 
         $this->template->add_array(
-                [
+            [
                     'tree' => $this->lib_category->build(), // Load category tree
                     'cur_time' => date('H:i:s'),
                     'cur_date' => date('Y-m-d'),
@@ -251,8 +251,8 @@ class Pages extends BaseAdminController {
             $this->on_page_add($data);
 
             $this->lib_admin->log(
-                    lang("Created a page", "admin") . " " .
-                    '<a href="/admin/pages/edit/' . $page_id . '">' . $data['title'] . '</a>'
+                lang("Created a page", "admin") . " " .
+                '<a href="/admin/pages/edit/' . $page_id . '">' . $data['title'] . '</a>'
             );
 
             $action = $this->input->post('action');
@@ -402,7 +402,7 @@ class Pages extends BaseAdminController {
             $category = $this->lib_category->get_category($data['category']);
 
             $this->template->add_array(
-                    [
+                [
                         'page_lang' => $data['lang'],
                         'page_identif' => $data['identif'],
                         'tree' => $this->lib_category->build(),
@@ -461,12 +461,12 @@ class Pages extends BaseAdminController {
         if ($page_category['field_group'] != -1 && $page_category) {
             $groupId = $page_category['field_group'];
             $fields = $this->db
-                    ->where("content_fields.data like '%required%'")
-                    ->or_where("content_fields.data like '%validation%'")
-                    ->where('group_id', $groupId)
-                    ->join('content_fields', 'content_fields.field_name = content_fields_groups_relations.field_name')
-                    ->get('content_fields_groups_relations')
-                    ->result_array();
+                ->where("content_fields.data like '%required%'")
+                ->or_where("content_fields.data like '%validation%'")
+                ->where('group_id', $groupId)
+                ->join('content_fields', 'content_fields.field_name = content_fields_groups_relations.field_name')
+                ->get('content_fields_groups_relations')
+                ->result_array();
 
             foreach ($fields as $field) {
                 if ($groupId == $field['group_id']) {
@@ -573,8 +573,8 @@ class Pages extends BaseAdminController {
 
             if ($this->cms_admin->update_page($page_id, $data) >= 1) {
                 $this->lib_admin->log(
-                        lang("Changed the page", "admin") . " " .
-                        '<a href="/admin/pages/edit/' . $page_id . '">' . $data['title'] . '</a>'
+                    lang("Changed the page", "admin") . " " .
+                    '<a href="/admin/pages/edit/' . $page_id . '">' . $data['title'] . '</a>'
                 );
 
                 $action = $this->input->post('action');
@@ -640,7 +640,7 @@ class Pages extends BaseAdminController {
 
         $root_page = $this->cms_admin->get_page($page['lang_alias']);
 
-//         delete page
+        //         delete page
         $this->db->where('id', $page['id']);
         $this->db->delete('content');
 
@@ -1025,7 +1025,7 @@ class Pages extends BaseAdminController {
             $allCats = $catsQuery->result_array();
 
             $this->template->add_array(
-                    [
+                [
                         'paginator' => $this->pagination->create_links_ajax(),
                         'total_pages' => $total_pages,
                         'pages' => $pages,
@@ -1040,7 +1040,7 @@ class Pages extends BaseAdminController {
         } else {
 
             $this->template->add_array(
-                    [
+                [
                         'no_pages' => TRUE,
                         'category' => $category,
                         'total_pages' => $total_pages,

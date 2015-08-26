@@ -78,7 +78,7 @@ class BaseEmail extends ParentEmail {
         if (parent::sendEmail($send_to, $patern_name, $variables, $attachment)) {
             return TRUE;
         } else {
-//            echo $this->email->print_debugger();
+            //            echo $this->email->print_debugger();
             return $this->errors;
         }
     }
@@ -125,4 +125,5 @@ class BaseEmail extends ParentEmail {
         $this->email->send();
         echo $this->email->print_debugger();
     }
+
 }

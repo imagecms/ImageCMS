@@ -157,7 +157,7 @@ class Admin extends BaseAdminController {
 
                 if ($this->email->setSettings($data)) {
                     showMessage(lang('Settings saved', 'cmsemail'), lang('Message', 'cmsemail'));
-                    $this->lib_admin->log(lang("Template customization mails have been changed", "cmsemail") . '. Id: ');// . $id);??
+                    $this->lib_admin->log(lang("Template customization mails have been changed", "cmsemail") . '. Id: '); // . $id);??
                 }
             }
 

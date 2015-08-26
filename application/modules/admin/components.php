@@ -15,9 +15,10 @@ class Components extends BaseAdminController {
      * @var array
      */
     private $installed = array();
+
     private $permited = array();
 
-    function __construct() {
+    public function __construct() {
         parent::__construct();
 
         $this->load->library('DX_Auth');
@@ -30,11 +31,11 @@ class Components extends BaseAdminController {
         $this->setPermited();
     }
 
-    function index() {
+    public function index() {
         $this->modules_table();
     }
 
-    function modules_table() {
+    public function modules_table() {
         $not_installed = array();
 
         $fs_modules = $this->find_components();
@@ -81,10 +82,13 @@ class Components extends BaseAdminController {
             list($db_modules, $not_installed) = $this->isPermitedModules($db_modules, $not_installed);
         }
 
-        \CMSFactory\Events::create()->registerEvent(array(
+        \CMSFactory\Events::create()->registerEvent(
+            array(
             'installed' => $db_modules,
             'not_installed' => $not_installed
-                ), 'Components:modules_table')->runFactory();
+                ),
+            'Components:modules_table'
+        )->runFactory();
 
         $this->template->assign('installed', $db_modules);
         $this->template->assign('not_installed', $not_installed);
@@ -115,9 +119,12 @@ class Components extends BaseAdminController {
 
     private function setInstalled() {
         $installed = $this->db->select('name')->get('components')->result_array();
-        array_walk($installed, function(&$item, $key) {
-            $item = $item['name'];
-        });
+        array_walk(
+            $installed,
+            function(&$item, $key) {
+                    $item = $item['name'];
+            }
+        );
         $this->installed = $installed;
     }
 
@@ -128,11 +135,11 @@ class Components extends BaseAdminController {
         }
     }
 
-    function is_installed($mod_name) {
+    public function is_installed($mod_name) {
         return in_array($mod_name, $this->installed);
     }
 
-    function install($module = '') {
+    public function install($module = '') {
         //cp_check_perm('module_install');
 
         $module = strtolower($module);
@@ -177,10 +184,10 @@ class Components extends BaseAdminController {
         }
     }
 
-    function deinstall($moduleName) {
+    public function deinstall($moduleName) {
         //cp_check_perm('module_deinstall');
         $modules = $_POST['ids'] ? : [$moduleName];
-         
+
         foreach ($modules as $module) {
             $module = strtolower($module);
 
@@ -194,17 +201,17 @@ class Components extends BaseAdminController {
                 if (method_exists($module, '_deinstall') === TRUE) {
                     $this->$module->_deinstall();
                 }
-                
+
                 $this->db->limit(1);
                 $this->db->delete('components', array('name' => $module));
                 $this->lib_admin->log(lang("Deleted a module", "admin") . " " . $module);
-                if (php_sapi_name() == 'cli') {
+                if (PHP_SAPI == 'cli') {
                     return true;
                 }
                 showMessage(lang("The module successfully uninstall", "admin"));
                 pjax('/admin/components/modules_table');
             } else {
-                if (php_sapi_name() == 'cli') {
+                if (PHP_SAPI == 'cli') {
                     return false;
                 }
                 showMessage(lang("Module deletion error", "admin"), false, 'r');
@@ -222,11 +229,11 @@ class Components extends BaseAdminController {
      * @param string $module_name module name
      * @return boolean
      */
-    function module_exists($module_name) {
+    public function module_exists($module_name) {
         return moduleExists($module_name);
     }
 
-    function find_components($in_menu = FALSE) {
+    public function find_components($in_menu = FALSE) {
         $components = array();
         if ($in_menu == TRUE) {
             $this->db->where('in_menu', 1);
@@ -244,7 +251,7 @@ class Components extends BaseAdminController {
             $lang->load($moduleName);
 
             if (file_exists($info_file)) {
-                include ($info_file);
+                include $info_file;
 
                 if (file_exists($com_file_admin)) {
                     $admin_file = 1;
@@ -278,7 +285,7 @@ class Components extends BaseAdminController {
      * Get components which show in menu and have admin.php
      * @return array|boolean
      */
-    function find_components_for_menu_list() {
+    public function find_components_for_menu_list() {
         /** Get all components which show in menu */
         $components = $this->db->where('in_menu', 1);
 
@@ -289,7 +296,7 @@ class Components extends BaseAdminController {
         }
 
         $components = $components->get('components')
-                ->result_array();
+            ->result_array();
 
         if (MAINSITE != '') {
             $components = $this->isPermitedModules($components, array());
@@ -309,7 +316,7 @@ class Components extends BaseAdminController {
                     $lang->load($value['name']);
 
                     if (file_exists($info_file)) {
-                        include($info_file);
+                        include $info_file;
                         $components[$key]['type'] = $com_info['type'];
                         $components[$key] = array_merge($components[$key], $com_info);
                     }
@@ -319,7 +326,7 @@ class Components extends BaseAdminController {
         return $components;
     }
 
-    function component_settings($component) {
+    public function component_settings($component) {
         //cp_check_perm('module_admin');
 
         $this->db->where('name', $component);
@@ -338,7 +345,8 @@ class Components extends BaseAdminController {
     }
 
     // Save component settings
-    function save_settings($component) {
+
+    public function save_settings($component) {
         //cp_check_perm('module_admin');
 
         $this->db->where('name', $component);
@@ -361,8 +369,6 @@ class Components extends BaseAdminController {
             $this->db->update('components', $data);
 
             $this->lib_admin->log(lang("Changed the module settings", "admin") . " " . $com['name']);
-        } else {
-            // Error, module not found
         }
 
         jsCode("ajax_div('modules_table',base_url + 'admin/components/modules_table/');");
@@ -376,7 +382,8 @@ class Components extends BaseAdminController {
     }
 
     // Load component admin class in iframe/xhr
-    function init_window($module) {
+
+    public function init_window($module) {
         $this->checkPerm($module);
         $lang = new MY_Lang();
         $lang->load($module);
@@ -386,7 +393,7 @@ class Components extends BaseAdminController {
         $info_file = getModulePath($module) . 'module_info.php';
 
         if (file_exists($info_file)) {
-            include_once ($info_file);
+            include_once $info_file;
 
             switch ($com_info['admin_type']) {
                 case 'window':
@@ -404,7 +411,7 @@ class Components extends BaseAdminController {
         }
     }
 
-    function cp($module) {
+    public function cp($module) {
         $this->checkPerm($module);
         $func = $this->uri->segment(5);
 
@@ -428,22 +435,22 @@ class Components extends BaseAdminController {
     /**
      * Run module
      */
-//    function show_module($module){
-//        $func = $this->uri->segment(5);
-//        if ($func == FALSE)
-//            $func = 'index';
-//
-//        //($hook = get_hook('admin_run_module_panel')) ? eval($hook) : NULL;
-//
-//        $this->load->module('core/core');
-//        $args = $this->core->grab_variables(6);
-//
-//        $this->template->assign('SELF_URL', site_url('admin/components/cp/' . $module));
-//        echo modules::run($module . '/admin/' . $func, $args);
-//        pjax('/application/modules/'.$module.'/admin');
-//    }
+    //    function show_module($module){
+    //        $func = $this->uri->segment(5);
+    //        if ($func == FALSE)
+    //            $func = 'index';
+    //
+    //        //($hook = get_hook('admin_run_module_panel')) ? eval($hook) : NULL;
+    //
+    //        $this->load->module('core/core');
+    //        $args = $this->core->grab_variables(6);
+    //
+    //        $this->template->assign('SELF_URL', site_url('admin/components/cp/' . $module));
+    //        echo modules::run($module . '/admin/' . $func, $args);
+    //        pjax('/application/modules/'.$module.'/admin');
+    //    }
 
-    function run($module) {
+    public function run($module) {
         $this->checkPerm($module);
 
         $func = $this->uri->segment(5);
@@ -461,7 +468,7 @@ class Components extends BaseAdminController {
         echo modules::run($module . '/admin/' . $func, $args);
     }
 
-    function com_info() {
+    public function com_info() {
         $com_info = $this->get_module_info($this->input->post('component'));
 
         if ($com_info != FALSE) {
@@ -473,19 +480,19 @@ class Components extends BaseAdminController {
         }
     }
 
-    function get_module_info($mod_name) {
+    public function get_module_info($mod_name) {
         $info_file = getModulePath($mod_name) . 'module_info.php';
         $lang = new MY_Lang();
         $lang->load($mod_name);
         if (file_exists($info_file)) {
-            include($info_file);
+            include $info_file;
             return $com_info;
         } else {
             return FALSE;
         }
     }
 
-    function change_autoload() {
+    public function change_autoload() {
         if (isset($_POST['mid'])) {
             $mid = $_POST['mid'];
             $row = $this->db->where('id', $mid)->get('components')->row();
@@ -506,7 +513,7 @@ class Components extends BaseAdminController {
         }
     }
 
-    function change_url_access() {
+    public function change_url_access() {
         if (isset($_POST['mid'])) {
             $mid = $_POST['mid'];
             $row = $this->db->where('id', $mid)->get('components')->row();
@@ -527,7 +534,7 @@ class Components extends BaseAdminController {
         }
     }
 
-    function save_components_positions() {
+    public function save_components_positions() {
         $positions = $this->input->post('positions');
         if (is_array($positions)) {
             foreach ($positions as $key => $value) {
@@ -545,7 +552,7 @@ class Components extends BaseAdminController {
         }
     }
 
-    function change_show_in_menu() {
+    public function change_show_in_menu() {
         $id = $this->input->post('id');
         $row = $this->db->where('id', (int) $id)->get('components')->row();
         if (count($row) > 0) {
@@ -564,5 +571,3 @@ class Components extends BaseAdminController {
 }
 
 /* End of components.php */
-
-    

@@ -33,7 +33,7 @@
                     <form action="{$BASE_URL}admin/components/cp/cmsemail/edit/{$model['id']}/{echo $locale}" id="email_form" method="post" class="form-horizontal">
                         <table class="table  table-bordered table-hover table-condensed content_big_td">
                             <thead>
-                                <th>{lang('Settings', 'cmsemail')}</th>
+                            <th>{lang('Settings', 'cmsemail')}</th>
                             </thead>
                             <tbody>
                                 <tr>
@@ -96,7 +96,7 @@
                                                         <div class="m-t_15">
                                                             <select name="mail_variables[]" multiple="multiple" id="userMailVariables" size="10" class="notchosen">
                                                                 {foreach $variables as $variable => $variableValue}
-                                                                <option title="{echo $variableValue}" value="{echo $variable}">{echo $variableValue}</option>
+                                                                    <option title="{echo $variableValue}" value="{echo $variable}">{echo $variableValue}</option>
                                                                 {/foreach}
                                                             </select>
                                                             <span class="help-block">{echo lang('Click with mouse on editor place where you want to add variable', 'cmsemail')}</span>
@@ -131,119 +131,119 @@
                                                     <div class="control-label">
                                                         <label for="adminMailText">{lang('Admin mail template', 'cmsemail')}: <span class="must">*</span></label>
                                                         <div class="m-t_15">
-                                                           <select name="mail_variables[]" multiple="multiple" id="adminMailVariables" size="10" class="notchosen">
-                                                            {foreach $variables as $variable => $variableValue}
-                                                            <option title="{echo $variableValue}" value="{echo $variable}">{echo $variableValue}</option>
-                                                            {/foreach}
-                                                        </select>
-                                                        <span class="help-block">{echo lang('Click with mouse on editor place where you want to add variable', 'cmsemail')}</span>
+                                                            <select name="mail_variables[]" multiple="multiple" id="adminMailVariables" size="10" class="notchosen">
+                                                                {foreach $variables as $variable => $variableValue}
+                                                                    <option title="{echo $variableValue}" value="{echo $variable}">{echo $variableValue}</option>
+                                                                {/foreach}
+                                                            </select>
+                                                            <span class="help-block">{echo lang('Click with mouse on editor place where you want to add variable', 'cmsemail')}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="controls">
+                                                        <textarea class="elRTE" name="adminMailText" id="adminMailText">{$model['admin_message']}</textarea>
                                                     </div>
                                                 </div>
-                                                <div class="controls">
-                                                    <textarea class="elRTE" name="adminMailText" id="adminMailText">{$model['admin_message']}</textarea>
-                                                </div>
-                                            </div>
 
-                                            <div class="control-group">
-                                                <label class="control-label" for="adminMailTextRadio">{lang('Send email to admin', 'cmsemail')}:</label>
-                                                <div class="controls">
-                                                    <span class="frame_label">
-                                                        <span class="niceRadio b_n">
-                                                            <input type="radio" name="adminMailTextRadio" value="1" {if $model['admin_message_active']}checked="checked"{/if} id="adminMailTextRadio"/>
+                                                <div class="control-group">
+                                                    <label class="control-label" for="adminMailTextRadio">{lang('Send email to admin', 'cmsemail')}:</label>
+                                                    <div class="controls">
+                                                        <span class="frame_label">
+                                                            <span class="niceRadio b_n">
+                                                                <input type="radio" name="adminMailTextRadio" value="1" {if $model['admin_message_active']}checked="checked"{/if} id="adminMailTextRadio"/>
+                                                            </span>
+                                                            {lang('Yes', 'cmsemail')}
                                                         </span>
-                                                        {lang('Yes', 'cmsemail')}
-                                                    </span>
-                                                    &nbsp;&nbsp;
-                                                    <span class="frame_label">
-                                                        <span class="niceRadio b_n">
-                                                            <input type="radio" name="adminMailTextRadio" value="0" {if !$model['admin_message_active']}checked="checked"{/if} id="adminMailTextRadio"/>
+                                                        &nbsp;&nbsp;
+                                                        <span class="frame_label">
+                                                            <span class="niceRadio b_n">
+                                                                <input type="radio" name="adminMailTextRadio" value="0" {if !$model['admin_message_active']}checked="checked"{/if} id="adminMailTextRadio"/>
+                                                            </span>
+                                                            {lang('No', 'cmsemail')}
                                                         </span>
-                                                        {lang('No', 'cmsemail')}
-                                                    </span>
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="control-group">
-                                                <label class="control-label" for="comcount3">{lang('Admin address', 'cmsemail')}:</label>
-                                                <div class="controls">
-                                                    <input id="comcount3" type="text" name="admin_email" value="{$model['admin_email']}"/>
+                                                <div class="control-group">
+                                                    <label class="control-label" for="comcount3">{lang('Admin address', 'cmsemail')}:</label>
+                                                    <div class="controls">
+                                                        <input id="comcount3" type="text" name="admin_email" value="{$model['admin_email']}"/>
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="control-group">
-                                                <label class="control-label" for="symcount2">{lang('Template description', 'cmsemail')}:</label>
-                                                <div class="controls">
-                                                    <textarea class="elRTE" name="mail_desc" id="symcount2">{$model['description']}</textarea>
+                                                <div class="control-group">
+                                                    <label class="control-label" for="symcount2">{lang('Template description', 'cmsemail')}:</label>
+                                                    <div class="controls">
+                                                        <textarea class="elRTE" name="mail_desc" id="symcount2">{$model['description']}</textarea>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    {form_csrf()}
-                </form>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        {form_csrf()}
+                    </form>
 
+                </div>
             </div>
-        </div>
-        <div class="tab-pane" id="variables">
-            <div class="inside_padd">
-                <table class="table  table-bordered table-hover table-condensed variablesTable t-l_a">
-                    <thead>
+            <div class="tab-pane" id="variables">
+                <div class="inside_padd">
+                    <table class="table  table-bordered table-hover table-condensed variablesTable t-l_a">
+                        <thead>
                         <th>{lang('Variables', 'cmsemail')}</th>
                         <th>{lang('Values', 'cmsemail')}</th>
                         <th>{lang('Edit', 'cmsemail')}</th>
                         <th>{lang('Delete', 'cmsemail')}</th>
-                    </thead>
-                    {foreach $variables as $variable => $variable_value}
-                    <tr>
-                        <td class="span5">
-                            <div class="variable">
-                                {echo $variable}
-                            </div>
-                            <input type="text" name="variableEdit" class="variableEdit" style="display: none"/>
-                        </td>
-                        <td class="span5">
-                            <div class="variableValue">
-                                {echo $variable_value}
-                            </div>
-                            <input type="text" name="variableValueEdit" class="variableValueEdit" style="display: none"/>
-                        </td>
-                        <td style="width: 100px">
-                            <button class="btn my_btn_s btn-small editVariable" type="button">
-                                <i class="icon-edit"></i>
-                            </button>
-                            <button data-update="count" onclick="EmailTemplateVariables.update($(this), '{$model['id']}', '{echo $variable}', '{echo $locale}')" class="btn btn-small refreshVariable my_btn_s" type="button" style="display: none;">
-                                <i class="icon-ok"></i>
-                            </button>
-                        </td>
-                        <td class="span1">
-                            <button class="btn my_btn_s btn-small btn-danger " type="button" onclick="EmailTemplateVariables.delete({$model['id']}, '{echo $variable}', $(this), '{echo $locale}')">
-                                <i class="icon-trash"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    {/foreach}
-                    <tr class="addVariableContainer" style="display: none">
-                        <td class="span5">
-                            <input type="text" name="variableEdit" class="variableEdit"/>
-                        </td>
-                        <td class="span5">
-                            <input type="text" name="variableValueEdit" class="variableValueEdit"/>
-                        </td>
-                        <td style="width: 100px" colspan="2">
-                            <button data-update="count" onclick="EmailTemplateVariables.add($(this), {$model['id']}, '{echo $locale}');" data-variable=""  class="btn btn-small" type="button" style="display: block; margin-top: 4px;margin-left: 4px">
-                                <i class="icon-plus"></i>
-                            </button>
-                        </td>
-                    </tr>
-                </table>
-                <button  class="btn btn-small btn-success addVariable">
-                    <i class="icon-plus icon-white"></i>&nbsp;{lang('Add new variable', 'cmsemail')}
-                </button>
+                        </thead>
+                        {foreach $variables as $variable => $variable_value}
+                            <tr>
+                                <td class="span5">
+                                    <div class="variable">
+                                        {echo $variable}
+                                    </div>
+                                    <input type="text" name="variableEdit" class="variableEdit" style="display: none"/>
+                                </td>
+                                <td class="span5">
+                                    <div class="variableValue">
+                                        {echo $variable_value}
+                                    </div>
+                                    <input type="text" name="variableValueEdit" class="variableValueEdit" style="display: none"/>
+                                </td>
+                                <td style="width: 100px">
+                                    <button class="btn my_btn_s btn-small editVariable" type="button">
+                                        <i class="icon-edit"></i>
+                                    </button>
+                                    <button data-update="count" onclick="EmailTemplateVariables.update($(this), '{$model['id']}', '{echo $variable}', '{echo $locale}')" class="btn btn-small refreshVariable my_btn_s" type="button" style="display: none;">
+                                        <i class="icon-ok"></i>
+                                    </button>
+                                </td>
+                                <td class="span1">
+                                    <button class="btn my_btn_s btn-small btn-danger " type="button" onclick="EmailTemplateVariables.delete({$model['id']}, '{echo $variable}', $(this), '{echo $locale}')">
+                                        <i class="icon-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        {/foreach}
+                        <tr class="addVariableContainer" style="display: none">
+                            <td class="span5">
+                                <input type="text" name="variableEdit" class="variableEdit"/>
+                            </td>
+                            <td class="span5">
+                                <input type="text" name="variableValueEdit" class="variableValueEdit"/>
+                            </td>
+                            <td style="width: 100px" colspan="2">
+                                <button data-update="count" onclick="EmailTemplateVariables.add($(this), {$model['id']}, '{echo $locale}');" data-variable=""  class="btn btn-small" type="button" style="display: block; margin-top: 4px;margin-left: 4px">
+                                    <i class="icon-plus"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                    <button  class="btn btn-small btn-success addVariable">
+                        <i class="icon-plus icon-white"></i>&nbsp;{lang('Add new variable', 'cmsemail')}
+                    </button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </section>

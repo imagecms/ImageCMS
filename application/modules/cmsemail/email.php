@@ -31,7 +31,6 @@ class email extends classes\BaseEmail {
         return self::$_instance;
     }
 
-
 }
 
 /* End of file email.php */

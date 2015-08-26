@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Image CMS
@@ -13,7 +14,7 @@ if (!defined('BASEPATH'))
  */
 class Sys_info extends BaseAdminController {
 
-    function __construct() {
+    public function __construct() {
         parent::__construct();
         $this->load->library('DX_Auth');
         admin_or_redirect();
@@ -59,11 +60,13 @@ class Sys_info extends BaseAdminController {
 
             $version = $query->row_array();
 
-            $this->template->add_array(array(
-                'db_version' => $version['VERSION()'],
-                'db_size' => byte_format($total_size),
-                'db_rows' => $total_rows,
-            ));
+            $this->template->add_array(
+                array(
+                        'db_version' => $version['VERSION()'],
+                        'db_size' => byte_format($total_size),
+                        'db_rows' => $total_rows,
+                    )
+            );
         }
 
         $this->template->show('sys_info', FALSE);

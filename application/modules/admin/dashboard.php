@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 class Dashboard extends BaseAdminController {
 
@@ -14,7 +15,7 @@ class Dashboard extends BaseAdminController {
         $this->load->library('lib_admin');
         $this->lib_admin->init_settings();
 
-       // $this->lang->load_gettext('ru','utf-8', 'default', 'application/language/admiin');
+        // $this->lang->load_gettext('ru','utf-8', 'default', 'application/language/admiin');
         //$this->lang->load_gettext('en','utf-8', 'messages', 'application/language');
         //$this->lang->load_gettext('en','utf-8', 'newdomen', 'application/language');
     }
@@ -36,10 +37,10 @@ class Dashboard extends BaseAdminController {
         // get comments
         if ($this->db->get_where('components', array('name' => 'comments'))->row()) {
             $comments = $this->db->where('status', '0')
-                    ->or_where('status', '1')
-                    ->order_by('date', 'DESC')
-                    ->get('comments')
-                    ->result_array();
+                ->or_where('status', '1')
+                ->order_by('date', 'DESC')
+                ->get('comments')
+                ->result_array();
             $total_comments = count($comments);
             $comments = array_slice($comments, 0, 5);
         } else {
@@ -55,14 +56,16 @@ class Dashboard extends BaseAdminController {
         $this->db->from('category');
         $total_cats = $this->db->count_all_results();
 
-        $this->template->add_array(array(
-            'latest' => $latest,
-            'updated' => $updated,
-            'comments' => $comments,
-            'total_cats' => $total_cats,
-            'total_pages' => $total_pages,
-            'total_comments' => $total_comments,
-        ));
+        $this->template->add_array(
+            array(
+                    'latest' => $latest,
+                    'updated' => $updated,
+                    'comments' => $comments,
+                    'total_cats' => $total_cats,
+                    'total_pages' => $total_pages,
+                    'total_comments' => $total_comments,
+                )
+        );
 
         // If we are online - load system news.
         $s_ip = substr($_SERVER['SERVER_ADDR'], 0, strrpos($_SERVER['SERVER_ADDR'], '.'));
@@ -95,10 +98,8 @@ class Dashboard extends BaseAdminController {
         }
 
         // Get system upgrade info
-//        $this->load->module('admin/sys_upgrade');
-
-//        $status = $this->sys_upgrade->_check_status();
-
+        //        $this->load->module('admin/sys_upgrade');
+        //        $status = $this->sys_upgrade->_check_status();
         // Get next version number
         $next_v = explode('_', $status['upgrade_file']);
 
@@ -106,10 +107,12 @@ class Dashboard extends BaseAdminController {
             $this->template->assign('next_v', str_replace('.zip', '', $next_v[2]));
         }
 
-        $this->template->add_array(array(
-            'cms_number' => IMAGECMS_NUMBER,
-            'sys_status' => $status,
-        ));
+        $this->template->add_array(
+            array(
+                    'cms_number' => IMAGECMS_NUMBER,
+                    'sys_status' => $status,
+                )
+        );
 
         \CMSFactory\Events::create()->registerEvent('', 'Dashboard:show');
         \CMSFactory\Events::runFactory();

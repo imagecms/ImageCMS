@@ -35,11 +35,10 @@ $lang['must_contain_variable'] = 'должно содержать перемен
 $lang['Settings_saved'] = 'Настройки сохранены';
 
 /**
- ******************************** Tempalets
+ * ******************************* Tempalets
  *
  * Create and Edit template
  */
-
 $lang['Creating_mail_template'] = 'Создание шаблона письма';
 $lang['Template_name_only_latin'] = 'Название шаблона письма (только латиница)';
 $lang['Theme'] = 'Тема';
@@ -56,7 +55,6 @@ $lang['Template_settings'] = 'Настройки шаблона';
 /**
  * Edit template variables
  */
-
 $lang['Variables'] = 'Переменние';
 $lang['Values'] = 'Значения';
 $lang['Edit'] = 'Редактировать';
@@ -79,20 +77,11 @@ $lang['Template_list_empty'] = 'Список шаблонов пустой';
 $lang['Use_wraper'] = 'Использовать обгортку';
 
 /**
- *Settings
+ * Settings
  */
 $lang['Server_path_to_sendmail'] = 'Серверный путь к Sendmail';
 $lang['Port'] = 'Порт';
 $lang['Protocol'] = 'Протокол';
 $lang['Install_standart_templates'] = 'Установить стандартние шаблони';
 $lang['email_sent'] = 'Ваше сообщение успешно отправлено';
-
-
-
-
-
-
-
-
-
 ?>

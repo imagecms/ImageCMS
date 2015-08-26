@@ -1,11 +1,12 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 class Cache_all extends BaseAdminController {
 
-    function __construct() {
+    public function __construct() {
         parent::__construct();
 
         $this->load->library('DX_Auth');
@@ -16,7 +17,7 @@ class Cache_all extends BaseAdminController {
         $this->lib_admin->init_settings();
     }
 
-    function index() {
+    public function index() {
 
         $this->template->assign('allFile', $this->cache->cache_file());
 

@@ -195,7 +195,7 @@ class ParentEmail extends \MY_Controller {
                         ),
                     'ParentEmail:userSend'
                 );
-                        \CMSFactory\Events::runFactory();
+                \CMSFactory\Events::runFactory();
             }
         }
         //Sending administrator email if active in options
@@ -227,7 +227,7 @@ class ParentEmail extends \MY_Controller {
                         ),
                     'ParentEmail:adminSend'
                 );
-                        \CMSFactory\Events::runFactory();
+                \CMSFactory\Events::runFactory();
             }
         }
 
@@ -378,7 +378,7 @@ class ParentEmail extends \MY_Controller {
     private function _set_config($settings) {
         $config['protocol'] = $settings['protocol'];
         if (strtolower($settings['protocol']) == strtolower("SMTP")) {
-            $config['protocol']  = strtolower($settings['protocol']);
+            $config['protocol'] = strtolower($settings['protocol']);
             $config['smtp_port'] = $settings['smtp_port'];
             $config['smtp_host'] = $settings['smtp_host'];
             $config['smtp_user'] = $settings['smtp_user'];

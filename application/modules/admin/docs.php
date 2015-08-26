@@ -2,8 +2,9 @@
 
 use CMSFactory\assetManager as AssetManager;
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Image CMS
@@ -12,14 +13,15 @@ if (!defined('BASEPATH'))
  *
  */
 class Docs extends BaseAdminController {
-    
+
     protected $jsonListFile;
+
     protected $docsPath;
-    
+
     public function __construct() {
         parent::__construct();
-        $this->docsPath = PUBPATH.'manual/';
-        $this->jsonListFile = $this->docsPath.'list.json';
+        $this->docsPath = PUBPATH . 'manual/';
+        $this->jsonListFile = $this->docsPath . 'list.json';
 
         $this->load->library('DX_Auth');
         admin_or_redirect();
@@ -29,8 +31,8 @@ class Docs extends BaseAdminController {
     }
 
     public function show($pageName) {
-        $page = file_get_contents($this->docsPath."$pageName.html");
-        $this->template->add_array(['page' => $page, 'd_b' => true,'active_docs_page'=> $pageName]);
+        $page = file_get_contents($this->docsPath . "$pageName.html");
+        $this->template->add_array(['page' => $page, 'd_b' => true, 'active_docs_page' => $pageName]);
         $this->template->show('docs', TRUE);
     }
 
@@ -44,22 +46,23 @@ class Docs extends BaseAdminController {
 
     private function exportData() {
         $result = $this->db->select(['title', 'url', 'full_text'])
-                        ->where(['lang' => '35', 'category' => 92, 'post_status'=>'publish'])
-                       ->order_by("position")
-                        ->get('content')->result_array();
-        
+            ->where(['lang' => '35', 'category' => 92, 'post_status' => 'publish'])
+            ->order_by("position")
+            ->get('content')->result_array();
+
         $jsonsDataArray = array();
         foreach ($result as $pageFromDatabase) {
             $jsonsDataArray[] = array('full_url' => $pageFromDatabase['url'], 'title' => $pageFromDatabase['title']);
-            
+
             $pageTitle = '<div class="title-default-main"><div class="title">'
-                    . $pageFromDatabase['title']. '</div></div>';
+                    . $pageFromDatabase['title'] . '</div></div>';
             $cont = $pageTitle . $pageFromDatabase['full_text'];
             $path = $this->docsPath . $pageFromDatabase['url'] . '.html';
-            
+
             echo $path . "\n";
             $pageFromDatabase = file_put_contents($path, $cont);
         }
         file_put_contents($this->jsonListFile, json_encode($jsonsDataArray));
     }
+
 }
