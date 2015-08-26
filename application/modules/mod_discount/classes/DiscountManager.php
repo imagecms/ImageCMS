@@ -16,11 +16,13 @@ if (!defined('BASEPATH')) {
  * @package ImageCMSModule
  * @property discount_model_admin $discount_model_admin
  */
-class DiscountManager extends \MY_Controller {
+class DiscountManager extends \MY_Controller
+{
 
     public $error = array();
 
     public function __construct() {
+
         parent::__construct();
         $lang = new \MY_Lang();
         $lang->load('mod_discount');
@@ -433,6 +435,7 @@ class DiscountManager extends \MY_Controller {
      * @return boolean true if user have no discounts alreaty, false otherwise
      */
     public static function validateUserDiscount($userId) {
+
         $data = \mod_discount\classes\BaseDiscount::create()->discountType['user'];
         foreach ($data as $oneDiscountData) {
             if ($oneDiscountData['user_id'] == $userId) {
@@ -448,6 +451,7 @@ class DiscountManager extends \MY_Controller {
      * @return boolean true if user-group have no discounts alreaty, false otherwise
      */
     public static function validateGroupDiscount($groupId) {
+
         $data = \mod_discount\classes\BaseDiscount::create()->discountType['group_user'];
         foreach ($data as $oneDiscountData) {
             if ($oneDiscountData['group_id'] == $groupId) {
@@ -466,27 +470,13 @@ class DiscountManager extends \MY_Controller {
      * @return string
      */
     public static function generateDiscountKey($charsCount = 8, $digitsCount = 8) {
-        $chars = array('q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm');
-        if ($charsCount > count($chars)) {
-            $charsCount = count($chars);
-        }
-        $result = array();
-        if ($charsCount > 0) {
-            $randCharsKeys = array_rand($chars, $charsCount);
-            foreach ($randCharsKeys as $val) {
-                array_push($result, $chars[$val]);
-            }
-        }
-        for ($i = 0; $i < $digitsCount; $i++) {
-            array_push($result, rand(0, 9));
-        }
-        shuffle($result);
-        $result = implode('', $result);
         $ci = get_instance();
+        $ci->load->helper('string');
+        $result = random_string('alnum', $charsCount + $digitsCount);
         if ($ci->discount_model_admin->checkDiscountCode($result)) {
-            self::generateDiscountKey($charsCount, $digitsCount);
+            return self::generateDiscountKey($charsCount, $digitsCount);
         }
-        return $result;
+        return strtolower($result);
     }
 
 }

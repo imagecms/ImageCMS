@@ -6,7 +6,7 @@
  */
 class Red_helper_model extends CI_Model {
 
-    function __construct() {
+    public function __construct() {
         parent::__construct();
     }
 
@@ -16,10 +16,10 @@ class Red_helper_model extends CI_Model {
      */
     public function getSettings() {
         $settings = $this->db
-                ->select('settings')
-                ->where('identif', 'red_helper')
-                ->get('components')
-                ->row_array();
+            ->select('settings')
+            ->where('identif', 'red_helper')
+            ->get('components')
+            ->row_array();
         $settings = unserialize($settings['settings']);
         return $settings;
     }
@@ -31,10 +31,11 @@ class Red_helper_model extends CI_Model {
      */
     public function setSettings($settings) {
         return $this->db->where('identif', 'red_helper')
-                        ->update('components', array('settings' => serialize($settings)
-        ));
+            ->update(
+                'components',
+                array('settings' => serialize($settings)
+                                )
+            );
     }
 
 }
-
-?>

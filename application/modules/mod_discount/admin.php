@@ -76,7 +76,7 @@ class Admin extends ShopAdminController {
             $data = array(
                 'userGroups' => $userGroups,
                 'CS' => $this->discount_model_admin->getMainCurrencySymbol(),
-                'filterQuery' => $_SESSION['QueryDiscountList'],
+                'filterQuery' => $this->session->userdata('QueryDiscountList'),
                 'categories' => ShopCore::app()->SCategoryTree->getTree_(),
                 'brands' => SBrandsQuery::create()->orderByID(Criteria::DESC)->find()
             );
@@ -140,7 +140,7 @@ class Admin extends ShopAdminController {
                 }
                 //Return to list of discounts, if user clicked 'save and exit'
                 if ($postArray['action'] == 'tomain') {
-                    pjax('/admin/components/init_window/mod_discount/index' . $_SESSION['QueryDiscountList']);
+                    pjax('/admin/components/init_window/mod_discount/index' . $this->session->userdata('QueryDiscountList'));
                 } else {
                     pjax('/admin/components/init_window/mod_discount/edit/' . $id);
                 }
@@ -173,7 +173,7 @@ class Admin extends ShopAdminController {
                 'discount' => $discountData,
                 'userGroups' => $userGroups,
                 'CS' => $this->discount_model_admin->getMainCurrencySymbol(),
-                'filterQuery' => $_SESSION['QueryDiscountList'],
+                'filterQuery' => $this->session->userdata('QueryDiscountList'),
                 'categories' => ShopCore::app()->SCategoryTree->getTree_(),
                 'languages' => $this->db->get('languages')->result_array(),
                 'locale' => $locale,
@@ -302,9 +302,7 @@ class Admin extends ShopAdminController {
      * @param string $query
      */
     public function saveQueryToSession($query) {
-
-        session_start();
-        $_SESSION['QueryDiscountList'] = '?' . $query;
+        $this->session->set_userdata('QueryDiscountList', '?' . $query);
     }
 
 }

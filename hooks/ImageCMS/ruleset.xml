@@ -16,6 +16,7 @@
     <exclude-pattern>*/application/modules/shop/obf/*</exclude-pattern>
     <exclude-pattern>*/tests/*</exclude-pattern>
     <exclude-pattern>system/*</exclude-pattern>
+    <exclude-pattern>hooks/*</exclude-pattern>
  
     <arg name="extensions" value="php,js"/>
     <arg name="encoding" value="utf-8"/>
