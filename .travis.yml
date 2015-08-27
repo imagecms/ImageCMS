@@ -3,11 +3,9 @@ language: php
 php:
   - 5.4
   - 5.5
+  
+ sudo: false
  
-matrix:
-  allow_failures:
-  - php: 5.5
  
 env:
-  matrix:
  - DB=mysql
