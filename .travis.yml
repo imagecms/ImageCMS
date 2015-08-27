@@ -8,3 +8,6 @@ php:
 
 env:
  - DB=mysql
+ 
+script:
+ - phpunit -c app/
