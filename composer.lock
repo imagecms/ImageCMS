@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d4804352cf6139c8985d41f82583913e",
+    "hash": "b685ac4981c01d19c1f935baca75aaff",
     "packages": [
         {
             "name": "google/apiclient",
@@ -103,31 +103,6 @@
                 "sql"
             ],
             "time": "2014-04-16 10:03:29"
-        },
-        {
-            "name": "imagecms/coding-standard",
-            "version": "1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/imagecms/CodingStandard.git",
-                "reference": "d391974b14d42fc8db22c71e2cb2962fc30b79a3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/imagecms/CodingStandard/zipball/d391974b14d42fc8db22c71e2cb2962fc30b79a3",
-                "reference": "d391974b14d42fc8db22c71e2cb2962fc30b79a3",
-                "shasum": ""
-            },
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "authors": [
-                {
-                    "name": "gylaandrij",
-                    "email": "gyla.andrij@gmail.com"
-                }
-            ],
-            "description": "ImageCMS Coding Standard",
-            "time": "2015-08-25 08:06:51"
         },
         {
             "name": "monolog/monolog",
@@ -965,6 +940,101 @@
         }
     ],
     "packages-dev": [
+        {
+            "name": "composer/installers",
+            "version": "v1.0.21",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/composer/installers.git",
+                "reference": "d64e23fce42a4063d63262b19b8e7c0f3b5e4c45"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/composer/installers/zipball/d64e23fce42a4063d63262b19b8e7c0f3b5e4c45",
+                "reference": "d64e23fce42a4063d63262b19b8e7c0f3b5e4c45",
+                "shasum": ""
+            },
+            "replace": {
+                "roundcube/plugin-installer": "*",
+                "shama/baton": "*"
+            },
+            "require-dev": {
+                "composer/composer": "1.0.*@dev",
+                "phpunit/phpunit": "4.1.*"
+            },
+            "type": "composer-installer",
+            "extra": {
+                "class": "Composer\\Installers\\Installer",
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Composer\\Installers\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kyle Robinson Young",
+                    "email": "kyle@dontkry.com",
+                    "homepage": "https://github.com/shama"
+                }
+            ],
+            "description": "A multi-framework Composer library installer",
+            "homepage": "http://composer.github.com/installers/",
+            "keywords": [
+                "Craft",
+                "Dolibarr",
+                "Hurad",
+                "MODX Evo",
+                "OXID",
+                "SMF",
+                "Thelia",
+                "WolfCMS",
+                "agl",
+                "aimeos",
+                "annotatecms",
+                "bitrix",
+                "cakephp",
+                "chef",
+                "codeigniter",
+                "concrete5",
+                "croogo",
+                "dokuwiki",
+                "drupal",
+                "elgg",
+                "fuelphp",
+                "grav",
+                "installer",
+                "joomla",
+                "kohana",
+                "laravel",
+                "lithium",
+                "magento",
+                "mako",
+                "mediawiki",
+                "modulework",
+                "moodle",
+                "phpbb",
+                "piwik",
+                "ppi",
+                "puppet",
+                "roundcube",
+                "shopware",
+                "silverstripe",
+                "symfony",
+                "typo3",
+                "wordpress",
+                "zend",
+                "zikula"
+            ],
+            "time": "2015-02-18 17:17:01"
+        },
         {
             "name": "doctrine/annotations",
             "version": "v1.2.6",
@@ -2106,6 +2176,43 @@
                 "visitor"
             ],
             "time": "2015-08-17 06:30:58"
+        },
+        {
+            "name": "imagecms/coding-standard",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/imagecms/CodingStandard.git",
+                "reference": "446f8f7b01eccacaef48fb3fb985bd4e29be031a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/imagecms/CodingStandard/zipball/446f8f7b01eccacaef48fb3fb985bd4e29be031a",
+                "reference": "446f8f7b01eccacaef48fb3fb985bd4e29be031a",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "~1.0",
+                "squizlabs/php_codesniffer": ">=2"
+            },
+            "type": "library",
+            "extra": {
+                "installer-name": "imagecms",
+                "installer-paths": {
+                    "/application/third_party/squizlabs/php_codesniffer/CodeSniffer/Standards/{$name}/": [
+                        "imagecms/coding-standard"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "gylaandrij",
+                    "email": "gyla.andrij@gmail.com"
+                }
+            ],
+            "description": "ImageCMS Coding Standard",
+            "time": "2015-08-27 08:47:44"
         },
         {
             "name": "jms/metadata",
@@ -3767,16 +3874,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.21.0",
+            "version": "v1.21.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "913d282caca9ee0e8d05940c6caa486d58810dd4"
+                "reference": "ca8d3aa90b6a01c82e07909fe815d6b443e75a23"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/913d282caca9ee0e8d05940c6caa486d58810dd4",
-                "reference": "913d282caca9ee0e8d05940c6caa486d58810dd4",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/ca8d3aa90b6a01c82e07909fe815d6b443e75a23",
+                "reference": "ca8d3aa90b6a01c82e07909fe815d6b443e75a23",
                 "shasum": ""
             },
             "require": {
@@ -3824,7 +3931,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2015-08-24 09:51:18"
+            "time": "2015-08-26 08:58:31"
         }
     ],
     "aliases": [],
@@ -3832,7 +3939,8 @@
     "stability-flags": {
         "propel/propel": 20,
         "tubalmartin/cssmin": 20,
-        "nubera-ebusiness/intercom-php": 20
+        "nubera-ebusiness/intercom-php": 20,
+        "imagecms/coding-standard": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

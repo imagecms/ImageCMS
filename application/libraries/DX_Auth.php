@@ -909,6 +909,19 @@ class DX_Auth {
             // Create user
             $insert = $this->ci->users->create_user($new_user);
             $last_user_id = $this->ci->db->insert_id();
+
+            foreach ($this->ci->input->post('custom_field') as $k => $custom_fields) {
+                $this->ci->db->insert(
+                    'custom_fields_data',
+                    array(
+                    'field_id' => $k,
+                    'entity_id' => $last_user_id,
+                    'field_data' => $custom_fields,
+                    'locale' => \MY_Controller::getCurrentLocale(),
+                    )
+                );
+            }
+
             // Trigger event
             $this->ci->dx_auth_event->user_activated($last_user_id);
         }

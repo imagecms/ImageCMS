@@ -17,8 +17,10 @@
     <exclude-pattern>*/tests/*</exclude-pattern>
     <exclude-pattern>system/*</exclude-pattern>
     <exclude-pattern>hooks/*</exclude-pattern>
+    <exclude-pattern>*min.js</exclude-pattern>
+    <exclude-pattern>*min.css</exclude-pattern>
  
-    <arg name="extensions" value="php,js"/>
+    <arg name="extensions" value="php,js,css,tpl"/>
     <arg name="encoding" value="utf-8"/>
     <arg name="generator" value="text"/>
     <arg value="spn"/>
