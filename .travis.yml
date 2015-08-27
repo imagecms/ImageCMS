@@ -11,9 +11,8 @@ php:
   - 5.6
   
 
-  composer: self-update
+  composer self-update
   
-  script:
-  - phpunit
+
   
 
