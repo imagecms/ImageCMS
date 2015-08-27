@@ -3,6 +3,9 @@ language: php
 sudo: false
 
 
+before_install:
+  - php /home/travis/.phpenv/versions/5.3.26/bin/composer.phar self-update
+
 php:
   - 5.3
   - 5.4
@@ -13,8 +16,7 @@ php:
 env:
   - DB=mysql
 
-before_script:
-  - composer self-update
+
   
 
   
