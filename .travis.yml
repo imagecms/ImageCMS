@@ -2,16 +2,19 @@ language: php
 
 sudo: false
 
-env:
-  - DB=mysql
 
 php:
+  - 5.3
   - 5.4
   - 5.5
   - 5.6
-  
+  - hhvm
 
-  composer self-update
+env:
+  - DB=mysql
+
+before_script:
+  - composer self-update
   
 
   
