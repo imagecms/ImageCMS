@@ -69,18 +69,11 @@
                                                             {lang("Image URL","admin")}:
                                                         </label>
                                                         <div class="controls">
-                                                            <div class="group_icon pull-right">  
-                                                                {if MAINSITE != ''}
-                                                                    <button type="button" class="btn btn-small" onclick="elFinderPopup('image', 'Img');
-                                                                        return false;"><i class="icon-picture"></i>  {lang("Choose an image ","admin")}</button>
-                                                                {else:}
+                                                            <div class="group_icon pull-right">
                                                                     <a href="{echo site_url('application/third_party/filemanager/dialog.php?type=1&field_id=Img');}" class="btn  btn-small iframe-btn" type="button">
                                                                         <i class="icon-picture"></i>
                                                                         {lang('Choose an image ','admin')}
                                                                     </a>
-                                                                {/if}    
-                                                                {/*<button type="button" class="btn btn-small" onclick="elFinderPopup('image', 'Img');
-                                                                        return false;"><i class="icon-picture"></i>  {lang("Choose an image ","admin")}</button>*/}
                                                             </div>
                                                             <div class="o_h">		            
                                                                 <input type="text" name="image" id="Img" value="" accept="image/gif, image/jpeg, image/png, image/jpg">					

@@ -455,9 +455,11 @@ function init_2() {
         });
         $('.popover_ref').popover('destroy').each(function () {
             var $this = $(this);
+
+            var placement = $this.data('placement') ? $this.data('placement') : 'right';
             $this.popover({
                 'content': $this.next().html(),
-                'placement': 'right'
+                'placement': placement
             });
         });
     }

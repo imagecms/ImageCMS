@@ -918,7 +918,7 @@ class DX_Auth {
                     'entity_id' => $last_user_id,
                     'field_data' => $custom_fields,
                     'locale' => \MY_Controller::getCurrentLocale(),
-                    )
+                        )
                 );
             }
 
@@ -1347,4 +1347,3 @@ class DX_Auth {
 
     /* End of Recaptcha function */
 }
-

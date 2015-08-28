@@ -270,17 +270,10 @@
                                                 <label class="control-label" >{lang("Image path", 'gallery')}:</label>
                                                 <div class="controls">
                                                     <div class="pull-right">
-                                                        {if MAINSITE != ''}
-                                                            <button class="btn btn-small" onclick="elFinderPopup('image', 'watermark_image');
-                                                                return false;"><i class="icon-picture"></i>  {lang('Choose an image ','admin')}</button>
-                                                        {else:}
                                                             <a href="{echo site_url('application/third_party/filemanager/dialog.php?type=1&field_id=watermark_image&relative_url=1');}" class="btn  btn-small iframe-btn" type="button">
                                                                 <i class="icon-picture"></i>
                                                                 {lang('Choose an image ','admin')}
                                                             </a>
-                                                        {/if}    
-                                                        {/*<button class="btn btn-small" onclick="elFinderPopup('image', 'watermark_image');
-                                                        return false;"><i class="icon-picture"></i>  {lang('Choose an image ','admin')}</button>*/}
                                                     </div>
 
                                                     <div class="o_h">

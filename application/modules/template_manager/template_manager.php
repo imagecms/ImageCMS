@@ -37,19 +37,23 @@ class template_manager extends \MY_Controller {
     public function autoload() {
         // assigning template object
 
-        if (defined('UNIT_TESTS')) {
-            unset($this->templateModel->xml);
-            unset($this->templateModel->mainImage);
-        }
+        try {
+            if (defined('UNIT_TESTS')) {
+                unset($this->templateModel->xml);
+                unset($this->templateModel->mainImage);
+            }
 
-        if (SHOP_INSTALLED == true) {
-            $this->template->assign('template', $this->templateModel);
-            $this->template->assign('colorScheme', 'css/' . CI::$APP->load->module('template_manager')->getComponent('TColorScheme')->getColorSheme());
-        }
+            // load template helpers
+            if ($this->templateModel->isTMCompatible()) {
+                $this->loadTemplateHelpers($this->templateModel->name);
+            }
 
-        // load template helpers
-        if ($this->templateModel->isTMCompatible()) {
-            $this->loadTemplateHelpers($this->templateModel->name);
+            if (SHOP_INSTALLED == true) {
+                $this->template->assign('template', $this->templateModel);
+                $this->template->assign('colorScheme', 'css/' . CI::$APP->load->module('template_manager')->getComponent('TColorScheme')->getColorSheme());
+            }
+        } catch (Exception $e) {
+
         }
     }
 

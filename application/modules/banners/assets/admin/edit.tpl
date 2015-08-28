@@ -150,17 +150,10 @@
                                 </label>
                                 <div class="controls">
                                     <div class="group_icon pull-right">
-                                        {if MAINSITE != ''}
-                                            <button type="button" class="btn btn-small" onclick="elFinderPopup('image', 'Img');
-                                                    return false;">
-                                                <i class="icon-picture"></i>  {lang('Choose an image ', 'banners')}
-                                            </button>
-                                        {else:}
                                             <a href="{echo site_url('application/third_party/filemanager/dialog.php?type=1&field_id=Img');}" class="btn  iframe-btn" type="button">
                                                 <i class="icon-picture"></i>
                                                 {lang('Choose an image ', 'banners')}
                                             </a>
-                                        {/if}    
                                     </div>
                                     <div class="o_h" id="banerChangePhoto">
                                         <input type="text" name="photo" id="Img" value="{echo $banner['photo'];}" required="required">

@@ -71,7 +71,7 @@ abstract class BaseEvents {
         if ($alias !== null && $this->key !== null) {
             throw new \Exception("Can't declarete both.");
         }
-        $alias = ($this->key) ? : $alias;
+        $alias = ($this->key) ?: $alias;
         if ($alias == null) {
             throw new \Exception("Bind value can't not be null.");
         }
@@ -83,7 +83,7 @@ abstract class BaseEvents {
             $class = $trace[1]['class'];
         } elseif (is_array($callback)) {
             $method = $callback[1];
-            $class = !is_object($callback[0]) ? get_class($callback[0]) : $callback[0];
+            $class = is_object($callback[0]) ? get_class($callback[0]) : $callback[0];
         } elseif ($callback instanceof \Closure) {
             $method = $callback;
             $class = $trace[1]['class'];
@@ -658,6 +658,17 @@ abstract class BaseEvents {
      */
     public function onAdminModulesTable() {
         $this->key = 'Components:modules_table';
+        return $this;
+    }
+
+    /**
+     * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
+     * @return BehaviorFactory
+     * @author a.gula
+     * @copyright ImageCMS (c) 2014, a.gula <a.gula@imagecms.net>
+     */
+    public function onSeoExpertSave() {
+        $this->key = 'SeoExpert:save';
         return $this;
     }
 

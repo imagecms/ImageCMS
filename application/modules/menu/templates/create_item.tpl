@@ -134,15 +134,10 @@
                                             </label>
                                             <div class="controls">
                                                 <div class="group_icon pull-right">
-                                                    {if MAINSITE != ''}
-                                                        <button class="btn btn-small" onclick="elFinderPopup('image', 'Img0');
-                                                                return false;"><i class="icon-picture"></i>  {lang('Choose an image ', "menu")}</button>
-                                                    {else:}
                                                         <a href="{echo site_url('application/third_party/filemanager/dialog.php?type=1&field_id=Img0');}" class="btn  iframe-btn" type="button">
                                                             <i class="icon-picture"></i>
                                                             {lang('Choose an image ', "menu")}
                                                         </a>
-                                                    {/if}    
                                                 </div>
                                                 <div class="o_h">
                                                     <input type="text" name="page_item_image" id="Img0" value="{$item.item_image}">
@@ -284,15 +279,10 @@
                                             </label>
                                             <div class="controls">
                                                 <div class="group_icon pull-right">
-                                                    {if MAINSITE != ''}
-                                                        <button class="btn btn-small" onclick="elFinderPopup('image', 'Img1');
-                                                                return false;"><i class="icon-picture"></i>  {lang('Choose an image ', "menu")}</button>
-                                                    {else:}
                                                         <a href="{echo site_url('application/third_party/filemanager/dialog.php?type=1&field_id=Img1');}" class="btn  iframe-btn" type="button">
                                                             <i class="icon-picture"></i>
                                                             {lang('Choose an image ', "menu")}
                                                         </a>
-                                                    {/if}    
                                                 </div>
                                                 <div class="o_h">
                                                     <input type="text" name="cat_item_image" id="Img1" value="{$item.item_image}">
@@ -427,15 +417,10 @@
                                                     </label>
                                                     <div class="controls">
                                                         <div class="group_icon pull-right">
-                                                            {if MAINSITE != ''}
-                                                                <button class="btn btn-small" onclick="elFinderPopup('image', 'Img2');
-                                                                        return false;"><i class="icon-picture"></i>  {lang('Choose an image ', "menu")}</button>
-                                                            {else:}
                                                                 <a href="{echo site_url('application/third_party/filemanager/dialog.php?type=1&field_id=Img2');}" class="btn  iframe-btn" type="button">
                                                                     <i class="icon-picture"></i>
                                                                     {lang('Choose an image ', "menu")}
                                                                 </a>
-                                                            {/if}    
                                                         </div>
                                                         <div class="o_h">
                                                             <input type="text" name="module_item_image" id="Img2" value="{$item.item_image}">
@@ -568,15 +553,10 @@
                                             </label>
                                             <div class="controls">
                                                 <div class="group_icon pull-right">
-                                                    {if MAINSITE != ''}
-                                                        <button class="btn btn-small" onclick="elFinderPopup('image', 'Img3');
-                                                                return false;"><i class="icon-picture"></i>  {lang('Choose an image ', "menu")}</button>
-                                                    {else:}
                                                         <a href="{echo site_url('application/third_party/filemanager/dialog.php?type=1&field_id=Img3');}" class="btn  iframe-btn" type="button">
                                                             <i class="icon-picture"></i>
                                                             {lang('Choose an image ', "menu")}
                                                         </a>
-                                                    {/if}    
                                                 </div>
                                                 <div class="o_h">
                                                     <input type="text" name="url_item_image" id="Img3" value="{$item.item_image}">

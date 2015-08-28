@@ -48,6 +48,10 @@ class BannerImage extends BaseBannerImage {
      * @return string
      */
     public function getStatisticUrl() {
+        if (!$this->getUrl()) {
+            return '';
+        }
+
         return ClickStatistic::getUrl($this->getId());
     }
 
@@ -58,9 +62,9 @@ class BannerImage extends BaseBannerImage {
      */
     public function setLastPosition() {
         $lastBannerImage = BannerImageQuery::create()
-            ->filterByBannerId($this->getBannerId())
-            ->orderByPosition(Criteria::DESC)
-            ->findOne();
+                ->filterByBannerId($this->getBannerId())
+                ->orderByPosition(Criteria::DESC)
+                ->findOne();
 
         $position = $lastBannerImage ? ($lastBannerImage->getPosition() + 1) : 0;
         $this->setPosition($position);

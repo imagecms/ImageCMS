@@ -13,7 +13,8 @@
                             {lang("Go back","admin")}
                         </span>
                     </a>
-                    <button type="submit" class="btn btn-small btn-primary formSubmit" data-form="#editLang" data-action="edit">
+                    <button type="submit" class="btn btn-small btn-primary formSubmit" data-form="#editLang"
+                            data-action="edit">
                         <i class="icon-ok icon-white"></i>
                         {lang("Save","admin")}
                     </button>
@@ -50,7 +51,8 @@
                                                 </div>
                                             </div>
                                             <div class="control-group">
-                                                <label class="control-label" for="inputName">{lang("Identifier","admin")}
+                                                <label class="control-label"
+                                                       for="inputName">{lang("Identifier","admin")}
                                                     : <span class="must">*</span></label>
 
                                                 <div class="controls">
@@ -84,33 +86,27 @@
 
                                                     <div class="controls">
                                                         <div class="group_icon pull-right">
-                                                            {if MAINSITE != ''}
-                                                                <button class="btn btn-small" onclick="elFinderPopup('image', 'Img');
-                                                                        return false;">
-                                                                    <i class="icon-picture"></i>  {lang("Choose an image","admin")}
-                                                                </button>
-                                                            {else:}
-                                                                <a href="{echo site_url('application/third_party/filemanager/dialog.php?type=1&field_id=Img');}" class="btn  btn-small iframe-btn" type="button">
-                                                                    <i class="icon-picture"></i>
-                                                                    {lang('Choose an image ','admin')}
-                                                                </a>
-                                                            {/if}
-                                                            {/*<button class="btn btn-small" onclick="elFinderPopup('image', 'Img');
-                                                            return false;"><i class="icon-picture"></i>  {lang("Choose an image","admin")}</button>
-                                                            */}
+                                                            <a href="{echo site_url('application/third_party/filemanager/dialog.php?type=1&field_id=Img');}"
+                                                               class="btn  btn-small iframe-btn" type="button">
+                                                                <i class="icon-picture"></i>
+                                                                {lang('Choose an image ','admin')}
+                                                            </a>
                                                         </div>
                                                         <div class="o_h">
-                                                            <input type="text" name="image" id="Img" value="{$image}" accept="image/gif, image/jpeg, image/png, image/jpg">
+                                                            <input type="text" name="image" id="Img" value="{$image}"
+                                                                   accept="image/gif, image/jpeg, image/png, image/jpg">
                                                         </div>
                                                     </div>
                                                 </div>
                                                 { /* }
                                                 <div class="control-group">
-                                                    <label class="control-label" for="inputParent">{lang("Template","admin")}
+                                                    <label class="control-label"
+                                                           for="inputParent">{lang("Template","admin")}
                                                         :</label>
 
                                                     <div class="controls">
-                                                        <select name="template" {if $is_default}disabled="disabled"{/if}>
+                                                        <select name="template"
+                                                                {if $is_default}disabled="disabled"{/if}>
                                                             {foreach $templates as $template}
                                                                 {if $is_default}
                                                                     <option {if $template == $template_installed} selected="selected" {/if} >{$template}</option>

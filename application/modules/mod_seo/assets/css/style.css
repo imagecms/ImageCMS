@@ -31,5 +31,15 @@
 .discount-out .icon-calendar{position: absolute;top: 6px;right: 6px;}
 .discount-out .niceCheck{top: 3px;}
 
+.popover-content b:hover{
+    text-decoration: underline;
+    cursor: pointer;
+    border-bottom: none;
+}
+
+.popover-content b{
+    border-bottom: 1px dotted #000;
+}
+
 
 

@@ -466,15 +466,15 @@ class Mod_seo extends \MY_Controller {
 
     /**
      * Build Meta for Shop Category
-     * @param array $arg
+     * @param array $categoruObj
      * @return boolean
      */
-    public function _buildCategoryMeta($arg) {
+    public function _buildCategoryMeta($categoruObj) {
 
         $local = MY_Controller::getCurrentLocale();
         /* @var $model SCategory */
-        $model = $arg['category'];
-        $settings = CI::$APP->seoexpert_model->getSettings($local);
+        $model = $categoruObj->data['category'];
+        $settings = ShopCore::$ci->seoexpert_model->getSettings($local);
         $pageNumber = (int) \CMSFactory\assetManager::create()->getData('page_number');
 
         $obj = new Mod_seo();
@@ -740,7 +740,7 @@ class Mod_seo extends \MY_Controller {
      * @param int $inflection_id (1-6) - the cases of words
      * @return string
      */
-    private function inflect($what, $inflection_id) {
+    public function inflect($what, $inflection_id) {
         $resInflected = $this->db
             ->where('original', $what)
             ->where('inflection_id', $inflection_id)

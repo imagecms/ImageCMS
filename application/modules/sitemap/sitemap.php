@@ -252,7 +252,7 @@ class Sitemap extends MY_Controller {
      * @return boolean
      */
     public function setUpdatedUrl($data = array()) {
-        $ci = & get_instance();
+        $ci = &get_instance();
         if ($data) {
             if ($data['url']) {
                 $ci->updated_url = $data['url'];
@@ -564,6 +564,9 @@ class Sitemap extends MY_Controller {
                 }
             }
         }
+
+        $this->load->module('smart_filter')->attachPages($this);
+
         $this->result = $this->generate_xml($this->items);
         return $this->result;
     }
@@ -767,7 +770,7 @@ class Sitemap extends MY_Controller {
             return FALSE;
         }
 
-        $ci = & get_instance();
+        $ci = &get_instance();
 
         $ci->db->select('settings');
         $ci->db->where('name', 'sitemap');

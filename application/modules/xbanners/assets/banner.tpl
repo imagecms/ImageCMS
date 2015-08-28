@@ -1,6 +1,6 @@
 <div id="{echo $banner->getPlace()}" class="slick" style="text-align: center;">
     {foreach $banner->getBannerImages() as $image}
-    <a {if $image->getTarget()}target="_blank"{/if} href="{echo $image->getStatisticUrl()}">
+    <a {if $image->getTarget()}target="_blank"{/if} {if $image->getStatisticUrl()}href="{echo $image->getStatisticUrl()}"{/if}>
         <img src="{echo $image->getImageOriginPath()}" alt="{echo $image->getName()}"/>
     </a>
     {/foreach}
