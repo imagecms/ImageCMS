@@ -127,8 +127,6 @@ class BaseDiscount {
      * __construct base object loaded
      * @access private
      * @author DevImageCms
-     * @param ---
-     * @return ---
      * @copyright (c) 2013, ImageCMS
      */
     private function __construct() {
@@ -172,7 +170,6 @@ class BaseDiscount {
      * get Cart items for current session
      * @access private
      * @author DevImageCms
-     * @param ---
      * @return array
      * @copyright (c) 2013, ImageCMS
      */
@@ -210,7 +207,6 @@ class BaseDiscount {
      * get all active discount joined whith his type
      * @access private
      * @author DevImageCms
-     * @param --
      * @return array
      * @copyright (c) 2013, ImageCMS
      */
@@ -223,7 +219,7 @@ class BaseDiscount {
      * joined discount whith his type
      * @access private
      * @author DevImageCms
-     * @param discount
+     * @param array $discount
      * @return array
      * @copyright (c) 2013, ImageCMS
      */
@@ -240,7 +236,7 @@ class BaseDiscount {
      * partitioning discounts on their types
      * @access private
      * @author DevImageCms
-     * @param optional discount
+     * @param array $discount
      * @return array
      * @copyright (c) 2013, ImageCMS
      */
@@ -258,41 +254,16 @@ class BaseDiscount {
      * set empty array for null ellement discount
      * @access private
      * @author DevImageCms
-     * @param ---
-     * @return ----
+     * @param array $discount
      * @copyright (c) 2013, ImageCMS
      */
     private function emptyToArray($discount) {
-        if (!isset($discount['product'])) {
-            $discount['product'] = array();
-        }
+        $toEmpty = ['product', 'brand', 'category', 'certificate', 'all_order', 'comulativ', 'group_user', 'user'];
 
-        if (!isset($discount['brand'])) {
-            $discount['brand'] = array();
-        }
-
-        if (!isset($discount['category'])) {
-            $discount['category'] = array();
-        }
-
-        if (!isset($discount['certificate'])) {
-            $discount['certificate'] = array();
-        }
-
-        if (!isset($discount['all_order'])) {
-            $discount['all_order'] = array();
-        }
-
-        if (!isset($discount['comulativ'])) {
-            $discount['comulativ'] = array();
-        }
-
-        if (!isset($discount['group_user'])) {
-            $discount['group_user'] = array();
-        }
-
-        if (!isset($discount['user'])) {
-            $discount['user'] = array();
+        foreach ($toEmpty as $key) {
+            if (!isset($discount[$key])) {
+                $discount[$key] = [];
+            }
         }
 
         return $discount;
@@ -302,7 +273,8 @@ class BaseDiscount {
      * get max discount considering type value and price
      * @access public
      * @author DevImageCms
-     * @param discount , price
+     * @param array $discount
+     * @param float $price
      * @return array
      * @copyright (c) 2013, ImageCMS
      */
@@ -328,7 +300,8 @@ class BaseDiscount {
      * get value discount considering type value and price
      * @access public
      * @author DevImageCms
-     * @param discount , price
+     * @param array $discount
+     * @param float $price
      * @return float
      * @copyright (c) 2013, ImageCMS
      */
@@ -341,8 +314,9 @@ class BaseDiscount {
      * update discount apply
      * @access public
      * @author DevImageCms
-     * @param $key , $gift optional
-     * @return -----
+     * @param type $key
+     * @param type $gift optional
+     * @return int|null
      * @copyright (c) 2013, ImageCMS
      */
     public function updateDiskApply($key, $gift = null) {
@@ -370,7 +344,6 @@ class BaseDiscount {
      * get max discount for current user
      * @access private
      * @author DevImageCms
-     * @param ----
      * @return array
      * @copyright (c) 2013, ImageCMS
      */
@@ -390,7 +363,6 @@ class BaseDiscount {
      * get max discount for current user_group
      * @access private
      * @author DevImageCms
-     * @param ----
      * @return array
      * @copyright (c) 2013, ImageCMS
      */
@@ -410,7 +382,6 @@ class BaseDiscount {
      * get max comulativ discount for current user with current amout
      * @access private
      * @author DevImageCms
-     * @param ----
      * @return array
      * @copyright (c) 2013, ImageCMS
      */
@@ -430,7 +401,6 @@ class BaseDiscount {
      * get discount for product in cart with his discount
      * @access private
      * @author DevImageCms
-     * @param ----
      * @return float
      * @copyright (c) 2013, ImageCMS
      */
@@ -448,7 +418,6 @@ class BaseDiscount {
      * get max discount for all order for register and not register user
      * @access private
      * @author DevImageCms
-     * @param ----
      * @return array
      * @copyright (c) 2013, ImageCMS
      */
@@ -470,7 +439,6 @@ class BaseDiscount {
      * get max discount for all order for not register user
      * @access private
      * @author DevImageCms
-     * @param ----
      * @return array
      * @copyright (c) 2013, ImageCMS
      */

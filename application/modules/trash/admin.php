@@ -1,5 +1,7 @@
 <?php
 
+use CMSFactory\assetManager;
+
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /**
@@ -14,7 +16,7 @@ class Admin extends BaseAdminController {
 
         $this->load->library('DX_Auth');
 
-        \CMSFactory\assetManager::create()->registerScript('script');
+        assetManager::create()->registerScript('script');
         //cp_check_perm('module_admin');
     }
 
@@ -70,7 +72,7 @@ class Admin extends BaseAdminController {
         $this->pagination->num_links = 5;
         $this->pagination->initialize($config);
 
-        \CMSFactory\assetManager::create()
+        assetManager::create()
                 ->setData('model', $query)
                 ->setData('pagination', $this->pagination->create_links_ajax())
                 ->registerScript("admin")
@@ -118,23 +120,7 @@ class Admin extends BaseAdminController {
         $this->db->where('name', 'shop')->get('components');
         $locale = MY_Controller::defaultLocale();
 
-        if (count($this->db->where('name', 'shop')->get('components')->row()) > 0) {
-
-            $query = $this->db
-                ->where('locale', $locale)
-                ->order_by('name', 'asc')
-                ->get('shop_products_i18n');
-            $this->template->add_array(['products' => $query->result()]);
-
-            $this->db->order_by("name", "asc");
-            $query = $this->db
-                ->where('locale', $locale)
-                ->get('shop_category_i18n');
-            $this->template->add_array(['category' => $query->result()]);
-        }
-
-        //$this->db->order_by("name", "asc");
-        //$query = $this->db->get('category');
+        $this->_addShopData();
 
         $lang_identif = $this->db
             ->where('identif', $locale)
@@ -235,21 +221,8 @@ class Admin extends BaseAdminController {
     public function edit_trash($id) {
         $query = $this->db->get_where('trash', ['id' => $id]);
         $this->template->add_array(['trash' => $query->row()]);
-        $locale = MY_Controller::defaultLocale();
 
-        if (count($this->db->get_where('components', ['name' => 'shop'])->row()) > 0) {
-            $query = $this->db
-                ->where('locale', $locale)
-                ->order_by('name', 'asc')
-                ->get('shop_products_i18n');
-            $this->template->add_array(['products' => $query->result()]);
-
-            $this->db->order_by("name", "asc");
-            $query = $this->db
-                ->where('locale', $locale)
-                ->get('shop_category_i18n');
-            $this->template->add_array(['category' => $query->result()]);
-        }
+        $this->_addShopData();
 
         $this->db->order_by("name", "asc");
         $query = $this->db->get('category');
@@ -354,6 +327,25 @@ class Admin extends BaseAdminController {
     private function display_tpl($file = '') {
         $file = realpath(dirname(__FILE__)) . '/templates/admin/' . $file;
         $this->template->show('file:' . $file);
+    }
+
+    public function _addShopData() {
+        if (count($this->db->where('name', 'shop')->get('components')->row()) > 0) {
+
+            $locale = MY_Controller::defaultLocale();
+
+            $shop_products_i18n = $this->db
+                ->where('locale', $locale)
+                ->order_by('name', 'asc')
+                ->get('shop_products_i18n');
+            assetManager::create()->setData('products', $shop_products_i18n->result());
+
+            $shop_category_i18n = $this->db
+                ->order_by("name", "asc")
+                ->where('locale', $locale)
+                ->get('shop_category_i18n');
+            assetManager::create()->setData('category', $shop_category_i18n->result());
+        }
     }
 
 }

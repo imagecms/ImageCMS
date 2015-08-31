@@ -1,5 +1,7 @@
 <?php
 
+use CMSFactory\Events;
+
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
@@ -10,8 +12,7 @@ if (!defined('BASEPATH')) {
  * core.php
  * @property Cms_base $cms_base
  */
-class Core extends MY_Controller
-{
+class Core extends MY_Controller {
 
     public $langs = []; // Langs array
 
@@ -156,12 +157,7 @@ class Core extends MY_Controller
         }
 
         if (is_numeric($last_element) AND is_int($last_element)) {
-            if (substr($cat_path, -1) == '/') {
-                $cat_path = substr($cat_path, 0, -1);
-            }
-
-            // Delete page number from path
-            $cat_path = substr($cat_path, 0, strripos($cat_path, '/'));
+            $cat_path = $this->_prepCatPath($cat_path);
             $this->by_pages = TRUE;
             $this->cat_page = $last_element;
         }
@@ -206,16 +202,13 @@ class Core extends MY_Controller
 
             if ($page_info['id']) {
 
-                if (substr($cat_path, -1) == '/') {
-                    $cat_path = substr($cat_path, 0, -1);
-                }
-                $cat_path = substr($cat_path, 0, strripos($cat_path, '/'));
+                $cat_path = $this->_prepCatPath($cat_path);
 
                 $page_info['roles'] = unserialize($page_info['roles']);
                 if ($without_cat == FALSE) {
                     // load page and category
                     foreach ($cats_unsorted as $cat) {
-                        if (($cat['path_url'] == $cat_path . $SLASH) AND ($cat['id'] == $page_info['category'])) {
+                        if (($cat['path_url'] == $cat_path . $SLASH) AND ( $cat['id'] == $page_info['category'])) {
                             $page_found = TRUE;
                             $data_type = 'page';
                             $this->page_content = $page_info;
@@ -248,8 +241,8 @@ class Core extends MY_Controller
 
         $this->template->add_array(
             [
-                'agent' => $agent,
-            ]
+                    'agent' => $agent,
+                ]
         );
 
         //Assign captcha type
@@ -269,7 +262,7 @@ class Core extends MY_Controller
         }
 
         // on every page load
-        \CMSFactory\Events::create()->registerEvent(NULL, 'Core:pageLoaded');
+        Events::create()->registerEvent(NULL, 'Core:pageLoaded');
 
         // If module than exit from core and load module
         if ($this->is_module($mod_segment) == TRUE) {
@@ -312,7 +305,7 @@ class Core extends MY_Controller
     public function _mainpage() {
 
         /** Register event 'Core:_mainpage' */
-        \CMSFactory\Events::create()->registerEvent(NULL, 'Core:_mainPage')->runFactory();
+        Events::create()->registerEvent(NULL, 'Core:_mainPage')->runFactory();
 
         switch ($this->settings['main_type']) {
             // Load main page
@@ -385,7 +378,7 @@ class Core extends MY_Controller
     public function _display_page_and_cat($page = [], $category = []) {
 
         /** Register event 'Core:_displayPage' */
-        \CMSFactory\Events::create()->registerEvent($this->page_content, 'Core:_displayPage')->runFactory();
+        Events::create()->registerEvent($this->page_content, 'Core:_displayPage')->runFactory();
 
         if (empty($page['full_text'])) {
             $page['full_text'] = $page['prev_text'];
@@ -411,9 +404,9 @@ class Core extends MY_Controller
 
         $this->template->add_array(
             [
-                'page' => $page,
-                'category' => $category
-            ]
+                    'page' => $page,
+                    'category' => $category
+                ]
         );
 
         if ($this->input->get()) {
@@ -422,14 +415,9 @@ class Core extends MY_Controller
 
         $this->template->assign('content', $this->template->read($page_tpl));
 
-        if ($this->settings['create_description'] == 'auto' && !$page['description']) {
-            $page['description'] = $this->lib_seo->get_description($page['full_text']);
-        }
-        if ($this->settings['create_keywords'] == 'auto' && !$page['keywords']) {
-            $keywords = $this->lib_seo->get_keywords($page['full_text'], TRUE);
+        $page['description'] = $this->_makeDescription($page['full_text']);
 
-            $page['keywords'] = implode(', ', array_keys($keywords));
-        }
+        $page['keywords'] = $this->_makeKeywords($page['keywords'], $page['full_text']);
 
         $this->set_meta_tags($page['meta_title'] == NULL ? $page['title'] : $page['meta_title'], $page['keywords'], $page['description']);
 
@@ -438,8 +426,8 @@ class Core extends MY_Controller
         $this->db->limit(1);
         $this->db->update('content');
 
-        \CMSFactory\Events::create()->registerEvent($this->page_content, 'page:load');
-        \CMSFactory\Events::runFactory();
+        Events::create()->registerEvent($this->page_content, 'page:load');
+        Events::runFactory();
 
         if (!empty($page['main_tpl'])) {
             $tpl_name = $page['main_tpl'];
@@ -502,7 +490,7 @@ class Core extends MY_Controller
     public function _display_category($category = []) {
 
         /** Register event 'Core:_displayCategory' */
-        \CMSFactory\Events::create()->registerEvent($this->cat_content, 'Core:_displayCategory')->runFactory();
+        Events::create()->registerEvent($this->cat_content, 'Core:_displayCategory')->runFactory();
 
         $category['fetch_pages'] = unserialize($category['fetch_pages']);
 
@@ -568,15 +556,9 @@ class Core extends MY_Controller
 
         $category['title'] == NULL ? $category['title'] = $category['name'] : TRUE;
 
-        // Generate auto meta-tags
-        if ($this->settings['create_description'] == 'auto' && !$category['description']) {
-            $category['description'] = $this->lib_seo->get_description($category['short_desc']);
-        }
-        if ($this->settings['create_keywords'] == 'auto' && !$category['keywords']) {
-            $keywords = $this->lib_seo->get_keywords($category['short_desc'], TRUE);
+        $category['description'] = $this->_makeDescription($category['short_desc']);
 
-            $category['keywords'] = implode(', ', array_keys($keywords));
-        }
+        $category['keywords'] = $this->_makeKeywords($category['keywords'], $category['short_desc']);
 
         // adding page number for pages with pagination (from second page)
         $curPage = $this->pagination->cur_page;
@@ -591,8 +573,8 @@ class Core extends MY_Controller
 
         $this->template->assign('content', $content);
 
-        \CMSFactory\Events::create()->registerEvent($this->cat_content, 'pageCategory:load');
-        \CMSFactory\Events::runFactory();
+        Events::create()->registerEvent($this->cat_content, 'pageCategory:load');
+        Events::runFactory();
 
         if (!$category['main_tpl']) {
             $this->core->core_data['id'] = $category['id'];
@@ -716,8 +698,8 @@ class Core extends MY_Controller
 
         $this->template->add_array(
             [
-                'content' => $this->template->read('error', ['error_text' => $text, 'back_button' => $back])
-            ]
+                    'content' => $this->template->read('error', ['error_text' => $text, 'back_button' => $back])
+                ]
         );
 
         $this->template->show();
@@ -902,10 +884,10 @@ class Core extends MY_Controller
         if ($this->core_data['data_type'] == 'main') {
             $this->template->add_array(
                 [
-                    'site_title' => empty($this->settings['site_title']) ? $title : $this->settings['site_title'],
-                    'site_description' => empty($this->settings['site_description']) ? $description : $this->settings['site_description'],
-                    'site_keywords' => empty($this->settings['site_keywords']) ? $keywords : $this->settings['site_keywords']
-                ]
+                        'site_title' => empty($this->settings['site_title']) ? $title : $this->settings['site_title'],
+                        'site_description' => empty($this->settings['site_description']) ? $description : $this->settings['site_description'],
+                        'site_keywords' => empty($this->settings['site_keywords']) ? $keywords : $this->settings['site_keywords']
+                    ]
             );
         } else {
             if (($page_number > 1) && ($page_number != '')) {
@@ -953,14 +935,14 @@ class Core extends MY_Controller
                 $keywords = '';
             }
 
-            $page_number = $page_number ?: (int) $this->pagination->cur_page;
+            $page_number = $page_number ? : (int) $this->pagination->cur_page;
             $this->template->add_array(
                 [
-                    'site_title' => $title,
-                    'site_description' => htmlspecialchars(strip_tags($description)),
-                    'site_keywords' => htmlspecialchars($keywords),
-                    'page_number' => $page_number
-                ]
+                        'site_title' => $title,
+                        'site_description' => htmlspecialchars(strip_tags($description)),
+                        'site_keywords' => htmlspecialchars($keywords),
+                        'page_number' => $page_number
+                    ]
             );
         }
     }
@@ -1010,6 +992,51 @@ class Core extends MY_Controller
             echo "\r\nSitemap: " . site_url('sitemap.xml');
             exit;
         }
+    }
+
+    /**
+     *
+     * @param string $cat_path
+     * @return string
+     */
+    public function _prepCatPath($cat_path) {
+        if (substr($cat_path, -1) == '/') {
+            $cat_path = substr($cat_path, 0, -1);
+        }
+
+        // Delete page number from path
+        $cat_path = substr($cat_path, 0, strripos($cat_path, '/'));
+
+        return $cat_path;
+    }
+
+    /**
+     *
+     * @param string $description
+     * @return string
+     */
+    public function _makeDescription($description) {
+        if ($this->settings['create_description'] == 'auto' && !$description) {
+            $description = $this->lib_seo->get_description($description);
+        }
+
+        return $description;
+    }
+
+    /**
+     *
+     * @param string $keywords
+     * @param string $text
+     * @return string
+     */
+    public function _makeKeywords($keywords, $text) {
+        if ($this->settings['create_keywords'] == 'auto' && !$keywords) {
+            $keywords = $this->lib_seo->get_keywords($text, TRUE);
+
+            $keywords = implode(', ', array_keys($keywords));
+        }
+
+        return $keywords;
     }
 
 }

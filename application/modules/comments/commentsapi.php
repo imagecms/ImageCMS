@@ -20,7 +20,7 @@ class Commentsapi extends Comments {
 
     /**
      * New comments realization
-     * @param type $url
+     * @param string $url
      * @return array comments
      */
     public function getComments($url) {
