@@ -8,7 +8,7 @@
 class Cli extends \MY_Controller {
 
     public function __construct() {
-        if (php_sapi_name() !== 'cli') {
+        if (PHP_SAPI !== 'cli') {
             $this->core->error_404();
         }
         parent::__construct();
@@ -20,10 +20,10 @@ class Cli extends \MY_Controller {
      * < php index.php exchange cli truncate >
      */
     public function truncate() {
-//        if (true != _confirm('Really truncate data for import', true)) {
-//            _outputLine('Canceled');
-//            return;
-//        }
+        //        if (true != _confirm('Really truncate data for import', true)) {
+        //            _outputLine('Canceled');
+        //            return;
+        //        }
 
         $this->db->truncate('shop_category');
         $this->db->truncate('shop_category_i18n');
@@ -51,7 +51,7 @@ class Cli extends \MY_Controller {
     }
 
     /**
-     * 
+     *
      * @param string $name
      * @param string $email
      * @param string $password
@@ -71,9 +71,9 @@ class Cli extends \MY_Controller {
         $res = $this->dx_auth->register($data[0], $data[2], $data[1], '', '', '');
 
         $this->db->update('users', ['role_id' => 1], ['email' => $data[1]], 1);
-        
+
         _outputLine($res ? 'Created' : 'Error');
-        
+
     }
 
 }

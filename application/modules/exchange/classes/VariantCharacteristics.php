@@ -4,19 +4,19 @@ namespace exchange\classes;
 
 /**
  * Variant characteristics handler
- * 
- * Клас знає про характеристики товарів. Він може повернути характеристики 
+ *
+ * Клас знає про характеристики товарів. Він може повернути характеристики
  * товарів із початкового імпорту пропарсивши ім’я варіанту
- * 
+ *
  * Щоб клас знав характеристики їх потрібно добавляти при імпорті
- * 
+ *
  * Примітка для розробників:
  * Клас дуже простий і крутиться тільки навколо властивості класу $characteristics
  * Всі методи працюють тільки із даним масивом, і тільки методи що зберігають
- * за збереження/отримання при створенні знають де зберегти/отримати дані. 
- * Зараз дані зберігаються просто в json-файлі, потім можна буде перекинути 
+ * за збереження/отримання при створенні знають де зберегти/отримати дані.
+ * Зараз дані зберігаються просто в json-файлі, потім можна буде перекинути
  * сховище на будь-що.
- * 
+ *
  * There is test for this class - if you make changes here make sure test passes
  *
  * @author kolia
@@ -36,7 +36,7 @@ class VariantCharacteristics {
     protected $characteristics = array();
 
     /**
-     * 
+     *
      * @param string $storageFilePath
      */
     public function __construct($storageFilePath) {
@@ -67,7 +67,7 @@ class VariantCharacteristics {
 
     /**
      * Should be called after any changes in characteristic storage
-     * 
+     *
      * This method along with loadCharacteristics
      * handles storage of characteristics and knows only
      * about $characteristics property
@@ -96,33 +96,33 @@ class VariantCharacteristics {
      * @return string|null
      */
     public function getCharacteristicName($characteristicValue) {
-        
+
         $characteristicValue = trim($characteristicValue);
-        
+
         foreach ($this->characteristics as $name => $values) {
             if (in_array($characteristicValue, $values)) {
                 return $name;
             }
         }
-        
+
         return null;
     }
 
     /**
      * Parses and return all variant characteristics (if there are any)
      * @param string $variantName
-     * @return array [[name => value],...] list of characteristics names and values 
+     * @return array [[name => value],...] list of characteristics names and values
      */
     public function getVariantCharacteristics($variantName) {
         /*
-         * Примітка до визначення характеристик варіанту - може бути накладка 
-         * із визначенням характеристик що складаються більше ніж із одного 
-         * слова - може краще тоді треба буде визначати по strpos()?... 
+         * Примітка до визначення характеристик варіанту - може бути накладка
+         * із визначенням характеристик що складаються більше ніж із одного
+         * слова - може краще тоді треба буде визначати по strpos()?...
          * Куроче час покаже.
          */
         $variantNameParts = explode(' ', $variantName);
         $variantCharacterisctics = array();
-        
+
         foreach ($variantNameParts as $possibleCharacteristicValue) {
             foreach ($this->characteristics as $name => $values) {
                 if (in_array($possibleCharacteristicValue, $values)) {
@@ -130,7 +130,7 @@ class VariantCharacteristics {
                 }
             }
         }
-        
+
         return $variantCharacterisctics;
     }
 
@@ -167,7 +167,7 @@ class VariantCharacteristics {
      * @param string|array $namesToDelete (optional)
      */
     public function deleteCharacteristic($namesToDelete = null) {
-        if (is_null($namesToDelete)) {
+        if (null === $namesToDelete) {
             $this->characteristics = array();
             return;
         }

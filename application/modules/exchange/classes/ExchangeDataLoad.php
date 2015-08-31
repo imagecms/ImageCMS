@@ -3,7 +3,7 @@
 namespace exchange\classes;
 
 /**
- * 
+ *
  * PROPERTIES OF OBJECT THAT CAN BE RETURN:
  *  - categories
  *  - products
@@ -21,7 +21,7 @@ class ExchangeDataLoad {
 
     /**
      *
-     * @var type 
+     * @var type
      */
     private $db;
 
@@ -33,7 +33,7 @@ class ExchangeDataLoad {
 
     /**
      *
-     * @var DataLoad 
+     * @var DataLoad
      */
     private static $instance;
 
@@ -43,22 +43,22 @@ class ExchangeDataLoad {
     }
 
     private function __clone() {
-        
+
     }
 
     /**
-     * 
+     *
      * @return DataLoad
      */
     public static function getInstance() {
-        if (is_null(self::$instance)) {
+        if (null === self::$instance) {
             self::$instance = new ExchangeDataLoad;
         }
         return self::$instance;
     }
 
     /**
-     * 
+     *
      * @param string $name
      * @return boolean|array|SplFixedArray
      */
@@ -76,10 +76,10 @@ class ExchangeDataLoad {
     }
 
     /**
-     * Updates data If in DB was changes 
+     * Updates data If in DB was changes
      * (drops existing data and gets new from db again)
-     * @param string $name 
-     * @return boolean|array 
+     * @param string $name
+     * @return boolean|array
      */
     public function getNewData($name = NULL) {
         if (key_exists($name, $this->data)) {
@@ -143,10 +143,11 @@ class ExchangeDataLoad {
 
     private function getMainCurrencyId() {
         $mainCurrencyId = $this->db->select('id')->where('main', 1)->get('shop_currencies')->row_array();
-        if (!empty($mainCurrencyId))
+        if (!empty($mainCurrencyId)) {
             $mainCurrencyId = $mainCurrencyId['id'];
-        else
+        } else {
             $mainCurrencyId = 1;
+        }
 
         return $mainCurrencyId;
     }

@@ -29,7 +29,7 @@ class DataCollector {
     protected $keys = array();
 
     /**
-     * 
+     *
      * @param string $table
      * @param array $data
      * @param string|integer $key array key (optioanl)
@@ -92,7 +92,7 @@ class DataCollector {
     }
 
     /**
-     * 
+     *
      * @param string $tableBName
      */
     public function getData($tableBName = NULL) {
@@ -106,7 +106,7 @@ class DataCollector {
     }
 
     /**
-     * 
+     *
      * @param string $tableBName
      * @return boolean
      */

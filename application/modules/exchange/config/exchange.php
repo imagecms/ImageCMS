@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 $config['tempDir'] = PUBPATH . 'uploads/cmlTemp/';
 $config['characteristicsStorageFilePath'] = $config['tempDir'] . '1c_characteristics.json';
@@ -14,4 +15,3 @@ $config['userstatuses'] = array();
 $config['autoresize'] = 'off';
 $config['debug'] = false;
 $config['email'] = false;
-

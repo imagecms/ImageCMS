@@ -5,8 +5,8 @@ namespace exchange\classes;
 use CMSFactory\ModuleSettings;
 
 /**
- * 
- * 
+ *
+ *
  *
  * @author kolia
  */
@@ -14,24 +14,24 @@ final class Categories extends ExchangeBase {
 
     /**
      * Parsed categories from XML to one-dimention array
-     * @var array 
+     * @var array
      */
     private $categoriesXml = array();
 
     /**
      *
-     * @var array 
+     * @var array
      */
     private $new = array();
 
     /**
      *
-     * @var array 
+     * @var array
      */
     private $existing = array();
 
     /**
-     * 
+     *
      */
     private $externalIds;
 
@@ -64,14 +64,14 @@ final class Categories extends ExchangeBase {
                 'name' => $name,
                 'active' => (string) $category->Статус == 'Удален' ? 0 : 1,
                 'external_id' => $externalId,
-                'parent_external_id' => is_null($parent) ? 0 : $parent
+                'parent_external_id' => $parent === null ? 0 : $parent
             );
 
             if (isset($category->Группы)) {
                 $this->processCategories($category->Группы->Группа, $externalId);
             }
         }
-       
+
     }
 
     private function getCategoryName($name) {
@@ -91,9 +91,9 @@ final class Categories extends ExchangeBase {
     protected function import_() {
         // getting categories names for checking fr unique names
         $categoriesI18n = $this->db
-                ->where('locale', \MY_Controller::getCurrentLocale())
-                ->get('shop_category_i18n')
-                ->result_array();
+            ->where('locale', \MY_Controller::getCurrentLocale())
+            ->get('shop_category_i18n')
+            ->result_array();
 
         foreach ($categoriesI18n as $category) {
             array_push($this->categoriesNames, $category['name']);
@@ -149,16 +149,16 @@ final class Categories extends ExchangeBase {
     }
 
     /**
-     * Filling parent ids of 
+     * Filling parent ids of
      * @return boolean
      */
     private function getPathsAndParents() {
         $categoriesExternalIds = array_merge($this->new, $this->existing);
-        // UPDATING INSERTED CATEGORIES (add parent ids & full path)        
+        // UPDATING INSERTED CATEGORIES (add parent ids & full path)
         $this->dataLoad->getNewData('categories'); // getting dategories form db again
         // getting only categories which was inserted
         $categories = array();
-        // "parent data" is in $this->categories (db), 
+        // "parent data" is in $this->categories (db),
         foreach ($this->categories as $categoryId => $categoryData) {
             if (in_array($categoryData['external_id'], $categoriesExternalIds)) {
                 $categories[$categoryData['id']] = array(
@@ -255,7 +255,7 @@ final class Categories extends ExchangeBase {
      * @return boolean|int FALSE if category is new, TRUE otherwise
      */
     public function categoryExists2($externalId, $returnCategoryId = FALSE) {
-        if (is_null($this->externalIds)) {
+        if (null === $this->externalIds) {
             $this->externalIds = array();
             foreach ($this->categories as $categoryId => $categoryData) {
                 if (!empty($categoryData['external_id'])) {

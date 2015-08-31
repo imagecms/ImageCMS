@@ -48,10 +48,11 @@ if (!function_exists('load_main_curr')) {
     function load_main_curr() {
         $ci = & get_instance();
         $mainCurrencyId = $ci->db->select('id')->where('main', 1)->get('shop_currencies')->row_array();
-        if (!empty($mainCurrencyId))
+        if (!empty($mainCurrencyId)) {
             $mainCurrencyId = $mainCurrencyId['id'];
-        else
+        } else {
             $mainCurrencyId = 1;
+        }
 
         return $mainCurrencyId;
     }
@@ -63,10 +64,10 @@ if (!function_exists('get_product_category')) {
     function get_product_category($id) {
         $ci = & get_instance();
         $result = $ci->db
-                ->join('shop_category', 'shop_category.id=shop_products.category_id')
-                ->where('shop_products.id', $id)
-                ->get('shop_products')
-                ->row_array();
+            ->join('shop_category', 'shop_category.id=shop_products.category_id')
+            ->where('shop_products.id', $id)
+            ->get('shop_products')
+            ->row_array();
         return $result;
     }
 
@@ -112,10 +113,11 @@ if (!function_exists('load_multiple_prop')) {
         $ci = & get_instance();
         $arr = array();
         $result = $ci->db->get('mod_exchange');
-        if ($result)
+        if ($result) {
             foreach ($result->result_array() as $val) {
                 $arr[$val['external_id']] = $val['value'];
             }
+        }
         return $arr;
     }
 
@@ -126,8 +128,9 @@ if (!function_exists('is_cat')) {
     function is_cat($cat_ex_id, &$cats) {
 
         foreach ($cats as $val) {
-            if ($val['external_id'] == $cat_ex_id)
+            if ($val['external_id'] == $cat_ex_id) {
                 return $val;
+            }
         }
 
         return false;
@@ -139,10 +142,11 @@ if (!function_exists('is_prod')) {
 
     function is_prod($prod_ex_id, $prods) {
 
-        if (in_array($prod_ex_id, $prods))
+        if (in_array($prod_ex_id, $prods)) {
             return array('id' => array_search($prod_ex_id, $prods));
-        else
+        } else {
             return false;
+        }
     }
 
 }
@@ -152,8 +156,9 @@ if (!function_exists('is_brand')) {
     function is_brand($brand_name, $brands) {
 
         foreach ($brands as $val) {
-            if ($val['name'] == $brand_name)
+            if ($val['name'] == $brand_name) {
                 return $val['id'];
+            }
         }
 
         return false;
@@ -164,8 +169,9 @@ if (!function_exists('is_prop')) {
 
     function is_prop($prop_id, $props) {
         foreach ($props as $val) {
-            if ($val['external_id'] == $prop_id)
+            if ($val['external_id'] == $prop_id) {
                 return $val;
+            }
         }
 
         return false;
@@ -203,7 +209,3 @@ if (!function_exists('is_prop_data')) {
     }
 
 }
-
-
-
-
