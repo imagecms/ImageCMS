@@ -9,8 +9,8 @@ namespace import_export\classes;
  * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
  */
 class Factor {
-    /** Message type. */
 
+    /** Message type. */
     const MessageTypeError = "error";
 
     /** Message type. */

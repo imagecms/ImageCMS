@@ -2,10 +2,11 @@
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
-/**vadik
+/* * vadik
  * Image CMS
  * Module Sample
  */
+
 class Import_export extends MY_Controller {
 
     public function __construct() {
@@ -13,11 +14,10 @@ class Import_export extends MY_Controller {
         $lang = new MY_Lang();
         $lang->load('import_export');
         $this->load->module('core');
-
     }
 
     public function index() {
-        
+
     }
 
     /**
@@ -27,7 +27,7 @@ class Import_export extends MY_Controller {
      * уплавнеия модулями.
      */
     public function autoload() {
-        
+
     }
 
     /**
@@ -35,7 +35,7 @@ class Import_export extends MY_Controller {
      * Будет вызван при установке модуля пользователем
      */
     public function _install() {
-        
+
     }
 
     /**
@@ -43,7 +43,7 @@ class Import_export extends MY_Controller {
      * Будет вызван при удалении модуля пользователем
      */
     public function _deinstall() {
-        
+
     }
 
 }

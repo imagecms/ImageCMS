@@ -137,8 +137,7 @@ class BaseImport extends \CI_Model {
         $this->makeAttributesList();
         if ($offers == 0) {
             $this->validateFile($offers, $limit);
-        }
-        else {
+        } else {
             $this->parseFile($offers, $limit);
             CategoriesHandler::loadCategories();
             ProductsHandler::create()->make($EmptyFields);
@@ -146,8 +145,7 @@ class BaseImport extends \CI_Model {
         }
         if (ImportBootstrap::noErrors()) {
             ImportBootstrap::create()->addMessage(Factor::SuccessImportCompleted . '<b>' . $countProd . '</b>', Factor::MessageTypeSuccess);
-        }
-        else {
+        } else {
             return FALSE;
         }
     }
@@ -183,14 +181,14 @@ class BaseImport extends \CI_Model {
         }
 
         $row = fgetcsv($file, $this->maxRowLegth, $this->delimiter, $this->enclosure);
-//        if (!in_array('cat', $row) && !$this->attributeExist('cat')) {
-//            ImportBootstrap::addMessage(Factor::ErrorCategoryAttribute);
-//            return FALSE;
-//        }
-//        if (!in_array('name', $row) && !$this->attributeExist('name')) {
-//            ImportBootstrap::addMessage(Factor::ErrorNameAttribute);
-//            return FALSE;
-//        }
+        //        if (!in_array('cat', $row) && !$this->attributeExist('cat')) {
+        //            ImportBootstrap::addMessage(Factor::ErrorCategoryAttribute);
+        //            return FALSE;
+        //        }
+        //        if (!in_array('name', $row) && !$this->attributeExist('name')) {
+        //            ImportBootstrap::addMessage(Factor::ErrorNameAttribute);
+        //            return FALSE;
+        //        }
         //      Првоерка на url
         //        if (!in_array('url', $row)) {
         //            ImportBootstrap::addMessage(Factor::ErrorUrlAttribute);
@@ -210,8 +208,7 @@ class BaseImport extends \CI_Model {
         }
         if ((count($this->possibleAttributes) - count(array_diff($this->possibleAttributes, $row))) == count($this->attributes)) {
             $this->attributes = $row;
-        }
-        elseif (count($row) === count($this->attributes))
+        } elseif (count($row) === count($this->attributes))
             rewind($file);
         else {
             ImportBootstrap::addMessage(Factor::ErrorPossibleAttrValues);

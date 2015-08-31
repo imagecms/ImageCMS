@@ -9,29 +9,31 @@ namespace import_export\classes;
  * @property CI_DB_active_record $db
  */
 class ImportBootstrap {
-    
+
     /**
      * Errors
-     * @var array 
+     * @var array
      */
     protected $messages;
+
     /**
      * Class ImportBootstrap
-     * @var ImportBootstrap 
+     * @var ImportBootstrap
      */
     protected static $_instance;
+
     /**
      * Backup dir
-     * @var string 
+     * @var string
      */
     public $uploadDir = './application/backups/';
 
     private function __construct() {
-        
+
     }
 
     private function __clone() {
-        
+
     }
 
     /**
@@ -86,7 +88,7 @@ class ImportBootstrap {
 
     /**
      * Add error message
-     * @param string $msg 
+     * @param string $msg
      * @param string $type
      * @return bool
      * @access public static
@@ -184,13 +186,14 @@ class ImportBootstrap {
      */
     public function withBackup($forced = FALSE) {
         $this->messages['report']['DBBackuName'] = $this->messages['report']['DBBackup'] = FALSE;
-        if (FALSE == $forced && !isset($_POST['withBackup']))
+        if (FALSE == $forced && !isset($_POST['withBackup'])) {
             return $this;
-        
+        }
+
         \libraries\Backup::create()->createBackup("zip", "import");
         $this->messages['report']['DBBackup'] = TRUE;
         $this->messages['report']['DBBackuName'] = $backupName;
-        return $this;        
+        return $this;
     }
 
 }

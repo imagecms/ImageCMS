@@ -65,7 +65,7 @@
                                             <div class="controls">
                                                 <select name="language">
                                                     {foreach $languages as $language}
-                                                    <option value="{echo $language->identif}" {if $language->default == 1}selected="selected"{/if}>{echo $language->lang_name}</option>
+                                                        <option value="{echo $language->identif}" {if $language->default == 1}selected="selected"{/if}>{echo $language->lang_name}</option>
                                                     {/foreach}
                                                 </select>
                                             </div>
@@ -128,7 +128,7 @@
 
                                             <div class="d_n">
                                                 <b>{lang('Make changes, if the fields are empty','import_export')}<br/>
-                                                {lang('Relates to the fields of','import_export')}:<br/></b>
+                                                    {lang('Relates to the fields of','import_export')}:<br/></b>
                                                 {lang('Short description', 'import_export')}<br/>
                                                 {lang('Full description', 'import_export')}<br/>
                                                 {lang('Meta Title', 'import_export')}<br/>
@@ -187,36 +187,36 @@
                                             <span class="controls span2">
                                                 <input class="attributes" type="hidden" name="attributes" value="" />
                                                 <button class="btn btn-success" type="submit">{lang('Start import','import_export')}</button
-                                                </span>
-                                            </div>
-                                            <!-- End. Let's go Button ;) -->
+                                            </span>
                                         </div>
-                                        <input type="hidden" value=";" name="delimiter" />
-                                        <input type="hidden" value="&#34;" name="enclosure"/>
-                                        <input type="hidden" value="utf-8" name="encoding"/>
-                                        <input type="hidden" value="ProductsImport" name="import_type"/>
-                                        {/*}<input type="hidden" value="{echo $mainLangIdentif}" name="mainLanguage"/>{ */}
-                                        <input type="hidden" value="{echo $currencies[0]->id}" name="currency"/>
-                                        {form_csrf()}
-                                    </form>
-                                    <!-- End. Choose file and load to server on checked slot  -->
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="6">
-                                <label id="progressLabel"></label>
-                                <div class="progress progress-striped active" id="progressBlock" style="display:none;margin-top:15px;">
-                                    <div id="percent" class="bar" style="width: 1%;">
-                                        <div style="position: relative; top:1px">
-                                            <span id="ratio" style="color: black;"></span>
-                                        </div>
+                                        <!-- End. Let's go Button ;) -->
+                                    </div>
+                                    <input type="hidden" value=";" name="delimiter" />
+                                    <input type="hidden" value="&#34;" name="enclosure"/>
+                                    <input type="hidden" value="utf-8" name="encoding"/>
+                                    <input type="hidden" value="ProductsImport" name="import_type"/>
+                                    {/*}<input type="hidden" value="{echo $mainLangIdentif}" name="mainLanguage"/>{ */}
+                                    <input type="hidden" value="{echo $currencies[0]->id}" name="currency"/>
+                                    {form_csrf()}
+                                </form>
+                                <!-- End. Choose file and load to server on checked slot  -->
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6">
+                            <label id="progressLabel"></label>
+                            <div class="progress progress-striped active" id="progressBlock" style="display:none;margin-top:15px;">
+                                <div id="percent" class="bar" style="width: 1%;">
+                                    <div style="position: relative; top:1px">
+                                        <span id="ratio" style="color: black;"></span>
                                     </div>
                                 </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-    </section>
+    </div>
+</section>

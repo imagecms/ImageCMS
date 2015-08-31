@@ -19,6 +19,7 @@
     <exclude-pattern>hooks/*</exclude-pattern>
     <exclude-pattern>*min.js</exclude-pattern>
     <exclude-pattern>*min.css</exclude-pattern>
+    <exclude-pattern>*/Punycode.php</exclude-pattern>
  
     <arg name="extensions" value="php,js,css,tpl"/>
     <arg name="encoding" value="utf-8"/>

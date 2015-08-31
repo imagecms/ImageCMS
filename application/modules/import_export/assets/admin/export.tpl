@@ -120,12 +120,12 @@
                                         </span>
                                         <div class="controls">
                                             <select name="language">
-                                                {foreach $languages as $language}
-                                                    <option value="{echo $language->identif}" {if $language->default == 1}selected="selected"{/if}>{echo $language->lang_name}</option>
-                                                {/foreach}
-                                            </select>
-                                        </div>
-                                    </div> -->
+                                    {foreach $languages as $language}
+                                        <option value="{echo $language->identif}" {if $language->default == 1}selected="selected"{/if}>{echo $language->lang_name}</option>
+                                    {/foreach}
+                                </select>
+                            </div>
+                        </div> -->
 
                                     <!-- Start. Let's go Button ;) -->
                                     <div class="control-group">
@@ -156,11 +156,11 @@
 </section>
 {literal}
     <script type="text/javascript">
-        setTimeout(function(){
-            $('#selectedCats_chosen').attr('onclick','reNameButton()');            
-        },1000);        
-        setInterval(function(){
-            $(".search-choice-close").bind('click',function() {
+        setTimeout(function () {
+            $('#selectedCats_chosen').attr('onclick', 'reNameButton()');
+        }, 1000);
+        setInterval(function () {
+            $(".search-choice-close").bind('click', function () {
                 reNameButton();
             })
         }, 1000);

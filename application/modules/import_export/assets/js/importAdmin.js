@@ -7,7 +7,7 @@ $(document).ready(function () {
         if (attrName != 'skip') {
             $(this).closest('.dropup').find('input').val(attrName);
             $(this).closest('.dropup').find('.attrnameHolder').attr('data-attrnames', attrName);
-            $(this).closest('.dropup').find('.attrnameHolder').text(attrTitle)           
+            $(this).closest('.dropup').find('.attrnameHolder').text(attrTitle)
         }
     });
 
@@ -28,7 +28,7 @@ $(document).ready(function () {
                         if (obj.error)
                             showMessage(langs.error, obj.error);
                         if (obj.success == true) {
-                            showMessage(lang('Message')+': ', lang('Слот')+' '+$chekedFile +'. '+ lang('Файл успешно загружен')+'.');
+                            showMessage(lang('Message') + ': ', lang('Слот') + ' ' + $chekedFile + '. ' + lang('Файл успешно загружен') + '.');
 //                            showMessage(langs.success, langs.fileLoaded + $chekedFile);
                             if (obj.filesInfo.product_csv_1csv != '')
                                 $('span[data-file=product_csv_1csv]').text(obj.filesInfo.product_csv_1csv);
@@ -151,12 +151,10 @@ $(document).ready(function () {
             if ($object.error != null) {
                 showMessage('', $object.message);
                 $.post('/admin/components/init_window/import_export/getImport/errorLog', {error: $object.message});
-            }
-            else if ($object.success != null) {
+            } else if ($object.success != null) {
                 showMessage('', $object.message);
             }
-        }
-        catch (err) {
+        } catch (err) {
             showMessage('', langs.scriptErrorTellAdmin);
         }
     }

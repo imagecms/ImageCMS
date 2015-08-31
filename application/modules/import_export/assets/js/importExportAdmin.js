@@ -1,23 +1,23 @@
-function reNameButton(){
+function reNameButton() {
     var namenew = $('#button-name-new').val();
     var nameold = $('#button-name-old').val();
-    if($('.search-choice').html())
+    if ($('.search-choice').html())
         $('#reNameButton').html(namenew);
     else
         $('#reNameButton').html(nameold);
-}    
-        
-$(document).ready(function() {
+}
+
+$(document).ready(function () {
 
     /*IMPORT EXPORT*/
-    $("#importcsvfile").unbind('change').bind('change', function() {
+    $("#importcsvfile").unbind('change').bind('change', function () {
         var selector = $(this).closest('form');
         $chekedFile = $('input[name=csvfile]:checked').val();
         selector.append('<input type="hidden" name="csvfile" value="' + $chekedFile + '"/>');
         $(selector).validate()
         if ($(selector).valid()) {
             var options = {
-                success: function(data) {
+                success: function (data) {
                     try {
                         var obj = JSON.parse(data);
                         if (obj.error)
@@ -41,7 +41,7 @@ $(document).ready(function() {
             $(selector).ajaxSubmit(options);
         }
     });
-    $("input[name='csvfile']").unbind('change').bind('change', function() {
+    $("input[name='csvfile']").unbind('change').bind('change', function () {
         var fileNum = $(this).val();
         loadCsvAttributes(fileNum);
     });
@@ -49,10 +49,10 @@ $(document).ready(function() {
 
 
 
-    $('#makeImportForm').unbind('submit').bind('submit', function() {
+    $('#makeImportForm').unbind('submit').bind('submit', function () {
         $chekedFile = $('input[name=csvfile]:checked').val();
         $names = '';
-        $('.attrnameHolder').each(function(index) {
+        $('.attrnameHolder').each(function (index) {
             $names = $names + $(this).attr('data-attrnames') + ',';
         })
         $('input[type=hidden].attributes').val($names);
@@ -61,7 +61,7 @@ $(document).ready(function() {
             url: "/admin/components/run/shop/system/import",
             type: 'post',
             data: $(this).serialize(),
-            success: function(obj) {
+            success: function (obj) {
                 buildImportReport(obj);
             }
         });
@@ -75,15 +75,14 @@ $(document).ready(function() {
             else if ($object.success != null) {
                 showMessage('', $object.message);
             }
-        }
-        catch (err) {
+        } catch (err) {
             showMessage('', langs.scriptErrorTellAdmin);
         }
 //                $('.importProcess').fadeOut(100);
 //                $('.importRaport').fadeIn(100);
     }
 
-    $('.dropdown-attr a').unbind('click').bind('click', function() {
+    $('.dropdown-attr a').unbind('click').bind('click', function () {
         $startPoint = $(this).closest('div');
         $name = $(this).text();
         $attname = $(this).attr('data-attname');
@@ -102,7 +101,7 @@ $(document).ready(function() {
             url: "/admin/components/run/shop/system/getAttributes",
             type: 'post',
             data: 'csvfile=' + val,
-            success: function(data) {
+            success: function (data) {
                 $('.attrHandler').html(data);
             }
         });
@@ -110,13 +109,13 @@ $(document).ready(function() {
 
 
 
-    $(".runExport").unbind("click").click(function() {
+    $(".runExport").unbind("click").click(function () {
         $(".runExport").button('loading');
         $.ajax({
             url: "/admin/components/init_window/import_export/getExport",
             type: "post",
             data: $('#makeExportForm').serialize(),
-            success: function(data) {
+            success: function (data) {
                 switch (data) {
                     case "csv":
                     case "xls":
@@ -128,14 +127,14 @@ $(document).ready(function() {
                         showMessage("", data);
                 }
             },
-            complete: function(xhr) {
+            complete: function (xhr) {
                 $(".runExport").button('reset');
             }
         });
     });
 
 
-    $("#showCatProps").unbind("click").click(function() {
+    $("#showCatProps").unbind("click").click(function () {
         showCatProp();
     });
 
@@ -153,19 +152,19 @@ $(document).ready(function() {
             url: "/admin/components/run/shop/system/getCategoryProperties/" + time,
             type: 'post',
             data: catData,
-            beforeSend: function() {
+            beforeSend: function () {
                 $('#showCatProps').button('loading');
                 $('.properties_result .serverResponse').remove();
             },
-            success: function(data) {
+            success: function (data) {
                 $('.properties_result').append(data);
                 initNiceCheck();
             },
-            complete: function() {
+            complete: function () {
                 $("#showCatProps").button('reset');
                 $("#pleaseSelectCats").hide();
             }
         });
     }
-    
+
 });

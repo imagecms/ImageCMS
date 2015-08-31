@@ -581,8 +581,8 @@ class ProductsImport extends BaseImport {
         $this->db->delete('shop_product_categories', array('product_id' => $productId));
 
         foreach (explode('|', $arg['addcats']) as $k => $val) {
-                $temp = explode('/', $val);
-                $arrNames[$k]['category'] = end($temp);
+            $temp = explode('/', $val);
+            $arrNames[$k]['category'] = end($temp);
             if ($temp[count($temp) - 2]) {
                 $arrNames[$k]['parent'] = $temp[count($temp) - 2];
             }
@@ -604,14 +604,12 @@ class ProductsImport extends BaseImport {
                     ->where('shop_category_i18n.locale', $this->input->post('language'))
                     ->get('shop_category_i18n')
                     ->row_array();
-
             } else {
                 $idAddCat = $this->db->select('id')
                     ->where('name', $value['category'])
                     ->where('locale', $this->input->post('language'))
                     ->get('shop_category_i18n')
                     ->row_array();
-
             }
             $idsAddCat[$key]['id'] = $idAddCat['id'];
         }
@@ -630,7 +628,6 @@ class ProductsImport extends BaseImport {
             $mainCategory = (int) $mainCategory->row_array()['category_id'];
             array_push($shopCategoryIds, $mainCategory);
             $shopCategoryIds = array_unique($shopCategoryIds);
-
         }
 
         foreach ($shopCategoryIds as $categoryId) {
@@ -653,7 +650,7 @@ class ProductsImport extends BaseImport {
         $this->load->helper('translit');
         $str = '';
         foreach (explode('/', $val) as $v) {
-            $str .= translit_url($v).'/';
+            $str .= translit_url($v) . '/';
         }
         return substr($str, 0, -1);
     }
@@ -774,16 +771,11 @@ class ProductsImport extends BaseImport {
             $param = $param;
         }
 
-        //Перекодировка русского домена
-        $nameCode = explode('/', $param);
-        $idn = new \import_export\classes\Punycode(array('idn_version' => 2008));
-        $punycode = isset($nameCode[2]) ? stripslashes($nameCode[2]) : '';
-        $nameCode[2] = (stripos($punycode, 'xn--') !== false) ? $idn->decode($punycode) : $idn->encode($punycode);
-        $param = implode('/', $nameCode);
-        //Конец перекодироки
+        $idna = new \TrueBV\Punycode();
+        $idna->decode($param);
 
-        $format = end(explode('.', $param));
-        $format = strtolower($format);
+        $format = pathinfo($param, PATHINFO_EXTENSION);
+
         switch ($format) {
             case 'jpg':
             case 'jpeg':

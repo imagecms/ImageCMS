@@ -1,36 +1,36 @@
 <?php
 
-/***********************
+/* * *********************
  * Дать права 0777 на папки:
  * /uploads
  * /uploads/origin
  * /uploads/origin/additional
  * /uploads/shop/products/origin
  * /uploads/shop/products/origin/additional
- * 
- * /application/backups 
+ *
  * /application/backups
- ***********************
- * 
+ * /application/backups
+ * **********************
+ *
  * Дополнительные фото и фото вариантов.
- * 
+ *
  * Фото вариантов должны содержаться в папку /uploads/origin/
  * Если их нет в этой папке, то производится проверка на наличие их в
  * папке /uploads/shop/products/origin/. Если там они присутствуют, то вносятся
  * в базу.
- * 
+ *
  * Дополнительные фото продукта должны содержаться в /uploads/origin/additional
  * Если их нет в этой папке, то производится проверка на наличие их в
- * папке /uploads/shop/products/origin/additional. Если там они присутствуют, 
+ * папке /uploads/shop/products/origin/additional. Если там они присутствуют,
  * то вносятся в базу.
- * 
+ *
  * Доступен импорт картинок по ссылкам из интернета.
  * В поле vimg должно быть http://сайт/picture.png (jpg|gif|jpeg)
  * Имя картинки формируется из имени домена и названия картинки (сайт_picture.png)
  * Картинка сохраняется в папку /uploads/origin, копируются в /uploads/shop/products/origin
  * и заносятся в базу.
  * Если картинка с таким названием уже существует, шаг пропускается.
- * 
+ *
  * Доступен импорт дополнительных картинок по ссылкам из интернета.
  * В поле imgs должны быть ссылки http://сайт/picture2.png|http://сайт/picture1.png
  * Сохраняются в папку uploads/origin/additional, копируется в /uploads/shop/products/origin/additional
@@ -38,21 +38,21 @@
  * Если картинка с таким названием уже существует, шаг пропускается.
  * В строке могут быть как ссылки так и названия картинок, которые содержатся в папке.
  * http://сайт/picture2.png|picture1.png|picture3.png
- * 
+ *
  * Добавлены новые ошибки Factor.php:
   const ErrorUrlAttribute = "Атрибут 'URL' не указан. Error: EIx011";
   const ErrorPriceAttribute = "Атрибут 'Цена' не указан. Error: EIx012";
   const ErrorNameVariantAttribute = "Атрибут 'Имя варианта' не указан. Error: EIx013";
   const ErrorNameAttribute = "Атрибут 'Имя товара' не указан. Error: EIx010";
- * 
- * Файлы хранятся в /application/backups 
- * Backup базы остался неизменным в /application/backups 
- * 
- * Сегментная выгрузка при первом запуске использует imports(). Так как 
+ *
+ * Файлы хранятся в /application/backups
+ * Backup базы остался неизменным в /application/backups
+ *
+ * Сегментная выгрузка при первом запуске использует imports(). Так как
  * $_POST['offers'], $_POST['limit'], $_POST['countProd'] пусты она просто
  * пересчитывает количество позиций в файле и возвращает об этом информацию.
  * Все последующие этапы используют segmentImport();
- * Количество позиций в сегменте задается в файле importAdmin.js > importSegment() > limit 
+ * Количество позиций в сегменте задается в файле importAdmin.js > importSegment() > limit
  */
 
 use import_export\classes\ImportBootstrap as Imp;
@@ -76,11 +76,11 @@ class Import extends ShopAdminController {
 
     /**
      * Information about the files
-     * @var array 
+     * @var array
      * @access private
      */
     private $uplaodedFileInfo = array();
-    
+
     private $fullPath = '/var/www/saas_data/mainsaas/';
 
     public function __construct() {
@@ -96,16 +96,16 @@ class Import extends ShopAdminController {
      * @access public
      */
     public function segmentImport($bool = false) {
-        $result = Imp::create()->startProcess($_POST['offers'], $_POST['limit'], $_POST['countProd'],$_POST['EmptyFields'])->resultAsString();
+        $result = Imp::create()->startProcess($_POST['offers'], $_POST['limit'], $_POST['countProd'], $_POST['EmptyFields'])->resultAsString();
 
         if (($_POST['offers'] >= $_POST['countProd']) && $_POST['offers']) {
             $this->resizeAndUpdatePrice($_POST['withResize'], $_POST['withCurUpdate'], $result);
             $this->lib_admin->log(lang("Products was imported", "import_export"));
             echo (json_encode($result));
-        }elseif(!$bool){
-//            var_dump($result);
+        } elseif (!$bool) {
+            //            var_dump($result);
             $this->resizeAndUpdatePrice($_POST['withResize'], false, $result);
-            return $result;            
+            return $result;
         } else {
             return $result;
         }
@@ -122,15 +122,16 @@ class Import extends ShopAdminController {
             chmod($this->uploadDir . $this->csvFileName, 0777);
             $path = $this->uploadDir . strtr($_FILES['userfile']['name'], array(' ' => '_'));
             if (isset($path)) {
-                $this->lib_admin->log(lang("Loaded import file", "import_export").'. File: '.$_FILES['userfile']['name']);
+                $this->lib_admin->log(lang("Loaded import file", "import_export") . '. File: ' . $_FILES['userfile']['name']);
                 unlink($path);
             }
         }
-//        var_dumps_exit($_POST['attributes']);
+        //        var_dumps_exit($_POST['attributes']);
         if (count($_POST['attributes']) && $_POST['csvfile']) {
             $importSettings = $this->cache->fetch('ImportExportCache');
-            if (empty($importSettings) || $importSettings['withBackup'] != $this->input->post('withBackup'))
+            if (empty($importSettings) || $importSettings['withBackup'] != $this->input->post('withBackup')) {
                 $this->cache->store('ImportExportCache', array('withBackup' => $this->input->post('withBackup')), '25920000');
+            }
             Imp::create()->withBackup();
             $result = $this->segmentImport(TRUE);
             /* for ajax */
@@ -148,7 +149,7 @@ class Import extends ShopAdminController {
                 $result['propertiesSegmentImport']['EmptyFields'] = trim($_POST['EmptyFields']);
                 unset($_SESSION['countProductsInFile']);
             }
-            echo(json_encode($result));
+            echo (json_encode($result));
         }
         $this->cache->delete_all();
     }
@@ -161,18 +162,18 @@ class Import extends ShopAdminController {
      * @access private
      */
     private function resizeAndUpdatePrice($resize = false, $curUpdate = false, $result = null, $updateField = false) {
-        if($result){
+        if ($result) {
             if ($resize) {
                 $result['content'] = explode('/', trim($result['content'][0]));
                 \MediaManager\Image::create()
                         ->resizeById($result['content'])
                         ->resizeByIdAdditional($result['content'], TRUE);
-            }        
-        }else{
+            }
+        } else {
             LOG::create()->set(' resizeAndUpdatePrice $result is empty. import.php - IMPORT');
         }
 
-        if ($curUpdate){
+        if ($curUpdate) {
             \Currency\Currency::create()->checkPrices();
         }
     }
@@ -185,11 +186,14 @@ class Import extends ShopAdminController {
     private function saveCSVFile() {
         $this->takeFileName();
 
-        $this->load->library('upload', array(
+        $this->load->library(
+            'upload',
+            array(
             'overwrite' => true,
             'upload_path' => $this->uploadDir,
             'allowed_types' => '*',
-        ));
+                )
+        );
 
         $fileExt = pathinfo($_FILES['userfile']['name'], PATHINFO_EXTENSION);
         if (!in_array($fileExt, array('csv', 'xls', 'xlsx'))) {
@@ -266,21 +270,27 @@ class Import extends ShopAdminController {
             $row = array_diff(fgetcsv($file, 1000000, ";", '"'), array(null));
             fclose($file);
             $this->getFilesInfo();
-            foreach ($this->uplaodedFileInfo as $file)
+            foreach ($this->uplaodedFileInfo as $file) {
                 $uploadedFiles[str_replace('.', '', $file['name'])] = date('d.m.y H:i', $file['date']);
-            if ($vector && $this->input->is_ajax_request() && $_FILES)
-                echo json_encode(array(
-                    'success' => true,
-                    'row' => $row,
-                    'attributes' => import_export\classes\BaseImport::create()->attributes,
-                    'filesInfo' => $uploadedFiles
-                ));
-            else
-                $this->template->add_array(array(
-                    'rows' => $row,
-                    'attributes' => import_export\classes\BaseImport::create()->makeAttributesList()->possibleAttributes,
-                    'filesInfo' => $uploadedFiles
-                ));
+            }
+            if ($vector && $this->input->is_ajax_request() && $_FILES) {
+                echo json_encode(
+                    array(
+                            'success' => true,
+                            'row' => $row,
+                            'attributes' => import_export\classes\BaseImport::create()->attributes,
+                            'filesInfo' => $uploadedFiles
+                        )
+                );
+            } else {
+                $this->template->add_array(
+                    array(
+                            'rows' => $row,
+                            'attributes' => import_export\classes\BaseImport::create()->makeAttributesList()->possibleAttributes,
+                            'filesInfo' => $uploadedFiles
+                        )
+                );
+            }
         }
     }
 

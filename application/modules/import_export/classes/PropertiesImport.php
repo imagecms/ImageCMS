@@ -17,11 +17,13 @@ class PropertiesImport extends BaseImport {
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
      */
     public function runProperties() {
-        if (ImportBootstrap::hasErrors())
+        if (ImportBootstrap::hasErrors()) {
             return FALSE;
+        }
         $properties = $this->db->query('SELECT `id`, `csv_name` FROM `shop_product_properties`')->result();
-        foreach ($properties as $property)
+        foreach ($properties as $property) {
             $properyAlias[$property->csv_name] = $property->id;
+        }
 
         foreach ($this->content as $key => $node) {
             foreach ($node as $nodeKey => $nodeElement) {
@@ -29,34 +31,41 @@ class PropertiesImport extends BaseImport {
                 if (array_key_exists($nodeKey, $properyAlias)) {
                     $result = $this->db->query('SELECT * FROM `shop_product_properties_data` WHERE `product_id` = ? AND `property_id` = ?', array($node['ProductId'], $properyAlias[$nodeKey]))->row();
 
-                    if ($result instanceof \stdClass)
-                        $this->db->delete('shop_product_properties_data', array('product_id' => $node['ProductId'],
-                                                                            'property_id' => $properyAlias[$nodeKey],
-                                                                            'locale' => $this->languages));
+                    if ($result instanceof \stdClass) {
+                        $this->db->delete(
+                            'shop_product_properties_data',
+                            array('product_id' => $node['ProductId'],
+                            'property_id' => $properyAlias[$nodeKey],
+                            'locale' => $this->languages)
+                        );
+                    }
                     $insertdata = array();
                     $values = array_map('trim', explode('|', $nodeElement));
-                    foreach ($values as $v){
-                        $v = !$v?'':$v;
-                        if($v != ''){
+                    foreach ($values as $v) {
+                        $v = !$v ? '' : $v;
+                        if ($v != '') {
                             $insertdata[] = array('product_id' => $node['ProductId'],
-                                                    'property_id' => $properyAlias[$nodeKey],
-                                                    'locale' => $this->languages,
-                                                    'value' => $v);                            
+                                'property_id' => $properyAlias[$nodeKey],
+                                'locale' => $this->languages,
+                                'value' => $v);
                         }
-                            
                     }
                     $this->db->insert_batch('shop_product_properties_data', $insertdata);
-                    
+
                     foreach ($node['CategoryIds'] as $categoryId) {
                         $result = $this->db->query('SELECT * FROM `shop_product_properties_categories` WHERE `category_id` = ? AND `property_id` = ?', array($categoryId, $properyAlias[$nodeKey]))->row();
-                        if (!($result instanceof \stdClass) && !empty($nodeElement))
+                        if (!($result instanceof \stdClass) && !empty($nodeElement)) {
                             $this->db->insert('shop_product_properties_categories', array('property_id' => $properyAlias[$nodeKey], 'category_id' => $categoryId));
+                        }
                     }
 
-                    $propery = $this->db->query('
+                    $propery = $this->db->query(
+                        '
                     SELECT `id`, `data`
                     FROM `shop_product_properties_i18n`
-                    WHERE id = ? AND locale = ?', array($properyAlias[$nodeKey], $this->languages))->row();
+                    WHERE id = ? AND locale = ?',
+                        array($properyAlias[$nodeKey], $this->languages)
+                    )->row();
                     $data = (!empty($propery->data)) ? unserialize($propery->data) : array();
                     $changed = false;
                     foreach ($values as $v) {
@@ -65,8 +74,9 @@ class PropertiesImport extends BaseImport {
                             $data[] = $v;
                         }
                     }
-                    if ($changed)
+                    if ($changed) {
                         $this->db->update('shop_product_properties_i18n', array('data' => serialize($data)), array('id' => $properyAlias[$nodeKey], 'locale' => $this->languages));
+                    }
                 }
             }
         }
@@ -85,8 +95,9 @@ class PropertiesImport extends BaseImport {
         if (array_key_exists($name, $this->customFieldsCache)) {
             $fieldDataArray = $this->customFieldsCache[$name]->getDataArray();
 
-            if ($fieldDataArray === null)
+            if ($fieldDataArray === null) {
                 $fieldDataArray = array();
+            }
 
             if (!in_array($value, $fieldDataArray)) {
                 array_push($fieldDataArray, $value);

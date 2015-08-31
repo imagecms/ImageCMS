@@ -26,7 +26,7 @@ class CategoryImport extends BaseImport {
                 continue;
             }
 
-            if(trim($node['addcats'])) {
+            if (trim($node['addcats'])) {
                 $cats = explode('|', $node['addcats']);
                 foreach ($cats as $cat) {
                     self::content(array('cat' => $cat), $key);

@@ -249,7 +249,6 @@ class Export {
                     $prodIdCatIds[$productId][$parentId][] = $val;
                     $catIds[] = $val;
                 }
-
             }
         }
 
@@ -316,10 +315,10 @@ class Export {
 
     private function catsWithI18n($ids) {
         return \SCategoryQuery::create()
-            ->filterById($ids)
-            ->joinI18n($this->language)
-            ->find()
-            ->toArray();
+                        ->filterById($ids)
+                        ->joinI18n($this->language)
+                        ->find()
+                        ->toArray();
     }
 
     /**
@@ -557,8 +556,8 @@ class Export {
             'var' => '`shop_product_variants_i18n`.`name` as variant_name',
             'act' => 'active', //
             'hit' => 'hit', //
-            'hot' => 'hot',         //новинка
-            'action' => 'action',   //акція
+            'hot' => 'hot', //новинка
+            'action' => 'action', //акція
             'brd' => '`shop_brands_i18n`.`name` as brand_name', //
             'modim' => 'mainModImage',
             'modis' => 'smallModImage',
@@ -699,7 +698,6 @@ class Export {
      * @access public
      * @author Oleh
      */
-
     public function addToArchive($arr) {
         $zip = new \ZipArchive();
         $date = date('m_d_y');
