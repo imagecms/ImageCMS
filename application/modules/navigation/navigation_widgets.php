@@ -70,42 +70,28 @@ class Navigation_Widgets extends MY_Controller {
                     return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
                 } else {
                     if ($data_type == 'brand') {
-                        $navi_cats[] = array('path_url' => 'shop/brand/', 'name' => lang('Brands', 'navigation'));
-                        $tpl_data = array('navi_cats' => $navi_cats);
-                        return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
+                        return $this->make(lang('Brands', 'navigation'), 'shop/brand/', $widget);
                     }
                 }
                 break;
             case 'compare';
-                $navi_cats[] = array('path_url' => 'shop/compare/', 'name' => lang('Compare', 'navigation'));
-                $tpl_data = array('navi_cats' => $navi_cats);
-                return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
-                break;
+                return $this->make(lang('Compare', 'navigation'), 'shop/compare/', $widget);
+
             case 'wish_list':
-                $navi_cats[] = array('path_url' => 'shop/wish_list/', 'name' => lang('Wish list', 'navigation'));
-                $tpl_data = array('navi_cats' => $navi_cats);
-                return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
-                break;
+                return $this->make(lang('Wish list', 'navigation'), 'shop/wish_list/', $widget);
+
             case 'profile':
-                $navi_cats[] = array('path_url' => 'shop/profile/', 'name' => lang('Profile', 'navigation'));
-                $tpl_data = array('navi_cats' => $navi_cats);
-                return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
-                break;
+                return $this->make(lang('Profile', 'navigation'), 'shop/profile/', $widget);
+
             case 'search':
-                $navi_cats[] = array('path_url' => 'shop/search/', 'name' => lang('Search', 'navigation'));
-                $tpl_data = array('navi_cats' => $navi_cats);
-                return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
-                break;
+                return $this->make(lang('Search', 'navigation'), 'shop/search/', $widget);
+
             case 'cart':
-                $navi_cats[] = array('path_url' => 'shop/cart/', 'name' => lang('Cart', 'navigation'));
-                $tpl_data = array('navi_cats' => $navi_cats);
-                return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
-                break;
+                return $this->make(lang('Cart', 'navigation'), 'shop/cart/', $widget);
+
             case 'feedback':
-                $navi_cats[] = array('path_url' => 'feedback', 'name' => lang('Feedback', 'feedback'));
-                $tpl_data = array('navi_cats' => $navi_cats);
-                return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
-                break;
+                return $this->make(lang('Feedback', 'feedback'), 'feedback', $widget);
+
             case 'shop_category':
                 if ($this->core->core_data['id'] != null && $this->core->core_data > 0) {
 
@@ -131,8 +117,8 @@ class Navigation_Widgets extends MY_Controller {
                 if ($this->core->core_data['id'] != null && $this->core->core_data['id'] > 0) {
                     //get product model
                     $product = SProductsQuery::create()
-                        ->joinWithI18n(MY_Controller::getCurrentLocale())
-                        ->findOneById($this->core->core_data['id']);
+                            ->joinWithI18n(MY_Controller::getCurrentLocale())
+                            ->findOneById($this->core->core_data['id']);
 
                     if ($product) {
 
@@ -199,12 +185,10 @@ class Navigation_Widgets extends MY_Controller {
                             );
                             break;
                     }
-
                 }
 
                 $tpl_data = array('navi_cats' => $path);
                 return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
-                break;
 
             case 'auth':
                 $uri_segments = $this->uri->segment_array();
@@ -254,13 +238,10 @@ class Navigation_Widgets extends MY_Controller {
                             );
                             break;
                     }
-
                 }
 
                 $tpl_data = array('navi_cats' => $path);
                 return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
-                break;
-
         }
     }
 
@@ -278,6 +259,19 @@ class Navigation_Widgets extends MY_Controller {
 
         $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';
         return $this->template->fetch('file:' . $file);
+    }
+
+    /**
+     *
+     * @param string $name
+     * @param string $path_url
+     * @param array $widget
+     * @return string
+     */
+    public function make($name, $path_url, $widget) {
+        $navi_cats[] = ['path_url' => $path_url, 'name' => $name];
+        $tpl_data = ['navi_cats' => $navi_cats];
+        return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
     }
 
 }

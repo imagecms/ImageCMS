@@ -2,24 +2,24 @@
 
 /**
  * php.mo 0.1 by Joss Crowcroft (http://www.josscrowcroft.com)
- * 
+ *
  * Converts gettext translation '.po' files to binary '.mo' files in PHP.
- * 
- * Usage: 
+ *
+ * Usage:
  * <?php require('php-mo.php'); phpmo_convert( 'input.po', [ 'output.mo' ] ); ?>
- * 
+ *
  * NB:
  * - If no $output_file specified, output filename is same as $input_file (but .mo)
  * - Returns true/false for success/failure
  * - No warranty, but if it breaks, please let me know
- * 
+ *
  * More info:
  * https://github.com/josscrowcroft/php.mo
- * 
+ *
  * Based on php-msgfmt by Matthias Bauer (Copyright � 2007), a command-line PHP tool
  * for converting .po files to .mo.
  * (http://wordpress-soc-2007.googlecode.com/svn/trunk/moeffju/php-msgfmt/msgfmt.php)
- * 
+ *
  * License: GPL v3 http://www.opensource.org/licenses/gpl-3.0.html
  */
 
@@ -27,9 +27,10 @@
  * The main .po to .mo function
  */
 function phpmo_convert($input, $output = false) {
-//    var_dumps_exit($input);
-    if (!$output)
+    //    var_dumps_exit($input);
+    if (!$output) {
         $output = str_replace('.po', '.mo', $input);
+    }
 
     $hash = phpmo_parse_po_file($input);
     if ($hash === false) {
@@ -44,22 +45,23 @@ function phpmo_clean_helper($x) {
 
     if (is_array($x)) {
         foreach ($x as $k => $v) {
-//            $v_tmp = mb_substr($v, 1, mb_strlen($v) - 2);
-//            $v = str_replace('"', '\"', $v_tmp);
+            //            $v_tmp = mb_substr($v, 1, mb_strlen($v) - 2);
+            //            $v = str_replace('"', '\"', $v_tmp);
             $x[$k] = phpmo_clean_helper($v);
         }
     } else {
         $v = $x;
         $v_tmp = mb_substr($v, 1, mb_strlen($v) - 2);
-            $v = str_replace('"', '\"', $v_tmp);
-//        var_dumps($v);
+        $v = str_replace('"', '\"', $v_tmp);
+        //        var_dumps($v);
         $v = $x;
-        if ($x[0] == '"')
+        if ($x[0] == '"') {
             $x = substr($x, 1, -1);
+        }
         $x = str_replace("\"\n\"", '', $x);
         $x = str_replace('$', '\\$', $x);
-//        $x = @ eval("return \"$x\";");
-//        var_dumps($x);
+        //        $x = @ eval("return \"$x\";");
+        //        var_dumps($x);
     }
     return $x;
 }
@@ -71,13 +73,17 @@ function phpmo_parse_po_file($in) {
     // read .po file
     $fc = file_get_contents($in);
     // normalize newlines
-    $fc = str_replace(array(
+    $fc = str_replace(
+        array(
         "\r\n",
         "\r"
-            ), array(
-        "\n",
-        "\n"
-            ), $fc);
+            ),
+        array(
+            "\n",
+            "\n"
+            ),
+        $fc
+    );
 
     // results array
     $hash = array();
@@ -90,8 +96,9 @@ function phpmo_parse_po_file($in) {
     // iterate over lines
     foreach (explode("\n", $fc) as $line) {
         $line = trim($line);
-        if ($line === '')
+        if ($line === '') {
             continue;
+        }
 
         list ($key, $data) = explode(' ', $line, 2);
 
@@ -105,17 +112,18 @@ function phpmo_parse_po_file($in) {
             case '#|' : // msgid previous-untranslated-string
                 // start a new entry
                 if (sizeof($temp) && array_key_exists('msgid', $temp) && array_key_exists('msgstr', $temp)) {
-                    if (!$fuzzy)
+                    if (!$fuzzy) {
                         $hash[] = $temp;
+                    }
                     $temp = array();
                     $state = null;
                     $fuzzy = false;
                 }
                 break;
             case 'msgctxt' :
-            // context
+                // context
             case 'msgid' :
-            // untranslated-string
+                // untranslated-string
             case 'msgid_plural' :
                 // untranslated-string-plural
                 $state = $key;
@@ -132,10 +140,10 @@ function phpmo_parse_po_file($in) {
         }
     }
 
-
     // add final entry
-    if ($state == 'msgstr')
+    if ($state == 'msgstr') {
         $hash[] = $temp;
+    }
 
     // Cleanup data, merge multiline entries, reindex hash for ksort
     $temp = $hash;
@@ -143,18 +151,18 @@ function phpmo_parse_po_file($in) {
     foreach ($temp as $entry) {
         foreach ($entry as & $v) {
             $v = phpmo_clean_helper($v);
-//            var_dumps($v);
+            //            var_dumps($v);
             if ($v === FALSE) {
                 // parse error
                 continue;
-//                return FALSE;
+                //                return FALSE;
             }
         }
-        
+
         $hash[$entry['msgid']] = $entry;
     }
-//    var_dumps($hash);
-//exit;
+    //    var_dumps($hash);
+    //exit;
     return $hash;
 }
 
@@ -173,11 +181,13 @@ function phpmo_write_mo_file($hash, $out) {
 
     foreach ($hash as $entry) {
         $id = $entry['msgid'];
-        if (isset($entry['msgid_plural']))
+        if (isset($entry['msgid_plural'])) {
             $id .= "\x00" . $entry['msgid_plural'];
+        }
         // context is merged into id, separated by EOT (\x04)
-        if (array_key_exists('msgctxt', $entry))
+        if (array_key_exists('msgctxt', $entry)) {
             $id = $entry['msgctxt'] . "\x04" . $id;
+        }
         // plural msgstrs are NUL-separated
         foreach ($entry['msgstr'] as $key => $msgstr) {
             if (!$msgstr) {
@@ -188,11 +198,12 @@ function phpmo_write_mo_file($hash, $out) {
         $str = implode("\x00", $entry['msgstr']);
         // keep track of offsets
         $offsets[] = array(
-            strlen($ids
+            strlen(
+                $ids
             ), strlen($id), strlen($strings), strlen($str));
-        // plural msgids are not stored (?)
-        $ids .= $id . "\x00";
-        $strings .= $str . "\x00";
+            // plural msgids are not stored (?)
+            $ids .= $id . "\x00";
+            $strings .= $str . "\x00";
     }
 
     // keys start after the header (7 words) + index tables ($#hash * 4 words)
@@ -213,17 +224,20 @@ function phpmo_write_mo_file($hash, $out) {
     $offsets = array_merge($key_offsets, $value_offsets);
 
     // write header
-    $mo .= pack('Iiiiiii', 0x950412de, // magic number
-            0, // version
-            sizeof($hash), // number of entries in the catalog
-            7 * 4, // key index offset
-            7 * 4 + sizeof($hash) * 8, // value index offset,
-            0, // hashtable size (unused, thus 0)
-            $key_start // hashtable offset
+    $mo .= pack(
+        'Iiiiiii',
+        0x950412de, // magic number
+        0, // version
+        sizeof($hash), // number of entries in the catalog
+        7 * 4, // key index offset
+        7 * 4 + sizeof($hash) * 8, // value index offset,
+        0, // hashtable size (unused, thus 0)
+        $key_start // hashtable offset
     );
     // offsets
-    foreach ($offsets as $offset)
+    foreach ($offsets as $offset) {
         $mo .= pack('i', $offset);
+    }
     // ids
     $mo .= $ids;
     // strings
@@ -237,10 +251,10 @@ function phpmo_write_mo_file($hash, $out) {
             $current_mo_file_name = $out;
         }
     }
-    
+
     $old_mo_files = glob($directory . '/*.mo');
-    if($old_mo_files && is_array($old_mo_files)){
-        foreach($old_mo_files as $file){
+    if ($old_mo_files && is_array($old_mo_files)) {
+        foreach ($old_mo_files as $file) {
             unlink($file);
         }
     }
@@ -252,11 +266,9 @@ function phpmo_write_mo_file($hash, $out) {
         $new_mo_file_name = preg_replace('/_[\d]+/', '_' . $addition_time, $current_mo_file_name);
     }
 
-//    rename($current_mo_file_name, $new_mo_file_name);
+    //    rename($current_mo_file_name, $new_mo_file_name);
 
     file_put_contents($new_mo_file_name, $mo);
 
     chmod($new_mo_file_name, 0777);
 }
-
-?>
