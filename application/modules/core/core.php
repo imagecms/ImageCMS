@@ -681,8 +681,7 @@ class Core extends MY_Controller
     }
 
     private function _process_core_data() {
-
-        ShopCore::initEnviroment();
+        class_exists('ShopCore') && ShopCore::initEnviroment();
         $this->template->add_array($this->tpl_data);
         $this->load_modules();
     }

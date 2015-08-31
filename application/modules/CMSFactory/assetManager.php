@@ -222,6 +222,13 @@ class assetManager {
         $this->_render($tpl, $ignoreWrap, $fetchJsTpl);
     }
 
+    /**
+     *
+     * @param string $tpl
+     * @param boolean $ignoreWrap
+     * @param boolean $fetchJsTpl
+     * @param boolean $admin
+     */
     private function _render($tpl, $ignoreWrap = FALSE, $fetchJsTpl = TRUE, $admin = FALSE) {
         if (CI_Controller::get_instance()->input->post('ignoreWrap')) {
             $ignoreWrap = TRUE;
@@ -262,6 +269,7 @@ class assetManager {
     /**
      * fetch public view
      * @param string $tpl Template file name
+     * @param string $moduleName
      * @return void
      * @access public
      * @author Kaero
@@ -280,6 +288,7 @@ class assetManager {
     /**
      * fetch admin view
      * @param string $tpl Template file name
+     * @param boolean $fetchLangsTpl
      * @return void
      * @access public
      * @author Kaero
@@ -318,7 +327,7 @@ class assetManager {
     }
 
     /**
-     * @param string
+     * @param string $list
      * @return array
      * @access public
      * @author cutter
@@ -342,6 +351,14 @@ class assetManager {
         return false;
     }
 
+    /**
+     *
+     * @param string $tpl
+     * @param string $moduleName
+     * @param boolean $admin
+     * @return string
+     * @throws Exception
+     */
     private function _buildTemplatePath($tpl, $moduleName = null, $admin = FALSE) {
         if ($admin) {
             $path = $this->buildAdminTemplatePath($tpl);
@@ -358,9 +375,11 @@ class assetManager {
 
     /**
      * Return formated path
-     * @return string
      * @access private
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
+     * @param string $tpl
+     * @param string $moduleName
+     * @return string
      */
     private function buildTemplatePath($tpl, $moduleName = null) {
         if (!$this->template) {
@@ -380,6 +399,7 @@ class assetManager {
 
     /**
      * Return formated path
+     * @param string $fileName
      * @return string
      * @access private
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
@@ -396,6 +416,7 @@ class assetManager {
 
     /**
      * Return formated path for JS - script files
+     * @param string $fileName
      * @return string
      * @access private
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
@@ -422,6 +443,7 @@ class assetManager {
 
     /**
      * Return formated path for css
+     * @param string $fileName
      * @return string
      * @access private
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
@@ -450,7 +472,7 @@ class assetManager {
     /**
      * Checks if file exists in any of modules dirs. If exists returns its path
      * @param string|array $files example: ['menu/assets/css/style.css']
-     * @return string|bool(false) returns file path or FALSE
+     * @return string|boolean returns file path or FALSE
      */
     private function getModuleFilePath($files, $noExt = true) {
         if (is_string($files)) {
@@ -476,7 +498,7 @@ class assetManager {
 
     /**
      * Compressing js file
-     * @param type $js text of js
+     * @param string $js text of js
      * @copyright ImageCMS (c) 2013, a.gula <a.gula@imagecms.net>
      */
     private function compressJs($js) {

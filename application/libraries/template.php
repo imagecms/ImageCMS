@@ -96,6 +96,11 @@ class Template extends Mabilis {
         $this->assign('CI', $this->CI);
     }
 
+    /**
+     *
+     * @param string $key
+     * @param string $value
+     */
     public function assign($key, $value) {
         $this->template_vars[$key] = $value;
     }
@@ -122,7 +127,7 @@ class Template extends Mabilis {
      * @param string|boolean $file
      * @param boolean $load_main
      * @param array $data
-     * @return true
+     * @return boolean
      */
     public function show($file = FALSE, $load_main = TRUE, $data = array()) {
         $CI = &get_instance();
@@ -159,10 +164,18 @@ class Template extends Mabilis {
         $this->template_vars = array();
     }
 
+    /**
+     *
+     * @param string $name
+     */
     public function clear_assign($name) {
         $this->template_vars[$name] = null;
     }
 
+    /**
+     *
+     * @param string $var
+     */
     public function get_var($var) {
         return isset($this->template_vars[$var]) ? $this->template_vars[$var] : false;
     }
@@ -189,6 +202,9 @@ class Template extends Mabilis {
      * Fetch file
      *
      * @access public
+     * @param string $file
+     * @param array $data
+     * @return string
      */
     public function read($file = FALSE, $data = array()) {
         if (count($data) > 0) {
@@ -209,6 +225,12 @@ class Template extends Mabilis {
         return $this->read($file, $data);
     }
 
+    /**
+     *
+     * @param string $file
+     * @param array $data
+     * @param boolean $processOutput
+     */
     public function display($file, $data = array(), $processOutput = true) {
         if (count($data) > 0) {
             $this->add_array($data);
@@ -223,32 +245,69 @@ class Template extends Mabilis {
         }
     }
 
+    /**
+     *
+     * @param string $file
+     * @param array $data
+     * @param boolean $return
+     * @return string
+     */
     public function view($file, $data = array(), $return = FALSE) {
         $file = preg_replace('/.tpl.tpl/', '.tpl', $file);
 
         return $this->splitTplFiles(parent::view($file, $data, $return));
     }
 
+    /**
+     *
+     * @param string $name
+     * @param string $path
+     * @param array $data
+     * @param boolean $processOutput
+     */
     public function include_tpl($name, $path, $data = array(), $processOutput = true) {
         $path = $path ? $path : TEMPLATES_PATH . $this->CI->config->item('template');
         $this->display('file:' . $path . '/' . $name, $data, $processOutput);
     }
 
+    /**
+     *
+     * @param string $name
+     * @param string $path
+     * @param array $data
+     * @param boolean $processOutput
+     */
     public function include_shop_tpl($name, $path, $data = array(), $processOutput = true) {
         $path = $path ? $path : TEMPLATES_PATH . $this->CI->config->item('template');
         $this->display('file:' . $path . '/shop/' . $name, $data, $processOutput);
     }
 
+    /**
+     *
+     * @param string $url
+     * @param string $position
+     */
     public function registerCssFile($url, $position = 'before') {
         $position = $this->_check_postion($position);
         $this->_css_files[media_url($url)] = $position;
     }
 
+    /**
+     *
+     * @param string $css
+     * @param string $position
+     */
     public function registerCss($css, $position = 'before') {
         $position = $this->_check_postion($position);
         $this->_css_str[$css] = $position;
     }
 
+    /**
+     *
+     * @param string $url
+     * @param string $position
+     * @param boolean $fromThisSite
+     */
     public function registerJsFile($url, $position = 'before', $fromThisSite = TRUE) {
         $position = $this->_check_postion($position);
         if ($fromThisSite === TRUE) {
@@ -258,6 +317,11 @@ class Template extends Mabilis {
         }
     }
 
+    /**
+     *
+     * @param string $script
+     * @param string $position
+     */
     public function registerJsScript($script, $position = 'before') {
         $position = $this->_check_postion($position);
         $this->_js_script_files[$script] = $position;
@@ -301,6 +365,11 @@ class Template extends Mabilis {
         return $position;
     }
 
+    /**
+     *
+     * @param string $tpl
+     * @return string
+     */
     public function splitTplFiles($tpl) {
         if (!$this->trimed) {
             $tpl = trim($tpl);

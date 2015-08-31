@@ -3,6 +3,7 @@
 if (!function_exists('check_admin_redirect')) {
 
     function create_language_select($languages, $locale, $url, $pjax = FALSE) {
+
         if (count($languages) > 1) {
             $html = "<div class='dropdown d-i_b'>";
             foreach ($languages as $language) {
@@ -27,12 +28,12 @@ if (!function_exists('check_admin_redirect')) {
                 $html .= "</ul></div>";
             }
         }
-        return $html ? : '';
+        return $html ?: '';
     }
 
     function create_admin_language_select() {
 
-        $CI = & get_instance();
+        $CI = &get_instance();
         $languages = $CI->db->select('lang_name, locale')->order_by('lang_name')->get('languages')->result_array();
         $current_locale = $CI->config->item('language');
         $current_language = lang('English', 'admin');
@@ -57,16 +58,17 @@ if (!function_exists('check_admin_redirect')) {
             }
 
             $html = '<div class="dropup d-i_b"><button type="button" class="btn dropdown-toggle" data-toggle="dropdown">' .
-                    $current_language . '<span class="caret"></span></button>
+                $current_language . '<span class="caret"></span></button>
             <ul class="dropdown-menu">' .
-                    $html .
-                    '</ul>
+                $html .
+                '</ul>
             </div>';
         }
-        return $html ? : '';
+        return $html ?: '';
     }
 
     function build_cats_tree($cats, $selected_cats = []) {
+
         if (is_array($cats)) {
             foreach ($cats as $cat) {
                 echo "<option";
@@ -90,6 +92,7 @@ if (!function_exists('check_admin_redirect')) {
     }
 
     function build_cats_tree_ul_li($cats, $item_id = NULL) {
+
         if (is_array($cats)) {
             foreach ($cats as $cat) {
                 echo "<li>";
@@ -106,6 +109,7 @@ if (!function_exists('check_admin_redirect')) {
     }
 
     function getCMSNumber() {
+
         return IMAGECMS_NUMBER;
     }
 
@@ -114,30 +118,29 @@ if (!function_exists('check_admin_redirect')) {
 if (!function_exists('get_templates')) {
 
     function get_templates() {
+
         $new_arr_shop = [];
         if ($handle = opendir(TEMPLATES_PATH)) {
             while (false !== ($file = readdir($handle))) {
-                if ($file != "." && $file != ".." && $file != 'administrator' && $file != 'modules' && !stristr($file, '_mobile')) {
+                if (false === strpos($file, '.') && $file != 'administrator' && $file != 'modules' && !stristr($file, '_mobile')) {
                     if (!is_file(TEMPLATES_PATH . $file)) {
-                        if (SHOP_INSTALLED && is_dir(TEMPLATES_PATH . $file . '/shop/')) {
+                        if (is_dir(TEMPLATES_PATH . $file . '/shop/')) {
                             $new_arr_shop[$file] = $file;
+                        } else {
+                            $new_arr[$file] = $file;
                         }
-                        $new_arr[$file] = $file;
                     }
                 }
             }
             closedir($handle);
-        } else {
-            return FALSE;
+
+            $templates = SHOP_INSTALLED ? $new_arr_shop : $new_arr;
+            array_multisort($templates);
+
+            return $templates;
         }
 
-        if (SHOP_INSTALLED) {
-            array_multisort($new_arr_shop);
-            return $new_arr_shop;
-        } else {
-            array_multisort($new_arr);
-            return $new_arr;
-        }
+        return false;
     }
 
 }
