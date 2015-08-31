@@ -60,8 +60,33 @@ class Trash extends MY_Controller {
 
         if ($row != null) {
             ($row->trash_redirect_type != '404') OR $this->core->error_404();
-            redirect($row->trash_redirect, 'location', $row->trash_type);
+            redirect($this->formRedirectUrl($row->trash_redirect), 'location', $row->trash_type);
+        } else {
+            $url = $this->uri->getBaseUrl() . $this->input->server('REQUEST_URI');
+            if ($url != $this->formRedirectUrl($url)) {
+                redirect($this->formRedirectUrl($url), 'location', 301);
+            }
         }
+    }
+
+    /**
+     * Form URL redirect to
+     * @param $url - url string
+     * @return mixed
+     */
+    public function formRedirectUrl($url) {
+        $siteSettings = $this->cms_base->get_settings();
+
+        switch ($siteSettings['www_redirect']) {
+            case 'from_www':
+                return str_replace('://www.', '://', $url);
+            case 'to_www':
+                $url = str_replace('://www.', '://', $url);
+                return str_replace('://', '://www.', $url);
+            default:
+                return $url;
+        }
+
     }
 
     /**

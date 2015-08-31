@@ -128,13 +128,13 @@ class Sitemap extends MY_Controller {
 
     /**
      * Sitemap result
-     * @var type
+     * @var string
      */
     public $result = '';
 
     /**
      * Langs array
-     * @var type
+     * @var array
      */
     public $langs = array();
 

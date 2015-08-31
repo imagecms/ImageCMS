@@ -10,14 +10,15 @@ class MY_URI extends CI_URI {
 
     public function __construct() {
         parent::__construct();
-        parse_str($_SERVER['QUERY_STRING'], $this->GET_params_arr);
     }
 
     public function getParam($key) {
+        parse_str($this->input->server('QUERY_STRING'), $this->GET_params_arr);
         return $this->GET_params_arr[$key];
     }
 
     public function getAllParams() {
+        parse_str($this->input->server('QUERY_STRING'), $this->GET_params_arr);
         return $this->GET_params_arr;
     }
 
@@ -52,6 +53,26 @@ class MY_URI extends CI_URI {
         }
 
         return $str;
+    }
+
+    /**
+     * Get host name
+     * @param bool $withoutWWW
+     * @return mixed
+     */
+    public function getHost($withoutWWW = false) {
+        $host = CI::$APP->input->server('HTTP_HOST');
+        return $withoutWWW ? str_replace('www.', '', $host) : $host;
+    }
+
+    /**
+     * Returns base url
+     * @return string
+     */
+    public function getBaseUrl() {
+        $pageURL = (CI::$APP->input->server("HTTPS") == "on") ? "https://" : "http://";
+
+        return $pageURL . $this->getHost();
     }
 
 }

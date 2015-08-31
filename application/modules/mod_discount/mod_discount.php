@@ -49,8 +49,6 @@ class Mod_discount extends \MY_Controller {
      * autoload execute when get product variant
      * @access public
      * @author DevImageCms
-     * @param ---
-     * @return ---
      * @copyright (c) 2013, ImageCMS
      */
     public function autoload() {
@@ -104,8 +102,6 @@ class Mod_discount extends \MY_Controller {
      * apply discount to Cart Items
      * @access private
      * @author DevImageCms
-     * @param ---
-     * @return ---
      * @copyright (c) 2013, ImageCMS
      */
     private function applyDiscountCartItems() {
@@ -171,8 +167,6 @@ class Mod_discount extends \MY_Controller {
      * apply result discount
      * @access public
      * @author DevImageCms
-     * @param ---
-     * @return ---
      * @copyright (c) 2013, ImageCMS
      */
     private function applyResultDiscount() {
@@ -266,8 +260,6 @@ class Mod_discount extends \MY_Controller {
      * apply user gift
      * @access private
      * @author DevImageCms
-     * @param ---
-     * @return ---
      * @copyright (c) 2013, ImageCMS
      */
     private function applyGift() {

@@ -42,6 +42,41 @@ class BannerEffects implements \ArrayAccess {
         "rtl" => 0,
     ];
 
+    protected $effectsTypes = [
+        //@var boolean
+        "autoplay" => 'boolean',
+        //@var int
+        "autoplaySpeed" => 'integer',
+        //@var boolean
+        "arrows" => 'boolean',
+        //@var boolean
+        "centerMode" => 'boolean',
+        //@var boolean
+        "dots" => 'boolean',
+        //@var boolean
+        "draggable" => 'boolean',
+        //@var boolean
+        "fade" => 'boolean',
+        //@var string
+        "easing" => "string",
+        //@var boolean
+        "infinite" => 'boolean',
+        //@var boolean
+        "pauseOnHover" => 'boolean',
+        //@var boolean
+        "pauseOnDotsHover" => 'boolean',
+        //@var int
+        "speed" => 'integer',
+        //@var boolean
+        "swipe" => 'boolean',
+        //@var boolean
+        "touchMove" => 'boolean',
+        //@var boolean
+        "vertical" => 'boolean',
+        //@var boolean
+        "rtl" => 'boolean',
+    ];
+
     /**
      * @param jsonString|array $data
      */
@@ -50,7 +85,7 @@ class BannerEffects implements \ArrayAccess {
             $data = $this->getDefaultEffects();
         }
         if (is_string($data)) {
-            $data = json_decode($data,true);
+            $data = json_decode($data, true);
         }
         if (is_array($data)) {
             $this->fromArray($data, $mergeWithDefault);
@@ -64,10 +99,14 @@ class BannerEffects implements \ArrayAccess {
         if (true === $mergeWithDefault) {
             $this->effects = $this->getDefaultEffects();
         }
-        
+
         foreach ($effects as $property => $value) {
             $value = (('on' === $value) ? 1 : $value);
             if (key_exists($property, $this->effects)) {
+
+                if ($this->effectsTypes[$property]) {
+                    settype($value, $this->effectsTypes[$property]);
+                }
                 $this->effects[$property] = $value;
             }
         }
@@ -114,22 +153,22 @@ class BannerEffects implements \ArrayAccess {
      */
     public function getDefaultEffects() {
         return [
-            "autoplay" => 0,
+            "autoplay" => false,
             "autoplaySpeed" => 3,
-            "arrows" => 1,
-            "centerMode" => 0,
-            "dots" => 0,
-            "draggable" => 1,
-            "fade" => 0,
+            "arrows" => true,
+            "centerMode" => false,
+            "dots" => false,
+            "draggable" => true,
+            "fade" => false,
             "easing" => 'linear',
-            "infinite" => 1,
-            "pauseOnHover" => 1,
-            "pauseOnDotsHover" => 0,
+            "infinite" => true,
+            "pauseOnHover" => true,
+            "pauseOnDotsHover" => false,
             "speed" => 300,
-            "swipe" => 1,
-            "touchMove" => 1,
-            "vertical" => 0,
-            "rtl" => 0,
+            "swipe" => true,
+            "touchMove" => true,
+            "vertical" => false,
+            "rtl" => false,
         ];
     }
 

@@ -5,7 +5,7 @@ if (!function_exists('getModulePath')) {
     /**
      *
      * @param string $moduleName
-     * @return string|boolean(false)
+     * @return string|boolean
      */
     function getModulePath($moduleName) {
         return \CI::$APP->lib_modules->getModulePath($moduleName);

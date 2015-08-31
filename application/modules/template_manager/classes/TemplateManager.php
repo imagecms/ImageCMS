@@ -24,7 +24,7 @@ class TemplateManager {
 
     /**
      * May have messages
-     * @var array
+     * @var array|string
      */
     public $messages = [];
 

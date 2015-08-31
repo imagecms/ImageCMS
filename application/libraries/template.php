@@ -265,8 +265,8 @@ class Template extends Mabilis {
 
     /**
      * Place meta code before /head
-     * @param type $name meta name
-     * @param type $content meta content
+     * @param string $name meta name
+     * @param string $content meta content
      */
     public function registerMeta($name, $content) {
         $this->_metas[] = '<META NAME="' . $name . '" CONTENT="' . $content . '">';

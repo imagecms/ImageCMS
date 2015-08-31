@@ -2,10 +2,12 @@
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
-use \template_manager\classes\TArchive as TArchive;
-use \template_manager\classes\Template as Template;
-use \template_manager\classes\TemplateManager as TemplateManager;
-use \template_manager\legacy\DemodataMigrationsControl;
+use CMSFactory\assetManager;
+use CMSFactory\Events;
+use template_manager\classes\TArchive as TArchive;
+use template_manager\classes\Template as Template;
+use template_manager\classes\TemplateManager as TemplateManager;
+use template_manager\legacy\DemodataMigrationsControl;
 
 /**
  * Image CMS
@@ -43,7 +45,7 @@ class Admin extends BaseAdminController {
         $this->loadLangs();
         $this->cache->delete_all();
 
-        \CMSFactory\Events::create()->setListener([new DemodataMigrationsControl, 'run'], TemplateManager::EVENT_DEMODATA_INSTALLED);
+        Events::create()->setListener([new DemodataMigrationsControl, 'run'], TemplateManager::EVENT_DEMODATA_INSTALLED);
     }
 
     /**
@@ -87,7 +89,7 @@ class Admin extends BaseAdminController {
                         $this->currentTemplate->getComponent($component)->setParams();
                         break;
                 }
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 showMessage($e->getMessage(), '', 'r');
             }
         } else {
@@ -102,7 +104,7 @@ class Admin extends BaseAdminController {
             }
 
             $this->registerJsVars();
-            \CMSFactory\assetManager::create()
+            assetManager::create()
                 ->registerStyle('style_admin')
                 ->registerStyle('jquery.fancybox-1.3.4')
                 ->registerScript('jquery.fancybox-1.3.4.pack')
@@ -146,14 +148,14 @@ class Admin extends BaseAdminController {
             )
         );
         $jsCode = "var templateManagerData = {$jsData};";
-        \CMSFactory\assetManager::create()->registerJsScript($jsCode, false, 'before');
+        assetManager::create()->registerJsScript($jsCode, false, 'before');
     }
 
     public function get_template_license() {
         try {
             $template = new Template($this->input->get('template_name'));
             echo json_encode(array('status' => 1, 'license_text' => $template->getLicenseAgreement(), 'demodataArchiveExist' => $template->demodataArchiveExists));
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             echo json_encode(array('status' => 0, 'error' => $e->getMessage()));
         }
     }
@@ -193,14 +195,14 @@ class Admin extends BaseAdminController {
 
         $siteinfoString = serialize($siteinfo);
 
-        \CI::$APP->db
+        CI::$APP->db
             ->limit(1)
             ->update('settings', array('siteinfo' => $siteinfoString), array('s_name' => 'main'));
 
         $message = lang("Template Logo and Favicon changed.", "template_manager");
         $this->lib_admin->log($message);
 
-        $error = \CI::$APP->db->_error_message();
+        $error = CI::$APP->db->_error_message();
         if (!empty($error)) {
             throw new Exception(lang('DB Error', 'template_manager'));
         }
@@ -229,16 +231,16 @@ class Admin extends BaseAdminController {
 
     /**
      * Install template by name
-     * @throws \Exception
+     * @throws Exception
      */
     public function install() {
         try {
             // license agreement acception
             if ($this->input->post('accept_license_agreement') != 1) {
-                throw new \Exception(lang('Templates are the intellectual property, so if you <br /> want to install it, you must accept the license agreement.', 'template_manager'));
+                throw new Exception(lang('Templates are the intellectual property, so if you <br /> want to install it, you must accept the license agreement.', 'template_manager'));
             }
             if (!$this->input->post('template_name')) {
-                throw new \Exception(lang('Error - template not specified', 'template_manager'));
+                throw new Exception(lang('Error - template not specified', 'template_manager'));
             }
 
             TemplateManager::getInstance()->setTemplate(new Template($this->input->post('template_name')));
@@ -249,7 +251,7 @@ class Admin extends BaseAdminController {
                 $code = "if (typeof ga == 'function') { ga('send', 'event', 'Clients-change-design', '" . $xmlShopId . "');}";
                 jsCode($code);
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             showMessage($e->getMessage(), '', 'r');
             exit;
         }

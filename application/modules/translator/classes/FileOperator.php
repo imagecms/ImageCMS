@@ -14,24 +14,24 @@ class FileOperator {
 
     /**
      * File path
-     * @var type 
+     * @var string
      */
     private $filePath;
 
     /**
      * Errors array
-     * @var type 
+     * @var array
      */
     private $errors = array();
 
     /**
-     * File data 
-     * @var type 
+     * File data
+     * @var string
      */
     private $data;
 
     private function __construct() {
-        
+
     }
 
     /**
@@ -39,10 +39,11 @@ class FileOperator {
      * @return FileOperator
      */
     public static function getInstatce() {
-        if (null === self::$instance)
+        if (null === self::$instance) {
             return self::$instance = new self();
-        else
+        } else {
             return self::$instance;
+        }
     }
 
     /**
@@ -161,5 +162,3 @@ class FileOperator {
     }
 
 }
-
-?>

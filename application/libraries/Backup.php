@@ -305,8 +305,8 @@ class Backup {
     /**
      * Checking file name by pattern
      * @param string $fileName
-     * @param boolean $returnValue
-     * @return boolean
+     * @param boolean|string $returnValue
+     * @return boolean|string
      */
     protected function checkFileName($fileName, $returnValue = FALSE) {
         foreach ($this->filePatterns as $pattern => $params) {
@@ -333,4 +333,3 @@ class Backup {
     }
 
 }
-
