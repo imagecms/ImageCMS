@@ -61,8 +61,8 @@ class Widgets_manager extends BaseAdminController {
 
         $this->template->add_array(
             array(
-                    'widgets' => $widgets
-                )
+                'widgets' => $widgets
+            )
         );
 
         $this->template->show('widgets_list', FALSE);
@@ -182,7 +182,7 @@ class Widgets_manager extends BaseAdminController {
                     'name' => $this->input->post('name'),
                     'type' => $type,
                     'created' => time(),
-                        //'locale' => $locale
+                    //'locale' => $locale
                 );
 
                 $this->lib_admin->log(lang("Created a widget", "admin") . " " . $data['name']);
@@ -205,7 +205,7 @@ class Widgets_manager extends BaseAdminController {
 
             $this->db->insert('widget_i18n', $data);
 
-            if ($_POST['action'] == 'tomain') {
+            if ($this->input->post('action') == 'tomain') {
                 pjax('/admin/widgets_manager/index');
             } else {
                 if (file_exists($conf_file)) {
@@ -278,7 +278,7 @@ class Widgets_manager extends BaseAdminController {
             }
 
             $data = array(
-                'description' => $_POST['desc'],
+                'description' => $this->input->post('desc'),
                 'name' => $this->input->post('name')
             );
 
@@ -314,7 +314,7 @@ class Widgets_manager extends BaseAdminController {
             $this->cache->delete_all();
 
             showMessage(lang("Changes has been saved", "admin"));
-            if ($_POST['action'] == 'tomain') {
+            if ($this->input->post('action') == 'tomain') {
                 pjax('/admin/widgets_manager');
             }
         }
@@ -345,7 +345,7 @@ class Widgets_manager extends BaseAdminController {
                 }
 
                 $data = array(
-                    'description' => $_POST['desc'],
+                    'description' => $this->input->post('desc'),
                     'name' => $this->input->post('name')
                 );
 
@@ -381,12 +381,12 @@ class Widgets_manager extends BaseAdminController {
                     modules::run($widget['data'] . '/' . $subpath . $widget['data'] . '_widgets/' . $widget['method'] . '_configure', array('update_settings', $widget));
                     showMessage(lang("Changes has been saved", "admin"));
                 }
-                if ($_POST['action'] == 'tomain') {
+                if ($this->input->post('action') == 'tomain') {
                     pjax('/admin/widgets_manager/edit/' . $id);
                 }
             }
 
-            if ($_POST['action'] == 'tomain') {
+            if ($this->input->post('action') == 'tomain') {
                 pjax('/admin/widgets_manager/');
             }
         } else {
@@ -457,8 +457,8 @@ class Widgets_manager extends BaseAdminController {
         $this->template->assign('languages', $lang);
         $this->template->add_array(
             array(
-                    'widget' => $widget
-                )
+                'widget' => $widget
+            )
         );
 
         $this->lib_admin->log(lang("Widget edited", "admin"));
@@ -471,7 +471,7 @@ class Widgets_manager extends BaseAdminController {
         //cp_check_perm('widget_access_settings');
         $locale = $locale ? $locale : MY_Controller::defaultLocale();
 
-        if ($_POST) {
+        if ($this->input->post()) {
             $this->update_widget($id, $update_info, $locale);
             $this->cache->delete_all();
             $this->lib_admin->log(lang("Widget edited", "admin"));
@@ -488,11 +488,11 @@ class Widgets_manager extends BaseAdminController {
 
             $this->template->add_array(
                 array(
-                        'widget_id' => $id,
-                        'widget' => $widget->row_array(),
-                        'locale' => $locale,
-                        'languages' => $this->db->get('languages')->result_array()
-                    )
+                    'widget_id' => $id,
+                    'widget' => $widget->row_array(),
+                    'locale' => $locale,
+                    'languages' => $this->db->get('languages')->result_array()
+                )
             );
 
             $this->template->show('widget_edit_module', FALSE);
@@ -524,10 +524,8 @@ class Widgets_manager extends BaseAdminController {
                     $widgets_info = realpath($modulePath . 'widgets_info.php');
 
                     if (file_exists($widgets_info)) {
-                        include_once $widgets_info;
-
                         $module_widgets = array(
-                            'widgets' => $widgets,
+                            'widgets' => $this->getWidgetsArray($widgets_info),
                             'module' => $module['name'],
                             'module_name' => $this->get_module_name($module['name']),
                         );
@@ -544,8 +542,8 @@ class Widgets_manager extends BaseAdminController {
 
                 $this->template->add_array(
                     array(
-                            'widgets' => $all_widgets
-                        )
+                        'widgets' => $all_widgets
+                    )
                 );
                 if ($case) {
                     return $all_widgets;
@@ -560,36 +558,23 @@ class Widgets_manager extends BaseAdminController {
     }
 
     /**
-     * Get widget info title/description/method
+     * @param $pathToFile - path to widget_info.php file
+     * @return array
      */
-    private function parse_widget_xml($xml_folder) {
-        $modulePath = getModulePath($xml_folder);
+    private function getWidgetsArray($pathToFile) {
+        include_once $pathToFile;
 
-        if ($this->lib_xml->load($modulePath . 'widgets')) {
-            $widgets_array = $this->lib_xml->parse();
-            $info = $widgets_array['widgets'][0]['widget'];
-
-            $return = array();
-
-            $locale = MY_Controller::defaultLocale();
-            foreach ($info as $k => $v) {
-                if ($v['i18n_' . $locale]) {
-                    $temp = array(
-                        'title' => $v['i18n_' . $locale][0]['title'][0],
-                        'description' => $v['i18n_' . $locale][0]['description'][0],
-                        'method' => $v['method'][0],
-                    );
-
-                    array_push($return, $temp);
+        /**@var array $widgets - Widget settings array */
+        if ($widgets) {
+            $cmsType = end(explode(' ', strtolower(IMAGECMS_NUMBER)));
+            foreach ($widgets as $key => $widget) {
+                if ($widget['allowed_cms_types'] && !in_array($cmsType, $widget['allowed_cms_types'])) {
+                    unset($widgets[$key]);
                 }
             }
-
-            if (count($return) > 0) {
-                return $return;
-            }
+            return $widgets;
         }
-
-        return FALSE;
+        return [];
     }
 
     private function get_module_name($dir) {

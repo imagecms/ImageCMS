@@ -9,6 +9,7 @@ $widgets = array(
     array(
         'title' => lang('Latest Product Reviews', 'comments'),
         'description' => lang('Showing latest product reviews.', 'comments'),
-        'method' => 'recent_product_comments'
+        'method' => 'recent_product_comments',
+        'allowed_cms_types' => ['premium', 'pro']
     )
 );

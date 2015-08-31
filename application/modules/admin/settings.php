@@ -182,7 +182,7 @@ class Settings extends BaseAdminController {
     public function save() {
         //cp_check_perm('cp_site_settings');
 
-        $this->form_validation->set_rules('siteinfo_adminemail', lang('Admin email', 'admin'), 'valid_email');
+        $this->form_validation->set_rules('siteinfo_adminemail', lang('Admin email', 'admin'), 'trim|valid_email');
         if (!$this->form_validation->run($this)) {
             showMessage(validation_errors(), lang('Error', 'admin'), 'r');
             return;
