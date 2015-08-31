@@ -99,7 +99,7 @@ class Template extends Mabilis {
     /**
      *
      * @param string $key
-     * @param string $value
+     * @param string|array $value
      */
     public function assign($key, $value) {
         $this->template_vars[$key] = $value;
@@ -127,7 +127,7 @@ class Template extends Mabilis {
      * @param string|boolean $file
      * @param boolean $load_main
      * @param array $data
-     * @return boolean
+     * @return boolean|null
      */
     public function show($file = FALSE, $load_main = TRUE, $data = array()) {
         $CI = &get_instance();
@@ -202,7 +202,7 @@ class Template extends Mabilis {
      * Fetch file
      *
      * @access public
-     * @param string $file
+     * @param boolean|string $file
      * @param array $data
      * @return string
      */
@@ -219,7 +219,7 @@ class Template extends Mabilis {
      *
      * @param boolean|string $file
      * @param array $data
-     * @return type
+     * @return string
      */
     public function fetch($file = FALSE, $data = array()) {
         return $this->read($file, $data);
