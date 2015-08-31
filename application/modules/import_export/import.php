@@ -55,8 +55,13 @@
  * Количество позиций в сегменте задается в файле importAdmin.js > importSegment() > limit
  */
 
+use CMSFactory\assetManager;
+use Currency\Currency;
+use import_export\classes\BaseImport;
+use import_export\classes\Factor;
 use import_export\classes\ImportBootstrap as Imp;
 use import_export\classes\Logger as LOG;
+use MediaManager\Image;
 
 class Import extends ShopAdminController {
 
@@ -85,8 +90,8 @@ class Import extends ShopAdminController {
 
     public function __construct() {
         parent::__construct();
-        \ShopController::checkVar();
-        \ShopAdminController::checkVarAdmin();
+        ShopController::checkVar();
+        ShopAdminController::checkVarAdmin();
     }
 
     /**
@@ -165,7 +170,7 @@ class Import extends ShopAdminController {
         if ($result) {
             if ($resize) {
                 $result['content'] = explode('/', trim($result['content'][0]));
-                \MediaManager\Image::create()
+                Image::create()
                         ->resizeById($result['content'])
                         ->resizeByIdAdditional($result['content'], TRUE);
             }
@@ -174,7 +179,7 @@ class Import extends ShopAdminController {
         }
 
         if ($curUpdate) {
-            \Currency\Currency::create()->checkPrices();
+            Currency::create()->checkPrices();
         }
     }
 
@@ -247,7 +252,7 @@ class Import extends ShopAdminController {
         fopen($this->uploadDir . $filename, 'w+');
         if (is_writable($this->uploadDir . $filename)) {
             if (!$handle = fopen($this->uploadDir . $filename, 'w+')) {
-                echo json_encode(array('error' => import_export\classes\Factor::ErrorFolderPermission));
+                echo json_encode(array('error' => Factor::ErrorFolderPermission));
                 exit;
             }
 
@@ -278,7 +283,7 @@ class Import extends ShopAdminController {
                     array(
                             'success' => true,
                             'row' => $row,
-                            'attributes' => import_export\classes\BaseImport::create()->attributes,
+                            'attributes' => BaseImport::create()->attributes,
                             'filesInfo' => $uploadedFiles
                         )
                 );
@@ -286,7 +291,7 @@ class Import extends ShopAdminController {
                 $this->template->add_array(
                     array(
                             'rows' => $row,
-                            'attributes' => import_export\classes\BaseImport::create()->makeAttributesList()->possibleAttributes,
+                            'attributes' => BaseImport::create()->makeAttributesList()->possibleAttributes,
                             'filesInfo' => $uploadedFiles
                         )
                 );
@@ -315,7 +320,7 @@ class Import extends ShopAdminController {
     public function getAttributes() {
         $this->takeFileName();
         $this->configureImportProcess(false);
-        \CMSFactory\assetManager::create()
+        assetManager::create()
                 ->renderAdmin('import_attributes');
     }
 

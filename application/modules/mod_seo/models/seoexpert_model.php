@@ -6,7 +6,7 @@
  */
 class Seoexpert_model extends CI_Model {
 
-    function __construct() {
+    public function __construct() {
         parent::__construct();
     }
 
@@ -15,12 +15,12 @@ class Seoexpert_model extends CI_Model {
      * @return array
      */
     public function getSettings($locale = 'ru') {
-//        $this->db->cache_on();
+        //        $this->db->cache_on();
         $settings = $this->db->select('settings')
-                ->where('locale', $locale)
-                ->get('mod_seo')
-                ->row_array();
-//        $this->db->cache_off();
+            ->where('locale', $locale)
+            ->get('mod_seo')
+            ->row_array();
+        //        $this->db->cache_off();
         $settings = unserialize($settings['settings']);
         if ($settings) {
             return $settings;
@@ -35,16 +35,19 @@ class Seoexpert_model extends CI_Model {
      */
     public function setSettings($settings, $locale = 'ru') {
         $data = $this->db->select('locale')
-                ->where('locale', $locale)
-                ->get('mod_seo')
-                ->row_array();
-        if (empty($data))
+            ->where('locale', $locale)
+            ->get('mod_seo')
+            ->row_array();
+        if (empty($data)) {
             return $this->db->insert('mod_seo', array('locale' => $locale, 'settings' => serialize($settings)));
-
+        }
 
         return $this->db->where('locale', $locale)
-                        ->update('mod_seo', array('settings' => serialize($settings)
-        ));
+            ->update(
+                'mod_seo',
+                array('settings' => serialize($settings)
+                                )
+            );
     }
 
     /**
@@ -64,11 +67,11 @@ class Seoexpert_model extends CI_Model {
                 LIMIT 0 , " . $limit;
         $query = $this->db->query($sql);
 
-
-        if ($query)
+        if ($query) {
             return $query->result_array();
-        else
+        } else {
             return false;
+        }
     }
 
     /**
@@ -95,15 +98,15 @@ class Seoexpert_model extends CI_Model {
                 ->filterByCategoryId($categoryId)
                 ->find()
                 ->toArray();
-        
+
         $res = $this->db
-                ->select('shop_products.brand_id, shop_brands_i18n.name , COUNT(shop_products.brand_id) AS  count')
-                ->join('shop_brands_i18n', 'shop_brands_i18n.id = shop_products.brand_id')
-                ->where('shop_brands_i18n.locale', $locale)
-                ->where_in('shop_products.id', $productsIds)
-                ->group_by('brand_id')
-                ->order_by('count', 'DESC')
-                ->get('shop_products', $limit);
+            ->select('shop_products.brand_id, shop_brands_i18n.name , COUNT(shop_products.brand_id) AS  count')
+            ->join('shop_brands_i18n', 'shop_brands_i18n.id = shop_products.brand_id')
+            ->where('shop_brands_i18n.locale', $locale)
+            ->where_in('shop_products.id', $productsIds)
+            ->group_by('brand_id')
+            ->order_by('count', 'DESC')
+            ->get('shop_products', $limit);
 
         if ($res) {
             return $res->result_array();
@@ -113,7 +116,7 @@ class Seoexpert_model extends CI_Model {
     }
 
     /**
-     * Get language id 
+     * Get language id
      * @param string $locale
      * @return boolean|int
      */
@@ -170,8 +173,6 @@ class Seoexpert_model extends CI_Model {
         );
         $this->db->where('s_name', 'main')->update('settings', $mainSettings);
 
-
-
         //Check exists settings with current langId
         $checkLangSettings = $this->db->where('lang_ident', $langId)->get('settings_i18n')->row_array();
 
@@ -198,7 +199,6 @@ class Seoexpert_model extends CI_Model {
      * @return boolean
      */
     public function install() {
-
 
         $sql = "CREATE TABLE IF NOT EXISTS `mod_seo` (
                     `id` int(11) NOT NULL AUTO_INCREMENT,

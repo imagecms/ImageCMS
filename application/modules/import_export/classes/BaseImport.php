@@ -2,6 +2,10 @@
 
 namespace import_export\classes;
 
+use CI_DB_active_record;
+use CI_Model;
+use Core;
+use Exception;
 use import_export\classes\CategoryImport as CategoriesHandler;
 use import_export\classes\ProductsImport as ProductsHandler;
 use import_export\classes\PropertiesImport as PropertiesHandler;
@@ -12,7 +16,7 @@ use import_export\classes\PropertiesImport as PropertiesHandler;
  * @property Core $core
  * @property CI_DB_active_record $db
  */
-class BaseImport extends \CI_Model {
+class BaseImport extends CI_Model {
 
     /**
      * Class BaseImport
@@ -304,11 +308,11 @@ class BaseImport extends \CI_Model {
     public function setFileName($fileName) {
         try {
             if (FALSE === file_exists($fileName)) {
-                throw new \Exception(Factor::ErrorEmptySlot);
+                throw new Exception(Factor::ErrorEmptySlot);
             }
             $this->CSVsource = $fileName;
             return $this;
-        } catch (\Exception $exc) {
+        } catch (Exception $exc) {
             $result[Factor::MessageTypeSuccess] = FALSE;
             $result[Factor::MessageTypeError] = FALSE;
             $result['message'] = $exc->getMessage();

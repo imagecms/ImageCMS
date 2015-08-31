@@ -6,7 +6,7 @@
  */
 class Seoexpert_model_products extends CI_Model {
 
-    function __construct() {
+    public function __construct() {
         parent::__construct();
     }
 
@@ -47,14 +47,13 @@ class Seoexpert_model_products extends CI_Model {
             $locale = \MY_Controller::getCurrentLocale();
         }
 
-//        $this->db->cache_on();
+        //        $this->db->cache_on();
         $category = $this->db
-                ->where('cat_id', $id)
-                ->where('locale', $locale)
-                ->get('mod_seo_products')
-                ->row_array();
-//        $this->db->cache_off();
-
+            ->where('cat_id', $id)
+            ->where('locale', $locale)
+            ->get('mod_seo_products')
+            ->row_array();
+        //        $this->db->cache_off();
 
         if ($category) {
             $category['settings'] = unserialize($category['settings']);
@@ -77,30 +76,35 @@ class Seoexpert_model_products extends CI_Model {
         }
 
         $data = $this->db
-                ->select('locale')
-                ->where('cat_id', $id)
-                ->where('locale', $locale)
-                ->get('mod_seo_products')
-                ->row_array();
+            ->select('locale')
+            ->where('cat_id', $id)
+            ->where('locale', $locale)
+            ->get('mod_seo_products')
+            ->row_array();
 
-        if (empty($data))
-            return $this->db->insert('mod_seo_products', array('cat_id' => $id,
+        if (empty($data)) {
+            return $this->db->insert(
+                'mod_seo_products',
+                array('cat_id' => $id,
                         'locale' => $locale,
                         'settings' => serialize($settings),
                         'active' => $settings['useProductPattern'],
                         'empty_meta' => $settings['useProductPatternForEmptyMeta']
                             )
             );
-
+        }
 
         return $this->db
-                        ->where('cat_id', $id)
-                        ->where('locale', $locale)
-                        ->update('mod_seo_products', array(
+            ->where('cat_id', $id)
+            ->where('locale', $locale)
+            ->update(
+                'mod_seo_products',
+                array(
                             'settings' => serialize($settings),
                             'active' => $settings['useProductPattern'],
                             'empty_meta' => $settings['useProductPatternForEmptyMeta']
-        ));
+                                )
+            );
 
         return FALSE;
     }
@@ -132,10 +136,10 @@ class Seoexpert_model_products extends CI_Model {
      */
     public function getCategoriesArray() {
         //        $this->db->cache_on();
-        $res = $this->db->where('active','1')
-                ->select('cat_id')
-                ->get('mod_seo_products')
-                ->result_array();
+        $res = $this->db->where('active', '1')
+            ->select('cat_id')
+            ->get('mod_seo_products')
+            ->result_array();
         //        $this->db->cache_off();
 
         $ids = array();
@@ -187,17 +191,18 @@ class Seoexpert_model_products extends CI_Model {
         $cat = $this->db->where('cat_id', $id)->get('mod_seo_products')->row();
         $active = $cat->active;
         $unserSettings = unserialize($cat->settings);
-        if ($active == 1){
+        if ($active == 1) {
             $active = 0;
             $unserSettings['useProductPattern'] = 0;
-        }else{
+        } else {
             $unserSettings['useProductPattern'] = 1;
-            $active = 1;            
+            $active = 1;
         }
         $settings = serialize($unserSettings);
         // If updated active succes then return TRUE
-        if ($this->db->where('cat_id', $id)->update('mod_seo_products', array('active' => $active, 'settings' => $settings)))
+        if ($this->db->where('cat_id', $id)->update('mod_seo_products', array('active' => $active, 'settings' => $settings))) {
             return true;
+        }
 
         return false;
     }
@@ -209,20 +214,21 @@ class Seoexpert_model_products extends CI_Model {
     public function changeEmptyMetaCategory($id = NULL) {
         $cat = $this->db->where('cat_id', $id)->get('mod_seo_products')->row();
         $active = $cat->empty_meta;
-        
+
         $unserSettings = unserialize($cat->settings);
-        if ($active == 1){
+        if ($active == 1) {
             $active = 0;
             $unserSettings['useProductPatternForEmptyMeta'] = 0;
-        }else{
+        } else {
             $unserSettings['useProductPatternForEmptyMeta'] = 1;
-            $active = 1;            
+            $active = 1;
         }
         $settings = serialize($unserSettings);
 
         // If updated active succes then return TRUE
-        if ($this->db->where('cat_id', $id)->update('mod_seo_products', array('empty_meta' => $active, 'settings' => $settings)))
+        if ($this->db->where('cat_id', $id)->update('mod_seo_products', array('empty_meta' => $active, 'settings' => $settings))) {
             return true;
+        }
 
         return false;
     }

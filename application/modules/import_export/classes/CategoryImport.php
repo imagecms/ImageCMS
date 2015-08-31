@@ -2,11 +2,15 @@
 
 namespace import_export\classes;
 
+use CI_DB_active_record;
+use Core;
+use stdClass;
+
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /**
  * @property Core $core
- * @property \CI_DB_active_record $db
+ * @property CI_DB_active_record $db
  */
 class CategoryImport extends BaseImport {
 
@@ -58,10 +62,10 @@ class CategoryImport extends BaseImport {
             if ($result) {
                 $result = $result->row();
             } else {
-                \import_export\classes\Logger::create()->set('Error $result in CategoryImport.php - IMPORT');
+                Logger::create()->set('Error $result in CategoryImport.php - IMPORT');
             }
 
-            if (!($result instanceof \stdClass)) {
+            if (!($result instanceof stdClass)) {
                 /* Create new category */
                 $lastPosition = $this->db->query('SELECT max(position) as maxPos FROM `shop_category`')->row()->maxPos;
                 $binds = array(
@@ -75,7 +79,7 @@ class CategoryImport extends BaseImport {
                 $this->db->insert('shop_category', $binds);
                 $newCategoryId = $this->db->insert_id();
                 if (!$newCategoryId) {
-                    \import_export\classes\Logger::create()->set('Error INSERT category or SELECT id new category in CategoryImport.php - IMPORT');
+                    Logger::create()->set('Error INSERT category or SELECT id new category in CategoryImport.php - IMPORT');
                 }
 
                 /* Add translation data for new category  */

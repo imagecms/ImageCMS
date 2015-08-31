@@ -2,6 +2,10 @@
 
 namespace import_export\classes;
 
+use CI_DB_active_record;
+use Core;
+use stdClass;
+
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /**
@@ -31,7 +35,7 @@ class PropertiesImport extends BaseImport {
                 if (array_key_exists($nodeKey, $properyAlias)) {
                     $result = $this->db->query('SELECT * FROM `shop_product_properties_data` WHERE `product_id` = ? AND `property_id` = ?', array($node['ProductId'], $properyAlias[$nodeKey]))->row();
 
-                    if ($result instanceof \stdClass) {
+                    if ($result instanceof stdClass) {
                         $this->db->delete(
                             'shop_product_properties_data',
                             array('product_id' => $node['ProductId'],
@@ -54,7 +58,7 @@ class PropertiesImport extends BaseImport {
 
                     foreach ($node['CategoryIds'] as $categoryId) {
                         $result = $this->db->query('SELECT * FROM `shop_product_properties_categories` WHERE `category_id` = ? AND `property_id` = ?', array($categoryId, $properyAlias[$nodeKey]))->row();
-                        if (!($result instanceof \stdClass) && !empty($nodeElement)) {
+                        if (!($result instanceof stdClass) && !empty($nodeElement)) {
                             $this->db->insert('shop_product_properties_categories', array('property_id' => $properyAlias[$nodeKey], 'category_id' => $categoryId));
                         }
                     }

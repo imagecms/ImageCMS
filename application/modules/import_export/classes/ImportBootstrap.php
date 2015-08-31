@@ -2,6 +2,10 @@
 
 namespace import_export\classes;
 
+use CI_DB_active_record;
+use Core;
+use libraries\Backup;
+
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /**
@@ -190,7 +194,7 @@ class ImportBootstrap {
             return $this;
         }
 
-        \libraries\Backup::create()->createBackup("zip", "import");
+        Backup::create()->createBackup("zip", "import");
         $this->messages['report']['DBBackup'] = TRUE;
         $this->messages['report']['DBBackuName'] = $backupName;
         return $this;

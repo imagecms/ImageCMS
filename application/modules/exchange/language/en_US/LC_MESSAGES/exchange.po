@@ -1,0 +1,187 @@
+﻿msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-05-23 04:35+0300\n"
+"PO-Revision-Date: 2014-05-23 04:35+0300\n"
+"Last-Translator:  \n"
+"Language-Team:  \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
+"X-Poedit-SearchPath-0: .\n"
+
+# ? (Андрій)
+#: ./application/modules/exchange/templates/admin/settings.tpl:180
+#: ./application/modules/exchange/assets/admin/settings.tpl:174
+msgid "If you specify an email errors when incorrect password"
+msgstr "If you specify an email errors when incorrect password"
+
+#: ./application/modules/exchange/templates/admin/settings.tpl:143
+#: ./application/modules/exchange/assets/admin/settings.tpl:137
+msgid "Run automatically resize images?"
+msgstr "Run image resize automatically?"
+
+# ?(Андрій)
+#: ./application/modules/exchange/templates/admin/settings.tpl:181
+#: ./application/modules/exchange/assets/admin/settings.tpl:175
+msgid "and security  will be sent to administrator"
+msgstr "и безопасности будет отправлено администратору"
+
+#: ./application/modules/exchange/templates/admin/settings.tpl:71
+#: ./application/modules/exchange/assets/admin/settings.tpl:65
+msgid "1C Ip addres "
+msgstr "1C IР address"
+
+# ? (Оля) Властивість, яка буде записана як бренд
+#: ./application/modules/exchange/templates/admin/settings.tpl:125
+#: ./application/modules/exchange/assets/admin/settings.tpl:119
+msgid "Property, which will be mean like brand"
+msgstr "Property, which will be meant by Brand"
+
+#: ./application/modules/exchange/templates/admin/settings.tpl:164
+#: ./application/modules/exchange/assets/admin/settings.tpl:158
+msgid "All errors will be written to the file"
+msgstr "All errors will be written to the file"
+
+# ?(Андрій)
+#: ./application/modules/exchange/templates/admin/settings.tpl:182
+#: ./application/modules/exchange/assets/admin/settings.tpl:176
+msgid "Email Administrator for sending important safety mistakes"
+msgstr ""
+
+#: ./application/modules/exchange/templates/admin/settings.tpl:16
+#: ./application/modules/exchange/assets/admin/settings.tpl:16
+msgid "Fix"
+msgstr "Fix"
+
+# ? (Оля)
+#: ./application/modules/exchange/assets/admin/Log.tpl:11
+msgid "Clear log"
+msgstr "Clear the log"
+
+#: ./application/modules/exchange/module_info.php:7
+msgid "Synchronization with 1C"
+msgstr "Synchronization with 1C"
+
+#: ./application/modules/exchange/templates/admin/settings.tpl:36
+#: ./application/modules/exchange/assets/admin/Log.tpl:25
+msgid "Time log"
+msgstr "Time log"
+
+#: ./application/modules/exchange/exchange.php:143
+msgid "Can not create a database snapshot, check the folder {0} on writing possibility"
+msgstr "Can not create a database snapshot, check the folder {0} on writing possibility"
+
+#: ./application/modules/exchange/templates/admin/settings.tpl:95
+#: ./application/modules/exchange/assets/admin/settings.tpl:89
+msgid "Server password"
+msgstr "Server password"
+
+#: ./application/modules/exchange/templates/admin/settings.tpl:77
+#: ./application/modules/exchange/assets/admin/settings.tpl:71
+msgid "Use server password"
+msgstr "Use a server password"
+
+#: ./application/modules/exchange/module_info.php:8
+msgid "Allows you to synchronize online store database with 1C Trade Management database"
+msgstr "Allows you to synchronize online store database with 1C Trade Management database"
+
+#: ./application/modules/exchange/templates/admin/settings.tpl:22
+#: ./application/modules/exchange/assets/admin/settings.tpl:22
+msgid "Save"
+msgstr "Save"
+
+#: ./application/modules/exchange/templates/admin/settings.tpl:65
+#: ./application/modules/exchange/assets/admin/settings.tpl:59
+msgid "Size"
+msgstr "Size"
+
+#: ./application/modules/exchange/exchange.php:254
+msgid "Wrong password"
+msgstr "Wrong password"
+
+#: ./application/modules/exchange/templates/admin/settings.tpl:5
+#: ./application/modules/exchange/templates/admin/settings.tpl:47
+#: ./application/modules/exchange/assets/admin/settings.tpl:5
+#: ./application/modules/exchange/assets/admin/settings.tpl:41
+msgid "Integration with 1C settings "
+msgstr "Integration with 1C settings"
+
+#: ./application/modules/exchange/templates/admin/settings.tpl:33
+#: ./application/modules/exchange/assets/admin/Log.tpl:22
+msgid "Query log"
+msgstr "Query log"
+
+#: ./application/modules/exchange/templates/admin/settings.tpl:102
+#: ./application/modules/exchange/assets/admin/settings.tpl:96
+msgid "Database backup"
+msgstr "Database backup"
+
+#: ./application/modules/exchange/templates/admin/settings.tpl:60
+#: ./application/modules/exchange/assets/admin/settings.tpl:54
+msgid "No"
+msgstr "No"
+
+#: ./application/modules/exchange/templates/admin/settings.tpl:88
+#: ./application/modules/exchange/assets/admin/settings.tpl:82
+msgid "Set up a login to access the server 1C"
+msgstr "Set up a login to access 1 C server "
+
+#: ./application/modules/exchange/templates/admin/settings.tpl:59
+#: ./application/modules/exchange/assets/admin/settings.tpl:53
+msgid "Yes"
+msgstr "Yes"
+
+#: ./application/modules/exchange/templates/admin/settings.tpl:56
+#: ./application/modules/exchange/assets/admin/settings.tpl:50
+msgid "Use commpres"
+msgstr "Use compression"
+
+#: ./application/modules/exchange/exchange.php:298
+#: ./application/modules/exchange/exchange.php:299
+msgid "Security Error!!!"
+msgstr "Security error!"
+
+#: ./application/modules/exchange/templates/admin/settings.tpl:113
+#: ./application/modules/exchange/assets/admin/settings.tpl:107
+msgid "Select order status"
+msgstr "Select the order status"
+
+#: ./application/modules/exchange/templates/admin/settings.tpl:30
+#: ./application/modules/exchange/assets/admin/Log.tpl:19
+msgid "Errors log"
+msgstr "Error log"
+
+#: ./application/modules/exchange/templates/admin/settings.tpl:131
+#: ./application/modules/exchange/assets/admin/settings.tpl:125
+msgid "Order status after export"
+msgstr "Order status after export"
+
+#: ./application/modules/exchange/exchange.php:447
+msgid "Import error"
+msgstr "Import error"
+
+#: ./application/modules/exchange/templates/admin/settings.tpl:12
+#: ./application/modules/exchange/assets/admin/settings.tpl:12
+#: ./application/modules/exchange/assets/admin/Log.tpl:35
+msgid "Back"
+msgstr "Back"
+
+#: ./application/modules/exchange/templates/admin/settings.tpl:164
+#: ./application/modules/exchange/assets/admin/settings.tpl:158
+msgid "Debugging mode"
+msgstr "Debugging mode"
+
+#: ./application/modules/exchange/templates/admin/settings.tpl:25
+#: ./application/modules/exchange/assets/admin/settings.tpl:25
+#: ./application/modules/exchange/assets/admin/Log.tpl:14
+msgid "Logs"
+msgstr "Logs"

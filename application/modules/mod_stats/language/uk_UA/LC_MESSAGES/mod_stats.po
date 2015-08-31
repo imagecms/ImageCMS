@@ -1,0 +1,644 @@
+﻿msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-02-20 05:18+0200\n"
+"PO-Revision-Date: 2015-02-20 05:18+0200\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: application/modules/mod_stats/controllers/UsersController.php:116
+msgid "Count of unique registered users"
+msgstr "Число унікальних зареєстрованих користувачів"
+
+#: application/modules/mod_stats/controllers/UsersController.php:119
+msgid "Count of unique unregistered users"
+msgstr "Число унікальних незареєстрованих користувачів"
+
+#: application/modules/mod_stats/controllers/UsersController.php:176
+msgid "Registration dynamic"
+msgstr "Динамiка реєстрацій"
+
+#: application/modules/mod_stats/admin.php:108
+msgid "save_robots_attendance"
+msgstr "Зберегти відвідуваності роботів"
+
+#: application/modules/mod_stats/admin.php:109
+msgid "save_users_attendance"
+msgstr "Зберегти відвідуваність користувачів"
+
+#: application/modules/mod_stats/admin.php:110
+msgid "ave_search_results_ac"
+msgstr "Зберегти автозаповнення результатів пошуку"
+
+#: application/modules/mod_stats/admin.php:111
+msgid "save_search_results"
+msgstr "Зберігати результати пошуку"
+
+#: application/modules/mod_stats/assets/admin/include/top_form_charts.tpl:38
+#: application/modules/mod_stats/assets/admin/include/top_form.tpl:32
+#: application/modules/mod_stats/assets/admin/include/top_form_categories_attendance.tpl:52
+#: application/modules/mod_stats/assets/admin/include/top_form_orders_users.tpl:33
+#: application/modules/mod_stats/assets/admin/include/top_form_min.tpl:32
+msgid "Group by"
+msgstr "Групувати"
+
+#: application/modules/mod_stats/include/left_menu.php:5
+#: application/modules/mod_stats/controllers/OrdersController.php:47
+#: application/modules/mod_stats/assets/admin/orders/users.tpl:76
+#: application/modules/mod_stats/assets/admin/orders/statuses.tpl:33
+#: application/modules/mod_stats/assets/admin/search/noResults.tpl:22
+msgid "Orders"
+msgstr "Замовлення"
+
+#: application/modules/mod_stats/include/left_menu.php:9
+msgid "Sum and count charts"
+msgstr "Сума та кількість графіків"
+
+#: application/modules/mod_stats/include/left_menu.php:14
+msgid "Collected info"
+msgstr "Зібрані info"
+
+#: application/modules/mod_stats/include/left_menu.php:19
+msgid "By users"
+msgstr "Користувачі"
+
+#: application/modules/mod_stats/include/left_menu.php:26
+msgid "Users"
+msgstr "Користувачі"
+
+#: application/modules/mod_stats/include/left_menu.php:30
+msgid "Online"
+msgstr "Онлайн"
+
+#: application/modules/mod_stats/include/left_menu.php:35
+msgid "Registered"
+msgstr "Зареєстрований"
+
+#: application/modules/mod_stats/include/left_menu.php:40
+msgid "Attendance"
+msgstr "Відвідуваність"
+
+#: application/modules/mod_stats/include/left_menu.php:45
+msgid "Robots attendance"
+msgstr "Роботи відвідуваності"
+
+#: application/modules/mod_stats/include/left_menu.php:52
+#: application/modules/mod_stats/controllers/OrdersController.php:48
+msgid "Products"
+msgstr "Продукти"
+
+#: application/modules/mod_stats/include/left_menu.php:56
+#: application/modules/mod_stats/assets/admin/products/productInfo.tpl:43
+msgid "Categories"
+msgstr "Категорії"
+
+#: application/modules/mod_stats/include/left_menu.php:61
+msgid "Brands"
+msgstr "Бренди"
+
+#: application/modules/mod_stats/include/left_menu.php:66
+msgid "Product information"
+msgstr "Інформація про продукт"
+
+#: application/modules/mod_stats/include/left_menu.php:73
+msgid "Product's categories"
+msgstr "Продукт категорії"
+
+#: application/modules/mod_stats/include/left_menu.php:77
+msgid "Categories attendance"
+msgstr "Категорії відвідуваності"
+
+#: application/modules/mod_stats/include/left_menu.php:82
+msgid "Brands in category"
+msgstr "У категорії бренди"
+
+#: application/modules/mod_stats/include/left_menu.php:89
+msgid "Search"
+msgstr "Пошук"
+
+#: application/modules/mod_stats/include/left_menu.php:93
+msgid "Searched keywords"
+msgstr "Пошук ключових слів"
+
+#: application/modules/mod_stats/include/left_menu.php:98
+msgid "Brands in search results"
+msgstr "Бренди в результатах пошуку"
+
+#: application/modules/mod_stats/include/left_menu.php:103
+msgid "Categories in search results"
+msgstr "Категорії в результатах пошуку"
+
+#: application/modules/mod_stats/include/left_menu.php:108
+#: application/modules/mod_stats/assets/admin/products/productInfo.tpl:166
+msgid "No results"
+msgstr "Немає результатів"
+
+#: application/modules/mod_stats/controllers/ProductsController.php:165
+msgid "Next"
+msgstr "Далі"
+
+#: application/modules/mod_stats/controllers/ProductsController.php:166
+msgid "Prev"
+msgstr "Prev"
+
+#: application/modules/mod_stats/controllers/CategoriesController.php:42
+#: application/modules/mod_stats/assets/admin/include/top_form_products_categories.tpl:10
+msgid "First level categories"
+msgstr "Перший рівень категорій"
+
+#: application/modules/mod_stats/controllers/OrdersController.php:41
+#: application/modules/mod_stats/assets/admin/orders/info.tpl:27
+#: application/modules/mod_stats/assets/admin/include/top_form_charts.tpl:50
+msgid "Price"
+msgstr "Ціна"
+
+#: application/modules/mod_stats/controllers/OrdersController.php:49
+#: application/modules/mod_stats/assets/admin/orders/info.tpl:24
+msgid "Paid"
+msgstr "Платна"
+
+#: application/modules/mod_stats/controllers/OrdersController.php:50
+#: application/modules/mod_stats/assets/admin/orders/info.tpl:23
+msgid "Delivered"
+msgstr "Доставлене"
+
+#: application/modules/mod_stats/assets/js/functions.js:75
+#: application/modules/mod_stats/assets/js/functions.js:77
+msgid "Message"
+msgstr "Повідомлення"
+
+#: application/modules/mod_stats/assets/js/functions.js:75
+msgid "Settings updated!"
+msgstr "Налаштування оновлюються!"
+
+#: application/modules/mod_stats/assets/js/functions.js:77
+msgid "Settings not updated!"
+msgstr "Параметри не оновлюються!"
+
+#: application/modules/mod_stats/assets/admin/orders/users.tpl:5
+#: application/modules/mod_stats/assets/admin/orders/statuses.tpl:5
+#: application/modules/mod_stats/assets/admin/orders/info.tpl:5
+#: application/modules/mod_stats/assets/admin/orders/charts.tpl:5
+#: application/modules/mod_stats/assets/admin/users/online.tpl:5
+#: application/modules/mod_stats/assets/admin/users/attendance.tpl:5
+#: application/modules/mod_stats/assets/admin/users/registered.tpl:5
+#: application/modules/mod_stats/assets/admin/users/robots_attendance.tpl:5
+#: application/modules/mod_stats/assets/admin/search/noResults.tpl:5
+#: application/modules/mod_stats/assets/admin/search/brandsInSearch.tpl:5
+#: application/modules/mod_stats/assets/admin/search/categoriesInSearch.tpl:5
+#: application/modules/mod_stats/assets/admin/search/keywords.tpl:5
+#: application/modules/mod_stats/assets/admin/categories/attendance.tpl:5
+#: application/modules/mod_stats/assets/admin/categories/brandsInCategories.tpl:5
+#: application/modules/mod_stats/assets/admin/start.tpl:5
+#: application/modules/mod_stats/assets/admin/products/brands.tpl:5
+#: application/modules/mod_stats/assets/admin/products/categories.tpl:5
+#: application/modules/mod_stats/assets/admin/products/productInfo.tpl:5
+msgid "Stats"
+msgstr "Статистика"
+
+#: application/modules/mod_stats/assets/admin/orders/users.tpl:9
+#: application/modules/mod_stats/assets/admin/orders/statuses.tpl:9
+#: application/modules/mod_stats/assets/admin/orders/info.tpl:9
+#: application/modules/mod_stats/assets/admin/orders/charts.tpl:9
+#: application/modules/mod_stats/assets/admin/users/online.tpl:9
+#: application/modules/mod_stats/assets/admin/users/attendance.tpl:9
+#: application/modules/mod_stats/assets/admin/users/registered.tpl:9
+#: application/modules/mod_stats/assets/admin/users/robots_attendance.tpl:9
+#: application/modules/mod_stats/assets/admin/search/noResults.tpl:9
+#: application/modules/mod_stats/assets/admin/search/brandsInSearch.tpl:9
+#: application/modules/mod_stats/assets/admin/search/categoriesInSearch.tpl:9
+#: application/modules/mod_stats/assets/admin/search/keywords.tpl:9
+#: application/modules/mod_stats/assets/admin/categories/attendance.tpl:9
+#: application/modules/mod_stats/assets/admin/categories/brandsInCategories.tpl:9
+#: application/modules/mod_stats/assets/admin/start.tpl:9
+#: application/modules/mod_stats/assets/admin/products/brands.tpl:9
+#: application/modules/mod_stats/assets/admin/products/categories.tpl:9
+#: application/modules/mod_stats/assets/admin/products/productInfo.tpl:9
+msgid "Back"
+msgstr "Тому"
+
+#: application/modules/mod_stats/assets/admin/orders/users.tpl:26
+msgid "User"
+msgstr "Користувач"
+
+#: application/modules/mod_stats/assets/admin/orders/users.tpl:36
+#: application/modules/mod_stats/assets/admin/orders/info.tpl:22
+msgid "Orders count"
+msgstr "Замовлення граф"
+
+#: application/modules/mod_stats/assets/admin/orders/users.tpl:46
+msgid "Paid count"
+msgstr "Заплатив граф"
+
+#: application/modules/mod_stats/assets/admin/orders/users.tpl:56
+msgid "Unpaid count"
+msgstr "Безкоштовну граф"
+
+#: application/modules/mod_stats/assets/admin/orders/users.tpl:66
+msgid "Delivered count"
+msgstr "Поставляється граф"
+
+#: application/modules/mod_stats/assets/admin/orders/users.tpl:86
+msgid "Total sum"
+msgstr "Загальна сума"
+
+#: application/modules/mod_stats/assets/admin/orders/users.tpl:96
+msgid "Unique products count"
+msgstr "Унікальні вироби граф"
+
+#: application/modules/mod_stats/assets/admin/orders/users.tpl:106
+msgid "Total products count"
+msgstr "Загальна продукція граф"
+
+#: application/modules/mod_stats/assets/admin/orders/statuses.tpl:13
+#: application/modules/mod_stats/assets/admin/orders/charts.tpl:21
+#: application/modules/mod_stats/assets/admin/users/attendance.tpl:13
+#: application/modules/mod_stats/assets/admin/users/registered.tpl:13
+#: application/modules/mod_stats/assets/admin/search/brandsInSearch.tpl:12
+#: application/modules/mod_stats/assets/admin/search/categoriesInSearch.tpl:12
+#: application/modules/mod_stats/assets/admin/categories/attendance.tpl:12
+#: application/modules/mod_stats/assets/admin/categories/brandsInCategories.tpl:12
+#: application/modules/mod_stats/assets/admin/products/brands.tpl:12
+#: application/modules/mod_stats/assets/admin/products/categories.tpl:12
+msgid "Save Image"
+msgstr "Зберегти Зображення"
+
+#: application/modules/mod_stats/assets/admin/orders/statuses.tpl:23
+#: application/modules/mod_stats/assets/admin/orders/charts.tpl:18
+#: application/modules/mod_stats/assets/admin/search/brandsInSearch.tpl:21
+#: application/modules/mod_stats/assets/admin/search/categoriesInSearch.tpl:21
+#: application/modules/mod_stats/assets/admin/categories/attendance.tpl:21
+#: application/modules/mod_stats/assets/admin/categories/brandsInCategories.tpl:21
+#: application/modules/mod_stats/assets/admin/products/brands.tpl:21
+#: application/modules/mod_stats/assets/admin/products/categories.tpl:21
+msgid "No chart data for displaying"
+msgstr "Немає даних діаграми для відображення"
+
+#: application/modules/mod_stats/assets/admin/orders/statuses.tpl:32
+#: application/modules/mod_stats/assets/admin/orders/info.tpl:21
+#: application/modules/mod_stats/assets/admin/include/top_form_charts.tpl:19
+#: application/modules/mod_stats/assets/admin/include/top_form.tpl:12
+#: application/modules/mod_stats/assets/admin/include/top_form_categories_attendance.tpl:14
+#: application/modules/mod_stats/assets/admin/include/top_form_search.tpl:12
+#: application/modules/mod_stats/assets/admin/include/top_form_without_groupby.tpl:12
+#: application/modules/mod_stats/assets/admin/include/top_form_orders_users.tpl:14
+#: application/modules/mod_stats/assets/admin/include/top_form_min.tpl:13
+#: application/modules/mod_stats/assets/admin/include/top_form_robots.tpl:9
+#: application/modules/mod_stats/assets/admin/search/noResults.tpl:21
+msgid "Period"
+msgstr "Період"
+
+#: application/modules/mod_stats/assets/admin/orders/statuses.tpl:34
+#: application/modules/mod_stats/assets/admin/orders/info.tpl:25
+#: application/modules/mod_stats/assets/admin/search/noResults.tpl:23
+msgid "Unique products"
+msgstr "Унікальні продукти"
+
+#: application/modules/mod_stats/assets/admin/orders/statuses.tpl:35
+#: application/modules/mod_stats/assets/admin/orders/info.tpl:26
+#: application/modules/mod_stats/assets/admin/search/noResults.tpl:24
+msgid "Total products"
+msgstr "Загальна продукція"
+
+#: application/modules/mod_stats/assets/admin/orders/statuses.tpl:51
+#: application/modules/mod_stats/assets/admin/orders/info.tpl:47
+msgid "There are no orders for specified period"
+msgstr "Немає ордерів за вказаний період"
+
+#: application/modules/mod_stats/assets/admin/include/left_block.tpl:12
+msgid "Start page"
+msgstr "Стартова сторінка"
+
+#: application/modules/mod_stats/assets/admin/include/left_block.tpl:34
+msgid "Settings"
+msgstr "Параметри"
+
+#: application/modules/mod_stats/assets/admin/include/left_block.tpl:40
+msgid "Save search results"
+msgstr "Зберегти результати пошуку"
+
+#: application/modules/mod_stats/assets/admin/include/left_block.tpl:47
+msgid "Save autocomplete search results"
+msgstr "Зберегти результати пошуку автозаповнення"
+
+#: application/modules/mod_stats/assets/admin/include/left_block.tpl:54
+msgid "Save users attendance"
+msgstr "Зберегти відвідуваності користувачів"
+
+#: application/modules/mod_stats/assets/admin/include/left_block.tpl:61
+msgid "Save robotss attendance"
+msgstr "Зберегти технічний опис проблеми відвідуваності"
+
+#: application/modules/mod_stats/assets/admin/include/top_form_products_brands.tpl:7
+msgid "Show top brands count"
+msgstr "Подивитися топ-брендів граф"
+
+#: application/modules/mod_stats/assets/admin/include/top_form_products_brands.tpl:13
+#: application/modules/mod_stats/assets/admin/include/top_form_products_categories.tpl:18
+#: application/modules/mod_stats/assets/admin/include/top_form_categories_brands.tpl:27
+msgid "Char type"
+msgstr "Тип Char"
+
+#: application/modules/mod_stats/assets/admin/include/top_form_products_brands.tpl:15
+#: application/modules/mod_stats/assets/admin/include/top_form_products_brands.tpl:15
+#: application/modules/mod_stats/assets/admin/include/top_form_products_categories.tpl:20
+#: application/modules/mod_stats/assets/admin/include/top_form_products_categories.tpl:20
+#: application/modules/mod_stats/assets/admin/include/top_form_search.tpl:49
+#: application/modules/mod_stats/assets/admin/include/top_form_search.tpl:49
+#: application/modules/mod_stats/assets/admin/include/top_form_categories_brands.tpl:29
+#: application/modules/mod_stats/assets/admin/include/top_form_categories_brands.tpl:29
+msgid "Pie char"
+msgstr "Пиріг char"
+
+#: application/modules/mod_stats/assets/admin/include/top_form_products_brands.tpl:16
+#: application/modules/mod_stats/assets/admin/include/top_form_products_brands.tpl:16
+#: application/modules/mod_stats/assets/admin/include/top_form_products_categories.tpl:21
+#: application/modules/mod_stats/assets/admin/include/top_form_products_categories.tpl:21
+#: application/modules/mod_stats/assets/admin/include/top_form_search.tpl:50
+#: application/modules/mod_stats/assets/admin/include/top_form_search.tpl:50
+#: application/modules/mod_stats/assets/admin/include/top_form_categories_brands.tpl:30
+#: application/modules/mod_stats/assets/admin/include/top_form_categories_brands.tpl:30
+msgid "Bar char"
+msgstr "Бар char"
+
+#: application/modules/mod_stats/assets/admin/include/top_form_charts.tpl:11
+#: application/modules/mod_stats/assets/admin/include/top_form.tpl:5
+#: application/modules/mod_stats/assets/admin/include/top_form_categories_attendance.tpl:6
+#: application/modules/mod_stats/assets/admin/include/top_form_search.tpl:5
+#: application/modules/mod_stats/assets/admin/include/top_form_without_groupby.tpl:5
+#: application/modules/mod_stats/assets/admin/include/top_form_orders_users.tpl:6
+#: application/modules/mod_stats/assets/admin/include/top_form_min.tpl:5
+msgid "Last month"
+msgstr "У минулому місяці"
+
+#: application/modules/mod_stats/assets/admin/include/top_form_charts.tpl:12
+#: application/modules/mod_stats/assets/admin/include/top_form.tpl:6
+#: application/modules/mod_stats/assets/admin/include/top_form_categories_attendance.tpl:7
+#: application/modules/mod_stats/assets/admin/include/top_form_search.tpl:6
+#: application/modules/mod_stats/assets/admin/include/top_form_without_groupby.tpl:6
+#: application/modules/mod_stats/assets/admin/include/top_form_orders_users.tpl:7
+#: application/modules/mod_stats/assets/admin/include/top_form_min.tpl:6
+msgid "Last year"
+msgstr "В минулому році"
+
+#: application/modules/mod_stats/assets/admin/include/top_form_charts.tpl:26
+#: application/modules/mod_stats/assets/admin/include/top_form.tpl:19
+#: application/modules/mod_stats/assets/admin/include/top_form_categories_attendance.tpl:21
+#: application/modules/mod_stats/assets/admin/include/top_form_search.tpl:19
+#: application/modules/mod_stats/assets/admin/include/top_form_without_groupby.tpl:19
+#: application/modules/mod_stats/assets/admin/include/top_form_orders_users.tpl:21
+#: application/modules/mod_stats/assets/admin/include/top_form_min.tpl:20
+msgid "to"
+msgstr "до"
+
+#: application/modules/mod_stats/assets/admin/include/top_form_charts.tpl:34
+#: application/modules/mod_stats/assets/admin/include/top_form.tpl:27
+#: application/modules/mod_stats/assets/admin/include/top_form_categories_attendance.tpl:29
+#: application/modules/mod_stats/assets/admin/include/top_form_search.tpl:27
+#: application/modules/mod_stats/assets/admin/include/top_form_categories_brands.tpl:22
+#: application/modules/mod_stats/assets/admin/include/top_form_without_groupby.tpl:27
+#: application/modules/mod_stats/assets/admin/include/top_form_orders_users.tpl:29
+#: application/modules/mod_stats/assets/admin/include/top_form_min.tpl:28
+#: application/modules/mod_stats/assets/admin/include/top_form_robots.tpl:17
+#: application/modules/mod_stats/assets/admin/products/productInfo.tpl:96
+msgid "OK"
+msgstr "ОК"
+
+#: application/modules/mod_stats/assets/admin/include/top_form_charts.tpl:40
+#: application/modules/mod_stats/assets/admin/include/top_form.tpl:34
+#: application/modules/mod_stats/assets/admin/include/top_form_categories_attendance.tpl:54
+#: application/modules/mod_stats/assets/admin/include/top_form_orders_users.tpl:35
+#: application/modules/mod_stats/assets/admin/include/top_form_min.tpl:34
+msgid "day"
+msgstr "день"
+
+#: application/modules/mod_stats/assets/admin/include/top_form_charts.tpl:41
+#: application/modules/mod_stats/assets/admin/include/top_form.tpl:35
+#: application/modules/mod_stats/assets/admin/include/top_form_categories_attendance.tpl:55
+#: application/modules/mod_stats/assets/admin/include/top_form_orders_users.tpl:36
+#: application/modules/mod_stats/assets/admin/include/top_form_min.tpl:35
+msgid "month"
+msgstr "місяць"
+
+#: application/modules/mod_stats/assets/admin/include/top_form_charts.tpl:42
+#: application/modules/mod_stats/assets/admin/include/top_form.tpl:36
+#: application/modules/mod_stats/assets/admin/include/top_form_categories_attendance.tpl:56
+#: application/modules/mod_stats/assets/admin/include/top_form_orders_users.tpl:37
+#: application/modules/mod_stats/assets/admin/include/top_form_min.tpl:36
+msgid "year"
+msgstr "рік"
+
+#: application/modules/mod_stats/assets/admin/include/top_form_charts.tpl:47
+#: application/modules/mod_stats/assets/admin/include/top_form_search.tpl:47
+msgid "Show"
+msgstr "Подивитися"
+
+#: application/modules/mod_stats/assets/admin/include/top_form_charts.tpl:49
+#: application/modules/mod_stats/assets/admin/search/keywords.tpl:23
+msgid "Count"
+msgstr "Граф"
+
+#: application/modules/mod_stats/assets/admin/include/top_form_products_categories.tpl:7
+msgid "Choose Category:"
+msgstr "Вибрати Категорію:"
+
+#: application/modules/mod_stats/assets/admin/include/top_form.tpl:41
+msgid "View"
+msgstr "Вид"
+
+#: application/modules/mod_stats/assets/admin/include/top_form.tpl:43
+#: application/modules/mod_stats/assets/admin/include/top_form_categories_attendance.tpl:65
+msgid "Table"
+msgstr "Таблиця"
+
+#: application/modules/mod_stats/assets/admin/include/top_form.tpl:44
+#: application/modules/mod_stats/assets/admin/include/top_form_categories_attendance.tpl:69
+msgid "Chart"
+msgstr "Діаграма"
+
+#: application/modules/mod_stats/assets/admin/include/top_form_categories_attendance.tpl:49
+msgid "Include childs"
+msgstr "Є діти"
+
+#: application/modules/mod_stats/assets/admin/include/top_form_search.tpl:31
+msgid "Quantity of words"
+msgstr "Кількість слів"
+
+#: application/modules/mod_stats/assets/admin/include/top_form_search.tpl:39
+#: application/modules/mod_stats/assets/admin/include/top_form_without_groupby.tpl:31
+msgid "Count of results"
+msgstr "Підрахунок результатів"
+
+#: application/modules/mod_stats/assets/admin/include/top_form_categories_brands.tpl:7
+#: application/modules/mod_stats/assets/admin/users/history.tpl:12
+msgid "Category"
+msgstr "Категорія"
+
+#: application/modules/mod_stats/assets/admin/include/top_form_robots.tpl:21
+msgid "Robots:"
+msgstr "Роботи:"
+
+#: application/modules/mod_stats/assets/admin/users/online.tpl:20
+msgid "Id"
+msgstr "Id"
+
+#: application/modules/mod_stats/assets/admin/users/online.tpl:21
+msgid "Username"
+msgstr "Username"
+
+#: application/modules/mod_stats/assets/admin/users/online.tpl:22
+msgid "Email"
+msgstr "Адреса"
+
+#: application/modules/mod_stats/assets/admin/users/online.tpl:23
+msgid "Last activity"
+msgstr "Останньої активності"
+
+#: application/modules/mod_stats/assets/admin/users/online.tpl:24
+msgid "Last page"
+msgstr "На минулій сторінці"
+
+#: application/modules/mod_stats/assets/admin/users/online.tpl:45
+msgid "There are no users online"
+msgstr "Немає користувачів онлайн"
+
+#: application/modules/mod_stats/assets/admin/users/history.tpl:9
+#: application/modules/mod_stats/assets/admin/users/robots_attendance.tpl:23
+msgid "Page"
+msgstr "Стр."
+
+#: application/modules/mod_stats/assets/admin/users/history.tpl:15
+msgid "Shop category"
+msgstr "Краси Категорія"
+
+#: application/modules/mod_stats/assets/admin/users/history.tpl:18
+msgid "Product"
+msgstr "Продукт"
+
+#: application/modules/mod_stats/assets/admin/users/history.tpl:30
+msgid "Max 200 rows"
+msgstr "Max 200 рядків"
+
+#: application/modules/mod_stats/assets/admin/users/attendance.tpl:30
+#: application/modules/mod_stats/assets/admin/users/registered.tpl:30
+#: application/modules/mod_stats/assets/admin/search/keywords.tpl:24
+msgid "Date"
+msgstr "Дата"
+
+#: application/modules/mod_stats/assets/admin/users/attendance.tpl:31
+msgid "Count of unique visitors (registered + unregistered)"
+msgstr "Кількість унікальних відвідувачів (зареєстрованих + незареєстрованої)"
+
+#: application/modules/mod_stats/assets/admin/users/attendance.tpl:45
+msgid "There are no attendance for specified period"
+msgstr "Немає відвідуваності за вказаний період"
+
+#: application/modules/mod_stats/assets/admin/users/registered.tpl:31
+msgid "Count registrations"
+msgstr "Лічильник реєстрацій"
+
+#: application/modules/mod_stats/assets/admin/users/registered.tpl:45
+msgid "There are no registrations for specified period"
+msgstr "Немає ніяких реєстрацій за вказаний період"
+
+#: application/modules/mod_stats/assets/admin/users/robots_attendance.tpl:22
+msgid "Time"
+msgstr "Час"
+
+#: application/modules/mod_stats/assets/admin/users/robots_attendance.tpl:42
+msgid "There are no data for specified period"
+msgstr "Немає даних за вказаний період"
+
+#: application/modules/mod_stats/assets/admin/search/noResults.tpl:25
+msgid "Sum"
+msgstr "Сума"
+
+#: application/modules/mod_stats/assets/admin/search/noResults.tpl:42
+#: application/modules/mod_stats/assets/admin/search/keywords.tpl:39
+msgid "There are no keywords searched for specified period"
+msgstr "Відсутні ключові слова шукали певний період"
+
+#: application/modules/mod_stats/assets/admin/search/keywords.tpl:22
+msgid "Key"
+msgstr "Ключ"
+
+#: application/modules/mod_stats/assets/admin/start.tpl:18
+msgid "Unique visitors count (all time)"
+msgstr "Унікальних відвідувачів count (за весь час)"
+
+#: application/modules/mod_stats/assets/admin/start.tpl:22
+msgid "Count of robots (all time)"
+msgstr "Кількість роботів (за весь час)"
+
+#: application/modules/mod_stats/assets/admin/start.tpl:26
+msgid "Count of redirects from search engines"
+msgstr "Лічильник перенаправлень з пошукових систем"
+
+#: application/modules/mod_stats/assets/admin/start.tpl:27
+#: application/modules/mod_stats/assets/admin/start.tpl:31
+#: application/modules/mod_stats/assets/admin/start.tpl:44
+msgid "No data"
+msgstr "Немає даних"
+
+#: application/modules/mod_stats/assets/admin/start.tpl:30
+msgid "Count of redirects from other sites"
+msgstr "Лічильник перенаправлень з інших сайтів"
+
+#: application/modules/mod_stats/assets/admin/start.tpl:34
+msgid "Last viewed page"
+msgstr "Останню попередньо переглянуту сторінку"
+
+#: application/modules/mod_stats/assets/admin/start.tpl:39
+msgid "by user"
+msgstr "користувачем"
+
+#: application/modules/mod_stats/assets/admin/start.tpl:41
+msgid "Guest"
+msgstr "Гість"
+
+#: application/modules/mod_stats/assets/admin/products/productInfo.tpl:23
+msgid "ID"
+msgstr "ID"
+
+#: application/modules/mod_stats/assets/admin/products/productInfo.tpl:33
+msgid "Name"
+msgstr "Ім'я"
+
+#: application/modules/mod_stats/assets/admin/products/productInfo.tpl:53
+msgid "Count of purchases"
+msgstr "Кількість покупок"
+
+#: application/modules/mod_stats/assets/admin/products/productInfo.tpl:63
+msgid "Views"
+msgstr "Вид"
+
+#: application/modules/mod_stats/assets/admin/products/productInfo.tpl:84
+msgid "All"
+msgstr "Всі"
+
+#: application/modules/mod_stats/assets/admin/products/productInfo.tpl:111
+#: application/modules/mod_stats/assets/admin/products/productInfo.tpl:129
+msgid "go to the website"
+msgstr "перейти на сайт"
+
+#: application/modules/mod_stats/assets/admin/products/productInfo.tpl:118
+#: application/modules/mod_stats/assets/admin/products/productInfo.tpl:136
+msgid "Editing"
+msgstr "Редагування"
+
+#: application/modules/mod_stats/admin.php:112
+#: application/modules/mod_stats/module_info.php:6
+msgid "Statistic"
+msgstr "Статистика"

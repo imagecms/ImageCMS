@@ -2,8 +2,9 @@
 
 namespace mod_seo\classes;
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Class Helper for mod_seo module
@@ -81,6 +82,7 @@ class SeoHelper extends \MY_Controller {
         }
         echo '';
     }
+
     /**
      * Get base settings
      * @param string $locale
@@ -98,10 +100,9 @@ class SeoHelper extends \MY_Controller {
         }
         return FALSE;
     }
-    
-    
+
     /**
-     * 
+     *
      * @param type $locale
      * @return boolean
      */
@@ -110,7 +111,7 @@ class SeoHelper extends \MY_Controller {
             $locale = \MY_Controller::getCurrentLocale();
         }
         $langId = $this->seoexpert_model->getLangIdByLocale($locale);
-        
+
         $res = $this->seoexpert_model->setBaseSettings($langId, $settings);
 
         if ($res) {

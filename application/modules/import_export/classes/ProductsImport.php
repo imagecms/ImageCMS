@@ -2,11 +2,16 @@
 
 namespace import_export\classes;
 
+use CI_DB_active_record;
+use Exception;
+use stdClass;
+use TrueBV\Punycode;
+
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /**
  *
- * @property \CI_DB_active_record $db
+ * @property CI_DB_active_record $db
  */
 class ProductsImport extends BaseImport {
 
@@ -94,7 +99,7 @@ class ProductsImport extends BaseImport {
                 ->get('shop_product_variants')
                 ->row();
 
-            $mas[$key] = (!($result instanceof \stdClass)) ? $this->runProductInsertQuery($node, $EmptyFields) : $this->runProductUpdateQuery($result->ProductId, $node, $EmptyFields);
+            $mas[$key] = (!($result instanceof stdClass)) ? $this->runProductInsertQuery($node, $EmptyFields) : $this->runProductUpdateQuery($result->ProductId, $node, $EmptyFields);
 
             BaseImport::create()->content[$key]['ProductId'] = $mas[$key]['ProductId'];
             $ids[$key] = $mas[$key]['variantId'];
@@ -123,13 +128,13 @@ class ProductsImport extends BaseImport {
         }
 
         if (isset($arg['name']) && $arg['name'] == '') {
-            \import_export\classes\Logger::create()
+            Logger::create()
                     ->set('Колонка имени товара пустая. ID - ' . $productId . ' update. - IMPORT');
             return;
         }
 
         if (isset($arg['cat']) && $arg['cat'] == '') {
-            \import_export\classes\Logger::create()
+            Logger::create()
                     ->set('Колонка категории товара пустая. ID - ' . $productId . ' update. - IMPORT');
             return;
         }
@@ -353,13 +358,13 @@ class ProductsImport extends BaseImport {
      */
     private function runProductInsertQuery($arg, $EmptyFields) {
         if ($arg['name'] == '') {
-            \import_export\classes\Logger::create()
+            Logger::create()
                     ->set('Колонка имени товара пустая. NUM - ' . $arg['num'] . ' insert. - IMPORT');
             return;
         }
 
         if ($arg['cat'] == '') {
-            \import_export\classes\Logger::create()
+            Logger::create()
                     ->set('Колонка категории товара пустая. NUM - ' . $arg['num'] . ' insert. - IMPORT');
             return;
         }
@@ -676,7 +681,7 @@ class ProductsImport extends BaseImport {
                 LIMIT 1",
                     array($node['brd'], $this->languages)
                 )->row();
-                if (!($result instanceof \stdClass)) {
+                if (!($result instanceof stdClass)) {
                     $this->db->insert('shop_brands', array('url' => translit_url($node['brd'])));
                     $brandId = $this->db->insert_id();
                     foreach ($this->allLanguages as $val) {
@@ -753,7 +758,7 @@ class ProductsImport extends BaseImport {
      */
     private function saveImgByUrl($param, $type = false) {
         if (!$type) {
-            \import_export\classes\Logger::create()
+            Logger::create()
                     ->set('$type is false. saveImgByUrl() ProductsImport.php. - IMPORT');
             return FALSE;
         }
@@ -771,7 +776,7 @@ class ProductsImport extends BaseImport {
             $param = $param;
         }
 
-        $idna = new \TrueBV\Punycode();
+        $idna = new Punycode();
         $idna->decode($param);
 
         $format = pathinfo($param, PATHINFO_EXTENSION);
@@ -783,7 +788,7 @@ class ProductsImport extends BaseImport {
             case 'gif': $flag = TRUE;
                 break;
             default: $flag = FALSE;
-                \import_export\classes\Logger::create()
+                Logger::create()
                         ->set('The link does not lead to the image or images in the correct format ProductsImport.php. - IMPORT');
                 break;
         }
@@ -802,7 +807,7 @@ class ProductsImport extends BaseImport {
                     $goodName = translit_url($goodName);
                     file_put_contents($path . $goodName . '.' . $format, $s);
                 } else {
-                    \import_export\classes\Logger::create()
+                    Logger::create()
                             ->set('Server with a picture does not answer ' . $timeoutlimit . ' sec. ProductsImport.php. - IMPORT');
                 }
                 return $goodName . '.' . $format;

@@ -2,6 +2,10 @@
 
 namespace import_export\classes;
 
+use CI;
+use CI_DB_active_record;
+use Core;
+
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /**
@@ -51,7 +55,7 @@ class Logger {
         } else {
             $handler = fopen($this->pathFile, 'a') or print (' Cannot create log.txt or do not have permission to the folder backup');
         }
-        $message = 'Error userId - ' . \CI::$APP->dx_auth->get_user_id() . '. time - ' . date("d.m.Y H:i", time()) . '. Message: ' . $message . "\n";
+        $message = 'Error userId - ' . CI::$APP->dx_auth->get_user_id() . '. time - ' . date("d.m.Y H:i", time()) . '. Message: ' . $message . "\n";
         fwrite($handler, $message);
         fclose($handler);
     }
