@@ -58,7 +58,7 @@ class ImportBootstrap {
      * @param int $limit Step
      * @param int $countProd count products
      * @author Kaero
-     * @return ImportBootstrapА
+     * @return ImportBootstrap
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
      */
     public function startProcess($offers = 0, $limit = 0, $countProd = 0, $EmptyFields = null) {
@@ -184,7 +184,7 @@ class ImportBootstrap {
 
     /**
      * Make DB Backup file before start Import. Destination folder is "./application/backups"
-     * @return bool
+     * @return ImportBootstrap
      * @author Kaero
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
      */

@@ -33,7 +33,7 @@ class DemodataDirector {
 
     /**
      * Verify dependences
-     * @return type
+     * @return boolean
      */
     public function install() {
         foreach ($this->demodata->children() as $demodataName => $node) {

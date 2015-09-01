@@ -14,7 +14,7 @@ if (!defined('BASEPATH')) {
  * @param string|boolean $title
  * @param string $class
  * @param boolean $ret
- * @return type
+ * @return null|string
  */
 function showMessage($message, $title = FALSE, $class = '', $ret = false) {
     $del = array("'", '"');
@@ -50,6 +50,7 @@ function pjax($url, $selector = '#mainContent') {
 
 /**
  * Redirect function
+ * @param string $location
  */
 function ajax_redirect($location) {
     echo lang('Redirecting') . ': <b>' . $location . '</b> ' . "<script type='text/javascript'> setTimeout(\"location.href = '" . $location . "';\",50); </script>";
@@ -59,6 +60,9 @@ function ajax_redirect($location) {
  * Load content to DIV
  */
 
+/**
+ * @param string $div_id
+ */
 function updateDiv($div_id, $url) {
     echo "<script type=\"text/javascript\"> ajax_div('" . $div_id . "','" . $url . "'); </script>";
 }
@@ -75,6 +79,9 @@ function ajax_div($div_id, $url) {
  * Execute java script code
  */
 
+/**
+ * @param string $code
+ */
 function jsCode($code) {
     echo "<script type=\"text/javascript\"> " . $code . " </script>";
 }

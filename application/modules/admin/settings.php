@@ -362,7 +362,7 @@ class Settings extends BaseAdminController {
 
     /**
      *
-     * @param type $paramName
+     * @param string $paramName
      * @param type $siteinfo
      */
     protected function processLogoOrFavicon($paramName, &$siteinfo) {

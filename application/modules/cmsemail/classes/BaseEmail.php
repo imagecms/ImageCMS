@@ -70,7 +70,7 @@ class BaseEmail extends ParentEmail {
     /**
      * send email
      * @param type $send_to
-     * @param type $patern_name
+     * @param string $patern_name
      * @param type $variables
      * @return boolean
      */

@@ -3,7 +3,6 @@
 use CI;
 use CMSFactory\Events;
 use CMSFactory\assetManager as AssetManager;
-use CMSFactory\ExternalTabs\ExternalTabs;
 use smart_filter\classes\Filter;
 use Category\BaseCategory;
 

@@ -218,7 +218,8 @@ class AdminMenuBuilder
     /**
      * Get menu array
      * @param string $menu_name - menu name
-     * @return array
+     * @param string|null $menu_type
+     * @return string
      */
     public static function getMenu($menu_name, $menu_type) {
 

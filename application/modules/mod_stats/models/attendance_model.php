@@ -12,7 +12,7 @@ class Attendance_model extends CI_Model {
 
     /**
      * Common attendance by unique users per day(month|year)
-     * @param array $params
+     * @param array $params_
      *  - interval (string) day|month|year
      *  - dateFrom (string) YYYY-MM-DD
      *  - dateTo (string) YYYY-MM-DD

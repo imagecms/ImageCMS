@@ -107,7 +107,7 @@ class Orders_model extends CI_Model {
 
     /**
      * Information about orders grouped by users
-     * @param arra $params standart params
+     * @param arra $params_ standart params
      * @return boolean|array
      *  - orders_count
      *  - paid

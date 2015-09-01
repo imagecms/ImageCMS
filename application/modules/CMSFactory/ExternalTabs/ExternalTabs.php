@@ -65,7 +65,7 @@ class ExternalTabs {
 
     /**
      *
-     * @param type $methodName
+     * @param string $methodName
      * @param array $arguments
      */
     protected function runForAllTabs($methodName, array $arguments = []) {

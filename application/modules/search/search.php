@@ -431,6 +431,9 @@ class Search extends MY_Controller {
         return sha1($this->hash_prefix . $this->table . serialize($this->order_by) . serialize($where) . $this->row_count . serialize($this->select));
     }
 
+    /**
+     * @return integer
+     */
     private function hash_data($hash = '') {
         if ($hash == '') {
             $hash = $this->query_hash;

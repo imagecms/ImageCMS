@@ -41,7 +41,7 @@ class Discount_model_admin extends CI_Model {
     /**
      * Change discount status active or not
      * @param int $id
-     * @return string|boolean
+     * @return boolean
      */
     public function changeActive($id) {
         $discount = $this->db->where('id', $id)->get('mod_shop_discounts')->row();
@@ -275,7 +275,7 @@ class Discount_model_admin extends CI_Model {
     /**
      * Get username and email by id
      * @param int $id
-     * @return string|boolean
+     * @return string|false
      */
     public function getUserNameAndEmailById($id) {
 

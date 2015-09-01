@@ -10,6 +10,10 @@ class Base extends CI_Model {
         parent::__construct();
     }
 
+    /**
+     * @param string $module
+     * @param string $order_by
+     */
     function get($item_id, $status = 0, $module, $limit = 999999, $order_by) {
         $this->db->where('item_id', $item_id);
         $this->db->where('status', $status);

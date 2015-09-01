@@ -1,7 +1,5 @@
 <?php
 
-use CMSFactory\assetManager as AssetManager;
-
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }

@@ -80,7 +80,7 @@ class Admin extends MY_Controller {
      *
      * @param string
      * @access public
-     * @return bool
+     * @return boolean|null
      */
     public function delete_cache() {
         //cp_check_perm('cache_clear');

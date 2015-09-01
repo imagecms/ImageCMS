@@ -125,7 +125,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
 
     /**
      * get most viewed wishlists
-     * @param type $limit
+     * @param integer $limit
      * @return mixed
      */
     public function getMostViewedWishLists($limit = 10) {
@@ -163,7 +163,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
 
     /**
      * get most popylar items
-     * @param type $limit
+     * @param integer $limit
      * @return mixed
      */
     public function getMostPopularItems($limit = 10) {

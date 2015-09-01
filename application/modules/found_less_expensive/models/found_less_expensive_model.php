@@ -26,7 +26,7 @@ class Found_less_expensive_model extends CI_Model {
     /**
      * Get count of all messages about found less expensive
      * @param type $status
-     * @return type
+     * @return integer
      */
     public function getCountAll($status){
         $res = $this->db->where_in('status',$status)->get('mod_found_less_expensive')->result_array();

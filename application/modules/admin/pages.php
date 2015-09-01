@@ -606,6 +606,7 @@ class Pages extends BaseAdminController {
      * Delete page
      *
      * @access public
+     * @param string $page_id
      */
     public function delete($page_id, $show_messages = TRUE) {
 
@@ -777,6 +778,7 @@ class Pages extends BaseAdminController {
     /**
      * Copy content field on page copy
      * @param $page_id
+     * @param string $original_id
      */
     protected function _copy_content_fields($original_id, $new_id) {
 

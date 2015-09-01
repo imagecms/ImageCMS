@@ -523,8 +523,8 @@ class ParentWishlist extends \MY_Controller {
     /**
      * render user wish list edit page
      *
-     * @param $wish_list_id
-     * @param $userID
+     * @param integer $wish_list_id
+     * @param integer $userID
      * @access public
      * @author DevImageCms
      * @copyright (c) 2013, ImageCMS
@@ -629,7 +629,7 @@ class ParentWishlist extends \MY_Controller {
      * @access public
      * @author DevImageCms
      * @copyright (c) 2013, ImageCMS
-     * @return boolean
+     * @return integer
      */
     public function getUserWishListItemsCount($user_id) {
         return $this->wishlist_model->getUserWishListItemsCount($user_id);

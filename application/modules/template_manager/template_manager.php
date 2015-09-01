@@ -82,7 +82,7 @@ class template_manager extends \MY_Controller {
     /**
      * Get componeet object
      * @param type $handler - component class name
-     * @return TComponent
+     * @return null|template_manager\classes\TComponent
      */
     public function getComponent($handler) {
         $template = new \template_manager\classes\Template($this->templateName);

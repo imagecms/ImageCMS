@@ -25,6 +25,7 @@
 
 /**
  * The main .po to .mo function
+ * @param string $input
  */
 function phpmo_convert($input, $output = false) {
     //    var_dumps_exit($input);

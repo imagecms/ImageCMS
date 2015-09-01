@@ -11,6 +11,10 @@ class ZeroFiller {
     const MONTH = 2;
     const YEAR = 3;
 
+    /**
+     * @param string $timeKey
+     * @param string $valueKey
+     */
     public static function fill(array $values, $timeKey, $valueKey, $dateRange) {
 
         switch ($dateRange) {

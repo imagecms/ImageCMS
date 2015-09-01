@@ -51,7 +51,7 @@ class DataCollector {
 
     /**
      * Similar to addData, but adds rows to existing "product"
-     * @param type $table
+     * @param string $table
      * @param array $data
      * @param type $key
      */

@@ -417,6 +417,9 @@ class Cache {
         return $n;
     }
 
+    /**
+     * @param string $key
+     */
     public function generatekey($key) {
         return md5($key);
     }

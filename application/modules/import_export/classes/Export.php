@@ -323,8 +323,7 @@ class Export {
 
     /**
      * Getting additional images
-     * @param array $list
-     * @return array
+     * @return string|null
      * @author Oleh
      */
     public function addImg($v) {

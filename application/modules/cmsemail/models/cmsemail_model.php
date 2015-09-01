@@ -31,7 +31,6 @@ class Cmsemail_model extends \CI_Model {
 
     /**
      * Save settings
-     * @param array $settings
      * @return boolean
      */
     public function setSettings($data) {
@@ -80,6 +79,9 @@ class Cmsemail_model extends \CI_Model {
         }
     }
 
+    /**
+     * @param string $patern_name
+     */
     public function getPaternSettings($patern_name) {
         $locale = \MY_Controller::getCurrentLocale();
         $query = $this->db->select('*, mod_email_paterns.id as id')

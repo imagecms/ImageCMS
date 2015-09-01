@@ -317,6 +317,9 @@ class Categories extends BaseAdminController {
         $this->cache->delete_all();
     }
 
+    /**
+     * @param string $str
+     */
     public function category_exists($str) {
         return $this->lib_category->get_category_by('path_url', $str);
     }

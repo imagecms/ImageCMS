@@ -162,6 +162,10 @@ class Filter extends MY_Controller {
 
     // Создание формы с полей группы модуля cfcm.
     // $group_id - ID cfcm группы или список нужных полей через запятую.
+
+    /**
+     * @param integer $group_id
+     */
     public function create_filter_form($group_id, $by_fields = FALSE) {
         $this->load->module('forms');
         $group = $this->db->get_where('content_field_groups', array('id' => $group_id))->row();

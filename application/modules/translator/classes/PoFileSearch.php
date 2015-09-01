@@ -130,6 +130,9 @@ class PoFileSearch {
         return $this->searchResult;
     }
 
+    /**
+     * @param string $entity_type
+     */
     private function scanSearchDir($entity_type, $path) {
         foreach (new \DirectoryIterator($path) as $entity) {
 
@@ -147,6 +150,9 @@ class PoFileSearch {
         }
     }
 
+    /**
+     * @param string $entity_name
+     */
     private function searchLang($origin, $data, $entity_type, $entity_name, $language) {
         switch ($this->searchType) {
             case 'all':

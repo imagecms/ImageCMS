@@ -558,7 +558,7 @@ class Widgets_manager extends BaseAdminController {
     }
 
     /**
-     * @param $pathToFile - path to widget_info.php file
+     * @param string $pathToFile - path to widget_info.php file
      * @return array
      */
     private function getWidgetsArray($pathToFile) {

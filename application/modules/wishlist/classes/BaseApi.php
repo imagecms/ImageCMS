@@ -226,7 +226,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
     /**
      * update wiish list
      *
-     * @return mixed
+     * @return false|null
      */
     public function updateWL() {
         $id = $this->input->post('WLID');

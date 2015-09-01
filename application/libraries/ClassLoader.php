@@ -108,6 +108,9 @@ class ClassLoader {
         }
     }
 
+    /**
+     * @param string $className
+     */
     private function lookInAliases($className) {
         // getting first element of namespace path and search it in namespaces
         list($namespace, $fileName) = $this->splitClassName($className);

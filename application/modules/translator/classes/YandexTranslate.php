@@ -54,6 +54,9 @@ class YandexTranslate {
         $this->yandexApiKey = $settings['YandexApiKey'] ? $settings['YandexApiKey'] : '';
     }
 
+    /**
+     * @param string $url
+     */
     private function open_https_url($url, $refer = "") {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -71,6 +74,9 @@ class YandexTranslate {
         return $result;
     }
 
+    /**
+     * @param string $translationLanguage
+     */
     public function translate($translationLanguage, $textToTranslate = "", $sourceLanguage = FALSE) {
         $this->sourceLanguage = $sourceLanguage ? $sourceLanguage : $this->sourceLanguage;
         if ($translationLanguage) {

@@ -72,7 +72,7 @@ class Search_model extends CI_Model {
 
     /**
      * Get brands in search results
-     * @param type $param
+     * @param type $params
      * @return boolean
      */
     public function analysisBrands($whereQuery = '', $params) {
@@ -102,7 +102,7 @@ class Search_model extends CI_Model {
 
     /**
      * Get categories in search results
-     * @param type $param
+     * @param type $params
      * @return boolean
      */
     public function analysisCategories($whereQuery = '', $params) {

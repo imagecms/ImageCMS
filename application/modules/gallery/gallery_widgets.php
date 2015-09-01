@@ -104,6 +104,9 @@ class Gallery_Widgets extends MY_Controller {
         return $this->template->fetch('file:' . $file);
     }
 
+    /**
+     * @param string $viewName
+     */
     public function render($viewName, array $data = array(), $return = false) {
         if (!empty($data)) {
             $this->template->add_array($data);

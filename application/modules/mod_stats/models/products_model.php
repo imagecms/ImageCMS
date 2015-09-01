@@ -25,7 +25,7 @@ class Products_model extends \CI_Model {
 
     /**
      * Returns counts products in each brand
-     * @param array $brands (optional) brandsIds
+     * @param array $brandIds (optional) brandsIds
      * @param boolean $uniqueProducts (optional, default FALSE) if TRUE, then method
      * will return count of unique products. FALSE will give all.
      * @return array (brandId, brandName, productsCount)

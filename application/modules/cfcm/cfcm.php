@@ -149,6 +149,9 @@ class Cfcm extends MY_Controller {
         $this->display_tpl($tpl);
     }
 
+    /**
+     * @param string|boolean $item_type
+     */
     public function get_form_attributes($fields, $item_id, $item_type) {
 
         $this->db->where('item_id', $item_id);
@@ -299,6 +302,9 @@ class Cfcm extends MY_Controller {
 
     // Save fields data in DB
 
+    /**
+     * @param string $type
+     */
     private function update_fields_data($item_id, $data, $type) {
 
         if (count($data) > 0) {

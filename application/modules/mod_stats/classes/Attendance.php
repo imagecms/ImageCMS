@@ -43,7 +43,6 @@ class Attendance {
 
     /**
      *
-     * @param string $url
      */
     public function add($coreData, $userId) {
         if (FALSE == $typeId = $this->getTypeId($coreData['data_type'])) {

@@ -150,6 +150,8 @@ class Gallery_m extends CI_Model {
 
     /**
      * Get Album info
+     * @param integer $limit
+     * @param integer $page
      */
     public function get_album($id = 0, $include_images = TRUE, $limit, $page, $locale = null) {
         if (null === $locale) {
@@ -297,6 +299,9 @@ class Gallery_m extends CI_Model {
         }
     }
 
+    /**
+     * @param string $table
+     */
     public function joinI18n($con, $table, $locale) {
         $con->join($table . '_i18n', $table . "_i18n.id = " . $table . ".id and " . $table . "_i18n.locale = '" . $locale . "'", 'left');
         return $con;

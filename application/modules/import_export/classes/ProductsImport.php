@@ -563,7 +563,7 @@ class ProductsImport extends BaseImport {
      * Update Shop Products Categories
      * @param array $arg Processed arguments list
      * @param int $productId Product Id for alias
-     * @return bool
+     * @return boolean|null
      * @author Kaero
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
      */
@@ -662,8 +662,6 @@ class ProductsImport extends BaseImport {
 
     /**
      * Process Brands
-     * @param int $key
-     * @param array $node
      * @return type
      * @author Kaero
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>

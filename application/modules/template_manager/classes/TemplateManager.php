@@ -126,8 +126,8 @@ class TemplateManager {
     /**
      * Fires event "postTemplateInstall"
      *
-     * @param type $template
-     * @return boolean
+     * @param Template $template
+     * @return boolean|null
      * @throws Exception
      */
     public function setTemplate(Template $template, $installDemodata = FALSE, $installDemoArchive = FALSE) {
@@ -255,6 +255,9 @@ class TemplateManager {
         return FALSE;
     }
 
+    /**
+     * @param string $file
+     */
     public function query_from_file($file) {
         $string_query = rtrim($file, "\n;");
 
@@ -271,6 +274,9 @@ class TemplateManager {
         }
     }
 
+    /**
+     * @param string $templateName
+     */
     private function copyUploads($templateName) {
         $templateUploadsFolder = "./templates/{$templateName}/uploads";
 
@@ -373,6 +379,9 @@ class TemplateManager {
         return $array;
     }
 
+    /**
+     * @param string $url
+     */
     protected function getContents($url) {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HEADER, 0);

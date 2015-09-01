@@ -53,7 +53,7 @@ class Seoexpert_model extends CI_Model {
     /**
      * Get categories by ID, NAME
      * @param string $term id,name
-     * @param type $limit limit for results
+     * @param integer $limit limit for results
      * @return boolean|array
      */
     public function getCategoriesByIdName($term, $limit = 7) {
@@ -236,7 +236,7 @@ class Seoexpert_model extends CI_Model {
 
     /**
      * Deinstall
-     * @return boolean
+     * @return boolean|null
      */
     public function deinstall() {
 

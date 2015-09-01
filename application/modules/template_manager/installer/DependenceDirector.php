@@ -33,7 +33,7 @@ class DependenceDirector {
 
     /**
      * Verify dependences
-     * @return type
+     * @return boolean
      */
     public function verify($installDemodata = FALSE) {
         foreach ($this->dependicies as $key => $node) {

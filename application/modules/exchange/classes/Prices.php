@@ -49,6 +49,10 @@ class Prices extends ExchangeBase {
         $this->updateBatch('shop_product_variants', $data, 'external_id');
     }
 
+    /**
+     * @param string $externalId
+     * @param string $purchasePrice
+     */
     protected function setPurchacePrice($externalId, $purchasePrice) {
         $fieldId = ModuleSettings::ofModule('exchange')->get('purchcePriceFieldId');
         $product = \SProductsQuery::create()->findOneByExternalId($externalId);
