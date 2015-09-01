@@ -270,7 +270,7 @@ class assetManager {
      * fetch public view
      * @param string $tpl Template file name
      * @param string $moduleName
-     * @return void
+     * @return string
      * @access public
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
@@ -289,7 +289,7 @@ class assetManager {
      * fetch admin view
      * @param string $tpl Template file name
      * @param boolean $fetchLangsTpl
-     * @return void
+     * @return string
      * @access public
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
