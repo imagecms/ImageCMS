@@ -896,16 +896,16 @@
         },
         {
             "name": "true/punycode",
-            "version": "2.0.0",
+            "version": "v2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/true/php-punycode.git",
-                "reference": "13d3aada7d7d5d1812316031d8d85f5d97178c4e"
+                "reference": "b672918d992b84f8016bbe353a42516928393c63"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/true/php-punycode/zipball/13d3aada7d7d5d1812316031d8d85f5d97178c4e",
-                "reference": "13d3aada7d7d5d1812316031d8d85f5d97178c4e",
+                "url": "https://api.github.com/repos/true/php-punycode/zipball/b672918d992b84f8016bbe353a42516928393c63",
+                "reference": "b672918d992b84f8016bbe353a42516928393c63",
                 "shasum": ""
             },
             "require": {
@@ -938,7 +938,7 @@
                 "idna",
                 "punycode"
             ],
-            "time": "2015-06-24 09:36:39"
+            "time": "2015-09-01 14:53:31"
         },
         {
             "name": "tubalmartin/cssmin",
@@ -1372,16 +1372,16 @@
         },
         {
             "name": "hoa/core",
-            "version": "2.15.07.07",
+            "version": "2.15.09.01",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hoaproject/Core.git",
-                "reference": "df1f75e6a98d52b879bf36bc1ea8744433458f09"
+                "reference": "020d38ca75b2164ba2651127542748f8d4263bad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hoaproject/Core/zipball/df1f75e6a98d52b879bf36bc1ea8744433458f09",
-                "reference": "df1f75e6a98d52b879bf36bc1ea8744433458f09",
+                "url": "https://api.github.com/repos/hoaproject/Core/zipball/020d38ca75b2164ba2651127542748f8d4263bad",
+                "reference": "020d38ca75b2164ba2651127542748f8d4263bad",
                 "shasum": ""
             },
             "require": {
@@ -1393,9 +1393,7 @@
             },
             "suggest": {
                 "ext-mbstring": "ext/mbstring must be present (or a third implementation).",
-                "hoa/console": "To use the `hoa` script.",
-                "hoa/dispatcher": "To use the `hoa` script.",
-                "hoa/router": "To use the `hoa` script."
+                "hoa/cli": "To use the `hoa` script."
             },
             "bin": [
                 "Bin/hoa"
@@ -1440,7 +1438,7 @@
                 "parameter",
                 "protocol"
             ],
-            "time": "2015-07-07 13:18:26"
+            "time": "2015-09-01 14:08:10"
         },
         {
             "name": "hoa/file",

@@ -1,5 +1,11 @@
 <?php
 
+use Category\CategoryApi;
+use CMSFactory\assetManager;
+use CMSFactory\Events;
+use Currency\Currency;
+use Propel\Runtime\Exception\PropelException;
+
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /**
@@ -34,13 +40,18 @@ class Ymarket extends ShopController {
         $this->load->model('ymarket_products_fields_model');
     }
 
+    /**
+     *
+     * @param boolean $ignoreSettings
+     * @param integer $type
+     */
     private function init($ignoreSettings = false, $type) {
         if ($ignoreSettings) {
-            $this->categories = \Category\CategoryApi::getInstance()->getCategory();
+            $this->categories = CategoryApi::getInstance()->getCategory();
             $this->brandIds = [];
         } else {
             $this->settings = $this->ymarket_model->init($type);
-            $this->categories = \Category\CategoryApi::getInstance()->getCategory($this->settings['unserCats']);
+            $this->categories = CategoryApi::getInstance()->getCategory($this->settings['unserCats']);
             $this->brandIds = $this->settings['unserBrands'];
         }
     }
@@ -56,6 +67,9 @@ class Ymarket extends ShopController {
 
     /**
      * Generates an array of data to create a body xml
+     *
+     * @param boolean $ignoreSettings
+     * @param boolean $flagPriceUa
      */
     public function index($ignoreSettings = false, $flagPriceUa = false) {
         if ($flagPriceUa) {
@@ -67,15 +81,18 @@ class Ymarket extends ShopController {
         }
     }
 
+    /**
+     *
+     * @param boolean $ignoreSettings
+     */
     private function priceuaCore($ignoreSettings = false) {
         $ci = ShopCore::$ci;
 
-        $currencies = \Currency\Currency::create()->getMainCurrency();
+        $currencies = Currency::create()->getMainCurrency();
         $this->mainCurr['id'] = $currencies->getId();
         $this->mainCurr['rate'] = number_format($currencies->getRate(), 3);
         $this->mainCurr['code'] = $currencies->getCode();
 
-        //        $params = $this->getProperties($variants);
         $params = [];
         $productFields = [];
 
@@ -88,16 +105,20 @@ class Ymarket extends ShopController {
         $infoXml['base_url'] = $ci->config->item('base_url');
         $infoXml['mainCurr'] = $this->mainCurr;
 
-        \CMSFactory\assetManager::create()
-            ->setData('full', $ignoreSettings)
-            ->setData('infoXml', $infoXml)
-            ->render('priceua', true);
+        assetManager::create()
+                ->setData('full', $ignoreSettings)
+                ->setData('infoXml', $infoXml)
+                ->render('priceua', true);
     }
 
+    /**
+     *
+     * @param boolean $ignoreSettings
+     */
     private function ymarketCore($ignoreSettings = false) {
         $ci = ShopCore::$ci;
 
-        $currencies = \Currency\Currency::create()->getCurrencies();
+        $currencies = Currency::create()->getCurrencies();
 
         $checkRUB = false;
         $rates = [];
@@ -162,16 +183,16 @@ class Ymarket extends ShopController {
         $infoXml['currencyCode'] = $this->currencies;
         $infoXml['mainCurr'] = $this->mainCurr;
 
-        \CMSFactory\assetManager::create()
-            ->setData('full', $ignoreSettings)
-            ->setData('infoXml', $infoXml)
-            ->render('yandex', true);
+        assetManager::create()
+                ->setData('full', $ignoreSettings)
+                ->setData('infoXml', $infoXml)
+                ->render('yandex', true);
     }
 
     /**
      * Generate offers data
-     * @param $ignoreSettings
-     * @param $productFields
+     * @param boolean $ignoreSettings
+     * @param array $productFields
      */
     private function formOffers($ignoreSettings, $productFields) {
         $variants = $this->ymarket_model->getVariants($this->settings['unserCats'], $ignoreSettings, $this->brandIds);
@@ -224,9 +245,9 @@ class Ymarket extends ShopController {
     }
 
     /**
-     * @param $products - products collection
+     * @param SProductVariants $products - products collection
      * @return array
-     * @throws \Propel\Runtime\Exception\PropelException
+     * @throws PropelException
      */
     public function getProperties($products) {
         $productsIds = [];
@@ -234,20 +255,20 @@ class Ymarket extends ShopController {
             $productsIds[] = $product->getProductId();
         }
         $properties = SPropertiesQuery::create()
-            ->joinSProductPropertiesData()
-            ->joinWithI18n(MY_Controller::getCurrentLocale())
-            ->select(array('SProductPropertiesData.ProductId', 'SProductPropertiesData.Value', 'SPropertiesI18n.Name'))
-            ->where('SProductPropertiesData.ProductId IN ?', $productsIds)
-            ->where('SProductPropertiesData.Locale = ?', MY_Controller::getCurrentLocale())
-            ->withColumn('SProductPropertiesData.ProductId', 'ProductId')
-            ->withColumn('SProductPropertiesData.Value', 'Value')
-            ->withColumn('SPropertiesI18n.Name', 'Name')
-            ->where('SProperties.Active = ?', 1)
-            ->where("SProductPropertiesData.Value != ?", '')
-            ->where('SProperties.ShowOnSite = ?', 1)
-            ->orderByPosition()
-            ->find()
-            ->toArray();
+                ->joinSProductPropertiesData()
+                ->joinWithI18n(MY_Controller::getCurrentLocale())
+                ->select(array('SProductPropertiesData.ProductId', 'SProductPropertiesData.Value', 'SPropertiesI18n.Name'))
+                ->where('SProductPropertiesData.ProductId IN ?', $productsIds)
+                ->where('SProductPropertiesData.Locale = ?', MY_Controller::getCurrentLocale())
+                ->withColumn('SProductPropertiesData.ProductId', 'ProductId')
+                ->withColumn('SProductPropertiesData.Value', 'Value')
+                ->withColumn('SPropertiesI18n.Name', 'Name')
+                ->where('SProperties.Active = ?', 1)
+                ->where("SProductPropertiesData.Value != ?", '')
+                ->where('SProperties.ShowOnSite = ?', 1)
+                ->orderByPosition()
+                ->find()
+                ->toArray();
         $productsData = [];
         array_map(
             function ($property) use (&$productsData) {
@@ -264,13 +285,13 @@ class Ymarket extends ShopController {
         );
         $productsData = array_map(
             function ($property) {
-                return array_map(
-                    function ($propertyValues) {
-                        $propertyValues['value'] = implode(', ', $propertyValues['value']);
-                        return $propertyValues;
-                    },
-                    $property
-                );
+                    return array_map(
+                        function ($propertyValues) {
+                            $propertyValues['value'] = implode(', ', $propertyValues['value']);
+                            return $propertyValues;
+                        },
+                        $property
+                    );
             },
             $productsData
         );
@@ -278,7 +299,7 @@ class Ymarket extends ShopController {
     }
 
     /**
-     *
+     * @param SProductVariants $variants
      * @return array
      */
     private function getAdditionalImagesBYVariants($variants) {
@@ -291,7 +312,7 @@ class Ymarket extends ShopController {
         $productsData = [];
         array_map(
             function ($image) use (&$productsData) {
-                $productsData[$image['product_id']][] = productImageUrl('products/additional/' . $image['image_name']);
+                    $productsData[$image['product_id']][] = productImageUrl('products/additional/' . $image['image_name']);
             },
             $images
         );
@@ -321,13 +342,13 @@ class Ymarket extends ShopController {
     }
 
     public static function adminAutoload() {
-        \CMSFactory\Events::create()
-            ->onShopProductPreUpdate()
-            ->setListener('_extendYmarketPageAdmin');
+        Events::create()
+                ->onShopProductPreUpdate()
+                ->setListener('_extendYmarketPageAdmin');
 
-        \CMSFactory\Events::create()
-            ->onShopProductUpdate()
-            ->setListener('_extendYmarketPageAdmin');
+        Events::create()
+                ->onShopProductUpdate()
+                ->setListener('_extendYmarketPageAdmin');
     }
 
     /**
@@ -358,21 +379,26 @@ class Ymarket extends ShopController {
             $fields = $model->getFields($productId);
             $fields['manufacturer_warranty'] = self::fromISO8601ToMonths($fields['manufacturer_warranty']);
             $fields['seller_warranty'] = self::fromISO8601ToMonths($fields['seller_warranty']);
-            $view = \CMSFactory\assetManager::create()
-                ->setData(
-                    array(
-                        'countries' => $countries,
-                        'months' => $months,
-                        'fields' => $fields,
+            $view = assetManager::create()
+                    ->setData(
+                        array(
+                                'countries' => $countries,
+                                'months' => $months,
+                                'fields' => $fields,
+                            )
                     )
-                )
-                ->registerScript('script')
-                ->fetchAdminTemplate('products_extend');
-            \CMSFactory\assetManager::create()
-                ->appendData('moduleAdditions', $view);
+                    ->registerScript('script')
+                    ->fetchAdminTemplate('products_extend');
+            assetManager::create()
+                    ->appendData('moduleAdditions', $view);
         }
     }
 
+    /**
+     *
+     * @param integer|float $months
+     * @return string
+     */
     public static function toISO8601Time($months) {
         if (!$months) {
             return 'true';
@@ -385,6 +411,11 @@ class Ymarket extends ShopController {
         return $time;
     }
 
+    /**
+     *
+     * @param string $iso
+     * @return string
+     */
     public static function fromISO8601ToMonths($iso) {
         if (in_array($iso, ['true', 'false'])) {
             return $iso;
