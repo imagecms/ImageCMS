@@ -5,14 +5,15 @@ namespace admin_menu\classes;
 class MenuCallback {
 
     private function __construct() {
-        
+
     }
 
     private static $instance;
 
     public static function getInstance() {
-        if (is_null(self::$instance))
+        if (null === self::$instance) {
             self::$instance = new self;
+        }
         return self::$instance;
     }
 

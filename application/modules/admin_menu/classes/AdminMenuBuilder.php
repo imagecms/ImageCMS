@@ -18,25 +18,25 @@ class AdminMenuBuilder
      * Full menu file name
      * @var string
      */
-    static $FULL_MENU = 'full';
+    public static $FULL_MENU = 'full';
 
     /**
      * Corporate menu name
      * @var string
      */
-    static $CORPORATE_MENU = 'corporate';
+    public static $CORPORATE_MENU = 'corporate';
 
     /**
      * Professional menu name
      * @var string
      */
-    static $PROFESSIONAL_MENU = 'professional';
+    public static $PROFESSIONAL_MENU = 'professional';
 
     /**
      * Premium menu name
      * @var string
      */
-    static $PREMIUM_MENU = 'premium';
+    public static $PREMIUM_MENU = 'premium';
 
     /**
      * Menu content
@@ -56,8 +56,8 @@ class AdminMenuBuilder
      */
     private static $CI;
 
-    public static function getInstance()
-    {
+    public static function getInstance() {
+
         static $inst = null;
         if ($inst === null) {
             $inst = new self();
@@ -67,13 +67,12 @@ class AdminMenuBuilder
         return $inst;
     }
 
-    private function __construct()
-    {
+    private function __construct() {
 
     }
 
-    public static function getItemName($name)
-    {
+    public static function getItemName($name) {
+
         $curentLocale = \CI::$APP->config->item('language');
         \MY_Lang::setLang($curentLocale);
         $lang = new \MY_Lang();
@@ -90,8 +89,8 @@ class AdminMenuBuilder
      * Save cms menu data
      * @param array $data
      */
-    public static function save($data)
-    {
+    public static function save($data) {
+
         if ($data['corporate']) {
             self::saveOneMenu($data['corporate'], self::$CORPORATE_MENU);
         }
@@ -110,8 +109,8 @@ class AdminMenuBuilder
      * @param array $data - one menu data
      * @param string $menu_name - menu file name
      */
-    private static function saveOneMenu($data, $menu_name)
-    {
+    private static function saveOneMenu($data, $menu_name) {
+
         $menu_export = var_export($data, TRUE);
         $menu_export = str_replace("stdClass::__set_state(", '', $menu_export);
         $menu_export = str_replace("))", ')', $menu_export);
@@ -129,8 +128,8 @@ class AdminMenuBuilder
      * Save taiffs name
      * @param array $data - menu data
      */
-    public static function saveTariffsMenus($data, $type)
-    {
+    public static function saveTariffsMenus($data, $type) {
+
         foreach ($data as $tariff_id => $tariffMenu) {
             $menuName = "Tariff_{$tariff_id}_menu";
             self::saveOneTariffMenu($tariffMenu, $menuName, $type);
@@ -142,8 +141,8 @@ class AdminMenuBuilder
      * @param array $data - one menu data
      * @param string $menu_name - menu file name
      */
-    private static function saveOneTariffMenu($data, $menu_name, $type)
-    {
+    private static function saveOneTariffMenu($data, $menu_name, $type) {
+
         $menu_export = var_export($data, TRUE);
         $menu_export = str_replace("stdClass::__set_state(", '', $menu_export);
         $menu_export = str_replace("))", ')', $menu_export);
@@ -157,8 +156,8 @@ class AdminMenuBuilder
      * Get menu folder path
      * @return string
      */
-    public static function getMenuPath()
-    {
+    public static function getMenuPath() {
+
         if (MAINSITE) {
             self::$MENU_PATH = MAINSITE . '/application/modules/admin_menu/menus/';
         } else {
@@ -173,15 +172,15 @@ class AdminMenuBuilder
      * @param string $type - menu file name
      * @return string
      */
-    public static function getMenuList($type)
-    {
+    public static function getMenuList($type) {
+
         self::$CI = &get_instance();
         self::$MENU_LIST = '';
         \MY_Lang::setLang('en_US');
         $lang = new \MY_Lang();
         $lang->load('admin_menu');
 
-        $menu = include_once(self::getMenuPath() . "{$type}.php");
+        $menu = include_once self::getMenuPath() . "{$type}.php";
 
         \MY_Lang::setLang(self::$CI->config->item('language'));
         $lang->load('admin_menu');
@@ -198,8 +197,8 @@ class AdminMenuBuilder
      * @param array $item - one menu item
      * @param string $parent - parent name
      */
-    private static function renderMenuItem($item, $parent = '')
-    {
+    private static function renderMenuItem($item, $parent = '') {
+
         self::$CI = &get_instance();
         $data = array('item' => $item, 'parent' => $parent);
         self::$MENU_LIST .= self::$CI->template->fetch('file:' . dirname(__DIR__) . '/assets/menu/item.tpl', $data);
@@ -221,9 +220,9 @@ class AdminMenuBuilder
      * @param string $menu_name - menu name
      * @return array
      */
-    public static function getMenu($menu_name, $menu_type)
-    {
-        $menu = include(AdminMenuBuilder::getMenuPath() . "{$menu_type}/{$menu_name}.php");
+    public static function getMenu($menu_name, $menu_type) {
+
+        $menu = include AdminMenuBuilder::getMenuPath() . "{$menu_type}/{$menu_name}.php";
         $menu = self::appendModulesMenus($menu);
         $menu = self::removeMenuItems($menu);
 
@@ -235,8 +234,8 @@ class AdminMenuBuilder
      * @param array $menu - menu items array
      * @return array
      */
-    private static function removeMenuItems($menu)
-    {
+    private static function removeMenuItems($menu) {
+
         foreach (self::$REMOVED_ITEMS as $item) {
             if (is_array($item)) {
                 foreach ($item as $item_pos => $sub_items) {
@@ -257,8 +256,8 @@ class AdminMenuBuilder
      * @param array $menu - carrent menu array
      * @return array
      */
-    private static function appendModulesMenus($menu)
-    {
+    private static function appendModulesMenus($menu) {
+
         $modules = self::prepareModulesMenusData();
         foreach ($modules as $item) {
             foreach ($item as $position => $module_item) {
@@ -273,26 +272,26 @@ class AdminMenuBuilder
      * Prepare modules menus data
      * @return array
      */
-    private static function prepareModulesMenusData()
-    {
-//        self::$CI = &get_instance();
-//        $modules_dir = realpath('./application/modules');
-//
-//        $modules = scandir($modules_dir);
-//        $menus_data = array();
-//        foreach ($modules as $module) {
-//            $module_file = "{$modules_dir}/{$module}/{$module}.php";
-//
-//            if (is_file($module_file) && $module != 'admin') {
-//                $lang = new \MY_Lang();
-//                $lang->load($module);
-//                include_once($module_file);
-//                if (method_exists($module, 'addMenu')) {
-//                    $menus_data[] = $module::addMenu();
-//                }
-//            }
-//        }
-//        return $menus_data;
+    private static function prepareModulesMenusData() {
+
+        //        self::$CI = &get_instance();
+        //        $modules_dir = realpath('./application/modules');
+        //
+        //        $modules = scandir($modules_dir);
+        //        $menus_data = array();
+        //        foreach ($modules as $module) {
+        //            $module_file = "{$modules_dir}/{$module}/{$module}.php";
+        //
+        //            if (is_file($module_file) && $module != 'admin') {
+        //                $lang = new \MY_Lang();
+        //                $lang->load($module);
+        //                include_once($module_file);
+        //                if (method_exists($module, 'addMenu')) {
+        //                    $menus_data[] = $module::addMenu();
+        //                }
+        //            }
+        //        }
+        //        return $menus_data;
         return [];
     }
 
@@ -300,8 +299,8 @@ class AdminMenuBuilder
      * Set item(s) to remove
      * @param int|array $item_position - item position or array of item sub position to remove
      */
-    public static function removeItemFromMenu($item_position)
-    {
+    public static function removeItemFromMenu($item_position) {
+
         self::$REMOVED_ITEMS[] = $item_position;
     }
 

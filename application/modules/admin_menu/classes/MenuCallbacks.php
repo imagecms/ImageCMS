@@ -11,8 +11,9 @@ class MenuCallbacks {
     private static $instance;
 
     public static function getInstance() {
-        if (is_null(self::$instance))
+        if (null === self::$instance) {
             self::$instance = new self;
+        }
         return self::$instance;
     }
 
@@ -39,7 +40,7 @@ class MenuCallbacks {
      */
     public function getNewCallbacksCount($data = array()) {
 
-//        SELECT `id` FROM `shop_callbacks_statuses` WHERE `is_default`=1;
+        //        SELECT `id` FROM `shop_callbacks_statuses` WHERE `is_default`=1;
 
         if (SHOP_INSTALLED) {
             if (count($data)) {
@@ -82,9 +83,9 @@ class MenuCallbacks {
                 $waitingForModerationCount = array_shift($data);
             } else {
                  $waitingForModerationCount = \CI::$APP->load->module('comments')->getWaitingForMaderationCount();
-//                $waitingForModerationCount = $waitingForModeration ?
+                //                $waitingForModerationCount = $waitingForModeration ?
             }
-            return ($waitingForModerationCount > 0 ) ? '<span class="menu-counter">' . $waitingForModerationCount . '</span>': '';
+            return ($waitingForModerationCount > 0 ) ? '<span class="menu-counter">' . $waitingForModerationCount . '</span>' : '';
         }
         return '';
     }

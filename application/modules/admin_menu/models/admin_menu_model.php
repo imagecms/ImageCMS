@@ -11,34 +11,31 @@ class Admin_menu_model extends CI_Model {
      */
     const TABLE = 'admin_menu';
 
-    function __construct() {
+    public function __construct() {
         parent::__construct();
     }
-    
-    public function getUserModulesNames($modules_ids){
+
+    public function getUserModulesNames($modules_ids) {
         $modules = $this->db->where_in('id', $modules_ids)->get('saas_modules');
         return $modules ? $modules->result_array() : array();
     }
 
-
     /**
      * Install module data queries
      */
-    public function install() {      
+    public function install() {
         $this->db->where('name', 'admin_menu')
-                ->update('components', array('autoload' => '1', 'enabled' => '1'));
-     
+            ->update('components', array('autoload' => '1', 'enabled' => '1'));
+
     }
 
     /**
      * Deinstall module data queries
      */
-    public function deinstall() {        
+    public function deinstall() {
 
         $this->db->where('name', 'admin_menu')
-                ->delete('components');
+            ->delete('components');
     }
 
 }
-
-?>
