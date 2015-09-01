@@ -279,8 +279,6 @@ class Core extends MY_Controller {
             case 'module':
                 $main_id = $this->settings['main_page_module'];
                 break;
-
-                break;
         }
         if ($this->core_data['data_type'] == 'main') {
             $this->core->core_data['id'] = $main_id;
