@@ -175,11 +175,16 @@ class Template extends Mabilis {
     /**
      *
      * @param string $var
+     * @return string|integer|float|array|boolean
      */
     public function get_var($var) {
         return isset($this->template_vars[$var]) ? $this->template_vars[$var] : false;
     }
 
+    /**
+     *
+     * @return string|integer|float|array|boolean
+     */
     public function get_vars() {
         return $this->template_vars ? $this->template_vars : array();
     }

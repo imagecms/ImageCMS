@@ -16,27 +16,9 @@ class Ymarket_model extends CI_Model {
      * Selects the category assigned by the user
      * @return object Information about the selected category
      */
-    public function init() {
+    public function init($type) {
 
-        $temp = $this->db->where('id', '1')->get('mod_ymarket');
-        $this->settings = $this->cms_base->get_settings();
-        if ($temp) {
-            $temp = $temp->row_array();
-
-            $this->settings['adult'] = $temp['adult'];
-            $this->settings['unserCats'] = unserialize($temp['categories']);
-            $this->settings['unserBrands'] = unserialize($temp['brands']);
-        }
-        return $this->settings;
-    }
-
-    /**
-     * Selects the category assigned by the user
-     * @return object Information about the selected category
-     */
-    public function initPriceUa() {
-
-        $temp = $this->db->where('id', '2')->get('mod_ymarket');
+        $temp = $this->db->where('id', $type)->get('mod_ymarket');
         $this->settings = $this->cms_base->get_settings();
         if ($temp) {
             $temp = $temp->row_array();
@@ -134,17 +116,23 @@ class Ymarket_model extends CI_Model {
             $ids[] = $v['id'];
         }
 
-        if (in_array(1, $ids)) {
-            $this->db->where('id', '1')->update('mod_ymarket', ['categories' => $tempCats, 'brands' => $displayedBrands, 'adult' => $tempAdult]);
-        } else {
-            $this->db->inset('mod_ymarket', ['id' => '1', 'categories' => $tempCats, 'brands' => $displayedBrands, 'adult' => $tempAdult]);
-        }
+        $data = ['id' => 1, 'categories' => $tempCats, 'brands' => $displayedBrands, 'adult' => $tempAdult];
+        $this->saveCategoriesSettings($data, in_array(1, $ids));
 
-        if (in_array(2, $ids)) {
-            $this->db->where('id', '2')->update('mod_ymarket', ['categories' => $tempCatsPriceUa, 'brands' => $displayedBrandsPriceUa, 'adult' => '0']);
-        } else {
-            $this->db->insert('mod_ymarket', ['id' => '2', 'categories' => $tempCatsPriceUa, 'brands' => $displayedBrandsPriceUa, 'adult' => '0']);
+        $data = ['id' => 2, 'categories' => $tempCatsPriceUa, 'brands' => $displayedBrandsPriceUa, 'adult' => 0];
+        $this->saveCategoriesSettings($data, in_array(2, $ids));
+    }
 
+    /**
+     * @param $data - array to save into DB
+     * @param bool $update - update or insert, default update
+     */
+    private function saveCategoriesSettings($data, $update = true) {
+        if ($update) {
+            $this->db->where('id', $data['id'])
+                ->update('mod_ymarket', $data);
+        } else {
+            $this->db->insert('mod_ymarket', $data);
         }
     }
 

@@ -38,8 +38,8 @@ class Admin extends BaseAdminController {
     public function getSelectedCats() {
         $data->categories = ShopCore::app()->SCategoryTree->getTree();
         $data->brands = $this->ymarket_model->getBrands();
-        $data->ymarket_model = $this->ymarket_model->init();
-        $data->price_ua_model = $this->ymarket_model->initPriceUa();
+        $data->ymarket_model = $this->ymarket_model->init(Ymarket::DEFAULT_TYPE);
+        $data->price_ua_model = $this->ymarket_model->init(Ymarket::PRICE_UA_TYPE);
 
         return $data;
     }

@@ -58,7 +58,7 @@ class assetManager {
 
     /**
      * @param string|array $item
-     * @param string|integer|float $value
+     * @param string|integer|float|array $value
      * @return assetManager
      * @access public
      * @author Kaero

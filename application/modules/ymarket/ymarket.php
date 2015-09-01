@@ -9,9 +9,14 @@
  */
 class Ymarket extends ShopController {
 
+    const DEFAULT_TYPE = 1;
+    const PRICE_UA_TYPE = 2;
+
     protected $offers = [];
 
     protected $categories = [];
+
+    protected $brandIds = [];
 
     protected $mainCurr = [];
 
@@ -29,11 +34,23 @@ class Ymarket extends ShopController {
         $this->load->model('ymarket_products_fields_model');
     }
 
+    private function init($ignoreSettings = false, $type) {
+        if ($ignoreSettings) {
+            $this->categories = \Category\CategoryApi::getInstance()->getCategory();
+            $this->brandIds = [];
+        } else {
+            $this->settings = $this->ymarket_model->init($type);
+            $this->categories = \Category\CategoryApi::getInstance()->getCategory($this->settings['unserCats']);
+            $this->brandIds = $this->settings['unserBrands'];
+        }
+    }
+
     /**
      * Price.ua & Nadavi.net
      * @url http://price.ua/assets/0123b18f5c083be5/example.xml
      */
     public function priceua() {
+        $this->init(false, self::PRICE_UA_TYPE);
         $this->index(false, true);
     }
 
@@ -42,63 +59,30 @@ class Ymarket extends ShopController {
      */
     public function index($ignoreSettings = false, $flagPriceUa = false) {
         if ($flagPriceUa) {
-            $this->priceuaCore($ignoreSettings);
+            $this->init($ignoreSettings, self::PRICE_UA_TYPE);
+            $this->priceuaCore();
         } else {
-            $this->ymarketCore($ignoreSettings);
+            $this->init($ignoreSettings, self::DEFAULT_TYPE);
+            $this->ymarketCore();
         }
-
     }
 
     private function priceuaCore($ignoreSettings = false) {
         $ci = ShopCore::$ci;
 
-        $this->settings = $this->ymarket_model->initPriceUa();
         $currencies = \Currency\Currency::create()->getMainCurrency();
         $this->mainCurr['id'] = $currencies->getId();
         $this->mainCurr['rate'] = number_format($currencies->getRate(), 3);
         $this->mainCurr['code'] = $currencies->getCode();
 
-        if ($ignoreSettings) {
-            $categories = \Category\CategoryApi::getInstance()->getCategory();
-            $brandIds = [];
-        } else {
-            $categories = \Category\CategoryApi::getInstance()->getCategory($this->settings['unserCats']);
-            $brandIds = $this->settings['unserBrands'];
-        }
-
-        $variants = $this->ymarket_model->getVariants($this->settings['unserCats'], $ignoreSettings, $brandIds);
         //        $params = $this->getProperties($variants);
-        $additionalImages = $this->getAdditionalImagesBYVariants($variants);
+        $params = [];
+        $productFields = [];
 
-        foreach ($variants as $v) {
-            $unique_id = $v->getId();
-            $this->offers[$unique_id]['url'] = $ci->config->item('base_url') . 'shop/product/' . $v->getSProducts()->url;
-            $this->offers[$unique_id]['price'] = $v->getPriceInMain();
-            if (!$this->currencies[$v->getCurrency()]['code']) {
-                $currencyId = $this->mainCurr['code'];
-            } else {
-                $currencyId = $this->currencies[$v->getCurrency()]['code'];
-            }
-            $this->offers[$unique_id]['currencyId'] = $currencyId;
-            $this->offers[$unique_id]['categoryId'] = $v->getSProducts()->getCategoryId();
-            $this->offers[$unique_id]['picture'] = array_merge(array(productImageUrl('products/main/' . $v->getMainImage())), $additionalImages[$v->getProductId()]);
-            $this->offers[$unique_id]['name'] = $this->forName($v->getSProducts()->getName(), $v->getName());
-            $this->offers[$unique_id]['vendor'] = $v->getSProducts()->getBrand() ? htmlspecialchars($v->getSProducts()->getBrand()->getName()) : '';
-            $this->offers[$unique_id]['vendorCode'] = $v->getNumber() ? $v->getNumber() : '';
-            $this->offers[$unique_id]['description'] = htmlspecialchars($v->getSProducts()->getFullDescription());
-            $this->offers[$unique_id]['cpa'] = $v->getStock() ? 1 : 0;
-            $this->offers[$unique_id]['quantity'] = $v->getStock();
+        $this->formOffers($ignoreSettings, $productFields, $params);
 
-            if ($this->settings['adult']) {
-                $this->offers[$unique_id]['adult'] = 'true';
-            }
-
-            //            if ($params[$v->getProductId()]) {
-            //                $this->offers[$unique_id]['param'] = $params[$v->getProductId()];
-            //            }
-        }
-
-        $infoXml['categories'] = $categories;
+        $infoXml = [];
+        $infoXml['categories'] = $this->categories;
         $infoXml['offers'] = $this->offers;
         $infoXml['site_title'] = $this->settings['site_title'];
         $infoXml['base_url'] = $ci->config->item('base_url');
@@ -113,10 +97,10 @@ class Ymarket extends ShopController {
     private function ymarketCore($ignoreSettings = false) {
         $ci = ShopCore::$ci;
 
-        $this->settings = $this->ymarket_model->init();
         $currencies = \Currency\Currency::create()->getCurrencies();
 
         $checkRUB = false;
+        $rates = [];
         foreach ($currencies as $value) {
             $isoNEW = $value->getCode() == 'RUB' ? 'RUR' : $value->getCode();
             $rates[$isoNEW]['rate'] = $value->getRate();
@@ -147,78 +131,28 @@ class Ymarket extends ShopController {
                     $this->mainCurr['code'] = 'RUR';
                     $rate = $rates['RUR']['rate'] ? $rates['RUR']['rate'] : 1 / $value->getRate();
                     $this->mainCurr['rate'] = number_format($rate, 3);
-                } else {
-                    $this->currencies[$value->getId()]['code'] = $value->getCode();
-                    $rate = $rates[$value->getCode()]['rate'] ? $rates[$value->getCode()]['rate'] : 1 / $value->getRate();
-                    $this->currencies[$value->getId()]['rate'] = number_format($rate, 3);
+                    continue;
                 }
             } else {
                 if ($value->getMain()) {
                     $this->mainCurr['code'] = $value->getCode() == 'RUB' ? 'RUR' : $value->getCode();
                     $rate = $rates[$this->mainCurr['code']]['rate'] ? $rates[$this->mainCurr['code']]['rate'] : 1 / $value->getRate();
                     $this->mainCurr['rate'] = number_format($rate, 3);
-                } else {
-                    $this->currencies[$value->getId()]['code'] = $value->getCode();
-                    $rate = $rates[$value->getCode()]['rate'] ? $rates[$value->getCode()]['rate'] : 1 / $value->getRate();
-                    $this->currencies[$value->getId()]['rate'] = number_format($rate, 3);
+                    continue;
                 }
             }
-        }
 
-        if ($ignoreSettings) {
-            $categories = \Category\CategoryApi::getInstance()->getCategory();
-            $brandIds = [];
-        } else {
-            $categories = \Category\CategoryApi::getInstance()->getCategory($this->settings['unserCats']);
-            $brandIds = $this->settings['unserBrands'];
+            $this->currencies[$value->getId()]['code'] = $value->getCode();
+            $rate = $rates[$value->getCode()]['rate'] ? $rates[$value->getCode()]['rate'] : 1 / $value->getRate();
+            $this->currencies[$value->getId()]['rate'] = number_format($rate, 3);
         }
 
         $productFields = $this->ymarket_products_fields_model->getProductsFields();
 
-        $variants = $this->ymarket_model->getVariants($this->settings['unserCats'], $ignoreSettings, $brandIds);
-        $params = $this->getProperties($variants);
-        $additionalImages = $this->getAdditionalImagesBYVariants($variants);
+        $this->formOffers($ignoreSettings, $productFields);
 
-        foreach ($variants as $v) {
-            $unique_id = $v->getId();
-            $this->offers[$unique_id]['url'] = $ci->config->item('base_url') . 'shop/product/' . $v->getSProducts()->url;
-            $this->offers[$unique_id]['price'] = $v->getPriceInMain();
-            if (!$this->currencies[$v->getCurrency()]['code']) {
-                $currencyId = $this->mainCurr['code'];
-            } else {
-                $currencyId = $this->currencies[$v->getCurrency()]['code'];
-            }
-            $this->offers[$unique_id]['currencyId'] = $currencyId;
-            $this->offers[$unique_id]['categoryId'] = $v->getSProducts()->getCategoryId();
-            $this->offers[$unique_id]['picture'] = array_merge(array(productImageUrl('products/main/' . $v->getMainImage())), $additionalImages[$v->getProductId()]);
-            $this->offers[$unique_id]['name'] = $this->forName($v->getSProducts()->getName(), $v->getName());
-            $this->offers[$unique_id]['vendor'] = $v->getSProducts()->getBrand() ? htmlspecialchars($v->getSProducts()->getBrand()->getName()) : '';
-            $this->offers[$unique_id]['vendorCode'] = $v->getNumber() ? $v->getNumber() : '';
-            $this->offers[$unique_id]['description'] = htmlspecialchars($v->getSProducts()->getFullDescription());
-            $this->offers[$unique_id]['cpa'] = $v->getStock() ? 1 : 0;
-            $this->offers[$unique_id]['quantity'] = $v->getStock();
-
-            if ($productFields[$v->getProductId()]) {
-                if ($productFields[$v->getProductId()]['country_of_origin']) {
-                    $this->offers[$unique_id]['country_of_origin'] = $productFields[$v->getProductId()]['country_of_origin'];
-                }
-                if ($productFields[$v->getProductId()]['manufacturer_warranty']) {
-                    $this->offers[$unique_id]['manufacturer_warranty'] = $productFields[$v->getProductId()]['manufacturer_warranty'];
-                }
-                if ($productFields[$v->getProductId()]['seller_warranty']) {
-                    $this->offers[$unique_id]['seller_warranty'] = $productFields[$v->getProductId()]['seller_warranty'];
-                }
-            }
-
-            if ($this->settings['adult']) {
-                $this->offers[$unique_id]['adult'] = 'true';
-            }
-
-            if ($params[$v->getProductId()]) {
-                $this->offers[$unique_id]['param'] = $params[$v->getProductId()];
-            }
-        }
-        $infoXml['categories'] = $categories;
+        $infoXml = [];
+        $infoXml['categories'] = $this->categories;
         $infoXml['offers'] = $this->offers;
         $infoXml['site_short_title'] = $this->settings['site_short_title'];
         $infoXml['site_title'] = $this->settings['site_title'];
@@ -232,6 +166,57 @@ class Ymarket extends ShopController {
             ->setData('full', $ignoreSettings)
             ->setData('infoXml', $infoXml)
             ->render('yandex', true);
+    }
+
+    /**
+     * Generate offers data
+     * @param $ignoreSettings
+     * @param $productFields
+     */
+    private function formOffers($ignoreSettings, $productFields) {
+        $variants = $this->ymarket_model->getVariants($this->settings['unserCats'], $ignoreSettings, $this->brandIds);
+        $params = $this->getProperties($variants);
+        $additionalImages = $this->getAdditionalImagesBYVariants($variants);
+
+        foreach ($variants as $variant) {
+            $unique_id = $variant->getId();
+            $this->offers[$unique_id]['url'] = CI::$APP->config->item('base_url') . 'shop/product/' . $variant->getSProducts()->url;
+            $this->offers[$unique_id]['price'] = $variant->getPriceInMain();
+            if (!$this->currencies[$variant->getCurrency()]['code']) {
+                $currencyId = $this->mainCurr['code'];
+            } else {
+                $currencyId = $this->currencies[$variant->getCurrency()]['code'];
+            }
+            $this->offers[$unique_id]['currencyId'] = $currencyId;
+            $this->offers[$unique_id]['categoryId'] = $variant->getSProducts()->getCategoryId();
+            $this->offers[$unique_id]['picture'] = array_merge(array(productImageUrl('products/main/' . $variant->getMainImage())), $additionalImages[$variant->getProductId()]);
+            $this->offers[$unique_id]['name'] = $this->forName($variant->getSProducts()->getName(), $variant->getName());
+            $this->offers[$unique_id]['vendor'] = $variant->getSProducts()->getBrand() ? htmlspecialchars($variant->getSProducts()->getBrand()->getName()) : '';
+            $this->offers[$unique_id]['vendorCode'] = $variant->getNumber() ? $variant->getNumber() : '';
+            $this->offers[$unique_id]['description'] = htmlspecialchars($variant->getSProducts()->getFullDescription());
+            $this->offers[$unique_id]['cpa'] = $variant->getStock() ? 1 : 0;
+            $this->offers[$unique_id]['quantity'] = $variant->getStock();
+
+            if ($productFields[$variant->getProductId()]) {
+                if ($productFields[$variant->getProductId()]['country_of_origin']) {
+                    $this->offers[$unique_id]['country_of_origin'] = $productFields[$variant->getProductId()]['country_of_origin'];
+                }
+                if ($productFields[$variant->getProductId()]['manufacturer_warranty']) {
+                    $this->offers[$unique_id]['manufacturer_warranty'] = $productFields[$variant->getProductId()]['manufacturer_warranty'];
+                }
+                if ($productFields[$variant->getProductId()]['seller_warranty']) {
+                    $this->offers[$unique_id]['seller_warranty'] = $productFields[$variant->getProductId()]['seller_warranty'];
+                }
+            }
+
+            if ($this->settings['adult']) {
+                $this->offers[$unique_id]['adult'] = 'true';
+            }
+
+            if ($params[$variant->getProductId()]) {
+                $this->offers[$unique_id]['param'] = $params[$variant->getProductId()];
+            }
+        }
     }
 
     public function all() {
@@ -293,6 +278,27 @@ class Ymarket extends ShopController {
     }
 
     /**
+     *
+     * @return array
+     */
+    private function getAdditionalImagesBYVariants($variants) {
+        $productsIds = [];
+        foreach ($variants as $variant) {
+            $productsIds[] = $variant->getProductId();
+        }
+        $images = $this->db->where_in('product_id', $productsIds)->get('shop_product_images');
+        $images = $images ? $images->result_array() : [];
+        $productsData = [];
+        array_map(
+            function ($image) use (&$productsData) {
+                $productsData[$image['product_id']][] = productImageUrl('products/additional/' . $image['image_name']);
+            },
+            $images
+        );
+        return $productsData;
+    }
+
+    /**
      * Generates a name of the product depending on the name and version of the product name.
      * @param str $productName product name
      * @param str $variantName variant name
@@ -305,24 +311,6 @@ class Ymarket extends ShopController {
             $name = htmlspecialchars($productName . ' ' . $variantName);
         }
         return $name;
-    }
-
-    /**
-     *
-     * @param SProducts $product
-     * @return array
-     */
-    private function getAdditionalImages(SProducts $product) {
-
-        $offers = [];
-        $images = $iterator = $offers = null;
-        $images = $product->getSProductImagess();
-        if (count($images) > 0 && ++$iterator < 9) {
-            foreach ($images as $image) {
-                $offers[] = productImageUrl('products/additional/' . $image->getImageName());
-            }
-        }
-        return $offers;
     }
 
     /**
