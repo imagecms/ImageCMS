@@ -79,7 +79,7 @@ class Permitions {
      *
      * @param type $adminClassName
      * @param type $adminMethod
-     * @return boolean
+     * @return boolean|null
      */
     private static function checkAllPermitions($adminClassName, $adminMethod) {
         $ci = &get_instance();
@@ -321,7 +321,7 @@ class Permitions {
 
     /**
      * check if user with id = 1 exists and has all privileges
-     * @return boolean
+     * @return null|boolean
      */
     private static function checkSuperAdmin() {
         $ci = &get_instance();
@@ -499,7 +499,6 @@ class Permitions {
     /**
      * delete a RBAC privileges group
      *
-     * @param integer $groupId
      * @access public
      * @return    void
      */
@@ -761,7 +760,6 @@ class Permitions {
     /**
      * delete a RBAC privileges group
      *
-     * @param integer $groupId
      * @access public
      * @return    void
      */
@@ -923,7 +921,6 @@ class Permitions {
     /**
      * delete a RBAC privilege
      *
-     * @param integer $privilegeId
      * @access public
      * @return    void
      */

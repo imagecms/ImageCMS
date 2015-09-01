@@ -20,6 +20,9 @@ class Mabilis_Compiler extends Mabilis {
 
     // Constructor
 
+    /**
+     * @param Mabilis_Config $config_obj
+     */
     public function __construct(&$config_obj) {
         $this->config = &$config_obj;
     }
@@ -207,6 +210,9 @@ class Mabilis_Compiler extends Mabilis {
 
     // Write compiled template file
 
+    /**
+     * @param string $data
+     */
     private function write_compiled_file($file, $data) {
         if (!$fp = fopen($this->config->compile_path . md5($file) . $this->config->compiled_ext, 'w')) {
             return FALSE;
@@ -222,6 +228,9 @@ class Mabilis_Compiler extends Mabilis {
         return TRUE;
     }
 
+    /**
+     * @param string $text
+     */
     private function error($text) {
         echo '<p>Error: ' . $text . '</p>';
     }

@@ -69,6 +69,9 @@ class Cache {
         }
     }
 
+    /**
+     * @param string $key
+     */
     private function _fetch($key) {
         $file = $this->_Config['store'] . 'cache_' . $this->generatekey($key);
         $this->set_default_group();
@@ -318,7 +321,7 @@ class Cache {
     /**
      * Delete All Cache Items
      *
-     * @return bool
+     * @return integer
      * @access public
      */
     public function delete_all() {
@@ -418,6 +421,9 @@ class Cache {
         return md5($key);
     }
 
+    /**
+     * @param string $msg
+     */
     private function log_cache_error($msg) {
         $log_path = APPPATH . 'logs/';
 

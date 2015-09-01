@@ -22,6 +22,7 @@ class Mabilis {
 
     /**
      * Display or fetch template file
+     * @param string $file
      */
     public function view($file, $data = array(), $return = FALSE) {
         // Delete double .tpl.tpl
@@ -101,6 +102,10 @@ class Mabilis {
         return TRUE;
     }
 
+    /**
+     * @param string $param
+     * @param string $value
+     */
     public function set_config_value($param, $value) {
         $this->config->$param = $value;
     }

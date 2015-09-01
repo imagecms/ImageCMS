@@ -548,6 +548,9 @@ class DX_Auth {
       Returning array of value if permission found, otherwise returning NULL.
      */
 
+    /**
+     * @param string $key
+     */
     public function get_permissions_value($key, $array_key = 'default') {
         $result = array();
 

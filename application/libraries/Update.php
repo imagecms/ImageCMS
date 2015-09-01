@@ -405,6 +405,9 @@ class Update {
         }
     }
 
+    /**
+     * @return string
+     */
     public function getSettings($param = false) {
         $settings = $this->ci->db
             ->get('settings')

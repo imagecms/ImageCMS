@@ -78,6 +78,9 @@ class Lib_csrf {
         return '<input type="hidden" value="' . $this->get_token() . '" name="' . $this->hidden_name . '" />';
     }
 
+    /**
+     * @param string $text
+     */
     private function _write_message($text) {
         $this->ci->load->helper('file');
 
