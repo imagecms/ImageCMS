@@ -72,9 +72,9 @@ class Shop_news extends MY_Controller {
 
     /**
      * Prepare and return template for module
-     * @param type $data
-     * @param type $pageId
-     * @return type
+     * @param array $data
+     * @param integer $pageId
+     * @return string
      */
     public function prepareInterface($data, $pageId) {
         $currentCategories = $this->db->where('content_id', $pageId)->get('mod_shop_news')->row_array();

@@ -57,7 +57,8 @@ class assetManager {
     }
 
     /**
-     * @param array $data Fetch data to template
+     * @param string|array $item
+     * @param string|integer|float $value
      * @return assetManager
      * @access public
      * @author Kaero
@@ -74,7 +75,7 @@ class assetManager {
     }
 
     /**
-     * @param
+     * @param string $item
      * @return assetManager
      * @access public
      * @author
@@ -85,7 +86,8 @@ class assetManager {
     }
 
     /**
-     * @param
+     * @param string $item
+     * @param string|integer|float $value
      * @return assetManager
      * @access public
      * @copyright ImageCMS (c) 2013, Roman <dev@imagecms.net>
@@ -116,6 +118,12 @@ class assetManager {
         return $this;
     }
 
+    /**
+     *
+     * @param string $path
+     * @param string $position
+     * @return assetManager
+     */
     public function registerJsFullpath($path, $position = 'after') {
         CI_Controller::get_instance()->template->registerJsFile($path, $position, false);
         return $this;
