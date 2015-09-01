@@ -136,7 +136,6 @@ final class Categories extends ExchangeBase {
         $dbArray = array();
         foreach ($categoriesExternalIds as $externalId) {
             // fitment of category url (might be busy)
-            $i = NULL;
             $url = translit_url($this->categoriesXml[$externalId]['name']);
             // preparing array for insert
             $dbArray[] = array(

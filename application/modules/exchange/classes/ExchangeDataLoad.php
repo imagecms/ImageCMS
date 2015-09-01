@@ -14,7 +14,15 @@ namespace exchange\classes;
  *  - properties
  *  - propertiesData
  *  - propertiesMultipleData
- *
+ * @property-read array $categories
+ * @property-read array $products
+ * @property-read array $variants
+ * @property-read int $mainCurrencyId
+ * @property-read array $productCategoryData
+ * @property-read array $brands
+ * @property-read array $properties
+ * @property-read array $propertiesData
+ * @property-read array $propertiesMultipleData
  * @author kolia
  */
 class ExchangeDataLoad {
