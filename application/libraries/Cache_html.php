@@ -8,6 +8,10 @@ class Cache_html {
 
     private static $path;
 
+    /**
+     * @param string $html
+     * @param string $file
+     */
     public static function set_html($html, $file) {
         self::$path = PUBPATH . 'system/cache/templates_c/HTML/';
 
@@ -20,6 +24,9 @@ class Cache_html {
         file_put_contents(self::$path . md5($file) . '.html', $html);
     }
 
+    /**
+     * @param string $file
+     */
     public static function get_html($file) {
         self::$path = PUBPATH . 'system/cache/templates_c/HTML/';
 

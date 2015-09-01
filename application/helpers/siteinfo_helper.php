@@ -56,7 +56,6 @@ if (!function_exists('siteInfoAdditionalManipulations')) {
      * Функція існує суто для сумісності із старими версіями
      * @deprecated since version 4.6
      * @param string $name
-     * @param string $value
      * @return string|boolean
      */
     function siteInfoAdditionalManipulations($name) {

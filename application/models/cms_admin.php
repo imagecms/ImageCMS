@@ -90,7 +90,7 @@ class Cms_admin extends CI_Model {
     /**
      * Updating page by id
      *
-     * @return integer
+     * @return boolean
      */
     public function update_page($id, $data) {
         $lang_id = $this->input->post('lang_id');

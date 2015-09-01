@@ -95,6 +95,7 @@ class Backup {
     /**
      * Getting the backup value from the DB
      * @param string
+     * @param string $key
      * @return mixed settings array or specified value
      */
     public function getSetting($key = NULL) {
@@ -121,8 +122,9 @@ class Backup {
     /**
      * Creating the backup file
      * @param string $ext extention (txt|zip|gzip)
-     * @param string $fileName (optional) filename
-     * @return string|boolean filename|FALSE
+     * @param string $fullName (optional) filename
+     * @param string $prefix
+     * @return string|false filename|FALSE
      */
     public function createBackup($ext, $prefix = NULL, $fullName = FALSE, $params = array()) {
         if (is_really_writable($this->directory)) {

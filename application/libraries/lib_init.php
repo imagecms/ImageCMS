@@ -6,8 +6,6 @@ if (!defined('BASEPATH')) {
 
 use Propel\Runtime\Propel;
 use Propel\Runtime\Connection\ConnectionManagerSingle;
-use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
 
 /**
  * Executing custom CMS initialication code

@@ -86,6 +86,7 @@ class Lib_seo {
 
     /**
      * 	Explode text on words
+     * @param string $text
      */
     public function explode_str_on_words($text) {
         $search = array("'ё'",
@@ -349,6 +350,10 @@ class Lib_seo {
         }
     }
 
+    /**
+     * @param string $name
+     * @param string $val
+     */
     public function setCustomParams($name, $val) {
         if ($name != '') {
             $this->custom[$name] = $val;

@@ -46,6 +46,7 @@ class ClassLoader {
      * @param array $array
      * @param string $path
      * @param string (optional) $key
+     * @param string $key
      * @throws \Exception
      */
     private function addPath(array &$array, $path, $key = null) {
@@ -137,6 +138,9 @@ class ClassLoader {
         return [implode('\\', $parts), $fileName];
     }
 
+    /**
+     * @param string $className
+     */
     private function loadNamespacedClass($className) {
         if (true == $this->lookInAliases($className)) {
             return;
@@ -151,6 +155,9 @@ class ClassLoader {
         }
     }
 
+    /**
+     * @param string $className
+     */
     private function loadClass($className) {
         $classesPathsCount = count($this->classesPaths);
 
@@ -162,6 +169,9 @@ class ClassLoader {
         }
     }
 
+    /**
+     * @param string $classPath
+     */
     private function includeClass($classPath) {
         if (file_exists($classPath)) {
             include_once $classPath;
