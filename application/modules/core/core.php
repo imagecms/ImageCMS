@@ -939,7 +939,7 @@ class Core extends MY_Controller {
             $this->template->add_array(
                 [
                         'site_title' => $title,
-                        'site_description' => htmlspecialchars(strip_tags($description)),
+                        'site_description' => htmlspecialchars($description),
                         'site_keywords' => htmlspecialchars($keywords),
                         'page_number' => $page_number
                     ]

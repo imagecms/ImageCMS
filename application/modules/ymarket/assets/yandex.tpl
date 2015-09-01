@@ -34,7 +34,7 @@
                     {foreach $offer as $k => $v}
                         {if $k == 'param'}
                             {foreach $v as $prop}
-                                <param name="{echo str_replace(':', '', $prop['Name'])}">{echo $prop['Value']}</param>
+                                <param name="{echo str_replace(':', '', $prop['name'])}">{echo $prop['value']}</param>
                             {/foreach}
                         {elseif $k == 'picture'}
                             {foreach $v as $picture}

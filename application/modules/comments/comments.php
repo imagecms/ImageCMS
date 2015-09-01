@@ -85,6 +85,23 @@ class Comments extends MY_Controller {
         //\CMSFactory\Events::create()->onShopCategoryDelete()->setListener('commentsDeleteFromCategory');
     }
 
+    /**
+     *
+     * @param array $data
+     * @return string
+     */
+    public function _fetchComments($data) {
+        if ($this->enable_comments) {
+            $comments = \CMSFactory\assetManager::create()
+                    ->setData($data)
+                    ->registerStyle('comments', TRUE)
+                    ->fetchTemplate($this->tpl_name);
+        } else {
+            $comments = '';
+        }
+        return $comments;
+    }
+
     public function commentsDeleteFromCategory($product) {
 
         if (!$product) {
@@ -204,8 +221,6 @@ class Comments extends MY_Controller {
      * Fetch comments and load template
      */
     public function build_comments($item_id = 0) {
-        ($hook = get_hook('comments_on_build_comments')) ? eval($hook) : NULL;
-
         $this->load->model('base');
         $this->_init_settings();
 

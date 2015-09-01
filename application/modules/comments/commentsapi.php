@@ -37,6 +37,8 @@ class Commentsapi extends Comments {
             $this->cache->store('comments_' . $item_id . $this->module, $comments, $this->cache_ttl, 'comments');
         }
 
+        $comment_ch = [];
+
         if (is_array($comments)) {
             $i = 0;
             foreach ($comments as $comment) {
@@ -67,9 +69,6 @@ class Commentsapi extends Comments {
     }
 
     public function renderAsArray($url) {
-        $comments = [];
-        ($hook = get_hook('comments_on_build_comments')) ? eval($hook) : NULL;
-
         $this->load->model('base');
         $this->_init_settings();
 
@@ -90,6 +89,8 @@ class Commentsapi extends Comments {
         } else {
             $comments_count = 0;
         }
+
+        $comment_ch = [];
 
         if (is_array($comments)) {
             $i = 0;
@@ -119,14 +120,7 @@ class Commentsapi extends Comments {
         }
         ($hook = get_hook('comments_read_com_tpl')) ? eval($hook) : NULL;
 
-        if ($this->enable_comments) {
-            $comments = \CMSFactory\assetManager::create()
-                    ->setData($data)
-                    ->registerStyle('comments', TRUE)
-                    ->fetchTemplate($this->tpl_name);
-        } else {
-            $comments = '';
-        }
+        $comments = $this->_fetchComments($data);
 
         ($hook = get_hook('comments_assign_tpl_data')) ? eval($hook) : NULL;
         return [
@@ -138,8 +132,6 @@ class Commentsapi extends Comments {
     }
 
     public function renderPosts() {
-        $comments = [];
-        ($hook = get_hook('comments_on_build_comments')) ? eval($hook) : NULL;
         $this->load->model('base');
         $this->_init_settings();
 
@@ -190,14 +182,7 @@ class Commentsapi extends Comments {
         }
         ($hook = get_hook('comments_read_com_tpl')) ? eval($hook) : NULL;
 
-        if ($this->enable_comments) {
-            $comments = \CMSFactory\assetManager::create()
-                    ->setData($data)
-                    ->registerStyle('comments', TRUE)
-                    ->fetchTemplate($this->tpl_name);
-        } else {
-            $comment = '';
-        }
+        $comments = $this->_fetchComments($data);
 
         ($hook = get_hook('comments_assign_tpl_data')) ? eval($hook) : NULL;
 

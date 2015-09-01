@@ -7,7 +7,7 @@ namespace exchange\classes;
  * PROPERTIES OF OBJECT THAT CAN BE RETURN:
  *  - categories
  *  - products
- *  - variants
+ *  - variantsIds
  *  - mainCurrencyId
  *  - productCategoryData
  *  - brands
@@ -16,7 +16,7 @@ namespace exchange\classes;
  *  - propertiesMultipleData
  * @property-read array $categories
  * @property-read array $products
- * @property-read array $variants
+ * @property-read array $variantsIds
  * @property-read int $mainCurrencyId
  * @property-read array $productCategoryData
  * @property-read array $brands

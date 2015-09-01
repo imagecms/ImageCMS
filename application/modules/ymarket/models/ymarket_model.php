@@ -70,7 +70,7 @@ class Ymarket_model extends CI_Model {
      */
     public function getProducts($idsCat, $ignoreSettings = false, $brandIds) {
         $products = SProductsQuery::create()
-                ->distinct();
+            ->distinct();
         if (!$ignoreSettings) {
             if ($idsCat) {
                 $products->filterByCategoryId($idsCat);
@@ -89,6 +89,32 @@ class Ymarket_model extends CI_Model {
         $res = $products->find();
         $res->populateRelation('ProductVariant');
         return $res;
+    }
+
+    public function getVariants($idsCat, $ignoreSettings = false, $brandIds) {
+        if (!$ignoreSettings) {
+            $variants = SProductVariantsQuery::create()
+                ->useSProductsQuery()
+                ->filterByActive(true)
+                ->_if($idsCat)
+                ->filterByCategoryId($idsCat)
+                ->_endif()
+                ->_if($brandIds)
+                ->filterByBrandId($brandIds)
+                ->_endif()
+                ->distinct()
+                ->endUse()
+                ->filterByStock(array('min' => 1))
+                ->filterByPrice(array('min' => 0.00001))
+                ->find();
+        } else {
+            $variants = SProductVariantsQuery::create()
+                ->useSProductsQuery()
+                ->distinct()
+                ->endUse()
+                ->find();
+        }
+        return $variants;
     }
 
     /**
@@ -111,13 +137,13 @@ class Ymarket_model extends CI_Model {
         if (in_array(1, $ids)) {
             $this->db->where('id', '1')->update('mod_ymarket', ['categories' => $tempCats, 'brands' => $displayedBrands, 'adult' => $tempAdult]);
         } else {
-            $this->db->inset('mod_ymarket', ['id' => '1','categories' => $tempCats, 'brands' => $displayedBrands,  'adult' => $tempAdult]);
+            $this->db->inset('mod_ymarket', ['id' => '1', 'categories' => $tempCats, 'brands' => $displayedBrands, 'adult' => $tempAdult]);
         }
 
         if (in_array(2, $ids)) {
-            $this->db->where('id', '2')->update('mod_ymarket', ['categories' => $tempCatsPriceUa, 'brands' => $displayedBrandsPriceUa,  'adult' => '0']);
+            $this->db->where('id', '2')->update('mod_ymarket', ['categories' => $tempCatsPriceUa, 'brands' => $displayedBrandsPriceUa, 'adult' => '0']);
         } else {
-            $this->db->insert('mod_ymarket', ['id' => '2','categories' => $tempCatsPriceUa, 'brands' => $displayedBrandsPriceUa,  'adult' => '0']);
+            $this->db->insert('mod_ymarket', ['id' => '2', 'categories' => $tempCatsPriceUa, 'brands' => $displayedBrandsPriceUa, 'adult' => '0']);
 
         }
     }

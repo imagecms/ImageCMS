@@ -26,10 +26,12 @@ class Ymarket extends ShopController {
         $lang = new MY_Lang();
         $lang->load('ymarket');
         $this->load->model('ymarket_model');
+        $this->load->model('ymarket_products_fields_model');
     }
 
     /**
      * Price.ua & Nadavi.net
+     * @url http://price.ua/assets/0123b18f5c083be5/example.xml
      */
     public function priceua() {
         $this->index(false, true);
@@ -64,29 +66,38 @@ class Ymarket extends ShopController {
             $brandIds = $this->settings['unserBrands'];
         }
 
-        /* @var $p SProducts */
-        foreach ($this->ymarket_model->getProducts($this->settings['unserCats'], $ignoreSettings, $brandIds) as $p) {
-            /* @var $v SProductVariants */
-            $criteria = new \Propel\Runtime\ActiveQuery\Criteria();
-            if (!$ignoreSettings) {
-                $criteria->add('Stock', 0, \Propel\Runtime\ActiveQuery\Criteria::GREATER_THAN);
+        $variants = $this->ymarket_model->getVariants($this->settings['unserCats'], $ignoreSettings, $brandIds);
+        //        $params = $this->getProperties($variants);
+        $additionalImages = $this->getAdditionalImagesBYVariants($variants);
+
+        foreach ($variants as $v) {
+            $unique_id = $v->getId();
+            $this->offers[$unique_id]['url'] = $ci->config->item('base_url') . 'shop/product/' . $v->getSProducts()->url;
+            $this->offers[$unique_id]['price'] = $v->getPriceInMain();
+            if (!$this->currencies[$v->getCurrency()]['code']) {
+                $currencyId = $this->mainCurr['code'];
+            } else {
+                $currencyId = $this->currencies[$v->getCurrency()]['code'];
+            }
+            $this->offers[$unique_id]['currencyId'] = $currencyId;
+            $this->offers[$unique_id]['categoryId'] = $v->getSProducts()->getCategoryId();
+            $this->offers[$unique_id]['picture'] = array_merge(array(productImageUrl('products/main/' . $v->getMainImage())), $additionalImages[$v->getProductId()]);
+            $this->offers[$unique_id]['name'] = $this->forName($v->getSProducts()->getName(), $v->getName());
+            $this->offers[$unique_id]['vendor'] = $v->getSProducts()->getBrand() ? htmlspecialchars($v->getSProducts()->getBrand()->getName()) : '';
+            $this->offers[$unique_id]['vendorCode'] = $v->getNumber() ? $v->getNumber() : '';
+            $this->offers[$unique_id]['description'] = htmlspecialchars($v->getSProducts()->getFullDescription());
+            $this->offers[$unique_id]['cpa'] = $v->getStock() ? 1 : 0;
+            $this->offers[$unique_id]['quantity'] = $v->getStock();
+
+            if ($this->settings['adult']) {
+                $this->offers[$unique_id]['adult'] = 'true';
             }
 
-            foreach ($p->getProductVariants($criteria) as $v) {
-                if (!$v->getPrice()) {
-                    continue;
-                }
-
-                $unique_id = $v->getId();
-                $this->offers[$unique_id]['url'] = shop_url('product/' . $p->getUrl()); //++++
-                $this->offers[$unique_id]['price'] = \Currency\Currency::create()->convertToMain($v->getPriceInMain(), $v->getCurrency());
-                $this->offers[$unique_id]['categoryId'] = $p->getCategoryId();
-                $this->offers[$unique_id]['vendor'] = $p->getBrand() ? htmlspecialchars($p->getBrand()->getName()) : '';
-                $this->offers[$unique_id]['picture'] = $v->getMainImage() ? [productImageUrl('products/main/' . $v->getMainImage())] : []; //++++
-                $this->offers[$unique_id]['name'] = $this->forName($p->getName(), $v->getName()); //++++
-                $this->offers[$unique_id]['description'] = htmlspecialchars($p->getFullDescription());
-            }
+            //            if ($params[$v->getProductId()]) {
+            //                $this->offers[$unique_id]['param'] = $params[$v->getProductId()];
+            //            }
         }
+
         $infoXml['categories'] = $categories;
         $infoXml['offers'] = $this->offers;
         $infoXml['site_title'] = $this->settings['site_title'];
@@ -94,12 +105,12 @@ class Ymarket extends ShopController {
         $infoXml['mainCurr'] = $this->mainCurr;
 
         \CMSFactory\assetManager::create()
-                ->setData('full', $ignoreSettings)
-                ->setData('infoXml', $infoXml)
-                ->render('priceua', true);
+            ->setData('full', $ignoreSettings)
+            ->setData('infoXml', $infoXml)
+            ->render('priceua', true);
     }
 
-    private function ymarketCore() {
+    private function ymarketCore($ignoreSettings = false) {
         $ci = ShopCore::$ci;
 
         $this->settings = $this->ymarket_model->init();
@@ -162,45 +173,49 @@ class Ymarket extends ShopController {
             $brandIds = $this->settings['unserBrands'];
         }
 
-        /* @var $p SProducts */
-        foreach ($this->ymarket_model->getProducts($this->settings['unserCats'], $ignoreSettings, $brandIds) as $p) {
-            $param = ShopCore::app()->SPropertiesRenderer->renderPropertiesArray($p);
-            $additionalImages = $this->getAdditionalImages($p) ? : [];
-            /* @var $v SProductVariants */
-            $criteria = new \Propel\Runtime\ActiveQuery\Criteria();
-            if (!$ignoreSettings) {
-                $criteria->add('Stock', 0, \Propel\Runtime\ActiveQuery\Criteria::GREATER_THAN);
+        $productFields = $this->ymarket_products_fields_model->getProductsFields();
+
+        $variants = $this->ymarket_model->getVariants($this->settings['unserCats'], $ignoreSettings, $brandIds);
+        $params = $this->getProperties($variants);
+        $additionalImages = $this->getAdditionalImagesBYVariants($variants);
+
+        foreach ($variants as $v) {
+            $unique_id = $v->getId();
+            $this->offers[$unique_id]['url'] = $ci->config->item('base_url') . 'shop/product/' . $v->getSProducts()->url;
+            $this->offers[$unique_id]['price'] = $v->getPriceInMain();
+            if (!$this->currencies[$v->getCurrency()]['code']) {
+                $currencyId = $this->mainCurr['code'];
+            } else {
+                $currencyId = $this->currencies[$v->getCurrency()]['code'];
+            }
+            $this->offers[$unique_id]['currencyId'] = $currencyId;
+            $this->offers[$unique_id]['categoryId'] = $v->getSProducts()->getCategoryId();
+            $this->offers[$unique_id]['picture'] = array_merge(array(productImageUrl('products/main/' . $v->getMainImage())), $additionalImages[$v->getProductId()]);
+            $this->offers[$unique_id]['name'] = $this->forName($v->getSProducts()->getName(), $v->getName());
+            $this->offers[$unique_id]['vendor'] = $v->getSProducts()->getBrand() ? htmlspecialchars($v->getSProducts()->getBrand()->getName()) : '';
+            $this->offers[$unique_id]['vendorCode'] = $v->getNumber() ? $v->getNumber() : '';
+            $this->offers[$unique_id]['description'] = htmlspecialchars($v->getSProducts()->getFullDescription());
+            $this->offers[$unique_id]['cpa'] = $v->getStock() ? 1 : 0;
+            $this->offers[$unique_id]['quantity'] = $v->getStock();
+
+            if ($productFields[$v->getProductId()]) {
+                if ($productFields[$v->getProductId()]['country_of_origin']) {
+                    $this->offers[$unique_id]['country_of_origin'] = $productFields[$v->getProductId()]['country_of_origin'];
+                }
+                if ($productFields[$v->getProductId()]['manufacturer_warranty']) {
+                    $this->offers[$unique_id]['manufacturer_warranty'] = $productFields[$v->getProductId()]['manufacturer_warranty'];
+                }
+                if ($productFields[$v->getProductId()]['seller_warranty']) {
+                    $this->offers[$unique_id]['seller_warranty'] = $productFields[$v->getProductId()]['seller_warranty'];
+                }
             }
 
-            foreach ($p->getProductVariants($criteria) as $v) {
-                if (!$v->getPrice()) {
-                    continue;
-                }
-                $unique_id = $v->getId();
-                $this->offers[$unique_id]['url'] = shop_url('product/' . $p->getUrl());
-                $this->offers[$unique_id]['price'] = $v->getPriceInMain();
+            if ($this->settings['adult']) {
+                $this->offers[$unique_id]['adult'] = 'true';
+            }
 
-                if (!$this->currencies[$v->getCurrency()]['code']) {
-                    $currencyId = $this->mainCurr['code'];
-                } else {
-                    $currencyId = $this->currencies[$v->getCurrency()]['code'];
-                }
-
-                $this->offers[$unique_id]['currencyId'] = $currencyId;
-                $this->offers[$unique_id]['categoryId'] = $p->getCategoryId();
-                $this->offers[$unique_id]['picture'] = array_merge([productImageUrl('products/main/' . $v->getMainImage())], $additionalImages);
-                $this->offers[$unique_id]['name'] = $this->forName($p->getName(), $v->getName());
-                $this->offers[$unique_id]['vendor'] = $p->getBrand() ? htmlspecialchars($p->getBrand()->getName()) : '';
-                $this->offers[$unique_id]['vendorCode'] = $v->getNumber() ? $v->getNumber() : '';
-                $this->offers[$unique_id]['description'] = htmlspecialchars($p->getFullDescription());
-                $this->offers[$unique_id]['cpa'] = $v->getStock() ? 1 : 0;
-                $this->offers[$unique_id]['quantity'] = $v->getStock();
-
-                if ($this->settings['adult']) {
-                    $this->offers[$unique_id]['adult'] = 'true';
-                }
-
-                $this->offers[$unique_id]['param'] = $param;
+            if ($params[$v->getProductId()]) {
+                $this->offers[$unique_id]['param'] = $params[$v->getProductId()];
             }
         }
         $infoXml['categories'] = $categories;
@@ -214,9 +229,9 @@ class Ymarket extends ShopController {
         $infoXml['mainCurr'] = $this->mainCurr;
 
         \CMSFactory\assetManager::create()
-                ->setData('full', $ignoreSettings)
-                ->setData('infoXml', $infoXml)
-                ->render('yandex', true);
+            ->setData('full', $ignoreSettings)
+            ->setData('infoXml', $infoXml)
+            ->render('yandex', true);
     }
 
     public function all() {
@@ -224,10 +239,64 @@ class Ymarket extends ShopController {
     }
 
     /**
+     * @param $products - products collection
+     * @return array
+     * @throws \Propel\Runtime\Exception\PropelException
+     */
+    public function getProperties($products) {
+        $productsIds = [];
+        foreach ($products as $product) {
+            $productsIds[] = $product->getProductId();
+        }
+        $properties = SPropertiesQuery::create()
+            ->joinSProductPropertiesData()
+            ->joinWithI18n(MY_Controller::getCurrentLocale())
+            ->select(array('SProductPropertiesData.ProductId', 'SProductPropertiesData.Value', 'SPropertiesI18n.Name'))
+            ->where('SProductPropertiesData.ProductId IN ?', $productsIds)
+            ->where('SProductPropertiesData.Locale = ?', MY_Controller::getCurrentLocale())
+            ->withColumn('SProductPropertiesData.ProductId', 'ProductId')
+            ->withColumn('SProductPropertiesData.Value', 'Value')
+            ->withColumn('SPropertiesI18n.Name', 'Name')
+            ->where('SProperties.Active = ?', 1)
+            ->where("SProductPropertiesData.Value != ?", '')
+            ->where('SProperties.ShowOnSite = ?', 1)
+            ->orderByPosition()
+            ->find()
+            ->toArray();
+        $productsData = [];
+        array_map(
+            function ($property) use (&$productsData) {
+                if (!$productsData[$property['ProductId']][$property['Name']]) {
+                    $productsData[$property['ProductId']][$property['Name']] = [
+                        'name' => $property['Name'],
+                        'value' => [$property['Value']]
+                    ];
+                } else {
+                    $productsData[$property['ProductId']][$property['Name']]['value'][] = $property['Value'];
+                }
+            },
+            $properties
+        );
+        $productsData = array_map(
+            function ($property) {
+                return array_map(
+                    function ($propertyValues) {
+                        $propertyValues['value'] = implode(', ', $propertyValues['value']);
+                        return $propertyValues;
+                    },
+                    $property
+                );
+            },
+            $productsData
+        );
+        return $productsData;
+    }
+
+    /**
      * Generates a name of the product depending on the name and version of the product name.
      * @param str $productName product name
      * @param str $variantName variant name
-     * @return str name for xml
+     * @return string
      */
     private function forName($productName, $variantName) {
         if (encode($productName) == encode($variantName)) {
@@ -264,7 +333,80 @@ class Ymarket extends ShopController {
     }
 
     public static function adminAutoload() {
+        \CMSFactory\Events::create()
+            ->onShopProductPreUpdate()
+            ->setListener('_extendYmarketPageAdmin');
 
+        \CMSFactory\Events::create()
+            ->onShopProductUpdate()
+            ->setListener('_extendYmarketPageAdmin');
+    }
+
+    /**
+     * Extend products admin page
+     * @param array $data
+     */
+    public static function _extendYmarketPageAdmin($data) {
+        $ci = &get_instance();
+        $lang = new MY_Lang();
+        $lang->load('ymarket');
+        include_once 'models/ymarket_products_fields_model.php';
+        $model = new Ymarket_products_fields_model();
+        $countries = include_once 'config/countries.php';
+        $months = [1, 2, 3, 6, 9, 12, 18, 24, 30, 36, 42, 48];
+        if ($ci->input->post()) {
+            $post = $ci->input->post('ymarket');
+            if ($data['model']) {
+                $productId = $data['model']->getId();
+                $dataFields = [
+                    'country_of_origin' => $post['country_of_origin'] ? $post['country_of_origin'] : null,
+                    'manufacturer_warranty' => $post['manufacturer_warranty']['exist'] ? self::toISO8601Time($post['manufacturer_warranty']['time']) : 'false',
+                    'seller_warranty' => $post['seller_warranty']['exist'] ? self::toISO8601Time($post['seller_warranty']['time']) : 'false',
+                ];
+                $model->setFields($productId, $dataFields);
+            }
+        } else {
+            $productId = $data['model']->getId();
+            $fields = $model->getFields($productId);
+            $fields['manufacturer_warranty'] = self::fromISO8601ToMonths($fields['manufacturer_warranty']);
+            $fields['seller_warranty'] = self::fromISO8601ToMonths($fields['seller_warranty']);
+            $view = \CMSFactory\assetManager::create()
+                ->setData(
+                    array(
+                        'countries' => $countries,
+                        'months' => $months,
+                        'fields' => $fields,
+                    )
+                )
+                ->registerScript('script')
+                ->fetchAdminTemplate('products_extend');
+            \CMSFactory\assetManager::create()
+                ->appendData('moduleAdditions', $view);
+        }
+    }
+
+    public static function toISO8601Time($months) {
+        if (!$months) {
+            return 'true';
+        }
+        $years = (int) ($months / 12);
+        $months = $months % 12;
+        $time = 'P';
+        $time .= $years ? $years . 'Y' : '';
+        $time .= $months ? $months . 'M' : '';
+        return $time;
+    }
+
+    public static function fromISO8601ToMonths($iso) {
+        if (in_array($iso, ['true', 'false'])) {
+            return $iso;
+        }
+        preg_match('/([\d])+Y/', $iso, $matches_years);
+        $years = $matches_years[1] ? (int) $matches_years[1] : 0;
+        preg_match('/([\d])+M/', $iso, $matches_months);
+        $months = $matches_months[1] ? (int) $matches_months[1] : 0;
+        $months = $years * 12 + $months;
+        return $months;
     }
 
     /**
@@ -312,7 +454,7 @@ class Ymarket extends ShopController {
         ];
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_field($fields);
-        $this->dbforge->create_table('mod_ymarket_prodcuts_fields', TRUE);
+        $this->dbforge->create_table(Ymarket_products_fields_model::TABLE, TRUE);
 
         $this->db->where('name', 'ymarket')
             ->update('components', ['enabled' => '1', 'autoload' => '1']);
