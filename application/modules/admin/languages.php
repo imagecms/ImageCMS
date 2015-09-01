@@ -300,6 +300,9 @@ class Languages extends BaseAdminController {
         }
     }
 
+    /**
+     * @param string $dir
+     */
     private function rrmdir($dir) {
 
         foreach (glob($dir . '/*') as $file) {

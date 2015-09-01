@@ -18,7 +18,6 @@ class Result implements ResultInterface, Countable {
 
     /**
      * @param string $groupName
-     * @param array $results
      */
     public function __construct($groupName) {
         $this->groupName = $groupName;

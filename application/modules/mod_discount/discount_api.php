@@ -49,7 +49,7 @@ class discount_api extends \MY_Controller {
      * @author DevImageCms
      * @param (string) key optional
      * @param (float) totalPrice optional
-     * @return jsoon
+     * @return string
      * @copyright (c) 2013, ImageCMS
      */
     public function getGiftCertificate($key = null, $totalPrice = null) {
@@ -223,7 +223,7 @@ class discount_api extends \MY_Controller {
      * @author DevImageCms
      * @param (string) key: criteria
      * @param (int) id: id discount
-     * @return json
+     * @return string|false
      * @copyright (c) 2013, ImageCMS
      */
     public function getDiscountBy($key, $id) {
@@ -256,7 +256,7 @@ class discount_api extends \MY_Controller {
      * @param (float) price optional
      * @param (float) userId optional
      * @param (bool) new optional
-     * @return json
+     * @return string
      * @copyright (c) 2013, ImageCMS
      */
     public function getAllDiscount() {

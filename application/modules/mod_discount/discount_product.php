@@ -85,7 +85,7 @@ class Discount_product {
      * @access public
      * @author DevImageCms
      * @param array product [id,vid]
-     * @return array
+     * @return boolean
      * @copyright (c) 2013, ImageCMS
      */
     public function getProductDiscount($product, $price = null) {

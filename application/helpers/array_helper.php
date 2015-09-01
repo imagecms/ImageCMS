@@ -87,7 +87,7 @@ if (!function_exists('array_to_file')) {
      *
      * @param string $file
      * @param array $array
-     * @return bool
+     * @return integer
      */
     function array_to_file($file, $array) {
         return file_put_contents($file, '<?php $arr = ' . var_export($array, true) . ';');

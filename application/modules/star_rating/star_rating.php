@@ -111,7 +111,7 @@ class Star_rating extends MY_Controller {
 
     /**
      * Change rating for pages / product
-     * @return type
+     * @return string|null
      */
     public function ajax_rate() {
         $id = $_POST['cid'];

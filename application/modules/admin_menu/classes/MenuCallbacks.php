@@ -92,7 +92,7 @@ class MenuCallbacks {
 
     /**
      * Get sum of new orders, new callbacks, new notifications counts
-     * @return int
+     * @return string
      */
     public function getNewOCNSum() {
 

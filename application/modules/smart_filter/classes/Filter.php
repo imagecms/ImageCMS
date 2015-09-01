@@ -198,7 +198,6 @@ class Filter {
 
     /**
      * returns array of stdClass brands objects
-     * @param SCategory $categoryModel
      * @return type
      */
     public function getBrands() {
@@ -289,7 +288,6 @@ class Filter {
 
     /**
      * returns all properties for current category
-     * @param SCategory $categoryModel
      * @return type
      */
     public function getProperties() {

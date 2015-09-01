@@ -140,7 +140,7 @@ class Mailer extends MY_Controller {
     /**
      * Register subscribed user by email
      * @param string $email - user email
-     * @return bool
+     * @return false|null
      */
     private function registerUserByEmail($email) {
         if (!$email) {

@@ -69,6 +69,9 @@ if (!function_exists('lang')) {
 }
 if (!function_exists('getMoFileName')) {
 
+    /**
+     * @return string
+     */
     function getMoFileName($domain) {
         if ($domain) {
             if (isset($GLOBALS['MO_FILE_NAMES'][$domain])) {
@@ -137,6 +140,11 @@ if (!function_exists('getMoFileName')) {
 
 if (!function_exists('correctUrl')) {
 
+    /**
+     * @param string $url
+     *
+     * @return string
+     */
     function correctUrl($url) {
         if (MAINSITE) {
             if (!is_dir($url)) {
@@ -189,6 +197,9 @@ if (!function_exists('chose_language')) {
 
 }
 
+/**
+ * @param string $flag
+ */
 function get_main_lang($flag = null) {
     $ci = & get_instance();
     if (!$ci->db) {
@@ -248,6 +259,11 @@ function get_admin_locale() {
  */
 if (!function_exists('langf')) {
 
+    /**
+     * @param string $line
+     *
+     * @return string|null
+     */
     function langf($line, $name = "main", array $data = array()) {
         $line = lang($line, $name);
 

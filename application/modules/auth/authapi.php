@@ -95,7 +95,7 @@ class Authapi extends MY_Controller {
     /**
      * Provides user logout
      * To make logout user has to be loggen in
-     * @return json
+     * @return string
      * @access public
      * @copyright ImageCMS (c) 2013
      */
@@ -298,7 +298,7 @@ class Authapi extends MY_Controller {
 
     /**
      * Provides password change
-     * @return json
+     * @return string
      * @access public
      * @copyright ImageCMS (c) 2013
      */

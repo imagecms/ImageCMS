@@ -18,7 +18,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
     /**
      * get all public users wish lists
      *
-     * @return json
+     * @return string
      */
     public function all() {
         parent::all();
@@ -38,7 +38,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
      * add item to wish list
      *
      * @param int $varId - current variant id
-     * @return json
+     * @return string
      */
     public function addItem($varId) {
         parent::_addItem($varId);
@@ -50,7 +50,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
      *
      * @param int $varId - current variant id
      * @param int $wish_list_id - current wish list id
-     * @return json
+     * @return string
      */
     public function moveItem($varId, $wish_list_id) {
         parent::moveItem($varId, $wish_list_id);
@@ -62,7 +62,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
      *
      * @param int $variant_id
      * @param int $wish_list_id
-     * @return json
+     * @return string
      */
     public function deleteItem($variant_id, $wish_list_id) {
         parent::deleteItem($variant_id, $wish_list_id);
@@ -72,7 +72,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
     /**
      * delete items from wish lists
      *
-     * @return json
+     * @return string
      */
     public function deleteItemsByIds() {
         parent::deleteItemsByIds($items);
@@ -83,7 +83,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
      * get public wish list
      *
      * @param $hash
-     * @return json
+     * @return string
      */
     public function show($hash) {
         parent::show($hash);
@@ -94,7 +94,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
      * get  most viewed wish lists
      *
      * @param int $limit
-     * @return json
+     * @return string
      */
     public function getMostViewedWishLists($limit = 10) {
         parent::getMostViewedWishLists($limit);
@@ -105,7 +105,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
      * get user public wish list
      *
      * @param int $user_id
-     * @return json
+     * @return string
      */
     public function user($user_id) {
         parent::user($user_id);
@@ -115,7 +115,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
     /**
      * user update information
      *
-     * @return json
+     * @return string
      */
     public function userUpdate() {
         parent::userUpdate();
@@ -126,7 +126,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
      * get most popular items
      *
      * @param int $limit = 10
-     * @return json
+     * @return string
      */
     public function getMostPopularItems($limit = 10) {
         parent::getMostPopularItems($limit);
@@ -136,7 +136,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
     /**
      * create wish list
      *
-     * @return json
+     * @return string
      */
     public function createWishList() {
         parent::createWishList();
@@ -146,7 +146,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
     /**
      * update wish list
      *
-     * @return json
+     * @return string
      */
     public function updateWL() {
         parent::updateWL();
@@ -157,7 +157,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
      * delete wish list
      *
      * @param int $wish_list_id
-     * @return json
+     * @return string
      */
     public function deleteWL($wish_list_id) {
         parent::deleteWL($wish_list_id);
@@ -167,7 +167,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
     /**
      * delete image
      *
-     * @return json
+     * @return string
      */
     public function deleteImage() {
         parent::deleteImage();
@@ -178,7 +178,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
      * get wish list button
      *
      * @param int $varId
-     * @return json
+     * @return string
      */
     public function renderWLButton($varId, $data = array()) {
         if ($this->dx_auth->is_logged_in()) {
@@ -206,7 +206,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
      *
      * @param int $varId
      * @param int $wish_list_id
-     * @return json
+     * @return string
      */
     public function renderPopup($varId, $wish_list_id = '') {
         parent::renderPopup();
@@ -249,7 +249,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
      *
      * @param int $wish_list_id
      * @param int $userID
-     * @return json
+     * @return string
      */
     public function editWL($wish_list_id, $userID = null) {
         if (parent::renderUserWLEdit($wish_list_id, $userID)) {
@@ -265,7 +265,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
     /**
      * upload image
      *
-     * @return json
+     * @return string
      */
     public function do_upload() {
         parent::do_upload();
@@ -275,7 +275,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
     /**
      * send email
      *
-     * @return json
+     * @return string
      */
     public function send_email() {
         parent::send_email();
@@ -306,7 +306,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
     /**
      * return json method results
      *
-     * @return json
+     * @return string
      */
     private function return_json() {
         $data = array();

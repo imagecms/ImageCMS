@@ -30,6 +30,9 @@ class MY_Lang extends MX_Lang {
         parent::__construct();
     }
 
+    /**
+     * @return string
+     */
     private function getAdminLocale() {
         $locale = CI::$APP->config->item('language');
         return $locale ? $locale : 'ru_RU';

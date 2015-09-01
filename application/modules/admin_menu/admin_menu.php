@@ -58,6 +58,9 @@ class Admin_menu extends MY_Controller {
 
     }
 
+    /**
+     * @param string $menu_type
+     */
     private static function setMenuType($menu_type) {
         self::$MENU_TYPE = self::$DEV_MODE ? self::$MENU_TYPE : $menu_type;
     }
@@ -81,7 +84,7 @@ class Admin_menu extends MY_Controller {
 
     /**
      * Render cms menu
-     * @return type
+     * @return string|null
      * Use in template: {echo $CI->load->module('admin_menu')->showCmsMenu()}
      */
     public function showCmsMenu() {

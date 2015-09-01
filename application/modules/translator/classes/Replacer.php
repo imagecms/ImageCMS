@@ -204,7 +204,7 @@ class Replacer {
      * Replace langs with another domain value
      * @param string $fileData - text needed to replace langs
      * @param string $domain - domain name(lang second parameter)
-     * @return bool|mixed
+     * @return false|string
      */
     public function replaceFileLangsWithDomain($fileData, $domain) {
         if (!$fileData) {

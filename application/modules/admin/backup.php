@@ -67,6 +67,9 @@ class Backup extends BaseAdminController {
         echo "file";
     }
 
+    /**
+     * @param string $file
+     */
     protected function filesLocking($file, $locked) {
         $backup = \libraries\Backup::create();
         $lockedFiles = $backup->getSetting('lockedFiles');

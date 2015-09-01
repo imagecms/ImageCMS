@@ -131,7 +131,7 @@ class BaseImport extends CI_Model {
      * @param int $offers The final position
      * @param int $limit Step
      * @param int $countProd count products
-     * @return bool
+     * @return null|false
      * @access public
      * @author Kaero
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
@@ -154,6 +154,9 @@ class BaseImport extends CI_Model {
         }
     }
 
+    /**
+     * @param string $attribute
+     */
     public function attributeExist($attribute) {
         if (!$_POST['attributes']) {
             return TRUE;
@@ -168,7 +171,7 @@ class BaseImport extends CI_Model {
      * Validate Information and parse CSV. As a goal we have $content variable with file information.
      * @param int $offers The final position
      * @param int $limit Step
-     * @return bool
+     * @return false|null
      * @access public
      * @author Kaero
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
@@ -300,6 +303,7 @@ class BaseImport extends CI_Model {
 
     /**
      * Set Import file name. Must be setted before import start.
+     * @param string $fileName
      * @return BaseImport
      * @access public
      * @author Kaero

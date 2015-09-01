@@ -17,6 +17,9 @@ class TComponentAssetManager {
 
     private $tComponentPath;
 
+    /**
+     * @param string $tComponentPath
+     */
     public function __construct($tComponentPath) {
         $this->tComponentPath = $tComponentPath;
     }

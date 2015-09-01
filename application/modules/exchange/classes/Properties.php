@@ -176,7 +176,7 @@ class Properties extends ExchangeBase {
 
     /**
      * Returns property identificator of brand
-     * @return string|NULL
+     * @return string
      */
     public function getBrandIdentif() {
         return $this->brandIdentif;

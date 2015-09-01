@@ -255,7 +255,7 @@ class PoFileManager {
     /**
      * Make po-file settings formated string
      * @param array $data - settings array
-     * @return boolean
+     * @return string|false
      */
     private function makePoFileSettings($data = array()) {
         if (!empty($data)) {
@@ -300,7 +300,7 @@ class PoFileManager {
      * @param string $type - type of po-file(modules, templates, main)
      * @param string $lang - language locale
      * @param array $settings - settings array
-     * @return boolean
+     * @return boolean|null
      */
     public function create($name, $type, $lang, $settings) {
         if ($name && $type && $lang) {
@@ -596,7 +596,7 @@ class PoFileManager {
     /**
      * Convert po-file to mo-file
      * @param string $url - url to file
-     * @return boolean
+     * @return boolean|null
      */
     public function convertToMO($url = '') {
         include_once realpath(dirname(__FILE__) . '/..') . '/lib/php-mo.php';

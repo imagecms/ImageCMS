@@ -44,7 +44,7 @@ final class Categories extends ExchangeBase {
     /**
      * Creates one-dimention array with categories from XML-file
      * (method is filling  $categories, $new and $existing arrays of class instance)
-     * @param SimpleXMLElement $categories
+     * @param \SimpleXMLElement $categories
      * @param string $parent (default null) external id of parent if there is
      */
     private function processCategories(\SimpleXMLElement $categories, $parent = NULL) {
@@ -74,6 +74,9 @@ final class Categories extends ExchangeBase {
 
     }
 
+    /**
+     * @param string $name
+     */
     private function getCategoryName($name) {
         $nameTemp = $name;
         $i = 1;

@@ -23,6 +23,7 @@ abstract class BaseEvents {
     /**
      * Declares a new event. The method adds the general pool of information about the event and sets it as held. The user can call the place where, in his opinion, there is a need. Will be generated key that consists of a pair of "Class: method."
      * @param mixed $data <b>[optional]</b>Fetch some Data and peredaje to user method's
+     * @param string $key
      * @access public
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
@@ -104,6 +105,7 @@ abstract class BaseEvents {
 
     /**
      * Run Behavior factory when contoller is comletly loaded
+     * @param string $eventAlias
      * @return void
      * @access public
      * @author Kaero
@@ -145,7 +147,7 @@ abstract class BaseEvents {
      * <tr valign="top"><td>['full_text']</td><td>Page full text</td></tr>
      * <tr valign="top"><td>['prev_text']</td><td>Page short text</td></tr>
      * </table>
-     * @return BehaviorFactory
+     * @return BaseEvents
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
@@ -168,6 +170,9 @@ abstract class BaseEvents {
      *
      */
 
+    /**
+     * @param string $key
+     */
     final public function on($key) {
         $this->key = $key;
         return $this;
@@ -181,7 +186,7 @@ abstract class BaseEvents {
      * <tr valign="top"><td>['full_text']</td><td>Page full text</td></tr>
      * <tr valign="top"><td>['prev_text']</td><td>Page short text</td></tr>
      * </table>
-     * @return BehaviorFactory
+     * @return BaseEvents
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
@@ -198,7 +203,7 @@ abstract class BaseEvents {
      * <tr valign="top"><td>['full_text']</td><td>Page full text</td></tr>
      * <tr valign="top"><td>['prev_text']</td><td>Page short text</td></tr>
      * </table>
-     * @return BehaviorFactory
+     * @return BaseEvents
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
@@ -215,7 +220,7 @@ abstract class BaseEvents {
      * <tr valign="top"><td>['url']</td><td>Category url</td></tr>
      * <tr valign="top"><td>['short_desc']</td><td>Category short description</td></tr>
      * </table>
-     * @return BehaviorFactory
+     * @return BaseEvents
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
@@ -237,7 +242,7 @@ abstract class BaseEvents {
      * <tr valign="top"><td>['url']</td><td>Category url</td></tr>
      * <tr valign="top"><td>['short_desc']</td><td>Category short description</td></tr>
      * </table>
-     * @return BehaviorFactory
+     * @return BaseEvents
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
@@ -277,7 +282,7 @@ abstract class BaseEvents {
      * <tr valign="top"><td>['userId']</td><td>User ID</td></tr>
      * <tr valign="top"><td>['productId']</td><td>Product ID</td></tr>
      * </table>
-     * @return BehaviorFactory
+     * @return BaseEvents
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
@@ -322,7 +327,7 @@ abstract class BaseEvents {
      * <tr valign="top"><td>['userId']</td><td>User ID</td></tr>
      * <tr valign="top"><td>['productId']</td><td>Product ID</td></tr>
      * </table>
-     * @return BehaviorFactory
+     * @return BaseEvents
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
@@ -352,7 +357,7 @@ abstract class BaseEvents {
      * <tr valign="top"><td>['userId']</td><td>User ID</td></tr>
      * <tr valign="top"><td>['model']</td><td></td>Instanceof SProducts</tr>
      * </table>
-     * @return BehaviorFactory
+     * @return BaseEvents
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
@@ -366,7 +371,7 @@ abstract class BaseEvents {
      * <table>
      * <tr valign="top"><td>['ShopCategoryId']</td><td>Category ID</td></tr>
      * </table>
-     * @return BehaviorFactory
+     * @return BaseEvents
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
@@ -395,7 +400,7 @@ abstract class BaseEvents {
      * <table>
      * <tr valign="top"><td>['ShopCategoryId']</td><td>Category ID</td></tr>
      * </table>
-     * @return BehaviorFactory
+     * @return BaseEvents
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
@@ -414,7 +419,7 @@ abstract class BaseEvents {
      * <table>
      * <tr valign="top"><td>['ShopCategoryId']</td><td>Category ID</td></tr>
      * </table>
-     * @return BehaviorFactory
+     * @return BaseEvents
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
@@ -428,7 +433,7 @@ abstract class BaseEvents {
      * <table>
      * <tr valign="top"><td>['commentId']</td><td>Comment ID</td></tr>
      * </table>
-     * @return BehaviorFactory
+     * @return BaseEvents
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
@@ -584,7 +589,7 @@ abstract class BaseEvents {
      * <tr valign="top"><td>['url']</td><td>Brand Url</td></tr>
      * <tr valign="top"><td>['userId']</td><td>User Id</td></tr>
      * </table>
-     * @return BehaviorFactory
+     * @return BaseEvents
      * @author Hellmark
      * @copyright ImageCMS (c) 2014, Hellmark <dev@imagecms.net>
      */
@@ -599,7 +604,7 @@ abstract class BaseEvents {
      * <tr valign="top"><td>['model']</td><td>Brand model</td></tr>
      * <tr valign="top"><td>['userId']</td><td>User Id</td></tr>
      * </table>
-     * @return BehaviorFactory
+     * @return BaseEvents
      * @author Hellmark
      * @copyright ImageCMS (c) 2014, Hellmark <dev@imagecms.net>
      */
@@ -615,7 +620,7 @@ abstract class BaseEvents {
      * <tr valign="top"><td>['url']</td><td>Brand Url</td></tr>
      * <tr valign="top"><td>['userId']</td><td>User Id</td></tr>
      * </table>
-     * @return BehaviorFactory
+     * @return BaseEvents
      * @author Hellmark
      * @copyright ImageCMS (c) 2014, Hellmark <dev@imagecms.net>
      */
@@ -630,7 +635,7 @@ abstract class BaseEvents {
      * <tr valign="top"><td>['brandId']</td><td>Brand Id</td></tr>
      * <tr valign="top"><td>['url']</td><td>Brand Url</td></tr>
      * </table>
-     * @return BehaviorFactory
+     * @return BaseEvents
      * @author Hellmark
      * @copyright ImageCMS (c) 2014, Hellmark <dev@imagecms.net>
      */
@@ -641,7 +646,7 @@ abstract class BaseEvents {
 
     /**
      * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
-     * @return BehaviorFactory
+     * @return BaseEvents
      * @author a.gula
      * @copyright ImageCMS (c) 2014, a.gula <a.gula@imagecms.net>
      */
@@ -652,7 +657,7 @@ abstract class BaseEvents {
 
     /**
      * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
-     * @return BehaviorFactory
+     * @return BaseEvents
      * @author a.gula
      * @copyright ImageCMS (c) 2014, a.gula <a.gula@imagecms.net>
      */
@@ -663,7 +668,7 @@ abstract class BaseEvents {
 
     /**
      * <p>The possible returned elements from <b>setListener</b> are as follows:</p>
-     * @return BehaviorFactory
+     * @return BaseEvents
      * @author a.gula
      * @copyright ImageCMS (c) 2014, a.gula <a.gula@imagecms.net>
      */

@@ -40,7 +40,7 @@ class Socauth extends MY_Controller {
 
     /**
      *
-     * @param type $soc type of social service
+     * @param string $soc type of social service
      * @param type $socId social service ID
      */
     public function link($soc, $socId) {

@@ -103,6 +103,9 @@ class Template {
         }
     }
 
+    /**
+     * @param string $template_name
+     */
     public function demoArchiveExist($template_name) {
         $demodata_atchive = realpath('templates/' . $template_name . '/demodata');
         $demodata_uploads = realpath('templates/' . $template_name . '/demodata/uploads.zip');
@@ -117,7 +120,6 @@ class Template {
 
     /**
      * Checks if template is compatible with new template_manager module
-     * @param string $templateName
      * @return boolean
      */
     public function isTMCompatible() {

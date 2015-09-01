@@ -34,8 +34,8 @@ class Banners extends MY_Controller {
      * Render banner into template
      * @access public
      * @param int $id is id entity (brand, category, product, page) .... for main id = 0
-     * @param string $group
-     * @return boolean
+     * @param integer $group
+     * @return false|null
      * @author L.Andriy <l.andriy@siteimage.com.ua>
      * @copyright (c) 2013, ImageCMS
      */
@@ -148,6 +148,7 @@ class Banners extends MY_Controller {
      * @access public
      * @author L.Andriy <l.andriy@siteimage.com.ua>
      * @copyright (c) 2013, ImageCMS
+     * @param string $flag
      */
     public function get_main_lang($flag = null) {
 

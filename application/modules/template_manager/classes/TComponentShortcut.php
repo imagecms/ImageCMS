@@ -39,7 +39,7 @@ class TComponentShortcut {
     /**
      * 
      * @param type $componentName
-     * @return type
+     * @return string
      */
     private static function getShortName($componentName) {
         $componentNameUpper = strtoupper($componentName);

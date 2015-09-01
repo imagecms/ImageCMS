@@ -131,6 +131,10 @@ class Sys_update extends BaseAdminController {
         $this->update->createBackUp();
     }
 
+    /**
+     * @param string $sort_by
+     * @param string $order
+     */
     public function sort($array, $sort_by, $order) {
         $arrayCount = count($array);
         for ($i = 0; $i < $arrayCount; $i++) {

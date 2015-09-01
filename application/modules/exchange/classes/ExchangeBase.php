@@ -188,7 +188,7 @@ abstract class ExchangeBase {
 
     /**
      * Sets the data for import, starts import
-     * @param SimpleXMLElement $importData
+     * @param \SimpleXMLElement $importData
      */
     public function import(\SimpleXMLElement $importData) {
         if (!count($importData) > 0) {

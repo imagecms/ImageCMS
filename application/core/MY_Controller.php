@@ -140,6 +140,7 @@ class MY_Controller extends MX_Controller {
 
     /**
      * Get current language
+     * @param string $field
      * @return type
      */
     public static function getCurrentLanguage($field = null) {
@@ -188,7 +189,7 @@ class MY_Controller extends MX_Controller {
 
     /**
      * Admin Autoload empty method
-     * @return boolean
+     * @return boolean|null
      */
     public static function adminAutoload() {
         /** Must be an empty */
@@ -223,7 +224,7 @@ class MY_Controller extends MX_Controller {
 
     /**
      * Check current CMS version
-     * @param $version - version name: premium, pro, corporate
+     * @param string $version - version name: premium, pro, corporate
      * @return bool
      * @throws Exception
      */

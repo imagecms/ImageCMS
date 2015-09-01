@@ -90,6 +90,10 @@ class Language_switch_Widgets extends MY_Controller {
     }
 
     // Template functions
+
+    /**
+     * @param string $file
+     */
     function display_tpl($file, $vars = array()) {
         $this->template->add_array($vars);
 

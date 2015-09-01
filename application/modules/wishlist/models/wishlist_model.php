@@ -144,7 +144,7 @@ class Wishlist_model extends CI_Model {
     /**
      * get user wish list by hash
      *
-     * @param $hash
+     * @param integer $hash
      * @param $access
      * @return array
      */
@@ -434,7 +434,7 @@ class Wishlist_model extends CI_Model {
      * add item to wish list
      *
      * @param $varId
-     * @param $listId
+     * @param string $listId
      * @param $listName
      * @param $user_id
      * @return boolean

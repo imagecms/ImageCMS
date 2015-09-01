@@ -169,6 +169,9 @@ class Banner_model extends CI_Model {
         }
     }
 
+    /**
+     * @param string $tableName
+     */
     protected function getColumnNamesOfTable($tableName) {
         $result = $this->db->query('SHOW COLUMNS FROM `' . $tableName . '`');
         $fields = array();

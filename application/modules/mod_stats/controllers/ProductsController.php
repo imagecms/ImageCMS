@@ -1,6 +1,5 @@
 <?php
 
-use Propel\Runtime\ActiveQuery\Criteria;
 use Propel\Runtime\Propel;
 
 /**

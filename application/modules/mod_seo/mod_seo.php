@@ -315,7 +315,7 @@ class Mod_seo extends \MY_Controller {
     /**
      * Buld Meta tags for Shop Product
      * @param array $arg
-     * @return boolean
+     * @return false|null
      */
     public function _buildProductsMeta($arg) {
 
@@ -467,7 +467,7 @@ class Mod_seo extends \MY_Controller {
     /**
      * Build Meta for Shop Category
      * @param array $categoruObj
-     * @return boolean
+     * @return false|null
      */
     public function _buildCategoryMeta($categoruObj) {
 
@@ -620,7 +620,7 @@ class Mod_seo extends \MY_Controller {
     /**
      * Build Meta for Shop Brands page
      * @param $arg
-     * @return bool
+     * @return false|null
      */
     public function _buildBrandsMeta() {
         /**
@@ -647,7 +647,7 @@ class Mod_seo extends \MY_Controller {
     /**
      * Build Meta for Shop Brand
      * @param array $arg
-     * @return boolean
+     * @return false|null
      */
     public function _buildBrandMeta($arg) {
         /**
@@ -802,6 +802,9 @@ class Mod_seo extends \MY_Controller {
         return $inflected;
     }
 
+    /**
+     * @param string $templateDesc
+     */
     private static function setMetaTags($template, $templateKey, $templateDesc) {
         //clean up unused properties
         $template = preg_replace('/%.*%/', '', $template);

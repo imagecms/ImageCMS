@@ -23,7 +23,7 @@ class Related_products_model extends CI_Model {
      * Save related products
      * @param int $main_product_id - main product id
      * @param array $related_ids - related products ids
-     * @return type
+     * @return boolean
      */
     public function saveProducts($main_product_id, $related_ids) {
         $data = array();

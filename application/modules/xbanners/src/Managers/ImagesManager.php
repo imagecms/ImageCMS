@@ -115,7 +115,6 @@ class ImagesManager {
 
     /**
      * Delete image files: origin image and tuned image from uploads
-     * @param string|array $image_name - image name|images names array
      * @return bool
      */
     public function delete($imageId, $locale = NULL) {
@@ -157,6 +156,9 @@ class ImagesManager {
         return FALSE;
     }
 
+    /**
+     * @param string $path
+     */
     protected function buildImagePath($path) {
         $buildPath = '';
         foreach (explode('/', $path) as $part) {

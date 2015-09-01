@@ -223,8 +223,8 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
 
     /**
      * delete item from wishlist
-     * @param $variant_id
-     * @param $wish_list_id
+     * @param integer $variant_id
+     * @param integer $wish_list_id
      * @return mixed
      */
     public function deleteItem($variant_id, $wish_list_id) {

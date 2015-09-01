@@ -264,7 +264,7 @@ class Exchange extends \MY_Controller {
 
     /**
      * checking if current session id matches session id in txt files
-     * @return boolean
+     * @return boolean|null
      */
     private function check_perm() {
 
@@ -369,7 +369,7 @@ class Exchange extends \MY_Controller {
      * loading xml file to $this->xml variable
      * uses simple xml extension
      * @param type $file
-     * @return boolean
+     * @return null|SimpleXMLElement
      */
     private function _readXmlFile($file) {
         $path = $this->tempDir . $file;

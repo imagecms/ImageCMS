@@ -40,6 +40,9 @@ class ModuleSettings {
      */
     protected $db;
 
+    /**
+     * @param string $moduleName
+     */
     protected function __construct($moduleName) {
         $this->db = \CI::$APP->db;
         $this->moduleName = $moduleName;
@@ -64,7 +67,6 @@ class ModuleSettings {
 
     /**
      * Loads one module settings
-     * @param string $moduleName
      */
     protected function loadModuleSettings() {
         $result = $this->db
@@ -137,6 +139,7 @@ class ModuleSettings {
     /**
      * Returns specified setting item
      * @param string (optional) $key config key. if not specified all settings will be returned
+     * @param string $key
      */
     public function get($key = null) {
         if ($key == null) {

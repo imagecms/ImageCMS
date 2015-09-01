@@ -41,7 +41,7 @@ class SearchController extends ControllerBase {
 
     /**
      * Return brands and counts data for chart
-     * @return chart data
+     * @return false|null data
      */
     public function getBrandsInSearchData() {
         $params = array(
@@ -75,7 +75,7 @@ class SearchController extends ControllerBase {
 
     /**
      * Return brands and counts data for chart
-     * @return chart data
+     * @return false|null data
      */
     public function getCategoriesInSearchData() {
         $params = array(
@@ -103,7 +103,7 @@ class SearchController extends ControllerBase {
     /**
      * Prepare query string, which will be inserted after WHERE
      * @param array $searchResults
-     * @return boolean|string
+     * @return false|string
      */
     private function prepareQueryStringForSearchAnalisis($searchResults = null) {
         if ($searchResults == null) {

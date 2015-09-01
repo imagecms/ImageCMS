@@ -162,7 +162,7 @@ class Core_Widgets extends MY_Controller {
 
     /**
      * @param array $widget
-     * @return mixed|string
+     * @return string|null
      */
     public function similar_posts($widget = array()) {
         $this->load->library('similar_posts', null, 'similar_library');
@@ -195,6 +195,9 @@ class Core_Widgets extends MY_Controller {
         return $this->template->fetch('file:' . $file);
     }
 
+    /**
+     * @param string $viewName
+     */
     public function render($viewName, array $data = array()) {
         if (!empty($data)) {
             $this->template->add_array($data);

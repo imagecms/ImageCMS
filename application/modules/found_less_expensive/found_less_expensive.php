@@ -62,7 +62,6 @@ class Found_less_expensive extends MY_Controller {
 
     /**
      * Send email
-     * @param type $email
      */
     public function sendEmail($fromEmail, $toEmail, $subject, $message, $messageData) {
 

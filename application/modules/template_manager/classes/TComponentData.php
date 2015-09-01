@@ -93,6 +93,8 @@ class TComponentData { // TLicense
      *  - головний проект: /application/modules/template_manager/classes/TComponentData.php
      *  - магазин доповнень оф. сайту: /addons/application/modules/shop/classes/TLicense.php
      *  - скрипт генерації файлу ліцензії "tlic"
+     * @param string $templateName
+     * @param integer $type
      */
     private static function generateKey($templateName, $domain, $type) {
         if ($type == self::TYPE_PAID) { // paid

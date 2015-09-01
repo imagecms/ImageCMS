@@ -286,7 +286,7 @@ class Menu extends MY_Controller {
      * @param integer $index номер элемента для натягивания шаблона
      * @param string $wrapper натянутые шаблоны на всех всех наследников
      * @access private
-     * @return TRUE
+     * @return string|false
      */
     private function _prepare_container_tpl($index = 0, $wrapper = FALSE) {
         $data = [
@@ -307,7 +307,7 @@ class Menu extends MY_Controller {
      * @param integer $index номер элемента для натягивания шаблона
      * @param string $wrapper натянутые шаблоны на всех всех наследников
      * @access private
-     * @return TRUE
+     * @return boolean
      */
     private function _prepare_item_tpl($index = 0, $wrapper = FALSE) {
         if ($wrapper == TRUE) {
@@ -342,9 +342,8 @@ class Menu extends MY_Controller {
     /**
      * Find sub menus
      *
-     * @param integer $id
      * @access public
-     * @return mixed
+     * @return string|false
      */
     private function _get_real_tpl($index = 0, $mode = "item") {
         if ($mode == "item") {
