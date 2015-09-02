@@ -414,43 +414,9 @@ class Template extends Mabilis {
             }
         }
 
-        if (count($this->_js_script_files) > 0) {
-            foreach ($this->_js_script_files as $script => $pos) {
-                if (!in_array($script, self::$arr)) {
-                    switch ($pos) {
-                        case 'before':
-                            self::$result_before .= $script;
-                            break;
-                        case 'after':
-                            self::$result_after .= $script;
-                            break;
-                        default :
-                            self::$result_before .= $script;
-                            break;
-                    }
-                    self::$arr[] = $script;
-                }
-            }
-        }
+        $this->split($this->_js_script_files);
 
-        if (count($this->_css_str) > 0) {
-            foreach ($this->_css_str as $css => $pos) {
-                if (!in_array($css, self::$arr)) {
-                    switch ($pos) {
-                        case 'before':
-                            self::$result_before .= $css;
-                            break;
-                        case 'after':
-                            self::$result_after .= $css;
-                            break;
-                        default :
-                            self::$result_before .= $css;
-                            break;
-                    }
-                    self::$arr[] = $css;
-                }
-            }
-        }
+        $this->split($this->_css_str);
 
         if (count($this->_metas) > 0) {
             foreach ($this->_metas as $code) {
@@ -493,6 +459,32 @@ class Template extends Mabilis {
         }
 
         return $tpl;
+    }
+
+    /**
+     *
+     * @param string $data
+     */
+    protected function split($data) {
+        $count = count($data);
+        if ($count > 0) {
+            foreach ($data as $str => $pos) {
+                if (!in_array($str, self::$arr)) {
+                    switch ($pos) {
+                        case 'before':
+                            self::$result_before .= $str;
+                            break;
+                        case 'after':
+                            self::$result_after .= $str;
+                            break;
+                        default :
+                            self::$result_before .= $str;
+                            break;
+                    }
+                    self::$arr[] = $str;
+                }
+            }
+        }
     }
 
 }

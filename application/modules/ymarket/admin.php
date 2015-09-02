@@ -29,6 +29,7 @@ class Admin extends BaseAdminController {
         $item = $this->getSelectedCats();
 
         \CMSFactory\assetManager::create()
+            ->registerScript('script')
             ->setData('hold', $item)
             ->renderAdmin('list');
     }
@@ -50,6 +51,7 @@ class Admin extends BaseAdminController {
      * Saves the selected user categories in the table
      */
     public function save() {
+        
         if ($this->dx_auth->is_admin() && $this->input->is_ajax_request()) {
             $this->ymarket_model->setCategories();
 

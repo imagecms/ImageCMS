@@ -9,3 +9,9 @@ var YmarketProductTab = {
         }
     }
 };
+
+function changeAgregator(agregator){
+    $('.tab-pane').css('display','none');
+    $('#'+agregator).css('display', 'block');
+    $('select').chosen();
+}
