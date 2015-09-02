@@ -7,9 +7,9 @@
         {$category.short_desc}
     </div>
     {/if}
-
-    {if count($pages) > 0}
-        <div class="b-content__list">
+    
+    <div class="b-content__list">
+    {if count($pages) > 0}        
         {foreach $pages as $item}
             <div class="b-content__item">
                 <h2 class="b-content__item-title">
@@ -19,18 +19,19 @@
                     {$item.prev_text}
                 </div>
             </div>
-            {/foreach}
+        {/foreach}
 
-            {else:}
-                <p class="b-content__noitems g-text">
-                    {tlang('There are no items to display. Please come back later!')}
-                </p>
-            {/if}
+    {else:}
+        <p class="b-content__noitems g-text">
+            {tlang('There are no items to display. Please come back later!')}
+        </p>
+    {/if}
 
-            {if $pagination}
-            <div class="b-content__pagination">
-                {$pagination}
-            </div>
-            {/if}
-        </div>
+    {if $pagination}
+    <div class="b-content__pagination">
+        {$pagination}
+    </div>
+    {/if}
+    
+    </div>
 </div>

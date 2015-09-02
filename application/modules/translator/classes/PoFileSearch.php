@@ -29,14 +29,23 @@ class PoFileSearch {
      * @var type
      */
     private $data;
+
     private $searchString;
+
     private $searchStringMinLength = 2;
+
     private $searchedPaths;
+
     private $searchResult;
+
     private $searchResultsCount = [];
+
     private $searchType = NULL;
+
     private $languages;
+
     private $poFileManager;
+
     private $cacheTimeSeconds = 25;
 
     private function __construct() {
@@ -55,10 +64,11 @@ class PoFileSearch {
      * @return PoFileSearch
      */
     public static function getInstatce() {
-        if (null === self::$instance)
+        if (null === self::$instance) {
             return self::$instance = new self();
-        else
+        } else {
             return self::$instance;
+        }
     }
 
     private function setSearchString($searchString) {
@@ -252,5 +262,3 @@ class PoFileSearch {
     }
 
 }
-
-?>

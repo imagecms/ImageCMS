@@ -5,25 +5,25 @@ namespace template_manager\classes;
 /**
  * From instance of this class you can esier get to the methods of components
  * (compontents of current template)
- * 
- * For example to call function getColorSheme() of TColorScheme component: 
+ *
+ * For example to call function getColorSheme() of TColorScheme component:
  * $tcs = new TComponentShortcut;
  * $colorScheme = $tcs->TColorScheme->getColorSheme();
  * or even shorter (upper case letter from name of component):
  * $tcs->$TCS->getColorScheme();
- * 
+ *
  * (monostate)
  */
 class TComponentShortcut {
 
     /**
-     * 
+     *
      * @param type $componentName
      * @return \template_manager\classes\TComponentShortcutWrapper
      */
     public function __get($componentName) {
-//        $currentTemplate = TemplateManager::getInstance()->getCurentTemplate();
-//        $components = $currentTemplate->getComponents();
+        //        $currentTemplate = TemplateManager::getInstance()->getCurentTemplate();
+        //        $components = $currentTemplate->getComponents();
 
         $components = TemplateManager::getInstance()->getCurrentTemplateComponents();
         $nameShort = self::getShortName($componentName);
@@ -37,7 +37,7 @@ class TComponentShortcut {
     }
 
     /**
-     * 
+     *
      * @param type $componentName
      * @return string
      */

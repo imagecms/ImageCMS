@@ -19,7 +19,7 @@ class MY_Lang extends MX_Lang {
 
     public $gettext_domain;
 
-    static $LANG;
+    public static $LANG;
 
     /**
      * The constructor initialize the library
@@ -53,7 +53,7 @@ class MY_Lang extends MX_Lang {
 
     private function _init() {
         if (!strstr($_SERVER['REQUEST_URI'], 'install')) {
-            if (is_null(CI::$APP->db)) {
+            if (null == CI::$APP->db) {
                 $error = & load_class('Exceptions', 'core');
                 echo $error->show_error('DB Error', 'Unable to connect to the database', 'error_db');
                 exit;

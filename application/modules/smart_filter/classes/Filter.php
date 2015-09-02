@@ -34,11 +34,11 @@ class Filter {
         $rateByFilter = Currency::create()->getRateByfilter();
 
         if ($this->get['lp']) {
-            $this->get_lp = (int)$this->get['lp'] / $rateByFilter - 1;
+            $this->get_lp = (int) $this->get['lp'] / $rateByFilter - 1;
         }
 
         if ($this->get['rp']) {
-            $this->get_rp = (int)$this->get['rp'] / $rateByFilter + 1;
+            $this->get_rp = (int) $this->get['rp'] / $rateByFilter + 1;
         }
 
         foreach ($this->get['p'] as $kFirst => $arrProp) {
@@ -151,15 +151,15 @@ class Filter {
         $resultArray = array();
 
         $propertiesInGet = $this->get['p'];
-//        if (null != $keyUnset) {
-//            unset($propertiesInGet[$keyUnset]);
-//        }
+        //        if (null != $keyUnset) {
+        //            unset($propertiesInGet[$keyUnset]);
+        //        }
         $array_products = array();
         foreach ($propertiesInGet as $pkey => $pvalue) {
             $arr_prod = array();
             foreach ($pvalue as $pk => $pv) {
 
-                $this->db->where('property_id', (int)$pkey);
+                $this->db->where('property_id', (int) $pkey);
                 $this->db->where('value', $pv);
                 $this->db->where('locale', $this->locale);
 
@@ -187,11 +187,11 @@ class Filter {
 
         if (isset($this->get_lp) || isset($this->get_rp)) {
             if (isset($this->get_lp) && $this->get_lp > 0) {
-                $this->db->where('shop_product_variants.price >= ', (int)($this->get_lp));
+                $this->db->where('shop_product_variants.price >= ', (int) ($this->get_lp));
             }
 
             if (isset($this->get_rp) && $this->get_rp > 0) {
-                $this->db->where('shop_product_variants.price <= ', (int)($this->get_rp));
+                $this->db->where('shop_product_variants.price <= ', (int) ($this->get_rp));
             }
         }
     }
@@ -336,9 +336,12 @@ class Filter {
                 if ($properties[$key]->possibleValues) {
                     $properties[$key]->possibleValues = $properties[$key]->possibleValues->result_array();
 
-                    usort($properties[$key]->possibleValues, function ($a, $b) {
-                        return strnatcmp($a['value'], $b['value']);
-                    });
+                    usort(
+                        $properties[$key]->possibleValues,
+                        function ($a, $b) {
+                            return strnatcmp($a['value'], $b['value']);
+                        }
+                    );
                 } else {
                     throw new \Exception;
                 }
@@ -472,8 +475,8 @@ class Filter {
 
         if ($priceRange) {
             $priceRange = $priceRange->result_array()[0];
-            $priceRange['minCost'] = (int)\Currency\Currency::create()->convert($priceRange['minCost']);
-            $priceRange['maxCost'] = (int)\Currency\Currency::create()->convert($priceRange['maxCost']);
+            $priceRange['minCost'] = (int) \Currency\Currency::create()->convert($priceRange['minCost']);
+            $priceRange['maxCost'] = (int) \Currency\Currency::create()->convert($priceRange['maxCost']);
         } else {
             throw new \Exception;
         }
@@ -488,11 +491,11 @@ class Filter {
      */
     public function makePriceFilter(SProductsQuery $productsQuery) {
         if (isset($this->get_lp)) {
-            $productsQuery->where('FLOOR(ProductVariant.Price) >= ?', (int)$this->get_lp);
+            $productsQuery->where('FLOOR(ProductVariant.Price) >= ?', (int) $this->get_lp);
         }
 
         if (isset($this->get_rp)) {
-            $productsQuery->where('FLOOR(ProductVariant.Price) <= ?', (int)$this->get_rp);
+            $productsQuery->where('FLOOR(ProductVariant.Price) <= ?', (int) $this->get_rp);
         }
 
         return $productsQuery;

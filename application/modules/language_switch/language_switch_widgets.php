@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * language_switch widgets
@@ -17,6 +18,7 @@ class Language_switch_Widgets extends MY_Controller {
     }
 
     // Get and display recent comments
+
     public function language_switch_show($widget = array()) {
         if ($widget['settings'] == FALSE) {
             $settings = $this->defaults;
@@ -38,7 +40,6 @@ class Language_switch_Widgets extends MY_Controller {
             }
         }
 
-
         $languages = $this->db->get('languages')->result_array();
         foreach ($languages as $key => $lang) {
             if ($lang['identif'] == MY_Controller::getCurrentLocale()) {
@@ -53,10 +54,11 @@ class Language_switch_Widgets extends MY_Controller {
     }
 
     // Configure widget settings
+
     public function language_switch_show_configure($action = 'show_settings', $widget_data = array()) {
         if ($this->dx_auth->is_admin() == FALSE) {
             exit;
-        } // Only admin access 
+        } // Only admin access
 
         switch ($action) {
             case 'show_settings':
@@ -67,7 +69,6 @@ class Language_switch_Widgets extends MY_Controller {
                 $this->form_validation->set_rules('image_url', lang('Image', 'language_switch'), 'trim|required');
                 $this->form_validation->set_rules('image_title', lang('Description', 'language_switch'), 'trim');
                 $this->form_validation->set_rules('href', lang('passage Url', 'language_switch'), 'trim');
-
 
                 if ($this->form_validation->run() == FALSE) {
                     showMessage(validation_errors(), false, 'r');
@@ -94,14 +95,14 @@ class Language_switch_Widgets extends MY_Controller {
     /**
      * @param string $file
      */
-    function display_tpl($file, $vars = array()) {
+    public function display_tpl($file, $vars = array()) {
         $this->template->add_array($vars);
 
         $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';
         $this->template->display('file:' . $file);
     }
 
-    function fetch_tpl($file, $vars = array()) {
+    public function fetch_tpl($file, $vars = array()) {
         $this->template->add_array($vars);
 
         $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';

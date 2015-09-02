@@ -73,7 +73,7 @@ $(document).ready(function () {
 
 
     /** Change active or not category*/
-    $('.seoProductCategoriesTable').find('span.prod-on_off.categorySeo').off('click').on('click', function () {
+    $('body').on('click', 'span.prod-on_off.categorySeo', function () {
         var catId = $(this).attr('data-id');
         changeActive();
         $.ajax({
@@ -89,7 +89,7 @@ $(document).ready(function () {
 
 
     /** Change use for empty meta*/
-    $('.seoProductCategoriesTable').find('span.prod-on_off.emptyMetaSeo').off('click').on('click', function () {
+    $('body').on('click', 'span.prod-on_off.emptyMetaSeo',  function () {
         var catId = $(this).attr('data-id');
         changeEmtyActive();
         $.ajax({

@@ -39,7 +39,7 @@ class DemodataDirector {
         foreach ($this->demodata->children() as $demodataName => $node) {
             $handlerClass = "Demodata" . ucfirst($demodataName);
             include_once __DIR__ . DIRECTORY_SEPARATOR . $handlerClass . EXT;
-            
+
             $handlerClass = 'template_manager\\installer\\' . $handlerClass;
             $demodata = new $handlerClass($node);
 
@@ -47,7 +47,7 @@ class DemodataDirector {
             if ($status == FALSE) {
                 $this->status = FALSE;
             }
-//
+            //
             // gathering messages
             if (FALSE !== $msgs = $demodata->getMessages()) {
                 foreach ($msgs as $message) {
@@ -69,5 +69,3 @@ class DemodataDirector {
     }
 
 }
-
-?>

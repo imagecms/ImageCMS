@@ -7,7 +7,7 @@ namespace template_manager\classes;
 /**
  * Class for checking the license of template
  *
- * 
+ *
  */
 class TComponentData { // TLicense
 
@@ -51,8 +51,9 @@ class TComponentData { // TLicense
      */
     public function checkLicense() {
         // for tests - shoud be deleted before production
-        if (defined('UNIT_TESTS_PATH'))
+        if (defined('UNIT_TESTS_PATH')) {
             return true;
+        }
 
         if (self::isLocal()) {
             return true;
@@ -62,8 +63,8 @@ class TComponentData { // TLicense
 
     /**
      * Returns type of license
-     * @return int 
-     *      -1 - no license, 
+     * @return int
+     *      -1 - no license,
      *      0 - free license
      *      1 - paid license
      */
@@ -112,5 +113,3 @@ class TComponentData { // TLicense
     }
 
 }
-
-?>

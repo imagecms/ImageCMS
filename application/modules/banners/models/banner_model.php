@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 class Banner_model extends CI_Model {
 
@@ -39,18 +40,17 @@ class Banner_model extends CI_Model {
         $res = $this->db->query("select  settings from components where name = 'banners'")->row();
         $show = unserialize($res->settings);
 
-
         return $show['show_tpl'] ? true : false;
     }
 
     public function edit_banner($data) {
         $this->db
-                ->where('id', $data['id'])
-                ->set('group', $data['group'])
-                ->set('active', $data['active'])
-                ->set('active_to', $data['active_to'])
-                ->set('where_show', $data['where_show'])
-                ->update('mod_banner');
+            ->where('id', $data['id'])
+            ->set('group', $data['group'])
+            ->set('active', $data['active'])
+            ->set('active_to', $data['active_to'])
+            ->set('where_show', $data['where_show'])
+            ->update('mod_banner');
 
         if ($this->db->where('locale', $data['locale'])->where('id', $data['id'])->get('mod_banner_i18n')->num_rows()) {
             $sql = "update mod_banner_i18n set url = '" . $data['url'] . "', name = '" . $data['name'] . "', description = '" . str_replace("'", "\'", $data['description']) . "', photo = '" . $data['photo'] . "' where id = '" . $data['id'] . "' and locale = '" . $data['locale'] . "'";
@@ -75,21 +75,19 @@ class Banner_model extends CI_Model {
     public function get_all_banner($locale, $group = 0, $active = 1) {
 
         $query = $this->db
-                ->select('*, mod_banner.id as id')
-                ->where('locale', $locale);
+            ->select('*, mod_banner.id as id')
+            ->where('locale', $locale);
 
         if ($active) {
             $query->where('active', $active);
         }
 
         $query = $query->join('mod_banner_i18n', 'mod_banner.id = mod_banner_i18n.id')
-                ->order_by('position')
-                ->get('mod_banner');
-
+            ->order_by('position')
+            ->get('mod_banner');
 
         if ($query) {
             $query = $query->result_array();
-
 
             if ($group != '0') {
                 foreach ($query as $key => $banner) {
@@ -101,17 +99,14 @@ class Banner_model extends CI_Model {
                         unset($query[$key]);
                     }
                 }
-            }else{
-                
-           
-                 foreach ($query as $key => $banner) {
-                    if (unserialize($banner['group']) && !strstr($_SERVER['REQUEST_URI'],'/admin/')) {
-                       unset($query[$key]);
+            } else {
+                foreach ($query as $key => $banner) {
+                    if (unserialize($banner['group']) && !strstr($_SERVER['REQUEST_URI'], '/admin/')) {
+                        unset($query[$key]);
                     }
                 }
-            
             }
-  
+
         }
 
         return $query;
@@ -131,7 +126,7 @@ class Banner_model extends CI_Model {
         return $banner[0];
     }
 
-    function getGroups() {
+    public function getGroups() {
         $groups = $this->db->get('mod_banner_groups');
         if ($groups) {
             return $groups = $groups->result_array();
@@ -140,7 +135,7 @@ class Banner_model extends CI_Model {
         }
     }
 
-    function createGroupsTable() {
+    public function createGroupsTable() {
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) OR exit;
         $fields = array(
@@ -160,12 +155,15 @@ class Banner_model extends CI_Model {
         $this->dbforge->create_table('mod_banner_groups');
 
         if (!in_array('group', $this->getColumnNamesOfTable('mod_banner'))) {
-            $this->dbforge->add_column('mod_banner', array(
+            $this->dbforge->add_column(
+                'mod_banner',
+                array(
                 'group' => array(
                     'type' => 'VARCHAR',
                     'constraint' => '255',
                     'null' => TRUE,
-            )));
+                ))
+            );
         }
     }
 

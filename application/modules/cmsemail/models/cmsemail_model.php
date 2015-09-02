@@ -387,5 +387,3 @@ class Cmsemail_model extends \CI_Model {
     }
 
 }
-
-?>

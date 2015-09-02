@@ -14,7 +14,7 @@ class Base extends CI_Model {
      * @param string $module
      * @param string $order_by
      */
-    function get($item_id, $status = 0, $module, $limit = 999999, $order_by) {
+    public function get($item_id, $status = 0, $module, $limit = 999999, $order_by) {
         $this->db->where('item_id', $item_id);
         $this->db->where('status', $status);
         $this->db->where('module', $module);
@@ -32,18 +32,18 @@ class Base extends CI_Model {
         return FALSE;
     }
 
-    function get_one($id) {
+    public function get_one($id) {
         $this->db->limit(1);
         return $this->db->get_where('comments', array('id' => $id))->row_array();
     }
 
-    function add($data) {
+    public function add($data) {
         $this->db->insert('comments', $data);
 
         return $this->db->insert_id();
     }
 
-    function all($row_count, $offset) {
+    public function all($row_count, $offset) {
         $this->db->order_by('date', 'desc');
 
         if ($row_count > 0 AND $offset >= 0) {
@@ -59,7 +59,7 @@ class Base extends CI_Model {
         }
     }
 
-    function get_item_comments_status($item_id) {
+    public function get_item_comments_status($item_id) {
         $this->db->select('id, comments_status');
         $this->db->where('id', $item_id);
         $query = $this->db->get('content', 1);
@@ -77,7 +77,7 @@ class Base extends CI_Model {
         }
     }
 
-    function update($id, $data = array()) {
+    public function update($id, $data = array()) {
         $this->db->where('id', $id);
         $this->db->update('comments', $data);
 
@@ -102,7 +102,7 @@ class Base extends CI_Model {
         return $res ? $disslike : false;
     }
 
-    function delete($id) {
+    public function delete($id) {
         if (is_array($id)) {
             $this->db->where_in('id', $id);
             $this->db->delete('comments');
@@ -120,7 +120,7 @@ class Base extends CI_Model {
         return TRUE;
     }
 
-    function count_by_status($status = 0) {
+    public function count_by_status($status = 0) {
         $this->db->where('status', $status);
         $this->db->from('comments');
 
@@ -130,19 +130,19 @@ class Base extends CI_Model {
         return $this->db->count_all_results();
     }
 
-    function get_settings() {
+    public function get_settings() {
         $this->db->where('name', 'comments');
         $query = $this->db->get('components')->row_array();
 
         return unserialize($query['settings']);
     }
 
-    function save_settings($data) {
+    public function save_settings($data) {
         $this->db->where('name', 'comments');
         $this->db->update('components', array('settings' => serialize($data)));
     }
 
-    function get_many($ids) {
+    public function get_many($ids) {
         if (is_array($ids)) {
             return $this->db->where_in('id', $ids)->get('comments')->row_array();
         }

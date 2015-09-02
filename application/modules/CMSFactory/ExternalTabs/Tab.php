@@ -27,7 +27,7 @@ class Tab {
      *  - tabContent
      * @var string
      */
-    public $tabContentTemplate = '<div class="tab-pane active" id="{tabId}">{tabContent}</div>';
+    public $tabContentTemplate = '<div class="tab-pane" id="{tabId}">{tabContent}</div>';
 
     /**
      *

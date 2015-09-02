@@ -144,13 +144,13 @@ class Orders_model extends CI_Model {
                 $orderBy = "ORDER BY `" . $this->input->get('orderMethod') . "`" . $this->input->get('order') . "` ";
             }
         }
-        $orderBy = is_null($orderBy) ? 'ORDER BY `orders_count` DESC' : $orderBy;
+        $orderBy = $orderBy === null ? 'ORDER BY `orders_count` DESC' : $orderBy;
 
         $otherConditions = "";
-        if (!is_null($params['username']) && !empty($params['username'])) {
+        if ($params['username'] !== null && !empty($params['username'])) {
             $otherConditions .= " AND `username` LIKE '%{$params['username']}%' ";
         }
-        if (!is_null($params['order_id']) && !empty($params['order_id'])) {
+        if ($params['order_id'] !== null && !empty($params['order_id'])) {
             $otherConditions .= " AND `order_id` = {$params['order_id']} ";
         }
 

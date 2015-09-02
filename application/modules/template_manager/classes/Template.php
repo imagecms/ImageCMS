@@ -223,8 +223,6 @@ class Template {
         if (count($licenses) > 0) {
             if (key_exists($locale, $licenses)) {
                 $licenseText = file_get_contents($licenses[$locale]);
-            } else {
-                //                $licenseText = file_get_contents(current($licenses));
             }
             return str_replace('{template_name}', $this->label, $licenseText);
         }
@@ -250,7 +248,7 @@ class Template {
     }
 
     protected function loadDataFromXml() {
-        if (!is_null($this->xml)) {
+        if (null !== $this->xml) {
             return;
         }
         if ($this->loadXml()) {

@@ -12,10 +12,12 @@ class Related_products_model extends CI_Model {
     const TABLE = 'mod_related_products';
 
     private $updateData = array();
+
     private $alreadyUpdated = array();
+
     private $mainProductData = array();
 
-    function __construct() {
+    public function __construct() {
         parent::__construct();
     }
 
@@ -59,25 +61,25 @@ class Related_products_model extends CI_Model {
         return $this->db->affected_rows() ? TRUE : FALSE;
     }
 
-//    Not recursive version of setHitHotAction method
-//    public function setHitHotAction($main_product_id, $related_ids) {
-//        $main_product = $this->db->where('id', $main_product_id)->get('shop_products');
-//        if ($main_product) {
-//            $main_product = $main_product->row_array();
-//
-//            $update_data = array();
-//            foreach ($related_ids as $product_id) {
-//                $update_data[] = array(
-//                    'id' => $product_id,
-//                    'hit' => $main_product['hit'],
-//                    'hot' => $main_product['hot'],
-//                    'action' => $main_product['action']
-//                );
-//            }
-//            $this->db->update_batch('shop_products', $update_data, 'id');
-//            return $this->db->affected_rows() ? TRUE : FALSE;
-//        }
-//    }
+    //    Not recursive version of setHitHotAction method
+    //    public function setHitHotAction($main_product_id, $related_ids) {
+    //        $main_product = $this->db->where('id', $main_product_id)->get('shop_products');
+    //        if ($main_product) {
+    //            $main_product = $main_product->row_array();
+    //
+    //            $update_data = array();
+    //            foreach ($related_ids as $product_id) {
+    //                $update_data[] = array(
+    //                    'id' => $product_id,
+    //                    'hit' => $main_product['hit'],
+    //                    'hot' => $main_product['hot'],
+    //                    'action' => $main_product['action']
+    //                );
+    //            }
+    //            $this->db->update_batch('shop_products', $update_data, 'id');
+    //            return $this->db->affected_rows() ? TRUE : FALSE;
+    //        }
+    //    }
 
     /**
      * Update hit, hot, action valuer of related products
@@ -137,8 +139,8 @@ class Related_products_model extends CI_Model {
 
             $products = new SProductsQuery;
             $products = $products->distinct()
-                    ->joinWithI18n(MY_Controller::defaultLocale())
-                    ->findPks($product_ids);
+                ->joinWithI18n(MY_Controller::defaultLocale())
+                ->findPks($product_ids);
             return $products;
         }
         return FALSE;
@@ -169,26 +171,36 @@ class Related_products_model extends CI_Model {
     public function install() {
         $query = $this->db->where('field_name', 'color')->where('entity', 'product')->get('custom_fields');
         if (!$query->num_rows()) {
-            $this->db->query("INSERT INTO `custom_fields` (`field_type_id`, `field_name`, `is_required`, `is_active`, `is_private`, `validators`, `entity`, `options`, `classes`, `position`) VALUES
-                            (0, 'color', 0, 1, 0, 'test', 'product', NULL, 'ColorPicker', NULL);");
+            $this->db->query(
+                "INSERT INTO `custom_fields` (`field_type_id`, `field_name`, `is_required`, `is_active`, `is_private`, `validators`, `entity`, `options`, `classes`, `position`) VALUES
+                            (0, 'color', 0, 1, 0, 'test', 'product', NULL, 'ColorPicker', NULL);"
+            );
 
             $id = $this->db->insert_id();
-            $this->db->query("INSERT INTO `custom_fields_i18n` (`id`, `locale`, `field_label`, `field_description`, `possible_values`) VALUES
-                            (" . $id . ", 'ru', 'Цвет', '<p>Поле выбора цвета</p>', 'N;');");
-            $this->db->query("INSERT INTO `custom_fields_i18n` (`id`, `locale`, `field_label`, `field_description`, `possible_values`) VALUES
-                            (" . $id . ", 'en', 'Color', '<p>Color selection field</p>', 'N;');");
-            $this->db->query("INSERT INTO `custom_fields_i18n` (`id`, `locale`, `field_label`, `field_description`, `possible_values`) VALUES
-                            (" . $id . ", 'ua', 'Колір', '<p>Поле вибору кольора</p>', 'N;');");
+            $this->db->query(
+                "INSERT INTO `custom_fields_i18n` (`id`, `locale`, `field_label`, `field_description`, `possible_values`) VALUES
+                            (" . $id . ", 'ru', 'Цвет', '<p>Поле выбора цвета</p>', 'N;');"
+            );
+            $this->db->query(
+                "INSERT INTO `custom_fields_i18n` (`id`, `locale`, `field_label`, `field_description`, `possible_values`) VALUES
+                            (" . $id . ", 'en', 'Color', '<p>Color selection field</p>', 'N;');"
+            );
+            $this->db->query(
+                "INSERT INTO `custom_fields_i18n` (`id`, `locale`, `field_label`, `field_description`, `possible_values`) VALUES
+                            (" . $id . ", 'ua', 'Колір', '<p>Поле вибору кольора</p>', 'N;');"
+            );
         }
 
         $this->db->where('name', 'related_products')
-                ->update('components', array('autoload' => '1', 'enabled' => '1'));
+            ->update('components', array('autoload' => '1', 'enabled' => '1'));
 
-        $this->db->query("CREATE TABLE IF NOT EXISTS `" . self::TABLE . "` (
+        $this->db->query(
+            "CREATE TABLE IF NOT EXISTS `" . self::TABLE . "` (
                             `product_parent` int(11) NOT NULL,
                             `product_child` int(11) NOT NULL,
                             PRIMARY KEY (`product_parent`,`product_child`)
-                          ) ENGINE=InnoDB DEFAULT CHARSET=latin1;");
+                          ) ENGINE=InnoDB DEFAULT CHARSET=latin1;"
+        );
     }
 
     /**
@@ -204,9 +216,7 @@ class Related_products_model extends CI_Model {
         }
 
         $this->db->where('name', 'related_products')
-                ->delete('components');
+            ->delete('components');
     }
 
 }
-
-?>

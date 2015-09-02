@@ -47,7 +47,7 @@ class PoFileManager {
     private static $CURRENT_TEMPLATE_PATHS = array();
 
     public function __construct() {
-        ;
+
     }
 
     /**
@@ -510,7 +510,7 @@ class PoFileManager {
             return FALSE;
         }
 
-        $settings = $this->makePoFileSettings((array)$data['settings']);
+        $settings = $this->makePoFileSettings((array) $data['settings']);
         unset($data['settings']);
 
         $po_file_data = $this->makePoFileData($data);
@@ -563,7 +563,7 @@ class PoFileManager {
         $resultData = array();
         foreach ($data as $key => $po) {
             if ($po) {
-                $po = $this->preparePoFileData((array)$po);
+                $po = $this->preparePoFileData((array) $po);
 
                 if ($po['comment']) {
                     $resultData[] = "# " . $po['comment'];

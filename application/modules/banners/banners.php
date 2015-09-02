@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Class for Banners module
@@ -17,8 +18,9 @@ class Banners extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
-        if (count($this->db->where('name', 'banners')->get('components')->result_array()) == 0)
+        if (count($this->db->where('name', 'banners')->get('components')->result_array()) == 0) {
             $this->no_install = false;
+        }
         $this->load->module('core');
         $this->load->model('banner_model');
         $lang = new MY_Lang();
@@ -26,8 +28,9 @@ class Banners extends MY_Controller {
     }
 
     public function index() {
-        if ($this->no_install === false)
+        if ($this->no_install === false) {
             return false;
+        }
     }
 
     /**
@@ -96,7 +99,6 @@ class Banners extends MY_Controller {
      */
     public function _install() {
 
-
         $sql = "CREATE TABLE IF NOT EXISTS `mod_banner` (
           `id` int(11) NOT NULL AUTO_INCREMENT,
           `active` tinyint(4) NOT NULL,
@@ -119,7 +121,6 @@ class Banners extends MY_Controller {
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 
         $this->db->query($sql);
-
 
         $this->db->where('name', 'banners');
         $this->db->update('components', array('enabled' => 1));
@@ -180,37 +181,37 @@ class Banners extends MY_Controller {
     }
 
     public static function addMenu() {
-//        return array(
-//            1 =>
-//            array(
-//                'identifier' => 'banners',
-//                'text' => lang("Banners management", "banners"),
-//                'link' => '/admin/components/cp/banners',
-//                'subMenu' =>
-//                array(
-//                    array(
-//                        'identifier' => 'banners_man',
-//                        'text' => lang("Banners management", "banners"),
-//                        'link' => '/admin/components/cp/banners',
-//                        'class' => '',
-//                        'id' => '',
-//                        'pjax' => '',
-//                        'icon' => '',
-//                        'divider' => false,
-//                    ),
-//                    array(
-//                        'identifier' => 'create_banner',
-//                        'text' => lang("Create a banner", "banners"),
-//                        'link' => '/admin/components/init_window/banners/create',
-//                        'class' => '',
-//                        'id' => '',
-//                        'pjax' => '',
-//                        'icon' => '',
-//                        'divider' => false,
-//                    ),
-//                ),
-//            )
-//        );
+        //        return array(
+        //            1 =>
+        //            array(
+        //                'identifier' => 'banners',
+        //                'text' => lang("Banners management", "banners"),
+        //                'link' => '/admin/components/cp/banners',
+        //                'subMenu' =>
+        //                array(
+        //                    array(
+        //                        'identifier' => 'banners_man',
+        //                        'text' => lang("Banners management", "banners"),
+        //                        'link' => '/admin/components/cp/banners',
+        //                        'class' => '',
+        //                        'id' => '',
+        //                        'pjax' => '',
+        //                        'icon' => '',
+        //                        'divider' => false,
+        //                    ),
+        //                    array(
+        //                        'identifier' => 'create_banner',
+        //                        'text' => lang("Create a banner", "banners"),
+        //                        'link' => '/admin/components/init_window/banners/create',
+        //                        'class' => '',
+        //                        'id' => '',
+        //                        'pjax' => '',
+        //                        'icon' => '',
+        //                        'divider' => false,
+        //                    ),
+        //                ),
+        //            )
+        //        );
     }
 
 }

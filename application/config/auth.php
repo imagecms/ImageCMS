@@ -14,7 +14,7 @@ if (!defined('BASEPATH')) {
 
 
 $config['DX_website_name'] = 'Image CMS';
-$config['DX_webmaster_email'] = '';
+$config['DX_webmaster_email'] = 'info@fullmarket.com';
 
 
 /*

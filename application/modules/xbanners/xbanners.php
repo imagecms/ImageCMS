@@ -78,12 +78,8 @@ class Xbanners extends MY_Controller {
         try {
             $man->install();
             $man->installTemplatePlaces();
-        } catch (Exception $exc) {
-//            echo json_encode(['error' => TRUE, 'message' => $exc->getMessage()]);
-//            $man->dropModuleFromComponents();
-//            $man->deinstall();
-//            exit();
-//
+        }catch(Exception $e){
+
         }
     }
 
@@ -126,7 +122,7 @@ class Xbanners extends MY_Controller {
             $installer->install();
         } catch (Exception $exc) {
             if ('development' === ENVIRONMENT) {
-//                showMessage($exc->getMessage(), lang('Error', 'xbanners'), 'r');
+                               showMessage($exc->getMessage(), lang('Error', 'xbanners'), 'r');
             }
         }
     }
@@ -156,6 +152,7 @@ class Xbanners extends MY_Controller {
             ->registerScript('slick.min')
             ->fetchTemplate('banner');
     }
+
     /** -----------------------TEST AREA------------------------------------- */
     /** -----------------------TEST AREA------------------------------------- */
 }

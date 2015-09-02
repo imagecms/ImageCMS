@@ -1,15 +1,16 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * @author Igor R.
  * @copyright ImageCMS (c) 2013, Igor R. <dev@imagecms.net>
- * 
+ *
  * In order to render button and link insert into product template
  * {$CI->load->module('found_less_expensive')->showButtonWithForm()}
- * 
+ *
  * Нашли дешевле
  */
 class Found_less_expensive extends MY_Controller {
@@ -27,7 +28,7 @@ class Found_less_expensive extends MY_Controller {
     }
 
     /**
-     * Display button and form 
+     * Display button and form
      */
     public function showButtonWithForm() {
         \CMSFactory\assetManager::create()
@@ -67,7 +68,7 @@ class Found_less_expensive extends MY_Controller {
 
         /*
          * use module cms email
-         * you need create new letter 'expensive' in database "admin/components/cp/cmsemail/index" with variables and other information 
+         * you need create new letter 'expensive' in database "admin/components/cp/cmsemail/index" with variables and other information
          */
         /*
           // variables
@@ -157,9 +158,12 @@ class Found_less_expensive extends MY_Controller {
         $this->dbforge->create_table('mod_found_less_expensive');
 
         $this->db->where('name', 'found_less_expensive');
-        $this->db->update('components', array(
+        $this->db->update(
+            'components',
+            array(
             'enabled' => 1,
-            'autoload' => 1));
+            'autoload' => 1)
+        );
     }
 
     /**

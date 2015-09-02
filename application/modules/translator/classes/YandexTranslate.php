@@ -14,7 +14,7 @@ class YandexTranslate {
 
     /**
      * Codeigniter object
-     * @var type 
+     * @var type
      */
     private $CI;
 
@@ -29,6 +29,7 @@ class YandexTranslate {
      * @var string
      */
     private $yandexApiKey;
+
     private static $yandexApiUrl = 'https://translate.yandex.net/api/v1.5/tr.json/translate?';
 
     private function __construct() {
@@ -42,10 +43,11 @@ class YandexTranslate {
      * @return YandexTranslate
      */
     public static function getInstatce() {
-        if (null === self::$instance)
+        if (null === self::$instance) {
             return self::$instance = new self();
-        else
+        } else {
             return self::$instance;
+        }
     }
 
     private function initSettings() {
@@ -95,5 +97,3 @@ class YandexTranslate {
     }
 
 }
-
-?>

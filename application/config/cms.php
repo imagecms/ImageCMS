@@ -63,7 +63,7 @@ $config['enable_profiler'] = false;
   |
  */
 $config['tpl_compile_path'] = BASEPATH . 'cache/templates_c/';
-$config['tpl_force_compile'] = FALSE;
+$config['tpl_force_compile'] = TRUE;
 $config['tpl_compiled_ttl'] = 84600;
 $config['tpl_compress_output'] = TRUE;
 $config['tpl_use_filemtime'] = TRUE;

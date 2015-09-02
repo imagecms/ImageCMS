@@ -40,7 +40,7 @@ class DependenceDirector {
             $attributes = $node->attributes();
             $handlerClass = "template_manager\\installer\\" . ucfirst($attributes['entityName']) . 'Dependence';
             include_once __DIR__ . DIRECTORY_SEPARATOR . $handlerClass . EXT;
-            
+
             $dependence = new $handlerClass($node);
 
             $status = $dependence->verify($installDemodata);
@@ -78,5 +78,3 @@ class DependenceDirector {
     }
 
 }
-
-?>

@@ -30,10 +30,11 @@ class Replacer {
      * @return Replacer
      */
     public static function getInstatce() {
-        if (null === self::$instance)
+        if (null === self::$instance) {
             return self::$instance = new self();
-        else
+        } else {
             return self::$instance;
+        }
     }
 
     /**
@@ -224,5 +225,3 @@ class Replacer {
     }
 
 }
-
-?>
