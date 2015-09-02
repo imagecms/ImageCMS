@@ -2,6 +2,11 @@
 
 namespace exchange\classes;
 
+use CI_DB_active_record;
+use Exception;
+use MY_Controller;
+use SimpleXMLElement;
+
 /**
  * Base class for import/export
  *
@@ -9,7 +14,7 @@ namespace exchange\classes;
  * request its properties from db and xml
  *
  * @author kolia
- * @property \CI_DB_active_record $db
+ * @property CI_DB_active_record $db
  */
 abstract class ExchangeBase {
 
@@ -54,7 +59,7 @@ abstract class ExchangeBase {
 
     private function __construct() {
         $this->dataLoad = ExchangeDataLoad::getInstance();
-        $this->locale = \MY_Controller::getCurrentLocale();
+        $this->locale = MY_Controller::getCurrentLocale();
         $ci = &get_instance();
         $this->db = $ci->db;
     }
@@ -96,7 +101,7 @@ abstract class ExchangeBase {
         $error = $this->db->_error_message();
 
         if (!empty($error)) {
-            throw new \Exception("Error on inserting into `{$tableName}`: " . $error);
+            throw new Exception("Error on inserting into `{$tableName}`: " . $error);
         }
         // gathering statistics
         ExchangeBase::$stats[] = array(
@@ -106,7 +111,7 @@ abstract class ExchangeBase {
         );
     }
 
-    public function setXml(\SimpleXMLElement $xml) {
+    public function setXml(SimpleXMLElement $xml) {
         $this->xml = $xml;
     }
 
@@ -141,7 +146,7 @@ abstract class ExchangeBase {
      * @param string $tableName
      * @param array $data
      * @param string $keyToComare
-     * @throws \Exception
+     * @throws Exception
      */
     public function _updateBatchGroup($tableName, array $data, $keyToComare) {
 
@@ -150,7 +155,7 @@ abstract class ExchangeBase {
         $error = $this->db->_error_message();
 
         if (!empty($error)) {
-            throw new \Exception("Error on updating `{$tableName}`: " . $error);
+            throw new Exception("Error on updating `{$tableName}`: " . $error);
         }
     }
 
@@ -173,7 +178,7 @@ abstract class ExchangeBase {
             log_message('error', sprintf("DB error: '%s'", $error));
 
             if (config_item("update:failOnError") == true) {
-                throw new \Exception("Error on updating `{$tableName}`: " . $error);
+                throw new Exception("Error on updating `{$tableName}`: " . $error);
             }
         }
     }
@@ -188,9 +193,9 @@ abstract class ExchangeBase {
 
     /**
      * Sets the data for import, starts import
-     * @param \SimpleXMLElement $importData
+     * @param SimpleXMLElement $importData
      */
-    public function import(\SimpleXMLElement $importData) {
+    public function import(SimpleXMLElement $importData) {
         if (!count($importData) > 0) {
             return;
         }

@@ -105,21 +105,21 @@ class Admin extends BaseAdminController {
 
             $this->registerJsVars();
             assetManager::create()
-                ->registerStyle('style_admin')
-                ->registerStyle('jquery.fancybox-1.3.4')
-                ->registerScript('jquery.fancybox-1.3.4.pack')
-                ->registerScript('script_admin')
-                ->setData(
-                    array(
-                        'freeTpl' => $freeTpl,
-                        'templateToPay' => TemplateManager::getTemplateToPay(),
-                        'template' => $this->currentTemplate,
-                        'templates' => TemplateManager::getInstance()->listLocal(),
-                        'remoteTemplates' => $this->input->get('remote_templates') ? TemplateManager::getInstance()->listRemote() : array(),
-                        'currTpl' => $this->currentTemplate->name
+                    ->registerStyle('style_admin')
+                    ->registerStyle('jquery.fancybox-1.3.4')
+                    ->registerScript('jquery.fancybox-1.3.4.pack')
+                    ->registerScript('script_admin')
+                    ->setData(
+                        array(
+                                'freeTpl' => $freeTpl,
+                                'templateToPay' => TemplateManager::getTemplateToPay(),
+                                'template' => $this->currentTemplate,
+                                'templates' => TemplateManager::getInstance()->listLocal(),
+                                'remoteTemplates' => $this->input->get('remote_templates') ? TemplateManager::getInstance()->listRemote() : array(),
+                                'currTpl' => $this->currentTemplate->name
+                            )
                     )
-                )
-                ->renderAdmin('main');
+                    ->renderAdmin('main');
         }
     }
 
@@ -142,10 +142,10 @@ class Admin extends BaseAdminController {
     public function registerJsVars() {
         $jsData = json_encode(
             array(
-                'acceptLicenseError' => lang('Templates are the intellectual property, so if you <br /> want to install it, you must accept the license agreement.', 'template_manager'),
-                'wrongFileType' => lang('Wrong filetype. Zip-archives only', 'template_manager'),
-                'moduleAdminUrl' => site_url('admin/components/cp/template_manager/'),
-            )
+                    'acceptLicenseError' => lang('Templates are the intellectual property, so if you <br /> want to install it, you must accept the license agreement.', 'template_manager'),
+                    'wrongFileType' => lang('Wrong filetype. Zip-archives only', 'template_manager'),
+                    'moduleAdminUrl' => site_url('admin/components/cp/template_manager/'),
+                )
         );
         $jsCode = "var templateManagerData = {$jsData};";
         assetManager::create()->registerJsScript($jsCode, false, 'before');
@@ -332,11 +332,11 @@ class Admin extends BaseAdminController {
         $this->load->library(
             'upload',
             array(
-                'upload_path' => $this->templatesUploadPath,
-                'allowed_types' => 'zip',
-                'max_size' => 1024 * 100, // 100 Mb
-                'file_name' => $_FILES[$fieldName]['name'],
-            )
+            'upload_path' => $this->templatesUploadPath,
+            'allowed_types' => 'zip',
+            'max_size' => 1024 * 100, // 100 Mb
+            'file_name' => $_FILES[$fieldName]['name'],
+                )
         );
 
         // Upload folder

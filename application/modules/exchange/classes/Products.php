@@ -169,6 +169,8 @@ class Products extends ExchangeBase {
      * @throws Exception
      */
     public function rebuildAdditionalParentsCats() {
+        $ids = [];
+
         foreach ($this->products as $products) {
             $ids[] = $products['id'];
         }

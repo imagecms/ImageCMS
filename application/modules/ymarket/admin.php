@@ -8,6 +8,8 @@
  * @property Ymarket_model $ymarket_model
  */
 class Admin extends BaseAdminController {
+    const DEFAULT_TYPE = 1;
+    const PRICE_UA_TYPE = 2;
 
     public function __construct() {
         parent::__construct();
@@ -38,8 +40,8 @@ class Admin extends BaseAdminController {
     public function getSelectedCats() {
         $data->categories = ShopCore::app()->SCategoryTree->getTree();
         $data->brands = $this->ymarket_model->getBrands();
-        $data->ymarket_model = $this->ymarket_model->init(Ymarket::DEFAULT_TYPE);
-        $data->price_ua_model = $this->ymarket_model->init(Ymarket::PRICE_UA_TYPE);
+        $data->ymarket_model = $this->ymarket_model->init(self::DEFAULT_TYPE);
+        $data->price_ua_model = $this->ymarket_model->init(self::PRICE_UA_TYPE);
 
         return $data;
     }

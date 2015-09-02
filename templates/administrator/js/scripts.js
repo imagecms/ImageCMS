@@ -1,38 +1,38 @@
 function escapeHtml(unsafe) {
     return unsafe
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }
 
 function number_format(number, decimals, dec_point, thousands_sep) {
     number = (number + '')
-        .replace(/[^0-9+\-Ee.]/g, '');
+    .replace(/[^0-9+\-Ee.]/g, '');
     var n = !isFinite(+number) ? 0 : +number,
-        prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
-        sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
-        dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
-        s = '',
-        toFixedFix = function (n, prec) {
-            var k = Math.pow(10, prec);
-            return '' + (Math.round(n * k) / k)
-                    .toFixed(prec);
-        };
+    prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+    sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+    dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+    s = '',
+    toFixedFix = function (n, prec) {
+        var k = Math.pow(10, prec);
+        return '' + (Math.round(n * k) / k)
+        .toFixed(prec);
+    };
     // Fix for IE parseFloat(0.55).toFixed(0) = 0;
     s = (prec ? toFixedFix(n, prec) : '' + Math.round(n))
-        .split('.');
+    .split('.');
     if (s[0].length > 3) {
         s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
     }
     if ((s[1] || '')
-            .length < prec) {
+        .length < prec) {
         s[1] = s[1] || '';
-        s[1] += new Array(prec - s[1].length + 1)
-            .join('0');
-    }
-    return s.join(dec);
+    s[1] += new Array(prec - s[1].length + 1)
+    .join('0');
+}
+return s.join(dec);
 }
 
 function checkLenghtStr(id, lenLeft, lenRight, key) {
@@ -310,9 +310,9 @@ function check4(el, input) {
 }
 function changeCheck(el) {
     var el = el,
-        input = el.find("input"),
-        inputHideDate = el.find("input.show-date-banner"),
-        inputHideCat = el.find("input.show-categories");
+    input = el.find("input"),
+    inputHideDate = el.find("input.show-date-banner"),
+    inputHideCat = el.find("input.show-categories");
     if (!input.attr("checked")) {
         inputHideDate.closest('.control-group').next('.hide-control-group').hide();
         inputHideCat.closest('.control-group').next('.show-control-group').hide();
@@ -333,7 +333,7 @@ function changeRadio(el) {
 }
 function changeCheckallchecks(el) {
     var el = el,
-        input = el.find("input");
+    input = el.find("input");
     el.css("background-position", active_b_p);
     el.parent().addClass('active');
     input.attr("checked", true);
@@ -350,7 +350,7 @@ function changeCheckallchecks(el) {
 }
 function changeCheckallreset(el) {
     var el = el,
-        input = el.find("input");
+    input = el.find("input");
     el.css("background-position", n_active_b_p);
     el.parent().removeClass('active');
     input.attr("checked", false);
@@ -368,7 +368,7 @@ function changeCheckallreset(el) {
 
 function changeCheckStart(el) {
     var el = el,
-        input = el.find("input");
+    input = el.find("input");
     if (input.attr("checked")) {
         check1(el, input);
     }
@@ -379,7 +379,7 @@ function changeCheckStart(el) {
 }
 function changeRadioStart(el) {
     var el = el,
-        input = el.find("input");
+    input = el.find("input");
     el.removeClass('b_n');
     if (input.attr("checked")) {
         check3(el, input);
@@ -467,9 +467,9 @@ function init_2() {
 
 
 // shop - settings - count of products on site
-    $("#arrayFrontProductsPerPage").off('keyup').on('keyup', function () {
-        var currentValue = $(this).val();
-        var pattern = /^[0-9\,[^\,\,]]+$/;
+$("#arrayFrontProductsPerPage").off('keyup').on('keyup', function () {
+    var currentValue = $(this).val();
+    var pattern = /^[0-9\,[^\,\,]]+$/;
         if (!currentValue.match(pattern)) { // has banned symbols
             var caretPosition = caret($(this)); // get the caret position
             var newValue = currentValue.replace(/([^0-9\,]{1,}|[\,]{2})/, '');
@@ -477,10 +477,10 @@ function init_2() {
             caret(this, caretPosition.begin)
         }
     });
-    $('.btn.disabled').each(function (event) {
-        $(this).attr('disabled', true);
-    });
-    initNiceCheck();
+$('.btn.disabled').each(function (event) {
+    $(this).attr('disabled', true);
+});
+initNiceCheck();
     //autocomplete for resize in settings
 
 
@@ -514,25 +514,25 @@ function init_2() {
     }
 
 //Autocomplete for orders
-    if ($('#productNameForOrders').length) {
-        var listProduct = $('.productsForOrders');
-        $('#productNameForOrders').off('keyup').on('keyup', function () {
-            listProduct.empty();
-            if (gA.getProductsAjax)
-                gA.getProductsAjax.abort();
-            gA.getProductsAjax = $.ajax({
-                url: '/admin/components/run/shop/orders/ajaxGetProductsList/?term=' + $(this).val(),
-                type: "post",
-                dataType: 'json',
-                success: function (data) {
-                    if (data)
-                        for (var i in data)
-                            $('<option>', {
-                                data: data[i],
-                                'data-product-name': data[i].name,
-                                value: data[i].id,
-                                text: data[i].label
-                            }).appendTo(listProduct);
+if ($('#productNameForOrders').length) {
+    var listProduct = $('.productsForOrders');
+    $('#productNameForOrders').off('keyup').on('keyup', function () {
+        listProduct.empty();
+        if (gA.getProductsAjax)
+            gA.getProductsAjax.abort();
+        gA.getProductsAjax = $.ajax({
+            url: '/admin/components/run/shop/orders/ajaxGetProductsList/?term=' + $(this).val(),
+            type: "post",
+            dataType: 'json',
+            success: function (data) {
+                if (data)
+                    for (var i in data)
+                        $('<option>', {
+                            data: data[i],
+                            'data-product-name': data[i].name,
+                            value: data[i].id,
+                            text: data[i].label
+                        }).appendTo(listProduct);
                     else
                         $('<option>', {
                             text: langs.notFound,
@@ -540,95 +540,95 @@ function init_2() {
                         }).appendTo(listProduct);
                 }
             });
-        });
-    }
-    /* Autocomplete users in orders */
-    if ($('#usersForOrders').length > 0) {
-        var list = $('#listUsersForOrder')
-        list.off('change').on('change', function () {
-            orders.user = $(this).find(':selected').data();
-            $('#usersForOrders').addClass('hasUser');
-            $('#userEmail').val(orders.user.email);
-            $('#userPhone').val(orders.user.phone);
-            $('#userAddress').val(orders.user.address);
-            setValueUser();
-            var totalCartSum = $('#totalCartSum').html();
-            var totalProductPrice = totalCartSum;
-            var userDiscount = 0;
-            if (gA.getUserDiscount)
-                gA.getUserDiscount.abort();
-            gA.getUserDiscount = $.ajax({
-                url: '/admin/components/run/shop/orders/ajaxGetUserDiscount/',
-                data: 'userId=' + orders.user.id,
-                type: "post",
-                success: function (data) {
-                    if (data != '')
-                        userDiscount = data;
-                    if (userDiscount != 0)
-                        totalProductPrice = (totalCartSum / 100 * (100 - userDiscount)).toFixed(pricePrecision);
-                    $('#shopOrdersTotalPrice').val(totalProductPrice);
-                }
-            });
-        });
-        $('#usersForOrders').off('keyup').on('keyup', function () {
-            $(this).removeClass('hasUser');
-            $('#userEmail, #userPhone, #userAddress').val('').addClass('hasUser');
-            $('#shopOrdersUserFullName, #shopOrdersUserEmail, #shopOrdersUserPhone, #shopOrdersUserAddress, #shopOrdersUserid').val('');
-            orders.user = null;
-            list.empty();
-            if (gA.getUsersAjax)
-                gA.getUsersAjax.abort();
-            gA.getUsersAjax = $.ajax({
-                url: '/admin/components/run/shop/orders/autoComplite/?limit=100&term=' + $(this).val(),
-                type: "post",
-                dataType: 'json',
-                success: function (data) {
-                    if (data)
-                        for (var i in data)
-                            $('<option>', {
-                                data: data[i],
-                                value: data[i].id,
-                                text: data[i].value
-                            }).appendTo(list);
-                    else
-                        $('<option>', {
-                            text: langs.notFound,
-                            disabled: 'disabled'
-                        }).appendTo(list);
-                }
-            });
-        });
-    }
-    /* Create user in order */
-    $('#createOrder').off('click').on('click', function (e) {
-        e.stopImmediatePropagation();
-        var emailPattern = /^[a-z0-9_\.-]+@[a-z0-9-]+\.([a-z]{1,6}\.)?[a-z]{2,6}$/i;
+    });
+}
+/* Autocomplete users in orders */
+if ($('#usersForOrders').length > 0) {
+    var list = $('#listUsersForOrder')
+    list.off('change').on('change', function () {
+        orders.user = $(this).find(':selected').data();
+        $('#usersForOrders').addClass('hasUser');
+        $('#userEmail').val(orders.user.email);
+        $('#userPhone').val(orders.user.phone);
+        $('#userAddress').val(orders.user.address);
         setValueUser();
-        if ($('#usersForOrders').is(':visible')) {
-            if ($('#usersForOrders').hasClass('hasUser'))
-                handleFormSubmit.call($('#createOrder'));
-            else
-                showMessage(langs.error, langs.failToCreateUser, "error");
-        }
-        else if ($('#createUserName').val() != '' && $('#createUserEmail').val() != '') {
-            orders.user = {};
-            orders.user.name = $('#createUserName').val();
-            orders.user.email = $('#createUserEmail').val();
-            orders.user.phone = $('#createUserPhone').val();
-            orders.user.address = $('#createUserAddress').val();
-            setValueUser();
-            if (orders.user.email.search(emailPattern) === -1)
-                showMessage(langs.message, langs.enterValidEmailAddress, "error");
-            else
-                $.ajax({
-                    url: '/admin/components/run/shop/orders/createNewUser',
-                    type: "POST",
-                    data: "name=" + orders.user.name + "&email=" + orders.user.email + "&phone=" + orders.user.phone + "&address=" + orders.user.address,
-                    success: function (response) {
-                        if (response == 'email') {
-                            showMessage(langs.message, langs.thisEmailUserExists, "error");
-                        } else if (response != 'false') {
-                            $.extend(orders.user, $.parseJSON(response));
+        var totalCartSum = $('#totalCartSum').html();
+        var totalProductPrice = totalCartSum;
+        var userDiscount = 0;
+        if (gA.getUserDiscount)
+            gA.getUserDiscount.abort();
+        gA.getUserDiscount = $.ajax({
+            url: '/admin/components/run/shop/orders/ajaxGetUserDiscount/',
+            data: 'userId=' + orders.user.id,
+            type: "post",
+            success: function (data) {
+                if (data != '')
+                    userDiscount = data;
+                if (userDiscount != 0)
+                    totalProductPrice = (totalCartSum / 100 * (100 - userDiscount)).toFixed(pricePrecision);
+                $('#shopOrdersTotalPrice').val(totalProductPrice);
+            }
+        });
+    });
+$('#usersForOrders').off('keyup').on('keyup', function () {
+    $(this).removeClass('hasUser');
+    $('#userEmail, #userPhone, #userAddress').val('').addClass('hasUser');
+    $('#shopOrdersUserFullName, #shopOrdersUserEmail, #shopOrdersUserPhone, #shopOrdersUserAddress, #shopOrdersUserid').val('');
+    orders.user = null;
+    list.empty();
+    if (gA.getUsersAjax)
+        gA.getUsersAjax.abort();
+    gA.getUsersAjax = $.ajax({
+        url: '/admin/components/run/shop/orders/autoComplite/?limit=100&term=' + $(this).val(),
+        type: "post",
+        dataType: 'json',
+        success: function (data) {
+            if (data)
+                for (var i in data)
+                    $('<option>', {
+                        data: data[i],
+                        value: data[i].id,
+                        text: data[i].value
+                    }).appendTo(list);
+                else
+                    $('<option>', {
+                        text: langs.notFound,
+                        disabled: 'disabled'
+                    }).appendTo(list);
+            }
+        });
+});
+}
+/* Create user in order */
+$('#createOrder').off('click').on('click', function (e) {
+    e.stopImmediatePropagation();
+    var emailPattern = /^[a-z0-9_\.-]+@[a-z0-9-]+\.([a-z]{1,6}\.)?[a-z]{2,6}$/i;
+    setValueUser();
+    if ($('#usersForOrders').is(':visible')) {
+        if ($('#usersForOrders').hasClass('hasUser'))
+            handleFormSubmit.call($('#createOrder'));
+        else
+            showMessage(langs.error, langs.failToCreateUser, "error");
+    }
+    else if ($('#createUserName').val() != '' && $('#createUserEmail').val() != '') {
+        orders.user = {};
+        orders.user.name = $('#createUserName').val();
+        orders.user.email = $('#createUserEmail').val();
+        orders.user.phone = $('#createUserPhone').val();
+        orders.user.address = $('#createUserAddress').val();
+        setValueUser();
+        if (orders.user.email.search(emailPattern) === -1)
+            showMessage(langs.message, langs.enterValidEmailAddress, "error");
+        else
+            $.ajax({
+                url: '/admin/components/run/shop/orders/createNewUser',
+                type: "POST",
+                data: "name=" + orders.user.name + "&email=" + orders.user.email + "&phone=" + orders.user.phone + "&address=" + orders.user.address,
+                success: function (response) {
+                    if (response == 'email') {
+                        showMessage(langs.message, langs.thisEmailUserExists, "error");
+                    } else if (response != 'false') {
+                        $.extend(orders.user, $.parseJSON(response));
                             //$.extend(orders.user, response);
                             setValueUser();
                             showMessage(langs.message, langs.newUserCreated, "success");
@@ -638,40 +638,40 @@ function init_2() {
                         }
                     }
                 });
-        }
+}
+else
+    showMessage(langs.error, langs.needToFillFields, "error");
+});
+/* Create user in order */
+$('#createOrderAndExit').off('click').on('click', function (e) {
+    e.stopImmediatePropagation();
+    var emailPattern = /^[a-z0-9_-]+@[a-z0-9-]+\.([a-z]{1,6}\.)?[a-z]{2,6}$/i;
+    setValueUser();
+    if ($('#usersForOrders').is(':visible')) {
+        if ($('#usersForOrders').hasClass('hasUser'))
+            handleFormSubmit.call($('#createOrderAndExit'));
         else
-            showMessage(langs.error, langs.needToFillFields, "error");
-    });
-    /* Create user in order */
-    $('#createOrderAndExit').off('click').on('click', function (e) {
-        e.stopImmediatePropagation();
-        var emailPattern = /^[a-z0-9_-]+@[a-z0-9-]+\.([a-z]{1,6}\.)?[a-z]{2,6}$/i;
+            showMessage(langs.error, langs.failToCreateUser, "error");
+    }
+    else if ($('#createUserName').val() != '' && $('#createUserEmail').val() != '') {
+        orders.user = {};
+        orders.user.name = $('#createUserName').val();
+        orders.user.email = $('#createUserEmail').val();
+        orders.user.phone = $('#createUserPhone').val();
+        orders.user.address = $('#createUserAddress').val();
         setValueUser();
-        if ($('#usersForOrders').is(':visible')) {
-            if ($('#usersForOrders').hasClass('hasUser'))
-                handleFormSubmit.call($('#createOrderAndExit'));
-            else
-                showMessage(langs.error, langs.failToCreateUser, "error");
-        }
-        else if ($('#createUserName').val() != '' && $('#createUserEmail').val() != '') {
-            orders.user = {};
-            orders.user.name = $('#createUserName').val();
-            orders.user.email = $('#createUserEmail').val();
-            orders.user.phone = $('#createUserPhone').val();
-            orders.user.address = $('#createUserAddress').val();
-            setValueUser();
-            if (orders.user.email.search(emailPattern) === -1)
-                showMessage(langs.message, langs.enterValidEmailAddress, "error");
-            else
-                $.ajax({
-                    url: '/admin/components/run/shop/orders/createNewUser',
-                    type: "POST",
-                    data: "name=" + orders.user.name + "&email=" + orders.user.email + "&phone=" + orders.user.phone + "&address=" + orders.user.address,
-                    success: function (response) {
-                        if (response == 'email') {
-                            showMessage(langs.message, langs.thisEmailUserExists, "error");
-                        } else if (response != 'false') {
-                            $.extend(orders.user, $.parseJSON(response));
+        if (orders.user.email.search(emailPattern) === -1)
+            showMessage(langs.message, langs.enterValidEmailAddress, "error");
+        else
+            $.ajax({
+                url: '/admin/components/run/shop/orders/createNewUser',
+                type: "POST",
+                data: "name=" + orders.user.name + "&email=" + orders.user.email + "&phone=" + orders.user.phone + "&address=" + orders.user.address,
+                success: function (response) {
+                    if (response == 'email') {
+                        showMessage(langs.message, langs.thisEmailUserExists, "error");
+                    } else if (response != 'false') {
+                        $.extend(orders.user, $.parseJSON(response));
                             //$.extend(orders.user, response);
                             setValueUser();
                             showMessage(langs.message, langs.newUserCreated, "success");
@@ -681,95 +681,95 @@ function init_2() {
                         }
                     }
                 });
-        }
-        else
-            showMessage(langs.error, langs.needToFillFields, "error");
-    });
-    /** Update data in orders*/
-    /*/order create*/
+}
+else
+    showMessage(langs.error, langs.needToFillFields, "error");
+});
+/** Update data in orders*/
+/*/order create*/
 
-    if ($.exists('.niceRadio')) {
-        $(".niceRadio").each(function () {
-            active_R_b_p = '-179px -17px';
-            n_active_R_b_p = '-179px 0';
-            changeRadioStart($(this));
+if ($.exists('.niceRadio')) {
+    $(".niceRadio").each(function () {
+        active_R_b_p = '-179px -17px';
+        n_active_R_b_p = '-179px 0';
+        changeRadioStart($(this));
+    });
+}
+
+$(".frame_label:has(.niceCheck)").die('click').live('click', function () {
+    var $this = $(this);
+    if ($('#show_in_all_cat').attr('checked')) {
+        $('#cat_list').removeAttr('disabled');
+    } else {
+        $('#cat_list').attr('disabled', 'disabled');
+        $('#cat_list option:selected').each(function () {
+            this.selected = false;
         });
     }
 
-    $(".frame_label:has(.niceCheck)").die('click').live('click', function () {
-        var $this = $(this);
-        if ($('#show_in_all_cat').attr('checked')) {
-            $('#cat_list').removeAttr('disabled');
-        } else {
-            $('#cat_list').attr('disabled', 'disabled');
-            $('#cat_list option:selected').each(function () {
-                this.selected = false;
-            });
-        }
 
-
-        if ($this.closest('thead')[0] != undefined) {
-            changeCheck($this.find('.niceCheck'));
-            if ($this.hasClass('active')) {
-                $this.parents('table').find('.frame_label').each(function () {
-                    changeCheckallchecks($(this).find('.niceCheck'));
-                });
-            }
-            else {
-                $(this).parents('table').find('.frame_label').each(function () {
-                    changeCheckallreset($(this).find('.niceCheck'));
-                });
-            }
-        }
-        else if ($this.closest('.head')[0] != undefined) {
-            changeCheck($this.find('.niceCheck'));
-            if ($this.hasClass('active')) {
-                $this.parents('#category').find('.frame_label').each(function () {
-                    changeCheckallchecks($(this).find('.niceCheck'));
-                });
-            }
-            else {
-                $(this).parents('#category').find('.frame_label').each(function () {
-                    changeCheckallreset($(this).find('.niceCheck'));
-                });
-            }
-        }
-        else {
-            changeCheck($this.find('.niceCheck'));
-        }
-        if (!$this.hasClass('no_connection')) {
-            dis_un_dis();
-        }
-        return false;
-    });
-    $(".frame_label:has(.niceRadio)").die('click').click(function () {
-        var $this = $(this);
-        changeRadio($this.find('.niceRadio'));
-    });
-    $('.all_select').toggle(function () {
-            $(this).parents('table').find('tbody .frame_label').each(function () {
+    if ($this.closest('thead')[0] != undefined) {
+        changeCheck($this.find('.niceCheck'));
+        if ($this.hasClass('active')) {
+            $this.parents('table').find('.frame_label').each(function () {
                 changeCheckallchecks($(this).find('.niceCheck'));
             });
-        },
-        function () {
-            $(this).parents('table').find('tbody .frame_label').each(function () {
+        }
+        else {
+            $(this).parents('table').find('.frame_label').each(function () {
                 changeCheckallreset($(this).find('.niceCheck'));
             });
-        });
-    $('.all_diselect').die('click').live('click', function () {
-        $(this).parents('table').find('.frame_label').each(function () {
-            changeCheckallreset($(this).find('.niceCheck'));
-        });
-    });
-    $('[data-max]').die('keyup').live('keyup', function (event) {
-        $this = $(this);
-        if (parseInt($this.val()) > $this.data('max')) {
-            if ($this.val().toString().match(/%/))
-                $this.val(100 + '%');
-            else
-                $this.val(100);
         }
+    }
+    else if ($this.closest('.head')[0] != undefined) {
+        changeCheck($this.find('.niceCheck'));
+        if ($this.hasClass('active')) {
+            $this.parents('#category').find('.frame_label').each(function () {
+                changeCheckallchecks($(this).find('.niceCheck'));
+            });
+        }
+        else {
+            $(this).parents('#category').find('.frame_label').each(function () {
+                changeCheckallreset($(this).find('.niceCheck'));
+            });
+        }
+    }
+    else {
+        changeCheck($this.find('.niceCheck'));
+    }
+    if (!$this.hasClass('no_connection')) {
+        dis_un_dis();
+    }
+    return false;
+});
+$(".frame_label:has(.niceRadio)").die('click').click(function () {
+    var $this = $(this);
+    changeRadio($this.find('.niceRadio'));
+});
+$('.all_select').toggle(function () {
+    $(this).parents('table').find('tbody .frame_label').each(function () {
+        changeCheckallchecks($(this).find('.niceCheck'));
     });
+},
+function () {
+    $(this).parents('table').find('tbody .frame_label').each(function () {
+        changeCheckallreset($(this).find('.niceCheck'));
+    });
+});
+$('.all_diselect').die('click').live('click', function () {
+    $(this).parents('table').find('.frame_label').each(function () {
+        changeCheckallreset($(this).find('.niceCheck'));
+    });
+});
+$('[data-max]').die('keyup').live('keyup', function (event) {
+    $this = $(this);
+    if (parseInt($this.val()) > $this.data('max')) {
+        if ($this.val().toString().match(/%/))
+            $this.val(100 + '%');
+        else
+            $this.val(100);
+    }
+});
 }
 function dropDownMenu() {
     $('.to_pspam').off('click').on('click', function () {
@@ -778,13 +778,13 @@ function dropDownMenu() {
             arr.push(parseInt($(this).val()));
         });
         $.post('/admin/components/cp/comments/update_status',
-            {
-                id: arr,
-                status: 2
-            },
-            function (data) {
-                $('.notifications').append(data);
-            }
+        {
+            id: arr,
+            status: 2
+        },
+        function (data) {
+            $('.notifications').append(data);
+        }
         );
     });
     $('.to_wait').off('click').on('click', function () {
@@ -793,13 +793,13 @@ function dropDownMenu() {
             arr.push(parseInt($(this).val()));
         });
         $.post('/admin/components/cp/comments/update_status',
-            {
-                id: arr,
-                status: 1
-            },
-            function (data) {
-                $('.notifications').append(data);
-            }
+        {
+            id: arr,
+            status: 1
+        },
+        function (data) {
+            $('.notifications').append(data);
+        }
         );
     });
     $('.to_approved').off('click').on('click', function () {
@@ -809,13 +809,13 @@ function dropDownMenu() {
         });
         if (arr.length > 0) {
             $.post('/admin/components/cp/comments/update_status',
-                {
-                    id: arr,
-                    status: 0
-                },
-                function (data) {
-                    $('.notifications').append(data);
-                }
+            {
+                id: arr,
+                status: 0
+            },
+            function (data) {
+                $('.notifications').append(data);
+            }
             );
         }
     });
@@ -914,43 +914,43 @@ function autocomplete() {
                     '<button class="btn btn-danger btn-small del_tmp_row" type="button" data-kid="' + ui.item.identifier.id + '"><i class="icon-trash"></i></button>' +
                     '</span>' +
                     '</div>'
-                );
-            },
-            close: function (event, ui) {
-                $('#AttachedProducts').val('');
-            }
-        });
-    }
-    if ($.exists('#RelatedProducts')) {
-        $('#RelatedProducts').autocomplete({
-            minChars: 0,
-            source: function (request, response) {
-                var locale = $('input[name="Locale"]').val();
+                    );
+},
+close: function (event, ui) {
+    $('#AttachedProducts').val('');
+}
+});
+}
+if ($.exists('#RelatedProducts')) {
+    $('#RelatedProducts').autocomplete({
+        minChars: 0,
+        source: function (request, response) {
+            var locale = $('input[name="Locale"]').val();
 
-                $.ajax({
-                    url: '/admin/components/run/shop/kits/get_products_list/products',
-                    dataType: 'json',
-                    type: 'POST',
-                    data: {
-                        limit: 20,
-                        q: request.term,
-                        noids: getAddedRelatedProductsIds(),
-                        locale: locale ? locale : null,
-                    },
-                    success: function (data) {
-                        response(data);
-                    }
-                })
+            $.ajax({
+                url: '/admin/components/run/shop/kits/get_products_list/products',
+                dataType: 'json',
+                type: 'POST',
+                data: {
+                    limit: 20,
+                    q: request.term,
+                    noids: getAddedRelatedProductsIds(),
+                    locale: locale ? locale : null,
+                },
+                success: function (data) {
+                    response(data);
+                }
+            })
 
-            },
-            select: function (event, ui) {
-                $('<tr id="tpm_row' + ui.item.identifier.id + '" class="item-accessories"><td>\n\
+        },
+        select: function (event, ui) {
+            $('<tr id="tpm_row' + ui.item.identifier.id + '" class="item-accessories"><td>\n\
                 <button class="btn btn-small my_btn_s del_tmp_row pull-left m-r_10" data-rel="tooltip" data-title="' + langs.remove + '" data-kid="' + ui.item.identifier.id + '"><i class="icon-trash"></i></button>\n\
                 <div class="photo_album-v">' +
                 (ui.item.photo ? '<img src="' + ui.item.photo + '" class="img-polaroid" style="width: 100px;max-height: 100%;float: left; margin-right: 15px;">' : '<img src="' + (base_url + 'templates/administrator/images/select-picture.png') + '" class="img-polaroid" style="width: 100px;max-height: 100%;float: left;margin-right: 15px;">')
                 +
                 '<div class="o_h">\n\
-<a href="./' + ui.item.identifier.id + '">' + ui.item.label + '</a>\n\
+                <a href="./' + ui.item.identifier.id + '">' + ui.item.label + '</a>\n\
                 <div>' +
                 '<b>' + ui.item.price + ' ' + ui.item.cs + '</b>'
                 + '</div>\n\
@@ -958,46 +958,46 @@ function autocomplete() {
                 </div>\n\
                 </div>\n\
                 </td></tr>').prependTo($('#relatedProductsNames tbody'));
-                $('#relatedProductsNames').show();
-            },
-            close: function (event, ui) {
-                $(this).attr('value', '');
-            }
-        });
-    }
-    if ($.exists('#emailAutoC')) {
-        $('#emailAutoC').autocomplete({
-            minChars: 0,
-            source: '/admin/components/cp/user_manager/auto_complit/email' + $('#emailAutoC').attr('value') + '?limit=25'
-        });
-    }
-    if ($.exists('#nameAutoC')) {
-        $('#nameAutoC').autocomplete({
-            minChars: 0,
-            source: '/admin/components/cp/user_manager/auto_complit/name' + $('#nameAutoC').attr('value') + '?limit=25'
+$('#relatedProductsNames').show();
+},
+close: function (event, ui) {
+    $(this).attr('value', '');
+}
+});
+}
+if ($.exists('#emailAutoC')) {
+    $('#emailAutoC').autocomplete({
+        minChars: 0,
+        source: '/admin/components/cp/user_manager/auto_complit/email' + $('#emailAutoC').attr('value') + '?limit=25'
+    });
+}
+if ($.exists('#nameAutoC')) {
+    $('#nameAutoC').autocomplete({
+        minChars: 0,
+        source: '/admin/components/cp/user_manager/auto_complit/name' + $('#nameAutoC').attr('value') + '?limit=25'
 
-        });
-    }
+    });
+}
 
 // AUTO COMPLITE SHOP--------------------------------------------------------------------------------------------------
-    if ($.exists('#shopNameAutoC')) {
-        $('#shopNameAutoC').autocomplete({
-            minChars: 0,
-            source: '/admin/components/run/shop/users/auto_complite/name' + $('#shopNameAutoC').attr('value') + '?limit=25'
+if ($.exists('#shopNameAutoC')) {
+    $('#shopNameAutoC').autocomplete({
+        minChars: 0,
+        source: '/admin/components/run/shop/users/auto_complite/name' + $('#shopNameAutoC').attr('value') + '?limit=25'
 
-        });
-    }
-    if ($.exists('#shopEmailAutoC')) {
-        $('#shopEmailAutoC').autocomplete({
-            minChars: 0,
-            source: '/admin/components/run/shop/users/auto_complite/email' + $('#shopNameAutoC').attr('value') + '?limit=25'
+    });
+}
+if ($.exists('#shopEmailAutoC')) {
+    $('#shopEmailAutoC').autocomplete({
+        minChars: 0,
+        source: '/admin/components/run/shop/users/auto_complite/email' + $('#shopNameAutoC').attr('value') + '?limit=25'
 
-        });
-    }
-    if (window.hasOwnProperty('tpls'))
-        $('#inputTemplateCategory').autocomplete({
-            source: tpls
-        });
+    });
+}
+if (window.hasOwnProperty('tpls'))
+    $('#inputTemplateCategory').autocomplete({
+        source: tpls
+    });
 }
 function getAddedRelatedProductsIds() {
     var inputs = $("#relatedProductsNames input[name='RelatedProducts[]']");
@@ -1035,18 +1035,18 @@ handleFileSelect = function (evt) {
         for (var i = 0, f; f = files[i]; i++) {
 
 // Only process image files.
-            if (!f.type.match('image.*')) {
-                continue;
-            }
+if (!f.type.match('image.*')) {
+    continue;
+}
 
-            var reader = new FileReader();
+var reader = new FileReader();
             // Closure to capture the file information.
             reader.onloadend = (function (theFile) {
                 return function (e) {
                     // Render thumbnail.
                     var span = document.createElement('div');
                     span.innerHTML = ['<img style="max-height: 100%;max-width: 100%;" src="', e.target.result,
-                        '" title="', escape(theFile.name), '"/>'].join('');
+                    '" title="', escape(theFile.name), '"/>'].join('');
                     document.getElementById('picsToUpload').insertBefore(span, null);
                     document.getElementById('picsToUpload').className = 'is_content';
                     $('#picsToUpload img').fadeIn(500);
@@ -1130,8 +1130,8 @@ function fixed_frame_title() {
     FFT.mini_layout.css('padding-top', FFT.fixed_block.outerHeight());
     FFT.fixed_block.css('top', '').removeClass('active');
     var top = FFT.fixed_block.offset().top,
-        wTop = $(window).scrollTop(),
-        addH = FFT.adBlocke ? FFT.adBlock.height() : 0;
+    wTop = $(window).scrollTop(),
+    addH = FFT.adBlocke ? FFT.adBlock.height() : 0;
     if (top - wTop - addH < 0) {
         FFT.fixed_block.css('top', wTop - FFT.mini_layout_top + addH).addClass('active');
         if (FFT.frame_zH_frame_title_e)
@@ -1185,7 +1185,7 @@ function initAdminArea() {
     // tabs
     $('.myTab a').die('click').live('click', function (e) {
         var top = $(window).scrollTop(),
-            $this_href = $(this).attr('href');
+        $this_href = $(this).attr('href');
         if ($this_href.search('admin/components/run/shop/notifications/index') == '-1') {
             $(this).tab('show');
             e.preventDefault();
@@ -1202,8 +1202,8 @@ function initAdminArea() {
     }
 
 // drop search
-    if ($.exists('.typeahead'))
-        $('.typeahead').typeahead();
+if ($.exists('.typeahead'))
+    $('.typeahead').typeahead();
     //sortable
     sortInit();
     if ($.exists('.sortable2')) {
@@ -1231,43 +1231,43 @@ function initAdminArea() {
         $(".sortable2").disableSelection();
     }
 //data-picker
-    if ($.exists('.datepicker')) {
-        $(".datepicker").datepicker({
-            dateFormat: 'dd-mm-yy',
-            firstDay: 1,
-            showOtherMonths: true,
-            selectOtherMonths: true,
-            prevText: '',
-            nextText: '',
-            minDate: new Date(1970),
-            maxDate: '+30Y'
-        });
-        try {
-            var newest_date = newest_date ? new Date(newest_date * 1050) : new Date();
-            $('[name="created_from"]').datepicker("option", "minDate", new Date(oldest_date * 1000));
-            $('[name="created_to"]').datepicker("option", "maxDate", new Date(newest_date * 1050));
-            $('[name="created_to"]').datepicker("option", "minDate", new Date(oldest_date * 1000));
-        }
-        catch (err) {
-        }
+if ($.exists('.datepicker')) {
+    $(".datepicker").datepicker({
+        dateFormat: 'dd-mm-yy',
+        firstDay: 1,
+        showOtherMonths: true,
+        selectOtherMonths: true,
+        prevText: '',
+        nextText: '',
+        minDate: new Date(1970),
+        maxDate: '+30Y'
+    });
+    try {
+        var newest_date = newest_date ? new Date(newest_date * 1050) : new Date();
+        $('[name="created_from"]').datepicker("option", "minDate", new Date(oldest_date * 1000));
+        $('[name="created_to"]').datepicker("option", "maxDate", new Date(newest_date * 1050));
+        $('[name="created_to"]').datepicker("option", "minDate", new Date(oldest_date * 1000));
     }
-
-    if ($.exists('.datetimepicker')) {
-        $(".datetimepicker").datetimepicker({
-            dateFormat: 'yy-mm-dd',
-            timeFormat: 'HH:mm:ss',
-            firstDay: 1,
-            showOtherMonths: true,
-            selectOtherMonths: true,
-            prevText: '',
-            nextText: '',
-            minDate: new Date(1970),
-            maxDate: '+30Y'
-        });
+    catch (err) {
     }
+}
+
+if ($.exists('.datetimepicker')) {
+    $(".datetimepicker").datetimepicker({
+        dateFormat: 'yy-mm-dd',
+        timeFormat: 'HH:mm:ss',
+        firstDay: 1,
+        showOtherMonths: true,
+        selectOtherMonths: true,
+        prevText: '',
+        nextText: '',
+        minDate: new Date(1970),
+        maxDate: '+30Y'
+    });
+}
 
 
-    /*/xBanner*/
+/*/xBanner*/
 
 // function responsive_filemanager_callback(field_id){
 //     console.log(field_id);
@@ -1281,155 +1281,155 @@ function initAdminArea() {
 // });
 
 // change baner image
-    $.event.special.inputchange = {
-        setup: function () {
-            var self = this, val;
-            $.data(this, 'timer', window.setInterval(function () {
-                val = self.value;
-                if ($.data(self, 'cache') != val) {
-                    $.data(self, 'cache', val);
-                    $(self).trigger('inputchange');
-                }
-            }, 20));
-        },
-        teardown: function () {
-            window.clearInterval($.data(this, 'timer'));
-        },
-        add: function () {
-            $.data(this, 'cache', this.value);
-        }
-    };
+$.event.special.inputchange = {
+    setup: function () {
+        var self = this, val;
+        $.data(this, 'timer', window.setInterval(function () {
+            val = self.value;
+            if ($.data(self, 'cache') != val) {
+                $.data(self, 'cache', val);
+                $(self).trigger('inputchange');
+            }
+        }, 20));
+    },
+    teardown: function () {
+        window.clearInterval($.data(this, 'timer'));
+    },
+    add: function () {
+        $.data(this, 'cache', this.value);
+    }
+};
 
-    $('#banerChangePhoto').find('#Img').on('inputchange', function () {
-        $('#Img-preview').html('<img src="' + this.value + '" class="img-polaroid" />')
-    });
+$('#banerChangePhoto').find('#Img').on('inputchange', function () {
+    $('#Img-preview').html('<img src="' + this.value + '" class="img-polaroid" />')
+});
 // change baner image end
 
 
-    if ($.exists('.datepickerTime')) {
-        $.ajax({
-            url: theme_url + "js/timepicker.js",
-            dataType: "script",
-            cache: true,
-            success: function () {
-                $(".datepickerTime").datepicker({
-                    dateFormat: 'yy-mm-dd'
-                });
-            }
-        });
-    }
-
-    if ($('.ColorPicker').length) {
-        $.ajax({
-            url: theme_url + "js/colorpicker/js/colorpicker.js",
-            dataType: "script",
-            cache: true,
-            success: function () {
-                $('.ColorPicker').ColorPicker({
-                    onShow: function (colpkr) {
-                    },
-                    onHide: function (colpkr) {
-                        $(colpkr).fadeOut(400);
-                        return false;
-                    },
-                    onChange: function (hsb, hex, rgb, el) {
-                        $(el).val('#' + hex);
-                        $(el).next().css({backgroundColor: '#' + hex});
-                    },
-                    onSubmit: function (hsb, hex, rgb, el) {
-                        $(el).val('#' + hex);
-                        $(el).next().css({backgroundColor: '#' + hex});
-                        $(el).ColorPickerHide();
-                    },
-                    onBeforeShow: function (colpkr) {
-                        $(this).ColorPickerSetColor(this.value);
-                    }
-                }).bind('keyup', function () {
-                    $(this).ColorPickerSetColor(this.value);
-                });
-
-                $('.colorpicker input').attr('style', 'height: 11px!important; width: 30px; padding-bottom: 5px;  padding-top: 0px; padding-left: 15px; font-size: 11px!important;');
-            }
-        });
-    }
-
-    $('.ui-datepicker').addClass('dropdown-menu');
-
-    $('.js_price').die('click').live('click', function () {
-        $(this).next().show();
-    }).die('focus').live('focus', function () {
-        $(this).click();
-    }).die('blur').live('blur', function () {
-        if ($(this).data('value') == $(this).val()) {
-            $(this).next().hide();
-            $(this).tooltip('hide');
-        }
-    }).die('keypress').live('keypress', function (event) {
-        event.stopPropagation();
-        if (what_key('13', event)) {
-            $(this).next().trigger('click');
-            return false;
-        }
-    });
-
-
-    share_alt_init();
-    $('.variants').die('click').live('click', function () {
-        var $this = $(this);
-        var variants = $this.closest('tr').next();
-        variants.toggle();
-        return false;
-    });
-    $('#category .btn:has(.icon-plus)').die('click').live('click', function () {
-        var $this = $(this);
-        $this.closest('.row-category').next().show();
-        $this.hide().prev().show();
-    });
-    $('#category .btn:has(.icon-minus)').die('click').live('click', function () {
-        var $this = $(this);
-        $this.closest('.row-category').next().hide();
-        $this.hide().next().show();
-    });
-    $('td .patch_disabled').each(function () {
-        $(this).css('height', $(this).parents('td').height());
-    });
-    $('[type="file"]').die('change').change(function () {
-        var $this = $(this);
-        $this.parent().prev().children().val($this.val());
-        $this.parent().next().children().val($this.val());
-    });
-    $('.item_menu .row-category:even').addClass('even');
-    $('.listFilterSubmitButton').die('click').live('click', function () {
-        if (!$(this).attr('disabled') && !$(this).hasClass('disabled')) {
-            showLoading();
-            $('.tab-pane.active .listFilterForm').ajaxSubmit({
-                target: '#mainContent',
-                headers: {
-                    'X-PJAX': 'X-PJAX'
-                }
+if ($.exists('.datepickerTime')) {
+    $.ajax({
+        url: theme_url + "js/timepicker.js",
+        dataType: "script",
+        cache: true,
+        success: function () {
+            $(".datepickerTime").datepicker({
+                dateFormat: 'yy-mm-dd'
             });
-        } else {
-            return false;
         }
     });
-    $('.controls img.img-polaroid').die('click').live('click', function () {
-        $(this).closest('.control-group').find('input:file').click();
-    });
-    $('.change_btn').die('click').live('click', function () {
-        $($(this).data('file')).click();
-    });
-    $('[data-url="file"] input[type="file"]').die('change').live('change', function (e) {
-        var $this = $(this),
-            $type_file = $this.val(),
-            file = this.files[0],
-            img = document.createElement("img"),
-            reader = new FileReader();
-        reader.onloadend = function () {
-            img.src = reader.result;
-        };
-        reader.readAsDataURL(file);
+}
 
-        img.onerror = function () {
+if ($('.ColorPicker').length) {
+    $.ajax({
+        url: theme_url + "js/colorpicker/js/colorpicker.js",
+        dataType: "script",
+        cache: true,
+        success: function () {
+            $('.ColorPicker').ColorPicker({
+                onShow: function (colpkr) {
+                },
+                onHide: function (colpkr) {
+                    $(colpkr).fadeOut(400);
+                    return false;
+                },
+                onChange: function (hsb, hex, rgb, el) {
+                    $(el).val('#' + hex);
+                    $(el).next().css({backgroundColor: '#' + hex});
+                },
+                onSubmit: function (hsb, hex, rgb, el) {
+                    $(el).val('#' + hex);
+                    $(el).next().css({backgroundColor: '#' + hex});
+                    $(el).ColorPickerHide();
+                },
+                onBeforeShow: function (colpkr) {
+                    $(this).ColorPickerSetColor(this.value);
+                }
+            }).bind('keyup', function () {
+                $(this).ColorPickerSetColor(this.value);
+            });
+
+            $('.colorpicker input').attr('style', 'height: 11px!important; width: 30px; padding-bottom: 5px;  padding-top: 0px; padding-left: 15px; font-size: 11px!important;');
+        }
+    });
+}
+
+$('.ui-datepicker').addClass('dropdown-menu');
+
+$('.js_price').die('click').live('click', function () {
+    $(this).next().show();
+}).die('focus').live('focus', function () {
+    $(this).click();
+}).die('blur').live('blur', function () {
+    if ($(this).data('value') == $(this).val()) {
+        $(this).next().hide();
+        $(this).tooltip('hide');
+    }
+}).die('keypress').live('keypress', function (event) {
+    event.stopPropagation();
+    if (what_key('13', event)) {
+        $(this).next().trigger('click');
+        return false;
+    }
+});
+
+
+share_alt_init();
+$('.variants').die('click').live('click', function () {
+    var $this = $(this);
+    var variants = $this.closest('tr').next();
+    variants.toggle();
+    return false;
+});
+$('#category .btn:has(.icon-plus)').die('click').live('click', function () {
+    var $this = $(this);
+    $this.closest('.row-category').next().show();
+    $this.hide().prev().show();
+});
+$('#category .btn:has(.icon-minus)').die('click').live('click', function () {
+    var $this = $(this);
+    $this.closest('.row-category').next().hide();
+    $this.hide().next().show();
+});
+$('td .patch_disabled').each(function () {
+    $(this).css('height', $(this).parents('td').height());
+});
+$('[type="file"]').die('change').change(function () {
+    var $this = $(this);
+    $this.parent().prev().children().val($this.val());
+    $this.parent().next().children().val($this.val());
+});
+$('.item_menu .row-category:even').addClass('even');
+$('.listFilterSubmitButton').die('click').live('click', function () {
+    if (!$(this).attr('disabled') && !$(this).hasClass('disabled')) {
+        showLoading();
+        $('.tab-pane.active .listFilterForm').ajaxSubmit({
+            target: '#mainContent',
+            headers: {
+                'X-PJAX': 'X-PJAX'
+            }
+        });
+    } else {
+        return false;
+    }
+});
+$('.controls img.img-polaroid').die('click').live('click', function () {
+    $(this).closest('.control-group').find('input:file').click();
+});
+$('.change_btn').die('click').live('click', function () {
+    $($(this).data('file')).click();
+});
+$('[data-url="file"] input[type="file"]').die('change').live('change', function (e) {
+    var $this = $(this),
+    $type_file = $this.val(),
+    file = this.files[0],
+    img = document.createElement("img"),
+    reader = new FileReader();
+    reader.onloadend = function () {
+        img.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+
+    img.onerror = function () {
             // image not found or change src like this as default image:
             img.src = base_url + 'templates/administrator/images/select-picture.png';
             showMessage(lang('Error'), lang('Not supported file format'));
@@ -1440,22 +1440,22 @@ function initAdminArea() {
         $(this).closest('td').find('.changeImage').val('1');
         $(this).closest('td').find('.delete_image').show();
     });
-    $('[data-url="file2"]').die('change').live('change', function (e) {
-        var $this = $(this),
-            data = $this.data(),
-            val = $this.val(),
-            file = this.files[0],
-            img = document.createElement("img"),
-            reader = new FileReader();
-        reader.onloadend = function () {
-            img.src = reader.result;
-        };
-        reader.readAsDataURL(file);
-        $(img).addClass('img-polaroid').css({
-            'max-height': '100%',
-            'width': data.width
-        });
-        img.onerror = function () {
+$('[data-url="file2"]').die('change').live('change', function (e) {
+    var $this = $(this),
+    data = $this.data(),
+    val = $this.val(),
+    file = this.files[0],
+    img = document.createElement("img"),
+    reader = new FileReader();
+    reader.onloadend = function () {
+        img.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+    $(img).addClass('img-polaroid').css({
+        'max-height': '100%',
+        'width': data.width
+    });
+    img.onerror = function () {
             // image not found or change src like this as default image:
             img.src = base_url + 'templates/administrator/images/select-picture.png';
             showMessage(lang('Error'), lang('Not supported file format'));
@@ -1470,58 +1470,58 @@ function initAdminArea() {
                 $('#order' + orderField).find('a').after('&uarr;');
             else
                 $('#order' + orderField).find('a').after('&darr;');
-    if ($('#elFinderTPLEd').length > 0) {
-        elFinderTPLEd();
-    }
-
-
-    $(function () {
-        if ($('textarea.elRTE').length > 0) {
-            if (textEditor == 'tinymce') {
-                if (tinymce && !tinymce.initialized) {
-                    initTinyMCE();
-                }
+            if ($('#elFinderTPLEd').length > 0) {
+                elFinderTPLEd();
             }
-        }
-    });
+
+
+            $(function () {
+                if ($('textarea.elRTE').length > 0) {
+                    if (textEditor == 'tinymce') {
+                        if (tinymce && !tinymce.initialized) {
+                            initTinyMCE();
+                        }
+                    }
+                }
+            });
 
 //elRTE bugFix for Firefox
 
 
-    $('.myTab a').live('click', function () {
-        initChosenSelect($($(this).attr('href')));
-        if ($('.btn-small-setting').hasClass('active')) {
-            $(this).closest('.tabbable').prev('.frame_title').find('.btnAddNewSlide').hide();
-            $(this).closest('.tabbable').prev('.frame_title').find('.saveEditformSubmit').show();
-        }
-        else {
-            $(this).closest('.tabbable').prev('.frame_title').find('.btnAddNewSlide').show();
-            $(this).closest('.tabbable').prev('.frame_title').find('.saveEditformSubmit').hide();
-            $(this).closest('.tabbable').find('#create_banner_image_form .addNewSlide').hide();
-        }
-        return true;
-    });
-    $(document).on('click', '.saveEditformSubmit', function () {
-        $('.formSubmitTrigger').click();
-    });
+$('.myTab a').live('click', function () {
+    initChosenSelect($($(this).attr('href')));
     if ($('.btn-small-setting').hasClass('active')) {
-        $('.btn-small-setting').closest('.tabbable').prev('.frame_title').find('.btnAddNewSlide').hide();
+        $(this).closest('.tabbable').prev('.frame_title').find('.btnAddNewSlide').hide();
+        $(this).closest('.tabbable').prev('.frame_title').find('.saveEditformSubmit').show();
     }
-    $('button.rmAddPic').die('click').live('click', function (event) {
-        event.preventDefault();
-        var $this = $(this),
-            i = $this.data('i');
-        $('#add_img_urls_' + i).val(i);
-        $('#fileImg_' + i).val('');
-        $('#frame_for_img_' + i).find('img').attr('src', '/templates/administrator/images/select-picture.png');
-        $this.remove();
-    });
-    if ($.fn.chosen)
-        initChosenSelect();
-    fixed_frame_title();
-    initFileManager();
-    console.log('initialising of administration area ended');
-    console.log('script execution time:' + (Date.now() - startExecTime) / 1000 + " sec.");
+    else {
+        $(this).closest('.tabbable').prev('.frame_title').find('.btnAddNewSlide').show();
+        $(this).closest('.tabbable').prev('.frame_title').find('.saveEditformSubmit').hide();
+        $(this).closest('.tabbable').find('#create_banner_image_form .addNewSlide').hide();
+    }
+    return true;
+});
+$(document).on('click', '.saveEditformSubmit', function () {
+    $('.formSubmitTrigger').click();
+});
+if ($('.btn-small-setting').hasClass('active')) {
+    $('.btn-small-setting').closest('.tabbable').prev('.frame_title').find('.btnAddNewSlide').hide();
+}
+$('button.rmAddPic').die('click').live('click', function (event) {
+    event.preventDefault();
+    var $this = $(this),
+    i = $this.data('i');
+    $('#add_img_urls_' + i).val(i);
+    $('#fileImg_' + i).val('');
+    $('#frame_for_img_' + i).find('img').attr('src', '/templates/administrator/images/select-picture.png');
+    $this.remove();
+});
+if ($.fn.chosen)
+    initChosenSelect();
+fixed_frame_title();
+initFileManager();
+console.log('initialising of administration area ended');
+console.log('script execution time:' + (Date.now() - startExecTime) / 1000 + " sec.");
 }
 ;
 //+++++++++++++++++++++++++++++++++++++++++
@@ -1674,32 +1674,32 @@ $(document).ready(function () {
 
 // brand create page
 
-    $('#toTranslation').syncTranslit({destination: 'slug'});
+$('#toTranslation').syncTranslit({destination: 'slug'});
 
-    $('#toTranslation').syncTranslit({destination: 'slug'});
+$('#toTranslation').syncTranslit({destination: 'slug'});
 
-    $('body').on('click', '.CreateFastT', function () {
-        var $this = $(this),
-            fastCreate = $('.fast-create'),
-            dropCategoryFast = $('.dropCategoryFast');
-        $this.hide().next().hide();
-        if (fastCreate) {
-            $('tr.head_body').hide();
-            fastCreate.show().next().show();
-        }
-        if (dropCategoryFast) {
-            dropCategoryFast.show();
-            $('.row-category').show();
-        }
+$('body').on('click', '.CreateFastT', function () {
+    var $this = $(this),
+    fastCreate = $('.fast-create'),
+    dropCategoryFast = $('.dropCategoryFast');
+    $this.hide().next().hide();
+    if (fastCreate) {
+        $('tr.head_body').hide();
+        fastCreate.show().next().show();
+    }
+    if (dropCategoryFast) {
+        dropCategoryFast.show();
+        $('.row-category').show();
+    }
 
-        initChosenSelect();
+    initChosenSelect();
 
-    });
+});
 
-    $('.valueInputN').bind('keyup', function () {
-        var value = $(this).val();
-        var regexp = /[^0-9]/gi;
-        value = value.replace(regexp, '');
+$('.valueInputN').bind('keyup', function () {
+    var value = $(this).val();
+    var regexp = /[^0-9]/gi;
+    value = value.replace(regexp, '');
 
         // Can not begin from 0
         if (parseInt(value) == 0)
@@ -1712,34 +1712,34 @@ $(document).ready(function () {
         }
     })
 
-    $('body').on('click', '.closeFast', function () {
-        var $this = $(this),
-            fastCreate = $('.fast-create'),
-            dropCategoryFast = $('.dropCategoryFast');
+$('body').on('click', '.closeFast', function () {
+    var $this = $(this),
+    fastCreate = $('.fast-create'),
+    dropCategoryFast = $('.dropCategoryFast');
 
-        $('.CreateFastT').show().next().show();
-        if (fastCreate) {
-            $('tr.head_body').show();
-            fastCreate.hide().next().hide();
-        }
-        if (dropCategoryFast) {
-            dropCategoryFast.hide();
-        }
-    });
+    $('.CreateFastT').show().next().show();
+    if (fastCreate) {
+        $('tr.head_body').show();
+        fastCreate.hide().next().hide();
+    }
+    if (dropCategoryFast) {
+        dropCategoryFast.hide();
+    }
+});
 // brand create page end
 
 
-    function valid(evt) {
-        var theEvent = evt || window.event;
-        var key = theEvent.keyCode || theEvent.which;
-        key = String.fromCharCode(key);
-        var regex = /[0-9]|\./;
-        if (!regex.test(key)) {
-            theEvent.returnValue = false;
-            if (theEvent.preventDefault)
-                theEvent.preventDefault();
-        }
+function valid(evt) {
+    var theEvent = evt || window.event;
+    var key = theEvent.keyCode || theEvent.which;
+    key = String.fromCharCode(key);
+    var regex = /[0-9]|\./;
+    if (!regex.test(key)) {
+        theEvent.returnValue = false;
+        if (theEvent.preventDefault)
+            theEvent.preventDefault();
     }
+}
 
 
 });
@@ -1760,12 +1760,12 @@ $('#addImageSizesBlock').live('click', function () {
 //update fields names
 $('.keyupSizes').live('keyup', function () {
     var thisInput = $(this),
-        name = $(this).val(),
-        heightInput = $(this).closest('tr').find('.keyupHeight').first(),
-        widthInput = $(this).closest('tr').find('.keyupWidth'),
-        newName = 'imageSizesBlock[' + name + '][name]',
-        newheight = 'imageSizesBlock[' + name + '][height]',
-        newWidth = 'imageSizesBlock[' + name + '][width]';
+    name = $(this).val(),
+    heightInput = $(this).closest('tr').find('.keyupHeight').first(),
+    widthInput = $(this).closest('tr').find('.keyupWidth'),
+    newName = 'imageSizesBlock[' + name + '][name]',
+    newheight = 'imageSizesBlock[' + name + '][height]',
+    newWidth = 'imageSizesBlock[' + name + '][width]';
     //set names to inputs
     thisInput.attr('name', newName);
     heightInput.attr('name', newheight);
@@ -1789,22 +1789,22 @@ $('#categoryForOrders').live('change', function () {
 //Get product variants
 $('.productsForOrders').live('change', function () {
     var productId = $(this).val(),
-        productName = $(this).find('option:selected').data('productName');
+    productName = $(this).find('option:selected').data('productName');
     orders.getProductVariantsByProduct(productId, productName);
 });
 //Get variants info
 $('.variantsForOrders').live('change', function () {
     var $this = $(this),
-        option = $this.find('option:selected'),
-        variantId = $this.val(),
-        imageName = variantInfo.getImage(variantId),
-        productName = option.data('productName'),
-        variantName = option.data('variantname'),
-        variantPrice = option.data('price'),
-        stock = option.data('stock'),
-        productId = option.data('productId'),
-        currency = option.data('productcurrency'),
-        origPrice = option.data('orig_price');
+    option = $this.find('option:selected'),
+    variantId = $this.val(),
+    imageName = variantInfo.getImage(variantId),
+    productName = option.data('productName'),
+    variantName = option.data('variantname'),
+    variantPrice = option.data('price'),
+    stock = option.data('stock'),
+    productId = option.data('productId'),
+    currency = option.data('productcurrency'),
+    origPrice = option.data('orig_price');
     $('.productText').each(function () {
         var $this = $(this);
         if (productName)
@@ -1833,11 +1833,11 @@ $('.variantsForOrders').live('change', function () {
         $('.addVariantToCart').removeClass('btn-primary').addClass('btn-success').removeClass('btn-danger disabled').html(langs.addToCart);
     }
 // Check is element in cart
-    if (orders.isInCart(variantId) == 'true')
-        $('.addVariantToCart').removeClass('btn-success').attr('disabled', 'disabled').addClass('btn-primary').html(langs.inTheCart);
-    else
-        $('.addVariantToCart').removeClass('btn-primary').removeAttr('disabled').addClass('btn-success').removeClass('btn-danger disabled').html(langs.addToCart);
-    $('.addVariantToCart').data(option.data());
+if (orders.isInCart(variantId) == 'true')
+    $('.addVariantToCart').removeClass('btn-success').attr('disabled', 'disabled').addClass('btn-primary').html(langs.inTheCart);
+else
+    $('.addVariantToCart').removeClass('btn-primary').removeAttr('disabled').addClass('btn-success').removeClass('btn-danger disabled').html(langs.addToCart);
+$('.addVariantToCart').data(option.data());
 });
 //Add product
 $('.addVariantToCart').die('click').live('click', function () {
@@ -1855,9 +1855,9 @@ $('.removeImageType').live('click', function () {
 /** Get payments methds for delivery method **/
 $('.shopOrdersdeliveryMethod').live('change', function (e, param) {
     var $this = $(this),
-        payment = $($this.data('rel')),
-        delivery = $($this.data('rel2')),
-        id = $this.val();
+    payment = $($this.data('rel')),
+    delivery = $($this.data('rel2')),
+    id = $this.val();
     $(delivery).val(id);
     $.get('/admin/components/run/shop/orders/getPaymentsMethods/' + id, function (dataStr) {
         var data = JSON.parse(dataStr);
@@ -2194,9 +2194,9 @@ $(document).ready(function () {
     }
     $('.robotsChecker.frame_prod-on_off').off('click').off('click').on('click', function () {
         var input = $(this).find('input'),
-            val = input.val(),
-            valOn = input.data('valOn'),
-            valOff = input.data('valOff');
+        val = input.val(),
+        valOn = input.data('valOn'),
+        valOff = input.data('valOff');
         if (val == valOn) {
             input.val(valOn);
         } else {
@@ -2496,5 +2496,22 @@ var Users = {
 
         $('.modal_role_change').modal('hide');
     }
-}
+};
 
+// allow pasting only numbers for #filterID
+(function () {
+    var idFilters = [$('#filterID'), $('[name="brand_id"]'), $('[name="order_id"]'), $('[name="filterID"]'), $('[name="id"]')],
+    length = idFilters.length,
+    i = length;
+    while(i--) {
+        idFilters[i].on('paste', function(e) {
+            $this = $(this);
+            var regex = /^[0-9]+$/;
+            setTimeout(function () {
+                if (!regex.test($this.val())) {
+                    $this.val('');
+                }
+            }, 0);
+        });
+    }
+})();

@@ -60,7 +60,7 @@ class Xbanners extends MY_Controller {
         $locale = MY_Controller::getCurrentLocale();
         $pageId = \CI::$APP->core->core_data['id'];
         return \Banners\Models\BannersQuery::create()
-            ->getTranslatedByPlace($place, $locale, $pageId);
+                        ->getTranslatedByPlace($place, $locale, $pageId);
     }
 
     /**
@@ -78,7 +78,7 @@ class Xbanners extends MY_Controller {
         try {
             $man->install();
             $man->installTemplatePlaces();
-        }catch(Exception $e){
+        } catch (Exception $e) {
 
         }
     }
@@ -104,8 +104,8 @@ class Xbanners extends MY_Controller {
      */
     public static function adminAutoload() {
         Events::create()
-            ->on("postTemplateInstall")
-            ->setListener('postTemplateInstallListener');
+                ->on("postTemplateInstall")
+                ->setListener('postTemplateInstallListener');
     }
 
     /**
@@ -122,7 +122,7 @@ class Xbanners extends MY_Controller {
             $installer->install();
         } catch (Exception $exc) {
             if ('development' === ENVIRONMENT) {
-                               showMessage($exc->getMessage(), lang('Error', 'xbanners'), 'r');
+                showMessage($exc->getMessage(), lang('Error', 'xbanners'), 'r');
             }
         }
     }
@@ -142,15 +142,15 @@ class Xbanners extends MY_Controller {
 
     protected static function registerNameSpaces() {
         ClassLoader::getInstance()
-            ->registerNamespacedPath(__DIR__ . '/models/propel/generated-classes')
-            ->registerAlias(__DIR__ . '/src', 'Banners');
+                ->registerNamespacedPath(__DIR__ . '/models/propel/generated-classes')
+                ->registerAlias(__DIR__ . '/src', 'Banners');
     }
 
     public function show($data) {
         return CMSFactory\assetManager::create()
-            ->setData($data)
-            ->registerScript('slick.min')
-            ->fetchTemplate('banner');
+                        ->setData($data)
+                        ->registerScript('slick.min')
+                        ->fetchTemplate('banner');
     }
 
     /** -----------------------TEST AREA------------------------------------- */

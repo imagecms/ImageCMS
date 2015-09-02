@@ -62,7 +62,7 @@ class Core_Widgets extends MY_Controller {
                     $news[$i]['prev_text'] = strip_tags(mb_substr($news[$i]['prev_text'], 0, $settings['max_symdols'], 'utf-8')) . '...';
                 }
             }
-            
+
             foreach ($news as $k => $item) {
                 $news[$k] = $this->load->module('cfcm')->connect_fields($item, 'page');
             }
