@@ -1,6 +1,8 @@
 <?php
 
-if (!defined('BASEPATH')) exit('No direct script access allowed');
+if (!defined('BASEPATH')) {
+    exit('No direct script access allowed');
+}
 
 /**
  * Image CMS
@@ -21,6 +23,7 @@ class Comments_Widgets extends MY_Controller {
     }
 
     // Get and display recent comments
+
     public function recent_comments($widget = array()) {
         if ($widget['settings'] == FALSE) {
             $settings = $this->defaults;
@@ -54,23 +57,26 @@ class Comments_Widgets extends MY_Controller {
     }
 
     public function render($viewName, array $data = array(), $return = false) {
-        if (!empty($data))
+        if (!empty($data)) {
             $this->template->add_array($data);
+        }
 
         $this->template->show('file:' . 'application/' . getModContDirName('comments') . '/comments/templates/' . $viewName);
         exit;
 
-        if ($return === false)
+        if ($return === false) {
             $this->template->show('file:' . 'application/' . getModContDirName('comments') . '/comments/templates/' . $viewName);
-        else
+        } else {
             return $this->template->fetch('file:' . 'application/' . getModContDirName('comments') . '/comments/templates/' . $viewName);
+        }
     }
 
     // Configure widget settings
-    public function recent_comments_configure($action = 'show_settings', $widget_data = array()) {
-        if ($this->dx_auth->is_admin() == FALSE)
-            exit; // Only admin access 
 
+    public function recent_comments_configure($action = 'show_settings', $widget_data = array()) {
+        if ($this->dx_auth->is_admin() == FALSE) {
+            exit; // Only admin access
+        }
         switch ($action) {
             case 'show_settings':
                 //$this->display_tpl('recent_comments_form', array('widget' => $widget_data));
@@ -91,8 +97,9 @@ class Comments_Widgets extends MY_Controller {
 
                     $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
                     showMessage(lang("Settings have been saved", 'comments'));
-                    if ($_POST['action'] == 'tomain')
+                    if ($_POST['action'] == 'tomain') {
                         pjax('/admin/widgets_manager/index');
+                    }
                 }
                 break;
 
@@ -103,6 +110,7 @@ class Comments_Widgets extends MY_Controller {
     }
 
     // Get and display recent product comments
+
     public function recent_product_comments($widget = array()) {
         if ($widget['settings'] == FALSE) {
             $settings = $this->defaults;
@@ -117,7 +125,6 @@ class Comments_Widgets extends MY_Controller {
         $this->db->join('content', 'content.id = comments.item_id', 'left');
         $this->db->order_by('date', 'desc');
         $query = $this->db->get('comments', $settings['comments_count']);
-
 
         if ($query->num_rows() > 0) {
             $comments = $query->result_array();
@@ -136,10 +143,11 @@ class Comments_Widgets extends MY_Controller {
     }
 
     // Configure widget settings
-    public function recent_product_comments_configure($action = 'show_settings', $widget_data = array()) {
-        if ($this->dx_auth->is_admin() == FALSE)
-            exit; // Only admin access 
 
+    public function recent_product_comments_configure($action = 'show_settings', $widget_data = array()) {
+        if ($this->dx_auth->is_admin() == FALSE) {
+            exit; // Only admin access
+        }
         switch ($action) {
             case 'show_settings':
                 \CMSFactory\assetManager::create()->setData('widget', $widget_data)->renderAdmin('recent_product_comments_form');
@@ -172,14 +180,15 @@ class Comments_Widgets extends MY_Controller {
     }
 
     // Template functions
-    function display_tpl($file, $vars = array()) {
+
+    public function display_tpl($file, $vars = array()) {
         $this->template->add_array($vars);
 
         $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';
         $this->template->display('file:' . $file);
     }
 
-    function fetch_tpl($file, $vars = array()) {
+    public function fetch_tpl($file, $vars = array()) {
         $this->template->add_array($vars);
 
         $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';

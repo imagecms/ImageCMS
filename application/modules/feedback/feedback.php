@@ -42,7 +42,7 @@ class Feedback extends MY_Controller {
 
     }
 
-    function captcha_check($code) {
+    public function captcha_check($code) {
         if (!$this->dx_auth->captcha_check($code)) {
             return FALSE;
         } else {
@@ -50,7 +50,7 @@ class Feedback extends MY_Controller {
         }
     }
 
-    function recaptcha_check() {
+    public function recaptcha_check() {
         $result = $this->dx_auth->is_recaptcha_match();
         if (!$result) {
             $this->form_validation->set_message('recaptcha_check', lang("Improper protection code", 'feedback'));
@@ -82,8 +82,7 @@ class Feedback extends MY_Controller {
 
             if ($this->dx_auth->use_recaptcha) {
                 $this->form_validation->set_rules('recaptcha_response_field', lang("Protection code", 'feedback'), 'trim|xss_clean|required|callback_recaptcha_check');
-            }
-            else {
+            } else {
                 $this->form_validation->set_rules('captcha', lang("Protection code", 'feedback'), 'trim|required|xss_clean|callback_captcha_check');
             }
 

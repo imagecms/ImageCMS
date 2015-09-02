@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Image CMS
@@ -33,11 +34,9 @@ class Admin extends BaseAdminController {
         // Get site name
         $this->template->assign('site_settings', $this->cms_base->get_settings());
 
-
         $query = $this->db->get('mail');
         $row = $query->result_array();
         $this->template->assign('all', $row);
-
 
         if (!$this->ajaxRequest) {
             $this->display_tpl('form');
@@ -109,7 +108,6 @@ class Admin extends BaseAdminController {
     }
 
     public function deleteUsers() {
-
 
         if (!empty($_POST['ids'])) {
 

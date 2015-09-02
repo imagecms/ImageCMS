@@ -84,4 +84,3 @@ $lang['Port'] = 'Порт';
 $lang['Protocol'] = 'Протокол';
 $lang['Install_standart_templates'] = 'Установить стандартние шаблони';
 $lang['email_sent'] = 'Ваше сообщение успешно отправлено';
-?>

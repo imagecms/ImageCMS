@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 $com_info = array(
     'menu_name' => lang('Subscription and mailing', 'mailer'),

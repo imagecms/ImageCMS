@@ -69,5 +69,3 @@ class Pricespy_model extends CI_Model {
     }
 
 }
-
-?>

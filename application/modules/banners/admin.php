@@ -12,7 +12,7 @@
  */
 class Admin extends BaseAdminController {
 
-    function __construct() {
+    public function __construct() {
         parent::__construct();
         $this->load->model('banner_model');
         $this->load->helper('banners');
@@ -30,9 +30,9 @@ class Admin extends BaseAdminController {
         $this->is_shop = SHOP_INSTALLED;
     }
 
-    function createGroup() {
+    public function createGroup() {
         $name = $this->input->post('name');
-        if($this->db->where($name)->get('mod_banner_groups')){
+        if ($this->db->where($name)->get('mod_banner_groups')) {
             return FALSE;
         }
 
@@ -50,7 +50,7 @@ class Admin extends BaseAdminController {
         }
     }
 
-    function delGroup() {
+    public function delGroup() {
         $name = $this->input->post('name');
         if ($this->db->table_exists('mod_banner_groups')) {
             $this->db->where('name', $name[0])->delete('mod_banner_groups');
@@ -239,13 +239,15 @@ class Admin extends BaseAdminController {
             CMSFactory\assetManager::create()
                     ->registerScript('main')
                     ->registerStyle('style')
-                    ->setData(array(
-                        'is_shop' => $this->is_shop,
-                        'banner' => $banner,
-                        'locale' => $locale,
-                        'languages' => $this->db->get('languages')->result_array(),
-                        'groups' => $groups,
-                    ))
+                    ->setData(
+                        array(
+                                'is_shop' => $this->is_shop,
+                                'banner' => $banner,
+                                'locale' => $locale,
+                                'languages' => $this->db->get('languages')->result_array(),
+                                'groups' => $groups,
+                            )
+                    )
                     ->renderAdmin('edit');
         }
     }
@@ -292,12 +294,13 @@ class Admin extends BaseAdminController {
      * @author koloda90 <koloda90@gmail.com>
      */
     public function save_positions() {
-        if (!is_array($this->input->post('positions')))
+        if (!is_array($this->input->post('positions'))) {
             return;
+        }
 
         foreach ($this->input->post('positions') as $key => $value) {
             $this->db->where('id = ' . $value)
-                    ->update('mod_banner', array('position' => $key));
+                ->update('mod_banner', array('position' => $key));
         }
 
         showMessage(lang('Positions saved', 'banners'));

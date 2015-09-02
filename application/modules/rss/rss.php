@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Image CMS
@@ -11,42 +12,35 @@ if (!defined('BASEPATH'))
 class Rss extends MY_Controller {
 
     private $settings = array();
+
     private $rss_header = '<?xml version="1.0" encoding="UTF-8"?>';
+
     private $cache_key = 'rss';
 
-    function __construct() {
+    public function __construct() {
         parent::__construct();
         $lang = new MY_Lang();
         $lang->load('rss');
     }
 
     public function index() {
-        if (($content = $this->cache->fetch($this->cache_key)) !== FALSE)
-        {
-            // rss feed fetched from cache
-        }
-        else
-        {
+        if (($content = $this->cache->fetch($this->cache_key)) === FALSE) {
             $this->load->library('lib_category');
 
             $this->settings = $this->_load_settings();
 
-            if ($this->settings['pages_count'] == 0)
-            {
+            if ($this->settings['pages_count'] == 0) {
                 $this->settings['pages_count'] = 10;
             }
 
             $pages = $this->get_pages();
 
             $cnt = count($pages);
-            if ($cnt > 0)
-            {
-                for ($i = 0; $i < $cnt; $i++)
-                {
+            if ($cnt > 0) {
+                for ($i = 0; $i < $cnt; $i++) {
                     $pages[$i]['prev_text'] = htmlspecialchars_decode($pages[$i]['prev_text']);
 
-                    if ($pages[$i]['category'] > 0)
-                    {
+                    if ($pages[$i]['category'] > 0) {
                         $category = $this->lib_category->get_category($pages[$i]['category']);
                         $pages[$i]['title'] = $category['name'] . ' / ' . $pages[$i]['title'];
                         $pages[$i]['publish_date'] = gmdate('D, d M Y H:i:s', $pages[$i]['publish_date']) . ' GMT';
@@ -81,8 +75,7 @@ class Rss extends MY_Controller {
         $this->db->where('prev_text !=', 'null');
         $this->db->where('publish_date <=', time());
 
-        if (count($this->settings['categories']) > 0)
-        {
+        if (count($this->settings['categories']) > 0) {
             $this->db->where_in('category', $this->settings['categories']);
         }
 
@@ -103,20 +96,13 @@ class Rss extends MY_Controller {
     }
 
     public function _install() {
-        if ($this->dx_auth->is_admin() == FALSE)
+        if ($this->dx_auth->is_admin() == FALSE) {
             exit;
+        }
 
         // Enable module url access
         $this->db->where('name', 'rss');
         $this->db->update('components', array('enabled' => '1'));
-    }
-
-    /**
-     * Display template file
-     */
-    private function display_tpl($file = '') {
-        $file = realpath(dirname(__FILE__)) . '/templates/public/' . $file . '.tpl';
-        $this->template->display('file:' . $file);
     }
 
     /**

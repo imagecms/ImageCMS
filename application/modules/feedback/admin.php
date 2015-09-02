@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Image CMS
@@ -15,12 +16,13 @@ class Admin extends BaseAdminController {
         $lang = new MY_Lang();
         $lang->load('feedback');
 
-        // Only admin access 
+        // Only admin access
         $this->load->library('DX_Auth');
-        //cp_check_perm('module_admin'); 
+        //cp_check_perm('module_admin');
     }
 
     // Display settings form
+
     public function index() {
         $this->template->assign('settings', $this->settings());
         $this->display_tpl('admin/settings');

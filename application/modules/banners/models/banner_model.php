@@ -101,7 +101,7 @@ class Banner_model extends CI_Model {
                 }
             } else {
                 foreach ($query as $key => $banner) {
-                    if (unserialize($banner['group']) && !strstr($_SERVER['REQUEST_URI'], '/admin/')) {
+                    if (unserialize($banner['group']) && !strstr($this->input->server('REQUEST_URI'), '/admin/')) {
                         unset($query[$key]);
                     }
                 }
@@ -175,7 +175,8 @@ class Banner_model extends CI_Model {
         $fields = array();
         if ($result) {
             $tableFields = $result->result_array();
-            for ($i = 0; $i < count($tableFields); $i++) {
+            $tableFieldsCount = count($tableFields);
+            for ($i = 0; $i < $tableFieldsCount; $i++) {
                 $fields[] = $tableFields[$i]['Field'];
             }
             return $fields;

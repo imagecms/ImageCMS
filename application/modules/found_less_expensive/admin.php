@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Image CMS
@@ -11,12 +12,12 @@ class Admin extends BaseAdminController {
 
     private $per_page = 12;
 
-    function __construct() {
+    public function __construct() {
         parent::__construct();
     }
 
     /**
-     * Init 
+     * Init
      */
     private function init() {
         \CMSFactory\assetManager::create()
@@ -89,14 +90,16 @@ class Admin extends BaseAdminController {
         }
         // End pagination
 
-        $this->template->
-                add_array(array('data' => $data,
+        $this->template
+            ->add_array(
+                array('data' => $data,
                     'pagination' => $pagination,
                     'status' => $status,
                     'countAll' => $this->found_less_expensive_model->getCountAll(array(0, 1)),
                     'countNew' => $this->found_less_expensive_model->getCountAll(0),
                     'countAccepted' => $this->found_less_expensive_model->getCountAll(1),
-        ));
+                    )
+            );
         $this->display_tpl('list');
     }
 
@@ -107,9 +110,11 @@ class Admin extends BaseAdminController {
     public function settings() {
         $this->init();
         $data = $this->found_less_expensive_model->getModuleSettings();
-        $this->template->
-                add_array(array('settings' => $data,
-        ));
+        $this->template
+            ->add_array(
+                array('settings' => $data,
+                    )
+            );
         $this->display_tpl('settings');
     }
 
@@ -144,7 +149,7 @@ class Admin extends BaseAdminController {
     }
 
     /**
-     * 
+     *
      * @param string $file
      */
     private function display_tpl($file = '') {

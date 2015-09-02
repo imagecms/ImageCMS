@@ -23,7 +23,7 @@
     <exclude-pattern>*/admin_menu/assets/js/*</exclude-pattern>
     <exclude-pattern>*/admin_menu/menus/*</exclude-pattern>
  
-    <arg name="extensions" value="php,js,tpl"/>
+    <arg name="extensions" value="php"/>
     <arg name="encoding" value="utf-8"/>
     <arg name="generator" value="text"/>
     <arg value="spn"/>

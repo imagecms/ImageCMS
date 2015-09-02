@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Image CMS
@@ -10,7 +11,7 @@ if (!defined('BASEPATH'))
  */
 class Admin extends BaseAdminController {
 
-    function __construct() {
+    public function __construct() {
         parent::__construct();
         $lang = new MY_Lang();
         $lang->load('rss');
@@ -23,26 +24,30 @@ class Admin extends BaseAdminController {
         $this->load->library('lib_category');
         $cats = $this->lib_category->build();
 
-        $this->template->add_array(array(
-            'cats' => $cats,
-            'settings' => $this->get_settings()
-        ));
+        $this->template->add_array(
+            array(
+                    'cats' => $cats,
+                    'settings' => $this->get_settings()
+                )
+        );
 
         //$this->display_tpl('settings');
         $this->render('settings');
     }
 
     public function render($viewName, array $data = array(), $return = false) {
-        if (!empty($data))
+        if (!empty($data)) {
             $this->template->add_array($data);
+        }
 
-                $this->template->show('file:' . realpath(dirname(__FILE__)) . '/templates/admin/' . $viewName);
+        $this->template->show('file:' . realpath(dirname(__FILE__)) . '/templates/admin/' . $viewName);
         exit;
 
-        if ($return === false)
+        if ($return === false) {
             $this->template->show('file:' . realpath(dirname(__FILE__)) . '/templates/admin/' . $viewName);
-        else
+        } else {
             return $this->template->fetch('file:' . realpath(dirname(__FILE__)) . '/templates/admin/' . $viewName);
+        }
     }
 
     public function settings_update() {
@@ -56,7 +61,7 @@ class Admin extends BaseAdminController {
 
         $this->db->where('name', 'rss');
         $this->db->update('components', array('settings' => serialize($data)));
-        
+
         $this->lib_admin->log(lang("RSS was edited", "rss"));
         showMessage(lang("Changes have been saved", 'rss'));
     }
@@ -68,7 +73,7 @@ class Admin extends BaseAdminController {
     /**
      * Display template file
      */
-    function display_tpl($file = '') {
+    public function display_tpl($file = '') {
         $file = realpath(dirname(__FILE__)) . '/templates/admin/' . $file . '.tpl';
         $this->template->display('file:' . $file);
     }
@@ -76,7 +81,7 @@ class Admin extends BaseAdminController {
     /**
      * Fetch template file
      */
-    function fetch_tpl($file = '') {
+    public function fetch_tpl($file = '') {
         $file = realpath(dirname(__FILE__)) . '/templates/admin/' . $file . '.tpl';
         return $this->template->fetch('file:' . $file);
     }

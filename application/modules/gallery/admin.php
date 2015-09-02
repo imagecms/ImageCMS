@@ -357,7 +357,7 @@ class Admin extends BaseAdminController {
             $this->lib_admin->log(lang("Gallery album was updated", "gallery") . '. Id: ' . $id);
             showMessage(lang("Changes have been saved", 'gallery'));
         }
-        
+
         $data = array(
             'category_id' => (int) $this->input->post('cat_id'),
             // 'name' => $this->input->post('name'),
@@ -873,7 +873,7 @@ class Admin extends BaseAdminController {
         $temp_conf = $this->conf;
         if (is_array($_FILES['newPic'])) {
 
-            if(count($_FILES['newPic']['name']) > ini_get('max_file_uploads')) {
+            if (count($_FILES['newPic']['name']) > ini_get('max_file_uploads')) {
                 showMessage(langf('You can upload only |max_file_uploads| images at once', 'admin', ['max_file_uploads' => ini_get('max_file_uploads')]), lang('Error', 'admin'), 'r');
                 exit;
             }
