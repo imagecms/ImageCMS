@@ -469,7 +469,7 @@ class Template extends Mabilis {
         $count = count($data);
         if ($count > 0) {
             foreach ($data as $str => $pos) {
-                if (!in_array($str, self::$arr)) {
+                if (!in_array($str, self::$arr) && $str != '') {
                     switch ($pos) {
                         case 'before':
                             self::$result_before .= $str;

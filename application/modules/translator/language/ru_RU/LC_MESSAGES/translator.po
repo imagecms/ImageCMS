@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-03 11:06+0300\n"
-"PO-Revision-Date: 2015-07-03 11:06+0300\n"
+"POT-Creation-Date: 2015-09-02 05:48+0300\n"
+"PO-Revision-Date: 2015-09-02 05:48+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -17,6 +17,12 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: application/modules/translator/assets/js/translateSingleLang.js:10
+#: application/modules/translator/assets/js/admin.js:1355
+#: application/modules/translator/assets/js/admin.js:1942
+msgid "Wrong API key."
+msgstr "Неправильно API-ключ."
 
 #: application/modules/translator/assets/admin/list.tpl:407
 #: application/modules/translator/assets/admin/create.tpl:126
@@ -48,7 +54,7 @@ msgstr "Определяют дополнительные места для по
 msgid "All paths must be relative"
 msgstr "Все пути должны быть относительными"
 
-#: application/modules/translator/classes/Replacer.php:215
+#: application/modules/translator/classes/Replacer.php:216
 #, fuzzy
 msgid "$1"
 msgstr ""
@@ -65,7 +71,7 @@ msgstr "Значение перевода не может быть пустым"
 msgid "Admin module"
 msgstr "Модуль административной части"
 
-#: application/modules/translator/classes/PoFileSearch.php:69
+#: application/modules/translator/classes/PoFileSearch.php:79
 msgid "Search string can not be smaller then 2 symbols."
 msgstr "Строка поиска не может быть меньше 2 символов."
 
@@ -91,12 +97,12 @@ msgstr "Действия"
 msgid "Empty search."
 msgstr "Ничего не найдено."
 
-#: application/modules/translator/assets/admin/search.tpl:7
 #: application/modules/translator/assets/admin/list.tpl:148
+#: application/modules/translator/assets/admin/search.tpl:7
 msgid "Full search"
 msgstr "Полный поиск"
 
-#: application/modules/translator/admin.php:166
+#: application/modules/translator/admin.php:181
 msgid "Field Search string cannot be empty."
 msgstr "Поле Строка поиска не может быть пустым."
 
@@ -116,12 +122,12 @@ msgstr "Файл успешно открыт для редактирования
 msgid "File was successfully saved."
 msgstr "Файл был успешно сохранен."
 
-#: application/modules/translator/admin.php:532
+#: application/modules/translator/admin.php:548
 msgid "File was succcessfuly created."
 msgstr "Файл был успешно создан."
 
-#: application/modules/translator/admin.php:585
-#: application/modules/translator/admin.php:586
+#: application/modules/translator/admin.php:601
+#: application/modules/translator/admin.php:603
 msgid "Translation file was successfuly saved."
 msgstr "Файл перевода был успешно сохранен."
 
@@ -142,7 +148,7 @@ msgid "Add additional search place"
 msgstr "Добавить дополнительное поисковое место"
 
 #: application/modules/translator/assets/admin/list.tpl:444
-#: application/modules/translator/helpers/translator_helper.php:429
+#: application/modules/translator/helpers/translator_helper.php:375
 msgid "Module"
 msgstr "Модуль"
 
@@ -154,27 +160,27 @@ msgstr "Неверные параметры ."
 msgid "Access Not Configured. The API is not enabled for your project."
 msgstr "Доступ не настроен. API не включен для вашего проекта."
 
-#: application/modules/translator/helpers/translator_helper.php:432
+#: application/modules/translator/helpers/translator_helper.php:378
 msgid "Template"
 msgstr "Шаблон"
 
-#: application/modules/translator/helpers/translator_helper.php:435
+#: application/modules/translator/helpers/translator_helper.php:381
 msgid "Main file"
 msgstr "Главний файл"
 
-#: application/modules/translator/admin.php:75
+#: application/modules/translator/admin.php:91
 msgid "Translators settings was successfully updated."
 msgstr "Настройки переводчика успешно обновлены."
 
-#: application/modules/translator/admin.php:290
+#: application/modules/translator/admin.php:306
 msgid " . $quote . $origin . $quote . "
 msgstr " . $цитату . $origin . $цитату . "
 
-#: application/modules/translator/admin.php:73
+#: application/modules/translator/admin.php:89
 msgid "Settings was successfully updated"
 msgstr "Настройки обновлено."
 
-#: application/modules/translator/admin.php:388
+#: application/modules/translator/admin.php:404
 msgid "Update and save translation file befor this action."
 msgstr "Обновите и сохраните файл перевода до этого действия."
 
@@ -194,9 +200,9 @@ msgstr "Обновите и сохраните файл перевода до э
 #: application/modules/translator/assets/js/admin.js:1866
 #: application/modules/translator/assets/js/admin.js:1936
 #: application/modules/translator/assets/js/admin.js:1938
-#: application/modules/translator/admin.php:532
-#: application/modules/translator/admin.php:585
-#: application/modules/translator/admin.php:600
+#: application/modules/translator/admin.php:548
+#: application/modules/translator/admin.php:601
+#: application/modules/translator/admin.php:617
 msgid "Message"
 msgstr "Сообщение"
 
@@ -243,17 +249,17 @@ msgstr "Сообщение"
 #: application/modules/translator/assets/js/admin.js:1957
 #: application/modules/translator/assets/js/admin.js:1960
 #: application/modules/translator/assets/js/admin.js:1963
-#: application/modules/translator/admin.php:540
-#: application/modules/translator/admin.php:589
-#: application/modules/translator/admin.php:603
+#: application/modules/translator/admin.php:556
+#: application/modules/translator/admin.php:606
+#: application/modules/translator/admin.php:620
 msgid "Error"
 msgstr "Ошибка"
 
-#: application/modules/translator/admin.php:600
+#: application/modules/translator/admin.php:617
 msgid "Selection path memory was successfuly cleared."
 msgstr "Память работы модуля была успешно очищена."
 
-#: application/modules/translator/admin.php:603
+#: application/modules/translator/admin.php:620
 msgid "Operation failed!"
 msgstr "Операция не успешна!"
 
@@ -261,22 +267,22 @@ msgstr "Операция не успешна!"
 msgid "Create Po-file"
 msgstr "Создать Po-файл"
 
-#: application/modules/translator/assets/admin/search.tpl:14
 #: application/modules/translator/assets/admin/list.tpl:134
-#: application/modules/translator/assets/admin/create.tpl:14
 #: application/modules/translator/assets/admin/settings.tpl:14
+#: application/modules/translator/assets/admin/create.tpl:14
+#: application/modules/translator/assets/admin/search.tpl:14
 #: application/modules/translator/assets/admin/exchange.tpl:14
 msgid "Back"
 msgstr "Вернуться"
 
-#: application/modules/translator/assets/admin/search.tpl:138
-#: application/modules/translator/assets/admin/search.tpl:196
-#: application/modules/translator/assets/admin/search.tpl:252
 #: application/modules/translator/assets/admin/list.tpl:70
 #: application/modules/translator/assets/admin/list.tpl:140
 #: application/modules/translator/assets/admin/list.tpl:370
-#: application/modules/translator/assets/admin/create.tpl:20
 #: application/modules/translator/assets/admin/settings.tpl:20
+#: application/modules/translator/assets/admin/create.tpl:20
+#: application/modules/translator/assets/admin/search.tpl:138
+#: application/modules/translator/assets/admin/search.tpl:196
+#: application/modules/translator/assets/admin/search.tpl:252
 msgid "Save"
 msgstr "Сохранить"
 
@@ -313,54 +319,54 @@ msgstr "Нет локалей"
 msgid "Choose type"
 msgstr "Выберите тип"
 
-#: application/modules/translator/assets/admin/search.tpl:81
 #: application/modules/translator/assets/admin/list.tpl:222
 #: application/modules/translator/assets/admin/create.tpl:64
+#: application/modules/translator/assets/admin/search.tpl:81
 #: application/modules/translator/assets/admin/exchange.tpl:57
 #: application/modules/translator/assets/admin/exchange.tpl:86
 msgid "Modules"
 msgstr "Модули"
 
-#: application/modules/translator/assets/admin/search.tpl:86
 #: application/modules/translator/assets/admin/list.tpl:223
 #: application/modules/translator/assets/admin/create.tpl:65
+#: application/modules/translator/assets/admin/search.tpl:86
 #: application/modules/translator/assets/admin/exchange.tpl:58
 #: application/modules/translator/assets/admin/exchange.tpl:87
 msgid "Templates"
 msgstr "Шаблоны"
 
-#: application/modules/translator/assets/admin/search.tpl:91
-#: application/modules/translator/assets/admin/search.tpl:222
 #: application/modules/translator/assets/admin/list.tpl:224
 #: application/modules/translator/assets/admin/list.tpl:442
 #: application/modules/translator/assets/admin/create.tpl:66
+#: application/modules/translator/assets/admin/search.tpl:91
+#: application/modules/translator/assets/admin/search.tpl:222
 #: application/modules/translator/assets/admin/exchange.tpl:59
 #: application/modules/translator/assets/admin/exchange.tpl:88
 msgid "Main"
 msgstr "Главный"
 
-#: application/modules/translator/assets/admin/po_table.tpl:56
 #: application/modules/translator/assets/admin/create.tpl:77
+#: application/modules/translator/assets/admin/po_table.tpl:56
 msgid "Project Name"
 msgstr "Название проекта"
 
-#: application/modules/translator/assets/admin/po_table.tpl:63
 #: application/modules/translator/assets/admin/create.tpl:86
+#: application/modules/translator/assets/admin/po_table.tpl:63
 msgid "Translator email"
 msgstr "E-mail переводчика"
 
-#: application/modules/translator/assets/admin/po_table.tpl:70
 #: application/modules/translator/assets/admin/create.tpl:95
+#: application/modules/translator/assets/admin/po_table.tpl:70
 msgid "Translator name"
 msgstr "Имя переводчика"
 
-#: application/modules/translator/assets/admin/po_table.tpl:77
 #: application/modules/translator/assets/admin/create.tpl:104
+#: application/modules/translator/assets/admin/po_table.tpl:77
 msgid "Language-Team name"
 msgstr "Название Language-Team"
 
-#: application/modules/translator/assets/admin/po_table.tpl:84
 #: application/modules/translator/assets/admin/create.tpl:113
+#: application/modules/translator/assets/admin/po_table.tpl:84
 msgid "Language-Team email"
 msgstr "E-mail Language-Team"
 
@@ -381,16 +387,16 @@ msgstr "Добавить путь"
 msgid "Double click to deleting"
 msgstr "Дважды щелкните для удаления"
 
-#: application/modules/translator/assets/admin/po_table.tpl:91
+#: application/modules/translator/assets/admin/create.tpl:167
 #: application/modules/translator/assets/admin/search.tpl:113
 #: application/modules/translator/assets/admin/search.tpl:170
 #: application/modules/translator/assets/admin/search.tpl:226
-#: application/modules/translator/assets/admin/create.tpl:167
+#: application/modules/translator/assets/admin/po_table.tpl:91
 msgid "Language"
 msgstr "Язык"
 
-#: application/modules/translator/assets/admin/po_table.tpl:98
 #: application/modules/translator/assets/admin/create.tpl:175
+#: application/modules/translator/assets/admin/po_table.tpl:98
 msgid "Country"
 msgstr "Страна"
 
@@ -467,9 +473,9 @@ msgstr "Исходный текст"
 msgid "Translation text"
 msgstr "Перевод"
 
-#: application/modules/translator/assets/admin/po_table.tpl:14
-#: application/modules/translator/assets/admin/list.tpl:36
 #: application/modules/translator/assets/translationApiForm.tpl:148
+#: application/modules/translator/assets/admin/list.tpl:36
+#: application/modules/translator/assets/admin/po_table.tpl:14
 msgid "Translate"
 msgstr "Перевести"
 
@@ -494,8 +500,8 @@ msgstr "будет проигнорировано"
 msgid "Update"
 msgstr "Обновить"
 
-#: application/modules/translator/module_info.php:5
 #: application/modules/translator/assets/admin/list.tpl:127
+#: application/modules/translator/module_info.php:5
 msgid "Translator"
 msgstr "Переводчик"
 
@@ -544,10 +550,10 @@ msgstr "Переведено"
 msgid "Not translated"
 msgstr "Не переведено"
 
+#: application/modules/translator/assets/admin/list.tpl:200
 #: application/modules/translator/assets/admin/search.tpl:144
 #: application/modules/translator/assets/admin/search.tpl:201
 #: application/modules/translator/assets/admin/search.tpl:257
-#: application/modules/translator/assets/admin/list.tpl:200
 msgid "Translation file"
 msgstr "Файл перевода"
 
@@ -595,21 +601,21 @@ msgstr "Поиск в комментариях"
 msgid "Fuzzy"
 msgstr "Скрыть"
 
+#: application/modules/translator/assets/translationApiForm.tpl:133
+#: application/modules/translator/assets/admin/list.tpl:285
 #: application/modules/translator/assets/admin/search.tpl:61
 #: application/modules/translator/assets/admin/search.tpl:114
 #: application/modules/translator/assets/admin/search.tpl:171
 #: application/modules/translator/assets/admin/search.tpl:227
-#: application/modules/translator/assets/admin/list.tpl:285
-#: application/modules/translator/assets/translationApiForm.tpl:133
 msgid "Origin"
 msgstr "Оригинал"
 
+#: application/modules/translator/assets/translationApiForm.tpl:139
+#: application/modules/translator/assets/admin/list.tpl:290
 #: application/modules/translator/assets/admin/search.tpl:63
 #: application/modules/translator/assets/admin/search.tpl:115
 #: application/modules/translator/assets/admin/search.tpl:172
 #: application/modules/translator/assets/admin/search.tpl:228
-#: application/modules/translator/assets/admin/list.tpl:290
-#: application/modules/translator/assets/translationApiForm.tpl:139
 msgid "Translation"
 msgstr "Перевод"
 
@@ -617,8 +623,8 @@ msgstr "Перевод"
 msgid "Default sort"
 msgstr "Сортировка по умолчанию"
 
-#: application/modules/translator/assets/admin/list.tpl:298
 #: application/modules/translator/assets/translationApiForm.tpl:144
+#: application/modules/translator/assets/admin/list.tpl:298
 msgid "Comment"
 msgstr "Комментарий"
 
@@ -681,8 +687,8 @@ msgstr "Отменить"
 msgid "The file is empty."
 msgstr "Этот файл пуст."
 
-#: application/modules/translator/assets/admin/po_table.tpl:113
 #: application/modules/translator/assets/admin/list.tpl:414
+#: application/modules/translator/assets/admin/po_table.tpl:113
 msgid "Basic path"
 msgstr "Основной"
 
@@ -783,12 +789,6 @@ msgstr "Успешно определено"
 msgid "Successfully translated"
 msgstr "Успешно переведено"
 
-#: application/modules/translator/assets/js/translateSingleLang.js:10
-#: application/modules/translator/assets/js/admin.js:1355
-#: application/modules/translator/assets/js/admin.js:1942
-msgid "Wrong API key."
-msgstr "Неправильно API-ключ."
-
 #: application/modules/translator/assets/js/translateSingleLang.js:13
 #: application/modules/translator/assets/js/admin.js:1358
 #: application/modules/translator/assets/js/admin.js:1945
@@ -871,9 +871,9 @@ msgstr "Конец"
 msgid "Select all paths to files."
 msgstr "Выберите все пути к файлам."
 
-#: application/modules/translator/translator.php:159
-#: application/modules/translator/translator.php:183
-#: application/modules/translator/admin.php:824
+#: application/modules/translator/translator.php:158
+#: application/modules/translator/translator.php:184
+#: application/modules/translator/admin.php:847
 msgid "Successfully translated."
 msgstr "Успешно переведено."
 
@@ -889,15 +889,15 @@ msgstr "Скрыть форму"
 msgid "Autotranslate"
 msgstr "Автоперевод"
 
-#: application/modules/translator/classes/FileOperator.php:101
+#: application/modules/translator/classes/FileOperator.php:102
 msgid "File cant be read. Please, set read file permissions."
 msgstr "Пожалуйста, установите права на чтение файла."
 
-#: application/modules/translator/classes/FileOperator.php:111
+#: application/modules/translator/classes/FileOperator.php:112
 msgid "File cant be written. Please, set write file permissions."
 msgstr "Файл не может быть записан. Пожалуйста, установите права на запись файла."
 
-#: application/modules/translator/classes/FileOperator.php:121
+#: application/modules/translator/classes/FileOperator.php:122
 msgid "File does not exist or check perrmissions to the file."
 msgstr "Файл не существует или проверьте права доступа к файлу."
 
@@ -926,359 +926,359 @@ msgstr "Операция не успешная. Не возможно преоб
 msgid "Can not save po-file."
 msgstr "Невозможно сохранить файл перевода."
 
-#: application/modules/translator/helpers/translator_helper.php:37
+#: application/modules/translator/helpers/translator_helper.php:39
 msgid "Abkhazian"
 msgstr "Абхазский"
 
-#: application/modules/translator/helpers/translator_helper.php:38
+#: application/modules/translator/helpers/translator_helper.php:40
 msgid "Avestan"
 msgstr "Авестийская"
 
-#: application/modules/translator/helpers/translator_helper.php:39
+#: application/modules/translator/helpers/translator_helper.php:41
 msgid "Aragonese"
 msgstr "Арагонский"
 
-#: application/modules/translator/helpers/translator_helper.php:40
+#: application/modules/translator/helpers/translator_helper.php:42
 msgid "Arabic"
 msgstr "Арабский"
 
-#: application/modules/translator/helpers/translator_helper.php:41
+#: application/modules/translator/helpers/translator_helper.php:43
 msgid "Azerbaijani"
 msgstr "Азербайджанский"
 
-#: application/modules/translator/helpers/translator_helper.php:42
+#: application/modules/translator/helpers/translator_helper.php:44
 msgid "Bashkir"
 msgstr "Башкирский"
 
-#: application/modules/translator/helpers/translator_helper.php:43
+#: application/modules/translator/helpers/translator_helper.php:45
 msgid "Belarusian"
 msgstr "Белорусский"
 
-#: application/modules/translator/helpers/translator_helper.php:44
+#: application/modules/translator/helpers/translator_helper.php:46
 msgid "Bulgarian"
 msgstr "Болгарский"
 
-#: application/modules/translator/helpers/translator_helper.php:45
+#: application/modules/translator/helpers/translator_helper.php:47
 msgid "Bihari"
 msgstr "Бихари"
 
-#: application/modules/translator/helpers/translator_helper.php:46
+#: application/modules/translator/helpers/translator_helper.php:48
 msgid "Bengali"
 msgstr "Бенгальский"
 
-#: application/modules/translator/helpers/translator_helper.php:47
+#: application/modules/translator/helpers/translator_helper.php:49
 msgid "Breton"
 msgstr "Бретонский"
 
-#: application/modules/translator/helpers/translator_helper.php:48
+#: application/modules/translator/helpers/translator_helper.php:50
 msgid "Bosnian"
 msgstr "Боснийский"
 
-#: application/modules/translator/helpers/translator_helper.php:49
+#: application/modules/translator/helpers/translator_helper.php:51
 msgid "Catalan"
 msgstr "Каталанский"
 
-#: application/modules/translator/helpers/translator_helper.php:50
+#: application/modules/translator/helpers/translator_helper.php:52
 msgid "Corsican"
 msgstr "Корсиканский"
 
-#: application/modules/translator/helpers/translator_helper.php:51
+#: application/modules/translator/helpers/translator_helper.php:53
 msgid "Cree"
 msgstr "Кри"
 
-#: application/modules/translator/helpers/translator_helper.php:52
+#: application/modules/translator/helpers/translator_helper.php:54
 msgid "Czech"
 msgstr "Чешский"
 
-#: application/modules/translator/helpers/translator_helper.php:53
+#: application/modules/translator/helpers/translator_helper.php:55
 msgid "Chuvash"
 msgstr "Чувашский"
 
-#: application/modules/translator/helpers/translator_helper.php:54
+#: application/modules/translator/helpers/translator_helper.php:56
 msgid "Welsh"
 msgstr "Валлийский"
 
-#: application/modules/translator/helpers/translator_helper.php:55
+#: application/modules/translator/helpers/translator_helper.php:57
 msgid "Danish"
 msgstr "Датский"
 
-#: application/modules/translator/helpers/translator_helper.php:56
+#: application/modules/translator/helpers/translator_helper.php:58
 msgid "German"
 msgstr "Немецкий"
 
-#: application/modules/translator/helpers/translator_helper.php:57
+#: application/modules/translator/helpers/translator_helper.php:59
 msgid "Greek"
 msgstr "Греческий"
 
-#: application/modules/translator/helpers/translator_helper.php:58
+#: application/modules/translator/helpers/translator_helper.php:60
 msgid "English"
 msgstr "Английский"
 
-#: application/modules/translator/helpers/translator_helper.php:59
+#: application/modules/translator/helpers/translator_helper.php:61
 msgid "Esperanto"
 msgstr "Эсперанто"
 
-#: application/modules/translator/helpers/translator_helper.php:60
+#: application/modules/translator/helpers/translator_helper.php:62
 msgid "Spanish"
 msgstr "Испанский"
 
-#: application/modules/translator/helpers/translator_helper.php:61
+#: application/modules/translator/helpers/translator_helper.php:63
 msgid "Estonian"
 msgstr "Эстонский"
 
-#: application/modules/translator/helpers/translator_helper.php:62
+#: application/modules/translator/helpers/translator_helper.php:64
 msgid "Basque"
 msgstr "Баскский"
 
-#: application/modules/translator/helpers/translator_helper.php:63
+#: application/modules/translator/helpers/translator_helper.php:65
 msgid "Fijian"
 msgstr "Фиджи"
 
-#: application/modules/translator/helpers/translator_helper.php:64
+#: application/modules/translator/helpers/translator_helper.php:66
 msgid "Faroese"
 msgstr "Фарерский"
 
-#: application/modules/translator/helpers/translator_helper.php:65
+#: application/modules/translator/helpers/translator_helper.php:67
 msgid "French"
 msgstr "Французский"
 
-#: application/modules/translator/helpers/translator_helper.php:66
+#: application/modules/translator/helpers/translator_helper.php:68
 msgid "Irish"
 msgstr "Ирландский"
 
-#: application/modules/translator/helpers/translator_helper.php:67
+#: application/modules/translator/helpers/translator_helper.php:69
 msgid "Hebrew"
 msgstr "Иврит"
 
-#: application/modules/translator/helpers/translator_helper.php:68
+#: application/modules/translator/helpers/translator_helper.php:70
 msgid "Hungarian"
 msgstr "Венгерский"
 
-#: application/modules/translator/helpers/translator_helper.php:69
+#: application/modules/translator/helpers/translator_helper.php:71
 msgid "Armenian"
 msgstr "Армянский"
 
-#: application/modules/translator/helpers/translator_helper.php:70
+#: application/modules/translator/helpers/translator_helper.php:72
 msgid "Indonesian"
 msgstr "Индонезийский"
 
-#: application/modules/translator/helpers/translator_helper.php:71
+#: application/modules/translator/helpers/translator_helper.php:73
 msgid "Icelandic"
 msgstr "Исландский"
 
-#: application/modules/translator/helpers/translator_helper.php:72
+#: application/modules/translator/helpers/translator_helper.php:74
 msgid "Italian"
 msgstr "Итальянский"
 
-#: application/modules/translator/helpers/translator_helper.php:73
+#: application/modules/translator/helpers/translator_helper.php:75
 msgid "Inuktitut"
 msgstr "Инуктитут"
 
-#: application/modules/translator/helpers/translator_helper.php:74
+#: application/modules/translator/helpers/translator_helper.php:76
 msgid "Japanese"
 msgstr "Японский"
 
-#: application/modules/translator/helpers/translator_helper.php:75
+#: application/modules/translator/helpers/translator_helper.php:77
 msgid "Javanese"
 msgstr "Яванский"
 
-#: application/modules/translator/helpers/translator_helper.php:76
+#: application/modules/translator/helpers/translator_helper.php:78
 msgid "Georgian"
 msgstr "Грузинский"
 
-#: application/modules/translator/helpers/translator_helper.php:77
+#: application/modules/translator/helpers/translator_helper.php:79
 msgid "Kazakh"
 msgstr "Казахский"
 
-#: application/modules/translator/helpers/translator_helper.php:78
+#: application/modules/translator/helpers/translator_helper.php:80
 msgid "Kalaallisut"
 msgstr "Гренландский"
 
-#: application/modules/translator/helpers/translator_helper.php:79
+#: application/modules/translator/helpers/translator_helper.php:81
 msgid "Kannada"
 msgstr "Каннада"
 
-#: application/modules/translator/helpers/translator_helper.php:80
+#: application/modules/translator/helpers/translator_helper.php:82
 msgid "Korean"
 msgstr "Корейский"
 
-#: application/modules/translator/helpers/translator_helper.php:81
+#: application/modules/translator/helpers/translator_helper.php:83
 msgid "Cornish"
 msgstr "Корниш"
 
-#: application/modules/translator/helpers/translator_helper.php:82
+#: application/modules/translator/helpers/translator_helper.php:84
 msgid "Kirghiz"
 msgstr "Киргизский"
 
-#: application/modules/translator/helpers/translator_helper.php:83
+#: application/modules/translator/helpers/translator_helper.php:85
 msgid "Latin"
 msgstr "Латинская"
 
-#: application/modules/translator/helpers/translator_helper.php:84
+#: application/modules/translator/helpers/translator_helper.php:86
 msgid "Luxembourgish"
 msgstr "Люксембургский"
 
-#: application/modules/translator/helpers/translator_helper.php:85
+#: application/modules/translator/helpers/translator_helper.php:87
 msgid "Ganda"
 msgstr "Ганда"
 
-#: application/modules/translator/helpers/translator_helper.php:86
+#: application/modules/translator/helpers/translator_helper.php:88
 msgid "Limburgish"
 msgstr "Лимбургскому"
 
-#: application/modules/translator/helpers/translator_helper.php:87
+#: application/modules/translator/helpers/translator_helper.php:89
 msgid "Lingala"
 msgstr "Лингала"
 
-#: application/modules/translator/helpers/translator_helper.php:88
+#: application/modules/translator/helpers/translator_helper.php:90
 msgid "Lao"
 msgstr "Лао"
 
-#: application/modules/translator/helpers/translator_helper.php:89
+#: application/modules/translator/helpers/translator_helper.php:91
 msgid "Lithuanian"
 msgstr "Литовский"
 
-#: application/modules/translator/helpers/translator_helper.php:90
+#: application/modules/translator/helpers/translator_helper.php:92
 msgid "Latvian"
 msgstr "Латышский"
 
-#: application/modules/translator/helpers/translator_helper.php:91
+#: application/modules/translator/helpers/translator_helper.php:93
 msgid "Marshallese"
 msgstr "Маршалльском"
 
-#: application/modules/translator/helpers/translator_helper.php:92
+#: application/modules/translator/helpers/translator_helper.php:94
 msgid "Maori"
 msgstr "Маори"
 
-#: application/modules/translator/helpers/translator_helper.php:93
+#: application/modules/translator/helpers/translator_helper.php:95
 msgid "Macedonian"
 msgstr "Македонский"
 
-#: application/modules/translator/helpers/translator_helper.php:94
+#: application/modules/translator/helpers/translator_helper.php:96
 msgid "Mongolian"
 msgstr "Монгольский"
 
-#: application/modules/translator/helpers/translator_helper.php:95
+#: application/modules/translator/helpers/translator_helper.php:97
 msgid "Nepali"
 msgstr "Непальский"
 
-#: application/modules/translator/helpers/translator_helper.php:96
+#: application/modules/translator/helpers/translator_helper.php:98
 msgid "Dutch"
 msgstr "Голландский"
 
-#: application/modules/translator/helpers/translator_helper.php:97
+#: application/modules/translator/helpers/translator_helper.php:99
 msgid "Norwegian"
 msgstr "Норвежский"
 
-#: application/modules/translator/helpers/translator_helper.php:98
+#: application/modules/translator/helpers/translator_helper.php:100
 msgid "Chichewa"
 msgstr "Чичева"
 
-#: application/modules/translator/helpers/translator_helper.php:99
+#: application/modules/translator/helpers/translator_helper.php:101
 msgid "Ossetian"
 msgstr "Осетинский"
 
-#: application/modules/translator/helpers/translator_helper.php:100
+#: application/modules/translator/helpers/translator_helper.php:102
 msgid "Pali"
 msgstr "Пали"
 
-#: application/modules/translator/helpers/translator_helper.php:101
+#: application/modules/translator/helpers/translator_helper.php:103
 msgid "Polish"
 msgstr "Польский"
 
-#: application/modules/translator/helpers/translator_helper.php:102
+#: application/modules/translator/helpers/translator_helper.php:104
 msgid "Pashto"
 msgstr "Пушту"
 
-#: application/modules/translator/helpers/translator_helper.php:103
+#: application/modules/translator/helpers/translator_helper.php:105
 msgid "Portuguese"
 msgstr "Португальский"
 
-#: application/modules/translator/helpers/translator_helper.php:104
+#: application/modules/translator/helpers/translator_helper.php:106
 msgid "Quechua"
 msgstr "Кечуа"
 
-#: application/modules/translator/helpers/translator_helper.php:105
+#: application/modules/translator/helpers/translator_helper.php:107
 msgid "Romanian"
 msgstr "Румынский"
 
-#: application/modules/translator/helpers/translator_helper.php:106
+#: application/modules/translator/helpers/translator_helper.php:108
 msgid "Russian"
 msgstr "Русский"
 
-#: application/modules/translator/helpers/translator_helper.php:107
+#: application/modules/translator/helpers/translator_helper.php:109
 msgid "Sanskrit"
 msgstr "Санскрит"
 
-#: application/modules/translator/helpers/translator_helper.php:108
+#: application/modules/translator/helpers/translator_helper.php:110
 msgid "Sango"
 msgstr "Санго"
 
-#: application/modules/translator/helpers/translator_helper.php:109
+#: application/modules/translator/helpers/translator_helper.php:111
 msgid "Slovak"
 msgstr "Словацкий"
 
-#: application/modules/translator/helpers/translator_helper.php:110
+#: application/modules/translator/helpers/translator_helper.php:112
 msgid "Slovenian"
 msgstr "Словенский"
 
-#: application/modules/translator/helpers/translator_helper.php:111
+#: application/modules/translator/helpers/translator_helper.php:113
 msgid "Somali"
 msgstr "Сомали"
 
-#: application/modules/translator/helpers/translator_helper.php:112
+#: application/modules/translator/helpers/translator_helper.php:114
 msgid "Albanian"
 msgstr "Албанский"
 
-#: application/modules/translator/helpers/translator_helper.php:113
+#: application/modules/translator/helpers/translator_helper.php:115
 msgid "Serbian"
 msgstr "Сербский"
 
-#: application/modules/translator/helpers/translator_helper.php:114
+#: application/modules/translator/helpers/translator_helper.php:116
 msgid "Sundanese"
 msgstr "Суданский"
 
-#: application/modules/translator/helpers/translator_helper.php:115
+#: application/modules/translator/helpers/translator_helper.php:117
 msgid "Swedish"
 msgstr "Шведский"
 
-#: application/modules/translator/helpers/translator_helper.php:116
+#: application/modules/translator/helpers/translator_helper.php:118
 msgid "Tamil"
 msgstr "Тамильский"
 
-#: application/modules/translator/helpers/translator_helper.php:117
+#: application/modules/translator/helpers/translator_helper.php:119
 msgid "Turkmen"
 msgstr "Туркменский"
 
-#: application/modules/translator/helpers/translator_helper.php:118
+#: application/modules/translator/helpers/translator_helper.php:120
 msgid "Tswana"
 msgstr "Тсвана"
 
-#: application/modules/translator/helpers/translator_helper.php:119
+#: application/modules/translator/helpers/translator_helper.php:121
 msgid "Turkish"
 msgstr "Турецкий"
 
-#: application/modules/translator/helpers/translator_helper.php:120
+#: application/modules/translator/helpers/translator_helper.php:122
 msgid "Tatar"
 msgstr "Татарский"
 
-#: application/modules/translator/helpers/translator_helper.php:121
+#: application/modules/translator/helpers/translator_helper.php:123
 msgid "Ukrainian"
 msgstr "Украинский"
 
-#: application/modules/translator/helpers/translator_helper.php:122
+#: application/modules/translator/helpers/translator_helper.php:124
 msgid "Uzbek"
 msgstr "Узбекский"
 
-#: application/modules/translator/helpers/translator_helper.php:123
+#: application/modules/translator/helpers/translator_helper.php:125
 msgid "Vietnamese"
 msgstr "Вьетнамский"
 
-#: application/modules/translator/helpers/translator_helper.php:124
+#: application/modules/translator/helpers/translator_helper.php:126
 msgid "Yiddish"
 msgstr "Идиш"
 
-#: application/modules/translator/helpers/translator_helper.php:125
+#: application/modules/translator/helpers/translator_helper.php:127
 msgid "Chinese"
 msgstr "Китайский"
 
@@ -1286,7 +1286,7 @@ msgstr "Китайский"
 msgid "Module for work with po-files translations"
 msgstr "Модуль для работы с переводом po-файлов"
 
-#: application/modules/translator/translator.php:164
-#: application/modules/translator/admin.php:829
+#: application/modules/translator/translator.php:165
+#: application/modules/translator/admin.php:852
 msgid "Not valid translation file attributes."
 msgstr "Неверные атрибуты файла перевода."
