@@ -25,7 +25,7 @@
  * (!strpos($_SERVER['REQUEST_URI'], 'index.php')) OR header("Location:http://" . $_SERVER['SERVER_NAME'] . "/page_not_found");
  */
 if (php_sapi_name() !== 'cli' && strpos($_SERVER['REQUEST_URI'], 'index.php') !== false) {
-    header("Location:http://" . $_SERVER['SERVER_NAME'] . "/page_not_found");
+    header("Location:http://" . str_replace('/index.php', '', $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI']));
     exit;
 }
 

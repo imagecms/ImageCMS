@@ -91,13 +91,17 @@
                                             {/if}
                                         </td>
                                         <td>
-                                            <a href="{echo $link['show_url']}" target="_blank" data-rel="tooltip" data-title="{lang('Go to the page', 'smart_filter')}">
-                                                {if $link['type'] === 'brand'}
-                                                    {echo $link['brand_name']}
-                                                {else:}
-                                                    {echo $link['property_name']}
-                                                {/if}
-                                            </a>
+                                            {if $link['show_url']}
+                                                <a href="{echo $link['show_url']}" target="_blank" data-rel="tooltip" data-title="{lang('Go to the page', 'smart_filter')}">
+                                                    {if $link['type'] === 'brand'}
+                                                        {echo $link['brand_name']}
+                                                    {else:}
+                                                        {echo $link['property_name']}
+                                                    {/if}
+                                                </a>
+                                            {else:}
+                                                {echo $link['property_name']}
+                                            {/if}
                                         </td>
                                         <td>
                                             <button type="button" class="btn btn-small editLink">

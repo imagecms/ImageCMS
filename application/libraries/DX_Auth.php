@@ -879,6 +879,8 @@ class DX_Auth {
         // Default return value
         $result = FALSE;
 
+        $siteSettings = $this->ci->cms_base->get_settings();
+
         $new_user = array(
             'username' => $username,
             'password' => crypt($this->_encode($password)),
@@ -886,7 +888,8 @@ class DX_Auth {
             'email' => $email,
             'key' => $key,
             'phone' => $phone,
-            'last_ip' => $this->ci->input->ip_address()
+            'last_ip' => $this->ci->input->ip_address(),
+            'role_id' => $siteSettings['users_registration_role_id'] ? $siteSettings['users_registration_role_id'] : 0,
         );
 
         // Do we need to send email to activate user

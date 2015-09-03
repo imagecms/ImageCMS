@@ -8,8 +8,9 @@
     </div>
     {/if}
     
-    <div class="b-content__list">
-    {if count($pages) > 0}        
+    
+    {if count($pages) > 0}
+        <div class="b-content__list">
         {foreach $pages as $item}
             <div class="b-content__item">
                 <h2 class="b-content__item-title">
@@ -20,7 +21,7 @@
                 </div>
             </div>
         {/foreach}
-
+        </div>
     {else:}
         <p class="b-content__noitems g-text">
             {tlang('There are no items to display. Please come back later!')}
@@ -33,5 +34,5 @@
     </div>
     {/if}
     
-    </div>
+    
 </div>

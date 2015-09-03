@@ -85,9 +85,9 @@
                                         <input type="submit" id="submit" class="submit" value="{lang('Send', 'feedback')}" />
                                     </div>
                                 </div>
+                                {form_csrf()}
+                            </form>
                         </div>
-                        {form_csrf()}
-                        </form>
                     </div>
                     <div class="right">
                         <div id="detail">

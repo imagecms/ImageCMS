@@ -22,6 +22,7 @@
                     <li><a href="#metatag">{lang('Management of Meta Tags','admin')}</a></li>
                     <li><a href="#metatag_edit">{lang('Enter Meta Tags','admin')}</a></li>
                     <li><a href="#site_info_tab">{lang('Site information','admin')}</a></li>
+                    <li><a href="#users_registration">{lang('Users registration','admin')}</a></li>
                 </ul>
             </div>
             <div class="span9">
@@ -491,6 +492,7 @@
                             {form_csrf()}
 
                         </div>
+
                         <div class="tab-pane" id="site_info_tab"> <!-- Інформація про сайт -->
                             {$tooltipText = lang('Please use function siteinfo() with the parameter', 'admin')}
                             <table class="table  table-bordered table-hover table-condensed content_big_td">
@@ -611,6 +613,47 @@
                                                                     {lang('Add contact', 'admin')}
                                                                 </a>
                                                             </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="tab-pane" id="users_registration"> <!-- Інформація про сайт -->
+                            {$tooltipText = lang('Please use function siteinfo() with the parameter', 'admin')}
+                            <table class="table  table-bordered table-hover table-condensed content_big_td">
+                                <thead>
+                                <tr>
+                                    <th colspan="6">
+                                        {lang('Users registration','admin')}
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td colspan="6">
+                                        <div class="inside_padd">
+                                            <div class="form-horizontal">
+                                                <input type="hidden" name="default_locale_hidden" value="{echo MY_Controller::getCurrentLocale()}">
+
+                                                <div class="row-fluid">
+                                                    <div class="control-group">
+                                                        <label class="control-label" data-toggle="ttip" for="users_registration_role_id">
+                                                            {lang('Users registration role', 'admin')}:
+                                                        </label>
+
+                                                        <div class="controls">
+                                                            <select name="users_registration_role_id" id="users_registration_role_id">
+                                                                <option {if !$users_registration_role_id} selected="selected" {/if}value="0">{lang('Without role', 'admin')}</option>
+                                                                {foreach $users_roles as $role}
+                                                                    <option value="{echo $role->id}" {if $users_registration_role_id === $role->id} selected="selected" {/if} >{echo $role->alt_name}</option>
+                                                                {/foreach}
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </div>

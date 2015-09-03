@@ -31,7 +31,7 @@
             </div>
         </div>
     </div>
-    {if $categories}
+    {if $categoriesProducts}
         <table class="table  table-bordered table-hover table-condensed seoProductCategoriesTable">
             <thead>
                 <tr>
@@ -48,7 +48,7 @@
                 </tr>
             </thead>
             <tbody class="">
-                {foreach $categories as $category}
+                {foreach $categoriesProducts as $category}
                     <tr data-id="{echo $category['id']}" class="simple_tr">
                         <td class="t-a_c">
                             <span class="frame_label">

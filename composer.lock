@@ -1372,16 +1372,16 @@
         },
         {
             "name": "hoa/core",
-            "version": "2.15.09.01",
+            "version": "2.15.09.03",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hoaproject/Core.git",
-                "reference": "020d38ca75b2164ba2651127542748f8d4263bad"
+                "reference": "305a881847478d635f3cf565fd5e8ef382c21a70"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hoaproject/Core/zipball/020d38ca75b2164ba2651127542748f8d4263bad",
-                "reference": "020d38ca75b2164ba2651127542748f8d4263bad",
+                "url": "https://api.github.com/repos/hoaproject/Core/zipball/305a881847478d635f3cf565fd5e8ef382c21a70",
+                "reference": "305a881847478d635f3cf565fd5e8ef382c21a70",
                 "shasum": ""
             },
             "require": {
@@ -1395,9 +1395,6 @@
                 "ext-mbstring": "ext/mbstring must be present (or a third implementation).",
                 "hoa/cli": "To use the `hoa` script."
             },
-            "bin": [
-                "Bin/hoa"
-            ],
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1438,7 +1435,7 @@
                 "parameter",
                 "protocol"
             ],
-            "time": "2015-09-01 14:08:10"
+            "time": "2015-09-03 08:28:53"
         },
         {
             "name": "hoa/file",
@@ -1903,12 +1900,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/imagecms/CodingStandard.git",
-                "reference": "5740c2ed7dbd171020aaaa8b57215d6fe6d43cc9"
+                "reference": "c5a6817ccb35c8f471ed3cebe7097cc8ab86166c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/imagecms/CodingStandard/zipball/5740c2ed7dbd171020aaaa8b57215d6fe6d43cc9",
-                "reference": "5740c2ed7dbd171020aaaa8b57215d6fe6d43cc9",
+                "url": "https://api.github.com/repos/imagecms/CodingStandard/zipball/c5a6817ccb35c8f471ed3cebe7097cc8ab86166c",
+                "reference": "c5a6817ccb35c8f471ed3cebe7097cc8ab86166c",
                 "shasum": ""
             },
             "require": {
@@ -1932,7 +1929,7 @@
                 }
             ],
             "description": "ImageCMS Coding Standard",
-            "time": "2015-08-31 16:46:38"
+            "time": "2015-09-02 10:33:29"
         },
         {
             "name": "nubera-ebusiness/intercom-php",

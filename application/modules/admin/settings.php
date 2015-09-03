@@ -83,6 +83,8 @@ class Settings extends BaseAdminController {
         $this->template->assign('langs', $langs);
 
         $this->template->assign('meta_langs', $lang_meta);
+        $this->template->assign('users_roles', Permitions::getRoles());
+        $this->template->assign('users_registration_role_id', $settings['users_registration_role_id']);
 
         //++++++++++++++++++++
         // Load modules list
@@ -245,7 +247,8 @@ class Settings extends BaseAdminController {
             'robots_settings_status' => (int) $this->input->post('robots_settings_status'),
             'robots_settings' => $this->input->post('robots_settings'),
             'google_analytics_ee' => $this->input->post('google_analytics_ee') == 'on' ? 1 : 0,
-            'www_redirect' => $this->input->post('www_redirect')
+            'www_redirect' => $this->input->post('www_redirect'),
+            'users_registration_role_id' => $this->input->post('users_registration_role_id'),
         ];
 
         /** Save template path for shop * */
