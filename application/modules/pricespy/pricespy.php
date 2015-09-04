@@ -1,5 +1,8 @@
 <?php
 
+use CMSFactory\assetManager;
+use CMSFactory\Events;
+
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /**
@@ -37,7 +40,7 @@ class Pricespy extends MY_Controller {
         $CI->email->set_mailtype('html');
         $CI->email->subject(lang('Price changing', 'pricespy'));
         $CI->email->message(
-            lang('Price on', 'pricespy') . $name . lang('for which you watch on site', 'pricespy') . $CI->input->server('HTTP_HOST') . lang('changed', 'pricespy') . ".<br>
+            lang('Price on', 'pricespy') . $name . lang('for which you watch on site', 'pricespy') . site_url() . lang('changed', 'pricespy') . ".<br>
                 <a href='" . site_url('pricespy') . "' title='" . lang('View watch list', 'pricespy') . "'>" . lang('View watch list', 'pricespy') . "</a><br>
                 <a href='" . site_url("pricespy/$hash") . "' title='" . lang('Unsubscribe tracking', 'pricespy') . "'>" . lang('Unsubscribe tracking', 'pricespy') . "</a><br>"
         );
@@ -47,8 +50,8 @@ class Pricespy extends MY_Controller {
     public static function adminAutoload() {
         parent::adminAutoload();
 
-        \CMSFactory\Events::create()->onShopProductUpdate()->setListener('priceUpdate');
-        \CMSFactory\Events::create()->onShopProductDelete()->setListener('priceDelete');
+        Events::create()->onShopProductUpdate()->setListener('priceUpdate');
+        Events::create()->onShopProductDelete()->setListener('priceDelete');
     }
 
     /**
@@ -56,7 +59,7 @@ class Pricespy extends MY_Controller {
      */
     public function index() {
         if ($this->dx_auth->is_logged_in()) {
-            \CMSFactory\assetManager::create()
+            assetManager::create()
                     ->registerScript('spy');
             $this->renderUserSpys();
         } else {
@@ -128,15 +131,11 @@ class Pricespy extends MY_Controller {
 
         if ($this->pricespy_model->setSpy($id, $varId, $product->price)) {
             echo json_encode(
-                array(
-                        'answer' => 'sucesfull',
-                    )
+                ['answer' => 'sucesfull']
             );
         } else {
             echo json_encode(
-                array(
-                        'answer' => 'error',
-                    )
+                ['answer' => 'error']
             );
         }
     }
@@ -183,7 +182,7 @@ class Pricespy extends MY_Controller {
                 $this->isInSpy[$p['productVariantId']] = $p;
             }
 
-            \CMSFactory\assetManager::create()
+            assetManager::create()
                     ->registerScript('spy');
         }
     }
@@ -202,13 +201,13 @@ class Pricespy extends MY_Controller {
             );
 
             if ($this->isInSpy[$varId] == '') {
-                \CMSFactory\assetManager::create()
+                assetManager::create()
                         ->setData('data', $data)
                         ->setData('value', lang('Notify about price cut', 'pricespy'))
                         ->setData('class', 'btn')
                         ->render('button', true);
             } else {
-                \CMSFactory\assetManager::create()
+                assetManager::create()
                         ->setData('data', $data)
                         ->setData('value', lang('Already in tracking', 'pricespy'))
                         ->setData('class', 'btn inSpy')
@@ -229,7 +228,7 @@ class Pricespy extends MY_Controller {
             ->get('mod_price_spy')
             ->result_array();
 
-        \CMSFactory\assetManager::create()
+        assetManager::create()
                 ->setData('products', $products)
                 ->render('spys');
     }
