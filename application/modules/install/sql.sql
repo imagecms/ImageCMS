@@ -3549,7 +3549,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `newpass_key` varchar(255) DEFAULT NULL,
   `newpass_time` int(11) DEFAULT NULL,
   `last_ip` varchar(40) DEFAULT NULL,
-  `last_login` int(11) DEFAULT NULL,
+  `last_login` VARCHAR(12) DEFAULT NULL,
   `created` int(11) DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
