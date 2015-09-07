@@ -34,7 +34,6 @@ class Auth extends MY_Controller {
 
         $lang = new MY_Lang();
         $lang->load('auth');
-        //        $this->form_validation->this = & $this;
     }
 
     public function index() {
@@ -59,8 +58,6 @@ class Auth extends MY_Controller {
     }
 
     public function email_check($email) {
-        //        ($hook = get_hook('auth_email_check')) ? eval($hook) : NULL;
-
         $result = $this->dx_auth->is_email_available($email);
         if (!$result) {
             $this->form_validation->set_message('email_check', lang('A user with this email is already registered.', 'auth'));
@@ -70,8 +67,6 @@ class Auth extends MY_Controller {
     }
 
     public function captcha_check($code) {
-        ($hook = get_hook('auth_captcha_check')) ? eval($hook) : NULL;
-
         if (!$this->dx_auth->captcha_check($code)) {
             return FALSE;
         } else {
@@ -87,8 +82,6 @@ class Auth extends MY_Controller {
     }
 
     public function recaptcha_check() {
-        ($hook = get_hook('auth_recaptcha_check')) ? eval($hook) : NULL;
-
         $result = $this->dx_auth->is_recaptcha_match();
         if (!$result) {
             $this->form_validation->set_message('recaptcha_check', lang("Improper protection code"));
@@ -99,13 +92,11 @@ class Auth extends MY_Controller {
 
     /* End of Callback functions */
 
-
     /*
      * Login function
      */
 
     public function login() {
-        //         ($hook = get_hook('auth_on_login')) ? eval($hook) : NULL;
         $this->core->set_meta_tags(lang('Authorization', 'auth'));
         if (!$this->dx_auth->is_logged_in()) {
             $val = $this->form_validation;
@@ -125,9 +116,7 @@ class Auth extends MY_Controller {
             }
 
             if ($val->run() AND $this->dx_auth->login($val->set_value('email'), $val->set_value('password'), $val->set_value('remember'))) {
-                //                 ($hook = get_hook('auth_login_success')) ? eval($hook) : NULL;
                 // Redirect to homepage
-
                 if (class_exists('ShopCore') && SHOP_INSTALLED) {
                     ShopCore::app()->SCart->transferCartData();
                 }
@@ -146,17 +135,12 @@ class Auth extends MY_Controller {
                     );
                 }
             } else {
-
-                //                 ($hook = get_hook('auth_login_failed')) ? eval($hook) : NULL;
-
                 $this->template->assign('info_message', $this->dx_auth->get_auth_error());
 
                 // Check if the user is failed logged in because user is banned user or not
                 if ($this->dx_auth->is_banned()) {
-                    ($hook = get_hook('auth_user_banned')) ? eval($hook) : NULL;
 
                     // Redirect to banned uri
-                    //$this->dx_auth->deny_access('banned');
                     $this->ban_reason = $this->dx_auth->get_ban_reason();
                     $this->banned();
                     exit;
@@ -166,7 +150,6 @@ class Auth extends MY_Controller {
 
                     // Show captcha if login attempts exceed max attempts in config
                     if ($this->dx_auth->is_max_login_attempts_exceeded()) {
-                        //                         ($hook = get_hook('auth_login_attemps_exceeded')) ? eval($hook) : NULL;
                         // Create catpcha
                         $this->dx_auth->captcha();
                         $this->template->assign('cap_image', $this->dx_auth->get_captcha_image());
@@ -174,7 +157,6 @@ class Auth extends MY_Controller {
                         $data['show_captcha'] = TRUE;
                     }
 
-                    //                     ($hook = get_hook('auth_show_login_tpl')) ? eval($hook) : NULL;
                     // Load login page view
                     if ($this->input->server('HTTP_X_REQUESTED_WITH') != 'XMLHttpRequest') {
                         $this->template->show('login');
@@ -184,7 +166,6 @@ class Auth extends MY_Controller {
                 }
             }
         } else {
-            //             ($hook = get_hook('auth_user_is_logged')) ? eval($hook) : NULL;
             redirect(site_url(), 301);
 
             $this->template->assign('content', lang('You are already logged.', 'auth'));
@@ -217,8 +198,6 @@ class Auth extends MY_Controller {
             $val->set_rules('password', lang('Password'), 'trim|required|xss_clean|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']|matches[confirm_password]');
             $val->set_rules('confirm_password', lang('Repeat Password'), 'trim|required|xss_clean');
 
-            //             ($hook = get_hook('auth_reg_set_rules')) ? eval($hook) : NULL;
-
             if ($this->dx_auth->captcha_registration) {
                 if ($this->dx_auth->use_recaptcha) {
                     $val->set_rules('recaptcha_response_field', lang('Code protection', 'auth'), 'trim|xss_clean|required|callback_captcha_check');
@@ -231,7 +210,6 @@ class Auth extends MY_Controller {
             $this->load->helper('string');
             $key = random_string('alnum', 5);
             if ($val->run($this) AND $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email'), '', $key, '')) {
-                //                 ($hook = get_hook('auth_register_success')) ? eval($hook) : NULL;
                 // Set success message accordingly
                 if ($this->dx_auth->email_activation) {
                     $data['auth_message'] = lang('You have successfully registered. Please check your email to activate your account.', 'auth');
@@ -239,7 +217,6 @@ class Auth extends MY_Controller {
                     $data['auth_message'] = lang('You have successfully registered. ', 'auth') . anchor(site_url($this->dx_auth->login_uri), lang('Login', 'auth'));
                 }
 
-                //                 ($hook = get_hook('auth_show_success_message')) ? eval($hook) : NULL;
                 // Load registration success page
                 if ($this->input->server('HTTP_X_REQUESTED_WITH') != 'XMLHttpRequest') {
                     $this->template->show('register_success');
@@ -256,9 +233,6 @@ class Auth extends MY_Controller {
                     $this->dx_auth->captcha();
                     $this->template->assign('cap_image', $this->dx_auth->get_captcha_image());
                 }
-
-                //                 ($hook = get_hook('auth_show_register_tpl')) ? eval($hook) : NULL;
-
                 if ($this->input->server('HTTP_X_REQUESTED_WITH') != 'XMLHttpRequest') {
                     $this->template->show('register');
                 } else {
@@ -266,25 +240,16 @@ class Auth extends MY_Controller {
                 }
             }
         } elseif (!$this->dx_auth->allow_registration) {
-            //             ($hook = get_hook('auth_register_closed')) ? eval($hook) : NULL;
-
             $data['auth_message'] = lang('Registration is prohibited.', 'auth');
 
             $this->template->assign('content', $data['auth_message']);
             $this->template->show();
         } else {
-            //             ($hook = get_hook('auth_logout_to_reg')) ? eval($hook) : NULL;
             redirect(site_url(), 301);
-            //
-            //            $data['auth_message'] = lang("You are already registered ;)");
-            //
-            //            $this->template->assign('content', $data['auth_message']);
-            //            $this->template->show();
         }
     }
 
     public function activate() {
-        //         ($hook = get_hook('auth_on_activate_acc')) ? eval($hook) : NULL;
         // Get username and key
         $email = $this->uri->segment(3);
         $key = $this->uri->segment(4);
@@ -304,7 +269,6 @@ class Auth extends MY_Controller {
     }
 
     public function forgot_password() {
-        //         ($hook = get_hook('auth_on_forgot_pass')) ? eval($hook) : NULL;
         $this->core->set_meta_tags(lang('Forgot password', 'auth'));
         $this->template->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW");
         $this->load->library('Form_validation');
@@ -326,26 +290,20 @@ class Auth extends MY_Controller {
             $this->template->assign('info_message', $this->dx_auth->_auth_error);
         }
 
-        //         ($hook = get_hook('auth_show_forgot_pass_tpl')) ? eval($hook) : NULL;
-
         if ($this->input->server('HTTP_X_REQUESTED_WITH') != 'XMLHttpRequest') {
             $this->template->show('forgot_password');
         } else {
             $this->template->display('forgot_password');
         }
-        //$this->template->display('forgot_password');
     }
 
     public function reset_password() {
-        //         ($hook = get_hook('auth_on_pass_reset')) ? eval($hook) : NULL;
         // Get username and key
         $email = $this->uri->segment(3);
         $key = $this->uri->segment(4);
 
         // Reset password
         if ($this->dx_auth->reset_password($email, $key)) {
-            //             ($hook = get_hook('auth_reset_pass_restored')) ? eval($hook) : NULL;
-
             $data['auth_message'] = lang('You have successfully zeroed my password. ', 'auth');
 
             $this->template->assign('auth_message', $data['auth_message']);
@@ -355,8 +313,6 @@ class Auth extends MY_Controller {
                 $this->template->display('reset_password');
             }
         } else {
-            //             ($hook = get_hook('auth_reset_pass_failed')) ? eval($hook) : NULL;
-
             $data['auth_message'] = lang('Reset failed. Possible reasons: wrong email, wrong restore url, used restore url', 'auth');
 
             $this->template->assign('auth_message', $data['auth_message']);
@@ -369,8 +325,6 @@ class Auth extends MY_Controller {
     }
 
     public function change_password() {
-        //         ($hook = get_hook('auth_on_change_pass')) ? eval($hook) : NULL;
-
         $this->load->library('Form_validation');
 
         // Check if user logged in or not
@@ -398,8 +352,6 @@ class Auth extends MY_Controller {
     }
 
     public function cancel_account() {
-        //         ($hook = get_hook('auth_on_cancel_acc')) ? eval($hook) : NULL;
-
         $this->load->library('Form_validation');
 
         // Check if user logged in or not
@@ -425,7 +377,6 @@ class Auth extends MY_Controller {
      */
 
     public function deny() {
-        //         ($hook = get_hook('auth_page_access_deny')) ? eval($hook) : NULL;
         \CMSFactory\assetManager::create()
             ->setData('content', lang('You are not allowed to view the page.', 'auth'))
             ->render('deny', FALSE);
@@ -433,8 +384,6 @@ class Auth extends MY_Controller {
     }
 
     public function banned() {
-        //         ($hook = get_hook('auth_show_banned_message')) ? eval($hook) : NULL;
-
         echo lang('Your account has been blocked.', 'auth');
 
         if ($this->ban_reason != NULL) {

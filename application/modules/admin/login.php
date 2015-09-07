@@ -54,11 +54,10 @@ class Login extends BaseAdminController {
         $this->form_validation->set_rules('login', lang("E-mail", 'admin'), 'trim|required|min_length[3]|max_length[50]|valid_email');
         $this->form_validation->set_rules('password', lang("Password", "admin"), 'trim|required|min_length[5]|max_length[32]');
 
-        if ($_POST['remember'] == 1) {
+        if ($this->input->post('remember')) {
             $remember = true;
         } else {
             $remember = false;
-            //				$remember = true;
         }
 
         if ($this->dx_auth->is_max_login_attempts_exceeded()) {
@@ -66,11 +65,10 @@ class Login extends BaseAdminController {
         }
 
         if ($this->form_validation->run($this) == FALSE) {
-            //			    if ($this->form_validation->run($this) == TRUE)
             $err_object = &_get_validation_object();
 
-            foreach ($_POST as $k => $v) {
-                $err_text = $err_object->error($k, $prefix, $suffix);
+            foreach ($this->input->post() as $k => $v) {
+                $err_text = $err_object->error($k);
                 $this->template->assign($k . '_error', $err_text);
             }
         } else {
@@ -91,7 +89,6 @@ class Login extends BaseAdminController {
         }
 
         $this->template->display('login_page');
-        //			$this->template->show('login', TRUE);
     }
 
     /**
@@ -111,8 +108,6 @@ class Login extends BaseAdminController {
     }
 
     public function forgot_password() {
-        ($hook = get_hook('auth_on_forgot_pass')) ? eval($hook) : NULL;
-
         $this->load->library('Form_validation');
 
         $val = $this->form_validation;
@@ -128,8 +123,6 @@ class Login extends BaseAdminController {
         if ($this->dx_auth->_auth_error != NULL) {
             $this->template->assign('info_message', '<div class="alert alert-error">' . $this->dx_auth->_auth_error . '</div>');
         }
-
-        ($hook = get_hook('auth_show_forgot_pass_tpl')) ? eval($hook) : NULL;
 
         $this->template->display('forgot_password');
     }
@@ -157,34 +150,6 @@ class Login extends BaseAdminController {
         return $result;
     }
 
-    private function user_browser($agent) {
-        preg_match("/(MSIE|Opera|Firefox|Chrome|Version|Opera Mini|Netscape|Konqueror|SeaMonkey|Camino|Minefield|Iceweasel|K-Meleon|Maxthon)(?:\/| )([0-9.]+)/", $agent, $browser_info);
-        list(, $browser, $version) = $browser_info;
-        if (preg_match("/Opera ([0-9.]+)/i", $agent, $opera)) {
-            return $browserIn = array('0' => 'Opera', '1' => $opera[1]);
-        }
-        if ($browser == 'MSIE') {
-            preg_match("/(Maxthon|Avant Browser|MyIE2)/i", $agent, $ie); // check to see whether the development is based on IE
-            if ($ie) {
-                return $browserIn = array('0' => $ie[1], '1' => $version); // If so, it returns an
-            } return $browserIn = array('0' => 'IE', '1' => $version); // otherwise just return the IE and the version number
-        }
-        if ($browser == 'Firefox') {
-            preg_match("/(Flock|Navigator|Epiphany)\/([0-9.]+)/", $agent, $ff); // check to see whether the development is based on Firefox
-            if ($ff) {
-                return $browserIn = array('0' => $ff[1], '1' => $ff[2]); // if so, shows the number and version
-            }
-        }
-        if ($browser == 'Opera' && $version == '9.80') {
-            return $browserIn = array('0' => 'Opera', '1' => substr($agent, -5));
-        }
-        if ($browser == 'Version') {
-            return $browserIn = array('0' => 'Safari', '1' => $version); // define Safari
-        } if (!$browser && strpos($agent, 'Gecko')) {
-            return 'Browser based on Gecko'; // unrecognized browser check to see if they are on the engine, Gecko, and returns a message about this
-        } return $browserIn = array('0' => $browser, '1' => $version); // for the rest of the browser and return the version
-    }
-
     public function switch_admin_lang($lang) {
         $langs = Array(
             'english',
@@ -202,7 +167,7 @@ class Login extends BaseAdminController {
 
             $this->session->set_userdata('language', $lang);
         }
-        redirect($_SERVER['HTTP_REFERER'] ? $_SERVER['HTTP_REFERER'] : '/admin/login');
+        redirect($this->input->server('HTTP_REFERER') ? : '/admin/login');
     }
 
 }

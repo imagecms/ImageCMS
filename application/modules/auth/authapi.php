@@ -463,8 +463,6 @@ class Authapi extends MY_Controller {
      * @return boolean
      */
     public function captcha_check($code) {
-        ($hook = get_hook('auth_captcha_check')) ? eval($hook) : NULL;
-
         if (!$this->dx_auth->captcha_check($code)) {
             return FALSE;
         } else {

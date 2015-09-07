@@ -80,6 +80,10 @@ class MY_Controller extends MX_Controller {
         defined('SHOP_INSTALLED') OR define('SHOP_INSTALLED', $this->checkForShop());
     }
 
+    /**
+     *
+     * @return boolean
+     */
     private function checkForShop() {
         if ($this->db) {
             $this->db->cache_on();
@@ -102,7 +106,7 @@ class MY_Controller extends MX_Controller {
 
     /**
      * get current locale
-     * @return type
+     * @return string
      */
     public static function getCurrentLocale() {
         $ci = get_instance();
@@ -140,8 +144,8 @@ class MY_Controller extends MX_Controller {
 
     /**
      * Get current language
-     * @param string $field
-     * @return type
+     * @param string|null $field
+     * @return string
      */
     public static function getCurrentLanguage($field = null) {
         if (!self::$currentLanguage) {
@@ -173,6 +177,7 @@ class MY_Controller extends MX_Controller {
 
     /**
      * Get default language
+     * @return array
      */
     private function getDefaultLanguage() {
         $ci = get_instance();
@@ -189,7 +194,6 @@ class MY_Controller extends MX_Controller {
 
     /**
      * Admin Autoload empty method
-     * @return boolean|null
      */
     public static function adminAutoload() {
         /** Must be an empty */

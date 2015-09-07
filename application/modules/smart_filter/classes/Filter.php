@@ -2,8 +2,15 @@
 
 namespace smart_filter\classes;
 
+use CI_DB_active_record;
 use Currency\Currency;
+use Exception;
+use MY_Controller;
+use SBrandsQuery;
+use ShopCore;
+use SProductPropertiesDataQuery;
 use SProductsQuery;
+use SPropertiesQuery;
 
 /**
  * @property CI_DB_active_record $db
@@ -24,7 +31,7 @@ class Filter {
 
         $this->ci = &get_instance();
         $this->db = &$this->ci->db;
-        $this->locale = \MY_Controller::getCurrentLocale();
+        $this->locale = MY_Controller::getCurrentLocale();
         $this->get = $getParams;
 
         $this->filterGetParams();
@@ -85,9 +92,9 @@ class Filter {
                             $brandURL = $matches ? $matches[1] : null;
 
                             if ($brandURL) {
-                                $brand = \SBrandsQuery::create()
-                                    ->filterByUrl($brandURL)
-                                    ->findOne();
+                                $brand = SBrandsQuery::create()
+                                ->filterByUrl($brandURL)
+                                ->findOne();
 
                                 if ($brand) {
                                     $this->get['brand'][] = $brand->getId();
@@ -102,23 +109,22 @@ class Filter {
                             $propertyValuePosition = substr($entity, $endValue);
 
                             if ($propertyCSV) {
-                                $property = \SPropertiesQuery::create()
-                                    ->findOneByCsvName($propertyCSV);
+                                $property = SPropertiesQuery::create()
+                                ->findOneByCsvName($propertyCSV);
 
                                 if ($property) {
-                                    $propertyValue = \SProductPropertiesDataQuery::create()->findOneById($propertyValuePosition);
+                                    $propertyValue = SProductPropertiesDataQuery::create()->findOneById($propertyValuePosition);
                                     $this->get['p'][$property->getId()][] = html_entity_decode($propertyValue->getValue());
                                 }
                             }
                         }
-
                     }
                 }
             }
         );
 
         $_GET = $this->get;
-        \ShopCore::$_GET = $this->get;
+        ShopCore::$_GET = $this->get;
     }
 
     /**
@@ -139,10 +145,9 @@ class Filter {
 
     /**
      *
-     * @param string|int $keyUnset
-     * @return array|boolean(false)
+     * @return array|false
      */
-    private function getProductIdFromPropGet($keyUnset = null) {
+    private function getProductIdFromPropGet() {
 
         if (!is_array($this->get['p'])) {
             return false;
@@ -151,13 +156,11 @@ class Filter {
         $resultArray = array();
 
         $propertiesInGet = $this->get['p'];
-        //        if (null != $keyUnset) {
-        //            unset($propertiesInGet[$keyUnset]);
-        //        }
+
         $array_products = array();
         foreach ($propertiesInGet as $pkey => $pvalue) {
             $arr_prod = array();
-            foreach ($pvalue as $pk => $pv) {
+            foreach ($pvalue as $pv) {
 
                 $this->db->where('property_id', (int) $pkey);
                 $this->db->where('value', $pv);
@@ -180,8 +183,6 @@ class Filter {
 
     /**
      * filter by price object db
-     * @param --
-     * @return --
      */
     private function filterProductFromPriceGet() {
 
@@ -198,7 +199,7 @@ class Filter {
 
     /**
      * returns array of stdClass brands objects
-     * @return type
+     * @return null|array
      */
     public function getBrands() {
         if (!$this->model) {
@@ -218,7 +219,7 @@ class Filter {
 
     /**
      * Get brands by category id
-     * @param $categoryId - category id
+     * @param integer $categoryId - category id
      * @return array
      */
     public function getBrandsByCategoryId($categoryId) {
@@ -241,8 +242,8 @@ class Filter {
 
     /**
      * count products in brands
-     * @param type $brands
-     * @return type
+     * @param array $brands
+     * @return array
      */
     private function getProductsInBrandCount($brands = array()) {
         if (is_array($brands)) {
@@ -310,7 +311,7 @@ class Filter {
             ->get();
 
         if (!$properties) {
-            throw new \Exception("Wrong query");
+            throw new Exception("Wrong query");
         }
 
         $properties = $properties->result();
@@ -335,15 +336,9 @@ class Filter {
 
                 if ($properties[$key]->possibleValues) {
                     $properties[$key]->possibleValues = $properties[$key]->possibleValues->result_array();
-
-                    usort(
-                        $properties[$key]->possibleValues,
-                        function ($a, $b) {
-                            return strnatcmp($a['value'], $b['value']);
-                        }
-                    );
+                    $properties[$key]->possibleValues = user_function_sort($properties[$key]->possibleValues);
                 } else {
-                    throw new \Exception;
+                    throw new Exception;
                 }
             }
         }
@@ -389,7 +384,7 @@ class Filter {
         $productSelectMain = $this->db->get()->result_array();
 
         foreach ($properties as $key => $item) {
-            $array_products = $this->getProductIdFromPropGet($item->property_id);
+            $array_products = $this->getProductIdFromPropGet();
             $propArr = array();
             if (count($productSelectMain)) {
                 foreach ($productSelectMain as $prod) {
@@ -478,7 +473,7 @@ class Filter {
             $priceRange['minCost'] = (int) \Currency\Currency::create()->convert($priceRange['minCost']);
             $priceRange['maxCost'] = (int) \Currency\Currency::create()->convert($priceRange['maxCost']);
         } else {
-            throw new \Exception;
+            throw new Exception;
         }
 
         return $priceRange;

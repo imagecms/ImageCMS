@@ -39,6 +39,9 @@ class Mod_advice extends MY_Controller {
         $this->load->helper('directory');
 
         $dirs = directory_map("uploads/shop/products", 0, true);
+
+        $dirs['additional'] = array_merge($dirs['origin']['additional'], $dirs['additional']);
+
         unset($dirs['origin']['additional']);
         unset($dirs['watermarks']);
 
