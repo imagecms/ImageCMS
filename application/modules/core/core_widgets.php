@@ -22,8 +22,12 @@ class Core_Widgets extends MY_Controller {
         $obj->load('core');
     }
 
-    // Display recent or popular news
-
+    /**
+     * Display recent or popular news
+     *
+     * @param array $widget
+     * @return string
+     */
     public function recent_news($widget = array()) {
         if ($widget['settings'] == FALSE) {
             $settings = $this->defaults;
@@ -76,8 +80,12 @@ class Core_Widgets extends MY_Controller {
         }
     }
 
-    // Configure form
-
+    /**
+     * Configure form
+     *
+     * @param string $action
+     * @param array $widget_data
+     */
     public function recent_news_configure($action = 'show_settings', $widget_data = array()) {
         if ($this->dx_auth->is_admin() == FALSE) {
             exit;
@@ -122,6 +130,11 @@ class Core_Widgets extends MY_Controller {
         }
     }
 
+    /**
+     *
+     * @param string $action
+     * @param array $widget_data
+     */
     public function similar_posts_configure($action = 'show_settings', $widget_data = array()) {
         if ($this->dx_auth->is_admin() == FALSE) {
             exit;

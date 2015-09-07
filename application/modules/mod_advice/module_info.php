@@ -9,9 +9,9 @@ $com_info = array(
     'window_type' => 'xhr', // Load method. Possible values xhr/iframe
     'w' => 600, // Window width
     'h' => 550, // Window height
-    'version' => '0.1', // Module version
-    'author' => 'dev@imagecms.net', // Author info
-    'icon_class' => 'fa fa-dot-circle-o' // Module menu icon
+    'version' => '1.0', // Module version
+    'author' => 'a.gula@imagecms.net', // Author info
+    'icon_class' => 'fa fa-map-signs' // Module menu icon
 );
 
 /* End of file module_info.php */

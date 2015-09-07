@@ -31,6 +31,9 @@ class Mabilis {
         if (preg_match('/file:/', $file, $_Matches)) {
             $file_dir = preg_replace('/\/\//', '/', $file);
             $file_dir = preg_replace('/file\:/', '', $file_dir);
+        } elseif (preg_match('/dir:/', $file, $_Matches)) {
+            $file_dir = preg_replace('/\/\//', '/', $file);
+            $file_dir = preg_replace('/dir\:/', '', $file_dir);
         } else {
             $file_dir = $this->config->tpl_path . $file;
         }

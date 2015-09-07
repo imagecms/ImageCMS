@@ -17,6 +17,7 @@ class Ymarket extends ShopController {
 
     const DEFAULT_TYPE = 1;
     const PRICE_UA_TYPE = 2;
+    const NADAVI_UA_TYPE = 3;
 
     protected $offers = [];
 
@@ -57,12 +58,18 @@ class Ymarket extends ShopController {
     }
 
     /**
-     * Price.ua & Nadavi.net
+     * Price.ua
      * @url http://price.ua/assets/0123b18f5c083be5/example.xml
      */
     public function priceua() {
-        $this->init(false, self::PRICE_UA_TYPE);
-        $this->index(false, true);
+        $this->index(false, self::PRICE_UA_TYPE);
+    }
+
+    /**
+     * Nadavi.com.ua
+     */
+    public function nadaviua() {
+        $this->index(false, self::NADAVI_UA_TYPE);
     }
 
     /**
@@ -71,13 +78,18 @@ class Ymarket extends ShopController {
      * @param boolean $ignoreSettings
      * @param boolean $flagPriceUa
      */
-    public function index($ignoreSettings = false, $flagPriceUa = false) {
-        if ($flagPriceUa) {
-            $this->init($ignoreSettings, self::PRICE_UA_TYPE);
-            $this->priceuaCore();
-        } else {
-            $this->init($ignoreSettings, self::DEFAULT_TYPE);
-            $this->ymarketCore();
+    public function index($ignoreSettings = false, $type = self::DEFAULT_TYPE) {
+        $this->init($ignoreSettings, $type);
+        switch ($type) {
+            case self::DEFAULT_TYPE:
+                $this->ymarketCore();
+                break;
+            case self::PRICE_UA_TYPE:
+                $this->priceuaCore();
+                break;
+            case self::NADAVI_UA_TYPE:
+                $this->priceuaCore();
+                break;
         }
     }
 
@@ -106,9 +118,9 @@ class Ymarket extends ShopController {
         $infoXml['mainCurr'] = $this->mainCurr;
 
         assetManager::create()
-                ->setData('full', $ignoreSettings)
-                ->setData('infoXml', $infoXml)
-                ->render('priceua', true);
+            ->setData('full', $ignoreSettings)
+            ->setData('infoXml', $infoXml)
+            ->render('priceua', true);
     }
 
     /**
@@ -184,9 +196,9 @@ class Ymarket extends ShopController {
         $infoXml['mainCurr'] = $this->mainCurr;
 
         assetManager::create()
-                ->setData('full', $ignoreSettings)
-                ->setData('infoXml', $infoXml)
-                ->render('yandex', true);
+            ->setData('full', $ignoreSettings)
+            ->setData('infoXml', $infoXml)
+            ->render('yandex', true);
     }
 
     /**
@@ -255,20 +267,20 @@ class Ymarket extends ShopController {
             $productsIds[] = $product->getProductId();
         }
         $properties = SPropertiesQuery::create()
-                ->joinSProductPropertiesData()
-                ->joinWithI18n(MY_Controller::getCurrentLocale())
-                ->select(array('SProductPropertiesData.ProductId', 'SProductPropertiesData.Value', 'SPropertiesI18n.Name'))
-                ->where('SProductPropertiesData.ProductId IN ?', $productsIds)
-                ->where('SProductPropertiesData.Locale = ?', MY_Controller::getCurrentLocale())
-                ->withColumn('SProductPropertiesData.ProductId', 'ProductId')
-                ->withColumn('SProductPropertiesData.Value', 'Value')
-                ->withColumn('SPropertiesI18n.Name', 'Name')
-                ->where('SProperties.Active = ?', 1)
-                ->where("SProductPropertiesData.Value != ?", '')
-                ->where('SProperties.ShowOnSite = ?', 1)
-                ->orderByPosition()
-                ->find()
-                ->toArray();
+            ->joinSProductPropertiesData()
+            ->joinWithI18n(MY_Controller::getCurrentLocale())
+            ->select(array('SProductPropertiesData.ProductId', 'SProductPropertiesData.Value', 'SPropertiesI18n.Name'))
+            ->where('SProductPropertiesData.ProductId IN ?', $productsIds)
+            ->where('SProductPropertiesData.Locale = ?', MY_Controller::getCurrentLocale())
+            ->withColumn('SProductPropertiesData.ProductId', 'ProductId')
+            ->withColumn('SProductPropertiesData.Value', 'Value')
+            ->withColumn('SPropertiesI18n.Name', 'Name')
+            ->where('SProperties.Active = ?', 1)
+            ->where("SProductPropertiesData.Value != ?", '')
+            ->where('SProperties.ShowOnSite = ?', 1)
+            ->orderByPosition()
+            ->find()
+            ->toArray();
         $productsData = [];
         array_map(
             function ($property) use (&$productsData) {
@@ -285,13 +297,13 @@ class Ymarket extends ShopController {
         );
         $productsData = array_map(
             function ($property) {
-                    return array_map(
-                        function ($propertyValues) {
-                            $propertyValues['value'] = implode(', ', $propertyValues['value']);
-                            return $propertyValues;
-                        },
-                        $property
-                    );
+                return array_map(
+                    function ($propertyValues) {
+                        $propertyValues['value'] = implode(', ', $propertyValues['value']);
+                        return $propertyValues;
+                    },
+                    $property
+                );
             },
             $productsData
         );
@@ -312,7 +324,7 @@ class Ymarket extends ShopController {
         $productsData = [];
         array_map(
             function ($image) use (&$productsData) {
-                    $productsData[$image['product_id']][] = productImageUrl('products/additional/' . $image['image_name']);
+                $productsData[$image['product_id']][] = productImageUrl('products/additional/' . $image['image_name']);
             },
             $images
         );
@@ -343,12 +355,12 @@ class Ymarket extends ShopController {
 
     public static function adminAutoload() {
         Events::create()
-                ->onShopProductPreUpdate()
-                ->setListener('_extendYmarketPageAdmin');
+            ->onShopProductPreUpdate()
+            ->setListener('_extendYmarketPageAdmin');
 
         Events::create()
-                ->onShopProductUpdate()
-                ->setListener('_extendYmarketPageAdmin');
+            ->onShopProductUpdate()
+            ->setListener('_extendYmarketPageAdmin');
     }
 
     /**
@@ -380,17 +392,17 @@ class Ymarket extends ShopController {
             $fields['manufacturer_warranty'] = self::fromISO8601ToMonths($fields['manufacturer_warranty']);
             $fields['seller_warranty'] = self::fromISO8601ToMonths($fields['seller_warranty']);
             $view = assetManager::create()
-                    ->setData(
-                        array(
-                                'countries' => $countries,
-                                'months' => $months,
-                                'fields' => $fields,
-                            )
+                ->setData(
+                    array(
+                        'countries' => $countries,
+                        'months' => $months,
+                        'fields' => $fields,
                     )
-                    ->registerScript('script')
-                    ->fetchAdminTemplate('products_extend');
+                )
+                ->registerScript('script')
+                ->fetchAdminTemplate('products_extend');
             assetManager::create()
-                    ->appendData('moduleAdditions', $view);
+                ->appendData('moduleAdditions', $view);
         }
     }
 

@@ -6,6 +6,10 @@
  */
 class Ymarket_model extends CI_Model {
 
+    const DEFAULT_TYPE = 1;
+    const PRICE_UA_TYPE = 2;
+    const NADAVI_UA_TYPE = 3;
+
     public $settings;
 
     public function __construct() {
@@ -110,17 +114,23 @@ class Ymarket_model extends CI_Model {
         $tempCatsPriceUa = $this->input->post('displayedCatsPriceUa') ? serialize($this->input->post('displayedCatsPriceUa')) : '';
         $displayedBrandsPriceUa = $this->input->post('displayedBrandsPriceUa') ? serialize($this->input->post('displayedBrandsPriceUa')) : '';
 
+        $tempCatsNadaviUa = $this->input->post('displayedCatsNadaviUa') ? serialize($this->input->post('displayedCatsNadaviUa')) : '';
+        $displayedBrandsNadaviUa = $this->input->post('displayedBrandsNadaviUa') ? serialize($this->input->post('displayedBrandsNadaviUa')) : '';
+
         $idsTemp = $this->db->select('id')->get('mod_ymarket')->result_array();
         $ids = [];
         foreach ($idsTemp as $v) {
             $ids[] = $v['id'];
         }
 
-        $data = ['id' => 1, 'categories' => $tempCats, 'brands' => $displayedBrands, 'adult' => $tempAdult];
-        $this->saveCategoriesSettings($data, in_array(1, $ids));
+        $data = ['id' => self::DEFAULT_TYPE, 'categories' => $tempCats, 'brands' => $displayedBrands, 'adult' => $tempAdult];
+        $this->saveCategoriesSettings($data, in_array(self::DEFAULT_TYPE, $ids));
 
-        $data = ['id' => 2, 'categories' => $tempCatsPriceUa, 'brands' => $displayedBrandsPriceUa, 'adult' => 0];
-        $this->saveCategoriesSettings($data, in_array(2, $ids));
+        $data = ['id' => self::PRICE_UA_TYPE, 'categories' => $tempCatsPriceUa, 'brands' => $displayedBrandsPriceUa, 'adult' => 0];
+        $this->saveCategoriesSettings($data, in_array(self::PRICE_UA_TYPE, $ids));
+
+        $data = ['id' => self::NADAVI_UA_TYPE, 'categories' => $tempCatsNadaviUa, 'brands' => $displayedBrandsNadaviUa, 'adult' => 0];
+        $this->saveCategoriesSettings($data, in_array(self::NADAVI_UA_TYPE, $ids));
     }
 
     /**

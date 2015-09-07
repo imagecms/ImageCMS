@@ -114,113 +114,139 @@
 
                             </div>
                         </div>
-                                
+
                         <div class="control-group">
-                            <label class="control-label"><a id="urlVisible" onclick="hideVisibleParams()"> {lang('Show additional options', 'xbanners')}</a></label>
-                            <input id="urlVisibleNew" type="hidden" value="{lang('Hide additional options', 'xbanners')}">
+                            <label class="control-label" for="Name">{lang('fade', 'xbanners')}
+                                :</label>
+
                             <div class="controls">
-                                <span class="frame_label">
-                                </span>                                
+                                 <span class="frame_label">
+                                    <span class="niceCheck" style="background-position: -46px 0px;" onclick="">
+                                        <input type="checkbox" name="options[fade]" class="input-long" {if $options['fade']} checked {/if}/>
+                                    </span>
+                                </span>
+
+                                <i class="icon-info-sign popover_ref" data-title="" data-original-title=""></i>
+
+                                <div class="d_n">
+                                    <p>{echo lang('Switching banners will be a smooth change rather than scrolling from side to side', 'xbanners')}</p>
+                                </div>
                             </div>
                         </div>
-                            
-                        <div id="hiddenParams" style="display: none">
-                            <div class="control-group">
-                                <label class="control-label" for="Name">{lang('centerMode', 'xbanners')}
-                                    :</label>
 
-                                <div class="controls">
-                                    <input type="checkbox" name="options[centerMode]" class="input-long" {if $options['centerMode']} checked {/if}/>
-                                </div>
+                        <div class="control-group">
+                            <label class="control-label" for="Name">{lang('infinite', 'xbanners')}
+                                :</label>
+
+                            <div class="controls">
+                                <span class="frame_label">
+                                    <span class="niceCheck" style="background-position: -46px 0px;" onclick="">
+                                        <input type="checkbox" name="options[infinite]" class="input-long" {if $options['infinite']} checked {/if}/>
+                                    </span>
+                                </span>
+
                             </div>
-                            <div class="control-group">
-                                <label class="control-label" for="Name">{lang('draggable', 'xbanners')}
-                                    :</label>
+                        </div>
 
-                                <div class="controls">
-                                    <input type="checkbox" name="options[draggable]" class="input-long" {if $options['draggable']} checked {/if}/>
+                        <div class="control-group">
+                            <label class="control-label" for="Name">{lang('Scroll speed', 'xbanners')}
+                                :</label>
+
+                            <div class="controls">
+                                <input type="text" name="options[scrollSpeed]" class="input-long" value="{$options['scrollSpeed']}"/>
+                                <i class="icon-info-sign popover_ref" data-title="" data-original-title=""></i>
+
+                                <div class="d_n">
+                                    <p>{echo lang('Speed with which slide will be changed. It specifies in milliseconds. Recommendation - 300', 'xbanners')}</p>
                                 </div>
+
                             </div>
-                            <div class="control-group">
-                                <label class="control-label" for="Name">{lang('fade', 'xbanners')}
-                                    :</label>
+                        </div>
 
-                                <div class="controls">
-                                    <input type="checkbox" name="options[fade]" class="input-long" {if $options['fade']} checked {/if}/>
-                                </div>
+                        { /* }
+
+                        <div class="control-group">
+                            <label class="control-label" for="Name">{lang('centerMode', 'xbanners')}
+                                :</label>
+
+                            <div class="controls">
+                                <input type="checkbox" name="options[centerMode]" class="input-long" {if $options['centerMode']} checked {/if}/>
                             </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="Name">{lang('draggable', 'xbanners')}
+                                :</label>
 
-                            <div class="control-group">
-                                <label class="control-label" for="Name">{lang('easing', 'xbanners')}
-                                    :</label>
-
-                                <div class="controls">
-                                    <select name="options[easing]" class="input-long">
-                                        {foreach $options->getEasingTypes() as $type }
-                                            <option {if $options['easing'] == $type }selected{/if}>{$type}</option>
-                                        {/foreach}
-                                    </select>
-                                </div>
+                            <div class="controls">
+                                <input type="checkbox" name="options[draggable]" class="input-long" {if $options['draggable']} checked {/if}/>
                             </div>
+                        </div>
 
-                            <div class="control-group">
-                                <label class="control-label" for="Name">{lang('infinite', 'xbanners')}
-                                    :</label>
+                        <div class="control-group">
+                            <label class="control-label" for="Name">{lang('easing', 'xbanners')}
+                                :</label>
 
-                                <div class="controls">
-                                    <input type="checkbox" name="options[infinite]" class="input-long" {if $options['infinite']} checked {/if}/>
-                                </div>
+                            <div class="controls">
+                                <select name="options[easing]" class="input-long">
+                                    {foreach $options->getEasingTypes() as $type }
+                                        <option {if $options['easing'] == $type }selected{/if}>{$type}</option>
+                                    {/foreach}
+                                </select>
                             </div>
-                            <div class="control-group">
-                                <label class="control-label" for="Name">{lang('pauseOnHover', 'xbanners')}
-                                    :</label>
+                        </div>
 
-                                <div class="controls">
-                                    <input type="checkbox" name="options[pauseOnHover]" class="input-long" {if $options['pauseOnHover']} checked {/if}/>
-                                </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="Name">{lang('pauseOnHover', 'xbanners')}
+                                :</label>
+
+                            <div class="controls">
+                                <input type="checkbox" name="options[pauseOnHover]" class="input-long" {if $options['pauseOnHover']} checked {/if}/>
                             </div>
-                            <div class="control-group">
-                                <label class="control-label" for="Name">{lang('pauseOnDotsHover', 'xbanners')}
-                                    :</label>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="Name">{lang('pauseOnDotsHover', 'xbanners')}
+                                :</label>
 
-                                <div class="controls">
-                                    <input type="checkbox" name="options[pauseOnDotsHover]" class="input-long" {if $options['pauseOnDotsHover']} checked {/if}/>
-                                </div>
+                            <div class="controls">
+                                <input type="checkbox" name="options[pauseOnDotsHover]" class="input-long" {if $options['pauseOnDotsHover']} checked {/if}/>
                             </div>
-                            <div class="control-group">
-                                <label class="control-label" for="Name">{lang('swipe', 'xbanners')}
-                                    :</label>
+                        </div>
 
-                                <div class="controls">
-                                    <input type="checkbox" name="options[swipe]" class="input-long" {if $options['swipe']} checked {/if}/>
-                                </div>
+                        <div class="control-group">
+                            <label class="control-label" for="Name">{lang('swipe', 'xbanners')}
+                                :</label>
+
+                            <div class="controls">
+                                <input type="checkbox" name="options[swipe]" class="input-long" {if $options['swipe']} checked {/if}/>
                             </div>
-                            <div class="control-group">
-                                <label class="control-label" for="Name">{lang('touchMove', 'xbanners')}
-                                    :</label>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="Name">{lang('touchMove', 'xbanners')}
+                                :</label>
 
-                                <div class="controls">
-                                    <input type="checkbox" name="options[touchMove]" class="input-long" {if $options['touchMove']} checked {/if}/>
-                                </div>
+                            <div class="controls">
+                                <input type="checkbox" name="options[touchMove]" class="input-long" {if $options['touchMove']} checked {/if}/>
                             </div>
-                            <div class="control-group">
-                                <label class="control-label" for="Name">{lang('vertical', 'xbanners')}
-                                    :</label>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="Name">{lang('vertical', 'xbanners')}
+                                :</label>
 
-                                <div class="controls">
-                                    <input type="checkbox" name="options[vertical]" class="input-long" {if $options['vertical']} checked {/if}/>
-                                </div>
+                            <div class="controls">
+                                <input type="checkbox" name="options[vertical]" class="input-long" {if $options['vertical']} checked {/if}/>
                             </div>
-                            <div class="control-group">
-                                <label class="control-label" for="Name">{lang('rtl', 'xbanners')}
-                                    :</label>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="Name">{lang('rtl', 'xbanners')}
+                                :</label>
 
-                                <div class="controls">
-                                    <input type="checkbox" name="options[rtl]" class="input-long" {if $options['rtl']}checked{/if}/>
+                            <div class="controls">
+                                <input type="checkbox" name="options[rtl]" class="input-long" {if $options['rtl']}checked{/if}/>
 
-                                </div>
-                            </div>  
-                        </div>    
+                            </div>
+                        </div>
+                        { */ }
 
                         <!-- -->
                     </div>

@@ -57,6 +57,21 @@ class assetManager {
     }
 
     /**
+     * Changing main layout file by full path
+     * @param string $mainLayout
+     * @return assetManager
+     */
+    public function setMainLayoutByFullPath($mainLayout) {
+        try {
+            CI_Controller::get_instance()->template->set_main_layout_by_full_path($mainLayout);
+        } catch (Exception $exc) {
+            log_message('error', $exc->getMessage());
+            show_error($exc->getMessage(), 500, 'An Template Error Was Encountered');
+        }
+        return $this;
+    }
+
+    /**
      * @param string|array $item
      * @param string|integer|float|array|boolean $value
      * @return assetManager

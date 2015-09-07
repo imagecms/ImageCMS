@@ -10,6 +10,7 @@
 class Admin extends BaseAdminController {
     const DEFAULT_TYPE = 1;
     const PRICE_UA_TYPE = 2;
+    const NADAVI_UA_TYPE = 3;
 
     public function __construct() {
         parent::__construct();
@@ -43,6 +44,7 @@ class Admin extends BaseAdminController {
         $data->brands = $this->ymarket_model->getBrands();
         $data->ymarket_model = $this->ymarket_model->init(self::DEFAULT_TYPE);
         $data->price_ua_model = $this->ymarket_model->init(self::PRICE_UA_TYPE);
+        $data->nadavi_ua_model = $this->ymarket_model->init(self::NADAVI_UA_TYPE);
 
         return $data;
     }
@@ -51,7 +53,7 @@ class Admin extends BaseAdminController {
      * Saves the selected user categories in the table
      */
     public function save() {
-        
+
         if ($this->dx_auth->is_admin() && $this->input->is_ajax_request()) {
             $this->ymarket_model->setCategories();
 

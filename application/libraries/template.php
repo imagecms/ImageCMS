@@ -40,6 +40,12 @@ class Template extends Mabilis {
      */
     public $trimed = false;
 
+    /**
+     *
+     * @var MY_Controller
+     */
+    public $CI;
+
     public function __construct() {
         $this->load();
         if (file_exists('templates/' . $this->CI->config->item('template') . '/shop/helpers/helper.php')) {
@@ -57,6 +63,17 @@ class Template extends Mabilis {
             throw new \Exception(lang('Main layout file don\'t exist', 'main'));
         }
         $this->main_layout = $main_layout;
+    }
+
+    /**
+     *
+     * @param string $main_layout_full_path
+     * @throws \Exception
+     */
+    public function set_main_layout_by_full_path($main_layout_full_path) {
+        $layoutPath = "dir:{$main_layout_full_path}.tpl";
+
+        $this->main_layout = $layoutPath;
     }
 
     public function load() {

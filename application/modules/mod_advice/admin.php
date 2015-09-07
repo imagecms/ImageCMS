@@ -16,15 +16,13 @@ class Admin extends BaseAdminController {
     }
 
     public function del() {
-        $this->mod_advice->delimages();
-        $this->mod_advice->delimagesadd();
+        $this->mod_advice->_delimages();
     }
 
     public function index() {
         CMSFactory\assetManager::create()
-                ->setData('countOldImages', count($this->mod_advice->buildImagesList()) + count($this->mod_advice->buildImagesAdditionalList()))
-                ->setData('oldImages', $this->mod_advice->buildImagesList())
-                ->setData('oldAdditionalImages', $this->mod_advice->buildImagesAdditionalList())
+                ->setData('countOldImages', count($this->mod_advice->_buildImagesList(), COUNT_RECURSIVE))
+                ->setData('oldImages', $this->mod_advice->_buildImagesList())
                 ->registerScript('script')
                 ->renderAdmin('main');
     }

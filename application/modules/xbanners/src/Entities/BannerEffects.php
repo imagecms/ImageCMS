@@ -40,6 +40,8 @@ class BannerEffects implements \ArrayAccess {
         "vertical" => 0,
         //@var boolean
         "rtl" => 0,
+        //@var string
+        "scrollSpeed" => 0,
     ];
 
     protected $effectsTypes = [
@@ -75,6 +77,8 @@ class BannerEffects implements \ArrayAccess {
         "vertical" => 'boolean',
         //@var boolean
         "rtl" => 'boolean',
+        //@var string
+        "scrollSpeed" => 'string',
     ];
 
     /**
@@ -169,6 +173,7 @@ class BannerEffects implements \ArrayAccess {
             "touchMove" => true,
             "vertical" => false,
             "rtl" => false,
+            "scrollSpeed" => 300,
         ];
     }
 

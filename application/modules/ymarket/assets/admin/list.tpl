@@ -14,12 +14,13 @@
         <form id="settings_form" action="/admin/components/cp/ymarket/save" method="post" class="m-t_10">
             <div class="clearfix">
                 <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
-                    <a href="" onclick="changeAgregator('yandexMarket');" class="btn btn-small active">{lang('Yandex.Market','ymarket')}</a>
-                    <a href="" onclick="changeAgregator('priceUa');" class="btn btn-small">{lang('Price.ua','ymarket')}</a>
+                    <a href="#yandexMarket" onclick="changeAgregator('yandexMarket');" class="btn btn-small active">{lang('Yandex.Market','ymarket')}</a>
+                    <a href="#priceUa" onclick="changeAgregator('priceUa');" class="btn btn-small">{lang('Price.ua','ymarket')}</a>
+                    <a href="#nadaviUa" onclick="changeAgregator('nadaviUa');" class="btn btn-small">{lang('Nadavi.ua','ymarket')}</a>
                 </div>
             </div>
                 
-            <div class="tab-pane" id="yandexMarket">
+            <div class="tab-pane active" id="yandexMarket">
                 <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
@@ -95,7 +96,7 @@
                                         
                                         
             {//price.ua}
-            <div class="tab-pane" id="priceUa">
+            <div class="tab-pane" id="priceUa" style="display: none">
                 <table class="table  table-bordered table-hover table-condensed content_big_td">
                     <thead>
                         <tr>
@@ -152,6 +153,71 @@
                                 <div class="inside_padd">
                                     <div class="control-group">
                                         <a href="{site_url('ymarket/priceua')}" target="_blank">{lang('XML document','ymarket')}</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="tab-pane" id="nadaviUa" style="display: none">
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
+                    <thead>
+                        <tr>
+                            <th colspan="6">
+                                {lang('Настройки Nadavi.Ua','ymarket')}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="6">
+                                <div class="inside_padd" >
+                                    <div class="control-group" >
+                                        <label class="control-label">{lang('Бренды','ymarket')}:</label>
+                                        <div class="controls">
+                                            <select name="displayedBrandsNadaviUa[]" multiple="multiple" style="width:285px;height:129px;">
+                                                {foreach $hold->brands as $brand}
+                                                    <option value="{echo $brand['id']}"
+                                                            {if @in_array($brand['id'], $hold->nadavi_ua_model['unserBrands'])}
+                                                                selected="selected"
+                                                            {/if}>
+                                                        {echo ShopCore::encode($brand['name'])}
+                                                    </option>
+                                                {/foreach}
+                                            </select>
+                                        </div>
+
+                                        <label class="control-label">{lang('Displayed categories selection','ymarket')}:</label>
+                                        <div class="controls">
+                                            <select name="displayedCatsNadaviUa[]" multiple="multiple" style="width:285px;height:129px;">
+                                                {foreach $hold->categories as $category}
+                                                    <option value="{echo $category->getId()}"
+                                                            {if @in_array($category->getId(), $hold->nadavi_ua_model['unserCats'])}
+                                                                selected="selected"
+                                                            {/if}>
+                                                        {str_repeat('-',$category->getLevel())} {echo ShopCore::encode($category->getName())}
+                                                    </option>
+                                                {/foreach}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table  table-bordered table-hover table-condensed content_big_td">
+                    <thead>
+                    <th>{lang('Nadavi.ua документ','ymarket')}</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="inside_padd">
+                                    <div class="control-group">
+                                        <a href="{site_url('ymarket/nadaviua')}" target="_blank">{lang('XML document','ymarket')}</a>
                                     </div>
                                 </div>
                             </td>
