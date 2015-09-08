@@ -11,7 +11,7 @@ class TComponentName extends \template_manager\classes\TComponent {
      * @param \SimpleXMLElement $nodes
      */
     public function setParamsXml(\SimpleXMLElement $nodes) {
-        
+
     }
 
     /**
@@ -39,5 +39,3 @@ class TComponentName extends \template_manager\classes\TComponent {
     }
 
 }
-
-?>

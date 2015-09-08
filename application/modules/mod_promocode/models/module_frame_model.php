@@ -11,5 +11,3 @@ class Module_frame_model extends CI_Model {
     }
 
 }
-
-?>

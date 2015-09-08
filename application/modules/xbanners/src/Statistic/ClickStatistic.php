@@ -46,7 +46,6 @@ class ClickStatistic {
         $this->bannerImage->save();
     }
 
-
     /**
      * Go to banner image url
      */

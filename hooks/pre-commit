@@ -47,7 +47,7 @@ echo "Checking PHPMD..."
 echo "================="
 for FILE in $SFILES
 do
-	./application/third_party/bin/phpmd $PROJECT/$FILE text $PROJECT/hooks/phpmd.xml --exclude=propel/generated-classes/*
+	./application/third_party/bin/phpmd $PROJECT/$FILE text $PROJECT/hooks/phpmd.xml --exclude=*/generated-classes/Base/*,*/generated-classes/*/Map/*,*/generated-classes/*/Base/*,*/generated-classes/Map/*
 	if [ $? != 0 ]
 	then
 		EXIT=1

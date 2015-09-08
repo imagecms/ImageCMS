@@ -6,8 +6,8 @@ namespace template_manager\legacy;
  * This class is for controll every demodata install
  * to check if the migrations where implemented in demodata sql-file.
  * If not, then fix all needed columns
- * 
- * 
+ *
+ *
  * @author kolia
  */
 class DemodataMigrationsControl extends \CI_Model {
@@ -30,40 +30,47 @@ class DemodataMigrationsControl extends \CI_Model {
      */
     protected function corrections_after_ci_and_propel_update() {
 
-        $this->ifColumnExistsThenAlter('shop_orders', 'key', [
+        $this->ifColumnExistsThenAlter(
+            'shop_orders',
+            'key',
+            [
             'name' => 'order_key',
             'type' => 'VARCHAR',
             'constraint' => '255',
-        ]);
+            ]
+        );
 
-        $this->ifColumnExistsThenAlter('shop_gifts', 'key', [
+        $this->ifColumnExistsThenAlter(
+            'shop_gifts',
+            'key',
+            [
             'name' => 'gift_key',
             'type' => 'VARCHAR',
             'constraint' => '255',
-        ]);
+            ]
+        );
     }
 
     /**
      * Helper to modify columns
      * @param string $tableName
      * @param string $oldColumnName if this column will exists in table, then next argument will be used
-     * @param array $newColumnData 
+     * @param array $newColumnData
      */
     protected function ifColumnExistsThenAlter($tableName, $oldColumnName, $newColumnData) {
         $columns = $this->getTableColumns($tableName);
         if ($columns == null) {
             return;
         }
-        if (
-                in_array($oldColumnName, $columns) &&
-                !in_array($newColumnData['name'], $columns)
+        if (in_array($oldColumnName, $columns)
+            && !in_array($newColumnData['name'], $columns)
         ) {
             $this->dbforge->modify_column($tableName, [$oldColumnName => $newColumnData]);
         }
     }
 
     /**
-     * 
+     *
      * @param string $tableName
      * @return null|array
      */

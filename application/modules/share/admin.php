@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Image CMS
@@ -9,7 +10,7 @@ if (!defined('BASEPATH'))
  */
 class Admin extends BaseAdminController {
 
-    function __construct() {
+    public function __construct() {
         parent::__construct();
         $lang = new MY_Lang();
         $lang->load('share');
@@ -35,7 +36,7 @@ class Admin extends BaseAdminController {
         if ($this->input->post('action') == 'tomain') {
             pjax('/admin/components/modules_table');
         }
-        
+
         $this->lib_admin->log(lang("Social buttons was updated", "share"));
 
         showMessage(lang('Settings successfully saved', 'share'));

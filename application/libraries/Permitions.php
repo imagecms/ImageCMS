@@ -117,7 +117,7 @@ class Permitions {
                 //check if role exists
                 if (!empty($userRole)) {
                     //check if user has needed privilege
-                    $userPrivilege = $ci->db->where(['role_id' => (int)$userRole->id, 'privilege_id' => (int)$privilege->id])->get(self::$rbac_roles_privileges_table)->result();
+                    $userPrivilege = $ci->db->where(['role_id' => (int) $userRole->id, 'privilege_id' => (int) $privilege->id])->get(self::$rbac_roles_privileges_table)->result();
                     if (!empty($userPrivilege)) {
                         //yes, current user has needed privilege
                         return TRUE;
@@ -681,7 +681,7 @@ class Permitions {
                     $this->db->query($sqlDelete);
 
                     foreach ($privilegesPOSTIds as $idPrivilege) {
-                        if (!$this->db->where(['role_id' => $roleId, 'privilege_id' => (int)$idPrivilege])->get(self::$rbac_roles_privileges_table)->num_rows()) {
+                        if (!$this->db->where(['role_id' => $roleId, 'privilege_id' => (int) $idPrivilege])->get(self::$rbac_roles_privileges_table)->num_rows()) {
                             $sqlPrivilege = "INSERT INTO shop_rbac_roles_privileges (role_id, privilege_id) VALUES(" . $this->db->escape($roleId) . ", " . $this->db->escape($idPrivilege) . ")";
                             $this->db->query($sqlPrivilege);
                         }
@@ -701,7 +701,7 @@ class Permitions {
             $queryPrivilegeR = $this->db->query($sql)->result_array();
             $role_privileges = [];
             foreach ($queryPrivilegeR as $item) {
-                $role_privileges[] = (int)$item['privilege_id'];
+                $role_privileges[] = (int) $item['privilege_id'];
             }
 
             //preparing array of controller types
@@ -983,7 +983,7 @@ class Permitions {
                     $result[$controller_type][$key]['privileges'] = $ci->db->query(
                         "SELECT *, " . self::$rbac_privileges_table . ".id as id FROM " . self::$rbac_privileges_table . "
                             LEFT JOIN " . self::$rbac_privileges_table . "_i18n ON " . self::$rbac_privileges_table . ".id=" . self::$rbac_privileges_table . "_i18n.id AND `locale` = '$locale'
-                                WHERE `group_id`=" . (int)$group['id']
+                                WHERE `group_id`=" . (int) $group['id']
                     )->result_array();
                 }
             }

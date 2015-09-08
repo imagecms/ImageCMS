@@ -11,15 +11,22 @@ class DemodataMenus extends DemodataDirector {
 
     /**
      * DemodataMenus SimpleXMLElement node
-     * @var \SimpleXMLElement 
+     * @var \SimpleXMLElement
      */
     public $node;
+
     private $menuData = array();
+
     private $menuItemI18nData = array();
+
     private $menuItemData = array();
+
     private $menuItemPosition = 0;
+
     private $menuItemParentId = 0;
+
     private $localesIds = array();
+
     private $ci;
 
     public function __construct(\SimpleXMLElement $node) {
@@ -137,5 +144,3 @@ class DemodataMenus extends DemodataDirector {
     }
 
 }
-
-?>

@@ -19,7 +19,7 @@ class Module_frame extends MY_Controller {
     }
 
     public function autoload() {
-        
+
     }
 
     public function _install() {

@@ -11,13 +11,18 @@ class DemodataBanners extends DemodataDirector {
 
     /**
      * DemodataBanners SimpleXMLElement node
-     * @var \SimpleXMLElement 
+     * @var \SimpleXMLElement
      */
     public $node;
+
     private $bannerData = array();
+
     private $bannerI18nData = array();
+
     private $bannerGroupsData = array();
+
     private $existed_banners_groups = array();
+
     private $ci;
 
     public function __construct(\SimpleXMLElement $node) {
@@ -37,13 +42,14 @@ class DemodataBanners extends DemodataDirector {
      * @return boolean
      */
     public function install() {
-        if (!SHOP_INSTALLED)
+        if (!SHOP_INSTALLED) {
             return TRUE;
+        }
 
         $this->ci->db
-                ->where('active', 1)
-                ->set('active', 0)
-                ->update('mod_banner');
+            ->where('active', 1)
+            ->set('active', 0)
+            ->update('mod_banner');
 
         foreach ($this->node as $banner) {
             $this->prepareData($banner);
@@ -96,10 +102,10 @@ class DemodataBanners extends DemodataDirector {
                         'name' => (string) $attributes->name ? (string) $attributes->name : ''
                     );
 
-
                     if ($this->bannerGroupsData) {
-                        if (!isset($this->existed_banners_groups[$this->bannerGroupsData['name']]))
+                        if (!isset($this->existed_banners_groups[$this->bannerGroupsData['name']])) {
                             $this->ci->db->insert('mod_banner_groups', $this->bannerGroupsData);
+                        }
                     }
                 }
             }
@@ -107,5 +113,3 @@ class DemodataBanners extends DemodataDirector {
     }
 
 }
-
-?>

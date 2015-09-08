@@ -10,7 +10,9 @@ class Sample_Module extends MY_Controller {
 
     /** Подготовим необходимые свойства для класса */
     private $key = FALSE;
+
     private $mailTo = FALSE;
+
     private $useEmailNotification = FALSE;
 
     public function __construct() {
@@ -35,9 +37,10 @@ class Sample_Module extends MY_Controller {
      * уплавнеия модулями.
      */
     public function autoload() {
-        if ('TRUE' == $this->useEmailNotification)
-//            \CMSFactory\Events::create()->setListener('handler', 'Sample_Module:__construct');
+        if ('TRUE' == $this->useEmailNotification) {
+            //            \CMSFactory\Events::create()->setListener('handler', 'Sample_Module:__construct');
             \CMSFactory\Events::create()->setListener('handler', 'Commentsapi:newPost');
+        }
     }
 
     public function changeStatus($commentId, $status, $key) {
@@ -46,17 +49,17 @@ class Sample_Module extends MY_Controller {
 
         /** Обновим статус */
         $this->db
-                ->where('id', intval($commentId))
-                ->set('status', intval($status))
-                ->update('comments');
+            ->where('id', intval($commentId))
+            ->set('status', intval($status))
+            ->update('comments');
 
         $comment = $this->db->where('id', $commentId)->get('comments')->row();
-        if ($comment->module == 'core')
-        /** Используем помощник get_page($id) который аргументом принимает ID страницы.
+        if ($comment->module == 'core') {
+            /** Используем помощник get_page($id) который аргументом принимает ID страницы.
          *  Помощник включен по умолчанию. Больше о функция помощника
          *  читайте здесь http://ellislab.com/codeigniter/user-guide/general/helpers.html */
             $comment->source = get_page($comment->item_id);
-
+        }
 
         /** Сообщаем пользователю что статус обновлён успешно */
         \CMSFactory\assetManager::create()
@@ -75,11 +78,12 @@ class Sample_Module extends MY_Controller {
 
     private function composeAndSendEmail($arg) {
         $comment = $this->db->where('id', $arg['commentId'])->get('comments')->row();
-        if ($comment->module == 'core')
-        /** Используем помощник get_page($id) который аргументом принимает ID страницы.
+        if ($comment->module == 'core') {
+            /** Используем помощник get_page($id) который аргументом принимает ID страницы.
          *  Помощник включен по умолчанию. Больше о функция помощника
          *  читайте здесь http://ellislab.com/codeigniter/user-guide/general/helpers.html */
             $comment->source = get_page($comment->item_id);
+        }
 
         /** Теперь переменная содержит HTML тело нашего письма */
         $message = \CMSFactory\assetManager::create()->setData(array('comment' => $comment, 'key' => $this->key))->fetchTemplate('emailPattern');
@@ -92,15 +96,16 @@ class Sample_Module extends MY_Controller {
         $this->email->subject('New Comment received');
         $this->email->message($message);
         $this->email->send();
-//        echo $this->email->print_debugger();
+        //        echo $this->email->print_debugger();
     }
 
     private function initSettings() {
         $request = $this->db->get('mod_sample_settings');
         if ($request) {
             $DBSettings = $request->result_array();
-            foreach ($DBSettings as $record)
+            foreach ($DBSettings as $record) {
                 $this->$record['name'] = $record['value'];
+            }
         }
     }
 
@@ -135,10 +140,9 @@ class Sample_Module extends MY_Controller {
         /** ...и добавим их в Базу Данных */
         $this->db->insert_batch('mod_sample_settings', $data);
 
-
         /** Обновим метаданные модуля, включим автозагрузку модуля и доступ по URL */
         $this->db->where('name', 'sample_module')
-                ->update('components', array('autoload' => '1', 'enabled' => '1'));
+            ->update('components', array('autoload' => '1', 'enabled' => '1'));
     }
 
     /**

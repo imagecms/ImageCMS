@@ -16,7 +16,9 @@ use Propel\Runtime\Map\TableMap;
  *
  */
 class BannerImageI18n extends BaseBannerImageI18n {
+
     public function fromArray($arr, $keyType = TableMap::TYPE_FIELDNAME) {
         parent::fromArray($arr, $keyType);
     }
+
 }

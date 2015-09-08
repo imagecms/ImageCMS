@@ -79,5 +79,3 @@ class Socauth_model extends CI_Model {
     }
 
 }
-
-?>

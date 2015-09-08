@@ -11,11 +11,14 @@ class DemodataCategoriestemplates extends DemodataDirector {
 
     /**
      * DemodataCategoriestemplates SimpleXMLElement node
-     * @var \SimpleXMLElement 
+     * @var \SimpleXMLElement
      */
     public $node;
+
     private $categoriesData = array();
+
     private $ci;
+
     private $categories_levels = array();
 
     public function __construct(\SimpleXMLElement $node) {
@@ -28,33 +31,32 @@ class DemodataCategoriestemplates extends DemodataDirector {
      * @return boolean
      */
     public function install() {
-        if (!SHOP_INSTALLED)
+        if (!SHOP_INSTALLED) {
             return TRUE;
+        }
 
         $this->prepareCategoriesLevelsArray();
         foreach ($this->node as $level) {
             $this->prepareData($level);
         }
-        
-        /*Если в категории есть товары, то tpl остается пустой (по умолчанию)
-        * если товаров нет, то меняется в зависимости от файла params.xml 
-        * level_1
-        * level_2
-        */
-        foreach ($this->categoriesData as $k=>$v) {
-            foreach ($v as $key=>$value){
-                $checkProd = $this->ci->db->where('category_id',$value['id'])
-                                    ->select('id')
-                                    ->get('shop_products')
-                                    ->row();
-                if($checkProd){
+
+        /* Если в категории есть товары, то tpl остается пустой (по умолчанию)
+         * если товаров нет, то меняется в зависимости от файла params.xml
+         * level_1
+         * level_2
+         */
+        foreach ($this->categoriesData as $k => $v) {
+            foreach ($v as $key => $value) {
+                $checkProd = $this->ci->db->where('category_id', $value['id'])
+                    ->select('id')
+                    ->get('shop_products')
+                    ->row();
+                if ($checkProd) {
                     $this->categoriesData[$k][$key]['tpl'] = '';
                 }
-                
             }
-            
         }
-        
+
         if ($this->categoriesData) {
             foreach ($this->categoriesData as $data) {
                 $this->ci->db->update_batch('shop_category', $data, 'id');
@@ -91,7 +93,6 @@ class DemodataCategoriestemplates extends DemodataDirector {
             $categories = array();
         }
 
-
         foreach ($categories as $category) {
             $full_path_ids = unserialize($category['full_path_ids']);
             $level_number = count($full_path_ids) + 1;
@@ -101,5 +102,3 @@ class DemodataCategoriestemplates extends DemodataDirector {
     }
 
 }
-
-?>

@@ -379,5 +379,3 @@ class Sitemap_model extends CI_Model {
     }
 
 }
-
-?>

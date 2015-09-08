@@ -29,7 +29,7 @@ class Banners extends BaseBanners {
      * @param array $param
      */
     public function setEffects(array $param) {
-        parent::setEffects((string)(new \Banners\Entities\BannerEffects($param)));
+        parent::setEffects((string) (new \Banners\Entities\BannerEffects($param)));
     }
 
     /**
@@ -46,7 +46,8 @@ class Banners extends BaseBanners {
      */
     public function asArray() {
         $banner = array_merge(
-            $this->toArray(), $this->getCurrentTranslation()->toArray()
+            $this->toArray(),
+            $this->getCurrentTranslation()->toArray()
         );
         $this->initBannersI18ns();
         $imagesArray = [];

@@ -3,7 +3,7 @@
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /**
- * Image CMS 
+ * Image CMS
  * Sample Module Admin
  */
 class Admin extends BaseAdminController {
@@ -18,8 +18,9 @@ class Admin extends BaseAdminController {
         /** Для начала соберем уже сохраненную информацию з таблицы */
         $settings = $this->db->get('mod_sample_settings')->result();
         /** И соберем её в массив для передачи у вид (шаблон) */
-        foreach ($settings as $item)
+        foreach ($settings as $item) {
             $data[$item->name] = $item->value;
+        }
 
         /** Класс для управления шаблоном */
         \CMSFactory\assetManager::create()

@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Image CMS
@@ -21,15 +22,17 @@ class Admin extends BaseAdminController {
     }
 
     // Find templates and redner list of first template folder
+
     public function index() {
         $this->render('index');
     }
 
     public function render($tpl) {
-        if ($this->ajaxRequest)
+        if ($this->ajaxRequest) {
             echo $this->fetch_tpl($tpl);
-        else
+        } else {
             $this->display_tpl($tpl);
+        }
     }
 
     /**

@@ -721,6 +721,7 @@ class Core extends MY_Controller {
      * Run module
      *
      * @access private
+     * @param integer $n
      * @return bool
      */
     private function is_module($n) {
@@ -823,6 +824,7 @@ class Core extends MY_Controller {
      * Grab uri segments to args array
      *
      * @access public
+     * @param integer $n
      * @return array
      */
     public function grab_variables($n) {

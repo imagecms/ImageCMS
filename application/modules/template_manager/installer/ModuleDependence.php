@@ -11,39 +11,38 @@ class ModuleDependence extends DependenceBase {
 
     /**
      * Module relation (required, wishful, add)
-     * @var string 
+     * @var string
      */
     public $relation;
 
     /**
      * Module name
-     * @var string 
+     * @var string
      */
     public $name;
 
     /**
      * Type (widget, module)
-     * @var string 
+     * @var string
      */
     public $type;
 
     /**
      * Dependency SimpleXMLElement node
-     * @var \SimpleXMLElement 
+     * @var \SimpleXMLElement
      */
     public $node;
-    
 
     public function __construct(\SimpleXMLElement $node) {
         $attributes = $node->attributes();
-        
-       /**
+
+        /**
         * Set module attributes
         */
         $this->relation = (string) $attributes['type'];
         $this->name = (string) $attributes['name'];
         $this->type = (string) $attributes['entityName'];
-        
+
         $this->ci = & get_instance();
     }
 
@@ -69,9 +68,9 @@ class ModuleDependence extends DependenceBase {
      */
     private function getModules() {
         $components = \CI::$APP->db
-                ->select('identif')
-                ->get('components')
-                ->result_array();
+            ->select('identif')
+            ->get('components')
+            ->result_array();
 
         $this->components = array();
         foreach ($components as $row) {
@@ -135,5 +134,3 @@ class ModuleDependence extends DependenceBase {
     }
 
 }
-
-?>

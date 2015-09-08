@@ -194,4 +194,3 @@ class MY_Lang extends CI_Lang {
     }
 
 }
-

@@ -3,11 +3,13 @@
 class CForm_Select {
 
     public $ci = NULL;
+
     public $name = '';
+
     public $field = NULL;
 
-    public function __construct($name, $field = array())
-    {
+    public function __construct($name, $field = array()) {
+
         $this->form =& get_instance();
         $this->form = $this->form->load->module('forms');
 
@@ -17,37 +19,36 @@ class CForm_Select {
         return $this;
     }
 
-    public function render()
-    {
+    public function render() {
+
         $this->field->html = $this->renderHtml();
         $result = $this->form->standartRender($this->name, $this->field);
         return $result;
     }
 
-    public function setInitial($data)
-    {
-        $this->field->initial = $data;  
+    public function setInitial($data) {
+
+        $this->field->initial = $data;
     }
 
-    public function setAttributes($data)
-    {
+    public function setAttributes($data) {
+
         $this->field->selected = $data;
     }
 
-    public function getData()
-    {
-        if (isset($_POST[$this->name]))
+    public function getData() {
+
+        if (isset($_POST[$this->name])) {
             return $_POST[$this->name];
+        }
     }
 
-    public function runValidation()
-    {
-        if ($this->field->validation)
-        {
+    public function runValidation() {
+
+        if ($this->field->validation) {
             $this->form->form_validation->set_rules($this->name, $this->field->label, $this->field->validation);
-             
-            if ($this->form->form_validation->run($this->ci) == FALSE)
-            { 
+
+            if ($this->form->form_validation->run($this->ci) == FALSE) {
                 return form_error($this->name, ' ', ' ');
             }
             else
@@ -57,43 +58,38 @@ class CForm_Select {
         }
     }
 
-    public function renderHtml()
-    {
+    public function renderHtml() {
+
         $name = $this->name;
 
-        if (is_string($this->field->initial))
-        {
+        if (is_string($this->field->initial)) {
             $this->field->initial = explode("\n", $this->field->initial);
         }
 
-        if (is_string($this->field->selected))
-        {
+        if (is_string($this->field->selected)) {
             $this->field->selected = explode("\n", $this->field->selected);
         }
 
-        if (!isset($this->field->selected))
+        if (!isset($this->field->selected)) {
             $this->field->selected = array();
+        }
 
-        if (isset($this->field->multiple) AND $this->field->multiple == TRUE)
-        {
+        if (isset($this->field->multiple) AND $this->field->multiple == TRUE) {
             $multiple = 'multiple="multiple"';
             $name .= '[]';
         }
 
         $select = '<select '.$this->form->_check_attr($name, $this->field).' '.$multiple.'>';
 
-        if (isset($this->field->initial) AND count($this->field->initial))
-        {
+        if (isset($this->field->initial) AND count($this->field->initial)) {
             foreach ($this->field->initial as $key => $val)
             {
-                if(trim($val) != '')
-                {
+                if(trim($val) != '') {
                     $selected = '';
-                
+
                     foreach ($this->field->selected as $s_key => $s_val)
                     {
-                        if ($s_val == $key)
-                        {
+                        if ($s_val == $key) {
                             $selected = 'selected="selected"';
                         }
                     }
@@ -103,7 +99,7 @@ class CForm_Select {
             }
         }
 
-        return $select.'</select>'; 
+        return $select.'</select>';
     }
 
 }

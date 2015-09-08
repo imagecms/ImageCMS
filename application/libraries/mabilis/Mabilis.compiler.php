@@ -1,13 +1,13 @@
 <?php
 
-/** *************************************************
+/** * ************************************************
  * Image CMS Template Engine (Mabilis TPL)
  *
  * Simple template engine for Image CMS based on regular expressions search and replace.
  *
  * @author <dev@imagecms.net>
  * @version 0.3 PHP5
- ************************************************* */
+ * ************************************************ */
 class Mabilis_Compiler extends Mabilis {
 
     public $config = NULL;
@@ -31,7 +31,7 @@ class Mabilis_Compiler extends Mabilis {
      * Compile template file to php code
      *
      * @access public
-     * @param string template filename
+     * @param string $file filename
      */
     public function compile($file) {
         // Read template data
@@ -128,7 +128,7 @@ class Mabilis_Compiler extends Mabilis {
             $tpl_data = preg_replace_callback(
                 "/<\?php.*include\_tpl.*\((.*)\).*\?>/",
                 function ($arr) use ($curFilePath) {
-                    return '<?php $this->include_tpl(' . $arr[1] . ', \'' . $curFilePath . '\'); ?>';
+                        return '<?php $this->include_tpl(' . $arr[1] . ', \'' . $curFilePath . '\'); ?>';
                 },
                 $tpl_data
             );
@@ -136,7 +136,7 @@ class Mabilis_Compiler extends Mabilis {
             $tpl_data = preg_replace_callback(
                 '/<\?php.*include\_shop\_tpl.*\((.*)\).*\?>/',
                 function ($arr) use ($curFilePath) {
-                    return '<?php $this->include_shop_tpl(' . $arr[1] . ', \'' . $curFilePath . '\'); ?>';
+                        return '<?php $this->include_shop_tpl(' . $arr[1] . ', \'' . $curFilePath . '\'); ?>';
                 },
                 $tpl_data
             );

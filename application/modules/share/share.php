@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /**
  * Image CMS
@@ -12,6 +13,7 @@ if (!defined('BASEPATH'))
 class Share extends MY_Controller {
 
     public $settings = array();
+
     public static $i;
 
     public function __construct() {
@@ -28,10 +30,13 @@ class Share extends MY_Controller {
      * Default function to access module by URL
      */
     public function index() {
-//        return false;
-        $this->template->add_array('ss', array(
+        //        return false;
+        $this->template->add_array(
+            'ss',
+            array(
             'html' => $this->_make_share_form(),
-        ));
+            )
+        );
     }
 
     public function _install() {
@@ -111,13 +116,16 @@ class Share extends MY_Controller {
 
     public function _make_like_buttons_vk($url = '') {
         self::$i++;
-$settings = $this->settings;
+        $settings = $this->settings;
 
         if ($settings['vk_like'] == 1 && $settings['vk_apiid']) {
-            \CI_Controller::get_instance()->template->registerJsScript("<script type='text/javascript' src='//vk.com/js/api/openapi.js?101'></script>
+            \CI_Controller::get_instance()->template->registerJsScript(
+                "<script type='text/javascript' src='//vk.com/js/api/openapi.js?101'></script>
                         <script type='text/javascript'>
                           VK.init({apiId: '{$settings['vk_apiid']}', onlyWidgets: true});
-                        </script>", 'before');
+                        </script>",
+                'before'
+            );
 
             return $string['vk'] = "<!-- Put this div tag to the place, where the Like block will be -->
                         <div id='vk_like" . self::$i . "'></div>
@@ -136,9 +144,12 @@ $settings = $this->settings;
         $settings = $this->settings;
 
         if ($settings['gg_like'] == 1) {
-            \CI_Controller::get_instance()->template->registerJsScript("<script type='text/javascript' src='https://apis.google.com/js/plusone.js'>
+            \CI_Controller::get_instance()->template->registerJsScript(
+                "<script type='text/javascript' src='https://apis.google.com/js/plusone.js'>
                           {lang: 'ru', parsetags: 'explicit' }
-                        </script>", 'before');
+                        </script>",
+                'before'
+            );
             return $string['google'] = "
                         <!-- Place this tag where you want the +1 button to render. -->
                         <div class='g-plusone' data-size='medium' data-href='$url'></div>
@@ -152,8 +163,11 @@ $settings = $this->settings;
         $settings = $this->settings;
 
         if ($settings['twitter_like'] == 1) {
-            \CI_Controller::get_instance()->template->registerJsScript('<script async="async" defer="defer">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id))
-                    {js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>', 'before');
+            \CI_Controller::get_instance()->template->registerJsScript(
+                '<script async="async" defer="defer">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id))
+                    {js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></li>',
+                'before'
+            );
             return $string['twitter'] = '<a href="https://twitter.com/share" class="twitter-share-button" data-url="' . $url . '">Tweet</a>';
         }
     }

@@ -3,7 +3,7 @@
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /**
- * Image CMS 
+ * Image CMS
  * Sample Module Admin
  */
 class Admin extends BaseAdminController {
@@ -15,7 +15,7 @@ class Admin extends BaseAdminController {
     }
 
     public function index() {
-        
+
     }
 
 }

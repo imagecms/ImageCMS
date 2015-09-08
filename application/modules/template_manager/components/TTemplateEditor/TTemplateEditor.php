@@ -39,5 +39,3 @@ class TTemplateEditor extends \template_manager\classes\TComponent {
     }
 
 }
-
-?>

@@ -11,67 +11,67 @@ class WidgetDependence extends DependenceBase {
 
     /**
      * Widget relation (required, wishful, add)
-     * @var string 
+     * @var string
      */
     public $relation;
 
     /**
      * Widget name
-     * @var string 
+     * @var string
      */
     public $name;
 
     /**
      * Type (widget, module)
-     * @var string 
+     * @var string
      */
     public $type;
 
     /**
      * Dependency SimpleXMLElement node
-     * @var \SimpleXMLElement 
+     * @var \SimpleXMLElement
      */
     public $node;
 
     /**
      * Method name for module widget
-     * @var string 
+     * @var string
      */
     private $method;
 
     /**
      * Widget desctiption
-     * @var string 
+     * @var string
      */
     private $description;
 
     /**
      * Module name for module widget
-     * @var string 
+     * @var string
      */
     private $module;
 
     /**
      * Widget type (module, html)
-     * @var string 
+     * @var string
      */
     private $widgetType;
 
     /**
      * Module settings for module widget
-     * @var string 
+     * @var string
      */
     private $moduleSettings;
 
     /**
      * Widget locale
-     * @var string 
+     * @var string
      */
     private $locale;
 
     /**
      * Check install demodata or not
-     * @var type 
+     * @var type
      */
     private $rewriteData;
 
@@ -118,9 +118,9 @@ class WidgetDependence extends DependenceBase {
      */
     private function getWidgets() {
         $widgets = \CI::$APP->db
-                ->select('name')
-                ->get('widgets')
-                ->result_array();
+            ->select('name')
+            ->get('widgets')
+            ->result_array();
 
         $this->widgets = array();
         foreach ($widgets as $row) {
@@ -142,16 +142,14 @@ class WidgetDependence extends DependenceBase {
                     if (isset($this->node->settings)) {
                         foreach ((array) $this->node->settings as $settingName => $settingValue) {
                             if (isset($settingValue->settings)) {
-                                foreach ((array)$settingValue->settings as $settingNameInc => $settingInc){
+                                foreach ((array) $settingValue->settings as $settingNameInc => $settingInc) {
                                     $settingInc = trim($settingInc);
-                                    if(strstr($settingNameInc, 'number')){
-                                        $this->moduleSettings[$settingName][(int)str_replace('number', '', $settingNameInc)] = $settingInc;
-                                    }else{
+                                    if (strstr($settingNameInc, 'number')) {
+                                        $this->moduleSettings[$settingName][(int) str_replace('number', '', $settingNameInc)] = $settingInc;
+                                    } else {
                                         $this->moduleSettings[$settingName][$settingNameInc] = $settingInc;
                                     }
-                                    
                                 }
-                                
                             } else {
                                 $this->moduleSettings[$settingName] = trim($settingValue);
                             }
@@ -177,7 +175,6 @@ class WidgetDependence extends DependenceBase {
                 'description' => $this->description,
                 'created' => time()
             );
-
 
             if ($this->rewriteData) {
                 \CI::$APP->db->where('name', $data['name'])->delete('widgets');
@@ -216,7 +213,6 @@ class WidgetDependence extends DependenceBase {
                 $result = \CI::$APP->db->insert_batch('widget_i18n', $data_i18n);
             }
 
-
             if ($result == FALSE) {
                 $this->messages[] = lang('Error on adding to DB', 'template_manager');
                 return FALSE;
@@ -250,5 +246,3 @@ class WidgetDependence extends DependenceBase {
     }
 
 }
-
-?>

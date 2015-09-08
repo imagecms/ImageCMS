@@ -5,14 +5,14 @@ namespace template_manager\classes;
 /**
  * Class for working with template archive
  * Template archive must always be zip-type
- * 
+ *
  * Can return some information about template (name, color schemes...)
  */
 class TArchive {
 
     /**
-     * 
-     * @var \ZipArchive 
+     *
+     * @var \ZipArchive
      */
     private $zip;
 
@@ -42,7 +42,7 @@ class TArchive {
     private $components = array();
 
     /**
-     * 
+     *
      * @param string $zipPath
      * @throws \Exception
      */
@@ -91,7 +91,7 @@ class TArchive {
     }
 
     /**
-     * 
+     *
      * @return \ZipArchive
      */
     public function getZipHandler() {
@@ -99,7 +99,7 @@ class TArchive {
     }
 
     /**
-     * 
+     *
      * @return null|string null if error in structure of archive or template name
      */
     public function getTemplateName() {
@@ -107,7 +107,7 @@ class TArchive {
     }
 
     /**
-     * 
+     *
      * @return null|array null if error in structure of archive or array with color schemes
      */
     public function getColorSchemes() {
@@ -118,7 +118,7 @@ class TArchive {
     }
 
     /**
-     * 
+     *
      * @return null|array null if error in structure of archive or array with components
      */
     public function getComponents() {
@@ -159,8 +159,9 @@ class TArchive {
         for ($i = 0; $i < $this->zip->numFiles; $i++) {
             $pathString = $this->zip->getNameIndex($i);
             $isDir = strrpos($pathString, '/') == strlen($pathString) - 1 ? true : false;
-            if ($isDir)
+            if ($isDir) {
                 $pathString = rtrim($pathString, '/');
+            }
             $pathArray = explode('/', $pathString);
             $this->add($pathArray, $isDir, $this->tree);
         }
@@ -186,7 +187,4 @@ class TArchive {
         }
     }
 
-    
 }
-
-?>

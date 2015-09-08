@@ -1,23 +1,27 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+
+if (!defined('BASEPATH')) {
+    exit('No direct script access allowed');
+}
 
 /**
  * Image CMS
  */
-
 class Template_editor extends MY_Controller {
 
-	public function __construct()
-	{
-		parent::__construct();
-                $lang = new MY_Lang();
-                $lang->load('template_editor');
-	}
+    public function __construct() {
 
-	// Index function
-	public function index()
-	{
+        parent::__construct();
+        $lang = new MY_Lang();
+        $lang->load('template_editor');
+    }
+
+    // Index function
+
+    public function index() {
+
         //code
-	}
+    }
 
 }
 

@@ -25,14 +25,15 @@ class Admin extends BaseAdminController {
      */
     public function ajaxGetProductList($type = NULL) {
         $products = new SProductsQuery;
-        $main_product_id = (int)$this->input->get('product_id');
+        $main_product_id = (int) $this->input->get('product_id');
         $search_forbidden = $this->related_products_model->getRelatedProdyctsIds($main_product_id);
         $search_forbidden[] = $main_product_id;
 
         if (!empty(ShopCore::$_GET['term'])) {
             $text = ShopCore::$_GET['term'];
-            if (!strpos($text, '%'))
+            if (!strpos($text, '%')) {
                 $text = '%' . $text . '%';
+            }
             if ($type != 'number') {
                 $products = $products
                     ->filterById(ShopCore::$_GET['term'])

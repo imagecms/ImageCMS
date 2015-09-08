@@ -34,9 +34,8 @@ class Related_products extends MY_Controller {
         $ci = & get_instance();
         $lang = new MY_Lang();
         $lang->load('related_products');
-        include_once('models/related_products_model.php');
+        include_once 'models/related_products_model.php';
         $related_products_model = new Related_products_model();
-
 
         if ($_POST) {
             $post = $ci->input->post('related_products');
@@ -47,10 +46,12 @@ class Related_products extends MY_Controller {
         } else {
             $related_products = $related_products_model->getProducts($data['model']->getId());
             $view = \CMSFactory\assetManager::create()
-                    ->setData(array(
+                    ->setData(
+                        array(
                         'related_products' => $related_products,
                         'product' => $data['model']
-                    ))
+                        )
+                    )
                     ->registerScript('scripts')
                     ->fetchAdminTemplate('products_extend');
 
@@ -62,10 +63,10 @@ class Related_products extends MY_Controller {
     /**
      * Get related products array
      * @param int $product_id - main product id
-     * 
+     *
      * Use in template to show:
      * {echo $CI->load->module('related_products')->getRelatedProducts($product_id)}
-     * 
+     *
      * @return array
      */
     public function getRelatedProducts($product_id) {
@@ -88,13 +89,13 @@ class Related_products extends MY_Controller {
     }
 
     /**
-     * Render related products tpl 
+     * Render related products tpl
      * @param int $product_id - main product id
      * @param string $tpl - template name
-     * 
+     *
      * Use in template to show:
      * {echo $CI->load->module('related_products')->show($product_id)}
-     * 
+     *
      * @return string
      */
     public function show($product_id, $tpl = 'related_products') {
@@ -103,9 +104,11 @@ class Related_products extends MY_Controller {
 
             if (count($related_products)) {
                 $view = \CMSFactory\assetManager::create()
-                        ->setData(array(
+                        ->setData(
+                            array(
                             'related_products' => $related_products
-                        ))
+                            )
+                        )
                         ->fetchTemplate($tpl);
 
                 return $view;
@@ -118,10 +121,10 @@ class Related_products extends MY_Controller {
      * Render related products tpl with color custom field
      * @param int $product_id - main product id
      * @param string $tpl - template name
-     *  
+     *
      * Use in template to show:
      * {echo $CI->load->module('related_products')->showByColorCustomField($product_id)}
-     * 
+     *
      * @return string
      */
     public function showByColorCustomField($product_id, $tpl = 'color_custom_field') {
@@ -133,7 +136,7 @@ class Related_products extends MY_Controller {
     }
 
     public function autoload() {
-        
+
     }
 
     public function _install() {

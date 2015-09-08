@@ -264,4 +264,3 @@ class Native_session {
     }
 
 }
-

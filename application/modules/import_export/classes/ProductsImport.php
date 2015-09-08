@@ -112,19 +112,23 @@ class ProductsImport extends BaseImport {
 
     /**
      * Run Product Update Query
-     * @param array $arg Processed arguments list
-     * @return bool
+     * @param integer $productId
+     * @param array   $arg         Processed arguments list
+     * @param boolean $EmptyFields
+     * @return array|void
      * @author Kaero
      * @access private
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
      */
     public function runProductUpdateQuery($productId, $arg, $EmptyFields) {
+        $insertData = [];
+
         if ($arg['url'] != '') {
             $arg['url'] = $this->urlCheck($arg['url'], $productId);
         }
 
         if ($arg['imgs'] != '') {
-            $arg['imgs'] = $this->runAditionalImages($arg, $productId);
+            $this->runAditionalImages($arg, $productId);
         }
 
         if (isset($arg['name']) && $arg['name'] == '') {
@@ -140,7 +144,7 @@ class ProductsImport extends BaseImport {
         }
 
         /* START product Update query block */
-        $prepareNames = $binds = $updateData = array();
+        $prepareNames = $binds = $updateData = [];
 
         $productAlias = array(
             'act' => 'active',
@@ -168,8 +172,8 @@ class ProductsImport extends BaseImport {
             }
         }
 
-        $prepareNames = array_merge($prepareNames, array('updated'));
-        $binds = array_merge($binds, array('updated' => date('U')));
+        $prepareNames = array_merge($prepareNames, ['updated']);
+        $binds = array_merge($binds, ['updated' => date('U')]);
 
         foreach ($prepareNames as $value) {
             $updateData[] = $value . '="' . $binds[$value] . '"';
@@ -230,17 +234,16 @@ class ProductsImport extends BaseImport {
 
     /**
      * Run Product Variant Update Query
-     * @param array $arg Processed arguments list
-     * @param int $productId Product Id for alias
-     * @return bool
+     * @param array   $arg         Processed arguments list
+     * @param integer $productId   Product Id for alias
+     * @param boolean $EmptyFields
+     * @return boolean
      * @access private
      * @author Kaero
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
      */
     private function runProductVariantUpdateQuery(&$arg, &$productId, $EmptyFields) {
         /* START product variant insert query block */
-        //        if ($arg['name'] == '')
-        //            return;
 
         $prepareNames = $binds = $updateData = array();
 
@@ -350,8 +353,9 @@ class ProductsImport extends BaseImport {
 
     /**
      * Run Product Insert Query
-     * @param array $arg Processed arguments list
-     * @return bool
+     * @param array   $arg         Processed arguments list
+     * @param boolean $EmptyFields
+     * @return boolean
      * @author Kaero
      * @access private
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
@@ -478,9 +482,9 @@ class ProductsImport extends BaseImport {
 
     /**
      * Run Product Variant Insert Query
-     * @param array $arg Processed arguments list
-     * @param int $productId Product Id for alias
-     * @return bool
+     * @param array   $arg       Processed arguments list
+     * @param integer $productId Product Id for alias
+     * @return boolean
      * @access private
      * @author Kaero
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
@@ -561,8 +565,8 @@ class ProductsImport extends BaseImport {
 
     /**
      * Update Shop Products Categories
-     * @param array $arg Processed arguments list
-     * @param int $productId Product Id for alias
+     * @param array   $arg       Processed arguments list
+     * @param integer $productId Product Id for alias
      * @return boolean|null
      * @author Kaero
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
@@ -749,8 +753,8 @@ class ProductsImport extends BaseImport {
 
     /**
      * Save the picture on coal in the original folder or the origin/additional
-     * @param str $param url
-     * @param str $type (origin|additional)
+     * @param string $param url
+     * @param string $type  (origin|additional)
      * @return boolean|string Name of file OR False
      * @access private
      */
@@ -820,9 +824,9 @@ class ProductsImport extends BaseImport {
 
     /**
      * Does not allow duplicate url
-     * @param string $url
-     * @param int $id
-     * @param string $name
+     * @param string  $url
+     * @param integer $id
+     * @param string  $name
      * @return string
      */
     public function urlCheck($url, $id = '', $name = '') {
@@ -851,15 +855,15 @@ class ProductsImport extends BaseImport {
      * If the file is in the folder origin/additional, then copied to the original and
      * entered into the db. If the file does not exist in the folder origin/additional
      * but already exists in the original, just entered into the database
-     * @param array $arg
-     * @param int $id
+     * @param array   $arg
+     * @param integer $id
      */
     public function runAditionalImages($arg, $id) {
-        $this->db->delete('shop_product_images', array('product_id' => $id));
+        $this->db->delete('shop_product_images', ['product_id' => $id]);
 
         $arg['imgs'] = explode('|', $arg['imgs']);
 
-        if ($arg['imgs'] != array()) {
+        if ($arg['imgs'] != []) {
             foreach ((array) $arg['imgs'] as $key => $img) {
                 $this->db->set('product_id', $id);
                 $img = trim($img);

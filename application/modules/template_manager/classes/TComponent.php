@@ -63,16 +63,19 @@ abstract class TComponent {
     public function setParams($params = array()) {
         if (is_array($params) && !empty($params)) {
             \CI::$APP->db->where('component', $this->name)
-                    ->where_in('key', array_keys($params))
-                    ->delete('template_settings');
+                ->where_in('key', array_keys($params))
+                ->delete('template_settings');
 
             foreach ($params as $key => $value) {
                 \CI::$APP->db
-                        ->insert('template_settings', array(
+                    ->insert(
+                        'template_settings',
+                        array(
                             'component' => $this->name,
                             'key' => $key,
                             'data' => $value
-                ));
+                            )
+                    );
             }
             return TRUE;
         } else {
@@ -91,8 +94,8 @@ abstract class TComponent {
             self::$componentsData[$this->name] = array();
 
             $result = \CI::$APP->db
-                    ->where('component', $this->name)
-                    ->get('template_settings');
+                ->where('component', $this->name)
+                ->get('template_settings');
 
             if ($result->num_rows > 0) {
                 $result = $result->result_array();
@@ -163,6 +166,5 @@ abstract class TComponent {
      * @return string html
      */
     abstract public function renderAdmin();
-}
 
-?>
+}

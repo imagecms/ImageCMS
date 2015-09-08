@@ -12,7 +12,7 @@ class Search_model extends CI_Model {
 
     /**
      * Current locale
-     * @var int
+     * @var string
      */
     public $locale;
 

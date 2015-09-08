@@ -11,12 +11,16 @@ class DemodataCustomfields extends DemodataDirector {
 
     /**
      * DemodataBanners SimpleXMLElement node
-     * @var \SimpleXMLElement 
+     * @var \SimpleXMLElement
      */
     public $node;
+
     private $fieldData = array();
+
     private $fieldI18nData = array();
+
     private $fieldTypes = array('text' => 0, 'textarea' => 1, 'file' => 3);
+
     private $ci;
 
     public function __construct(\SimpleXMLElement $node) {
@@ -80,5 +84,3 @@ class DemodataCustomfields extends DemodataDirector {
     }
 
 }
-
-?>

@@ -46,6 +46,7 @@
     <rule ref="Generic.Debug.CSSLint"/>
     <rule ref="Generic.Files.ByteOrderMark"/>
     <rule ref="Generic.Files.EndFileNoNewline"/>
+    <rule ref="Generic.Files.LineEndings"/>
     <rule ref="Generic.Formatting.DisallowMultipleStatements"/>
     <rule ref="Generic.Formatting.MultipleStatementAlignment"/>
     <rule ref="Generic.Formatting.SpaceAfterCast"/>
@@ -64,7 +65,12 @@
             <property name="error" value="false"/>
         </properties>
     </rule>
+    <rule ref="Generic.Strings.UnnecessaryStringConcat"/>
     <rule ref="Generic.WhiteSpace.ScopeIndent"/>
+    <rule ref="MySource.Channels.DisallowSelfActions"/>
+    <rule ref="MySource.Channels.IncludeOwnSystem"/>
+    <rule ref="MySource.Channels.UnusedSystem"/>
+    <rule ref="MySource.PHP.AjaxNullComparison"/>
     <rule ref="MySource.PHP.EvalObjectFactory"/>
     <rule ref="MySource.PHP.ReturnFunctionValue"/>
     <rule ref="MySource.PHP.AjaxNullComparison"/>
@@ -88,6 +94,7 @@
     <rule ref="Squiz.PHP.Eval"/>
     <rule ref="Squiz.PHP.ForbiddenFunctions"/>
     <rule ref="Squiz.PHP.GlobalKeyword"/>
+    <rule ref="Squiz.PHP.Heredoc"/>
     <rule ref="Squiz.PHP.InnerFunctions"/>
     <rule ref="Squiz.PHP.LowercasePHPFunctions"/>
     <rule ref="Squiz.PHP.NonExecutableCode"/>
@@ -115,4 +122,5 @@
     </rule>
     <rule ref="ImageCMS.Globals.MakeSafeGlobals"/>
     <rule ref="Zend.Files.ClosingTag"/>
+    <rule ref="Zend.Debug.CodeAnalyzer"/>
 </ruleset>

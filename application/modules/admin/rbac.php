@@ -61,5 +61,3 @@ class Rbac extends BaseAdminController {
     }
 
 }
-
-?>

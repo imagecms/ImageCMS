@@ -14,8 +14,6 @@ class Mabilis {
 
     private $config = NULL;
 
-    private $arr = NULL;
-
     public function __construct(&$config = array()) {
         $this->load_config($config);
     }
@@ -73,6 +71,7 @@ class Mabilis {
         }
 
         // Time to live expried
+        /* @var $mabilis_ttl integer */
         if ($mabilis_ttl <= time()) {
             @unlink($compiled_file);
         }

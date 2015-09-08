@@ -17,25 +17,25 @@ abstract class DependenceBase {
 
     /**
      * SimpleXMLElement dependence node
-     * @var \SimpleXMLElement 
+     * @var \SimpleXMLElement
      */
     protected $node;
 
     /**
      * Dependence type
-     * @var string 
+     * @var string
      */
     public $type;
 
     /**
      * Dependence name
-     * @var string 
+     * @var string
      */
     public $name;
 
     /**
      * Dependence relation
-     * @var string 
+     * @var string
      */
     public $relation;
 
@@ -52,7 +52,7 @@ abstract class DependenceBase {
 
     /**
      * Verify dependence relations
-     * @return bool 
+     * @return bool
      */
     abstract public function verify();
 
@@ -65,4 +65,3 @@ abstract class DependenceBase {
     }
 
 }
-

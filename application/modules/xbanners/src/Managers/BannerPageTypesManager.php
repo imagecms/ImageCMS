@@ -10,6 +10,7 @@ class BannerPageTypesManager {
     const PAGE_TYPE_PAGE = 'page';
     const PAGE_TYPE_BRAND = 'brand';
     const PAGE_TYPE_SEARCH = 'search';
+
     /**
      * @var BannerPageTypesManager instance
      */
@@ -66,7 +67,6 @@ class BannerPageTypesManager {
                 'class' => NULL
             ],
         ];
-
 
         return $type ? $pageTypes[$type] : $pageTypes;
     }

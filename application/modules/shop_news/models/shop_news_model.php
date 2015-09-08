@@ -54,5 +54,3 @@ class Shop_news_model extends CI_Model {
     }
 
 }
-
-?>

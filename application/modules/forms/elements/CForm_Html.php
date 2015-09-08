@@ -3,11 +3,13 @@
 class CForm_Html {
 
     public $ci = NULL;
+
     public $name = '';
+
     public $field = NULL;
 
-    public function __construct($name, $field = array())
-    {
+    public function __construct($name, $field = array()) {
+
         $this->form =& get_instance();
         $this->form = $this->form->load->module('forms');
 
@@ -17,33 +19,33 @@ class CForm_Html {
         return $this;
     }
 
-    public function render()
-    {
+    public function render() {
+
         return $this->field->initial;
     }
 
-    public function setInitial($data)
-    {
+    public function setInitial($data) {
+
         return;
     }
 
-    public function setAttributes($data)
-    {
+    public function setAttributes($data) {
+
         return;
     }
 
-    public function getData()
-    {
+    public function getData() {
+
         return FALSE;
     }
 
-    public function runValidation()
-    {
+    public function runValidation() {
+
         return FALSE;
     }
 
-    public function renderHtml()
-    {
+    public function renderHtml() {
+
         return $this->field->initial;
     }
 

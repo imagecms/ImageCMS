@@ -1,17 +1,22 @@
 <?php
 
 /**
- * 
+ *
  *
  * @author kolia
  */
 abstract class BaseEntity {
 
     protected $pattern;
+
     protected $h1;
+
     protected $metaTitle;
+
     protected $metaKeywords;
+
     protected $metaDescription;
+
     protected $text;
 
     public function getPattern() {

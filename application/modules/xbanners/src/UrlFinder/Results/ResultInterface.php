@@ -6,7 +6,6 @@ interface ResultInterface {
 
     public function __construct($groupName);
 
-    
     /**
      * @param string $name
      * @param string $url
@@ -27,4 +26,5 @@ interface ResultInterface {
      * @return array
      */
     public function toArray();
+
 }
