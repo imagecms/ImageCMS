@@ -197,8 +197,12 @@ class Mabilis_Compiler extends Mabilis {
         }
     }
 
-    // Read template file
-
+    /**
+     * Read template file
+     *
+     * @param string $file
+     * @return boolean|string
+     */
     public function read_tpl_file($file) {
         if (file_exists($file)) {
             return file_get_contents($file);
@@ -208,10 +212,12 @@ class Mabilis_Compiler extends Mabilis {
         }
     }
 
-    // Write compiled template file
-
     /**
+     * Write compiled template file
+     *
+     * @param string $file
      * @param string $data
+     * @return boolean
      */
     private function write_compiled_file($file, $data) {
         if (!$fp = fopen($this->config->compile_path . md5($file) . $this->config->compiled_ext, 'w')) {

@@ -76,7 +76,7 @@ class Ymarket extends ShopController {
      * Generates an array of data to create a body xml
      *
      * @param boolean $ignoreSettings
-     * @param boolean $flagPriceUa
+     * @param integer $type
      */
     public function index($ignoreSettings = false, $type = self::DEFAULT_TYPE) {
         $this->init($ignoreSettings, $type);

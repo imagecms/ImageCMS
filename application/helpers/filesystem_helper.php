@@ -10,7 +10,7 @@ if (!defined('BASEPATH')) {
  *
  * @params strings - ANY NUMBER OF ARGUMENTS
  *
- * @return strin path (with no right slash)
+ * @return string path (with no right slash)
  * @throws \InvalidArgumentException
  * @author ailok
  */

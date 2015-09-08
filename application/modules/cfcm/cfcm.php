@@ -100,7 +100,7 @@ class Cfcm extends MY_Controller {
                 ->order_by('weight', 'ASC')
                 ->get();
 
-            if ($query->num_rows() > 0) {
+            if ($query) {
                 $form_fields = array();
                 $fields = $query->result_array();
 
@@ -366,5 +366,4 @@ class Cfcm extends MY_Controller {
     }
 
 }
-
 /* End of file sample_module.php */
