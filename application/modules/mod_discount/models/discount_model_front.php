@@ -23,7 +23,7 @@ class discount_model_front extends CI_Model {
      */
     public function getDiscount() {
 
-        $locale = \MY_Controller::getCurrentLocale();
+        $locale = MY_Controller::getCurrentLocale();
         $time = time();
         $sql = "select *, mod_shop_discounts.id as ids, mod_shop_discounts.id as id
                 from mod_shop_discounts
@@ -46,8 +46,8 @@ class discount_model_front extends CI_Model {
 
     /**
      * get current type discount
-     * @param (int) $id
-     * @param (string) $type
+     * @param integer $id
+     * @param string $type
      * @return array discount
      */
     public function joinDiscount($id, $type) {
@@ -58,7 +58,7 @@ class discount_model_front extends CI_Model {
 
     /**
      * get product for id
-     * @param (int) $id
+     * @param integer $id
      * @return StdClass product
      */
     public function getProduct($id) {
@@ -69,8 +69,8 @@ class discount_model_front extends CI_Model {
 
     /**
      * get origin product price for id variant
-     * @param (int) $id
-     * @return (float) price
+     * @param integer $id
+     * @return float price
      */
     public function getPrice($id) {
 
@@ -80,8 +80,8 @@ class discount_model_front extends CI_Model {
 
     /**
      * get sum orders paid users
-     * @param (int) $id
-     * @return (float) price
+     * @param integer $id
+     * @return float price
      */
     public function getAmoutUser($id) {
 
@@ -92,9 +92,9 @@ class discount_model_front extends CI_Model {
 
     /**
      * update apply for discount
-     * @param (int) $key
-     * @param (boll) $gift
-     * @return (float) price
+     * @param integer $key
+     * @param boolean $gift
+     * @return float price
      */
     public function updateApply($key, $gift = null) {
 

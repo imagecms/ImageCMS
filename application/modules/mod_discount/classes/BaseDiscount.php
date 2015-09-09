@@ -2,6 +2,13 @@
 
 namespace mod_discount\classes;
 
+use Cart\BaseCart;
+use CI;
+use discount_model_front;
+use MY_Controller;
+use MY_Lang;
+use ShopCore;
+
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
@@ -26,6 +33,78 @@ class BaseDiscount {
     private static $userId;
 
     private static $moduleInstalled;
+
+    /**
+     *
+     * @var MY_Controller
+     */
+    private $ci;
+
+    /**
+     *
+     * @var BaseCart
+     */
+    private $cart;
+
+    /**
+     *
+     * @var integer
+     */
+    private $userGroupId;
+
+    /**
+     *
+     * @var array
+     */
+    private $cartData;
+
+    /**
+     *
+     * @var type
+     */
+    private $amoutUser;
+
+    /**
+     *
+     * @var array
+     */
+    private $allDiscount;
+
+    /**
+     *
+     * @var array
+     */
+    private $discountType;
+
+    /**
+     *
+     * @var array
+     */
+    private $discountAllOrder;
+
+    /**
+     *
+     * @var array
+     */
+    private $discountComul;
+
+    /**
+     *
+     * @var float
+     */
+    private $discountProductVal;
+
+    /**
+     *
+     * @var float
+     */
+    private $discountGroupUser;
+
+    /**
+     *
+     * @var float
+     */
+    private $discountMax;
 
     /**
      * check_module_install
@@ -87,7 +166,7 @@ class BaseDiscount {
      * @copyright (c) 2013, ImageCMS
      */
     private static function setUserId($userId = null) {
-        self::$userId = $userId ? $userId : \CI::$APP->dx_auth->get_user_id();
+        self::$userId = $userId ? $userId : CI::$APP->dx_auth->get_user_id();
     }
 
     /**
@@ -131,12 +210,12 @@ class BaseDiscount {
      */
     private function __construct() {
         $this->ci = &get_instance();
-        if (\mod_discount\classes\BaseDiscount::checkModuleInstall()) {
+        if (BaseDiscount::checkModuleInstall()) {
             include_once __DIR__ . '/../models/discount_model_front.php';
-            $this->ci->discount_model_front = new \discount_model_front;
-            $lang = new \MY_Lang();
+            $this->ci->discount_model_front = new discount_model_front;
+            $lang = new MY_Lang();
             $lang->load('mod_discount');
-            $this->cart = \Cart\BaseCart::getInstance();
+            $this->cart = BaseCart::getInstance();
             if (!self::$userId) {
                 $this->userGroupId = $this->ci->dx_auth->get_role_id();
                 $this->userId = $this->ci->dx_auth->get_user_id();
@@ -161,7 +240,7 @@ class BaseDiscount {
             }
 
             $this->discountProductVal = (self::$ignoreCart) ? null : $this->getDiscountProducts();
-            $this->discountMax = $this->getMaxDiscount(array($this->discountUser, $this->discountGroupUser, $this->discountComul, $this->discountAllOrder), $this->totalPrice);
+            $this->discountMax = $this->getMaxDiscount([$this->discountUser, $this->discountGroupUser, $this->discountComul, $this->discountAllOrder], $this->totalPrice);
             $this->discountNoProductVal = $this->getDiscountValue($this->discountMax, $this->totalPrice);
         }
     }
@@ -325,7 +404,7 @@ class BaseDiscount {
     }
 
     public function getAppliesLeft($key) {
-        $result = \CI::$APP->db
+        $result = CI::$APP->db
             ->select(array('max_apply', 'count_apply'))
             ->where(array('key' => $key))
             ->get('mod_shop_discounts')
@@ -350,7 +429,7 @@ class BaseDiscount {
     private function getUserDiscount() {
 
         $discountUser = array();
-        foreach ($this->discountType['user'] as $key => $userDisc) {
+        foreach ($this->discountType['user'] as $userDisc) {
             if ($userDisc['user_id'] == $this->userId) {
                 $discountUser[] = $userDisc;
             }
@@ -406,7 +485,7 @@ class BaseDiscount {
      */
     private function getDiscountProducts() {
         foreach ($this->cartData as $item) {
-            $priceOrigin = number_format($item->originPrice, \ShopCore::app()->SSettings->pricePrecision, '.', ''); // new Cart
+            $priceOrigin = number_format($item->originPrice, ShopCore::app()->SSettings->pricePrecision, '.', ''); // new Cart
             if (abs($priceOrigin - $item->price) >= 1) {
                 $discountValue += ($priceOrigin - $item->price) * $item->quantity;
             }
