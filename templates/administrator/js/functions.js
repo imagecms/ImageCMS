@@ -1442,3 +1442,11 @@ var variantInfo = new Object({
 })
 
 window.onload = clone_object();
+
+function disableOnEnterPress(curObj){
+    var code = event.keyCode || event.which;
+    if (code == 13) {
+        event.preventDefault();
+        return false;
+    }
+}

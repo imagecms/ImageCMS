@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . DIRECTORY_SEPARATOR . 'interfaces' . DIRECTORY_SEPARATOR . 'FileImport' . EXT;
+require_once __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'interfaces' . DIRECTORY_SEPARATOR . 'FileImport' . EXT;
 
 /**
  * Class UsersController for mod_stats module
@@ -17,9 +17,9 @@ class UsersController extends ControllerBase implements FileImport {
         parent::__construct($controller);
         $controller->import('traits/DateIntervalTrait.php');
         $this->params = array(
-            'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
-            'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
-            'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
+            'dateFrom' => CI::$APP->input->get('from') ? CI::$APP->input->get('from') : '2005-05-05',
+            'dateTo' => CI::$APP->input->get('to') ? CI::$APP->input->get('to') : date("Y-m-d"),
+            'interval' => CI::$APP->input->get('group') ? CI::$APP->input->get('group') : 'day',
         );
     }
 
@@ -32,7 +32,7 @@ class UsersController extends ControllerBase implements FileImport {
         $this->renderAdmin(
             'online',
             array(
-            'data' => $onlineUsers
+                'data' => $onlineUsers
             )
         );
     }
@@ -42,7 +42,7 @@ class UsersController extends ControllerBase implements FileImport {
      */
     public function history() {
         $this->controller->load->model('attendance_model');
-        $data = $this->controller->attendance_model->getUserHistory($_POST['userId']);
+        $data = $this->controller->attendance_model->getUserHistory(CI::$APP->input->post('userId'));
         $this->controller->assetManager->setData(array('data' => $data));
         $this->controller->assetManager->render('admin/users/history');
     }
@@ -57,7 +57,7 @@ class UsersController extends ControllerBase implements FileImport {
         $this->renderAdmin(
             'info',
             array(
-            'data' => $data
+                'data' => $data
             )
         );
     }
@@ -67,8 +67,8 @@ class UsersController extends ControllerBase implements FileImport {
      */
     public function attendance() {
         // getting view type
-        if (isset($_GET['view_type'])) {
-            $vt = $_GET['view_type'];
+        if (CI::$APP->input->get('view_type')) {
+            $vt = CI::$APP->input->get('view_type');
             $viewType = $vt == 'table' || $vt == 'chart' ? $vt : 'chart';
         } else {
             $viewType = 'table';
@@ -82,8 +82,8 @@ class UsersController extends ControllerBase implements FileImport {
         $this->renderAdmin(
             'attendance',
             array(
-            'data' => $data,
-            'viewType' => $viewType,
+                'data' => $data,
+                'viewType' => $viewType,
             )
         );
     }
@@ -133,17 +133,17 @@ class UsersController extends ControllerBase implements FileImport {
      */
     public function registered() {
         // getting view type
-        if (isset($_GET['view_type'])) {
-            $vt = $_GET['view_type'];
+        if (CI::$APP->input->get('view_type')) {
+            $vt = CI::$APP->input->get('view_type');
             $viewType = $vt == 'table' || $vt == 'chart' ? $vt : 'chart';
         } else {
             $viewType = 'table';
         }
 
         $params = array(
-            'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
-            'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
-            'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
+            'dateFrom' => CI::$APP->input->get('from') ? CI::$APP->input->get('from') : '2005-05-05',
+            'dateTo' => CI::$APP->input->get('to') ? CI::$APP->input->get('to') : date("Y-m-d"),
+            'interval' => CI::$APP->input->get('group') ? CI::$APP->input->get('group') : 'day',
         );
 
         $this->controller->load->model('users_model');
@@ -153,8 +153,8 @@ class UsersController extends ControllerBase implements FileImport {
         $this->renderAdmin(
             'registered',
             array(
-            'data' => $data,
-            'viewType' => $viewType,
+                'data' => $data,
+                'viewType' => $viewType,
             )
         );
     }
@@ -164,9 +164,9 @@ class UsersController extends ControllerBase implements FileImport {
      */
     public function getRegisterData() {
         $params = array(
-            'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
-            'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
-            'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
+            'dateFrom' => CI::$APP->input->get('from') ? CI::$APP->input->get('from') : '2005-05-05',
+            'dateTo' => CI::$APP->input->get('to') ? CI::$APP->input->get('to') : date("Y-m-d"),
+            'interval' => CI::$APP->input->get('group') ? CI::$APP->input->get('group') : 'day',
         );
 
         $this->controller->load->model('users_model');
@@ -182,11 +182,11 @@ class UsersController extends ControllerBase implements FileImport {
         $this->controller->import('classes/ZeroFiller');
         echo json_encode(
             array(
-                    array(
-                        'key' => lang('Registration dynamic', 'mod_stats'),
-                        'values' => ZeroFiller::fill($chartValues, 'x', 'y', isset($_GET['group']) ? $_GET['group'] : 'day')
-                    )
+                array(
+                    'key' => lang('Registration dynamic', 'mod_stats'),
+                    'values' => ZeroFiller::fill($chartValues, 'x', 'y', CI::$APP->input->get('group') ? CI::$APP->input->get('group') : 'day')
                 )
+            )
         );
     }
 
@@ -194,10 +194,10 @@ class UsersController extends ControllerBase implements FileImport {
      *
      */
     public function robots_attendance() {
-        $date = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d');
+        $date = CI::$APP->input->get('date') ? CI::$APP->input->get('date') : date('Y-m-d');
         $this->controller->import('classes/RobotsAttendance');
         $robots = RobotsAttendance::getInstance()->getRobots();
-        $currentRobot = isset($_GET['currentRobot']) ? $_GET['currentRobot'] : $robots[0];
+        $currentRobot = CI::$APP->input->get('currentRobot') ? CI::$APP->input->get('currentRobot') : $robots[0];
 
         $this->controller->load->model('attendance_model');
         $data = $this->controller->attendance_model->getRobotAttendance($currentRobot, $date);
@@ -205,9 +205,9 @@ class UsersController extends ControllerBase implements FileImport {
         $this->renderAdmin(
             'robots_attendance',
             array(
-            'data' => $data,
-            'robots' => $robots,
-            'currentRobot' => $currentRobot
+                'data' => $data,
+                'robots' => $robots,
+                'currentRobot' => $currentRobot
             )
         );
     }

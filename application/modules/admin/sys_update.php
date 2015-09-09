@@ -87,7 +87,7 @@ class Sys_update extends BaseAdminController {
     }
 
     public function restore() {
-        echo $this->update->restoreFromZIP($_POST['file_name']);
+        echo $this->update->restoreFromZIP($this->input->post('file_name'));
     }
 
     public function renderFile() {
@@ -171,7 +171,7 @@ class Sys_update extends BaseAdminController {
     }
 
     public function Querys() {
-        foreach ($_POST['data'] as $query) {
+        foreach ($this->input->post('data') as $query) {
             if ($query) {
                 if (!$this->db->query($query)) {
                     echo 'Невозможно виполнить запрос: <br>';

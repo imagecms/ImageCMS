@@ -76,7 +76,7 @@ class Languages extends BaseAdminController {
         //cp_check_perm('lang_create');
 
         $this->form_validation->set_rules('name', lang("Title", "admin"), 'trim|required|min_length[1]|max_length[100]');
-        $this->form_validation->set_rules('identif', lang("Identifier", "admin"), 'trim|required|min_length[1]|max_length[100]|alpha_dash');
+        $this->form_validation->set_rules('identif', lang("Identifier", "admin"), 'trim|required|min_length[1]|max_length[5]|alpha_dash');
         $this->form_validation->set_rules('image', lang("Image", "admin"), 'max_length[250]');
         $this->form_validation->set_rules('locale', lang("Locale", "admin"), 'required|max_length[250]');
         //        $this->form_validation->set_rules('template', lang("Template", "admin"), 'max_length[250]');
@@ -94,8 +94,6 @@ class Languages extends BaseAdminController {
                 //                'folder' => $this->input->post('folder'),
                 'template' => $this->input->post('template')
             ];
-
-            ($hook = get_hook('admin_language_create')) ? eval($hook) : NULL;
 
             $this->cms_admin->insert_lang($data);
 
@@ -204,17 +202,17 @@ class Languages extends BaseAdminController {
         $templates_dir = './templates';
         $main_dir = './application/language/main';
         $modules_dir = './application/modules';
-        //        $module_content = $this->getPoFileSettingsText($lang, 'module');
+
         $template_content = $this->getPoFileSettingsText($lang, 'template');
         $main_content = $this->getPoFileSettingsText($lang, 'main');
         if (is_dir($templates_dir)) {
             $templates = scandir($templates_dir);
             foreach ($templates as $template) {
-                if (is_dir($templates_dir . '/' . $template) && $template != "." && $template != '..' && $template[0] != '.') {
-                    if (!is_dir($templates_dir . '/' . $template . '/language/' . $template . '/' . $lang)) {
-                        mkdir($templates_dir . '/' . $template . '/language/' . $template . '/' . $lang, 0777);
-                        mkdir($templates_dir . '/' . $template . '/language/' . $template . '/' . $lang . '/' . 'LC_MESSAGES', 0777);
-                        file_put_contents($templates_dir . '/' . $template . '/language/' . $template . '/' . $lang . '/' . 'LC_MESSAGES/' . $template . '.po', $template_content);
+                if (is_dir("$templates_dir/$template") && $template != "." && $template != '..' && $template[0] != '.') {
+                    if (!is_dir("$templates_dir/$template/language/$template/$lang")) {
+                        mkdir("$templates_dir/$template/language/$template/$lang", 0777);
+                        mkdir("$templates_dir/$template/language/$template/$lang/LC_MESSAGES", 0777);
+                        file_put_contents("$templates_dir/$template/language/$template/$lang/LC_MESSAGES/$template.po", $template_content);
                     }
                 }
             }
@@ -385,7 +383,7 @@ class Languages extends BaseAdminController {
         //cp_check_perm('lang_edit');
 
         $this->form_validation->set_rules('lang_name', lang("Title", "admin"), 'trim|required|min_length[1]|max_length[100]');
-        $this->form_validation->set_rules('identif', lang("Identifier", "admin"), 'trim|required|min_length[1]|max_length[100]|alpha_dash');
+        $this->form_validation->set_rules('identif', lang("Identifier", "admin"), 'trim|required|min_length[1]|max_length[5]|alpha_dash');
         $this->form_validation->set_rules('image', lang("Image", "admin"), 'max_length[250]');
         $this->form_validation->set_rules('locale', lang("Locale", "admin"), 'required|max_length[250]');
         //        $this->form_validation->set_rules('template', lang("Template", "admin"), 'max_length[250]');
@@ -407,8 +405,6 @@ class Languages extends BaseAdminController {
                 'template' => $this->input->post('template')
             ];
 
-            ($hook = get_hook('admin_language_update')) ? eval($hook) : NULL;
-
             $this->cms_admin->update_lang($data, $lang_id);
 
             $this->lib_admin->log(lang("Changed a language", "admin") . " " . $data['lang_name']);
@@ -420,7 +416,6 @@ class Languages extends BaseAdminController {
                 $this->renameLocaleFolders($lang['locale'], $post_locale);
                 $this->createLanguageFolders($post_locale);
             }
-            //            $this->deleteLanguageFolders2($post_locale);
 
             showMessage(lang("Changes has been saved", "admin"));
 

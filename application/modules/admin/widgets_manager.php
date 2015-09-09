@@ -131,8 +131,8 @@ class Widgets_manager extends BaseAdminController {
 
                 $currentTemplate = $this->db->get('settings')->row()->site_template;
 
-                if (file_exists(TEMPLATES_PATH . $currentTemplate . '/' . 'patterns/widgets/' . $data['method'] . '.tpl')) {
-                    $tpl_file = TEMPLATES_PATH . $currentTemplate . '/' . 'patterns/widgets/' . $data['method'] . '.tpl';
+                if (file_exists(TEMPLATES_PATH . "$currentTemplate/patterns/widgets/{$data['method']}.tpl")) {
+                    $tpl_file = TEMPLATES_PATH . "$currentTemplate/patterns/widgets/{$data['method']}.tpl";
                 } else {
                     $modulePath = getModulePath($data['data']);
                     $tpl_file = $modulePath . $subpath . 'templates/' . $data['method'] . '.tpl';

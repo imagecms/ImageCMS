@@ -68,7 +68,7 @@ class Dashboard extends BaseAdminController {
         );
 
         // If we are online - load system news.
-        $s_ip = substr($_SERVER['SERVER_ADDR'], 0, strrpos($_SERVER['SERVER_ADDR'], '.'));
+        $s_ip = substr($this->input->server('SERVER_ADDR'), 0, strrpos($this->input->server('SERVER_ADDR'), '.'));
 
         switch ($s_ip) {
             case '127.0.0':
