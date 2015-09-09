@@ -38,73 +38,73 @@ class BaseDiscount {
      *
      * @var MY_Controller
      */
-    private $ci;
+    public $ci;
 
     /**
      *
      * @var BaseCart
      */
-    private $cart;
+    public $cart;
 
     /**
      *
      * @var integer
      */
-    private $userGroupId;
+    public $userGroupId;
 
     /**
      *
      * @var array
      */
-    private $cartData;
+    public $cartData;
 
     /**
      *
-     * @var type
+     * @var double
      */
-    private $amoutUser;
-
-    /**
-     *
-     * @var array
-     */
-    private $allDiscount;
+    public $amoutUser;
 
     /**
      *
      * @var array
      */
-    private $discountType;
+    public $allDiscount;
 
     /**
      *
      * @var array
      */
-    private $discountAllOrder;
+    public $discountType;
 
     /**
      *
-     * @var array
+     * @var array|false
      */
-    private $discountComul;
+    public $discountAllOrder;
+
+    /**
+     *
+     * @var array|false
+     */
+    public $discountComul;
 
     /**
      *
      * @var float
      */
-    private $discountProductVal;
+    public $discountProductVal;
 
     /**
      *
-     * @var float
+     * @var array|false
      */
-    private $discountGroupUser;
+    public $discountGroupUser;
 
     /**
      *
-     * @var float
+     * @var array
      */
-    private $discountMax;
+    public $discountMax;
 
     /**
      * check_module_install

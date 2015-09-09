@@ -70,7 +70,7 @@ class discount_model_front extends CI_Model {
     /**
      * get origin product price for id variant
      * @param integer $id
-     * @return float price
+     * @return string price
      */
     public function getPrice($id) {
 
@@ -93,8 +93,8 @@ class discount_model_front extends CI_Model {
     /**
      * update apply for discount
      * @param integer $key
-     * @param boolean $gift
-     * @return float price
+     * @param boolean|null $gift
+     * @return boolean price
      */
     public function updateApply($key, $gift = null) {
 
@@ -104,7 +104,7 @@ class discount_model_front extends CI_Model {
         $sql = "UPDATE mod_shop_discounts SET count_apply = count_apply + 1 WHERE `key` = '$key' AND max_apply IS NOT NULL";
         $this->db->query($sql);
 
-        if ($gift !== Null) {
+        if ($gift !== null) {
             $this->db->query("update mod_shop_discounts set active = 0 where `key` = '$key'");
         }
 
