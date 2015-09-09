@@ -455,8 +455,7 @@ class Products extends ExchangeBase {
             foreach ($this->productProCats as $key => $newRowData) {
                 $newRowIsReallyNew = TRUE;
                 foreach ($epc as $rowData) {
-                    if ($newRowData['property_id'] == $rowData['property_id'] & $newRowData['category_id'] == $rowData['category_id']
-                    ) {
+                    if ($newRowData['property_id'] == $rowData['property_id'] & $newRowData['category_id'] == $rowData['category_id']) {
                         unset($this->productProCats[$key]);
                         $newRowIsReallyNew = FALSE;
                         break;

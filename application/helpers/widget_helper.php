@@ -18,7 +18,7 @@ if (!function_exists('widget')) {
      * @param integer $cache - cache ttl in minutes
      */
     function widget($name = FALSE, $cache = FALSE) {
-        $ci = & get_instance();
+        $ci = &get_instance();
 
         $query = $ci->db->limit(1)->get_where('widgets', array('name' => $name));
 
@@ -85,7 +85,7 @@ if (!function_exists('widget_ajax')) {
 if (!function_exists('getWidgetName')) {
 
     function getWidgetName($name) {
-        $ci = & get_instance();
+        $ci = &get_instance();
 
         $query = $ci->db->limit(1)->get_where('widgets', array('name' => $name));
 
@@ -105,7 +105,7 @@ if (!function_exists('getWidgetName')) {
 if (!function_exists('getWidgeTitle')) {
 
     function getWidgetTitle($name) {
-        $ci = & get_instance();
+        $ci = &get_instance();
 
         $locale = MY_Controller::getCurrentLocale();
         $query = $ci->db
@@ -114,7 +114,14 @@ if (!function_exists('getWidgeTitle')) {
 
         if ($query->num_rows() == 1) {
             $widget = $query->row_array();
-            return $widget['title'];
+            $title = $widget['title'];
+
+            $settings = @unserialize($widget[settings]);
+            if ($settings) {
+                $title = $settings['title'] ? $settings['title'] : $title;
+            }
+
+            return $title;
         } else {
             log_message('error', 'Can\'t run widget <b>' . $name . '</b>');
         }
@@ -127,7 +134,7 @@ if (!function_exists('getWidgeTitle')) {
 if (!function_exists('getProductViewsCount')) {
 
     function getProductViewsCount() {
-        $ci = & get_instance();
+        $ci = &get_instance();
 
         $views = $ci->session->userdata('page');
 
@@ -141,4 +148,4 @@ if (!function_exists('getProductViewsCount')) {
     }
 
 }
-    /* End of widget_helper.php */
+/* End of widget_helper.php */

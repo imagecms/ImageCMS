@@ -435,29 +435,11 @@ class Template extends Mabilis {
 
         $this->split($this->_css_str);
 
-        if (count($this->_metas) > 0) {
-            foreach ($this->_metas as $code) {
-                if (!strstr(self::$result_before, $code)) {
-                    self::$result_before .= "$code\n";
-                }
-            }
-        }
+        $this->split(array_flip($this->_metas));
 
-        if (count($this->_canonicals) > 0) {
-            foreach ($this->_canonicals as $code) {
-                if (!strstr(self::$result_before, $code)) {
-                    self::$result_before .= "$code\n";
-                }
-            }
-        }
+        $this->split(array_flip($this->_canonicals));
 
-        if (count($this->_links) > 0) {
-            foreach ($this->_links as $code) {
-                if (!strstr(self::$result_before, $code)) {
-                    self::$result_before .= "$code\n";
-                }
-            }
-        }
+        $this->split(array_flip($this->_links));
 
         if (self::$result_before) {
             if ($this->CI->input->is_ajax_request()) {
@@ -480,20 +462,22 @@ class Template extends Mabilis {
 
     /**
      *
-     * @param string $data
+     * @param array $data
      */
     protected function split($data) {
         $count = count($data);
         if ($count > 0) {
             foreach ($data as $str => $pos) {
                 if (!in_array($str, self::$arr) && $str != '') {
-                    switch ($pos) {
+                    switch ((string) $pos) {
                         case 'before':
                             self::$result_before .= $str;
                             break;
+
                         case 'after':
                             self::$result_after .= $str;
                             break;
+
                         default :
                             self::$result_before .= $str;
                             break;

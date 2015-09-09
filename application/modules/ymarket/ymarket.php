@@ -118,9 +118,9 @@ class Ymarket extends ShopController {
         $infoXml['mainCurr'] = $this->mainCurr;
 
         assetManager::create()
-            ->setData('full', $ignoreSettings)
-            ->setData('infoXml', $infoXml)
-            ->render('priceua', true);
+                ->setData('full', $ignoreSettings)
+                ->setData('infoXml', $infoXml)
+                ->render('priceua', true);
     }
 
     /**
@@ -196,9 +196,9 @@ class Ymarket extends ShopController {
         $infoXml['mainCurr'] = $this->mainCurr;
 
         assetManager::create()
-            ->setData('full', $ignoreSettings)
-            ->setData('infoXml', $infoXml)
-            ->render('yandex', true);
+                ->setData('full', $ignoreSettings)
+                ->setData('infoXml', $infoXml)
+                ->render('yandex', true);
     }
 
     /**
@@ -231,14 +231,10 @@ class Ymarket extends ShopController {
             $this->offers[$unique_id]['quantity'] = $variant->getStock();
 
             if ($productFields[$variant->getProductId()]) {
-                if ($productFields[$variant->getProductId()]['country_of_origin']) {
-                    $this->offers[$unique_id]['country_of_origin'] = $productFields[$variant->getProductId()]['country_of_origin'];
-                }
-                if ($productFields[$variant->getProductId()]['manufacturer_warranty']) {
-                    $this->offers[$unique_id]['manufacturer_warranty'] = $productFields[$variant->getProductId()]['manufacturer_warranty'];
-                }
-                if ($productFields[$variant->getProductId()]['seller_warranty']) {
-                    $this->offers[$unique_id]['seller_warranty'] = $productFields[$variant->getProductId()]['seller_warranty'];
+                foreach (['country_of_origin', 'manufacturer_warranty', 'seller_warranty'] as $value) {
+                    if ($productFields[$variant->getProductId()][$value]) {
+                        $this->offers[$unique_id][$value] = $productFields[$variant->getProductId()][$value];
+                    }
                 }
             }
 
@@ -267,20 +263,20 @@ class Ymarket extends ShopController {
             $productsIds[] = $product->getProductId();
         }
         $properties = SPropertiesQuery::create()
-            ->joinSProductPropertiesData()
-            ->joinWithI18n(MY_Controller::getCurrentLocale())
-            ->select(array('SProductPropertiesData.ProductId', 'SProductPropertiesData.Value', 'SPropertiesI18n.Name'))
-            ->where('SProductPropertiesData.ProductId IN ?', $productsIds)
-            ->where('SProductPropertiesData.Locale = ?', MY_Controller::getCurrentLocale())
-            ->withColumn('SProductPropertiesData.ProductId', 'ProductId')
-            ->withColumn('SProductPropertiesData.Value', 'Value')
-            ->withColumn('SPropertiesI18n.Name', 'Name')
-            ->where('SProperties.Active = ?', 1)
-            ->where("SProductPropertiesData.Value != ?", '')
-            ->where('SProperties.ShowOnSite = ?', 1)
-            ->orderByPosition()
-            ->find()
-            ->toArray();
+                ->joinSProductPropertiesData()
+                ->joinWithI18n(MY_Controller::getCurrentLocale())
+                ->select(array('SProductPropertiesData.ProductId', 'SProductPropertiesData.Value', 'SPropertiesI18n.Name'))
+                ->where('SProductPropertiesData.ProductId IN ?', $productsIds)
+                ->where('SProductPropertiesData.Locale = ?', MY_Controller::getCurrentLocale())
+                ->withColumn('SProductPropertiesData.ProductId', 'ProductId')
+                ->withColumn('SProductPropertiesData.Value', 'Value')
+                ->withColumn('SPropertiesI18n.Name', 'Name')
+                ->where('SProperties.Active = ?', 1)
+                ->where("SProductPropertiesData.Value != ?", '')
+                ->where('SProperties.ShowOnSite = ?', 1)
+                ->orderByPosition()
+                ->find()
+                ->toArray();
         $productsData = [];
         array_map(
             function ($property) use (&$productsData) {
@@ -297,13 +293,13 @@ class Ymarket extends ShopController {
         );
         $productsData = array_map(
             function ($property) {
-                return array_map(
-                    function ($propertyValues) {
-                        $propertyValues['value'] = implode(', ', $propertyValues['value']);
-                        return $propertyValues;
-                    },
-                    $property
-                );
+                    return array_map(
+                        function ($propertyValues) {
+                            $propertyValues['value'] = implode(', ', $propertyValues['value']);
+                            return $propertyValues;
+                        },
+                        $property
+                    );
             },
             $productsData
         );
@@ -324,7 +320,7 @@ class Ymarket extends ShopController {
         $productsData = [];
         array_map(
             function ($image) use (&$productsData) {
-                $productsData[$image['product_id']][] = productImageUrl('products/additional/' . $image['image_name']);
+                    $productsData[$image['product_id']][] = productImageUrl('products/additional/' . $image['image_name']);
             },
             $images
         );
@@ -355,12 +351,12 @@ class Ymarket extends ShopController {
 
     public static function adminAutoload() {
         Events::create()
-            ->onShopProductPreUpdate()
-            ->setListener('_extendYmarketPageAdmin');
+                ->onShopProductPreUpdate()
+                ->setListener('_extendYmarketPageAdmin');
 
         Events::create()
-            ->onShopProductUpdate()
-            ->setListener('_extendYmarketPageAdmin');
+                ->onShopProductUpdate()
+                ->setListener('_extendYmarketPageAdmin');
     }
 
     /**
@@ -392,17 +388,17 @@ class Ymarket extends ShopController {
             $fields['manufacturer_warranty'] = self::fromISO8601ToMonths($fields['manufacturer_warranty']);
             $fields['seller_warranty'] = self::fromISO8601ToMonths($fields['seller_warranty']);
             $view = assetManager::create()
-                ->setData(
-                    array(
-                        'countries' => $countries,
-                        'months' => $months,
-                        'fields' => $fields,
+                    ->setData(
+                        array(
+                                'countries' => $countries,
+                                'months' => $months,
+                                'fields' => $fields,
+                            )
                     )
-                )
-                ->registerScript('script')
-                ->fetchAdminTemplate('products_extend');
+                    ->registerScript('script')
+                    ->fetchAdminTemplate('products_extend');
             assetManager::create()
-                ->appendData('moduleAdditions', $view);
+                    ->appendData('moduleAdditions', $view);
         }
     }
 

@@ -486,10 +486,14 @@ class Widgets_manager extends BaseAdminController {
             \CMSFactory\Events::create()->registerEvent(array('widgetId' => $id), 'WidgetModule:preUpdate');
             \CMSFactory\Events::runFactory();
 
+            $widget = $widget->row_array();
+            $settings = @unserialize($widget['settings']);
+            $widget['title'] = $settings['title'] ? $settings['title'] : $widget['title'];
+
             $this->template->add_array(
                 array(
                     'widget_id' => $id,
-                    'widget' => $widget->row_array(),
+                    'widget' => $widget,
                     'locale' => $locale,
                     'languages' => $this->db->get('languages')->result_array()
                 )

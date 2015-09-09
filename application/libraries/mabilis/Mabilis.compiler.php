@@ -201,7 +201,7 @@ class Mabilis_Compiler extends Mabilis {
      * Read template file
      *
      * @param string $file
-     * @return boolean|false
+     * @return string|false
      */
     public function read_tpl_file($file) {
         if (file_exists($file)) {

@@ -17,7 +17,7 @@ namespace exchange\classes;
  * @property-read array $categories
  * @property-read array $products
  * @property-read array $variantsIds
- * @property-read int $mainCurrencyId
+ * @property-read integer $mainCurrencyId
  * @property-read array $productCategoryData
  * @property-read array $brands
  * @property-read array $properties
