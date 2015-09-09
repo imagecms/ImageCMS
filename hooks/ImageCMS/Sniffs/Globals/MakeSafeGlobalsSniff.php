@@ -2,7 +2,7 @@
 
 class ImageCMS_Sniffs_Globals_MakeSafeGlobalsSniff extends MySource_Sniffs_PHP_GetRequestDataSniff {
 
-    public function process(\PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
         $tokens = $phpcsFile->getTokens();
 
         $varName = $tokens[$stackPtr]['content'];
@@ -60,4 +60,5 @@ class ImageCMS_Sniffs_Globals_MakeSafeGlobalsSniff extends MySource_Sniffs_PHP_G
         $phpcsFile->addError($error, $stackPtr, $type, $data);
     }
 
+//end process()
 }

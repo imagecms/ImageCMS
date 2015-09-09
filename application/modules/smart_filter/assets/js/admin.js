@@ -145,6 +145,7 @@ var SeoPhysicalPages = {
                     $(SeoPhysicalPages.form).find('iframe').contents().find('body').html(link.seo_text);
 
                     if (link.active == 1) {
+                        console.log(1111);
                         $(SeoPhysicalPages.form).find('.niceCheck').trigger('click');
                     }
                 }
@@ -170,7 +171,7 @@ var SeoPhysicalPages = {
             $_POST[$(this).attr('name')] = $(this).val();
         });
 
-        if ($(this.form).find('.niceCheck').parent('span').hasClass('active')) {
+        if ($($(this.form).find('.niceCheck').parent('span')[1]).hasClass('active')) {
             $_POST['smart_filter[active]'] = 1;
         } else {
             $_POST['smart_filter[active]'] = 0;

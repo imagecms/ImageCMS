@@ -25,11 +25,11 @@ class Lib_xml {
 
     private $filename;
 
+    /**
+     * @param string $file
+     * Load an file for parsing
+     */
     public function load($file) {
-        /*         * *
-         * @public
-         * Load an file for parsing
-         */
         $bad = array('|//+|', '|\.\./|');
         $good = array('/', '');
         $file = preg_replace($bad, $good, $file) . '.xml';
@@ -47,11 +47,11 @@ class Lib_xml {
 
     /* END load */
 
+    /**
+     *
+     * Parse an XML document into an array
+     */
     public function parse() {
-        /*         * *
-         * @public
-         * Parse an XML document into an array
-         */
         $xml = $this->document;
         if ($xml == '') {
             return false;
@@ -71,11 +71,11 @@ class Lib_xml {
 
     /* END parse */
 
+    /**
+     * @param DOMDocument $node
+     * Helper function to flatten an XML document into an array
+     */
     private function flatten_node($node) {
-        /*         * *
-         * @private
-         * Helper function to flatten an XML document into an array
-         */
 
         $array = array();
 

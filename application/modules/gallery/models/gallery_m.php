@@ -176,6 +176,14 @@ class Gallery_m extends CI_Model {
         }
     }
 
+    /**
+     *
+     * @param integer $album_id
+     * @param integer $limit
+     * @param integer $ofset
+     * @param string $locale
+     * @return false|array
+     */
     public function get_album_images($album_id, $limit, $ofset, $locale) {
         //$this->db->order_by('uploaded', 'asc');
 

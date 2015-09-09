@@ -57,54 +57,6 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="row-fluid">
-                                                    <!--<div class="control-group">
-                                                        <label class="control-label" for="image">{lang("Image URL","admin")}:</label>
-                                                        <div class="controls">
-                                                            <input type="text" name="image" id="image"/>
-                                                        </div>
-                                                    </div>  -->
-                                                    <div class="control-group">
-                                                        <label class="control-label" for="Img">
-                                                            {lang("Image URL","admin")}:
-                                                        </label>
-                                                        <div class="controls">
-                                                            <div class="group_icon pull-right">
-                                                                    <a href="{echo site_url('application/third_party/filemanager/dialog.php?type=1&field_id=Img');}" class="btn  btn-small iframe-btn" type="button">
-                                                                        <i class="icon-picture"></i>
-                                                                        {lang('Choose an image ','admin')}
-                                                                    </a>
-                                                            </div>
-                                                            <div class="o_h">		            
-                                                                <input type="text" name="image" id="Img" value="" accept="image/gif, image/jpeg, image/png, image/jpg">					
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    { /* } 
-                                                    <div class="control-group">
-                                                        <label class="control-label" for="folder">{lang("Folder","admin")}:</label>
-                                                        <div class="controls">
-                                                            <select name="folder" id="folder">
-                                                                {foreach $lang_folders as $folder}
-                                                                    <option value="{$folder}">{$folder}</option>
-                                                                {/foreach}
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    { */ }
-                                                    { /* }
-                                                    <div class="control-group">
-                                                        <label class="control-label" for="template">{lang("Template","admin")}:</label>
-                                                        <div class="controls">
-                                                            <select name="template" id="template">
-                                                                {foreach $templates as $tpl_folder}
-                                                                    <option value="{$tpl_folder}">{$tpl_folder}</option>
-                                                                {/foreach}
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    { */ }
-                                                </div>
                                             </div>
                                         </div>
                                     </div>

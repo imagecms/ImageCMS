@@ -71,54 +71,6 @@
                                                     </select>
                                                 </div>
                                             </div>
-
-                                            <div class="row-fluid">
-                                                <!--<div class="control-group">
-                                                        <label class="control-label" for="inputName">{lang("Image URL","admin")}:</label>
-                                                        <div class="controls">
-                                                            <input type="text" name="image" id="" value="{$image}"/>
-                                                        </div>
-                                                    </div>-->
-                                                <div class="control-group">
-                                                    <label class="control-label" for="Img">
-                                                        {lang("Image URL","admin")}:
-                                                    </label>
-
-                                                    <div class="controls">
-                                                        <div class="group_icon pull-right">
-                                                            <a href="{echo site_url('application/third_party/filemanager/dialog.php?type=1&field_id=Img');}"
-                                                               class="btn  btn-small iframe-btn" type="button">
-                                                                <i class="icon-picture"></i>
-                                                                {lang('Choose an image ','admin')}
-                                                            </a>
-                                                        </div>
-                                                        <div class="o_h">
-                                                            <input type="text" name="image" id="Img" value="{$image}"
-                                                                   accept="image/gif, image/jpeg, image/png, image/jpg">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                { /* }
-                                                <div class="control-group">
-                                                    <label class="control-label"
-                                                           for="inputParent">{lang("Template","admin")}
-                                                        :</label>
-
-                                                    <div class="controls">
-                                                        <select name="template"
-                                                                {if $is_default}disabled="disabled"{/if}>
-                                                            {foreach $templates as $template}
-                                                                {if $is_default}
-                                                                    <option {if $template == $template_installed} selected="selected" {/if} >{$template}</option>
-                                                                {else:}
-                                                                    <option {if $template == $template_selected} selected="selected" {/if} >{$template}</option>
-                                                                {/if}
-                                                            {/foreach}
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                { */ }
-                                            </div>
                                         </div>
                                     </form>
                                 </div>

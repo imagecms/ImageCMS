@@ -568,7 +568,7 @@ class Widgets_manager extends BaseAdminController {
     private function getWidgetsArray($pathToFile) {
         include_once $pathToFile;
 
-        /**@var array $widgets - Widget settings array */
+        /* @var $widgets array - Widget settings array */
         if ($widgets) {
             $cmsType = end(explode(' ', strtolower(IMAGECMS_NUMBER)));
             foreach ($widgets as $key => $widget) {

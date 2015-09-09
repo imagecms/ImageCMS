@@ -41,7 +41,7 @@ class Socauth extends MY_Controller {
     /**
      *
      * @param string $soc type of social service
-     * @param type $socId social service ID
+     * @param string $socId social service ID
      */
     public function link($soc, $socId) {
         $this->socauth_model->setLink($soc, $socId);
@@ -180,10 +180,10 @@ class Socauth extends MY_Controller {
             $socials = $socials->result_array();
 
             foreach ($socials as $soc) {
-                if (!$soc[isMain]) {
-                    $social[$soc[social]] = 'linked';
+                if (!$soc['isMain']) {
+                    $social[$soc['social']] = 'linked';
                 } else {
-                    $social[$soc[social]] = 'main';
+                    $social[$soc['social']] = 'main';
                 }
             }
 
@@ -201,7 +201,7 @@ class Socauth extends MY_Controller {
     public function ya() {
 
         if ($this->input->get()) {
-            $postdata = "grant_type=authorization_code&code={$this->input->get(code)}&client_id={$this->settings[yandexClientID]}&client_secret={$this->settings[yandexClientSecret]}";
+            $postdata = "grant_type=authorization_code&code={$this->input->get('code')}&client_id={$this->settings['yandexClientID']}&client_secret={$this->settings['yandexClientSecret']}";
 
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_URL, 'https://oauth.yandex.ru/token');
@@ -210,7 +210,7 @@ class Socauth extends MY_Controller {
             curl_setopt($curl, CURLOPT_POST, 1);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($curl, CURLOPT_POSTFIELDS, $postdata);
-            curl_setopt($curl, CURLOPT_REFERER, "http://{$_SERVER['HTTP_HOST']}/socauth/ya");
+            curl_setopt($curl, CURLOPT_REFERER, site_url('socauth/ya'));
             $res = curl_exec($curl);
             $res = json_decode($res);
             curl_close($curl);
@@ -221,7 +221,7 @@ class Socauth extends MY_Controller {
             curl_setopt($curl, CURLOPT_NOBODY, 0);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($curl, CURLOPT_USERAGENT, 'MSIE 9');
-            curl_setopt($curl, CURLOPT_REFERER, "{$_SERVER['HTTP_HOST']}/socauth/ya");
+            curl_setopt($curl, CURLOPT_REFERER, site_url('socauth/ya'));
             $res = curl_exec($curl);
             $res = json_decode($res);
             curl_close($curl);
@@ -241,13 +241,15 @@ class Socauth extends MY_Controller {
      */
     public function facebook() {
         if ($this->input->get()) {
+            $url = site_url('socauth/facebook');
+
             $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, "https://graph.facebook.com/oauth/access_token?client_id={$this->settings[facebookClientID]}&redirect_uri=http://{$_SERVER['HTTP_HOST']}/socauth/facebook&client_secret={$this->settings[facebookClientSecret]}&code={$this->input->get(code)}");
+            curl_setopt($curl, CURLOPT_URL, "https://graph.facebook.com/oauth/access_token?client_id={$this->settings['facebookClientID']}&redirect_uri=$url&client_secret={$this->settings['facebookClientSecret']}&code={$this->input->get('code')}");
             curl_setopt($curl, CURLOPT_HEADER, 0);
             curl_setopt($curl, CURLOPT_NOBODY, 0);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($curl, CURLOPT_USERAGENT, 'MSIE 9');
-            curl_setopt($curl, CURLOPT_REFERER, "{$_SERVER['HTTP_HOST']}/socauth/facebook");
+            curl_setopt($curl, CURLOPT_REFERER, site_url('socauth/facebook'));
             $res = curl_exec($curl);
             curl_close($curl);
 
@@ -255,12 +257,12 @@ class Socauth extends MY_Controller {
             parse_str($res, $params);
 
             $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, "https://graph.facebook.com/me?access_token={$params[access_token]}");
+            curl_setopt($curl, CURLOPT_URL, "https://graph.facebook.com/me?access_token={$params['access_token']}");
             curl_setopt($curl, CURLOPT_HEADER, 0);
             curl_setopt($curl, CURLOPT_NOBODY, 0);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($curl, CURLOPT_USERAGENT, 'MSIE 9');
-            curl_setopt($curl, CURLOPT_REFERER, "{$_SERVER['HTTP_HOST']}/socauth/facebook");
+            curl_setopt($curl, CURLOPT_REFERER, $url);
             $res = curl_exec($curl);
             curl_close($curl);
 
@@ -282,13 +284,14 @@ class Socauth extends MY_Controller {
     public function vk() {
         $this->core->set_meta_tags('SocAuts');
         if ($this->input->get()) {
+            $url = site_url('socauth/vk');
             $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, "https://oauth.vk.com/access_token?client_id={$this->settings[vkClientID]}&client_secret={$this->settings[vkClientSecret]}&code={$this->input->get(code)}&redirect_uri=http://{$_SERVER['HTTP_HOST']}/socauth/vk");
+            curl_setopt($curl, CURLOPT_URL, "https://oauth.vk.com/access_token?client_id={$this->settings['vkClientID']}&client_secret={$this->settings['vkClientSecret']}&code={$this->input->get('code')}&redirect_uri=$url");
             curl_setopt($curl, CURLOPT_HEADER, 0);
             curl_setopt($curl, CURLOPT_NOBODY, 0);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($curl, CURLOPT_USERAGENT, 'MSIE 9');
-            curl_setopt($curl, CURLOPT_REFERER, "{$_SERVER['HTTP_HOST']}/socauth/vk");
+            curl_setopt($curl, CURLOPT_REFERER, $url);
             $res = curl_exec($curl);
             $res = json_decode($res);
             curl_close($curl);
@@ -299,7 +302,7 @@ class Socauth extends MY_Controller {
             curl_setopt($curl, CURLOPT_NOBODY, 0);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($curl, CURLOPT_USERAGENT, 'MSIE 9');
-            curl_setopt($curl, CURLOPT_REFERER, "{$_SERVER['HTTP_HOST']}/socauth/vk");
+            curl_setopt($curl, CURLOPT_REFERER, $url);
             $res = curl_exec($curl);
             $res = json_decode($res);
             curl_close($curl);
@@ -348,12 +351,12 @@ class Socauth extends MY_Controller {
     public function google() {
 
         if ($this->input->get()) {
-
+            $url = site_url('socauth/google');
             $postdata = array(
                 'code' => $this->input->get(code),
                 'client_id' => "{$this->settings[googleClientID]}",
                 'client_secret' => "{$this->settings[googleClientSecret]}",
-                'redirect_uri' => "http://{$_SERVER['HTTP_HOST']}/socauth/google",
+                'redirect_uri' => $url,
                 'grant_type' => 'authorization_code'
             );
 
@@ -372,19 +375,19 @@ class Socauth extends MY_Controller {
             curl_setopt($curl, CURLOPT_POST, 1);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($curl, CURLOPT_POSTFIELDS, $postdata);
-            curl_setopt($curl, CURLOPT_REFERER, "http://{$_SERVER['HTTP_HOST']}");
+            curl_setopt($curl, CURLOPT_REFERER, $url);
             $res = curl_exec($curl);
             $res = json_decode($res);
 
             curl_close($curl);
 
             $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, 'https://www.googleapis.com/oauth2/v1/userinfo?access_token=' . $res->access_token);
+            curl_setopt($curl, CURLOPT_URL, "https://www.googleapis.com/oauth2/v1/userinfo?access_token={$res->access_token}");
             curl_setopt($curl, CURLOPT_HEADER, 0);
             curl_setopt($curl, CURLOPT_NOBODY, 0);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($curl, CURLOPT_USERAGENT, 'MSIE 9');
-            curl_setopt($curl, CURLOPT_REFERER, "http://{$_SERVER['HTTP_HOST']}/socauth/google");
+            curl_setopt($curl, CURLOPT_REFERER, $url);
             $res = curl_exec($curl);
             $res = json_decode($res);
 

@@ -508,7 +508,7 @@ class Comments extends MY_Controller {
         return TRUE;
     }
 
-    private function check_comment_period() {
+    protected function check_comment_period() {
         ($hook = get_hook('comments_on_check_period')) ? eval($hook) : NULL;
 
         if ($this->dx_auth->is_admin() == TRUE) {

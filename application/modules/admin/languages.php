@@ -72,14 +72,9 @@ class Languages extends BaseAdminController {
      * Insert new language
      */
     public function insert() {
-
-        //cp_check_perm('lang_create');
-
         $this->form_validation->set_rules('name', lang("Title", "admin"), 'trim|required|min_length[1]|max_length[100]');
         $this->form_validation->set_rules('identif', lang("Identifier", "admin"), 'trim|required|min_length[1]|max_length[5]|alpha_dash');
-        $this->form_validation->set_rules('image', lang("Image", "admin"), 'max_length[250]');
         $this->form_validation->set_rules('locale', lang("Locale", "admin"), 'required|max_length[250]');
-        //        $this->form_validation->set_rules('template', lang("Template", "admin"), 'max_length[250]');
 
         if ($this->form_validation->run($this) == FALSE) {
             showMessage(validation_errors(), '', 'r');
@@ -88,11 +83,7 @@ class Languages extends BaseAdminController {
             $data = [
                 'lang_name' => $this->input->post('name'),
                 'identif' => $this->input->post('identif'),
-                //'image' => $this->lib_admin->db_post('image'),
-                'image' => $this->input->post('image'),
                 'locale' => $this->input->post('locale'),
-                //                'folder' => $this->input->post('folder'),
-                'template' => $this->input->post('template')
             ];
 
             $this->cms_admin->insert_lang($data);
@@ -384,9 +375,7 @@ class Languages extends BaseAdminController {
 
         $this->form_validation->set_rules('lang_name', lang("Title", "admin"), 'trim|required|min_length[1]|max_length[100]');
         $this->form_validation->set_rules('identif', lang("Identifier", "admin"), 'trim|required|min_length[1]|max_length[5]|alpha_dash');
-        $this->form_validation->set_rules('image', lang("Image", "admin"), 'max_length[250]');
         $this->form_validation->set_rules('locale', lang("Locale", "admin"), 'required|max_length[250]');
-        //        $this->form_validation->set_rules('template', lang("Template", "admin"), 'max_length[250]');
 
         if ($this->form_validation->run($this) == FALSE) {
             showMessage(validation_errors(), '', 'r');
@@ -398,11 +387,7 @@ class Languages extends BaseAdminController {
             $data = [
                 'lang_name' => $this->input->post('lang_name'),
                 'identif' => $this->input->post('identif'),
-                //'image' => $this->lib_admin->db_post('image'),
-                'image' => $this->input->post('image'),
                 'locale' => $post_locale,
-                //                'folder' => $this->input->post('folder'),
-                'template' => $this->input->post('template')
             ];
 
             $this->cms_admin->update_lang($data, $lang_id);
