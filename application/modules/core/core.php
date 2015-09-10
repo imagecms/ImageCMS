@@ -130,10 +130,10 @@ class Core extends MY_Controller {
             $getUrl = '';
             if ($this->input->get()) {
                 foreach ($this->input->get() as $k => $v) {
-                    $getUrl .= $k.'='.$v.'&';
+                    $getUrl .= $k . '=' . $v . '&';
                 }
                 $getUrl = substr($getUrl, 0, -1);
-                $url .= '?'.$getUrl;
+                $url .= '?' . $getUrl;
             }
 
             header('Location:/' . $url);

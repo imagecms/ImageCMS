@@ -46,25 +46,34 @@ class SiteInfo {
     public $imagesPath = '/uploads/images/';
 
     /**
+     *
+     * @var array
+     */
+    private static $siteinfoObgect;
+
+    /**
      * Setting class variables
      * @param string $locale locale to intiate class with
      */
     public function __construct($locale = NULL) {
+        if (!self::$siteinfoObgect) {
+            if ($this->useLocales == TRUE) {
+                $this->locale = $locale != null ? $locale : MY_Controller::getCurrentLocale();
+            }
 
-        if ($this->useLocales == TRUE) {
-            $this->locale = $locale != null ? $locale : MY_Controller::getCurrentLocale();
-        }
+            $locales_ = CI::$APP->db->select('identif,id')->get('languages')->result_array();
+            foreach ($locales_ as $row) {
+                $this->locales[$row['id']] = $row['identif'];
+            }
 
-        $locales_ = CI::$APP->db->select('identif,id')->get('languages')->result_array();
-        foreach ($locales_ as $row) {
-            $this->locales[$row['id']] = $row['identif'];
-        }
-
-        // getting data from DB
-        $result = CI::$APP->db->select('siteinfo')->get('settings')->row_array();
-        $siteinfo = @unserialize($result['siteinfo']);
-        if (is_array($siteinfo)) {
-            $this->siteinfo = $siteinfo;
+            // getting data from DB
+            $result = CI::$APP->db->select('siteinfo')->get('settings')->row_array();
+            self::$siteinfoObgect = unserialize($result['siteinfo']);
+            if (is_array(self::$siteinfoObgect)) {
+                $this->siteinfo = self::$siteinfoObgect;
+            }
+        } else {
+            $this->siteinfo = self::$siteinfoObgect;
         }
     }
 

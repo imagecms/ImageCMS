@@ -563,10 +563,11 @@ class Sitemap extends MY_Controller {
                     }
                 }
             }
+            $this->load->module('smart_filter');
+            if (property_exists($this->smart_filter, 'attachPages')) {
+                $this->smart_filter->attachPages($this);
+            }
         }
-
-        $this->load->module('smart_filter')->attachPages($this);
-
         $this->result = $this->generate_xml($this->items);
         return $this->result;
     }
@@ -766,7 +767,7 @@ class Sitemap extends MY_Controller {
      */
     public function ping_google($data = array()) {
         // Checking is used server is local
-        if (strstr($_SERVER['SERVER_NAME'], '.loc')) {
+        if (strstr($this->input->server('SERVER_NAME'), '.loc')) {
             return FALSE;
         }
 
