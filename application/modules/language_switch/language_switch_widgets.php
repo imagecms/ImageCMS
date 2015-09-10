@@ -40,7 +40,7 @@ class Language_switch_Widgets extends MY_Controller {
             }
         }
 
-        $languages = $this->db->get('languages')->result_array();
+        $languages = $this->db->where('active', 1)->get('languages')->result_array();
         foreach ($languages as $key => $lang) {
             if ($lang['identif'] == MY_Controller::getCurrentLocale()) {
                 $languages[$key]['current'] = 1;
@@ -74,9 +74,9 @@ class Language_switch_Widgets extends MY_Controller {
                     showMessage(validation_errors(), false, 'r');
                 } else {
                     $data = array(
-                        'image_url' => trim($_POST['image_url']),
-                        'image_title' => htmlspecialchars($_POST['image_title']),
-                        'href' => trim(htmlspecialchars($_POST['href'])),
+                        'image_url' => trim($this->input->post('image_url')),
+                        'image_title' => htmlspecialchars($this->input->post('image_title')),
+                        'href' => trim(htmlspecialchars($this->input->post('href'))),
                     );
 
                     $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);

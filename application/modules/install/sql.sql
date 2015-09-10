@@ -952,6 +952,7 @@ CREATE TABLE IF NOT EXISTS `languages` (
   `template` varchar(100) NOT NULL,
   `default` int(1) NOT NULL,
   `locale` varchar(100) NOT NULL,
+  `active` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `identif` (`identif`),
   KEY `default` (`default`)
@@ -961,9 +962,9 @@ CREATE TABLE IF NOT EXISTS `languages` (
 -- Дамп данных таблицы `languages`
 --
 
-INSERT INTO `languages` (`id`, `lang_name`, `identif`, `image`, `folder`, `template`, `default`, `locale`) VALUES
-(3, 'Rus', 'ru', '/uploads/images/flags/Russia.png', 'russian', '0', 1, 'ru_RU'),
-(32, 'Ukr', 'uk', '/uploads/images/flags/Ukraine.png', '', '0', 0, 'uk_UA');
+INSERT INTO `languages` (`id`, `lang_name`, `identif`, `image`, `folder`, `template`, `default`, `locale`, `active`) VALUES
+(3, 'Rus', 'ru', '/uploads/images/flags/Russia.png', 'russian', '0', 1, 'ru_RU', 1),
+(32, 'Ukr', 'uk', '/uploads/images/flags/Ukraine.png', '', '0', 0, 'uk_UA', 1);
 
 -- --------------------------------------------------------
 

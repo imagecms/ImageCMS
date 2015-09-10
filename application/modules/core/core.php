@@ -126,6 +126,16 @@ class Core extends MY_Controller {
 
         if ($this->uri->segment(1) == $this->def_lang[0]['identif']) {
             $url = implode('/', array_slice($this->uri->segment_array(), 1));
+            //Save GET url
+            $getUrl = '';
+            if ($this->input->get()) {
+                foreach ($this->input->get() as $k => $v) {
+                    $getUrl .= $k.'='.$v.'&';
+                }
+                $getUrl = substr($getUrl, 0, -1);
+                $url .= '?'.$getUrl;
+            }
+
             header('Location:/' . $url);
         }
 

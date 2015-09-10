@@ -84,6 +84,7 @@ class Languages extends BaseAdminController {
                 'lang_name' => $this->input->post('name'),
                 'identif' => $this->input->post('identif'),
                 'locale' => $this->input->post('locale'),
+                'active' => $this->input->post('active'),
             ];
 
             $this->cms_admin->insert_lang($data);
@@ -108,29 +109,29 @@ class Languages extends BaseAdminController {
     public function getPoFileSettingsText($lang = '', $type = '', $module = NULL) {
 
         $content = b"\xEF\xBB\xBF" .
-                'msgid ""' . PHP_EOL .
-                'msgstr ""' . PHP_EOL .
-                '"Project-Id-Version: \n"' . PHP_EOL .
-                '"Report-Msgid-Bugs-To: \n"' . PHP_EOL .
-                '"POT-Creation-Date: ' . date('Y-m-d h:iO', time()) . '\n"' . PHP_EOL .
-                '"PO-Revision-Date: ' . date('Y-m-d h:iO', time()) . '\n"' . PHP_EOL .
-                '"Last-Translator:  \n"' . PHP_EOL .
-                '"Language-Team:  \n"' . PHP_EOL .
-                '"Language: ' . $lang . '\n"' . PHP_EOL .
-                '"MIME-Version: 1.0\n"' . PHP_EOL .
-                '"Content-Type: text/plain; charset=UTF-8\n"' . PHP_EOL .
-                '"Content-Transfer-Encoding: 8bit\n"' . PHP_EOL .
-                '"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"' . PHP_EOL;
+            'msgid ""' . PHP_EOL .
+            'msgstr ""' . PHP_EOL .
+            '"Project-Id-Version: \n"' . PHP_EOL .
+            '"Report-Msgid-Bugs-To: \n"' . PHP_EOL .
+            '"POT-Creation-Date: ' . date('Y-m-d h:iO', time()) . '\n"' . PHP_EOL .
+            '"PO-Revision-Date: ' . date('Y-m-d h:iO', time()) . '\n"' . PHP_EOL .
+            '"Last-Translator:  \n"' . PHP_EOL .
+            '"Language-Team:  \n"' . PHP_EOL .
+            '"Language: ' . $lang . '\n"' . PHP_EOL .
+            '"MIME-Version: 1.0\n"' . PHP_EOL .
+            '"Content-Type: text/plain; charset=UTF-8\n"' . PHP_EOL .
+            '"Content-Transfer-Encoding: 8bit\n"' . PHP_EOL .
+            '"X-Poedit-KeywordsList: _;gettext;gettext_noop;lang\n"' . PHP_EOL;
         switch ($type) {
             case 'main':
                 if (file_exists('./application/language/main/ru_RU/LC_MESSAGES/main.po')) {
                     $main_content = file('./application/language/main/ru_RU/LC_MESSAGES/main.po');
 
                     $content .= '"X-Poedit-Basepath: .\n"' . PHP_EOL .
-                            '"X-Poedit-SourceCharset: utf-8\n"' . PHP_EOL .
-                            '"X-Generator: Poedit 1.5.7\n"' . PHP_EOL .
-                            '"X-Poedit-Language: \n"' . PHP_EOL .
-                            '"X-Poedit-Country: \n"' . PHP_EOL;
+                        '"X-Poedit-SourceCharset: utf-8\n"' . PHP_EOL .
+                        '"X-Generator: Poedit 1.5.7\n"' . PHP_EOL .
+                        '"X-Poedit-Language: \n"' . PHP_EOL .
+                        '"X-Poedit-Country: \n"' . PHP_EOL;
 
                     foreach ($main_content as $line) {
                         if (strstr($line, 'X-Poedit-SearchPath')) {
@@ -142,11 +143,11 @@ class Languages extends BaseAdminController {
                     }
                 } else {
                     $content .= '"X-Poedit-Basepath: .\n"' . PHP_EOL .
-                            '"X-Poedit-SourceCharset: utf-8\n"' . PHP_EOL .
-                            '"X-Generator: Poedit 1.5.7\n"' . PHP_EOL .
-                            '"X-Poedit-Language: \n"' . PHP_EOL .
-                            '"X-Poedit-Country: \n"' . PHP_EOL .
-                            '"X-Poedit-SearchPath-0: ..\n"' . PHP_EOL;
+                        '"X-Poedit-SourceCharset: utf-8\n"' . PHP_EOL .
+                        '"X-Generator: Poedit 1.5.7\n"' . PHP_EOL .
+                        '"X-Poedit-Language: \n"' . PHP_EOL .
+                        '"X-Poedit-Country: \n"' . PHP_EOL .
+                        '"X-Poedit-SearchPath-0: ..\n"' . PHP_EOL;
                 }
 
                 break;
@@ -154,31 +155,31 @@ class Languages extends BaseAdminController {
 
                 if ($module == 'admin') {
                     $content .= '"X-Poedit-Basepath: ../../..\n"' . PHP_EOL .
-                            '"X-Poedit-SourceCharset: utf-8\n"' . PHP_EOL .
-                            '"X-Generator: Poedit 1.5.7\n"' . PHP_EOL .
-                            '"X-Poedit-Language: \n"' . PHP_EOL .
-                            '"X-Poedit-Country: \n"' . PHP_EOL .
-                            '"X-Poedit-SearchPath-0: .\n"' . PHP_EOL .
-                            '"X-Poedit-SearchPath-1: ../../../templates/administrator\n"' . PHP_EOL .
-                            '"X-Poedit-SearchPath-2: ../../' . getModContDirName('shop') . '/shop/admin\n"' . PHP_EOL .
-                            'X-Poedit-SearchPath-3: ../../../application/' . getModContDirName('shop') . '/shop/models/build/classes\n' . PHP_EOL;
+                        '"X-Poedit-SourceCharset: utf-8\n"' . PHP_EOL .
+                        '"X-Generator: Poedit 1.5.7\n"' . PHP_EOL .
+                        '"X-Poedit-Language: \n"' . PHP_EOL .
+                        '"X-Poedit-Country: \n"' . PHP_EOL .
+                        '"X-Poedit-SearchPath-0: .\n"' . PHP_EOL .
+                        '"X-Poedit-SearchPath-1: ../../../templates/administrator\n"' . PHP_EOL .
+                        '"X-Poedit-SearchPath-2: ../../' . getModContDirName('shop') . '/shop/admin\n"' . PHP_EOL .
+                        'X-Poedit-SearchPath-3: ../../../application/' . getModContDirName('shop') . '/shop/models/build/classes\n' . PHP_EOL;
                 } else {
                     $content .= '"X-Poedit-Basepath: ../../..\n"' . PHP_EOL .
-                            '"X-Poedit-SourceCharset: utf-8\n"' . PHP_EOL .
-                            '"X-Generator: Poedit 1.5.7\n"' . PHP_EOL .
-                            '"X-Poedit-Language: \n"' . PHP_EOL .
-                            '"X-Poedit-Country: \n"' . PHP_EOL .
-                            '"X-Poedit-SearchPath-0: .\n"' . PHP_EOL;
-                }
-
-                break;
-            case 'template':
-                $content .= '"X-Poedit-Basepath: ../../../..\n"' . PHP_EOL .
                         '"X-Poedit-SourceCharset: utf-8\n"' . PHP_EOL .
                         '"X-Generator: Poedit 1.5.7\n"' . PHP_EOL .
                         '"X-Poedit-Language: \n"' . PHP_EOL .
                         '"X-Poedit-Country: \n"' . PHP_EOL .
                         '"X-Poedit-SearchPath-0: .\n"' . PHP_EOL;
+                }
+
+                break;
+            case 'template':
+                $content .= '"X-Poedit-Basepath: ../../../..\n"' . PHP_EOL .
+                    '"X-Poedit-SourceCharset: utf-8\n"' . PHP_EOL .
+                    '"X-Generator: Poedit 1.5.7\n"' . PHP_EOL .
+                    '"X-Poedit-Language: \n"' . PHP_EOL .
+                    '"X-Poedit-Country: \n"' . PHP_EOL .
+                    '"X-Poedit-SearchPath-0: .\n"' . PHP_EOL;
                 break;
         }
         return $content;
@@ -357,6 +358,7 @@ class Languages extends BaseAdminController {
         $this->template->assign('folder_selected', $lang['folder']);
         $this->template->assign('locales', $this->getLocales());
         $this->template->assign('locale', $lang['locale']);
+        $this->template->assign('is_active', $lang['active']);
         $this->template->assign('is_default', $lang['default']);
         $this->template->assign('template_selected', $lang['template']);
 
@@ -388,6 +390,7 @@ class Languages extends BaseAdminController {
                 'lang_name' => $this->input->post('lang_name'),
                 'identif' => $this->input->post('identif'),
                 'locale' => $post_locale,
+                'active' => $this->input->post('active'),
             ];
 
             $this->cms_admin->update_lang($data, $lang_id);
@@ -518,6 +521,20 @@ class Languages extends BaseAdminController {
     public function _get_templates() {
 
         return get_templates();
+    }
+
+    /**
+     * Change language activity via ajax request
+     */
+    public function ajaxChangeActive() {
+        $id = $this->input->post('id');
+        $active = $this->input->post('active');
+
+        if ($id) {
+            $this->db->where('id', $id)
+                ->set('active', $active)
+                ->update('languages');
+        }
     }
 
 }

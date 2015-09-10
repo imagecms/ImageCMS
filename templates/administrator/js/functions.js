@@ -49,19 +49,17 @@ function readCookie(name) {
     }
     return null;
 }
-function setCookie(name, value, expires, path, domain, secure)
-{
+function setCookie(name, value, expires, path, domain, secure) {
     var today = new Date();
     today.setTime(today.getTime());
-    if (expires)
-    {
+    if (expires) {
         expires = expires * 1000 * 60 * 60 * 24;
     }
     var expiresDate = new Date(today.getTime() + (expires));
     document.cookie = name + "=" + encodeURIComponent(value) +
-            ((expires) ? ";expires=" + expiresDate.toGMTString() : "") + ((path) ? ";path=" + path : "") +
-            ((domain) ? ";domain=" + domain : "") +
-            ((secure) ? ";secure" : "");
+    ((expires) ? ";expires=" + expiresDate.toGMTString() : "") + ((path) ? ";path=" + path : "") +
+    ((domain) ? ";domain=" + domain : "") +
+    ((secure) ? ";secure" : "");
 }
 
 // expand categories tree to show last visited category
@@ -157,8 +155,7 @@ function ChangeMenuItemActive(obj, id) {
 }
 
 
-function ChangeBannerActive(el, bannerId)
-{
+function ChangeBannerActive(el, bannerId) {
     var currentActiveStatus = $(el).attr('rel');
 
     $.post('/admin/components/run/shop/banners/changeActive/', {
@@ -166,8 +163,7 @@ function ChangeBannerActive(el, bannerId)
         status: currentActiveStatus
     }, function (data) {
         $('.notifications').append(data)
-        if (currentActiveStatus == 'true')
-        {
+        if (currentActiveStatus == 'true') {
             $(el).addClass('disable_tovar').attr('rel', false);
 
         } else {
@@ -177,8 +173,7 @@ function ChangeBannerActive(el, bannerId)
     });
 }
 // on/of sorting method
-function ChangeSortActive(el, sortId)
-{
+function ChangeSortActive(el, sortId) {
     var currentActiveStatus = $(el).attr('rel');
 
     $.post('/admin/components/run/shop/settings/changeSortActive/', {
@@ -187,8 +182,7 @@ function ChangeSortActive(el, sortId)
     }, function (data) {
 
         $('.notifications').append(data)
-        if (currentActiveStatus == 'true')
-        {
+        if (currentActiveStatus == 'true') {
             $(el).addClass('disable_tovar').attr('rel', false);
 
         } else {
@@ -203,8 +197,7 @@ function ChangeSortActive(el, sortId)
 
 var shopAdminMenuCache = false;
 
-function showMessage(title, text, messageType, delay)
-{
+function showMessage(title, text, messageType, delay) {
     delay = delay || 6000;
     text = '<h4>' + title + '</h4>' + text;
     messageType = typeof messageType !== 'undefined' ? messageType : 'success';
@@ -222,51 +215,45 @@ function showMessage(title, text, messageType, delay)
     }).show();
 }
 
-function translite_title(from, to)
-{
+function translite_title(from, to) {
     var url = base_url + 'admin/pages/ajax_translit/';
     $.post(
-            url, {
-                'str': $(from).val()
-            }, function (data)
-
-    {
-        $(to).val(data);
-    }
+        url, {
+            'str': $(from).val()
+        }, function (data) {
+            $(to).val(data);
+        }
     );
 }
 
-function create_description(from, to)
-{
+function create_description(from, to) {
     if ($('.workzone textarea.elRTE').length)
         $('.workzone textarea.elRTE').elrte('updateSource');
 
     $.post(
-            base_url + 'admin/pages/ajax_create_description/', {
-                'text': $(from).val()
-            },
-    function (data) {
-        $(to).val(data);
-    }
+        base_url + 'admin/pages/ajax_create_description/', {
+            'text': $(from).val()
+        },
+        function (data) {
+            $(to).val(data);
+        }
     );
 }
 
-function retrive_keywords(from, to)
-{
+function retrive_keywords(from, to) {
     if ($('.workzone textarea.elRTE').length)
         $('.workzone textarea.elRTE').elrte('updateSource');
 
     $.post(base_url + 'admin/pages/ajax_create_keywords/', {
-        'keys': $(from).val()
-    },
-    function (data) {
-        $(to).html(data);
-    }
+            'keys': $(from).val()
+        },
+        function (data) {
+            $(to).html(data);
+        }
     );
 }
 
-function ajax_div(target, url)
-{
+function ajax_div(target, url) {
     $.ajax(url, {
         headers: {
             'X-PJAX': 'X-PJAX'
@@ -300,14 +287,13 @@ function handleFormSubmit() {
 //    }
 
     var selector = $this.attr('data-form'),
-            action = $this.data('action'),
-            data = $this.data('adddata'),
-            form = $(selector);
+        action = $this.data('action'),
+        data = $this.data('adddata'),
+        form = $(selector);
 
 
     form.validate();
-    if (form.valid())
-    {
+    if (form.valid()) {
         showLoading();
         var options = {
             data: $.extend({
@@ -331,14 +317,11 @@ function handleFormSubmit() {
 }
 $('body').off('click.validate').on('click.validate', '.formSubmit', handleFormSubmit);
 
-function loadShopInterface()
-{
-    if ($.browser.opera == true)
-    {
+function loadShopInterface() {
+    if ($.browser.opera == true) {
         window.location = '/admin/components/run/shop/dashboard';
     }
-    if ($('#baseSearch'))
-    {
+    if ($('#baseSearch')) {
         $('#baseSearch').val('');
         $('#baseSearch').attr('id', 'shopSearch');
         $('#adminAdvancedSearch').attr('action', '/admin/components/run/shop/search/advanced');
@@ -361,15 +344,12 @@ function loadShopInterface()
     return false;
 }
 
-function loadBaseInterface()
-{
-    if ($.browser.opera == true)
-    {
+function loadBaseInterface() {
+    if ($.browser.opera == true) {
         window.location = '/admin';
     }
 
-    if ($('#shopSearch'))
-    {
+    if ($('#shopSearch')) {
         $('#shopSearch').val('');
         $('#shopSearch').attr('id', 'baseSearch');
         $('#adminAdvancedSearch').attr('action', '/admin/admin_search');
@@ -408,8 +388,7 @@ function initShopSearch() {
     });
 }
 
-function initElRTE()
-{
+function initElRTE() {
     elRTE.prototype.options.toolbars.custom = [
         "copypaste", "undoredo", "elfinder", "style", "alignment", "direction", "colors", "format", "indent", "lists", "links", "elements", "media", "tables", "fullscreen"
     ];
@@ -568,8 +547,7 @@ function isEditorInitialized(editor) {
     return editor && editor.initialized;
 }
 
-function initTinyMCE(selector)
-{
+function initTinyMCE(selector) {
     selector = selector ? selector : 'textarea.elRTE';
     tinymce.remove(selector);
     tinymce.editors = [];
@@ -618,16 +596,14 @@ function initTextEditor(name) {
 }
 
 var dlg = false;
-function elFinderPopup(type, id, path, onlyMimes)
-{
+function elFinderPopup(type, id, path, onlyMimes) {
     fId = id;
     if (typeof path == 'undefined')
         path = '';
     if (typeof onlyMimes == 'undefined')
         onlyMimes = [];
     //todo: create diferent browsers (check 'type' variable)
-    if (!dlg)
-    {
+    if (!dlg) {
         dlg = $('#elFinder').dialogelfinder({
             url: '/admin/elfinder_init',
             lang: locale.substr(0, 2),
@@ -669,8 +645,7 @@ function elFinderPopup(type, id, path, onlyMimes)
                 },
             },
             getFileCallback: function (file) {
-                if (path != '')
-                {
+                if (path != '') {
                     var str = file.path;
                     var m = str.match('[\\\\ /]');
                     file.path = file.path.substr(m.index + 1);
@@ -680,8 +655,7 @@ function elFinderPopup(type, id, path, onlyMimes)
                 file.path = file.path.replace(/\134/g, '/');
                 $('#' + fId).val(path + '/' + file.path);
 
-                if (type == 'image' && $('#' + fId + '-preview').length)
-                {
+                if (type == 'image' && $('#' + fId + '-preview').length) {
                     var img = document.createElement('img');
                     img.src = $('#' + fId).val();
                     img.className = "img-polaroid";
@@ -713,8 +687,7 @@ function elFinderPopup(type, id, path, onlyMimes)
     return false;
 }
 
-function elFinderTPLEd()
-{
+function elFinderTPLEd() {
     if (MAINSITE) {
         var commands = [
             'open', 'reload', 'home', 'up', 'back', 'forward', 'getfile', 'quicklook',
@@ -733,8 +706,7 @@ function elFinderTPLEd()
         height: $(window).height() * 0.6,
         lang: locale.substr(0, 2),
         commands: commands,
-        commandsOptions: {
-        },
+        commandsOptions: {},
         uiOptions: {
             // toolbar configuration
             toolbar: [
@@ -775,7 +747,7 @@ function elFinderTPLEd()
         getFileCallback: function (e, ev, c) {
             //self.fm.select($(this), true);
             eD.exec('edit');
-            return  false;
+            return false;
 
             //self.ui.exec(self.ui.isCmdAllowed('open') ? 'open' : 'select');
         },
@@ -845,8 +817,7 @@ var orders = new Object({
         });
         return true;
     },
-    fixAddressA: function ()
-    {
+    fixAddressA: function () {
         $('#postAddressBtn').attr('href', "http://maps.google.com/?q=" + $('#postAddress').val());
         return true;
     },
@@ -879,8 +850,7 @@ var orders = new Object({
     deleteOrders: function () {
         $('#delete-orders-modal').modal();
     },
-    deleteOrdersConfirm: function ()
-    {
+    deleteOrdersConfirm: function () {
         var ids = new Array();
         $('input[name=ids]:checked').each(function () {
             ids.push($(this).val());
@@ -898,8 +868,7 @@ var orders = new Object({
         $('.modal').modal('hide');
         return true;
     },
-    addProduct: function (modelId)
-    {
+    addProduct: function (modelId) {
         productName = '';
         variants = '';
         pNumber = ''
@@ -913,7 +882,7 @@ var orders = new Object({
 
                     $('#product_variant_name').html('');
                     for (var i = 0; i < vKeys.length; i++)
-                        $('#product_variant_name').append(new Option(ui.item.variants[ vKeys[i] ].name + ' - ' + ui.item.variants[ vKeys[i] ].price + " " + ui.item.cs, vKeys[i], true, true));
+                        $('#product_variant_name').append(new Option(ui.item.variants[vKeys[i]].name + ' - ' + ui.item.variants[vKeys[i]].price + " " + ui.item.cs, vKeys[i], true, true));
                 },
                 close: function () {
                     $('#product_name').val(productName);
@@ -949,14 +918,13 @@ var orders = new Object({
 
                         $('#product_variant_name').html('');
                         for (var i = 0; i < vKeys.length; i++)
-                            $('#product_variant_name').append(new Option(ui.item.variants[ vKeys[i] ].name + ' - ' + ui.item.variants[ vKeys[i] ].price + "  " + ui.item.cs, vKeys[i], true, true));
+                            $('#product_variant_name').append(new Option(ui.item.variants[vKeys[i]].name + ' - ' + ui.item.variants[vKeys[i]].price + "  " + ui.item.cs, vKeys[i], true, true));
                     },
                     close: function () {
                         $('#product_name').val(productName);
 
                         $('#productNumber').val(pNumber);
                     }
-
 
 
                 });
@@ -971,7 +939,7 @@ var orders = new Object({
                         vKeys = Object.keys(ui.item.variants);
 
                         for (var i = 0; i < vKeys.length; i++)
-                            $('#product_variant_name').append(new Option(ui.item.variants[ vKeys[i] ].name + ' ' + ui.item.variants[ vKeys[i] ].price + "  " + ui.item.cs, vKeys[i], true, true));
+                            $('#product_variant_name').append(new Option(ui.item.variants[vKeys[i]].name + ' ' + ui.item.variants[vKeys[i]].price + "  " + ui.item.cs, vKeys[i], true, true));
                     },
                     close: function () {
                         $('#product_name').val(productName);
@@ -993,8 +961,7 @@ var orders = new Object({
     deleteProduct: function (id) {
         $('.notifications').load('/admin/components/run/shop/orders/ajaxDeleteProduct/' + id);
     },
-    refreshTotalPrice: function (dmId)
-    {
+    refreshTotalPrice: function (dmId) {
         var deliveryPrice = deliveryPrices[dmId];
         if (deliveryPrice === undefined)
             deliveryPrice = 0;
@@ -1002,11 +969,10 @@ var orders = new Object({
 
         $('.totalOrderPrice').html(totalPrice);
     },
-    updateOrderItem: function (id, btn, order)
-    {
+    updateOrderItem: function (id, btn, order) {
         var data = {};
         if ($(btn).data('update') == 'price')
-            //    		alert($(btn).closest('td').find('input').val());
+        //    		alert($(btn).closest('td').find('input').val());
             data.newPrice = $(btn).closest('td').find('input').val();
         if ($(btn).data('update') == 'count')
             data.newQuantity = $(btn).closest('td').find('input').val();
@@ -1049,7 +1015,7 @@ var orders = new Object({
             data: 'productId=' + productId,
             complete: function (data) {
                 var productVariants = JSON.parse(data.responseText),
-                        separate = '';
+                    separate = '';
                 $(".variantsForOrders").empty().each(function () {
                     for (var i = 0; i < productVariants.length; i++) {
                         var $this = $(this);
@@ -1060,8 +1026,8 @@ var orders = new Object({
                         }
                         var price = parseFloat(productVariants[i]['price']).toFixed(pricePrecision);
                         $this.append($('<option data-number=\'' + productVariants[i]['number'] + '\' data-stock=\'' + productVariants[i]['stock'] + '\' data-price=\'' + price + '\' data-variantName=\'' + variantName +
-                                '\' data-product-id=' + productId + ' data-product-name=\'' + productName + '\' data-productCurrency=' + curr + ' data-variantId=' + productVariants[i]['id'] +
-                                ' value=' + productVariants[i]['id'] + ' data-orig_price="' + productVariants[i]['origPrice'] + '">' + variantName + separate + price + ' ' + curr + '</option>'));
+                        '\' data-product-id=' + productId + ' data-product-name=\'' + productName + '\' data-productCurrency=' + curr + ' data-variantId=' + productVariants[i]['id'] +
+                        ' value=' + productVariants[i]['id'] + ' data-orig_price="' + productVariants[i]['origPrice'] + '">' + variantName + separate + price + ' ' + curr + '</option>'));
 
                         $($this.find('option')[0]).trigger('click');
                         $this.trigger('change');
@@ -1105,8 +1071,8 @@ var orders = new Object({
     //Add product to cart in admin
     addToCartAdmin: function (element) {
         var clonedElement = $('.addNewProductBlock').clone(true).removeClass('addNewProductBlock'),
-                data = element.data(),
-                variantName = '-';
+            data = element.data(),
+            variantName = '-';
 
         if (data.variantname != 'noName') {
             variantName = data.variantname;
@@ -1227,8 +1193,7 @@ var callbacks = new Object({
         $('.modal').modal('hide');
         return true;
     },
-    changeStatus: function (id, statusId)
-    {
+    changeStatus: function (id, statusId) {
         $.post('/admin/components/run/shop/callbacks/changeStatus', {
             CallbackId: id,
             StatusId: statusId
@@ -1238,13 +1203,11 @@ var callbacks = new Object({
         $('#callback_' + id).closest('tr').data('status', statusId);
         this.reorderList(id);
     },
-    reorderList: function (id)
-    {
+    reorderList: function (id) {
         var stId = $(' #callback_' + id).data('status');
         $('#callbacks_' + stId + ' table tbody').append($('#callback_' + id));
     },
-    changeTheme: function (id, themeId)
-    {
+    changeTheme: function (id, themeId) {
         $.post('/admin/components/run/shop/callbacks/changeTheme', {
             CallbackId: id,
             ThemeId: themeId
@@ -1252,8 +1215,7 @@ var callbacks = new Object({
             $('.notifications').append(data);
         });
     },
-    setDefaultStatus: function (id, element)
-    {
+    setDefaultStatus: function (id, element) {
         $('.btn-danger').removeAttr('disabled');
         $('.prod-on_off').addClass('disable_tovar').css('left', '-28px');
         if ($(element).hasClass('disable_tovar')) {
@@ -1270,8 +1232,7 @@ var callbacks = new Object({
 
         return true;
     },
-    deleteStatus: function (id, curElement)
-    {
+    deleteStatus: function (id, curElement) {
         if (!$(curElement).closest('tr').find('.disable_tovar').length) {
             return false;
         }
@@ -1281,16 +1242,14 @@ var callbacks = new Object({
             $('.notifications').append(data);
         });
     },
-    deleteTheme: function (id)
-    {
+    deleteTheme: function (id) {
         $.post('/admin/components/run/shop/callbacks/deleteTheme', {
             id: id
         }, function (data) {
             $('.notifications').append(data);
         });
     },
-    reorderThemes: function ()
-    {
+    reorderThemes: function () {
         var positions = new Array();
         $('.sortable tr').each(function () {
             positions.push($(this).data('id'));
@@ -1309,8 +1268,7 @@ var shopCategories = new Object({
     deleteCategories: function () {
         $('.categoryDeleteModal').modal();
     },
-    deleteCategoriesConfirm: function (simple)
-    {
+    deleteCategoriesConfirm: function (simple) {
         var ids = new Array();
         if (simple == undefined) {
             $('input[name=ids]:checked').each(function () {
@@ -1342,8 +1300,7 @@ var GalleryCategories = new Object({
     deleteCategories: function () {
         $('.modal').modal();
     },
-    deleteCategoriesConfirm: function ()
-    {
+    deleteCategoriesConfirm: function () {
         var ids = new Array();
         $('input[name=ids]:checked').each(function () {
             ids.push($(this).val());
@@ -1376,8 +1333,7 @@ var GalleryAlbums = new Object({
             this.id = mini_layout.find('[name = album_id]').val();
         }
     },
-    deleteCategoriesConfirm: function ()
-    {
+    deleteCategoriesConfirm: function () {
         if (mini_layout[0] != undefined) {
             url = '/admin/components/cp/gallery/category/' + mini_layout.find('[name = category_id]').val();
         }
@@ -1443,10 +1399,31 @@ var variantInfo = new Object({
 
 window.onload = clone_object();
 
-function disableOnEnterPress(curObj){
+function disableOnEnterPress(curObj) {
     var code = event.keyCode || event.which;
     if (code == 13) {
         event.preventDefault();
         return false;
     }
+}
+
+var Languages = {
+    changeActive: function (curObj) {
+        var languageId = $(curObj).data('id');
+        var active = $(curObj).find('input[name="active"]').attr('checked');
+        active = active ? 0 : 1;
+
+        $.ajax({
+            url: "/admin/languages/ajaxChangeActive",
+            async: false,
+            type: "post",
+            data: {
+                id: languageId,
+                active: active
+            },
+            success: function (data) {
+            }
+        });
+    }
+
 }

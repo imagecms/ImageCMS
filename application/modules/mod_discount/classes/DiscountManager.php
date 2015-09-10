@@ -4,6 +4,9 @@
 
 namespace mod_discount\classes;
 
+use MY_Controller;
+use MY_Lang;
+
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
@@ -16,15 +19,14 @@ if (!defined('BASEPATH')) {
  * @package ImageCMSModule
  * @property discount_model_admin $discount_model_admin
  */
-class DiscountManager extends \MY_Controller
-{
+class DiscountManager extends MY_Controller {
 
     public $error = array();
 
     public function __construct() {
 
         parent::__construct();
-        $lang = new \MY_Lang();
+        $lang = new MY_Lang();
         $lang->load('mod_discount');
         $this->load->model('discount_model_admin');
     }
@@ -313,7 +315,7 @@ class DiscountManager extends \MY_Controller
 
         $data_locale = array(
             'id' => $discountId,
-            'locale' => \MY_Controller::getCurrentLocale(),
+            'locale' => MY_Controller::getCurrentLocale(),
             'name' => $postArray['name']
         );
 
@@ -436,7 +438,7 @@ class DiscountManager extends \MY_Controller
      */
     public static function validateUserDiscount($userId) {
 
-        $data = \mod_discount\classes\BaseDiscount::create()->discountType['user'];
+        $data = BaseDiscount::create()->discountType['user'];
         foreach ($data as $oneDiscountData) {
             if ($oneDiscountData['user_id'] == $userId) {
                 return FALSE;
@@ -452,7 +454,7 @@ class DiscountManager extends \MY_Controller
      */
     public static function validateGroupDiscount($groupId) {
 
-        $data = \mod_discount\classes\BaseDiscount::create()->discountType['group_user'];
+        $data = BaseDiscount::create()->discountType['group_user'];
         foreach ($data as $oneDiscountData) {
             if ($oneDiscountData['group_id'] == $groupId) {
                 return FALSE;

@@ -883,6 +883,7 @@ CREATE TABLE IF NOT EXISTS `languages` (
   `template` varchar(100) NOT NULL,
   `default` int(1) NOT NULL,
   `locale` varchar(100) NOT NULL,
+  `active` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `identif` (`identif`),
   KEY `default` (`default`)
@@ -892,10 +893,10 @@ CREATE TABLE IF NOT EXISTS `languages` (
 -- Дамп данных таблицы `languages`
 --
 
-INSERT INTO `languages` (`id`, `lang_name`, `identif`, `image`, `folder`, `template`, `default`, `locale`) VALUES
-(3, 'Русский', 'ru', '', 'russian', 'commerce', 1, 'ru_RU'),
-(4, 'Английский', 'en', '', 'english', 'commerce', 0, 'en_US'),
-(5, 'Украинский', 'ua', '', 'ukrainian', 'commerce', 0, 'uk_UA');
+INSERT INTO `languages` (`id`, `lang_name`, `identif`, `image`, `folder`, `template`, `default`, `locale`, `active`) VALUES
+(3, 'Русский', 'ru', '', 'russian', 'commerce', 1, 'ru_RU', 1),
+(4, 'Английский', 'en', '', 'english', 'commerce', 0, 'en_US', 1),
+(5, 'Украинский', 'ua', '', 'ukrainian', 'commerce', 0, 'uk_UA', 1);
 
 -- --------------------------------------------------------
 

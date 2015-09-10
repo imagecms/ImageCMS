@@ -49,9 +49,10 @@
                             </span>
                         </th>
                         <th>{lang("Language","admin")}</th>
-                        <th>{lang("Identifier","admin")}</th>
-                        <th>{lang("Locale","admin")}</th>
+                        <th class="span2">{lang("Identifier","admin")}</th>
+                        <th class="span2">{lang("Locale","admin")}</th>
                         <th class="span2">{lang("By default","admin")}</th>
+                        <th class="span2">{lang("Active","admin")}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -76,6 +77,19 @@
                             <td class="t-a_c">
                                 <button class="btn btn-small lan_def {if $lang.default == 1} btn-primary active {/if}" data-id="{$lang.id}">
                                     <i class="icon-star"></i></button>
+                            </td>
+
+                            <td class="t-a_c">
+                                {if $lang.active}
+                                    {$checked = 'checked="checked"';$checkedP = '';}
+                                {else:}
+                                    {$checkedP = 'disable_tovar';$checked = '';}
+                                {/if}
+
+                                <div onclick="Languages.changeActive(this)" class="frame_prod-on_off v-a_m" data-id="{$lang.id}" data-rel="tooltip" data-placement="top" data-original-title="{lang('show','admin')}">
+                                    <span class="prod-on_off {echo $checkedP;}" data-id=""></span>
+                                    <input type="checkbox" name="active" value="1" {echo $checked;} style="display: none;">
+                                </div>
                             </td>
                         </tr>
                     {/foreach}
