@@ -100,11 +100,44 @@ if (!function_exists('user_function_sort')) {
     function user_function_sort($arr, $key = 'value') {
         usort(
             $arr,
-            function($a, $b) use ($key) {
+            function ($a, $b) use ($key) {
                     return strnatcmp($a[$key], $b[$key]);
             }
         );
         return $arr;
+    }
+
+}
+
+
+if (!function_exists('pluralize')) {
+
+    /**
+     *
+     * @param integer|float $count
+     * @param array $words
+     * @return string
+     */
+    function pluralize($count = 0, array $words = array()) {
+
+        if (empty($words)) {
+            $words = array(' ', ' ', ' ');
+        }
+
+        $numeric = (int) abs($count);
+        if ($numeric % 100 == 1 || ($numeric % 100 > 20) && ($numeric % 10 == 1)) {
+            return $words[0];
+        }
+        if ($numeric % 100 == 2 || ($numeric % 100 > 20) && ($numeric % 10 == 2)) {
+            return $words[1];
+        }
+        if ($numeric % 100 == 3 || ($numeric % 100 > 20) && ($numeric % 10 == 3)) {
+            return $words[1];
+        }
+        if ($numeric % 100 == 4 || ($numeric % 100 > 20) && ($numeric % 10 == 4)) {
+            return $words[1];
+        }
+        return $words[2];
     }
 
 }

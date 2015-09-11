@@ -1409,6 +1409,14 @@ function disableOnEnterPress(curObj) {
 
 var Languages = {
     changeActive: function (curObj) {
+        var defaultLanguage = $(curObj).closest('tr').find('button.lan_def');
+
+        if ($(defaultLanguage).hasClass('active')) {
+            showMessage(lang('Message'), lang('Can not deactivate default labguage'), 'r');
+            event.stopPropagation();
+            return false;
+        }
+
         var languageId = $(curObj).data('id');
         var active = $(curObj).find('input[name="active"]').attr('checked');
         active = active ? 0 : 1;

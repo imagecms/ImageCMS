@@ -72,24 +72,26 @@
                                                 </div>
                                             </div>
 
-                                            <div class="control-group">
-                                                <div class="span3 d-i_b">
-                                                    {if $is_active}
-                                                        {$checked = 'checked="checked"';$checkedP = '';}
-                                                    {else:}
-                                                        {$checkedP = 'disable_tovar';$checked = '';}
-                                                    {/if}
-                                                    <label class="control-label" for="locale">{lang("Active","admin")}
-                                                        :</label>
+                                            {if !$is_default}
+                                                <div class="control-group">
+                                                    <div class="span3 d-i_b">
+                                                        {if $is_active}
+                                                            {$checked = 'checked="checked"';$checkedP = '';}
+                                                        {else:}
+                                                            {$checkedP = 'disable_tovar';$checked = '';}
+                                                        {/if}
+                                                        <label class="control-label" for="locale">{lang("Active","admin")}
+                                                            :</label>
 
-                                                    <div class="controls">
-                                                        <div class="frame_prod-on_off v-a_m" data-rel="tooltip" data-placement="top" data-original-title="{lang('show','admin')}">
-                                                            <span class="prod-on_off {echo $checkedP;}" data-id=""></span>
-                                                            <input type="checkbox" name="active" value="1" {echo $checked;} style="display: none;">
+                                                        <div class="controls">
+                                                            <div class="frame_prod-on_off v-a_m" data-rel="tooltip" data-placement="top" data-original-title="{lang('show','admin')}">
+                                                                <span class="prod-on_off {echo $checkedP;}" data-id=""></span>
+                                                                <input type="checkbox" name="active" value="1" {echo $checked;} style="display: none;">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            {/if}
 
                                         </div>
                                     </form>

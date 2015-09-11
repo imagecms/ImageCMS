@@ -59,10 +59,14 @@ class Cms_base extends CI_Model {
      * @access public
      * @return array
      */
-    public function get_langs() {
+    public function get_langs($active = FALSE) {
         $this->db->cache_on();
-        $query = $this->db
-            ->get('languages');
+
+        if ($active) {
+            $this->db->where('active', 1);
+        }
+        $query = $this->db->get('languages');
+
         if ($query) {
             $query = $query->result_array();
         } else {
@@ -146,7 +150,7 @@ class Cms_base extends CI_Model {
             $categories = $query->result_array();
 
             $n = 0;
-            $ci = & get_instance();
+            $ci = &get_instance();
             $ci->load->library('DX_Auth');
             foreach ($categories as $c) {
                 $categories[$n] = $ci->load->module('cfcm')->connect_fields($c, 'category');

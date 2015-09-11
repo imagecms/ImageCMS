@@ -295,7 +295,7 @@ class Cms_admin extends CI_Model {
 
         $this->db->where('id', $id);
         $this->db->limit(1);
-        $this->db->update('languages', array('default' => 1));
+        $this->db->update('languages', array('default' => 1, 'active' => 1));
     }
 
     public function get_default_lang() {

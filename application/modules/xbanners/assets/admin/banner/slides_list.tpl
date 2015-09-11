@@ -168,6 +168,7 @@
                                         <div class="d_n">
                                             <p>{echo lang('Slide url. Search to find url to your site page or paste remote one.', 'xbanners')}</p>
                                             <br>
+
                                             <p>{echo lang('External url must be start with http(s)://', 'xbanners')}</p>
                                         </div>
                                     </div>
@@ -228,9 +229,9 @@
                                     <label class="control-label" for="Name">{lang('Description', 'xbanners')}:</label>
 
                                     {if $image->getDescription()}
-                                    <div class="controls" style="margin-top: 4px;">
-                                        {echo $image->getDescription()}
-                                    </div>
+                                        <div class="controls" style="margin-top: 4px;">
+                                            {echo $image->getDescription()}
+                                        </div>
                                     {/if}
 
                                     <div class="controls hide-control">
@@ -248,7 +249,7 @@
 
                                     <div class="controls" style="margin-top: 4px;">
                                         {echo $image->getClicks()}
-                                        {echo SStringHelper::Pluralize($image->getClicks(), array(lang('transitions1',"xbanners"),lang('transitions2',"xbanners"),lang('transitions3',"xbanners"), lang('transitions3',"xbanners")))}
+                                        {echo pluralize($image->getClicks(), array(lang('transitions1',"xbanners"),lang('transitions2',"xbanners"),lang('transitions3',"xbanners"), lang('transitions3',"xbanners")))}
                                     </div>
                                 </div>
 

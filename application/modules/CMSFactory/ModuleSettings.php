@@ -2,6 +2,9 @@
 
 namespace CMSFactory;
 
+use CI;
+use CI_DB_active_record;
+
 /**
  * Class for accessing to modules settings
  * (stored in table `components` in `settings` field)
@@ -36,7 +39,7 @@ class ModuleSettings {
 
     /**
      *
-     * @var type
+     * @var CI_DB_active_record
      */
     protected $db;
 
@@ -44,7 +47,7 @@ class ModuleSettings {
      * @param string $moduleName
      */
     protected function __construct($moduleName) {
-        $this->db = \CI::$APP->db;
+        $this->db = CI::$APP->db;
         $this->moduleName = $moduleName;
         $this->loadModuleSettings();
     }
@@ -78,7 +81,6 @@ class ModuleSettings {
         if (!$result) {
             return;
         }
-
         $settingsString = $result->row()->settings;
         $settings = json_decode($settingsString, true);
         if ($settings == null) {

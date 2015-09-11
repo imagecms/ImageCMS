@@ -218,7 +218,7 @@ class Core extends MY_Controller {
                 if ($without_cat == FALSE) {
                     // load page and category
                     foreach ($cats_unsorted as $cat) {
-                        if (($cat['path_url'] == $cat_path . $SLASH) AND ( $cat['id'] == $page_info['category'])) {
+                        if (($cat['path_url'] == $cat_path . $SLASH) AND ($cat['id'] == $page_info['category'])) {
                             $page_found = TRUE;
                             $data_type = 'page';
                             $this->page_content = $page_info;
@@ -251,8 +251,8 @@ class Core extends MY_Controller {
 
         $this->template->add_array(
             [
-                    'agent' => $agent,
-                ]
+                'agent' => $agent,
+            ]
         );
 
         //Assign captcha type
@@ -412,9 +412,9 @@ class Core extends MY_Controller {
 
         $this->template->add_array(
             [
-                    'page' => $page,
-                    'category' => $category
-                ]
+                'page' => $page,
+                'category' => $category
+            ]
         );
 
         if ($this->input->get()) {
@@ -601,7 +601,7 @@ class Core extends MY_Controller {
         // Load languages
 
         if (($langs = $this->cache->fetch('main_site_langs')) === FALSE) {
-            $langs = $this->cms_base->get_langs();
+            $langs = $this->cms_base->get_langs(TRUE);
             $this->cache->store('main_site_langs', $langs);
         }
 
@@ -706,8 +706,8 @@ class Core extends MY_Controller {
 
         $this->template->add_array(
             [
-                    'content' => $this->template->read('error', ['error_text' => $text, 'back_button' => $back])
-                ]
+                'content' => $this->template->read('error', ['error_text' => $text, 'back_button' => $back])
+            ]
         );
 
         $this->template->show();
@@ -894,10 +894,10 @@ class Core extends MY_Controller {
         if ($this->core_data['data_type'] == 'main') {
             $this->template->add_array(
                 [
-                        'site_title' => empty($this->settings['site_title']) ? $title : $this->settings['site_title'],
-                        'site_description' => empty($this->settings['site_description']) ? $description : $this->settings['site_description'],
-                        'site_keywords' => empty($this->settings['site_keywords']) ? $keywords : $this->settings['site_keywords']
-                    ]
+                    'site_title' => empty($this->settings['site_title']) ? $title : $this->settings['site_title'],
+                    'site_description' => empty($this->settings['site_description']) ? $description : $this->settings['site_description'],
+                    'site_keywords' => empty($this->settings['site_keywords']) ? $keywords : $this->settings['site_keywords']
+                ]
             );
         } else {
             if (($page_number > 1) && ($page_number != '')) {
@@ -945,14 +945,14 @@ class Core extends MY_Controller {
                 $keywords = '';
             }
 
-            $page_number = $page_number ? : (int) $this->pagination->cur_page;
+            $page_number = $page_number ?: (int) $this->pagination->cur_page;
             $this->template->add_array(
                 [
-                        'site_title' => $title,
-                        'site_description' => htmlspecialchars($description),
-                        'site_keywords' => htmlspecialchars($keywords),
-                        'page_number' => $page_number
-                    ]
+                    'site_title' => $title,
+                    'site_description' => htmlspecialchars($description),
+                    'site_keywords' => htmlspecialchars($keywords),
+                    'page_number' => $page_number
+                ]
             );
         }
     }

@@ -49,7 +49,7 @@ if (!function_exists('lang')) {
 
         textdomain(getMoFileName($domain));
 
-        $CI = & get_instance();
+        $CI = &get_instance();
         $line_tmp = $line;
         $line = $CI->lang->line($line);
 
@@ -79,7 +79,7 @@ if (!function_exists('getMoFileName')) {
             }
 
             if (!defined('CUR_LOCALE')) {
-                $CI = & get_instance();
+                $CI = &get_instance();
 
                 if (strstr($CI->input->server('REQUEST_URI'), 'install')) {
                     $lang = $CI->config->item('language');
@@ -162,11 +162,15 @@ if (!function_exists('correctUrl')) {
 // select language identif from url address
 if (!function_exists('chose_language')) {
 
-    function chose_language() {
+    function chose_language($active = FALSE) {
 
         $ci = &get_instance();
         $url = $ci->uri->uri_string();
         $url_arr = explode('/', $url);
+
+        if ($active) {
+            $ci->db->where('active', 1);
+        }
 
         $languages = $ci->db->get('languages');
 
@@ -201,7 +205,7 @@ if (!function_exists('chose_language')) {
  * @param string $flag
  */
 function get_main_lang($flag = null) {
-    $ci = & get_instance();
+    $ci = &get_instance();
     if (!$ci->db) {
         return FALSE;
     }
@@ -242,7 +246,7 @@ function get_main_lang($flag = null) {
  */
 
 function get_admin_locale() {
-    $ci = & get_instance();
+    $ci = &get_instance();
     $admin_language = $ci->config->item('language');
     $all_languages = $ci->config->item('languages');
 
@@ -279,7 +283,7 @@ if (!function_exists('langf')) {
 if (!function_exists('tlang')) {
 
     function tlang($line) {
-        $CI = & get_instance();
+        $CI = &get_instance();
         $name = $CI->config->item('template');
 
         return lang($line, $name);
@@ -290,7 +294,7 @@ if (!function_exists('tlang')) {
 if (!function_exists('tlangf')) {
 
     function tlangf($line, array $data = array()) {
-        $CI = & get_instance();
+        $CI = &get_instance();
         $name = $CI->config->item('template');
         $line = lang($line, $name);
 
@@ -344,16 +348,16 @@ if (!function_exists('pluralize')) {
         }
         $numeric = (int) abs($count);
         $num = 2;
-        if ($numeric % 100 == 1 || ($numeric % 100 > 20) && ( $numeric % 10 == 1 )) {
+        if ($numeric % 100 == 1 || ($numeric % 100 > 20) && ($numeric % 10 == 1)) {
             $num = 0;
         }
-        if ($numeric % 100 == 2 || ($numeric % 100 > 20) && ( $numeric % 10 == 2 )) {
+        if ($numeric % 100 == 2 || ($numeric % 100 > 20) && ($numeric % 10 == 2)) {
             $num = 1;
         }
-        if ($numeric % 100 == 3 || ($numeric % 100 > 20) && ( $numeric % 10 == 3 )) {
+        if ($numeric % 100 == 3 || ($numeric % 100 > 20) && ($numeric % 10 == 3)) {
             $num = 1;
         }
-        if ($numeric % 100 == 4 || ($numeric % 100 > 20) && ( $numeric % 10 == 4 )) {
+        if ($numeric % 100 == 4 || ($numeric % 100 > 20) && ($numeric % 10 == 4)) {
             $num = 1;
         }
         return $root . (isset($ends[$num]) ? $ends[$num] : array_pop($ends));

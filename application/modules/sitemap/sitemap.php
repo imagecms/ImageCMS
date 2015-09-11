@@ -765,13 +765,12 @@ class Sitemap extends MY_Controller {
      * @param array $data - data array (array('url' => 'pageurl'))
      * return $code if send (200 = ok) else 'false'
      */
-    public function ping_google($data = array()) {
+    public static function ping_google($data = array()) {
         // Checking is used server is local
-        if (strstr($this->input->server('SERVER_NAME'), '.loc')) {
+        $ci = &get_instance();
+        if (strstr($ci->input->server('SERVER_NAME'), '.loc')) {
             return FALSE;
         }
-
-        $ci = &get_instance();
 
         $ci->db->select('settings');
         $ci->db->where('name', 'sitemap');
