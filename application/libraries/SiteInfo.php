@@ -49,18 +49,18 @@ class SiteInfo {
      *
      * @var array
      */
-    private static $siteinfoObgect;
+    public static $siteinfoObgect;
 
     /**
      * Setting class variables
      * @param string $locale locale to intiate class with
      */
     public function __construct($locale = NULL) {
-        if (!self::$siteinfoObgect) {
-            if ($this->useLocales == TRUE) {
-                $this->locale = $locale != null ? $locale : MY_Controller::getCurrentLocale();
-            }
+        if ($this->useLocales == TRUE) {
+            $this->locale = $locale != null ? $locale : MY_Controller::getCurrentLocale();
+        }
 
+        if (!self::$siteinfoObgect) {
             $locales_ = CI::$APP->db->select('identif,id')->get('languages')->result_array();
             foreach ($locales_ as $row) {
                 $this->locales[$row['id']] = $row['identif'];

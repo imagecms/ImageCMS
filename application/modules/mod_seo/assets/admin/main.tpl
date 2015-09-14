@@ -345,6 +345,8 @@
                                                     <b>%H1%</b> - {lang('field H1 of category','mod_seo')}<br/>
                                                     <b>%brands%</b> - {lang('list of the top brands, separated by ','mod_seo')}"," <br/>
                                                     <b>%pagenumber%</b> - {lang("Display on pagination pages template from field 'Unique pagination pages'",'mod_seo')}<br/>
+                                                    <b>%maxPrice%</b> - {lang("Minimal price in category",'mod_seo')}<br/>
+                                                    <b>%minPrice%</b> - {lang("Maximal price in category",'mod_seo')}<br/>
                                                     <br/>
                                                     {lang('Additional params for using with category name','mod_seo')}:<br/>
                                                     <b>[t]</b> - {lang('Translit','mod_seo')}<br/>
@@ -377,6 +379,8 @@
                                                     <b>%H1%</b> - {lang('field H1 of category','mod_seo')}<br/>
                                                     <b>%brands%</b> - {lang('list of the top brands, separated by ','mod_seo')}"," <br/>
                                                     <b>%pagenumber%</b> - {lang("Display on pagination pages template from field 'Unique pagination pages'",'mod_seo')}<br/>
+                                                    <b>%maxPrice%</b> - {lang("Minimal price in category",'mod_seo')}<br/>
+                                                    <b>%minPrice%</b> - {lang("Maximal price in category",'mod_seo')}<br/>
                                                     <br/>
                                                     {lang('Additional params for using with category name','mod_seo')}:<br/>
                                                     <b>[t]</b> - {lang('Translit','mod_seo')}<br/>
@@ -496,6 +500,8 @@
                                                     <b>%H1%</b> - {lang('field H1 of category','mod_seo')}<br/>
                                                     <b>%brands%</b> - {lang('list of the top brands, separated by ','mod_seo')}"," <br/>
                                                     <b>%pagenumber%</b> - {lang("Display on pagination pages template from field 'Unique pagination pages'",'mod_seo')}<br/>
+                                                    <b>%maxPrice%</b> - {lang("Minimal price in category",'mod_seo')}<br/>
+                                                    <b>%minPrice%</b> - {lang("Maximal price in category",'mod_seo')}<br/>
                                                     <br/>
                                                     {lang('Additional params for using with category name','mod_seo')}:<br/>
                                                     <b>[t]</b> - {lang('Translit','mod_seo')}<br/>
@@ -528,6 +534,8 @@
                                                     <b>%H1%</b> - {lang('field H1 of category','mod_seo')}<br/>
                                                     <b>%brands%</b> - {lang('list of the top brands, separated by ','mod_seo')}"," <br/>
                                                     <b>%pagenumber%</b> - {lang("Display on pagination pages template from field 'Unique pagination pages'",'mod_seo')}<br/>
+                                                    <b>%maxPrice%</b> - {lang("Minimal price in category",'mod_seo')}<br/>
+                                                    <b>%minPrice%</b> - {lang("Maximal price in category",'mod_seo')}<br/>
                                                     <br/>
                                                     {lang('Additional params for using with category name','mod_seo')}:<br/>
                                                     <b>[t]</b> - {lang('Translit','mod_seo')}<br/>

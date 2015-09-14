@@ -1,5 +1,10 @@
 <?php
 
+use CMSFactory\assetManager;
+use CMSFactory\Events;
+use Currency\Currency;
+use Propel\Runtime\ActiveQuery\Criteria;
+
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /**
@@ -9,7 +14,7 @@
  * @author <dev@imagecms.net>
  * @copyright ImageCMS (c) 2014
  */
-class Mod_seo extends \MY_Controller {
+class Mod_seo extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
@@ -27,15 +32,15 @@ class Mod_seo extends \MY_Controller {
 
     public function autoload() {
         // Shop
-        \CMSFactory\Events::create()->onSearchPageLoad()->setListener('_buildSearchMeta');
-        \CMSFactory\Events::create()->onBrandPageLoad()->setListener('_buildBrandMeta');
-        \CMSFactory\Events::create()->onBrandsPageLoad()->setListener('_buildBrandsMeta');
-        \CMSFactory\Events::create()->onProductPageLoad()->setListener('_buildProductsMeta');
-        \CMSFactory\Events::create()->onCategoryPageLoad()->setListener('_buildCategoryMeta');
+        Events::create()->onSearchPageLoad()->setListener('_buildSearchMeta');
+        Events::create()->onBrandPageLoad()->setListener('_buildBrandMeta');
+        Events::create()->onBrandsPageLoad()->setListener('_buildBrandsMeta');
+        Events::create()->onProductPageLoad()->setListener('_buildProductsMeta');
+        Events::create()->onCategoryPageLoad()->setListener('_buildCategoryMeta');
 
         // Core
-        \CMSFactory\Events::create()->on('page:load')->setListener('_buildPageMeta');
-        \CMSFactory\Events::create()->on('pageCategory:load')->setListener('_buildPageCategoryMeta');
+        Events::create()->on('page:load')->setListener('_buildPageMeta');
+        Events::create()->on('pageCategory:load')->setListener('_buildPageCategoryMeta');
     }
 
     /**
@@ -227,7 +232,7 @@ class Mod_seo extends \MY_Controller {
             $templateKey = $settings['pageCategoryTemplateKey'];
         }
 
-        $pageNumber = (int) \CMSFactory\assetManager::create()->getData('page_number');
+        $pageNumber = (int) assetManager::create()->getData('page_number');
         $pagePattern = $settings['pageCategoryTemplatePaginationTemplate'];
         $pagePattern = str_replace('%number%', $pageNumber, $pagePattern);
 
@@ -320,12 +325,12 @@ class Mod_seo extends \MY_Controller {
     public function _buildProductsMeta($arg) {
 
         $model = $arg['model'];
-        $local = \MY_Controller::getCurrentLocale();
+        $local = MY_Controller::getCurrentLocale();
 
         $obj = new Mod_seo();
 
         // Get categories ids which has unique settings
-        $uniqueCategories = \CI::$APP->seoexpert_model_products->getCategoriesArray();
+        $uniqueCategories = CI::$APP->seoexpert_model_products->getCategoriesArray();
 
         // Check is common category or uniq
         if (in_array($model->getCategoryId(), $uniqueCategories)) {
@@ -470,13 +475,24 @@ class Mod_seo extends \MY_Controller {
      * @return false|null
      */
     public function _buildCategoryMeta($categoruObj) {
+        CI::$APP->load->helper('array_helper');
 
         $local = MY_Controller::getCurrentLocale();
         /* @var $model SCategory */
         $model = $categoruObj->data['category'];
         $settings = ShopCore::$ci->seoexpert_model->getSettings($local);
-        $pageNumber = (int) \CMSFactory\assetManager::create()->getData('page_number');
+        $pageNumber = (int) assetManager::create()->getData('page_number');
 
+        $minPriceIds = ShopProductCategoriesQuery::create()->filterByCategoryId($model->getId())->find()->toArray();
+        $maxPriceIds = ShopProductCategoriesQuery::create()->filterByCategoryId($model->getId())->find()->toArray();
+
+        $minPriceIds = array_column($minPriceIds, 'ProductId');
+        $maxPriceIds = array_column($maxPriceIds, 'ProductId');
+
+        if ($maxPriceIds && $minPriceIds) {
+            $maxPrice = Currency::create()->convert(SProductVariantsQuery::create()->filterByProductId($maxPriceIds)->orderByPriceInMain(Criteria::DESC)->findOne()->getPriceInMain());
+            $minPrice = Currency::create()->convert(SProductVariantsQuery::create()->filterByProductId($minPriceIds)->orderByPriceInMain(Criteria::ASC)->where('price_in_main > 1')->findOne()->getPriceInMain());
+        }
         $obj = new Mod_seo();
 
         if ($model->getParentId()) {
@@ -557,6 +573,9 @@ class Mod_seo extends \MY_Controller {
         $template = (strstr($template, '%name[5]%')) ? str_replace('%name[5]%', $obj->inflect($model->getName(), 5), $template) : $template;
         $template = (strstr($template, '%name[6]%')) ? str_replace('%name[6]%', $obj->inflect($model->getName(), 6), $template) : $template;
 
+        $template = (strstr($template, '%maxPrice%')) ? str_replace('%maxPrice%', $maxPrice, $template) : $template;
+        $template = (strstr($template, '%minPrice%')) ? str_replace('%minPrice%', $minPrice, $template) : $template;
+
         // the cases of words and translit
         $template = (strstr($template, '%name[1][t]%') || strstr($template, '%name[t][1]%')) ? str_replace(array('%name[1][t]%', '%name[t][1]%'), translit($obj->inflect($model->getName(), 1)), $template) : $template;
         $template = (strstr($template, '%name[2][t]%') || strstr($template, '%name[t][2]%')) ? str_replace(array('%name[2][t]%', '%name[t][2]%'), translit($obj->inflect($model->getName(), 2)), $template) : $template;
@@ -571,6 +590,9 @@ class Mod_seo extends \MY_Controller {
         $templateDesc = (strstr($templateDesc, '%desc%')) ? str_replace('%desc%', mb_substr(strip_tags($model->getDescription()), 0, intval($descCount)), $templateDesc) : $templateDesc;
         $templateDesc = (strstr($templateDesc, '%H1%')) ? str_replace('%H1%', $model->getH1(), $templateDesc) : $templateDesc;
         $templateDesc = (strstr($templateDesc, '%pagenumber%')) ? str_replace('%pagenumber%', $pagePattern, $templateDesc) : $templateDesc;
+
+        $templateDesc = (strstr($templateDesc, '%maxPrice%')) ? str_replace('%maxPrice%', $maxPrice, $templateDesc) : $templateDesc;
+        $templateDesc = (strstr($templateDesc, '%minPrice%')) ? str_replace('%minPrice%', $minPrice, $templateDesc) : $templateDesc;
 
         // category name translit
         $templateDesc = (strstr($templateDesc, '%name[t]%')) ? str_replace('%name[t]%', translit($model->getName()), $templateDesc) : $templateDesc;
@@ -657,7 +679,7 @@ class Mod_seo extends \MY_Controller {
             return FALSE;
         }
 
-        $pageNumber = (int) \CMSFactory\assetManager::create()->getData('page_number');
+        $pageNumber = (int) assetManager::create()->getData('page_number');
 
         $local = MY_Controller::getCurrentLocale();
         $model = $arg['model'];
@@ -712,7 +734,7 @@ class Mod_seo extends \MY_Controller {
         self::setMetaTags($template, $templateKey, mb_substr($templateDesc, 0));
     }
 
-    public function _buildSearchMeta($arg) {
+    public function _buildSearchMeta() {
         /**
          * Let's do the harlem shake!!!
          */
@@ -773,8 +795,7 @@ class Mod_seo extends \MY_Controller {
                                     'inflected' => $inflected,
                                 );
 
-                                $res_inflected = $this->db
-                                    ->insert('mod_seo_inflect', $dataArray);
+                                $this->db->insert('mod_seo_inflect', $dataArray);
                             }
                         }
                     }

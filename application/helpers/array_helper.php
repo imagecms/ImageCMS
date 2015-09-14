@@ -6,12 +6,14 @@ if (!defined('BASEPATH')) {
 
 if (!function_exists('my_print_r')) {
 
+//@codingStandardsIgnoreStart
     function my_print_r($array = []) {
         echo "<pre>";
         print_r($array);
         echo "</pre>";
     }
 
+//@codingStandardsIgnoreEnd
 }
 
 if (!function_exists('is_true_array')) {
@@ -138,6 +140,19 @@ if (!function_exists('pluralize')) {
             return $words[1];
         }
         return $words[2];
+    }
+
+}
+
+if (!function_exists('array_column')) {
+
+    function array_column($array, $column_name) {
+        return array_map(
+            function($element) use($column_name) {
+                    return $element[$column_name];
+            },
+            $array
+        );
     }
 
 }

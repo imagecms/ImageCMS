@@ -5,6 +5,7 @@
         "This file is @generated automatically"
     ],
     "hash": "2405d45050884ccf239a9252665012a7",
+    "content-hash": "0f4502ccdcc7fe519b71500fe5bae9b5",
     "packages": [
         {
             "name": "google/apiclient",
@@ -290,12 +291,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/propelorm/Propel2.git",
-                "reference": "b9fe16f616fbef1e7c1a4943df08f3f1a04d7a41"
+                "reference": "eadfdf25a0c0b305848f075dc5c96f485a650913"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/propelorm/Propel2/zipball/b9fe16f616fbef1e7c1a4943df08f3f1a04d7a41",
-                "reference": "b9fe16f616fbef1e7c1a4943df08f3f1a04d7a41",
+                "url": "https://api.github.com/repos/propelorm/Propel2/zipball/eadfdf25a0c0b305848f075dc5c96f485a650913",
+                "reference": "eadfdf25a0c0b305848f075dc5c96f485a650913",
                 "shasum": ""
             },
             "require": {
@@ -347,7 +348,7 @@
                 "orm",
                 "persistence"
             ],
-            "time": "2015-08-07 15:54:32"
+            "time": "2015-09-12 18:53:37"
         },
         {
             "name": "psr/log",
@@ -442,12 +443,12 @@
             "version": "v2.7.4",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/Console.git",
+                "url": "git@github.com:symfony/Console.git",
                 "reference": "9ff9032151186bd66ecee727d728f1319f52d1d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Console/zipball/9ff9032151186bd66ecee727d728f1319f52d1d8",
+                "url": "https://api.github.com/repos/symfony/Console/zipball/f1f7376766394f409b9b33a57a5675a52f8aad93",
                 "reference": "9ff9032151186bd66ecee727d728f1319f52d1d8",
                 "shasum": ""
             },
@@ -3169,16 +3170,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.21.2",
+            "version": "v1.22.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "ddce1136beb8db29b9cd7dffa8ab518b978c9db3"
+                "reference": "204a6c94907c2c2225322c267e09adbb2b1c04fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/ddce1136beb8db29b9cd7dffa8ab518b978c9db3",
-                "reference": "ddce1136beb8db29b9cd7dffa8ab518b978c9db3",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/204a6c94907c2c2225322c267e09adbb2b1c04fd",
+                "reference": "204a6c94907c2c2225322c267e09adbb2b1c04fd",
                 "shasum": ""
             },
             "require": {
@@ -3191,7 +3192,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.21-dev"
+                    "dev-master": "1.22-dev"
                 }
             },
             "autoload": {
@@ -3226,7 +3227,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2015-09-09 05:28:51"
+            "time": "2015-09-13 17:12:38"
         }
     ],
     "aliases": [],
