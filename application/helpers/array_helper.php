@@ -146,6 +146,12 @@ if (!function_exists('pluralize')) {
 
 if (!function_exists('array_column')) {
 
+    /**
+     *
+     * @param array $array
+     * @param string $column_name
+     * @return array
+     */
     function array_column($array, $column_name) {
         return array_map(
             function($element) use($column_name) {

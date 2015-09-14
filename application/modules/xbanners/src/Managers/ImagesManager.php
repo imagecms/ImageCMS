@@ -2,17 +2,14 @@
 
 namespace Banners\Managers;
 
-use Banners\Models\BannerImage;
-use Banners\Models\BannerImageI18n;
 use Banners\Models\BannerImageI18nQuery;
-use Banners\Models\BannersQuery;
-use Banners\Models\Base\Banners;
-use Banners\Models\Map\BannerImageI18nTableMap;
-use Banners\Models\Map\BannerImageTableMap;
-use Propel\Runtime\ActiveQuery\Criteria;
-use Exception;
 use Banners\Models\BannerImageQuery;
-use Symfony\Component\Validator\Constraints\Null;
+use Banners\Models\Base\Banners;
+use CI;
+use DirectoryIterator;
+use Exception;
+use MY_Controller;
+use Propel\Runtime\ActiveQuery\Criteria;
 
 /**
  * User: mark
@@ -88,7 +85,7 @@ class ImagesManager {
             $imagesSrc[$image->getSrc()] = $image;
         }
 
-        foreach (new \DirectoryIterator('.' . self::IMAGES_ORIGIN_DIR_PATH) as $imageFile) {
+        foreach (new DirectoryIterator('.' . self::IMAGES_ORIGIN_DIR_PATH) as $imageFile) {
             if (!$imageFile->isDot() && $imageFile->isFile()) {
                 if (!$imagesSrc[$imageFile->getFilename()]) {
                     $this->deleteImageFile('.' . self::IMAGES_ORIGIN_DIR_PATH . $imageFile->getFilename());
@@ -186,16 +183,16 @@ class ImagesManager {
         $config['allowed_types'] = self::IMAGES_UPLOAD_ALLOWED_TYPES;
         $config['max_size'] = self::IMAGE_MAX_SIZE;
 
-        \CI::$APP->load->library('upload', $config);
+        CI::$APP->load->library('upload', $config);
 
-        if (!\CI::$APP->upload->do_upload(self::IMAGE_FILE_FIELD)) {
-            throw new Exception(strip_tags(\CI::$APP->upload->display_errors()));
+        if (!CI::$APP->upload->do_upload(self::IMAGE_FILE_FIELD)) {
+            throw new Exception(strip_tags(CI::$APP->upload->display_errors()));
         } else {
             if ($imageId && $locale) {
                 $this->delete($imageId, $locale);
             }
 
-            $data = \CI::$APP->upload->data();
+            $data = CI::$APP->upload->data();
 
             $imageFileName = time() . $data['file_ext'];
             $imageFilePath = $data['file_path'] . $imageFileName;
@@ -327,7 +324,7 @@ class ImagesManager {
      * @return array
      */
     public function prepareImageData(array $data, $bannerId, $locale) {
-        $host = \CI::$APP->input->server('HTTP_HOST');
+        $host = CI::$APP->input->server('HTTP_HOST');
 
         $data['url'] = (false === strpos($data['url'], $host)) ? $data['url'] : preg_replace("/^(https?:\/\/)?$host\/?/i", '/', $data['url']);
         $data['url'] = strstr($data['url'], 'http') || $data['url'][0] === '/' ? $data['url'] : '' . $data['url'];
@@ -346,7 +343,7 @@ class ImagesManager {
             $data['active'] = 0;
         }
         $data['banner_id'] = $bannerId;
-        $data['locale'] = $locale ? $locale : \MY_Controller::defaultLocale();
+        $data['locale'] = $locale ? $locale : MY_Controller::defaultLocale();
         $data['src'] = $data['src'] ? $data['src'] : NULL;
         $data['clicks'] = $data['clicks'] ? (int) $data['clicks'] : 0;
 
