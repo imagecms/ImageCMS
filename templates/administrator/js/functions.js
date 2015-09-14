@@ -1412,7 +1412,7 @@ var Languages = {
         var defaultLanguage = $(curObj).closest('tr').find('button.lan_def');
 
         if ($(defaultLanguage).hasClass('active')) {
-            showMessage(lang('Message'), lang('Can not deactivate default labguage'), 'r');
+            showMessage(lang('Message'), lang('Can not deactivate default language'), 'r');
             event.stopPropagation();
             return false;
         }

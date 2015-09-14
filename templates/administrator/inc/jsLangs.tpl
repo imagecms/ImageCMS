@@ -1,4 +1,6 @@
 <script>
+langs["Message"] = '<?php echo addslashes(lang("Message", "admin", FALSE))?>';
+langs["Can not deactivate default language"] = '<?php echo addslashes(lang("Can not deactivate default language", "admin", FALSE))?>';
 langs["Error"] = '<?php echo addslashes(lang("Error", "admin", FALSE))?>';
 langs["Module can not be installed"] = '<?php echo addslashes(lang("Module can not be installed", "admin", FALSE))?>';
 langs["Empty list"] = '<?php echo addslashes(lang("Empty list", "admin", FALSE))?>';
@@ -26,6 +28,5 @@ langs["Please enter a value greater than or equal to<?php echo ' {0}'?>."] = '<?
 langs["numbers only"] = '<?php echo addslashes(lang("numbers only", "admin", FALSE))?>';
 langs["You can upload only |max_file_uploads| images at once"] = '<?php echo addslashes(lang("You can upload only |max_file_uploads| images at once", "admin", FALSE))?>';
 langs["Not supported file format"] = '<?php echo addslashes(lang("Not supported file format", "admin", FALSE))?>';
-langs["Message"] = '<?php echo addslashes(lang("Message", "admin", FALSE))?>';
 langs["Sorting method updated"] = '<?php echo addslashes(lang("Sorting method updated", "admin", FALSE))?>';
 </script>

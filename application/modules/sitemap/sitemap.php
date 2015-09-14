@@ -767,6 +767,7 @@ class Sitemap extends MY_Controller {
      */
     public static function ping_google($data = array()) {
         // Checking is used server is local
+
         $ci = &get_instance();
         if (strstr($ci->input->server('SERVER_NAME'), '.loc')) {
             return FALSE;

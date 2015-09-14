@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-03 12:10+0300\n"
-"PO-Revision-Date: 2015-06-03 12:10+0300\n"
+"POT-Creation-Date: 2015-09-14 05:39+0300\n"
+"PO-Revision-Date: 2015-09-14 05:39+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -17,37 +17,51 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:866
+#: application/modules/mod_seo/assets/admin/main.tpl:348
+#: application/modules/mod_seo/assets/admin/main.tpl:382
+#: application/modules/mod_seo/assets/admin/main.tpl:503
+#: application/modules/mod_seo/assets/admin/main.tpl:537
+msgid "Minimal price in category"
+msgstr "Мінімальна ціна в категорії"
+
+#: application/modules/mod_seo/assets/admin/main.tpl:349
+#: application/modules/mod_seo/assets/admin/main.tpl:383
+#: application/modules/mod_seo/assets/admin/main.tpl:504
+#: application/modules/mod_seo/assets/admin/main.tpl:538
+msgid "Maximal price in category"
+msgstr "Максимальна ціна у категорії"
+
+#: application/modules/mod_seo/assets/admin/main.tpl:876
 msgid "Page description"
 msgstr "Опис сторінки"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:22
+#: application/modules/mod_seo/assets/admin/main.tpl:24
 msgid "Content"
 msgstr "Зміст"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:821
+#: application/modules/mod_seo/assets/admin/main.tpl:831
 msgid "Page"
 msgstr "Сторінка"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:837
-#: application/modules/mod_seo/assets/admin/main.tpl:865
-#: application/modules/mod_seo/assets/admin/main.tpl:903
+#: application/modules/mod_seo/assets/admin/main.tpl:847
+#: application/modules/mod_seo/assets/admin/main.tpl:875
+#: application/modules/mod_seo/assets/admin/main.tpl:913
 msgid "Page name"
 msgstr "Назва сторінки"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:838
-#: application/modules/mod_seo/assets/admin/main.tpl:867
-#: application/modules/mod_seo/assets/admin/main.tpl:904
+#: application/modules/mod_seo/assets/admin/main.tpl:848
+#: application/modules/mod_seo/assets/admin/main.tpl:877
+#: application/modules/mod_seo/assets/admin/main.tpl:914
 msgid "Category, which is assigned to the page"
 msgstr "Категорія, яка присвоюється сторінці"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:840
-#: application/modules/mod_seo/assets/admin/main.tpl:869
-#: application/modules/mod_seo/assets/admin/main.tpl:906
+#: application/modules/mod_seo/assets/admin/main.tpl:850
+#: application/modules/mod_seo/assets/admin/main.tpl:879
+#: application/modules/mod_seo/assets/admin/main.tpl:916
 msgid "Additional params for using with page name"
 msgstr "Додаткові параметри для використання з назвою сторінки"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:957
+#: application/modules/mod_seo/assets/admin/main.tpl:967
 msgid "Page Category"
 msgstr "Сторінка Категорії"
 
@@ -55,18 +69,18 @@ msgstr "Сторінка Категорії"
 msgid "Brands list"
 msgstr "Список брендів"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:214
-#: application/modules/mod_seo/assets/admin/main.tpl:248
-#: application/modules/mod_seo/assets/admin/main.tpl:351
-#: application/modules/mod_seo/assets/admin/main.tpl:383
-#: application/modules/mod_seo/assets/admin/main.tpl:502
-#: application/modules/mod_seo/assets/admin/main.tpl:534
-#: application/modules/mod_seo/assets/admin/main.tpl:844
-#: application/modules/mod_seo/assets/admin/main.tpl:873
-#: application/modules/mod_seo/assets/admin/main.tpl:910
-#: application/modules/mod_seo/assets/admin/main.tpl:980
-#: application/modules/mod_seo/assets/admin/main.tpl:1009
-#: application/modules/mod_seo/assets/admin/main.tpl:1046
+#: application/modules/mod_seo/assets/admin/main.tpl:216
+#: application/modules/mod_seo/assets/admin/main.tpl:250
+#: application/modules/mod_seo/assets/admin/main.tpl:355
+#: application/modules/mod_seo/assets/admin/main.tpl:389
+#: application/modules/mod_seo/assets/admin/main.tpl:510
+#: application/modules/mod_seo/assets/admin/main.tpl:544
+#: application/modules/mod_seo/assets/admin/main.tpl:854
+#: application/modules/mod_seo/assets/admin/main.tpl:883
+#: application/modules/mod_seo/assets/admin/main.tpl:920
+#: application/modules/mod_seo/assets/admin/main.tpl:990
+#: application/modules/mod_seo/assets/admin/main.tpl:1019
+#: application/modules/mod_seo/assets/admin/main.tpl:1056
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:53
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:86
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryEdit.tpl:56
@@ -74,18 +88,18 @@ msgstr "Список брендів"
 msgid "Именительный"
 msgstr "Називний"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:215
-#: application/modules/mod_seo/assets/admin/main.tpl:249
-#: application/modules/mod_seo/assets/admin/main.tpl:352
-#: application/modules/mod_seo/assets/admin/main.tpl:384
-#: application/modules/mod_seo/assets/admin/main.tpl:503
-#: application/modules/mod_seo/assets/admin/main.tpl:535
-#: application/modules/mod_seo/assets/admin/main.tpl:845
-#: application/modules/mod_seo/assets/admin/main.tpl:874
-#: application/modules/mod_seo/assets/admin/main.tpl:911
-#: application/modules/mod_seo/assets/admin/main.tpl:981
-#: application/modules/mod_seo/assets/admin/main.tpl:1010
-#: application/modules/mod_seo/assets/admin/main.tpl:1047
+#: application/modules/mod_seo/assets/admin/main.tpl:217
+#: application/modules/mod_seo/assets/admin/main.tpl:251
+#: application/modules/mod_seo/assets/admin/main.tpl:356
+#: application/modules/mod_seo/assets/admin/main.tpl:390
+#: application/modules/mod_seo/assets/admin/main.tpl:511
+#: application/modules/mod_seo/assets/admin/main.tpl:545
+#: application/modules/mod_seo/assets/admin/main.tpl:855
+#: application/modules/mod_seo/assets/admin/main.tpl:884
+#: application/modules/mod_seo/assets/admin/main.tpl:921
+#: application/modules/mod_seo/assets/admin/main.tpl:991
+#: application/modules/mod_seo/assets/admin/main.tpl:1020
+#: application/modules/mod_seo/assets/admin/main.tpl:1057
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:54
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:87
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryEdit.tpl:57
@@ -93,18 +107,18 @@ msgstr "Називний"
 msgid "Родительный"
 msgstr "Родовий"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:216
-#: application/modules/mod_seo/assets/admin/main.tpl:250
-#: application/modules/mod_seo/assets/admin/main.tpl:353
-#: application/modules/mod_seo/assets/admin/main.tpl:385
-#: application/modules/mod_seo/assets/admin/main.tpl:504
-#: application/modules/mod_seo/assets/admin/main.tpl:536
-#: application/modules/mod_seo/assets/admin/main.tpl:846
-#: application/modules/mod_seo/assets/admin/main.tpl:875
-#: application/modules/mod_seo/assets/admin/main.tpl:912
-#: application/modules/mod_seo/assets/admin/main.tpl:982
-#: application/modules/mod_seo/assets/admin/main.tpl:1011
-#: application/modules/mod_seo/assets/admin/main.tpl:1048
+#: application/modules/mod_seo/assets/admin/main.tpl:218
+#: application/modules/mod_seo/assets/admin/main.tpl:252
+#: application/modules/mod_seo/assets/admin/main.tpl:357
+#: application/modules/mod_seo/assets/admin/main.tpl:391
+#: application/modules/mod_seo/assets/admin/main.tpl:512
+#: application/modules/mod_seo/assets/admin/main.tpl:546
+#: application/modules/mod_seo/assets/admin/main.tpl:856
+#: application/modules/mod_seo/assets/admin/main.tpl:885
+#: application/modules/mod_seo/assets/admin/main.tpl:922
+#: application/modules/mod_seo/assets/admin/main.tpl:992
+#: application/modules/mod_seo/assets/admin/main.tpl:1021
+#: application/modules/mod_seo/assets/admin/main.tpl:1058
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:55
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:88
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryEdit.tpl:58
@@ -112,18 +126,18 @@ msgstr "Родовий"
 msgid "Частичный"
 msgstr "Частковий"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:217
-#: application/modules/mod_seo/assets/admin/main.tpl:251
-#: application/modules/mod_seo/assets/admin/main.tpl:354
-#: application/modules/mod_seo/assets/admin/main.tpl:386
-#: application/modules/mod_seo/assets/admin/main.tpl:505
-#: application/modules/mod_seo/assets/admin/main.tpl:537
-#: application/modules/mod_seo/assets/admin/main.tpl:847
-#: application/modules/mod_seo/assets/admin/main.tpl:876
-#: application/modules/mod_seo/assets/admin/main.tpl:913
-#: application/modules/mod_seo/assets/admin/main.tpl:983
-#: application/modules/mod_seo/assets/admin/main.tpl:1012
-#: application/modules/mod_seo/assets/admin/main.tpl:1049
+#: application/modules/mod_seo/assets/admin/main.tpl:219
+#: application/modules/mod_seo/assets/admin/main.tpl:253
+#: application/modules/mod_seo/assets/admin/main.tpl:358
+#: application/modules/mod_seo/assets/admin/main.tpl:392
+#: application/modules/mod_seo/assets/admin/main.tpl:513
+#: application/modules/mod_seo/assets/admin/main.tpl:547
+#: application/modules/mod_seo/assets/admin/main.tpl:857
+#: application/modules/mod_seo/assets/admin/main.tpl:886
+#: application/modules/mod_seo/assets/admin/main.tpl:923
+#: application/modules/mod_seo/assets/admin/main.tpl:993
+#: application/modules/mod_seo/assets/admin/main.tpl:1022
+#: application/modules/mod_seo/assets/admin/main.tpl:1059
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:56
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:89
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryEdit.tpl:59
@@ -131,18 +145,18 @@ msgstr "Частковий"
 msgid "Дательный"
 msgstr "Давальний"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:218
-#: application/modules/mod_seo/assets/admin/main.tpl:252
-#: application/modules/mod_seo/assets/admin/main.tpl:355
-#: application/modules/mod_seo/assets/admin/main.tpl:387
-#: application/modules/mod_seo/assets/admin/main.tpl:506
-#: application/modules/mod_seo/assets/admin/main.tpl:538
-#: application/modules/mod_seo/assets/admin/main.tpl:848
-#: application/modules/mod_seo/assets/admin/main.tpl:877
-#: application/modules/mod_seo/assets/admin/main.tpl:914
-#: application/modules/mod_seo/assets/admin/main.tpl:984
-#: application/modules/mod_seo/assets/admin/main.tpl:1013
-#: application/modules/mod_seo/assets/admin/main.tpl:1050
+#: application/modules/mod_seo/assets/admin/main.tpl:220
+#: application/modules/mod_seo/assets/admin/main.tpl:254
+#: application/modules/mod_seo/assets/admin/main.tpl:359
+#: application/modules/mod_seo/assets/admin/main.tpl:393
+#: application/modules/mod_seo/assets/admin/main.tpl:514
+#: application/modules/mod_seo/assets/admin/main.tpl:548
+#: application/modules/mod_seo/assets/admin/main.tpl:858
+#: application/modules/mod_seo/assets/admin/main.tpl:887
+#: application/modules/mod_seo/assets/admin/main.tpl:924
+#: application/modules/mod_seo/assets/admin/main.tpl:994
+#: application/modules/mod_seo/assets/admin/main.tpl:1023
+#: application/modules/mod_seo/assets/admin/main.tpl:1060
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:57
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:90
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryEdit.tpl:60
@@ -150,18 +164,18 @@ msgstr "Давальний"
 msgid "Винительный"
 msgstr "Знахідний"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:219
-#: application/modules/mod_seo/assets/admin/main.tpl:253
-#: application/modules/mod_seo/assets/admin/main.tpl:356
-#: application/modules/mod_seo/assets/admin/main.tpl:388
-#: application/modules/mod_seo/assets/admin/main.tpl:507
-#: application/modules/mod_seo/assets/admin/main.tpl:539
-#: application/modules/mod_seo/assets/admin/main.tpl:849
-#: application/modules/mod_seo/assets/admin/main.tpl:878
-#: application/modules/mod_seo/assets/admin/main.tpl:915
-#: application/modules/mod_seo/assets/admin/main.tpl:985
-#: application/modules/mod_seo/assets/admin/main.tpl:1014
-#: application/modules/mod_seo/assets/admin/main.tpl:1051
+#: application/modules/mod_seo/assets/admin/main.tpl:221
+#: application/modules/mod_seo/assets/admin/main.tpl:255
+#: application/modules/mod_seo/assets/admin/main.tpl:360
+#: application/modules/mod_seo/assets/admin/main.tpl:394
+#: application/modules/mod_seo/assets/admin/main.tpl:515
+#: application/modules/mod_seo/assets/admin/main.tpl:549
+#: application/modules/mod_seo/assets/admin/main.tpl:859
+#: application/modules/mod_seo/assets/admin/main.tpl:888
+#: application/modules/mod_seo/assets/admin/main.tpl:925
+#: application/modules/mod_seo/assets/admin/main.tpl:995
+#: application/modules/mod_seo/assets/admin/main.tpl:1024
+#: application/modules/mod_seo/assets/admin/main.tpl:1061
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:58
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:91
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryEdit.tpl:61
@@ -169,21 +183,21 @@ msgstr "Знахідний"
 msgid "Творительный"
 msgstr "Орудний"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:220
-#: application/modules/mod_seo/assets/admin/main.tpl:254
-#: application/modules/mod_seo/assets/admin/main.tpl:357
-#: application/modules/mod_seo/assets/admin/main.tpl:389
-#: application/modules/mod_seo/assets/admin/main.tpl:508
-#: application/modules/mod_seo/assets/admin/main.tpl:540
-#: application/modules/mod_seo/assets/admin/main.tpl:650
-#: application/modules/mod_seo/assets/admin/main.tpl:672
-#: application/modules/mod_seo/assets/admin/main.tpl:717
-#: application/modules/mod_seo/assets/admin/main.tpl:850
-#: application/modules/mod_seo/assets/admin/main.tpl:879
-#: application/modules/mod_seo/assets/admin/main.tpl:916
-#: application/modules/mod_seo/assets/admin/main.tpl:986
-#: application/modules/mod_seo/assets/admin/main.tpl:1015
-#: application/modules/mod_seo/assets/admin/main.tpl:1052
+#: application/modules/mod_seo/assets/admin/main.tpl:222
+#: application/modules/mod_seo/assets/admin/main.tpl:256
+#: application/modules/mod_seo/assets/admin/main.tpl:361
+#: application/modules/mod_seo/assets/admin/main.tpl:395
+#: application/modules/mod_seo/assets/admin/main.tpl:516
+#: application/modules/mod_seo/assets/admin/main.tpl:550
+#: application/modules/mod_seo/assets/admin/main.tpl:660
+#: application/modules/mod_seo/assets/admin/main.tpl:682
+#: application/modules/mod_seo/assets/admin/main.tpl:727
+#: application/modules/mod_seo/assets/admin/main.tpl:860
+#: application/modules/mod_seo/assets/admin/main.tpl:889
+#: application/modules/mod_seo/assets/admin/main.tpl:926
+#: application/modules/mod_seo/assets/admin/main.tpl:996
+#: application/modules/mod_seo/assets/admin/main.tpl:1025
+#: application/modules/mod_seo/assets/admin/main.tpl:1062
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:59
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:92
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryEdit.tpl:62
@@ -196,11 +210,11 @@ msgstr "Спільне використання"
 msgid "Переменные, которые можно использовать"
 msgstr "Змінні, які можна використовувати"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:759
+#: application/modules/mod_seo/assets/admin/main.tpl:769
 msgid "Search"
 msgstr "Пошук"
 
-#: application/modules/mod_seo/admin.php:100
+#: application/modules/mod_seo/admin.php:101
 msgid "Seo category was created"
 msgstr "Seo категорія створена"
 
@@ -208,74 +222,74 @@ msgstr "Seo категорія створена"
 msgid "Seo category was edited"
 msgstr "Seo категорія відредагована"
 
-#: application/modules/mod_seo/admin.php:223
+#: application/modules/mod_seo/admin.php:225
 msgid "Seo category was deleted"
 msgstr "Seo категорія була видалена"
 
-#: application/modules/mod_seo/admin.php:242
+#: application/modules/mod_seo/admin.php:244
 msgid "Seo status category was changed"
 msgstr "Seo стан категорії було змінено"
 
-#: application/modules/mod_seo/admin.php:262
+#: application/modules/mod_seo/admin.php:264
 msgid "Seo status empty meta category was changed"
 msgstr "Seo стан порожньої категорії змінено"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:109
+#: application/modules/mod_seo/assets/admin/main.tpl:111
 msgid "Meta Description"
 msgstr "Meta Description"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:237
+#: application/modules/mod_seo/assets/admin/main.tpl:239
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:75
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryEdit.tpl:78
 msgid "Product description"
 msgstr "Опис продукту"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:265
-#: application/modules/mod_seo/assets/admin/main.tpl:400
-#: application/modules/mod_seo/assets/admin/main.tpl:551
-#: application/modules/mod_seo/assets/admin/main.tpl:698
-#: application/modules/mod_seo/assets/admin/main.tpl:890
-#: application/modules/mod_seo/assets/admin/main.tpl:1026
+#: application/modules/mod_seo/assets/admin/main.tpl:267
+#: application/modules/mod_seo/assets/admin/main.tpl:406
+#: application/modules/mod_seo/assets/admin/main.tpl:561
+#: application/modules/mod_seo/assets/admin/main.tpl:708
+#: application/modules/mod_seo/assets/admin/main.tpl:900
+#: application/modules/mod_seo/assets/admin/main.tpl:1036
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:103
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryEdit.tpl:106
 msgid "Description length"
 msgstr "Довжина опису"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:342
-#: application/modules/mod_seo/assets/admin/main.tpl:374
-#: application/modules/mod_seo/assets/admin/main.tpl:422
-#: application/modules/mod_seo/assets/admin/main.tpl:493
-#: application/modules/mod_seo/assets/admin/main.tpl:525
-#: application/modules/mod_seo/assets/admin/main.tpl:573
-#: application/modules/mod_seo/assets/admin/main.tpl:1002
+#: application/modules/mod_seo/assets/admin/main.tpl:344
+#: application/modules/mod_seo/assets/admin/main.tpl:378
+#: application/modules/mod_seo/assets/admin/main.tpl:428
+#: application/modules/mod_seo/assets/admin/main.tpl:499
+#: application/modules/mod_seo/assets/admin/main.tpl:533
+#: application/modules/mod_seo/assets/admin/main.tpl:583
+#: application/modules/mod_seo/assets/admin/main.tpl:1012
 msgid "Category description"
 msgstr "Опис категорiї"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:645
-#: application/modules/mod_seo/assets/admin/main.tpl:667
+#: application/modules/mod_seo/assets/admin/main.tpl:655
+#: application/modules/mod_seo/assets/admin/main.tpl:677
 msgid "Brand description"
 msgstr "Опис бренду"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:101
-#: application/modules/mod_seo/assets/admin/main.tpl:113
+#: application/modules/mod_seo/assets/admin/main.tpl:103
+#: application/modules/mod_seo/assets/admin/main.tpl:115
 msgid "Leave empty"
 msgstr "Залишити порожнім"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:100
-#: application/modules/mod_seo/assets/admin/main.tpl:112
+#: application/modules/mod_seo/assets/admin/main.tpl:102
+#: application/modules/mod_seo/assets/admin/main.tpl:114
 msgid "Auto formation"
 msgstr "Сформувати автоматично"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:166
+#: application/modules/mod_seo/assets/admin/main.tpl:168
 msgid "Keywords"
 msgstr "Meta Keywords"
 
 #: application/modules/mod_seo/assets/admin/table_brands_list.tpl:32
-#: application/modules/mod_seo/assets/admin/main.tpl:719
+#: application/modules/mod_seo/assets/admin/main.tpl:729
 msgid "Meta-keywords"
 msgstr "Мета-ключові слова"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:133
+#: application/modules/mod_seo/assets/admin/main.tpl:135
 msgid "Enter Meta Tags"
 msgstr "Заповнити мета-теги"
 
@@ -286,31 +300,31 @@ msgstr "Заповнити мета-теги"
 msgid "Back"
 msgstr "Повернутися"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:159
+#: application/modules/mod_seo/assets/admin/main.tpl:161
 msgid "Description"
 msgstr "Meta Description"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:90
+#: application/modules/mod_seo/assets/admin/main.tpl:92
 msgid "Separator"
 msgstr "Розділювальний знак"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:84
+#: application/modules/mod_seo/assets/admin/main.tpl:86
 msgid "Will added the category name in the page title page"
 msgstr "Чи буде назва категорії в title сторінки"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:67
+#: application/modules/mod_seo/assets/admin/main.tpl:69
 msgid "Add the name of the category page"
 msgstr "Додати назву категорії сторінки"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:61
+#: application/modules/mod_seo/assets/admin/main.tpl:63
 msgid "Whether to display the site name in the title page"
 msgstr "Чи буде відображатися назва сайту в заголовку сторінки"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:32
+#: application/modules/mod_seo/assets/admin/main.tpl:34
 msgid "Meta tags"
 msgstr "Мета-теги"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:21
+#: application/modules/mod_seo/assets/admin/main.tpl:22
 msgid "Shop"
 msgstr "Магазин"
 
@@ -318,7 +332,7 @@ msgstr "Магазин"
 msgid "Base"
 msgstr "Основні"
 
-#: application/modules/mod_seo/admin.php:101
+#: application/modules/mod_seo/admin.php:102
 #: application/modules/mod_seo/admin.php:148
 #: application/modules/mod_seo/admin.php:193
 #: application/modules/mod_seo/admin.php:194
@@ -347,88 +361,92 @@ msgid "SEO expert"
 msgstr "SEO експерт"
 
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:27
-#: application/modules/mod_seo/admin.php:82
+#: application/modules/mod_seo/admin.php:85
 msgid "Choose category"
 msgstr "Вибрати категорію"
 
-#: application/modules/mod_seo/admin.php:104
+#: application/modules/mod_seo/admin.php:105
 #: application/modules/mod_seo/admin.php:154
 msgid "Can not create"
 msgstr "Не можу створити"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:326
-#: application/modules/mod_seo/admin.php:130
+#: application/modules/mod_seo/assets/admin/main.tpl:328
+#: application/modules/mod_seo/admin.php:132
 msgid "Category"
 msgstr "Категорія"
 
-#: application/modules/mod_seo/admin.php:224
+#: application/modules/mod_seo/admin.php:226
 msgid "Deleted complete"
 msgstr "Видалені повний"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:44
-#: application/modules/mod_seo/assets/admin/main.tpl:145
+#: application/modules/mod_seo/assets/admin/main.tpl:46
+#: application/modules/mod_seo/assets/admin/main.tpl:147
 msgid "Site name"
 msgstr "Назва сайту"
 
-#: application/modules/mod_seo/assets/js/scripts.js:61
-#: application/modules/mod_seo/assets/js/scripts.js:63
-#: application/modules/mod_seo/assets/admin/main.tpl:51
-#: application/modules/mod_seo/assets/admin/main.tpl:74
+#: application/modules/mod_seo/assets/js/scripts.js:120
+#: application/modules/mod_seo/assets/js/scripts.js:122
+#: application/modules/mod_seo/assets/admin/main.tpl:53
+#: application/modules/mod_seo/assets/admin/main.tpl:76
 #: application/modules/mod_seo/assets/admin/advanced/productsList.tpl:84
 msgid "Yes"
 msgstr "Так"
 
-#: application/modules/mod_seo/assets/js/scripts.js:54
-#: application/modules/mod_seo/assets/js/scripts.js:55
-#: application/modules/mod_seo/assets/admin/main.tpl:57
-#: application/modules/mod_seo/assets/admin/main.tpl:80
+#: application/modules/mod_seo/assets/js/scripts.js:113
+#: application/modules/mod_seo/assets/js/scripts.js:114
+#: application/modules/mod_seo/assets/admin/main.tpl:59
+#: application/modules/mod_seo/assets/admin/main.tpl:82
 #: application/modules/mod_seo/assets/admin/advanced/productsList.tpl:84
 msgid "No"
 msgstr "Немає"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:97
+#: application/modules/mod_seo/assets/admin/main.tpl:99
 msgid "Meta Keywords"
 msgstr "Meta Keywords"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:104
+#: application/modules/mod_seo/assets/admin/main.tpl:106
 msgid "If not given or specified"
 msgstr "Якщо не дано або зазначеного"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:116
+#: application/modules/mod_seo/assets/admin/main.tpl:118
 msgid "If not specified"
 msgstr "Якщо параметр не вказано"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:152
+#: application/modules/mod_seo/assets/admin/main.tpl:154
 msgid "Short site name"
 msgstr "Коротке ім'я сайту"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:187
+#: application/modules/mod_seo/assets/admin/main.tpl:189
 msgid "Product page"
 msgstr "Сторінка продукту"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:198
-#: application/modules/mod_seo/assets/admin/main.tpl:231
-#: application/modules/mod_seo/assets/admin/main.tpl:274
-#: application/modules/mod_seo/assets/admin/main.tpl:368
-#: application/modules/mod_seo/assets/admin/main.tpl:487
-#: application/modules/mod_seo/assets/admin/main.tpl:519
-#: application/modules/mod_seo/assets/admin/main.tpl:567
-#: application/modules/mod_seo/assets/admin/main.tpl:639
-#: application/modules/mod_seo/assets/admin/main.tpl:661
-#: application/modules/mod_seo/assets/admin/main.tpl:683
-#: application/modules/mod_seo/assets/admin/main.tpl:707
-#: application/modules/mod_seo/assets/admin/main.tpl:833
-#: application/modules/mod_seo/assets/admin/main.tpl:861
-#: application/modules/mod_seo/assets/admin/main.tpl:899
-#: application/modules/mod_seo/assets/admin/main.tpl:969
-#: application/modules/mod_seo/assets/admin/main.tpl:997
-#: application/modules/mod_seo/assets/admin/main.tpl:1035
+#: application/modules/mod_seo/assets/admin/main.tpl:200
+#: application/modules/mod_seo/assets/admin/main.tpl:233
+#: application/modules/mod_seo/assets/admin/main.tpl:276
+#: application/modules/mod_seo/assets/admin/main.tpl:372
+#: application/modules/mod_seo/assets/admin/main.tpl:493
+#: application/modules/mod_seo/assets/admin/main.tpl:527
+#: application/modules/mod_seo/assets/admin/main.tpl:577
+#: application/modules/mod_seo/assets/admin/main.tpl:649
+#: application/modules/mod_seo/assets/admin/main.tpl:671
+#: application/modules/mod_seo/assets/admin/main.tpl:693
+#: application/modules/mod_seo/assets/admin/main.tpl:717
+#: application/modules/mod_seo/assets/admin/main.tpl:843
+#: application/modules/mod_seo/assets/admin/main.tpl:871
+#: application/modules/mod_seo/assets/admin/main.tpl:909
+#: application/modules/mod_seo/assets/admin/main.tpl:979
+#: application/modules/mod_seo/assets/admin/main.tpl:1007
+#: application/modules/mod_seo/assets/admin/main.tpl:1045
+#: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:37
+#: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:69
+#: application/modules/mod_seo/assets/admin/advanced/productsCategoryEdit.tpl:40
+#: application/modules/mod_seo/assets/admin/advanced/productsCategoryEdit.tpl:72
 msgid "Variables, can use to"
 msgstr "Змінні, можна використовувати для"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:203
-#: application/modules/mod_seo/assets/admin/main.tpl:236
-#: application/modules/mod_seo/assets/admin/main.tpl:278
+#: application/modules/mod_seo/assets/admin/main.tpl:205
+#: application/modules/mod_seo/assets/admin/main.tpl:238
+#: application/modules/mod_seo/assets/admin/main.tpl:280
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:42
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:74
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:114
@@ -438,9 +456,9 @@ msgstr "Змінні, можна використовувати для"
 msgid "Product name"
 msgstr "Ім'я продукту"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:204
-#: application/modules/mod_seo/assets/admin/main.tpl:238
-#: application/modules/mod_seo/assets/admin/main.tpl:279
+#: application/modules/mod_seo/assets/admin/main.tpl:206
+#: application/modules/mod_seo/assets/admin/main.tpl:240
+#: application/modules/mod_seo/assets/admin/main.tpl:281
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:43
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:76
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:115
@@ -450,9 +468,9 @@ msgstr "Ім'я продукту"
 msgid "Category, which is assigned to the product"
 msgstr "Категорія, яка присвоюється продукту"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:205
-#: application/modules/mod_seo/assets/admin/main.tpl:239
-#: application/modules/mod_seo/assets/admin/main.tpl:280
+#: application/modules/mod_seo/assets/admin/main.tpl:207
+#: application/modules/mod_seo/assets/admin/main.tpl:241
+#: application/modules/mod_seo/assets/admin/main.tpl:282
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:44
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:77
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:116
@@ -462,8 +480,8 @@ msgstr "Категорія, яка присвоюється продукту"
 msgid "Brand, which is assigned to the product"
 msgstr "Бренд, який присвоюється продукції"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:206
-#: application/modules/mod_seo/assets/admin/main.tpl:240
+#: application/modules/mod_seo/assets/admin/main.tpl:208
+#: application/modules/mod_seo/assets/admin/main.tpl:242
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:45
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:78
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryEdit.tpl:48
@@ -471,8 +489,8 @@ msgstr "Бренд, який присвоюється продукції"
 msgid "Product price"
 msgstr "Ціна продукту"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:207
-#: application/modules/mod_seo/assets/admin/main.tpl:241
+#: application/modules/mod_seo/assets/admin/main.tpl:209
+#: application/modules/mod_seo/assets/admin/main.tpl:243
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:46
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:79
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryEdit.tpl:49
@@ -480,9 +498,9 @@ msgstr "Ціна продукту"
 msgid "Main currency"
 msgstr "Основний обмін"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:208
-#: application/modules/mod_seo/assets/admin/main.tpl:242
-#: application/modules/mod_seo/assets/admin/main.tpl:281
+#: application/modules/mod_seo/assets/admin/main.tpl:210
+#: application/modules/mod_seo/assets/admin/main.tpl:244
+#: application/modules/mod_seo/assets/admin/main.tpl:283
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:47
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:80
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:117
@@ -492,18 +510,18 @@ msgstr "Основний обмін"
 msgid "Displays the value of the property, instead of xxxx - id properties"
 msgstr "Повертає значення властивості, замість xxxx - id властивості"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:210
-#: application/modules/mod_seo/assets/admin/main.tpl:244
-#: application/modules/mod_seo/assets/admin/main.tpl:347
-#: application/modules/mod_seo/assets/admin/main.tpl:379
-#: application/modules/mod_seo/assets/admin/main.tpl:498
-#: application/modules/mod_seo/assets/admin/main.tpl:530
-#: application/modules/mod_seo/assets/admin/main.tpl:648
-#: application/modules/mod_seo/assets/admin/main.tpl:670
-#: application/modules/mod_seo/assets/admin/main.tpl:715
-#: application/modules/mod_seo/assets/admin/main.tpl:976
-#: application/modules/mod_seo/assets/admin/main.tpl:1005
-#: application/modules/mod_seo/assets/admin/main.tpl:1042
+#: application/modules/mod_seo/assets/admin/main.tpl:212
+#: application/modules/mod_seo/assets/admin/main.tpl:246
+#: application/modules/mod_seo/assets/admin/main.tpl:351
+#: application/modules/mod_seo/assets/admin/main.tpl:385
+#: application/modules/mod_seo/assets/admin/main.tpl:506
+#: application/modules/mod_seo/assets/admin/main.tpl:540
+#: application/modules/mod_seo/assets/admin/main.tpl:658
+#: application/modules/mod_seo/assets/admin/main.tpl:680
+#: application/modules/mod_seo/assets/admin/main.tpl:725
+#: application/modules/mod_seo/assets/admin/main.tpl:986
+#: application/modules/mod_seo/assets/admin/main.tpl:1015
+#: application/modules/mod_seo/assets/admin/main.tpl:1052
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:49
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:82
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryEdit.tpl:52
@@ -511,21 +529,21 @@ msgstr "Повертає значення властивості, замість
 msgid "Additional params for using with category name"
 msgstr "Додаткові параметри для використання з назва категорії"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:211
-#: application/modules/mod_seo/assets/admin/main.tpl:245
-#: application/modules/mod_seo/assets/admin/main.tpl:348
-#: application/modules/mod_seo/assets/admin/main.tpl:380
-#: application/modules/mod_seo/assets/admin/main.tpl:499
-#: application/modules/mod_seo/assets/admin/main.tpl:531
-#: application/modules/mod_seo/assets/admin/main.tpl:649
-#: application/modules/mod_seo/assets/admin/main.tpl:671
-#: application/modules/mod_seo/assets/admin/main.tpl:716
-#: application/modules/mod_seo/assets/admin/main.tpl:841
-#: application/modules/mod_seo/assets/admin/main.tpl:870
-#: application/modules/mod_seo/assets/admin/main.tpl:907
-#: application/modules/mod_seo/assets/admin/main.tpl:977
-#: application/modules/mod_seo/assets/admin/main.tpl:1006
-#: application/modules/mod_seo/assets/admin/main.tpl:1043
+#: application/modules/mod_seo/assets/admin/main.tpl:213
+#: application/modules/mod_seo/assets/admin/main.tpl:247
+#: application/modules/mod_seo/assets/admin/main.tpl:352
+#: application/modules/mod_seo/assets/admin/main.tpl:386
+#: application/modules/mod_seo/assets/admin/main.tpl:507
+#: application/modules/mod_seo/assets/admin/main.tpl:541
+#: application/modules/mod_seo/assets/admin/main.tpl:659
+#: application/modules/mod_seo/assets/admin/main.tpl:681
+#: application/modules/mod_seo/assets/admin/main.tpl:726
+#: application/modules/mod_seo/assets/admin/main.tpl:851
+#: application/modules/mod_seo/assets/admin/main.tpl:880
+#: application/modules/mod_seo/assets/admin/main.tpl:917
+#: application/modules/mod_seo/assets/admin/main.tpl:987
+#: application/modules/mod_seo/assets/admin/main.tpl:1016
+#: application/modules/mod_seo/assets/admin/main.tpl:1053
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:50
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:83
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryEdit.tpl:53
@@ -533,18 +551,18 @@ msgstr "Додаткові параметри для використання з
 msgid "Translit"
 msgstr "Трансліт"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:212
-#: application/modules/mod_seo/assets/admin/main.tpl:246
-#: application/modules/mod_seo/assets/admin/main.tpl:349
-#: application/modules/mod_seo/assets/admin/main.tpl:381
-#: application/modules/mod_seo/assets/admin/main.tpl:500
-#: application/modules/mod_seo/assets/admin/main.tpl:532
-#: application/modules/mod_seo/assets/admin/main.tpl:842
-#: application/modules/mod_seo/assets/admin/main.tpl:871
-#: application/modules/mod_seo/assets/admin/main.tpl:908
-#: application/modules/mod_seo/assets/admin/main.tpl:978
-#: application/modules/mod_seo/assets/admin/main.tpl:1007
-#: application/modules/mod_seo/assets/admin/main.tpl:1044
+#: application/modules/mod_seo/assets/admin/main.tpl:214
+#: application/modules/mod_seo/assets/admin/main.tpl:248
+#: application/modules/mod_seo/assets/admin/main.tpl:353
+#: application/modules/mod_seo/assets/admin/main.tpl:387
+#: application/modules/mod_seo/assets/admin/main.tpl:508
+#: application/modules/mod_seo/assets/admin/main.tpl:542
+#: application/modules/mod_seo/assets/admin/main.tpl:852
+#: application/modules/mod_seo/assets/admin/main.tpl:881
+#: application/modules/mod_seo/assets/admin/main.tpl:918
+#: application/modules/mod_seo/assets/admin/main.tpl:988
+#: application/modules/mod_seo/assets/admin/main.tpl:1017
+#: application/modules/mod_seo/assets/admin/main.tpl:1054
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:51
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:84
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryEdit.tpl:54
@@ -552,18 +570,18 @@ msgstr "Трансліт"
 msgid "Number case of word"
 msgstr "Кількість випадку слово"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:213
-#: application/modules/mod_seo/assets/admin/main.tpl:247
-#: application/modules/mod_seo/assets/admin/main.tpl:350
-#: application/modules/mod_seo/assets/admin/main.tpl:382
-#: application/modules/mod_seo/assets/admin/main.tpl:501
-#: application/modules/mod_seo/assets/admin/main.tpl:533
-#: application/modules/mod_seo/assets/admin/main.tpl:843
-#: application/modules/mod_seo/assets/admin/main.tpl:872
-#: application/modules/mod_seo/assets/admin/main.tpl:909
-#: application/modules/mod_seo/assets/admin/main.tpl:979
-#: application/modules/mod_seo/assets/admin/main.tpl:1008
-#: application/modules/mod_seo/assets/admin/main.tpl:1045
+#: application/modules/mod_seo/assets/admin/main.tpl:215
+#: application/modules/mod_seo/assets/admin/main.tpl:249
+#: application/modules/mod_seo/assets/admin/main.tpl:354
+#: application/modules/mod_seo/assets/admin/main.tpl:388
+#: application/modules/mod_seo/assets/admin/main.tpl:509
+#: application/modules/mod_seo/assets/admin/main.tpl:543
+#: application/modules/mod_seo/assets/admin/main.tpl:853
+#: application/modules/mod_seo/assets/admin/main.tpl:882
+#: application/modules/mod_seo/assets/admin/main.tpl:919
+#: application/modules/mod_seo/assets/admin/main.tpl:989
+#: application/modules/mod_seo/assets/admin/main.tpl:1018
+#: application/modules/mod_seo/assets/admin/main.tpl:1055
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:52
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:85
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryEdit.tpl:55
@@ -571,129 +589,131 @@ msgstr "Кількість випадку слово"
 msgid "Example"
 msgstr "Приклад"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:235
+#: application/modules/mod_seo/assets/admin/main.tpl:237
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:73
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryEdit.tpl:76
 msgid "Product ID"
 msgstr "ID продукту"
 
 #: application/modules/mod_seo/assets/admin/table_brands_list.tpl:41
-#: application/modules/mod_seo/assets/admin/main.tpl:291
-#: application/modules/mod_seo/assets/admin/main.tpl:449
-#: application/modules/mod_seo/assets/admin/main.tpl:600
-#: application/modules/mod_seo/assets/admin/main.tpl:728
-#: application/modules/mod_seo/assets/admin/main.tpl:796
-#: application/modules/mod_seo/assets/admin/main.tpl:926
-#: application/modules/mod_seo/assets/admin/main.tpl:1062
+#: application/modules/mod_seo/assets/admin/main.tpl:293
+#: application/modules/mod_seo/assets/admin/main.tpl:455
+#: application/modules/mod_seo/assets/admin/main.tpl:610
+#: application/modules/mod_seo/assets/admin/main.tpl:738
+#: application/modules/mod_seo/assets/admin/main.tpl:806
+#: application/modules/mod_seo/assets/admin/main.tpl:936
+#: application/modules/mod_seo/assets/admin/main.tpl:1086
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:128
 #: application/modules/mod_seo/assets/admin/advanced/productsList.tpl:46
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryEdit.tpl:131
 msgid "Active"
 msgstr "Active"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:301
-#: application/modules/mod_seo/assets/admin/main.tpl:460
-#: application/modules/mod_seo/assets/admin/main.tpl:611
-#: application/modules/mod_seo/assets/admin/main.tpl:739
-#: application/modules/mod_seo/assets/admin/main.tpl:936
-#: application/modules/mod_seo/assets/admin/main.tpl:1072
+#: application/modules/mod_seo/assets/admin/main.tpl:303
+#: application/modules/mod_seo/assets/admin/main.tpl:466
+#: application/modules/mod_seo/assets/admin/main.tpl:621
+#: application/modules/mod_seo/assets/admin/main.tpl:749
+#: application/modules/mod_seo/assets/admin/main.tpl:946
+#: application/modules/mod_seo/assets/admin/main.tpl:1096
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:139
 #: application/modules/mod_seo/assets/admin/advanced/productsList.tpl:47
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryEdit.tpl:142
 msgid "Use only for empty metadata"
 msgstr "Використовувати тільки для порожніх метаданих"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:313
+#: application/modules/mod_seo/assets/admin/main.tpl:315
 msgid "Advanced"
 msgstr "Додатково"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:340
-#: application/modules/mod_seo/assets/admin/main.tpl:372
-#: application/modules/mod_seo/assets/admin/main.tpl:420
-#: application/modules/mod_seo/assets/admin/main.tpl:491
-#: application/modules/mod_seo/assets/admin/main.tpl:523
-#: application/modules/mod_seo/assets/admin/main.tpl:571
+#: application/modules/mod_seo/assets/admin/main.tpl:342
+#: application/modules/mod_seo/assets/admin/main.tpl:376
+#: application/modules/mod_seo/assets/admin/main.tpl:426
+#: application/modules/mod_seo/assets/admin/main.tpl:497
+#: application/modules/mod_seo/assets/admin/main.tpl:531
+#: application/modules/mod_seo/assets/admin/main.tpl:581
 msgid "Category ID"
 msgstr "Category ID"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:341
-#: application/modules/mod_seo/assets/admin/main.tpl:373
-#: application/modules/mod_seo/assets/admin/main.tpl:421
-#: application/modules/mod_seo/assets/admin/main.tpl:492
-#: application/modules/mod_seo/assets/admin/main.tpl:524
-#: application/modules/mod_seo/assets/admin/main.tpl:572
-#: application/modules/mod_seo/assets/admin/main.tpl:973
-#: application/modules/mod_seo/assets/admin/main.tpl:1001
-#: application/modules/mod_seo/assets/admin/main.tpl:1039
+#: application/modules/mod_seo/assets/admin/main.tpl:343
+#: application/modules/mod_seo/assets/admin/main.tpl:377
+#: application/modules/mod_seo/assets/admin/main.tpl:427
+#: application/modules/mod_seo/assets/admin/main.tpl:498
+#: application/modules/mod_seo/assets/admin/main.tpl:532
+#: application/modules/mod_seo/assets/admin/main.tpl:582
+#: application/modules/mod_seo/assets/admin/main.tpl:983
+#: application/modules/mod_seo/assets/admin/main.tpl:1011
+#: application/modules/mod_seo/assets/admin/main.tpl:1049
 msgid "Category name"
 msgstr "Назва категорії"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:343
-#: application/modules/mod_seo/assets/admin/main.tpl:375
-#: application/modules/mod_seo/assets/admin/main.tpl:423
-#: application/modules/mod_seo/assets/admin/main.tpl:494
-#: application/modules/mod_seo/assets/admin/main.tpl:526
-#: application/modules/mod_seo/assets/admin/main.tpl:574
+#: application/modules/mod_seo/assets/admin/main.tpl:345
+#: application/modules/mod_seo/assets/admin/main.tpl:379
+#: application/modules/mod_seo/assets/admin/main.tpl:429
+#: application/modules/mod_seo/assets/admin/main.tpl:500
+#: application/modules/mod_seo/assets/admin/main.tpl:534
+#: application/modules/mod_seo/assets/admin/main.tpl:584
 msgid "field H1 of category"
 msgstr "поле H1 категорії"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:344
-#: application/modules/mod_seo/assets/admin/main.tpl:376
-#: application/modules/mod_seo/assets/admin/main.tpl:424
-#: application/modules/mod_seo/assets/admin/main.tpl:495
-#: application/modules/mod_seo/assets/admin/main.tpl:527
-#: application/modules/mod_seo/assets/admin/main.tpl:575
+#: application/modules/mod_seo/assets/admin/main.tpl:346
+#: application/modules/mod_seo/assets/admin/main.tpl:380
+#: application/modules/mod_seo/assets/admin/main.tpl:430
+#: application/modules/mod_seo/assets/admin/main.tpl:501
+#: application/modules/mod_seo/assets/admin/main.tpl:535
+#: application/modules/mod_seo/assets/admin/main.tpl:585
 msgid "list of the top brands, separated by "
 msgstr "список топ-брендів, розділених "
 
-#: application/modules/mod_seo/assets/admin/main.tpl:345
-#: application/modules/mod_seo/assets/admin/main.tpl:377
-#: application/modules/mod_seo/assets/admin/main.tpl:425
-#: application/modules/mod_seo/assets/admin/main.tpl:496
-#: application/modules/mod_seo/assets/admin/main.tpl:528
-#: application/modules/mod_seo/assets/admin/main.tpl:576
-#: application/modules/mod_seo/assets/admin/main.tpl:646
-#: application/modules/mod_seo/assets/admin/main.tpl:668
-#: application/modules/mod_seo/assets/admin/main.tpl:713
-#: application/modules/mod_seo/assets/admin/main.tpl:974
-#: application/modules/mod_seo/assets/admin/main.tpl:1003
-#: application/modules/mod_seo/assets/admin/main.tpl:1040
+#: application/modules/mod_seo/assets/admin/main.tpl:347
+#: application/modules/mod_seo/assets/admin/main.tpl:381
+#: application/modules/mod_seo/assets/admin/main.tpl:431
+#: application/modules/mod_seo/assets/admin/main.tpl:502
+#: application/modules/mod_seo/assets/admin/main.tpl:536
+#: application/modules/mod_seo/assets/admin/main.tpl:586
+#: application/modules/mod_seo/assets/admin/main.tpl:656
+#: application/modules/mod_seo/assets/admin/main.tpl:678
+#: application/modules/mod_seo/assets/admin/main.tpl:723
+#: application/modules/mod_seo/assets/admin/main.tpl:984
+#: application/modules/mod_seo/assets/admin/main.tpl:1013
+#: application/modules/mod_seo/assets/admin/main.tpl:1050
 msgid "Display on pagination pages template from field 'Unique pagination pages'"
 msgstr "Показати на пагинации сторінок шаблон з поля "
 
-#: application/modules/mod_seo/assets/admin/main.tpl:408
-#: application/modules/mod_seo/assets/admin/main.tpl:559
+#: application/modules/mod_seo/assets/admin/main.tpl:414
+#: application/modules/mod_seo/assets/admin/main.tpl:569
 msgid "Count of brands:"
 msgstr "Кількість брендів:"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:439
-#: application/modules/mod_seo/assets/admin/main.tpl:590
-#: application/modules/mod_seo/assets/admin/main.tpl:687
+#: application/modules/mod_seo/assets/admin/main.tpl:445
+#: application/modules/mod_seo/assets/admin/main.tpl:600
+#: application/modules/mod_seo/assets/admin/main.tpl:697
+#: application/modules/mod_seo/assets/admin/main.tpl:1076
 msgid "Page number"
 msgstr "Номер сторінки"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:441
-#: application/modules/mod_seo/assets/admin/main.tpl:592
-#: application/modules/mod_seo/assets/admin/main.tpl:689
+#: application/modules/mod_seo/assets/admin/main.tpl:447
+#: application/modules/mod_seo/assets/admin/main.tpl:602
+#: application/modules/mod_seo/assets/admin/main.tpl:699
+#: application/modules/mod_seo/assets/admin/main.tpl:1078
 msgid "Unique pagination pages"
 msgstr "Унікальне розбиття на сторінки сторінок"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:477
+#: application/modules/mod_seo/assets/admin/main.tpl:483
 msgid "Subcategory"
 msgstr "Підкатегорію"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:629
+#: application/modules/mod_seo/assets/admin/main.tpl:639
 msgid "Brands"
 msgstr "Бренди"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:643
-#: application/modules/mod_seo/assets/admin/main.tpl:665
+#: application/modules/mod_seo/assets/admin/main.tpl:653
+#: application/modules/mod_seo/assets/admin/main.tpl:675
 msgid "Brand ID"
 msgstr "Бренд ID"
 
-#: application/modules/mod_seo/assets/admin/main.tpl:644
-#: application/modules/mod_seo/assets/admin/main.tpl:666
-#: application/modules/mod_seo/assets/admin/main.tpl:712
+#: application/modules/mod_seo/assets/admin/main.tpl:654
+#: application/modules/mod_seo/assets/admin/main.tpl:676
+#: application/modules/mod_seo/assets/admin/main.tpl:722
 msgid "Brand name"
 msgstr "Фірмове найменування"
 
@@ -730,14 +750,14 @@ msgstr "Ім'я категорії "
 msgid "Editing"
 msgstr "Редагування"
 
-#: application/modules/mod_seo/assets/js/scripts.js:78
-#: application/modules/mod_seo/assets/js/scripts.js:79
+#: application/modules/mod_seo/assets/js/scripts.js:138
+#: application/modules/mod_seo/assets/js/scripts.js:139
 #: application/modules/mod_seo/assets/admin/advanced/productsList.tpl:72
 msgid "Not show"
 msgstr "Не подивитися"
 
-#: application/modules/mod_seo/assets/js/scripts.js:85
-#: application/modules/mod_seo/assets/js/scripts.js:87
+#: application/modules/mod_seo/assets/js/scripts.js:145
+#: application/modules/mod_seo/assets/js/scripts.js:147
 #: application/modules/mod_seo/assets/admin/advanced/productsList.tpl:74
 msgid "Show"
 msgstr "Подивитися"
@@ -750,12 +770,12 @@ msgstr "Список пустий."
 msgid "Create meta-data for category"
 msgstr "Створення Мета-даних для категорії"
 
-#: application/modules/mod_seo/assets/js/scripts.js:26
-#: application/modules/mod_seo/assets/js/scripts.js:42
+#: application/modules/mod_seo/assets/js/scripts.js:85
+#: application/modules/mod_seo/assets/js/scripts.js:101
 msgid "Message"
 msgstr "Повідомлення"
 
-#: application/modules/mod_seo/assets/js/scripts.js:26
-#: application/modules/mod_seo/assets/js/scripts.js:42
+#: application/modules/mod_seo/assets/js/scripts.js:85
+#: application/modules/mod_seo/assets/js/scripts.js:101
 msgid "Status changed"
 msgstr "Статус змінився"

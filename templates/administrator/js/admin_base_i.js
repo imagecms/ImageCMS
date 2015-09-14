@@ -1001,6 +1001,9 @@ $(document).ready(function () {
 
     // on search button lick
     $("#search_images").live('click', search_images);
+
+    $("#images_modal #imageType").live('change', search_images);
+    
     // on enter
     $("#url_image").live('keypress', function (e) {
         if (e.which == 13) {
@@ -1040,64 +1043,80 @@ $(document).ready(function () {
     // start search
     function searchImages(clear) {
         if (clear !== false) {
-            $("#image_search_result").empty();
+            $("#image_search_result > .images").empty();
         }
         var value = $("#url_image").val();
+        var filesType = $("#images_modal #imageType").val();
         var loadingImg = '<img src="/templates/administrator/images/loader-2.gif" alt="Loading..."/>';
         modalBodyMsg(loadingImg);
+
         $.post("/admin/components/run/shop/products/get_images/search", {
             q: value,
-            pos: curPosition
+            pos: curPosition,
+            filesType: filesType,
         }, addSearchedImages, 'json');
     }
 
     // removing thumbnails from preview images
     function clearImageResults() {
-        $("#image_search_result")
-            .empty()
-            .html("<p class=\"images_empty_res\">" + lang("Empty list") + "</p>");
+        $("#image_search_result > .images")
+            .empty();
+        modalBodyMsg(lang("Empty list"));
+
     }
 
 
+    function appendImage(imageURl, imageId) { 
+      $.ajax({
+            type: "GET",
+            url: '/admin/components/run/shop/products/checkImageStatus',
+            data: {
+                imageUrl: imageURl
+            },
+            statusCode: {
+                200: function () {
+                    appendImageTag(imageId, imageURl);
+                },
+                201: function () {
+                    appendImageTag(imageId, imageURl);
+                }
+            }           
+        });
+    }
+
+    function appendImageTag(imageId, imageURl) {
+        var img = "<span class='img_span'><img id='" + imageId + "' class='searched_images' src='" + imageURl + "' /></span>";
+        $("#image_search_result > .images").append(img);
+    }
+
     function addSearchedImages(images) {
-        modalBodyMsg();
-        var i = 0;
-        for (var k in images) {
-            var img = "<span class='img_span'><img id='" + k + "' class='searched_images' src='" + images[k] + "' /></span>";
-            $("#image_search_result").append(img);
-            i++;
+        for (var imageId in images) {
+            appendImage(images[imageId], imageId);
         }
-        if (i > 0) {
-            //imgMessageBottom('');
-            if ((curPosition + 8) < 40) {
-                modalBodyMsg('<a id="loadMoreImages">' + lang('More') + '</a>');
-            }
-        } else {
-            if (curPosition > 1) {
-                //searchImages();
-                //modalBodyMsg("Загрузка...");
-            } else {
-                modalBodyMsg(lang("No results for your query"));
-            }
+
+        modalBodyMsg('<a id="loadMoreImages">' + lang('More') + '</a>');
+
+        if (images.length == 0) {
+            modalBodyMsg(lang("No results for your query"));
         }
     }
 
     // preview image by url
     function addUrlImage(data) {
-        $("#image_search_result").empty();
+        $("#image_search_result > .images").empty();
         var img;
         if (data.url != '0') {
             img = "<span class='selected_image'><img class='image_by_url' src='" + data.url + "'></span>";
         } else {
             img = "<p>Not image</p>";
         }
-        $("#image_search_result").append(img);
+        $("#image_search_result > .images").append(img);
     }
 
     function modalBodyMsg(msg) {
         $(".more_button_paragraph").remove();
         if (typeof (msg) == 'string') {
-            $("#image_search_result").append('<p class="more_button_paragraph">' + msg + '</p>');
+            $("#image_search_result > .resultMessage").append('<p class="more_button_paragraph">' + msg + '</p>');
             return;
         }
     }

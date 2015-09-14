@@ -22,6 +22,9 @@ class ImageCMS_Sniffs_PHP_DiscouragedFunctionsSniff extends Generic_Sniffs_PHP_F
         'var_dumps_exit' => null,
         'dump' => null,
         'dd' => null,
+        'ajax_var_dumps' => null,
+        'ajax_dd' => null,
+        'ajax_var_dumps_exit' => null,
     );
 
     /**
