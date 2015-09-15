@@ -129,13 +129,8 @@ class Core extends MY_Controller {
             //Save GET url
             $getUrl = '';
             if ($this->input->get()) {
-                foreach ($this->input->get() as $k => $v) {
-                    $getUrl .= $k . '=' . $v . '&';
-                }
-                $getUrl = substr($getUrl, 0, -1);
-                $url .= '?' . $getUrl;
+                $url .= '?' . $this->input->server('QUERY_STRING');
             }
-
             header('Location:/' . $url);
         }
 
@@ -251,8 +246,8 @@ class Core extends MY_Controller {
 
         $this->template->add_array(
             [
-                'agent' => $agent,
-            ]
+                    'agent' => $agent,
+                ]
         );
 
         //Assign captcha type
@@ -412,9 +407,9 @@ class Core extends MY_Controller {
 
         $this->template->add_array(
             [
-                'page' => $page,
-                'category' => $category
-            ]
+                    'page' => $page,
+                    'category' => $category
+                ]
         );
 
         if ($this->input->get()) {
@@ -706,8 +701,8 @@ class Core extends MY_Controller {
 
         $this->template->add_array(
             [
-                'content' => $this->template->read('error', ['error_text' => $text, 'back_button' => $back])
-            ]
+                    'content' => $this->template->read('error', ['error_text' => $text, 'back_button' => $back])
+                ]
         );
 
         $this->template->show();
@@ -894,10 +889,10 @@ class Core extends MY_Controller {
         if ($this->core_data['data_type'] == 'main') {
             $this->template->add_array(
                 [
-                    'site_title' => empty($this->settings['site_title']) ? $title : $this->settings['site_title'],
-                    'site_description' => empty($this->settings['site_description']) ? $description : $this->settings['site_description'],
-                    'site_keywords' => empty($this->settings['site_keywords']) ? $keywords : $this->settings['site_keywords']
-                ]
+                        'site_title' => empty($this->settings['site_title']) ? $title : $this->settings['site_title'],
+                        'site_description' => empty($this->settings['site_description']) ? $description : $this->settings['site_description'],
+                        'site_keywords' => empty($this->settings['site_keywords']) ? $keywords : $this->settings['site_keywords']
+                    ]
             );
         } else {
             if (($page_number > 1) && ($page_number != '')) {
@@ -945,14 +940,14 @@ class Core extends MY_Controller {
                 $keywords = '';
             }
 
-            $page_number = $page_number ?: (int) $this->pagination->cur_page;
+            $page_number = $page_number ? : (int) $this->pagination->cur_page;
             $this->template->add_array(
                 [
-                    'site_title' => $title,
-                    'site_description' => htmlspecialchars($description),
-                    'site_keywords' => htmlspecialchars($keywords),
-                    'page_number' => $page_number
-                ]
+                        'site_title' => $title,
+                        'site_description' => htmlspecialchars($description),
+                        'site_keywords' => htmlspecialchars($keywords),
+                        'page_number' => $page_number
+                    ]
             );
         }
     }

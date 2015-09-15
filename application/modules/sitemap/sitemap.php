@@ -174,6 +174,12 @@ class Sitemap extends MY_Controller {
      */
     private $max_url_count = 30000;
 
+    /**
+     * Category tree
+     * @var type
+     */
+    private $categoryTree = array();
+
     public function __construct() {
         parent::__construct();
         $lang = new MY_Lang();
@@ -370,9 +376,45 @@ class Sitemap extends MY_Controller {
         }
     }
 
-    public function build_xml_map_regenerated() {
-        $this->build_xml_map(TRUE);
-    }
+    //    НЕ УДАЛЯТЬ, ЭТО НАРАБОТКИ
+    //    public function build_xml_map_regenerated() {
+    //        $this->build_xml_map(TRUE);
+    //    }
+    //
+    //    public function build_html_map() {
+    //        $allCategories = $this->db->select('shop_category_i18n.id as id, shop_category.full_path as full_path,'
+    //                . 'shop_category.full_path_ids as full_path_ids,shop_category_i18n.name as name')
+    //                ->where('shop_category_i18n.locale', \MY_Controller::getCurrentLocale())
+    //                ->join('shop_category_i18n', 'shop_category.id=shop_category_i18n.id')
+    //                ->get('shop_category')
+    //                ->result_array();
+    //
+    //        foreach ($allCategories as $k=>$category) {
+    //            $fullIds = unserialize($category['full_path_ids']);
+    //            $allCategories[$k]['full_path_ids'] = $fullIds;
+    //
+    //            $this->getCategoriesTree($category['id'],$fullIds);
+    //        }
+    //
+    //        var_dump($this->categoryTree);
+    //
+    //    }
+    //
+    //    private function getCategoriesTree($categoryId, $fullIds, $prevCategoryId = 0) {
+    //        if (count($fullIds) == 0){
+    //            $this->categoryTree[] = $categoryId;
+    //            return ;
+    //        }
+    //
+    ////        $a = array();
+    //        foreach ($fullIds as $k => $id) {
+    //            $this->categoryTree[] = $id;
+    //            unset($fullIds[$k]);
+    //
+    //            $this->getCategoriesTree($categoryId, $fullIds, $id);
+    //        }
+    //
+    //    }
 
     /**
      * Create map
@@ -389,7 +431,173 @@ class Sitemap extends MY_Controller {
                 'lastmod' => $date = date('Y-m-d', time())
             );
         }
+        $this->getPagesCategories();
+        $this->getAllPages();
 
+        if (SHOP_INSTALLED) {
+
+            $this->getShopCategories();
+            $this->getShopBrands();
+            $this->getShopProducts();
+
+            $this->load->module('smart_filter');
+            if (property_exists($this->smart_filter, 'attachPages')) {
+                $this->smart_filter->attachPages($this);
+            }
+        }
+        $this->result = $this->generate_xml($this->items);
+        return $this->result;
+    }
+
+    /**
+     * Get products
+     */
+    private function getShopProducts() {
+        // Get Shop products
+        $shop_products = $this->sitemap_model->get_shop_products();
+
+        // Add Shop products to Site Map
+        foreach ($shop_products as $shopprod) {
+            $url = site_url('shop/product/' . $shopprod['url']);
+            if ($this->not_blocked_url('shop/product/' . $shopprod['url'])) {
+                if (!$this->robotsCheck($url)) {
+                    if ($shopprod['updated'] > 0) {
+                        $date = date('Y-m-d', $shopprod['updated']);
+                    } else {
+                        $date = date('Y-m-d', $shopprod['created']);
+                    }
+                    $this->items[] = array(
+                        'loc' => $url,
+                        'changefreq' => $this->products_changefreq,
+                        'priority' => $this->products_priority,
+                        'lastmod' => $date
+                    );
+                }
+            }
+        }
+    }
+
+    /**
+     * Get products brands
+     */
+    private function getShopBrands() {
+        // Get Shop Brands
+        $shop_brands = $this->sitemap_model->get_shop_brands();
+
+        // Add Shop Brand to Site Map
+        foreach ($shop_brands as $shopbr) {
+            $url = site_url('shop/brand/' . $shopbr['url']);
+            if ($this->not_blocked_url('shop/brand/' . $shopbr['url'])) {
+                if (!$this->robotsCheck($url)) {
+                    // create date
+                    if ($shopbr['updated'] > 0) {
+                        $date = date('Y-m-d', $shopbr['updated']);
+                    } else {
+                        $date = date('Y-m-d', $shopbr['created']);
+                    }
+                    $this->items[] = array(
+                        'loc' => $url,
+                        'changefreq' => $this->brands_changefreq,
+                        'priority' => $this->brands_priority,
+                        'lastmod' => $date
+                    );
+                }
+            }
+        }
+    }
+
+    /**
+     * Get products categories
+     */
+    private function getShopCategories() {
+        // Get Shop Categories
+        $shop_categories = $this->sitemap_model->get_shop_categories();
+
+        // Add categories to Site Map
+        foreach ($shop_categories as $shopcat) {
+            $url = 'shop/category/' . $shopcat['full_path'];
+            if ($this->not_blocked_url($url)) {
+                if (!$this->robotsCheck(site_url($url))) {
+
+                    // Check if category is subcategory
+                    if ((int) $shopcat['parent_id']) {
+                        $changefreq = $this->products_sub_categories_changefreq;
+                        $priority = $this->products_sub_categories_priority;
+                    } else {
+                        $changefreq = $this->products_categories_changefreq;
+                        $priority = $this->products_categories_priority;
+                    }
+
+                    // create date
+                    if ($shopcat['updated'] > 0) {
+                        $date = date('Y-m-d', $shopcat['updated']);
+                    } else {
+                        $date = date('Y-m-d', $shopcat['created']);
+                    }
+
+                    $this->items[] = array(
+                        'loc' => site_url($url),
+                        'changefreq' => $changefreq,
+                        'priority' => $priority,
+                        'lastmod' => $date,
+                    );
+                }
+            }
+        }
+    }
+
+    /**
+     * Get all content pages
+     */
+    private function getAllPages() {
+        // Get all pages
+        $pages = $this->sitemap_model->get_all_pages();
+
+        foreach ($pages as $page) {
+
+            if (!$this->robotsCheck($page['full_url'])) {
+
+                // create page url
+                if ($page['lang'] == $this->default_lang['id']) {
+                    $url = site_url($page['full_url']);
+                    $url_page = $page['full_url'];
+                } else {
+                    $prefix = $this->_get_lang_prefix($page['lang']);
+                    $url_page = $prefix . '/' . $page['full_url'];
+                    $url = site_url($url_page);
+                }
+
+                // create date
+                if ($page['updated'] > 0) {
+                    $date = date('Y-m-d', $page['updated']);
+                } else {
+                    $date = date('Y-m-d', $page['created']);
+                }
+
+                // Set priority, check if page is category
+                $c_priority = $this->cats_priority;
+                if ($page['cat_url'] == '') {
+                    $c_priority = $this->cats_priority;
+                } else {
+                    $c_priority = $this->pages_priority;
+                }
+
+                if ($this->not_blocked_url($url_page)) {
+                    $this->items[] = array(
+                        'loc' => $url,
+                        'changefreq' => $this->pages_changefreq,
+                        'priority' => $c_priority,
+                        'lastmod' => $date
+                    );
+                }
+            }
+        }
+    }
+
+    /**
+     * Get pages categories
+     */
+    private function getPagesCategories() {
         // Add categories to sitemap urls.
         $categories = $this->lib_category->unsorted();
 
@@ -437,139 +645,6 @@ class Sitemap extends MY_Controller {
                 }
             }
         }
-
-        // Get all pages
-        $pages = $this->sitemap_model->get_all_pages();
-
-        foreach ($pages as $page) {
-
-            if (!$this->robotsCheck($page['full_url'])) {
-
-                // create page url
-                if ($page['lang'] == $this->default_lang['id']) {
-                    $url = site_url($page['full_url']);
-                    $url_page = $page['full_url'];
-                } else {
-                    $prefix = $this->_get_lang_prefix($page['lang']);
-                    $url_page = $prefix . '/' . $page['full_url'];
-                    $url = site_url($url_page);
-                }
-
-                // create date
-                if ($page['updated'] > 0) {
-                    $date = date('Y-m-d', $page['updated']);
-                } else {
-                    $date = date('Y-m-d', $page['created']);
-                }
-
-                // Set priority, check if page is category
-                $c_priority = $this->cats_priority;
-                if ($page['cat_url'] == '') {
-                    $c_priority = $this->cats_priority;
-                } else {
-                    $c_priority = $this->pages_priority;
-                }
-
-                if ($this->not_blocked_url($url_page)) {
-                    $this->items[] = array(
-                        'loc' => $url,
-                        'changefreq' => $this->pages_changefreq,
-                        'priority' => $c_priority,
-                        'lastmod' => $date
-                    );
-                }
-            }
-        }
-
-        if (SHOP_INSTALLED) {
-            // Get Shop Categories
-            $shop_categories = $this->sitemap_model->get_shop_categories();
-
-            // Add categories to Site Map
-            foreach ($shop_categories as $shopcat) {
-                $url = 'shop/category/' . $shopcat['full_path'];
-                if ($this->not_blocked_url($url)) {
-                    if (!$this->robotsCheck(site_url($url))) {
-
-                        // Check if category is subcategory
-                        if ((int) $shopcat['parent_id']) {
-                            $changefreq = $this->products_sub_categories_changefreq;
-                            $priority = $this->products_sub_categories_priority;
-                        } else {
-                            $changefreq = $this->products_categories_changefreq;
-                            $priority = $this->products_categories_priority;
-                        }
-
-                        // create date
-                        if ($shopcat['updated'] > 0) {
-                            $date = date('Y-m-d', $shopcat['updated']);
-                        } else {
-                            $date = date('Y-m-d', $shopcat['created']);
-                        }
-
-                        $this->items[] = array(
-                            'loc' => site_url($url),
-                            'changefreq' => $changefreq,
-                            'priority' => $priority,
-                            'lastmod' => $date,
-                        );
-                    }
-                }
-            }
-
-            // Get Shop Brands
-            $shop_brands = $this->sitemap_model->get_shop_brands();
-
-            // Add Shop Brand to Site Map
-            foreach ($shop_brands as $shopbr) {
-                $url = site_url('shop/brand/' . $shopbr['url']);
-                if ($this->not_blocked_url('shop/brand/' . $shopbr['url'])) {
-                    if (!$this->robotsCheck($url)) {
-                        // create date
-                        if ($shopbr['updated'] > 0) {
-                            $date = date('Y-m-d', $shopbr['updated']);
-                        } else {
-                            $date = date('Y-m-d', $shopbr['created']);
-                        }
-                        $this->items[] = array(
-                            'loc' => $url,
-                            'changefreq' => $this->brands_changefreq,
-                            'priority' => $this->brands_priority,
-                            'lastmod' => $date
-                        );
-                    }
-                }
-            }
-
-            // Get Shop products
-            $shop_products = $this->sitemap_model->get_shop_products();
-
-            // Add Shop products to Site Map
-            foreach ($shop_products as $shopprod) {
-                $url = site_url('shop/product/' . $shopprod['url']);
-                if ($this->not_blocked_url('shop/product/' . $shopprod['url'])) {
-                    if (!$this->robotsCheck($url)) {
-                        if ($shopprod['updated'] > 0) {
-                            $date = date('Y-m-d', $shopprod['updated']);
-                        } else {
-                            $date = date('Y-m-d', $shopprod['created']);
-                        }
-                        $this->items[] = array(
-                            'loc' => $url,
-                            'changefreq' => $this->products_changefreq,
-                            'priority' => $this->products_priority,
-                            'lastmod' => $date
-                        );
-                    }
-                }
-            }
-            $this->load->module('smart_filter');
-            if (property_exists($this->smart_filter, 'attachPages')) {
-                $this->smart_filter->attachPages($this);
-            }
-        }
-        $this->result = $this->generate_xml($this->items);
-        return $this->result;
     }
 
     /**

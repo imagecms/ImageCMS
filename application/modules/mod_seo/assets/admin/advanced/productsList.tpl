@@ -58,7 +58,7 @@
                             </span>
                         </td>
                         <td class="span8">
-                            <a href="productCategoryEdit/{$category['id']}"data-rel="tooltip"
+                            <a href="{site_url('/admin/components/init_window/mod_seo/productCategoryEdit')}/{$category['id']}"data-rel="tooltip"
                                        data-title="{lang('Editing','admin')}">
                                 {$category['name']}
                             </a>

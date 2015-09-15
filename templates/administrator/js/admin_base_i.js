@@ -1068,7 +1068,7 @@ $(document).ready(function () {
 
     function appendImage(imageURl, imageId) { 
       $.ajax({
-            type: "GET",
+            type: "HEAD",
             url: '/admin/components/run/shop/products/checkImageStatus',
             data: {
                 imageUrl: imageURl
