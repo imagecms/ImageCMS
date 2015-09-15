@@ -397,7 +397,7 @@ class Languages extends BaseAdminController {
 
             $this->lib_admin->log(lang("Changed a language", "admin") . " " . $data['lang_name']);
 
-            $this->cache->delete('main_site_langs');
+            $this->cache->delete_all();
 
             /* Rename languages folders */
             if (($lang['locale'] !== $post_locale) && $post_locale) {
@@ -535,6 +535,7 @@ class Languages extends BaseAdminController {
                 ->set('active', $active)
                 ->update('languages');
         }
+        $this->cache->delete_all();
     }
 
 }

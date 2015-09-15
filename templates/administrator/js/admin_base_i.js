@@ -1075,7 +1075,7 @@ $(document).ready(function () {
             },
             statusCode: {
                 200: function () {
-                    appendImageTag(imageId, imageURl);
+                    appendImageTag(imageId, imageURl);                    
                 },
                 201: function () {
                     appendImageTag(imageId, imageURl);
@@ -1085,13 +1085,24 @@ $(document).ready(function () {
     }
 
     function appendImageTag(imageId, imageURl) {
-        var img = "<span class='img_span'><img id='" + imageId + "' class='searched_images' src='" + imageURl + "' /></span>";
+        var img = "<span class='img_span'> \
+            <a onclick='return false;' href='" + imageURl + "' class='cloud-zoom'> \
+                <img id='" + imageId + "' class='searched_images' src='" + imageURl + "' /> \
+            </a> \
+        </span>";
         $("#image_search_result > .images").append(img);
+
+        $('.cloud-zoom > img').error(function() {
+            $(this).closest('span').remove();
+        });
+
+        $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
     }
 
     function addSearchedImages(images) {
         for (var imageId in images) {
-            appendImage(images[imageId], imageId);
+            //appendImage(images[imageId], imageId);
+            appendImageTag(imageId, images[imageId]);
         }
 
         modalBodyMsg('<a id="loadMoreImages">' + lang('More') + '</a>');

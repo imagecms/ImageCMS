@@ -538,16 +538,15 @@ span.check_gg {background-image: url("../images/b-share-icon.png"); display: inl
 .center { display:block; text-align:center; margin:0 auto}
 
 /* ------ GOOGLE API IMAGES SEARCH ------- */
-#images_modal {font-size: 11pt; width: 80%; left: 30%; height: 77%;  top: 110%; position: fixed;}
+#images_modal {font-size: 11pt;}
 .images_empty_res {color: #888888; margin: 30px; text-align: center; }
-#image_search_result {height: 100%; overflow-x: auto !important; text-align: center; }
+#image_search_result {height: 280px; overflow-x: auto !important; text-align: center; }
 .searched_images {max-height: 120px; max-width: 100px; padding: 5px; }
 .selected_image {background: #e1e1e1; }
 .img_span {float: left; width: 125px; height: 125px; margin-bottom: 10px; border: 1px solid #e7e7e7; }
 .image_by_url {max-width: 340px !important; max-height: 260px !important; padding: 10px; }
 .image_controls {position: relative; top: 25px; margin-right: 20px; text-align: right; }
 .hoveredImage {background: #e9e9e9; }
-.images_modal_footer {position: relative; height: 10%; padding-top: 10px!important; padding-bottom: 1px!important;}
 #msg_about_additional {font-size: 9pt; line-height: 2.1; }
 .more_button_paragraph {display: block; width: 100%; text-align:center; clear: both; padding: 7px; }
 .gimagesProgressBar {width: 100%; margin: 5px; margin-left: 15px; margin-right: 15px; }
@@ -564,10 +563,14 @@ span.check_gg {background-image: url("../images/b-share-icon.png"); display: inl
 }
 
 #images_modal #imageType{
-    width: 100px;
+    width: 120px;
+    margin: 0;
 }
 #images_modal .chosen-container{
-    position: fixed;    
+    position: fixed;
+}
+#images_modal .controll-top-pannel > input {
+    width: 333px;
 }
 
 

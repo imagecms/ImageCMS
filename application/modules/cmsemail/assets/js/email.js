@@ -1,80 +1,80 @@
 $(document).ready(
     function () {
 
-            $('.protocolSettings').on(
-                'change',
-                function () {
-                    if ($(this).val() === "SMTP") {
-                        $('.portControlGroup').css('display', 'block');
-                    } else {
-                        $('.portControlGroup').css('display', 'none');
-                    }
+        $('.protocolSettings').on(
+            'change',
+            function () {
+                if ($(this).val() === "SMTP") {
+                    $('.portControlGroup').css('display', 'block');
+                } else {
+                    $('.portControlGroup').css('display', 'none');
                 }
-            );
+            }
+        );
 
-            $('.niceCheck').on(
-                'click',
-                function () {
-                    if ($(this).find('.wraper_activSettings').attr('checked')) {
-                        $('.wraperControlGroup').slideUp(500);
-                    } else {
-                        $('.wraperControlGroup').slideDown(500);
-                    }
+        $('.niceCheck').on(
+            'click',
+            function () {
+                if ($(this).find('.wraper_activSettings').attr('checked')) {
+                    $('.wraperControlGroup').slideUp(500);
+                } else {
+                    $('.wraperControlGroup').slideDown(500);
                 }
-            );
+            }
+        );
 
-            $('#userMailVariables').die().live(
-                'click',
-                function () {
-                        EmailTemplateVariables.insertVariable(this);
-                }
-            );
+        $('#userMailVariables').die().live(
+            'click',
+            function () {
+                EmailTemplateVariables.insertVariable(this);
+            }
+        );
 
-            $('#adminMailVariables').die().live(
-                'click',
-                function () {
-                        EmailTemplateVariables.insertVariable(this);
-                }
-            );
+        $('#adminMailVariables').die().live(
+            'click',
+            function () {
+                EmailTemplateVariables.insertVariable(this);
+            }
+        );
 
-            $('.mailTestResultsHide').on(
-                'click',
-                function () {
-                        $('.mailTestResults').css('display', 'none');
-                        $(this).css('display', 'none');
+        $('.mailTestResultsHide').on(
+            'click',
+            function () {
+                $('.mailTestResults').css('display', 'none');
+                $(this).css('display', 'none');
 
-                }
-            );
+            }
+        );
 
-            $('body').on(
-                'click',
-                'table.variablesTable .editVariable',
-                function () {
-                        var editor = $(this).closest('tr').find('div.variable');
+        $('body').on(
+            'click',
+            'table.variablesTable .editVariable',
+            function () {
+                var editor = $(this).closest('tr').find('div.variable');
 
-                        var editValue = $.trim(editor.text());
-                        editor.empty();
-                        editor.parent().find('.variableEdit').css('display', 'block').val(editValue);
+                var editValue = $.trim(editor.text());
+                editor.empty();
+                editor.parent().find('.variableEdit').css('display', 'block').val(editValue);
 
-                        var editor = $(this).closest('tr').find('div.variableValue');
-                        var editValue = $.trim(editor.text());
-                        editor.empty();
-                        editor.parent().find('.variableValueEdit').css('display', 'block').val(editValue);
+                var editor = $(this).closest('tr').find('div.variableValue');
+                var editValue = $.trim(editor.text());
+                editor.empty();
+                editor.parent().find('.variableValueEdit').css('display', 'block').val(editValue);
 
-                        $(this).css('display', 'none');
-                        $(this).closest('tr').find('.refreshVariable').css('display', 'block');
+                $(this).css('display', 'none');
+                $(this).closest('tr').find('.refreshVariable').css('display', 'block');
 
-                }
-            );
+            }
+        );
 
-            $('body').on(
-                'click',
-                '.addVariable',
-                function () {
-                        $('.addVariableContainer').show();
-                        $(this).hide();
-                }
-            );
+        $('body').on(
+            'click',
+            '.addVariable',
+            function () {
+                $('.addVariableContainer').show();
+                $(this).hide();
+            }
+        );
     }
 );
 
@@ -119,19 +119,18 @@ function mailTest() {
                 var scrollTime = (height - curPos) / 1.73;
                 $("body,html").animate({"scrollTop": height}, scrollTime);
             }
-            }
+        }
     );
     return false;
 }
 
 var EmailTemplateVariables = {
     insertVariable: function (curElem) {
-        var activeEditor = tinyMCE.activeEditor.contentAreaContainer;
         var curEditor = $(curElem).closest('.control-group').find('div[id*="tinymce"].mce-edit-area');
+        $(curElem).closest('.control-group').find('iframe').contents().find('body').trigger('focus');
 
-        if ($(activeEditor).is(curEditor)) {
-            tinyMCE.execCommand("mceInsertContent", false, ' ' + $(curElem).val() + ' ');
-        }
+        var activeEditor = tinyMCE.activeEditor.contentAreaContainer;
+        tinyMCE.execCommand("mceInsertContent", false, ' ' + $(curElem).val() + ' ');
     },
     delete: function (template_id, variable, curElement, locale) {
         $.ajax(
@@ -150,7 +149,7 @@ var EmailTemplateVariables = {
                     curElement.closest('tr').remove();
                     showMessage(lang('Message'), lang('Variable successfully removed'));
                 }
-                }
+            }
         );
     },
     update: function (curElement, template_id, oldVariable, locale) {
@@ -183,7 +182,7 @@ var EmailTemplateVariables = {
                     closestTr.find('.refreshVariable').css('display', 'none');
                     showMessage(lang('Message'), lang('Variable successfully updated'));
                 }
-                }
+            }
         );
     },
     add: function (curElement, template_id, locale) {
@@ -213,7 +212,7 @@ var EmailTemplateVariables = {
                     $(data).insertBefore('table.variablesTable .addVariableContainer');
                     showMessage(lang('Message'), lang('Variable successfully added'));
                 }
-                }
+            }
         );
     },
     updateVariablesList: function (curElement, template_id, locale) {
@@ -229,7 +228,7 @@ var EmailTemplateVariables = {
                         $('#userMailVariables').html(data);
                         $('#adminMailVariables').html(data);
                     }
-                    }
+                }
             );
         }
     },

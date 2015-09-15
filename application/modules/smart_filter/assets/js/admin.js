@@ -145,7 +145,6 @@ var SeoPhysicalPages = {
                     $(SeoPhysicalPages.form).find('iframe').contents().find('body').html(link.seo_text);
 
                     if (link.active == 1) {
-                        console.log(1111);
                         $(SeoPhysicalPages.form).find('.niceCheck').trigger('click');
                     }
                 }

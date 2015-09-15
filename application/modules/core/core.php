@@ -418,7 +418,7 @@ class Core extends MY_Controller {
 
         $this->template->assign('content', $this->template->read($page_tpl));
 
-        $page['description'] = $this->_makeDescription($page['full_text']);
+        $page['description'] = $this->_makeDescription($page['description']);
 
         $page['keywords'] = $this->_makeKeywords($page['keywords'], $page['full_text']);
 
@@ -559,7 +559,7 @@ class Core extends MY_Controller {
 
         $category['title'] == NULL ? $category['title'] = $category['name'] : TRUE;
 
-        $category['description'] = $this->_makeDescription($category['short_desc']);
+        $category['description'] = $this->_makeDescription($category['description']);
 
         $category['keywords'] = $this->_makeKeywords($category['keywords'], $category['short_desc']);
 

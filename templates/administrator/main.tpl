@@ -31,6 +31,7 @@
 
         <!-- http://trentrichardson.com/examples/timepicker/ -->
         <link rel="stylesheet" type="text/css" href="{$THEME}js/timepicker/jquery-ui-timepicker-addon.css">
+        <link rel="stylesheet" type="text/css" href="{$THEME}css/cloud-zoom.css">
 
         <link rel="icon" type="image/x-icon" href="{$THEME}images/{if MAINSITE}premmerce_{/if}favicon.png"/>
 
@@ -495,6 +496,7 @@
             <script src="{$THEME}js/admin_base_m.js" type="text/javascript"></script>
             <script src="{$THEME}js/admin_base_r.js" type="text/javascript"></script>
             <script src="{$THEME}js/admin_base_v.js" type="text/javascript"></script>
+            <script src="{$THEME}js/cloud-zoom.1.0.3.min.js" type="text/javascript"></script>
 
             <script src="{$THEME}js/autosearch.js" type="text/javascript"></script>
             {if MAINSITE}
@@ -505,7 +507,7 @@
                 {literal}
 
                     $(document).ready(function () {
-
+                        $('.cloud-zoom').CloudZoom({showTitle: false});
                         if (!isShop)
                         {
                             $('#shopAdminMenu').hide();
