@@ -133,8 +133,8 @@ var SeoPhysicalPages = {
                     locale: linkLocale
                 },
                 success: function (data) {
-                    data = JSON.parse(data);
-                    link = data.data[0];
+                    var data = JSON.parse(data);
+                    var link = data.data[0];
 
                     $(SeoPhysicalPages.form).find('input[name="smart_filter[h1]"]').val(link.h1);
                     $(SeoPhysicalPages.form).find('input[name="smart_filter[id]"]').val(link.id);
@@ -145,7 +145,9 @@ var SeoPhysicalPages = {
                     $(SeoPhysicalPages.form).find('iframe').contents().find('body').html(link.seo_text);
 
                     if (link.active == 1) {
-                        $(SeoPhysicalPages.form).find('.niceCheck').trigger('click');
+                        if(!$(SeoPhysicalPages.form).find('.niceCheck').closest('span').hasClass('active')){
+                            $(SeoPhysicalPages.form).find('.niceCheck').trigger('click');
+                        }
                     }
                 }
             });
@@ -188,6 +190,7 @@ var SeoPhysicalPages = {
                 showMessage(messageTitle, data.message, messageType);
                 if (data.success) {
                     $(SeoPhysicalPages.form).find('input[name="smart_filter[id]"]').val(data.data.id);
+                    $(SeoPhysicalPages.nav_tabs).find('tbody > tr.active').attr('data-id', data.data.id);
                     $(SeoPhysicalPages.nav_tabs).find('tbody > tr.active button.removeLinkBytton').attr('data-id', data.data.id);
                     $(SeoPhysicalPages.nav_tabs).find('tbody > tr.active button.removeLinkBytton').show();
                 }
