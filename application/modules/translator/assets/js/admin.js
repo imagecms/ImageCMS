@@ -579,6 +579,7 @@ var Selectors = {
         this.type = $(curElement).closest('.poSelectorsHolder').find('#types').val();
         this.module_tempate = $(curElement).closest('.poSelectorsHolder').find('#modules_templates').val();
         this.per_page = parseInt($('#per_page').val());
+        $('.fileNotExist').hide();
     },
     clearContent: function () {
         $('#po_table tbody').html('');

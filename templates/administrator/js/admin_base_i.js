@@ -1003,7 +1003,7 @@ $(document).ready(function () {
     $("#search_images").live('click', search_images);
 
     $("#images_modal #imageType").live('change', search_images);
-    
+
     // on enter
     $("#url_image").live('keypress', function (e) {
         if (e.which == 13) {
@@ -1066,8 +1066,8 @@ $(document).ready(function () {
     }
 
 
-    function appendImage(imageURl, imageId) { 
-      $.ajax({
+    function appendImage(imageURl, imageId) {
+        $.ajax({
             type: "HEAD",
             url: '/admin/components/run/shop/products/checkImageStatus',
             data: {
@@ -1075,30 +1075,58 @@ $(document).ready(function () {
             },
             statusCode: {
                 200: function () {
-                    appendImageTag(imageId, imageURl);                    
+                    appendImageTag(imageId, imageURl);
                 },
                 201: function () {
                     appendImageTag(imageId, imageURl);
                 }
-            }           
+            }
         });
     }
 
     function appendImageTag(imageId, imageURl) {
         var img = "<span class='img_span'> \
-            <a onclick='return false;' href='" + imageURl + "' class='cloud-zoom'> \
+            <a onclick='return false' href='" + imageURl + "' class='cloud-zoom'> \
                 <img id='" + imageId + "' class='searched_images' src='" + imageURl + "' /> \
             </a> \
         </span>";
         $("#image_search_result > .images").append(img);
 
-        $('.cloud-zoom > img').error(function() {
+        $('.cloud-zoom > img').error(function () {
             $(this).closest('span').remove();
         });
 
         $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
     }
 
+    $('body').on('click', 'div.mousetrap', function (e) {
+        var img = $(this).closest('div#wrap').find('img');
+
+        if (e.shiftKey) {
+            if ($(img).closest("span.img_span").hasClass('selected_image')) {
+                console.log(11)
+                $(img).closest("span.img_span").removeClass('selected_image');
+            } else {
+                console.log(22)
+                $(img).closest("span.img_span").addClass('selected_image');
+            }
+        } else {
+            $("span.img_span").removeClass('selected_image');
+            $(img).closest("span.img_span").addClass('selected_image');
+        }
+
+        var countOfSelected = $("span.img_span.selected_image").size();
+        if (countOfSelected > 1) {
+            $("#as_additional")
+                .attr("checked", "checked")
+                .attr("disabled", "disabled");
+        } else {
+            $("#as_additional").removeAttr("disabled");
+        }
+
+        e.stopPropagation();
+        return false;
+    });
     function addSearchedImages(images) {
         for (var imageId in images) {
             //appendImage(images[imageId], imageId);
@@ -1134,25 +1162,27 @@ $(document).ready(function () {
 
     // selecting image by click
     $(".searched_images").live('click', function (e) {
-        if (e.shiftKey) {
-            if ($(this).parents("span.img_span").hasClass('selected_image')) {
-                $(this).parents("span.img_span").removeClass('selected_image');
-            } else {
-                $(this).parents("span.img_span").addClass('selected_image');
-            }
-        } else {
-            $("span.img_span").removeClass('selected_image');
-            $(this).parents("span.img_span").addClass('selected_image');
-        }
+        //if (e.shiftKey) {
+        //    if ($(this).parents("span.img_span").hasClass('selected_image')) {
+        //        $(this).parents("span.img_span").removeClass('selected_image');
+        //    } else {
+        //        $(this).parents("span.img_span").addClass('selected_image');
+        //    }
+        //} else {
+        //    $("span.img_span").removeClass('selected_image');
+        //    $(this).parents("span.img_span").addClass('selected_image');
+        //}
+        //
+        //var countOfSelected = $("span.img_span.selected_image").size();
+        //if (countOfSelected > 1) {
+        //    $("#as_additional")
+        //        .attr("checked", "checked")
+        //        .attr("disabled", "disabled");
+        //} else {
+        //    $("#as_additional").removeAttr("disabled");
+        //}
+        //
 
-        var countOfSelected = $("span.img_span.selected_image").size();
-        if (countOfSelected > 1) {
-            $("#as_additional")
-                .attr("checked", "checked")
-                .attr("disabled", "disabled");
-        } else {
-            $("#as_additional").removeAttr("disabled");
-        }
     });
 
     // image hover
@@ -1160,6 +1190,7 @@ $(document).ready(function () {
         if (!$(this).parents("span.img_span").hasClass('hoveredImage')) {
             $(this).parents("span.img_span").addClass('hoveredImage')
         }
+        $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
     });
     $(".searched_images").live('mouseout', function () {
         $(this).parents("span.img_span").removeClass('hoveredImage')

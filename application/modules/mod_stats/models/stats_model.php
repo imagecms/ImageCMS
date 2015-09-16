@@ -68,35 +68,29 @@ class Stats_model extends CI_Model {
 
     /**
      * Save keywords autocomplete
-     * @param type $keyword
+     * @param string $keyword
      * @return boolean
      */
     public function saveKeyWordsAC($keyword = '') {
-        /** Return if not set values * */
-        if ($keyword == '') {
-            return FALSE;
-        }
-
-        $query = $this->db->where('key', $keyword)->where('date >', time() - self::TIME_BETWEEN_REQUESTS)->get('mod_stats_search');
-        if (!$query->num_rows()) {
-            /** Insert value * */
-            $this->db->insert(
-                'mod_stats_search',
-                array(
-                    'key' => $keyword,
-                    'date' => time(),
-                    'ac' => 1
-                )
-            );
-        }
+        return $this->_saveKeyWords($keyword, true);
     }
 
     /**
      * Save keywords
-     * @param type $keyword
+     * @param string $keyword
      * @return boolean
      */
     public function saveKeyWords($keyword = '') {
+        return $this->_saveKeyWords($keyword);
+    }
+
+    /**
+     *
+     * @param string $keyword
+     * @param boolean $ac
+     * @return boolean
+     */
+    private function _saveKeyWords($keyword, $ac = false) {
         /** Return if not set values * */
         if ($keyword == '') {
             return FALSE;
@@ -108,20 +102,22 @@ class Stats_model extends CI_Model {
             $this->db->insert(
                 'mod_stats_search',
                 array(
-                    'key' => $keyword,
-                    'date' => time(),
-                )
+                'key' => $keyword,
+                'date' => time(),
+                'ac' => $ac == true ? 1 : 0
+                    )
             );
         }
+        return TRUE;
     }
 
     public function saveUrl($userId, $url) {
         $this->db->insert(
             'mod_stats_urls',
             array(
-                'id_user' => $userId,
-                'url' => $url,
-            )
+            'id_user' => $userId,
+            'url' => $url,
+                )
         );
     }
 
@@ -292,9 +288,9 @@ class Stats_model extends CI_Model {
         $this->db->update(
             'components',
             array(
-                'enabled' => 1,
-                'autoload' => 1
-            )
+            'enabled' => 1,
+            'autoload' => 1
+                )
         );
     }
 

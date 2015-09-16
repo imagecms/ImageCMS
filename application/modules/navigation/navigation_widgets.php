@@ -69,6 +69,7 @@ class Navigation_Widgets extends MY_Controller {
                     $tpl_data = array('navi_cats' => $navi_cats);
                     return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
                 } else {
+
                     if ($data_type == 'brand') {
                         return $this->make(lang('Brands', 'navigation'), 'shop/brand/', $widget);
                     }
