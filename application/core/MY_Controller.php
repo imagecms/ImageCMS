@@ -145,13 +145,13 @@ class MY_Controller extends MX_Controller {
     /**
      * Get current language
      * @param string|null $field
-     * @return string
+     * @return string|boolean
      */
     public static function getCurrentLanguage($field = null) {
         if (!self::$currentLanguage) {
             $ci = get_instance();
             if (preg_match('/^\/install/', $ci->input->server('PATH_INFO'))) {
-                return;
+                return FALSE;
             }
 
             $language = $ci->db

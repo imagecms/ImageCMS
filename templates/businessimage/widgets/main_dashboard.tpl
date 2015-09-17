@@ -1,6 +1,6 @@
 {$dashboardItems = $CI->load->module('banners')->getByGroup('dashboard')}
 {$numOfColsClass = round(12/count($dashboardItems))}
-{$numOfColsClass = $numOfColsClass > 3 ? $numOfColsClass : 4;}
+{$numOfColsClass = $numOfColsClass >= 3 ? $numOfColsClass : 4;}
 {if count($dashboardItems) > 0}
 <div class="g-section-l">
 	<div class="g-container">

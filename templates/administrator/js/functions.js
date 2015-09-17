@@ -971,15 +971,13 @@ var orders = new Object({
     },
     updateOrderItem: function (id, btn, order) {
         var data = {};
+
         if ($(btn).data('update') == 'price')
-        //    		alert($(btn).closest('td').find('input').val());
             data.newPrice = $(btn).closest('td').find('input').val();
+
         if ($(btn).data('update') == 'count')
             data.newQuantity = $(btn).closest('td').find('input').val();
 
-//        $.post('/admin/components/run/shop/orders/ajaxEditOrderCart/' + id, data, function(data) {
-//            $('.notifications').append(data);
-//        });
         $.post('/admin/components/run/shop/orders/ajaxEditOrderCartNew/' + id, data, function (data) {
             $('.notifications').append(data);
         });
