@@ -478,9 +478,7 @@ class Wishlist_model extends CI_Model {
             $user = FALSE;
         }
 
-        //        var_dumps($user);
         if (!$user) {
-            //            $user = $user->result_array();
             $this->db->insert(
                 'mod_wish_list_users',
                 array(
@@ -513,8 +511,10 @@ class Wishlist_model extends CI_Model {
     /**
      * create wish list
      *
-     * @param string$listName
+     * @param string $listName
      * @param integer $user_id
+     * @param string $access
+     * @param string $description
      * @return boolean
      */
     public function createWishList($listName, $user_id, $access = 'shared', $description) {

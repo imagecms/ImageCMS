@@ -20,13 +20,13 @@ class SearchController extends ControllerBase {
      * Render template and set data for "keywords"
      */
     public function keywords() {
-        $limit = isset($_GET['swr']) ? (int) $_GET['swr'] : 200;
+        $limit = $this->input->get('swr') ? (int) $this->input->get('swr') : 200;
         $result = $this->controller->search_model->queryKeywordsByDateRange(
             array(
-            'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
-            'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
-            'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
-            ),
+            'dateFrom' => $this->input->get('from') ? : '2005-05-05',
+            'dateTo' => $this->input->get('to') ? : date("Y-m-d"),
+            'interval' => $this->input->get('group') ? : 'day',
+                ),
             $limit
         );
         $this->renderAdmin('keywords', array('data' => $result));
@@ -43,27 +43,16 @@ class SearchController extends ControllerBase {
      * Return brands and counts data for chart
      * @return false|null data
      */
+    public function getCategoriesInSearchData() {
+        echo json_encode($this->getSearchData('Categories'));
+    }
+
+    /**
+     * Return brands and counts data for chart
+     * @return false|null data
+     */
     public function getBrandsInSearchData() {
-        $params = array(
-            'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
-            'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
-            'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
-            'swr' => isset($_GET['swr']) ? (int) $_GET['swr'] : 9,
-            'swc' => isset($_GET['swc']) ? (int) $_GET['swc'] : 9
-        );
-
-        $keywordsArray = $this->controller->search_model->queryKeywordsByDateRange($params, $params['swc']);
-
-        $queryStringWhere = $this->prepareQueryStringForSearchAnalisis($keywordsArray);
-
-        if ($queryStringWhere != false) {
-            $arrayWithBrandsInSearch = $this->controller->search_model->analysisBrands($queryStringWhere, $params);
-        } else {
-            return FALSE;
-        }
-
-        $chartData = parent::prepareDataForStaticChart($arrayWithBrandsInSearch);
-        echo json_encode($chartData);
+        echo json_encode($this->getSearchData('Brands'));
     }
 
     /**
@@ -74,16 +63,16 @@ class SearchController extends ControllerBase {
     }
 
     /**
-     * Return brands and counts data for chart
-     * @return false|null data
+     *
+     * @param string $type
      */
-    public function getCategoriesInSearchData() {
+    private function getSearchData($type) {
         $params = array(
-            'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
-            'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
-            'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
-            'swr' => isset($_GET['swr']) ? (int) $_GET['swr'] : 9,
-            'swc' => isset($_GET['swc']) ? (int) $_GET['swc'] : 9
+            'dateFrom' => $this->input->get('from') ? : '2005-05-05',
+            'dateTo' => $this->input->get('to') ? : date("Y-m-d"),
+            'interval' => $this->input->get('group') ? : 'day',
+            'swr' => $this->input->get('swr') ? (int) $this->input->get('swr') : 9,
+            'swc' => $this->input->get('swc') ? (int) $this->input->get('swc') : 9
         );
 
         $keywordsArray = $this->controller->search_model->queryKeywordsByDateRange($params, $params['swc']);
@@ -91,13 +80,12 @@ class SearchController extends ControllerBase {
         $queryStringWhere = $this->prepareQueryStringForSearchAnalisis($keywordsArray);
 
         if ($queryStringWhere != false) {
-            $arrayWithCategoriesInSearch = $this->controller->search_model->analysisCategories($queryStringWhere, $params);
+            $array = $this->controller->search_model->analysis{$type}($queryStringWhere, $params);
         } else {
             return FALSE;
         }
 
-        $chartData = parent::prepareDataForStaticChart($arrayWithCategoriesInSearch);
-        echo json_encode($chartData);
+        return parent::prepareDataForStaticChart($array);
     }
 
     /**
@@ -125,7 +113,7 @@ class SearchController extends ControllerBase {
 
     public function noResults() {
 
-        $this->renderAdmin('noResults', array('data' => $result));
+        $this->renderAdmin('noResults');
     }
 
 }

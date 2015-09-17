@@ -75,9 +75,6 @@ class Admin extends BaseAdminController {
         $this->template->assign('menu_result', $this->menu_result);
         $this->template->assign('insert_id', $ins_id['id']);
         $this->template->assign('menu_title', $ins_id['main_title']);
-        //        if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest')
-        //            $this->fetch_tpl('main');
-        //        else
 
         $this->template->assign('tree', $this->_printRecursiveMenuItems($this->root_menu));
 
@@ -134,12 +131,12 @@ class Admin extends BaseAdminController {
             if ($this->input->post('item_type') == 'category') {
                 $this->form_validation->set_rules('item_id', lang('category ID', 'menu'), 'required');
             }
-            if ($_POST['item_type'] == 'module') {
+            if ($this->input->post('item_type') == 'module') {
                 $this->form_validation->set_rules('mod_name', lang('Module name', 'menu'), 'required');
                 //$this->form_validation->set_rules('mod_method', 'Метод модуля', 'required');
                 $this->form_validation->set_rules('item_id', lang('Module ID', 'menu'), 'required');
             }
-            if ($_POST['item_type'] == 'url') {
+            if ($this->input->post('item_type') == 'url') {
                 $this->form_validation->set_rules('item_url', 'URL', 'required');
             }
 
@@ -147,60 +144,60 @@ class Admin extends BaseAdminController {
                 showMessage(validation_errors(), '', 'r');
             } else {
 
-                if ($_POST['page_hidden']) {
-                    $hidden = $_POST['page_hidden'];
-                } elseif ($_POST['cat_hidden']) {
-                    $hidden = $_POST['cat_hidden'];
-                } elseif ($_POST['module_hidden']) {
-                    $hidden = $_POST['module_hidden'];
-                } elseif ($_POST['url_hidden']) {
-                    $hidden = $_POST['url_hidden'];
+                if ($this->input->post('page_hidden')) {
+                    $hidden = $this->input->post('page_hidden');
+                } elseif ($this->input->post('cat_hidden')) {
+                    $hidden = $this->input->post('cat_hidden');
+                } elseif ($this->input->post('module_hidden')) {
+                    $hidden = $this->input->post('module_hidden');
+                } elseif ($this->input->post('url_hidden')) {
+                    $hidden = $this->input->post('url_hidden');
                 }
 
-                if ($_POST['page_item_image']) {
-                    $image = $_POST['page_item_image'];
-                } elseif ($_POST['cat_item_image']) {
-                    $image = $_POST['cat_item_image'];
-                } elseif ($_POST['module_item_image']) {
-                    $image = $_POST['module_item_image'];
-                } elseif ($_POST['url_item_image']) {
-                    $image = $_POST['url_item_image'];
+                if ($this->input->post('page_item_image')) {
+                    $image = $this->input->post('page_item_image');
+                } elseif ($this->input->post('cat_item_image')) {
+                    $image = $this->input->post('cat_item_image');
+                } elseif ($this->input->post('module_item_image')) {
+                    $image = $this->input->post('module_item_image');
+                } elseif ($this->input->post('url_item_image')) {
+                    $image = $this->input->post('url_item_image');
                 } else {
                     $image = '';
                 }
 
-                if ($_POST['page_newpage']) {
-                    $newpage = $_POST['page_newpage'];
-                } elseif ($_POST['cat_newpage']) {
-                    $newpage = $_POST['cat_newpage'];
-                } elseif ($_POST['module_newpage']) {
-                    $newpage = $_POST['module_newpage'];
-                } elseif ($_POST['url_newpage']) {
-                    $newpage = $_POST['url_newpage'];
+                if ($this->input->post('page_newpage')) {
+                    $newpage = $this->input->post('page_newpage');
+                } elseif ($this->input->post('cat_newpage')) {
+                    $newpage = $this->input->post('cat_newpage');
+                } elseif ($this->input->post('module_newpage')) {
+                    $newpage = $this->input->post('module_newpage');
+                } elseif ($this->input->post('url_newpage')) {
+                    $newpage = $this->input->post('url_newpage');
                 }
 
                 //preparing roles
-                $roles = $_POST['item_roles'];
+                $roles = $this->input->post('item_roles');
                 if ($roles == NULL) {
                     $roles = '';
                 } else {
-                    $roles = serialize($_POST['item_roles']);
+                    $roles = serialize($this->input->post('item_roles'));
                 }
 
                 //preparing main data
                 $item_data = [
-                    'menu_id' => $_POST['menu_id'],
-                    'item_id' => $_POST['item_id'],
-                    'item_type' => $_POST['item_type'],
-                    'title' => htmlentities($_POST['title'], ENT_QUOTES, 'UTF-8'),
+                    'menu_id' => $this->input->post('menu_id'),
+                    'item_id' => $this->input->post('item_id'),
+                    'item_type' => $this->input->post('item_type'),
+                    'title' => htmlentities($this->input->post('title'), ENT_QUOTES, 'UTF-8'),
                     'hidden' => (int) $hidden,
                     'item_image' => $image,
                     'roles' => $roles,
-                    'parent_id' => $_POST['parent_id'],
+                    'parent_id' => $this->input->post('parent_id'),
                 ];
 
                 //                $item_data['position'] = $all_menu_items_count + 1;
-                $last_item_position = $this->db->where('menu_id', $_POST['menu_id'])
+                $last_item_position = $this->db->where('menu_id', $this->input->post('menu_id'))
                     ->where('parent_id', $this->input->post('parent_id'))
                     ->select_max('position')
                     ->get('menus_data')->result_array();
@@ -208,19 +205,19 @@ class Admin extends BaseAdminController {
                 $item_data['position'] = $newItemPosition;
 
                 if (!isset($item_data['add_data'])) {
-                    if ($_POST['item_type'] == 'module') {
-                        $data['mod_name'] = $_POST['mod_name'];
-                        $data['method'] = $_POST['mod_method'];
+                    if ($this->input->post('item_type') == 'module') {
+                        $data['mod_name'] = $this->input->post('mod_name');
+                        $data['method'] = $this->input->post('mod_method');
                     }
-                    if ($_POST['item_type'] == 'url') {
-                        $data['url'] = $_POST['item_url'];
+                    if ($this->input->post('item_type') == 'url') {
+                        $data['url'] = $this->input->post('item_url');
                     }
                     $data['newpage'] = (int) $newpage;
                     $item_data['add_data'] = serialize($data);
                 }
                 // Error: wrong parent id
-                if ($_POST['item_type'] != 'module' AND $_POST['item_type'] != 'url') {
-                    if ($_POST['item_id'] == $_POST['parent_id']) {
+                if ($this->input->post('item_type') != 'module' AND $this->input->post('item_type') != 'url') {
+                    if ($this->input->post('item_id') == $this->input->post('parent_id')) {
                         $error = TRUE;
                     }
                 }
@@ -239,8 +236,8 @@ class Admin extends BaseAdminController {
                     $this->db->insert('menu_translate', $translate);
                     $this->lib_admin->log(lang('The menu item was successfully created', 'menu') . '. Id: ' . $lastId);
                     showMessage(lang('The menu item was successfully created', 'menu'));
-                    $row = $this->db->where('id', $_POST['menu_id'])->get('menus')->row_array();
-                    if ($_POST['action'] == 'tomain') {
+                    $row = $this->db->where('id', $this->input->post('menu_id'))->get('menus')->row_array();
+                    if ($this->input->post('action') == 'tomain') {
                         pjax('/admin/components/cp/menu/menu_item/' . $row['name']);
                     } else {
                         pjax('/admin/components/cp/menu/edit_item/' . $lastId . '/' . $row['name']);
@@ -440,7 +437,7 @@ class Admin extends BaseAdminController {
      */
     public function loadPathImg() {
 
-        $pathUrl = $this->db->like('add_data', $_POST['title'])->where('item_type', 'module')->get('menus_data')->row()->item_image;
+        $pathUrl = $this->db->like('add_data', $this->input->post('title'))->where('item_type', 'module')->get('menus_data')->row()->item_image;
         if ($pathUrl) {
             echo $pathUrl;
         }
@@ -451,7 +448,7 @@ class Admin extends BaseAdminController {
      */
     public function edit_item($item_id) {
 
-        if (empty($_POST)) {
+        if (!$this->input->post()) {
             $item = $this->db
                 ->where('menus_data.id', $item_id)
                 ->select(['menus_data.*', 'menu_translate.title'])
@@ -494,14 +491,14 @@ class Admin extends BaseAdminController {
             $this->template->assign('pages', $pages);
             $this->display_tpl('edit_item');
         } else {
-            if ($_POST['page_item_type']) {
-                $item_type = $_POST['page_item_type'];
-            } elseif ($_POST['cat_item_type']) {
-                $item_type = $_POST['cat_item_type'];
-            } elseif ($_POST['module_item_type']) {
-                $item_type = $_POST['module_item_type'];
-            } elseif ($_POST['url_item_type']) {
-                $item_type = $_POST['url_item_type'];
+            if ($this->input->post('page_item_type')) {
+                $item_type = $this->input->post('page_item_type');
+            } elseif ($this->input->post('cat_item_type')) {
+                $item_type = $this->input->post('cat_item_type');
+            } elseif ($this->input->post('module_item_type')) {
+                $item_type = $this->input->post('module_item_type');
+            } elseif ($this->input->post('url_item_type')) {
+                $item_type = $this->input->post('url_item_type');
             }
 
             $this->form_validation->set_rules('menu_id', 'Menu Id', 'required');
@@ -531,55 +528,55 @@ class Admin extends BaseAdminController {
                 showMessage(validation_errors(), '', 'r');
             } else {
 
-                if ($_POST['page_hidden']) {
-                    $hidden = $_POST['page_hidden'];
-                } elseif ($_POST['cat_hidden']) {
-                    $hidden = $_POST['cat_hidden'];
-                } elseif ($_POST['module_hidden']) {
-                    $hidden = $_POST['module_hidden'];
-                } elseif ($_POST['url_hidden']) {
-                    $hidden = $_POST['url_hidden'];
+                if ($this->input->post('page_hidden')) {
+                    $hidden = $this->input->post('page_hidden');
+                } elseif ($this->input->post('cat_hidden')) {
+                    $hidden = $this->input->post('cat_hidden');
+                } elseif ($this->input->post('module_hidden')) {
+                    $hidden = $this->input->post('module_hidden');
+                } elseif ($this->input->post('url_hidden')) {
+                    $hidden = $this->input->post('url_hidden');
                 }
-                if ($_POST['page_item_image']) {
-                    $image = $_POST['page_item_image'];
-                } elseif ($_POST['cat_item_image']) {
-                    $image = $_POST['cat_item_image'];
-                } elseif ($_POST['module_item_image']) {
-                    $image = $_POST['module_item_image'];
-                } elseif ($_POST['url_item_image']) {
-                    $image = $_POST['url_item_image'];
+                if ($this->input->post('page_item_image')) {
+                    $image = $this->input->post('page_item_image');
+                } elseif ($this->input->post('cat_item_image')) {
+                    $image = $this->input->post('cat_item_image');
+                } elseif ($this->input->post('module_item_image')) {
+                    $image = $this->input->post('module_item_image');
+                } elseif ($this->input->post('url_item_image')) {
+                    $image = $this->input->post('url_item_image');
                 }
-                if ($_POST['page_parent_id']) {
-                    $parent_id = $_POST['page_parent_id'];
-                } elseif ($_POST['cat_parent_id']) {
-                    $parent_id = $_POST['cat_parent_id'];
-                } elseif ($_POST['module_parent_id']) {
-                    $parent_id = $_POST['module_parent_id'];
-                } elseif ($_POST['url_parent_id']) {
-                    $parent_id = $_POST['url_parent_id'];
+                if ($this->input->post('page_parent_id')) {
+                    $parent_id = $this->input->post('page_parent_id');
+                } elseif ($this->input->post('cat_parent_id')) {
+                    $parent_id = $this->input->post('cat_parent_id');
+                } elseif ($this->input->post('module_parent_id')) {
+                    $parent_id = $this->input->post('module_parent_id');
+                } elseif ($this->input->post('url_parent_id')) {
+                    $parent_id = $this->input->post('url_parent_id');
                 }
-                if ($_POST['page_newpage']) {
-                    $newpage = $_POST['page_newpage'];
-                } elseif ($_POST['cat_newpage']) {
-                    $newpage = $_POST['cat_newpage'];
-                } elseif ($_POST['module_newpage']) {
-                    $newpage = $_POST['module_newpage'];
-                } elseif ($_POST['url_newpage']) {
-                    $newpage = $_POST['url_newpage'];
+                if ($this->input->post('page_newpage')) {
+                    $newpage = $this->input->post('page_newpage');
+                } elseif ($this->input->post('cat_newpage')) {
+                    $newpage = $this->input->post('cat_newpage');
+                } elseif ($this->input->post('module_newpage')) {
+                    $newpage = $this->input->post('module_newpage');
+                } elseif ($this->input->post('url_newpage')) {
+                    $newpage = $this->input->post('url_newpage');
                 }
 
-                $roles = $_POST['item_roles'];
+                $roles = $this->input->post('item_roles');
                 if ($roles == NULL) {
                     $roles = '';
                 } else {
-                    $roles = serialize($_POST['item_roles']);
+                    $roles = serialize($this->input->post('item_roles'));
                 }
 
                 $item_data = [
-                    'menu_id' => $_POST['menu_id'],
-                    'item_id' => $_POST['item_id'],
+                    'menu_id' => $this->input->post('menu_id'),
+                    'item_id' => $this->input->post('item_id'),
                     'item_type' => $item_type,
-                    'title' => htmlentities($_POST['title'], ENT_QUOTES, 'UTF-8'),
+                    'title' => htmlentities($this->input->post('title'), ENT_QUOTES, 'UTF-8'),
                     'hidden' => (int) $hidden,
                     'item_image' => $image,
                     'roles' => $roles,
@@ -587,25 +584,25 @@ class Admin extends BaseAdminController {
                 ];
 
                 if ($item_data['item_type'] == 'module') {
-                    $data['mod_name'] = $_POST['mod_name'];
-                    $data['method'] = $_POST['mod_method'];
+                    $data['mod_name'] = $this->input->post('mod_name');
+                    $data['method'] = $this->input->post('mod_method');
                     $data['newpage'] = (int) $newpage;
                 }
 
                 if ($item_data['item_type'] == 'url') {
                     $item_data['item_id'] = 0;
-                    $item_data['add_data'] = serialize(['url' => $_POST['item_url'], 'newpage' => (int) $newpage]);
+                    $item_data['add_data'] = serialize(['url' => $this->input->post('item_url'), 'newpage' => (int) $newpage]);
                 }
                 if ($item_data['item_type'] == 'page') {
-                    $item_data['add_data'] = serialize(['page' => $_POST['item_url'], 'newpage' => (int) $newpage]);
+                    $item_data['add_data'] = serialize(['page' => $this->input->post('item_url'), 'newpage' => (int) $newpage]);
                 }
                 if (!isset($item_data['add_data'])) {
                     $item_data['add_data'] = serialize($data);
                 }
                 $errorMessage = Null;
                 // Error: wrong parent id
-                if ($_POST['item_id'] != 0 && $parent_id != 0) {
-                    if ($_POST['item_id'] == $parent_id) {
+                if ($this->input->post('item_id') != 0 && $parent_id != 0) {
+                    if ($this->input->post('item_id') == $parent_id) {
                         $error = TRUE;
                         $errorMessage = 1;
                     }
@@ -641,8 +638,8 @@ class Admin extends BaseAdminController {
                     $this->db->update('menus_data', $item_data);
                     $this->lib_admin->log(lang('Menu item was edited', 'menu') . '. Id ' . $item_id);
                     showMessage(lang('Changes successfully saved', 'menu'));
-                    $row = $this->db->where('id', $_POST['menu_id'])->get('menus')->row_array();
-                    if ($_POST['action'] == 'tomain') {
+                    $row = $this->db->where('id', $this->input->post('menu_id'))->get('menus')->row_array();
+                    if ($this->input->post('action') == 'tomain') {
                         pjax('/admin/components/cp/menu/menu_item/' . $row['name']);
                     }
                 }
@@ -703,16 +700,16 @@ class Admin extends BaseAdminController {
 
         //cp_check_perm('menu_edit');
 
-        $roles = $_POST['roles'];
+        $roles = $this->input->post('roles');
         if ($roles == NULL) {
             $roles = '';
         } else {
-            $roles = serialize($_POST['roles']);
+            $roles = serialize($this->input->post('roles'));
         }
 
         // Item position
-        if ($_POST['position_after'] > 0) {
-            $after_pos = $this->menu_model->get_item_position($_POST['position_after']);
+        if ($this->input->post('position_after') > 0) {
+            $after_pos = $this->menu_model->get_item_position($this->input->post('position_after'));
             $after_pos = $after_pos['position'];
 
             if ($after_pos != FALSE) {
@@ -728,10 +725,10 @@ class Admin extends BaseAdminController {
             }
         }
 
-        if ($_POST['position_after'] == 0) {
+        if ($this->input->post('position_after') == 0) {
             $this->db->select_max('position');
-            $this->db->where('menu_id', $_POST['menu_id']);
-            $this->db->where('parent_id', $_POST['parent_id']);
+            $this->db->where('menu_id', $this->input->post('menu_id'));
+            $this->db->where('parent_id', $this->input->post('parent_id'));
             $query = $this->db->get('menus_data')->row_array();
 
             if ($query['position'] == NULL) {
@@ -741,10 +738,10 @@ class Admin extends BaseAdminController {
             }
         }
 
-        if ($_POST['position_after'] == 'first') {
+        if ($this->input->post('position_after') == 'first') {
             $this->db->select_min('position');
-            $this->db->where('menu_id', $_POST['menu_id']);
-            $this->db->where('parent_id', $_POST['parent_id']);
+            $this->db->where('menu_id', $this->input->post('menu_id'));
+            $this->db->where('parent_id', $this->input->post('parent_id'));
             $query = $this->db->get('menus_data')->row_array();
 
             if ($query['position'] == NULL) {
@@ -755,22 +752,22 @@ class Admin extends BaseAdminController {
         }
 
         $item_data = [
-            'menu_id' => $_POST['menu_id'],
-            'item_id' => $_POST['item_id'],
-            'item_type' => $_POST['item_type'],
-            'title' => htmlentities($_POST['title'], ENT_QUOTES, 'UTF-8'),
-            'hidden' => $_POST['hidden'],
-            'item_image' => $_POST['item_image'],
+            'menu_id' => $this->input->post('menu_id'),
+            'item_id' => $this->input->post('item_id'),
+            'item_type' => $this->input->post('item_type'),
+            'title' => htmlentities($this->input->post('title'), ENT_QUOTES, 'UTF-8'),
+            'hidden' => $this->input->post('hidden'),
+            'item_image' => $this->input->post('item_image'),
             'roles' => $roles,
-            'parent_id' => $_POST['parent_id'],
+            'parent_id' => $this->input->post('parent_id'),
             'position' => $position,
         ];
 
         if ($item_data['item_type'] == 'module') {
             $mod_info = [
-                'mod_name' => $_POST['item_id'],
-                'method' => trim($_POST['method']),
-                'newpage' => $_POST['newpage']
+                'mod_name' => $this->input->post('item_id'),
+                'method' => trim($this->input->post('method')),
+                'newpage' => $this->input->post('newpage')
             ];
 
             $item_data['item_id'] = 0;
@@ -779,14 +776,14 @@ class Admin extends BaseAdminController {
 
         if ($item_data['item_type'] == 'url') {
             $item_data['item_id'] = 0;
-            $item_data['add_data'] = serialize(['url' => $_POST['url'], 'newpage' => $_POST['newpage']]);
+            $item_data['add_data'] = serialize(['url' => $this->input->post('url'), 'newpage' => $this->input->post('newpage')]);
         }
 
         if (!isset($item_data['add_data'])) {
-            $item_data['add_data'] = serialize(['newpage' => $_POST['newpage']]);
+            $item_data['add_data'] = serialize(['newpage' => $this->input->post('newpage')]);
         }
 
-        if ($_POST['update_id'] == 0) {
+        if ($this->input->post('update_id') == 0) {
             // Insert new item
             $this->menu_model->insert_item($item_data);
         } else {
@@ -794,30 +791,30 @@ class Admin extends BaseAdminController {
             $error = FALSE;
 
             // Error: wrong parent id
-            if ($_POST['update_id'] == $_POST['parent_id']) {
+            if ($this->input->post('update_id') == $this->input->post('parent_id')) {
                 $error = TRUE;
             }
 
             // Error: don't place root menu in sub
-            $item = $this->menu_model->get_item($_POST['update_id']);
+            $item = $this->menu_model->get_item($this->input->post('update_id'));
             if ($item['parent_id'] == 0) {
-                $this->_get_sub_items($_POST['update_id']);
+                $this->_get_sub_items($this->input->post('update_id'));
 
                 foreach ($this->sub_menus as $v) {
-                    if ($v == $_POST['parent_id']) {
+                    if ($v == $this->input->post('parent_id')) {
                         $error = TRUE;
                     }
                 }
             }
 
-            if ($_POST['position_after'] == 0) {
+            if ($this->input->post('position_after') == 0) {
                 unset($item_data['position']);
             }
 
             if ($error == TRUE) {
                 return FALSE;
             } else {
-                $this->db->where('id', $_POST['update_id']);
+                $this->db->where('id', $this->input->post('update_id'));
                 $this->db->update('menus_data', $item_data);
             }
         }
@@ -827,7 +824,7 @@ class Admin extends BaseAdminController {
 
         //cp_check_perm('menu_edit');
 
-        foreach ($_POST['positions'] as $k => $v) {
+        foreach ($this->input->post('positions') as $k => $v) {
             $k = $k + 1;
             $this->menu_model->set_item_position((int) $v, (int) $k);
         }
@@ -842,7 +839,7 @@ class Admin extends BaseAdminController {
     public function create_menu() {
 
         //cp_check_perm('menu_create');
-        if ($_POST['menu_name'] == NULL) {
+        if ($this->input->post('menu_name') == NULL) {
             showMessage(lang("Name field sieve", 'menu'), '', 'r');
 
             exit;
@@ -862,7 +859,7 @@ class Admin extends BaseAdminController {
             $data = [
                 'name' => $this->input->post('menu_name'),
                 'main_title' => $this->input->post('main_title'),
-                'description' => $_POST['menu_desc'],
+                'description' => $this->input->post('menu_desc'),
                 'tpl' => $this->input->post('menu_tpl'),
                 'expand_level' => $this->input->post('menu_expand_level'),
                 'created' => date('Y-m-d H:i:s')
@@ -904,7 +901,7 @@ class Admin extends BaseAdminController {
             $data = [
                 'name' => $this->input->post('menu_name'),
                 'main_title' => $this->input->post('main_title'),
-                'description' => $_POST['menu_desc'],
+                'description' => $this->input->post('menu_desc'),
                 'tpl' => $this->input->post('menu_tpl'),
                 'expand_level' => $this->input->post('menu_expand_level'),
                 'created' => date('Y-m-d H:i:s')
@@ -914,7 +911,7 @@ class Admin extends BaseAdminController {
             $this->db->update('menus', $data);
             $this->lib_admin->log(lang("Menu was edited", "menu") . '. Id: ' . $id);
             showMessage(lang('Changes saved', 'menu'));
-            if ($_POST['action'] == 'tomain') {
+            if ($this->input->post('action') == 'tomain') {
                 pjax('/admin/components/cp/menu');
             }
         }
@@ -922,12 +919,12 @@ class Admin extends BaseAdminController {
 
     public function check_menu_data() {
 
-        if ($_POST['menu_name'] == NULL) {
+        if ($this->input->post('menu_name') == NULL) {
             showMessage(lang("The field is required to be filled in"), false, 'r');
             exit;
         }
 
-        if ($this->db->get_where('menus', ['name' => $_POST['menu_name']])->num_rows() > 0) {
+        if ($this->db->get_where('menus', ['name' => $this->input->post('menu_name')])->num_rows() > 0) {
             showMessage(lang("The menu with the same name has been created yet"), false, 'r');
             exit;
         }
@@ -992,10 +989,10 @@ class Admin extends BaseAdminController {
         $data['nav_count'] = [];
         $data['links'] = 0;
         $per_page = 10;
-        if ($_POST['per_page']) {
-            $per_page = (int) $_POST['per_page'];
+        if ($this->input->post('per_page')) {
+            $per_page = (int) $this->input->post('per_page');
         }
-        //$per_page = (int) $_POST['per_page'];
+        //$per_page = (int) $this->input->post('per_page');
         $this->db->select('id, title, url, cat_url');
         $this->db->order_by('created', 'desc');
         $this->db->where('lang', $this->load->module('core')->def_lang[0]['id']);
@@ -1019,7 +1016,7 @@ class Admin extends BaseAdminController {
                 $data['links'] = 0;
             }
 
-            if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
+            if ($this->input->server('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest') {
                 if ($referer == 'controller') {
                     return $data;
                 }
@@ -1038,13 +1035,13 @@ class Admin extends BaseAdminController {
         $data['nav_count'] = [];
         $data['links'] = 0;
 
-        $per_page = (int) $_POST['per_page'];
+        $per_page = (int) $this->input->post('per_page');
 
         $this->db->select('id, title, url, cat_url, category');
         $this->db->order_by('created', 'desc');
         //        $this->db->where('lang_alias', 0);
         $this->db->where('lang', $this->default_lang_id);
-        $this->db->like('title', $_POST['search']);
+        $this->db->like('title', $this->input->post('search'));
 
         if ($cur_page == 0) {
             $pages = $this->db->get('content', $per_page);
@@ -1085,7 +1082,7 @@ class Admin extends BaseAdminController {
             $this->db->select('id');
             $this->db->where('lang', $this->default_lang_id);
             //            $this->db->where('lang_alias', 0);
-            $this->db->like('title', $_POST['search']);
+            $this->db->like('title', $this->input->post('search'));
             $total = $this->db->get('content')->num_rows();
 
             $data['links'] = ceil($total / $per_page);
@@ -1104,7 +1101,7 @@ class Admin extends BaseAdminController {
      */
     public function get_item() {
 
-        $item_id = (int) $_POST['item_id'];
+        $item_id = (int) $this->input->post('item_id');
 
         $this->db->where('id', $item_id);
         $query = $this->db->get('menus_data');
@@ -1118,7 +1115,7 @@ class Admin extends BaseAdminController {
 
             $data['roles'] = unserialize($data['roles']);
 
-            if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
+            if ($this->input->server('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest') {
                 echo json_encode($data);
             } else {
                 return $data;
@@ -1178,12 +1175,12 @@ class Admin extends BaseAdminController {
         $this->db->delete('menu_translate');
 
         foreach ($langs as $lang) {
-            if (isset($_POST['lang_' . $lang['id']])) {
-                if (trim($_POST['lang_' . $lang['id']]) != '') {
+            if ($this->input->post('lang_' . $lang['id'])) {
+                if (trim($this->input->post('lang_' . $lang['id'])) != '') {
                     $data = [
                         'item_id' => (int) $id,
                         'lang_id' => $lang['id'],
-                        'title' => $_POST['lang_' . $lang['id']],
+                        'title' => $this->input->post('lang_' . $lang['id']),
                     ];
                     $this->db->insert('menu_translate', $data);
                 }

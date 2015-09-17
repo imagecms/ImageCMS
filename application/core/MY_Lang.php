@@ -38,6 +38,11 @@ class MY_Lang extends MX_Lang {
         return $locale ? $locale : 'ru_RU';
     }
 
+    /**
+     *
+     * @param string $language
+     * @return array
+     */
     private function getFrontLangCode($language) {
         $languages = CI::$APP->db->select('lang_name, identif, locale')->get('languages');
         $languages = $languages ? $languages->result_array() : [];
@@ -52,7 +57,7 @@ class MY_Lang extends MX_Lang {
     }
 
     private function _init() {
-        if (!strstr($_SERVER['REQUEST_URI'], 'install')) {
+        if (!strstr(CI::$APP->input->server('REQUEST_URI'), 'install')) {
             if (null == CI::$APP->db) {
                 $error = & load_class('Exceptions', 'core');
                 echo $error->show_error('DB Error', 'Unable to connect to the database', 'error_db');
@@ -89,7 +94,7 @@ class MY_Lang extends MX_Lang {
                 $module = 'admin';
             }
         } else {
-            if (strstr($_SERVER['REQUEST_URI'], 'install')) {
+            if (strstr(CI::$APP->input->server('REQUEST_URI'), 'install')) {
                 $lang = CI::$APP->session->userdata('language');
             } else {
                 $languageFront = $this->getFrontLangCode(MY_Controller::getCurrentLocale());
@@ -103,7 +108,7 @@ class MY_Lang extends MX_Lang {
 
         if ($module == 'main') {
             $this->addDomain(correctUrl('./application/language/main/' . $lang), getMoFileName('main'), $lang);
-            $template_name = \CI_Controller::get_instance()->config->item('template');
+            $template_name = CI_Controller::get_instance()->config->item('template');
             $this->addDomain('templates/' . $template_name . '/language/' . $template_name . '/', getMoFileName($template_name), $lang);
         } else {
 
