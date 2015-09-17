@@ -40,7 +40,7 @@ class Wishlist_model extends CI_Model {
     /**
      * get wish lists
      *
-     * @param int $userID filter by user id
+     * @param integer|null $userID filter by user id
      * @return array
      */
     public function getWishLists($userID = NULL) {
@@ -74,7 +74,7 @@ class Wishlist_model extends CI_Model {
     /**
      * get user by id
      *
-     * @param $id
+     * @param integer $id
      * @return array
      */
     public function getUserByID($id) {
@@ -92,8 +92,8 @@ class Wishlist_model extends CI_Model {
     /**
      * get wish list by user id
      *
-     * @param $user_id
-     * @param $access
+     * @param integer $user_id
+     * @param array $access
      * @return array
      */
     public function getWLsByUserId($user_id, $access = array('shared')) {
@@ -107,9 +107,9 @@ class Wishlist_model extends CI_Model {
     /**
      * get user wish list
      *
-     * @param type $user_id
-     * @param type $list_id
-     * @param type $access
+     * @param integer $user_id
+     * @param integer $list_id
+     * @param array $access
      * @return array
      */
     public function getUserWishList($user_id, $list_id, $access = array('public', 'shared', 'private')) {
@@ -145,7 +145,7 @@ class Wishlist_model extends CI_Model {
      * get user wish list by hash
      *
      * @param integer $hash
-     * @param $access
+     * @param array $access
      * @return array
      */
     public function getUserWishListByHash($hash, $access = array('public', 'shared', 'private')) {
@@ -181,8 +181,8 @@ class Wishlist_model extends CI_Model {
     /**
      * delete item from list
      *
-     * @param $variant_id
-     * @param $wish_list_id
+     * @param integer $variant_id
+     * @param integer $wish_list_id
      * @return boolean
      */
     public function deleteItem($variant_id, $wish_list_id) {
@@ -215,8 +215,8 @@ class Wishlist_model extends CI_Model {
     /**
      * get user wish list by id
      *
-     * @param $user_id
-     * @param $access
+     * @param integer $user_id
+     * @param array $access
      * @return array
      */
     public function getUserWishListsByID($user_id, $access = array('public', 'shared', 'private')) {
@@ -261,7 +261,7 @@ class Wishlist_model extends CI_Model {
     /**
      * delete wish list by id
      *
-     * @param $id
+     * @param integer$id
      * @return boolean
      */
     public function delWishListById($id) {
@@ -274,7 +274,7 @@ class Wishlist_model extends CI_Model {
     /**
      * delete wish list products by wish list id
      *
-     * @param $id
+     * @param integer $id
      * @return boolean
      */
     public function delWishListProductsByWLId($id) {
@@ -286,7 +286,7 @@ class Wishlist_model extends CI_Model {
     /**
      * get user wish list products
      *
-     * @param $userID
+     * @param integer $userID
      * @return array
      */
     public function getUserWishProducts($userID = null) {
@@ -314,7 +314,7 @@ class Wishlist_model extends CI_Model {
     /**
      *
      *
-     * @param $userID
+     * @param integer $userID
      * @return array
      */
     public function getAllUserWLs($userID = null) {
@@ -342,7 +342,7 @@ class Wishlist_model extends CI_Model {
     /**
      * get most popular products
      *
-     * @param $limit
+     * @param integer $limit
      * @return array
      */
     public function getMostPopularProducts($limit = 10) {
@@ -362,10 +362,9 @@ class Wishlist_model extends CI_Model {
     /**
      * insert wish list
      *
-     * @param $title
-     * @param $access
-     * @param $description
-     * @param $user_id
+     * @param string $title
+     * @param string $access
+     * @param integer $user_id
      * @return boolean
      */
     public function insertWishList($title, $access, $user_id) {
@@ -378,8 +377,8 @@ class Wishlist_model extends CI_Model {
     /**
      * update wish list
      *
-     * @param $id
-     * @param $data
+     * @param integer $id
+     * @param array|null $data
      * @return boolean
      */
     public function updateWishList($id, $data) {
@@ -396,8 +395,8 @@ class Wishlist_model extends CI_Model {
     /**
      * update wish lists items comments
      *
-     * @param $wish_list_id
-     * @param $comments
+     * @param integer $wish_list_id
+     * @param array $comments
      * @return boolean
      */
     public function updateWishListItemsComments($wish_list_id, $comments) {
@@ -413,10 +412,10 @@ class Wishlist_model extends CI_Model {
     /**
      * insert user
      *
-     * @param $user_id
-     * @param $user_image
-     * @param $user_birthday
-     * @param $user_name
+     * @param integer $user_id
+     * @param string $user_image
+     * @param integer $user_birthday
+     * @param string $user_name
      * @return boolean
      */
     public function insertUser($user_id, $user_image, $user_birthday, $user_name = null) {
@@ -433,10 +432,10 @@ class Wishlist_model extends CI_Model {
     /**
      * add item to wish list
      *
-     * @param $varId
+     * @param integer $varId
      * @param string $listId
-     * @param $listName
-     * @param $user_id
+     * @param string $listName
+     * @param integer $user_id
      * @return boolean
      */
     public function addItem($varId, $listId, $listName, $user_id = null) {
@@ -464,8 +463,8 @@ class Wishlist_model extends CI_Model {
     /**
      * create user wish list if not exist
      *
-     * @param $user_id
-     * @param $user_name
+     * @param integer $user_id
+     * @param string $user_name
      * @return boolean
      */
     public function createUserIfNotExist($user_id, $user_name = null) {
@@ -497,10 +496,10 @@ class Wishlist_model extends CI_Model {
     /**
      * update user
      *
-     * @param $userID
-     * @param $user_name
-     * @param $user_birthday
-     * @param $description
+     * @param integer $userID
+     * @param string $user_name
+     * @param integer $user_birthday
+     * @param string $description
      * @return boolean
      */
     public function updateUser($userID, $user_name, $user_birthday, $description) {
@@ -514,8 +513,8 @@ class Wishlist_model extends CI_Model {
     /**
      * create wish list
      *
-     * @param $listName
-     * @param $user_id
+     * @param string$listName
+     * @param integer $user_id
      * @return boolean
      */
     public function createWishList($listName, $user_id, $access = 'shared', $description) {
@@ -545,9 +544,9 @@ class Wishlist_model extends CI_Model {
     /**
      * update WishList item
      *
-     * @param $varId
-     * @param $wish_list_id
-     * @param $data
+     * @param integer $varId
+     * @param integer $wish_list_id
+     * @param array $data
      * @return boolean
      */
     public function updateWishListItem($varId, $wish_list_id, $data) {
@@ -560,8 +559,8 @@ class Wishlist_model extends CI_Model {
     /**
      * get user wish list count
      *
-     * @param $user_id
-     * @return int
+     * @param integer $user_id
+     * @return integer
      */
     public function getUserWishListCount($user_id) {
         $query = $this->db
@@ -577,8 +576,8 @@ class Wishlist_model extends CI_Model {
     /**
      * get user wish list items count
      *
-     * @param $user_id
-     * @return int
+     * @param integer $user_id
+     * @return integer
      */
     public function getUserWishListItemsCount($user_id) {
         $query = $this->db->where('mod_wish_list.user_id', $user_id)
@@ -594,7 +593,7 @@ class Wishlist_model extends CI_Model {
     /**
      * add list rewiev
      *
-     * @param $list_id
+     * @param string $hash
      * @return boolean
      */
     public function addReview($hash) {
@@ -614,7 +613,7 @@ class Wishlist_model extends CI_Model {
     /**
      * get most view wish lists
      *
-     * @param $limit
+     * @param integer $limit
      * @return boolean
      */
     public function getMostViewedWishLists($limit = 10) {
@@ -628,8 +627,8 @@ class Wishlist_model extends CI_Model {
 
     /**
      *
-     * @param type $userID
-     * @param type $file_name
+     * @param integer $userID
+     * @param string $file_name
      * @return boolean
      */
     public function setUserImage($userID, $file_name) {
@@ -645,8 +644,8 @@ class Wishlist_model extends CI_Model {
 
     /**
      *
-     * @param int $userID
-     * @return bool
+     * @param integer $userID
+     * @return boolean
      */
     public function delUser($userID) {
         $WLs = $this->getAllUserWLs($userID);
