@@ -85,7 +85,7 @@ class SearchController extends ControllerBase {
             return FALSE;
         }
 
-        return parent::prepareDataForStaticChart($array);
+        return self::prepareDataForStaticChart($array);
     }
 
     /**
