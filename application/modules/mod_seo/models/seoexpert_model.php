@@ -11,6 +11,24 @@ class Seoexpert_model extends CI_Model {
     }
 
     /**
+     *
+     * @param string $LastModified_unix
+     */
+    public function setLastModified($LastModified_unix) {
+        $LastModified = gmdate("D, d M Y H:i:s \G\M\T", $LastModified_unix);
+        $IfModifiedSince = false;
+
+        if ($this->input->server('HTTP_IF_MODIFIED_SINCE')) {
+            $IfModifiedSince = strtotime(substr($this->input->server('HTTP_IF_MODIFIED_SINCE'), 5));
+        }
+        if ($IfModifiedSince && $IfModifiedSince >= $LastModified_unix) {
+            header($this->input->server('SERVER_PROTOCOL') . ' 304 Not Modified');
+            exit;
+        }
+        header('Last-Modified: ' . $LastModified);
+    }
+
+    /**
      * Get module settings
      * @return array
      */
@@ -39,14 +57,14 @@ class Seoexpert_model extends CI_Model {
             ->get('mod_seo')
             ->row_array();
         if (empty($data)) {
-            return $this->db->insert('mod_seo', array('locale' => $locale, 'settings' => serialize($settings)));
+            return $this->db->insert('mod_seo', ['locale' => $locale, 'settings' => serialize($settings)]);
         }
 
         return $this->db->where('locale', $locale)
             ->update(
                 'mod_seo',
-                array('settings' => serialize($settings)
-                                )
+                ['settings' => serialize($settings)
+                                ]
             );
     }
 
@@ -164,24 +182,24 @@ class Seoexpert_model extends CI_Model {
             return FALSE;
         }
         // Update shop settings table
-        $mainSettings = array(
+        $mainSettings = [
             'add_site_name' => $settings['add_site_name'],
             'add_site_name_to_cat' => $settings['add_site_name_to_cat'],
             'delimiter' => $settings['delimiter'],
             'create_keywords' => $settings['create_keywords'],
             'create_description' => $settings['create_description']
-        );
+        ];
         $this->db->where('s_name', 'main')->update('settings', $mainSettings);
 
         //Check exists settings with current langId
         $checkLangSettings = $this->db->where('lang_ident', $langId)->get('settings_i18n')->row_array();
 
-        $mainSettingsIn = array(
+        $mainSettingsIn = [
             'name' => $settings['name'],
             'short_name' => $settings['short_name'],
             'description' => $settings['description'],
             'keywords' => $settings['keywords']
-        );
+        ];
 
         // Update or insert shop setiings I18n table
         if ($checkLangSettings) {
@@ -230,7 +248,7 @@ class Seoexpert_model extends CI_Model {
               ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;";
         $this->db->query($sql);
 
-        $this->db->where('name', 'mod_seo')->update('components', array('autoload' => 1, 'in_menu' => 1));
+        $this->db->where('name', 'mod_seo')->update('components', ['autoload' => 1, 'in_menu' => 1]);
         return TRUE;
     }
 

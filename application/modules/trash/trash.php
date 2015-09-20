@@ -99,19 +99,19 @@ class Trash extends MY_Controller {
     public function create_redirect($trash_url, $redirect_url, $type = 301) {
 
         if (!isset($trash_url)) {
-            throw new Exception(lang('Old URL is not specified', 'tresh'));
+            throw new CMSFactory\Exception(lang('Old URL is not specified', 'tresh'));
         }
 
         if (!isset($redirect_url)) {
-            throw new Exception(lang('New URL is not specified', 'tresh'));
+            throw new CMSFactory\Exception(lang('New URL is not specified', 'tresh'));
         }
 
-        $array = array(
+        $array = [
             'trash_url' => ltrim($trash_url, '/'),
             'trash_redirect_type' => 'url',
-            'trash_type' => in_array($type, array(301, 302)) ? $type : 301,
-            'trash_redirect' => '/' . str_replace(array('http://', 'https://'), '', $redirect_url)
-        );
+            'trash_type' => in_array($type, [301, 302]) ? $type : 301,
+            'trash_redirect' => '/' . str_replace(['http://', 'https://'], '', $redirect_url)
+        ];
 
         $this->db->insert('trash', $array);
 
@@ -145,13 +145,13 @@ class Trash extends MY_Controller {
 
             $ci->db->where('trash_url', 'shop/product/' . $model->getUrl())->delete('trash');
             if (!$model->getActive()) {
-                $array = array(
+                $array = [
                     'trash_id' => $model->getCategoryId(),
                     'trash_url' => 'shop/product/' . $model->getUrl(),
                     'trash_redirect_type' => 'category',
                     'trash_type' => '302',
                     'trash_redirect' => shop_url('category/' . $model->getMainCategory()->getFullPath())
-                );
+                ];
                 $ci->db->insert('trash', $array);
             }
         }
@@ -161,13 +161,13 @@ class Trash extends MY_Controller {
         $models = $arg['model'];
         $ci = &get_instance();
         foreach ($models as $model) {
-            $array = array(
+            $array = [
                 'trash_id' => $model->category_id,
                 'trash_url' => 'shop/product/' . $model->url,
                 'trash_redirect_type' => 'category',
                 'trash_type' => '301',
                 'trash_redirect' => shop_url('category/' . $model->getMainCategory()->getFullPath())
-            );
+            ];
             $ci->db->insert('trash', $array);
         }
     }
@@ -175,44 +175,44 @@ class Trash extends MY_Controller {
     public function _install() {
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) OR exit;
-        $fields = array(
-            'id' => array(
+        $fields = [
+            'id' => [
                 'type' => 'INT',
                 'auto_increment' => true
-            ),
-            'trash_id' => array(
+            ],
+            'trash_id' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255',
                 'null' => true,
-            ),
-            'trash_url' => array(
+            ],
+            'trash_url' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255',
                 'null' => true,
-            ),
-            'trash_redirect_type' => array(
+            ],
+            'trash_redirect_type' => [
                 'type' => 'VARCHAR',
                 'constraint' => '20',
                 'null' => true,
-            ),
-            'trash_redirect' => array(
+            ],
+            'trash_redirect' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255',
                 'null' => true,
-            ),
-            'trash_type' => array(
+            ],
+            'trash_type' => [
                 'type' => 'VARCHAR',
                 'constraint' => '3',
                 'null' => true,
-            ),
-        );
+            ],
+        ];
 
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', true);
         $this->dbforge->create_table('trash');
 
         $this->db->where('name', 'trash');
-        $this->db->update('components', array('enabled' => 0, 'autoload' => 1));
+        $this->db->update('components', ['enabled' => 0, 'autoload' => 1]);
     }
 
     public function _deinstall() {

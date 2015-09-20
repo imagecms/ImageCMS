@@ -25,7 +25,7 @@ class Lib_seo {
      * GA custom params
      * @var array
      */
-    private $custom = array();
+    private $custom = [];
 
     public function __construct() {
         if (CI::$APP->session->flashdata('makeOrderForGA') == true) {
@@ -41,7 +41,7 @@ class Lib_seo {
 
     public function init($settings) {
         $CI = & get_instance();
-        if (!strstr($CI->uri->uri_string(), '/cart/')) {
+        if (!strstr($CI->uri->uri_string(), 'shop/order/view')) {
             $CI->template->registerJsScript($this->renderGA($settings));
         }
         $CI->template->registerJsScript($this->renderYaMetrica($settings), 'after');
@@ -69,7 +69,7 @@ class Lib_seo {
     }
 
     public function get_description($text) {
-        $delete = array(';', '"', '&mdash', '&nbsp;');
+        $delete = [';', '"', '&mdash', '&nbsp;'];
 
         $tags = get_html_translation_table(HTML_ENTITIES);
 
@@ -89,7 +89,7 @@ class Lib_seo {
      * @param string $text
      */
     public function explode_str_on_words($text) {
-        $search = array("'ё'",
+        $search = ["'ё'",
             "'<script[^>]*?>.*?</script>'si",
             "'<[\/\!]*?[^<>]*?>'si",
             "'([\r\n])[\s]+'",
@@ -103,8 +103,8 @@ class Lib_seo {
             "'&(pound|#163);'i",
             "'&(copy|#169);'i",
             "'&#(\d+);'i"
-        );
-        $replace = array("е",
+        ];
+        $replace = ["е",
             " ",
             " ",
             "\\1 ",
@@ -118,10 +118,10 @@ class Lib_seo {
             chr(163),
             chr(169),
             "chr(\\1)"
-        );
+        ];
 
         $text = preg_replace($search, $replace, $text);
-        $del_symbols = array(",", ".", ";", ":", "\"", "#", "\$", "%", "^",
+        $del_symbols = [",", ".", ";", ":", "\"", "#", "\$", "%", "^",
             "!", "@", "`", "~", "*", "-", "=", "+", "\\",
             "|", "/", ">", "<", "(", ")", "&", "?", "¹", "\t",
             "\r", "\n", "{", "}", "[", "]", "'", "“", "”", "•",
@@ -131,7 +131,7 @@ class Lib_seo {
             " если ", " надо ", " все ", " так ", " его ", " чем ",
             " даже ", " мне ", " есть ", " раз ", " два ", "raquo", "laquo",
             "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "mdash"
-        );
+        ];
         $text = str_replace($del_symbols, ' ', $text);
         $text = preg_replace("( +)", " ", $text);
         $this->origin_arr = explode(" ", trim($text));
@@ -142,7 +142,7 @@ class Lib_seo {
      * Count words in text
      */
     public function count_words() {
-        $tmp_arr = array();
+        $tmp_arr = [];
         foreach ($this->origin_arr as $val) {
             if (strlen(utf8_decode($val)) >= $this->min_word_length) {
                 $val = mb_strtolower($val, 'utf-8');
@@ -209,16 +209,13 @@ class Lib_seo {
   ga('require', 'displayfeatures');
   ga('send', 'pageview');
   
-  $require
-
-</script>";
+  $require";
             /* @var $model SOrders */
             if ($model && $this->orderJustMaked) {
                 if ($model->getSDeliveryMethods()) {
                     $affiliation = $model->getSDeliveryMethods()->getName();
                 }
                 $ga .= "
-                    <script>
             ga('ecommerce:addTransaction', {
   'id': '" . $model->getId() . "',
   'affiliation': '" . $affiliation . "',

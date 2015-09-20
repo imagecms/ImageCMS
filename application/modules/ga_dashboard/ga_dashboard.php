@@ -32,7 +32,7 @@ class Ga_dashboard extends MY_Controller {
     }
 
     public static function CategorySearchPageLoad($categoryObj) {
-        $products = $categoryObj->data['products']->getData();
+        $products = $categoryObj->data['products'] ? $categoryObj->data['products']->getData() : $categoryObj['products']->getData();
 
         if (count($products) == 0) {
             return;

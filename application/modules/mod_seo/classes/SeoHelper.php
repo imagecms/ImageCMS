@@ -72,10 +72,10 @@ class SeoHelper extends \MY_Controller {
 
         if ($categories != false) {
             foreach ($categories as $category) {
-                $response[] = array(
+                $response[] = [
                     'value' => html_entity_decode($category['name']),
                     'id' => $category['id'],
-                );
+                ];
             }
             echo json_encode($response);
             return;

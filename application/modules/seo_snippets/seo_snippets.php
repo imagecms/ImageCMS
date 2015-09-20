@@ -7,7 +7,7 @@
  * Seo snippets module
  * @author Gula Andriy <a.gula@imagecms.net>
  * @copyright (c) 2015, Gula Andriy
- * @version 1.0
+ * @version 1.1
  *
  * @property Seo_snippets_model $seo_snippets_model
  */
@@ -47,7 +47,7 @@ class Seo_snippets extends MY_Controller {
 
     public function _install() {
         $this->db->where('name', 'seo_snippets')
-            ->update('components', array('autoload' => '1', 'enabled' => '1'));
+            ->update('components', ['autoload' => '1', 'enabled' => '1']);
     }
 
     public function _deinstall() {
@@ -55,33 +55,35 @@ class Seo_snippets extends MY_Controller {
     }
 
     private function makeLocalBusinessSnippet() {
-        $LocalBusiness = array(
+        $LocalBusiness = [
             '@context' => 'http://schema.org',
             '@type' => 'LocalBusiness',
             'name' => $this->settings['site_title'],
             'image' => site_url(siteinfo('siteinfo_logo_url')),
             'telephone' => siteinfo('siteinfo_mainphone'),
             'email' => siteinfo('Email'),
-            'address' => array(
+            'address' => [
                 '@type' => 'PostalAddress',
                 'streetAddress' => siteinfo('siteinfo_address'),
-            ),
+            ],
             'url' => site_url(),
-        );
+        ];
         return $LocalBusiness;
     }
 
     private function makeWebSiteSnippet() {
-        $WebSite = array(
+        $WebSite = [
             '@context' => 'http://schema.org',
             '@type' => 'WebSite',
+            'name' => $this->settings['site_short_title'],
+            'alternateName' => $this->settings['site_title'],
             'url' => site_url(),
-                //            'potentialAction' => array(
-                //                '@type' => 'SearchAction',
-                //                'target' => site_url('shop/search?text={search_term_string}'),
-                //                'query-input' => 'required name=search_term_string',
-                //            ),
-        );
+            'potentialAction' => [
+                '@type' => 'SearchAction',
+                'target' => site_url('shop/search?text={search_term_string}'),
+                'query-input' => 'required name=search_term_string',
+            ],
+        ];
         return $WebSite;
     }
 
@@ -90,6 +92,9 @@ class Seo_snippets extends MY_Controller {
      * @param array $product
      */
     public static function makeProductSnippet($product) {
+        $review = [];
+        $similar = [];
+
         /* @var $model SProducts */
         $model = $product['model'];
 
@@ -106,36 +111,64 @@ class Seo_snippets extends MY_Controller {
             $name = trim($name);
 
             $aggregateRating = $ci->seo_snippets_model->getAggregateRating($model->getId());
+            $similarProducts = getSimilarProduct($model);
 
-            $Product = array(
+            /* @var $similarProduct SProducts */
+            foreach ($similarProducts as $similarProduct) {
+                $similar[] = [
+                    'url' => shop_url('product/' . $similarProduct->getUrl()),
+                    'image' => site_url($similarProduct->getFirstVariant()->getMainPhoto())
+                ];
+            }
+
+            CI::$APP->load->module('comments')->load->model('base');
+            $comments = CI::$APP->base->get($model->getId(), 0, 'shop');
+
+            foreach ($comments as $comment) {
+                $review[] = [
+                    '@type' => 'Review',
+                    'author' => $comment['user_name'],
+                    "datePublished" => gmdate("D, d M Y\G\M\T", $comment['date']),
+                    'description' => $comment['text'],
+                    'reviewRating' => [
+                        "@type" => "Rating",
+                        "bestRating" => "5",
+                        "ratingValue" => $comment['rate'],
+                        "worstRating" => 0
+                    ]
+                ];
+            }
+            $Product = [
                 '@context' => 'http://schema.org',
                 '@type' => 'Product',
                 'name' => $name,
                 'image' => site_url($model->getFirstVariant()->getMainPhoto()),
                 'description' => $model->getFullDescription(),
                 'url' => shop_url('product/' . $model->getUrl()),
-                'brand' => array(),
-                'offers' => array(
+                'brand' => [],
+                'offers' => [
                     '@type' => 'Offer',
                     "availability" => $model->getFirstVariant()->getStock() > 0 ? "http://schema.org/InStock" : "http://schema.org/SoldOut",
                     'price' => $model->getFirstVariant()->toCurrency('Price'),
                     'priceCurrency' => \Currency\Currency::create()->getCode(),
-                ),
-                'aggregateRating' => array(
+                ],
+                'isSimilarTo' => $similar,
+                'aggregateRating' => [
                     '@type' => 'AggregateRating',
                     'ratingValue' => (float) (($aggregateRating['reviewCount'] ? : 0) / ($aggregateRating['ratingCount'] ? : 0)),
                     'bestRating' => 5,
                     'worstRating' => 0,
                     'ratingCount' => $aggregateRating['ratingCount'] ? : 0,
-                ),
-            );
+                ],
+                'review' => $review
+            ];
 
             if ($model->getBrand()) {
-                $Product['brand'] = array(
+                $Product['brand'] = [
                     '@type' => 'Brand',
                     'name' => $model->getBrand()->getName(),
                     'logo' => site_url('/uploads/shop/brands/' . $model->getBrand()->getImage()),
-                );
+                ];
             }
 
             $data = json_encode(array_filter($Product));

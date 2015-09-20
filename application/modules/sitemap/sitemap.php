@@ -118,7 +118,7 @@ class Sitemap extends MY_Controller {
      * Blocked urls array
      * @var array
      */
-    public $blocked_urls = array();
+    public $blocked_urls = [];
 
     /**
      * Gzip level
@@ -136,13 +136,13 @@ class Sitemap extends MY_Controller {
      * Langs array
      * @var array
      */
-    public $langs = array();
+    public $langs = [];
 
     /**
      * Default lang
      * @var type
      */
-    public $default_lang = array();
+    public $default_lang = [];
 
     /**
      * Updated page url
@@ -166,7 +166,7 @@ class Sitemap extends MY_Controller {
      * Sitemap items
      * @var array
      */
-    public $items = array();
+    public $items = [];
 
     /**
      * Max url tag count
@@ -178,7 +178,7 @@ class Sitemap extends MY_Controller {
      * Category tree
      * @var type
      */
-    private $categoryTree = array();
+    private $categoryTree = [];
 
     public function __construct() {
         parent::__construct();
@@ -209,12 +209,12 @@ class Sitemap extends MY_Controller {
         $pages = $this->db
             ->get_where(
                 'content',
-                array(
+                [
                     'category' => 0,
                     'lang' => $this->config->item('cur_lang'),
                     'publish_date <=' => time(),
                     'post_status' => 'publish'
-                        )
+                        ]
             )
             ->result_array();
 
@@ -257,7 +257,7 @@ class Sitemap extends MY_Controller {
      * @param type $data - events array that contains page url $data['url']
      * @return boolean
      */
-    public function setUpdatedUrl($data = array()) {
+    public function setUpdatedUrl($data = []) {
         $ci = &get_instance();
         if ($data) {
             if ($data['url']) {
@@ -316,7 +316,7 @@ class Sitemap extends MY_Controller {
      * @param array $items - site map items
      * @return string
      */
-    public function sitemap_ul($items = array(), $pages_without_category = array()) {
+    public function sitemap_ul($items = [], $pages_without_category = []) {
 
         $out .= '<ul class="sitemap">';
 
@@ -424,12 +424,12 @@ class Sitemap extends MY_Controller {
 
         // Add main page
         if (!$this->robotsCheck(site_url())) {
-            $this->items[] = array(
+            $this->items[] = [
                 'loc' => site_url(),
                 'changefreq' => $this->main_page_changefreq,
                 'priority' => $this->main_page_priority,
                 'lastmod' => $date = date('Y-m-d', time())
-            );
+            ];
         }
         $this->getPagesCategories();
         $this->getAllPages();
@@ -441,7 +441,7 @@ class Sitemap extends MY_Controller {
             $this->getShopProducts();
 
             $this->load->module('smart_filter');
-            if (property_exists($this->smart_filter, 'attachPages')) {
+            if (method_exists($this->smart_filter, 'attachPages')) {
                 $this->smart_filter->attachPages($this);
             }
         }
@@ -466,12 +466,12 @@ class Sitemap extends MY_Controller {
                     } else {
                         $date = date('Y-m-d', $shopprod['created']);
                     }
-                    $this->items[] = array(
+                    $this->items[] = [
                         'loc' => $url,
                         'changefreq' => $this->products_changefreq,
                         'priority' => $this->products_priority,
                         'lastmod' => $date
-                    );
+                    ];
                 }
             }
         }
@@ -495,12 +495,12 @@ class Sitemap extends MY_Controller {
                     } else {
                         $date = date('Y-m-d', $shopbr['created']);
                     }
-                    $this->items[] = array(
+                    $this->items[] = [
                         'loc' => $url,
                         'changefreq' => $this->brands_changefreq,
                         'priority' => $this->brands_priority,
                         'lastmod' => $date
-                    );
+                    ];
                 }
             }
         }
@@ -535,12 +535,12 @@ class Sitemap extends MY_Controller {
                         $date = date('Y-m-d', $shopcat['created']);
                     }
 
-                    $this->items[] = array(
+                    $this->items[] = [
                         'loc' => site_url($url),
                         'changefreq' => $changefreq,
                         'priority' => $priority,
                         'lastmod' => $date,
-                    );
+                    ];
                 }
             }
         }
@@ -583,12 +583,12 @@ class Sitemap extends MY_Controller {
                 }
 
                 if ($this->not_blocked_url($url_page)) {
-                    $this->items[] = array(
+                    $this->items[] = [
                         'loc' => $url,
                         'changefreq' => $this->pages_changefreq,
                         'priority' => $c_priority,
                         'lastmod' => $date
-                    );
+                    ];
                 }
             }
         }
@@ -621,12 +621,12 @@ class Sitemap extends MY_Controller {
 
                 if ($this->not_blocked_url($category['path_url'])) {
 
-                    $this->items[] = array(
+                    $this->items[] = [
                         'loc' => site_url($category['path_url']),
                         'changefreq' => $changefreq,
                         'priority' => $priority,
                         'lastmod' => $date
-                    );
+                    ];
                 }
 
                 // Add links to categories in all langs.
@@ -634,12 +634,12 @@ class Sitemap extends MY_Controller {
                     if ($lang['id'] != $this->default_lang['id']) {
                         $url = $lang_indentif . '/' . $category['path_url'];
                         if ($this->not_blocked_url($url)) {
-                            $this->items[] = array(
+                            $this->items[] = [
                                 'loc' => site_url($url),
                                 'changefreq' => $changefreq,
                                 'priority' => $priority,
                                 'lastmod' => $date
-                            );
+                            ];
                         }
                     }
                 }
@@ -697,10 +697,10 @@ class Sitemap extends MY_Controller {
      * @param array $items
      * @return string
      */
-    private function generate_xml($items = array()) {
+    private function generate_xml($items = []) {
         $data = '';
 
-        $site_maps = array();
+        $site_maps = [];
         $url_count = 0;
 
         while ($item = current($items)) {
@@ -799,7 +799,7 @@ class Sitemap extends MY_Controller {
             return FALSE;
         }
 
-        $array = array();
+        $array = [];
         foreach ($lines as $line) {
             if ((substr_count($line, 'Disallow:') > 0) && (trim(str_replace('Disallow:', '', $line)) != '')) {
                 array_push($array, trim(str_replace('Disallow:', '', $line)));
@@ -820,7 +820,7 @@ class Sitemap extends MY_Controller {
         //            $array = $this->robots;
 
         if (!$checkSetting && $checkSetting == '0') {
-            $array = array('/');
+            $array = ['/'];
         }
 
         foreach ($array as $ar) {
@@ -840,7 +840,7 @@ class Sitemap extends MY_Controller {
      * @param array $data - data array (array('url' => 'pageurl'))
      * return $code if send (200 = ok) else 'false'
      */
-    public static function ping_google($data = array()) {
+    public static function ping_google($data = []) {
         // Checking is used server is local
 
         $ci = &get_instance();
@@ -886,7 +886,7 @@ class Sitemap extends MY_Controller {
                 $settings['lastSend'] = time();
                 $ci->db->limit(1);
                 $ci->db->where('name', 'sitemap');
-                $ci->db->update('components', array('settings' => serialize($settings)));
+                $ci->db->update('components', ['settings' => serialize($settings)]);
 
                 //                showMessage(lang('Ping sended', 'sitemap'), 'Google ping');
             }

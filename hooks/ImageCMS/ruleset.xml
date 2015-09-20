@@ -28,7 +28,8 @@
     <arg name="generator" value="text"/>
     <arg value="spn"/>
     <arg name="colors"/>
-
+    
+    <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
     <rule ref="Generic.Classes.DuplicateClassName"/>
     <rule ref="Generic.CodeAnalysis.EmptyStatement"/>
     <rule ref="Generic.CodeAnalysis.ForLoopShouldBeWhileLoop"/>

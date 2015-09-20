@@ -64,12 +64,12 @@ class Seoexpert_model_products extends CI_Model {
 
     /**
      * Set product category settings
-     * @param string $locale
      * @param int $id Category ID
      * @param array $settings
+     * @param string $locale
      * @return boolean
      */
-    public function setProductCategory($id = FALSE, $settings = array(), $locale = FALSE) {
+    public function setProductCategory($id = FALSE, $settings = [], $locale = FALSE) {
 
         if (!$id || !$settings) {
             return FALSE;
@@ -85,12 +85,12 @@ class Seoexpert_model_products extends CI_Model {
         if (empty($data)) {
             return $this->db->insert(
                 'mod_seo_products',
-                array('cat_id' => $id,
+                ['cat_id' => $id,
                         'locale' => $locale,
                         'settings' => serialize($settings),
                         'active' => $settings['useProductPattern'],
                         'empty_meta' => $settings['useProductPatternForEmptyMeta']
-                            )
+                            ]
             );
         }
 
@@ -99,11 +99,11 @@ class Seoexpert_model_products extends CI_Model {
             ->where('locale', $locale)
             ->update(
                 'mod_seo_products',
-                array(
+                [
                             'settings' => serialize($settings),
                             'active' => $settings['useProductPattern'],
                             'empty_meta' => $settings['useProductPatternForEmptyMeta']
-                                )
+                                ]
             );
 
         return FALSE;
@@ -142,9 +142,9 @@ class Seoexpert_model_products extends CI_Model {
             ->result_array();
         //        $this->db->cache_off();
 
-        $ids = array();
+        $ids = [];
         if ($res) {
-            foreach ($res as $key => $value) {
+            foreach ($res as $value) {
                 $ids[] = $value['cat_id'];
             }
             return $ids;
@@ -200,7 +200,7 @@ class Seoexpert_model_products extends CI_Model {
         }
         $settings = serialize($unserSettings);
         // If updated active succes then return TRUE
-        if ($this->db->where('cat_id', $id)->update('mod_seo_products', array('active' => $active, 'settings' => $settings))) {
+        if ($this->db->where('cat_id', $id)->update('mod_seo_products', ['active' => $active, 'settings' => $settings])) {
             return true;
         }
 
@@ -226,7 +226,7 @@ class Seoexpert_model_products extends CI_Model {
         $settings = serialize($unserSettings);
 
         // If updated active succes then return TRUE
-        if ($this->db->where('cat_id', $id)->update('mod_seo_products', array('empty_meta' => $active, 'settings' => $settings))) {
+        if ($this->db->where('cat_id', $id)->update('mod_seo_products', ['empty_meta' => $active, 'settings' => $settings])) {
             return true;
         }
 

@@ -2,7 +2,7 @@
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
-$com_info = array(
+$com_info = [
     'menu_name' => lang('SEO expert', 'mod_seo'),
     'description' => lang('Extends the metadata management', 'mod_seo'),
     'admin_type' => 'window',
@@ -12,6 +12,6 @@ $com_info = array(
     'version' => '1.0 beta',
     'author' => 'dev@imagecms.net',  // Author info
     'icon_class' => 'icon-star'
-);
+];
 
 /* End of file module_info.php */
