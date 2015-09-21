@@ -9,7 +9,7 @@ if (!defined('BASEPATH')) {
  */
 class Language_switch_Widgets extends MY_Controller {
 
-    private $defaults = array();
+    private $defaults = [];
 
     public function __construct() {
         parent::__construct();
@@ -19,7 +19,7 @@ class Language_switch_Widgets extends MY_Controller {
 
     // Get and display recent comments
 
-    public function language_switch_show($widget = array()) {
+    public function language_switch_show($widget = []) {
         if ($widget['settings'] == FALSE) {
             $settings = $this->defaults;
         } else {
@@ -29,9 +29,6 @@ class Language_switch_Widgets extends MY_Controller {
         $current_address = '';
         $current_address .= $this->uri->uri_string();
 
-        if ($this->input->server('QUERY_STRING')) {
-            $current_address .= '?' . $this->input->server('QUERY_STRING');
-        }
         if ($this->uri->segment(1)) {
             if (array_key_exists($this->uri->segment(1), $this->core->langs)) {
                 $current_address = substr_replace($current_address, '', 0, strlen($this->uri->segment(1)));
@@ -50,19 +47,19 @@ class Language_switch_Widgets extends MY_Controller {
 
         }
 
-        return $this->template->fetch('widgets/' . $widget['name'], array('languages' => $languages, 'current_address' => $current_address));
+        return $this->template->fetch('widgets/' . $widget['name'], ['languages' => $languages, 'current_address' => $current_address]);
     }
 
     // Configure widget settings
 
-    public function language_switch_show_configure($action = 'show_settings', $widget_data = array()) {
+    public function language_switch_show_configure($action = 'show_settings', $widget_data = []) {
         if ($this->dx_auth->is_admin() == FALSE) {
             exit;
         } // Only admin access
 
         switch ($action) {
             case 'show_settings':
-                $this->display_tpl('language_switch_show_form', array('widget' => $widget_data));
+                $this->display_tpl('language_switch_show_form', ['widget' => $widget_data]);
                 break;
 
             case 'update_settings':
@@ -73,11 +70,11 @@ class Language_switch_Widgets extends MY_Controller {
                 if ($this->form_validation->run() == FALSE) {
                     showMessage(validation_errors(), false, 'r');
                 } else {
-                    $data = array(
+                    $data = [
                         'image_url' => trim($this->input->post('image_url')),
                         'image_title' => htmlspecialchars($this->input->post('image_title')),
                         'href' => trim(htmlspecialchars($this->input->post('href'))),
-                    );
+                    ];
 
                     $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
                     showMessage(lang('Settings saved', 'language_switch'));
@@ -95,14 +92,14 @@ class Language_switch_Widgets extends MY_Controller {
     /**
      * @param string $file
      */
-    public function display_tpl($file, $vars = array()) {
+    public function display_tpl($file, $vars = []) {
         $this->template->add_array($vars);
 
         $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';
         $this->template->display('file:' . $file);
     }
 
-    public function fetch_tpl($file, $vars = array()) {
+    public function fetch_tpl($file, $vars = []) {
         $this->template->add_array($vars);
 
         $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';

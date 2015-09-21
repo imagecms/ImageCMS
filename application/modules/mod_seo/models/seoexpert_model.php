@@ -13,6 +13,7 @@ class Seoexpert_model extends CI_Model {
     /**
      *
      * @param string $LastModified_unix
+     * @return void
      */
     public function setLastModified($LastModified_unix) {
         $LastModified = gmdate("D, d M Y H:i:s \G\M\T", $LastModified_unix);
@@ -23,7 +24,7 @@ class Seoexpert_model extends CI_Model {
         }
         if ($IfModifiedSince && $IfModifiedSince >= $LastModified_unix) {
             header($this->input->server('SERVER_PROTOCOL') . ' 304 Not Modified');
-            exit;
+            return;
         }
         header('Last-Modified: ' . $LastModified);
     }

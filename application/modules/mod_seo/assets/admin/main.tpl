@@ -19,7 +19,7 @@
             <div class="btn-group myTab m-t_20 pull-left" data-toggle="buttons-radio">
                 <a href="#base" class="btn btn-small active">{lang('Base','mod_seo')}</a>
                 {if SHOP_INSTALLED}
-                <a href="#shop" class="btn btn-small">{lang('Shop','mod_seo')}</a>
+                    <a href="#shop" class="btn btn-small">{lang('Shop','mod_seo')}</a>
                 {/if}
                 <a href="#content" class="btn btn-small">{lang('Content','mod_seo')}</a>
                 {$exernalTabs->renderTabsButtons()}
@@ -204,6 +204,7 @@
                                                     <b>%ID%</b> - ID <br/>
                                                     <b>%name%</b> - {lang('Product name','mod_seo')}<br/>
                                                     <b>%category%</b> - {lang('Category, which is assigned to the product','mod_seo')}<br/>
+                                                    <b>%parentCategory%</b> - {lang('Parent category, which is assigned to the product','mod_seo')}<br/>
                                                     <b>%brand%</b> - {lang('Brand, which is assigned to the product','mod_seo')}<br/>
                                                     <b>%price%</b> - {lang('Product price','mod_seo')}<br/>
                                                     <b>%CS%</b> - {lang('Main currency','mod_seo')}<br/>
@@ -238,6 +239,7 @@
                                                     <b>%name%</b> - {lang('Product name','mod_seo')}<br/>
                                                     <b>%desc%</b> - {lang('Product description','mod_seo')}<br/>
                                                     <b>%category%</b> - {lang('Category, which is assigned to the product','mod_seo')}<br/>
+                                                    <b>%parentCategory%</b> - {lang('Parent category, which is assigned to the product','mod_seo')}<br/>
                                                     <b>%brand%</b> - {lang('Brand, which is assigned to the product','mod_seo')}<br/>
                                                     <b>%price%</b> - {lang('Product price','mod_seo')}<br/>
                                                     <b>%CS%</b> - {lang('Main currency','mod_seo')}<br/>
