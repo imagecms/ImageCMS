@@ -1,5 +1,7 @@
 <?php
 
+use CMSFactory\assetManager;
+
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
@@ -9,23 +11,18 @@ if (!defined('BASEPATH')) {
  */
 class Language_switch_Widgets extends MY_Controller {
 
-    private $defaults = [];
-
     public function __construct() {
         parent::__construct();
         $lang = new MY_Lang();
         $lang->load('language_switch');
     }
 
-    // Get and display recent comments
-
+    /**
+     *
+     * @param array $widget
+     * @return string
+     */
     public function language_switch_show($widget = []) {
-        if ($widget['settings'] == FALSE) {
-            $settings = $this->defaults;
-        } else {
-            $settings = $widget['settings'];
-        }
-
         $current_address = '';
         $current_address .= $this->uri->uri_string();
 
@@ -44,66 +41,12 @@ class Language_switch_Widgets extends MY_Controller {
             } else {
                 $languages[$key]['current'] = 0;
             }
-
         }
 
-        return $this->template->fetch('widgets/' . $widget['name'], ['languages' => $languages, 'current_address' => $current_address]);
-    }
-
-    // Configure widget settings
-
-    public function language_switch_show_configure($action = 'show_settings', $widget_data = []) {
-        if ($this->dx_auth->is_admin() == FALSE) {
-            exit;
-        } // Only admin access
-
-        switch ($action) {
-            case 'show_settings':
-                $this->display_tpl('language_switch_show_form', ['widget' => $widget_data]);
-                break;
-
-            case 'update_settings':
-                $this->form_validation->set_rules('image_url', lang('Image', 'language_switch'), 'trim|required');
-                $this->form_validation->set_rules('image_title', lang('Description', 'language_switch'), 'trim');
-                $this->form_validation->set_rules('href', lang('passage Url', 'language_switch'), 'trim');
-
-                if ($this->form_validation->run() == FALSE) {
-                    showMessage(validation_errors(), false, 'r');
-                } else {
-                    $data = [
-                        'image_url' => trim($this->input->post('image_url')),
-                        'image_title' => htmlspecialchars($this->input->post('image_title')),
-                        'href' => trim(htmlspecialchars($this->input->post('href'))),
-                    ];
-
-                    $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
-                    showMessage(lang('Settings saved', 'language_switch'));
-                }
-                break;
-
-            case 'install_defaults':
-                $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $this->defaults);
-                break;
-        }
-    }
-
-    // Template functions
-
-    /**
-     * @param string $file
-     */
-    public function display_tpl($file, $vars = []) {
-        $this->template->add_array($vars);
-
-        $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';
-        $this->template->display('file:' . $file);
-    }
-
-    public function fetch_tpl($file, $vars = []) {
-        $this->template->add_array($vars);
-
-        $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';
-        return $this->template->fetch('file:' . $file);
+        return assetManager::create()
+                        ->setData('languages', $languages)
+                        ->setData('current_address', $current_address)
+                        ->fetchTemplate('../widgets/' . $widget['name']);
     }
 
 }

@@ -149,7 +149,7 @@ class assetManager {
      */
     public function registerScriptWithoutTemplate($name) {
         $script = '/' . $this->buildScriptPath($name);
-        $this->setData(array($name => $script));
+        $this->setData([$name => $script]);
     }
 
     /**
@@ -157,7 +157,7 @@ class assetManager {
      */
     public function registerStyleWithoutTemplate($name) {
         $script = '/' . $this->buildStylePath($name);
-        $this->setData(array($name => $script));
+        $this->setData([$name => $script]);
     }
 
     /**
@@ -267,16 +267,16 @@ class assetManager {
         }
 
         try {
-            $data = array();
+            $data = [];
             if ($fetchJsTpl) {
                 /** Start. If file doesn't exists thorow exception */
                 $js_langs_path = $this->buildAdminTemplatePath($this->module_js);
                 if (file_exists($js_langs_path . '.tpl')) {
                     /** Start. Load template file */
                     if (MAINSITE) {
-                        $data = array('js_langs_path' => 'file:' . $js_langs_path);
+                        $data = ['js_langs_path' => 'file:' . $js_langs_path];
                     } else {
-                        $data = array('js_langs_path' => 'file:./' . $js_langs_path);
+                        $data = ['js_langs_path' => 'file:./' . $js_langs_path];
                     }
                 }
             }
@@ -388,7 +388,6 @@ class assetManager {
         } else {
             $path = $this->buildTemplatePath($tpl, $moduleName);
         }
-
         /** Start. If file doesn't exists thorow exception */
         if (!file_exists($path . '.tpl')) {
             throw new Exception("Can't load template file: <i>$path.tpl</i>");
@@ -409,15 +408,43 @@ class assetManager {
             $this->template = CI_Controller::get_instance()->config->item('template');
         }
 
-        if (file_exists('templates/' . $this->template . '/' . $this->getTrace() . '/' . $tpl . '.tpl')) {
-            return sprintf('templates/%s/%s/%s', $this->template, $this->getTrace(), $tpl);
-        } else {
-            if (!$moduleName) {
-                $moduleName = $this->getTrace();
-            }
-            $modulePath = getModulePath($moduleName);
-            return sprintf($modulePath . 'assets/%s', $tpl);
+        $path = 'templates/' . $this->template . '/' . $this->getTrace() . '/' . $tpl;
+        $path = $this->makePath($path);
+
+        if (file_exists($path . '.tpl')) {
+            return $path;
         }
+
+        if (!$moduleName) {
+            $moduleName = $this->getTrace();
+        }
+
+        $modulePath = getModulePath($moduleName);
+        return $this->makePath("{$modulePath}assets/$tpl");
+    }
+
+    /**
+     *
+     * @param string $path
+     * @return string
+     */
+    protected function makePath($path) {
+        $path = str_replace(['/', '\\'], DIRECTORY_SEPARATOR, $path);
+        $parts = array_filter(explode(DIRECTORY_SEPARATOR, $path), 'strlen');
+
+        $absolutes = [];
+        foreach ($parts as $part) {
+            if ('.' == $part) {
+                continue;
+            }
+            if ('..' == $part) {
+                array_pop($absolutes);
+            } else {
+                $absolutes[] = $part;
+            }
+        }
+
+        return implode(DIRECTORY_SEPARATOR, $absolutes);
     }
 
     /**
@@ -429,10 +456,10 @@ class assetManager {
      */
     private function buildAdminTemplatePath($fileName) {
         $path = $this->getModuleFilePath(
-            array(
+            [
                     sprintf('%s/assets/admin/%s.tpl', $this->getTrace(), $fileName),
                     sprintf('%s/assets/admin/%s.tpl', CI::$APP->uri->segment(4), $fileName)
-                )
+                ]
         );
         return $path;
     }
@@ -453,10 +480,10 @@ class assetManager {
             $url = $path;
         } else {
             $url = $this->getModuleFilePath(
-                array(
+                [
                 sprintf('%s/assets/js/%s.js', $moduleName, $fileName),
                 sprintf('%s/assets/js/%s.js', CI::$APP->uri->segment(4), $fileName)
-                    ),
+                    ],
                 false
             );
         }
@@ -482,10 +509,10 @@ class assetManager {
             $url = $path;
         } else {
             $url = $this->getModuleFilePath(
-                array(
+                [
                 sprintf('%s/assets/css/%s.css', $moduleName, $fileName),
                 sprintf('%s/assets/css/%s.css', CI::$APP->uri->segment(4), $fileName)
-                    ),
+                    ],
                 false
             );
         }
@@ -499,7 +526,7 @@ class assetManager {
      */
     private function getModuleFilePath($files, $noExt = true) {
         if (is_string($files)) {
-            $files = array($files);
+            $files = [$files];
         }
 
         foreach (Modules::$locations as $path => $relPath) {
