@@ -95,7 +95,7 @@ class Seoexpert_model extends CI_Model {
 
     /**
      * Get top Brands in category
-     * @param int $categoryId
+     * @param integer $categoryId
      * @param string $locale
      * @return boolean|array
      */
@@ -154,7 +154,7 @@ class Seoexpert_model extends CI_Model {
 
     /**
      * Get base settings
-     * @param int $langId
+     * @param integer $langId
      * @return boolean|array
      */
     public function getBaseSettings($langId = FALSE) {
@@ -174,7 +174,7 @@ class Seoexpert_model extends CI_Model {
 
     /**
      * Set Base settings
-     * @param int $langId
+     * @param integer $langId
      * @param array $settings
      * @return boolean
      */

@@ -2,7 +2,7 @@
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
-$com_info = array(
+$com_info = [
     'menu_name' => lang('Wish Lists', 'wishlist'), // Menu name
     'description' => lang('Managing of online store users Wish Lists', 'wishlist'), // Module Description
     'admin_type' => 'window', // Open admin class in new window or not. Possible values window/inside
@@ -13,6 +13,6 @@ $com_info = array(
     'author' => 'dev@imagecms.net', // Author info
     'type' => 'shop', // CMS version
     'icon_class' => 'icon-th'
-);
+];
 
 /* End of file module_info.php */

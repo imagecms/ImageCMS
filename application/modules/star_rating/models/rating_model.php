@@ -20,7 +20,7 @@ class Rating_model extends CI_Model {
 
     /**
      * Update rating
-     * @param int $id
+     * @param integer $id
      * @param string $type
      * @param array $data
      */

@@ -10,19 +10,17 @@
  */
 class Users_model extends CI_Model {
 
-    //    use DateIntervalTrait;
-
     protected $locale;
 
     /**
      * Default params for method getOrdersByDateRange
      * @var array
      */
-    protected $params = array(
+    protected $params = [
         'interval' => 'day', //  date interval (string: day|month|year)
         'dateFrom' => NULL, // NULL for all or date in format (string: YYYY-MM-DD)
         'dateTo' => NULL, // NULL for all or date in format (string: YYYY-MM-DD)
-    );
+    ];
 
     public function __construct() {
         parent::__construct();
@@ -36,7 +34,7 @@ class Users_model extends CI_Model {
      * - dateTo
      * - interval
      */
-    public function setParams(array $params = array()) {
+    public function setParams(array $params = []) {
         foreach ($this->params as $key => $value) {
             if (key_exists($key, $params)) {
                 $this->params[$key] = $params[$key];

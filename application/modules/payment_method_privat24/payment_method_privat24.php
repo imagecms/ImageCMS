@@ -47,7 +47,7 @@ class Payment_method_privat24 extends MY_Controller {
 
     /**
      * Отримуємо форму адміна при підключенні оплати
-     * @param int $id способу оплати
+     * @param integer $id способу оплати
      * @return array та форму з даними цього масиву
      */
     public function getAdminForm($id, $payName = null) {
@@ -178,14 +178,14 @@ class Payment_method_privat24 extends MY_Controller {
 
     /**
      * Успішна оплата
-     * @param int $order_id - id замовлення
+     * @param integer $order_id - id замовлення
      * @param array $userOrder - інформація замовлення користувача
      */
     public function successPaid($order_id, $userOrder) {
         $ci = & get_instance();
 
         $amout = $ci->db->select('amout')
-            ->get_where('users', array('id' => $userOrder->user_id));
+            ->get_where('users', ['id' => $userOrder->user_id]);
         if ($amout) {
             $amout = $amout->row()->amout;
         } else {
@@ -197,13 +197,13 @@ class Payment_method_privat24 extends MY_Controller {
         $amout = str_replace(',', '.', $amout);
 
         $result = $ci->db->where('id', $order_id)
-            ->update('shop_orders', array('paid' => '1', 'date_updated' => time()));
+            ->update('shop_orders', ['paid' => '1', 'date_updated' => time()]);
 
         if (!$result) {
             show_error($ci->db->_error_message());
         }
 
-        \CMSFactory\Events::create()->registerEvent(array('system' => __CLASS__, 'order_id' => $order_id), "PaimentSystem:successPaid");
+        \CMSFactory\Events::create()->registerEvent(['system' => __CLASS__, 'order_id' => $order_id], "PaimentSystem:successPaid");
         \CMSFactory\Events::runFactory();
 
         $result = $ci->db
@@ -211,9 +211,9 @@ class Payment_method_privat24 extends MY_Controller {
             ->limit(1)
             ->update(
                 'users',
-                array(
+                [
                     'amout' => $amout
-                    )
+                    ]
             );
 
         if (!$result) {
@@ -240,7 +240,7 @@ class Payment_method_privat24 extends MY_Controller {
     public function _install() {
         $ci = &get_instance();
         $result = $ci->db->where('name', 'payment_method_privat24')
-            ->update('components', array('enabled' => '1'));
+            ->update('components', ['enabled' => '1']);
         if (!$result) {
             show_error($ci->db->_error_message());
         }
@@ -252,10 +252,10 @@ class Payment_method_privat24 extends MY_Controller {
         $ci->db->where('name', $this->moduleName)
             ->update(
                 'shop_payment_methods',
-                array(
+                [
                     'active' => '0',
                     'payment_system_name' => '0',
-                        )
+                        ]
             );
 
         $ci->db->like('name', $this->moduleName)

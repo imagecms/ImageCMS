@@ -15,13 +15,13 @@ class DemodataBanners extends DemodataDirector {
      */
     public $node;
 
-    private $bannerData = array();
+    private $bannerData = [];
 
-    private $bannerI18nData = array();
+    private $bannerI18nData = [];
 
-    private $bannerGroupsData = array();
+    private $bannerGroupsData = [];
 
-    private $existed_banners_groups = array();
+    private $existed_banners_groups = [];
 
     private $ci;
 
@@ -68,27 +68,27 @@ class DemodataBanners extends DemodataDirector {
     private function prepareData(\SimpleXMLElement $banner) {
         if ($banner->getName() != 'groups') {
             $attributes = $banner->attributes();
-            $this->bannerData = array(
+            $this->bannerData = [
                 'group' => (string) $attributes->group ? serialize(explode(',', trim((string) $attributes->group))) : '',
                 'active' => (string) $attributes->active ? (string) $attributes->active : 0,
                 'active_to' => (string) $attributes->active_to ? (string) $attributes->active_to : -1,
-                'where_show' => (string) $attributes->where_show ? serialize(array((string) $attributes->where_show . '_0')) : serialize(array('default')),
+                'where_show' => (string) $attributes->where_show ? serialize([(string) $attributes->where_show . '_0']) : serialize(['default']),
                 'position' => (string) $attributes->position ? (string) $attributes->position : 0
-            );
+            ];
 
             $this->ci->db->insert('mod_banner', $this->bannerData);
 
             if (isset($banner->banner_i18n) && $this->ci->db->insert_id()) {
                 foreach ($banner->banner_i18n as $banner_i18n) {
                     $attributes = $banner_i18n->attributes();
-                    $this->bannerI18nData[] = array(
+                    $this->bannerI18nData[] = [
                         'id' => $this->ci->db->insert_id(),
                         'name' => (string) $attributes->name ? (string) $attributes->name : 'Banner',
                         'description' => (string) $attributes->description ? (string) $attributes->description : '',
                         'url' => (string) $attributes->url ? (string) $attributes->url : '',
                         'locale' => (string) $attributes->locale ? (string) $attributes->locale : 'ru',
                         'photo' => (string) $attributes->photo ? (string) $attributes->photo : ''
-                    );
+                    ];
                 }
             } else {
                 $this->messages[] = lang('Can not install banner.', 'template_manager');
@@ -98,9 +98,9 @@ class DemodataBanners extends DemodataDirector {
             if (isset($banner->group)) {
                 foreach ($banner->group as $group) {
                     $attributes = $group->attributes();
-                    $this->bannerGroupsData = array(
+                    $this->bannerGroupsData = [
                         'name' => (string) $attributes->name ? (string) $attributes->name : ''
-                    );
+                    ];
 
                     if ($this->bannerGroupsData) {
                         if (!isset($this->existed_banners_groups[$this->bannerGroupsData['name']])) {

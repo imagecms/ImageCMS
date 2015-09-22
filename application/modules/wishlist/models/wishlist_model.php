@@ -32,8 +32,8 @@ class Wishlist_model extends CI_Model {
         return $this->db->where('identif', 'wishlist')
             ->update(
                 'components',
-                array('settings' => serialize($settings)
-                                )
+                ['settings' => serialize($settings)
+                                ]
             );
     }
 
@@ -96,7 +96,7 @@ class Wishlist_model extends CI_Model {
      * @param array $access
      * @return array
      */
-    public function getWLsByUserId($user_id, $access = array('shared')) {
+    public function getWLsByUserId($user_id, $access = ['shared']) {
         return $this->db
             ->where('user_id', $user_id)
             ->where_in('access', $access)
@@ -112,7 +112,7 @@ class Wishlist_model extends CI_Model {
      * @param array $access
      * @return array
      */
-    public function getUserWishList($user_id, $list_id, $access = array('public', 'shared', 'private')) {
+    public function getUserWishList($user_id, $list_id, $access = ['public', 'shared', 'private']) {
         $locale = \MY_Controller::getCurrentLocale();
         $query = $this->db
             ->where('mod_wish_list.user_id', $user_id)
@@ -148,7 +148,7 @@ class Wishlist_model extends CI_Model {
      * @param array $access
      * @return array
      */
-    public function getUserWishListByHash($hash, $access = array('public', 'shared', 'private')) {
+    public function getUserWishListByHash($hash, $access = ['public', 'shared', 'private']) {
         $locale = \MY_Controller::getCurrentLocale();
 
         $query = $this->db->select('*, mod_wish_list.user_id as wl_user_id, shop_product_variants.mainImage as image')
@@ -189,10 +189,10 @@ class Wishlist_model extends CI_Model {
         $this->db
             ->delete(
                 'mod_wish_list_products',
-                array(
+                [
                     'variant_id' => $variant_id,
                     'wish_list_id' => $wish_list_id,
-                        )
+                        ]
             );
         if ($this->db->affected_rows() == 0) {
             return FALSE;
@@ -219,7 +219,7 @@ class Wishlist_model extends CI_Model {
      * @param array $access
      * @return array
      */
-    public function getUserWishListsByID($user_id, $access = array('public', 'shared', 'private')) {
+    public function getUserWishListsByID($user_id, $access = ['public', 'shared', 'private']) {
         $locale = \MY_Controller::getCurrentLocale();
         $queryFirst = $this->db
             ->select('*, shop_product_variants.mainImage AS `image`, mod_wish_list_products.id AS  list_product_id')
@@ -293,7 +293,7 @@ class Wishlist_model extends CI_Model {
         if (!$userID) {
             $userID = $this->dx_auth->get_user_id();
         }
-        $ID = array();
+        $ID = [];
         $ids = $this->db
             ->where('mod_wish_list.user_id', $userID)
             ->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id')
@@ -322,7 +322,7 @@ class Wishlist_model extends CI_Model {
             $userID = $this->dx_auth->get_user_id();
         }
 
-        $ID = array();
+        $ID = [];
 
         $ids = $this->db
             ->where('mod_wish_list.user_id', $userID)
@@ -452,10 +452,10 @@ class Wishlist_model extends CI_Model {
             }
         }
 
-        $data = array(
+        $data = [
             'variant_id' => $varId,
             'wish_list_id' => $listId
-        );
+        ];
 
         return $this->db->insert('mod_wish_list_products', $data);
     }
@@ -481,10 +481,10 @@ class Wishlist_model extends CI_Model {
         if (!$user) {
             $this->db->insert(
                 'mod_wish_list_users',
-                array(
+                [
                 'id' => $user_id,
                 'user_name' => $user_name
-                    )
+                    ]
             );
             return TRUE;
         }
@@ -519,23 +519,23 @@ class Wishlist_model extends CI_Model {
      */
     public function createWishList($listName, $user_id, $access = 'shared', $description) {
         $this->createUserIfNotExist($user_id);
-        $data = array(
+        $data = [
             'title' => $listName,
             'user_id' => $user_id,
             'description' => $description,
             'hash' => random_string('alpha', 16),
             'access' => $access
-        );
+        ];
 
         \cmsemail\email::getInstance()->sendEmail(
             $this->dx_auth->get_user_email(),
             'wish_list',
-            array(
+            [
             'wishListViews' => '',
             'userName' => $this->dx_auth->get_username(),
             'wishName' => $listName,
             'wishLink' => site_url('wishlist/show') . '/' . $data['hash']
-                )
+                ]
         );
 
         return $this->db->insert('mod_wish_list', $data);
@@ -636,9 +636,9 @@ class Wishlist_model extends CI_Model {
             ->where('id', $userID)
             ->update(
                 'mod_wish_list_users',
-                array(
+                [
                             'user_image' => $file_name
-                                )
+                                ]
             );
     }
 
@@ -666,90 +666,90 @@ class Wishlist_model extends CI_Model {
         ($this->dx_auth->is_admin()) OR exit;
         @mkdir('./uploads/mod_wishlist', 0777);
 
-        $fields = array(
-            'id' => array(
+        $fields = [
+            'id' => [
                 'type' => 'INT',
                 'auto_increment' => TRUE
-            ),
-            'title' => array(
+            ],
+            'title' => [
                 'type' => 'VARCHAR',
                 'constraint' => '254',
                 'null' => FALSE
-            ),
-            'description' => array(
+            ],
+            'description' => [
                 'type' => 'Text',
                 'null' => TRUE
-            ),
-            'access' => array(
+            ],
+            'access' => [
                 'type' => 'ENUM',
                 'constraint' => "'public','private','shared'",
                 'default' => "shared"
-            ),
-            'user_id' => array(
+            ],
+            'user_id' => [
                 'type' => 'INT',
                 'null' => FALSE
-            ),
-            'review_count' => array(
+            ],
+            'review_count' => [
                 'type' => 'INT',
                 'null' => FALSE,
                 'default' => 0
-            ),
-            'hash' => array(
+            ],
+            'hash' => [
                 'type' => 'VARCHAR',
                 'constraint' => '16',
                 'null' => FALSE
-            )
-        );
+            ]
+        ];
 
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->create_table('mod_wish_list');
 
-        $fields = array(
-            'id' => array(
+        $fields = [
+            'id' => [
                 'type' => 'INT',
                 'auto_increment' => TRUE
-            ),
-            'wish_list_id' => array(
+            ],
+            'wish_list_id' => [
                 'type' => 'INT',
                 'null' => FALSE
-            ),
-            'variant_id' => array(
+            ],
+            'variant_id' => [
                 'type' => 'INT',
                 'null' => FALSE
-            ),
-            'comment' => array(
+            ],
+            'comment' => [
                 'type' => 'TEXT',
                 'null' => TRUE
-            )
-        );
+            ]
+        ];
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->create_table('mod_wish_list_products');
 
-        $fields = array(
-            'id' => array(
+        $fields = [
+            'id' => [
                 'type' => 'INT',
                 'null' => FALSE
-            ),
-            'user_name' => array(
+            ],
+            'user_name' => [
                 'type' => 'VARCHAR',
                 'constraint' => '254',
                 'null' => TRUE
-            ),
-            'user_image' => array(
+            ],
+            'user_image' => [
                 'type' => 'TEXT',
                 'null' => TRUE
-            ),
-            'user_birthday' => array(
+            ],
+            'user_birthday' => [
                 'type' => 'INT',
                 'null' => TRUE
-            ),
-            'description' => array(
+            ],
+            'description' => [
                 'type' => 'TEXT',
                 'null' => TRUE
-            )
-        );
+            ]
+        ];
 
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', TRUE);
@@ -759,9 +759,9 @@ class Wishlist_model extends CI_Model {
             ->where('identif', 'wishlist')
             ->update(
                 'components',
-                array(
+                [
                     'settings' => serialize(
-                        array(
+                        [
                                 'maxUserName' => 256,
                                 'maxListName' => 254,
                                 'maxListsCount' => 10,
@@ -772,11 +772,11 @@ class Wishlist_model extends CI_Model {
                                 'maxImageWidth' => 150,
                                 'maxImageHeight' => 150,
                                 'maxImageSize' => 2000000
-                            )
+                            ]
                     ),
                     'enabled' => 1,
                     'autoload' => 1
-                        )
+                        ]
             );
 
         $this->insertPaterns();

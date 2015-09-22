@@ -91,10 +91,10 @@ class AdminHelper extends \MY_Controller {
 
         if ($products != false) {
             foreach ($products as $product) {
-                $response[] = array(
+                $response[] = [
                     'value' => $product['name'],
                     'id' => $product['id'],
-                );
+                ];
             }
             echo json_encode($response);
             return;
@@ -114,10 +114,10 @@ class AdminHelper extends \MY_Controller {
 
         if ($categories != false) {
             foreach ($categories as $category) {
-                $response[] = array(
+                $response[] = [
                     'value' => $category['name'],
                     'id' => $category['id'],
-                );
+                ];
             }
             echo json_encode($response);
             return;

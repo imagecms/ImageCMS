@@ -23,7 +23,7 @@ class Sitemap_model extends CI_Model {
         if ($priorities) {
             return $priorities->row_array();
         } else {
-            return array();
+            return [];
         }
     }
 
@@ -36,7 +36,7 @@ class Sitemap_model extends CI_Model {
         if ($changefreq) {
             return $changefreq->row_array();
         } else {
-            return array();
+            return [];
         }
     }
 
@@ -54,7 +54,7 @@ class Sitemap_model extends CI_Model {
      * @param type $data - data array
      * @return boolean
      */
-    public function updatePriorities($data = array()) {
+    public function updatePriorities($data = []) {
         return $this->db->where('id', 1)->update('mod_sitemap_priorities', $data);
     }
 
@@ -63,7 +63,7 @@ class Sitemap_model extends CI_Model {
      * @param type $data - data array
      * @return boolean
      */
-    public function updateChangefreq($data = array()) {
+    public function updateChangefreq($data = []) {
         return $this->db->where('id', 1)->update('mod_sitemap_changefreq', $data);
     }
 
@@ -72,7 +72,7 @@ class Sitemap_model extends CI_Model {
      * @param type $data - data array
      * @return boolean
      */
-    public function updateBlockedUrls($data = array()) {
+    public function updateBlockedUrls($data = []) {
         $this->db->where('id >', 0)->delete('mod_sitemap_blocked_urls');
 
         return $this->db->insert_batch('mod_sitemap_blocked_urls', $data);
@@ -83,10 +83,10 @@ class Sitemap_model extends CI_Model {
      * @param array $data - data array
      * @return bool
      */
-    public function updateSettings($data = array()) {
+    public function updateSettings($data = []) {
         $this->db->limit(1);
         $this->db->where('name', 'sitemap');
-        return $this->db->update('components', array('settings' => serialize($data)));
+        return $this->db->update('components', ['settings' => serialize($data)]);
     }
 
     /**
@@ -117,7 +117,7 @@ class Sitemap_model extends CI_Model {
 
     /**
      * Get category pages
-     * @param int $id
+     * @param integer $id
      * @return array
      */
     public function get_cateogry_pages($id = 0) {
@@ -179,65 +179,65 @@ class Sitemap_model extends CI_Model {
         if ($result) {
             return $result->result_array();
         } else {
-            return array();
+            return [];
         }
     }
 
     /**
      * Install sitemap module
-     * @param int $robotsCheck - robots status (0 - turn off, 1 - turn on)
+     * @param integer $robotsCheck - robots status (0 - turn off, 1 - turn on)
      */
     public function installModule($robotsCheck) {
 
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) OR exit;
 
-        $fields = array(
-            'id' => array(
+        $fields = [
+            'id' => [
                 'type' => 'INT',
                 'auto_increment' => TRUE
-            ),
-            'main_page_priority' => array(
+            ],
+            'main_page_priority' => [
                 'type' => 'FLOAT',
                 'null' => TRUE,
                 'default' => 1
-            ),
-            'cats_priority' => array(
+            ],
+            'cats_priority' => [
                 'type' => 'FLOAT',
                 'null' => TRUE,
                 'default' => 1
-            ),
-            'pages_priority' => array(
+            ],
+            'pages_priority' => [
                 'type' => 'FLOAT',
                 'null' => TRUE,
                 'default' => 1
-            ),
-            'sub_cats_priority' => array(
+            ],
+            'sub_cats_priority' => [
                 'type' => 'FLOAT',
                 'null' => TRUE,
                 'default' => 1
-            ),
-            'products_priority' => array(
+            ],
+            'products_priority' => [
                 'type' => 'FLOAT',
                 'null' => TRUE,
                 'default' => 1
-            ),
-            'products_categories_priority' => array(
+            ],
+            'products_categories_priority' => [
                 'type' => 'FLOAT',
                 'null' => TRUE,
                 'default' => 1
-            ),
-            'products_sub_categories_priority' => array(
+            ],
+            'products_sub_categories_priority' => [
                 'type' => 'FLOAT',
                 'null' => TRUE,
                 'default' => 1
-            ),
-            'brands_priority' => array(
+            ],
+            'brands_priority' => [
                 'type' => 'FLOAT',
                 'null' => TRUE,
                 'default' => 1
-            ),
-        );
+            ],
+        ];
 
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', TRUE);
@@ -245,7 +245,7 @@ class Sitemap_model extends CI_Model {
 
         $this->db->insert(
             'mod_sitemap_priorities',
-            array(
+            [
             'main_page_priority' => 1,
             'cats_priority' => 1,
             'pages_priority' => 1,
@@ -254,55 +254,55 @@ class Sitemap_model extends CI_Model {
             'products_categories_priority' => 1,
             'products_sub_categories_priority' => 1,
             'brands_priority' => 1
-                )
+                ]
         );
 
-        $fields = array(
-            'id' => array(
+        $fields = [
+            'id' => [
                 'type' => 'INT',
                 'auto_increment' => TRUE
-            ),
-            'main_page_changefreq' => array(
+            ],
+            'main_page_changefreq' => [
                 'type' => 'VARCHAR',
                 'null' => TRUE,
                 'constraint' => '255'
-            ),
-            'pages_changefreq' => array(
+            ],
+            'pages_changefreq' => [
                 'type' => 'VARCHAR',
                 'null' => TRUE,
                 'constraint' => '255'
-            ),
-            'product_changefreq' => array(
+            ],
+            'product_changefreq' => [
                 'type' => 'VARCHAR',
                 'null' => TRUE,
                 'constraint' => '255'
-            ),
-            'categories_changefreq' => array(
+            ],
+            'categories_changefreq' => [
                 'type' => 'VARCHAR',
                 'null' => TRUE,
                 'constraint' => '255'
-            ),
-            'products_categories_changefreq' => array(
+            ],
+            'products_categories_changefreq' => [
                 'type' => 'VARCHAR',
                 'null' => TRUE,
                 'constraint' => '255'
-            ),
-            'products_sub_categories_changefreq' => array(
+            ],
+            'products_sub_categories_changefreq' => [
                 'type' => 'VARCHAR',
                 'null' => TRUE,
                 'constraint' => '255'
-            ),
-            'brands_changefreq' => array(
+            ],
+            'brands_changefreq' => [
                 'type' => 'VARCHAR',
                 'null' => TRUE,
                 'constraint' => '255'
-            ),
-            'sub_categories_changefreq' => array(
+            ],
+            'sub_categories_changefreq' => [
                 'type' => 'VARCHAR',
                 'null' => TRUE,
                 'constraint' => '255'
-            ),
-        );
+            ],
+        ];
 
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', TRUE);
@@ -310,7 +310,7 @@ class Sitemap_model extends CI_Model {
 
         $this->db->insert(
             'mod_sitemap_changefreq',
-            array(
+            [
             'main_page_changefreq' => 'weekly',
             'pages_changefreq' => 'weekly',
             'product_changefreq' => 'weekly',
@@ -319,25 +319,25 @@ class Sitemap_model extends CI_Model {
             'products_sub_categories_changefreq' => 'weekly',
             'brands_changefreq' => 'weekly',
             'sub_categories_changefreq' => 'weekly'
-                )
+                ]
         );
 
-        $fields = array(
-            'id' => array(
+        $fields = [
+            'id' => [
                 'type' => 'INT',
                 'auto_increment' => TRUE
-            ),
-            'url' => array(
+            ],
+            'url' => [
                 'type' => 'VARCHAR',
                 'null' => FALSE,
                 'constraint' => '255'
-            ),
-            'robots_check' => array(
+            ],
+            'robots_check' => [
                 'type' => 'INT',
                 'null' => TRUE,
                 'default' => 0
-            ),
-        );
+            ],
+        ];
 
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', TRUE);
@@ -346,23 +346,23 @@ class Sitemap_model extends CI_Model {
         $this->db->where('name', 'sitemap');
         $this->db->delete('components');
 
-        $data = array(
+        $data = [
             'robotsStatus' => $robotsCheck,
             'generateXML' => 1,
             'sendSiteMap' => 1,
             'lastSend' => 0,
             'sendWhenUrlChanged' => 0
-        );
+        ];
 
         return $this->db->insert(
             'components',
-            array(
+            [
                     'name' => 'sitemap',
                     'identif' => 'sitemap',
                     'autoload' => '1',
                     'enabled' => '1',
                     'settings' => serialize($data)
-                        )
+                        ]
         );
     }
 

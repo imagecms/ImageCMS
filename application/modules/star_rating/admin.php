@@ -24,10 +24,10 @@ class Admin extends BaseAdminController {
         $get_settings = $this->rating_model->get_settings();
         $settings = json_decode($get_settings['settings']);
         $this->template->add_array(
-            array(
+            [
             'settings' => $settings,
             'is_shop' => $this->rating_model->is_shop(),
-            )
+            ]
         );
         \CMSFactory\assetManager::create()
                 ->renderAdmin('settings');
@@ -35,7 +35,7 @@ class Admin extends BaseAdminController {
     }
 
     public function update_settings() {
-        $settings = json_encode($_POST['sr']);
+        $settings = json_encode($this->input->post('sr'));
 
         $this->rating_model->update_settings($settings);
 
@@ -46,7 +46,7 @@ class Admin extends BaseAdminController {
         showMessage(lang("Settings saved success", 'star_rating'));
     }
 
-    public function render($viewName, array $data = array(), $return = false) {
+    public function render($viewName, array $data = [], $return = false) {
         if (!empty($data)) {
             $this->template->add_array($data);
         }

@@ -14,19 +14,19 @@ class DataCollector {
      *
      * @var array
      */
-    protected $tablesData = array();
+    protected $tablesData = [];
 
     /**
      *
      * @var array
      */
-    protected $currentPassData = array();
+    protected $currentPassData = [];
 
     /**
      *
      * @var string|integer
      */
-    protected $keys = array();
+    protected $keys = [];
 
     /**
      *
@@ -87,8 +87,8 @@ class DataCollector {
                 $this->tablesData[$tableName][] = $tableData;
             }
         }
-        $this->currentPassData = array();
-        $this->keys = array();
+        $this->currentPassData = [];
+        $this->keys = [];
     }
 
     /**
@@ -102,7 +102,7 @@ class DataCollector {
         if (key_exists($tableBName, $this->tablesData)) {
             return $this->tablesData[$tableBName];
         }
-        return array();
+        return [];
     }
 
     /**
@@ -112,7 +112,7 @@ class DataCollector {
      */
     public function unsetData($tableBName = NULL) {
         if ($tableBName == NULL) {
-            $this->tablesData = array();
+            $this->tablesData = [];
             return TRUE;
         }
         if (key_exists($tableBName, $this->tablesData)) {

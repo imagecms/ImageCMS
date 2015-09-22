@@ -29,7 +29,7 @@ class RobotsAttendance {
      * Ids for database from robots declared in file /var/www/image.loc/application/config/user_agents.php
      * @var array
      */
-    private $robots = array(
+    private $robots = [
         1 => 'googlebot',
         2 => 'msnbot',
         3 => 'baiduspider',
@@ -41,7 +41,7 @@ class RobotsAttendance {
         9 => 'infoseek',
         10 => 'lycos',
         11 => 'yandex',
-    );
+    ];
 
     private function __construct() {
     }
@@ -74,12 +74,12 @@ class RobotsAttendance {
         }
 
         if (FALSE !== $robotId = $this->getRobotId($robotName)) {
-            $this->attendanceData = array(
+            $this->attendanceData = [
                 'id_robot' => $robotId,
                 'type_id' => $typeId,
                 'id_entity' => $coreData['id'],
                 'time_add' => time(),
-            );
+            ];
         }
     }
 

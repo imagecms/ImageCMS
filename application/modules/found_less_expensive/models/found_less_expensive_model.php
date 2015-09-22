@@ -9,9 +9,9 @@ class Found_less_expensive_model extends CI_Model {
 
     /**
      * Get
-     * @param int $row_count
-     * @param int $offset
-     * @param int $status
+     * @param integer $row_count
+     * @param integer $offset
+     * @param integer $status
      * @return array
      */
     public function allByStatus($row_count, $offset, $status) {
@@ -41,7 +41,7 @@ class Found_less_expensive_model extends CI_Model {
      * @return boolean
      */
     public function deleteByIds($id) {
-        $this->db->delete('mytable', array('id' => $id));
+        $this->db->delete('mytable', ['id' => $id]);
         return true;
     }
 

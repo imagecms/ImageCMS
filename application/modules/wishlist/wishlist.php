@@ -13,7 +13,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
         parent::__construct();
         $lang = new MY_Lang();
         $lang->load('wishlist');
-        $this->load->helper(array('form', 'url'));
+        $this->load->helper(['form', 'url']);
     }
 
     /**
@@ -194,7 +194,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
      * renser button for add to wishlist
      * @param type $varId
      */
-    public function renderWLButton($varId, $data = array()) {
+    public function renderWLButton($varId, $data = []) {
         if ($this->dx_auth->is_logged_in()) {
             $href = '/wishlist/renderPopup/' . $varId;
         } else {
@@ -234,7 +234,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
      */
     public function renderPopup($varId, $wish_list_id = '') {
         $wish_lists = $this->wishlist_model->getWishLists();
-        $data = array('wish_lists' => $wish_lists);
+        $data = ['wish_lists' => $wish_lists];
 
         return $popup = \CMSFactory\assetManager::create()
                 ->registerStyle('style', TRUE)
@@ -249,7 +249,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
     /**
      * edit wish list
      *
-     * @param int $wish_list_id
+     * @param integer $wish_list_id
      */
     public function editWL($wish_list_id) {
         if (parent::renderUserWLEdit($wish_list_id)) {
@@ -275,7 +275,7 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
     /**
      * delete wish list
      *
-     * @param int $wish_list_id
+     * @param integer $wish_list_id
      */
     public function deleteWL($wish_list_id) {
         parent::deleteWL($wish_list_id);
@@ -285,8 +285,8 @@ class Wishlist extends \wishlist\classes\BaseWishlist {
     /**
      * delete item from wish list
      *
-     * @param int $variant_id
-     * @param int $wish_list_id
+     * @param integer $variant_id
+     * @param integer $wish_list_id
      * @return mixed
      */
     public function deleteItem($variant_id, $wish_list_id) {

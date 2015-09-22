@@ -21,7 +21,7 @@ if (!function_exists('load_product')) {
 
     function load_product() {
         $ci = & get_instance();
-        $arr = array();
+        $arr = [];
         foreach ($ci->db->get('shop_products')->result_array() as $key => $val) {
             $arr[$val['id']] = $val['external_id'];
         }
@@ -34,7 +34,7 @@ if (!function_exists('load_urls')) {
 
     function load_urls() {
         $ci = & get_instance();
-        $arr = array();
+        $arr = [];
         foreach ($ci->db->get('shop_products')->result_array() as $key => $val) {
             $arr[$val['id']] = $val['url'];
         }
@@ -95,7 +95,7 @@ if (!function_exists('load_prop_data')) {
 
     function load_prop_data() {
         $ci = & get_instance();
-        $arr = array();
+        $arr = [];
         foreach ($ci->db->get('shop_product_properties_data')->result_array() as $val) {
             $arr[$val['property_id'] . '_' . $val['product_id']] = $val['value'];
         }
@@ -111,7 +111,7 @@ if (!function_exists('load_multiple_prop')) {
      */
     function load_multiple_prop() {
         $ci = & get_instance();
-        $arr = array();
+        $arr = [];
         $result = $ci->db->get('mod_exchange');
         if ($result) {
             foreach ($result->result_array() as $val) {
@@ -143,7 +143,7 @@ if (!function_exists('is_prod')) {
     function is_prod($prod_ex_id, $prods) {
 
         if (in_array($prod_ex_id, $prods)) {
-            return array('id' => array_search($prod_ex_id, $prods));
+            return ['id' => array_search($prod_ex_id, $prods)];
         } else {
             return false;
         }

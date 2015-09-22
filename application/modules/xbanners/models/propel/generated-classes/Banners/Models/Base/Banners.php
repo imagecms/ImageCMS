@@ -67,36 +67,42 @@ abstract class Banners implements ActiveRecordInterface
 
     /**
      * The value for the id field.
+     *
      * @var        int
      */
     protected $id;
 
     /**
      * The value for the place field.
+     *
      * @var        string
      */
     protected $place;
 
     /**
      * The value for the width field.
+     *
      * @var        int
      */
     protected $width;
 
     /**
      * The value for the height field.
+     *
      * @var        int
      */
     protected $height;
 
     /**
      * The value for the effects field.
+     *
      * @var        string
      */
     protected $effects;
 
     /**
      * The value for the page_type field.
+     *
      * @var        string
      */
     protected $page_type;

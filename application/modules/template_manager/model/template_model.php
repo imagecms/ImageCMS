@@ -9,7 +9,7 @@ class Template_model extends CI_Model {
 
     /**
      *
-     * @param int $handlerId
+     * @param integer $handlerId
      * @param string $paramName
      * @param string $paramValue
      */
@@ -19,7 +19,7 @@ class Template_model extends CI_Model {
 
     /**
      *
-     * @param int $handlerId
+     * @param integer $handlerId
      * @param string $key
      */
     public function getParams($handlerId, $key = NULL) {

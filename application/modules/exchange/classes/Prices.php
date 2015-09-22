@@ -12,7 +12,7 @@ use CMSFactory\ModuleSettings;
 class Prices extends ExchangeBase {
 
     protected function import_() {
-        $data = array();
+        $data = [];
         $i = 0;
 
         $purchasePriceId = false;

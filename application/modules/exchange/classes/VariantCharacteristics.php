@@ -33,7 +33,7 @@ class VariantCharacteristics {
      * Known characteristics
      * @var array [[characteristicName => [possibleValue1, possibleValue2,...]],...]
      */
-    protected $characteristics = array();
+    protected $characteristics = [];
 
     /**
      *
@@ -121,7 +121,7 @@ class VariantCharacteristics {
          * Куроче час покаже.
          */
         $variantNameParts = explode(' ', $variantName);
-        $variantCharacterisctics = array();
+        $variantCharacterisctics = [];
 
         foreach ($variantNameParts as $possibleCharacteristicValue) {
             foreach ($this->characteristics as $name => $values) {
@@ -153,7 +153,7 @@ class VariantCharacteristics {
 
         $value = trim($value);
         if (!isset($this->characteristics[$name])) {
-            $this->characteristics[$name] = array();
+            $this->characteristics[$name] = [];
         }
 
         if (!in_array($value, $this->characteristics[$name])) {
@@ -168,12 +168,12 @@ class VariantCharacteristics {
      */
     public function deleteCharacteristic($namesToDelete = null) {
         if (null === $namesToDelete) {
-            $this->characteristics = array();
+            $this->characteristics = [];
             return;
         }
 
         if (!is_array($namesToDelete)) {
-            $namesToDelete = array($namesToDelete);
+            $namesToDelete = [$namesToDelete];
         }
 
         foreach ($this->characteristics as $nameI => $values) {

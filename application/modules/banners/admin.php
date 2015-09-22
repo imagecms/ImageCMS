@@ -79,7 +79,7 @@ class Admin extends BaseAdminController {
         /** Show Banners list */
         \CMSFactory\assetManager::create()
                 ->registerScript('main')
-                ->setData(array('banners' => $banners, 'locale' => $locale, 'show_tpl' => $this->banner_model->get_settings_tpl()))
+                ->setData(['banners' => $banners, 'locale' => $locale, 'show_tpl' => $this->banner_model->get_settings_tpl()])
                 ->renderAdmin('list');
     }
 
@@ -89,9 +89,9 @@ class Admin extends BaseAdminController {
      * @copyright (c) 2013, ImageCMS
      */
     public function settings() {
-        $st = (int) $_POST['status'];
+        $st = (int) $this->input->post('status');
 
-        $arr = serialize(array('show_tpl' => $st));
+        $arr = serialize(['show_tpl' => $st]);
         $sql = $this->db->query("update  components set settings = '$arr' where name = 'banners'");
     }
 
@@ -139,16 +139,16 @@ class Admin extends BaseAdminController {
             $this->form_validation->set_rules('photo', lang('Image', 'banners'), 'required|xss_clean');
             if ($this->form_validation->run($this) !== FALSE) {
                 /** Set Instart data */
-                $data = array(
+                $data = [
                     'name' => $this->input->post('name'),
                     'active' => (int) $this->input->post('active'),
                     'description' => $this->input->post('description'),
                     'active_to' => $this->input->post('active_to_permanent') == 'on' ? -1 : (int) strtotime($this->input->post('active_to')),
-                    'where_show' => count($this->input->post('data')) ? serialize(array_unique($this->input->post('data'))) : serialize(array()),
+                    'where_show' => count($this->input->post('data')) ? serialize(array_unique($this->input->post('data'))) : serialize([]),
                     'photo' => $this->input->post('photo'),
                     'url' => $this->input->post('url'),
                     'locale' => $this->def_locale,
-                );
+                ];
                 /** Create new banner from data-array */
                 try {
                     $lid = $this->banner_model->add_banner($data);
@@ -175,7 +175,7 @@ class Admin extends BaseAdminController {
             \CMSFactory\assetManager::create()
                     ->registerScript('main')
                     ->registerStyle('style')
-                    ->setData(array('is_shop' => $this->is_shop, 'locale' => $locale, 'languages' => $lan))
+                    ->setData(['is_shop' => $this->is_shop, 'locale' => $locale, 'languages' => $lan])
                     ->renderAdmin('create');
         }
     }
@@ -183,7 +183,7 @@ class Admin extends BaseAdminController {
     /**
      * Edit Banner by Id Banner
      * @access public
-     * @param int $id
+     * @param integer $id
      * @param string $locale
      * @author L.Andriy <l.andriy@siteimage.com.ua>
      * @copyright (c) 2013, ImageCMS
@@ -192,7 +192,7 @@ class Admin extends BaseAdminController {
         /** Locale value is necessary */
         ($locale != null) OR $locale = $this->def_locale;
 
-        if ($_POST) {
+        if ($this->input->post('name')) {
 
             $this->load->library('Form_validation');
             $this->form_validation->set_rules('name', lang('Banner name', 'banners'), 'required|xss_clean|max_length[45]');
@@ -201,18 +201,18 @@ class Admin extends BaseAdminController {
             if ($this->form_validation->run($this) != FALSE) {
 
                 /** Set Update data */
-                $data = array(
-                    'name' => $_POST['name'],
+                $data = [
+                    'name' => $this->input->post('name'),
                     'active' => (int) $this->input->post('active'),
                     'description' => $this->input->post('description'),
                     'active_to' => $this->input->post('active_to_permanent') == 'on' ? -1 : (int) strtotime($this->input->post('active_to')),
-                    'where_show' => count($_POST['data']) ? serialize(array_unique($this->input->post('data'))) : serialize(array()),
+                    'where_show' => count($this->input->post('data')) ? serialize(array_unique($this->input->post('data'))) : serialize([]),
                     'photo' => $this->input->post('photo'),
                     'url' => $this->input->post('url'),
                     'locale' => $locale,
                     'group' => serialize($this->input->post('group')),
                     'id' => (int) $id,
-                );
+                ];
                 /** Update banner from data-array */
                 $this->banner_model->edit_banner($data);
 
@@ -240,13 +240,13 @@ class Admin extends BaseAdminController {
                     ->registerScript('main')
                     ->registerStyle('style')
                     ->setData(
-                        array(
+                        [
                                 'is_shop' => $this->is_shop,
                                 'banner' => $banner,
                                 'locale' => $locale,
                                 'languages' => $this->db->get('languages')->result_array(),
                                 'groups' => $groups,
-                            )
+                            ]
                     )
                     ->renderAdmin('edit');
         }
@@ -261,13 +261,13 @@ class Admin extends BaseAdminController {
     public function autosearch() {
         switch ($this->input->post('queryString')) {
             case 'product':
-                $entity = SProductsQuery::create()->joinWithI18n($this->def_locale)->filterByActive(true)->withColumn('SProductsI18n.Name', 'Name')->select(array('Id', 'Name'))->find()->toArray();
+                $entity = SProductsQuery::create()->joinWithI18n($this->def_locale)->filterByActive(true)->withColumn('SProductsI18n.Name', 'Name')->select(['Id', 'Name'])->find()->toArray();
                 break;
             case 'shop_category':
-                $entity = SCategoryQuery::create()->joinWithI18n($this->def_locale)->withColumn('SCategoryI18n.Name', 'Name')->select(array('Id', 'Name'))->find()->toArray();
+                $entity = SCategoryQuery::create()->joinWithI18n($this->def_locale)->withColumn('SCategoryI18n.Name', 'Name')->select(['Id', 'Name'])->find()->toArray();
                 break;
             case 'brand':
-                $entity = SBrandsQuery::create()->joinWithI18n($this->def_locale)->withColumn('SBrandsI18n.Name', 'Name')->select(array('Id', 'Name'))->find()->toArray();
+                $entity = SBrandsQuery::create()->joinWithI18n($this->def_locale)->withColumn('SBrandsI18n.Name', 'Name')->select(['Id', 'Name'])->find()->toArray();
                 break;
             case 'category':
                 $entity = $this->db->select('id as Id')->select('name as Name')->get('category')->result_array();
@@ -276,7 +276,7 @@ class Admin extends BaseAdminController {
                 $entity = $this->db->select('id as Id')->select('title as Name')->get('content')->result_array();
                 break;
             case 'main':
-                $entity = array(array('Id' => 0, 'Name' => lang('Main', 'banners')));
+                $entity = [['Id' => 0, 'Name' => lang('Main', 'banners')]];
                 break;
             default:
                 break;
@@ -300,7 +300,7 @@ class Admin extends BaseAdminController {
 
         foreach ($this->input->post('positions') as $key => $value) {
             $this->db->where('id = ' . $value)
-                ->update('mod_banner', array('position' => $key));
+                ->update('mod_banner', ['position' => $key]);
         }
 
         showMessage(lang('Positions saved', 'banners'));

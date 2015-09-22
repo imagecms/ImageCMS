@@ -32,7 +32,7 @@ if (!function_exists('makeSelected')) {
 
     /**
      * Make selected option in banner allowed pages select selected
-     * @param int $selectedId - selected id
+     * @param integer $selectedId - selected id
      * @param string $optionsHTML - options html string
      * @return string
      */

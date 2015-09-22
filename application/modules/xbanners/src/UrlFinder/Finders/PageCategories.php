@@ -28,7 +28,7 @@ final class PageCategories extends BaseFinder {
     /**
      * @param string $word
      * @param string $language
-     * @param int $limit
+     * @param integer $limit
      * @return Result
      */
     public function getResultsFor($word, $language, $limit = 10) {
@@ -58,7 +58,7 @@ final class PageCategories extends BaseFinder {
      * Returns url segments
      * from all parent categories
      *
-     * @param int $id
+     * @param integer $id
      * @return string parent url with last "/" symbol
      */
     protected function getPagentUrl($id) {

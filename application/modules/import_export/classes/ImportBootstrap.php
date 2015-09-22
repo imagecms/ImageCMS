@@ -54,9 +54,9 @@ class ImportBootstrap {
 
     /**
      * Start products import
-     * @param int $offers The final position
-     * @param int $limit Step
-     * @param int $countProd count products
+     * @param integer $offers The final position
+     * @param integer $limit Step
+     * @param integer $countProd count products
      * @author Kaero
      * @return ImportBootstrap
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
@@ -149,7 +149,7 @@ class ImportBootstrap {
         $extension = 'csv';
         $target = 'csvfile';
         $prefix = 'product_csv';
-        $posibleValues = array(1, 2, 3);
+        $posibleValues = [1, 2, 3];
         $uploadDir = ($fullPath) ? $this->uploadDir : '';
 
         $fileNumber = (in_array($_POST[$target], $posibleValues)) ? intval($_POST[$target]) : 1;
@@ -164,14 +164,14 @@ class ImportBootstrap {
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
      */
     public static function getSettingsFromPost() {
-        return array(
+        return [
             'attributes' => trim($_POST['attributes']),
             'import_type' => trim($_POST['import_type']),
             'delimiter' => trim($_POST['delimiter']),
             'enclosure' => trim($_POST['enclosure']),
             'encoding' => trim($_POST['encoding']),
             'currency' => trim($_POST['currency']),
-            'languages' => trim($_POST['language']));
+            'languages' => trim($_POST['language'])];
     }
 
     /**

@@ -30,7 +30,7 @@ abstract class ControllerBase {
      * @param string $tpl name of template of controller
      * @param array $data data for template
      */
-    public function renderAdmin($tpl, array $data = array()) {
+    public function renderAdmin($tpl, array $data = []) {
         $this->assetManager->setData($data);
         $className = strtolower(get_class($this));
         $folderName = str_replace('controller', '', $className);
@@ -43,7 +43,7 @@ abstract class ControllerBase {
      * @return array
      */
     public static function prepareDataForStaticChart($array = null) {
-        $chartData = array();
+        $chartData = [];
         foreach ($array as $item) {
             // Make for all keys the same length
             if (mb_strlen($item['name']) > 35) {
@@ -56,10 +56,10 @@ abstract class ControllerBase {
                 }
                 $key = str_pad($item['name'], $c);
             }
-            $chartData[] = array(
+            $chartData[] = [
                 'key' => $key,
                 'y' => (int) $item['count']
-            );
+            ];
         }
         if ($chartData) {
             return $chartData;
@@ -73,12 +73,12 @@ abstract class ControllerBase {
      * @return array
      */
     public static function prepareDataForLineChart($array = null, $labels = null) {
-        $finalStruct = array();
+        $finalStruct = [];
         foreach ($array as $key => $values) {
-            $temp = array(
+            $temp = [
                 'key' => $labels[$key]['label'],
                 'values' => $values,
-            );
+            ];
             isset($labels[$key]['bar']) ? $temp['bar'] = 'TRUE' : NULL;
             $finalStruct[] = $temp;
         }
@@ -92,15 +92,15 @@ abstract class ControllerBase {
      * @return array
      */
     public static function prepareDataForLineMultChart($array = null, $labels = null) {
-        $colors = array('red', 'green', 'blue');
-        $finalStruct = array();
+        $colors = ['red', 'green', 'blue'];
+        $finalStruct = [];
         $i = 0;
         foreach ($array as $key => $values) {
-            $temp = array(
+            $temp = [
                 'color' => $colors[$i],
                 'key' => $labels[$key]['label'],
                 'values' => $values,
-            );
+            ];
             if ($i < (count($colors) + 1)) {
 
                 $i++;

@@ -31,7 +31,7 @@ class TComponentAssetManager {
     public function registerCss($filePath, $pos = 'before') {
         $filePath = strpos($filePath, '.css') === FALSE ? $filePath .= '.css' : $filePath;
         $fullPath = $this->tComponentPath . '/assets/css/' . $filePath;
-        $fullPath = str_replace(array('/', '//', '\\', '\\\\'), DIRECTORY_SEPARATOR, $fullPath);
+        $fullPath = str_replace(['/', '//', '\\', '\\\\'], DIRECTORY_SEPARATOR, $fullPath);
         \CI_Controller::get_instance()->template->registerCss('<style>' . file_get_contents($fullPath) . '</style>', $pos);
     }
 
@@ -42,7 +42,7 @@ class TComponentAssetManager {
     public function registerScript($filePath, $pos = 'after') {
         $filePath = strpos($filePath, '.js') === FALSE ? $filePath .= '.js' : $filePath;
         $fullPath = $this->tComponentPath . '/assets/js/' . $filePath;
-        $fullPath = str_replace(array('/', '//', '\\', '\\\\'), DIRECTORY_SEPARATOR, $fullPath);
+        $fullPath = str_replace(['/', '//', '\\', '\\\\'], DIRECTORY_SEPARATOR, $fullPath);
         \CI_Controller::get_instance()->template->registerJsScript('<script>' . file_get_contents($fullPath) . '</script>', $pos);
     }
 
@@ -52,10 +52,10 @@ class TComponentAssetManager {
      * @param array $data data for template
      * @return string html of component
      */
-    public function fetch($filePath, array $data = array()) {
+    public function fetch($filePath, array $data = []) {
         $filePath = strpos($filePath, '.tpl') === FALSE ? $filePath .= '.tpl' : $filePath;
         $fullPath = $this->tComponentPath . '/assets/' . $filePath;
-        $fullPath = str_replace(array('/', '//', '\\', '\\\\'), DIRECTORY_SEPARATOR, $fullPath);
+        $fullPath = str_replace(['/', '//', '\\', '\\\\'], DIRECTORY_SEPARATOR, $fullPath);
         return \CI_Controller::get_instance()->template->fetch('file:' . $fullPath, $data);
     }
 
@@ -65,10 +65,10 @@ class TComponentAssetManager {
      * @param array $data data for template
      * @return html
      */
-    public function display($filePath, array $data = array()) {
+    public function display($filePath, array $data = []) {
         $filePath = strpos($filePath, '.tpl') === FALSE ? $filePath .= '.tpl' : $filePath;
         $fullPath = $this->tComponentPath . '/assets/' . $filePath;
-        $fullPath = str_replace(array('/', '//', '\\', '\\\\'), DIRECTORY_SEPARATOR, $fullPath);
+        $fullPath = str_replace(['/', '//', '\\', '\\\\'], DIRECTORY_SEPARATOR, $fullPath);
         if (count($data) > 0) {
             \CI_Controller::get_instance()->template->add_array($data);
         }

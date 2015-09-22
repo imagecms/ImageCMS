@@ -34,7 +34,7 @@ class Seoexpert_model_products extends CI_Model {
 
     /**
      * Get product category settings by id
-     * @param int $id
+     * @param integer $id
      * @param string $locale
      * @return boolean|array
      */
@@ -64,7 +64,7 @@ class Seoexpert_model_products extends CI_Model {
 
     /**
      * Set product category settings
-     * @param int $id Category ID
+     * @param integer $id Category ID
      * @param array $settings
      * @param string $locale
      * @return boolean
@@ -111,7 +111,7 @@ class Seoexpert_model_products extends CI_Model {
 
     /**
      * Get category by id,locale
-     * @param int $id
+     * @param integer $id
      * @param string $locale
      * @return boolean|array
      */
@@ -173,7 +173,7 @@ class Seoexpert_model_products extends CI_Model {
 
     /**
      * Delete category by id
-     * @param int $id
+     * @param integer $id
      * @return boolean\
      */
     public function deleteCategoryById($id = FALSE) {

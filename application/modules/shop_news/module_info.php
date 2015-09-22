@@ -2,7 +2,7 @@
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
-$com_info = array(
+$com_info = [
     'menu_name' => lang('Shop News displaying', 'shop_news'), // Menu name
     'description' => lang('Allows you to view shop news', 'shop_news'), // Module Description
     'admin_type' => 'window', // Open admin class in new window or not. Possible values window/inside
@@ -12,6 +12,6 @@ $com_info = array(
     'version' => '0.1', // Module version
     'author' => 'dev@imagecms.net', // Author info
     'icon_class' => 'icon-list-alt'
-);
+];
 
 /* End of file module_info.php */

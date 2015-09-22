@@ -15,17 +15,17 @@ class DemodataMenus extends DemodataDirector {
      */
     public $node;
 
-    private $menuData = array();
+    private $menuData = [];
 
-    private $menuItemI18nData = array();
+    private $menuItemI18nData = [];
 
-    private $menuItemData = array();
+    private $menuItemData = [];
 
     private $menuItemPosition = 0;
 
     private $menuItemParentId = 0;
 
-    private $localesIds = array();
+    private $localesIds = [];
 
     private $ci;
 
@@ -67,14 +67,14 @@ class DemodataMenus extends DemodataDirector {
         if ($menu->getName() == 'menu') {
             $attributes = $menu->attributes();
 
-            $this->menuData = array(
+            $this->menuData = [
                 'name' => (string) $attributes->name ? (string) $attributes->name : '',
                 'main_title' => (string) $attributes->main_title ? (string) $attributes->main_title : '',
                 'tpl' => (string) $attributes->tpl_folder ? (string) $attributes->tpl_folder : '',
                 'expand_level' => (string) $attributes->expand_level ? (string) $attributes->expand_level : '',
                 'description' => (string) $attributes->description ? (string) $attributes->description : '',
                 'created' => date('Y-m-d H:i:s')
-            );
+            ];
 
             $result = $this->ci->db->where('name', $this->menuData['name'])->get('menus');
             if (!$result->num_rows()) {
@@ -98,7 +98,7 @@ class DemodataMenus extends DemodataDirector {
             $attributes = $item->attributes();
 
             $url = (string) $attributes->url ? (string) $attributes->url : '';
-            $this->menuItemData = array(
+            $this->menuItemData = [
                 'menu_id' => $menu_id,
                 'item_id' => 0,
                 'item_type' => 'url',
@@ -109,8 +109,8 @@ class DemodataMenus extends DemodataDirector {
                 'parent_id' => $this->menuItemParentId,
                 'position' => $this->menuItemPosition,
                 'description' => (string) $attributes->description ? (string) $attributes->description : '',
-                'add_data' => serialize(array('url' => $url, 'newpage' => 0))
-            );
+                'add_data' => serialize(['url' => $url, 'newpage' => 0])
+            ];
 
             $this->ci->db->insert('menus_data', $this->menuItemData);
             $item_id = $this->ci->db->insert_id();
@@ -123,11 +123,11 @@ class DemodataMenus extends DemodataDirector {
                         case 'menu_i18n':
                             $locale = (string) $attributes->locale ? (string) $attributes->locale : '';
                             if ($this->localesIds[$locale]) {
-                                $this->menuItemI18nData[] = array(
+                                $this->menuItemI18nData[] = [
                                     'title' => (string) $attributes->title ? (string) $attributes->title : '',
                                     'lang_id' => $this->localesIds[$locale],
                                     'item_id' => $item_id
-                                );
+                                ];
                             }
 
                             break;

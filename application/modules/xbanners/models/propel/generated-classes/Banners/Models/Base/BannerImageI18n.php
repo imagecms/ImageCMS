@@ -63,12 +63,14 @@ abstract class BannerImageI18n implements ActiveRecordInterface
 
     /**
      * The value for the id field.
+     *
      * @var        int
      */
     protected $id;
 
     /**
      * The value for the locale field.
+     *
      * Note: this column has a database default value of: 'ru'
      * @var        string
      */
@@ -76,24 +78,28 @@ abstract class BannerImageI18n implements ActiveRecordInterface
 
     /**
      * The value for the src field.
+     *
      * @var        string
      */
     protected $src;
 
     /**
      * The value for the name field.
+     *
      * @var        string
      */
     protected $name;
 
     /**
      * The value for the clicks field.
+     *
      * @var        int
      */
     protected $clicks;
 
     /**
      * The value for the description field.
+     *
      * @var        string
      */
     protected $description;

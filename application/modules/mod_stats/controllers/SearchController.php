@@ -22,14 +22,14 @@ class SearchController extends ControllerBase {
     public function keywords() {
         $limit = $this->input->get('swr') ? (int) $this->input->get('swr') : 200;
         $result = $this->controller->search_model->queryKeywordsByDateRange(
-            array(
+            [
             'dateFrom' => $this->input->get('from') ? : '2005-05-05',
             'dateTo' => $this->input->get('to') ? : date("Y-m-d"),
             'interval' => $this->input->get('group') ? : 'day',
-                ),
+                ],
             $limit
         );
-        $this->renderAdmin('keywords', array('data' => $result));
+        $this->renderAdmin('keywords', ['data' => $result]);
     }
 
     /**
@@ -67,13 +67,13 @@ class SearchController extends ControllerBase {
      * @param string $type
      */
     private function getSearchData($type) {
-        $params = array(
+        $params = [
             'dateFrom' => $this->input->get('from') ? : '2005-05-05',
             'dateTo' => $this->input->get('to') ? : date("Y-m-d"),
             'interval' => $this->input->get('group') ? : 'day',
             'swr' => $this->input->get('swr') ? (int) $this->input->get('swr') : 9,
             'swc' => $this->input->get('swc') ? (int) $this->input->get('swc') : 9
-        );
+        ];
 
         $keywordsArray = $this->controller->search_model->queryKeywordsByDateRange($params, $params['swc']);
 

@@ -110,7 +110,7 @@ class Comments extends MY_Controller {
 
         $CI = &get_instance();
 
-        $ids = array();
+        $ids = [];
         foreach ($product[ShopCategoryId] as $key => $p) {
             $ids[$key] = $p;
         }
@@ -124,7 +124,7 @@ class Comments extends MY_Controller {
             ->get('comments')
             ->result_array();
 
-        $ids = array();
+        $ids = [];
         foreach ($array as $key => $a) {
             $ids[$key] = $a['item_id'];
         }
@@ -165,7 +165,7 @@ class Comments extends MY_Controller {
         $CI = &get_instance();
 
         $product = $product[model];
-        $ids = array();
+        $ids = [];
         foreach ($product as $key => $p) {
             $ids[$key] = $p->id;
         }
@@ -183,7 +183,7 @@ class Comments extends MY_Controller {
         if ($model instanceof SProducts) {
             $productsCount = $this->load->module('comments/commentsapi')->getTotalCommentsForProducts($model->getId());
         } else {
-            $ids = array();
+            $ids = [];
             if ($this->core->core_data['module'] != 'shop') {
                 foreach ((array) $model as $key => $id) {
                     if (is_array($id)) {
@@ -265,7 +265,7 @@ class Comments extends MY_Controller {
             $comments_count = 0;
         }
 
-        $data = array(
+        $data = [
             'comments_arr' => $comments,
             'comment_ch' => $comment_ch,
             'comment_controller' => $this->comment_controller,
@@ -273,7 +273,7 @@ class Comments extends MY_Controller {
             'can_comment' => $this->can_comment,
             'use_captcha' => $this->use_captcha,
             'item_id' => $item_id
-        );
+        ];
 
         if ($this->use_captcha == TRUE) {
             $this->dx_auth->captcha();
@@ -288,9 +288,9 @@ class Comments extends MY_Controller {
         //$this->render('comments_list', array('comments'=>$comments));
 
         $this->template->add_array(
-            array(
+            [
                     'comments' => $comments,
-                )
+                ]
         );
     }
 
@@ -369,7 +369,7 @@ class Comments extends MY_Controller {
             } else {
                 ($hook = get_hook('comments_author_logged')) ? eval($hook) : NULL;
 
-                $user = $this->db->get_where('users', array('id' => $this->dx_auth->get_user_id()))->row_array();
+                $user = $this->db->get_where('users', ['id' => $this->dx_auth->get_user_id()])->row_array();
                 $comment_author = $user['username'];
                 $comment_email = $user['email'];
             }
@@ -396,7 +396,7 @@ class Comments extends MY_Controller {
             $parent = $this->input->post('parent');
 
             if ($comment_text != '') {
-                $comment_data = array(
+                $comment_data = [
                     'module' => $this->module,
                     'user_id' => $this->dx_auth->get_user_id(), // 0 if unregistered
                     'user_name' => htmlspecialchars($comment_author),
@@ -412,7 +412,7 @@ class Comments extends MY_Controller {
                     'date' => time(),
                     'rate' => $rate,
                     'parent' => $parent,
-                );
+                ];
 
                 ($hook = get_hook('comments_db_insert')) ? eval($hook) : NULL;
 
@@ -483,23 +483,23 @@ class Comments extends MY_Controller {
 
         ($hook = get_hook('comments_write_cookie')) ? eval($hook) : NULL;
 
-        $cookie_name = array(
+        $cookie_name = [
             'name' => 'comment_author',
             'value' => $name,
             'expire' => '30000000',
-        );
+        ];
 
-        $cookie_email = array(
+        $cookie_email = [
             'name' => 'comment_email',
             'value' => $email,
             'expire' => '30000000',
-        );
+        ];
 
-        $cookie_site = array(
+        $cookie_site = [
             'name' => 'comment_site',
             'value' => $site,
             'expire' => '30000000',
-        );
+        ];
 
         set_cookie($cookie_name);
         set_cookie($cookie_email);
@@ -566,7 +566,7 @@ class Comments extends MY_Controller {
             $this->session->set_userdata('commentl' . $comid, 1);
         }
         if ($this->input->is_ajax_request()) {
-            return json_encode(array("y_count" => $like));
+            return json_encode(["y_count" => $like]);
         } else {
             redirect($this->input->server('HTTP_REFERER'));
         }
@@ -580,7 +580,7 @@ class Comments extends MY_Controller {
             $this->session->set_userdata('commentl' . $comid, 1);
         }
         if ($this->input->is_ajax_request()) {
-            return json_encode(array("n_count" => $disslike));
+            return json_encode(["n_count" => $disslike]);
         } else {
             redirect($this->input->server('HTTP_REFERER'));
         }
@@ -594,90 +594,90 @@ class Comments extends MY_Controller {
 
         $this->load->dbforge();
 
-        $fields = array(
-            'id' => array(
+        $fields = [
+            'id' => [
                 'type' => 'INT',
                 'constraint' => 11,
                 'auto_increment' => TRUE,
-            ),
-            'module' => array(
+            ],
+            'module' => [
                 'type' => 'varchar',
                 'constraint' => 25,
-            ),
-            'user_id' => array(
+            ],
+            'user_id' => [
                 'type' => 'INT',
                 'constraint' => 11,
-            ),
-            'user_name' => array(
+            ],
+            'user_name' => [
                 'type' => 'varchar',
                 'constraint' => 50,
-            ),
-            'user_mail' => array(
+            ],
+            'user_mail' => [
                 'type' => 'varchar',
                 'constraint' => 50,
-            ),
-            'user_site' => array(
+            ],
+            'user_site' => [
                 'type' => 'varchar',
                 'constraint' => 250,
-            ),
-            'item_id' => array(
+            ],
+            'item_id' => [
                 'type' => 'bigint',
                 'constraint' => 11,
-            ),
-            'text' => array(
+            ],
+            'text' => [
                 'type' => 'varchar',
                 'constraint' => 500,
-            ),
-            'date' => array(
+            ],
+            'date' => [
                 'type' => 'int',
                 'constraint' => 11,
-            ),
-            'status' => array(
+            ],
+            'status' => [
                 'type' => 'smallint',
                 'constraint' => 1,
-            ),
-            'agent' => array(
+            ],
+            'agent' => [
                 'type' => 'varchar',
                 'constraint' => 250,
-            ),
-            'user_ip' => array(
+            ],
+            'user_ip' => [
                 'type' => 'varchar',
                 'constraint' => 64,
-            ),
-            'rate' => array(
+            ],
+            'rate' => [
                 'type' => 'int',
                 'constraint' => 11,
-            ),
-            'text_plus' => array(
+            ],
+            'text_plus' => [
                 'type' => 'varchar',
                 'constraint' => 500,
-            ),
-            'text_minus' => array(
+            ],
+            'text_minus' => [
                 'type' => 'varchar',
                 'constraint' => 500,
-            ),
-            'like' => array(
+            ],
+            'like' => [
                 'type' => 'int',
                 'constraint' => 11,
                 'default' => 0,
-            ),
-            'disslike' => array(
+            ],
+            'disslike' => [
                 'type' => 'int',
                 'constraint' => 11,
                 'default' => 0,
-            ),
-            'parent' => array(
+            ],
+            'parent' => [
                 'type' => 'int',
                 'constraint' => 11,
-            ),
-        );
+            ],
+        ];
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_field($fields);
         $this->dbforge->create_table('comments', TRUE);
 
         // Enable module autoload
         $this->db->where('name', 'comments');
-        $this->db->update('components', array('autoload' => '1'));
+        $this->db->update('components', ['autoload' => '1']);
     }
 
     public function _deinstall() {

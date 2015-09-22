@@ -79,7 +79,7 @@ class Pricespy extends MY_Controller {
         $CI = &get_instance();
 
         $product = $product['model'];
-        $ids = array();
+        $ids = [];
         foreach ($product as $key => $p) {
             $ids[$key] = $p->id;
         }
@@ -147,15 +147,15 @@ class Pricespy extends MY_Controller {
     public function unSpy($hash) {
         if ($this->pricespy_model->delSpyByHash($hash)) {
             echo json_encode(
-                array(
+                [
                         'answer' => 'sucesfull',
-                    )
+                    ]
             );
         } else {
             echo json_encode(
-                array(
+                [
                         'answer' => 'error',
-                    )
+                    ]
             );
         }
     }
@@ -195,10 +195,10 @@ class Pricespy extends MY_Controller {
     public function renderButton($id, $varId) {
         if ($this->dx_auth->is_logged_in()) {
 
-            $data = array(
+            $data = [
                 'Id' => $id,
                 'varId' => $varId,
-            );
+            ];
 
             if ($this->isInSpy[$varId] == '') {
                 assetManager::create()
@@ -236,35 +236,35 @@ class Pricespy extends MY_Controller {
     public function _install() {
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) OR exit;
-        $fields = array(
-            'id' => array(
+        $fields = [
+            'id' => [
                 'type' => 'INT',
-                'auto_increment' => TRUE),
-            'userId' => array(
+                'auto_increment' => TRUE],
+            'userId' => [
                 'type' => 'VARCHAR',
                 'constraint' => '30',
-                'null' => TRUE),
-            'productId' => array(
+                'null' => TRUE],
+            'productId' => [
                 'type' => 'VARCHAR',
                 'constraint' => '30',
-                'null' => TRUE),
-            'productVariantId' => array(
+                'null' => TRUE],
+            'productVariantId' => [
                 'type' => 'VARCHAR',
                 'constraint' => '30',
-                'null' => TRUE),
-            'productPrice' => array(
+                'null' => TRUE],
+            'productPrice' => [
                 'type' => 'VARCHAR',
                 'constraint' => '30',
-                'null' => TRUE),
-            'oldProductPrice' => array(
+                'null' => TRUE],
+            'oldProductPrice' => [
                 'type' => 'VARCHAR',
                 'constraint' => '30',
-                'null' => TRUE),
-            'hash' => array(
+                'null' => TRUE],
+            'hash' => [
                 'type' => 'VARCHAR',
                 'constraint' => '30',
-                'null' => TRUE)
-        );
+                'null' => TRUE]
+        ];
 
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', TRUE);
@@ -273,9 +273,9 @@ class Pricespy extends MY_Controller {
         $this->db->where('name', 'pricespy');
         $this->db->update(
             'components',
-            array(
+            [
             'enabled' => 1,
-            'autoload' => 1)
+            'autoload' => 1]
         );
     }
 

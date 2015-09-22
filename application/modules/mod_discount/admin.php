@@ -37,7 +37,7 @@ class Admin extends ShopAdminController {
         $this->saveQueryToSession($this->input->server('QUERY_STRING'));
 
         //Get list of discounts
-        $data = array('discountsList' => $this->discount_model_admin->getDiscountsList($filterParam));
+        $data = ['discountsList' => $this->discount_model_admin->getDiscountsList($filterParam)];
 
         assetManager::create()
                 ->setData($data)
@@ -73,13 +73,13 @@ class Admin extends ShopAdminController {
 
             //Prepare data for template
             $userGroups = $this->discount_model_admin->getUserGroups(MY_Controller::getCurrentLocale());
-            $data = array(
+            $data = [
                 'userGroups' => $userGroups,
                 'CS' => $this->discount_model_admin->getMainCurrencySymbol(),
                 'filterQuery' => $this->session->userdata('QueryDiscountList'),
                 'categories' => ShopCore::app()->SCategoryTree->getTree_(),
                 'brands' => SBrandsQuery::create()->orderByID(Criteria::DESC)->find()
-            );
+            ];
 
             //Render template and set data
             assetManager::create()
@@ -118,7 +118,7 @@ class Admin extends ShopAdminController {
                 }
 
                 //Prepare data for insert in table mod_shop_discounts
-                $data = array(
+                $data = [
                     'name' => $postArray['name'],
                     'key' => $postArray['key'],
                     'max_apply' => $postArray['max_apply'],
@@ -128,7 +128,7 @@ class Admin extends ShopAdminController {
                     'date_begin' => strtotime($postArray['date_begin']),
                     'date_end' => strtotime($postArray['date_end']),
                         //                    'active' => '1'
-                );
+                ];
 
                 //Prepare data for inserting in the table of selected discount type
                 $typeDiscountData = $postArray[$typeDiscount];
@@ -169,7 +169,7 @@ class Admin extends ShopAdminController {
             }
 
             //Prepare date for rendering
-            $data = array(
+            $data = [
                 'discount' => $discountData,
                 'userGroups' => $userGroups,
                 'CS' => $this->discount_model_admin->getMainCurrencySymbol(),
@@ -178,7 +178,7 @@ class Admin extends ShopAdminController {
                 'languages' => $this->db->get('languages')->result_array(),
                 'locale' => $locale,
                 'brands' => SBrandsQuery::create()->orderByID(Criteria::DESC)->find()
-            );
+            ];
             $this->cache->delete_all();
             //Render template and set data
             assetManager::create()
@@ -195,10 +195,10 @@ class Admin extends ShopAdminController {
         $id = $this->input->post('id');
 
         // checking if discount exists
-        $res = CI::$APP->db->get_where('mod_shop_discounts', array('id' => $id))->row_array();
+        $res = CI::$APP->db->get_where('mod_shop_discounts', ['id' => $id])->row_array();
         if ($res == null) {
             $msg = showMessage(lang("Discount don't exists", 'mod_discount'), lang('Error'), 'error', TRUE);
-            echo json_encode(array('status' => 0, 'msg' => $msg));
+            echo json_encode(['status' => 0, 'msg' => $msg]);
             return;
         }
 
@@ -206,12 +206,12 @@ class Admin extends ShopAdminController {
         $dm = new DiscountManager();
         if ($res['type_discount'] == 'user' && !$dm->validateUserDiscount($res['type_value']) && $res['active'] == 0) {
             $msg = showMessage(lang('This user already have active discount', 'mod_discount'), lang('Error'), 'error', TRUE);
-            echo json_encode(array('status' => 0, 'msg' => $msg));
+            echo json_encode(['status' => 0, 'msg' => $msg]);
             return;
         }
         if ($res['type_discount'] == 'group_user' && !$dm->validateGroupDiscount($res['type_value']) && $res['active'] == 0) {
             $msg = showMessage(lang('This group of users already have active discount', 'mod_discount'), lang('Error'), 'error', TRUE);
-            echo json_encode(array('status' => 0, 'msg' => $msg));
+            echo json_encode(['status' => 0, 'msg' => $msg]);
             return;
         }
 
@@ -220,7 +220,7 @@ class Admin extends ShopAdminController {
             $key = $this->db->where('id', $id)->get('mod_shop_discounts')->row()->key;
             $this->lib_admin->log(lang("Status discount was changed", "mod_discount") . '. Key: ' . $key);
             $msg = showMessage(lang('Status changed', 'mod_discount'), '', '', TRUE);
-            echo json_encode(array('status' => 1, 'msg' => $msg));
+            echo json_encode(['status' => 1, 'msg' => $msg]);
         }
     }
 
@@ -237,8 +237,8 @@ class Admin extends ShopAdminController {
 
     /**
      * Generate key for discount
-     * @param int $charsCount
-     * @param int $digitsCount
+     * @param integer $charsCount
+     * @param integer $digitsCount
      * @static
      * @return string
      */
@@ -260,12 +260,12 @@ class Admin extends ShopAdminController {
 
         if ($users != false) {
             foreach ($users as $user) {
-                $response[] = array(
+                $response[] = [
                     'value' => $user['id'] . ' - ' . $user['username'] . ' - ' . $user['email'],
                     'id' => $user['id'],
                     'name' => $user['username'],
                     'email' => $user['email'],
-                );
+                ];
             }
             echo json_encode($response);
             return;
@@ -286,10 +286,10 @@ class Admin extends ShopAdminController {
 
         if ($products != false) {
             foreach ($products as $product) {
-                $response[] = array(
+                $response[] = [
                     'value' => $product['id'] . ' - ' . $product['name'] . ' - ' . $product['number'],
                     'id' => $product['id'],
-                );
+                ];
             }
             echo json_encode($response);
             return;

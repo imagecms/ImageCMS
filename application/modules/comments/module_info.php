@@ -4,7 +4,7 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-$com_info = array(
+$com_info = [
     'menu_name' => lang('Comments', 'comments'),
     'description' => lang('User comments management module', 'comments'),
     'admin_type' => 'inside',
@@ -15,6 +15,6 @@ $com_info = array(
     'author' => 'dev@imagecms.net',
     'setup_rules' => '',
     'icon_class' => 'icon-comment'
-);
+];
 
 /* end of file */

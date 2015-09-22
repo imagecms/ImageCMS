@@ -64,9 +64,9 @@ class Admin extends BaseAdminController {
      */
     public function userWL($id) {
         $wishlist = \CI::$APP->load->module('wishlist');
-        $this->session->set_userdata(array('admin_edit_user_id' => $id));
+        $this->session->set_userdata(['admin_edit_user_id' => $id]);
 
-        $wishlist->getUserWL($id, array('public', 'shared', 'private'));
+        $wishlist->getUserWL($id, ['public', 'shared', 'private']);
         \CMSFactory\assetManager::create()
                 ->registerScript('wishlist')
                 ->registerStyle('style')
@@ -145,7 +145,7 @@ class Admin extends BaseAdminController {
     public function createWishList() {
         $wishlist = new \wishlist\classes\BaseWishlist();
         $result = $wishlist->createWishList();
-        $response = array('status' => 0);
+        $response = ['status' => 0];
         if (is_array($result)) {
             $response['errors'] = $result;
         } else {
@@ -177,7 +177,7 @@ class Admin extends BaseAdminController {
      */
     public function renderPopup($varId, $wish_list_id, $user_id) {
         $wish_lists = $this->wishlist_model->getWishLists($user_id);
-        $data = array('wish_lists' => $wish_lists);
+        $data = ['wish_lists' => $wish_lists];
 
         $variant = SProductVariantsQuery::create()->findOneById($varId);
         $fullName = $variant->getSProducts()->getName() . " ({$variant->getName()})";

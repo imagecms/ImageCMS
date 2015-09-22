@@ -104,7 +104,7 @@ class Admin extends BaseAdminController {
         $variables = unserialize($model['variables']);
 
         if ($this->input->post()) {
-            if ($this->email->edit($id, array(), $locale)) {
+            if ($this->email->edit($id, [], $locale)) {
                 $name = $this->db->select('name')->where('id', $id)->get('mod_email_paterns')->row()->name;
 
                 $this->lib_admin->log(lang('Email template was edited', 'cmsemail') . ' - ' . $name);
@@ -150,10 +150,10 @@ class Admin extends BaseAdminController {
             if ($this->form_validation->run($this) == FALSE) {
                 showMessage(validation_errors(), lang('Message', 'cmsemail'), 'r');
             } else {
-                $data = array(
+                $data = [
                     'locale' => $locale,
                     'settings' => $this->input->post('settings')
-                );
+                ];
 
                 if ($this->email->setSettings($data)) {
                     showMessage(lang('Settings saved', 'cmsemail'), lang('Message', 'cmsemail'));
@@ -240,8 +240,8 @@ class Admin extends BaseAdminController {
      */
     public function import_templates() {
 
-        $this->db->where_in('id', array(1, 2, 3, 4, 5, 6, 7, 8, 9))->delete('mod_email_paterns');
-        $this->db->where_in('id', array(1, 2, 3, 4, 5, 6, 7, 8, 9))->delete('mod_email_paterns_i18n');
+        $this->db->where_in('id', [1, 2, 3, 4, 5, 6, 7, 8, 9])->delete('mod_email_paterns');
+        $this->db->where_in('id', [1, 2, 3, 4, 5, 6, 7, 8, 9])->delete('mod_email_paterns_i18n');
 
         if (MY_Controller::isCorporateCMS()) {
             $file = $this->load->file(dirname(__FILE__) . '/models/paterns_corporate.sql', true);

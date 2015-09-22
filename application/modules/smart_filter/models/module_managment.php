@@ -156,72 +156,72 @@ class Module_managment extends CI_Model {
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) OR exit;
 
-        $fields = array(
-            'id' => array(
+        $fields = [
+            'id' => [
                 'type' => 'INT',
                 'constraint' => 11,
                 'auto_increment' => true
-            ),
-            'locale' => array(
+            ],
+            'locale' => [
                 'type' => 'VARCHAR',
                 'constraint' => 5,
                 'null' => false,
-            ),
-            'type' => array(
+            ],
+            'type' => [
                 'type' => 'VARCHAR',
                 'constraint' => 10,
                 'null' => false,
-            ),
-            'category_id' => array(
+            ],
+            'category_id' => [
                 'type' => 'INT',
                 'constraint' => 11,
                 'null' => false,
-            ),
-            'entity_id' => array(
+            ],
+            'entity_id' => [
                 'type' => 'INT',
                 'constraint' => 11,
                 'null' => false,
-            ),
-            'active' => array(
+            ],
+            'active' => [
                 'type' => 'INT',
                 'constraint' => 1,
                 'null' => true,
                 'default' => 0
-            ),
-            'h1' => array(
+            ],
+            'h1' => [
                 'type' => 'TEXT',
                 'null' => true,
-            ),
-            'meta_title' => array(
+            ],
+            'meta_title' => [
                 'type' => 'TEXT',
                 'null' => true,
-            ),
-            'meta_description' => array(
+            ],
+            'meta_description' => [
                 'type' => 'TEXT',
                 'null' => true,
-            ),
-            'meta_keywords' => array(
+            ],
+            'meta_keywords' => [
                 'type' => 'TEXT',
                 'null' => true,
-            ),
-            'seo_text' => array(
+            ],
+            'seo_text' => [
                 'type' => 'TEXT',
                 'null' => true,
-            ),
-            'custom_url_pattern' => array(
+            ],
+            'custom_url_pattern' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
                 'null' => true,
-            ),
-            'created' => array(
+            ],
+            'created' => [
                 'type' => 'INT',
                 'constraint' => 11
-            ),
-            'updated' => array(
+            ],
+            'updated' => [
                 'type' => 'INT',
                 'constraint' => 11
-            ),
-        );
+            ],
+        ];
 
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', TRUE);

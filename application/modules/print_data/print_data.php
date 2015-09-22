@@ -58,13 +58,13 @@ class Print_data extends MY_Controller {
             default:
                 break;
         }
-        \CMSFactory\assetManager::create()->setData(array('href' => $href))->render('button', TRUE);
+        \CMSFactory\assetManager::create()->setData(['href' => $href])->render('button', TRUE);
     }
 
     /**
      * Print Product
-     * @param int $id
-     * @param int $var
+     * @param integer $id
+     * @param integer $var
      */
     public function print_product($id, $var) {
         if (!$this->no_install) {
@@ -73,12 +73,12 @@ class Print_data extends MY_Controller {
         $product = SProductsQuery::create()->joinWithI18n(MY_Controller::getCurrentLocale())->findPk($id);
         $variant = SProductVariantsQuery::create()->joinWithI18n(MY_Controller::getCurrentLocale())->findPk($var);
         \CMSFactory\assetManager::create()->registerStyleWithoutTemplate('style');
-        \CMSFactory\assetManager::create()->setData(array('product' => $product, 'variant' => $variant))->render('print_product', TRUE);
+        \CMSFactory\assetManager::create()->setData(['product' => $product, 'variant' => $variant])->render('print_product', TRUE);
     }
 
     /**
      * Print Page
-     * @param int $id
+     * @param integer $id
      */
     public function print_page($id) {
         if (!$this->no_install) {
@@ -86,7 +86,7 @@ class Print_data extends MY_Controller {
         }
         $page = get_page($id);
         \CMSFactory\assetManager::create()->registerStyleWithoutTemplate('style');
-        \CMSFactory\assetManager::create()->setData(array('page' => $page))->render('print_page', TRUE);
+        \CMSFactory\assetManager::create()->setData(['page' => $page])->render('print_page', TRUE);
     }
 
     /**
@@ -94,7 +94,7 @@ class Print_data extends MY_Controller {
      */
     public function _install() {
         $this->db->where('name', 'print_data');
-        $this->db->update('components', array('enabled' => 1));
+        $this->db->update('components', ['enabled' => 1]);
     }
 
     /**
@@ -108,7 +108,7 @@ class Print_data extends MY_Controller {
 
     public function get_main_lang($flag = null) {
         $lang = $this->db->get('languages')->result_array();
-        $lan_array = array();
+        $lan_array = [];
         foreach ($lang as $l) {
             $lan_array[$l['identif']] = $l['id'];
             $lan_array_rev[$l['id']] = $l['identif'];
@@ -130,7 +130,7 @@ class Print_data extends MY_Controller {
             return $lang_ident;
         }
         if ($flag == null) {
-            return array('id' => $lang_id, 'identif' => $lang_ident);
+            return ['id' => $lang_id, 'identif' => $lang_ident];
         }
     }
 

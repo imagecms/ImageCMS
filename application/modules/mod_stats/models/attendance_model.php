@@ -19,13 +19,13 @@ class Attendance_model extends CI_Model {
      *  - type (string) registered|unregistered|all
      * @return boolean
      */
-    public function getCommonAttendance(array $params_ = array()) {
-        $params = array(
+    public function getCommonAttendance(array $params_ = []) {
+        $params = [
             'interval' => 'day',
             'dateFrom' => NULL,
             'dateTo' => NULL,
             'type' => 'all'
-        );
+        ];
 
         foreach ($params_ as $key => $value) {
             if (key_exists($key, $params)) {
@@ -135,7 +135,7 @@ class Attendance_model extends CI_Model {
         $datePattern = \mod_stats\classes\DateInterval::getDatePattern($params['interval']);
         $dateBetween = \mod_stats\classes\DateInterval::prepareDateBetweenCondition('time_add', $params);
 
-        $categoriesAttendance = array();
+        $categoriesAttendance = [];
         foreach ($categoriesIds as $categoryId => $categoryIds) {
             $condition = "AND `id_entity` IN (" . implode(',', $categoryIds) . ")";
 
@@ -162,7 +162,7 @@ class Attendance_model extends CI_Model {
 
     /**
      * Returns "serfing" history of specified user
-     * @param int $userId
+     * @param integer $userId
      * @return array
      */
     public function getUserHistory($userId) {

@@ -36,7 +36,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
     /**
      * add item to wish list
      *
-     * @param int $varId
+     * @param integer $varId
      * @return mixed
      */
     public function _addItem($varId) {
@@ -53,8 +53,8 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
     /**
      * move item to wish list
      *
-     * @param int $varId - item var current id
-     * @param int $wish_list_id - item wish list current id
+     * @param integer $varId - item var current id
+     * @param integer $wish_list_id - item wish list current id
      * @return mixed
      */
     public function moveItem($varId, $wish_list_id) {
@@ -71,8 +71,8 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
     /**
      * delete item from wish list
      *
-     * @param int $variant_id - item var current id
-     * @param int $wish_list_id - item wish list current id
+     * @param integer $variant_id - item var current id
+     * @param integer $wish_list_id - item wish list current id
      * @return mixed
      */
     public function deleteItem($variant_id, $wish_list_id) {
@@ -116,7 +116,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
     /**
      * get most viewed wish lists
      *
-     * @param int $limit - lists count
+     * @param integer $limit - lists count
      * @return mixed
      */
     public function getMostViewedWishLists($limit = 10) {
@@ -130,7 +130,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
     /**
      * get user public lists
      *
-     * @param int $user_id
+     * @param integer $user_id
      * @return mixed
      */
     public function user($user_id) {
@@ -180,7 +180,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
     /**
      * get most popular items
      *
-     * @param int $limit - items count
+     * @param integer $limit - items count
      * @return mixed
      */
     public function getMostPopularItems($limit = 10) {
@@ -212,7 +212,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
     /**
      * delete wish list
      *
-     * @param int $wish_list_id
+     * @param integer $wish_list_id
      * @return mixed
      */
     public function deleteWL($wish_list_id) {
@@ -255,11 +255,11 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
             return FALSE;
         }
 
-        $data = array(
+        $data = [
             'access' => $this->input->post('access'),
             'description' => $wlDescription,
             'title' => $title,
-        );
+        ];
 
         parent::updateWL($id, $data, $desc);
     }
@@ -296,7 +296,7 @@ class BaseApi extends \wishlist\classes\ParentWishlist {
                     $this->errors[] = $this->upload->display_errors();
                     return $this->errors[] = lang('Loading error', 'wishlist');
                 } else {
-                    $this->dataModel = array('upload_data' => $this->upload->data());
+                    $this->dataModel = ['upload_data' => $this->upload->data()];
                     $this->wishlist_model->setUserImage($this->input->post('userID'), $this->dataModel['upload_data']['file_name']);
                     return $this->dataModel[] = lang('Image uploaded', 'wishlist');
                 }

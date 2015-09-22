@@ -24,7 +24,7 @@ class TComponentData { // TLicense
      */
     public function __construct($templateName) {
         $keyPath = PUBPATH . "templates/$templateName/" . self::KEY_FILE_NAME;
-        $keyPath = str_replace(array('\\', '//'), DIRECTORY_SEPARATOR, $keyPath);
+        $keyPath = str_replace(['\\', '//'], DIRECTORY_SEPARATOR, $keyPath);
 
         if (file_exists($keyPath)) {
             $this->licenseType = self::TYPE_NONE;
@@ -105,7 +105,7 @@ class TComponentData { // TLicense
         }
         $key = $templateName . $domain . $dummy;
         // changing some valid symbols to "unlawful" for domain names
-        $key = str_replace(array('e', 'y', 'u', 'i', 'o', 'a'), array('@', '%', '$', '^', '&', '!'), $key);
+        $key = str_replace(['e', 'y', 'u', 'i', 'o', 'a'], ['@', '%', '$', '^', '&', '!'], $key);
         $key = sha1($key);
         $key = array_reverse(str_split($key));
         $key = base64_encode(implode("", $key));

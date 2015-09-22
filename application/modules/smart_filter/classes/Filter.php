@@ -60,7 +60,7 @@ class Filter {
             return false;
         }
 
-        if (in_array(get_class($model), array('SCategory', 'SBrands'))) {
+        if (in_array(get_class($model), ['SCategory', 'SBrands'])) {
             $this->model = $model;
         }
     }
@@ -153,13 +153,13 @@ class Filter {
             return false;
         }
 
-        $resultArray = array();
+        $resultArray = [];
 
         $propertiesInGet = $this->get['p'];
 
-        $array_products = array();
+        $array_products = [];
         foreach ($propertiesInGet as $pkey => $pvalue) {
-            $arr_prod = array();
+            $arr_prod = [];
             foreach ($pvalue as $pv) {
 
                 $this->db->where('property_id', (int) $pkey);
@@ -245,10 +245,10 @@ class Filter {
      * @param array $brands
      * @return array
      */
-    private function getProductsInBrandCount($brands = array()) {
+    private function getProductsInBrandCount($brands = []) {
         if (is_array($brands)) {
 
-            $productIds = array();
+            $productIds = [];
 
             $array_products = $this->propGetSelect;
 
@@ -357,7 +357,7 @@ class Filter {
      * @param type $properties
      * @return type
      */
-    private function getProductsInProperties($properties = array()) {
+    private function getProductsInProperties($properties = []) {
 
         $this->db->distinct()
             ->select('shop_products.id as id, shop_product_properties_data.value as val, shop_product_properties_data.property_id as propid')
@@ -372,7 +372,7 @@ class Filter {
         $this->filterProductFromPriceGet();
 
         if (isset($this->get['brand']) && is_array($this->get['brand'])) {
-            $brands_ids = array();
+            $brands_ids = [];
             foreach ($this->get['brand'] as $brandId) {
                 $brands_ids[] = $brandId;
             }
@@ -385,7 +385,7 @@ class Filter {
 
         foreach ($properties as $key => $item) {
             $array_products = $this->getProductIdFromPropGet();
-            $propArr = array();
+            $propArr = [];
             if (count($productSelectMain)) {
                 foreach ($productSelectMain as $prod) {
                     if (is_array($array_products)) {
@@ -440,7 +440,7 @@ class Filter {
      */
     private function syncDataPos($data_origin, $data_sync) {
 
-        $arr_aux = array();
+        $arr_aux = [];
         foreach ($data_sync as $d_s) {
             foreach ($data_origin as $d_o) {
                 if ($d_s == $d_o['value']) {

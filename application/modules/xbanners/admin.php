@@ -52,7 +52,7 @@ class Admin extends BaseAdminController {
 
     /**
      * Edit banner page
-     * @param int $id - banner id
+     * @param integer $id - banner id
      * @param string $locale - locale name
      * @throws \Propel\Runtime\Exception\PropelException
      */
@@ -108,9 +108,9 @@ class Admin extends BaseAdminController {
 
     /**
      * Create/Update banner image
-     * @param int $bannerId - banner id
+     * @param integer $bannerId - banner id
      * @param string $locale - locale name
-     * @param int $imageId - image id
+     * @param integer $imageId - image id
      */
     public function saveImage($bannerId, $locale, $imageId = NULL) {
         try {
@@ -177,8 +177,8 @@ class Admin extends BaseAdminController {
 
     /**
      * Delete banner slide image file
-     * @param int $bannerId - banner id
-     * @param int $imageId - banner image id
+     * @param integer $bannerId - banner id
+     * @param integer $imageId - banner image id
      * @param string $locale - locale name
      */
     public function deleteSlideImage($bannerId, $imageId, $locale) {
@@ -195,8 +195,8 @@ class Admin extends BaseAdminController {
 
     /**
      * Delete banner slide
-     * @param int $bannerId - banner id
-     * @param int $imageId - image id
+     * @param integer $bannerId - banner id
+     * @param integer $imageId - image id
      * @param string $locale - locale name
      * @throws \Propel\Runtime\Exception\PropelException
      */

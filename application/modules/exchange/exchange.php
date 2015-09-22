@@ -16,7 +16,7 @@ use CMSFactory\ModuleSettings;
 class Exchange extends \MY_Controller {
 
     /** array which contains 1c settings  */
-    private $my_config = array();
+    private $my_config = [];
 
     /** default directory for saving files from 1c */
     private $tempDir;
@@ -24,13 +24,13 @@ class Exchange extends \MY_Controller {
     /** contains default locale */
     private $locale;
 
-    private $allowed_image_extensions = array();
+    private $allowed_image_extensions = [];
 
     private $login;
 
     private $password;
 
-    private $brand = array();
+    private $brand = [];
 
     /** Runtime variable */
     private $time = 0;
@@ -92,7 +92,7 @@ class Exchange extends \MY_Controller {
             $this->brand = load_brand();
         }
 
-        $this->allowed_image_extensions = array('jpg', 'jpeg', 'png', 'gif');
+        $this->allowed_image_extensions = ['jpg', 'jpeg', 'png', 'gif'];
 
         //define first get command parameter
         $method = 'command_';
@@ -136,7 +136,7 @@ class Exchange extends \MY_Controller {
         if (is_really_writable(BACKUPFOLDER)) {
             \libraries\Backup::create()->createBackup("zip", "exchange");
         } else {
-            $this->error_log(langf('Can not create a database snapshot, check the folder {0} on writing possibility', 'exchange', array(BACKUPFOLDER)));
+            $this->error_log(langf('Can not create a database snapshot, check the folder {0} on writing possibility', 'exchange', [BACKUPFOLDER]));
         }
     }
 
@@ -154,27 +154,27 @@ class Exchange extends \MY_Controller {
     public function _install() {
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) or exit;
-        $fields = array(
-            'id' => array(
+        $fields = [
+            'id' => [
                 'type' => 'INT',
                 'auto_increment' => true
-            ),
-            'external_id' => array(
+            ],
+            'external_id' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255',
                 'null' => true,
-            ),
-            'property_id' => array(
+            ],
+            'property_id' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255',
                 'null' => true,
-            ),
-            'value' => array(
+            ],
+            'value' => [
                 'type' => 'VARCHAR',
                 'constraint' => '20',
                 'null' => true,
-            )
-        );
+            ]
+        ];
 
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', true);

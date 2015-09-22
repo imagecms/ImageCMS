@@ -16,19 +16,19 @@ final class Categories extends ExchangeBase {
      * Parsed categories from XML to one-dimention array
      * @var array
      */
-    private $categoriesXml = array();
+    private $categoriesXml = [];
 
     /**
      *
      * @var array
      */
-    private $new = array();
+    private $new = [];
 
     /**
      *
      * @var array
      */
-    private $existing = array();
+    private $existing = [];
 
     /**
      *
@@ -39,7 +39,7 @@ final class Categories extends ExchangeBase {
      *
      * @var array
      */
-    private $categoriesNames = array();
+    private $categoriesNames = [];
 
     /**
      * Creates one-dimention array with categories from XML-file
@@ -60,12 +60,12 @@ final class Categories extends ExchangeBase {
                 $name = (string) $category->Наименование;
             }
 
-            $this->categoriesXml[$externalId] = array(
+            $this->categoriesXml[$externalId] = [
                 'name' => $name,
                 'active' => (string) $category->Статус == 'Удален' ? 0 : 1,
                 'external_id' => $externalId,
                 'parent_external_id' => $parent === null ? 0 : $parent
-            );
+            ];
 
             if (isset($category->Группы)) {
                 $this->processCategories($category->Группы->Группа, $externalId);
@@ -136,16 +136,16 @@ final class Categories extends ExchangeBase {
      * @param array $categoriesExternalIds
      */
     private function getPreparedData(array $categoriesExternalIds) {
-        $dbArray = array();
+        $dbArray = [];
         foreach ($categoriesExternalIds as $externalId) {
             // fitment of category url (might be busy)
             $url = translit_url($this->categoriesXml[$externalId]['name']);
             // preparing array for insert
-            $dbArray[] = array(
+            $dbArray[] = [
                 'external_id' => $externalId,
                 'url' => $url,
                 'active' => $this->categoriesXml[$externalId]['active'],
-            );
+            ];
         }
         return $dbArray;
     }
@@ -159,20 +159,20 @@ final class Categories extends ExchangeBase {
         // UPDATING INSERTED CATEGORIES (add parent ids & full path)
         $this->dataLoad->getNewData('categories'); // getting dategories form db again
         // getting only categories which was inserted
-        $categories = array();
+        $categories = [];
         // "parent data" is in $this->categories (db),
         foreach ($this->categories as $categoryId => $categoryData) {
             if (in_array($categoryData['external_id'], $categoriesExternalIds)) {
-                $categories[$categoryData['id']] = array(
+                $categories[$categoryData['id']] = [
                     'id' => $categoryData['id'],
                     'parent_id' => $this->getParentIdDb($categoryData['external_id'])
-                );
+                ];
             }
         }
 
         // creating id-paths and url-paths of each category
         foreach ($categories as $categoryId => $categoryData) {
-            $currentPathIds = array();
+            $currentPathIds = [];
             $currentPathUrl = $this->categories[$categoryId]['url'];
 
             $neededCid = $categoryData['parent_id'];
@@ -191,14 +191,14 @@ final class Categories extends ExchangeBase {
     }
 
     private function geti18nData($categoriesExternalIds) {
-        $i18n = array();
+        $i18n = [];
         foreach ($this->categories as $categoryId => $categoryData) {
             if (in_array($categoryData['external_id'], $categoriesExternalIds)) {
-                $i18n[] = array(
+                $i18n[] = [
                     'id' => $categoryData['id'],
                     'locale' => $this->locale,
                     'name' => $this->categoriesXml[$categoryData['external_id']]['name']
-                );
+                ];
             }
         }
         return $i18n;
@@ -258,7 +258,7 @@ final class Categories extends ExchangeBase {
      */
     public function categoryExists2($externalId, $returnCategoryId = FALSE) {
         if (null === $this->externalIds) {
-            $this->externalIds = array();
+            $this->externalIds = [];
             foreach ($this->categories as $categoryId => $categoryData) {
                 if (!empty($categoryData['external_id'])) {
                     $this->externalIds[$categoryData['external_id']] = $categoryId;

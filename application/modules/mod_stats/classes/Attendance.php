@@ -49,12 +49,12 @@ class Attendance {
             return;
         }
 
-        $this->attendanceData = array(
+        $this->attendanceData = [
             'id_user' => $userId,
             'type_id' => $typeId,
             'id_entity' => $coreData['id'],
             'time_add' => time(),
-        );
+        ];
     }
 
     /**

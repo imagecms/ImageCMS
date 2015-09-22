@@ -25,7 +25,7 @@ class Star_rating extends MY_Controller {
 
     private $new_rating = 0;
 
-    private $list_for_show = array('main', 'category', 'brand', 'product', 'shop_category', 'page');
+    private $list_for_show = ['main', 'category', 'brand', 'product', 'shop_category', 'page'];
 
     public function __construct() {
         parent::__construct();
@@ -52,7 +52,7 @@ class Star_rating extends MY_Controller {
         //prepare array with pages which can display "Star rating"
         $this->list_for_show = json_decode($get_settings['settings'], true);
         if ($this->list_for_show == null) {
-            $this->list_for_show = array();
+            $this->list_for_show = [];
         }
         $id = $this->core->core_data['id'];
         $type = $this->core->core_data['data_type'];
@@ -66,12 +66,12 @@ class Star_rating extends MY_Controller {
                 $rating_s = 0;
             }
 
-            $data = array(
+            $data = [
                 'id_type' => $item->getId(),
                 'type' => 'product',
                 'votes' => $item->getVotes(),
                 'rating' => $rating_s
-            );
+            ];
             $template = 'product_star_rating';
         } else {
             if (in_array($type, array_keys($this->list_for_show))) {
@@ -81,12 +81,12 @@ class Star_rating extends MY_Controller {
                 } else {
                     $rating_s = 0;
                 }
-                $data = array(
+                $data = [
                     'id' => $rating->id,
                     'type' => $rating->type,
                     'votes' => $rating->votes,
                     'rating' => $rating_s
-                );
+                ];
 
                 $template = 'star_rating';
             } else {
@@ -114,9 +114,9 @@ class Star_rating extends MY_Controller {
      * @return string|null
      */
     public function ajax_rate() {
-        $id = $_POST['cid'];
-        $type = $_POST['type'];
-        $rating = (int) $_POST['val'];
+        $id = $this->input->post('cid');
+        $type = $this->input->post('type');
+        $rating = (int) $this->input->post('val');
 
         if ($id != null && $type != null && !$this->session->userdata('voted_g' . $id . $type) == true) {
             //Check if rating exists
@@ -124,20 +124,20 @@ class Star_rating extends MY_Controller {
             if ($check != null) {
                 $this->new_votes = $check->votes + 1;
                 $this->new_rating = $check->rating + $rating;
-                $data = array(
+                $data = [
                     'votes' => $this->new_votes,
                     'rating' => $this->new_rating
-                );
+                ];
                 $rating_res = $this->new_rating / $this->new_votes * 20;
                 $votes_res = $this->new_votes;
                 $this->rating_model->update_rating($id, $type, $data);
             } else {
-                $data = array(
+                $data = [
                     'id_type' => $id,
                     'type' => $type,
                     'votes' => 1,
                     'rating' => $rating
-                );
+                ];
                 $votes_res = 1;
                 $rating_res = $rating * 20;
                 $this->rating_model->insert_rating($data);
@@ -164,13 +164,13 @@ class Star_rating extends MY_Controller {
             //If ajax request than return data for with new rating and votes
             if ($this->input->is_ajax_request()) {
                 return json_encode(
-                    array("rate" => "$rating_res",
+                    ["rate" => "$rating_res",
                             "votes" => "$votes_res"
-                        )
+                        ]
                 );
             }
         } else {
-            return json_encode(array("rate" => null));
+            return json_encode(["rate" => null]);
         }
     }
 
@@ -180,35 +180,35 @@ class Star_rating extends MY_Controller {
     public function _install() {
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) OR exit;
-        $fields = array(
-            'id' => array(
+        $fields = [
+            'id' => [
                 'type' => 'INT',
                 'auto_increment' => TRUE
-            ),
-            'id_type' => array(
+            ],
+            'id_type' => [
                 'type' => 'VARCHAR',
                 'constraint' => '25',
                 'null' => TRUE,
-            ),
-            'type' => array(
+            ],
+            'type' => [
                 'type' => 'VARCHAR',
                 'constraint' => '25',
                 'null' => TRUE,
-            ),
-            'votes' => array(
+            ],
+            'votes' => [
                 'type' => 'INT',
-            ),
-            'rating' => array(
+            ],
+            'rating' => [
                 'type' => 'INT',
-            ),
-        );
+            ],
+        ];
 
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->create_table('rating');
 
         $this->db->where('name', 'star_rating');
-        $this->db->update('components', array('enabled' => 1));
+        $this->db->update('components', ['enabled' => 1]);
     }
 
     /**

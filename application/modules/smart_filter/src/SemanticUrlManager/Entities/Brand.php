@@ -7,6 +7,4 @@
  */
 class Brand {
 
-
-
 }

@@ -72,7 +72,7 @@ class ModuleDependence extends DependenceBase {
             ->get('components')
             ->result_array();
 
-        $this->components = array();
+        $this->components = [];
         foreach ($components as $row) {
             $this->components[] = $row['identif'];
         }
@@ -115,10 +115,10 @@ class ModuleDependence extends DependenceBase {
                 $module = $this->name;
                 if (method_exists($this->ci->$module, '_install')) {
                     // Make module install
-                    $data = array(
+                    $data = [
                         'name' => $this->name,
                         'identif' => $this->name
-                    );
+                    ];
 
                     $this->ci->db->insert('components', $data);
 

@@ -107,51 +107,51 @@ class Found_less_expensive extends MY_Controller {
     public function _install() {
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) OR exit;
-        $fields = array(
-            'id' => array(
+        $fields = [
+            'id' => [
                 'type' => 'INT',
                 'auto_increment' => TRUE
-            ),
-            'name' => array(
+            ],
+            'name' => [
                 'type' => 'VARCHAR',
                 'constraint' => '70',
                 'null' => TRUE,
-            ),
-            'email' => array(
+            ],
+            'email' => [
                 'type' => 'VARCHAR',
                 'constraint' => '50',
                 'null' => TRUE,
-            ),
-            'phone' => array(
+            ],
+            'phone' => [
                 'type' => 'VARCHAR',
                 'constraint' => '50',
                 'null' => TRUE,
-            ),
-            'question' => array(
+            ],
+            'question' => [
                 'type' => 'VARCHAR',
                 'constraint' => '250',
                 'null' => TRUE,
-            ),
-            'link' => array(
+            ],
+            'link' => [
                 'type' => 'VARCHAR',
                 'constraint' => '150',
                 'null' => TRUE,
-            ),
-            'productUrl' => array(
+            ],
+            'productUrl' => [
                 'type' => 'VARCHAR',
                 'constraint' => '250',
                 'null' => TRUE,
-            ),
-            'date' => array(
+            ],
+            'date' => [
                 'type' => 'INT',
                 'null' => TRUE,
-            ),
-            'status' => array(
+            ],
+            'status' => [
                 'type' => 'VARCHAR',
                 'constraint' => '150',
                 'null' => TRUE,
-            ),
-        );
+            ],
+        ];
 
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', TRUE);
@@ -160,9 +160,9 @@ class Found_less_expensive extends MY_Controller {
         $this->db->where('name', 'found_less_expensive');
         $this->db->update(
             'components',
-            array(
+            [
             'enabled' => 1,
-            'autoload' => 1)
+            'autoload' => 1]
         );
     }
 

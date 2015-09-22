@@ -23,7 +23,7 @@ final class Pages extends BaseFinder {
     /**
      * @param string $word
      * @param string $language
-     * @param int $limit
+     * @param integer $limit
      * @return Result
      */
     public function getResultsFor($word, $language, $limit = 10) {

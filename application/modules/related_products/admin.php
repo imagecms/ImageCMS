@@ -21,7 +21,7 @@ class Admin extends BaseAdminController {
 
     /**
      * Get products autocomplete
-     * @param type $type
+     * @param string $type
      */
     public function ajaxGetProductList($type = NULL) {
         $products = new SProductsQuery;
@@ -55,11 +55,11 @@ class Admin extends BaseAdminController {
 
         $products = $products->distinct()->find();
 
-        foreach ($products as $key => $product) {
+        foreach ($products as $product) {
             if (!in_array($product->getId(), $search_forbidden)) {
                 $name = $product->getName();
                 $lable = ShopCore::encode($product->getId() . ' - ' . $name . '(' . $product->getNumber() . ')');
-                $response[] = array(
+                $response[] = [
                     'label' => $lable,
                     'name' => ShopCore::encode($product->getName()),
                     'id' => $product->getId(),
@@ -68,7 +68,7 @@ class Admin extends BaseAdminController {
                     'value' => $product->getId(),
                     'category' => $product->getCategoryId(),
                     'cs' => \Currency\Currency::create()->getSymbol(),
-                );
+                ];
             }
         }
 

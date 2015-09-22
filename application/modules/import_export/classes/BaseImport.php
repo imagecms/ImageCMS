@@ -88,19 +88,19 @@ class BaseImport extends CI_Model {
      * Content
      * @var array
      */
-    public $content = array();
+    public $content = [];
 
     /**
      * Settings
      * @var array
      */
-    public $settings = array();
+    public $settings = [];
 
     /**
      * Possible attributes
      * @var array
      */
-    public $possibleAttributes = array();
+    public $possibleAttributes = [];
 
     /**
      * Count products in CSV file
@@ -128,9 +128,9 @@ class BaseImport extends CI_Model {
 
     /**
      * Start CSV Import
-     * @param int $offers The final position
-     * @param int $limit Step
-     * @param int $countProd count products
+     * @param integer $offers The final position
+     * @param integer $limit Step
+     * @param integer $countProd count products
      * @return null|false
      * @access public
      * @author Kaero
@@ -169,8 +169,8 @@ class BaseImport extends CI_Model {
 
     /**
      * Validate Information and parse CSV. As a goal we have $content variable with file information.
-     * @param int $offers The final position
-     * @param int $limit Step
+     * @param integer $offers The final position
+     * @param integer $limit Step
      * @return false|null
      * @access public
      * @author Kaero
@@ -226,8 +226,8 @@ class BaseImport extends CI_Model {
 
     /**
      * File parsing
-     * @param int $offers The final position
-     * @param int $limit Step
+     * @param integer $offers The final position
+     * @param integer $limit Step
      * @param resurs $file
      * @return boolean
      */
@@ -297,7 +297,7 @@ class BaseImport extends CI_Model {
      */
     public function setSettings($settings) {
         $this->settings = $settings;
-        $this->attributes = array_diff(explode(',', $this->settings['attributes']), array(null));
+        $this->attributes = array_diff(explode(',', $this->settings['attributes']), [null]);
         return $this;
     }
 
@@ -346,7 +346,7 @@ class BaseImport extends CI_Model {
      */
     public function makeAttributesList() {
         if (!count($this->possibleAttributes)) {
-            $this->possibleAttributes = array(
+            $this->possibleAttributes = [
                 'skip' => lang('Skip column', 'import_export'),
                 'name' => lang('Product Name', 'import_export'),
                 'url' => lang('URL', 'import_export'),
@@ -371,7 +371,7 @@ class BaseImport extends CI_Model {
                 'mett' => lang('Meta Title', 'import_export'),
                 'metd' => lang('Meta Description', 'import_export'),
                 'metk' => lang('Meta Keywords', 'import_export')
-            );
+            ];
 
             $properties = $this->db->query(
                 '

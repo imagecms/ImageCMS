@@ -628,7 +628,7 @@ class Commentsapi extends Comments {
 
     /**
      * Get count answers to comment by id
-     * @param int $commentId
+     * @param integer $commentId
      * @return boolean|int
      */
     public function getCountCommentAnswersByCommentId($commentId) {

@@ -78,19 +78,19 @@ class ParentEmail extends \MY_Controller {
      * Array of errors
      * @var array
      */
-    public $errors = array();
+    public $errors = [];
 
     /**
      * Array of data
      * @var array
      */
-    public $data_model = array();
+    public $data_model = [];
 
     /**
      * List of accepted params
      * @var array
      */
-    public $accepted_params = array(
+    public $accepted_params = [
         'name',
         'from',
         'from_email',
@@ -102,7 +102,7 @@ class ParentEmail extends \MY_Controller {
         'admin_message_active',
         'admin_email',
         'description',
-    );
+    ];
 
     public function __construct() {
         parent::__construct();
@@ -186,13 +186,13 @@ class ParentEmail extends \MY_Controller {
             } else {
                 //Registering event is success
                 \CMSFactory\Events::create()->registerEvent(
-                    array(
+                    [
                     'from' => $this->from,
                     'from_email' => $this->from_email,
                     'send_to' => $this->send_to,
                     'theme' => $this->theme,
                     'message' => $this->message
-                        ),
+                        ],
                     'ParentEmail:userSend'
                 );
                 \CMSFactory\Events::runFactory();
@@ -218,13 +218,13 @@ class ParentEmail extends \MY_Controller {
             } else {
                 //Registering event is success
                 \CMSFactory\Events::create()->registerEvent(
-                    array(
+                    [
                     'from' => $this->from,
                     'from_email' => $this->from_email,
                     'send_to' => $this->send_to,
                     'theme' => $this->theme,
                     'message' => $this->message
-                        ),
+                        ],
                     'ParentEmail:adminSend'
                 );
                 \CMSFactory\Events::runFactory();
@@ -255,17 +255,17 @@ class ParentEmail extends \MY_Controller {
      * 'description'
      * @return boolean
      */
-    public function create($data = array()) {
-        if ($_POST) {
+    public function create($data = []) {
+        if ($this->input->post()) {
             $this->form_validation->set_rules('mail_name', lang('Template name', 'cmsemail'), 'required|alpha_dash');
             $this->form_validation->set_rules('from_email', lang('From email', 'cmsemail'), 'valid_email');
             $this->form_validation->set_rules('mail_theme', lang('Template theme', 'cmsemail'), 'required');
 
-            if ($_POST['userMailTextRadio']) {
+            if ($this->input->post('userMailTextRadio')) {
                 $this->form_validation->set_rules('userMailText', lang('Template user mail', 'cmsemail'), 'required');
             }
 
-            if ($_POST['adminMailTextRadio']) {
+            if ($this->input->post('adminMailTextRadio')) {
                 $this->form_validation->set_rules('adminMailText', lang('Template admin mail', 'cmsemail'), 'required');
             }
 
@@ -295,6 +295,7 @@ class ParentEmail extends \MY_Controller {
 
     /**
      *
+     * @param integer $id ID of element
      * @param array $data keys from list:
      * 'name',
      * 'from',
@@ -307,19 +308,18 @@ class ParentEmail extends \MY_Controller {
      * 'admin_message_active',
      * 'admin_email',
      * 'description'
-     * @param int $id ID of element
      * @return boolean
      */
-    public function edit($id, $data = array()) {
-        if ($_POST) {
+    public function edit($id, $data = []) {
+        if ($this->input->post()) {
             $this->form_validation->set_rules('from_email', lang('From email', 'cmsemail'), 'valid_email');
             $this->form_validation->set_rules('mail_theme', lang('Template theme', 'cmsemail'), 'required');
 
-            if ($_POST['userMailTextRadio']) {
+            if ($this->input->post('userMailTextRadio')) {
                 $this->form_validation->set_rules('userMailText', lang('Template user mail', 'cmsemail'), 'required');
             }
 
-            if ($_POST['adminMailTextRadio']) {
+            if ($this->input->post('adminMailTextRadio')) {
                 $this->form_validation->set_rules('adminMailText', lang('Template admin mail', 'cmsemail'), 'required');
             }
 

@@ -66,11 +66,11 @@ class discount_api extends \MY_Controller {
         foreach ($this->baseDiscount->discountType['certificate'] as $disc) {
             if ($disc['key'] == $key and $disc['is_gift']) {
                 $value = $this->baseDiscount->getDiscountValue($disc, $totalPrice);
-                return json_encode(array('key' => $disc['key'], 'val_orig' => $value, 'value' => \ShopCore::app()->SCurrencyHelper->convert($value), 'gift_array' => $disc));
+                return json_encode(['key' => $disc['key'], 'val_orig' => $value, 'value' => \ShopCore::app()->SCurrencyHelper->convert($value), 'gift_array' => $disc]);
                 break;
             }
         }
-        return json_encode(array('error' => true, 'mes' => lang('Invalid code try again', 'mod_discount')));
+        return json_encode(['error' => true, 'mes' => lang('Invalid code try again', 'mod_discount')]);
     }
 
     /**
@@ -86,7 +86,7 @@ class discount_api extends \MY_Controller {
      * @return json
      * @copyright (c) 2013, ImageCMS
      */
-    public function getDiscount($option = array(), $typeReturn = null) {
+    public function getDiscount($option = [], $typeReturn = null) {
 
         if (count($option) > 0) {
             \mod_discount\classes\BaseDiscount::prepareOption($option);
@@ -152,7 +152,7 @@ class discount_api extends \MY_Controller {
      * @return array
      * @copyright (c) 2013, ImageCMS
      */
-    public function getUserDiscount($option = array()) {
+    public function getUserDiscount($option = []) {
         if (count($option) > 0) {
             \mod_discount\classes\BaseDiscount::prepareOption($option);
         }
@@ -281,23 +281,23 @@ class discount_api extends \MY_Controller {
             ->get('shop_product_variants')
             ->result_array();
         foreach ($productVariants as $var) {
-            $arr_for_discount = array(
+            $arr_for_discount = [
                 'product_id' => $var['id'],
                 'category_id' => $var['category_id'],
                 'brand_id' => $var['brand_id'],
                 'vid' => $var['var_id'],
                 'id' => $var['id']
-            );
+            ];
             \CMSFactory\assetManager::create()->discount = 0;
             \mod_discount\Discount_product::create()->getProductDiscount($arr_for_discount);
 
             if ($discount = \CMSFactory\assetManager::create()->discount) {
                 $priceNew = ((float) $var['price'] - (float) $discount['discount_value'] < 0) ? 1 : (float) $var['price'] - (float) $discount['discount_value'];
-                $dataProductUpdate = array(
+                $dataProductUpdate = [
                     'price' => ($discount) ? $priceNew : $var['price'],
                     'price_no_disc' => $var['price'],
                     'disc' => $discount['discount_value'],
-                );
+                ];
                 $this->db->where('id', $var['var_id'])->update('shop_product_variants', $dataProductUpdate);
                 $cnt++;
             }
@@ -330,7 +330,7 @@ class discount_api extends \MY_Controller {
     public function render_gift_input($mes = null) {
         if (\mod_discount\classes\BaseDiscount::checkModuleInstall()) {
             if ($this->is_gift_certificat()) {
-                \CMSFactory\assetManager::create()->setData(array('mes' => $mes))->render('gift', true);
+                \CMSFactory\assetManager::create()->setData(['mes' => $mes])->render('gift', true);
             }
         }
     }
@@ -342,7 +342,7 @@ class discount_api extends \MY_Controller {
      */
     public function render_gift_succes() {
         $json = json_decode($this->input->get('json'));
-        \CMSFactory\assetManager::create()->setData(array('gift' => $json))->render('gift_succes', true);
+        \CMSFactory\assetManager::create()->setData(['gift' => $json])->render('gift_succes', true);
     }
 
     /**
@@ -350,7 +350,7 @@ class discount_api extends \MY_Controller {
      * @deprecated since version 4.5.2
      * @copyright (c) 2013, ImageCMS
      */
-    public function get_user_discount_api($option = array()) {
+    public function get_user_discount_api($option = []) {
         return $this->getUserDiscount($option);
     }
 
@@ -371,7 +371,7 @@ class discount_api extends \MY_Controller {
     public function get_discount_tpl_from_json_api() {
         $json = json_decode($this->input->get('json'));
 
-        \CMSFactory\assetManager::create()->setData(array('discount' => $json))->render('discount_order', true);
+        \CMSFactory\assetManager::create()->setData(['discount' => $json])->render('discount_order', true);
     }
 
     /**
@@ -379,7 +379,7 @@ class discount_api extends \MY_Controller {
      * @deprecated since version 4.5.2
      * @copyright (c) 2013, ImageCMS
      */
-    public function get_discount_api($option = array()) {
+    public function get_discount_api($option = []) {
         return $this->getDiscount($option);
     }
 

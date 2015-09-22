@@ -60,9 +60,9 @@ class Cli extends \MY_Controller {
     public function create_admin($name = null, $email = null, $password = null) {
 
         // This is defaults. Order must be like in function arguments
-        $argumentsDefaults = array('admin', 'ad@min.com', 'admin');
+        $argumentsDefaults = ['admin', 'ad@min.com', 'admin'];
         $argumentsValues = func_get_args();
-        $data = array();
+        $data = [];
 
         foreach ($argumentsDefaults as $i => $value) {
             $data[$i] = $argumentsValues[$i] ? : $argumentsDefaults[$i];

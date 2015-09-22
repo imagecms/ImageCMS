@@ -59,7 +59,7 @@ class Discount_product {
     private function createChildDiscount($discount) {
 
         if (count($discount) > 0) {
-            $resultDiscount = array();
+            $resultDiscount = [];
             foreach ($discount as $disc) {
                 $resultDiscount[] = $disc;
                 if ($disc['child']) {
@@ -103,12 +103,12 @@ class Discount_product {
             return false;
         }
 
-        \CMSFactory\assetManager::create()->discount = array(
+        \CMSFactory\assetManager::create()->discount = [
             'discoun_all_product' => $discountArray,
             'discount_max' => $discountMax,
             'discount_value' => $discountValue,
             'price' => $price
-        );
+        ];
 
         return true;
     }
@@ -123,7 +123,7 @@ class Discount_product {
      */
     private function getDiscountOneProduct($product) {
 
-        $arrDiscount = array();
+        $arrDiscount = [];
 
         foreach ($this->discountForProduct as $disc) {
             foreach ($product as $key => $value) {

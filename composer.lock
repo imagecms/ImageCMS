@@ -1938,12 +1938,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/imagecms/CodingStandard.git",
-                "reference": "489a64d3fc0270185bfa69618fdd87eb0fa71923"
+                "reference": "53c06da816ad30c68fa52f8e151e42b25122970a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/imagecms/CodingStandard/zipball/489a64d3fc0270185bfa69618fdd87eb0fa71923",
-                "reference": "489a64d3fc0270185bfa69618fdd87eb0fa71923",
+                "url": "https://api.github.com/repos/imagecms/CodingStandard/zipball/53c06da816ad30c68fa52f8e151e42b25122970a",
+                "reference": "53c06da816ad30c68fa52f8e151e42b25122970a",
                 "shasum": ""
             },
             "require": {
@@ -1962,7 +1962,7 @@
                 }
             ],
             "description": "ImageCMS Coding Standard",
-            "time": "2015-09-08 12:08:38"
+            "time": "2015-09-22 12:38:09"
         },
         {
             "name": "nubera-ebusiness/intercom-php",
@@ -3213,16 +3213,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.22.1",
+            "version": "v1.22.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "b7fc2469fa009897871fb95b68237286fc54a5ad"
+                "reference": "79249fc8c9ff62e41e217e0c630e2e00bcadda6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/b7fc2469fa009897871fb95b68237286fc54a5ad",
-                "reference": "b7fc2469fa009897871fb95b68237286fc54a5ad",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/79249fc8c9ff62e41e217e0c630e2e00bcadda6a",
+                "reference": "79249fc8c9ff62e41e217e0c630e2e00bcadda6a",
                 "shasum": ""
             },
             "require": {
@@ -3270,7 +3270,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2015-09-15 06:50:16"
+            "time": "2015-09-22 13:59:32"
         }
     ],
     "aliases": [],

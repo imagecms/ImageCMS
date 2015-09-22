@@ -11,11 +11,11 @@ class Related_products_model extends CI_Model {
      */
     const TABLE = 'mod_related_products';
 
-    private $updateData = array();
+    private $updateData = [];
 
-    private $alreadyUpdated = array();
+    private $alreadyUpdated = [];
 
-    private $mainProductData = array();
+    private $mainProductData = [];
 
     public function __construct() {
         parent::__construct();
@@ -23,22 +23,22 @@ class Related_products_model extends CI_Model {
 
     /**
      * Save related products
-     * @param int $main_product_id - main product id
+     * @param integer $main_product_id - main product id
      * @param array $related_ids - related products ids
      * @return boolean
      */
     public function saveProducts($main_product_id, $related_ids) {
-        $data = array();
-        $reverse_data = array();
+        $data = [];
+        $reverse_data = [];
         foreach ($related_ids as $product_id) {
             if ($product_id != $main_product_id) {
-                $data[] = array('product_parent' => $main_product_id, 'product_child' => $product_id);
-                $reverse_data[] = array('product_parent' => $product_id, 'product_child' => $main_product_id);
+                $data[] = ['product_parent' => $main_product_id, 'product_child' => $product_id];
+                $reverse_data[] = ['product_parent' => $product_id, 'product_child' => $main_product_id];
             }
 
             foreach ($related_ids as $child_id) {
                 if ($product_id != $child_id) {
-                    $reverse_data[] = array('product_parent' => $product_id, 'product_child' => $child_id);
+                    $reverse_data[] = ['product_parent' => $product_id, 'product_child' => $child_id];
                 }
             }
         }
@@ -83,7 +83,7 @@ class Related_products_model extends CI_Model {
 
     /**
      * Update hit, hot, action valuer of related products
-     * @param int $main_product_id - main product id
+     * @param integer $main_product_id - main product id
      * @param array $related_ids - related products array
      * @return boolean
      */
@@ -107,12 +107,12 @@ class Related_products_model extends CI_Model {
         foreach ($related_ids as $product_id) {
             if (!$this->alreadyUpdated[$product_id]) {
 
-                $this->updateData[] = array(
+                $this->updateData[] = [
                     'id' => $product_id,
                     'hit' => $this->mainProductData['hit'],
                     'hot' => $this->mainProductData['hot'],
                     'action' => $this->mainProductData['action']
-                );
+                ];
 
                 $related_prods = $this->getRelatedProdyctsIds($product_id);
                 if ($related_prods) {
@@ -125,14 +125,14 @@ class Related_products_model extends CI_Model {
 
     /**
      * Get all related products to main product
-     * @param int $main_product_id - main product id
+     * @param integer $main_product_id - main product id
      * @return boolean
      */
     public function getProducts($main_product_id) {
         $related_products = $this->db->where('product_parent', $main_product_id)->get(self::TABLE);
         if ($related_products) {
             $related_products = $related_products->result_array();
-            $product_ids = array();
+            $product_ids = [];
             foreach ($related_products as $product) {
                 $product_ids[] = (int) $product['product_child'];
             }
@@ -148,21 +148,21 @@ class Related_products_model extends CI_Model {
 
     /**
      * Returns related product ids array
-     * @param int $main_product_id - main product id
+     * @param integer $main_product_id - main product id
      * @return array
      */
     public function getRelatedProdyctsIds($main_product_id) {
         $related_products = $this->db->where('product_parent', $main_product_id)->get(self::TABLE);
         if ($related_products) {
             $related_products = $related_products->result_array();
-            $related_products_ids = array();
+            $related_products_ids = [];
             foreach ($related_products as $product) {
                 $related_products_ids[] = (int) $product['product_child'];
             }
 
             return $related_products_ids;
         }
-        return array();
+        return [];
     }
 
     /**
@@ -192,7 +192,7 @@ class Related_products_model extends CI_Model {
         }
 
         $this->db->where('name', 'related_products')
-            ->update('components', array('autoload' => '1', 'enabled' => '1'));
+            ->update('components', ['autoload' => '1', 'enabled' => '1']);
 
         $this->db->query(
             "CREATE TABLE IF NOT EXISTS `" . self::TABLE . "` (

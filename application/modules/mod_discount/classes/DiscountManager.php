@@ -21,7 +21,7 @@ if (!defined('BASEPATH')) {
  */
 class DiscountManager extends MY_Controller {
 
-    public $error = array();
+    public $error = [];
 
     public function __construct() {
 
@@ -267,7 +267,7 @@ class DiscountManager extends MY_Controller {
         $this->validation($postArray);
 
         if (count($this->error) > 0) {
-            return array('success' => false, 'error' => $this->error);
+            return ['success' => false, 'error' => $this->error];
         }
 
         if (!$postArray['key']) {
@@ -279,10 +279,10 @@ class DiscountManager extends MY_Controller {
 
         // Check range for cumulative discount
         if ($typeDiscount == "comulativ" AND $this->discount_model_admin->checkRangeForCumulativeDiscount($postArray[$typeDiscount])) {
-            return array('success' => false, 'error' => array(lang('Has been already created with the cumulative discount value', 'mod_discount')));
+            return ['success' => false, 'error' => [lang('Has been already created with the cumulative discount value', 'mod_discount')]];
         }
 
-        $data = array(
+        $data = [
             'key' => $postArray['key'],
             'type_value' => $postArray['type_value'],
             'value' => $postArray['value'],
@@ -290,7 +290,7 @@ class DiscountManager extends MY_Controller {
             'date_begin' => strtotime($postArray['date_begin']),
             'date_end' => strtotime($postArray['date_end']),
             'active' => '1'
-        );
+        ];
 
         if ($postArray['max_apply']) {
             $data['max_apply'] = $postArray['max_apply'];
@@ -313,11 +313,11 @@ class DiscountManager extends MY_Controller {
 
         $discountId = $this->discount_model_admin->insertDataToDB('mod_shop_discounts', $data);
 
-        $data_locale = array(
+        $data_locale = [
             'id' => $discountId,
             'locale' => MY_Controller::getCurrentLocale(),
             'name' => $postArray['name']
-        );
+        ];
 
         $typeDiscountData = $postArray[$typeDiscount];
 
@@ -330,9 +330,9 @@ class DiscountManager extends MY_Controller {
         }
 
         if ($result && $discountId) {
-            return array('success' => true, 'id' => $discountId);
+            return ['success' => true, 'id' => $discountId];
         } else {
-            return array('success' => false, 'error' => array(lang('Error creating discount', 'mod_discount')));
+            return ['success' => false, 'error' => [lang('Error creating discount', 'mod_discount')]];
         }
     }
 
@@ -341,14 +341,14 @@ class DiscountManager extends MY_Controller {
      * @access public
      * @author DevImageCms
      * @param array $postArray
-     * @param int $id (optional) need to be specified on discount editing
+     * @param integer $id (optional) need to be specified on discount editing
      * @copyright (c) 2013, ImageCMS
      */
     public function validation($postArray, $id = null) {
 
         $typeDiscount = $postArray['type_discount'];
 
-        if (!in_array($typeDiscount, array('certificate', 'all_order', 'comulativ', 'user', 'group_user', 'category', 'product', 'brand'))) {
+        if (!in_array($typeDiscount, ['certificate', 'all_order', 'comulativ', 'user', 'group_user', 'category', 'product', 'brand'])) {
             $this->error[] = lang('Wrong type discount');
         }
 
@@ -433,7 +433,7 @@ class DiscountManager extends MY_Controller {
 
     /**
      * Helper function for checking that user have no discounts already
-     * @param int $userId id of user
+     * @param integer $userId id of user
      * @return boolean true if user have no discounts alreaty, false otherwise
      */
     public static function validateUserDiscount($userId) {
@@ -449,7 +449,7 @@ class DiscountManager extends MY_Controller {
 
     /**
      * Helper function for checking that user-group have no discounts already
-     * @param int $groupId id of group
+     * @param integer $groupId id of group
      * @return boolean true if user-group have no discounts alreaty, false otherwise
      */
     public static function validateGroupDiscount($groupId) {
@@ -466,8 +466,8 @@ class DiscountManager extends MY_Controller {
     /**
      * Generate key for discount
      *
-     * @param int $charsCount
-     * @param int $digitsCount
+     * @param integer $charsCount
+     * @param integer $digitsCount
      * @static
      * @return string
      */

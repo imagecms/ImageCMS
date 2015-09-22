@@ -212,11 +212,11 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
             return FALSE;
         }
 
-        $data = array(
+        $data = [
             'access' => $this->input->post('access'),
             'description' => $wlDescription,
             'title' => $title,
-        );
+        ];
 
         return parent::updateWL($id, $data, $desc);
     }
@@ -295,7 +295,7 @@ class BaseWishlist extends \wishlist\classes\ParentWishlist {
                 return FALSE;
             } else {
 
-                $this->dataModel = array('upload_data' => (array) $this->upload);
+                $this->dataModel = ['upload_data' => (array) $this->upload];
                 $this->wishlist_model->setUserImage($this->input->post('userID'), $this->dataModel['upload_data']['file_name']);
                 return TRUE;
             }

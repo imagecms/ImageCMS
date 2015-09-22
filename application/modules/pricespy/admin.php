@@ -33,7 +33,7 @@ class Admin extends BaseAdminController {
             ->get()
             ->result();
 
-        $this->template->add_array(array('spys' => $spys));
+        $this->template->add_array(['spys' => $spys]);
 
         if (!$this->ajaxRequest) {
             $this->display_tpl('list');

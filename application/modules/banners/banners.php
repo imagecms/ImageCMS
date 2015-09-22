@@ -36,7 +36,7 @@ class Banners extends MY_Controller {
     /**
      * Render banner into template
      * @access public
-     * @param int $id is id entity (brand, category, product, page) .... for main id = 0
+     * @param integer $id is id entity (brand, category, product, page) .... for main id = 0
      * @param integer $group
      * @return false|null
      * @author L.Andriy <l.andriy@siteimage.com.ua>
@@ -72,7 +72,7 @@ class Banners extends MY_Controller {
                 \CMSFactory\assetManager::create()
                         ->registerStyle('style')
                         ->registerScript('jquery.cycle.all.min')
-                        ->setData(array('banners' => $ban))
+                        ->setData(['banners' => $ban])
                         ->render($tpl, TRUE);
 
                 $baners_view = ob_get_clean();
@@ -123,7 +123,7 @@ class Banners extends MY_Controller {
         $this->db->query($sql);
 
         $this->db->where('name', 'banners');
-        $this->db->update('components', array('enabled' => 1));
+        $this->db->update('components', ['enabled' => 1]);
         $this->banner_model->createGroupsTable();
     }
 
@@ -154,7 +154,7 @@ class Banners extends MY_Controller {
     public function get_main_lang($flag = null) {
 
         $lang = $this->db->get('languages')->result_array();
-        $lan_array = array();
+        $lan_array = [];
         foreach ($lang as $l) {
             $lan_array[$l['identif']] = $l['id'];
             $lan_array_rev[$l['id']] = $l['identif'];
@@ -176,7 +176,7 @@ class Banners extends MY_Controller {
             return $lang_ident;
         }
         if ($flag == null) {
-            return array('id' => $lang_id, 'identif' => $lang_ident);
+            return ['id' => $lang_id, 'identif' => $lang_ident];
         }
     }
 

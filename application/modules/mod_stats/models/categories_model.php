@@ -41,7 +41,7 @@ class Categories_model extends \CI_Model {
 
     /**
      * Get child categories ids
-     * @param int $catId
+     * @param integer $catId
      * @return boolean|array
      */
     public function getAllChildCategoriesIds($catId = null) {
@@ -84,31 +84,31 @@ class Categories_model extends \CI_Model {
 
     /**
      * Helper function for categories attendance
-     * @param int $parentId (optional) id of category childs wich to return
+     * @param integer $parentId (optional) id of category childs wich to return
      * @return array
      */
     public function getCategoriesList($parentId = NULL) {
         $locale = MY_Controller::defaultLocale();
         $this->db
             ->select(
-                array(
-                    'shop_category.id',
-                    'shop_category.parent_id',
-                    'shop_category_i18n.name',
-                    'shop_category.full_path_ids'
-                    )
+                [
+                            'shop_category.id',
+                            'shop_category.parent_id',
+                            'shop_category_i18n.name',
+                            'shop_category.full_path_ids'
+                        ]
             )
             ->join('shop_category_i18n', "shop_category_i18n.id=shop_category.id AND shop_category_i18n.locale='" . $locale . "'")
             ->order_by('position', 'asc');
 
         if (is_numeric($parentId)) {
-            $this->db->where(array('parent_id' => $parentId));
+            $this->db->where(['parent_id' => $parentId]);
         }
 
         $result = $this->db->get('shop_category')
             ->result_array();
-
-        for ($i = 0; $i < count($result); $i++) {
+        $count = count($result);
+        for ($i = 0; $i < $count; $i++) {
             $result[$i]['full_path_ids'] = unserialize($result[$i]['full_path_ids']);
         }
 

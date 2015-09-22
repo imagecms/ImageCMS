@@ -37,7 +37,7 @@ class ExchangeDataLoad {
      *
      * @var array
      */
-    private $data = array();
+    private $data = [];
 
     /**
      *
@@ -98,7 +98,7 @@ class ExchangeDataLoad {
 
     private function getCategories() {
         $result = $this->db->get('shop_category');
-        $categories = array();
+        $categories = [];
         foreach ($result->result_array() as $category) {
             $categories[$category['id']] = $category;
         }
@@ -107,7 +107,7 @@ class ExchangeDataLoad {
 
     private function getProducts() {
         $result = $this->db->get('shop_products');
-        $products = array();
+        $products = [];
         foreach ($result->result_array() as $product) {
             if (!empty($product['external_id'])) {
                 $products[$product['external_id']] = $product;
@@ -117,8 +117,8 @@ class ExchangeDataLoad {
     }
 
     private function getProductIds() {
-        $result = $this->db->select(array('id', 'external_id'))->get('shop_products');
-        $products = array();
+        $result = $this->db->select(['id', 'external_id'])->get('shop_products');
+        $products = [];
         foreach ($result->result_array() as $product) {
             if (!empty($product['external_id'])) {
                 $products[$product['external_id']] = $product['id'];
@@ -129,7 +129,7 @@ class ExchangeDataLoad {
 
     private function getVariantsIds() {
         $result = $this->db->select('external_id, id')->get('shop_product_variants')->result_array();
-        $array = array();
+        $array = [];
         foreach ($result as $variant) {
             if (!empty($variant['external_id'])) {
                 $array[$variant['external_id']] = $variant['id'];
@@ -140,7 +140,7 @@ class ExchangeDataLoad {
 
     private function getVariantImages() {
         $result = $this->db->select('external_id, mainImage')->get('shop_product_variants')->result_array();
-        $array = array();
+        $array = [];
         foreach ($result as $variant) {
             if (!empty($variant['external_id']) & !empty($variant['mainImage'])) {
                 $array[$variant['external_id']] = $variant['mainImage'];
@@ -162,7 +162,7 @@ class ExchangeDataLoad {
 
     /**
      * Returns data of category by broductId
-     * @param int $productId
+     * @param integer $productId
      * @return array category data
      */
     public function getProductCategoryData($productId) {
@@ -191,7 +191,7 @@ class ExchangeDataLoad {
     }
 
     private function getPropertiesData() {
-        $arr = array();
+        $arr = [];
         foreach ($this->db->get('shop_product_properties_data')->result_array() as $val) {
             $arr[$val['property_id'] . '_' . $val['product_id']] = $val['value'];
         }

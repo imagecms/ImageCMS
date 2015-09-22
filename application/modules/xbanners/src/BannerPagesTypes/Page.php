@@ -2,6 +2,8 @@
 
 namespace Banners\BannerPagesTypes;
 
+use CI;
+
 /**
  * Created by PhpStorm.
  * User: mark
@@ -18,7 +20,7 @@ class Page extends BasePageType {
     }
 
     public function getPages() {
-        $pages = $query = \CI::$APP->db
+        $pages = CI::$APP->db
             ->where('lang', $this->localeId)
             ->order_by('title')
             ->get('content');

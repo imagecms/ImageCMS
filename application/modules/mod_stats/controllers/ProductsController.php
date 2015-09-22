@@ -32,9 +32,9 @@ class ProductsController extends ControllerBase {
      * Get data for char
      */
     public function getCategoriesChartData() {
-        $params = array(
+        $params = [
             'categoryId' => isset($_GET['catId']) ? $_GET['catId'] : 0,
-        );
+        ];
         $catIds = $this->controller->products_model->getSubcategoriesIds($params['categoryId']);
         //        if (!$catIds && $params['categoryId'] != 'main' ){
         //            $catIds = array($params['categoryId']);
@@ -58,9 +58,9 @@ class ProductsController extends ControllerBase {
      * Get data for char
      */
     public function getBrandsChartData() {
-        $params = array(
+        $params = [
             'topBrandsCount' => isset($_GET['stbc']) ? $_GET['stbc'] : 20,
-        );
+        ];
 
         $brands = $this->controller->products_model->getBrandsCountsData($params['topBrandsCount'], NULL, TRUE);
 
@@ -70,7 +70,7 @@ class ProductsController extends ControllerBase {
 
     /**
      * Render template with data
-     * @param int $perPage
+     * @param integer $perPage
      */
     public function productInfo($perPage = 0) {
         // Get products model
@@ -111,7 +111,7 @@ class ProductsController extends ControllerBase {
         //        $model = $model->orderBy('AddedToCartCount', 'DESC');
         // Order by params
         if (isset(ShopCore::$_GET['orderMethod']) && ShopCore::$_GET['orderMethod'] != '') {
-            $order_methods = array('Id', 'Name', 'Category', 'Views', 'AddedToCartCount');
+            $order_methods = ['Id', 'Name', 'Category', 'Views', 'AddedToCartCount'];
             if (in_array(ShopCore::$_GET['orderMethod'], $order_methods)) {
                 switch (ShopCore::$_GET['orderMethod']) {
                     case 'Id':

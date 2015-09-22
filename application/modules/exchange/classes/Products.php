@@ -33,17 +33,17 @@ class Products extends ExchangeBase {
      * his old images need to be deleted
      * @var array
      */
-    protected $imagesToDelete = array();
+    protected $imagesToDelete = [];
 
     /**
      * @var array
      */
-    protected $imagesToResize = array();
+    protected $imagesToResize = [];
 
     /**
      * @var array
      */
-    protected $imagesToResizeAdditional = array();
+    protected $imagesToResizeAdditional = [];
 
     protected $runResize = FALSE;
 
@@ -51,20 +51,20 @@ class Products extends ExchangeBase {
      *
      * @var array
      */
-    protected $productProCats = array();
+    protected $productProCats = [];
 
     /**
      *
      * @var array
      */
-    protected $i18nExisting = array();
+    protected $i18nExisting = [];
 
     // compare data
-    protected $compare_exIds = array();
+    protected $compare_exIds = [];
 
-    protected $compare_urls = array();
+    protected $compare_urls = [];
 
-    protected $compare_properties = array();
+    protected $compare_properties = [];
 
     /**
      * If products have 'ХарактеристикиТовара' run fix
@@ -79,7 +79,7 @@ class Products extends ExchangeBase {
      * gathers just created product urls to prevent equal addresses
      * @var array
      */
-    protected $productsNewUrls = array();
+    protected $productsNewUrls = [];
 
     /**
      *
@@ -91,13 +91,13 @@ class Products extends ExchangeBase {
      *
      * @var array
      */
-    private $additionalParentsCategories = array();
+    private $additionalParentsCategories = [];
 
     /**
      *
      * @var array
      */
-    private $existingProductsIds = array();
+    private $existingProductsIds = [];
 
     /**
      *
@@ -109,7 +109,7 @@ class Products extends ExchangeBase {
      * Array of products main categorys
      * @var array
      */
-    private $parentCat = array();
+    private $parentCat = [];
 
     private $ignoreExistingDescriptions = false;
 
@@ -209,10 +209,10 @@ class Products extends ExchangeBase {
             foreach ($pathIds as $categoryId) {
                 $this->db->insert(
                     'shop_product_categories',
-                    array(
+                    [
                     'category_id' => $categoryId,
                     'product_id' => $product->id,
-                        )
+                        ]
                 );
             }
         }
@@ -229,7 +229,7 @@ class Products extends ExchangeBase {
 
     /**
      * Getting from base data of product for fast compare (external_ids, urls...)
-     * @param int $type if empty = all,
+     * @param integer $type if empty = all,
      *  1 - only external_ids,
      *  2 - only urls,
      *  3 - only properties
@@ -254,7 +254,7 @@ class Products extends ExchangeBase {
     }
 
     protected function getUrls() {
-        $productExIds = array();
+        $productExIds = [];
         foreach ($this->products as $product) {
             if (!empty($product['external_id'])) {
                 $productExIds[$product['external_id']] = $product['id'];
@@ -276,11 +276,11 @@ class Products extends ExchangeBase {
      *
      */
     protected function processProducts1() {
-        $propertiesDataUpdate = array();
-        $productPropDTDel = array();
+        $propertiesDataUpdate = [];
+        $productPropDTDel = [];
 
         // for variants
-        $productsUniqueExIds = array();
+        $productsUniqueExIds = [];
 
         // passing each product
         foreach ($this->importData as $product) {
@@ -361,7 +361,7 @@ class Products extends ExchangeBase {
                 $this->insertCollector->addData('shop_products', $products, $exId);
                 $this->insertCollector->addData('shop_products_i18n', $i18n, $exId);
 
-                $this->insertCollector->addData('shop_product_categories', array('category_id' => $products['category_id']), $exId);
+                $this->insertCollector->addData('shop_product_categories', ['category_id' => $products['category_id']], $exId);
                 foreach ($shopProductPropertiesData as $propertyData) {
                     $this->insertCollector->updateData('shop_product_properties_data', $propertyData, $exId);
                 }
@@ -371,7 +371,7 @@ class Products extends ExchangeBase {
             } else { // EXISTING
                 $productId = $this->compare_exIds[$exId];
                 $this->existingProductsIds[] = $productId;
-                $variant = array_merge($variant, array('product_id' => $productId));
+                $variant = array_merge($variant, ['product_id' => $productId]);
 
                 if (isset($this->variantImages[$exId]) & empty($variant['mainImage'])) {
                     $variant['mainImage'] = $this->variantImages[$exId];
@@ -398,24 +398,24 @@ class Products extends ExchangeBase {
                         continue;
                     }
                 } else {
-                    $this->updateCollector->addData('shop_product_variants', array_merge($variant, array('product_id' => $productId)));
+                    $this->updateCollector->addData('shop_product_variants', array_merge($variant, ['product_id' => $productId]));
                     $this->updateCollector->addData('shop_product_variants_i18n', $variantI18n, $exId);
                 }
 
                 if (isset($products['category_id'])) { // will be updated by product_id
                     $this->updateCollector->addData(
                         'shop_product_categories',
-                        array(
+                        [
                         'product_id' => $productId,
                         'category_id' => $products['category_id'],
-                            )
+                            ]
                     );
                 }
-                $this->updateCollector->addData('shop_products', array_merge($products, array('id' => $productId, 'url' => $url)));
-                $this->updateCollector->addData('shop_products_i18n', array_merge($i18n, array('id' => $productId)));
+                $this->updateCollector->addData('shop_products', array_merge($products, ['id' => $productId, 'url' => $url]));
+                $this->updateCollector->addData('shop_products_i18n', array_merge($i18n, ['id' => $productId]));
 
                 foreach ($shopProductPropertiesData as $propertyData) {
-                    $propertiesDataUpdate[] = array_merge($propertyData, array('product_id' => $productId));
+                    $propertiesDataUpdate[] = array_merge($propertyData, ['product_id' => $productId]);
                 }
                 $productPropDTDel[] = $productId;
                 if ($additionalImages != NULL) {
@@ -480,9 +480,9 @@ class Products extends ExchangeBase {
         $propertiesData = &$this->insertCollector->getData('shop_product_properties_data');
         $images = &$this->insertCollector->getData('shop_product_images');
         $productCategories = &$this->insertCollector->getData('shop_product_categories');
-        $imagesToDelete = array();
-        $propertiesData_ = array();
-        $imagesForInsert = array();
+        $imagesToDelete = [];
+        $propertiesData_ = [];
+        $imagesForInsert = [];
 
         foreach ($this->productIds as $externalId => $productId) {
             if (FALSE == isset($products[$externalId])) {
@@ -491,7 +491,7 @@ class Products extends ExchangeBase {
             $productsI18n[$externalId]['id'] = $productId;
             if (isset($propertiesData[$externalId])) {
                 foreach ($propertiesData[$externalId] as $oneProductPropData) {
-                    $propertiesData_[] = array_merge($oneProductPropData, array('product_id' => $productId));
+                    $propertiesData_[] = array_merge($oneProductPropData, ['product_id' => $productId]);
                 }
             }
             if (isset($images[$externalId])) {
@@ -597,8 +597,8 @@ class Products extends ExchangeBase {
 
         $this->updateBatch('shop_product_variants_i18n', $variantsI18n, 'id');
 
-        $productsIdsWithImages = array();
-        $additionalImages = array();
+        $productsIdsWithImages = [];
+        $additionalImages = [];
         $additionalImages_ = &$this->updateCollector->getData('shop_product_images');
         $countAddImgs = count($additionalImages_);
         for ($i = 0; $i < $countAddImgs; $i++) {
@@ -633,14 +633,14 @@ class Products extends ExchangeBase {
      * @return array
      */
     protected function pass1Helper_getProductData(\SimpleXMLElement $product, $exId) {
-        $products = array(
+        $products = [
             'external_id' => $exId,
             'active' => (string) $product->Статус == 'Удален' ? 0 : 1,
-        );
-        $i18n = array(
+        ];
+        $i18n = [
             'locale' => $this->locale,
             'name' => (string) $product->Наименование,
-        );
+        ];
 
         $hasDescription = false;
 
@@ -680,7 +680,7 @@ class Products extends ExchangeBase {
             }
         }
 
-        return array($products, $i18n);
+        return [$products, $i18n];
     }
 
     /**
@@ -689,11 +689,11 @@ class Products extends ExchangeBase {
      * @return array
      */
     protected function pass1Helper_getVariantData(\SimpleXMLElement $product, $isNew = true) {
-        $variant = array(
+        $variant = [
             'external_id' => (string) $product->Ид,
             'number' => (string) $product->Артикул,
             'currency' => $this->mainCurrencyId
-        );
+        ];
 
         //$name = (string) $product->Наименование;
         $name = '';
@@ -707,18 +707,18 @@ class Products extends ExchangeBase {
             }
         }
 
-        $variantI18n = array(
+        $variantI18n = [
             'locale' => $this->locale,
             'name' => trim($name),
-        );
+        ];
 
         if ($isNew) {
-            $defaultVariantsValues = array('price' => '0.00000', 'stock' => 0, 'position' => 0, 'price_in_main' => '0.00000');
+            $defaultVariantsValues = ['price' => '0.00000', 'stock' => 0, 'position' => 0, 'price_in_main' => '0.00000'];
         } else {
-            $defaultVariantsValues = array();
+            $defaultVariantsValues = [];
         }
 
-        return array(array_merge($variant, $defaultVariantsValues), $variantI18n);
+        return [array_merge($variant, $defaultVariantsValues), $variantI18n];
     }
 
     /**
@@ -768,17 +768,17 @@ class Products extends ExchangeBase {
                 if (file_exists($this->tempDir . $path)) {
                     $copied = copy($this->tempDir . $path, './uploads/shop/products/origin/additional/' . $fileName);
                     if ($copied != FALSE) {
-                        $additionalImages[] = array(
+                        $additionalImages[] = [
                             'position' => $i - 1,
                             'image_name' => $fileName
-                        );
+                        ];
                     }
                 }
             }
             $i++;
         }
 
-        return array($additionalImages, $mainImage);
+        return [$additionalImages, $mainImage];
     }
 
     /**
@@ -790,7 +790,7 @@ class Products extends ExchangeBase {
         $brandIdentif = Properties::getInstance()->getBrandIdentif();
         $brandId = '';
 
-        $shopProductPropertiesData = array();
+        $shopProductPropertiesData = [];
         // processing properties of product
         if (isset($product->ЗначенияСвойств)) {
             foreach ($product->ЗначенияСвойств->ЗначенияСвойства as $property) {
@@ -817,11 +817,11 @@ class Products extends ExchangeBase {
                     $propertyValue = Properties::getInstance()->dictionaryProperties[$propertyExId][$propertyValue];
                 }
 
-                $shopProductPropertiesData[] = array(
+                $shopProductPropertiesData[] = [
                     'property_id' => $propertyId,
                     'value' => $propertyValue,
                     'locale' => $this->locale,
-                );
+                ];
 
                 if ($categoryId != NULL) {
                     $newRow = TRUE;
@@ -832,13 +832,13 @@ class Products extends ExchangeBase {
                         }
                     }
                     if ($newRow == TRUE) {
-                        $this->productProCats[] = array('property_id' => $propertyId, 'category_id' => $categoryId); // TODO: то тоже тре бде потім розібрати
+                        $this->productProCats[] = ['property_id' => $propertyId, 'category_id' => $categoryId]; // TODO: то тоже тре бде потім розібрати
                     }
                 }
             }
         }
 
-        return array($shopProductPropertiesData, $brandId);
+        return [$shopProductPropertiesData, $brandId];
     }
 
     // ----------------------- end of HELPERS ------------------------------
@@ -865,14 +865,14 @@ class Products extends ExchangeBase {
             ->get('shop_products')
             ->result();
 
-        $insertData = array();
+        $insertData = [];
         foreach ($products as $product) {
             $path = unserialize($product->full_path_ids);
             foreach ($path as $fpi) {
-                $newData = array(
+                $newData = [
                     'category_id' => $fpi,
                     'product_id' => $product->id
-                );
+                ];
                 if ($this->isProductCategoriesRowNew($newData) == FALSE) {
                     continue;
                 }
@@ -908,14 +908,14 @@ class Products extends ExchangeBase {
         //  array:
         //      [property_id][array property_locales][array property_values]
 
-        $productPropertiesOrdered = array();
+        $productPropertiesOrdered = [];
 
         foreach ($productTableProperties as $one) {
             if (!isset($productPropertiesOrdered[$one['property_id']])) {
-                $productPropertiesOrdered[$one['property_id']] = array();
+                $productPropertiesOrdered[$one['property_id']] = [];
             }
             if (!isset($productPropertiesOrdered[$one['property_id']][$one['locale']])) {
-                $productPropertiesOrdered[$one['property_id']][$one['locale']] = array();
+                $productPropertiesOrdered[$one['property_id']][$one['locale']] = [];
             }
             if (!in_array($one['value'], $productPropertiesOrdered[$one['property_id']][$one['locale']])) {
                 array_push($productPropertiesOrdered[$one['property_id']][$one['locale']], $one['value']);
@@ -925,12 +925,12 @@ class Products extends ExchangeBase {
         foreach ($propertiesTableVAlues as $one) {
             $id = $one['id'];
             $locale = $one['locale'];
-            $insertData = array();
+            $insertData = [];
             $res = true;
             $error = false;
 
             if (key_exists($id, $productPropertiesOrdered) && key_exists($locale, $productPropertiesOrdered[$id])) {
-                $onePropertyValues = unserialize($one['data']) ? : array();
+                $onePropertyValues = unserialize($one['data']) ? : [];
                 $insertData['data'] = serialize(array_unique(array_merge($onePropertyValues, $productPropertiesOrdered[$id][$locale])));
                 $res = $res && $this->db->where('id', $id)->update('shop_product_properties_i18n', $insertData);
                 $error = $this->db->_error_message() ? : $error;

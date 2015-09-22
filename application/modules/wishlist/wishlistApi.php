@@ -1,5 +1,8 @@
 <?php
 
+use CMSFactory\assetManager;
+use wishlist\classes\BaseApi;
+
 //namespace wishlist;
 
 /**
@@ -7,7 +10,7 @@
  * Module Wishlist
  * @property wishlist_model $wishlist_model
  */
-class WishlistApi extends \wishlist\classes\BaseApi {
+class WishlistApi extends BaseApi {
 
     public function __construct() {
         parent::__construct();
@@ -37,7 +40,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
     /**
      * add item to wish list
      *
-     * @param int $varId - current variant id
+     * @param integer $varId - current variant id
      * @return string
      */
     public function addItem($varId) {
@@ -48,8 +51,8 @@ class WishlistApi extends \wishlist\classes\BaseApi {
     /**
      * move item to wish list
      *
-     * @param int $varId - current variant id
-     * @param int $wish_list_id - current wish list id
+     * @param integer $varId - current variant id
+     * @param integer $wish_list_id - current wish list id
      * @return string
      */
     public function moveItem($varId, $wish_list_id) {
@@ -60,8 +63,8 @@ class WishlistApi extends \wishlist\classes\BaseApi {
     /**
      * delete item from list
      *
-     * @param int $variant_id
-     * @param int $wish_list_id
+     * @param integer $variant_id
+     * @param integer $wish_list_id
      * @return string
      */
     public function deleteItem($variant_id, $wish_list_id) {
@@ -75,7 +78,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
      * @return string
      */
     public function deleteItemsByIds() {
-        parent::deleteItemsByIds($items);
+        parent::deleteItemsByIds();
         return $this->return_json();
     }
 
@@ -93,7 +96,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
     /**
      * get  most viewed wish lists
      *
-     * @param int $limit
+     * @param integer $limit
      * @return string
      */
     public function getMostViewedWishLists($limit = 10) {
@@ -104,7 +107,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
     /**
      * get user public wish list
      *
-     * @param int $user_id
+     * @param integer $user_id
      * @return string
      */
     public function user($user_id) {
@@ -125,7 +128,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
     /**
      * get most popular items
      *
-     * @param int $limit = 10
+     * @param integer $limit = 10
      * @return string
      */
     public function getMostPopularItems($limit = 10) {
@@ -156,7 +159,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
     /**
      * delete wish list
      *
-     * @param int $wish_list_id
+     * @param integer $wish_list_id
      * @return string
      */
     public function deleteWL($wish_list_id) {
@@ -177,10 +180,10 @@ class WishlistApi extends \wishlist\classes\BaseApi {
     /**
      * get wish list button
      *
-     * @param int $varId
+     * @param integer $varId
      * @return string
      */
-    public function renderWLButton($varId, $data = array()) {
+    public function renderWLButton($varId, $data = []) {
         if ($this->dx_auth->is_logged_in()) {
             $data['href'] = '/wishlist/renderPopup/' . $varId;
         } else {
@@ -204,8 +207,8 @@ class WishlistApi extends \wishlist\classes\BaseApi {
     /**
      * get popup
      *
-     * @param int $varId
-     * @param int $wish_list_id
+     * @param integer $varId
+     * @param integer $wish_list_id
      * @return string
      */
     public function renderPopup($varId, $wish_list_id = '') {
@@ -232,23 +235,23 @@ class WishlistApi extends \wishlist\classes\BaseApi {
      */
     public function renderPopupTpl($varId, $wish_list_id = '') {
         $wish_lists = $this->wishlist_model->getWishLists();
-        $data = array('wish_lists' => $wish_lists);
+        $data = ['wish_lists' => $wish_lists];
 
-        return $popup = \CMSFactory\assetManager::create()
-                ->registerStyle('style')
-                ->setData('class', 'btn')
-                ->setData('wish_list_id', $wish_list_id)
-                ->setData('varId', $varId)
-                ->setData($data)
-                ->setData('max_lists_count', $this->settings['maxListsCount'])
-                ->render('wishPopup', TRUE);
+        return assetManager::create()
+                        ->registerStyle('style')
+                        ->setData('class', 'btn')
+                        ->setData('wish_list_id', $wish_list_id)
+                        ->setData('varId', $varId)
+                        ->setData($data)
+                        ->setData('max_lists_count', $this->settings['maxListsCount'])
+                        ->render('wishPopup', TRUE);
     }
 
     /**
      * edit wish list
      *
-     * @param int $wish_list_id
-     * @param int $userID
+     * @param integer $wish_list_id
+     * @param integer $userID
      * @return string
      */
     public function editWL($wish_list_id, $userID = null) {
@@ -283,7 +286,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
     }
 
     public function renderEmail($wish_list_id) {
-        \CMSFactory\assetManager::create()
+        assetManager::create()
                 ->setData('wish_list_id', $wish_list_id)
                 ->render('sendEmail', TRUE);
     }
@@ -296,7 +299,7 @@ class WishlistApi extends \wishlist\classes\BaseApi {
         if ($user_id) {
             $wish_lists = $this->wishlist_model->getUserWishListsByID($user_id);
             $str = '[';
-            foreach ($wish_lists as $key => $value) {
+            foreach ($wish_lists as $value) {
                 $str .= '"' . $value['variant_id'] . '",';
             }
             echo rtrim($str, ',') . ']';
@@ -309,18 +312,18 @@ class WishlistApi extends \wishlist\classes\BaseApi {
      * @return string
      */
     private function return_json() {
-        $data = array();
+        $data = [];
         if ($this->dataModel) {
-            $data = array(
+            $data = [
                 'answer' => 'success',
                 'data' => $this->dataModel
-            );
+            ];
         } else {
             if ($this->errors) {
-                $data = array(
+                $data = [
                     'answer' => 'error',
                     'data' => $this->errors
-                );
+                ];
             }
         }
         return json_encode($data);

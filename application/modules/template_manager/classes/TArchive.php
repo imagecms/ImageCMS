@@ -20,7 +20,7 @@ class TArchive {
      * Files structure of archive
      * @var array
      */
-    private $tree = array();
+    private $tree = [];
 
     /**
      * Archive must have in root only one folder with template
@@ -33,13 +33,13 @@ class TArchive {
      * Color schemes of template
      * @var array
      */
-    private $colorSchemes = array();
+    private $colorSchemes = [];
 
     /**
      * Components of template
      * @var array
      */
-    private $components = array();
+    private $components = [];
 
     /**
      *
@@ -177,7 +177,7 @@ class TArchive {
         $firstElement = array_shift($pathArray);
         if (count($pathArray) > 0) {
             if (!isset($tree[$firstElement])) {
-                $tree[$firstElement] = array();
+                $tree[$firstElement] = [];
             }
             $this->add($pathArray, $isDir, $tree[$firstElement]);
         } else {

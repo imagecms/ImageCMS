@@ -11,10 +11,10 @@ if (!defined('BASEPATH')) {
  */
 class Comments_Widgets extends MY_Controller {
 
-    private $defaults = array(
+    private $defaults = [
         'comments_count' => 100,
         'symbols_count' => 0,
-    );
+    ];
 
     public function __construct() {
         parent::__construct();
@@ -24,7 +24,12 @@ class Comments_Widgets extends MY_Controller {
 
     // Get and display recent comments
 
-    public function recent_comments($widget = array()) {
+    /**
+     *
+     * @param array $widget
+     * @return string
+     */
+    public function recent_comments($widget = []) {
         if ($widget['settings'] == FALSE) {
             $settings = $this->defaults;
         } else {
@@ -52,11 +57,11 @@ class Comments_Widgets extends MY_Controller {
                 }
             }
 
-            return $this->template->fetch('widgets/' . $widget['name'], array('comments' => $comments));
+            return $this->template->fetch('widgets/' . $widget['name'], ['comments' => $comments]);
         }
     }
 
-    public function render($viewName, array $data = array(), $return = false) {
+    public function render($viewName, array $data = [], $return = false) {
         if (!empty($data)) {
             $this->template->add_array($data);
         }
@@ -73,7 +78,7 @@ class Comments_Widgets extends MY_Controller {
 
     // Configure widget settings
 
-    public function recent_comments_configure($action = 'show_settings', $widget_data = array()) {
+    public function recent_comments_configure($action = 'show_settings', $widget_data = []) {
         if ($this->dx_auth->is_admin() == FALSE) {
             exit; // Only admin access
         }
@@ -90,14 +95,14 @@ class Comments_Widgets extends MY_Controller {
                 if ($this->form_validation->run($this) == FALSE) {
                     showMessage(validation_errors());
                 } else {
-                    $data = array(
-                        'comments_count' => $_POST['comments_count'],
-                        'symbols_count' => $_POST['symbols_count']
-                    );
+                    $data = [
+                        'comments_count' => $this->input->post('comments_count'),
+                        'symbols_count' => $this->input->post('symbols_count')
+                    ];
 
                     $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
                     showMessage(lang("Settings have been saved", 'comments'));
-                    if ($_POST['action'] == 'tomain') {
+                    if ($this->input->post('action') == 'tomain') {
                         pjax('/admin/widgets_manager/index');
                     }
                 }
@@ -111,7 +116,7 @@ class Comments_Widgets extends MY_Controller {
 
     // Get and display recent product comments
 
-    public function recent_product_comments($widget = array()) {
+    public function recent_product_comments($widget = []) {
         if ($widget['settings'] == FALSE) {
             $settings = $this->defaults;
         } else {
@@ -138,13 +143,13 @@ class Comments_Widgets extends MY_Controller {
                 }
             }
 
-            return $this->template->fetch('widgets/' . $widget['name'], array('comments' => $comments));
+            return $this->template->fetch('widgets/' . $widget['name'], ['comments' => $comments]);
         }
     }
 
     // Configure widget settings
 
-    public function recent_product_comments_configure($action = 'show_settings', $widget_data = array()) {
+    public function recent_product_comments_configure($action = 'show_settings', $widget_data = []) {
         if ($this->dx_auth->is_admin() == FALSE) {
             exit; // Only admin access
         }
@@ -160,14 +165,14 @@ class Comments_Widgets extends MY_Controller {
                 if ($this->form_validation->run($this) == FALSE) {
                     showMessage(validation_errors());
                 } else {
-                    $data = array(
-                        'comments_count' => $_POST['comments_count'],
-                        'symbols_count' => $_POST['symbols_count']
-                    );
+                    $data = [
+                        'comments_count' => $this->input->post('comments_count'),
+                        'symbols_count' => $this->input->post('symbols_count')
+                    ];
 
                     $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
                     showMessage(lang("Settings have been saved", 'comments'));
-                    if ($_POST['action'] == 'tomain') {
+                    if ($this->input->post('action') == 'tomain') {
                         pjax('/admin/widgets_manager/index');
                     }
                 }
@@ -181,14 +186,14 @@ class Comments_Widgets extends MY_Controller {
 
     // Template functions
 
-    public function display_tpl($file, $vars = array()) {
+    public function display_tpl($file, $vars = []) {
         $this->template->add_array($vars);
 
         $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';
         $this->template->display('file:' . $file);
     }
 
-    public function fetch_tpl($file, $vars = array()) {
+    public function fetch_tpl($file, $vars = []) {
         $this->template->add_array($vars);
 
         $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';

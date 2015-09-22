@@ -20,8 +20,8 @@ class Discount_model_admin extends CI_Model {
     /**
      * Get discounts List
      * @param string $discountType
-     * @param int $rowCount
-     * @param int $offset
+     * @param integer $rowCount
+     * @param integer $offset
      * @return array
      */
     public function getDiscountsList($discountType = null, $rowCount = null, $offset = null, $locale) {
@@ -40,7 +40,7 @@ class Discount_model_admin extends CI_Model {
 
     /**
      * Change discount status active or not
-     * @param int $id
+     * @param integer $id
      * @return boolean
      */
     public function changeActive($id) {
@@ -59,7 +59,7 @@ class Discount_model_admin extends CI_Model {
         }
 
         // If updated active succes then return TRUE
-        if ($this->db->where('id', $id)->update('mod_shop_discounts', array('active' => $active))) {
+        if ($this->db->where('id', $id)->update('mod_shop_discounts', ['active' => $active])) {
             return true;
         }
 
@@ -97,7 +97,7 @@ class Discount_model_admin extends CI_Model {
     /**
      * get users by id name email
      * @param string $term
-     * @param int $limit
+     * @param integer $limit
      * return boolean|array
      */
     public function getUsersByIdNameEmail($term, $limit = 7) {
@@ -142,7 +142,7 @@ class Discount_model_admin extends CI_Model {
     /**
      *
      * @param string $term
-     * @param int $limit
+     * @param integer $limit
      * @return boolean|array
      */
     public function getProductsByIdNameNumber($term, $limit = 7, $locale = NULL) {
@@ -188,7 +188,7 @@ class Discount_model_admin extends CI_Model {
 
     /**
      * Update discount by id.
-     * @param int $id
+     * @param integer $id
      * @param array $data
      * @return boolean
      */
@@ -223,7 +223,7 @@ class Discount_model_admin extends CI_Model {
     /**
      * Check have any comulativ discount max endValue.
      *
-     * @param int $editDiscountId uses in order to not counting edited discount
+     * @param integer $editDiscountId uses in order to not counting edited discount
      * @return boolean
      */
     public function checkHaveAnyComulativDiscountMaxEndValue($editDiscountId = null) {
@@ -244,7 +244,7 @@ class Discount_model_admin extends CI_Model {
 
     /**
      * Get discount all data by id
-     * @param int $id
+     * @param integer $id
      * @return boolean|array
      */
     public function getDiscountAllDataById($id, $locale = null) {
@@ -274,7 +274,7 @@ class Discount_model_admin extends CI_Model {
 
     /**
      * Get username and email by id
-     * @param int $id
+     * @param integer $id
      * @return string|false
      */
     public function getUserNameAndEmailById($id) {
@@ -290,7 +290,7 @@ class Discount_model_admin extends CI_Model {
 
     /**
      * Get product name by id
-     * @param int $id
+     * @param integer $id
      * @return string|boolean
      */
     public function getProductById($id) {
@@ -499,7 +499,7 @@ class Discount_model_admin extends CI_Model {
         $this->db->query($sql);
 
         $this->db->where('name', 'mod_discount');
-        $this->db->update('components', array('enabled' => 1, 'autoload' => 1));
+        $this->db->update('components', ['enabled' => 1, 'autoload' => 1]);
     }
 
     /**
@@ -524,9 +524,9 @@ class Discount_model_admin extends CI_Model {
      * @return array
      */
     public function attributeLabels() {
-        return array(
+        return [
             'value' => ShopCore::t(lang('Value', 'mod_discount')),
-        );
+        ];
     }
 
     /**
@@ -534,13 +534,13 @@ class Discount_model_admin extends CI_Model {
      * @return array
      */
     public function rules() {
-        return array(
-            array(
+        return [
+            [
                 'field' => 'value',
                 'label' => lang('Value', 'mod_discount'),
                 'rules' => 'required|integer',
-            ),
-        );
+            ],
+        ];
     }
 
     /**

@@ -30,7 +30,7 @@ class DateInterval {
      *  - dateTo
      * @return string condition of date range
      */
-    public static function prepareDateBetweenCondition($field, array $params = array()) {
+    public static function prepareDateBetweenCondition($field, array $params = []) {
         $table = !isset($params['table']) ? "" : "`{$params['table']}`.";
         $betweenCondition = "";
         if (isset($params['dateFrom']) || isset($params['dateTo'])) {

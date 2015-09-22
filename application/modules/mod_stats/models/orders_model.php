@@ -36,7 +36,7 @@ class Orders_model extends CI_Model {
             $betweenCondition = "AND FROM_UNIXTIME(`date_created`) BETWEEN '{$dateFrom} 00:00:00' AND '{$dateTo} 23:59:59'";
         }
 
-        return array($paidCondition, $betweenCondition);
+        return [$paidCondition, $betweenCondition];
     }
 
     /**
@@ -54,7 +54,7 @@ class Orders_model extends CI_Model {
      *  - quantity
      *  - delivered
      */
-    public function getOrdersInfo(array $params = array()) {
+    public function getOrdersInfo(array $params = []) {
         list($paidCondition, $betweenCondition) = $this->prepareConditions($params);
 
         $interval = isset($params['interval']) ? $params['interval'] : NULL;
@@ -98,7 +98,7 @@ class Orders_model extends CI_Model {
         if ($result === FALSE) {
             return FALSE;
         }
-        $ordersData = array();
+        $ordersData = [];
         foreach ($result->result_array() as $row) {
             $ordersData[] = $row;
         }
@@ -120,23 +120,23 @@ class Orders_model extends CI_Model {
      *  - user_id
      * Get users info
      */
-    public function getUsers(array $params_ = array()) {
-        $params = array(
+    public function getUsers(array $params_ = []) {
+        $params = [
             'interval' => 'day',
             'dateFrom' => NULL,
             'dateTo' => NULL,
             'username' => NULL,
             'order_id' => NULL,
-        );
+        ];
         foreach ($params_ as $key => $value) {
             if (key_exists($key, $params)) {
                 $params[$key] = $params_[$key];
             }
         }
 
-        $codumns = array(
+        $codumns = [
             'date', 'orders_count', 'paid', 'unpaid', 'delivered', 'price_sum', 'products_count', 'quantity', 'orders_ids', 'username', 'user_id'
-        );
+        ];
 
         $orderBy = NULL;
         if ($this->input->get('orderMethod') && $this->input->get('order')) {

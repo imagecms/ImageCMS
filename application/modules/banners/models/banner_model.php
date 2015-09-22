@@ -138,17 +138,17 @@ class Banner_model extends CI_Model {
     public function createGroupsTable() {
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) OR exit;
-        $fields = array(
-            'id' => array(
+        $fields = [
+            'id' => [
                 'type' => 'INT',
                 'auto_increment' => TRUE
-            ),
-            'name' => array(
+            ],
+            'name' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255',
                 'null' => TRUE,
-            ),
-        );
+            ],
+        ];
 
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', TRUE);
@@ -157,12 +157,12 @@ class Banner_model extends CI_Model {
         if (!in_array('group', $this->getColumnNamesOfTable('mod_banner'))) {
             $this->dbforge->add_column(
                 'mod_banner',
-                array(
-                'group' => array(
+                [
+                'group' => [
                     'type' => 'VARCHAR',
                     'constraint' => '255',
                     'null' => TRUE,
-                ))
+                ]]
             );
         }
     }
@@ -172,7 +172,7 @@ class Banner_model extends CI_Model {
      */
     protected function getColumnNamesOfTable($tableName) {
         $result = $this->db->query('SHOW COLUMNS FROM `' . $tableName . '`');
-        $fields = array();
+        $fields = [];
         if ($result) {
             $tableFields = $result->result_array();
             $tableFieldsCount = count($tableFields);

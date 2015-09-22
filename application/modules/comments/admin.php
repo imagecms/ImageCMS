@@ -82,16 +82,6 @@ class Admin extends BaseAdminController {
                     $comments[$i]['page_url'] = site_url($query['cat_url'] . $query['url']);
                 }
             }
-            //
-            //            if ($status_all == 'all') {
-            //                $this->db->where('status', '0');
-            //                $this->db->or_where('status', '1');
-            //            } else {
-            //                $this->db->where('status', $status_all);
-            //            }
-            //
-            //            $this->db->from('comments');
-            //            $total = $this->db->count_all_results();
 
             if (is_array($comments)) {
                 $children = $this->proccess_child_comments($comments);
@@ -142,13 +132,13 @@ class Admin extends BaseAdminController {
         if ($comments) {
             $comments = array_splice($comments, (int) $off_set, (int) $this->per_page);
         } else {
-            $comments = array();
+            $comments = [];
         }
 
             //        $all_comments = count($this->db->get('comments')->result_array());
             \CMSFactory\assetManager::create()
             ->setData(
-                array(
+                [
                 'comments_cur_url' => site_url(trim_slashes($this->uri->uri_string())),
                 'comments' => $comments,
                 'status' => $status,
@@ -157,14 +147,14 @@ class Admin extends BaseAdminController {
                 'total_spam' => $this->comments->count_by_status(2),
                 'total_app' => $this->comments->count_by_status(0),
                 'all_comm_show' => $total,
-                )
+                ]
             )
             ->registerScript('admin')
             ->renderAdmin('comments_list');
     }
 
-    public function proccess_child_comments($comments = array()) {
-        $children = array();
+    public function proccess_child_comments($comments = []) {
+        $children = [];
         $i = 0;
         foreach ($comments as $comment) {
             if ($comment['parent'] != 0) {
@@ -177,12 +167,12 @@ class Admin extends BaseAdminController {
         return $children;
     }
 
-    public function render($viewName, array $data = array()) {
+    public function render($viewName, array $data = []) {
         if (!empty($data)) {
             $this->template->add_array($data);
         }
-
-        $this->template->show('file:' . 'application/' . getModContDirName('comments') . 'comments/templates/' . $viewName);
+        $modContDirName = getModContDirName('comments');
+        $this->template->show('file:' . "application/{$modContDirName}comments/templates/$viewName");
     }
 
     // Edit comment
@@ -196,12 +186,12 @@ class Admin extends BaseAdminController {
     // Update comment
 
     public function update() {
-        $data = array(
+        $data = [
             'text' => $this->input->post('text'),
             'user_name' => htmlspecialchars($this->input->post('user_name')),
             'user_mail' => htmlspecialchars($this->input->post('user_mail')),
             'status' => (int) $this->input->post('status'),
-        );
+        ];
 
         $this->comments->update($this->input->post('id'), $data);
 
@@ -221,11 +211,11 @@ class Admin extends BaseAdminController {
 
     public function update_status() {
         $this->db->where_in('id', $this->input->post('id'));
-        $this->db->update('comments', array('status' => $this->input->post('status')));
+        $this->db->update('comments', ['status' => $this->input->post('status')]);
 
         //        for children comments
         $this->db->where_in('parent', $this->input->post('id'));
-        $this->db->update('comments', array('status' => $this->input->post('status')));
+        $this->db->update('comments', ['status' => $this->input->post('status')]);
         /*
           $comment = $this->comments->get_one($this->input->post('id'));
 
@@ -309,14 +299,14 @@ class Admin extends BaseAdminController {
     }
 
     public function update_settings() {
-        $data = array(
+        $data = [
             'max_comment_length' => (int) $this->input->post('max_comment_length'),
             'period' => (int) $this->input->post('period'),
             'can_comment' => (int) $this->input->post('can_comment'),
             'use_captcha' => (bool) $this->input->post('use_captcha'),
             'use_moderation' => (bool) $this->input->post('use_moderation'),
             'order_by' => $this->input->post('order_by'),
-        );
+        ];
 
         $this->comments->save_settings($data);
         $this->lib_admin->log(lang("Comments settings was edited", "comments"));

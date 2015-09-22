@@ -15,11 +15,11 @@ class DemodataCategoriestemplates extends DemodataDirector {
      */
     public $node;
 
-    private $categoriesData = array();
+    private $categoriesData = [];
 
     private $ci;
 
-    private $categories_levels = array();
+    private $categories_levels = [];
 
     public function __construct(\SimpleXMLElement $node) {
         $this->node = $node;
@@ -90,7 +90,7 @@ class DemodataCategoriestemplates extends DemodataDirector {
         if ($categories) {
             $categories = $categories->result_array();
         } else {
-            $categories = array();
+            $categories = [];
         }
 
         foreach ($categories as $category) {

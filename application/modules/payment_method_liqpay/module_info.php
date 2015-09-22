@@ -2,7 +2,7 @@
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
-$com_info = array(
+$com_info = [
     'menu_name' => lang('LiqPay', 'payment_method_liqppay'), // Menu name
     'description' => lang('Метод оплаты LiqPay', 'payment_method_liqppay'), // Module Description
     'admin_type' => 'window', // Open admin class in new window or not. Possible values window/inside
@@ -12,6 +12,6 @@ $com_info = array(
     'version' => '0.1', // Module version
     'author' => 'v.dushko@imagecms.net', // Author info
     'icon_class' => 'icon-barcode'
-);
+];
 
 /* End of file module_info.php */

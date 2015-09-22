@@ -14,16 +14,16 @@ class Shop_news_model extends CI_Model {
      */
     public function saveCategories($contentId, $categories) {
         if ($this->db->where('content_id', $contentId)->get('mod_shop_news')->result_array() != null) {
-            $this->db->where('content_id', $contentId)->update('mod_shop_news', array('shop_categories_ids' => $categories));
+            $this->db->where('content_id', $contentId)->update('mod_shop_news', ['shop_categories_ids' => $categories]);
         } else {
-            $this->db->insert('mod_shop_news', array('content_id' => $contentId, 'shop_categories_ids' => $categories));
+            $this->db->insert('mod_shop_news', ['content_id' => $contentId, 'shop_categories_ids' => $categories]);
         }
         return TRUE;
     }
 
     /**
      * Return array of content pages ids
-     * @param int $categoryId
+     * @param integer $categoryId
      * @return type
      */
     public function getContentIds($categoryId) {
@@ -44,7 +44,7 @@ class Shop_news_model extends CI_Model {
 
     /**
      * Return product category by product id
-     * @param int $productId
+     * @param integer $productId
      * @return int
      */
     public function getProductCategory($productId) {

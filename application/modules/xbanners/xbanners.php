@@ -129,7 +129,7 @@ class Xbanners extends MY_Controller {
 
     /**
      * Go to banner url and run click statistic
-     * @param int $imageId - banner image Id
+     * @param integer $imageId - banner image Id
      */
     public function go($imageId) {
         if ($imageId) {

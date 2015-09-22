@@ -21,7 +21,7 @@ abstract class BaseFinder {
     /**
      * @param string $word
      * @param string $language
-     * @param int $limit
+     * @param integer $limit
      */
     public function getResultsFor($word, $language, $limit = 10) {
         /* @var $db \CI_DB_active_record */

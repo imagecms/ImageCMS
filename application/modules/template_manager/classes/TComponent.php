@@ -13,7 +13,7 @@ abstract class TComponent {
      * Data from table `template_settings` of each component
      * @var array
      */
-    protected static $componentsData = array();
+    protected static $componentsData = [];
 
     /**
      * Path to folder where component is located
@@ -60,7 +60,7 @@ abstract class TComponent {
      * Setting params of components into DB
      * @param array $params one dimentional associative array
      */
-    public function setParams($params = array()) {
+    public function setParams($params = []) {
         if (is_array($params) && !empty($params)) {
             \CI::$APP->db->where('component', $this->name)
                 ->where_in('key', array_keys($params))
@@ -70,11 +70,11 @@ abstract class TComponent {
                 \CI::$APP->db
                     ->insert(
                         'template_settings',
-                        array(
+                        [
                             'component' => $this->name,
                             'key' => $key,
                             'data' => $value
-                            )
+                            ]
                     );
             }
             return TRUE;
@@ -91,7 +91,7 @@ abstract class TComponent {
      */
     public function getParam($key = NULL, $force = FALSE) {
         if (!isset(self::$componentsData[$this->name]) || $force != FALSE) {
-            self::$componentsData[$this->name] = array();
+            self::$componentsData[$this->name] = [];
 
             $result = \CI::$APP->db
                 ->where('component', $this->name)
@@ -121,15 +121,15 @@ abstract class TComponent {
      * @param array $params - one dimentional associative array
      * @return boolean
      */
-    public function updateParams($params = array()) {
+    public function updateParams($params = []) {
         if (count($params) > 0) {
             foreach ($params as $key => $data) {
                 $component = \CI::$APP->db->where('component', $this->name)->where('key', $key)->get('template_settings');
 
                 if ($component->num_rows()) {
-                    \CI::$APP->db->where('component', $this->name)->where('key', $key)->update('template_settings', array('data' => $data));
+                    \CI::$APP->db->where('component', $this->name)->where('key', $key)->update('template_settings', ['data' => $data]);
                 } else {
-                    \CI::$APP->db->insert('template_settings', array('component' => $this->name, 'key' => $key, 'data' => $data));
+                    \CI::$APP->db->insert('template_settings', ['component' => $this->name, 'key' => $key, 'data' => $data]);
                 }
             }
             return TRUE;

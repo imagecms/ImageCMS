@@ -24,7 +24,7 @@ class Admin extends BaseAdminController {
      * Errors array
      * @var type
      */
-    public $errors = array();
+    public $errors = [];
 
     /**
      * Template uploads path
@@ -97,7 +97,7 @@ class Admin extends BaseAdminController {
             $listRemote = TemplateManager::getInstance()->listRemote();
 
             if (count($listRemote['Template'])) {
-                $freeTpl = array();
+                $freeTpl = [];
                 foreach ($listRemote['Template'] as $tpl) {
                     $freeTpl[$tpl['Name']] = $tpl['IsFree'];
                 }
@@ -110,14 +110,14 @@ class Admin extends BaseAdminController {
                     ->registerScript('jquery.fancybox-1.3.4.pack')
                     ->registerScript('script_admin')
                     ->setData(
-                        array(
+                        [
                                 'freeTpl' => $freeTpl,
                                 'templateToPay' => TemplateManager::getTemplateToPay(),
                                 'template' => $this->currentTemplate,
                                 'templates' => TemplateManager::getInstance()->listLocal(),
-                                'remoteTemplates' => $this->input->get('remote_templates') ? TemplateManager::getInstance()->listRemote() : array(),
+                                'remoteTemplates' => $this->input->get('remote_templates') ? TemplateManager::getInstance()->listRemote() : [],
                                 'currTpl' => $this->currentTemplate->name
-                            )
+                            ]
                     )
                     ->renderAdmin('main');
         }
@@ -129,10 +129,10 @@ class Admin extends BaseAdminController {
             $lang->load('template_manager');
 
             $this->lib_admin->log(lang("Template demo data was successfully installed", "template_manager") . ' - ' . $templateName);
-            return json_encode(array('success' => TRUE, 'message' => lang('Template demo data was successfully installed', 'template_manager')));
+            return json_encode(['success' => TRUE, 'message' => lang('Template demo data was successfully installed', 'template_manager')]);
         } else {
             $error = TemplateManager::getInstance()->messages ? TemplateManager::getInstance()->messages : lang('Error', 'template_manager');
-            return json_encode(array('error' => TRUE, 'message' => $error));
+            return json_encode(['error' => TRUE, 'message' => $error]);
         }
     }
 
@@ -141,11 +141,11 @@ class Admin extends BaseAdminController {
      */
     public function registerJsVars() {
         $jsData = json_encode(
-            array(
+            [
                     'acceptLicenseError' => lang('Templates are the intellectual property, so if you <br /> want to install it, you must accept the license agreement.', 'template_manager'),
                     'wrongFileType' => lang('Wrong filetype. Zip-archives only', 'template_manager'),
                     'moduleAdminUrl' => site_url('admin/components/cp/template_manager/'),
-                )
+                ]
         );
         $jsCode = "var templateManagerData = {$jsData};";
         assetManager::create()->registerJsScript($jsCode, false, 'before');
@@ -154,9 +154,9 @@ class Admin extends BaseAdminController {
     public function get_template_license() {
         try {
             $template = new Template($this->input->get('template_name'));
-            echo json_encode(array('status' => 1, 'license_text' => $template->getLicenseAgreement(), 'demodataArchiveExist' => $template->demodataArchiveExists));
+            echo json_encode(['status' => 1, 'license_text' => $template->getLicenseAgreement(), 'demodataArchiveExist' => $template->demodataArchiveExists]);
         } catch (Exception $e) {
-            echo json_encode(array('status' => 0, 'error' => $e->getMessage()));
+            echo json_encode(['status' => 0, 'error' => $e->getMessage()]);
         }
     }
 
@@ -197,7 +197,7 @@ class Admin extends BaseAdminController {
 
         CI::$APP->db
             ->limit(1)
-            ->update('settings', array('siteinfo' => $siteinfoString), array('s_name' => 'main'));
+            ->update('settings', ['siteinfo' => $siteinfoString], ['s_name' => 'main']);
 
         $message = lang("Template Logo and Favicon changed.", "template_manager");
         $this->lib_admin->log($message);
@@ -331,12 +331,12 @@ class Admin extends BaseAdminController {
         // Set upload settings
         $this->load->library(
             'upload',
-            array(
+            [
             'upload_path' => $this->templatesUploadPath,
             'allowed_types' => 'zip',
             'max_size' => 1024 * 100, // 100 Mb
             'file_name' => $_FILES[$fieldName]['name'],
-                )
+                ]
         );
 
         // Upload folder
@@ -426,7 +426,7 @@ class Admin extends BaseAdminController {
 
     /**
      * Get remote free template by ID
-     * @param int $templateId - template id
+     * @param integer $templateId - template id
      */
     public function getRemoteTemplate($templateId = NULL) {
         if ($templateId) {
@@ -440,11 +440,11 @@ class Admin extends BaseAdminController {
                     $unzip = new TArchive('./uploads/templates/module_' . $templateId . '.zip');
 
                     $this->load->helper('cookie');
-                    $cookie = array(
+                    $cookie = [
                         'name' => 'DownloadedTemplateName',
                         'value' => $unzip->getTemplateName(),
                         'expire' => '10'
-                    );
+                    ];
 
                     set_cookie($cookie);
                     return $unzip->unpack();

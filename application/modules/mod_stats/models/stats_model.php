@@ -59,9 +59,9 @@ class Stats_model extends CI_Model {
 
         /** If setting exists then update value else create new setting with new value * */
         if ($query != null) {
-            $this->db->where('setting', $settingName)->update($tableName, array('value' => $settingValue));
+            $this->db->where('setting', $settingName)->update($tableName, ['value' => $settingValue]);
         } else {
-            $this->db->insert($tableName, array('setting' => $settingName, 'value' => $settingValue));
+            $this->db->insert($tableName, ['setting' => $settingName, 'value' => $settingValue]);
         }
         return TRUE;
     }
@@ -101,11 +101,11 @@ class Stats_model extends CI_Model {
             /** Insert value * */
             $this->db->insert(
                 'mod_stats_search',
-                array(
+                [
                 'key' => $keyword,
                 'date' => time(),
                 'ac' => $ac == true ? 1 : 0
-                    )
+                    ]
             );
         }
         return TRUE;
@@ -114,17 +114,17 @@ class Stats_model extends CI_Model {
     public function saveUrl($userId, $url) {
         $this->db->insert(
             'mod_stats_urls',
-            array(
+            [
             'id_user' => $userId,
             'url' => $url,
-                )
+                ]
         );
     }
 
     /**
      *
      * @param string $term
-     * @param int $limit
+     * @param integer $limit
      * @return boolean|array
      */
     public function getProductsByIdNameNumber($term, $limit = 7) {
@@ -188,97 +188,97 @@ class Stats_model extends CI_Model {
     public function install() {
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) OR exit;
-        $fields = array(
-            'key' => array(
+        $fields = [
+            'key' => [
                 'type' => 'VARCHAR',
                 'constraint' => '70',
                 'null' => TRUE,
-            ),
-            'date' => array(
+            ],
+            'date' => [
                 'type' => 'INT',
                 'null' => TRUE,
-            ),
-            'ac' => array(
+            ],
+            'ac' => [
                 'type' => 'INT',
                 'null' => TRUE,
-            )
-        );
+            ]
+        ];
         $this->dbforge->add_field($fields);
         $this->dbforge->create_table('mod_stats_search');
 
-        $fields2 = array(
-            'setting' => array(
+        $fields2 = [
+            'setting' => [
                 'type' => 'VARCHAR',
                 'constraint' => '70',
                 'null' => TRUE,
-            ),
-            'value' => array(
+            ],
+            'value' => [
                 'type' => 'VARCHAR',
                 'constraint' => '500',
                 'null' => TRUE,
-            ),
-        );
+            ],
+        ];
         $this->dbforge->add_field($fields2);
         $this->dbforge->create_table('mod_stats_settings');
 
         // збереження URL сторінок
-        $attendanceFields = array(
-            'id' => array(
+        $attendanceFields = [
+            'id' => [
                 'type' => 'INT',
                 'auto_increment' => TRUE
-            ),
-            'id_user' => array(
+            ],
+            'id_user' => [
                 'type' => 'int',
                 'constraint' => '5',
                 'null' => FALSE,
-            ),
-            'type_id' => array(
+            ],
+            'type_id' => [
                 'type' => 'int',
                 'constraint' => '2',
                 'null' => FALSE,
-            ),
-            'id_entity' => array(
+            ],
+            'id_entity' => [
                 'type' => 'int',
                 'constraint' => '6',
                 'null' => FALSE,
-            ),
-            'time_add ' => array(
+            ],
+            'time_add ' => [
                 'type' => 'int',
                 'constraint' => '11',
                 'null' => FALSE,
-            ),
-        );
+            ],
+        ];
         $this->dbforge->add_field($attendanceFields);
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->create_table('mod_stats_attendance');
 
         // збереження URL сторінок
-        $robotsAttendanceFields = array(
-            'id' => array(
+        $robotsAttendanceFields = [
+            'id' => [
                 'type' => 'INT',
                 'auto_increment' => TRUE
-            ),
-            'id_robot' => array(
+            ],
+            'id_robot' => [
                 'type' => 'int',
                 'constraint' => '5',
                 'null' => FALSE,
-            ),
-            'type_id' => array(
+            ],
+            'type_id' => [
                 'type' => 'int',
                 'constraint' => '2',
                 'null' => FALSE,
-            ),
-            'id_entity' => array(
+            ],
+            'id_entity' => [
                 'type' => 'int',
                 'constraint' => '6',
                 'null' => FALSE,
-            ),
-            'time_add ' => array(
+            ],
+            'time_add ' => [
                 'type' => 'int',
                 'constraint' => '11',
                 'null' => FALSE,
-            ),
-        );
+            ],
+        ];
 
         $this->dbforge->add_field($robotsAttendanceFields);
         $this->dbforge->add_key('id', TRUE);
@@ -287,10 +287,10 @@ class Stats_model extends CI_Model {
         $this->db->where('name', 'mod_stats');
         $this->db->update(
             'components',
-            array(
+            [
             'enabled' => 1,
             'autoload' => 1
-                )
+                ]
         );
     }
 
@@ -327,12 +327,12 @@ class Stats_model extends CI_Model {
     /**
      * If a user has registered on the site, and before was visited it,
      * it is need to replace his old negative random id with a new real
-     * @param int $oldId generated negative id from cookies
-     * @param int $newId registered user id
+     * @param integer $oldId generated negative id from cookies
+     * @param integer $newId registered user id
      * @return void
      */
     public function updateAttendanceUserId($oldId, $newId) {
-        $this->db->update('mod_stats_attendance', array('id_user' => $newId), array('id_user' => $oldId));
+        $this->db->update('mod_stats_attendance', ['id_user' => $newId], ['id_user' => $oldId]);
     }
 
 }

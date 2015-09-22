@@ -37,9 +37,9 @@ class ZeroFiller {
         // into miliseconds
         $interval *= 1000;
 
-        $filledValues = array();
-
-        for ($i = 1; $i < count($values); $i++) {
+        $filledValues = [];
+        $count = count($values);
+        for ($i = 1; $i < $count; $i++) {
             $currentTime = $values[$i][$timeKey];
             $prevTime = $values[$i - 1][$timeKey];
             $difference = $currentTime - $prevTime;
@@ -55,10 +55,10 @@ class ZeroFiller {
 
                 for ($j = 0; $j < $countOfEmptyIntervals; $j++) {
                     $currentTimeValue = $prevTime += $interval;
-                    $filledValues[] = array(
+                    $filledValues[] = [
                         $timeKey => $currentTimeValue,
                         $valueKey => 0,
-                    );
+                    ];
                 }
             }
         }

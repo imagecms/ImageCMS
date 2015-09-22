@@ -39,7 +39,7 @@ class Shop_news extends MY_Controller {
 
     /**
      * Get shop news for shop category or product
-     * @param int $limit
+     * @param integer $limit
      */
     public function getShopNews($limit = 20) {
 
@@ -56,7 +56,7 @@ class Shop_news extends MY_Controller {
         $contentIds = $this->shop_news_model->getContentIds($categoryId);
 
         // Prepare array with content ids
-        $ids = array();
+        $ids = [];
         foreach ($contentIds as $contentId) {
             $ids[] .= $contentId['content_id'];
         }
@@ -64,7 +64,7 @@ class Shop_news extends MY_Controller {
         $content = $this->shop_news_model->getContent($ids, $limit);
 
         CMSFactory\assetManager::create()
-                ->setData(array('contentShopNews' => $content))
+                ->setData(['contentShopNews' => $content])
                 ->registerStyle('style')
                 ->registerScript('scripts')
                 ->render('content', true);
@@ -81,7 +81,7 @@ class Shop_news extends MY_Controller {
         $currentCategories = explode(',', $currentCategories['shop_categories_ids']);
 
         return \CMSFactory\assetManager::create()
-                        ->setData(array('shopNews' => $data, 'categories' => ShopCore::app()->SCategoryTree->getTree(), 'currentCategories' => $currentCategories))
+                        ->setData(['shopNews' => $data, 'categories' => ShopCore::app()->SCategoryTree->getTree(), 'currentCategories' => $currentCategories])
                         ->registerScript('scripts')
                         ->fetchTemplate('/admin/adminModuleInterface');
     }
@@ -107,17 +107,17 @@ class Shop_news extends MY_Controller {
         ($this->dx_auth->is_admin()) OR exit;
         $this->load->dbforge();
 
-        $fields = array(
-            'content_id' => array('type' => 'INT', 'constraint' => 11),
-            'shop_categories_ids' => array('type' => 'VARCHAR', 'constraint' => 1000)
-        );
+        $fields = [
+            'content_id' => ['type' => 'INT', 'constraint' => 11],
+            'shop_categories_ids' => ['type' => 'VARCHAR', 'constraint' => 1000]
+        ];
 
         $this->dbforge->add_field($fields);
         $this->dbforge->create_table('mod_shop_news', TRUE);
 
         /** Update module settings * */
         $this->db->where('name', 'shop_news')
-            ->update('components', array('autoload' => '1', 'enabled' => '1'));
+            ->update('components', ['autoload' => '1', 'enabled' => '1']);
     }
 
     /**

@@ -15,13 +15,13 @@ class CategoriesController extends ControllerBase {
         parent::__construct($some);
         $this->controller->load->model('categories_model');
 
-        $this->params = array(
+        $this->params = [
             'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
             'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
             'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
             'category_id' => isset($_GET['category_id']) ? $_GET['category_id'] : 0,
             'includeChilds' => (bool) isset($_GET['include_childs']) ? 1 : 0,
-        );
+        ];
     }
 
     /**
@@ -39,8 +39,8 @@ class CategoriesController extends ControllerBase {
     public function attendance() {
         $this->controller->load->model('categories_model');
         $categories = $this->controller->categories_model->getCategoriesList();
-        array_unshift($categories, array('id' => 0, 'name' => lang('First level categories', 'mod_stats'), 'full_path_ids' => array()));
-        $data = array_merge(array('categories' => $categories), $this->params);
+        array_unshift($categories, ['id' => 0, 'name' => lang('First level categories', 'mod_stats'), 'full_path_ids' => []]);
+        $data = array_merge(['categories' => $categories], $this->params);
         $this->renderAdmin('attendance', $data);
     }
 
@@ -54,9 +54,9 @@ class CategoriesController extends ControllerBase {
         $this->controller->load->model('categories_model');
         $categoriesLabels = $this->controller->categories_model->getCategoriesList($this->params['category_id']);
 
-        $categoriesIds = array();
+        $categoriesIds = [];
         foreach ($categoriesLabels as $categoryData) {
-            $categoriesIds[$categoryData['id']] = array($categoryData['id']);
+            $categoriesIds[$categoryData['id']] = [$categoryData['id']];
         }
 
         if ($this->params['includeChilds'] == TRUE) {
@@ -70,24 +70,24 @@ class CategoriesController extends ControllerBase {
 
         $categories = $this->controller->attendance_model->getCategoriesAttendance($this->params, $categoriesIds);
 
-        $labels = array();
+        $labels = [];
         foreach ($categoriesLabels as $categoryData) {
             $labels[$categoryData['id']] = $categoryData['name'];
         }
 
-        $categoriesAttendance = array();
+        $categoriesAttendance = [];
         foreach ($categories as $categoryId => $attendanceData) {
-            $oneCategoryAttendanceValues = array();
+            $oneCategoryAttendanceValues = [];
             foreach ($attendanceData as $attendanceDataDateRow) {
-                $oneCategoryAttendanceValues[] = array(
+                $oneCategoryAttendanceValues[] = [
                     'x' => $attendanceDataDateRow['unix_date'] * 1000,
                     'y' => $attendanceDataDateRow['users_count'] * 1,
-                );
+                ];
             }
-            $categoriesAttendance[] = array(
+            $categoriesAttendance[] = [
                 'key' => $labels[$categoryId],
                 'values' => $oneCategoryAttendanceValues
-            );
+            ];
         }
 
         echo json_encode($categoriesAttendance);
@@ -97,9 +97,9 @@ class CategoriesController extends ControllerBase {
      * Prepare and return data for chart "brands in categories"
      */
     public function getBrandsInCategoriesCharData() {
-        $params = array(
+        $params = [
             'categoryId' => isset($_GET['ci']) ? $_GET['ci'] : 20,
-        );
+        ];
 
         // Get children categories ids
         $childCategoriesIds = $this->controller->categories_model->getAllChildCategoriesIds($params['categoryId']);

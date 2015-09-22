@@ -264,7 +264,7 @@ class BaseDiscount {
      * @return string full translated name of discount
      */
     public static function getDiscountsLabels($type = NULL) {
-        $discounts = array(
+        $discounts = [
             "all_order" => lang('Order amount of more than', 'mod_discount'),
             "comulativ" => lang('Cumulative discount', 'mod_discount'),
             "user" => lang('User', 'mod_discount'),
@@ -272,7 +272,7 @@ class BaseDiscount {
             "category" => lang('Category', 'mod_discount'),
             "product" => lang('Product', 'mod_discount'),
             "brand" => lang('Brand', 'mod_discount'),
-        );
+        ];
         if ($type == null) {
             return $discounts;
         }
@@ -321,7 +321,7 @@ class BaseDiscount {
      */
     private function collectType($discount) {
 
-        $arr = array();
+        $arr = [];
         foreach ($discount as $disc) {
             $arr[$disc['type_discount']][] = $disc;
         }
@@ -405,8 +405,8 @@ class BaseDiscount {
 
     public function getAppliesLeft($key) {
         $result = CI::$APP->db
-            ->select(array('max_apply', 'count_apply'))
-            ->where(array('key' => $key))
+            ->select(['max_apply', 'count_apply'])
+            ->where(['key' => $key])
             ->get('mod_shop_discounts')
             ->row_array();
 
@@ -428,7 +428,7 @@ class BaseDiscount {
      */
     private function getUserDiscount() {
 
-        $discountUser = array();
+        $discountUser = [];
         foreach ($this->discountType['user'] as $userDisc) {
             if ($userDisc['user_id'] == $this->userId) {
                 $discountUser[] = $userDisc;
@@ -447,7 +447,7 @@ class BaseDiscount {
      */
     private function getUserGroupDiscount() {
 
-        $discountUserGr = array();
+        $discountUserGr = [];
         foreach ($this->discountType['group_user'] as $userGrDisc) {
             if ($userGrDisc['group_id'] == $this->userGroupId) {
                 $discountUserGr[] = $userGrDisc;
@@ -466,7 +466,7 @@ class BaseDiscount {
      */
     private function getComulativDiscount() {
 
-        $discountComulativ = array();
+        $discountComulativ = [];
         foreach ($this->discountType['comulativ'] as $disc) {
             if (($disc['begin_value'] <= (float) $this->amoutUser and $disc['end_value'] > (float) $this->amoutUser) or ( $disc['begin_value'] <= (float) $this->amoutUser and ! $disc['end_value'])) {
                 $discountComulativ[] = $disc;
@@ -502,7 +502,7 @@ class BaseDiscount {
      */
     private function getAllOrderDiscountRegister() {
 
-        $allOrderArrReg = array();
+        $allOrderArrReg = [];
         foreach ($this->discountType['all_order'] as $disc) {
             if (!$disc['is_gift']) {
                 if ($disc['begin_value'] <= (int) $this->totalPrice) {
@@ -522,7 +522,7 @@ class BaseDiscount {
      * @copyright (c) 2013, ImageCMS
      */
     private function getAllOrderDiscountNotRegister() {
-        $allOrderArrNotReg = array();
+        $allOrderArrNotReg = [];
         foreach ($this->discountType['all_order'] as $disc) {
             if (!$disc['is_gift']) {
                 if ($disc['begin_value'] <= $this->totalPrice and ! $disc['for_autorized']) {

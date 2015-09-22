@@ -18,7 +18,7 @@ class ParentWishlist extends \MY_Controller {
      * array that contains wishlist settings
      * @var array
      */
-    public $settings = array();
+    public $settings = [];
 
     /**
      * contains output data
@@ -30,7 +30,7 @@ class ParentWishlist extends \MY_Controller {
      * contains errors array
      * @var array
      */
-    public $errors = array();
+    public $errors = [];
 
     /**
      * contains array of user wish products
@@ -45,7 +45,7 @@ class ParentWishlist extends \MY_Controller {
 
         $this->writeCookies();
         $this->load->model('wishlist_model');
-        $this->load->helper(array('form', 'url'));
+        $this->load->helper(['form', 'url']);
         $this->load->language('wishlist');
         $this->settings = $this->wishlist_model->getSettings();
 
@@ -64,12 +64,12 @@ class ParentWishlist extends \MY_Controller {
     private function writeCookies() {
         $this->load->helper('cookie');
         if (!strstr($this->uri->uri_string(), 'wishlist') && !strstr($this->uri->uri_string(), 'sync')) {
-            $cookie = array(
+            $cookie = [
                 'name' => 'url',
                 'value' => $this->uri->uri_string(),
                 'expire' => '15000',
                 'prefix' => ''
-            );
+            ];
             @$this->input->set_cookie($cookie);
         }
     }
@@ -83,17 +83,17 @@ class ParentWishlist extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      * @return boolean
      */
-    public function all($access = array('public')) {
+    public function all($access = ['public']) {
         if (!$users = $this->wishlist_model->getAllUsers()) {
             $this->errors[] = lang('No users', 'wishlist');
             return FALSE;
         }
 
         foreach ($users as $user) {
-            $lists [] = array(
+            $lists [] = [
                 'user' => $user,
                 'lists' => $this->wishlist_model->getWLsByUserId($user['id'], $access)
-            );
+            ];
         }
 
         if ($lists) {
@@ -109,13 +109,13 @@ class ParentWishlist extends \MY_Controller {
      * get user wish list
      *
      * @access public
-     * @param int $hash
+     * @param integer $hash
      * @param array $access list access
      * @author DevImageCms
      * @copyright (c) 2013, ImageCMS
      * @return boolean
      */
-    public function show($hash, $access = array('shared', 'private', 'public')) {
+    public function show($hash, $access = ['shared', 'private', 'public']) {
         if (!$hash) {
             return FALSE;
         }
@@ -144,14 +144,14 @@ class ParentWishlist extends \MY_Controller {
      * add view point to list
      *
      * @access public
-     * @param int $hash
+     * @param integer $hash
      * @author DevImageCms
      * @copyright (c) 2013, ImageCMS
      * @return boolean
      */
     public static function addReview($hash) {
         $CI = & get_instance();
-        $listsAdded = array();
+        $listsAdded = [];
 
         if ($CI->input->cookie('wishListViewer')) {
             $listsAdded = unserialize($CI->input->cookie('wishListViewer'));
@@ -160,12 +160,12 @@ class ParentWishlist extends \MY_Controller {
         if (!in_array($hash, $listsAdded)) {
             array_push($listsAdded, $hash);
             if ($CI->wishlist_model->addReview($hash)) {
-                $cookie = array(
+                $cookie = [
                     'name' => 'wishListViewer',
                     'value' => serialize($listsAdded),
                     'expire' => 60 * 60 * 24,
                     'prefix' => ''
-                );
+                ];
                 @$CI->input->set_cookie($cookie);
                 return TRUE;
             }
@@ -177,7 +177,7 @@ class ParentWishlist extends \MY_Controller {
      * get most viewed wish list
      *
      * @access public
-     * @param int $limit count lists to get
+     * @param integer $limit count lists to get
      * @author DevImageCms
      * @copyright (c) 2013, ImageCMS
      * @return boolean
@@ -197,13 +197,13 @@ class ParentWishlist extends \MY_Controller {
      * render user lists
      *
      * @access public
-     * @param int $user_id
+     * @param integer $user_id
      * @param array $access
      * @author DevImageCms
      * @copyright (c) 2013, ImageCMS
      * @return boolean
      */
-    public function user($user_id, $access = array('public')) {
+    public function user($user_id, $access = ['public']) {
         if ($this->getUserWL($user_id, $access)) {
             $this->dataModel = $this->dataModel['wishlists'];
             return TRUE;
@@ -267,7 +267,7 @@ class ParentWishlist extends \MY_Controller {
      * create wish list
      *
      * @access public
-     * @param int $user_id
+     * @param integer $user_id
      * @param string $listName
      * @author DevImageCms
      * @copyright (c) 2013, ImageCMS
@@ -310,7 +310,7 @@ class ParentWishlist extends \MY_Controller {
      * delete full WL
      *
      * @access public
-     * @param int $id list id
+     * @param integer $id list id
      * @author DevImageCms
      * @copyright (c) 2013, ImageCMS
      * @return boolean
@@ -446,7 +446,7 @@ class ParentWishlist extends \MY_Controller {
             $to_listId = $this->db->insert_id();
         }
 
-        $data = array('wish_list_id' => $to_listId);
+        $data = ['wish_list_id' => $to_listId];
         return $this->wishlist_model->updateWishListItem($varId, $wish_list_id, $data);
     }
 
@@ -494,7 +494,7 @@ class ParentWishlist extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      * @return boolean
      */
-    public function getUserWL($userId, $access = array('public', 'private', 'shared')) {
+    public function getUserWL($userId, $access = ['public', 'private', 'shared']) {
         $this->wishlist_model->createUserIfNotExist($userId);
 
         $wishlists = $this->wishlist_model->getUserWishListsByID($userId, $access);
@@ -509,7 +509,7 @@ class ParentWishlist extends \MY_Controller {
             $this->errors[] = lang('User data is not found', 'wishlist');
             return FALSE;
         }
-        $w = array();
+        $w = [];
 
         foreach ($wishlists as $wishlist) {
             $w[$wishlist['wish_list_id']][] = $wishlist;
@@ -541,7 +541,7 @@ class ParentWishlist extends \MY_Controller {
                 return FALSE;
             }
 
-            $w = array();
+            $w = [];
             foreach ($wishlists as $wishlist) {
                 $w[$wishlist['title']][] = $wishlist;
             }
@@ -566,7 +566,7 @@ class ParentWishlist extends \MY_Controller {
             $userID = $this->dx_auth->get_user_id();
         }
 
-        $allowedFileFormats = array('image/gif', 'image/jpeg', 'image/png', 'image/jpg');
+        $allowedFileFormats = ['image/gif', 'image/jpeg', 'image/png', 'image/jpg'];
 
         list($width, $height, $type, $attr) = getimagesize($_FILES["file"]['tmp_name']);
 
@@ -658,7 +658,7 @@ class ParentWishlist extends \MY_Controller {
      * @return boolean
      */
     public function deleteImage($image, $user_id) {
-        $this->db->where('id', $user_id)->update('mod_wish_list_users', array('user_image' => ''));
+        $this->db->where('id', $user_id)->update('mod_wish_list_users', ['user_image' => '']);
         $basePath = substr(dirname(__FILE__), 0, strpos(dirname(__FILE__), "application"));
         return unlink($basePath . "uploads/mod_wishlist/" . $image);
     }
@@ -691,7 +691,7 @@ class ParentWishlist extends \MY_Controller {
         if ($wish_list) {
             $wish_list = $wish_list->row_array();
         } else {
-            $wish_list = array();
+            $wish_list = [];
         }
         $db_user = $this->db->where('id', $this->dx_auth->get_user_id())->get('users')->row_array();
 
@@ -699,13 +699,13 @@ class ParentWishlist extends \MY_Controller {
             $name = $user['user_name'] ? $user['user_name'] : $this->dx_auth->get_username();
             $phone = $db_user['phone'] ? $db_user['phone'] : '(---) --- --- --- ';
 
-            $user_variables = array(
+            $user_variables = [
                 'userName' => $name,
                 'userPhone' => $phone,
                 'wishName' => $wish_list['title'],
                 'wishLink' => site_url('wishlist/show/' . $wish_list['hash']),
                 'wishListViews' => $wish_list['hash']['review_count'],
-            );
+            ];
 
             \cmsemail\email::getInstance()->sendEmail($email, 'wish_list', $user_variables);
 

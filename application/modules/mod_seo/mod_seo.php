@@ -781,7 +781,7 @@ class Mod_seo extends MY_Controller {
     /**
      * Inflect words
      * @param string $what
-     * @param int $inflection_id (1-6) - the cases of words
+     * @param integer $inflection_id (1-6) - the cases of words
      * @return string
      */
     public function inflect($what, $inflection_id) {

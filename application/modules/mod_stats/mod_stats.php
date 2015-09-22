@@ -146,7 +146,7 @@ class Mod_stats extends \MY_Controller implements FileImport {
         $filePath = str_replace('.php', '', $filePath);
         $reflection = new ReflectionClass($this);
         $workingDir = pathinfo($reflection->getFileName(), PATHINFO_DIRNAME);
-        $filePath = $workingDir . DIRECTORY_SEPARATOR . str_replace(array('\\', '/'), DIRECTORY_SEPARATOR, $filePath);
+        $filePath = $workingDir . DIRECTORY_SEPARATOR . str_replace(['\\', '/'], DIRECTORY_SEPARATOR, $filePath);
 
         if (strpos($filePath, '*') === FALSE) {
             include_once $filePath . EXT;
@@ -154,7 +154,7 @@ class Mod_stats extends \MY_Controller implements FileImport {
             $filesOfDir = get_filenames(str_replace('*', '', $filePath), TRUE);
             foreach ($filesOfDir as $file) {
                 if (strtolower(pathinfo($file, PATHINFO_EXTENSION)) == 'php') {
-                    include_once str_replace(array('\\', '/'), DIRECTORY_SEPARATOR, $file);
+                    include_once str_replace(['\\', '/'], DIRECTORY_SEPARATOR, $file);
                 }
             }
         }

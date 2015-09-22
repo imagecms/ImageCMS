@@ -11,16 +11,16 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'inter
  */
 class UsersController extends ControllerBase implements FileImport {
 
-    public $params = array();
+    public $params = [];
 
     public function __construct($controller) {
         parent::__construct($controller);
         $controller->import('traits/DateIntervalTrait.php');
-        $this->params = array(
+        $this->params = [
             'dateFrom' => CI::$APP->input->get('from') ? CI::$APP->input->get('from') : '2005-05-05',
             'dateTo' => CI::$APP->input->get('to') ? CI::$APP->input->get('to') : date("Y-m-d"),
             'interval' => CI::$APP->input->get('group') ? CI::$APP->input->get('group') : 'day',
-        );
+        ];
     }
 
     /**
@@ -31,9 +31,9 @@ class UsersController extends ControllerBase implements FileImport {
         $onlineUsers = $this->controller->attendance_model->getOnline();
         $this->renderAdmin(
             'online',
-            array(
+            [
                 'data' => $onlineUsers
-            )
+            ]
         );
     }
 
@@ -43,7 +43,7 @@ class UsersController extends ControllerBase implements FileImport {
     public function history() {
         $this->controller->load->model('attendance_model');
         $data = $this->controller->attendance_model->getUserHistory(CI::$APP->input->post('userId'));
-        $this->controller->assetManager->setData(array('data' => $data));
+        $this->controller->assetManager->setData(['data' => $data]);
         $this->controller->assetManager->render('admin/users/history');
     }
 
@@ -56,9 +56,9 @@ class UsersController extends ControllerBase implements FileImport {
         $data = $this->controller->users_model->getInfo();
         $this->renderAdmin(
             'info',
-            array(
+            [
                 'data' => $data
-            )
+            ]
         );
     }
 
@@ -81,10 +81,10 @@ class UsersController extends ControllerBase implements FileImport {
 
         $this->renderAdmin(
             'attendance',
-            array(
+            [
                 'data' => $data,
                 'viewType' => $viewType,
-            )
+            ]
         );
     }
 
@@ -98,32 +98,32 @@ class UsersController extends ControllerBase implements FileImport {
 
         $params['type'] = 'registered';
         $data = $this->controller->attendance_model->getCommonAttendance($params);
-        $registered = array();
+        $registered = [];
         foreach ($data as $row) {
-            $registered[] = array(
+            $registered[] = [
                 'x' => $row['unix_date'] * 1000,
                 'y' => (int) $row['users_count']
-            );
+            ];
         }
 
         $params['type'] = 'unregistered';
         $data = $this->controller->attendance_model->getCommonAttendance($params);
-        $unregistered = array();
+        $unregistered = [];
         foreach ($data as $row) {
-            $unregistered[] = array(
+            $unregistered[] = [
                 'x' => $row['unix_date'] * 1000,
                 'y' => (int) $row['users_count']
-            );
+            ];
         }
 
         $this->controller->import('classes/ZeroFiller');
 
-        $response = array();
+        $response = [];
         if ($registered) {
-            $response[] = array('key' => lang('Count of unique registered users', 'mod_stats'), 'values' => ZeroFiller::fill($registered, 'x', 'y', $this->params['interval']));
+            $response[] = ['key' => lang('Count of unique registered users', 'mod_stats'), 'values' => ZeroFiller::fill($registered, 'x', 'y', $this->params['interval'])];
         }
         if ($unregistered) {
-            array('key' => lang('Count of unique unregistered users', 'mod_stats'), 'values' => ZeroFiller::fill($unregistered, 'x', 'y', $this->params['interval']));
+            ['key' => lang('Count of unique unregistered users', 'mod_stats'), 'values' => ZeroFiller::fill($unregistered, 'x', 'y', $this->params['interval'])];
         }
         echo json_encode($response);
     }
@@ -140,11 +140,11 @@ class UsersController extends ControllerBase implements FileImport {
             $viewType = 'table';
         }
 
-        $params = array(
+        $params = [
             'dateFrom' => CI::$APP->input->get('from') ? CI::$APP->input->get('from') : '2005-05-05',
             'dateTo' => CI::$APP->input->get('to') ? CI::$APP->input->get('to') : date("Y-m-d"),
             'interval' => CI::$APP->input->get('group') ? CI::$APP->input->get('group') : 'day',
-        );
+        ];
 
         $this->controller->load->model('users_model');
         $this->controller->users_model->setParams($params);
@@ -152,10 +152,10 @@ class UsersController extends ControllerBase implements FileImport {
 
         $this->renderAdmin(
             'registered',
-            array(
+            [
                 'data' => $data,
                 'viewType' => $viewType,
-            )
+            ]
         );
     }
 
@@ -163,30 +163,30 @@ class UsersController extends ControllerBase implements FileImport {
      * Output chart data for users registration
      */
     public function getRegisterData() {
-        $params = array(
+        $params = [
             'dateFrom' => CI::$APP->input->get('from') ? CI::$APP->input->get('from') : '2005-05-05',
             'dateTo' => CI::$APP->input->get('to') ? CI::$APP->input->get('to') : date("Y-m-d"),
             'interval' => CI::$APP->input->get('group') ? CI::$APP->input->get('group') : 'day',
-        );
+        ];
 
         $this->controller->load->model('users_model');
         $this->controller->users_model->setParams($params);
         $data = $this->controller->users_model->getRegister();
-        $chartValues = array();
+        $chartValues = [];
         foreach ($data as $row) {
-            $chartValues[] = array(
+            $chartValues[] = [
                 'x' => (int) $row['unix_date'] * 1000,
                 'y' => (int) $row['count']
-            );
+            ];
         }
         $this->controller->import('classes/ZeroFiller');
         echo json_encode(
-            array(
-                array(
+            [
+                [
                     'key' => lang('Registration dynamic', 'mod_stats'),
                     'values' => ZeroFiller::fill($chartValues, 'x', 'y', CI::$APP->input->get('group') ? CI::$APP->input->get('group') : 'day')
-                )
-            )
+                ]
+            ]
         );
     }
 
@@ -204,11 +204,11 @@ class UsersController extends ControllerBase implements FileImport {
 
         $this->renderAdmin(
             'robots_attendance',
-            array(
+            [
                 'data' => $data,
                 'robots' => $robots,
                 'currentRobot' => $currentRobot
-            )
+            ]
         );
     }
 
@@ -226,7 +226,7 @@ class UsersController extends ControllerBase implements FileImport {
         $filePath = str_replace('.php', '', $filePath);
         $reflection = new ReflectionClass($this);
         $workingDir = pathinfo($reflection->getFileName(), PATHINFO_DIRNAME);
-        $filePath = $workingDir . DIRECTORY_SEPARATOR . str_replace(array('\\', '/'), DIRECTORY_SEPARATOR, $filePath);
+        $filePath = $workingDir . DIRECTORY_SEPARATOR . str_replace(['\\', '/'], DIRECTORY_SEPARATOR, $filePath);
 
         if (strpos($filePath, '*') === FALSE) {
             include_once $filePath . EXT;
@@ -234,7 +234,7 @@ class UsersController extends ControllerBase implements FileImport {
             $filesOfDir = get_filenames(str_replace('*', '', $filePath), TRUE);
             foreach ($filesOfDir as $file) {
                 if (strtolower(pathinfo($file, PATHINFO_EXTENSION)) == 'php') {
-                    include_once str_replace(array('\\', '/'), DIRECTORY_SEPARATOR, $file);
+                    include_once str_replace(['\\', '/'], DIRECTORY_SEPARATOR, $file);
                 }
             }
         }

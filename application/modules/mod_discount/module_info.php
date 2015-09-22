@@ -4,7 +4,7 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-$com_info = array(
+$com_info = [
     'menu_name' => lang('Discounts of online store', 'mod_discount'), // Menu name
     'description' => lang('Manage all discounts of online store', 'mod_discount'), // Module Description
     'admin_type' => 'inside', // Open admin class in new window or not. Possible values window/inside
@@ -15,6 +15,6 @@ $com_info = array(
     'author' => 'DevImageCMS', // Author info DevImageCMS
     'type' => 'shop', // CMS version
     'icon_class' => 'icon-gift'
-);
+];
 
 /* End of file module_info.php */

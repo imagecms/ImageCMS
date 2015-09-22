@@ -16,7 +16,7 @@ class Products_model extends \CI_Model {
 
     protected $countTemp = 0;
 
-    protected $catWithSubcats = array();
+    protected $catWithSubcats = [];
 
     public function __construct() {
         parent::__construct();
@@ -42,7 +42,7 @@ class Products_model extends \CI_Model {
         }
 
         // getting each brand products count
-        $brandsInfo = array();
+        $brandsInfo = [];
         foreach ($brands as $id => $name) {
             $result = $this->db
                 ->select('stock')
@@ -58,11 +58,11 @@ class Products_model extends \CI_Model {
                 $countUnique++;
             }
 
-            $brandsInfo[] = array(
+            $brandsInfo[] = [
                 'id' => $id,
                 'name' => $name,
                 'count' => $uniqueProducts === FALSE ? $countAll : $countUnique,
-            );
+            ];
         }
 
         foreach ($brandsInfo as $key => $row) {
@@ -79,11 +79,11 @@ class Products_model extends \CI_Model {
      * @param boolean $unique (optional, default FALSE)
      * @return array (categoryId, categoryName, productsCount)
      */
-    public function getCategoriesCountsData($categoryIds = array(), $unique = FALSE) {
+    public function getCategoriesCountsData($categoryIds = [], $unique = FALSE) {
         $categories = $this->getAllCategories();
 
         // creating array of id and parent_id of each category
-        $categoriresRelations = array();
+        $categoriresRelations = [];
         foreach ($categories as $category) {
             $categoriresRelations[$category['id']] = $category['parent_id'];
         }
@@ -98,10 +98,10 @@ class Products_model extends \CI_Model {
         }
 
         // getting counts of category (including subcategories)
-        $categoriesCount = array();
+        $categoriesCount = [];
         //$categoriesSubCats = array();
         foreach ($categoryIds as $id) {
-            $this->catWithSubcats = array();
+            $this->catWithSubcats = [];
             $this->getCount($id, $categoriresRelations);
             //$categoriesSubCats[$id] = $this->catWithSubcats;
             // only main cats
@@ -111,14 +111,14 @@ class Products_model extends \CI_Model {
         }
 
         // adding names to categories
-        $categoriesCountNew = array();
+        $categoriesCountNew = [];
         foreach ($categoriesCount as $categoryId => $count) {
             foreach ($categories as $num => $categoryInfo) {
                 if ($categoryInfo['id'] == $categoryId) {
-                    $categoriesCountNew[] = array(
+                    $categoriesCountNew[] = [
                         'name' => $categoryInfo['name'],
                         'count' => $count
-                    );
+                    ];
                     unset($categories[$num]);
                     break;
                 }
@@ -140,19 +140,19 @@ class Products_model extends \CI_Model {
             ->join('shop_category_i18n', 'shop_category.id = shop_category_i18n.id')
             ->where('locale', $this->locale)
             ->get();
-        $categoriesRelInfo = array();
-        $categories = array();
+        $categoriesRelInfo = [];
+        $categories = [];
         foreach ($result->result_array() as $row) {
-            $path = array();
+            $path = [];
             $path_ = unserialize($row['full_path_ids']);
             if (is_array($path_)) {
                 $path = $path_;
             }
-            $categories[] = array(
+            $categories[] = [
                 'id' => $row['id'],
                 'parent_id' => $row['parent_id'],
                 'name' => $row['name'],
-            );
+            ];
         }
 
         return $categories;
@@ -169,7 +169,7 @@ class Products_model extends \CI_Model {
             ->join('shop_brands_i18n', 'shop_brands_i18n.id = shop_brands.id')
             ->where('locale', $this->locale)
             ->get();
-        $brandsList = array();
+        $brandsList = [];
         foreach ($result->result_array() as $row) {
             $brandsList[$row['id']] = $row['name'];
         }
@@ -215,7 +215,7 @@ class Products_model extends \CI_Model {
 
     /**
      * Recursive function for gegging count of subcategories
-     * @param int $id
+     * @param integer $id
      * @param array $categories
      */
     protected function getCount($id, $categories) {
@@ -229,7 +229,7 @@ class Products_model extends \CI_Model {
 
     /**
      * Get product info
-     * @param int $id
+     * @param integer $id
      * @return boolean|array
      */
     public function getProductInfoById($id = null) {
@@ -262,7 +262,7 @@ class Products_model extends \CI_Model {
 
     /**
      * Get product rating
-     * @param int $id
+     * @param integer $id
      * @return boolean|array
      */
     public function getProductRatingById($id = null) {
@@ -304,7 +304,7 @@ class Products_model extends \CI_Model {
         if ($dataArray == null) {
             return false;
         }
-        $result = array();
+        $result = [];
         foreach ($dataArray as $key => $value) {
             $result[] = $value['id'];
         }
@@ -330,7 +330,7 @@ class Products_model extends \CI_Model {
 
     /**
      * Get subcategories ids by category id
-     * @param int $id
+     * @param integer $id
      * @return boolean|array
      */
     public function getSubcategoriesIds($id = null) {
@@ -347,7 +347,7 @@ class Products_model extends \CI_Model {
 
         $childs = $this->db->query($query)->result_array();
 
-        $res = array();
+        $res = [];
         if ($childs) {
             foreach ($childs as $value) {
                 $res[] = (int) $value['id'];

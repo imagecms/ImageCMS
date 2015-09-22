@@ -37,14 +37,14 @@ class Search_model extends CI_Model {
             $betweenCondition = "AND FROM_UNIXTIME(`date`) BETWEEN '{$dateFrom} 00:00:00' AND '{$dateTo} 23:59:59'";
         }
 
-        return array($betweenCondition);
+        return [$betweenCondition];
     }
 
     /**
      * Get searched keywords by time interval
      * @return query
      */
-    public function queryKeywordsByDateRange(array $params = array(), $resultsLimit = 100) {
+    public function queryKeywordsByDateRange(array $params = [], $resultsLimit = 100) {
         list($betweenCondition) = $this->prepareConditions($params);
         $interval = isset($params['interval']) ? $params['interval'] : NULL;
 

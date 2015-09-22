@@ -19,7 +19,7 @@ use SimpleXMLElement;
 abstract class ExchangeBase {
 
     // "multisingleton"
-    protected static $instances = array();
+    protected static $instances = [];
 
     /**
      *
@@ -55,7 +55,7 @@ abstract class ExchangeBase {
      * Storing results about queries
      * @var array
      */
-    public static $stats = array();
+    public static $stats = [];
 
     private function __construct() {
         $this->dataLoad = ExchangeDataLoad::getInstance();
@@ -104,11 +104,11 @@ abstract class ExchangeBase {
             throw new Exception("Error on inserting into `{$tableName}`: " . $error);
         }
         // gathering statistics
-        ExchangeBase::$stats[] = array(
+        ExchangeBase::$stats[] = [
             'query type' => 'insert',
             'table name' => $tableName,
             'affected rows' => count($data)
-        );
+        ];
     }
 
     public function setXml(SimpleXMLElement $xml) {
@@ -134,11 +134,11 @@ abstract class ExchangeBase {
         $this->_updatePerOne($tableName, $data, $keyToComare);
 
         // gathering statistics
-        ExchangeBase::$stats[] = array(
+        ExchangeBase::$stats[] = [
             'query type' => 'update',
             'table name' => $tableName,
             'affected rows' => count($data)
-        );
+        ];
     }
 
     /**

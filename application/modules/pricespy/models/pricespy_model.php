@@ -35,12 +35,12 @@ class Pricespy_model extends CI_Model {
      * @return type
      */
     public function delSpyByHash($hash) {
-        return $this->db->delete('mod_price_spy', array('hash' => $hash));
+        return $this->db->delete('mod_price_spy', ['hash' => $hash]);
     }
 
     /**
      *
-     * @param int $varId
+     * @param integer $varId
      * @return type
      */
     public function getProductById($varId) {

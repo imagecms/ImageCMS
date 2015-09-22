@@ -67,60 +67,70 @@ abstract class BannerImage implements ActiveRecordInterface
 
     /**
      * The value for the id field.
+     *
      * @var        int
      */
     protected $id;
 
     /**
      * The value for the banner_id field.
+     *
      * @var        int
      */
     protected $banner_id;
 
     /**
      * The value for the target field.
+     *
      * @var        int
      */
     protected $target;
 
     /**
      * The value for the url field.
+     *
      * @var        string
      */
     protected $url;
 
     /**
      * The value for the allowed_page field.
+     *
      * @var        int
      */
     protected $allowed_page;
 
     /**
      * The value for the position field.
+     *
      * @var        int
      */
     protected $position;
 
     /**
      * The value for the active_from field.
+     *
      * @var        int
      */
     protected $active_from;
 
     /**
      * The value for the active_to field.
+     *
      * @var        int
      */
     protected $active_to;
 
     /**
      * The value for the active field.
+     *
      * @var        int
      */
     protected $active;
 
     /**
      * The value for the permanent field.
+     *
      * @var        int
      */
     protected $permanent;

@@ -47,10 +47,10 @@ class Related_products extends MY_Controller {
             $related_products = $related_products_model->getProducts($data['model']->getId());
             $view = \CMSFactory\assetManager::create()
                     ->setData(
-                        array(
+                        [
                         'related_products' => $related_products,
                         'product' => $data['model']
-                        )
+                        ]
                     )
                     ->registerScript('scripts')
                     ->fetchAdminTemplate('products_extend');
@@ -62,7 +62,7 @@ class Related_products extends MY_Controller {
 
     /**
      * Get related products array
-     * @param int $product_id - main product id
+     * @param integer $product_id - main product id
      *
      * Use in template to show:
      * {echo $CI->load->module('related_products')->getRelatedProducts($product_id)}
@@ -77,7 +77,7 @@ class Related_products extends MY_Controller {
             foreach ($related_products as $key => $product) {
                 $data = $customHelper->getCustomFielsdAsArray('product', $product->getId());
 
-                $customFields = array();
+                $customFields = [];
                 foreach ($data as $customField) {
                     $customFields[$customField['field_name']] = $customField;
                 }
@@ -85,12 +85,12 @@ class Related_products extends MY_Controller {
             }
             return $related_products;
         }
-        return array();
+        return [];
     }
 
     /**
      * Render related products tpl
-     * @param int $product_id - main product id
+     * @param integer $product_id - main product id
      * @param string $tpl - template name
      *
      * Use in template to show:
@@ -105,9 +105,9 @@ class Related_products extends MY_Controller {
             if (count($related_products)) {
                 $view = \CMSFactory\assetManager::create()
                         ->setData(
-                            array(
+                            [
                             'related_products' => $related_products
-                            )
+                            ]
                         )
                         ->fetchTemplate($tpl);
 
@@ -119,7 +119,7 @@ class Related_products extends MY_Controller {
 
     /**
      * Render related products tpl with color custom field
-     * @param int $product_id - main product id
+     * @param integer $product_id - main product id
      * @param string $tpl - template name
      *
      * Use in template to show:

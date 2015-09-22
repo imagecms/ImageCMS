@@ -122,7 +122,7 @@ class WidgetDependence extends DependenceBase {
             ->get('widgets')
             ->result_array();
 
-        $this->widgets = array();
+        $this->widgets = [];
         foreach ($widgets as $row) {
             $this->widgets[] = $row['name'];
         }
@@ -165,7 +165,7 @@ class WidgetDependence extends DependenceBase {
             /**
              * Prepare data to insert into DB table `widgets`
              */
-            $data = array(
+            $data = [
                 'name' => $this->name,
                 'description' => $this->description,
                 'data' => $widgetData,
@@ -174,7 +174,7 @@ class WidgetDependence extends DependenceBase {
                 'settings' => $this->moduleSettings ? serialize($this->moduleSettings) : '',
                 'description' => $this->description,
                 'created' => time()
-            );
+            ];
 
             if ($this->rewriteData) {
                 \CI::$APP->db->where('name', $data['name'])->delete('widgets');
@@ -187,7 +187,7 @@ class WidgetDependence extends DependenceBase {
              * Prepare data to insert into DB table `widget_i18n`
              */
             $widget_id = \CI::$APP->db->insert_id();
-            $data_i18n = array();
+            $data_i18n = [];
             if (isset($this->node->widget_i18n)) {
                 foreach ($this->node->widget_i18n as $widget_i18n) {
                     $attributes = $widget_i18n->attributes();
@@ -201,11 +201,11 @@ class WidgetDependence extends DependenceBase {
                         $data = '';
                     }
 
-                    $data_i18n[] = array(
+                    $data_i18n[] = [
                         'id' => $widget_id,
                         'locale' => (string) $attributes->locale ? (string) $attributes->locale : \MY_Controller::getCurrentLocale(),
                         'data' => $data
-                    );
+                    ];
                 }
             }
 

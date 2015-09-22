@@ -13,7 +13,7 @@ abstract class DependenceBase {
      * Error messages array
      * @var array
      */
-    protected $messages = array();
+    protected $messages = [];
 
     /**
      * SimpleXMLElement dependence node

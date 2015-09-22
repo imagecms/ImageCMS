@@ -34,7 +34,7 @@ class Base extends CI_Model {
 
     public function get_one($id) {
         $this->db->limit(1);
-        return $this->db->get_where('comments', array('id' => $id))->row_array();
+        return $this->db->get_where('comments', ['id' => $id])->row_array();
     }
 
     public function add($data) {
@@ -77,7 +77,7 @@ class Base extends CI_Model {
         }
     }
 
-    public function update($id, $data = array()) {
+    public function update($id, $data = []) {
         $this->db->where('id', $id);
         $this->db->update('comments', $data);
 
@@ -87,7 +87,7 @@ class Base extends CI_Model {
     public function setYes($id) {
         $row = $this->db->where('id', $id)->get('comments')->row();
         $like = $row->like + 1;
-        $data = array('like' => $like);
+        $data = ['like' => $like];
         $this->db->where('id', $id);
         $res = $this->db->update('comments', $data);
         return $res ? $like : false;
@@ -96,7 +96,7 @@ class Base extends CI_Model {
     public function setNo($id) {
         $row = $this->db->where('id', $id)->get('comments')->row();
         $disslike = $row->disslike + 1;
-        $data = array('disslike' => $disslike);
+        $data = ['disslike' => $disslike];
         $this->db->where('id', $id);
         $res = $this->db->update('comments', $data);
         return $res ? $disslike : false;
@@ -139,7 +139,7 @@ class Base extends CI_Model {
 
     public function save_settings($data) {
         $this->db->where('name', 'comments');
-        $this->db->update('components', array('settings' => serialize($data)));
+        $this->db->update('components', ['settings' => serialize($data)]);
     }
 
     public function get_many($ids) {

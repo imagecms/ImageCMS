@@ -30,16 +30,16 @@ class Template {
      * Parsed data from xml
      * @var array
      */
-    private $xmlData = array(
+    private $xmlData = [
         'author' => null,
         'label' => null,
         'description' => null,
         'mainImage' => null,
-        'screenshots' => array(),
+        'screenshots' => [],
         'version' => null,
-        'components' => array(),
+        'components' => [],
         'xml' => NULL
-    );
+    ];
 
     /**
      * Path to current template
@@ -64,13 +64,13 @@ class Template {
      * Creates on appeal
      * @var array
      */
-    protected $componentsInstances = array();
+    protected $componentsInstances = [];
 
     /**
      * Contain errors if template is not valid
      * @var array
      */
-    protected $errors = array();
+    protected $errors = [];
 
     /**
      * Demodata full archive exists
@@ -134,7 +134,7 @@ class Template {
 
     public function __get($name) {
         if (!key_exists($name, $this->xmlData)) {
-            throw new \Exception(langf('Class Template has no |0| property', 'template_manager', array($name)));
+            throw new \Exception(langf('Class Template has no |0| property', 'template_manager', [$name]));
         }
         $this->loadDataFromXml();
         return $this->xmlData[$name];
@@ -171,12 +171,12 @@ class Template {
             return $tm->defaultComponents[$componentName];
         }
 
-        throw new \Exception(langf('Component |0| not found', 'template_manager', array($componentName)));
+        throw new \Exception(langf('Component |0| not found', 'template_manager', [$componentName]));
     }
 
     /**
      *
-     * @param int $type 1 - only from template, 2 - only core components, 3 - all (default 3)
+     * @param integer $type 1 - only from template, 2 - only core components, 3 - all (default 3)
      * @return array
      */
     public function getComponents($type = self::COMPONENTS_ALL) {
@@ -217,7 +217,7 @@ class Template {
      */
     public function getLicenseAgreement() {
         $licenses = $this->getLicensensesAgreements();
-        $locale = getLanguage(array('locale' => \CI::$APP->config->item('language')));
+        $locale = getLanguage(['locale' => \CI::$APP->config->item('language')]);
         $locale = $locale ? $locale['identif'] : \MY_Controller::defaultLocale();
 
         if (count($licenses) > 0) {
@@ -236,10 +236,10 @@ class Template {
     private function getLicensensesAgreements() {
         $templateLicensesDir = $this->templatePath . self::LICENSE_AGREEMENT_DIR;
         if (!file_exists($templateLicensesDir)) {
-            return array();
+            return [];
         }
         $licensesFiles = get_filenames($templateLicensesDir, TRUE);
-        $licenses = array();
+        $licenses = [];
         foreach ($licensesFiles as $licensePath) {
             $locale = pathinfo($licensePath, PATHINFO_FILENAME);
             $licenses[$locale] = $licensePath;
@@ -337,7 +337,7 @@ class Template {
             $name = (string) $attributes['handler'];
             if (!in_array($name, $this->xmlData['components'])) {
                 if (!file_exists($this->templatePath . "components/{$name}/{$name}" . EXT)) {
-                    $this->errors[] = langf('Component |component_name| is broken', 'template_manager', array('component_name' => $name));
+                    $this->errors[] = langf('Component |component_name| is broken', 'template_manager', ['component_name' => $name]);
                     continue;
                 }
                 array_push($this->xmlData['components'], $name);

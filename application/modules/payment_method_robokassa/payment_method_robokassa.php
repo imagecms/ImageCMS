@@ -41,7 +41,7 @@ class Payment_method_robokassa extends MY_Controller {
 
     /**
      * Вызывается при редактировании способов оплатыв админке
-     * @param int $id ид метода оплаты
+     * @param integer $id ид метода оплаты
      * @param string $payName название payment_method_liqpay
      * @return string
      */
@@ -193,13 +193,13 @@ class Payment_method_robokassa extends MY_Controller {
     /**
      * Переводит статус заказа в оплачено, и прибавляет пользователю
      * оплеченную сумму к акаунту
-     * @param int $order_id ид заказа который обрабатывается
+     * @param integer $order_id ид заказа который обрабатывается
      * @param obj $userOrder данные заказа
      */
     private function successPaid($order_id, $userOrder) {
         $ci = &get_instance();
         $amount = $ci->db->select('amout')
-            ->get_where('users', array('id' => $userOrder->user_id));
+            ->get_where('users', ['id' => $userOrder->user_id]);
 
         if ($amount) {
             $amount = $amount->row()->amout;
@@ -209,12 +209,12 @@ class Payment_method_robokassa extends MY_Controller {
         $amount += $userOrder->total_price;
 
         $result = $ci->db->where('id', $order_id)
-            ->update('shop_orders', array('paid' => '1', 'date_updated' => time()));
+            ->update('shop_orders', ['paid' => '1', 'date_updated' => time()]);
         if (!$result) {
             show_error($ci->db->_error_message());
         }
 
-        \CMSFactory\Events::create()->registerEvent(array('system' => __CLASS__, 'order_id' => $order_id), "PaimentSystem:successPaid");
+        \CMSFactory\Events::create()->registerEvent(['system' => __CLASS__, 'order_id' => $order_id], "PaimentSystem:successPaid");
         \CMSFactory\Events::runFactory();
 
         $result = $ci->db
@@ -222,9 +222,9 @@ class Payment_method_robokassa extends MY_Controller {
             ->limit(1)
             ->update(
                 'users',
-                array(
+                [
                     'amout' => str_replace(',', '.', $amount)
-                    )
+                    ]
             );
         if (!$result) {
             show_error($ci->db->_error_message());
@@ -239,7 +239,7 @@ class Payment_method_robokassa extends MY_Controller {
         $ci = &get_instance();
 
         $result = $ci->db->where('name', $this->moduleName)
-            ->update('components', array('enabled' => '1'));
+            ->update('components', ['enabled' => '1']);
         if (!$result) {
             show_error($ci->db->_error_message());
         }
@@ -251,10 +251,10 @@ class Payment_method_robokassa extends MY_Controller {
         $result = $ci->db->where('payment_system_name', $this->moduleName)
             ->update(
                 'shop_payment_methods',
-                array(
+                [
                     'active' => '0',
                     'payment_system_name' => '0',
-                    )
+                    ]
             );
         if (!$result) {
             show_error($ci->db->_error_message());

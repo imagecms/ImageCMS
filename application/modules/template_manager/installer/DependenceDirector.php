@@ -25,7 +25,7 @@ class DependenceDirector {
      * Error messages array
      * @var array
      */
-    private $messages = array();
+    private $messages = [];
 
     public function __construct(\SimpleXMLElement $dependicies) {
         $this->dependicies = $dependicies;
@@ -51,19 +51,19 @@ class DependenceDirector {
             // gathering messages
             if (FALSE !== $msgs = $dependence->getMessages()) {
                 foreach ($msgs as $message) {
-                    $this->messages[] = array(
+                    $this->messages[] = [
                         'text' => $message,
                         'relation' => $dependence->relation,
                         'name' => $dependence->name,
                         'type' => $dependence->type,
-                    );
+                    ];
                 }
             } elseif ($status == FALSE) {
-                $this->messages[] = array(
+                $this->messages[] = [
                     'relation' => $dependence->relation,
                     'name' => $dependence->name,
                     'type' => $dependence->type,
-                );
+                ];
             }
         }
         return $this->status;

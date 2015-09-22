@@ -25,7 +25,7 @@ class DemodataDirector {
      * Error messages array
      * @var array
      */
-    private $messages = array();
+    private $messages = [];
 
     public function __construct(\SimpleXMLElement $demodata) {
         $this->demodata = $demodata;
@@ -51,9 +51,9 @@ class DemodataDirector {
             // gathering messages
             if (FALSE !== $msgs = $demodata->getMessages()) {
                 foreach ($msgs as $message) {
-                    $this->messages[] = array(
+                    $this->messages[] = [
                         'text' => $message,
-                    );
+                    ];
                 }
             }
         }

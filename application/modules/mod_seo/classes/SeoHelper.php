@@ -44,7 +44,7 @@ class SeoHelper extends \MY_Controller {
 
     /**
      * Prepare parent category name (in future all categories in full path)
-     * @param int $categoryId
+     * @param integer $categoryId
      * @param string $locale
      * @return boolean|array
      * - parentCategory
