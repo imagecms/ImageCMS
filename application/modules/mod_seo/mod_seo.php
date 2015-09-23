@@ -333,10 +333,6 @@ class Mod_seo extends MY_Controller {
 
         $obj = new Mod_seo();
 
-        if ($model->getCategories()->count() > 1) {
-            $parentCategory = $model->getCategories()[$model->getCategories()->count() - 1]->getName();
-        }
-
         // Get categories ids which has unique settings
         $uniqueCategories = CI::$APP->seoexpert_model_products->getCategoriesArray();
         // Check is common category or uniq
@@ -385,11 +381,9 @@ class Mod_seo extends MY_Controller {
         $template = (strstr($template, '%name[t]%')) ? str_replace('%name[t]%', translit(trim(str_replace(['Дизайн интернет-магазина', 'Дизайн інтернет-магазину', 'Design online store'], '', $model->getName()))), $template) : $template;
 
         $template = (strstr($template, '%category%')) ? str_replace('%category%', $model->getMainCategory()->getName(), $template) : $template;
-        $template = (strstr($template, '%parentCategory%')) ? str_replace('%parentCategory%', $parentCategory, $template) : $template;
 
         // category name translit
         $template = (strstr($template, '%category[t]%')) ? str_replace('%category[t]%', translit($model->getMainCategory()->getName()), $template) : $template;
-        $template = (strstr($template, '%parentCategory[t]%')) ? str_replace('%parentCategory[t]%', translit($parentCategory), $template) : $template;
 
         // the cases of words
         $template = (strstr($template, '%category[1]%')) ? str_replace('%category[1]%', $obj->inflect($model->getMainCategory()->getName(), 1), $template) : $template;
@@ -398,12 +392,6 @@ class Mod_seo extends MY_Controller {
         $template = (strstr($template, '%category[4]%')) ? str_replace('%category[4]%', $obj->inflect($model->getMainCategory()->getName(), 4), $template) : $template;
         $template = (strstr($template, '%category[5]%')) ? str_replace('%category[5]%', $obj->inflect($model->getMainCategory()->getName(), 5), $template) : $template;
         $template = (strstr($template, '%category[6]%')) ? str_replace('%category[6]%', $obj->inflect($model->getMainCategory()->getName(), 6), $template) : $template;
-        $template = (strstr($template, '%parentCategory[1]%')) ? str_replace('%parentCategory[1]%', $obj->inflect($parentCategory, 1), $template) : $template;
-        $template = (strstr($template, '%parentCategory[2]%')) ? str_replace('%parentCategory[2]%', $obj->inflect($parentCategory, 2), $template) : $template;
-        $template = (strstr($template, '%parentCategory[3]%')) ? str_replace('%parentCategory[3]%', $obj->inflect($parentCategory, 3), $template) : $template;
-        $template = (strstr($template, '%parentCategory[4]%')) ? str_replace('%parentCategory[4]%', $obj->inflect($parentCategory, 4), $template) : $template;
-        $template = (strstr($template, '%parentCategory[5]%')) ? str_replace('%parentCategory[5]%', $obj->inflect($parentCategory, 5), $template) : $template;
-        $template = (strstr($template, '%parentCategory[6]%')) ? str_replace('%parentCategory[6]%', $obj->inflect($parentCategory, 6), $template) : $template;
 
         // the cases of words and translit
         $template = (strstr($template, '%category[1][t]%') || strstr($template, '%category[t][1]%')) ? str_replace(['%category[1][t]%', '%category[t][1]%'], translit($obj->inflect($model->getMainCategory()->getName(), 1)), $template) : $template;
@@ -412,12 +400,6 @@ class Mod_seo extends MY_Controller {
         $template = (strstr($template, '%category[4][t]%') || strstr($template, '%category[t][4]%')) ? str_replace(['%category[4][t]%', '%category[t][4]%'], translit($obj->inflect($model->getMainCategory()->getName(), 4)), $template) : $template;
         $template = (strstr($template, '%category[5][t]%') || strstr($template, '%category[t][5]%')) ? str_replace(['%category[5][t]%', '%category[t][5]%'], translit($obj->inflect($model->getMainCategory()->getName(), 5)), $template) : $template;
         $template = (strstr($template, '%category[6][t]%') || strstr($template, '%category[t][6]%')) ? str_replace(['%category[6][t]%', '%category[t][6]%'], translit($obj->inflect($model->getMainCategory()->getName(), 6)), $template) : $template;
-        $template = (strstr($template, '%parentCategory[1][t]%') || strstr($template, '%parentCategory[t][1]%')) ? str_replace(['%parentCategory[1][t]%', '%parentCategory[t][1]%'], translit($obj->inflect($parentCategory, 1)), $template) : $template;
-        $template = (strstr($template, '%parentCategory[2][t]%') || strstr($template, '%parentCategory[t][2]%')) ? str_replace(['%parentCategory[2][t]%', '%parentCategory[t][2]%'], translit($obj->inflect($parentCategory, 2)), $template) : $template;
-        $template = (strstr($template, '%parentCategory[3][t]%') || strstr($template, '%parentCategory[t][3]%')) ? str_replace(['%parentCategory[3][t]%', '%parentCategory[t][3]%'], translit($obj->inflect($parentCategory, 3)), $template) : $template;
-        $template = (strstr($template, '%parentCategory[4][t]%') || strstr($template, '%parentCategory[t][4]%')) ? str_replace(['%parentCategory[4][t]%', '%parentCategory[t][4]%'], translit($obj->inflect($parentCategory, 4)), $template) : $template;
-        $template = (strstr($template, '%parentCategory[5][t]%') || strstr($template, '%parentCategory[t][5]%')) ? str_replace(['%parentCategory[5][t]%', '%parentCategory[t][5]%'], translit($obj->inflect($parentCategory, 5)), $template) : $template;
-        $template = (strstr($template, '%parentCategory[6][t]%') || strstr($template, '%parentCategory[t][6]%')) ? str_replace(['%parentCategory[6][t]%', '%parentCategory[t][6]%'], translit($obj->inflect($parentCategory, 6)), $template) : $template;
 
         $template = (strstr($template, '%brand%')) ? str_replace('%brand%', $brand, $template) : $template;
         $template = (strstr($template, '%brand[t]%')) ? str_replace('%brand[t]%', translit($brand), $template) : $template;
@@ -439,7 +421,6 @@ class Mod_seo extends MY_Controller {
         $templateDesc = (strstr($templateDesc, '%name[t]%')) ? str_replace('%name[t]%', translit($model->getName()), $templateDesc) : $templateDesc;
 
         $templateDesc = (strstr($templateDesc, '%category%')) ? str_replace('%category%', $model->getMainCategory()->getName(), $templateDesc) : $templateDesc;
-        $templateDesc = (strstr($templateDesc, '%parentCategory%')) ? str_replace('%parentCategory%', $parentCategory, $templateDesc) : $templateDesc;
 
         $templateDesc = (strstr($templateDesc, '%brand%')) ? str_replace('%brand%', $brand, $templateDesc) : $templateDesc;
         $templateDesc = (strstr($templateDesc, '%brand[t]%')) ? str_replace('%brand[t]%', translit($brand), $templateDesc) : $templateDesc;
@@ -450,7 +431,6 @@ class Mod_seo extends MY_Controller {
 
         // category name translit
         $templateDesc = (strstr($templateDesc, '%category[t]%')) ? str_replace('%category[t]%', translit($model->getMainCategory()->getName()), $templateDesc) : $templateDesc;
-        $templateDesc = (strstr($templateDesc, '%parentCategory[t]%')) ? str_replace('%parentCategory[t]%', translit($parentCategory), $templateDesc) : $templateDesc;
 
         // the cases of words
         $templateDesc = (strstr($templateDesc, '%category[1]%')) ? str_replace('%category[1]%', $obj->inflect($model->getMainCategory()->getName(), 1), $templateDesc) : $templateDesc;
@@ -459,12 +439,6 @@ class Mod_seo extends MY_Controller {
         $templateDesc = (strstr($templateDesc, '%category[4]%')) ? str_replace('%category[4]%', $obj->inflect($model->getMainCategory()->getName(), 4), $templateDesc) : $templateDesc;
         $templateDesc = (strstr($templateDesc, '%category[5]%')) ? str_replace('%category[5]%', $obj->inflect($model->getMainCategory()->getName(), 5), $templateDesc) : $templateDesc;
         $templateDesc = (strstr($templateDesc, '%category[6]%')) ? str_replace('%category[6]%', $obj->inflect($model->getMainCategory()->getName(), 6), $templateDesc) : $templateDesc;
-        $templateDesc = (strstr($templateDesc, '%parentCategory[1]%')) ? str_replace('%parentCategory[1]%', $obj->inflect($parentCategory, 1), $templateDesc) : $templateDesc;
-        $templateDesc = (strstr($templateDesc, '%parentCategory[2]%')) ? str_replace('%parentCategory[2]%', $obj->inflect($parentCategory, 2), $templateDesc) : $templateDesc;
-        $templateDesc = (strstr($templateDesc, '%parentCategory[3]%')) ? str_replace('%parentCategory[3]%', $obj->inflect($parentCategory, 3), $templateDesc) : $templateDesc;
-        $templateDesc = (strstr($templateDesc, '%parentCategory[4]%')) ? str_replace('%parentCategory[4]%', $obj->inflect($parentCategory, 4), $templateDesc) : $templateDesc;
-        $templateDesc = (strstr($templateDesc, '%parentCategory[5]%')) ? str_replace('%parentCategory[5]%', $obj->inflect($parentCategory, 5), $templateDesc) : $templateDesc;
-        $templateDesc = (strstr($templateDesc, '%parentCategory[6]%')) ? str_replace('%parentCategory[6]%', $obj->inflect($parentCategory, 6), $templateDesc) : $templateDesc;
 
         // the cases of words and translit
         $templateDesc = (strstr($templateDesc, '%category[1][t]%') || strstr($templateDesc, '%category[t][1]%')) ? str_replace(['%category[1][t]%', '%category[t][1]%'], translit($obj->inflect($model->getMainCategory()->getName(), 1)), $templateDesc) : $templateDesc;
@@ -473,12 +447,6 @@ class Mod_seo extends MY_Controller {
         $templateDesc = (strstr($templateDesc, '%category[4][t]%') || strstr($templateDesc, '%category[t][4]%')) ? str_replace(['%category[4][t]%', '%category[t][4]%'], translit($obj->inflect($model->getMainCategory()->getName(), 4)), $templateDesc) : $templateDesc;
         $templateDesc = (strstr($templateDesc, '%category[5][t]%') || strstr($templateDesc, '%category[t][5]%')) ? str_replace(['%category[5][t]%', '%category[t][5]%'], translit($obj->inflect($model->getMainCategory()->getName(), 5)), $templateDesc) : $templateDesc;
         $templateDesc = (strstr($templateDesc, '%category[6][t]%') || strstr($templateDesc, '%category[t][6]%')) ? str_replace(['%category[6][t]%', '%category[t][6]%'], translit($obj->inflect($model->getMainCategory()->getName(), 6)), $templateDesc) : $templateDesc;
-        $templateDesc = (strstr($templateDesc, '%parentCategory[1][t]%') || strstr($templateDesc, '%parentCategory[t][1]%')) ? str_replace(['%parentCategory[1][t]%', '%parentCategory[t][1]%'], translit($obj->inflect($parentCategory, 1)), $templateDesc) : $templateDesc;
-        $templateDesc = (strstr($templateDesc, '%parentCategory[2][t]%') || strstr($templateDesc, '%parentCategory[t][2]%')) ? str_replace(['%parentCategory[2][t]%', '%parentCategory[t][2]%'], translit($obj->inflect($parentCategory, 2)), $templateDesc) : $templateDesc;
-        $templateDesc = (strstr($templateDesc, '%parentCategory[3][t]%') || strstr($templateDesc, '%parentCategory[t][3]%')) ? str_replace(['%parentCategory[3][t]%', '%parentCategory[t][3]%'], translit($obj->inflect($parentCategory, 3)), $templateDesc) : $templateDesc;
-        $templateDesc = (strstr($templateDesc, '%parentCategory[4][t]%') || strstr($templateDesc, '%parentCategory[t][4]%')) ? str_replace(['%parentCategory[4][t]%', '%parentCategory[t][4]%'], translit($obj->inflect($parentCategory, 4)), $templateDesc) : $templateDesc;
-        $templateDesc = (strstr($templateDesc, '%parentCategory[5][t]%') || strstr($templateDesc, '%parentCategory[t][5]%')) ? str_replace(['%parentCategory[5][t]%', '%parentCategory[t][5]%'], translit($obj->inflect($parentCategory, 5)), $templateDesc) : $templateDesc;
-        $templateDesc = (strstr($templateDesc, '%parentCategory[6][t]%') || strstr($templateDesc, '%parentCategory[t][6]%')) ? str_replace(['%parentCategory[6][t]%', '%parentCategory[t][6]%'], translit($obj->inflect($parentCategory, 6)), $templateDesc) : $templateDesc;
 
         $templateDesc = (strstr($templateDesc, '%name[1]%') || strstr($templateDesc, '%name[t][1]%') || strstr($templateDesc, '%name[1][t]%')) ? str_replace(['%name[1]%', '%name[t][1]%', '%name[1][t]%'], [$obj->inflect($model->getName(), 1), translit($obj->inflect($model->getName(), 1)), translit($obj->inflect($model->getName(), 1))], $templateDesc) : $templateDesc;
         $templateDesc = (strstr($templateDesc, '%name[2]%') || strstr($templateDesc, '%name[t][2]%') || strstr($templateDesc, '%name[2][t]%')) ? str_replace(['%name[2]%', '%name[t][2]%', '%name[2][t]%'], [$obj->inflect($model->getName(), 2), translit($obj->inflect($model->getName(), 2)), translit($obj->inflect($model->getName(), 2))], $templateDesc) : $templateDesc;

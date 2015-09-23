@@ -204,7 +204,6 @@
                                                     <b>%ID%</b> - ID <br/>
                                                     <b>%name%</b> - {lang('Product name','mod_seo')}<br/>
                                                     <b>%category%</b> - {lang('Category, which is assigned to the product','mod_seo')}<br/>
-                                                    <b>%parentCategory%</b> - {lang('Parent category, which is assigned to the product','mod_seo')}<br/>
                                                     <b>%brand%</b> - {lang('Brand, which is assigned to the product','mod_seo')}<br/>
                                                     <b>%price%</b> - {lang('Product price','mod_seo')}<br/>
                                                     <b>%CS%</b> - {lang('Main currency','mod_seo')}<br/>
@@ -239,7 +238,6 @@
                                                     <b>%name%</b> - {lang('Product name','mod_seo')}<br/>
                                                     <b>%desc%</b> - {lang('Product description','mod_seo')}<br/>
                                                     <b>%category%</b> - {lang('Category, which is assigned to the product','mod_seo')}<br/>
-                                                    <b>%parentCategory%</b> - {lang('Parent category, which is assigned to the product','mod_seo')}<br/>
                                                     <b>%brand%</b> - {lang('Brand, which is assigned to the product','mod_seo')}<br/>
                                                     <b>%price%</b> - {lang('Product price','mod_seo')}<br/>
                                                     <b>%CS%</b> - {lang('Main currency','mod_seo')}<br/>

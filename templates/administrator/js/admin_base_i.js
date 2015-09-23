@@ -138,7 +138,6 @@ $(document).ready(function () {
         if ($(this).attr('value') === 'html') {
             $('#moduleholder').fadeOut(200, function () {
                 $('#textareaholder').css('display', '');
-                initElRTE();
             });
             $('#mod_name').fadeOut(200);
 

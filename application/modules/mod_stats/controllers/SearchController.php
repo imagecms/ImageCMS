@@ -23,10 +23,10 @@ class SearchController extends ControllerBase {
         $limit = $this->input->get('swr') ? (int) $this->input->get('swr') : 200;
         $result = $this->controller->search_model->queryKeywordsByDateRange(
             [
-            'dateFrom' => $this->input->get('from') ? : '2005-05-05',
-            'dateTo' => $this->input->get('to') ? : date("Y-m-d"),
-            'interval' => $this->input->get('group') ? : 'day',
-                ],
+                'dateFrom' => $this->input->get('from') ?: '2005-05-05',
+                'dateTo' => $this->input->get('to') ?: date("Y-m-d"),
+                'interval' => $this->input->get('group') ?: 'day',
+            ],
             $limit
         );
         $this->renderAdmin('keywords', ['data' => $result]);
@@ -67,10 +67,16 @@ class SearchController extends ControllerBase {
      * @param string $type
      */
     private function getSearchData($type) {
+        $dateTo = $this->input->get('to') ? $this->input->get('to') : date("Y-m-d");
+        $dateTo = date("Y-m-d", strtotime($dateTo));
+
+        $dateFrom = $this->input->get('from') ? $this->input->get('from') : date("Y-m-d");
+        $dateFrom = date("Y-m-d", strtotime($dateFrom));
+
         $params = [
-            'dateFrom' => $this->input->get('from') ? : '2005-05-05',
-            'dateTo' => $this->input->get('to') ? : date("Y-m-d"),
-            'interval' => $this->input->get('group') ? : 'day',
+            'dateFrom' => $dateFrom,
+            'dateTo' => $dateTo,
+            'interval' => $this->input->get('group') ?: 'day',
             'swr' => $this->input->get('swr') ? (int) $this->input->get('swr') : 9,
             'swc' => $this->input->get('swc') ? (int) $this->input->get('swc') : 9
         ];

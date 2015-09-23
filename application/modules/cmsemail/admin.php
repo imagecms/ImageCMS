@@ -9,6 +9,9 @@
  */
 class Admin extends BaseAdminController {
 
+    const MAX_DEFAULT_TEMPLATES_CORPORATE = 3;
+    const MAX_DEFAULT_TEMPLATES_SHOP = 7;
+
     /**
      * Object of Email class
      * @var Email
@@ -16,7 +19,6 @@ class Admin extends BaseAdminController {
     public $email;
 
     public function __construct() {
-
         parent::__construct();
         $this->load->language('email');
         $this->email = \cmsemail\email::getInstance();
@@ -25,22 +27,34 @@ class Admin extends BaseAdminController {
     }
 
     public function index() {
-
         \CMSFactory\assetManager::create()
-                ->setData('models', $this->email->getAllTemplates())
-                ->renderAdmin('list');
+            ->setData(
+                [
+                'models' => $this->email->getAllTemplates(),
+                'defaultTemplatesCount' => $this->getMaxDefaultTemplatesCount(),
+                ]
+            )
+            ->renderAdmin('list');
+    }
+
+    private function getMaxDefaultTemplatesCount() {
+        if (MY_Controller::isCorporateCMS()) {
+            return self::MAX_DEFAULT_TEMPLATES_CORPORATE;
+        }
+
+        return self::MAX_DEFAULT_TEMPLATES_SHOP;
     }
 
     public function settings($locale) {
 
         $locale = $locale ? $locale : MY_Controller::defaultLocale();
         \CMSFactory\assetManager::create()
-                ->registerScript('email')
-                ->registerStyle('style')
-                ->setData('settings', $this->email->getSettings($locale))
-                ->setData('languages', $this->cms_base->get_langs())
-                ->setData('locale', $locale)
-                ->renderAdmin('settings');
+            ->registerScript('email')
+            ->registerStyle('style')
+            ->setData('settings', $this->email->getSettings($locale))
+            ->setData('languages', $this->cms_base->get_langs())
+            ->setData('locale', $locale)
+            ->renderAdmin('settings');
     }
 
     public function create() {
@@ -61,14 +75,13 @@ class Admin extends BaseAdminController {
             }
         } else {
             \CMSFactory\assetManager::create()
-                    ->registerScript('email')
-                    ->setData('settings', $this->email->getSettings())
-                    ->renderAdmin('create');
+                ->registerScript('email')
+                ->setData('settings', $this->email->getSettings())
+                ->renderAdmin('create');
         }
     }
 
-    public function mailTest($config) {
-
+    public function mailTest() {
         lang('email_sent', 'admin');
         echo $this->email->mailTest();
     }
@@ -118,12 +131,12 @@ class Admin extends BaseAdminController {
             }
         } else {
             \CMSFactory\assetManager::create()
-                    ->setData('locale', $locale)
-                    ->setData('languages', $this->db->get('languages')->result_array())
-                    ->setData('model', $model)
-                    ->setData('variables', $variables)
-                    ->registerScript('email')
-                    ->renderAdmin('edit');
+                ->setData('locale', $locale)
+                ->setData('languages', $this->db->get('languages')->result_array())
+                ->setData('model', $model)
+                ->setData('variables', $variables)
+                ->registerScript('email')
+                ->renderAdmin('edit');
         }
     }
 
@@ -209,11 +222,11 @@ class Admin extends BaseAdminController {
 
         if ($this->email->addVariable($template_id, $variable, $variableValue, $locale)) {
             \CMSFactory\assetManager::create()
-                    ->setData('template_id', $template_id)
-                    ->setData('variable', $variable)
-                    ->setData('variable_value', $variableValue)
-                    ->setData('locale', $locale)
-                    ->render('newVariable', true);
+                ->setData('template_id', $template_id)
+                ->setData('variable', $variable)
+                ->setData('variable_value', $variableValue)
+                ->setData('locale', $locale)
+                ->render('newVariable', true);
         } else {
             return FALSE;
         }
@@ -228,8 +241,8 @@ class Admin extends BaseAdminController {
         $variables = $this->email->getTemplateVariables($template_id, $locale);
         if ($variables) {
             return \CMSFactory\assetManager::create()
-                            ->setData('variables', $variables)
-                            ->render('variablesSelectOptions', true);
+                ->setData('variables', $variables)
+                ->render('variablesSelectOptions', true);
         } else {
             return FALSE;
         }

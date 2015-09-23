@@ -16,9 +16,9 @@
 								<div class="b-dashboard__info">
 									<h2 class="b-dashboard__title">
 										{if trim($item.url) != ""}
-										<a class="b-dashboard__link" href="{$item.url}">{$item.name}</a>
+                                            <a class="b-dashboard__link" href="{site_url($item.url)}">{$item.name}</a>
 										{else:}
-										{$item.name}
+										    {$item.name}
 										{/if}
 									</h2>
 									<div class="g-text g-text_sub">{$item.description}</div>

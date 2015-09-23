@@ -1706,16 +1706,16 @@
         },
         {
             "name": "hoa/ruler",
-            "version": "1.15.09.08",
+            "version": "1.15.09.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hoaproject/Ruler.git",
-                "reference": "8461a4dcc33f2e68002adf958e58444106820826"
+                "reference": "7e82ede5ebbe6eaf0f2241c0310fda37b8e5c351"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hoaproject/Ruler/zipball/8461a4dcc33f2e68002adf958e58444106820826",
-                "reference": "8461a4dcc33f2e68002adf958e58444106820826",
+                "url": "https://api.github.com/repos/hoaproject/Ruler/zipball/7e82ede5ebbe6eaf0f2241c0310fda37b8e5c351",
+                "reference": "7e82ede5ebbe6eaf0f2241c0310fda37b8e5c351",
                 "shasum": ""
             },
             "require": {
@@ -1758,7 +1758,7 @@
                 "library",
                 "ruler"
             ],
-            "time": "2015-09-08 13:18:59"
+            "time": "2015-09-22 16:29:58"
         },
         {
             "name": "hoa/stream",

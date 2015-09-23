@@ -35,7 +35,7 @@ class Widgets_manager extends BaseAdminController {
 
         $locale = self::defaultLocale();
         $query = $this->db
-            ->select(array('widgets.*', 'widget_i18n.title'))
+            ->select(['widgets.*', 'widget_i18n.title'])
             ->join('widget_i18n', "widgets.id = widget_i18n.id AND widget_i18n.locale = '{$locale}'", 'left')
             ->order_by('widgets.id', 'asc')
             ->get('widgets');
@@ -60,9 +60,9 @@ class Widgets_manager extends BaseAdminController {
         }
 
         $this->template->add_array(
-            array(
+            [
                 'widgets' => $widgets
-            )
+            ]
         );
 
         $this->template->show('widgets_list', FALSE);
@@ -97,7 +97,7 @@ class Widgets_manager extends BaseAdminController {
 
         $type = $this->input->post('type');
 
-        if ($this->db->get_where('widgets', array('name' => $this->input->post('name')))->num_rows() > 0) {
+        if ($this->db->get_where('widgets', ['name' => $this->input->post('name')])->num_rows() > 0) {
             showMessage(lang("Widget with the same identifier already exists. Choose or select another identifier", 'admin'), false, 'r');
             return FALSE;
         }
@@ -105,21 +105,21 @@ class Widgets_manager extends BaseAdminController {
         if ($type == 'module') {
             $this->form_validation->set_rules('desc', lang("Description ", "admin"), 'trim|min_length[1]|max_length[500]');
             $this->form_validation->set_rules('title', lang("Title", "admin"), 'trim');
-            $this->form_validation->set_rules('name', lang("Identifier", "admin"), 'trim|required|alpha_dash');
+            $this->form_validation->set_rules('name', lang("Key", "admin"), 'trim|required|alpha_dash');
             $this->form_validation->set_rules('module', lang("Module name", "admin"), 'trim|required');
             //            $this->form_validation->set_rules('method', lang("Method", "admin"), 'trim|required');
 
             if ($this->form_validation->run($this) == FALSE) {
                 showMessage(validation_errors(), false, 'r');
             } else {
-                $data = array(
+                $data = [
                     'description' => $this->input->post('desc'),
                     'method' => $this->input->post('method'),
                     'data' => $this->input->post('module'), // module name
                     'name' => $this->input->post('name'),
                     'type' => $type,
                     'created' => time()
-                );
+                ];
 
                 $this->db->insert('widgets', $data);
                 $data['id'] = $this->db->insert_id();
@@ -170,20 +170,20 @@ class Widgets_manager extends BaseAdminController {
             }
         } elseif ($type == 'html') {
             $this->form_validation->set_rules('desc', lang("Description ", "admin"), 'trim|min_length[1]|max_length[500]');
-            $this->form_validation->set_rules('name', lang("Name", "admin"), 'trim|required|alpha_dash');
+            $this->form_validation->set_rules('name', lang("Key", "admin"), 'trim|required|alpha_dash');
             $this->form_validation->set_rules('html_code', lang("HTML", "admin"), 'trim|required');
 
             if ($this->form_validation->run($this) == FALSE) {
                 showMessage(validation_errors(), false, 'r');
             } else {
-                $data = array(
+                $data = [
                     'description' => $this->input->post('desc'),
                     //'data' => $this->input->post('html_code'),
                     'name' => $this->input->post('name'),
                     'type' => $type,
                     'created' => time(),
                     //'locale' => $locale
-                );
+                ];
 
                 $this->lib_admin->log(lang("Created a widget", "admin") . " " . $data['name']);
 
@@ -196,12 +196,12 @@ class Widgets_manager extends BaseAdminController {
 
         if ($findId) {
             $locale = MY_Controller::defaultLocale();
-            $data = array(
+            $data = [
                 'id' => $findId,
                 'title' => $this->input->post('title') ? $this->input->post('title') : '',
                 'data' => $this->input->post('html_code') ? $this->input->post('html_code') : '',
                 'locale' => $locale
-            );
+            ];
 
             $this->db->insert('widget_i18n', $data);
 
@@ -250,7 +250,7 @@ class Widgets_manager extends BaseAdminController {
                 $widget['settings'] = unserialize($widget['settings']);
 
                 $subpath = isset($widget['settings']['subpath']) ? $widget['settings']['subpath'] . '/' : '';
-                echo modules::run($widget['data'] . '/' . $subpath . $widget['data'] . '_widgets/' . $widget['method'] . '_configure', array('show_settings', $widget));
+                echo modules::run($widget['data'] . '/' . $subpath . $widget['data'] . '_widgets/' . $widget['method'] . '_configure', ['show_settings', $widget]);
             }
         } else {
             show_error(lang("Error: widget not found!"));
@@ -264,7 +264,7 @@ class Widgets_manager extends BaseAdminController {
             $widget = $widget->row_array();
 
             $this->form_validation->set_rules('desc', lang("Description ", "admin"), 'trim|min_length[1]|max_length[500]');
-            $this->form_validation->set_rules('name', lang("Name", "admin"), 'trim|required|alpha_dash');
+            $this->form_validation->set_rules('name', lang("Key", "admin"), 'trim|required|alpha_dash');
             $this->form_validation->set_rules('html_code', lang("HTML", "admin"), 'trim|required');
 
             if ($this->form_validation->run($this) == FALSE) {
@@ -272,15 +272,15 @@ class Widgets_manager extends BaseAdminController {
                 return FALSE;
             }
 
-            if ($this->db->where('id !=', $id)->get_where('widgets', array('name' => $this->input->post('name')))->num_rows() > 0) {
+            if ($this->db->where('id !=', $id)->get_where('widgets', ['name' => $this->input->post('name')])->num_rows() > 0) {
                 showMessage(lang("Widget with the same identifier already exists. Choose or select another identifier", 'admin'), false, 'r');
                 return FALSE;
             }
 
-            $data = array(
+            $data = [
                 'description' => $this->input->post('desc'),
                 'name' => $this->input->post('name')
-            );
+            ];
 
             $this->db->where('id', $id);
             $this->db->update('widgets', $data);
@@ -288,22 +288,22 @@ class Widgets_manager extends BaseAdminController {
             $sql = "select * from widget_i18n where id = '$id' and locale = '$locale'";
             if ($this->db->query($sql)->num_rows() > 0) {
 
-                $data = array(
+                $data = [
                     'data' => $this->input->post('html_code'),
                     'title' => $this->input->post('title'),
-                );
+                ];
                 //                var_dumps_exit($data);
                 $this->db->where('id', $id);
                 $this->db->where('locale', $locale);
                 $this->db->update('widget_i18n', $data);
             } else {
 
-                $data = array(
+                $data = [
                     'id' => $id,
                     'data' => $this->input->post('html_code'),
                     'title' => $this->input->post('title'),
                     'locale' => $locale
-                );
+                ];
                 //                var_dumps_exit($data);
 
                 $this->db->insert('widget_i18n', $data);
@@ -332,41 +332,41 @@ class Widgets_manager extends BaseAdminController {
             if ($update_info == 'info') {
 
                 $this->form_validation->set_rules('desc', lang("Description ", "admin"), 'trim|min_length[1]|max_length[500]');
-                $this->form_validation->set_rules('name', lang("Name", "admin"), 'trim|required|alpha_dash');
+                $this->form_validation->set_rules('name', lang("Key", "admin"), 'trim|required|alpha_dash');
 
                 if ($this->form_validation->run($this) == FALSE) {
                     showMessage(validation_errors(), false, 'r');
                     return FALSE;
                 }
 
-                if ($this->db->where('id !=', $id)->get_where('widgets', array('name' => $this->input->post('name')))->num_rows() > 0) {
+                if ($this->db->where('id !=', $id)->get_where('widgets', ['name' => $this->input->post('name')])->num_rows() > 0) {
                     showMessage(lang("Widget with the same identifier already exists. Choose or select another identifier", 'admin'), false, 'r');
                     return FALSE;
                 }
 
-                $data = array(
+                $data = [
                     'description' => $this->input->post('desc'),
                     'name' => $this->input->post('name')
-                );
+                ];
 
                 $this->db->where('id', $widget['id']);
                 $this->db->update('widgets', $data);
 
                 if ($this->db->where('id', $id)->where('locale', $locale)->get('widget_i18n')->num_rows()) {
-                    $dataI18n = array(
+                    $dataI18n = [
                         'data' => '',
                         'title' => $this->input->post('title')
-                    );
+                    ];
                     $this->db->where('id', $id)
                         ->where('locale', $locale)
                         ->update('widget_i18n', $dataI18n);
                 } else {
-                    $dataI18n = array(
+                    $dataI18n = [
                         'id' => $id,
                         'locale' => $locale,
                         'data' => '',
                         'title' => $this->input->post('title')
-                    );
+                    ];
                     $this->db->insert('widget_i18n', $dataI18n);
                 }
 
@@ -378,7 +378,7 @@ class Widgets_manager extends BaseAdminController {
                 if ($widget['type'] == 'module') {
                     $widget['settings'] = unserialize($widget['settings']);
                     $subpath = isset($widget['settings']['subpath']) ? $widget['settings']['subpath'] . '/' : '';
-                    modules::run($widget['data'] . '/' . $subpath . $widget['data'] . '_widgets/' . $widget['method'] . '_configure', array('update_settings', $widget));
+                    modules::run($widget['data'] . '/' . $subpath . $widget['data'] . '_widgets/' . $widget['method'] . '_configure', ['update_settings', $widget]);
                     showMessage(lang("Changes has been saved", "admin"));
                 }
                 if ($this->input->post('action') == 'tomain') {
@@ -396,7 +396,7 @@ class Widgets_manager extends BaseAdminController {
 
     // Update widget config
 
-    public function update_config($id = FALSE, $new_settings = array()) {
+    public function update_config($id = FALSE, $new_settings = []) {
         //cp_check_perm('widget_access_settings');
         //        echo "<pre>";
         //        var_dump($id);
@@ -405,7 +405,7 @@ class Widgets_manager extends BaseAdminController {
         if ($id != FALSE AND count($new_settings) > 0) {
             $settings = serialize($new_settings);
             $this->db->where('id', $id);
-            $this->db->update('widgets', array('settings' => $settings));
+            $this->db->update('widgets', ['settings' => $settings]);
         }
     }
 
@@ -432,7 +432,7 @@ class Widgets_manager extends BaseAdminController {
     }
 
     public function get($id) {
-        return $this->db->get_where('widgets', array('id' => $id));
+        return $this->db->get_where('widgets', ['id' => $id]);
     }
 
     public function edit_html_widget($id, $update_info = FALSE, $locale = null) {
@@ -450,15 +450,15 @@ class Widgets_manager extends BaseAdminController {
         $widget['title'] = $w_i18['title'];
 
         /** Init Event. Pre Create Category */
-        \CMSFactory\Events::create()->registerEvent(array('widgetId' => $id), 'WidgetHTML:preUpdate');
+        \CMSFactory\Events::create()->registerEvent(['widgetId' => $id], 'WidgetHTML:preUpdate');
         \CMSFactory\Events::runFactory();
 
         $this->template->assign('locale', $locale);
         $this->template->assign('languages', $lang);
         $this->template->add_array(
-            array(
+            [
                 'widget' => $widget
-            )
+            ]
         );
 
         $this->lib_admin->log(lang("Widget edited", "admin"));
@@ -483,7 +483,7 @@ class Widgets_manager extends BaseAdminController {
                 ->get('widgets');
 
             /** Init Event. Pre Create Category */
-            \CMSFactory\Events::create()->registerEvent(array('widgetId' => $id), 'WidgetModule:preUpdate');
+            \CMSFactory\Events::create()->registerEvent(['widgetId' => $id], 'WidgetModule:preUpdate');
             \CMSFactory\Events::runFactory();
 
             $widget = $widget->row_array();
@@ -491,12 +491,12 @@ class Widgets_manager extends BaseAdminController {
             $widget['title'] = $settings['title'] ? $settings['title'] : $widget['title'];
 
             $this->template->add_array(
-                array(
+                [
                     'widget_id' => $id,
                     'widget' => $widget,
                     'locale' => $locale,
                     'languages' => $this->db->get('languages')->result_array()
-                )
+                ]
             );
 
             $this->template->show('widget_edit_module', FALSE);
@@ -517,9 +517,9 @@ class Widgets_manager extends BaseAdminController {
 
                 $modules = $this->db->get('components')->result_array();
 
-                array_push($modules, array('name' => 'core')); // Add core module
+                array_push($modules, ['name' => 'core']); // Add core module
 
-                $all_widgets = array();
+                $all_widgets = [];
 
                 foreach ($modules as $module) {
                     $moduleInfo = $this->load->module('admin/components')->get_module_info($module['name']);
@@ -528,11 +528,11 @@ class Widgets_manager extends BaseAdminController {
                     $widgets_info = realpath($modulePath . 'widgets_info.php');
 
                     if (file_exists($widgets_info)) {
-                        $module_widgets = array(
+                        $module_widgets = [
                             'widgets' => $this->getWidgetsArray($widgets_info),
                             'module' => $module['name'],
                             'module_name' => $this->get_module_name($module['name']),
-                        );
+                        ];
 
                         $subpath = isset($moduleInfo['widgets_subpath']) ? $moduleInfo['widgets_subpath'] . '/' : '';
 
@@ -545,9 +545,9 @@ class Widgets_manager extends BaseAdminController {
                 }
 
                 $this->template->add_array(
-                    array(
+                    [
                         'widgets' => $all_widgets
-                    )
+                    ]
                 );
                 if ($case) {
                     return $all_widgets;

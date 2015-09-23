@@ -52,7 +52,6 @@ class Admin extends BaseAdminController {
             $this->template->assign('groups', false);
         }
         $this->render('index');
-        //         echo $this->display_tpl('index');
     }
 
     public function create_field() {
@@ -83,7 +82,7 @@ class Admin extends BaseAdminController {
                 $data['data'] = serialize($data);
                 unset($data['groups']);
                 $data['field_name'] = 'field_' . $data['field_name'];
-                if ($this->db->get_where('content_fields', array('field_name' => $data['field_name']))->num_rows() > 0) {
+                if ($this->db->get_where('content_fields', ['field_name' => $data['field_name']])->num_rows() > 0) {
                     showMessage(lang("Select another  name", 'cfcm'), false, 'r');
                 } else {
                     // Set field weight.
@@ -94,12 +93,12 @@ class Admin extends BaseAdminController {
                     $this->db->insert('content_fields', $data);
 
                     //write relations
-                    $toInsert = array();
+                    $toInsert = [];
                     if (count($groups)) {
                         foreach ($groups as $group) {
-                            $toInsert[] = array('field_name' => $data['field_name'],
+                            $toInsert[] = ['field_name' => $data['field_name'],
                                 'group_id' => $group
-                            );
+                            ];
                         }
 
                         if (count($toInsert)) {
@@ -122,9 +121,9 @@ class Admin extends BaseAdminController {
             }
         } else {
             $this->template->add_array(
-                array(
+                [
                         'form' => $form,
-                    )
+                    ]
             );
 
             $this->render('_form');
@@ -136,7 +135,7 @@ class Admin extends BaseAdminController {
         $form->action = $this->get_url('edit_field_data_type/' . $field_name);
         $form->title = lang("Field editing", 'cfcm');
 
-        $field = $this->db->get_where('content_fields', array('field_name' => $field_name))->row_array();
+        $field = $this->db->get_where('content_fields', ['field_name' => $field_name])->row_array();
 
         if ($this->input->post()) {
             $_POST['field_name'] = $field['field_name'];
@@ -167,9 +166,9 @@ class Admin extends BaseAdminController {
         $form->field_name->field->attributes = 'disabled="disabled"';
 
         $this->template->add_array(
-            array(
+            [
                     'form' => $form,
-                )
+                ]
         );
 
         //         $this->display_tpl('_form');
@@ -196,7 +195,7 @@ class Admin extends BaseAdminController {
     public function edit_field($name = '') {
         $name = urldecode($name);
         $this->db->limit(1);
-        $field = $this->db->get_where('content_fields', array('field_name' => (string) $name));
+        $field = $this->db->get_where('content_fields', ['field_name' => (string) $name]);
 
         if ($field->num_rows() == 1) {
             $field = $field->row();
@@ -213,8 +212,6 @@ class Admin extends BaseAdminController {
             if ($this->input->post()) {
                 $data = $form->getData();
 
-                $matches = array();
-
                 if (isset($data['required'])) {
                     $data['validation'] = 'required|' . $data['validation'];
                 }
@@ -223,24 +220,25 @@ class Admin extends BaseAdminController {
                 $this->db->where('field_name', $field->field_name);
                 $this->db->update(
                     'content_fields',
-                    array('data' => serialize($data),
+                    [
+                    'data' => serialize($data),
                     'type' => $data['type'],
                     'label' => $data['label'],
-                        )
+                        ]
                 );
 
                 $groups = $data['groups'];
                 $data['field_name'] = end($this->uri->segment_array());
-                ;
+
                 if (count($groups)) {
                     foreach ($groups as $group) {
-                        $toInsert[] = array('field_name' => $data['field_name'],
+                        $toInsert[] = ['field_name' => $data['field_name'],
                             'group_id' => $group
-                        );
+                        ];
                     }
 
                     if (count($toInsert)) {
-                        $this->db->delete('content_fields_groups_relations', array('field_name' => $data['field_name']));
+                        $this->db->delete('content_fields_groups_relations', ['field_name' => $data['field_name']]);
                     }
                     $this->db->insert_batch('content_fields_groups_relations', $toInsert);
                 }
@@ -255,9 +253,9 @@ class Admin extends BaseAdminController {
                 $modulePath = getModulePath('cfcm');
                 $this->template->registerJsFile($modulePath . 'templates/scripts/admin.js', 'after');
                 $this->template->add_array(
-                    array(
+                    [
                             'form' => $form,
-                        )
+                        ]
                 );
 
                 $this->render('_form');
@@ -274,7 +272,7 @@ class Admin extends BaseAdminController {
             $form = $this->load->module('cfcm/cfcm_forms')->edit_field($type);
 
             $findType = FALSE;
-            $fieldsData = array();
+            $fieldsData = [];
             foreach ($form->fields as $key => $field) {
 
                 if ($findType && $key != 'validation') {
@@ -290,7 +288,7 @@ class Admin extends BaseAdminController {
                 }
             }
 
-            return $this->render('one_type_field', array('fields' => $fieldsData), TRUE);
+            return $this->render('one_type_field', ['fields' => $fieldsData], TRUE);
         }
     }
 
@@ -323,9 +321,9 @@ class Admin extends BaseAdminController {
         }
 
         $this->template->add_array(
-            array(
+            [
                     'form' => $form,
-                )
+                ]
         );
 
         //         $this->display_tpl('_form');
@@ -335,7 +333,7 @@ class Admin extends BaseAdminController {
     public function edit_group($id) {
         $id = (int) $id;
 
-        $group = $this->db->get_where('content_field_groups', array('id' => $id));
+        $group = $this->db->get_where('content_field_groups', ['id' => $id]);
 
         if ($group->num_rows() == 1) {
             $group = $group->row_array();
@@ -374,12 +372,10 @@ class Admin extends BaseAdminController {
         $form->setAttributes($group);
 
         $this->template->add_array(
-            array(
+            [
                     'form' => $form,
-                )
+                ]
         );
-
-        //         $this->display_tpl('_form');
 
         $this->render('_form');
     }
@@ -390,13 +386,13 @@ class Admin extends BaseAdminController {
             ->delete('content_field_groups');
 
         $this->db->where('group_id', $id)
-            ->update('content_fields_groups_relations', array('group_id' => '0'));
+            ->update('content_fields_groups_relations', ['group_id' => '0']);
 
         $this->db->where('field_group', $id)
-            ->update('category', array('field_group' => '-1'));
+            ->update('category', ['field_group' => '-1']);
 
         $this->db->where('category_field_group', $id)
-            ->update('category', array('category_field_group' => '-1'));
+            ->update('category', ['category_field_group' => '-1']);
 
         $this->lib_admin->log(lang("Group deleted successfuly", "cfcm") . '. Id: ' . $id);
         showMessage(lang('Group deleted successfuly', 'cfcm'));
@@ -411,7 +407,7 @@ class Admin extends BaseAdminController {
     }
 
     public function get_form_attributes($fields, $item_id, $item_type) {
-         return $this->cfcm->get_form_attributes($fields, $item_id, $item_type);
+        return $this->cfcm->get_form_attributes($fields, $item_id, $item_type);
     }
 
     public function save_weight() {
@@ -421,14 +417,14 @@ class Admin extends BaseAdminController {
                 $weight = (int) $_POST['fields_pos'][$k];
 
                 $this->db->where('field_name', $name);
-                $this->db->update('content_fields', array('weight' => $weight));
+                $this->db->update('content_fields', ['weight' => $weight]);
             }
         }
     }
 
     //     render template
 
-    public function render($viewName, $data = array(), $return = false) {
+    public function render($viewName, $data = [], $return = false) {
         if (!empty($data)) {
             $this->template->add_array($data);
         }
@@ -438,7 +434,6 @@ class Admin extends BaseAdminController {
         } else {
             $this->template->show('file:' . realpath(dirname(__FILE__)) . '/templates/admin/' . $viewName);
         }
-        //     	$this->template->fetch('file:' . 'application/modules/cfcm/templates/admin/' . $viewName);
         exit;
     }
 
@@ -453,7 +448,7 @@ class Admin extends BaseAdminController {
     /**
      * Fetch template file
      */
-    private function fetch_tpl($file = '', $data = array()) {
+    private function fetch_tpl($file = '', $data = []) {
         $this->template->add_array($data);
 
         $file = realpath(dirname(__FILE__)) . '/templates/admin/' . $file . '.tpl';

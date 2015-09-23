@@ -149,7 +149,7 @@
                         </div>
 
                         <div class="control-group">
-                            <label class="control-label" for="Name">{lang('Scroll speed', 'xbanners')}
+                            <label class="control-label" for="Name">{lang('Scroll speed(sec)', 'xbanners')}
                                 :</label>
 
                             <div class="controls">
@@ -157,7 +157,7 @@
                                 <i class="icon-info-sign popover_ref" data-title="" data-original-title=""></i>
 
                                 <div class="d_n">
-                                    <p>{echo lang('Speed with which slide will be changed. It specifies in milliseconds. Recommendation - 300', 'xbanners')}</p>
+                                    <p>{echo lang('Speed with which slide will be changed.', 'xbanners')}</p>
                                 </div>
 
                             </div>
