@@ -11,7 +11,7 @@ env:
 
 before_script:
     - pwd
-    - composer update --no-dev
+    - composer update
     - mysql -e "drop database IF EXISTS test;" -uroot
     - mysql -e "create database IF NOT EXISTS test;" -uroot
     - mysql -uroot test<application/modules/install/sqlPre.sql
