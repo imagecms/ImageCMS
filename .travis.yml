@@ -10,7 +10,9 @@ env:
     - DB=mysql
 
 before_script:
+    - mysql -e "drop database test;" -uroot
     - mysql -e "create database IF NOT EXISTS test;" -uroot
+    - mysql -uroot test<application/modules/install/sqlPre.pre
     
 script:
     - phpunit
