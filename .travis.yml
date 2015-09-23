@@ -13,7 +13,7 @@ before_script:
     - pwd
     - mysql -e "drop database IF EXISTS test;" -uroot
     - mysql -e "create database IF NOT EXISTS test;" -uroot
-    - mysql -uroot test<./application/modules/install/sqlPre.pre
+    - mysql -uroot test<application/modules/install/sqlPre.sql
     
 script:
     - phpunit
