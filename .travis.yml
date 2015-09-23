@@ -16,7 +16,7 @@ before_script:
     - mysql -e "create database IF NOT EXISTS test;" -uroot
     - mysql -uroot test<application/modules/install/sqlPre.sql
     - mysql -e "use test; select * from components" -uroot
-    - php aplication/third_party/bin/phpunit
+    - php application/third_party/bin/phpunit
     
 script:
     - phpunit
