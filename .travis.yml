@@ -10,9 +10,7 @@ env:
     - DB=mysql
 
 before_script:
-    - mysql -uroot
-    - create database test;
-    - exit;
+    - mysql -e "create database IF NOT EXISTS test;" -uroot
     
 script:
     - phpunit
