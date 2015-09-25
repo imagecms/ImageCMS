@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 /*
   | -------------------------------------------------------------------------
   | Hooks
@@ -13,15 +14,21 @@ if (!defined('BASEPATH'))
   |
  */
 
-$hook['pre_system'][] = array(
+$hook['pre_system'][] = [
     'class' => '',
     'function' => 'checkPhpVersionOrDie',
     'filename' => 'system_validation_hooks.php',
     'filepath' => 'third_party'
-);
-$hook['post_controller'][] = array(
+];
+$hook['post_controller'][] = [
     'class' => '',
     'function' => 'runFactory',
     'filename' => 'hooks.php',
     'filepath' => 'third_party'
-);
+];
+$hook['display_override'] = [
+    'class' => 'DisplayHook',
+    'function' => 'captureOutput',
+    'filename' => 'DisplayHook.php',
+    'filepath' => 'hooks'
+];
