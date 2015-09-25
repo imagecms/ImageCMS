@@ -9,7 +9,6 @@
 /uploads_backup
 /gitpush
 /application/backups
-/application/config/database.php
 /application/modules/shop/cmlTemp/
 /application/modules/sitemap/map/
 /codeception/tests/acceptance.suite.yml
