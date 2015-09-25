@@ -16,11 +16,12 @@
         "symfony/var-dumper": "2.*",
         "tubalmartin/cssmin": "dev-master",
         "patchwork/jsqueeze": "~2.0",
-        "tecnick.com/tcpdf": ">=6",
+        "tecnickcom/tcpdf": ">=6",
         "google/apiclient": ">=1.1.2",
         "greenlion/php-sql-parser": ">=4.0",
         "true/punycode": "^2.0",
-        "umisoft/phpmorphy": "^1.0"
+        "umisoft/phpmorphy": "^1.0",
+        "gettext/gettext": ">=3.5.3"
     },
     "require-dev": {
         "eventviva/php-image-resize": ">=1.4",

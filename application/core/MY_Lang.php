@@ -21,6 +21,8 @@ class MY_Lang extends MX_Lang {
 
     public static $LANG;
 
+    protected static $DOMAINS_TRANSLATORS = [];
+
     /**
      * The constructor initialize the library
      *
@@ -59,7 +61,7 @@ class MY_Lang extends MX_Lang {
     private function _init() {
         if (!strstr(CI::$APP->input->server('REQUEST_URI'), 'install')) {
             if (null == CI::$APP->db) {
-                $error = & load_class('Exceptions', 'core');
+                $error = &load_class('Exceptions', 'core');
                 echo $error->show_error('DB Error', 'Unable to connect to the database', 'error_db');
                 exit;
             }
@@ -80,10 +82,10 @@ class MY_Lang extends MX_Lang {
     /**
      * Load a language file
      *
-     * @access	public
-     * @param	mixed	the name of the language file to be loaded. Can be an array
-     * @param	string	the language (english, etc.)
-     * @return	mixed
+     * @access    public
+     * @param    mixed    the name of the language file to be loaded. Can be an array
+     * @param    string    the language (english, etc.)
+     * @return    mixed
      */
     public function load($module = 'main') {
         $this->_init();
@@ -140,12 +142,16 @@ class MY_Lang extends MX_Lang {
     /**
      * Fetch a single line of text from the language array
      *
-     * @access	public
-     * @param	string	$line	the language line
-     * @return	string
+     * @access    public
+     * @param    string $origin the language line
+     * @return    string
      */
-    public function line($line = '', $params = FALSE) {
-        return gettext($line);
+    public function line($origin = '', $params = FALSE) {
+        $origin = str_replace('$', "\\$", $origin);
+        $translation = gettext($origin);
+        $origin = str_replace('\$', '$', $translation);
+
+        return $translation ? $translation : $origin;
     }
 
     /**
@@ -154,6 +160,69 @@ class MY_Lang extends MX_Lang {
      */
     public static function setLang($lang) {
         self::$LANG = $lang;
+    }
+
+    /**
+     * Switch on using translation mo-file
+     * @param $domain - mo-file identifier
+     */
+    public static function switchDomain($domain) {
+        textdomain(getMoFileName($domain));
+    }
+
+    /**
+     * Returns translation string
+     * @param $origin - string to translate
+     * @param string $domain - mo-file identifier
+     * @return string
+     */
+    public static function getTranslation($origin, $domain = "main") {
+        return self::isNewPHP() ? self::getTranslationForNewPHP($origin, $domain) : self::getTranslationForOldPHP($origin, $domain);
+    }
+
+    /**
+     * Check is php version is more than or equal 5.5.0
+     * @return bool
+     */
+    protected static function isNewPHP() {
+        return (version_compare(PHP_VERSION, '5.5.0') >= 0);
+    }
+
+    /**
+     * Get translation for php version less then 5.5.0
+     * @param $origin
+     * @param string $domain
+     * @return string
+     */
+    protected static function getTranslationForOldPHP($origin, $domain = "main") {
+        $domain = (new translator\classes\PoFileManager())->prepareDomain($domain);
+
+        self::switchDomain($domain);
+
+        $translation = self::line($origin);
+
+        self::switchDomain('main');
+
+        return $translation;
+    }
+
+    /**
+     * Get translation for php version more then on equal 5.5.0
+     * @param $origin
+     * @param string $domain
+     * @return string
+     */
+    protected static function getTranslationForNewPHP($origin, $domain = "main") {
+        if (self::$DOMAINS_TRANSLATORS[$domain]) {
+            $translator = self::$DOMAINS_TRANSLATORS[$domain];
+        } else {
+            $translations = Gettext\Translations::fromMoFile(getMoFilePath($domain));
+            $translator = (new Gettext\Translator())->loadTranslations($translations);
+
+            self::$DOMAINS_TRANSLATORS[$domain] = $translator;
+        }
+
+        return $translator->gettext($origin);
     }
 
 }

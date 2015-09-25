@@ -45,11 +45,13 @@ $(document).ready(function () {
         var variable = $.trim($(this).text());
         if (variable[0] === '%' & variable[variable.length - 1] === '%') {
             variable = ' ' + variable + ' ';
-            $(popover_ref).closest('.control-group').find('textarea').insertAtCaret(variable);
-            $(popover_ref).closest('.control-group').find('input').insertAtCaret(variable);
+            $(popover_ref).closest('label').find('textarea').insertAtCaret(variable);
+            $(popover_ref).closest('label').find('input').insertAtCaret(variable);
 
-            var activeEditor = tinyMCE.activeEditor.contentAreaContainer;
-            var curEditor = $(popover_ref).closest('.control-group').find('div[id*="mceu_"].mce-edit-area');
+            if (tinyMCE.activeEditor) {
+                var activeEditor = tinyMCE.activeEditor.contentAreaContainer;
+                var curEditor = $(popover_ref).closest('.control-group').find('div[id*="mceu_"].mce-edit-area');
+            }
 
             if ($(activeEditor).is(curEditor)) {
                 tinyMCE.execCommand("mceInsertContent", false, variable);
@@ -89,7 +91,7 @@ $(document).ready(function () {
 
 
     /** Change use for empty meta*/
-    $('body').on('click', 'span.prod-on_off.emptyMetaSeo',  function () {
+    $('body').on('click', 'span.prod-on_off.emptyMetaSeo', function () {
         var catId = $(this).attr('data-id');
         changeEmtyActive();
         $.ajax({

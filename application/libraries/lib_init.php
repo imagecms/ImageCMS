@@ -12,6 +12,10 @@ use Propel\Runtime\Connection\ConnectionManagerSingle;
  */
 class Lib_init {
 
+    /**
+     *
+     * @var MY_Controller
+     */
     private $CI;
 
     /**
@@ -72,8 +76,8 @@ class Lib_init {
             $first_segment = $this->CI->uri->segment(1);
             if (substr($uri, -1, 1) === '/' && $first_segment !== 'admin' && $uri !== '/') {
                 $get_params = '';
-                if (!empty($_GET)) {
-                    $get_params = '?' . http_build_query($_GET);
+                if ($this->CI->input->get()) {
+                    $get_params = '?' . http_build_query($this->CI->input->get());
                 }
                 redirect(substr($uri, 0, -1) . $get_params, 'location', 301);
             }
@@ -138,14 +142,14 @@ class Lib_init {
         $manager = new ConnectionManagerSingle();
 
         $manager->setConfiguration(
-            array(
+            [
                     'dsn' => 'mysql:host=' . $this->CI->db->hostname . ';dbname=' . $this->CI->db->database,
                     'user' => $this->CI->db->username,
                     'password' => $this->CI->db->password,
-                    'settings' => array(
+                    'settings' => [
                         'charset' => 'utf8'
-                    ),
-                )
+                    ],
+                ]
         );
 
         $serviceContainer->setConnectionManager('Shop', $manager);
@@ -154,13 +158,13 @@ class Lib_init {
 
         //
         //----------MONOLOG-----------------------------------------------------
-        //        $con = Propel::getWriteConnection('Shop');
-        //            if (ENVIRONMENT != 'production') {
-        //                $con->useDebug(true);
-        //                $logger = new Logger('defaultLogger');
-        //                $logger->pushHandler(new StreamHandler(APPPATH . 'logs/propel.log'));
-        //                $serviceContainer->setLogger('defaultLogger', $logger);
-        //            }
+        //                $con = Propel::getWriteConnection('Shop');
+        //                    if (ENVIRONMENT != 'production') {
+        //                        $con->useDebug(true);
+        //                        $logger = new Monolog\Logger('defaultLogger');
+        //                        $logger->pushHandler(new \Monolog\Handler\StreamHandler(APPPATH . 'logs/propel.log'));
+        //                        $serviceContainer->setLogger('defaultLogger', $logger);
+        //                    }
         //----------MONOLOG-----------------------------------------------------
     }
 
@@ -209,27 +213,27 @@ class Lib_init {
 
         // Diable CSRF library form web money service
         $this->CI = & get_instance();
-        if ($this->CI->uri->segment(1) == 'shop' && $this->CI->uri->segment(2) == 'cart' && $this->CI->uri->segment(3) == 'view' && $_GET['result'] == 'true' && $_GET['pm'] > 0) {
+        if ($this->CI->uri->segment(1) == 'shop' && $this->CI->uri->segment(2) == 'cart' && $this->CI->uri->segment(3) == 'view' && $this->CI->input->get('result') == 'true' && $this->CI->input->get('pm') > 0) {
             define('ICMS_DISBALE_CSRF', true);
         }
         // Support for robokassa
-        if ($this->CI->uri->segment(1) == 'shop' && $this->CI->uri->segment(2) == 'cart' && $this->CI->uri->segment(3) == 'view' && $_GET['getResult'] == 'true') {
+        if ($this->CI->uri->segment(1) == 'shop' && $this->CI->uri->segment(2) == 'cart' && $this->CI->uri->segment(3) == 'view' && $this->CI->input->get('getResult') == 'true') {
             define('ICMS_DISBALE_CSRF', true);
         }
         // Support for privat
-        if ($this->CI->uri->segment(1) == 'shop' && $this->CI->uri->segment(2) == 'order' && $this->CI->uri->segment(3) == 'view' && $_POST) {
+        if ($this->CI->uri->segment(1) == 'shop' && $this->CI->uri->segment(2) == 'order' && $this->CI->uri->segment(3) == 'view' && $this->CI->input->post()) {
             define('ICMS_DISBALE_CSRF', true);
         }
-        if ($this->CI->uri->segment(1) == 'shop' && $this->CI->uri->segment(2) == 'cart' && $this->CI->uri->segment(3) == 'view' && $_GET['succes'] == 'true') {
+        if ($this->CI->uri->segment(1) == 'shop' && $this->CI->uri->segment(2) == 'cart' && $this->CI->uri->segment(3) == 'view' && $this->CI->input->get('succes') == 'true') {
             define('ICMS_DISBALE_CSRF', true);
         }
-        if ($this->CI->uri->segment(1) == 'shop' && $this->CI->uri->segment(2) == 'cart' && $this->CI->uri->segment(3) == 'view' && $_GET['fail'] == 'true') {
+        if ($this->CI->uri->segment(1) == 'shop' && $this->CI->uri->segment(2) == 'cart' && $this->CI->uri->segment(3) == 'view' && $this->CI->input->get('fail') == 'true') {
             define('ICMS_DISBALE_CSRF', true);
         }
-        if (isset($_SERVER['HTTP_REFERER']) AND strpos($_SERVER['HTTP_REFERER'] . "", 'facebook.com')) {
+        if ($this->CI->input->server('HTTP_REFERER') AND strpos($this->CI->input->server('HTTP_REFERER') . "", 'facebook.com')) {
             define('ICMS_DISBALE_CSRF', true);
         }
-        if (isset($_SERVER['HTTP_REFERER']) AND strpos($_SERVER['HTTP_REFERER'] . "", 'facebook.com')) {
+        if ($this->CI->input->server('HTTP_REFERER') AND strpos($this->CI->input->server('HTTP_REFERER') . "", 'facebook.com')) {
             define('ICMS_DISBALE_CSRF', true);
         }
         // Support for privat
@@ -251,15 +255,15 @@ class Lib_init {
     }
 
     public function _detect_uri() {
-        if (!isset($_SERVER['REQUEST_URI'])) {
+        if (!$this->CI->input->server('REQUEST_URI')) {
             return '';
         }
 
-        $uri = $_SERVER['REQUEST_URI'];
-        if (strpos($uri, $_SERVER['SCRIPT_NAME']) === 0) {
-            $uri = substr($uri, strlen($_SERVER['SCRIPT_NAME']));
-        } elseif (strpos($uri, dirname($_SERVER['SCRIPT_NAME'])) === 0) {
-            $uri = substr($uri, strlen(dirname($_SERVER['SCRIPT_NAME'])));
+        $uri = $this->CI->input->server('REQUEST_URI');
+        if (strpos($uri, $this->CI->input->server('SCRIPT_NAME')) === 0) {
+            $uri = substr($uri, strlen($this->CI->input->server('SCRIPT_NAME')));
+        } elseif (strpos($uri, dirname($this->CI->input->server('SCRIPT_NAME'))) === 0) {
+            $uri = substr($uri, strlen(dirname($this->CI->input->server('SCRIPT_NAME'))));
         }
 
         // This section ensures that even on servers that require the URI to be in the query string (Nginx) a correct
@@ -271,10 +275,10 @@ class Lib_init {
         $uri = $parts[0];
         if (isset($parts[1])) {
             $_SERVER['QUERY_STRING'] = $parts[1];
-            parse_str($_SERVER['QUERY_STRING'], $_GET);
+            parse_str($this->CI->input->server('QUERY_STRING'), $this->CI->input->get());
         } else {
             $_SERVER['QUERY_STRING'] = '';
-            $_GET = array();
+            $_GET = [];
         }
 
         if ($uri == '/' || empty($uri)) {

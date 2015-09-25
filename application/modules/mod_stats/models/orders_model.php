@@ -63,7 +63,6 @@ class Orders_model extends CI_Model {
                     `shop_orders`.`id`,
                     `shop_orders`.`date_created`,
                     COUNT(DISTINCT `shop_orders_products`.`product_id`) as `products_count`,
-                    IFNULL(`shop_orders`.`paid`, 0) as `paid`,
                     (SELECT price_sum
                         FROM (SELECT DISTINCT ord.id, SUM(ord.total_price) as price_sum,
                             DATE_FORMAT(FROM_UNIXTIME(ord.`date_created`), '" . \mod_stats\classes\DateInterval::getDatePattern($interval) . "')  as date
@@ -78,12 +77,28 @@ class Orders_model extends CI_Model {
                     SUM( `shop_orders_products`.`quantity`) as `quantity`,
                     DATE_FORMAT(FROM_UNIXTIME(`date_created`), '" . \mod_stats\classes\DateInterval::getDatePattern($interval) . "') as `date`,
                     `shop_orders`.`date_created` as `unix_date`,
-                    COUNT( DISTINCT `shop_orders`.`id`) as `orders_count`,
-                    SUM( CASE WHEN `shop_orders`.`status` = 2 THEN 1 ELSE 0 END) as `delivered`,
-                    SUM(`shop_orders`.`paid`) as `paid`
+                    COUNT(DISTINCT `shop_orders`.`id`) as `orders_count`,
+                    (SELECT delivered
+                        FROM (SELECT DISTINCT ord.id, SUM(CASE WHEN `ord`.`status` = 2 THEN 1 ELSE 0 END) as delivered,
+                            DATE_FORMAT(FROM_UNIXTIME(ord.`date_created`), '" . \mod_stats\classes\DateInterval::getDatePattern($interval) . "')  as date
+                          FROM  shop_orders as ord
+                        GROUP BY
+                            date
+                    ) AS orn
+                    WHERE date =  DATE_FORMAT(FROM_UNIXTIME(`shop_orders`.`date_created`), '" . \mod_stats\classes\DateInterval::getDatePattern($interval) . "')
+                    )  AS delivered,
+                    (SELECT paid
+                        FROM (SELECT DISTINCT ord.id, SUM(CASE WHEN `ord`.`paid` = 1 THEN 1 ELSE 0 END) as paid,
+                            DATE_FORMAT(FROM_UNIXTIME(ord.`date_created`), '" . \mod_stats\classes\DateInterval::getDatePattern($interval) . "')  as date
+                          FROM  shop_orders as ord
+                        GROUP BY
+                            date
+                    ) AS orn
+                    WHERE date =  DATE_FORMAT(FROM_UNIXTIME(`shop_orders`.`date_created`), '" . \mod_stats\classes\DateInterval::getDatePattern($interval) . "')
+                    )  AS paid
                     FROM
                       `shop_orders`
-                    LEFT JOIN `shop_orders_products` on `shop_orders_products`.`order_id` = `shop_orders`.`id`
+                    lEFT JOIN `shop_orders_products` on `shop_orders_products`.`order_id` = `shop_orders`.`id`
                     WHERE 1
                       AND FROM_UNIXTIME(`shop_orders`.`date_created`) <= NOW() + INTERVAL 1 DAY
                     GROUP BY
@@ -94,7 +109,7 @@ class Orders_model extends CI_Model {
         ";
 
         $result = $this->db->query($query);
-        //                dd($this->db->last_query());
+        //                        ajax_dd($this->db->last_query());
         if ($result === FALSE) {
             return FALSE;
         }

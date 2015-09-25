@@ -491,16 +491,6 @@ class Mod_seo extends MY_Controller {
         $settings = ShopCore::$ci->seoexpert_model->getSettings($local);
         $pageNumber = (int) assetManager::create()->getData('page_number');
 
-        $minPriceIds = ShopProductCategoriesQuery::create()->filterByCategoryId($model->getId())->find()->toArray();
-        $maxPriceIds = ShopProductCategoriesQuery::create()->filterByCategoryId($model->getId())->find()->toArray();
-
-        $minPriceIds = array_column($minPriceIds, 'ProductId');
-        $maxPriceIds = array_column($maxPriceIds, 'ProductId');
-
-        if ($maxPriceIds && $minPriceIds) {
-            $maxPrice = Currency::create()->convert(SProductVariantsQuery::create()->filterByProductId($maxPriceIds)->orderByPriceInMain(Criteria::DESC)->findOne()->getPriceInMain());
-            $minPrice = Currency::create()->convert(SProductVariantsQuery::create()->filterByProductId($minPriceIds)->orderByPriceInMain(Criteria::ASC)->where('price_in_main > 1')->findOne()->getPriceInMain());
-        }
         $obj = new Mod_seo();
 
         if ($model->getParentId()) {
@@ -561,6 +551,22 @@ class Mod_seo extends MY_Controller {
         if (!$pagePattern || $pageNumber <= 1) {
             $pagePattern = "";
         }
+
+        $data = SProductsQuery::create()
+                ->select(['maxPrice', 'minPrice'])
+                ->filterByActive(1)
+                ->useProductVariantQuery()
+                ->filterByPriceInMain(0.5, Criteria::GREATER_EQUAL)
+                ->withColumn('max(price_in_main)', 'maxPrice')
+                ->withColumn('min(price_in_main)', 'minPrice')
+                ->endUse()
+                ->useShopProductCategoriesQuery()
+                ->filterByCategoryId($model->getId())
+                ->endUse()
+                ->findOne();
+
+        $maxPrice = Currency::create()->convert($data['maxPrice']);
+        $minPrice = Currency::create()->convert($data['minPrice']);
 
         //Replace title variables
         $template = (strstr($template, '%ID%')) ? str_replace('%ID%', $model->getId(), $template) : $template;

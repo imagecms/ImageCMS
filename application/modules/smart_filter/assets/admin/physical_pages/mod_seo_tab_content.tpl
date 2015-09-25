@@ -152,9 +152,7 @@
                                                     <b>%desc%</b> - {lang('Category description','mod_seo')}<br/>
                                                     <b>%brands%</b>
                                                     - {lang('list of the top brands, separated by ','mod_seo')}"," <br/>
-                                                    <b>%pagenumber%</b>
-                                                    - {lang("Display on pagination pages template from field 'Unique pagination pages'",'mod_seo')}
-                                                    <br/>
+
                                                     <br/>
                                                     {lang('Additional params for using with category name','mod_seo')}
                                                     :<br/>
@@ -189,9 +187,7 @@
                                                     <b>%H1%</b> - {lang('field H1 of category','mod_seo')}<br/>
                                                     <b>%brands%</b>
                                                     - {lang('list of the top brands, separated by ','mod_seo')}"," <br/>
-                                                    <b>%pagenumber%</b>
-                                                    - {lang("Display on pagination pages template from field 'Unique pagination pages'",'mod_seo')}
-                                                    <br/>
+
                                                     <br/>
                                                     {lang('Additional params for using with category name','mod_seo')}
                                                     :<br/>
@@ -246,9 +242,7 @@
                                                     <b>%H1%</b> - {lang('field H1 of category','mod_seo')}<br/>
                                                     <b>%brands%</b>
                                                     - {lang('list of the top brands, separated by ','mod_seo')}"," <br/>
-                                                    <b>%pagenumber%</b>
-                                                    - {lang("Display on pagination pages template from field 'Unique pagination pages'",'mod_seo')}
-                                                    <br/>
+
                                                     <br/>
                                                     {lang('Additional params for using with category name','mod_seo')}
                                                     :<br/>
@@ -283,9 +277,7 @@
                                                     <b>%H1%</b> - {lang('field H1 of category','mod_seo')}<br/>
                                                     <b>%brands%</b>
                                                     - {lang('list of the top brands, separated by ','mod_seo')}"," <br/>
-                                                    <b>%pagenumber%</b>
-                                                    - {lang("Display on pagination pages template from field 'Unique pagination pages'",'mod_seo')}
-                                                    <br/>
+
                                                     <br/>
                                                     {lang('Additional params for using with category name','mod_seo')}
                                                     :<br/>

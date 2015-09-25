@@ -255,58 +255,6 @@ function get_sec() {
     return $mtime;
 }
 
-if (!function_exists('getPoFileAttributes')) {
-
-    function getPoFileAttributes($domain) {
-
-        if ($domain) {
-            $CI = &get_instance();
-
-            if (strstr($_SERVER['HTTP_REFERER'], 'admin')) {
-                $langs = $CI->config->item('languages');
-                $language = $CI->config->item('language');
-                $locale = $language;
-            } else {
-                $currentLocale = MY_Controller::getCurrentLocale();
-                $language = $CI->db->where('identif', $currentLocale)->get('languages');
-                $language = $language->row_array();
-                $locale = $language['locale'];
-            }
-
-            if ($locale) {
-                $attributes = [];
-
-                switch ($domain) {
-                    case 'main':
-                        $attributes = [
-                            'name' => 'main',
-                            'type' => 'main',
-                            'lang' => $locale
-                        ];
-                        break;
-                    default :
-                        if (moduleExists($domain)) {
-                            $attributes = [
-                                'name' => $domain,
-                                'type' => 'modules',
-                                'lang' => $locale
-                            ];
-                        } elseif (file_exists('./templates/' . $domain)) {
-                            $attributes = [
-                                'name' => $domain,
-                                'type' => 'templates',
-                                'lang' => $locale
-                            ];
-                        }
-                        break;
-                }
-                return $attributes;
-            }
-        }
-        return FALSE;
-    }
-
-}
 //________________________________________________________
 if (!function_exists('get_mainsite_url')) {
 
@@ -384,21 +332,6 @@ if (!function_exists('get_file_name')) {
                 return '';
                 break;
         }
-    }
-
-}
-
-if (!function_exists('getModulePathForTranslator')) {
-
-    function getModulePathForTranslator($module_name) {
-
-        $module_path = getModulePath($module_name);
-
-        if (MAINSITE) {
-            $module_path = str_replace(MAINSITE, '.', $module_path);
-        }
-
-        return $module_path;
     }
 
 }

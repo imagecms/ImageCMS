@@ -97,7 +97,7 @@ msgstr "Повний пошук"
 
 #: application/modules/translator/admin.php:181
 msgid "Field Search string cannot be empty."
-msgstr "Поле " рядок пошуку не може бути порожньою."
+msgstr "Поле рядок пошуку не може бути порожньою."
 
 #: application/modules/translator/assets/js/admin.js:1030
 msgid "File was successfuly updated."
