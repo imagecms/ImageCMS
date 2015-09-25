@@ -5,14 +5,18 @@ php:
     - 5.5
     - 5.6
     - hhvm
+    - 7
   
 env:
     - DB=mysql
 
 before_script:
-    - mysql -uroot
-    - create database test;
-    - exit;
+    - composer update
+    - mysql -e "drop database IF EXISTS test;" -uroot
+    - mysql -e "create database IF NOT EXISTS test;" -uroot
+    - mysql -uroot test<application/modules/install/sqlPre.sql
+    - mysql -e "use test; select * from components" -uroot
+    - php application/third_party/bin/phpunit
     
 script:
     - phpunit
