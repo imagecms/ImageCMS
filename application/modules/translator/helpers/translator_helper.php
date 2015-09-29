@@ -21,9 +21,9 @@ if (!function_exists('sort_names')) {
         usort(
             $arr,
             function ($a, $b) {
-                $first = $a['menu_name'];
-                $second = $b['menu_name'];
-                return strnatcmp($first, $second);
+                    $first = $a['menu_name'];
+                    $second = $b['menu_name'];
+                    return strnatcmp($first, $second);
             }
         );
         return $arr;
@@ -136,7 +136,8 @@ if (!function_exists('isLocale')) {
 
     /**
      * Check locale
-     * @return array - locales
+     * @param string $lang
+     * @return boolean
      */
     function isLocale($lang) {
 
@@ -199,7 +200,7 @@ if (!function_exists('updateSettings')) {
                 ->update(
                     'components',
                     ['settings' => serialize($settings)
-                    ]
+                                    ]
                 );
         } else {
             return FALSE;
@@ -258,6 +259,11 @@ function get_sec() {
 //________________________________________________________
 if (!function_exists('get_mainsite_url')) {
 
+    /**
+     *
+     * @param string $url
+     * @return string
+     */
     function get_mainsite_url($url) {
 
         $true_path = preg_replace('/\/language(.*)/', '', $url);

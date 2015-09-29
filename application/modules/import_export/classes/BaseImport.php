@@ -112,6 +112,7 @@ class BaseImport extends CI_Model {
 
     public function __construct() {
         parent::__construct();
+        $this->languages = \My_Controller::getCurrentLocale();
         $this->languages = $this->input->post('language') ? $this->input->post('language') : $this->languages;
         $this->getLangs();
     }

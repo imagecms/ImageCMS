@@ -1,6 +1,6 @@
-$(document).ready(function() {
+$(document).ready(function () {
     /** Menu hide/show blocks **/
-    $('section.mod_stats').on('click', 'a.firstLevelMenu', function() {
+    $('section.mod_stats').on('click', 'a.firstLevelMenu', function () {
         var submenuBlock = $(this).next('.submenu');
         if (!$(submenuBlock).is(":visible")) {
             $('.submenu').slideUp();
@@ -9,7 +9,7 @@ $(document).ready(function() {
     });
 
     /** Save search results setting value */
-    $('section.mod_stats .shortSettingsSpan').bind('click', function() {
+    $('section.mod_stats .shortSettingsSpan').bind('click', function () {
         var spanBlock = $(this);
         var checkBox = spanBlock.find('.shortSettingsCheckbox');
         var shortSettingsName = checkBox.data('sname');
@@ -25,7 +25,7 @@ $(document).ready(function() {
     });
 
     /** Set time interval for day, week, month, year */
-    $('section.mod_stats').on('click', '.intervalButton', function() {
+    $('section.mod_stats').on('click', '.intervalButton', function () {
         var interval = $(this).data('group');
         var nowDate = new Date();
         var startDate = new Date();
@@ -61,7 +61,7 @@ $(document).ready(function() {
     });
 
     /** Send form when change chart type **/
-    $("select").on('change', function() {
+    $("select").on('change', function () {
         $('#chartArea').find('form').submit();
     });
 
@@ -70,17 +70,17 @@ $(document).ready(function() {
     if ($('#autocomleteCategory').length) {
         $('#autocomleteCategory').autocomplete({
             source: base_url + 'admin/components/cp/mod_stats/adminAdd/autoCompleteCategories?limit=25',
-            select: function(event, ui) {
+            select: function (event, ui) {
                 categoriesData = ui.item;
             },
-            close: function() {
+            close: function () {
                 $('#autocomleteCategoryId').val(categoriesData.id);
             }
         });
     }
 
     /** Order by for products **/
-    $('.productListOrder').bind('click', function() {
+    $('.productListOrder').bind('click', function () {
         var column = $(this).attr('data-column');
         $('input[name=orderMethod]').attr('value', column);
         if ($('input[name=order]').attr('value') === '') {
@@ -97,7 +97,7 @@ $(document).ready(function() {
     });
 
     /** Send form for filtering */
-    $('#productFilterForm').on('submit', function(e) {
+    $('#productFilterForm').on('submit', function (e) {
         e.preventDefault();
         var query_string = $('#productFilterForm').serialize();
         window.location.href = '/admin/components/cp/mod_stats/products/productInfo/0?' + query_string;
@@ -109,26 +109,26 @@ $(document).ready(function() {
 
 
     /** Brands in categories. Event to button click **/
-    $("#refreshIntervalsButton").on('click', function(){
+    $("#refreshIntervalsButton").on('click', function () {
         $.ajax({
-            url : '/admin/components/cp/mod_stats/set_input',
-            type : 'post',
-            dataType : 'json',
-            data : { category : $('#autocomleteCategory').val()},
-            success: function() {
+            url: '/admin/components/cp/mod_stats/set_input',
+            type: 'post',
+            dataType: 'json',
+            data: {category: $('#autocomleteCategory').val()},
+            success: function () {
 
             }
         });
     });
 
     /** Brands in categories. Event to focus input filed **/
-    $("#autocomleteCategory").focus(function(){
+    $("#autocomleteCategory").focus(function () {
         $('#autocomleteCategory').val('');
     })
 
 
     /** Show user attendance on page online */
-    $(".online-users-table").on('click', 'tr.main_row td', function() {
+    $(".online-users-table").on('click', 'tr.main_row td', function () {
 
         $("tr.additional_row").hide();
         var tr = $(this).parent();
@@ -142,7 +142,7 @@ $(document).ready(function() {
         }
 
         if ($(trSelector).size() == 0) {
-            $.post('/admin/components/cp/mod_stats/users/history', {userId: userId}, function(data) {
+            $.post('/admin/components/cp/mod_stats/users/history', {userId: userId}, function (data) {
                 $(tr).after("<tr data-user_id='" + userId + "' class='additional_row'><td colspan='5'>" + data + "</td></tr>");
                 $(trSelector).show();
             });
@@ -153,17 +153,14 @@ $(document).ready(function() {
         $(tr).addClass('open_row');
     });
 
-    $(".online-users-table").on('click', 'tr td a', function(obj, event) {
+    $(".online-users-table").on('click', 'tr td a', function (obj, event) {
         event.preventDefault();
     });
 
     /** Save image button click **/
-    $("#saveAsPng").click(function() {
+    $("#saveAsPng").click(function () {
         StatsSettingsAndParams.submitDownloadForm("pdf");
     });
-
-
-
 
 
     /** DRAW CHARTS **/
@@ -172,43 +169,43 @@ $(document).ready(function() {
     var pieChartBlocks = $('.pieChartStats');
     if (pieChartBlocks.length) {
 
-        pieChartBlocks.each(function(index, el) {
+        pieChartBlocks.each(function (index, el) {
             var cData = ChartData.getData($(el).data('from'));
             if (cData != false) {
                 $('#showNoChartData').hide();
-                nv.addGraph(function() {
+                nv.addGraph(function () {
                     var width = 800,
-                            height = 650 + (cData.length / 3 * 20);
+                        height = 650 + (cData.length / 3 * 20);
 
-                    var tooltip = function(key, x, y, e, graph) {
+                    var tooltip = function (key, x, y, e, graph) {
                         x = parseFloat(x.replace(' ', '').replace(',', ''));
                         return '<h3>' + key + '</h3>' +
-                                '<p>' + x + '</p>';
+                            '<p>' + x + '</p>';
                     }
                     var chart = nv.models.pieChart()
-                            .tooltips(true)
-                            .tooltipContent(tooltip)
-                            .showLabels(true)
-                            .labelThreshold(.05)
-                            .x(function(d) {
-                                return d.key
-                            })
-                            .y(function(d) {
-                                return d.y
-                            })
-                            .color(d3.scale.category20().range())
+                        .tooltips(true)
+                        .tooltipContent(tooltip)
+                        .showLabels(true)
+                        .labelThreshold(.05)
+                        .x(function (d) {
+                            return d.key
+                        })
+                        .y(function (d) {
+                            return d.y
+                        })
+                        .color(d3.scale.category20().range())
 
-                            .width(width)
-                            .height(height);
+                        .width(width)
+                        .height(height);
 
                     d3.select(el)
-                            .datum(cData)
-                            .transition().duration(1200)
-                            .attr('width', width)
-                            .attr('height', height)
-                            .call(chart);
+                        .datum(cData)
+                        .transition().duration(1200)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .call(chart);
 
-                    chart.dispatch.on('stateChange', function(e) {
+                    chart.dispatch.on('stateChange', function (e) {
                         nv.log('New State:', JSON.stringify(e));
                     });
 
@@ -226,39 +223,39 @@ $(document).ready(function() {
     var barChartBlocks = $('.barChartStats');
     if (barChartBlocks.length) {
 
-        barChartBlocks.each(function(index, el) {
+        barChartBlocks.each(function (index, el) {
             var cData = ChartData.getData($(el).data('from'));
             if (cData != false) {
                 $('#showNoChartData').hide();
-                nv.addGraph(function() {
+                nv.addGraph(function () {
 
                     var width = 800,
-                            height = 700;
+                        height = 700;
 
                     var chart = nv.models.discreteBarChart()
-                            .margin({top: 30, right: 30, bottom: 250, left: 70})
-                            .x(function(d) {
+                        .margin({top: 30, right: 30, bottom: 250, left: 70})
+                        .x(function (d) {
 
-                                return d.label;
-                            })
-                            .y(function(d) {
-                                return d.value;
-                            })
+                            return d.label;
+                        })
+                        .y(function (d) {
+                            return d.value;
+                        })
 
-                            .staggerLabels(true)
-                            .tooltips(true)
+                        .staggerLabels(true)
+                        .tooltips(true)
                     //.tooltipContent(tooltip);
 //                            .showValues(true);
 
                     chart.yAxis
-                            .tickFormat(d3.format('.0f'));
+                        .tickFormat(d3.format('.0f'));
 
                     d3.select(el)
-                            .datum(ChartData.convertDataForPieToBarChart(cData))
-                            .transition().duration(500)
-                            .attr('width', width)
-                            .attr('height', height)
-                            .call(chart);
+                        .datum(ChartData.convertDataForPieToBarChart(cData))
+                        .transition().duration(500)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .call(chart);
 
                     nv.utils.windowResize(chart.update());
                     nv.utils.windowResize(rotateLabels());
@@ -269,7 +266,7 @@ $(document).ready(function() {
                 function rotateLabels() {
                     var labels;
                     labels = d3.selectAll('.barChartStats .nv-x.nv-axis > g text');
-                    labels.attr('transform', function(d, i, j) {
+                    labels.attr('transform', function (d, i, j) {
                         height = $.trim(d).length;
                         return 'translate (-10, ' + (height + 80) + ') rotate(-90 0,0)'
                     });
@@ -284,46 +281,45 @@ $(document).ready(function() {
     /** Find and draw Line Plus Bar Chart */
     var linePlusBarChartStats = $('.linePlusBarChartStats');
     if (linePlusBarChartStats.length) {
-        linePlusBarChartStats.each(function(index, el) {
+        linePlusBarChartStats.each(function (index, el) {
             alert('1');
             cData = ChartData.getData($(el).data('from'));
             if (cData != false) {
                 $('#showNoChartData').hide();
-                nv.addGraph(function() {
-
+                nv.addGraph(function () {
 
 
                     var chart = nv.models.linePlusBarChart()
-                            .margin({top: 30, right: 30, bottom: 50, left: 100})
-                            .x(function(d, i) {
-                                return i
-                            })
-                            .y(function(d) {
-                                return d[1]
-                            })
-                            .color(d3.scale.category10().range());
+                        .margin({top: 30, right: 30, bottom: 50, left: 100})
+                        .x(function (d, i) {
+                            return i
+                        })
+                        .y(function (d) {
+                            return d[1]
+                        })
+                        .color(d3.scale.category10().range());
 
                     chart.xAxis
-                            .showMaxMin(false)
-                            .tickFormat(function(d) {
-                                var dx = cData[0].values[d] && cData[0].values[d][0] || 0;
-                                if (dx !== 0)
-                                    return d3.time.format('%d/%m/%Y')(new Date(dx))
-                            });
+                        .showMaxMin(false)
+                        .tickFormat(function (d) {
+                            var dx = cData[0].values[d] && cData[0].values[d][0] || 0;
+                            if (dx !== 0)
+                                return d3.time.format('%d/%m/%Y')(new Date(dx))
+                        });
 
                     chart.y1Axis
-                            .tickFormat(function(d) {
-                                return d3.format(',f')(d)
-                            });
+                        .tickFormat(function (d) {
+                            return d3.format(',f')(d)
+                        });
 
                     chart.y2Axis
-                            .tickFormat(d3.format(',f'));
+                        .tickFormat(d3.format(',f'));
 
                     chart.bars.forceY([0]);
 
                     d3.select(el)
-                            .datum(cData)
-                            .transition().duration(500).call(chart);
+                        .datum(cData)
+                        .transition().duration(500).call(chart);
 
                     nv.utils.windowResize(chart.update);
 
@@ -340,11 +336,11 @@ $(document).ready(function() {
     /** Find and draw  Line Chart */
     var lineChartStats = $('.cumulativeLineChartStats');
     if (lineChartStats.length) {
-        lineChartStats.each(function(index, el) {
+        lineChartStats.each(function (index, el) {
 
             var cData = ChartData.getData($(el).data('from'));
             var keys = false;
-            $(cData).each(function(i, v) {
+            $(cData).each(function (i, v) {
                 if (v.values.length > 0) {
                     keys = true;
                 }
@@ -352,7 +348,7 @@ $(document).ready(function() {
             });
             if (cData != false && keys) {
                 $('#showNoChartData').hide();
-                nv.addGraph(function() {
+                nv.addGraph(function () {
                     var chart = nv.models.lineChart().margin({
                         top: 30,
                         right: 40,
@@ -360,24 +356,24 @@ $(document).ready(function() {
                         left: 45
                     }).showLegend(true);
 
-                    chart.tooltips(true).tooltipContent(function(key, x, y) {
+                    chart.tooltips(true).tooltipContent(function (key, x, y) {
                         return '<h3>' + key + '</h3>' +
-                                '<p>' + x + ' - ' + y + ' ' + currency + '</p>';
+                            '<p>' + x + ' - ' + y + ' ' + currency + '</p>';
                     });
 
 
                     chart.xAxis
-                            .tickFormat(function(d) {
-                                return d3.time.format('%d/%m/%Y')(new Date(d))
-                            });
+                        .tickFormat(function (d) {
+                            return d3.time.format('%d/%m/%Y')(new Date(d))
+                        });
 
                     chart.yAxis
-                            .tickFormat(d3.format('.0f'));
+                        .tickFormat(d3.format('.0f'));
 
                     d3.select(el)
-                            .datum(cData)
-                            .transition().duration(500)
-                            .call(chart);
+                        .datum(cData)
+                        .transition().duration(500)
+                        .call(chart);
 
                     nv.utils.windowResize(chart.update);
 
@@ -392,11 +388,25 @@ $(document).ready(function() {
     }
     /** ************************************************ */
 
-    $('[data-btn-select]').click(function() {
+    $('[data-btn-select]').click(function () {
         var $this = $(this);
         $($this.data('rel')).val($this.data('val'));
         $this.closest('form').submit();
     })
 
     $('[data-tooltip]').tooltip();
+
+    if ($.exists('.datepicker')) {
+        $(".datepicker").removeClass('hasDatepicker');
+        $(".datepicker").datepicker({
+            dateFormat: 'yy-mm-dd',
+            firstDay: 1,
+            showOtherMonths: true,
+            selectOtherMonths: true,
+            prevText: '',
+            nextText: '',
+            minDate: new Date(1970),
+            maxDate: '+30Y'
+        });
+    }
 });

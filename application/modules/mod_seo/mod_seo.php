@@ -556,6 +556,7 @@ class Mod_seo extends MY_Controller {
                 ->select(['maxPrice', 'minPrice'])
                 ->filterByActive(1)
                 ->useProductVariantQuery()
+                ->filterByStock(0, Criteria::GREATER_THAN)
                 ->filterByPriceInMain(0.5, Criteria::GREATER_EQUAL)
                 ->withColumn('max(price_in_main)', 'maxPrice')
                 ->withColumn('min(price_in_main)', 'minPrice')

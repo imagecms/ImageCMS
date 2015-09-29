@@ -80,7 +80,7 @@ class Admin extends BaseAdminController {
     }
 
     public function create_trash_list() {
-        $this->display_tpl('create_trash_list');
+        assetManager::create()->renderAdmin('create_trash_list');
     }
 
     public function trash_list() {
@@ -97,14 +97,14 @@ class Admin extends BaseAdminController {
                 $value = explode(' ', $value);
                 try {
                     $this->trash->create_redirect($value[0], $value[1], $value[2]);
-                    $this->lib_admin->log(lang("Trash created", "trash") . '. Id:' . $this->db->insert_id());
+                    $this->lib_admin->log(lang("Redirect created", "trash") . '. Id:' . $this->db->insert_id());
                 } catch (Exception $exc) {
                     showMessage($exc->getMessage(), false, 'r');
                     exit;
                 }
             }
 
-            showMessage(lang('Trash list has been created', 'trash'));
+            showMessage(lang('List of redirects has been created', 'trash'));
 
             if ($this->input->post('action') == 'exit') {
                 pjax('/admin/components/init_window/trash');
@@ -118,20 +118,14 @@ class Admin extends BaseAdminController {
         $this->form_validation->set_rules('url', 'Url', 'required');
 
         $this->db->where('name', 'shop')->get('components');
-        $locale = MY_Controller::defaultLocale();
 
         $this->_addShopData();
-
-        $lang_identif = $this->db
-            ->where('identif', $locale)
-            ->get('languages')
-            ->row();
 
         $this->db->order_by("name", "asc");
         $query = $this->db->get('category');
         $this->template->add_array(['category_base' => $query->result()]);
 
-        ($this->ajaxRequest) OR $this->display_tpl('create_trash');
+        ($this->ajaxRequest) OR assetManager::create()->renderAdmin('create_trash');
 
         if ($this->input->post()) {
             if ($this->form_validation->run($this) == false) {
@@ -218,6 +212,10 @@ class Admin extends BaseAdminController {
         }
     }
 
+    /**
+     *
+     * @param integer $id
+     */
     public function edit_trash($id) {
         $query = $this->db->get_where('trash', ['id' => $id]);
         $this->template->add_array(['trash' => $query->row()]);
@@ -229,7 +227,7 @@ class Admin extends BaseAdminController {
         $this->template->add_array(['category_base' => $query->result()]);
 
         if (!$this->ajaxRequest) {
-            $this->display_tpl('edit_trash');
+            assetManager::create()->renderAdmin('edit_trash');
         }
 
         if ($this->input->post()) {
@@ -305,7 +303,7 @@ class Admin extends BaseAdminController {
 
             $this->db->where('id', $this->input->post('id'));
             $this->db->update('trash', $array);
-            $this->lib_admin->log(lang("Trash was edited", "trash") . '. Url: ' . $array['trash_url']);
+            $this->lib_admin->log(lang("Redirect was edited", "trash") . '. Url: ' . $array['trash_url']);
         }
 
         if ($this->input->post('action')) {
@@ -321,12 +319,9 @@ class Admin extends BaseAdminController {
             $this->db->where('id', $item);
             $this->db->delete('trash');
         }
-        $this->lib_admin->log(lang("Redirect was deleted.", "trash"));
-    }
+        $this->lib_admin->log(lang("Redirect deleted", "trash"));
 
-    private function display_tpl($file = '') {
-        $file = realpath(dirname(__FILE__)) . '/templates/admin/' . $file;
-        $this->template->show('file:' . $file);
+        showMessage(lang('Redirect deleted', 'trash'));
     }
 
     public function _addShopData() {

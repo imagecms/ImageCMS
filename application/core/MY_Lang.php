@@ -203,7 +203,7 @@ class MY_Lang extends MX_Lang {
 
         self::switchDomain('main');
 
-        return $translation;
+        return $translation ? $translation : $origin;
     }
 
     /**
@@ -216,7 +216,13 @@ class MY_Lang extends MX_Lang {
         if (self::$DOMAINS_TRANSLATORS[$domain]) {
             $translator = self::$DOMAINS_TRANSLATORS[$domain];
         } else {
-            $translations = Gettext\Translations::fromMoFile(getMoFilePath($domain));
+            $moFilePath = getMoFilePath($domain);
+
+            if (!$moFilePath) {
+                return $origin;
+            }
+
+            $translations = Gettext\Translations::fromMoFile($moFilePath);
             $translator = (new Gettext\Translator())->loadTranslations($translations);
 
             self::$DOMAINS_TRANSLATORS[$domain] = $translator;

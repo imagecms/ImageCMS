@@ -107,6 +107,11 @@ if (!function_exists('getPoFileAttributes')) {
 
 if (!function_exists('getModulePathForTranslator')) {
 
+    /**
+     *
+     * @param string $module_name
+     * @return string
+     */
     function getModulePathForTranslator($module_name) {
 
         $module_path = getModulePath($module_name);

@@ -47,7 +47,7 @@
         {if $editorStyles}
             <div>
                 <h5>{lang('Editor theme', 'translator')}:</h5>
-                <select class="editorTheme" onchange="AceEditor.changeTheme($(this))">
+                <select class="editorTheme notchosen" onchange="AceEditor.changeTheme($(this))">
                     {foreach $editorStyles as $style}
                         <option {if $settings['editorTheme'] == $style}selected="selected"{/if} value="{echo $style}">{echo $style}</option>
                     {/foreach}

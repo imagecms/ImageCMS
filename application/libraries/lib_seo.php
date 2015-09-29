@@ -25,7 +25,7 @@ class Lib_seo {
      * GA custom params
      * @var array
      */
-    private $custom = [];
+    private $custom = array();
 
     public function __construct() {
         if (CI::$APP->session->flashdata('makeOrderForGA') == true) {
@@ -69,7 +69,7 @@ class Lib_seo {
     }
 
     public function get_description($text) {
-        $delete = [';', '"', '&mdash', '&nbsp;'];
+        $delete = array(';', '"', '&mdash', '&nbsp;');
 
         $tags = get_html_translation_table(HTML_ENTITIES);
 
@@ -89,7 +89,7 @@ class Lib_seo {
      * @param string $text
      */
     public function explode_str_on_words($text) {
-        $search = ["'ё'",
+        $search = array("'ё'",
             "'<script[^>]*?>.*?</script>'si",
             "'<[\/\!]*?[^<>]*?>'si",
             "'([\r\n])[\s]+'",
@@ -103,8 +103,8 @@ class Lib_seo {
             "'&(pound|#163);'i",
             "'&(copy|#169);'i",
             "'&#(\d+);'i"
-        ];
-        $replace = ["е",
+        );
+        $replace = array("е",
             " ",
             " ",
             "\\1 ",
@@ -118,10 +118,10 @@ class Lib_seo {
             chr(163),
             chr(169),
             "chr(\\1)"
-        ];
+        );
 
         $text = preg_replace($search, $replace, $text);
-        $del_symbols = [",", ".", ";", ":", "\"", "#", "\$", "%", "^",
+        $del_symbols = array(",", ".", ";", ":", "\"", "#", "\$", "%", "^",
             "!", "@", "`", "~", "*", "-", "=", "+", "\\",
             "|", "/", ">", "<", "(", ")", "&", "?", "¹", "\t",
             "\r", "\n", "{", "}", "[", "]", "'", "“", "”", "•",
@@ -131,7 +131,7 @@ class Lib_seo {
             " если ", " надо ", " все ", " так ", " его ", " чем ",
             " даже ", " мне ", " есть ", " раз ", " два ", "raquo", "laquo",
             "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "mdash"
-        ];
+        );
         $text = str_replace($del_symbols, ' ', $text);
         $text = preg_replace("( +)", " ", $text);
         $this->origin_arr = explode(" ", trim($text));
@@ -142,7 +142,7 @@ class Lib_seo {
      * Count words in text
      */
     public function count_words() {
-        $tmp_arr = [];
+        $tmp_arr = array();
         foreach ($this->origin_arr as $val) {
             if (strlen(utf8_decode($val)) >= $this->min_word_length) {
                 $val = mb_strtolower($val, 'utf-8');

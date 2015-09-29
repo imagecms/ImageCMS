@@ -123,23 +123,23 @@ class smart_filter extends \MY_Controller {
         $filter->applyFilterConditions($productsQuery);
 
         $priceRange = $filter->getPricerange();
-        $curMin = isset($getParams['lp']) ? (int) $getParams['lp'] : (int) $priceRange['minCost'];
-        $curMax = isset($getParams['rp']) ? (int) $getParams['rp'] : (int) $priceRange['maxCost'];
+        $curMin = (int) $getParams['lp'] ? (int) $getParams['lp'] : (int) $priceRange['minCost'];
+        $curMax = (int) $getParams['rp'] ? (int) $getParams['rp'] : (int) $priceRange['maxCost'];
 
         AssetManager::create()
-                ->registerScript('jquery.ui-slider', false, 'after')
-                ->registerScript('filter', false, 'after')
-                ->setData(
-                    [
-                            'brands' => $filter->getBrands(),
-                            'propertiesInCat' => $filter->getProperties(),
-                            'priceRange' => $priceRange,
-                            'curMin' => $curMin,
-                            'curMax' => $curMax,
-                            'minPrice' => (int) $priceRange['minCost'],
-                            'maxPrice' => (int) $priceRange['maxCost'],
-                        ]
-                );
+            ->registerScript('jquery.ui-slider', false, 'after')
+            ->registerScript('filter', false, 'after')
+            ->setData(
+                [
+                    'brands' => $filter->getBrands(),
+                    'propertiesInCat' => $filter->getProperties(),
+                    'priceRange' => $priceRange,
+                    'curMin' => $curMin,
+                    'curMax' => $curMax,
+                    'minPrice' => (int) $priceRange['minCost'],
+                    'maxPrice' => (int) $priceRange['maxCost'],
+                ]
+            );
     }
 
     /**

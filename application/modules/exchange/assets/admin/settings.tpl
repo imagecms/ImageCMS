@@ -141,7 +141,7 @@
                             </div>
 
                             <div class="control-group">
-                                <label class="control-label" for="autores">{lang('Purchase price id', 'exchange')}</label>
+                                <label class="control-label" for="autores">{lang('Purchase price id', 'exchange')}:</label>
                                 <div class="controls">
                                     <input type = "text" name = "1CSettings[purchcePriceFieldId]" value = "{$settings['purchcePriceFieldId']}" id="purchcePriceFieldId"/>
                                 </div>

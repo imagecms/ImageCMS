@@ -59,6 +59,7 @@ class Orders_model extends CI_Model {
 
         $interval = isset($params['interval']) ? $params['interval'] : NULL;
 
+
         $query = "SELECT
                     `shop_orders`.`id`,
                     `shop_orders`.`date_created`,
@@ -101,6 +102,7 @@ class Orders_model extends CI_Model {
                     lEFT JOIN `shop_orders_products` on `shop_orders_products`.`order_id` = `shop_orders`.`id`
                     WHERE 1
                       AND FROM_UNIXTIME(`shop_orders`.`date_created`) <= NOW() + INTERVAL 1 DAY
+                      " . \mod_stats\classes\DateInterval::prepareDateBetweenCondition('date_created', $params) . "
                     GROUP BY
                      date
                     ORDER BY
@@ -109,7 +111,7 @@ class Orders_model extends CI_Model {
         ";
 
         $result = $this->db->query($query);
-        //                        ajax_dd($this->db->last_query());
+//                                ajax_dd($this->db->last_query());
         if ($result === FALSE) {
             return FALSE;
         }
