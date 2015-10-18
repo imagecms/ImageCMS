@@ -4,17 +4,18 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-class Categories extends BaseAdminController {
+class Categories extends BaseAdminController
+{
 
-    private $temp_cats = array();
+    private $temp_cats = [];
 
     protected $multi = false;
 
     protected $level = -1;
 
-    protected $path = array();
+    protected $path = [];
 
-    protected $pathIds = array();
+    protected $pathIds = [];
 
     public function __construct() {
         parent::__construct();
@@ -81,10 +82,10 @@ class Categories extends BaseAdminController {
         $tree = $this->lib_category->_build();
 
         $this->template->add_array(
-            array(
+            [
                     'tree' => $tree,
                     'catTreeHTML' => $this->renderCatList($tree)
-                )
+                ]
         );
 
         $this->template->show('category_list', FALSE);
@@ -94,7 +95,7 @@ class Categories extends BaseAdminController {
         $html = '';
         foreach ($tree as $item) {
             $html .= '<div>';
-            $html .= $this->template->fetch('_catlistitem', array('item' => $item));
+            $html .= $this->template->fetch('_catlistitem', ['item' => $item]);
             if (count($item['subtree'])) {
                 $html .= '<div class="frame_level sortable" style="display:none;">';
                 $html .= $this->renderCatList($item['subtree']);
@@ -105,7 +106,7 @@ class Categories extends BaseAdminController {
         return $html;
     }
 
-    public function sub_cats($array = array()) {
+    public function sub_cats($array = []) {
         foreach ($array as $item) {
             $this->temp_cats[] = $item;
             if (count($item['subtree']) > 0) {
@@ -170,11 +171,11 @@ class Categories extends BaseAdminController {
             if (count($fetch_pages) > 0) {
                 $fetch_pages = serialize($fetch_pages);
             }
-            $settings = array(
+            $settings = [
                 'category_apply_for_subcats' => $this->input->post('category_apply_for_subcats'),
                 'apply_for_subcats' => $this->input->post('apply_for_subcats'),
-            );
-            $data = array(
+            ];
+            $data = [
                 'name' => $this->input->post('name'),
                 'url' => $url,
                 'image' => $this->lib_admin->db_post('image'),
@@ -194,7 +195,7 @@ class Categories extends BaseAdminController {
                 'fetch_pages' => $fetch_pages,
                 'settings' => serialize($settings),
                 'updated' => time()
-            );
+            ];
 
             $parent = $this->lib_category->get_category($data['parent_id']);
 
@@ -227,7 +228,7 @@ class Categories extends BaseAdminController {
                     );
 
                     /** Init Event. Create new Category */
-                    \CMSFactory\Events::create()->registerEvent(array_merge($data, array('userId' => $this->dx_auth->get_user_id())));
+                    \CMSFactory\Events::create()->registerEvent(array_merge($data, ['userId' => $this->dx_auth->get_user_id()]));
 
                     /** End init Event. Create new Page */
                     showMessage(lang("Pages category created", "admin"));
@@ -244,7 +245,7 @@ class Categories extends BaseAdminController {
                 case 'update':
 
                     /** Init Event. Pre Create Category */
-                    \CMSFactory\Events::create()->registerEvent(array('pageId' => $cat_id, 'url' => $cat['url']), 'Categories:preUpdate');
+                    \CMSFactory\Events::create()->registerEvent(['pageId' => $cat_id, 'url' => $cat['url']], 'Categories:preUpdate');
                     \CMSFactory\Events::runFactory();
 
                     ($hook = get_hook('admin_update_category')) ? eval($hook) : NULL;
@@ -255,9 +256,9 @@ class Categories extends BaseAdminController {
                     $this->cache->delete_all();
 
                     // Clear lib_category data
-                    $this->lib_category->categories = array();
+                    $this->lib_category->categories = [];
                     $this->lib_category->level = 0;
-                    $this->lib_category->path = array();
+                    $this->lib_category->path = [];
                     $this->lib_category->unsorted_arr = FALSE;
                     $this->lib_category->unsorted = FALSE;
 
@@ -271,7 +272,7 @@ class Categories extends BaseAdminController {
                     );
 
                     /** Init Event. Create new Category */
-                    \CMSFactory\Events::create()->registerEvent(array_merge($data, array('userId' => $this->dx_auth->get_user_id())), 'Categories:update');
+                    \CMSFactory\Events::create()->registerEvent(array_merge($data, ['userId' => $this->dx_auth->get_user_id()]), 'Categories:update');
 
                     showMessage(lang('Changes saved', 'admin'));
                     $act = $this->input->post('action');
@@ -312,7 +313,7 @@ class Categories extends BaseAdminController {
 
         foreach ($categories as $category) {
             $this->db->where('category', $category['id']);
-            $this->db->update('content', array('cat_url' => $category['path_url']));
+            $this->db->update('content', ['cat_url' => $category['path_url']]);
         }
         $this->cache->delete_all();
     }
@@ -330,9 +331,9 @@ class Categories extends BaseAdminController {
         ($hook = get_hook('admin_fast_cat_add')) ? eval($hook) : NULL;
 
         $this->template->add_array(
-            array(
+            [
                     'tree' => $this->lib_category->build(),
-                )
+                ]
         );
 
         if ($action == '') {
@@ -349,7 +350,7 @@ class Categories extends BaseAdminController {
                 $url = $this->formUrl();
                 $fetch_pages = '';
 
-                $data = array(
+                $data = [
                     'name' => $this->input->post('name'),
                     'url' => $url,
                     'position' => '0',
@@ -366,7 +367,7 @@ class Categories extends BaseAdminController {
                     'sort_order' => 'desc',
                     'comments_default' => '1',
                     'fetch_pages' => $fetch_pages,
-                );
+                ];
 
                 $parent = $this->lib_category->get_category($data['parent_id']);
 
@@ -391,10 +392,10 @@ class Categories extends BaseAdminController {
                 );
 
                 $this->template->add_array(
-                    array(
+                    [
                             'tree' => $this->lib_category->build(),
                             'sel_cat' => $id,
-                        )
+                        ]
                 );
 
                 echo lang("Category", "admin") . ' <select name="category" ONCHANGE="change_comments_status();" id="category_selectbox">
@@ -409,10 +410,10 @@ class Categories extends BaseAdminController {
 
     public function update_fast_block($sel_id) {
         $this->template->add_array(
-            array(
+            [
                     'tree' => $this->lib_category->build(),
                     'sel_cat' => $sel_id,
-                )
+                ]
         );
 
         echo lang("Category", "admin") . ' <select name="category" ONCHANGE="change_comments_status();" id="category_selectbox">
@@ -434,7 +435,7 @@ class Categories extends BaseAdminController {
         $cat = $this->cms_admin->get_category($id);
 
         /** Init Event. Pre Create Category */
-        \CMSFactory\Events::create()->registerEvent(array('pageId' => $id, 'url' => $cat['url']), 'Categories:preUpdate');
+        \CMSFactory\Events::create()->registerEvent(['pageId' => $id, 'url' => $cat['url']], 'Categories:preUpdate');
         \CMSFactory\Events::runFactory();
 
         ($hook = get_hook('admin_edit_category')) ? eval($hook) : NULL;
@@ -486,7 +487,7 @@ class Categories extends BaseAdminController {
         if ($this->form_validation->run() == FALSE) {
             $responce = showMessage(validation_errors(), false, 'r', true);
             $result = false;
-            echo json_encode(array('responce' => $responce, 'result' => $result));
+            echo json_encode(['responce' => $responce, 'result' => $result]);
             return FALSE;
         }
 
@@ -504,11 +505,11 @@ class Categories extends BaseAdminController {
             }
             fwrite($fp, "/* new ImageCMS Tpl file */");
             fclose($fp);
-            echo json_encode(array('responce' => $responce, 'result' => $result));
+            echo json_encode(['responce' => $responce, 'result' => $result]);
         } else {
             $responce = showMessage(lang('File with the same name is already exist.'), '', 'r', true);
             $result = false;
-            echo json_encode(array('responce' => $responce, 'result' => $result));
+            echo json_encode(['responce' => $responce, 'result' => $result]);
             return FALSE;
         }
     }
@@ -533,7 +534,7 @@ class Categories extends BaseAdminController {
             if ($this->form_validation->run($this) == FALSE) {
                 showMessage(validation_errors(), false, 'r');
             } else {
-                $data = array();
+                $data = [];
                 $data['alias'] = $id;
                 $data['lang'] = $lang;
                 $data['name'] = $this->input->post('name');
@@ -596,17 +597,17 @@ class Categories extends BaseAdminController {
 
             if ($query->num_rows() > 0) {
                 $this->template->add_array(
-                    array(
+                    [
                             'cat' => $query->row_array(),
-                        )
+                        ]
                 );
             }
 
             $this->template->add_array(
-                array(
+                [
                         'orig_cat' => $cat,
                         'lang' => $lang,
-                    )
+                    ]
             );
 
             ($hook = get_hook('admin_show_cat_translate')) ? eval($hook) : NULL;
@@ -660,7 +661,7 @@ class Categories extends BaseAdminController {
             }
 
             // Delete sub cats
-            $this->sub_cats = array();
+            $this->sub_cats = [];
             $this->categories = $this->db->get('category')->result_array();
             $this->_get_sub_cats($cat_id);
 
@@ -696,7 +697,7 @@ class Categories extends BaseAdminController {
 
         $CI = &get_instance();
 
-        if ($CI->db->get_where('components', array('name' => 'sitemap'))->row()) {
+        if ($CI->db->get_where('components', ['name' => 'sitemap'])->row()) {
             $CI->load->module('sitemap')->ping_google($this);
         }
 

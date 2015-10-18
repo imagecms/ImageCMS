@@ -24,10 +24,10 @@ class Translator extends MY_Controller {
     public function replaceKeys($templateName) {
         //        $templateName = 'newLevel2';
         //        var_dumps_exit($templateName);
-        $templatesPath = './templates/' . $templateName;
+        $templatesPath = ' ./templates / ' . $templateName;
 
         $fromLocale = 'en_US';
-        $pofilePath = $templatesPath . '/language/' . $templateName . '/' . $fromLocale . '/LC_MESSAGES/' . $templateName . '.po';
+        $pofilePath = $templatesPath . ' / language / ' . $templateName . ' / ' . $fromLocale . ' / LC_MESSAGES / ' . $templateName . ' . po';
 
         $poFile = file($pofilePath);
 

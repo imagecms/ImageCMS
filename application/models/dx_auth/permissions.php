@@ -1,6 +1,7 @@
 <?php
 
-class Permissions Extends CI_Model {
+class Permissions Extends CI_Model
+{
 
     public function __construct() {
         parent::__construct();
@@ -72,7 +73,7 @@ class Permissions Extends CI_Model {
     // hence it will returning array(roles_id) of array(permissions).
 
     public function get_permissions_data($roles_id, $array_key = 'role_id', $unserialize = TRUE) {
-        $result = array();
+        $result = [];
 
         $query = $this->get_permissions($roles_id);
 
@@ -98,7 +99,7 @@ class Permissions Extends CI_Model {
     // Returning array from 'data' field.
 
     public function get_permission_data($role_id, $unserialize = TRUE) {
-        $result = array();
+        $result = [];
 
         $query = $this->get_permission($role_id);
 

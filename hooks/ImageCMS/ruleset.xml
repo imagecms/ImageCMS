@@ -75,6 +75,11 @@
     <rule ref="MySource.PHP.EvalObjectFactory"/>
     <rule ref="MySource.PHP.ReturnFunctionValue"/>
     <rule ref="MySource.PHP.AjaxNullComparison"/>
+    <rule ref="PEAR.Classes.ClassDeclaration">
+        <properties>
+            <property name="indent" value="0"/>
+        </properties>
+    </rule>
     <rule ref="PEAR.ControlStructures.ControlSignature"/>
     <rule ref="PEAR.ControlStructures.MultiLineCondition"/>
     <rule ref="PEAR.Files.IncludingFile"/>

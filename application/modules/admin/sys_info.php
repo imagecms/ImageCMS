@@ -12,7 +12,8 @@ if (!defined('BASEPATH')) {
  * check local ip;
  *
  */
-class Sys_info extends BaseAdminController {
+class Sys_info extends BaseAdminController
+{
 
     public function __construct() {
         parent::__construct();
@@ -26,14 +27,14 @@ class Sys_info extends BaseAdminController {
     }
 
     public function index($action = '') {
-        $folders = array(
+        $folders = [
             '/system/cache/' => FALSE,
             '/system/cache/templates_c/' => FALSE,
             '/uploads/' => FALSE,
             '/uploads/images' => FALSE,
             '/uploads/files' => FALSE,
             '/captcha/' => FALSE,
-        );
+        ];
 
         foreach ($folders as $k => $v) {
             $folders[$k] = is_really_writable(PUBPATH . $k);
@@ -61,11 +62,11 @@ class Sys_info extends BaseAdminController {
             $version = $query->row_array();
 
             $this->template->add_array(
-                array(
+                [
                         'db_version' => $version['VERSION()'],
                         'db_size' => byte_format($total_size),
                         'db_rows' => $total_rows,
-                    )
+                    ]
             );
         }
 

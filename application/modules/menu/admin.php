@@ -464,6 +464,7 @@ class Admin extends BaseAdminController {
             $parents = $this->db
                 ->select('menus_data.*, menu_translate.title')
                 ->where('menu_id', $item['menu_id'])
+                ->where('menus_data.id !=', $item['id'])
                 ->join('menu_translate', 'menus_data.id = menu_translate.item_id')
                 ->where('lang_id', $this->default_lang_id)
                 ->get('menus_data')->result_array();

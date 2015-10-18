@@ -4,7 +4,8 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-class CmsCacheHelper {
+class CmsCacheHelper
+{
 
     public static $key = null;
 

@@ -282,14 +282,6 @@ function showOnSite(id, currentEl) {
         return false;
     }
 
-    $('.prod-on_off').each(function() {
-        if ($(this).data('itemid') != $(currentEl).data('itemid')) {
-            $(this).addClass('disable_tovar').css('left', '-28px');
-            $(this).attr('rel', '0');
-        }
-
-    });
-
     var showStatus = $(currentEl).attr('rel');
     if (showStatus == 1) {
         showStatus = 0;

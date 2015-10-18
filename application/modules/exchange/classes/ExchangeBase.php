@@ -16,7 +16,8 @@ use SimpleXMLElement;
  * @author kolia
  * @property CI_DB_active_record $db
  */
-abstract class ExchangeBase {
+abstract class ExchangeBase
+{
 
     // "multisingleton"
     protected static $instances = [];

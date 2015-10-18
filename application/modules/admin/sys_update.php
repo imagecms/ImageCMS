@@ -4,7 +4,8 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-class Sys_update extends BaseAdminController {
+class Sys_update extends BaseAdminController
+{
 
     /**
      * instance of Update library
@@ -35,16 +36,16 @@ class Sys_update extends BaseAdminController {
         }
 
         if ($array) {
-            $data = array(
+            $data = [
                 'build' => $array['build_id'],
                 'date' => date("Y-m-d", $array['time']),
                 'size' => number_format($array['size'] / 1024 / 1024, 3),
                 'newRelise' => TRUE,
-            );
+            ];
         } else {
-            $data = array(
+            $data = [
                 'newRelise' => FALSE,
-            );
+            ];
         }
 
         $this->template->show('sys_update_info', FALSE, $data);
@@ -67,7 +68,7 @@ class Sys_update extends BaseAdminController {
         $result = $this->update->getHashSum();
 
         if (!$result['error']) {
-            $data = array(
+            $data = [
                 'filesCount' => count($result),
                 'sort_by' => $sort_by,
                 'order' => $order,
@@ -75,12 +76,12 @@ class Sys_update extends BaseAdminController {
                 'diff_files' => $result,
                 'restore_files' => $this->sort($this->update->restore_files_list(), $sort_by, $order),
                 'new_version' => $status ? TRUE : FALSE
-            );
+            ];
         } else {
-            $data = array(
+            $data = [
                 'restore_files' => $this->sort($this->update->restore_files_list(), $sort_by, $order),
                 'error' => $result['error']
-            );
+            ];
             //            showMessage($result['error'], 'Ошибка', 'r');
         }
         $this->template->show('sys_update', FALSE, $data);
@@ -101,15 +102,15 @@ class Sys_update extends BaseAdminController {
 
     public function properties() {
         if ($this->input->post()) {
-            if ($this->update->setSettings(array("careKey" => trim($this->input->post("careKey"))))) {
+            if ($this->update->setSettings(["careKey" => trim($this->input->post("careKey"))])) {
                 showMessage(lang('Changes saved', 'admin'));
             } else {
                 showMessage(lang('Changes not saved', 'admin'), lang('Error', 'admin'), 'r');
             }
         } else {
-            $data = array(
+            $data = [
                 'careKey' => $this->update->getSettings('careKey')
-            );
+            ];
             $this->template->show('sys_update_properties', FALSE, $data);
         }
     }

@@ -13,7 +13,8 @@ if (!defined('BASEPATH')) {
  * @copyright (c) 2014, ImageCMS
  * @package ImageCMSModule
  */
-class SeoHelper extends \MY_Controller {
+class SeoHelper extends \MY_Controller
+{
 
     protected static $_instance;
 

@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 /*
   | -------------------------------------------------------------------
   | AUTO-LOADER
@@ -40,7 +41,7 @@ if (!defined('BASEPATH'))
   |
  */
 
-$autoload['packages'] = array();
+$autoload['packages'] = [];
 
 
 /*
@@ -55,7 +56,7 @@ $autoload['packages'] = array();
   |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
  */
 
-$autoload['libraries'] = array('lib_modules', 'lib_init', 'lib_csrf');
+$autoload['libraries'] = ['lib_modules', 'lib_init', 'lib_csrf'];
 
 
 /*
@@ -67,7 +68,7 @@ $autoload['libraries'] = array('lib_modules', 'lib_init', 'lib_csrf');
   |	$autoload['helper'] = array('url', 'file');
  */
 
-$autoload['helper'] = array('url', 'language', 'array', 'rules', 'widget', 'form_csrf', 'my_url', 'category', 'page', 'cache', 'html', 'javascript', 'security', 'siteinfo', 'form_helper', 'module', 'filesystem');
+$autoload['helper'] = ['template', 'url', 'language', 'array', 'rules', 'widget', 'form_csrf', 'my_url', 'category', 'page', 'cache', 'html', 'javascript', 'security', 'siteinfo', 'form_helper', 'module', 'filesystem'];
 
 
 /*
@@ -83,7 +84,7 @@ $autoload['helper'] = array('url', 'language', 'array', 'rules', 'widget', 'form
   |
  */
 
-$autoload['config'] = array('auth', 'language', 'cms');
+$autoload['config'] = ['auth', 'language', 'cms'];
 
 
 /*
@@ -99,7 +100,7 @@ $autoload['config'] = array('auth', 'language', 'cms');
   |
  */
 
-$autoload['language'] = array();
+$autoload['language'] = [];
 
 
 /*
@@ -112,7 +113,7 @@ $autoload['language'] = array();
   |
  */
 
-$autoload['model'] = array('cms_base');
+$autoload['model'] = ['cms_base'];
 
 
 /* End of file autoload.php */

@@ -45,7 +45,7 @@ if (!function_exists('create_tag')) {
      * @param array $attributes
      * @return string
      */
-    function create_tag($tagName, $innerText, array $attributes = array()) {
+    function create_tag($tagName, $innerText, array $attributes = []) {
         $attributesString = ' ';
         foreach ($attributes as $name => $value) {
             $attributesString .= "{$name}='{$value}' ";
@@ -58,8 +58,16 @@ if (!function_exists('create_tag')) {
 
 if (!function_exists('form_property_select')) {
 
+    /**
+     *
+     * @param string $name
+     * @param array $data
+     * @param array|string $selected
+     * @param string $multiple
+     * @return string
+     */
     function form_property_select($name, $data, $selected, $multiple) {
-        $selected = !is_array($selected) ? array($selected) : $selected;
+        $selected = !is_array($selected) ? [$selected] : $selected;
         $multiple = $multiple === 'multiple' ? 'multiple="multiple"' : '';
         $result = "<select name='$name' $multiple>";
 

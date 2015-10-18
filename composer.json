@@ -21,7 +21,10 @@
         "greenlion/php-sql-parser": ">=4.0",
         "true/punycode": "^2.0",
         "umisoft/phpmorphy": "^1.0",
-        "gettext/gettext": ">=3.5.3"
+        "gettext/gettext": ">=3.5.3",
+        "retailcrm/api-client-php": ">=3.0",
+        "artem_c/emmet": "^1.0",
+        "symfony/config": "^2.7"
     },
     "require-dev": {
         "eventviva/php-image-resize": ">=1.4",
@@ -31,7 +34,6 @@
         "phpunit/phpunit-skeleton-generator": ">=2.0.1",
         "halleck45/phpmetrics": ">=1.1.1",
         "fzaninotto/faker": "^1.5",
-        "retailcrm/api-client-php": ">=3.0",
         "imagecms/coding-standard": "dev-master"
     }
 }

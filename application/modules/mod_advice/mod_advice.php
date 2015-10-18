@@ -6,7 +6,8 @@
  * Image CMS
  * Module Frame
  */
-class Mod_advice extends MY_Controller {
+class Mod_advice extends MY_Controller
+{
 
     public function __construct() {
         parent::__construct();
@@ -25,6 +26,9 @@ class Mod_advice extends MY_Controller {
     public function _buildImagesList() {
         $images = $this->db->select('mainImage')->where('mainImage <> ""')->get('shop_product_variants')->result_array();
         $_imagesAdd = $this->db->select('image_name')->where('image_name <> ""')->get('shop_product_images')->result_array();
+
+        $imagesAdd = [];
+
         array_walk(
             $images,
             function(&$item, $key) {

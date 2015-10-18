@@ -89,7 +89,7 @@ if (!function_exists('check_perm')) {
 if (!function_exists('get_perms_groups')) {
 
     function get_perms_groups() {
-        $group_names = array(
+        $group_names = [
             'cp' => lang("Operation panel", "admin"),
             'lang' => lang("Languages", "admin"),
             'cache' => lang("Cache", "admin"),
@@ -103,7 +103,7 @@ if (!function_exists('get_perms_groups')) {
             'logs' => lang("Logs", "admin"),
             'backup' => lang("Backup copying", "admin"),
             'tinybrowser' => lang("File Editor", "admin"),
-        );
+        ];
 
         ($hook = get_hook('on_get_perms_groups')) ? eval($hook) : NULL;
 
@@ -115,7 +115,7 @@ if (!function_exists('get_perms_groups')) {
 if (!function_exists('get_permissions_array')) {
 
     function get_permissions_array() {
-        $all_perms = array(
+        $all_perms = [
             'cp_access' => lang("Access Control Panel", "admin"),
             'cp_autoupdate' => lang("System update", "admin"),
             'cp_page_search' => lang("Find pages in the control panel", "admin"),
@@ -153,7 +153,7 @@ if (!function_exists('get_permissions_array')) {
             'tinybrowser_upload' => lang("Download files", "admin"),
             'tinybrowser_edit' => lang("Editing Files", "admin"),
             'tinybrowser_folders' => lang("Edit Folders", "admin"),
-        );
+        ];
 
         ($hook = get_hook('get_permissions_array')) ? eval($hook) : NULL;
 

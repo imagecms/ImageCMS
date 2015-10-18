@@ -11,7 +11,8 @@ if (!defined('BASEPATH')) {
  * @copyright (c) 2013, ImageCMS
  * @package ImageCMSModule
  */
-class Discount_model_admin extends CI_Model {
+class Discount_model_admin extends CI_Model
+{
 
     public function __construct() {
         parent::__construct();

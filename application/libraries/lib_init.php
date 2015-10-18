@@ -220,6 +220,9 @@ class Lib_init {
         if ($this->CI->uri->segment(1) == 'shop' && $this->CI->uri->segment(2) == 'cart' && $this->CI->uri->segment(3) == 'view' && $this->CI->input->get('getResult') == 'true') {
             define('ICMS_DISBALE_CSRF', true);
         }
+        if ($this->CI->uri->segment(1) == 'exchange') {
+            define('ICMS_DISBALE_CSRF', true);
+        }
         // Support for privat
         if ($this->CI->uri->segment(1) == 'shop' && $this->CI->uri->segment(2) == 'order' && $this->CI->uri->segment(3) == 'view' && $this->CI->input->post()) {
             define('ICMS_DISBALE_CSRF', true);

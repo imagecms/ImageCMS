@@ -4,7 +4,6 @@ use Category\CategoryApi;
 use CMSFactory\assetManager;
 use CMSFactory\Events;
 use Currency\Currency;
-use Propel\Runtime\Exception\PropelException;
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
@@ -108,11 +107,11 @@ class Ymarket extends ShopController {
         $params = [];
         $productFields = [];
 
-        $this->formOffers($ignoreSettings, $productFields, $params);
+        $offers = $this->ymarket_model->formOffers($ignoreSettings, $productFields, $params);
 
         $infoXml = [];
         $infoXml['categories'] = $this->categories;
-        $infoXml['offers'] = $this->offers;
+        $infoXml['offers'] = $offers;
         $infoXml['site_title'] = $this->settings['site_title'];
         $infoXml['base_url'] = $ci->config->item('base_url');
         $infoXml['mainCurr'] = $this->mainCurr;
@@ -130,70 +129,22 @@ class Ymarket extends ShopController {
     private function ymarketCore($ignoreSettings = false) {
         $ci = ShopCore::$ci;
 
-        $currencies = Currency::create()->getCurrencies();
-
-        $checkRUB = false;
-        $rates = [];
-        foreach ($currencies as $value) {
-            $isoNEW = $value->getCode() == 'RUB' ? 'RUR' : $value->getCode();
-            $rates[$isoNEW]['rate'] = $value->getRate();
-            $rates[$isoNEW]['main'] = $value->getMain();
-            if ($isoNEW == 'RUR') {
-                $checkRUB = true;
-                break;
-            }
-        }
-
-        //Перегонка рейтов чтобы главным был рубль
-        if (isset($rates['RUR'])) {
-            if (!$rates['RUR']['main'] && (int) $rates['RUR']['rate'] != 1) {
-                foreach ($rates as $iso => $data) {
-                    //Перегонка
-                    $rurRate = $rates['RUR']['rate'];
-                    if ($iso != 'RUR') {
-                        $rates[$iso]['rate'] = $rurRate / $data['rate'];
-                    }
-                }
-                $rates['RUR']['rate'] = 1;
-            }
-        }
-
-        foreach ($currencies as $value) {
-            if ($checkRUB) {
-                if ($value->getCode() == 'RUR' || $value->getCode() == 'RUB') {
-                    $this->mainCurr['code'] = 'RUR';
-                    $rate = $rates['RUR']['rate'] ? $rates['RUR']['rate'] : 1 / $value->getRate();
-                    $this->mainCurr['rate'] = number_format($rate, 3);
-                    continue;
-                }
-            } else {
-                if ($value->getMain()) {
-                    $this->mainCurr['code'] = $value->getCode() == 'RUB' ? 'RUR' : $value->getCode();
-                    $rate = $rates[$this->mainCurr['code']]['rate'] ? $rates[$this->mainCurr['code']]['rate'] : 1 / $value->getRate();
-                    $this->mainCurr['rate'] = number_format($rate, 3);
-                    continue;
-                }
-            }
-
-            $this->currencies[$value->getId()]['code'] = $value->getCode();
-            $rate = $rates[$value->getCode()]['rate'] ? $rates[$value->getCode()]['rate'] : 1 / $value->getRate();
-            $this->currencies[$value->getId()]['rate'] = number_format($rate, 3);
-        }
-
         $productFields = $this->ymarket_products_fields_model->getProductsFields();
 
-        $this->formOffers($ignoreSettings, $productFields);
+        $offers = $this->ymarket_model->formOffers($ignoreSettings, $productFields);
+
+        list($currencies, $mainCurr) = $this->ymarket_model->makeCurrency();
 
         $infoXml = [];
         $infoXml['categories'] = $this->categories;
-        $infoXml['offers'] = $this->offers;
+        $infoXml['offers'] = $offers;
         $infoXml['site_short_title'] = $this->settings['site_short_title'];
         $infoXml['site_title'] = $this->settings['site_title'];
         $infoXml['base_url'] = $ci->config->item('base_url');
         $infoXml['imagecms_number'] = IMAGECMS_NUMBER;
         $infoXml['siteinfo_adminemail'] = siteinfo('siteinfo_adminemail');
-        $infoXml['currencyCode'] = $this->currencies;
-        $infoXml['mainCurr'] = $this->mainCurr;
+        $infoXml['currencyCode'] = $currencies;
+        $infoXml['mainCurr'] = $mainCurr;
 
         assetManager::create()
                 ->setData('full', $ignoreSettings)
@@ -201,145 +152,8 @@ class Ymarket extends ShopController {
                 ->render('yandex', true);
     }
 
-    /**
-     * Generate offers data
-     * @param boolean $ignoreSettings
-     * @param array $productFields
-     */
-    private function formOffers($ignoreSettings, $productFields) {
-        $variants = $this->ymarket_model->getVariants($this->settings['unserCats'], $ignoreSettings, $this->brandIds);
-        $params = $this->getProperties($variants);
-        $additionalImages = $this->getAdditionalImagesBYVariants($variants);
-
-        foreach ($variants as $variant) {
-            $unique_id = $variant->getId();
-            $this->offers[$unique_id]['url'] = CI::$APP->config->item('base_url') . 'shop/product/' . $variant->getSProducts()->url;
-            $this->offers[$unique_id]['price'] = $variant->getPriceInMain();
-            if (!$this->currencies[$variant->getCurrency()]['code']) {
-                $currencyId = $this->mainCurr['code'];
-            } else {
-                $currencyId = $this->currencies[$variant->getCurrency()]['code'];
-            }
-            $this->offers[$unique_id]['currencyId'] = $currencyId;
-            $this->offers[$unique_id]['categoryId'] = $variant->getSProducts()->getCategoryId();
-            $this->offers[$unique_id]['picture'] = array_merge(array(productImageUrl('products/main/' . $variant->getMainImage())), $additionalImages[$variant->getProductId()]);
-            $this->offers[$unique_id]['name'] = $this->forName($variant->getSProducts()->getName(), $variant->getName());
-            $this->offers[$unique_id]['vendor'] = $variant->getSProducts()->getBrand() ? htmlspecialchars($variant->getSProducts()->getBrand()->getName()) : '';
-            $this->offers[$unique_id]['vendorCode'] = $variant->getNumber() ? $variant->getNumber() : '';
-            $this->offers[$unique_id]['description'] = htmlspecialchars($variant->getSProducts()->getFullDescription());
-            $this->offers[$unique_id]['cpa'] = $variant->getStock() ? 1 : 0;
-            $this->offers[$unique_id]['quantity'] = $variant->getStock();
-
-            if ($productFields[$variant->getProductId()]) {
-                foreach (['country_of_origin', 'manufacturer_warranty', 'seller_warranty'] as $value) {
-                    if ($productFields[$variant->getProductId()][$value]) {
-                        $this->offers[$unique_id][$value] = $productFields[$variant->getProductId()][$value];
-                    }
-                }
-            }
-
-            if ($this->settings['adult']) {
-                $this->offers[$unique_id]['adult'] = 'true';
-            }
-
-            if ($params[$variant->getProductId()]) {
-                $this->offers[$unique_id]['param'] = $params[$variant->getProductId()];
-            }
-        }
-    }
-
     public function all() {
         $this->index(true);
-    }
-
-    /**
-     * @param SProductVariants $products - products collection
-     * @return array
-     * @throws PropelException
-     */
-    public function getProperties($products) {
-        $productsIds = [];
-        foreach ($products as $product) {
-            $productsIds[] = $product->getProductId();
-        }
-        $properties = SPropertiesQuery::create()
-                ->joinSProductPropertiesData()
-                ->joinWithI18n(MY_Controller::getCurrentLocale())
-                ->select(array('SProductPropertiesData.ProductId', 'SProductPropertiesData.Value', 'SPropertiesI18n.Name'))
-                ->where('SProductPropertiesData.ProductId IN ?', $productsIds)
-                ->where('SProductPropertiesData.Locale = ?', MY_Controller::getCurrentLocale())
-                ->withColumn('SProductPropertiesData.ProductId', 'ProductId')
-                ->withColumn('SProductPropertiesData.Value', 'Value')
-                ->withColumn('SPropertiesI18n.Name', 'Name')
-                ->where('SProperties.Active = ?', 1)
-                ->where("SProductPropertiesData.Value != ?", '')
-                ->where('SProperties.ShowOnSite = ?', 1)
-                ->orderByPosition()
-                ->find()
-                ->toArray();
-        $productsData = [];
-        array_map(
-            function ($property) use (&$productsData) {
-                if (!$productsData[$property['ProductId']][$property['Name']]) {
-                    $productsData[$property['ProductId']][$property['Name']] = [
-                        'name' => $property['Name'],
-                        'value' => [$property['Value']]
-                    ];
-                } else {
-                    $productsData[$property['ProductId']][$property['Name']]['value'][] = $property['Value'];
-                }
-            },
-            $properties
-        );
-        $productsData = array_map(
-            function ($property) {
-                    return array_map(
-                        function ($propertyValues) {
-                            $propertyValues['value'] = implode(', ', $propertyValues['value']);
-                            return $propertyValues;
-                        },
-                        $property
-                    );
-            },
-            $productsData
-        );
-        return $productsData;
-    }
-
-    /**
-     * @param SProductVariants $variants
-     * @return array
-     */
-    private function getAdditionalImagesBYVariants($variants) {
-        $productsIds = [];
-        foreach ($variants as $variant) {
-            $productsIds[] = $variant->getProductId();
-        }
-        $images = $this->db->where_in('product_id', $productsIds)->get('shop_product_images');
-        $images = $images ? $images->result_array() : [];
-        $productsData = [];
-        array_map(
-            function ($image) use (&$productsData) {
-                    $productsData[$image['product_id']][] = productImageUrl('products/additional/' . $image['image_name']);
-            },
-            $images
-        );
-        return $productsData;
-    }
-
-    /**
-     * Generates a name of the product depending on the name and version of the product name.
-     * @param str $productName product name
-     * @param str $variantName variant name
-     * @return string
-     */
-    private function forName($productName, $variantName) {
-        if (encode($productName) == encode($variantName)) {
-            $name = htmlspecialchars($productName);
-        } else {
-            $name = htmlspecialchars($productName . ' ' . $variantName);
-        }
-        return $name;
     }
 
     /**
@@ -389,11 +203,11 @@ class Ymarket extends ShopController {
             $fields['seller_warranty'] = self::fromISO8601ToMonths($fields['seller_warranty']);
             $view = assetManager::create()
                     ->setData(
-                        array(
+                        [
                                 'countries' => $countries,
                                 'months' => $months,
                                 'fields' => $fields,
-                            )
+                            ]
                     )
                     ->registerScript('script')
                     ->fetchAdminTemplate('products_extend');

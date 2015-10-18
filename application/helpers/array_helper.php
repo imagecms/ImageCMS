@@ -18,6 +18,11 @@ if (!function_exists('my_print_r')) {
 
 if (!function_exists('is_true_array')) {
 
+    /**
+     *
+     * @param array $array
+     * @return boolean
+     */
     function is_true_array($array) {
         if ($array == false) {
             return false;
@@ -99,6 +104,12 @@ if (!function_exists('array_to_file')) {
 
 if (!function_exists('user_function_sort')) {
 
+    /**
+     *
+     * @param array $arr
+     * @param string $key
+     * @return array
+     */
     function user_function_sort($arr, $key = 'value') {
         usort(
             $arr,
@@ -116,14 +127,14 @@ if (!function_exists('pluralize')) {
 
     /**
      *
-     * @param integer|float $count
+     * @param integer $count
      * @param array $words
      * @return string
      */
-    function pluralize($count = 0, array $words = array()) {
+    function pluralize($count = 0, array $words = []) {
 
         if (empty($words)) {
-            $words = array(' ', ' ', ' ');
+            $words = [' ', ' ', ' '];
         }
 
         $numeric = (int) abs($count);

@@ -4,7 +4,8 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-class Cms_admin extends CI_Model {
+class Cms_admin extends CI_Model
+{
 
     public function __construct() {
         parent::__construct();
@@ -109,14 +110,14 @@ class Cms_admin extends CI_Model {
 
         if ($alias == 0) {
             $this->db->where('lang_alias', $page['id']);
-            $this->db->update('content', array('post_status' => $data['post_status'], 'category' => $data['category'], 'cat_url' => $data['cat_url'], 'url' => $data['url']));
+            $this->db->update('content', ['post_status' => $data['post_status'], 'category' => $data['category'], 'cat_url' => $data['cat_url'], 'url' => $data['url']]);
         } else {
             $page = $this->get_page($alias);
             $this->db->where('lang_alias', $page['id']);
-            $this->db->update('content', array('post_status' => $data['post_status'], 'category' => $data['category'], 'cat_url' => $data['cat_url']));
+            $this->db->update('content', ['post_status' => $data['post_status'], 'category' => $data['category'], 'cat_url' => $data['cat_url']]);
 
             $this->db->where('id', $alias);
-            $this->db->update('content', array('post_status' => $data['post_status'], 'category' => $data['category'], 'cat_url' => $data['cat_url']));
+            $this->db->update('content', ['post_status' => $data['post_status'], 'category' => $data['category'], 'cat_url' => $data['cat_url']]);
 
             $data['url'] = $page['url'];
         }
@@ -291,11 +292,11 @@ class Cms_admin extends CI_Model {
     }
 
     public function set_default_lang($id) {
-        $this->db->update('languages', array('default' => 0));
+        $this->db->update('languages', ['default' => 0]);
 
         $this->db->where('id', $id);
         $this->db->limit(1);
-        $this->db->update('languages', array('default' => 1, 'active' => 1));
+        $this->db->update('languages', ['default' => 1, 'active' => 1]);
     }
 
     public function get_default_lang() {

@@ -8,7 +8,8 @@ namespace exchange\classes;
  *
  * @author kolia
  */
-class DataCollector {
+class DataCollector
+{
 
     /**
      *

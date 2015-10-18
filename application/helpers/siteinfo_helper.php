@@ -39,7 +39,7 @@ if (!function_exists('siteinfo')) {
         } else {
             $value = $siteinfo->getSiteInfo($name);
 
-            if (in_array($name, array('siteinfo_logo', 'siteinfo_favicon'))) {
+            if (in_array($name, ['siteinfo_logo', 'siteinfo_favicon'])) {
                 return $ci->siteinfo->imagesPath . $value;
             }
             return $value;

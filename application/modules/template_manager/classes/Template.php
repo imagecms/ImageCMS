@@ -2,6 +2,8 @@
 
 namespace template_manager\classes;
 
+use Symfony\Component\Config\FileLocator;
+
 /**
  * Representing one template
  * Incapsulate info and methods for working with template
@@ -14,7 +16,8 @@ namespace template_manager\classes;
  * @property-read string $author
  *
  */
-class Template {
+class Template
+{
 
     const COMPONENTS_TEMPLATE = 1;
     const COMPONENTS_CORE = 2;
@@ -77,6 +80,11 @@ class Template {
      * @var type
      */
     public $demodataArchiveExists = FALSE;
+
+    /**
+     * @var Params
+     */
+    protected $params;
 
     /**
      * Getting all params
@@ -343,6 +351,10 @@ class Template {
                 array_push($this->xmlData['components'], $name);
             }
         }
+    }
+
+    public function getParams() {
+        return $this->params ?: $this->params = new Params($this->templatePath . '/' . self::PARAMS_FILE);
     }
 
 }

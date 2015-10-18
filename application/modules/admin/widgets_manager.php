@@ -8,7 +8,8 @@ if (!defined('BASEPATH')) {
  * Image CMS
  * Widget manager class
  */
-class Widgets_manager extends BaseAdminController {
+class Widgets_manager extends BaseAdminController
+{
 
     protected $widget_path;
 
@@ -488,7 +489,7 @@ class Widgets_manager extends BaseAdminController {
 
             $widget = $widget->row_array();
             $settings = @unserialize($widget['settings']);
-            $widget['title'] = $settings['title'] ? $settings['title'] : $widget['title'];
+            $widget['title'] = $widget['title'] ? : $settings['title'];
 
             $this->template->add_array(
                 [

@@ -8,7 +8,8 @@ if (!defined('BASEPATH')) {
  * @property CI_Cache $cache
  * @property Cms_admin $cms_admin
  */
-class Settings extends BaseAdminController {
+class Settings extends BaseAdminController
+{
 
     /**
      * If TRUE then data will be save for each locale separately

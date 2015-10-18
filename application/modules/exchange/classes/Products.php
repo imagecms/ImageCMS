@@ -2,13 +2,19 @@
 
 namespace exchange\classes;
 
+use CI;
 use CMSFactory\ModuleSettings;
+use Exception;
+use MediaManager\Image;
+use MY_Controller;
+use SimpleXMLElement;
 
 /**
  *
  * @author kolia
  */
-class Products extends ExchangeBase {
+class Products extends ExchangeBase
+{
 
     /**
      * Path of folder where xml and images stored
@@ -45,6 +51,10 @@ class Products extends ExchangeBase {
      */
     protected $imagesToResizeAdditional = [];
 
+    /**
+     *
+     * @var boolean
+     */
     protected $runResize = FALSE;
 
     /**
@@ -59,11 +69,22 @@ class Products extends ExchangeBase {
      */
     protected $i18nExisting = [];
 
-    // compare data
+    /**
+     *
+     * @var array
+     */
     protected $compare_exIds = [];
 
+    /**
+     *
+     * @var array
+     */
     protected $compare_urls = [];
 
+    /**
+     *
+     * @var array
+     */
     protected $compare_properties = [];
 
     /**
@@ -72,6 +93,10 @@ class Products extends ExchangeBase {
      */
     protected $runVariantsFix = false;
 
+    /**
+     *
+     * @var array
+     */
     protected $productss;
 
     /**
@@ -111,6 +136,10 @@ class Products extends ExchangeBase {
      */
     private $parentCat = [];
 
+    /**
+     *
+     * @var boolean
+     */
     private $ignoreExistingDescriptions = false;
 
     /**
@@ -124,7 +153,7 @@ class Products extends ExchangeBase {
         $this->insertCollector = new DataCollector;
         $this->updateCollector = new DataCollector;
 
-        $storageFilePath = \CI::$APP->config->item('characteristicsStorageFilePath');
+        $storageFilePath = CI::$APP->config->item('characteristicsStorageFilePath');
         $this->variantCharacteristics = new VariantCharacteristics($storageFilePath);
 
         $this->rememberOriginAdditionalParentsCats();
@@ -516,7 +545,6 @@ class Products extends ExchangeBase {
         $this->insertBatch('shop_products_i18n', $productsI18n);
 
         foreach ($variants as $variantExId => $variantData) {
-            $variantData = $variantData;
             $productExId = array_shift(explode('#', $variantExId));
             $variants[$variantExId]['product_id'] = $this->productIds[$productExId];
         }
@@ -529,13 +557,8 @@ class Products extends ExchangeBase {
                 ->select('id')
                 ->get('shop_product_properties_data')
                 ->result_array();
-            array_walk(
-                $existingPropertiesData,
-                function(&$item, $key) {
-                        $key = $key;
-                        $item = $item['id'];
-                }
-            );
+
+            $existingPropertiesData = array_column($existingPropertiesData, 'id');
 
             $this->insertBatch('shop_product_properties_data', $propertiesData_);
 
@@ -591,7 +614,6 @@ class Products extends ExchangeBase {
 
         $this->dataLoad->getNewData('variantsIds');
         foreach ($variantsI18n as $exId => $variantI18n) {
-            $variantI18n = $variantI18n;
             $variantsI18n[$exId]['id'] = $this->variantsIds[$exId];
         }
 
@@ -629,10 +651,10 @@ class Products extends ExchangeBase {
 
     /**
      * Method-helper for simplify processProducts1 method
-     * @param \SimpleXMLElement $product
+     * @param SimpleXMLElement $product
      * @return array
      */
-    protected function pass1Helper_getProductData(\SimpleXMLElement $product, $exId) {
+    protected function pass1Helper_getProductData(SimpleXMLElement $product, $exId) {
         $products = [
             'external_id' => $exId,
             'active' => (string) $product->Статус == 'Удален' ? 0 : 1,
@@ -657,7 +679,7 @@ class Products extends ExchangeBase {
         }
 
         if ($hasDescription) {
-            $locale = \MY_Controller::defaultLocale();
+            $locale = MY_Controller::defaultLocale();
             $res = $this->db
                 ->select('shop_products_i18n.short_description, shop_products_i18n.full_description')
                 ->from('shop_products')
@@ -685,10 +707,10 @@ class Products extends ExchangeBase {
 
     /**
      * Method-helper for simplify processProducts1 method
-     * @param \SimpleXMLElement $product
+     * @param SimpleXMLElement $product
      * @return array
      */
-    protected function pass1Helper_getVariantData(\SimpleXMLElement $product, $isNew = true) {
+    protected function pass1Helper_getVariantData(SimpleXMLElement $product, $isNew = true) {
         $variant = [
             'external_id' => (string) $product->Ид,
             'number' => (string) $product->Артикул,
@@ -723,29 +745,29 @@ class Products extends ExchangeBase {
 
     /**
      * Method-helper for simplify processProducts1 method
-     * @param \SimpleXMLElement $product
+     * @param SimpleXMLElement $product
      * @return array
      */
-    protected function pass1Helper_getCadegoryData(\SimpleXMLElement $product) {
+    protected function pass1Helper_getCadegoryData(SimpleXMLElement $product) {
         $categoryId = NULL;
         if (isset($product->Группы)) {
             $categoryExId = (string) $product->Группы->Ид;
             $categoryId = Categories::getInstance()->categoryExists2($categoryExId, TRUE);
             if (!$categoryId) {
-                throw new \Exception(sprintf('Error! Product category with id [%s] not found in file', $categoryExId));
+                throw new Exception(sprintf('Error! Product category with id [%s] not found in file', $categoryExId));
             }
         } else {
-            throw new \Exception(sprintf('Error! Product "%s" category not found in file', $product->Наименование));
+            throw new Exception(sprintf('Error! Product "%s" category not found in file', $product->Наименование));
         }
         return $categoryId;
     }
 
     /**
      * Method-helper for simplify processProducts1 method
-     * @param \SimpleXMLElement $product
+     * @param SimpleXMLElement $product
      * @return array
      */
-    protected function pass1Helper_getImagesData(\SimpleXMLElement $product, $exId) {
+    protected function pass1Helper_getImagesData(SimpleXMLElement $product, $exId) {
         //$exId = (string) $product->Ид;
         $additionalImages = NULL;
         $mainImage = NULL;
@@ -783,10 +805,10 @@ class Products extends ExchangeBase {
 
     /**
      * Method-helper for simplify processProducts1 method
-     * @param \SimpleXMLElement $product
+     * @param SimpleXMLElement $product
      * @return array
      */
-    protected function pass1Helper_getPropertiesData(\SimpleXMLElement $product, $categoryId) {
+    protected function pass1Helper_getPropertiesData(SimpleXMLElement $product, $categoryId) {
         $brandIdentif = Properties::getInstance()->getBrandIdentif();
         $brandId = '';
 
@@ -845,7 +867,7 @@ class Products extends ExchangeBase {
 
     private function runResize() {
         if ($this->runResize) {
-            \MediaManager\Image::create()
+            Image::create()
                     ->resizeByName($this->imagesToResize)
                     ->resizeByNameAdditional(array_unique($this->imagesToResizeAdditional));
         }
@@ -856,9 +878,6 @@ class Products extends ExchangeBase {
         return $this;
     }
 
-    /**
-     *
-     */
     protected function addProductsToUpperCategories() {
         $products = $this->db->select('shop_products.id, shop_category.full_path_ids')
             ->join('shop_category', 'shop_category.id = shop_products.category_id')
@@ -938,19 +957,4 @@ class Products extends ExchangeBase {
         }
     }
 
-    /**
-     *
-     * @param string $productName
-     * @return string
-     */
-    //    private function getProductUrl($productName) {
-    //        $productNameTemp = $productName;
-    //        $i = 1;
-    //        do {
-    //            $url = translit_url($productName);
-    //            $productName = $productNameTemp . $i++;
-    //        } while (isset($this->productsNewUrls[$url]));
-    //        $this->productsNewUrls[$url] = 1;
-    //        return $url;
-    //    }
 }

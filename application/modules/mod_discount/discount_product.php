@@ -13,7 +13,8 @@ if (!defined('BASEPATH')) {
  * @package ImageCMSModule
  * @property discount_model_front $discount_model_front
  */
-class Discount_product {
+class Discount_product
+{
 
     private $discountForProduct;
 

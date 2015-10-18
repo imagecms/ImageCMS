@@ -4,7 +4,8 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-class Dashboard extends BaseAdminController {
+class Dashboard extends BaseAdminController
+{
 
     public function __construct() {
         parent::__construct();
@@ -35,7 +36,7 @@ class Dashboard extends BaseAdminController {
         $updated = $this->db->get('content')->result_array();
 
         // get comments
-        if ($this->db->get_where('components', array('name' => 'comments'))->row()) {
+        if ($this->db->get_where('components', ['name' => 'comments'])->row()) {
             $comments = $this->db->where('status', '0')
                 ->or_where('status', '1')
                 ->order_by('date', 'DESC')
@@ -57,14 +58,14 @@ class Dashboard extends BaseAdminController {
         $total_cats = $this->db->count_all_results();
 
         $this->template->add_array(
-            array(
+            [
                     'latest' => $latest,
                     'updated' => $updated,
                     'comments' => $comments,
                     'total_cats' => $total_cats,
                     'total_pages' => $total_pages,
                     'total_comments' => $total_comments,
-                )
+                ]
         );
 
         // If we are online - load system news.
@@ -86,7 +87,7 @@ class Dashboard extends BaseAdminController {
             if ($on_local !== TRUE) {
                 $this->config->load('api');
 
-                $api_news = $this->_curl_post($this->config->item('imagecms_latest_news'), array('for' => IMAGECMS_NUMBER));
+                $api_news = $this->_curl_post($this->config->item('imagecms_latest_news'), ['for' => IMAGECMS_NUMBER]);
 
                 if (count(unserialize($api_news['result'])) > 1 AND $api_news['code'] == '200') {
                     $this->template->assign('api_news', unserialize($api_news['result']));
@@ -108,10 +109,10 @@ class Dashboard extends BaseAdminController {
         }
 
         $this->template->add_array(
-            array(
+            [
                     'cms_number' => IMAGECMS_NUMBER,
                     'sys_status' => $status,
-                )
+                ]
         );
 
         \CMSFactory\Events::create()->registerEvent('', 'Dashboard:show');
@@ -120,8 +121,8 @@ class Dashboard extends BaseAdminController {
         $this->template->show('dashboard', FALSE);
     }
 
-    private function _curl_post($url = '', $data = array()) {
-        $options = array();
+    private function _curl_post($url = '', $data = []) {
+        $options = [];
         $options[CURLOPT_HEADER] = FALSE;
         $options[CURLOPT_RETURNTRANSFER] = TRUE;
         $options[CURLOPT_POST] = FALSE;

@@ -1,6 +1,7 @@
 <?php
 
-class User_Autologin extends CI_Model {
+class User_Autologin extends CI_Model
+{
 
     public function __construct() {
         parent::__construct();
@@ -12,12 +13,12 @@ class User_Autologin extends CI_Model {
     }
 
     public function store_key($key, $user_id) {
-        $user = array(
+        $user = [
             'key_id' => md5($key),
             'user_id' => $user_id,
             'user_agent' => substr($this->input->user_agent(), 0, 149),
             'last_ip' => $this->input->ip_address()
-        );
+        ];
 
         return $this->db->insert($this->_table, $user);
     }
@@ -38,10 +39,10 @@ class User_Autologin extends CI_Model {
     }
 
     public function delete_key($key, $user_id) {
-        $data = array(
+        $data = [
             'key_id' => md5($key),
             'user_id' => $user_id
-        );
+        ];
 
         $this->db->where($data);
         return $this->db->delete($this->_table);
@@ -53,11 +54,11 @@ class User_Autologin extends CI_Model {
     }
 
     public function prune_keys($user_id) {
-        $data = array(
+        $data = [
             'user_id' => $user_id,
             'user_agent' => substr($this->input->user_agent(), 0, 149),
             'last_ip' => $this->input->ip_address()
-        );
+        ];
 
         $this->db->where($data);
         return $this->db->delete($this->_table);

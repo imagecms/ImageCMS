@@ -9,7 +9,8 @@ use CMSFactory\ModuleSettings;
  *
  * @author kolia
  */
-class Prices extends ExchangeBase {
+class Prices extends ExchangeBase
+{
 
     protected function import_() {
         $data = [];

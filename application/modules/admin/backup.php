@@ -10,7 +10,8 @@ if (!defined('BASEPATH')) {
  * Backup Class
  *
  */
-class Backup extends BaseAdminController {
+class Backup extends BaseAdminController
+{
 
     public function __construct() {
         parent::__construct();

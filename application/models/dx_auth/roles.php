@@ -1,6 +1,7 @@
 <?php
 
-class Roles extends CI_Model {
+class Roles extends CI_Model
+{
 
     public function __construct() {
         parent::__construct();
@@ -21,10 +22,10 @@ class Roles extends CI_Model {
     }
 
     public function create_role($name, $parent_id = 0) {
-        $data = array(
+        $data = [
             'name' => $name,
             'parent_id' => $parent_id
-        );
+        ];
 
         $this->db->insert($this->_table, $data);
     }

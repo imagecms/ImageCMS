@@ -5,7 +5,7 @@ if (!defined('BASEPATH')) {
 }
 
 function translit($str) {
-    $tr = array(
+    $tr = [
         "А" => "A",
         "Б" => "B",
         "В" => "V",
@@ -85,7 +85,7 @@ function translit($str) {
         ":" => "",
         ";" => "",
         "/" => "-"
-    );
+    ];
 
     return strtr($str, $tr);
 }

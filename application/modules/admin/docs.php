@@ -10,7 +10,8 @@ if (!defined('BASEPATH')) {
  * Backup Class
  *
  */
-class Docs extends BaseAdminController {
+class Docs extends BaseAdminController
+{
 
     protected $jsonListFile;
 
@@ -48,9 +49,9 @@ class Docs extends BaseAdminController {
             ->order_by("position")
             ->get('content')->result_array();
 
-        $jsonsDataArray = array();
+        $jsonsDataArray = [];
         foreach ($result as $pageFromDatabase) {
-            $jsonsDataArray[] = array('full_url' => $pageFromDatabase['url'], 'title' => $pageFromDatabase['title']);
+            $jsonsDataArray[] = ['full_url' => $pageFromDatabase['url'], 'title' => $pageFromDatabase['title']];
 
             $pageTitle = '<div class="title-default-main"><div class="title">'
                     . $pageFromDatabase['title'] . '</div></div>';

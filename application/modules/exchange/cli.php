@@ -5,7 +5,8 @@
 /**
  * Helper controller for maintenance
  */
-class Cli extends \MY_Controller {
+class Cli extends \MY_Controller
+{
 
     public function __construct() {
         if (PHP_SAPI !== 'cli') {

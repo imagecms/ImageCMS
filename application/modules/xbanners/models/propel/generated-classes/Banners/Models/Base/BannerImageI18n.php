@@ -344,7 +344,12 @@ abstract class BannerImageI18n implements ActiveRecordInterface
     {
         $this->clearAllReferences();
 
-        return array_keys(get_object_vars($this));
+        $cls = new \ReflectionClass($this);
+        $propertyNames = [];
+        foreach($cls->getProperties() as $property) {
+            $propertyNames[] = $property->getName();
+        }
+        return $propertyNames;
     }
 
     /**

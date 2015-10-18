@@ -19,7 +19,8 @@ if (!defined('BASEPATH')) {
  * @package ImageCMSModule
  * @property discount_model_admin $discount_model_admin
  */
-class DiscountManager extends MY_Controller {
+class DiscountManager extends MY_Controller
+{
 
     public $error = [];
 

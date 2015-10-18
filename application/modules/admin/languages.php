@@ -4,7 +4,8 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-class Languages extends BaseAdminController {
+class Languages extends BaseAdminController
+{
 
     public function __construct() {
 

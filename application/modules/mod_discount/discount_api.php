@@ -1,5 +1,11 @@
 <?php
 
+use Cart\BaseCart;
+use CMSFactory\assetManager;
+use mod_discount\classes\BaseDiscount;
+use mod_discount\classes\DiscountManager;
+use mod_discount\Discount_product;
+
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
@@ -11,14 +17,13 @@ if (!defined('BASEPATH')) {
  * @copyright (c) 2013, ImageCMS
  * @package ImageCMSModule
  */
-class discount_api extends \MY_Controller {
+class discount_api extends MY_Controller
+{
 
     /**
      * __construct base object loaded
      * @access public
      * @author DevImageCms
-     * @param ---
-     * @return ---
      * @copyright (c) 2013, ImageCMS
      */
     public function __construct() {
@@ -33,11 +38,10 @@ class discount_api extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      */
     public function isGiftCertificat() {
-        $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
+        $this->baseDiscount = BaseDiscount::create();
         foreach ($this->baseDiscount->discountType['certificate'] as $disc) {
             if ($disc['is_gift']) {
                 return true;
-                break;
             }
         }
         return false;
@@ -53,8 +57,8 @@ class discount_api extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      */
     public function getGiftCertificate($key = null, $totalPrice = null) {
-        $cart = \Cart\BaseCart::getInstance();
-        $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
+        $cart = BaseCart::getInstance();
+        $this->baseDiscount = BaseDiscount::create();
         if ($totalPrice === null) {
             $totalPrice = $cart->getTotalPrice();
         }
@@ -66,7 +70,7 @@ class discount_api extends \MY_Controller {
         foreach ($this->baseDiscount->discountType['certificate'] as $disc) {
             if ($disc['key'] == $key and $disc['is_gift']) {
                 $value = $this->baseDiscount->getDiscountValue($disc, $totalPrice);
-                return json_encode(['key' => $disc['key'], 'val_orig' => $value, 'value' => \ShopCore::app()->SCurrencyHelper->convert($value), 'gift_array' => $disc]);
+                return json_encode(['key' => $disc['key'], 'val_orig' => $value, 'value' => ShopCore::app()->SCurrencyHelper->convert($value), 'gift_array' => $disc]);
                 break;
             }
         }
@@ -89,11 +93,11 @@ class discount_api extends \MY_Controller {
     public function getDiscount($option = [], $typeReturn = null) {
 
         if (count($option) > 0) {
-            \mod_discount\classes\BaseDiscount::prepareOption($option);
+            BaseDiscount::prepareOption($option);
         }
 
-        $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
-        if (\mod_discount\classes\BaseDiscount::checkModuleInstall()) {
+        $this->baseDiscount = BaseDiscount::create();
+        if (BaseDiscount::checkModuleInstall()) {
             $discount['max_discount'] = $this->baseDiscount->discountMax;
             $discount['sum_discount_product'] = $this->baseDiscount->discountProductVal;
             $discount['sum_discount_no_product'] = $this->baseDiscount->discountNoProductVal;
@@ -126,10 +130,10 @@ class discount_api extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      */
     public function getDiscountProduct($product, $price = null) {
-        if (\mod_discount\classes\BaseDiscount::checkModuleInstall()) {
-            $DiscProdObj = \mod_discount\Discount_product::create();
+        if (BaseDiscount::checkModuleInstall()) {
+            $DiscProdObj = Discount_product::create();
             if ($DiscProdObj->getProductDiscount($product, $price)) {
-                $arr = \CMSFactory\assetManager::create()->discount;
+                $arr = assetManager::create()->discount;
                 if ($this->input->server('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest') {
                     echo json_encode($arr);
                 } else {
@@ -154,11 +158,11 @@ class discount_api extends \MY_Controller {
      */
     public function getUserDiscount($option = []) {
         if (count($option) > 0) {
-            \mod_discount\classes\BaseDiscount::prepareOption($option);
+            BaseDiscount::prepareOption($option);
         }
 
-        $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
-        if (\mod_discount\classes\BaseDiscount::checkModuleInstall()) {
+        $this->baseDiscount = BaseDiscount::create();
+        if (BaseDiscount::checkModuleInstall()) {
             $this->baseDiscount->discountType['comulativ'] = $this->getComulativDiscount($option);
 
             foreach ($this->baseDiscount->discountType['user'] as $user) {
@@ -182,11 +186,11 @@ class discount_api extends \MY_Controller {
     }
 
     public function userDiscountExists() {
-        return (bool) !\mod_discount\classes\DiscountManager::validateUserDiscount(CI::$APP->dx_auth->get_user_id());
+        return (bool) !DiscountManager::validateUserDiscount(CI::$APP->dx_auth->get_user_id());
     }
 
     public function groupDiscountExists() {
-        return (bool) !\mod_discount\classes\DiscountManager::validateGroupDiscount(CI::$APP->dx_auth->get_role_id());
+        return (bool) !DiscountManager::validateGroupDiscount(CI::$APP->dx_auth->get_role_id());
     }
 
     /**
@@ -202,11 +206,11 @@ class discount_api extends \MY_Controller {
     private function getComulativDiscount($option) {
 
         if (count($option) > 0) {
-            \mod_discount\classes\BaseDiscount::prepareOption($option);
+            BaseDiscount::prepareOption($option);
         }
 
-        $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
-        if (\mod_discount\classes\BaseDiscount::checkModuleInstall()) {
+        $this->baseDiscount = BaseDiscount::create();
+        if (BaseDiscount::checkModuleInstall()) {
             usort(
                 $this->baseDiscount->discountType['comulativ'],
                 function($a, $b) {
@@ -228,7 +232,7 @@ class discount_api extends \MY_Controller {
      */
     public function getDiscountBy($key, $id) {
 
-        $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
+        $this->baseDiscount = BaseDiscount::create();
         foreach ($this->baseDiscount->allDiscount as $disc) {
             switch ($key) {
                 case 'key':
@@ -261,7 +265,7 @@ class discount_api extends \MY_Controller {
      */
     public function getAllDiscount() {
 
-        $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
+        $this->baseDiscount = BaseDiscount::create();
         return json_encode($this->baseDiscount->discountType);
     }
 
@@ -288,10 +292,10 @@ class discount_api extends \MY_Controller {
                 'vid' => $var['var_id'],
                 'id' => $var['id']
             ];
-            \CMSFactory\assetManager::create()->discount = 0;
-            \mod_discount\Discount_product::create()->getProductDiscount($arr_for_discount);
+            assetManager::create()->discount = 0;
+            Discount_product::create()->getProductDiscount($arr_for_discount);
 
-            if ($discount = \CMSFactory\assetManager::create()->discount) {
+            if ($discount = assetManager::create()->discount) {
                 $priceNew = ((float) $var['price'] - (float) $discount['discount_value'] < 0) ? 1 : (float) $var['price'] - (float) $discount['discount_value'];
                 $dataProductUpdate = [
                     'price' => ($discount) ? $priceNew : $var['price'],
@@ -312,14 +316,6 @@ class discount_api extends \MY_Controller {
      */
     public function is_gift_certificat() {
         return $this->isGiftCertificat();
-        $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
-        foreach ($this->baseDiscount->discountType['all_order'] as $disc) {
-            if ($disc['is_gift']) {
-                return true;
-                break;
-            }
-        }
-        return false;
     }
 
     /**
@@ -328,9 +324,9 @@ class discount_api extends \MY_Controller {
      * @copyright (c) 2013, ImageCMS
      */
     public function render_gift_input($mes = null) {
-        if (\mod_discount\classes\BaseDiscount::checkModuleInstall()) {
+        if (BaseDiscount::checkModuleInstall()) {
             if ($this->is_gift_certificat()) {
-                \CMSFactory\assetManager::create()->setData(['mes' => $mes])->render('gift', true);
+                assetManager::create()->setData(['mes' => $mes])->render('gift', true);
             }
         }
     }
@@ -342,7 +338,7 @@ class discount_api extends \MY_Controller {
      */
     public function render_gift_succes() {
         $json = json_decode($this->input->get('json'));
-        \CMSFactory\assetManager::create()->setData(['gift' => $json])->render('gift_succes', true);
+        assetManager::create()->setData(['gift' => $json])->render('gift_succes', true);
     }
 
     /**
@@ -371,7 +367,7 @@ class discount_api extends \MY_Controller {
     public function get_discount_tpl_from_json_api() {
         $json = json_decode($this->input->get('json'));
 
-        \CMSFactory\assetManager::create()->setData(['discount' => $json])->render('discount_order', true);
+        assetManager::create()->setData(['discount' => $json])->render('discount_order', true);
     }
 
     /**

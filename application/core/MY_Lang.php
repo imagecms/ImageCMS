@@ -147,6 +147,10 @@ class MY_Lang extends MX_Lang {
      * @return    string
      */
     public function line($origin = '', $params = FALSE) {
+        if (self::isNewPHP()) {
+            return $this->getTranslationForNewPHP($origin);
+        }
+
         $origin = str_replace('$', "\\$", $origin);
         $translation = gettext($origin);
         $origin = str_replace('\$', '$', $translation);
@@ -185,7 +189,7 @@ class MY_Lang extends MX_Lang {
      * @return bool
      */
     protected static function isNewPHP() {
-        return (version_compare(PHP_VERSION, '5.5.0') >= 0);
+        return (version_compare(PHP_VERSION, '5.5.0') >= 0 && strtoupper(substr(PHP_OS, 0, 3)) === 'WIN');
     }
 
     /**

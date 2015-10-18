@@ -344,6 +344,7 @@
                                                     <b>%desc%</b> - {lang('Category description','mod_seo')}<br/>
                                                     <b>%H1%</b> - {lang('field H1 of category','mod_seo')}<br/>
                                                     <b>%brands%</b> - {lang('list of the top brands, separated by ','mod_seo')}"," <br/>
+                                                    <b>%pagenumber%</b> - {lang("Current page number",'mod_seo')}<br/>
                                                     <b>%maxPrice%</b> - {lang("Minimal price in category",'mod_seo')}<br/>
                                                     <b>%minPrice%</b> - {lang("Maximal price in category",'mod_seo')}<br/>
                                                     <br/>
@@ -377,6 +378,7 @@
                                                     <b>%desc%</b> - {lang('Category description','mod_seo')}<br/>
                                                     <b>%H1%</b> - {lang('field H1 of category','mod_seo')}<br/>
                                                     <b>%brands%</b> - {lang('list of the top brands, separated by ','mod_seo')}"," <br/>
+                                                    <b>%pagenumber%</b> - {lang("Current page number",'mod_seo')}<br/>
                                                     <b>%maxPrice%</b> - {lang("Minimal price in category",'mod_seo')}<br/>
                                                     <b>%minPrice%</b> - {lang("Maximal price in category",'mod_seo')}<br/>
                                                     <br/>
@@ -426,6 +428,7 @@
                                                     <b>%desc%</b> - {lang('Category description','mod_seo')}<br/>
                                                     <b>%H1%</b> - {lang('field H1 of category','mod_seo')}<br/>
                                                     <b>%brands%</b> - {lang('list of the top brands, separated by ','mod_seo')}"," <br/>
+                                                    <b>%pagenumber%</b> - {lang("Current page number",'mod_seo')}<br/>
                                                 </div>
                                                 Meta-keywords:
                                             </span>
@@ -496,6 +499,7 @@
                                                     <b>%desc%</b> - {lang('Category description','mod_seo')}<br/>
                                                     <b>%H1%</b> - {lang('field H1 of category','mod_seo')}<br/>
                                                     <b>%brands%</b> - {lang('list of the top brands, separated by ','mod_seo')}"," <br/>
+                                                    <b>%pagenumber%</b> - {lang("Current page number",'mod_seo')}<br/>
                                                     <b>%maxPrice%</b> - {lang("Minimal price in category",'mod_seo')}<br/>
                                                     <b>%minPrice%</b> - {lang("Maximal price in category",'mod_seo')}<br/>
                                                     <br/>
@@ -529,6 +533,7 @@
                                                     <b>%desc%</b> - {lang('Category description','mod_seo')}<br/>
                                                     <b>%H1%</b> - {lang('field H1 of category','mod_seo')}<br/>
                                                     <b>%brands%</b> - {lang('list of the top brands, separated by ','mod_seo')}"," <br/>
+                                                    <b>%pagenumber%</b> - {lang("Current page number",'mod_seo')}<br/>
                                                     <b>%maxPrice%</b> - {lang("Minimal price in category",'mod_seo')}<br/>
                                                     <b>%minPrice%</b> - {lang("Maximal price in category",'mod_seo')}<br/>
                                                     <br/>
@@ -578,6 +583,7 @@
                                                     <b>%desc%</b> - {lang('Category description','mod_seo')}<br/>
                                                     <b>%H1%</b> - {lang('field H1 of category','mod_seo')}<br/>
                                                     <b>%brands%</b> - {lang('list of the top brands, separated by ','mod_seo')}"," <br/>
+                                                    <b>%pagenumber%</b> - {lang("Current page number",'mod_seo')}<br/>
                                                 </div>
                                                 Meta-keywords:
                                             </span>
@@ -647,6 +653,7 @@
                                                     <b>%ID%</b> - {lang('Brand ID','mod_seo')} <br/>
                                                     <b>%name%</b> - {lang('Brand name','mod_seo')}<br/>
                                                     <b>%desc%</b> - {lang('Brand description','mod_seo')}<br/>
+                                                    <b>%pagenumber%</b> - {lang("Current page number",'mod_seo')}<br/>
                                                     <br/>
                                                     {lang('Additional params for using with category name','mod_seo')}:<br/>
                                                     <b>[t]</b> - {lang('Translit','mod_seo')}<br/>
@@ -668,6 +675,7 @@
                                                     <b>%ID%</b> - {lang('Brand ID','mod_seo')} <br/>
                                                     <b>%name%</b> - {lang('Brand name','mod_seo')}<br/>
                                                     <b>%desc%</b> - {lang('Brand description','mod_seo')}<br/>
+                                                    <b>%pagenumber%</b> - {lang("Current page number",'mod_seo')}<br/>
                                                     <br/>
                                                     {lang('Additional params for using with category name','mod_seo')}:<br/>
                                                     <b>[t]</b> - {lang('Translit','mod_seo')}<br/>
@@ -712,6 +720,7 @@
 
                                                 <div class="d_n">
                                                     <b>%name%</b> - {lang('Brand name','mod_seo')}<br/>
+                                                    <b>%pagenumber%</b> - {lang("Current page number",'mod_seo')}<br/>
                                                     <br/>
                                                     {lang('Additional params for using with category name','mod_seo')}:<br/>
                                                     <b>[t]</b> - {lang('Translit','mod_seo')}<br/>
@@ -972,6 +981,7 @@
                                                 </span>
                                                 <div class="d_n">
                                                     <b>%name%</b> - {lang('Category name','mod_seo')}<br/>
+                                                    <b>%pagenumber%</b> - {lang("Current page number",'mod_seo')}<br/>
                                                     <br/>
                                                     {lang('Additional params for using with category name','mod_seo')}:<br/>
                                                     <b>[t]</b> - {lang('Translit','mod_seo')}<br/>
@@ -1000,6 +1010,7 @@
                                                 <div class="d_n">
                                                     <b>%name%</b> - {lang('Category name','mod_seo')}<br/>
                                                     <b>%desc%</b> - {lang('Category description','mod_seo')}<br/>
+                                                    <b>%pagenumber%</b> - {lang("Current page number",'mod_seo')}<br/>
                                                     <br/>
                                                     {lang('Additional params for using with category name','mod_seo')}:<br/>
                                                     <b>[t]</b> - {lang('Translit','mod_seo')}<br/>
@@ -1036,6 +1047,7 @@
                                                 </span>
                                                 <div class="d_n">
                                                     <b>%name%</b> - {lang('Category name','mod_seo')}<br/>
+                                                    <b>%pagenumber%</b> - {lang("Current page number",'mod_seo')}<br/>
                                                     <br/>
                                                     {lang('Additional params for using with category name','mod_seo')}:<br/>
                                                     <b>[t]</b> - {lang('Translit','mod_seo')}<br/>

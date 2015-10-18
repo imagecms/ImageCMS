@@ -10,25 +10,26 @@ if (!defined('BASEPATH')) {
  */
 require 'mabilis/Mabilis.class.php';
 
-class Template extends Mabilis {
+class Template extends Mabilis
+{
 
     protected $main_layout = 'main';
 
-    public $template_vars = array();
+    public $template_vars = [];
 
-    private $_css_files = array();
+    private $_css_files = [];
 
-    private $_js_files = array();
+    private $_js_files = [];
 
-    private $_links = array();
+    private $_links = [];
 
-    private $_css_str = array();
+    private $_css_str = [];
 
-    private $_metas = array();
+    private $_metas = [];
 
-    private $_canonicals = array();
+    private $_canonicals = [];
 
-    private static $arr = array();
+    private static $arr = [];
 
     private static $result_before = '';
 
@@ -56,6 +57,7 @@ class Template extends Mabilis {
     /**
      *
      * @param string $main_layout
+     * @throws Exception
      */
     public function set_main_layout($main_layout) {
         $layoutPath = 'templates/' . $this->CI->config->item('template') . "/{$main_layout}.tpl";
@@ -77,28 +79,28 @@ class Template extends Mabilis {
     }
 
     public function load() {
-        $this->CI = & get_instance();
+        $this->CI = &get_instance();
         $this->modules_template_dir = TEMPLATES_PATH . 'modules/';
         $tpl = $this->CI->config->item('template');
 
-        if (MAINSITE and $tpl == 'administrator' and ! is_dir(TEMPLATES_PATH . 'administrator')) {
-            $config = array(
+        if (MAINSITE and $tpl == 'administrator' and !is_dir(TEMPLATES_PATH . 'administrator')) {
+            $config = [
                 'tpl_path' => str_replace('system/', '', BASEPATH) . 'templates/' . $tpl . '/',
                 'compile_path' => $this->CI->config->item('tpl_compile_path'),
                 'force_compile' => $this->CI->config->item('tpl_force_compile'),
                 'compiled_ttl' => $this->CI->config->item('tpl_compiled_ttl'),
                 'compress_output' => $this->CI->config->item('tpl_compress_output'),
                 'use_filemtime' => $this->CI->config->item('tpl_use_filemtime')
-            );
+            ];
         } else {
-            $config = array(
+            $config = [
                 'tpl_path' => TEMPLATES_PATH . $tpl . '/',
                 'compile_path' => $this->CI->config->item('tpl_compile_path'),
                 'force_compile' => $this->CI->config->item('tpl_force_compile'),
                 'compiled_ttl' => $this->CI->config->item('tpl_compiled_ttl'),
                 'compress_output' => $this->CI->config->item('tpl_compress_output'),
                 'use_filemtime' => $this->CI->config->item('tpl_use_filemtime')
-            );
+            ];
         }
         /** URL to template folder */
         $this->assign('THEME', base_url() . 'templates/' . $tpl . '/');
@@ -146,7 +148,7 @@ class Template extends Mabilis {
      * @param array $data
      * @return boolean|null
      */
-    public function show($file = FALSE, $load_main = TRUE, $data = array()) {
+    public function show($file = FALSE, $load_main = TRUE, $data = []) {
         $CI = &get_instance();
         if ($CI->uri->segment(1) == 'admin') {
             $load_main = (!$CI->input->is_ajax_request()) ? TRUE : FALSE;
@@ -161,7 +163,7 @@ class Template extends Mabilis {
         if ($file != FALSE) {
             $content = $data['js_langs_path'] ? $this->fetch($data['js_langs_path']) : '';
             $content .= $this->fetch($file . '.tpl');
-            $this->add_array(array('content' => $content));
+            $this->add_array(['content' => $content]);
         }
 
         ob_start();
@@ -178,7 +180,7 @@ class Template extends Mabilis {
     }
 
     public function clear_all_assign() {
-        $this->template_vars = array();
+        $this->template_vars = [];
     }
 
     /**
@@ -203,7 +205,7 @@ class Template extends Mabilis {
      * @return string|integer|float|array|boolean
      */
     public function get_vars() {
-        return $this->template_vars ? $this->template_vars : array();
+        return $this->template_vars ? $this->template_vars : [];
     }
 
     public function run_info() {
@@ -228,7 +230,7 @@ class Template extends Mabilis {
      * @param array $data
      * @return string
      */
-    public function read($file = FALSE, $data = array()) {
+    public function read($file = FALSE, $data = []) {
         if (count($data) > 0) {
             $this->add_array($data);
         }
@@ -243,7 +245,7 @@ class Template extends Mabilis {
      * @param array $data
      * @return string
      */
-    public function fetch($file = FALSE, $data = array()) {
+    public function fetch($file = FALSE, $data = []) {
         return $this->read($file, $data);
     }
 
@@ -253,7 +255,7 @@ class Template extends Mabilis {
      * @param array $data
      * @param boolean $processOutput
      */
-    public function display($file, $data = array(), $processOutput = true) {
+    public function display($file, $data = [], $processOutput = true) {
         if (count($data) > 0) {
             $this->add_array($data);
         }
@@ -274,7 +276,7 @@ class Template extends Mabilis {
      * @param boolean $return
      * @return string
      */
-    public function view($file, $data = array(), $return = FALSE) {
+    public function view($file, $data = [], $return = FALSE) {
         $file = preg_replace('/.tpl.tpl/', '.tpl', $file);
 
         return $this->splitTplFiles(parent::view($file, $data, $return));
@@ -287,7 +289,7 @@ class Template extends Mabilis {
      * @param array $data
      * @param boolean $processOutput
      */
-    public function include_tpl($name, $path, $data = array(), $processOutput = true) {
+    public function include_tpl($name, $path, $data = [], $processOutput = true) {
         $path = $path ? $path : TEMPLATES_PATH . $this->CI->config->item('template');
         $this->display('file:' . $path . '/' . $name, $data, $processOutput);
     }
@@ -299,7 +301,7 @@ class Template extends Mabilis {
      * @param array $data
      * @param boolean $processOutput
      */
-    public function include_shop_tpl($name, $path, $data = array(), $processOutput = true) {
+    public function include_shop_tpl($name, $path, $data = [], $processOutput = true) {
         $path = $path ? $path : TEMPLATES_PATH . $this->CI->config->item('template');
         $this->display('file:' . $path . '/shop/' . $name, $data, $processOutput);
     }

@@ -185,7 +185,7 @@ if (!function_exists('create_captcha')) {
 
         }
 
-        $defaults = array('word' => '', 'img_path' => '', 'img_url' => '', 'img_width' => '150', 'img_height' => '30', 'font_size' => '', 'font_path' => '', 'show_grid' => true, 'skew' => true, 'expiration' => 7200, 'alt' => 'captcha');
+        $defaults = ['word' => '', 'img_path' => '', 'img_url' => '', 'img_width' => '150', 'img_height' => '30', 'font_size' => '', 'font_path' => '', 'show_grid' => true, 'skew' => true, 'expiration' => 7200, 'alt' => 'captcha'];
 
         foreach ($defaults as $key => $val) {
             if (!is_array($data)) {
@@ -222,7 +222,7 @@ if (!function_exists('create_captcha')) {
             $handle = opendir($font_path);
 
             while (($file = @readdir($handle)) !== false) {
-                if (!in_array($file, array('.', '..')) && substr($file, strlen($file) - 4, 4) == '.ttf') {
+                if (!in_array($file, ['.', '..']) && substr($file, strlen($file) - 4, 4) == '.ttf') {
                     $fonts[] = $file;
                 }
             }
@@ -339,7 +339,7 @@ if (!function_exists('create_captcha')) {
                 $x += ($font_size * 2);
             } else {
                 $letter = substr($word, $i, 1);
-                $less_rotate = array('c', 'N', 'U', 'Z', '7', '6', '9'); //letters that we don't want rotated too much...
+                $less_rotate = ['c', 'N', 'U', 'Z', '7', '6', '9']; //letters that we don't want rotated too much...
 
                 $angle = $skew == TRUE ? (in_array($letter, $less_rotate)) ? rand(-5, 5) : rand(-15, 15) : 0;
                 $y = $img_height / 2 + ($font_size >> 1) + ($skew == TRUE ? rand(-9, 9) : 0);
@@ -367,7 +367,7 @@ if (!function_exists('create_captcha')) {
 
         imagedestroy($im);
 
-        return array('word' => $word, 'time' => $now, 'image' => $img);
+        return ['word' => $word, 'time' => $now, 'image' => $img];
     }
 
 }

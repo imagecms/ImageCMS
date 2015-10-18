@@ -4,7 +4,8 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-class Admin_search extends BaseAdminController {
+class Admin_search extends BaseAdminController
+{
 
     public $items_per_page = '20'; // items per page for advanced search.
 
@@ -40,43 +41,43 @@ class Admin_search extends BaseAdminController {
         $searchText = $this->security->xss_clean($data);
 
         if (mb_strlen($searchText, 'UTF-8') >= 2) {
-            $config = array(
+            $config = [
                 'table' => 'content',
-                'order_by' => array('publish_date' => 'DESC'),
+                'order_by' => ['publish_date' => 'DESC'],
                 'hash_prefix' => 'admin',
                 'search_title' => $searchText,
-            );
+            ];
 
             $this->search->init($config);
 
-            $where = array(
-                array(
+            $where = [
+                [
                     'publish_date <=' => 'UNIX_TIMESTAMP()',
                     'backticks' => false,
-                ),
-                array(
+                ],
+                [
                     'id =' => (int) $searchText,
                     'backticks' => 'both',
-                ),
+                ],
                 //                  array(
                 //                          'lang_alias ' => '0',
                 //                      ),
-                array(
+                [
                     'prev_text' => $searchText,
                     'operator' => 'LIKE',
                     'backticks' => 'both',
-                ),
-                array(
+                ],
+                [
                     'full_text' => $searchText,
                     'operator' => 'OR_LIKE',
                     'backticks' => 'both',
-                ),
-                array(
+                ],
+                [
                     'title' => $searchText,
                     'operator' => 'OR_LIKE',
                     'backticks' => 'both',
-                ),
-            );
+                ],
+            ];
 
             if ($hash == '') {
                 $result = $this->search->execute($where, $offset);
@@ -108,7 +109,7 @@ class Admin_search extends BaseAdminController {
 
             if ($result['total_rows'] > 0) {
                 $this->template->assign('pages', $result['query']->result_array());
-                $cats = array();
+                $cats = [];
                 foreach ($this->db->get('category')->result_array() as $row) {
                     $cats[$row['id']] = $row['name'];
                 }
@@ -138,9 +139,9 @@ class Admin_search extends BaseAdminController {
     public function advanced_search() {
 
         $this->template->add_array(
-            array(
+            [
                     'categories' => $this->lib_category->build(),
-                )
+                ]
         );
 
         $this->template->show('advanced_search', false);
@@ -163,7 +164,7 @@ class Admin_search extends BaseAdminController {
         }
 
         if (!$search_data) {
-            $search_data = array();
+            $search_data = [];
         }
 
         ob_start();
@@ -172,11 +173,11 @@ class Admin_search extends BaseAdminController {
         ob_end_clean();
 
         $this->template->add_array(
-            array(
+            [
                     'advanced_search' => true,
                     'filter_data' => $search_data,
                     'cfcm_group_html' => $group_html,
-                )
+                ]
         );
 
         $ids = $this->filter->search_items($search_data);
@@ -193,7 +194,7 @@ class Admin_search extends BaseAdminController {
             exit;
         }
 
-        $config = array();
+        $config = [];
         $config['base_url'] = site_url('admin/admin_search/do_advanced_search/' . http_build_query($search_data, '', '/'));
         $config['total_rows'] = $this->_filter_pages($ids, $search_data, true);
         $config['per_page'] = $this->items_per_page;
@@ -209,13 +210,13 @@ class Admin_search extends BaseAdminController {
         $pagination = $this->pagination->create_links_ajax();
 
         $this->template->add_array(
-            array(
+            [
                     'pages' => $query->result_array(),
                     'pagination' => $pagination,
                     'advanced_search' => true,
                     'filter_data' => $search_data,
                     'cfcm_group_html' => $group_html,
-                )
+                ]
         );
 
         $this->template->show('search', false);
@@ -275,9 +276,9 @@ class Admin_search extends BaseAdminController {
 
     public function _filter_pages($ids, $search_data, $count = false) {
 
-        $where = array(
+        $where = [
             'lang_alias' => '0',
-        );
+        ];
 
         $this->db->where($where);
 
@@ -307,7 +308,7 @@ class Admin_search extends BaseAdminController {
     public function autocomplete() {
 
         if ($this->ajaxRequest) {
-            $tokens = array();
+            $tokens = [];
             $pages = $this->db->select('title')
                 ->get('content')
                 ->result_array();

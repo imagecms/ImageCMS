@@ -5,7 +5,8 @@ if (!defined('BASEPATH')) {
 }
 
 //class Pages extends MY_Controller {
-class Pages extends BaseAdminController {
+class Pages extends BaseAdminController
+{
 
     public $_Config = [
         'per_page' => 20 // Show news per one page

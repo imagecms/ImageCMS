@@ -1,6 +1,7 @@
 <?php
 
-class User_Temp extends CI_Model {
+class User_Temp extends CI_Model
+{
 
     public function __construct() {
         parent::__construct();
@@ -49,7 +50,7 @@ class User_Temp extends CI_Model {
     }
 
     public function activate_user($email, $key) {
-        $this->db->where(array('email' => $email, 'activation_key' => $key));
+        $this->db->where(['email' => $email, 'activation_key' => $key]);
         return $this->db->get($this->_table);
     }
 

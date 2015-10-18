@@ -21,7 +21,8 @@ namespace exchange\classes;
  *
  * @author kolia
  */
-class VariantCharacteristics {
+class VariantCharacteristics
+{
 
     /**
      * Path to storage path (whatever it is - txt file or sqlite db file)

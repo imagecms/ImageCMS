@@ -10,7 +10,8 @@ if (!defined('BASEPATH')) {
  * login.php
  *
  */
-class Login extends BaseAdminController {
+class Login extends BaseAdminController
+{
 
     public function __construct() {
         parent::__construct();
@@ -151,11 +152,11 @@ class Login extends BaseAdminController {
     }
 
     public function switch_admin_lang($lang) {
-        $langs = Array(
+        $langs = [
             'english',
             'russian',
             'german'
-        );
+        ];
 
         if (!$lang) {
             $lang = $this->input->get('language');

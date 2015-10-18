@@ -10,7 +10,8 @@ use CMSFactory\ModuleSettings;
  *
  * @author kolia
  */
-final class Categories extends ExchangeBase {
+final class Categories extends ExchangeBase
+{
 
     /**
      * Parsed categories from XML to one-dimention array

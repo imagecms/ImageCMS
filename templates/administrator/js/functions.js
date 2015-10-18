@@ -1175,7 +1175,7 @@ var orderStatuses = new Object({
 
 var callbacks = new Object({
     deleteOne: function (id) {
-        $.post('/admin/components/run/shop/callbacks/deleteCallback', {
+        $.post('/admin/components/run/callbacks/deleteCallback', {
             id: id
         }, function (data) {
             $('.notifications').append(data);
@@ -1192,7 +1192,7 @@ var callbacks = new Object({
         return true;
     },
     changeStatus: function (id, statusId) {
-        $.post('/admin/components/run/shop/callbacks/changeStatus', {
+        $.post('/admin/components/run/callbacks/changeStatus', {
             CallbackId: id,
             StatusId: statusId
         }, function (data) {
@@ -1206,7 +1206,7 @@ var callbacks = new Object({
         $('#callbacks_' + stId + ' table tbody').append($('#callback_' + id));
     },
     changeTheme: function (id, themeId) {
-        $.post('/admin/components/run/shop/callbacks/changeTheme', {
+        $.post('/admin/components/run/callbacks/changeTheme', {
             CallbackId: id,
             ThemeId: themeId
         }, function (data) {
@@ -1221,7 +1221,7 @@ var callbacks = new Object({
             $(element).closest('tr').find('.prod-on_off').css('left', '0');
         }
 
-        $.post('/admin/components/run/shop/callbacks/setDefaultStatus', {
+        $.post('/admin/components/run/callbacks/setDefaultStatus', {
             id: id
         }, function (data) {
             $('.notifications').append(data);
@@ -1234,14 +1234,14 @@ var callbacks = new Object({
         if (!$(curElement).closest('tr').find('.disable_tovar').length) {
             return false;
         }
-        $.post('/admin/components/run/shop/callbacks/deleteStatus', {
+        $.post('/admin/components/run/callbacks/deleteStatus', {
             id: id
         }, function (data) {
             $('.notifications').append(data);
         });
     },
     deleteTheme: function (id) {
-        $.post('/admin/components/run/shop/callbacks/deleteTheme', {
+        $.post('/admin/components/run/callbacks/deleteTheme', {
             id: id
         }, function (data) {
             $('.notifications').append(data);
@@ -1253,7 +1253,7 @@ var callbacks = new Object({
             positions.push($(this).data('id'));
         });
 
-        $.post('/admin/components/run/shop/callbacks/reorderThemes', {
+        $.post('/admin/components/run/callbacks/reorderThemes', {
             positions: positions
         }, function (data) {
             $('.notifications').append(data);

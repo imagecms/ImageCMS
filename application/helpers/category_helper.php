@@ -8,7 +8,7 @@ if (!function_exists('get_sub_categories')) {
         $ci = & get_instance();
         $categories = $ci->lib_category->unsorted();
 
-        $result = array();
+        $result = [];
 
         foreach ($categories as $category) {
             if ($category['parent_id'] == $category_id) {
@@ -31,7 +31,7 @@ if (!function_exists('category_list')) {
 
         $exclude_cats = explode(',', $exclude_cats);
 
-        $result = array();
+        $result = [];
 
         foreach ($categories as $row) {
             if (!in_array($row['id'], $exclude_cats)) {

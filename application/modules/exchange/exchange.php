@@ -13,7 +13,8 @@ use CMSFactory\ModuleSettings;
  * @link  http://docs.imagecms.net/administrirovanie-imagecms-shop/moduli/integratsiia-s-1s
  * @link http://v8.1c.ru/edi/edi_stnd/131/
  */
-class Exchange extends \MY_Controller {
+class Exchange extends \MY_Controller
+{
 
     /** array which contains 1c settings  */
     private $my_config = [];
@@ -532,7 +533,7 @@ class Exchange extends \MY_Controller {
             rename($this->tempDir . $_GET['filename'], $this->tempDir . "success_" . $_GET['filename']);
         }
 
-        exit();
+        exit("success");
     }
 
     /**

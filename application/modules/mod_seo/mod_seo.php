@@ -14,7 +14,8 @@ use Propel\Runtime\ActiveQuery\Criteria;
  * @author <dev@imagecms.net>
  * @copyright ImageCMS (c) 2014
  */
-class Mod_seo extends MY_Controller {
+class Mod_seo extends MY_Controller
+{
 
     public function __construct() {
         parent::__construct();
@@ -47,6 +48,7 @@ class Mod_seo extends MY_Controller {
      * Change simple page meta tags
      *
      * @param array $model
+     * @return bool
      */
     public function _buildPageMeta($model) {
         CI::$APP->seoexpert_model->setLastModified($model['updated']);
@@ -201,6 +203,7 @@ class Mod_seo extends MY_Controller {
      * Change page category meta tags
      *
      * @param array $model
+     * @return bool
      */
     public function _buildPageCategoryMeta($model) {
         $local = MY_Controller::getCurrentLocale();
@@ -655,7 +658,6 @@ class Mod_seo extends MY_Controller {
 
     /**
      * Build Meta for Shop Brands page
-     * @param $arg
      * @return false|null
      */
     public function _buildBrandsMeta() {

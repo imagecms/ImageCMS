@@ -9,7 +9,8 @@ use CMSFactory\ModuleSettings;
  *
  * @author kolia
  */
-class Properties extends ExchangeBase {
+class Properties extends ExchangeBase
+{
 
     const PROPTYPE_NUM = 0;
     const PROPTYPE_SPR = 1;

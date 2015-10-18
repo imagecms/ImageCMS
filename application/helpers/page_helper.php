@@ -70,7 +70,7 @@ if (!function_exists('category_pages')) {
         if ($query) {
             return $query->result_array();
         } else {
-            return array();
+            return [];
         }
     }
 

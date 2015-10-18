@@ -12,7 +12,8 @@ if (!defined('BASEPATH')) {
  * @package ImageCMSModule
  * @property discount_model_admin $discount_model_admin
  */
-class Mod_discount extends \MY_Controller {
+class Mod_discount extends \MY_Controller
+{
 
     public static $orderPassOverloadControl = false;
 

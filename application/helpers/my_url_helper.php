@@ -7,7 +7,8 @@ if (!defined('BASEPATH')) {
 if (!function_exists('media_url')) {
 
     function media_url($url = '') {
-        $CI = & get_instance();
+
+        $CI = &get_instance();
         /* @var $config CI_Config */
         $config = $CI->config;
 
@@ -40,7 +41,8 @@ if (!function_exists('media_url')) {
 if (!function_exists('whereami')) {
 
     function whereami() {
-        $CI = & get_instance();
+
+        $CI = &get_instance();
         if ($CI->uri->segment(1)) {
             return 'inside';
         } else {

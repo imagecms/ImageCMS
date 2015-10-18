@@ -1,6 +1,7 @@
 <?php
 
-class Login_Attempts extends CI_Model {
+class Login_Attempts extends CI_Model
+{
 
     public function __construct() {
         parent::__construct();
@@ -20,9 +21,9 @@ class Login_Attempts extends CI_Model {
 
     public function increase_attempt($ip_address) {
         // Insert new record
-        $data = array(
+        $data = [
             'ip_address' => $ip_address
-        );
+        ];
 
         $this->db->insert($this->_table, $data);
     }

@@ -4,7 +4,8 @@
 /**
  * @property CI_DB_active_record $db
  */
-class Users extends CI_Model {
+class Users extends CI_Model
+{
 
     public function __construct() {
         parent::__construct();
@@ -81,25 +82,25 @@ class Users extends CI_Model {
     }
 
     public function ban_user($user_id, $reason = NULL) {
-        $data = array(
+        $data = [
             'banned' => 1,
             'ban_reason' => $reason
-        );
+        ];
         return $this->set_user($user_id, $data);
     }
 
     public function unban_user($user_id) {
-        $data = array(
+        $data = [
             'banned' => 0,
             'ban_reason' => NULL
-        );
+        ];
         return $this->set_user($user_id, $data);
     }
 
     public function set_role($user_id, $role_id) {
-        $data = array(
+        $data = [
             'role_id' => $role_id
-        );
+        ];
         return $this->set_user($user_id, $data);
     }
 
@@ -130,11 +131,11 @@ class Users extends CI_Model {
     // Forgot password function
 
     public function newpass($user_id, $pass, $key) {
-        $data = array(
+        $data = [
             'newpass' => $pass,
             'newpass_key' => $key,
             'newpass_time' => date('Y-m-d h:i:s', time() + $this->config->item('DX_forgot_password_expire'))
-        );
+        ];
         return $this->set_user($user_id, $data);
     }
 
@@ -150,11 +151,11 @@ class Users extends CI_Model {
     }
 
     public function clear_newpass($user_id) {
-        $data = array(
+        $data = [
             'newpass' => NULL,
             'newpass_key' => NULL,
             'newpass_time' => NULL
-        );
+        ];
         return $this->set_user($user_id, $data);
     }
 

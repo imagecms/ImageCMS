@@ -32,7 +32,8 @@ if (!defined('BASEPATH')) {
  * @property Sys_upgrade $sys_upgrade
  * @property Widgets_manager $widgets_manager
  */
-class Admin extends MY_Controller {
+class Admin extends MY_Controller
+{
 
     private $request_url = 'http://requests.imagecms.net/index.php/requests/req';
 
@@ -113,11 +114,11 @@ class Admin extends MY_Controller {
             }
         }
         echo json_encode(
-            array(
+            [
                     'message' => $message,
                     'result' => $result,
                     'color' => 'r',
-                    'filesCount' => $this->cache->cache_file())
+                    'filesCount' => $this->cache->cache_file()]
         );
     }
 
@@ -136,32 +137,32 @@ class Admin extends MY_Controller {
             $path = $this->input->get('path');
         }
 
-        $opts = array(
+        $opts = [
             // 'debug' => true,
-            'roots' => array(
-                array(
+            'roots' => [
+                [
                     'driver' => 'LocalFileSystem',
                     'path' => set_realpath($path),
                     'URL' => site_url() . $path,
                     'accessControl' => 'access',
-                    'attributes' => array(
-                        array(
+                    'attributes' => [
+                        [
                             'pattern' => '/administrator/', //You can also set permissions for file types by adding, for example, .jpg inside pattern.
                             'read' => false,
                             'write' => false,
                             'locked' => true
-                        ),
+                        ],
                         //                        array(
                         //                            'pattern' => '/commerce/', //You can also set permissions for file types by adding, for example, .jpg inside pattern.
                         //                            'read'    => true,
                         //                            'write'   => true,
                         //                            'locked'  => false
                         //                        )
-                    )
+                    ]
                     // more elFinder options here
-                )
-            )
-        );
+                ]
+            ]
+        ];
         $this->load->library('elfinder_lib', $opts);
     }
 
@@ -205,7 +206,7 @@ class Admin extends MY_Controller {
         $val->set_rules('email', lang('Your Email', 'admin'), 'trim|required|xss_clean|valid_email');
         $val->set_rules('text', lang('Your remark', "admin"), 'trim|required|xss_clean');
 
-        $response = array('status' => 0, 'message' => '');
+        $response = ['status' => 0, 'message' => ''];
         if ($val->run()) {
             $message = '';
             $this->load->library('email');

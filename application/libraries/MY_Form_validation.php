@@ -8,7 +8,6 @@ class MY_Form_validation extends CI_Form_validation {
 
     public function __construct() {
         parent::__construct();
-
         $this->set_message('valid_date', 'Поле %s должно содержать правильную дату.');
         $this->set_message('valid_time', 'Поле %s должно содержать правильное время.');
         $this->set_message('phone', 'Поле %s должно содержать корректный номер.');
@@ -22,7 +21,9 @@ class MY_Form_validation extends CI_Form_validation {
 
     public function run($module = '', $group = '') {
         (is_object($module)) AND $this->CI = & $module;
-        return parent::run($group);
+        $result = parent::run($group);
+        CI::$APP->session->set_flashdata(['_error_array' => $this->_error_array, '_field_data' => $this->_field_data]);
+        return $result;
     }
 
     /**

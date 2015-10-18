@@ -4,9 +4,11 @@
  * @property CI_DB_active_record $db
  * @property DX_Auth $dx_auth
  */
-class Seoexpert_model extends CI_Model {
+class Seoexpert_model extends CI_Model
+{
 
     public function __construct() {
+
         parent::__construct();
     }
 
@@ -16,7 +18,12 @@ class Seoexpert_model extends CI_Model {
      * @return void
      */
     public function setLastModified($LastModified_unix) {
-        $LastModified = gmdate("D, d M Y H:i:s \G\M\T", $LastModified_unix);
+
+        if ($LastModified_unix < time() - 60 * 60 * 24 * 4 or $LastModified_unix > time()) {
+            $LastModified_unix = in_array(date('D', time()), ['Mon', 'Tue', 'Wen']) ? strtotime('last sunday', time()) : strtotime('last thursday', time());
+        }
+
+        $LastModified = date("D, d M Y H:i:s \G\M\T", $LastModified_unix);
         $IfModifiedSince = false;
 
         if ($this->input->server('HTTP_IF_MODIFIED_SINCE')) {
@@ -34,17 +41,14 @@ class Seoexpert_model extends CI_Model {
      * @return array
      */
     public function getSettings($locale = 'ru') {
-        //        $this->db->cache_on();
+
         $settings = $this->db->select('settings')
             ->where('locale', $locale)
             ->get('mod_seo')
             ->row_array();
-        //        $this->db->cache_off();
+
         $settings = unserialize($settings['settings']);
-        if ($settings) {
-            return $settings;
-        }
-        return FALSE;
+        return $settings ? $settings : FALSE;
     }
 
     /**
@@ -53,6 +57,7 @@ class Seoexpert_model extends CI_Model {
      * @return boolean
      */
     public function setSettings($settings, $locale = 'ru') {
+
         $data = $this->db->select('locale')
             ->where('locale', $locale)
             ->get('mod_seo')
@@ -65,7 +70,7 @@ class Seoexpert_model extends CI_Model {
             ->update(
                 'mod_seo',
                 ['settings' => serialize($settings)
-                                ]
+                ]
             );
     }
 
@@ -76,10 +81,11 @@ class Seoexpert_model extends CI_Model {
      * @return boolean|array
      */
     public function getCategoriesByIdName($term, $limit = 7) {
+
         $locale = MY_Controller::defaultLocale();
 
-        $sql = "SELECT * 
-                FROM  `shop_category_i18n` 
+        $sql = "SELECT *
+                FROM  `shop_category_i18n`
                 WHERE  (`locale` =  '" . $locale . "'
                 AND  `name` LIKE  '%" . $term . "%')
                 OR (`id` LIKE '%" . $term . "%' AND `locale` =  '" . $locale . "')
@@ -100,6 +106,7 @@ class Seoexpert_model extends CI_Model {
      * @return boolean|array
      */
     public function getTopBrandsInCategory($categoryId = FALSE, $limit = 3, $locale = FALSE) {
+
         if (!$categoryId) {
             return FALSE;
         }
@@ -112,11 +119,11 @@ class Seoexpert_model extends CI_Model {
         }
 
         $productsIds = ShopProductCategoriesQuery::create()
-                ->select('ProductId')
-                ->distinct()
-                ->filterByCategoryId($categoryId)
-                ->find()
-                ->toArray();
+            ->select('ProductId')
+            ->distinct()
+            ->filterByCategoryId($categoryId)
+            ->find()
+            ->toArray();
 
         $res = $this->db
             ->select('shop_products.brand_id, shop_brands_i18n.name , COUNT(shop_products.brand_id) AS  count')
@@ -127,11 +134,7 @@ class Seoexpert_model extends CI_Model {
             ->order_by('count', 'DESC')
             ->get('shop_products', $limit);
 
-        if ($res) {
-            return $res->result_array();
-        } else {
-            return FALSE;
-        }
+        return $res ? $res->result_array() : FALSE;
     }
 
     /**
@@ -140,6 +143,7 @@ class Seoexpert_model extends CI_Model {
      * @return boolean|int
      */
     public function getLangIdByLocale($locale = FALSE) {
+
         if (!$locale) {
             $locale = \MY_Controller::getCurrentLocale();
         }
@@ -158,6 +162,7 @@ class Seoexpert_model extends CI_Model {
      * @return boolean|array
      */
     public function getBaseSettings($langId = FALSE) {
+
         if (!$langId || is_numeric($langId) == FALSE) {
             return FALSE;
         }
@@ -179,6 +184,7 @@ class Seoexpert_model extends CI_Model {
      * @return boolean
      */
     public function setBaseSettings($langId = FALSE, $settings) {
+
         if (!$langId) {
             return FALSE;
         }

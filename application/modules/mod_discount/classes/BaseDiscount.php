@@ -20,7 +20,8 @@ if (!defined('BASEPATH')) {
  * @package ImageCMSModule
  * @property discount_model_front $discount_model_front
  */
-class BaseDiscount {
+class BaseDiscount
+{
 
     private static $object;
 

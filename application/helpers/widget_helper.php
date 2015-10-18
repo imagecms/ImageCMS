@@ -20,7 +20,7 @@ if (!function_exists('widget')) {
     function widget($name = FALSE, $cache = FALSE) {
         $ci = &get_instance();
 
-        $query = $ci->db->limit(1)->get_where('widgets', array('name' => $name));
+        $query = $ci->db->limit(1)->get_where('widgets', ['name' => $name]);
 
         if ($query->num_rows() == 1) {
             $widget = $query->row_array();
@@ -87,7 +87,7 @@ if (!function_exists('getWidgetName')) {
     function getWidgetName($name) {
         $ci = &get_instance();
 
-        $query = $ci->db->limit(1)->get_where('widgets', array('name' => $name));
+        $query = $ci->db->limit(1)->get_where('widgets', ['name' => $name]);
 
         if ($query->num_rows() == 1) {
             $widget = $query->row_array();
@@ -110,7 +110,7 @@ if (!function_exists('getWidgeTitle')) {
         $locale = MY_Controller::getCurrentLocale();
         $query = $ci->db
             ->join('widget_i18n', 'widget_i18n.id=widgets.id AND locale="' . $locale . '"', 'left')
-            ->get_where('widgets', array('name' => $name));
+            ->get_where('widgets', ['name' => $name]);
 
         if ($query->num_rows() == 1) {
             $widget = $query->row_array();
@@ -118,7 +118,7 @@ if (!function_exists('getWidgeTitle')) {
 
             $settings = @unserialize($widget[settings]);
             if ($settings) {
-                $title = $settings['title'] ? $settings['title'] : $title;
+                $title = $title ?: $settings['title'];
             }
 
             return $title;

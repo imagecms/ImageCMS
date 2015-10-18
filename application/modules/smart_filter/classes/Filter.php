@@ -462,6 +462,7 @@ class Filter {
 
         $this->db->select('MIN(shop_product_variants.price) AS minCost, MAX(shop_product_variants.price) AS maxCost')
             ->from('shop_product_variants')
+            ->where('shop_products.active', 1)
             ->join('shop_products', 'shop_product_variants.product_id=shop_products.id')
             ->join('shop_product_categories', 'shop_product_categories.product_id = shop_products.id');
 

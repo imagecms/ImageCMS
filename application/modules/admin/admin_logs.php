@@ -4,7 +4,8 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-class Admin_logs extends BaseAdminController {
+class Admin_logs extends BaseAdminController
+{
 
     public $per_page = 25;
 
@@ -70,11 +71,11 @@ class Admin_logs extends BaseAdminController {
         }
 
         $this->template->add_array(
-            array(
+            [
                     'messages' => $messages,
                     //            'languages' => ShopCore::$ci->cms_admin->get_langs(true),
                     'paginator' => $this->pagination->create_links_ajax(),
-                )
+                ]
         );
 
         $this->template->show('logs', false);

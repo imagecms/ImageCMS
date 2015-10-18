@@ -7,7 +7,8 @@ if (!defined('BASEPATH')) {
 /**
  * @property CI_DB_active_record $db
  */
-class Cms_base extends CI_Model {
+class Cms_base extends CI_Model
+{
 
     private static $arr;
 
@@ -208,13 +209,13 @@ class Cms_base extends CI_Model {
 
         $result = $result->result_array();
 
-        $categoriesPagesCounts = array();
+        $categoriesPagesCounts = [];
         $count = count($result);
         for ($i = 0; $i < $count; $i++) {
-            $categoriesPagesCounts[$result[$i]['id']] = array(
+            $categoriesPagesCounts[$result[$i]['id']] = [
                 'parent_id' => $result[$i]['parent_id'],
                 'pages_count' => $result[$i]['pages_count'],
-            );
+            ];
         }
 
         return $categoriesPagesCounts;

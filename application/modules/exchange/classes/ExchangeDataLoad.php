@@ -25,7 +25,8 @@ namespace exchange\classes;
  * @property-read array $propertiesMultipleData
  * @author kolia
  */
-class ExchangeDataLoad {
+class ExchangeDataLoad
+{
 
     /**
      *

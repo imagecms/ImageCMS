@@ -14,7 +14,8 @@ use Propel\Runtime\ActiveQuery\Criteria;
  * @package ImageCMSModule
  * @property Discount_model_admin $discount_model_admin
  */
-class Admin extends ShopAdminController {
+class Admin extends ShopAdminController
+{
 
     public function __construct() {
         parent::__construct();

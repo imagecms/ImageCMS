@@ -17,7 +17,7 @@ if (!defined('BASEPATH')) {
  * @return null|string
  */
 function showMessage($message, $title = FALSE, $class = '', $ret = false) {
-    $del = array("'", '"');
+    $del = ["'", '"'];
 
     $message = str_replace($del, '', $message);
     $title = str_replace($del, '', $title);
