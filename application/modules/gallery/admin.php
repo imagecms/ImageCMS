@@ -954,6 +954,8 @@ class Admin extends BaseAdminController {
                     $config['maintain_ratio'] = FALSE;
                     $config['width'] = $this->conf['max_width'];
                     $config['height'] = $this->conf['max_height'];
+					$config['x_axis'] = round( ( $this->image_lib->width - $this->conf['thumb_width'] ) / 2 );
+					$config['y_axis'] = round( ( $this->image_lib->height - $this->conf['thumb_height'] ) / 2 );
 
                     $this->image_lib->clear();
                     $this->image_lib->initialize($config);
@@ -993,6 +995,8 @@ class Admin extends BaseAdminController {
                 $config['maintain_ratio'] = FALSE;
                 $config['width'] = $this->conf['prev_img_width'];
                 $config['height'] = $this->conf['prev_img_height'];
+				$config['x_axis'] = round( ( $this->image_lib->width - $this->conf['thumb_width'] ) / 2 );
+				$config['y_axis'] = round( ( $this->image_lib->height - $this->conf['thumb_height'] ) / 2 );
 
                 $this->image_lib->clear();
                 $this->image_lib->initialize($config);
@@ -1038,6 +1042,8 @@ class Admin extends BaseAdminController {
                 $config['maintain_ratio'] = FALSE;
                 $config['width'] = $this->conf['thumb_width'];
                 $config['height'] = $this->conf['thumb_height'];
+				$config['x_axis'] = round( ( $this->image_lib->width - $this->conf['thumb_width'] ) / 2 );
+				$config['y_axis'] = round( ( $this->image_lib->height - $this->conf['thumb_height'] ) / 2 );
 
                 $this->image_lib->clear();
                 $this->image_lib->initialize($config);
