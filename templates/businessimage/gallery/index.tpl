@@ -31,7 +31,7 @@
 			<div class="g-row g-row_indent-20">
 				{foreach $albums as $item}
 					{if $item.count > 0}
-					{$loc_cover_url = "uploads/gallery/" .$item.id ."/" .$item.cover_name ."_prev".$item.cover_ext}
+					{$loc_cover_url = "uploads/gallery/" .$item.id ."/_thumbs/" .$item.cover_name ."".$item.cover_ext}
 					<div class="g-col-4">
 						<div class="b-gallery__category-album">
 							{if $item['cover_name']}
