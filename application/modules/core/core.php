@@ -445,6 +445,7 @@ class Core extends MY_Controller {
 
         $this->db->where('post_status', 'publish');
         $this->db->where('publish_date <=', time());
+        $this->db->order_by( 'publish_date', 'DESC' );
         $this->db->where('lang', $this->config->item('cur_lang'));
 
         if (count($category['fetch_pages']) > 0) {
