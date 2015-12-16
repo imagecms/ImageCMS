@@ -1,17 +1,20 @@
 <?php
 
+use libraries\Backup;
+
 /**
  * ImageCMS System Update Class
  * @copyright ImageCMS(c) 2013
  * @version 0.1 big start
  */
-class Update {
+class Update
+{
 
     private $arr_files;
 
-    private $files_dates = array();
+    private $files_dates = [];
 
-    private $restore_files = array();
+    private $restore_files = [];
 
     /**
      * update server
@@ -29,7 +32,7 @@ class Update {
      * папки, які не враховувати при обновлені
      * @var array
      */
-    private $distinctDirs = array(
+    private $distinctDirs = [
         '.',
         '..',
         '.git',
@@ -42,13 +45,13 @@ class Update {
         'uploads_site',
         'backups',
         'cmlTemp',
-    );
+    ];
 
     /**
      * файли, які не враховувати при обновлені
      * @var array
      */
-    private $distinctFiles = array(
+    private $distinctFiles = [
         'product.php',
         'category.php',
         'brand.php',
@@ -56,11 +59,11 @@ class Update {
         'md5.txt',
         '.htaccess',
         'config.php'
-    );
+    ];
 
     /**
      * instance of ci
-     * @var CI
+     * @var MY_Controller
      */
     public $ci;
 
@@ -70,11 +73,14 @@ class Update {
      */
     public $client;
 
+    /**
+     *
+     * @var array
+     */
     public $settings;
 
     public function __construct() {
         $this->ci = &get_instance();
-        // $this->pathUS = $this->US . "application/" . getModContDirName('update') . "/update/UpdateService.wsdl";
         $this->pathUS = $this->US . "application/modules/update/UpdateService.wsdl";
         $this->client = new SoapClient($this->pathUS);
         $this->settings = $this->getSettings();
@@ -89,8 +95,8 @@ class Update {
             $domen = $_SERVER['SERVER_NAME'];
             $result = $this->client->getStatus($domen, BUILD_ID, IMAGECMS_NUMBER);
 
-            $this->setSettings(array("newVersion" => $result));
-            $this->setSettings(array("checkTime" => time()));
+            $this->setSettings(["newVersion" => $result]);
+            $this->setSettings(["checkTime" => time()]);
         } else {
             $result = $this->getSettings('newVersion');
         }
@@ -110,7 +116,7 @@ class Update {
             write_file(BACKUPFOLDER . 'md5.txt', $result);
             $result = (array) json_decode($result);
 
-            $this->setSettings(array("checkTime" => time()));
+            $this->setSettings(["checkTime" => time()]);
         } else {
             $result = (array) json_decode(read_file(BACKUPFOLDER . 'md5.txt'));
         }
@@ -131,7 +137,7 @@ class Update {
      */
     public function formXml() {
         $modules = getModulesPaths();
-        $array = array();
+        $array = [];
         foreach ($modules as $moduleName => $modulePath) {
             $ver = read_file($modulePath . "module_info.php");
             preg_match("/'version'(\s*)=>(\s*)'(.*)',/", $ver, $find);
@@ -153,6 +159,11 @@ class Update {
         exit;
     }
 
+    /**
+     *
+     * @param string $file
+     * @return string
+     */
     public function getOldMD5File($file = 'md5.txt') {
         return (array) json_decode(read_file($file));
     }
@@ -161,7 +172,7 @@ class Update {
      * zipping files
      * @param array $files
      */
-    public function add_to_ZIP($files = array()) {
+    public function add_to_ZIP($files = []) {
         if (empty($files)) {
             return FALSE;
         }
@@ -181,9 +192,6 @@ class Update {
         foreach ($files as $key => $value) {
             $zip->addFile('.' . $key, $key);
         }
-
-        //        echo "numfiles: " . $zip->numFiles . "\n";
-        //        echo "status:" . $zip->status . "\n";
 
         $zip->close();
     }
@@ -237,7 +245,7 @@ class Update {
      * запускати два рази переоприділивши $this->path_parse
      * $this->path_parse = realpath('') текущі.
      * $this->path_parse = rtrim($this->dir_old_upd, '\')
-     * @return Array
+     * @return array
      */
     public function parse_md5($directory = null) {
 
@@ -262,51 +270,23 @@ class Update {
     }
 
     /**
-     * Заміна файлів з обновлення
-     * 1. Заміняються файли, які не відрізняються від старої текущої версії
-     * 2. заміняються файли які вдалося обєднати
-     * 3. Створюється файл з приставкою _update в текущій папці даного файлу (користувач сам обєднює такі файли або обєднює такі файли система, не несучи за це відповідальності)
-     */
-    public function replacement() {
-
-        $arr_curr_file = unserialize(file_get_contents($this->file_mass_curr));
-        $diff_arr_file = unserialize(file_get_contents($this->file_mass_diff));
-        $dont_arr_marge_file = unserialize(file_get_contents($this->file_dont_marge));
-        foreach ($arr_curr_file as $file => $data) {
-            if (file_exists($this->dir_upd . $file)) {
-                if (!in_array($this->dir_upd . $file, $diff_arr_file)) {
-                    unlink($this->dir_curr . $file);
-                    copy($this->dir_upd . $file, $this->dir_curr . $file);
-                } else {
-                    if (!in_array($this->dir_upd . $file, $dont_arr_marge_file)) {
-                        unlink($this->dir_curr . $file);
-                        copy($this->dir_marge . $file, $this->dir_curr . $file);
-                    } else {
-                        copy($this->dir_upd . $file . '_update', $this->dir_curr . $file);
-                    }
-                }
-            }
-        }
-    }
-
-    /**
      * database backup
+     * @return string
      */
     public function db_backup() {
         if (is_really_writable(BACKUPFOLDER)) {
             $this->ci->load->dbutil();
-            $filePath = \libraries\Backup::create()->createBackup("sql", "backup", TRUE);
+            $filePath = Backup::create()->createBackup("sql", "backup", TRUE);
             return pathinfo($filePath, PATHINFO_BASENAME);
         } else {
-            showMessage(langf('Can not create a database snapshot, Check the folder {0} on the ability to record', 'admin', array(BACKUPFOLDER)));
+            showMessage(langf('Can not create a database snapshot, Check the folder {0} on the ability to record', 'admin', [BACKUPFOLDER]));
         }
-
-        return $name;
     }
 
     /**
      * database restore
      * @param string $file
+     * @return boolean
      */
     public function db_restore($file) {
         if (empty($file)) {
@@ -316,13 +296,13 @@ class Update {
         if (is_readable($file)) {
             $restore = file_get_contents($file);
             return $this->query_from_file($restore);
-        } else {
-            return FALSE;
         }
+        return FALSE;
     }
 
     /**
      * Create restore files list
+     * @return boolean
      */
     public function restore_files_list() {
         if (is_readable(BACKUPFOLDER)) {
@@ -335,11 +315,11 @@ class Update {
                         $zip = new ZipArchive();
                         $zip->open(BACKUPFOLDER . $filename);
                         if ($zip->statName('backup.sql')) {
-                            $this->restore_files[] = array(
+                            $this->restore_files[] = [
                                 'name' => $filename,
                                 'size' => round(filesize(BACKUPFOLDER . $filename) / 1024 / 1024, 2),
                                 'create_date' => filemtime(BACKUPFOLDER . $filename)
-                            );
+                            ];
                         }
                         $zip->close();
                     }
@@ -369,11 +349,12 @@ class Update {
     /**
      * db update
      * @param string $file_name
+     * @return boolean
      */
     public function db_update($file_name = 'sql_19-08-2013_17.16.14.txt') {
         if (is_readable(BACKUPFOLDER . $file_name)) {
             $restore = file_get_contents(BACKUPFOLDER . $file_name);
-            $this->query_from_file($restore);
+            return $this->query_from_file($restore);
         } else {
             return FALSE;
         }
@@ -382,6 +363,7 @@ class Update {
     /**
      * ganerate sql query from file
      * @param string $file
+     * @return boolean
      */
     public function query_from_file($file) {
         $string_query = rtrim($file, "\n;");
@@ -395,6 +377,7 @@ class Update {
                 }
             }
         }
+        return TRUE;
     }
 
     public function get_files_dates() {

@@ -43,7 +43,7 @@ final class Categories extends ExchangeBase
     private $categoriesNames = [];
 
     /**
-     * Creates one-dimention array with categories from XML-file
+     * Creates one-dimension array with categories from XML-file
      * (method is filling  $categories, $new and $existing arrays of class instance)
      * @param \SimpleXMLElement $categories
      * @param string $parent (default null) external id of parent if there is
@@ -77,6 +77,7 @@ final class Categories extends ExchangeBase
 
     /**
      * @param string $name
+     * @return string
      */
     private function getCategoryName($name) {
         $nameTemp = $name;
@@ -135,6 +136,7 @@ final class Categories extends ExchangeBase
      * Prepare array for DB insert/update query
      * (returns array redy to inserting in database)
      * @param array $categoriesExternalIds
+     * @return array
      */
     private function getPreparedData(array $categoriesExternalIds) {
         $dbArray = [];

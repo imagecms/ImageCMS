@@ -8,23 +8,40 @@
  * @author <dev@imagecms.net>
  * @version 0.3 PHP5
  * ************************************************ */
-class Mabilis {
+class Mabilis
+{
 
+    /**
+     * @var Mabilis_Compiler
+     */
     private $compiler = NULL;
 
+    /**
+     * @var Mabilis_Config
+     */
     private $config = NULL;
 
-    public function __construct(&$config = array()) {
+    /**
+     * Mabilis constructor.
+     * @param array $config
+     */
+    public function __construct(&$config = []) {
         $this->load_config($config);
     }
 
     /**
      * Display or fetch template file
      * @param string $file
+     * @param array $data
+     * @param bool $return
+     * @return string
      */
-    public function view($file, $data = array(), $return = FALSE) {
+    public function view($file, $data = [], $return = FALSE) {
         // Delete double .tpl.tpl
-        $file = preg_replace('/.tpl.tpl/', '.tpl', $file);
+        //TODO remove this and find root of problem
+        if(false !== strpos($file, '.tpl.tpl')) {
+            $file = substr($file, 0, -4);
+        }
 
         if (preg_match('/file:/', $file, $_Matches)) {
             $file_dir = preg_replace('/\/\//', '/', $file);
@@ -89,7 +106,11 @@ class Mabilis {
         ob_end_flush();
     }
 
-    public function load_config($config = array()) {
+    /**
+     * @param array $config
+     * @return bool
+     */
+    public function load_config($config = []) {
         if (extension_loaded('zlib') AND $config['compress_output'] == TRUE) {
             if (isset($_SERVER['HTTP_ACCEPT_ENCODING']) AND strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip') !== FALSE) {
                 ob_start('ob_gzhandler');
@@ -112,6 +133,10 @@ class Mabilis {
         $this->config->$param = $value;
     }
 
+    /**
+     * @param $param
+     * @return mixed
+     */
     public function get_config_value($param) {
         if (isset($this->config->$param)) {
             return $this->config->$param;

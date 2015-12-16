@@ -8,13 +8,14 @@ if (!defined('BASEPATH')) {
  * Image CMS
  * @property Similar_Posts similar_library
  */
-class Core_Widgets extends MY_Controller {
+class Core_Widgets extends MY_Controller
+{
 
-    private $defaults = array(
+    private $defaults = [
         'news_count' => 10,
         'max_symdols' => 150,
         'display' => 'recent' //possible values: recent/popular
-    );
+    ];
 
     public function __construct() {
         parent::__construct();
@@ -28,7 +29,7 @@ class Core_Widgets extends MY_Controller {
      * @param array $widget
      * @return string
      */
-    public function recent_news($widget = array()) {
+    public function recent_news($widget = []) {
         if ($widget['settings'] == FALSE) {
             $settings = $this->defaults;
         } else {
@@ -86,7 +87,7 @@ class Core_Widgets extends MY_Controller {
      * @param string $action
      * @param array $widget_data
      */
-    public function recent_news_configure($action = 'show_settings', $widget_data = array()) {
+    public function recent_news_configure($action = 'show_settings', $widget_data = []) {
         if ($this->dx_auth->is_admin() == FALSE) {
             exit;
         }
@@ -97,7 +98,7 @@ class Core_Widgets extends MY_Controller {
                 $cats = $this->lib_category->build();
 
                 //$this->display_tpl('recent_news_form', array('widget' => $widget_data, 'cats' => $cats));
-                $this->render('recent_news_form', array('widget' => $widget_data, 'cats' => $cats));
+                $this->render('recent_news_form', ['widget' => $widget_data, 'cats' => $cats]);
                 break;
 
             case 'update_settings':
@@ -107,12 +108,12 @@ class Core_Widgets extends MY_Controller {
                 if ($this->form_validation->run($this) == FALSE) {
                     showMessage(validation_errors());
                 } else {
-                    $data = array(
+                    $data = [
                         'news_count' => $this->input->post('news_count'),
                         'max_symdols' => $this->input->post('max_symdols'),
                         'categories' => $this->input->post('categories'),
                         'display' => $this->input->post('display'),
-                    );
+                    ];
 
                     $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
 
@@ -135,7 +136,7 @@ class Core_Widgets extends MY_Controller {
      * @param string $action
      * @param array $widget_data
      */
-    public function similar_posts_configure($action = 'show_settings', $widget_data = array()) {
+    public function similar_posts_configure($action = 'show_settings', $widget_data = []) {
         if ($this->dx_auth->is_admin() == FALSE) {
             exit;
         }
@@ -146,7 +147,7 @@ class Core_Widgets extends MY_Controller {
                 $this->load->library('lib_category');
                 $cats = $this->lib_category->build();
 
-                $this->render('similar_posts_form', array('widget' => $widget_data, 'cats' => $cats));
+                $this->render('similar_posts_form', ['widget' => $widget_data, 'cats' => $cats]);
                 break;
 
             case 'update_settings':
@@ -181,7 +182,7 @@ class Core_Widgets extends MY_Controller {
      * @param array $widget
      * @return string|null
      */
-    public function similar_posts($widget = array()) {
+    public function similar_posts($widget = []) {
         $this->load->library('similar_posts', null, 'similar_library');
 
         $this->load->module('core');
@@ -189,23 +190,23 @@ class Core_Widgets extends MY_Controller {
             $title = $this->core->page_content['title'];
             $similarPages = $this->similar_library->find($this->core->page_content['id'], $title, $widget['settings']);
 
-            $data = array(
+            $data = [
                 'pages' => $similarPages ? $similarPages : [],
-            );
+            ];
             return $this->template->fetch('widgets/' . $widget['name'], $data);
         }
     }
 
     // Template functions
 
-    public function display_tpl($file, $vars = array()) {
+    public function display_tpl($file, $vars = []) {
         $this->template->add_array($vars);
 
         $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';
         $this->template->display('file:' . $file);
     }
 
-    public function fetch_tpl($file, $vars = array()) {
+    public function fetch_tpl($file, $vars = []) {
         $this->template->add_array($vars);
 
         $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';
@@ -215,7 +216,7 @@ class Core_Widgets extends MY_Controller {
     /**
      * @param string $viewName
      */
-    public function render($viewName, array $data = array()) {
+    public function render($viewName, array $data = []) {
         if (!empty($data)) {
             $this->template->add_array($data);
         }

@@ -12,7 +12,8 @@ if (!defined('BASEPATH')) {
  * Comments component
  * @property Base $base
  */
-class Comments extends MY_Controller {
+class Comments extends MY_Controller
+{
 
     public $period = 5;      // Post comment period in minutes. If user is unregistered, check will be made by ip address. 0 - To disable this method.
 
@@ -34,7 +35,10 @@ class Comments extends MY_Controller {
 
     public $use_moderation = TRUE;
 
+    public $enable_comments = TRUE;
+
     public function __construct() {
+
         parent::__construct();
         $this->load->module('core');
         $this->load->language('comments');
@@ -52,13 +56,12 @@ class Comments extends MY_Controller {
             $comments = (array_merge($result, $comments));
         }
         assetManager::create()
-                //                ->registerScript('comments')
-                //                ->registerStyle('comments')
-                ->setData($comments)
-                ->render('comments', TRUE);
+            ->setData($comments)
+            ->render('comments', TRUE);
     }
 
     public function addPost() {
+
         $result = $this->load->module('comments/commentsapi')->addPost();
         $result['parent_id'] = $this->input->post('comment_parent');
         if ('error' == $result['answer']) {
@@ -75,14 +78,13 @@ class Comments extends MY_Controller {
      * Default function to access module by URL
      */
     public function index() {
+
         return FALSE;
     }
 
     public static function adminAutoload() {
-        parent::adminAutoload();
 
-        //\CMSFactory\Events::create()->onShopProductDelete()->setListener('commentsDeleteFromProduct');
-        //\CMSFactory\Events::create()->onShopCategoryDelete()->setListener('commentsDeleteFromCategory');
+        parent::adminAutoload();
     }
 
     /**
@@ -91,11 +93,12 @@ class Comments extends MY_Controller {
      * @return string
      */
     public function _fetchComments($data) {
+
         if ($this->enable_comments) {
-            $comments = \CMSFactory\assetManager::create()
-                    ->setData($data)
-                    ->registerStyle('comments', TRUE)
-                    ->fetchTemplate($this->tpl_name);
+            $comments = assetManager::create()
+                ->setData($data)
+                ->registerStyle('comments', TRUE)
+                ->fetchTemplate($this->tpl_name);
         } else {
             $comments = '';
         }
@@ -141,6 +144,7 @@ class Comments extends MY_Controller {
      * @return boolean
      */
     public function _recount_comments($page_id, $module) {
+
         if ($module != 'core') {
             return FALSE;
         }
@@ -158,6 +162,7 @@ class Comments extends MY_Controller {
     }
 
     public function commentsDeleteFromProduct($product) {
+
         if (!$product) {
             return;
         }
@@ -177,8 +182,9 @@ class Comments extends MY_Controller {
     }
 
     public function init($model) {
+
         assetManager::create()
-                ->registerScript('comments', TRUE);
+            ->registerScript('comments', TRUE);
 
         if ($model instanceof SProducts) {
             $productsCount = $this->load->module('comments/commentsapi')->getTotalCommentsForProducts($model->getId());
@@ -204,6 +210,7 @@ class Comments extends MY_Controller {
     }
 
     public function _init_settings() {
+
         $settings = $this->base->get_settings();
 
         ($hook = get_hook('comments_settigs_init')) ? eval($hook) : NULL;
@@ -221,6 +228,7 @@ class Comments extends MY_Controller {
      * Fetch comments and load template
      */
     public function build_comments($item_id = 0) {
+
         $this->load->model('base');
         $this->_init_settings();
 
@@ -289,8 +297,8 @@ class Comments extends MY_Controller {
 
         $this->template->add_array(
             [
-                    'comments' => $comments,
-                ]
+                'comments' => $comments,
+            ]
         );
     }
 
@@ -299,6 +307,7 @@ class Comments extends MY_Controller {
      * @deprecated ImageCMS 4.3
      */
     public function add() {
+
         ($hook = get_hook('comments_on_add')) ? eval($hook) : NULL;
 
         // Load comments model
@@ -355,7 +364,7 @@ class Comments extends MY_Controller {
 
         if ($this->form_validation->run($this) == FALSE) {
             ($hook = get_hook('comments_validation_failed')) ? eval($hook) : NULL;
-            //$this->core->error( validation_errors() );
+
             $this->template->assign('comment_errors', validation_errors());
         } else {
             if ($this->dx_auth->is_logged_in() == FALSE) {
@@ -453,6 +462,7 @@ class Comments extends MY_Controller {
      *  2 - Spam.
      */
     public function _comment_status() {
+
         ($hook = get_hook('comments_on_get_status')) ? eval($hook) : NULL;
 
         $status = 0;
@@ -479,6 +489,7 @@ class Comments extends MY_Controller {
      * @return boolean
      */
     public function _write_cookie($name, $email, $site) {
+
         $this->load->helper('cookie');
 
         ($hook = get_hook('comments_write_cookie')) ? eval($hook) : NULL;
@@ -509,6 +520,7 @@ class Comments extends MY_Controller {
     }
 
     protected function check_comment_period() {
+
         ($hook = get_hook('comments_on_check_period')) ? eval($hook) : NULL;
 
         if ($this->dx_auth->is_admin() == TRUE) {
@@ -543,6 +555,7 @@ class Comments extends MY_Controller {
     }
 
     public function captcha_check($code) {
+
         ($hook = get_hook('comments_captcha_check')) ? eval($hook) : NULL;
 
         if (!$this->dx_auth->captcha_check($code)) {
@@ -553,14 +566,16 @@ class Comments extends MY_Controller {
     }
 
     public function get_comments_number($id) {
+
         $this->where('item_id', $id);
         $query = $this->db->get('comments')->result_array();
         return count($query);
     }
 
     public function setyes($id = false) {
+
         $like = false;
-        $comid = $this->input->post('comid') ? : $id;
+        $comid = $this->input->post('comid') ?: $id;
         if ($this->session->userdata('commentl' . $comid) != 1) {
             $like = $this->load->model('base')->setYes($comid);
             $this->session->set_userdata('commentl' . $comid, 1);
@@ -573,8 +588,9 @@ class Comments extends MY_Controller {
     }
 
     public function setno($id = false) {
+
         $disslike = false;
-        $comid = $this->input->post('comid') ? : $id;
+        $comid = $this->input->post('comid') ?: $id;
         if ($this->session->userdata('commentl' . $comid) != 1) {
             $disslike = $this->load->model('base')->setNo($comid);
             $this->session->set_userdata('commentl' . $comid, 1);
@@ -681,12 +697,14 @@ class Comments extends MY_Controller {
     }
 
     public function _deinstall() {
+
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) OR exit;
         $this->dbforge->drop_table('comments');
     }
 
     public function getWaitingForMaderationCount() {
+
         $count = $this->db->where("status", 1)->count_all_results('comments');
         return $count;
     }

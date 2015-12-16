@@ -5,7 +5,8 @@
  *
  * @author kolia
  */
-class SiteInfo {
+class SiteInfo
+{
 
     /**
      * If TRUE then setting will be saved and getted for each locale
@@ -18,7 +19,7 @@ class SiteInfo {
      * (only if $useLocales is TRUE)
      * @var array
      */
-    protected $nonLocaleKeys = array('siteinfo_logo', 'siteinfo_favicon');
+    protected $nonLocaleKeys = ['siteinfo_logo', 'siteinfo_favicon'];
 
     /**
      * Current locale
@@ -30,7 +31,7 @@ class SiteInfo {
      *
      * @var array
      */
-    public $locales = array();
+    public $locales = [];
 
     /**
      *
@@ -86,8 +87,8 @@ class SiteInfo {
         $languages = CI::$APP->db->get('languages')->result_array();
 
         if ($this->useLocales == TRUE) {
-            if (!key_exists($this->locale, $this->siteinfo)) {
-                $this->siteinfo[$this->locale] = array();
+            if (!array_key_exists($this->locale, $this->siteinfo)) {
+                $this->siteinfo[$this->locale] = [];
             }
             foreach ($siteinfo as $key => $value) {
                 if (in_array($key, $this->nonLocaleKeys)) {
@@ -107,10 +108,14 @@ class SiteInfo {
         }
     }
 
+    /**
+     * @param string $key
+     * @param string $lang
+     */
     private function contactsKeys($key, $lang) {
         $siteinfoAll = $this->getSiteInfoData(FALSE);
         $locale = MY_Controller::getCurrentLocale();
-        $keysMain = array();
+        $keysMain = [];
 
         foreach ($siteinfoAll[$locale][$key] as $name => $contacts) {
             $contacts = $contacts;
@@ -142,7 +147,7 @@ class SiteInfo {
         $this->normalizeData();
         $siteinfo = $this->getSiteInfoData(FALSE);
         $string = serialize($siteinfo);
-        return CI::$APP->db->update('settings', array('siteinfo' => $string));
+        return CI::$APP->db->update('settings', ['siteinfo' => $string]);
     }
 
     /**
@@ -150,6 +155,7 @@ class SiteInfo {
      * @param string $key
      * @param string $value
      * @param boolean $contacts (optional, default false) true if value need to be setted in contacts
+     * @return bool
      */
     public function setSiteInfoValue($key, $value, $contacts = FALSE) {
         if (0 !== strpos($key, 'siteinfo_')) {
@@ -161,7 +167,7 @@ class SiteInfo {
                 $this->siteinfo['contacts'][$key] = $value;
                 return TRUE;
             } else {
-                if (key_exists($key, $this->siteinfo)) {
+                if (array_key_exists($key, $this->siteinfo)) {
                     $this->siteinfo[$key] = $value;
                     return TRUE;
                 }
@@ -171,7 +177,7 @@ class SiteInfo {
                 $this->siteinfo[$this->locale]['contacts'][$key] = $value;
                 return TRUE;
             } else {
-                if (key_exists($key, $this->siteinfo[$this->locale])) {
+                if (array_key_exists($key, $this->siteinfo[$this->locale])) {
                     $this->siteinfo[$this->locale][$key] = $value;
                     return TRUE;
                 }
@@ -180,6 +186,10 @@ class SiteInfo {
         return false;
     }
 
+    /**
+     * @param string $key
+     * @param bool|FALSE $contacts
+     */
     public function deleteSiteInfoValue($key, $contacts = FALSE) {
         if (0 !== strpos($key, 'siteinfo_')) {
             $key = 'siteinfo_' . $key;
@@ -211,7 +221,7 @@ class SiteInfo {
             } else {
                 $locale = $this->locale;
             }
-            if (key_exists($locale, $this->siteinfo)) {
+            if (array_key_exists($locale, $this->siteinfo)) {
                 $returnArray = $this->siteinfo[$locale];
 
                 $defaultContacts = $this->siteinfo[MY_Controller::defaultLocale()]['contacts'];
@@ -228,7 +238,6 @@ class SiteInfo {
                 }
                 return $returnArray;
             }
-            //return FALSE;
         }
 
         return $this->siteinfo;
@@ -253,16 +262,15 @@ class SiteInfo {
 
         if ($this->useLocales == TRUE) {
             // if it is non locale field
-            //if (key_exists($name, $this->siteinfo) & in_array($name, $this->nonLocaleKeys)) {
-            if (key_exists($name, $this->siteinfo)) {
+            if (array_key_exists($name, $this->siteinfo)) {
                 return $this->siteinfo[$name];
             } elseif (isset($this->siteinfo['contacts'])) {
                 $nameTemp = str_replace('siteinfo_', '', $name);
-                if (key_exists($nameTemp, $this->siteinfo['contacts'])) {
+                if (array_key_exists($nameTemp, $this->siteinfo['contacts'])) {
                     return $this->siteinfo['contacts'][$nameTemp];
                 }
             }
-            if (key_exists($this->locale, $this->siteinfo)) {
+            if (array_key_exists($this->locale, $this->siteinfo)) {
                 $siteinfo = $this->siteinfo[$this->locale];
             } else {
                 return '';
@@ -272,12 +280,12 @@ class SiteInfo {
         }
 
         // if key exists value will be returned
-        if (key_exists($name, $siteinfo)) {
+        if (array_key_exists($name, $siteinfo)) {
             return $siteinfo[$name];
         }
 
         $name = str_replace('siteinfo_', '', $name);
-        if (key_exists($name, $siteinfo['contacts'])) {
+        if (array_key_exists($name, $siteinfo['contacts'])) {
             return $siteinfo['contacts'][$name];
         }
 

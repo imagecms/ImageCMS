@@ -10,7 +10,8 @@ namespace cmsemail\classes;
  * @property \CI_DB_active_record $db
  * @property \CI_Input $input
  */
-class BaseEmail extends ParentEmail {
+class BaseEmail extends ParentEmail
+{
 
     public function __construct() {
         parent::__construct();
@@ -70,17 +71,12 @@ class BaseEmail extends ParentEmail {
     /**
      * send email
      * @param type $send_to
-     * @param string $patern_name
+     * @param string $pattern_name
      * @param type $variables
      * @return boolean
      */
-    public function sendEmail($send_to, $patern_name, $variables, $attachment = FALSE) {
-        if (parent::sendEmail($send_to, $patern_name, $variables, $attachment)) {
-            return TRUE;
-        } else {
-            //            echo $this->email->print_debugger();
-            return $this->errors;
-        }
+    public function sendEmail($send_to, $pattern_name, $variables, $attachment = FALSE) {
+        return parent::sendEmail($send_to, $pattern_name, $variables, $attachment) ? TRUE : $this->errors;
     }
 
     /**

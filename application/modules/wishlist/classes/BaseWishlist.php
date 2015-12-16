@@ -2,20 +2,28 @@
 
 namespace wishlist\classes;
 
+use CI_DB_active_record;
+use CI_Input;
+use CI_URI;
+use DX_Auth;
+use MY_Lang;
+use Wishlist_model;
+
 /**
  * Image CMS
  * Module Wishlist
- * @property \Wishlist_model $wishlist_model
- * @property \DX_Auth $dx_auth
- * @property \CI_URI $uri
- * @property \CI_DB_active_record $db
- * @property \CI_Input $input
+ * @property Wishlist_model $wishlist_model
+ * @property DX_Auth $dx_auth
+ * @property CI_URI $uri
+ * @property CI_DB_active_record $db
+ * @property CI_Input $input
  */
-class BaseWishlist extends \wishlist\classes\ParentWishlist {
+class BaseWishlist extends ParentWishlist
+{
 
     public function __construct() {
         parent::__construct();
-        $lang = new \MY_Lang();
+        $lang = new MY_Lang();
         $lang->load('wishlist');
     }
 

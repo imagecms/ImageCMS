@@ -382,9 +382,6 @@
                                                                 <option value="auto" {if $create_keywords == "auto"}selected="selected"{/if}>{lang('Auto formation',"admin")}</option>
                                                                 <option value="empty" {if $create_keywords == "empty"}selected="selected"{/if}>{lang('Leave empty',"admin")}</option>
                                                             </select>
-                                                                <span class="help-block">
-                                                                    {lang('If not given or specified',"admin")}
-                                                                </span>
                                                         </div>
                                                     </div>
                                                     <div class="control-group m-t_10">
@@ -396,9 +393,6 @@
                                                                 <option value="auto" {if $create_description == "auto"}selected="selected"{/if}>{lang('Auto formation',"admin")}</option>
                                                                 <option value="empty" {if $create_description == "empty"}selected="selected"{/if}>{lang('Leave empty',"admin")}</option>
                                                             </select>
-                                                                <span class="help-block">
-                                                                    {lang('If not specified',"admin")}
-                                                                </span>
                                                         </div>
                                                     </div>
 

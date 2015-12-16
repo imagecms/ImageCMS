@@ -6,8 +6,11 @@ if (!defined('BASEPATH')) {
 
 if (!function_exists('get_page')) {
 
-    // Get page by id
-
+    /**
+     * Get page by id
+     * @param int $id
+     * @return bool|array
+     */
     function get_page($id) {
 
         $lang_id = get_main_lang('id');
@@ -38,8 +41,12 @@ if (!function_exists('get_page')) {
 
 if (!function_exists('category_pages')) {
 
-    // Get pages by category
-
+    /**
+     * Get pages by category
+     * @param int $categoryId
+     * @param int $limit
+     * @return array
+     */
     function category_pages($categoryId, $limit = 0) {
         $ci = &get_instance();
 
@@ -78,6 +85,10 @@ if (!function_exists('category_pages')) {
 
 if (!function_exists('encode')) {
 
+    /**
+     * @param string $string
+     * @return string
+     */
     function encode($string) {
         if (!is_string($string)) {
             $string = (string) $string;
@@ -89,6 +100,10 @@ if (!function_exists('encode')) {
 
 if (!function_exists('getPageCategoryId')) {
 
+    /**
+     * @param int $page_id
+     * @return int
+     */
     function getPageCategoryId($page_id) {
         $ci = &get_instance();
         $page_category = $ci->db->where('id', $page_id)->get('content');

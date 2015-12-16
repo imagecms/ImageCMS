@@ -19,7 +19,10 @@ use SimpleXMLElement;
 abstract class ExchangeBase
 {
 
-    // "multisingleton"
+    /**
+     * "multisingleton"
+     * @var array
+     */
     protected static $instances = [];
 
     /**
@@ -89,6 +92,7 @@ abstract class ExchangeBase
      * Alias for CI insert_batch
      * @param string $tableName
      * @param array $data
+     * @throws Exception
      */
     protected function insertBatch($tableName, $data) {
         if (FALSE == (count($data) > 0)) {
@@ -164,12 +168,13 @@ abstract class ExchangeBase
      *
      * @param string $tableName
      * @param array $data
-     * @param string $keyToComare
+     * @param string $keyToCompare
+     * @throws Exception
      */
-    public function _updatePerOne($tableName, array $data, $keyToComare) {
+    public function _updatePerOne($tableName, array $data, $keyToCompare) {
 
         foreach ($data as $rowData) {
-            $this->db->update($tableName, $rowData, [$keyToComare => $rowData[$keyToComare]], 1);
+            $this->db->update($tableName, $rowData, [$keyToCompare => $rowData[$keyToCompare]], 1);
 
             $error = $this->db->_error_message();
             if (empty($error)) {

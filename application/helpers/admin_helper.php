@@ -2,6 +2,13 @@
 
 if (!function_exists('check_admin_redirect')) {
 
+    /**
+     * @param array $languages
+     * @param string $locale
+     * @param string $url
+     * @param bool|FALSE $pjax
+     * @return string
+     */
     function create_language_select($languages, $locale, $url, $pjax = FALSE) {
 
         if (count($languages) > 1) {
@@ -31,6 +38,9 @@ if (!function_exists('check_admin_redirect')) {
         return $html ?: '';
     }
 
+    /**
+     * @return string
+     */
     function create_admin_language_select() {
 
         $CI = &get_instance();
@@ -67,6 +77,10 @@ if (!function_exists('check_admin_redirect')) {
         return $html ?: '';
     }
 
+    /**
+     * @param array $cats
+     * @param array $selected_cats
+     */
     function build_cats_tree($cats, $selected_cats = []) {
 
         if (is_array($cats)) {
@@ -91,23 +105,38 @@ if (!function_exists('check_admin_redirect')) {
         }
     }
 
-    function build_cats_tree_ul_li($cats, $item_id = NULL) {
-
+    /**
+     * @param array $cats
+     * @param null|int $item_id
+     * @param int $level
+     */
+    function build_cats_tree_ul_li($cats, $item_id = NULL, $level = 0) {
         if (is_array($cats)) {
+
+            $subst = '';
+            if ($level !== 0) {
+                $indents = 3 * ($level - 1);
+                $subst = str_repeat('&nbsp;', $indents) . '<span class="simple_tree">↳</span>';
+            }
+
             foreach ($cats as $cat) {
                 echo "<li>";
                 if ($cat['id'] == $item_id) {
-                    echo "<b><a class='category_item' data-title='" . $cat['name'] . "' data-id='" . $cat['id'] . "' href='#'>" . $cat['name'] . "</a></b>";
+                    echo "<b><a class='category_item' data-title='" . $cat['name'] . "' data-id='" . $cat['id'] . "' href='#'>" . $subst . $cat['name'] . "</a></b>";
                 } else {
-                    echo "<a class='category_item' data-title='" . $cat['name'] . "' data-id='" . $cat['id'] . "' href='#'>" . $cat['name'] . "</a>";
+
+                    echo "<a class='category_item' data-title='" . $cat['name'] . "' data-id='" . $cat['id'] . "' href='#'>" . $subst . $cat['name'] . "</a>";
                 }
                 if ($cat['subtree']) {
-                    build_cats_tree_ul_li($cat['subtree'], $item_id);
+                    build_cats_tree_ul_li($cat['subtree'], $item_id, ++$level);
                 }
             }
         }
     }
 
+    /**
+     * @return string
+     */
     function getCMSNumber() {
 
         return IMAGECMS_NUMBER;
@@ -117,6 +146,9 @@ if (!function_exists('check_admin_redirect')) {
 
 if (!function_exists('get_templates')) {
 
+    /**
+     * @return array|bool
+     */
     function get_templates() {
 
         $new_arr_shop = [];

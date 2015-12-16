@@ -9,6 +9,8 @@ if (!defined('BASEPATH')) {
 /**
  * Image CMS
  * Components Class
+ * @property Cms_hooks $cms_hooks
+ * @property Lib_admin $lib_admin
  */
 class Components extends BaseAdminController
 {
@@ -182,7 +184,6 @@ class Components extends BaseAdminController
     }
 
     public function deinstall($moduleName) {
-        //cp_check_perm('module_deinstall');
         $modules = $_POST['ids'] ? : [$moduleName];
 
         foreach ($modules as $module) {
@@ -341,8 +342,10 @@ class Components extends BaseAdminController
         $this->template->show('component_settings', FALSE);
     }
 
-    // Save component settings
-
+    /**
+     * Save component settings
+     * @param string $component
+     */
     public function save_settings($component) {
         //cp_check_perm('module_admin');
 
@@ -371,6 +374,9 @@ class Components extends BaseAdminController
         jsCode("ajax_div('modules_table',base_url + 'admin/components/modules_table/');");
     }
 
+    /**
+     * @param string $module
+     */
     private function checkPerm($module) {
         if ($this->isNotPermited($module)) {
             $msg = lang("Error checking permissions");
@@ -378,8 +384,10 @@ class Components extends BaseAdminController
         }
     }
 
-    // Load component admin class in iframe/xhr
-
+    /**
+     * Load component admin class in iframe/xhr
+     * @param string $module
+     */
     public function init_window($module) {
         $this->checkPerm($module);
         $lang = new MY_Lang();
@@ -408,6 +416,9 @@ class Components extends BaseAdminController
         }
     }
 
+    /**
+     * @param string $module
+     */
     public function cp($module) {
         $this->checkPerm($module);
         $func = $this->uri->segment(5);
@@ -415,8 +426,6 @@ class Components extends BaseAdminController
         if ($func == FALSE) {
             $func = 'index';
         }
-
-        //($hook = get_hook('admin_run_module_panel')) ? eval($hook) : NULL;
 
         $this->load->module('core/core');
         $args = $this->core->grab_variables(6);
@@ -430,23 +439,8 @@ class Components extends BaseAdminController
     }
 
     /**
-     * Run module
+     * @param string $module
      */
-    //    function show_module($module){
-    //        $func = $this->uri->segment(5);
-    //        if ($func == FALSE)
-    //            $func = 'index';
-    //
-    //        //($hook = get_hook('admin_run_module_panel')) ? eval($hook) : NULL;
-    //
-    //        $this->load->module('core/core');
-    //        $args = $this->core->grab_variables(6);
-    //
-    //        $this->template->assign('SELF_URL', site_url('admin/components/cp/' . $module));
-    //        echo modules::run($module . '/admin/' . $func, $args);
-    //        pjax('/application/modules/'.$module.'/admin');
-    //    }
-
     public function run($module) {
         $this->checkPerm($module);
 
@@ -477,6 +471,10 @@ class Components extends BaseAdminController
         }
     }
 
+    /**
+     * @param $mod_name
+     * @return bool|string
+     */
     public function get_module_info($mod_name) {
         $info_file = getModulePath($mod_name) . 'module_info.php';
         $lang = new MY_Lang();

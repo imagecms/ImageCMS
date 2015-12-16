@@ -391,7 +391,7 @@
     </div>
     <div class="modal-footer">
         <a href="#" class="btn" onclick="$('.modal').modal('hide');">{lang('Cancel','admin')}</a>
-        <a href="#" class="btn btn-success" onclick="pagesAdmin.quickAddCategory()">{lang('Create','admin')}</a>
+        <a href="#" class="btn btn-primary" onclick="pagesAdmin.quickAddCategory()">{lang('Create','admin')}</a>
     </div>
 </div>
 <script>

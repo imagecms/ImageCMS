@@ -28,11 +28,7 @@ if (!function_exists('is_true_array')) {
             return false;
         }
         $arraySize = count($array);
-        if ($arraySize > 0) {
-            return TRUE;
-        } else {
-            return FALSE;
-        }
+        return $arraySize > 0;
     }
 
 }

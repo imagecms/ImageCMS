@@ -1,13 +1,6 @@
 <script>
 langs["Message"] = '<?php echo addslashes(lang("Message", "admin", FALSE))?>';
 langs["Can not deactivate default language"] = '<?php echo addslashes(lang("Can not deactivate default language", "admin", FALSE))?>';
-langs["Error"] = '<?php echo addslashes(lang("Error", "admin", FALSE))?>';
-langs["Module can not be installed"] = '<?php echo addslashes(lang("Module can not be installed", "admin", FALSE))?>';
-langs["Empty list"] = '<?php echo addslashes(lang("Empty list", "admin", FALSE))?>';
-langs["More"] = '<?php echo addslashes(lang("More", "admin", FALSE))?>';
-langs["No results for your query"] = '<?php echo addslashes(lang("No results for your query", "admin", FALSE))?>';
-langs["Please specify the product name"] = '<?php echo addslashes(lang("Please specify the product name", "admin", FALSE))?>';
-langs["PHP GD library is not installed"] = '<?php echo addslashes(lang("PHP GD library is not installed", "admin", FALSE))?>';
 langs["This field is required"] = '<?php echo addslashes(lang("This field is required", "admin", FALSE))?>';
 langs["Please fix this field."] = '<?php echo addslashes(lang("Please fix this field.", "admin", FALSE))?>';
 langs["Enter a valid email address."] = '<?php echo addslashes(lang("Enter a valid email address.", "admin", FALSE))?>';
@@ -25,6 +18,13 @@ langs["Please enter a value between<?php echo ' {0}'?> and<?php echo ' {1}'?> ch
 langs["Please enter a value between<?php echo ' {0}'?> and<?php echo ' {1}'?>."] = '<?php echo addslashes(lang("Please enter a value between {0} and {1}.", "admin", FALSE))?>';
 langs["Please enter a value less than or equal to<?php echo ' {0}'?>."] = '<?php echo addslashes(lang("Please enter a value less than or equal to {0}.", "admin", FALSE))?>';
 langs["Please enter a value greater than or equal to<?php echo ' {0}'?>."] = '<?php echo addslashes(lang("Please enter a value greater than or equal to {0}.", "admin", FALSE))?>';
+langs["Error"] = '<?php echo addslashes(lang("Error", "admin", FALSE))?>';
+langs["Module can not be installed"] = '<?php echo addslashes(lang("Module can not be installed", "admin", FALSE))?>';
+langs["Empty list"] = '<?php echo addslashes(lang("Empty list", "admin", FALSE))?>';
+langs["More"] = '<?php echo addslashes(lang("More", "admin", FALSE))?>';
+langs["No results for your query"] = '<?php echo addslashes(lang("No results for your query", "admin", FALSE))?>';
+langs["Please specify the product name"] = '<?php echo addslashes(lang("Please specify the product name", "admin", FALSE))?>';
+langs["PHP GD library is not installed"] = '<?php echo addslashes(lang("PHP GD library is not installed", "admin", FALSE))?>';
 langs["numbers only"] = '<?php echo addslashes(lang("numbers only", "admin", FALSE))?>';
 langs["You can upload only |max_file_uploads| images at once"] = '<?php echo addslashes(lang("You can upload only |max_file_uploads| images at once", "admin", FALSE))?>';
 langs["Not supported file format"] = '<?php echo addslashes(lang("Not supported file format", "admin", FALSE))?>';

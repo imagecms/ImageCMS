@@ -1,7 +1,8 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 /*
   |--------------------------------------------------------------------------
@@ -36,10 +37,10 @@ $config['default_time_zone'] = 'Europe/Kiev';
   |  module groups.
   |
  */
-$config['modules_locations'] = array(
+$config['modules_locations'] = [
     //'modules_shop',
     'modules'
-);
+];
 
 
 /*
@@ -62,7 +63,7 @@ $config['enable_profiler'] = false;
   |  Find explanations for this configs in Mabilis lib
   |
  */
-$config['tpl_compile_path'] = BASEPATH . 'cache/templates_c/';
+$config['tpl_compile_path'] = PUBPATH . 'system/cache/templates_c/';
 $config['tpl_force_compile'] = TRUE;
 $config['tpl_compiled_ttl'] = 84600;
 $config['tpl_compress_output'] = TRUE;
@@ -101,6 +102,3 @@ $config['composer_autoload'] = APPPATH . 'third_party/autoload.php';
   |
  */
 $config['rebuild_hooks_tree'] = FALSE;
-
-
-

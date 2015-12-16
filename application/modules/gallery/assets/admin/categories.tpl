@@ -50,7 +50,7 @@
                             {echo $cnt}
                         </td>
                         <td>{truncate(strip_tags($category.description, 75))}</td>
-                        <td>{date('Y-d-m H:i', $category.created)}</td>
+                        <td width="110">{date('Y-d-m H:i', $category.created)}</td>
                     </tr>
                 {/foreach}
             </tbody>

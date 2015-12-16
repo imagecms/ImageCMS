@@ -12,7 +12,8 @@ use import_export\classes\Logger as LOG;
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
-class Export {
+class Export
+{
 
     public $delimiter = ";";
 
@@ -20,27 +21,27 @@ class Export {
 
     public $language = 'ru';
 
-    public $attributes = array();
+    public $attributes = [];
 
-    protected $attributesCF = array();
+    protected $attributesCF = [];
 
     protected $enclosure = '"';
 
     public $encoding = 'utf8';
 
-    protected $selectedCats = array();
+    protected $selectedCats = [];
 
-    protected $customFields = array();
+    protected $customFields = [];
 
-    protected $completeFields = array();
+    protected $completeFields = [];
 
-    protected $errors = array();
+    protected $errors = [];
 
     protected $db;
 
-    protected $tablesFields = array();
+    protected $tablesFields = [];
 
-    protected $productsDataTables = array(
+    protected $productsDataTables = [
         'shop_product_variants',
         'shop_product_variants_i18n',
         'shop_products',
@@ -53,7 +54,7 @@ class Export {
         'shop_brands',
         'shop_brands_i18n',
         'shop_product_images',
-    );
+    ];
 
     public $resultArray = NULL;
 
@@ -67,7 +68,7 @@ class Export {
 
     protected $withZip = false;
 
-    public function __construct(array $settings = array()) {
+    public function __construct(array $settings = []) {
         $ci = &get_instance();
         $this->db = $ci->db;
         if (count($settings) > 0) {
@@ -113,7 +114,7 @@ class Export {
         }
         $this->getTablesFields($this->productsDataTables);
         $this->categoriesData = $this->getCategoriesFromBase();
-        if (key_exists('cat', $this->attributes)) {
+        if (array_key_exists('cat', $this->attributes)) {
             $this->categories = $this->getCategoriesPaths();
         }
         ini_set('max_execution_time', 900);
@@ -159,7 +160,7 @@ class Export {
 
         $objPHPExcel = new \PHPExcel();
         $someProductData = current($this->resultArray);
-        $headerArray = array();
+        $headerArray = [];
         $columnNumber = 0;
         foreach ($someProductData as $field => $junk) {
             if (FALSE == $abbr = $this->getAbbreviation($field)) {
@@ -188,8 +189,8 @@ class Export {
     protected function getDataFromBase() {
         $query = $this->createQuery();
         $result = $this->db->query($query);
-        $list = array();
-        $prodIds = array();
+        $list = [];
+        $prodIds = [];
 
         foreach ($result->result_array() as $row) {
             if ($this->categories !== NULL) {
@@ -233,12 +234,12 @@ class Export {
 
     private function getAddCategories($prodIds) {
         if (!isset($prodIds)) {
-            return array();
+            return [];
         }
-        $catIds = array();
-        $catsName = array();
-        $prodIdCatIds = array();
-        $prodPathCat = array();
+        $catIds = [];
+        $catsName = [];
+        $prodIdCatIds = [];
+        $prodPathCat = [];
 
         $fullPaths = $this->getAddCatFullIds($prodIds);
 
@@ -277,48 +278,53 @@ class Export {
     }
 
     private function getAddCatFullIds($prodIds) {
-        $catIds = array();
-        $cats = array();
 
-        //Доп категории всех товаров
-        $catProdIdsTemp = $this->db->select('shop_products.id, shop_products.category_id as origin_cat, shop_product_categories.category_id, shop_product_categories.product_id')
-            ->where_in('product_id', $prodIds)
-            ->from('shop_products')
-            ->join('shop_product_categories', 'shop_products.id = shop_product_categories.product_id')
-            ->get()
-            ->result_array();
+        if (count($prodIds)) {
+            $catIds = [];
+            $cats = [];
 
-        //Массив всех доп категорий
-        foreach ($catProdIdsTemp as $product) {
-            if ($product['category_id'] == $product['origin_cat']) {
-                continue;
-            }
-            $catIds[] = $product['category_id'];
-        }
-        $categories = $this->catsWithI18n($catIds);
+            //Доп категории всех товаров
+            $query = $this->db->select('shop_products.id, shop_products.category_id as origin_cat, shop_product_categories.category_id, shop_product_categories.product_id')
+                ->where_in('product_id', $prodIds)
+                ->from('shop_products')
+                ->join('shop_product_categories', 'shop_products.id = shop_product_categories.product_id')
+                ->get();
 
-        //Полный ids путь каждой доп категории каждого продукта
-        foreach ($catProdIdsTemp as $product) {
-            foreach ($categories as $category) {
-                if ($product['origin_cat'] == $category['Id']) {
+            $catProdIdsTemp = $query->num_rows() ? $query->result_array() : [];
+
+            //Массив всех доп категорий
+            foreach ($catProdIdsTemp as $product) {
+                if ($product['category_id'] == $product['origin_cat']) {
                     continue;
                 }
+                $catIds[] = $product['category_id'];
+            }
+            $categories = $this->catsWithI18n($catIds);
 
-                if ($product['category_id'] == $category['Id']) {
-                    $cats[$product['product_id']][$category['Id']] = unserialize($category['FullPathIds']);
+            //Полный ids путь каждой доп категории каждого продукта
+            foreach ($catProdIdsTemp as $product) {
+                foreach ($categories as $category) {
+                    if ($product['origin_cat'] == $category['Id']) {
+                        continue;
+                    }
+
+                    if ($product['category_id'] == $category['Id']) {
+                        $cats[$product['product_id']][$category['Id']] = unserialize($category['FullPathIds']);
+                    }
                 }
             }
+
+            return $cats;
         }
 
-        return $cats;
     }
 
     private function catsWithI18n($ids) {
         return \SCategoryQuery::create()
-                        ->filterById($ids)
-                        ->joinI18n($this->language)
-                        ->find()
-                        ->toArray();
+            ->filterById($ids)
+            ->joinI18n($this->language)
+            ->find()
+            ->toArray();
     }
 
     /**
@@ -361,7 +367,7 @@ class Export {
         if (!$this->resultString) {
             $fileContents = "";
             $someProductData = current($this->resultArray);
-            $headerArray = array();
+            $headerArray = [];
             foreach ($someProductData as $field => $junk) {
                 if (FALSE == $abbr = $this->getAbbreviation($field)) {
                     $this->addError("Error. Abbreviation not found.");
@@ -396,7 +402,7 @@ class Export {
      * @return string SQL-query
      */
     protected function createQuery() {
-        $fieldsArray = array(); // tables and fields
+        $fieldsArray = []; // tables and fields
         $fields = "";
         $joins = "";
         foreach ($this->completeFields as $field) {
@@ -422,7 +428,7 @@ class Export {
             // to avoid query error checking if category exists
             $selectedCatsCount = count($this->selectedCats);
             for ($i = 0; $i < $selectedCatsCount; $i++) {
-                if (!key_exists($this->selectedCats[$i], $this->categoriesData)) {
+                if (!array_key_exists($this->selectedCats[$i], $this->categoriesData)) {
                     unset($this->selectedCats[$i]);
                 }
             }
@@ -505,7 +511,7 @@ class Export {
      */
     protected function getCustomFields() {
         $result = $this->db->query("SELECT `id`,`csv_name` FROM shop_product_properties");
-        $customFields = array();
+        $customFields = [];
         foreach ($result->result() as $row) {
             $customFields[$row->id] = $row->csv_name;
         }
@@ -519,14 +525,14 @@ class Export {
      */
     protected function getCompleteFields() {
         $abbreviations = $this->getAbbreviation();
-        $completeFields = array();
+        $completeFields = [];
         // the parameters of the products that can be transmitted through the settings designer
         if (count($this->attributesCF) > 0) {
             $attr = array_merge($this->attributes, $this->attributesCF);
         }
         //a reduction of the field names and field attributes
         foreach ($this->attributes as $field => $justNumber1) {
-            if (key_exists($field, $abbreviations)) {
+            if (array_key_exists($field, $abbreviations)) {
                 $completeFields[] = $abbreviations[$field];
             } elseif (in_array($field, $this->customFields)) {
                 $completeFields[] = $field;
@@ -545,7 +551,7 @@ class Export {
      * @param string $field (optional) if empty returns array of abbreviations
      */
     protected function getAbbreviation($field = NULL) {
-        $abbreviationsArray = array(
+        $abbreviationsArray = [
             'name' => '`shop_products_i18n`.`name` as product_name', //
             'url' => 'url', //
             'oldprc' => 'old_price', //
@@ -572,7 +578,7 @@ class Export {
             'metd' => 'meta_description',
             'metk' => 'meta_keywords',
             'skip' => 'skip',
-        );
+        ];
         if (!$field) {
             return $abbreviationsArray;
         } else {
@@ -605,18 +611,18 @@ class Export {
             WHERE 
                 `shop_category_i18n`.`locale` = '" . \MY_Controller::getCurrentLocale() . "'
         ";
-        $categoriesData = array();
+        $categoriesData = [];
         $result = $this->db->query($query);
         if (!$result) {
             LOG::create()->set('Пустой результат вибора категорий');
             return;
         }
         foreach ($result->result_array() as $row) {
-            $categoriesData[$row['id']] = array(
+            $categoriesData[$row['id']] = [
                 'parent_id' => $row['parent_id'],
                 'name' => $row['name'],
                 'full_path_ids' => unserialize($row['full_path_ids']),
-            );
+            ];
         }
         return $categoriesData;
     }
@@ -626,10 +632,10 @@ class Export {
      * @return string $categoriesPathes
      */
     protected function getCategoriesPaths() {
-        $categoriesPathes = array();
+        $categoriesPathes = [];
         foreach ($this->categoriesData as $id => $data) {
             if (is_array($data['full_path_ids']) & $data['full_path_ids'] !== FALSE) {
-                $pathNames = array();
+                $pathNames = [];
                 foreach ($data['full_path_ids'] as $parentId) {
                     $pathNames[] = $this->categoriesData[$parentId]['name'];
                 }

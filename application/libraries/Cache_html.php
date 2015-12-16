@@ -4,7 +4,8 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-class Cache_html {
+class Cache_html
+{
 
     private static $path;
 
@@ -26,6 +27,7 @@ class Cache_html {
 
     /**
      * @param string $file
+     * @return string|false
      */
     public static function get_html($file) {
         self::$path = PUBPATH . 'system/cache/templates_c/HTML/';

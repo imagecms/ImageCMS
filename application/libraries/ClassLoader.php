@@ -9,7 +9,8 @@
  * @author ailok <m.kecha@imagecms.net>
  *
  */
-class ClassLoader {
+class ClassLoader
+{
 
     const EXT = '.php';
     const DS = DIRECTORY_SEPARATOR;
@@ -114,7 +115,7 @@ class ClassLoader {
     private function lookInAliases($className) {
         // getting first element of namespace path and search it in namespaces
         list($namespace, $fileName) = $this->splitClassName($className);
-        if (key_exists($namespace, $this->aliases) && strpos($namespace, '\\') > 0) {
+        if (array_key_exists($namespace, $this->aliases) && strpos($namespace, '\\') > 0) {
             $classPath = $this->aliases[$namespace] . '/' . $fileName . self::EXT;
             $this->includeClass($classPath);
             return true;
@@ -122,7 +123,7 @@ class ClassLoader {
 
         $parts = explode('\\', $className);
         $alias = array_shift($parts);
-        if (!key_exists($alias, $this->aliases)) {
+        if (!array_key_exists($alias, $this->aliases)) {
             return false;
         }
         $pathToNamepace = rtrim($this->aliases[$alias], self::DS) . self::DS;

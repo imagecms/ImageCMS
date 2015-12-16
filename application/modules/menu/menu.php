@@ -9,11 +9,16 @@ if (!defined('BASEPATH')) {
  *
  * Menu module
  */
-class Menu extends MY_Controller {
+class Menu extends MY_Controller
+{
 
     /*     * ***** Это можно редактировать *********** */
     private $tpl_folder_prefix = "level_";
 
+    /**
+     *
+     * @var array
+     */
     private $tpl_file_names = [
         'container' => 'container',
         'item_default' => 'item_default',
@@ -166,6 +171,7 @@ class Menu extends MY_Controller {
      * @access public
      */
     public function display_menu($menu_array) {
+
         $array_keys = array_keys($menu_array);
         $start_index = $array_keys[0];
         $end_index = $array_keys[count($array_keys) - 1];
@@ -192,7 +198,14 @@ class Menu extends MY_Controller {
                     $exp = explode('/', trim_slashes($this->uri->uri_string()));
                     $exp2 = explode('/', trim_slashes($item['link']));
 
-                    if (!array_diff($exp2, $exp)) {
+                    $matches = 0;
+                    foreach ($exp2 as $k => $v) {
+                        if ($v == $exp[$k]) {
+                            $matches++;
+                        }
+                    }
+
+                    if ($matches == count($exp2)) {
                         $active_cur = TRUE;
                     } else {
                         $active_cur = FALSE;
@@ -307,7 +320,7 @@ class Menu extends MY_Controller {
      * @param integer $index номер элемента для натягивания шаблона
      * @param string $wrapper натянутые шаблоны на всех всех наследников
      * @access private
-     * @return boolean
+     * @return TRUE
      */
     private function _prepare_item_tpl($index = 0, $wrapper = FALSE) {
         if ($wrapper == TRUE) {
@@ -342,8 +355,9 @@ class Menu extends MY_Controller {
     /**
      * Find sub menus
      *
+     * @param integer $id
      * @access public
-     * @return string|false
+     * @return mixed
      */
     private function _get_real_tpl($index = 0, $mode = "item") {
         if ($mode == "item") {
@@ -447,7 +461,7 @@ class Menu extends MY_Controller {
      *
      * @param integer $id
      * @access public
-     * @return mixed
+     * @return array|false
      */
     public function _get_sub_menus($id) {
         $sub_menus = [];
@@ -634,10 +648,10 @@ class Menu extends MY_Controller {
     /**
      * Get current locale for menu module
      * @param $language
-     * @return bool
+     * @return string|boolean
      */
     public static function getCurrentLocale($language = NULL) {
-        if ($language == NULL) {
+        if ($language == null) {
             return self::$IS_ADMIN_PART ? MY_Controller::defaultLocale() : MY_Controller::getCurrentLocale();
         }
 
@@ -656,11 +670,15 @@ class Menu extends MY_Controller {
         return $this->uri->segment(1) === 'admin' ? TRUE : FALSE;
     }
 
+    /**
+     *
+     * @param array $roles
+     * @return boolean
+     */
     private function _check_roles($roles = []) {
         $access = FALSE;
 
-        foreach ($roles as $key => $role_id) {
-            $logged = $this->dx_auth->is_logged_in();
+        foreach ($roles as $role_id) {
             $my_role = $this->dx_auth->get_role_id();
 
             // admin

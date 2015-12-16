@@ -56,7 +56,7 @@
                                                 </div>
                                                 <div class="m-t_10">
                                                     <span title="{$item.file_name}{$item.file_ext}">{truncate($item['file_name'], 20)}{$item.file_ext}</span><br/>
-                                                    <b>{lang("Size", 'gallery')}:</b> {$item.file_size} Kb
+                                                    <b>{lang("Size", 'gallery')}:</b> {$item.file_size}
                                                 </div>
                                                 <input type="hidden" name="ids" value="{$item.id}">
                                             </td>

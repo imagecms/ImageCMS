@@ -9,7 +9,8 @@ use InvalidArgumentException;
  *
  * @author kolia
  */
-class Tab {
+class Tab
+{
 
     /**
      *

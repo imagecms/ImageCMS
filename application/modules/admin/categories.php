@@ -83,9 +83,9 @@ class Categories extends BaseAdminController
 
         $this->template->add_array(
             [
-                    'tree' => $tree,
-                    'catTreeHTML' => $this->renderCatList($tree)
-                ]
+                'tree' => $tree,
+                'catTreeHTML' => $this->renderCatList($tree)
+            ]
         );
 
         $this->template->show('category_list', FALSE);
@@ -205,7 +205,7 @@ class Categories extends BaseAdminController
                 $full_path = $data['url'] . '/';
             }
 
-            if (($this->category_exists($full_path) == TRUE) AND ( $action != 'update') AND ( $data['url'] != 'core')) {
+            if (($this->category_exists($full_path) == TRUE) AND ($action != 'update') AND ($data['url'] != 'core')) {
                 $data['url'] .= time();
             }
 
@@ -332,8 +332,8 @@ class Categories extends BaseAdminController
 
         $this->template->add_array(
             [
-                    'tree' => $this->lib_category->build(),
-                ]
+                'tree' => $this->lib_category->build(),
+            ]
         );
 
         if ($action == '') {
@@ -377,7 +377,7 @@ class Categories extends BaseAdminController
                     $full_path = $data['url'] . '/';
                 }
 
-                if (($this->category_exists($full_path) == TRUE) AND ( $action != 'update') AND ( $data['url'] != 'core')) {
+                if (($this->category_exists($full_path) == TRUE) AND ($action != 'update') AND ($data['url'] != 'core')) {
                     $data['url'] .= time();
                 }
 
@@ -393,9 +393,9 @@ class Categories extends BaseAdminController
 
                 $this->template->add_array(
                     [
-                            'tree' => $this->lib_category->build(),
-                            'sel_cat' => $id,
-                        ]
+                        'tree' => $this->lib_category->build(),
+                        'sel_cat' => $id,
+                    ]
                 );
 
                 echo lang("Category", "admin") . ' <select name="category" ONCHANGE="change_comments_status();" id="category_selectbox">
@@ -411,9 +411,9 @@ class Categories extends BaseAdminController
     public function update_fast_block($sel_id) {
         $this->template->add_array(
             [
-                    'tree' => $this->lib_category->build(),
-                    'sel_cat' => $sel_id,
-                ]
+                'tree' => $this->lib_category->build(),
+                'sel_cat' => $sel_id,
+            ]
         );
 
         echo lang("Category", "admin") . ' <select name="category" ONCHANGE="change_comments_status();" id="category_selectbox">
@@ -598,16 +598,16 @@ class Categories extends BaseAdminController
             if ($query->num_rows() > 0) {
                 $this->template->add_array(
                     [
-                            'cat' => $query->row_array(),
-                        ]
+                        'cat' => $query->row_array(),
+                    ]
                 );
             }
 
             $this->template->add_array(
                 [
-                        'orig_cat' => $cat,
-                        'lang' => $lang,
-                    ]
+                    'orig_cat' => $cat,
+                    'lang' => $lang,
+                ]
             );
 
             ($hook = get_hook('admin_show_cat_translate')) ? eval($hook) : NULL;
@@ -624,16 +624,25 @@ class Categories extends BaseAdminController
      * @access public
      */
     public function delete() {
-        //cp_check_perm('category_delete');
 
         foreach ($this->input->post('ids') as $p) {
 
             $cat_id = $p;
-            //if (0)
-            //{
+
             if ($this->db->get('category')->num_rows() == 1) {
                 showMessage(lang("You can not delete the last category from the list", "admin"), lang("Error", "admin"), 'r');
-                exit;
+                return;
+            }
+
+            $settings = $this->cms_admin->get_settings();
+
+            if ($settings['main_page_cat'] == $cat_id && "category" == $settings["main_type"]) {
+                showMessage(lang('Can not delete main category', 'admin'), lang("Error", "admin"), 'r');
+                if (count($this->input->post('ids')) > 1) {
+                    continue;
+                } else {
+                    return;
+                }
             }
 
             ($hook = get_hook('admin_category_delete')) ? eval($hook) : NULL;

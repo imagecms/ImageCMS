@@ -7,7 +7,8 @@ namespace CMSFactory\traits;
  *
  * Instead of constructor you may declare init() method
  */
-trait SingletonTrait {
+trait SingletonTrait
+{
 
     protected static $instance;
 

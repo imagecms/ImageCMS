@@ -11,8 +11,11 @@ if (!defined('BASEPATH')) {
  *
  * core.php
  * @property Cms_base $cms_base
+ * @property Lib_category $lib_category
+ * @property Cfcm $cfcm
  */
-class Core extends MY_Controller {
+class Core extends MY_Controller
+{
 
     public $langs = []; // Langs array
 
@@ -43,11 +46,10 @@ class Core extends MY_Controller {
         Modules::$registry['core'] = $this;
         $lang = new MY_Lang();
         $lang->load('core');
+        $this->load->module('cfcm');
     }
 
     public function index() {
-
-        $page_found = FALSE;
         $without_cat = FALSE;
         $SLASH = '';
         $mod_segment = 1;
@@ -213,7 +215,7 @@ class Core extends MY_Controller {
                             $data_type = 'page';
                             $this->page_content = $page_info;
                             $this->cat_content = $cat;
-                            $this->page_content = $this->load->module('cfcm')->connect_fields($this->page_content, 'page');
+                            $this->page_content = $this->cfcm->connect_fields($this->page_content, 'page');
                             break;
                         }
                     }
@@ -221,7 +223,7 @@ class Core extends MY_Controller {
                     // display page without category
                     $data_type = 'page';
                     $this->page_content = $page_info;
-                    $this->page_content = $this->load->module('cfcm')->connect_fields($this->page_content, 'page');
+                    $this->page_content = $this->cfcm->connect_fields($this->page_content, 'page');
                 }
             } else {
                 $data_type = '404';
@@ -337,7 +339,7 @@ class Core extends MY_Controller {
                     $page['full_text'] = $page['prev_text'];
                 }
 
-                $page = $this->load->module('cfcm')->connect_fields($page, 'page');
+                $page = $this->cfcm->connect_fields($page, 'page');
 
                 $this->template->assign('content', $this->template->read($page_tpl, ['page' => $page]));
 
@@ -372,6 +374,8 @@ class Core extends MY_Controller {
 
     /**
      * Display page
+     * @param array $page
+     * @param array $category
      */
     public function _display_page_and_cat($page = [], $category = []) {
 
@@ -439,8 +443,14 @@ class Core extends MY_Controller {
         }
     }
 
-    // Select or count pages in category
-
+    /**
+     * Select or count pages in category
+     * @param array $category
+     * @param int $row_count
+     * @param int $offset
+     * @param bool|FALSE $count
+     * @return array|string
+     */
     public function _get_category_pages($category = [], $row_count = 0, $offset = 0, $count = FALSE) {
 
         $this->db->where('post_status', 'publish');
@@ -474,7 +484,7 @@ class Core extends MY_Controller {
         if (count($pages) > 0 AND is_array($pages)) {
             $n = 0;
             foreach ($pages as $p) {
-                $pages[$n] = $this->load->module('cfcm')->connect_fields($p, 'page');
+                $pages[$n] = $this->cfcm->connect_fields($p, 'page');
                 $n++;
             }
         }
@@ -484,6 +494,7 @@ class Core extends MY_Controller {
 
     /**
      * Display category
+     * @param array $category
      */
     public function _display_category($category = []) {
 
@@ -661,7 +672,7 @@ class Core extends MY_Controller {
     }
 
     private function _process_core_data() {
-        class_exists('ShopCore') && ShopCore::initEnviroment();
+        SHOP_INSTALLED && class_exists('ShopCore') && ShopCore::initEnviroment();
         $this->template->add_array($this->tpl_data);
         $this->load_modules();
     }
@@ -669,6 +680,7 @@ class Core extends MY_Controller {
     /**
      * htmlspecialchars_decode text
      *
+     * @param string $text
      * @return string
      */
     public function _prepare_content($text = '') {
@@ -691,6 +703,8 @@ class Core extends MY_Controller {
 
     /**
      * Display error template end exit
+     * @param string $text
+     * @param bool $back
      */
     public function error($text, $back = TRUE) {
 
@@ -706,6 +720,8 @@ class Core extends MY_Controller {
 
     /**
      *  Language detection in url segments
+     * @param integer $n
+     * @return string
      */
     public function segment($n) {
 
@@ -779,10 +795,11 @@ class Core extends MY_Controller {
         return FALSE;
     }
 
-    /*
+    /**
      * Check user access for page
+     * @param array $roles
+     * @return bool
      */
-
     public function check_page_access($roles) {
 
         if ($roles == FALSE OR count($roles) == 0) {
@@ -849,10 +866,9 @@ class Core extends MY_Controller {
         return $args;
     }
 
-    /*
+    /**
      * Use default language
      */
-
     private function use_def_language() {
 
         $this->load_functions_file($this->settings['site_template']);
@@ -867,6 +883,9 @@ class Core extends MY_Controller {
         $this->config->set_item('cur_lang', $this->def_lang[0]['id']);
     }
 
+    /**
+     * @param string $tpl_name
+     */
     private function load_functions_file($tpl_name) {
 
         $full_path = './templates/' . $tpl_name . '/functions.php';
@@ -878,6 +897,12 @@ class Core extends MY_Controller {
 
     /**
      * Set meta tags for pages
+     * @param string $title
+     * @param string $keywords
+     * @param string $description
+     * @param string $page_number
+     * @param int $showsitename
+     * @param string $category
      */
     public function set_meta_tags($title = '', $keywords = '', $description = '', $page_number = '', $showsitename = 0, $category = '') {
 
@@ -963,7 +988,7 @@ class Core extends MY_Controller {
         if ($robotsSettings) {
             $robotsSettings = $robotsSettings->row();
         }
-        //$robotTxt = file_get_contents('robots.txt');
+
         header("Content-type: text/plain");
         if ($robotsSettings->robots_status == '1') {
             if ($robotsSettings->robots_settings_status == '1') {

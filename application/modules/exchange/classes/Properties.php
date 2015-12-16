@@ -168,7 +168,7 @@ class Properties extends ExchangeBase
             return $this->brands;
         }
 
-        if (key_exists($externalId, $this->brands)) {
+        if (array_key_exists($externalId, $this->brands)) {
             return $this->brands[$externalId];
         }
 
@@ -263,7 +263,7 @@ class Properties extends ExchangeBase
      */
     protected function insert() {
         $this->insertBatch('shop_product_properties', $this->new);
-        // geting updated data from DB
+        // getting updated data from DB
         $this->dataLoad->getNewData('properties');
 
         // preparing data for `i18n` and `mod_exchange`
@@ -291,10 +291,9 @@ class Properties extends ExchangeBase
         // inserting new brands
         $newBrands = [];
         $referensForI18n = [];
-        $existing_ = [];
         foreach ($this->brands as $externalId => $brandName) {
             $name_ = strtolower($brandName);
-            if (key_exists($name_, $existingBrands)) { // brand exist
+            if (array_key_exists($name_, $existingBrands)) { // brand exist
                 $this->brands[$externalId] = $existingBrands[$name_];
             } else {
                 $url = translit_url($brandName);
@@ -313,7 +312,7 @@ class Properties extends ExchangeBase
 
             $newBrandsI18n = [];
             foreach ($result as $brandData) {
-                if (key_exists($brandData['url'], $referensForI18n)) {
+                if (array_key_exists($brandData['url'], $referensForI18n)) {
                     $newBrandsI18n[] = [
                         'id' => $brandData['id'],
                         'name' => $this->brands[$referensForI18n[$brandData['url']]],
@@ -359,7 +358,7 @@ class Properties extends ExchangeBase
         $modExchange = [];
         foreach ($this->properties as $propertyData) {
             $exId = $propertyData['external_id'];
-            if (key_exists($exId, $this->$type)) {
+            if (array_key_exists($exId, $this->$type)) {
                 $arr = [];
                 if (!empty($this->dictionaryProperties[$exId])) {
                     foreach ($this->dictionaryProperties[$exId] as $value) {

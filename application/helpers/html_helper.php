@@ -11,6 +11,10 @@ require_once __DIR__ . '/../../system/helpers/html_helper.php';
 
 if (!function_exists('href_nofollow')) {
 
+    /**
+     * @param string $content
+     * @return mixed
+     */
     function href_nofollow($content) {
         return preg_replace_callback('/<(a\s[^>]+)>/isU', 'seo_nofollow_replace', $content);
     }
@@ -19,6 +23,10 @@ if (!function_exists('href_nofollow')) {
 
 if (!function_exists('seo_nofollow_replace')) {
 
+    /**
+     * @param array $match
+     * @return string
+     */
     function seo_nofollow_replace($match) {
         $CI = & get_instance();
 
@@ -72,7 +80,7 @@ if (!function_exists('form_property_select')) {
         $result = "<select name='$name' $multiple>";
 
         if (!$multiple) {
-            $result .= "<option value='0' >- " . lang('Unspecified') . " -</option>";
+            $result .= "<option value='' >- " . lang('Unspecified') . " -</option>";
         }
 
         $data = array_map('htmlspecialchars_decode', $data);

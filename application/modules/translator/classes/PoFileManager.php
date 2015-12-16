@@ -4,7 +4,8 @@ namespace translator\classes;
 
 use translator\classes\FileOperator as FileOperator;
 
-class PoFileManager {
+class PoFileManager
+{
 
     /**
      * Templates folder path
@@ -20,19 +21,19 @@ class PoFileManager {
      * Errors holder array
      * @var type
      */
-    private static $ERRORS = array();
+    private static $ERRORS = [];
 
     /**
      * Po-file settings array
      * @var type
      */
-    private $po_settings = array();
+    private $po_settings = [];
 
     /**
      * Po-file settings keys
      * @var type
      */
-    private $po_settings_keys = array(
+    private $po_settings_keys = [
         'Project-Id-Version',
         'Last-Translator',
         'Language-Team',
@@ -40,11 +41,11 @@ class PoFileManager {
         'X-Poedit-Language',
         'X-Poedit-Country',
         'SearchPath'
-    );
+    ];
 
     private static $SAAS_URL = '';
 
-    private static $CURRENT_TEMPLATE_PATHS = array();
+    private static $CURRENT_TEMPLATE_PATHS = [];
 
     public function __construct() {
 
@@ -206,7 +207,7 @@ class PoFileManager {
      * @param array $data - settings array
      * @return string
      */
-    private function prepareSettingsArray($data = array()) {
+    private function prepareSettingsArray($data = []) {
         if (!isset($data['projectName']) || !$data['projectName']) {
             $data['projectName'] = '';
         }
@@ -257,10 +258,10 @@ class PoFileManager {
      * @param array $data - settings array
      * @return string|false
      */
-    private function makePoFileSettings($data = array()) {
+    private function makePoFileSettings($data = []) {
         if (!empty($data)) {
             $data = $this->prepareSettingsArray($data);
-            $settings = array(
+            $settings = [
                 'msgid ""',
                 'msgstr ""',
                 '"Project-Id-Version: ' . $data['projectName'] . '\n"',
@@ -279,7 +280,7 @@ class PoFileManager {
                 '"X-Generator: Poedit 1.5.7\n"',
                 '"X-Poedit-Language: ' . $data['language'] . '\n"',
                 '"X-Poedit-Country: ' . $data['country'] . '\n"'
-            );
+            ];
 
             if (isset($data['paths']) && count($data['paths']) > 0) {
                 foreach ($data['paths'] as $number => $path) {
@@ -328,7 +329,7 @@ class PoFileManager {
 
     public function getModules() {
         $modules = getModulesPaths();
-        $data = array();
+        $data = [];
         foreach ($modules as $moduleName => $modulePath) {
             if ($moduleName != 'admin' && $moduleName != 'shop') {
                 $lang = new \MY_Lang();
@@ -352,7 +353,7 @@ class PoFileManager {
             $user_file = $this->toArray($name, $type, $lang);
 
             if ($user_file) {
-                $updation = array();
+                $updation = [];
                 foreach ($saas_file['po_array'] as $origin => $value) {
                     if (!isset($user_file['po_array'][$origin])) {
                         $updation[$origin] = $value;
@@ -371,7 +372,7 @@ class PoFileManager {
     public function update($name, $type, $lang, $data) {
         $po_data = $this->toArray($name, $type, $lang);
 
-        if ($po_data && key_exists('po_array', $po_data)) {
+        if ($po_data && array_key_exists('po_array', $po_data)) {
             foreach ($data as $origin => $values) {
 
                 if (isset($po_data['po_array'][$origin])) {
@@ -386,12 +387,12 @@ class PoFileManager {
                 } else {
 
                     if ($values['translation']) {
-                        $po_data['po_array'][$origin] = array(
+                        $po_data['po_array'][$origin] = [
                             'translation' => $values['translation'],
                             'comment' => $values['comment'] ? $values['comment'] : '',
-                            'links' => $values['links'] ? $values['links'] : array('tmpLink'),
+                            'links' => $values['links'] ? $values['links'] : ['tmpLink'],
                             'fuzzy' => FALSE
-                        );
+                        ];
                     }
                 }
             }
@@ -559,8 +560,8 @@ class PoFileManager {
      * @param array $data - po-file data
      * @return string
      */
-    private function makePoFileData($data = array()) {
-        $resultData = array();
+    private function makePoFileData($data = []) {
+        $resultData = [];
         foreach ($data as $key => $po) {
             if ($po) {
                 $po = $this->preparePoFileData((array) $po);
@@ -618,7 +619,7 @@ class PoFileManager {
         }
 
         $origin = null;
-        $this->po_settings = array();
+        $this->po_settings = [];
 
         foreach ($po as $key => $line) {
 
@@ -655,12 +656,12 @@ class PoFileManager {
             if (substr($line, 0, 6) == 'msgstr') {
                 if ($origin) {
                     preg_match('/"(.*?)"$/', $line, $translation);
-                    $translations[$origin] = array(
+                    $translations[$origin] = [
                         'translation' => isset($translation[1]) ? $translation[1] : '',
                         'comment' => $comment,
                         'links' => $links,
                         'fuzzy' => $fuzzy
-                    );
+                    ];
                 }
                 $fuzzy = FALSE;
                 $comment = '';
@@ -668,11 +669,11 @@ class PoFileManager {
             }
         }
 
-        $translations = $translations ? $translations : array();
-        $result = array(
+        $translations = $translations ? $translations : [];
+        $result = [
             'settings' => $this->po_settings,
             'po_array' => $translations
-        );
+        ];
 
         return $result;
     }

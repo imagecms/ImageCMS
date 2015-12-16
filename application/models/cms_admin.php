@@ -4,6 +4,9 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
+/**
+ * @property Cms_base $cms_base
+ */
 class Cms_admin extends CI_Model
 {
 
@@ -46,6 +49,8 @@ class Cms_admin extends CI_Model
     /**
      * Select page by id and lang_id
      *
+     * @param int $id
+     * @param int $lang
      * @return array
      */
     public function get_page_by_lang($id, $lang = 0) {
@@ -63,6 +68,7 @@ class Cms_admin extends CI_Model
     /**
      * Select page by id
      *
+     * @param integer $id
      * @return array
      */
     public function get_page($id) {
@@ -76,6 +82,10 @@ class Cms_admin extends CI_Model
         return FALSE;
     }
 
+    /**
+     * @param integer $id
+     * @return bool
+     */
     public function page_exists($id) {
         $this->db->select('id');
         $this->db->where('id', $id);
@@ -91,7 +101,9 @@ class Cms_admin extends CI_Model
     /**
      * Updating page by id
      *
-     * @return boolean
+     * @param integer $id
+     * @param array $data
+     * @return bool
      */
     public function update_page($id, $data) {
         $lang_id = $this->input->post('lang_id');
@@ -138,7 +150,8 @@ class Cms_admin extends CI_Model
     /**
      * Creates new category
      *
-     * @return integer
+     * @param array $data
+     * @return int
      */
     public function create_category($data) {
         $this->db->insert('category', $data);
@@ -146,12 +159,13 @@ class Cms_admin extends CI_Model
         return $this->db->insert_id();
     }
 
-    /*
+    /**
      * Update category data
      *
      * @access public
+     * @param array $data
+     * @param int $id
      */
-
     public function update_category($data, $id) {
         $this->db->where('id', $id);
         $this->db->update('category', $data);
@@ -167,10 +181,11 @@ class Cms_admin extends CI_Model
         return $this->cms_base->get_categories();
     }
 
-    /*
+    /**
      * Get category by id
+     * @param int $id
+     * @return bool|array
      */
-
     public function get_category($id) {
         $this->db->where('id', $id);
         $query = $this->db->get('category', 1);
@@ -186,6 +201,7 @@ class Cms_admin extends CI_Model
      * Check if category is created
      *
      * @access public
+     * @param string $url
      * @return bool
      */
     public function is_category($url) {
@@ -208,6 +224,7 @@ class Cms_admin extends CI_Model
      *
      * @settings array
      * @access public
+     * @param array $settings
      */
     public function save_settings($settings) {
         $this->db->where('s_name', 'main');
@@ -245,7 +262,8 @@ class Cms_admin extends CI_Model
     /**
      * Add page into content table
      *
-     * @return integer
+     * @param array $data
+     * @return int
      */
     public function insert_lang($data) {
         $this->db->insert('languages', $data);
@@ -253,6 +271,10 @@ class Cms_admin extends CI_Model
         return $this->db->insert_id();
     }
 
+    /**
+     * @param bool|false $forShop
+     * @return array
+     */
     public function get_langs($forShop = false) {
         if ($forShop) {
             if (strpos(getCMSNumber(), 'Pro')) {
@@ -263,12 +285,15 @@ class Cms_admin extends CI_Model
             }
         }
 
-        //		$this->db->order_by('default', 'desc');
         $query = $this->db->get('languages');
 
         return $query->result_array();
     }
 
+    /**
+     * @param $id
+     * @return bool|array
+     */
     public function get_lang($id) {
         $this->db->where('id', $id);
         $query = $this->db->get('languages', 1);
@@ -280,17 +305,27 @@ class Cms_admin extends CI_Model
         return FALSE;
     }
 
+    /**
+     * @param array $data
+     * @param int $id
+     */
     public function update_lang($data, $id) {
         $this->db->where('id', $id);
         $this->db->update('languages', $data);
     }
 
+    /**
+     * @param integer $id
+     */
     public function delete_lang($id) {
         $this->db->where('id', $id);
         $this->db->limit(1);
         $this->db->delete('languages');
     }
 
+    /**
+     * @param integer $id
+     */
     public function set_default_lang($id) {
         $this->db->update('languages', ['default' => 0]);
 
@@ -299,6 +334,9 @@ class Cms_admin extends CI_Model
         $this->db->update('languages', ['default' => 1, 'active' => 1]);
     }
 
+    /**
+     * @return array
+     */
     public function get_default_lang() {
         if ($this->db) {
             $this->db->where('default', 1);

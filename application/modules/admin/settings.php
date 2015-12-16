@@ -1,5 +1,7 @@
 <?php
 
+use template_manager\classes\Template;
+
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
@@ -7,6 +9,9 @@ if (!defined('BASEPATH')) {
 /**
  * @property CI_Cache $cache
  * @property Cms_admin $cms_admin
+ * @property Lib_admin $lib_admin
+ * @property SiteInfo $siteinfo
+ * @property Lib_category $lib_category
  */
 class Settings extends BaseAdminController
 {
@@ -24,6 +29,7 @@ class Settings extends BaseAdminController
     protected $uploadPath = 'uploads/images/';
 
     public function __construct() {
+
         parent::__construct();
 
         $this->load->library('DX_Auth');
@@ -157,6 +163,7 @@ class Settings extends BaseAdminController
      * Main Page settings
      */
     public function main_page() {
+
         $this->template->assign('tree', $this->lib_category->build());
 
         $settings = $this->cms_admin->get_settings();
@@ -175,6 +182,7 @@ class Settings extends BaseAdminController
      * @return array
      */
     public function _get_templates() {
+
         return get_templates();
     }
 
@@ -184,6 +192,7 @@ class Settings extends BaseAdminController
      * @access public
      */
     public function save() {
+
         //cp_check_perm('cp_site_settings');
 
         $this->form_validation->set_rules('siteinfo_adminemail', lang('Admin email', 'admin'), 'trim|valid_email');
@@ -259,9 +268,6 @@ class Settings extends BaseAdminController
         }
 
         $this->translate_meta();
-
-        //$this->replaceRobots($data_m['robots_status']);
-        //($hook = get_hook('admin_save_settings')) ? eval($hook) : NULL;
 
         $this->cms_admin->save_settings($data_m);
 
@@ -359,6 +365,7 @@ class Settings extends BaseAdminController
     }
 
     public function getSiteInfoDataJson() {
+
         $this->load->library('SiteInfo', $this->input->post('locale'));
         $data = $this->siteinfo->getSiteInfoData(TRUE);
         echo json_encode(array_merge($data, ['locale' => $this->input->post('locale')]));
@@ -367,9 +374,10 @@ class Settings extends BaseAdminController
     /**
      *
      * @param string $paramName
-     * @param type $siteinfo
+     * @param array $siteinfo
      */
     protected function processLogoOrFavicon($paramName, &$siteinfo) {
+
         // setting old value
         $oldValue = $this->siteinfo->getSiteInfo($paramName);
         $siteinfo[$paramName] = !empty($oldValue) ? $oldValue : '';
@@ -384,6 +392,7 @@ class Settings extends BaseAdminController
     }
 
     public function switch_admin_lang($lang) {
+
         if ($lang) {
             $this->db->set('lang_sel', $lang)
                 ->update('settings');
@@ -397,12 +406,17 @@ class Settings extends BaseAdminController
      * @return string
      */
     public function license_agreement() {
+
         header('Content-Type: text/plain; charset=utf-8');
-        $template = new \template_manager\classes\Template($this->input->get('template_name'));
+        $template = new Template($this->input->get('template_name'));
         echo $template->getLicenseAgreement();
     }
 
+    /**
+     * @param null|string $templateName
+     */
     public function template_has_license($templateName = null) {
+
         if (!$templateName) {
             $templateName = $this->input->get('template_name');
         }
@@ -415,7 +429,7 @@ class Settings extends BaseAdminController
             echo 0;
             return;
         }
-        $template = new \template_manager\classes\Template($templateName);
+        $template = new Template($templateName);
         $license = $template->getLicenseAgreement();
         echo empty($license) ? 0 : 1;
     }

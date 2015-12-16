@@ -9,7 +9,8 @@ if (!defined('BASEPATH')) {
  *
  * Feedback Module
  */
-class Admin extends BaseAdminController {
+class Admin extends BaseAdminController
+{
 
     public function __construct() {
         parent::__construct();
@@ -51,12 +52,12 @@ class Admin extends BaseAdminController {
                     if ($this->form_validation->run($this) == FALSE) {
                         showMessage(validation_errors(), false, 'r');
                     } else {
-                        $data = array(
+                        $data = [
                             'email' => $this->input->post('email'),
                             'message_max_len' => (int) $this->input->post('message_max_len'),
-                        );
+                        ];
                         $this->db->where('name', 'feedback');
-                        $this->db->update('components', array('settings' => serialize($data)));
+                        $this->db->update('components', ['settings' => serialize($data)]);
 
                         $this->lib_admin->log(lang("Feedbacks settings was edited", "feedback"));
                         showMessage(lang("Settings have been saved", 'feedback'));

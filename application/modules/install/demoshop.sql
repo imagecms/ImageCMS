@@ -429,8 +429,8 @@ INSERT INTO `components` (`name`, `identif`, `enabled`, `autoload`, `in_menu`, `
 ('payment_method_yakassa', 'payment_method_yakassa', 1, 0, 0, NULL, NULL),
 ('ga_dashboard', 'ga_dashboard', 1, 1, 0, NULL, NULL),
 ('seo_snippets', 'seo_snippets', 1, 1, 0, NULL, NULL),
-('xbanners', 'xbanners', 1, 1, 1, NULL, NULL);
-
+('xbanners', 'xbanners', 1, 1, 1, NULL, NULL),
+('callbacks', 'callbacks', 1, 1, 0, NULL, NULL);
 -- --------------------------------------------------------
 
 --

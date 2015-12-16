@@ -31,8 +31,8 @@
             <span class="d-i_b">
                 <span class="d_b title-field">{lang('Group by','mod_stats')}</span>
                 <div class="btn-group" data-toggle="buttons-radio">
-                    <button type="button" class="btn btn-default{if $_GET['group'] == 'day'} active{/if}" data-val="day" data-rel="[name='group']" data-btn-select>{lang('day','mod_stats')}</button>
-                    <button type="button" class="btn btn-default{if $_GET['group'] == 'month' || !isset($_GET['group'])} active{/if}" data-val="month" data-rel="[name='group']" data-btn-select>{lang('month','mod_stats')}</button>
+                    <button type="button" class="btn btn-default{if $_GET['group'] == 'day' || !isset($_GET['group'])} active{/if}" data-val="day" data-rel="[name='group']" data-btn-select>{lang('day','mod_stats')}</button>
+                    <button type="button" class="btn btn-default{if $_GET['group'] == 'month' } active{/if}" data-val="month" data-rel="[name='group']" data-btn-select>{lang('month','mod_stats')}</button>
                     <button type="button" class="btn btn-default{if $_GET['group'] == 'year'} active{/if}" data-val="year" data-rel="[name='group']" data-btn-select>{lang('year','mod_stats')}</button>
                 </div>
                 <input type="hidden" name='group' value="{if $_GET['group'] == 'day'}day{/if}{if $_GET['group'] == 'month' || !isset($_GET['group'])}month{/if}{if $_GET['group'] == 'year'}year{/if}"/>

@@ -12,6 +12,7 @@ if (!defined('BASEPATH')) {
 
 /**
  * Class discount_api for Mod_Discount module
+ * @property BaseDiscount baseDiscount
  * @uses \MY_Controller
  * @author DevImageCms
  * @copyright (c) 2013, ImageCMS
@@ -81,13 +82,14 @@ class discount_api extends MY_Controller
      * get discount in json format
      * @access public
      * @author DevImageCms
-     * @param (bool) typeReturn optional
+     * @param array $option
      * @param array $typeReturn params:
      * - (float) price:
      * - (int) userId:
      * - (bool) ignoreCart: ignore cart Data:
      * - (bool) new: for redeclare singelton:
      * @return json
+     * @internal param $ (bool) typeReturn optional
      * @copyright (c) 2013, ImageCMS
      */
     public function getDiscount($option = [], $typeReturn = null) {
@@ -125,6 +127,7 @@ class discount_api extends MY_Controller
      * get discount product
      * @access public
      * @author DevImageCms
+     * @param float|null $product
      * @param array [pid,vid], (float) price optional
      * @return array
      * @copyright (c) 2013, ImageCMS
@@ -345,6 +348,8 @@ class discount_api extends MY_Controller
      * get all discount information without maximized
      * @deprecated since version 4.5.2
      * @copyright (c) 2013, ImageCMS
+     * @param array $option
+     * @return array
      */
     public function get_user_discount_api($option = []) {
         return $this->getUserDiscount($option);
@@ -354,6 +359,10 @@ class discount_api extends MY_Controller
      * get discount product
      * @deprecated since version 4.5.2
      * @copyright (c) 2013, ImageCMS
+     * @param $product
+     * @param null $typeReturn
+     * @param null $price
+     * @return array
      */
     public function get_discount_product_api($product, $typeReturn = null, $price = null) {
         return $this->getDiscountProduct($product, $typeReturn = null, $price = null);
@@ -374,6 +383,8 @@ class discount_api extends MY_Controller
      * get discount in json format
      * @deprecated since version 4.5.2
      * @copyright (c) 2013, ImageCMS
+     * @param array $option
+     * @return json
      */
     public function get_discount_api($option = []) {
         return $this->getDiscount($option);
@@ -383,6 +394,9 @@ class discount_api extends MY_Controller
      * get gift certificate in json format
      * @deprecated since version 4.5.2
      * @copyright (c) 2013, ImageCMS
+     * @param null|string $key
+     * @param null|string $totalPrice
+     * @return string
      */
     public function get_gift_certificate($key = null, $totalPrice = null) {
         return $this->getGiftCertificate($key = null, $totalPrice = null);

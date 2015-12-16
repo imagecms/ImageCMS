@@ -10,7 +10,8 @@ use Propel\Runtime\Connection\ConnectionManagerSingle;
 /**
  * Executing custom CMS initialication code
  */
-class Lib_init {
+class Lib_init
+{
 
     /**
      *
@@ -158,13 +159,13 @@ class Lib_init {
 
         //
         //----------MONOLOG-----------------------------------------------------
-        //                $con = Propel::getWriteConnection('Shop');
-        //                    if (ENVIRONMENT != 'production') {
-        //                        $con->useDebug(true);
-        //                        $logger = new Monolog\Logger('defaultLogger');
-        //                        $logger->pushHandler(new \Monolog\Handler\StreamHandler(APPPATH . 'logs/propel.log'));
-        //                        $serviceContainer->setLogger('defaultLogger', $logger);
-        //                    }
+        //                        $con = Propel::getWriteConnection('Shop');
+        //                            if (ENVIRONMENT != 'production') {
+        //                                $con->useDebug(true);
+        //                                $logger = new Monolog\Logger('defaultLogger');
+        //                                $logger->pushHandler(new \Monolog\Handler\StreamHandler(APPPATH . 'logs/propel.log'));
+        //                                $serviceContainer->setLogger('defaultLogger', $logger);
+        //                            }
         //----------MONOLOG-----------------------------------------------------
     }
 

@@ -100,7 +100,7 @@ class Products extends ExchangeBase
     protected $productss;
 
     /**
-     * In the xml there can be two diffrent products with same names, this array
+     * In the xml there can be two different products with same names, this array
      * gathers just created product urls to prevent equal addresses
      * @var array
      */
@@ -131,7 +131,7 @@ class Products extends ExchangeBase
     private $ignoreExistingProducts = false;
 
     /**
-     * Array of products main categorys
+     * Array of products main categories
      * @var array
      */
     private $parentCat = [];
@@ -146,6 +146,7 @@ class Products extends ExchangeBase
      *
      */
     protected function import_() {
+
         $ignoreExisting = ModuleSettings::ofModule('exchange')->get('ignore_existing');
         $this->ignoreExistingProducts = isset($ignoreExisting['products']);
         $this->ignoreExistingDescriptions = isset($ignoreExisting['description']);
@@ -178,6 +179,7 @@ class Products extends ExchangeBase
      *
      */
     protected function rememberOriginAdditionalParentsCats() {
+
         $result = $this->db
             ->select(['shop_products.id', 'shop_category.full_path_ids'])
             ->join('shop_category', 'shop_category.id=shop_products.category_id')
@@ -198,6 +200,7 @@ class Products extends ExchangeBase
      * @throws Exception
      */
     public function rebuildAdditionalParentsCats() {
+
         $ids = [];
 
         foreach ($this->products as $products) {
@@ -239,9 +242,9 @@ class Products extends ExchangeBase
                 $this->db->insert(
                     'shop_product_categories',
                     [
-                    'category_id' => $categoryId,
-                    'product_id' => $product->id,
-                        ]
+                        'category_id' => $categoryId,
+                        'product_id' => $product->id,
+                    ]
                 );
             }
         }
@@ -250,8 +253,10 @@ class Products extends ExchangeBase
     /**
      * Setting temporary folder with import data. Mantadory!
      * @param string $tempDir
+     * @return $this
      */
     public function setTempDir($tempDir) {
+
         $this->tempDir = $tempDir;
         return $this;
     }
@@ -264,6 +269,7 @@ class Products extends ExchangeBase
      *  3 - only properties
      */
     protected function getCompareData($type = NULL) {
+
         foreach ($this->products as $product) {
             // external ids of products
             if (!empty($product['external_id']) & ($type == NULL || (int) $type == 1)) {
@@ -283,6 +289,7 @@ class Products extends ExchangeBase
     }
 
     protected function getUrls() {
+
         $productExIds = [];
         foreach ($this->products as $product) {
             if (!empty($product['external_id'])) {
@@ -305,6 +312,7 @@ class Products extends ExchangeBase
      *
      */
     protected function processProducts1() {
+
         $propertiesDataUpdate = [];
         $productPropDTDel = [];
 
@@ -330,8 +338,11 @@ class Products extends ExchangeBase
 
             list($variant, $variantI18n) = $this->pass1Helper_getVariantData($product, $isNewProduct);
 
-            if (NULL != $categoryId = $this->pass1Helper_getCadegoryData($product)) {
+            try {
+                $categoryId = $this->pass1Helper_getCategoryData($product);
                 $products['category_id'] = $categoryId;
+            } catch (Exception $e) {
+                continue;
             }
 
             list($additionalImages, $mainImage) = $this->pass1Helper_getImagesData($product, $exId);
@@ -377,7 +388,7 @@ class Products extends ExchangeBase
                     if ($this->compare_urls[$url] != $exId) { // add some number to url
                         $i = 1;
                         $url_ = $url;
-                        while (key_exists($url, $this->compare_urls)) {
+                        while (array_key_exists($url, $this->compare_urls)) {
                             $url = $url_ . ++$i;
                         }
                     }
@@ -435,9 +446,9 @@ class Products extends ExchangeBase
                     $this->updateCollector->addData(
                         'shop_product_categories',
                         [
-                        'product_id' => $productId,
-                        'category_id' => $products['category_id'],
-                            ]
+                            'product_id' => $productId,
+                            'category_id' => $products['category_id'],
+                        ]
                     );
                 }
                 $this->updateCollector->addData('shop_products', array_merge($products, ['id' => $productId, 'url' => $url]));
@@ -475,6 +486,7 @@ class Products extends ExchangeBase
      * Inserting data into `shop_products`
      */
     protected function insert1() {
+
         $this->insertBatch('shop_products', $this->insertCollector->getData('shop_products'));
         $this->dataLoad->getNewData('products');
 
@@ -502,6 +514,7 @@ class Products extends ExchangeBase
      * Filling with product_id tables that need it, and inserting into other tables
      */
     protected function processProducts23_Insert23() {
+
         // process 2 (adding product_id to tables data)
         $products = &$this->insertCollector->getData('shop_products');
         $productsI18n = &$this->insertCollector->getData('shop_products_i18n');
@@ -601,6 +614,7 @@ class Products extends ExchangeBase
      * Update all
      */
     protected function update() {
+
         // update has only two "passes" - as we already got product_id
         $this->updateFromCollector('shop_products', 'id');
         $this->updateFromCollector('shop_product_categories', 'product_id');
@@ -644,6 +658,7 @@ class Products extends ExchangeBase
      * @param string $compareField
      */
     protected function updateFromCollector($tableName, $compareField) {
+
         $this->updateBatch($tableName, $this->updateCollector->getData($tableName), $compareField);
     }
 
@@ -655,6 +670,7 @@ class Products extends ExchangeBase
      * @return array
      */
     protected function pass1Helper_getProductData(SimpleXMLElement $product, $exId) {
+
         $products = [
             'external_id' => $exId,
             'active' => (string) $product->Статус == 'Удален' ? 0 : 1,
@@ -711,6 +727,7 @@ class Products extends ExchangeBase
      * @return array
      */
     protected function pass1Helper_getVariantData(SimpleXMLElement $product, $isNew = true) {
+
         $variant = [
             'external_id' => (string) $product->Ид,
             'number' => (string) $product->Артикул,
@@ -746,9 +763,11 @@ class Products extends ExchangeBase
     /**
      * Method-helper for simplify processProducts1 method
      * @param SimpleXMLElement $product
-     * @return array
+     * @return int
+     * @throws Exception
      */
-    protected function pass1Helper_getCadegoryData(SimpleXMLElement $product) {
+    protected function pass1Helper_getCategoryData(SimpleXMLElement $product) {
+
         $categoryId = NULL;
         if (isset($product->Группы)) {
             $categoryExId = (string) $product->Группы->Ид;
@@ -759,15 +778,18 @@ class Products extends ExchangeBase
         } else {
             throw new Exception(sprintf('Error! Product "%s" category not found in file', $product->Наименование));
         }
+
         return $categoryId;
     }
 
     /**
      * Method-helper for simplify processProducts1 method
      * @param SimpleXMLElement $product
+     * @param string $exId
      * @return array
      */
     protected function pass1Helper_getImagesData(SimpleXMLElement $product, $exId) {
+
         //$exId = (string) $product->Ид;
         $additionalImages = NULL;
         $mainImage = NULL;
@@ -809,6 +831,7 @@ class Products extends ExchangeBase
      * @return array
      */
     protected function pass1Helper_getPropertiesData(SimpleXMLElement $product, $categoryId) {
+
         $brandIdentif = Properties::getInstance()->getBrandIdentif();
         $brandId = '';
 
@@ -866,19 +889,22 @@ class Products extends ExchangeBase
     // ----------------------- end of HELPERS ------------------------------
 
     private function runResize() {
+
         if ($this->runResize) {
             Image::create()
-                    ->resizeByName($this->imagesToResize)
-                    ->resizeByNameAdditional(array_unique($this->imagesToResizeAdditional));
+                ->resizeByName($this->imagesToResize)
+                ->resizeByNameAdditional(array_unique($this->imagesToResizeAdditional));
         }
     }
 
     public function setResize($run_resize = FALSE) {
+
         $this->runResize = $run_resize;
         return $this;
     }
 
     protected function addProductsToUpperCategories() {
+
         $products = $this->db->select('shop_products.id, shop_category.full_path_ids')
             ->join('shop_category', 'shop_category.id = shop_products.category_id')
             ->get('shop_products')
@@ -907,6 +933,7 @@ class Products extends ExchangeBase
      * @return boolean
      */
     protected function isProductCategoriesRowNew(array $newRowData) {
+
         if (!isset($this->existingRows)) {
             $this->existingRows = $this->db->get('shop_product_categories')->result_array();
         }
@@ -921,8 +948,9 @@ class Products extends ExchangeBase
     }
 
     protected function rebuildProductProperties() {
+
         $productTableProperties = $this->db->select("property_id, value, locale")->get("shop_product_properties_data")->result_array();
-        $propertiesTableVAlues = $this->db->select("id, data, locale")->get("shop_product_properties_i18n")->result_array();
+        $propertiesTableValues = $this->db->select("id, data, locale")->get("shop_product_properties_i18n")->result_array();
 
         //  array:
         //      [property_id][array property_locales][array property_values]
@@ -941,18 +969,18 @@ class Products extends ExchangeBase
             }
         }
 
-        foreach ($propertiesTableVAlues as $one) {
+        foreach ($propertiesTableValues as $one) {
             $id = $one['id'];
             $locale = $one['locale'];
             $insertData = [];
             $res = true;
             $error = false;
 
-            if (key_exists($id, $productPropertiesOrdered) && key_exists($locale, $productPropertiesOrdered[$id])) {
-                $onePropertyValues = unserialize($one['data']) ? : [];
+            if (array_key_exists($id, $productPropertiesOrdered) && array_key_exists($locale, $productPropertiesOrdered[$id])) {
+                $onePropertyValues = unserialize($one['data']) ?: [];
                 $insertData['data'] = serialize(array_unique(array_merge($onePropertyValues, $productPropertiesOrdered[$id][$locale])));
                 $res = $res && $this->db->where('id', $id)->update('shop_product_properties_i18n', $insertData);
-                $error = $this->db->_error_message() ? : $error;
+                $error = $this->db->_error_message() ?: $error;
             }
         }
     }

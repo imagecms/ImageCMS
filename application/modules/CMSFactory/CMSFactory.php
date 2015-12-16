@@ -8,7 +8,8 @@
  * @compatibility ImageCMS v4.3+
  * @copyright ImageCMS (c) 2013, <dev@imagecms.net>
  */
-class CMSFactory extends MY_Controller {
+class CMSFactory extends MY_Controller
+{
 
     public function __construct() {
         parent::__construct();
@@ -25,7 +26,7 @@ class CMSFactory extends MY_Controller {
     public function _install() {
         ($this->dx_auth->is_admin()) OR exit;
         $this->db->where('name', 'cmsfactory');
-        $this->db->update('components', array('name' => 'CMSFactory', 'identif' => 'CMSFactory'));
+        $this->db->update('components', ['name' => 'CMSFactory', 'identif' => 'CMSFactory']);
     }
 
 }

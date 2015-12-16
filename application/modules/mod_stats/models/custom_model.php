@@ -8,7 +8,8 @@
  * @property CI_DB_active_record $db
  * @package ImageCMSModule
  */
-class Custom_model extends CI_Model {
+class Custom_model extends CI_Model
+{
 
     /**
      *
@@ -52,7 +53,7 @@ class Custom_model extends CI_Model {
                 
                 -- ---- for urls ----
                 CASE `mod_stats_attendance`.`type_id`
-                    WHEN 1 THEN `content`.`title`
+                    WHEN 1 THEN CONCAT(`content`.`cat_url`,`content`.`url`)
                     WHEN 2 THEN `category`.`title`
                     WHEN 3 THEN CONCAT('shop/category/',`shop_category`.`full_path`)
                     WHEN 4 THEN CONCAT('shop/product/',`shop_products`.`url`)
@@ -68,7 +69,10 @@ class Custom_model extends CI_Model {
                 END as `page_name`,
                 -- ------------------
                 
-                `users`.`username`
+                `users`.`username`,
+                `type_id`,
+                `id_entity`
+
             FROM 
                 `mod_stats_attendance`
                 
@@ -101,9 +105,21 @@ class Custom_model extends CI_Model {
         $result = $this->db->query($query);
 
         if ($result) {
-            return $result->row_array();
+            $result = $result->row_array();
+            if ($result['type_id'] == 2) {
+                $result['url'] = $this->getCategoryUrl($result['id_entity']);
+            }
+            return $result;
         }
         return FALSE;
+    }
+
+    protected function getCategoryUrl($id) {
+        $res = $this->db->select(['url', 'parent_id'])->where('id', $id)->get('category');
+        if ($res = $res->row_array()) {
+            $parent_url = $this->getCategoryUrl($res['parent_id']);
+            return ($parent_url ? $parent_url . '/' : '') . $res['url'];
+        }
     }
 
 }

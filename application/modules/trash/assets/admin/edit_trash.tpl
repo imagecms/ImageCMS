@@ -53,7 +53,7 @@
                                                 </span>
                                                 Url
                                             </span>
-                                            {if count($CI->db->get_where('components', array('name' => 'shop'))->row()) > 0}
+                                            {if SHOP_INSTALLED}
                                                 <span class="frame_label no_connection m-r_15" id="prod">
                                                     <span class="niceRadio b_n">
                                                         <input type="radio" name="redirect_type" value="product" {if $trash->trash_redirect_type == 'product'}checked="checked"{/if}/>
@@ -106,7 +106,7 @@
                                             <input type="text" name="redirect_url" id="redirect_url" value="{echo $trash->trash_redirect}"s/>
                                         </div>
                                     </div>
-                                    {if count($CI->db->get_where('components', array('name' => 'shop'))->row()) > 0}
+                                    {if SHOP_INSTALLED}
                                         <div class="control-group" id="forProd" {if $trash->trash_redirect_type != 'product'}style="display: none"{/if}>
                                             <label class="control-label" for="products">{lang('Product', 'trash')}:</label>
                                             <div class="controls">

@@ -4,7 +4,8 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-class Permitions {
+class Permitions
+{
 
     private static $shop_controllers_path;  //define shop admin controllers path
 
@@ -83,12 +84,6 @@ class Permitions {
      */
     private static function checkAllPermitions($adminClassName, $adminMethod) {
         $ci = &get_instance();
-        //define error message
-        $err_text = '<div class="alert alert-error">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <h4>Warning!</h4>
-            %error_message%.
-            </div>';
 
         //check if user is loged in
         if ($ci->dx_auth->is_logged_in()) {
@@ -100,11 +95,6 @@ class Permitions {
 
             //searching user by id to get his role id
             $userProfile = $ci->db->where('id', $ci->dx_auth->get_user_id())->get('users')->row();
-
-            $locale = 'ru';
-
-            //get privilege title
-            $priv_title = $ci->db->select("title")->where(['id' => $privilege->id, 'locale' => $locale])->get(self::$rbac_privileges_table . "_i18n")->row();
 
             //if user exists!
             if (!empty($userProfile)) {
@@ -122,7 +112,7 @@ class Permitions {
                         //yes, current user has needed privilege
                         return TRUE;
                     } else {
-                        //no, permition denied
+                        //no, permission denied
                         redirect('admin/rbac/permition_denied');
                     }
                 }
@@ -197,7 +187,7 @@ class Permitions {
                 break;
             case 'Admin':
                 $adminClassName = $adminController;
-                $adminClassFile = self::$modules_controllers_path . $adminController . '/' . 'admin.php';
+                $adminClassFile = self::$modules_controllers_path . $adminController . '/admin.php';
                 break;
             case 'Base':
                 $adminClassName = ucfirst($adminController);
@@ -674,8 +664,7 @@ class Permitions {
                         $privilegesPOSTIds = $this->input->post('Privileges');
                     }
 
-                    //                    $idForDelete = implode(', ', $this->input->post('Privileges'));
-                    $idForDelete = $privilegesPOSTIds;
+                    $idForDelete = implode(', ', $privilegesPOSTIds);
 
                     $sqlDelete = "DELETE FROM `shop_rbac_roles_privileges` WHERE `role_id`=" . $roleId . " AND `privilege_id` NOT IN (" . $idForDelete . ")";
                     $this->db->query($sqlDelete);

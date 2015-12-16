@@ -3,6 +3,9 @@
 namespace exchange\classes;
 
 use CMSFactory\ModuleSettings;
+use CustomFieldsData;
+use CustomFieldsDataQuery;
+use SProductsQuery;
 
 /**
  *
@@ -56,13 +59,13 @@ class Prices extends ExchangeBase
      */
     protected function setPurchacePrice($externalId, $purchasePrice) {
         $fieldId = ModuleSettings::ofModule('exchange')->get('purchcePriceFieldId');
-        $product = \SProductsQuery::create()->findOneByExternalId($externalId);
+        $product = SProductsQuery::create()->findOneByExternalId($externalId);
         if ($product) {
             $productId = $product->getId();
-            $cf = \CustomFieldsDataQuery::create()->filterByentityId($productId)->filterByfieldId($fieldId)->findOne();
+            $cf = CustomFieldsDataQuery::create()->filterByentityId($productId)->filterByfieldId($fieldId)->findOne();
 
             if (!$cf) {
-                $cf = new \CustomFieldsData();
+                $cf = new CustomFieldsData();
                 $cf->setfieldId($fieldId);
                 $cf->setentityId($productId);
                 $cf->setLocale(\MY_Controller::defaultLocale());

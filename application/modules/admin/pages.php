@@ -1,10 +1,17 @@
 <?php
 
+use CMSFactory\Events;
+
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-//class Pages extends MY_Controller {
+/**
+ * @property Lib_admin $lib_admin
+ * @property Cms_admin $cms_admin
+ * @property Lib_category $lib_category
+ * @property Lib_seo $lib_seo
+ */
 class Pages extends BaseAdminController
 {
 
@@ -39,15 +46,15 @@ class Pages extends BaseAdminController
 
         $this->template->add_array(
             [
-                    'tree' => $this->lib_category->build(), // Load category tree
-                    'cur_time' => date('H:i:s'),
-                    'cur_date' => date('Y-m-d'),
-                    'sel_cat' => $uri_segs['category']
-                ]
+                'tree' => $this->lib_category->build(), // Load category tree
+                'cur_time' => date('H:i:s'),
+                'cur_date' => date('Y-m-d'),
+                'sel_cat' => $uri_segs['category']
+            ]
         );
         /** Init Event. Pre Create Page */
-        \CMSFactory\Events::create()->registerEvent('', 'BaseAdminPage:preCreate');
-        \CMSFactory\Events::runFactory();
+        Events::create()->registerEvent('', 'BaseAdminPage:preCreate');
+        Events::runFactory();
 
         $this->template->show('add_page', FALSE);
     }
@@ -70,26 +77,28 @@ class Pages extends BaseAdminController
         $this->load->module('tags')->_set_page_tags($this->input->post('search_tags'), $page['id']);
 
         /** Init CMS Events system */
-        \CMSFactory\Events::create()->registerEvent($page, 'Page:create');
+        Events::create()->registerEvent($page, 'Page:create');
     }
 
     /**
      * This event occurs right after page updated
+     * @param array $page
      */
     private function on_page_update($page) {
 
-        /** Update page roless */
+        /** Update page roles */
         $this->_set_page_roles($page['id'], $this->input->post('roles'));
 
         /** Update page tags */
         $this->load->module('tags')->_set_page_tags($this->input->post('search_tags'), (int) $page['id']);
 
         /** Init CMS Events system */
-        \CMSFactory\Events::create()->registerEvent($page, 'Page:update');
+        Events::create()->registerEvent($page, 'Page:update');
     }
 
     /**
      * This event occurs right after page deleted
+     * @param integer $page_id
      */
     private function on_page_delete($page_id) {
         $this->db->where('item_id', $page_id);
@@ -107,7 +116,7 @@ class Pages extends BaseAdminController
         $this->load->module('tags')->_remove_orphans($page_id);
 
         /** Init CMS Events system */
-        \CMSFactory\Events::create()->registerEvent(['pageId' => $page_id, 'userId' => $this->dx_auth->get_user_id()], 'Page:delete');
+        Events::create()->registerEvent(['pageId' => $page_id, 'userId' => $this->dx_auth->get_user_id()], 'Page:delete');
     }
 
     /*     * **************************************************
@@ -117,6 +126,7 @@ class Pages extends BaseAdminController
     /**
      * Validation for template name field
      * @param string $tpl
+     * @return bool
      */
     public function tpl_validation($tpl) {
 
@@ -132,9 +142,6 @@ class Pages extends BaseAdminController
      * Language default
      */
     public function add() {
-
-        //cp_check_perm('page_create');
-
         $this->form_validation->set_rules('page_title', lang("Title", "admin"), 'trim|required|min_length[1]|max_length[500]');
         $this->form_validation->set_rules('page_url', lang("URL", "admin"), 'alpha_dash');
         $this->form_validation->set_rules('prev_text', lang("Preliminary contents", "admin"), 'trim|required');
@@ -268,10 +275,12 @@ class Pages extends BaseAdminController
         }
     }
 
-    /*
+    /**
      * Set roles for page
+     * @param integer $page_id
+     * @param array $roles
+     * @return bool
      */
-
     public function _set_page_roles($page_id, $roles) {
 
         if ($roles[0] != '') {
@@ -308,6 +317,8 @@ class Pages extends BaseAdminController
      * Show edit_page form
      *
      * @access public
+     * @param integer $page_id
+     * @param int $lang
      */
     public function edit($page_id, $lang = 0) {
 
@@ -333,8 +344,8 @@ class Pages extends BaseAdminController
             }
         }
         /** Init Event. Pre Edit Page */
-        \CMSFactory\Events::create()->registerEvent(['pageId' => $page_id, 'url' => $data['url']], 'BaseAdminPage:preUpdate');
-        \CMSFactory\Events::runFactory();
+        Events::create()->registerEvent(['pageId' => $page_id, 'url' => $data['url']], 'BaseAdminPage:preUpdate');
+        Events::runFactory();
 
         $pageExists = 1;
         if (!$data) {
@@ -404,15 +415,15 @@ class Pages extends BaseAdminController
 
             $this->template->add_array(
                 [
-                        'page_lang' => $data['lang'],
-                        'page_identif' => $data['identif'],
-                        'tree' => $this->lib_category->build(),
-                        'parent_id' => $data['category'],
-                        'langs' => $langs,
-                        //                    'defLang' => $def_lang, //??
-                        'category' => $category,
-                        'pageExists' => $pageExists
-                    ]
+                    'page_lang' => $data['lang'],
+                    'page_identif' => $data['identif'],
+                    'tree' => $this->lib_category->build(),
+                    'parent_id' => $data['category'],
+                    'langs' => $langs,
+                    //                    'defLang' => $def_lang, //??
+                    'category' => $category,
+                    'pageExists' => $pageExists
+                ]
             );
 
             if ($data['lang_alias'] != 0) {
@@ -429,6 +440,7 @@ class Pages extends BaseAdminController
      * Update existing page by ID
      *
      * @access public
+     * @param integer $page_id
      */
     public function update($page_id) {
 
@@ -442,8 +454,8 @@ class Pages extends BaseAdminController
             $data = FALSE;
         }
         /** Init Event. Pre Edit Page */
-        \CMSFactory\Events::create()->registerEvent(['pageId' => $page_id, 'url' => $data['url']], 'BaseAdminPage:preUpdate');
-        \CMSFactory\Events::runFactory();
+        Events::create()->registerEvent(['pageId' => $page_id, 'url' => $data['url']], 'BaseAdminPage:preUpdate');
+        Events::runFactory();
 
         $this->form_validation->set_rules('page_title', lang("Title", "admin"), 'trim|required|min_length[1]|max_length[500]');
         $this->form_validation->set_rules('page_url', lang("URL", "admin"), 'alpha_dash');
@@ -608,6 +620,8 @@ class Pages extends BaseAdminController
      *
      * @access public
      * @param string $page_id
+     * @param bool $show_messages
+     * @return bool
      */
     public function delete($page_id, $show_messages = TRUE) {
 
@@ -616,7 +630,6 @@ class Pages extends BaseAdminController
         $settings = $this->cms_admin->get_settings();
 
         if ($settings['main_page_id'] == $page_id AND $settings['main_type'] == 'page') {
-            jsCode("alertBox.alert(" . lang("Error: Generic page can not be deleted.") . ");");
             return FALSE;
         }
 
@@ -655,7 +668,7 @@ class Pages extends BaseAdminController
     }
 
     /**
-     * Transilt title to url
+     * Translit title to url
      */
     public function ajax_translit() {
 
@@ -685,14 +698,22 @@ class Pages extends BaseAdminController
         if (count($ids) > 0) {
             foreach ($ids as $v) {
                 $page_id = substr($v, 5);
-                $this->delete($page_id, FALSE);
+                $res[$page_id] = $this->delete($page_id, FALSE);
             }
         }
 
-        showMessage(lang("Successful delete", "admin"));
+        if (in_array(false, $res)) {
+            showMessage(lang('Can not delete main page', 'admin'), lang('Message'), 'r');
+        }
+        if (in_array(true, $res)) {
+            showMessage(lang("Successful delete", "admin"));
+        }
         pjax($this->input->server("HTTP_REFERER"));
     }
 
+    /**
+     * @param string $action
+     */
     public function move_pages($action) {
 
         $ids = $this->input->post('pages');
@@ -794,6 +815,7 @@ class Pages extends BaseAdminController
 
     /**
      * Display window to move pages to some category
+     * @param string $action
      */
     public function show_move_window($action = 'move') {
 
@@ -1029,28 +1051,28 @@ class Pages extends BaseAdminController
 
             $this->template->add_array(
                 [
-                        'paginator' => $this->pagination->create_links_ajax(),
-                        'total_pages' => $total_pages,
-                        'pages' => $pages,
-                        'cat_id' => $cat_id,
-                        'category' => $category,
-                        'cats' => $allCats,
-                        'tree' => $this->lib_category->build(),
-                        'show_cat_list' => $main_settings['cat_list'],
-                    ]
+                    'paginator' => $this->pagination->create_links_ajax(),
+                    'total_pages' => $total_pages,
+                    'pages' => $pages,
+                    'cat_id' => $cat_id,
+                    'category' => $category,
+                    'cats' => $allCats,
+                    'tree' => $this->lib_category->build(),
+                    'show_cat_list' => $main_settings['cat_list'],
+                ]
             );
             $this->template->show('pages_list', FALSE);
         } else {
 
             $this->template->add_array(
                 [
-                        'no_pages' => TRUE,
-                        'category' => $category,
-                        'total_pages' => $total_pages,
-                        'tree' => $this->lib_category->build(),
-                        'cat_id' => $cat_id,
-                        'show_cat_list' => $main_settings['cat_list'],
-                    ]
+                    'no_pages' => TRUE,
+                    'category' => $category,
+                    'total_pages' => $total_pages,
+                    'tree' => $this->lib_category->build(),
+                    'cat_id' => $cat_id,
+                    'show_cat_list' => $main_settings['cat_list'],
+                ]
             );
 
             $this->template->show('pages_list', FALSE);

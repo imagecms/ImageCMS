@@ -7,7 +7,8 @@
  * @copyright (c) 2014, ImageCMS
  * @package ImageCMSModule
  */
-class OrdersController extends ControllerBase {
+class OrdersController extends ControllerBase
+{
 
     private $dataRemap;
 
@@ -59,6 +60,9 @@ class OrdersController extends ControllerBase {
         );
     }
 
+    /**
+     * @param array $lines
+     */
     private function outputChart(array $lines) {
         $result = $this->controller->orders_model->getOrdersInfo(
             [
@@ -71,7 +75,7 @@ class OrdersController extends ControllerBase {
         $countsData = [];
         foreach ($result as $i => $row) {
             foreach ($row as $field => $value) {
-                if (key_exists($field, $lines)) {
+                if (array_key_exists($field, $lines)) {
                     $countsData[$field][] = [
                         'date' => $result[$i]['date'],
                         'x' => $result[$i]['unix_date'] * 1000,
@@ -129,7 +133,8 @@ class OrdersController extends ControllerBase {
         );
 
         // adding links and some data
-        for ($i = 0; $i < count($data); $i++) {
+        $count_data = count($data);
+        for ($i = 0; $i < $count_data; $i++) {
             $orderIds = explode(',', $data[$i]['orders_ids']);
             $orderLinks = '';
             foreach ($orderIds as $oId) {

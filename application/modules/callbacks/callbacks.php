@@ -1,18 +1,21 @@
 <?php
 
 use callbacks\Exceptions\ValidationException;
+use cmsemail\email;
 use CMSFactory\assetManager;
+use Propel\Runtime\Exception\PropelException;
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /**
  * Image CMS
- * Module Frame
+ * Callbacks
  */
 class Callbacks extends MY_Controller
 {
 
     public function __construct() {
+
         parent::__construct();
         $lang = new MY_Lang();
         $lang->load('callbacks');
@@ -24,25 +27,33 @@ class Callbacks extends MY_Controller
      * @return void
      */
     public function index() {
+
+        $this->core->set_meta_tags(lang('Callback', 'callback'));
         $this->load->library('Form_validation');
         if ($this->input->post()) {
             try {
                 $success = $this->createFromPost();
-                $this->session->set_flashdata('success_message', $success);
             } catch (ValidationException $e) {
                 $success = false;
-                $this->session->set_flashdata('success_message', $success);
             }
-            redirect(site_url('/callbacks'));
+            if (!$this->input->is_ajax_request()) {
+                $this->session->set_flashdata('success_message', $success);
+                redirect(site_url('/callbacks'));
+            }
         }
 
+        $message = isset($success) ? $success : $this->session->flashdata('success_message');
+
         assetManager::create()
-            ->setData(['success' => $this->session->flashdata('success_message')])
+            ->setData(['success' => $message])
             ->render('callback');
     }
 
     /**
      * Create new callback from $_POST data
+     * @return string
+     * @throws ValidationException
+     * @throws PropelException
      */
     public function createFromPost() {
 
@@ -54,8 +65,8 @@ class Callbacks extends MY_Controller
         if (!$this->form_validation->run()) {
             throw new ValidationException(
                 [
-                'message' => validation_errors(),
-                'errors' => $this->form_validation->getErrorsArray()
+                    'message' => validation_errors(),
+                    'errors' => $this->form_validation->getErrorsArray()
                 ]
             );
         }
@@ -79,18 +90,23 @@ class Callbacks extends MY_Controller
      *       from answer notifications && shop settings
      *       to own module configs
      *
+     * @return string
      */
     protected function getMessage() {
+
         $notification = $this->db
             ->where('locale', \MY_Controller::getCurrentLocale())
             ->where('name', 'callback')->get('answer_notifications');
-        if ($notification->num_rows() > 0) {
-            return $notification->row()->message ?: true;
-        }
 
+        return $notification->num_rows() > 0 ? $notification->row()->message : '';
     }
 
+    /**
+     * @param SCallbacks $callback
+     * @return bool
+     */
     protected function sendEmail(SCallbacks $callback) {
+
         $callback_variables = [
             'callbackStatus' => $callback->getSCallbackStatuses() ? $callback->getSCallbackStatuses()->getText() : '',
             'callbackTheme' => $callback->getSCallbackThemes() ? $callback->getSCallbackThemes()->getText() : '',
@@ -99,9 +115,9 @@ class Callbacks extends MY_Controller
             'dateCreated' => date("d-m-Y H:i:s", $callback->getDate()),
             'userComment' => $callback->getComment()
         ];
-        return \cmsemail\email::getInstance()->sendEmail($this->dx_auth->get_user_email(), 'callback', $callback_variables);
+        return email::getInstance()->sendEmail($this->dx_auth->get_user_email(), 'callback', $callback_variables);
     }
 
 }
 
-/* End of file sample_module.php */
+/* End of file callbacks.php */

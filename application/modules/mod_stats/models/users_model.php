@@ -8,7 +8,8 @@
  * @property CI_DB_active_record $db
  * @package ImageCMSModule
  */
-class Users_model extends CI_Model {
+class Users_model extends CI_Model
+{
 
     protected $locale;
 
@@ -36,7 +37,7 @@ class Users_model extends CI_Model {
      */
     public function setParams(array $params = []) {
         foreach ($this->params as $key => $value) {
-            if (key_exists($key, $params)) {
+            if (array_key_exists($key, $params)) {
                 $this->params[$key] = $params[$key];
             }
         }

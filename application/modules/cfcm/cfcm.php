@@ -8,8 +8,11 @@ if (!defined('BASEPATH')) {
  * Image CMS
  *
  * CFCFM Module
+ * @property Lib_category $lib_category
+ * @property Forms $forms
  */
-class Cfcm extends MY_Controller {
+class Cfcm extends MY_Controller
+{
 
     public function __construct() {
 
@@ -29,6 +32,10 @@ class Cfcm extends MY_Controller {
         $this->forms->set_config($this->config->item('cfcm'));
     }
 
+    /**
+     * @param integer $item_id
+     * @param string $type
+     */
     public function save_item_data($item_id, $type = 'page') {
 
         $this->load->module('forms');
@@ -64,6 +71,12 @@ class Cfcm extends MY_Controller {
         }
     }
 
+    /**
+     * @param bool|false|int $category_id
+     * @param bool|false|int $item_id
+     * @param bool|false|int $item_type
+     * @param string $tpl
+     */
     public function get_form($category_id = false, $item_id = false, $item_type = false, $tpl = '_onpage_form') {
 
         if ('page' === $category_id) {
@@ -89,7 +102,7 @@ class Cfcm extends MY_Controller {
 
         if ($category->field_group != '0') {
             // Get group
-            $group = $this->db->get_where('content_field_groups', array('id' => $category->field_group))->row();
+            $group = $this->db->get_where('content_field_groups', ['id' => $category->field_group])->row();
 
             // Get all fields in group
             $fg = (int) $category->field_group;
@@ -101,19 +114,19 @@ class Cfcm extends MY_Controller {
                 ->get();
 
             if ($query) {
-                $form_fields = array();
+                $form_fields = [];
                 $fields = $query->result_array();
 
                 foreach ($fields as $field) {
                     $f_data = unserialize($field['data']);
                     if ($f_data == false) {
-                        $f_data = array();
+                        $f_data = [];
                     }
 
-                    $form_fields[$field['field_name']] = array(
+                    $form_fields[$field['field_name']] = [
                         'type' => $field['type'],
                         'label' => encode($field['label']),
-                    );
+                    ];
 
                     $form_fields[$field['field_name']] = array_merge($form_fields[$field['field_name']], $f_data);
                 }
@@ -135,22 +148,25 @@ class Cfcm extends MY_Controller {
 
                 $hiddenField = '<input type="hidden" name="cfcm_use_group" value="' . $gid . '" />';
             } else {
-                $form = array();
+                $form = [];
             }
         }
 
         $this->template->add_array(
-            array(
+            [
                     'form' => $form,
                     'hf' => $hiddenField
-                )
+                ]
         );
 
         $this->display_tpl($tpl);
     }
 
     /**
+     * @param $fields
+     * @param integer $item_id
      * @param string|boolean $item_type
+     * @return array|bool
      */
     public function get_form_attributes($fields, $item_id, $item_type) {
 
@@ -162,7 +178,7 @@ class Cfcm extends MY_Controller {
             return false;
         }
 
-        $result = array();
+        $result = [];
         $data = $query->result_array();
 
         foreach ($data as $row) {
@@ -177,23 +193,12 @@ class Cfcm extends MY_Controller {
         return $result;
     }
 
+    /**
+     * @param int $group_id
+     * @return array|bool
+     */
     public function get_group_fields($group_id = -1) {
 
-        //        if (!$group_id)
-        //            $group_id = -1;
-        //Chech if we need fields without group
-        //        if ($group_id == 0)
-        //        {
-        //            $queryStr = "SELECT *
-        //                FROM  `content_fields`
-        //                WHERE field_name NOT
-        //                IN (
-        //                    SELECT field_name
-        //                    FROM content_fields_groups_relations
-        //                )";
-        //            $query = $this->db->query($queryStr);
-        //        }
-        //        else
         // Get all fields in group
         $query = $this->db
             ->where('group_id', $group_id)
@@ -202,19 +207,19 @@ class Cfcm extends MY_Controller {
             ->get('content_fields_groups_relations');
 
         if ($query->num_rows() > 0) {
-            $form_fields = array();
+            $form_fields = [];
             $fields = $query->result_array();
 
             foreach ($fields as $field) {
                 $f_data = unserialize($field['data']);
                 if ($f_data == false) {
-                    $f_data = array();
+                    $f_data = [];
                 }
 
-                $form_fields[$field['field_name']] = array(
+                $form_fields[$field['field_name']] = [
                     'type' => $field['type'],
                     'label' => $field['label'],
-                );
+                ];
 
                 $form_fields[$field['field_name']] = array_merge($form_fields[$field['field_name']], $f_data);
             }
@@ -225,9 +230,13 @@ class Cfcm extends MY_Controller {
         }
     }
 
-    // Merge item array with fields data
-    // select/checkgroup/radiogroup always returned as array
-
+    /**
+     * Merge item array with fields data
+     * select/checkgroup/radiogroup always returned as array
+     * @param array $item_data
+     * @param string $item_type
+     * @return array
+     */
     public function connect_fields($item_data, $item_type) {
 
         if (($cache_result = $this->cache->fetch('cfcm_field_' . $item_data['id'] . $item_type)) !== false) {
@@ -235,9 +244,9 @@ class Cfcm extends MY_Controller {
             return $item_data;
         }
 
-        $replace = array();
-        $wight = array();
-        $fields_data = array();
+        $replace = [];
+        $wight = [];
+        $fields_data = [];
 
         $item_id = $item_data['id'];
 
@@ -249,7 +258,7 @@ class Cfcm extends MY_Controller {
             return $item_data;
         }
 
-        $result = array();
+        $result = [];
         $data = $query->result_array();
 
         foreach ($data as $row) {
@@ -262,11 +271,11 @@ class Cfcm extends MY_Controller {
         }
 
         foreach ($result as $key => $val) {
-            $field = $this->db->get_where('content_fields', array('field_name' => $key))->row();
+            $field = $this->db->get_where('content_fields', ['field_name' => $key])->row();
 
             $weight[$field->field_name] = $field->weight;
 
-            if (is_array($val) OR in_array($field->type, array('select', 'checkgroup', 'radiogroup'))) {
+            if (is_array($val) OR in_array($field->type, ['select', 'checkgroup', 'radiogroup'])) {
                 $field = unserialize($field->data);
 
                 if (is_array($field) AND count($field) > 0 AND $field['initial'] != '') {
@@ -300,20 +309,21 @@ class Cfcm extends MY_Controller {
         return $item_data;
     }
 
-    // Save fields data in DB
-
     /**
+     * Save fields data in DB
+     * @param integer $item_id
+     * @param array $data
      * @param string $type
      */
     private function update_fields_data($item_id, $data, $type) {
 
         if (count($data) > 0) {
             foreach ($data as $key => $val) {
-                $field_data = array(
+                $field_data = [
                     'item_id' => $item_id,
                     'item_type' => $type,
                     'field_name' => $key,
-                );
+                ];
 
                 if (!is_array($val)) {
                     if ($this->db->get_where('content_fields_data', $field_data)->num_rows() > 0) {
@@ -338,8 +348,11 @@ class Cfcm extends MY_Controller {
         }
     }
 
-    // Get field info.
-
+    /**
+     * Get field info.
+     * @param string $name
+     * @return bool|array
+     */
     public function get_field($name) {
 
         $this->db->limit(1);
@@ -358,6 +371,7 @@ class Cfcm extends MY_Controller {
 
     /**
      * Display template file
+     * @param string $file
      */
     private function display_tpl($file = '') {
 
@@ -366,4 +380,3 @@ class Cfcm extends MY_Controller {
     }
 
 }
-/* End of file sample_module.php */

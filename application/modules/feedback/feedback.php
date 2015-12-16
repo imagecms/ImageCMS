@@ -9,7 +9,8 @@ if (!defined('BASEPATH')) {
  *
  * Feedback module
  */
-class Feedback extends MY_Controller {
+class Feedback extends MY_Controller
+{
 
     public $username_max_len = 30;
 
@@ -21,19 +22,19 @@ class Feedback extends MY_Controller {
 
     public $message = '';
 
-    protected $formErrors = array();
+    protected $formErrors = [];
 
     public function __construct() {
         parent::__construct();
         $this->load->module('core');
         $this->load_settings();
 
-        $this->formErrors = array(
+        $this->formErrors = [
             'required' => lang('Field is required'),
             'min_length' => lang('Length is less than the minimum'),
             'valid_email' => lang('Email is not valid'),
             'max_length' => lang('Length greater than the maximum')
-        );
+        ];
         $lang = new MY_Lang();
         $lang->load('feedback');
     }
@@ -77,7 +78,7 @@ class Feedback extends MY_Controller {
         if (count($_POST) > 0) {
             $this->form_validation->set_rules('name', lang('Your name', 'feedback'), 'trim|required|min_length[3]|max_length[' . $this->username_max_len . ']|xss_clean');
             $this->form_validation->set_rules('email', lang('Email', 'feedback'), 'trim|required|valid_email|xss_clean');
-            $this->form_validation->set_rules('theme', lang('Subject', 'feedback'), 'trim|required|max_length[' . $this->theme_max_len . ']|xss_clean');
+            $this->form_validation->set_rules('theme', lang('Subject', 'feedback'), 'trim|max_length[' . $this->theme_max_len . ']|xss_clean');
             $this->form_validation->set_rules('message', lang('Message', 'feedback'), 'trim|required|max_length[' . $this->message_max_len . ']|xss_clean');
 
             if ($this->dx_auth->use_recaptcha) {

@@ -2,6 +2,8 @@
 
 namespace exchange\classes;
 
+use Exception;
+
 /**
  *
  * PROPERTIES OF OBJECT THAT CAN BE RETURN:
@@ -69,10 +71,11 @@ class ExchangeDataLoad
     /**
      *
      * @param string $name
-     * @return boolean|array|SplFixedArray
+     * @return array|bool|SplFixedArray
+     * @throws Exception
      */
     public function __get($name) {
-        if (key_exists($name, $this->data)) {
+        if (array_key_exists($name, $this->data)) {
             return $this->data[$name];
         }
 
@@ -81,7 +84,7 @@ class ExchangeDataLoad
             return $this->data[$name] = $this->$methodName();
         }
 
-        throw new \Exception("Class " . __CLASS__ . " doesn`t has property '{$name}'");
+        throw new Exception("Class " . __CLASS__ . " doesn`t has property '{$name}'");
     }
 
     /**
@@ -91,7 +94,7 @@ class ExchangeDataLoad
      * @return boolean|array
      */
     public function getNewData($name = NULL) {
-        if (key_exists($name, $this->data)) {
+        if (array_key_exists($name, $this->data)) {
             unset($this->data[$name]);
         }
         return $this->$name; //selecting data from db and returning it
@@ -162,18 +165,18 @@ class ExchangeDataLoad
     }
 
     /**
-     * Returns data of category by broductId
+     * Returns data of category by productId
      * @param integer $productId
      * @return array category data
      */
     public function getProductCategoryData($productId) {
         $products = &$this->products;
-        if (!key_exists($productId, $products)) {
+        if (!array_key_exists($productId, $products)) {
             return FALSE;
         }
         $categoryId = $products[$productId]['category_id'];
         $categories = &$this->categories;
-        if (!key_exists($categoryId, $categories)) {
+        if (!array_key_exists($categoryId, $categories)) {
             return FALSE;
         }
         return $categories[$categoryId];

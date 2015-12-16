@@ -1,5 +1,7 @@
 <?php
 
+use CMSFactory\assetManager;
+
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
@@ -8,7 +10,8 @@ if (!defined('BASEPATH')) {
  * Image CMS
  * Comments admin
  */
-class Admin extends BaseAdminController {
+class Admin extends BaseAdminController
+{
 
     public function __construct() {
         parent::__construct();
@@ -26,12 +29,10 @@ class Admin extends BaseAdminController {
         $this->template->add_array(
             [
             'settings' => $settings,
-            'is_shop' => $this->rating_model->is_shop(),
             ]
         );
-        \CMSFactory\assetManager::create()
+        assetManager::create()
                 ->renderAdmin('settings');
-        //        $this->render('settings');
     }
 
     public function update_settings() {
@@ -44,15 +45,6 @@ class Admin extends BaseAdminController {
         }
         $this->lib_admin->log(lang("Star rating was edited", "star_rating"));
         showMessage(lang("Settings saved success", 'star_rating'));
-    }
-
-    public function render($viewName, array $data = [], $return = false) {
-        if (!empty($data)) {
-            $this->template->add_array($data);
-        }
-
-        $this->template->show('file:' .  realpath(dirname(__FILE__)) . '/templates/admin/' . $viewName);
-        exit;
     }
 
 }

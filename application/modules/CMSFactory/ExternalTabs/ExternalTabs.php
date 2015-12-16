@@ -15,7 +15,8 @@ namespace CMSFactory\ExternalTabs;
  *
  * @author kolia
  */
-class ExternalTabs {
+class ExternalTabs
+{
 
     /**
      *
@@ -35,7 +36,7 @@ class ExternalTabs {
      * @return ExternalTabs
      */
     public static function ofModule($moduleName) {
-        if (!key_exists($moduleName, self::$modulesInstances)) {
+        if (!array_key_exists($moduleName, self::$modulesInstances)) {
             self::$modulesInstances[$moduleName] = new self();
         }
         return self::$modulesInstances[$moduleName];

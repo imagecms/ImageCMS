@@ -51,7 +51,8 @@
  * @property Console $console Description
  * @property CI_DB_Cache $cache
  */
-class MY_Controller extends MX_Controller {
+class MY_Controller extends MX_Controller
+{
 
     public $pjaxRequest = false;
 
@@ -170,6 +171,10 @@ class MY_Controller extends MX_Controller {
         return $field ? self::$currentLanguage[$field] : self::$currentLanguage;
     }
 
+    /**
+     *
+     * @return string
+     */
     public static function defaultLocale() {
         $lang = self::getDefaultLanguage();
         return $lang['identif'];
@@ -190,6 +195,11 @@ class MY_Controller extends MX_Controller {
         }
 
         return $languages;
+    }
+
+    public static function getAllLocales() {
+        $query = \CI::$APP->db->select('identif')->get('languages');
+        return $query->num_rows() ? array_column($query->result_array(), 'identif') : null;
     }
 
     /**

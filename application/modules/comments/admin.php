@@ -8,7 +8,8 @@ if (!defined('BASEPATH')) {
  * Image CMS
  * Comments admin
  */
-class Admin extends BaseAdminController {
+class Admin extends BaseAdminController
+{
 
     private $per_page = 12;
 

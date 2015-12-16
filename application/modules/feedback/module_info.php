@@ -4,7 +4,7 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-$com_info = array(
+$com_info = [
     'menu_name' => lang('Feedback', 'feedback'), // Menu name
     'description' => lang('Manage and configure the feedback form on the site', 'feedback'), // Module Description
     'admin_type' => 'inside', // Open admin class in new window or not. Possible values window/inside
@@ -14,6 +14,6 @@ $com_info = array(
     'version' => '0.1', // Module version
     'author' => 'dev@imagecms.net', // Author info
     'icon_class' => 'icon-volume-up'
-);
+];
 
 /* End of file module_info.php */

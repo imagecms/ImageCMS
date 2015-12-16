@@ -2,11 +2,10 @@
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
-class Commentsapi extends Comments {
+class Commentsapi extends Comments
+{
 
     public $validation_errors;
-
-    public $enable_comments = true;
 
     public function __construct() {
         parent::__construct();
@@ -68,6 +67,10 @@ class Commentsapi extends Comments {
         return $data;
     }
 
+    /**
+     * @param string $url
+     * @return array
+     */
     public function renderAsArray($url) {
         $this->load->model('base');
         $this->_init_settings();
@@ -138,7 +141,7 @@ class Commentsapi extends Comments {
         $item_id = $this->parsUrl($this->input->server('HTTP_REFERER'));
 
         $commentsCount = $this->getTotalCommentsForProducts($item_id);
-        $comments = $this->base->get($item_id, 0, $this->module, $this->input->post('countcomment'), $this->order_by);
+        $comments = $this->base->get($item_id, 0, $this->module, $this->input->post('countcomment')?:null, $this->order_by);
 
         // Read comments template
         // Set page id for comments form
@@ -200,6 +203,8 @@ class Commentsapi extends Comments {
      * Determinate commented page.
      *
      * if product - return id
+     * @param string $url
+     * @return string
      */
     public function parsUrl($url) {
         defined('DS') OR define('DS', '/');
@@ -272,6 +277,10 @@ class Commentsapi extends Comments {
         return $page->id;
     }
 
+    /**
+     * @param string $url
+     * @return string
+     */
     public function getModule($url) {
         $url = '/' . $url;
 
@@ -599,6 +608,12 @@ class Commentsapi extends Comments {
         }
     }
 
+    /**
+     * @param array $ids
+     * @param string $module
+     * @param int $status
+     * @return array|void
+     */
     public function getTotalCommentsForProducts($ids, $module = 'shop', $status = 0) {
         if ($ids == null) {
             return;

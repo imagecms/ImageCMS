@@ -1,5 +1,9 @@
 <?php
 
+use CMSFactory\assetManager;
+use CMSFactory\Events;
+use Currency\Currency;
+
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /**
@@ -11,7 +15,8 @@
  *
  * @property Seo_snippets_model $seo_snippets_model
  */
-class Seo_snippets extends MY_Controller {
+class Seo_snippets extends MY_Controller
+{
 
     /**
      * Array of site settings
@@ -32,7 +37,7 @@ class Seo_snippets extends MY_Controller {
     }
 
     public function autoload() {
-        \CMSFactory\Events::create()->onProductPageLoad()
+        Events::create()->onProductPageLoad()
                 ->setListener('makeProductSnippet');
 
         $this->settings = $this->cms_base->get_settings();
@@ -42,7 +47,7 @@ class Seo_snippets extends MY_Controller {
 
         $data = json_encode(array_filter([$LocalBusiness, $WebSite]));
 
-        \CMSFactory\assetManager::create()->registerJsScript($data, FALSE, 'after', 'application/ld+json');
+        assetManager::create()->registerJsScript($data, FALSE, 'after', 'application/ld+json');
     }
 
     public function _install() {
@@ -150,7 +155,7 @@ class Seo_snippets extends MY_Controller {
                     '@type' => 'Offer',
                     "availability" => $model->getFirstVariant()->getStock() > 0 ? "http://schema.org/InStock" : "http://schema.org/SoldOut",
                     'price' => $model->getFirstVariant()->toCurrency('Price'),
-                    'priceCurrency' => \Currency\Currency::create()->getCode(),
+                    'priceCurrency' => Currency::create()->getCode(),
                 ],
                 'isSimilarTo' => $similar,
                 'aggregateRating' => [
@@ -172,7 +177,7 @@ class Seo_snippets extends MY_Controller {
             }
 
             $data = json_encode(array_filter($Product));
-            \CMSFactory\assetManager::create()->registerJsScript($data, FALSE, 'after', 'application/ld+json');
+            assetManager::create()->registerJsScript($data, FALSE, 'after', 'application/ld+json');
         }
     }
 

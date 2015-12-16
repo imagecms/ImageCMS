@@ -12,7 +12,8 @@ use stdClass;
  * @property Core $core
  * @property CI_DB_active_record $db
  */
-class PropertiesImport extends BaseImport {
+class PropertiesImport extends BaseImport
+{
 
     /**
      * Process Properties Handling
@@ -33,33 +34,34 @@ class PropertiesImport extends BaseImport {
             foreach ($node as $nodeKey => $nodeElement) {
                 //if (array_key_exists($nodeKey, $properyAlias) && !empty($nodeElement)) { // Если пустое значение, то не вносится
                 if (array_key_exists($nodeKey, $properyAlias)) {
-                    $result = $this->db->query('SELECT * FROM `shop_product_properties_data` WHERE `product_id` = ? AND `property_id` = ?', array($node['ProductId'], $properyAlias[$nodeKey]))->row();
+                    $result = $this->db->query('SELECT * FROM `shop_product_properties_data` WHERE `product_id` = ? AND `property_id` = ?', [$node['ProductId'], $properyAlias[$nodeKey]])->row();
 
                     if ($result instanceof stdClass) {
                         $this->db->delete(
                             'shop_product_properties_data',
-                            array('product_id' => $node['ProductId'],
+                            ['product_id' => $node['ProductId'],
                             'property_id' => $properyAlias[$nodeKey],
-                            'locale' => $this->languages)
+                            'locale' => $this->languages]
                         );
                     }
-                    $insertdata = array();
+                    $insertdata = [];
                     $values = array_map('trim', explode('|', $nodeElement));
                     foreach ($values as $v) {
+                        $v = htmlspecialchars($v);
                         $v = !$v ? '' : $v;
                         if ($v != '') {
-                            $insertdata[] = array('product_id' => $node['ProductId'],
+                            $insertdata[] = ['product_id' => $node['ProductId'],
                                 'property_id' => $properyAlias[$nodeKey],
                                 'locale' => $this->languages,
-                                'value' => $v);
+                                'value' => $v];
                         }
                     }
                     $this->db->insert_batch('shop_product_properties_data', $insertdata);
 
                     foreach ($node['CategoryIds'] as $categoryId) {
-                        $result = $this->db->query('SELECT * FROM `shop_product_properties_categories` WHERE `category_id` = ? AND `property_id` = ?', array($categoryId, $properyAlias[$nodeKey]))->row();
+                        $result = $this->db->query('SELECT * FROM `shop_product_properties_categories` WHERE `category_id` = ? AND `property_id` = ?', [$categoryId, $properyAlias[$nodeKey]])->row();
                         if (!($result instanceof stdClass) && !empty($nodeElement)) {
-                            $this->db->insert('shop_product_properties_categories', array('property_id' => $properyAlias[$nodeKey], 'category_id' => $categoryId));
+                            $this->db->insert('shop_product_properties_categories', ['property_id' => $properyAlias[$nodeKey], 'category_id' => $categoryId]);
                         }
                     }
 
@@ -68,9 +70,9 @@ class PropertiesImport extends BaseImport {
                     SELECT `id`, `data`
                     FROM `shop_product_properties_i18n`
                     WHERE id = ? AND locale = ?',
-                        array($properyAlias[$nodeKey], $this->languages)
+                        [$properyAlias[$nodeKey], $this->languages]
                     )->row();
-                    $data = (!empty($propery->data)) ? unserialize($propery->data) : array();
+                    $data = (!empty($propery->data)) ? unserialize($propery->data) : [];
                     $changed = false;
                     foreach ($values as $v) {
                         if (!in_array($v, $data)) {
@@ -79,7 +81,7 @@ class PropertiesImport extends BaseImport {
                         }
                     }
                     if ($changed) {
-                        $this->db->update('shop_product_properties_i18n', array('data' => serialize($data)), array('id' => $properyAlias[$nodeKey], 'locale' => $this->languages));
+                        $this->db->update('shop_product_properties_i18n', ['data' => serialize($data)], ['id' => $properyAlias[$nodeKey], 'locale' => $this->languages]);
                     }
                 }
             }
@@ -100,7 +102,7 @@ class PropertiesImport extends BaseImport {
             $fieldDataArray = $this->customFieldsCache[$name]->getDataArray();
 
             if ($fieldDataArray === null) {
-                $fieldDataArray = array();
+                $fieldDataArray = [];
             }
 
             if (!in_array($value, $fieldDataArray)) {

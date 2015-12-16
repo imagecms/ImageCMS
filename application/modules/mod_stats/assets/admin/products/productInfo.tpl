@@ -125,7 +125,7 @@
                                             <i class="icon-share-alt"></i>
                                         </a>
                                         <div class="o_h">
-                                            <a href="{$ADMIN_URL}categories/edit/{echo $p->getMainCategory()->getId()}"
+                                            <a href="/admin/components/run/shop/categories/edit/{echo $p->getMainCategory()->getId()}"
                                                class=""
                                                data-rel="tooltip"
                                                data-title="{lang('Editing','admin')}">

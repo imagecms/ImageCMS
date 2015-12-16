@@ -8,7 +8,8 @@ namespace cmsemail;
  * Image CMS
  * Emails
  */
-class email extends classes\BaseEmail {
+class email extends classes\BaseEmail
+{
 
     protected static $_instance;
 

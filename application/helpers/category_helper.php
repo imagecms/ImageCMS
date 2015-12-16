@@ -4,6 +4,14 @@
 
 if (!function_exists('get_sub_categories')) {
 
+    /**
+     * Short description for function
+     *
+     * Long description (if any) ...
+     *
+     * @param integer $category_id Parameter description (if any) ...
+     * @return array   Return description (if any) ...
+     */
     function get_sub_categories($category_id = 0) {
         $ci = & get_instance();
         $categories = $ci->lib_category->unsorted();
@@ -23,6 +31,10 @@ if (!function_exists('get_sub_categories')) {
 
 if (!function_exists('category_list')) {
 
+    /**
+     * @param string $exclude_cats
+     * @return array
+     */
     function category_list($exclude_cats = '') {
         $ci = & get_instance();
         $ci->load->helper('html');
@@ -49,6 +61,10 @@ if (!function_exists('category_list')) {
 
 if (!function_exists('sub_category_list')) {
 
+    /**
+     * @param integer $category_id
+     * @return mixed
+     */
     function sub_category_list($category_id = 0) {
         $ci = & get_instance();
         $ci->load->helper('html');
@@ -78,6 +94,10 @@ if (!function_exists('sub_category_list')) {
 
 if (!function_exists('get_category_name')) {
 
+    /**
+     * @param integer $id
+     * @return mixed
+     */
     function get_category_name($id) {
         $ci = & get_instance();
         $c = $ci->lib_category->get_category($id);

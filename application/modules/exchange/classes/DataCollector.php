@@ -34,6 +34,7 @@ class DataCollector
      * @param string $table
      * @param array $data
      * @param string|integer $key array key (optioanl)
+     * @return bool
      */
     public function addData($table, array $data, $key = NULL) {
         if (count($data) == 0) {
@@ -54,7 +55,8 @@ class DataCollector
      * Similar to addData, but adds rows to existing "product"
      * @param string $table
      * @param array $data
-     * @param type $key
+     * @param string $key
+     * @return bool
      */
     public function updateData($table, array $data, $key = NULL) {
         if (count($data) == 0) {
@@ -74,8 +76,8 @@ class DataCollector
         foreach ($this->currentPassData as $tableName => $tableData) {
             if (isset($this->keys[$tableName])) {
                 $currentKey = $this->keys[$tableName];
-                if (key_exists($tableName, $this->tablesData)) {
-                    if (key_exists($currentKey, $this->tablesData[$tableName])) {
+                if (array_key_exists($tableName, $this->tablesData)) {
+                    if (array_key_exists($currentKey, $this->tablesData[$tableName])) {
                         $oldData = $this->tablesData[$tableName][$currentKey];
                         $this->tablesData[$tableName][$currentKey] = array_merge($oldData, $tableData);
                     } else {
@@ -95,12 +97,13 @@ class DataCollector
     /**
      *
      * @param string $tableBName
+     * @return array
      */
     public function getData($tableBName = NULL) {
         if ($tableBName == NULL) {
             return $this->tablesData;
         }
-        if (key_exists($tableBName, $this->tablesData)) {
+        if (array_key_exists($tableBName, $this->tablesData)) {
             return $this->tablesData[$tableBName];
         }
         return [];
@@ -116,7 +119,7 @@ class DataCollector
             $this->tablesData = [];
             return TRUE;
         }
-        if (key_exists($tableBName, $this->tablesData)) {
+        if (array_key_exists($tableBName, $this->tablesData)) {
             unset($this->tablesData[$tableBName]);
             return TRUE;
         }

@@ -55,6 +55,10 @@ if (!function_exists('lang')) {
 
 if (!function_exists('getPoFileAttributes')) {
 
+    /**
+     * @param string $domain
+     * @return array|bool
+     */
     function getPoFileAttributes($domain) {
 
         if ($domain) {
@@ -129,6 +133,7 @@ if (!function_exists('getModulePathForTranslator')) {
 if (!function_exists('getMoFileName')) {
 
     /**
+     * @param string $domain
      * @return string
      */
     function getMoFileName($domain) {
@@ -149,6 +154,7 @@ if (!function_exists('getMoFileName')) {
 if (!function_exists('getMoFilePath')) {
 
     /**
+     * @param string $domain
      * @return string
      */
     function getMoFilePath($domain) {
@@ -236,6 +242,10 @@ if (!function_exists('correctUrl')) {
 // select language identif from url address
 if (!function_exists('chose_language')) {
 
+    /**
+     * @param bool|FALSE $active
+     * @return mixed
+     */
     function chose_language($active = FALSE) {
 
         $ci = &get_instance();
@@ -277,6 +287,7 @@ if (!function_exists('chose_language')) {
 
 /**
  * @param string $flag
+ * @return array
  */
 function get_main_lang($flag = null) {
     $ci = &get_instance();
@@ -315,10 +326,9 @@ function get_main_lang($flag = null) {
     }
 }
 
-/*
+/**
  * Get admin locale name
  */
-
 function get_admin_locale() {
     $ci = &get_instance();
     $admin_language = $ci->config->item('language');
@@ -340,7 +350,9 @@ if (!function_exists('langf')) {
     /**
      * @param string $line
      *
-     * @return string|null
+     * @param string $name
+     * @param array $data
+     * @return null|string
      */
     function langf($line, $name = "main", array $data = []) {
         $line = lang($line, $name);
@@ -356,6 +368,10 @@ if (!function_exists('langf')) {
 
 if (!function_exists('tlang')) {
 
+    /**
+     * @param string $line
+     * @return string
+     */
     function tlang($line) {
         $CI = &get_instance();
         $name = $CI->config->item('template');
@@ -367,6 +383,11 @@ if (!function_exists('tlang')) {
 
 if (!function_exists('tlangf')) {
 
+    /**
+     * @param string $line
+     * @param array $data
+     * @return mixed|string
+     */
     function tlangf($line, array $data = []) {
         $CI = &get_instance();
         $name = $CI->config->item('template');
@@ -383,6 +404,10 @@ if (!function_exists('tlangf')) {
 
 if (!function_exists('getLanguage')) {
 
+    /**
+     * @param array $where_array
+     * @return array
+     */
     function getLanguage($where_array = []) {
         $languages = CI::$APP->db->where($where_array)->get('languages');
         return $languages ? $languages->row_array() : [];
@@ -392,6 +417,9 @@ if (!function_exists('getLanguage')) {
 
 if (!function_exists('current_language')) {
 
+    /**
+     * @return string
+     */
     function current_language() {
         $language = MY_Controller::getCurrentLanguage();
         /* Return language code from locale */

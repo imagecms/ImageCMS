@@ -4,6 +4,11 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
+/**
+ *
+ * @param string $str
+ * @return string
+ */
 function translit($str) {
     $tr = [
         "А" => "A",
@@ -90,6 +95,11 @@ function translit($str) {
     return strtr($str, $tr);
 }
 
+/**
+ *
+ * @param string $urlstr
+ * @return string
+ */
 function translit_url($urlstr) {
     if (preg_match('/[^A-Za-z0-9_\-]/', $urlstr)) {
         $urlstr = str_replace(' ', '-', $urlstr);

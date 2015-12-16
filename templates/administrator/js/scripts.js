@@ -2395,12 +2395,19 @@ var PropertyFastCreator = {
     showAddForm: function (curElem) {
         var propertyForm = $(curElem).closest('div.control-group').find('.addPropertyToProduct');
         if ($(curElem).find('.icon-plus').length) {
+            $('#edit-properties .icon-remove').removeClass('icon-remove').addClass('icon-plus')
+
             $(curElem).find('.icon-plus').removeClass('icon-plus').addClass('icon-remove');
+            var tooltip = $(curElem).find('.icon-remove').parent('button').attr('data-close-tooltip');
+            $(curElem).find('.icon-remove').parent('button').attr('data-original-title', tooltip);
             $('.addPropertyToProduct').hide();
             $(propertyForm).show();
             $(propertyForm).find('input').trigger('focus');
         } else {
+
             $(curElem).find('.icon-remove').removeClass('icon-remove').addClass('icon-plus');
+            var tooltip = $(curElem).find('.icon-plus').parent('button').attr('data-add-tooltip');
+            $(curElem).find('.icon-plus').parent('button').attr('data-original-title', tooltip);
             $(propertyForm).hide();
         }
     },

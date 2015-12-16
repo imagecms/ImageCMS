@@ -16,7 +16,8 @@ use import_export\classes\PropertiesImport as PropertiesHandler;
  * @property Core $core
  * @property CI_DB_active_record $db
  */
-class BaseImport extends CI_Model {
+class BaseImport extends CI_Model
+{
 
     /**
      * Class BaseImport
@@ -132,7 +133,8 @@ class BaseImport extends CI_Model {
      * @param integer $offers The final position
      * @param integer $limit Step
      * @param integer $countProd count products
-     * @return null|false
+     * @param $EmptyFields
+     * @return false|null
      * @access public
      * @author Kaero
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
@@ -144,7 +146,7 @@ class BaseImport extends CI_Model {
             $this->validateFile($offers, $limit);
         } else {
             $this->parseFile($offers, $limit);
-            CategoriesHandler::loadCategories();
+            CategoriesHandler::loadCategories($EmptyFields);
             ProductsHandler::create()->make($EmptyFields);
             PropertiesHandler::runProperties();
         }
@@ -157,13 +159,14 @@ class BaseImport extends CI_Model {
 
     /**
      * @param string $attribute
+     * @return bool
      */
     public function attributeExist($attribute) {
-        if (!$_POST['attributes']) {
+        $attributes = \CI::$APP->input->post('attributes');
+        if (!$attributes) {
             return TRUE;
         }
 
-        $attributes = $_POST['attributes'];
         $attributes = explode(',', $attributes);
         return in_array($attribute, $attributes) ? TRUE : FALSE;
     }
@@ -210,7 +213,7 @@ class BaseImport extends CI_Model {
         //            ImportBootstrap::addMessage(Factor::ErrorNameVariantAttribute);
         //            return FALSE;
         //        }
-        if (!in_array('num', $row) && $this->importType == Factor::ImportProducts) {
+        if (!in_array('num', $row) && !$this->attributeExist('prc') && $this->importType == Factor::ImportProducts) {
             ImportBootstrap::addMessage(Factor::ErrorNumberAttribute);
             return FALSE;
         }
@@ -229,7 +232,7 @@ class BaseImport extends CI_Model {
      * File parsing
      * @param integer $offers The final position
      * @param integer $limit Step
-     * @param resurs $file
+     * @param  $file
      * @return boolean
      */
     public function parseFile($offers, $limit, $file = false) {

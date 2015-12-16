@@ -25,6 +25,8 @@ class Template extends Mabilis
 
     private $_css_str = [];
 
+    private $_custom_strings = [];
+
     private $_metas = [];
 
     private $_canonicals = [];
@@ -277,8 +279,6 @@ class Template extends Mabilis
      * @return string
      */
     public function view($file, $data = [], $return = FALSE) {
-        $file = preg_replace('/.tpl.tpl/', '.tpl', $file);
-
         return $this->splitTplFiles(parent::view($file, $data, $return));
     }
 
@@ -312,6 +312,9 @@ class Template extends Mabilis
      * @param string $position
      */
     public function registerCssFile($url, $position = 'before') {
+        if (file_exists('./' . $url) && filesize('./' . $url) == 0) {
+            return;
+        }
         $position = $this->_check_postion($position);
         $this->_css_files[media_url($url)] = $position;
     }
@@ -333,6 +336,9 @@ class Template extends Mabilis
      * @param boolean $fromThisSite
      */
     public function registerJsFile($url, $position = 'before', $fromThisSite = TRUE) {
+        if (file_exists('./' . $url) && filesize('./' . $url) == 0) {
+            return;
+        }
         $position = $this->_check_postion($position);
         if ($fromThisSite === TRUE) {
             $this->_js_files[media_url($url)] = $position;
@@ -349,6 +355,15 @@ class Template extends Mabilis
     public function registerJsScript($script, $position = 'before') {
         $position = $this->_check_postion($position);
         $this->_js_script_files[$script] = $position;
+    }
+
+    /**
+     * @param string $script
+     * @param string $position
+     */
+    public function registerString($script, $position = 'before') {
+        $position = $this->_check_postion($position);
+        $this->_custom_strings[$script] = $position;
     }
 
     /**
@@ -395,6 +410,10 @@ class Template extends Mabilis
      * @return string
      */
     public function splitTplFiles($tpl) {
+        if (false === strpos($tpl, '</html>')) {
+            return $tpl;
+        }
+
         if (!$this->trimed) {
             $tpl = trim($tpl);
             $this->trimed = TRUE;
@@ -437,6 +456,8 @@ class Template extends Mabilis
 
         $this->split($this->_css_str);
 
+        $this->split($this->_custom_strings);
+
         $this->split(array_flip($this->_metas));
 
         $this->split(array_flip($this->_canonicals));
@@ -444,17 +465,13 @@ class Template extends Mabilis
         $this->split(array_flip($this->_links));
 
         if (self::$result_before) {
-            if ($this->CI->input->is_ajax_request()) {
-                $tpl = self::$result_before . $tpl;
-            } elseif (!strstr($tpl, self::$result_before)) {
+            if (!$this->CI->input->is_ajax_request()) {
                 $tpl = preg_replace('/\<\/head\>/', self::$result_before . '</head>' . "\n", $tpl, 1);
             }
         }
 
         if (self::$result_after) {
-            if ($this->CI->input->is_ajax_request()) {
-                $tpl .= self::$result_after;
-            } elseif (!strstr($tpl, self::$result_after)) {
+            if (!$this->CI->input->is_ajax_request()) {
                 $tpl = preg_replace('/(\<\/body>(\s*|\n)<\/html>)(\s*|\n)$/', self::$result_after . "</body></html>", $tpl, 1);
             }
         }

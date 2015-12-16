@@ -9,7 +9,8 @@ if (!defined('BASEPATH')) {
  *
  * Navigation widgets
  */
-class Navigation_Widgets extends MY_Controller {
+class Navigation_Widgets extends MY_Controller
+{
 
     public function __construct() {
         parent::__construct();
@@ -26,7 +27,7 @@ class Navigation_Widgets extends MY_Controller {
         return $data_type;
     }
 
-    public function widget_navigation($widget = array()) {
+    public function widget_navigation($widget = []) {
         $this->load->module('core');
 
         $segmentGallery = $this->pathGallery();
@@ -41,7 +42,7 @@ class Navigation_Widgets extends MY_Controller {
                 $cur_category = $this->core->cat_content;
                 $path_categories = $this->lib_category->get_category(array_keys($cur_category['path']));
 
-                $tpl_data = array('navi_cats' => $path_categories);
+                $tpl_data = ['navi_cats' => $path_categories];
 
                 return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
 
@@ -50,12 +51,12 @@ class Navigation_Widgets extends MY_Controller {
                 $path_categories = $this->lib_category->get_category(array_keys($cur_category['path']));
 
                 // Insert Page data
-                $path_categories[] = array(
+                $path_categories[] = [
                     'path_url' => $this->core->page_content['cat_url'] . $this->core->page_content['url'],
                     'name' => $this->core->page_content['title']
-                );
+                ];
 
-                $tpl_data = array('navi_cats' => $path_categories);
+                $tpl_data = ['navi_cats' => $path_categories];
 
                 return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
 
@@ -63,10 +64,10 @@ class Navigation_Widgets extends MY_Controller {
                 if ($this->core->core_data['id'] != null) {
                     $brand = SBrandsQuery::create()->joinWithI18n(MY_Controller::getCurrentLocale())->findOneById($this->core->core_data['id']);
 
-                    $navi_cats[] = array('path_url' => 'shop/brand/', 'name' => lang('Brands', 'navigation'));
-                    $navi_cats[] = array('path_url' => 'shop/brand/' . $brand->getUrl(), 'name' => $brand->getName());
+                    $navi_cats[] = ['path_url' => 'shop/brand/', 'name' => lang('Brands', 'navigation')];
+                    $navi_cats[] = ['path_url' => 'shop/brand/' . $brand->getUrl(), 'name' => $brand->getName()];
 
-                    $tpl_data = array('navi_cats' => $navi_cats);
+                    $tpl_data = ['navi_cats' => $navi_cats];
                     return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
                 } else {
 
@@ -77,7 +78,8 @@ class Navigation_Widgets extends MY_Controller {
                 break;
             case 'compare';
                 return $this->make(lang('Compare', 'navigation'), 'shop/compare/', $widget);
-
+            case 'order';
+                return $this->make(lang('Order details', 'navigation'), 'shop/order/', $widget);
             case 'wish_list':
                 return $this->make(lang('Wish list', 'navigation'), 'shop/wish_list/', $widget);
 
@@ -107,7 +109,7 @@ class Navigation_Widgets extends MY_Controller {
                         ];
                     }
 
-                    $tpl_data = array('navi_cats' => $paths);
+                    $tpl_data = ['navi_cats' => $paths];
                     return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
                 } else {
                     throw new Exception("Category not found");
@@ -137,12 +139,12 @@ class Navigation_Widgets extends MY_Controller {
                             ];
                         }
 
-                        $path[] = array(
+                        $path[] = [
                             'path_url' => '',
                             'name' => $product->getName()
-                        );
+                        ];
 
-                        $tpl_data = array('navi_cats' => $path);
+                        $tpl_data = ['navi_cats' => $path];
                         return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
                     } else {
                         throw new Exception("Product not found");
@@ -157,38 +159,38 @@ class Navigation_Widgets extends MY_Controller {
                 foreach ($uri_segments as $segment) {
                     switch ($segment) {
                         case 'gallery':
-                            $path[] = array(
+                            $path[] = [
                                 'path_url' => $segment,
                                 'name' => lang('Gallery', 'navigation'),
-                            );
+                            ];
                             break;
                         case 'category':
-                            $path[] = array(
+                            $path[] = [
                                 'path_url' => 'gallery/category/' . $template_vars['current_category']['id'],
                                 'name' => $template_vars['current_category']['name'],
-                            );
+                            ];
                             break;
                         case 'album':
-                            $path[] = array(
+                            $path[] = [
                                 'path_url' => 'gallery/category/' . $template_vars['current_category']['id'],
                                 'name' => $template_vars['current_category']['name'],
-                            );
+                            ];
 
-                            $path[] = array(
+                            $path[] = [
                                 'path_url' => "gallery/$segment/" . $template_vars['album']['id'],
                                 'name' => $template_vars['album']['name'],
-                            );
+                            ];
                             break;
                         case 'albums':
-                            $path[] = array(
+                            $path[] = [
                                 'path_url' => "gallery/$segment/",
                                 'name' => lang('All albums', 'navigation'),
-                            );
+                            ];
                             break;
                     }
                 }
 
-                $tpl_data = array('navi_cats' => $path);
+                $tpl_data = ['navi_cats' => $path];
                 return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
 
             case 'auth':
@@ -198,64 +200,64 @@ class Navigation_Widgets extends MY_Controller {
                 foreach ($uri_segments as $segment) {
                     switch ($segment) {
                         case 'auth':
-                            $path[] = array(
+                            $path[] = [
                                 'path_url' => $segment,
                                 'name' => lang('Login', 'navigation'),
-                            );
+                            ];
                             break;
                         case 'register':
                             $path = [];
-                            $path[] = array(
+                            $path[] = [
                                 'path_url' => "auth/$segment",
                                 'name' => lang('Registration', 'navigation'),
-                            );
+                            ];
                             break;
                         case 'activate':
                             $path = [];
-                            $path[] = array(
+                            $path[] = [
                                 'path_url' => "auth/$segment",
                                 'name' => lang('Activation', 'navigation'),
-                            );
+                            ];
                             break;
                         case 'forgot_password':
                             $path = [];
-                            $path[] = array(
+                            $path[] = [
                                 'path_url' => "auth/$segment",
                                 'name' => lang('Remind password', 'navigation'),
-                            );
+                            ];
                             break;
                         case 'reset_password':
                             $path = [];
-                            $path[] = array(
+                            $path[] = [
                                 'path_url' => "auth/$segment",
                                 'name' => lang('Reset password', 'navigation'),
-                            );
+                            ];
                             break;
                         case 'change_password':
                             $path = [];
-                            $path[] = array(
+                            $path[] = [
                                 'path_url' => "auth/$segment",
                                 'name' => lang('Change password', 'navigation'),
-                            );
+                            ];
                             break;
                     }
                 }
 
-                $tpl_data = array('navi_cats' => $path);
+                $tpl_data = ['navi_cats' => $path];
                 return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
         }
     }
 
     // Template functions
 
-    public function display_tpl($file, $vars = array()) {
+    public function display_tpl($file, $vars = []) {
         $this->template->add_array($vars);
 
         $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';
         $this->template->display('file:' . $file);
     }
 
-    public function fetch_tpl($file, $vars = array()) {
+    public function fetch_tpl($file, $vars = []) {
         $this->template->add_array($vars);
 
         $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';

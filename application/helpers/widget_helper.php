@@ -14,8 +14,9 @@ if (!function_exists('widget')) {
     /**
      * Run widget
      *
-     * @param string $name - widget name
-     * @param integer $cache - cache ttl in minutes
+     * @param bool|string $name - widget name
+     * @param bool|int $cache - cache ttl in minutes
+     * @return array
      */
     function widget($name = FALSE, $cache = FALSE) {
         $ci = &get_instance();
@@ -36,7 +37,8 @@ if (!function_exists('widget')) {
             switch ($widget['type']) {
                 case 'module':
                     $subpath = isset($widget['settings']['subpath']) ? $widget['settings']['subpath'] . '/' : '';
-                    $result = $ci->load->module($widget['data'] . '/' . $subpath . $widget['data'] . '_widgets')->$widget['method']($widget);
+                    $method = $widget['method'];
+                    $result = $ci->load->module($widget['data'] . '/' . $subpath . $widget['data'] . '_widgets')->$method($widget);
                     break;
 
                 case 'html':
@@ -60,6 +62,10 @@ if (!function_exists('widget')) {
 
 if (!function_exists('widget_ajax')) {
 
+    /**
+     * @param string $name
+     * @param string $container
+     */
     function widget_ajax($name, $container) {
 
         echo "
@@ -84,6 +90,11 @@ if (!function_exists('widget_ajax')) {
 
 if (!function_exists('getWidgetName')) {
 
+    /**
+     *
+     * @param string $name
+     * @return string
+     */
     function getWidgetName($name) {
         $ci = &get_instance();
 
@@ -104,6 +115,10 @@ if (!function_exists('getWidgetName')) {
 
 if (!function_exists('getWidgeTitle')) {
 
+    /**
+     * @param string $name
+     * @return string
+     */
     function getWidgetTitle($name) {
         $ci = &get_instance();
 
@@ -118,7 +133,7 @@ if (!function_exists('getWidgeTitle')) {
 
             $settings = @unserialize($widget[settings]);
             if ($settings) {
-                $title = $title ?: $settings['title'];
+                $title = $title ? : $settings['title'];
             }
 
             return $title;
@@ -133,6 +148,9 @@ if (!function_exists('getWidgeTitle')) {
 
 if (!function_exists('getProductViewsCount')) {
 
+    /**
+     * @return int
+     */
     function getProductViewsCount() {
         $ci = &get_instance();
 

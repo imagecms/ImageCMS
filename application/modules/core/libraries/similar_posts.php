@@ -8,7 +8,8 @@ if (!defined('BASEPATH')) {
  * Class Similar_Posts
  * Search similar pages to current which is shown
  */
-class Similar_Posts {
+class Similar_Posts
+{
 
     private $defaultSettings = [
         "categories" => ['all'],
@@ -45,7 +46,7 @@ class Similar_Posts {
     }
 
     private function setPageTitle($title) {
-        $title = str_replace(array(',', ';', ':', '-', '+', '=', '@', '.', '/', '\''), '', $title);
+        $title = str_replace([',', ';', ':', '-', '+', '=', '@', '.', '/', '\''], '', $title);
         $this->pageTitle = $title;
     }
 

@@ -8,6 +8,7 @@ class Seoexpert_model_products extends CI_Model
 {
 
     public function __construct() {
+
         parent::__construct();
     }
 
@@ -17,6 +18,7 @@ class Seoexpert_model_products extends CI_Model
      * @return boolean|array
      */
     public function getAllCategories($locale = 'ru') {
+
         $sql = "SELECT  `shop_category_i18n`.`id`, `shop_category_i18n`.`name` ,  `mod_seo_products`.`cat_id` ,
                     `mod_seo_products`.`settings` ,`mod_seo_products`.`active`, `mod_seo_products`.`empty_meta`  
                     FROM  `mod_seo_products` 
@@ -30,19 +32,19 @@ class Seoexpert_model_products extends CI_Model
             }
             return $categories;
         }
-        return FALSE;
+        return false;
     }
 
     /**
      * Get product category settings by id
-     * @param integer $id
-     * @param string $locale
-     * @return boolean|array
+     * @param bool|int    $id
+     * @param bool|string $locale
+     * @return array|bool
      */
-    public function getProductCategory($id = FALSE, $locale = FALSE) {
+    public function getProductCategory($id = false, $locale = false) {
 
         if (!$id) {
-            return FALSE;
+            return false;
         }
         if (!$locale) {
             $locale = \MY_Controller::getCurrentLocale();
@@ -60,20 +62,20 @@ class Seoexpert_model_products extends CI_Model
             $category['settings'] = unserialize($category['settings']);
             return $category;
         }
-        return FALSE;
+        return false;
     }
 
     /**
      * Set product category settings
-     * @param integer $id Category ID
-     * @param array $settings
-     * @param string $locale
-     * @return boolean
+     * @param bool|int    $id       Category ID
+     * @param array       $settings
+     * @param bool|string $locale
+     * @return bool
      */
-    public function setProductCategory($id = FALSE, $settings = [], $locale = FALSE) {
+    public function setProductCategory($id = false, $settings = [], $locale = false) {
 
         if (!$id || !$settings) {
-            return FALSE;
+            return false;
         }
 
         $data = $this->db
@@ -107,18 +109,19 @@ class Seoexpert_model_products extends CI_Model
                                 ]
             );
 
-        return FALSE;
+        return false;
     }
 
     /**
      * Get category by id,locale
-     * @param integer $id
-     * @param string $locale
-     * @return boolean|array
+     * @param bool|int    $id
+     * @param bool|string $locale
+     * @return array|bool
      */
-    public function getCategoryByIdAndLocale($id = FALSE, $locale = FALSE) {
+    public function getCategoryByIdAndLocale($id = false, $locale = false) {
+
         if (!$id) {
-            return FALSE;
+            return false;
         }
         if (!$locale) {
             $locale = \MY_Controller::getCurrentLocale();
@@ -128,7 +131,7 @@ class Seoexpert_model_products extends CI_Model
         if ($query) {
             return $query;
         }
-        return FALSE;
+        return false;
     }
 
     /**
@@ -136,6 +139,7 @@ class Seoexpert_model_products extends CI_Model
      * @return boolean|array
      */
     public function getCategoriesArray() {
+
         //        $this->db->cache_on();
         $res = $this->db->where('active', '1')
             ->select('cat_id')
@@ -150,45 +154,49 @@ class Seoexpert_model_products extends CI_Model
             }
             return $ids;
         }
-        return FALSE;
+        return false;
     }
 
     /**
      * Get category name by id
-     * @param type $id
-     * @return boolean|array
+     * @param bool|type $id
+     * @return array|bool -id
      * -id
      * -name
      */
-    public function getCategoryNameAndId($id = FALSE) {
+    public function getCategoryNameAndId($id = false) {
+
         if (!$id) {
-            return FALSE;
+            return false;
         }
         $res = $this->db->where('id', $id)->get('shop_category_i18n')->row_array();
 
         if ($res) {
             return $res;
         }
-        return FALSE;
+        return false;
     }
 
     /**
      * Delete category by id
-     * @param integer $id
-     * @return boolean\
+     * @param bool|int $id
+     * @return bool
      */
-    public function deleteCategoryById($id = FALSE) {
+    public function deleteCategoryById($id = false) {
+
         if (!$id) {
-            return FALSE;
+            return false;
         }
         return $this->db->where('cat_id', $id)->delete('mod_seo_products');
     }
 
     /**
      * Change category active
-     * @return boolean
+     * @param null|int $id
+     * @return bool
      */
-    public function changeActiveCategory($id = NULL) {
+    public function changeActiveCategory($id = null) {
+
         $cat = $this->db->where('cat_id', $id)->get('mod_seo_products')->row();
         $active = $cat->active;
         $unserSettings = unserialize($cat->settings);
@@ -209,10 +217,12 @@ class Seoexpert_model_products extends CI_Model
     }
 
     /**
-     * Change use for emty meta
-     * @return boolean
+     * Change use for empty meta
+     * @param null|int $id
+     * @return bool
      */
-    public function changeEmptyMetaCategory($id = NULL) {
+    public function changeEmptyMetaCategory($id = null) {
+
         $cat = $this->db->where('cat_id', $id)->get('mod_seo_products')->row();
         $active = $cat->empty_meta;
 

@@ -8,7 +8,8 @@
  * @property CI_DB_active_record $db
  * @package ImageCMSModule
  */
-class Orders_model extends CI_Model {
+class Orders_model extends CI_Model
+{
 
     /**
      * Helper function to create all conditions
@@ -55,10 +56,7 @@ class Orders_model extends CI_Model {
      *  - delivered
      */
     public function getOrdersInfo(array $params = []) {
-        list($paidCondition, $betweenCondition) = $this->prepareConditions($params);
-
         $interval = isset($params['interval']) ? $params['interval'] : NULL;
-
 
         $query = "SELECT
                     `shop_orders`.`id`,
@@ -111,7 +109,7 @@ class Orders_model extends CI_Model {
         ";
 
         $result = $this->db->query($query);
-//                                ajax_dd($this->db->last_query());
+
         if ($result === FALSE) {
             return FALSE;
         }
@@ -124,7 +122,7 @@ class Orders_model extends CI_Model {
 
     /**
      * Information about orders grouped by users
-     * @param arra $params_ standart params
+     * @param array $params_ standard params
      * @return boolean|array
      *  - orders_count
      *  - paid
@@ -145,20 +143,21 @@ class Orders_model extends CI_Model {
             'username' => NULL,
             'order_id' => NULL,
         ];
-        foreach ($params_ as $key => $value) {
-            if (key_exists($key, $params)) {
+        foreach (array_keys($params_) as $key) {
+            if (array_key_exists($key, $params)) {
                 $params[$key] = $params_[$key];
             }
         }
 
-        $codumns = [
+        $columns = [
             'date', 'orders_count', 'paid', 'unpaid', 'delivered', 'price_sum', 'products_count', 'quantity', 'orders_ids', 'username', 'user_id'
         ];
 
+        $order = in_array(strtolower($this->input->get('order')), ['desc', 'asc']) ? $this->input->get('order') : 'DESC';
         $orderBy = NULL;
         if ($this->input->get('orderMethod') && $this->input->get('order')) {
-            if (in_array($this->input->get('orderMethod'), $codumns) && ($this->input->get('order') == "ASC" || $this->input->get('order') == "DESC")) {
-                $orderBy = "ORDER BY `" . $this->input->get('orderMethod') . "`" . $this->input->get('order') . "` ";
+            if (in_array($this->input->get('orderMethod'), $columns) && ($this->input->get('order') == "ASC" || $this->input->get('order') == "DESC")) {
+                $orderBy = "ORDER BY `" . $this->input->get('orderMethod') . "` " . $order;
             }
         }
         $orderBy = $orderBy === null ? 'ORDER BY `orders_count` DESC' : $orderBy;
@@ -230,7 +229,7 @@ class Orders_model extends CI_Model {
         ";
 
         $result = $this->db->query($query);
-        //        dd($this->db->last_query());
+
         if ($result === FALSE) {
             return FALSE;
         }

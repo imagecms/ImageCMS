@@ -2,7 +2,9 @@
 
 namespace template_manager\classes;
 
+use Exception;
 use Symfony\Component\Config\FileLocator;
+use template_manager\classes\TemplateManager;
 
 /**
  * Representing one template
@@ -77,7 +79,7 @@ class Template
 
     /**
      * Demodata full archive exists
-     * @var type
+     * @var boolean
      */
     public $demodataArchiveExists = FALSE;
 
@@ -113,6 +115,7 @@ class Template
 
     /**
      * @param string $template_name
+     * @return bool
      */
     public function demoArchiveExist($template_name) {
         $demodata_atchive = realpath('templates/' . $template_name . '/demodata');
@@ -140,9 +143,14 @@ class Template
         return true;
     }
 
+    /**
+     * @param string $name
+     * @return mixed
+     * @throws Exception
+     */
     public function __get($name) {
-        if (!key_exists($name, $this->xmlData)) {
-            throw new \Exception(langf('Class Template has no |0| property', 'template_manager', [$name]));
+        if (!array_key_exists($name, $this->xmlData)) {
+            throw new Exception(langf('Class Template has no |0| property', 'template_manager', [$name]));
         }
         $this->loadDataFromXml();
         return $this->xmlData[$name];
@@ -157,6 +165,7 @@ class Template
      * It can be component of template or core template-component
      * @param string $componentName name of component
      * @return null|TComponent
+     * @throws Exception
      */
     public function getComponent($componentName) {
         // searching in template
@@ -174,12 +183,12 @@ class Template
         }
 
         // check if it's core component
-        $tm = \template_manager\classes\TemplateManager::getInstance();
+        $tm = TemplateManager::getInstance();
         if (isset($tm->defaultComponents[$componentName])) {
             return $tm->defaultComponents[$componentName];
         }
 
-        throw new \Exception(langf('Component |0| not found', 'template_manager', [$componentName]));
+        throw new Exception(langf('Component |0| not found', 'template_manager', [$componentName]));
     }
 
     /**
@@ -188,7 +197,7 @@ class Template
      * @return array
      */
     public function getComponents($type = self::COMPONENTS_ALL) {
-        $tm = \template_manager\classes\TemplateManager::getInstance();
+        $tm = TemplateManager::getInstance();
 
         $this->loadDataFromXml();
         foreach ($this->xmlData['components'] as $componentName) {
@@ -211,7 +220,7 @@ class Template
         // template components has higher priority
         $componentsToReturn = $this->componentsInstances;
         foreach ($tm->defaultComponents as $name => $component) {
-            if (!key_exists($name, $this->componentsInstances)) {
+            if (!array_key_exists($name, $this->componentsInstances)) {
                 $componentsToReturn[$name] = $component;
             }
         }
@@ -229,7 +238,7 @@ class Template
         $locale = $locale ? $locale['identif'] : \MY_Controller::defaultLocale();
 
         if (count($licenses) > 0) {
-            if (key_exists($locale, $licenses)) {
+            if (array_key_exists($locale, $licenses)) {
                 $licenseText = file_get_contents($licenses[$locale]);
             }
             return str_replace('{template_name}', $this->label, $licenseText);
@@ -268,7 +277,8 @@ class Template
 
     /**
      * Loads the xml-file
-     * @return boolean true if xml-file exist, false otherwise
+     * @return bool true if xml-file exist, false otherwise
+     * @throws Exception
      */
     protected function loadXml() {
         $xmlPath = $this->templatePath . '/' . self::PARAMS_FILE;
@@ -277,14 +287,14 @@ class Template
         }
         $this->xmlData['xml'] = simplexml_load_file($xmlPath);
         if ($this->xmlData['xml'] === null) {
-            throw new \Exception(lang('XML-file read error', 'template_manager'));
+            throw new Exception(lang('XML-file read error', 'template_manager'));
         }
         return true;
     }
 
     /**
      * Gets main fields from xml
-     * @throws \Exception from \SimpleXMLElement
+     * @throws Exception from \SimpleXMLElement
      */
     protected function loadDataXML() {
         $attrs = $this->xmlData['xml']->attributes();
@@ -328,7 +338,7 @@ class Template
 
     /**
      * Loads all components from XML
-     * @throws \Exception from \SimpleXMLElement
+     * @throws Exception from \SimpleXMLElement
      */
     protected function loadComponentsXML() {
 

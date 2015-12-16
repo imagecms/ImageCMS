@@ -193,7 +193,7 @@ class BaseDiscount
 
     /**
      * singelton method
-     * @return object BaseDiscount
+     * @return BaseDiscount
      */
     public static function create() {
         if (!self::$object || self::$reBuild) {
@@ -331,11 +331,12 @@ class BaseDiscount
     }
 
     /**
-     * set empty array for null ellement discount
+     * set empty array for null element discount
      * @access private
      * @author DevImageCms
      * @param array $discount
      * @copyright (c) 2013, ImageCMS
+     * @return array
      */
     private function emptyToArray($discount) {
         $toEmpty = ['product', 'brand', 'category', 'certificate', 'all_order', 'comulativ', 'group_user', 'user'];

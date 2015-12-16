@@ -20,7 +20,7 @@
         "google/apiclient": ">=1.1.2",
         "greenlion/php-sql-parser": ">=4.0",
         "true/punycode": "^2.0",
-        "umisoft/phpmorphy": "^1.0",
+        "nqxcode/phpmorphy": "^1.0",
         "gettext/gettext": ">=3.5.3",
         "retailcrm/api-client-php": ">=3.0",
         "artem_c/emmet": "^1.0",

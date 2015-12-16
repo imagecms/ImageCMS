@@ -7,7 +7,8 @@
  * Email Module Admin
  * @property Cache $cache
  */
-class Admin extends BaseAdminController {
+class Admin extends BaseAdminController
+{
 
     const MAX_DEFAULT_TEMPLATES_CORPORATE = 3;
     const MAX_DEFAULT_TEMPLATES_SHOP = 7;

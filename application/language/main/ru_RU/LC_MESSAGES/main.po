@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-20 04:13+0300\n"
-"PO-Revision-Date: 2015-08-20 04:13+0300\n"
+"POT-Creation-Date: 2015-12-11 03:06+0200\n"
+"PO-Revision-Date: 2015-12-11 03:06+0200\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -1227,7 +1227,7 @@ msgstr "Ваше сообщение успешно отправлено"
 #: system/language/upload/upload_validation.php:7
 #: system/language/upload/upload_validation.php:17
 msgid "upload_invalid_filetype"
-msgstr "Не верний тип файла, который вы пытаетесь загрузить."
+msgstr "Неверний тип файла, который вы пытаетесь загрузить."
 
 #: system/language/upload/upload_validation.php:9
 msgid "upload_userfile_not_set"
@@ -1275,7 +1275,7 @@ msgstr "Возникла проблема при попытке перемест
 
 #: system/language/upload/upload_validation.php:21
 msgid "upload_no_filepath"
-msgstr "Не верный путь загрузки файла."
+msgstr "Неверный путь загрузки файла."
 
 #: system/language/upload/upload_validation.php:22
 msgid "upload_no_file_types"

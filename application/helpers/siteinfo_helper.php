@@ -1,5 +1,7 @@
 <?php
 
+use template_manager\classes\TemplateManager;
+
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
@@ -21,6 +23,7 @@ if (!function_exists('siteinfo')) {
      *    - siteinfo_logo
      *    - siteinfo_favicon
      *    - "or some contact name"
+     * @return bool|string
      */
     function siteinfo($name = NULL) {
 
@@ -48,8 +51,6 @@ if (!function_exists('siteinfo')) {
 
 }
 
-
-
 if (!function_exists('siteInfoAdditionalManipulations')) {
 
     /**
@@ -74,7 +75,7 @@ if (!function_exists('siteInfoAdditionalManipulations')) {
                 // із врахуванням активного шаблону
                 if (is_array($value)) {
                     $settings = CI::$APP->cms_base->get_settings();
-                    if (key_exists($settings['site_template'], $value)) {
+                    if (array_key_exists($settings['site_template'], $value)) {
                         $fileName = $value[$settings['site_template']];
                         if (SHOP_INSTALLED) {
                             $colorScheme = CI::$APP->load->module('template_manager')->getComponent('TColorScheme')->getColorSheme();
@@ -88,7 +89,7 @@ if (!function_exists('siteInfoAdditionalManipulations')) {
                         $key = key($value);
                         if (SHOP_INSTALLED) {
                             $colorScheme = CI::$APP->load->module('template_manager')->getComponent('TColorScheme')->getColorSheme();
-                            $template = \template_manager\classes\TemplateManager::getInstance()->getCurentTemplate();
+                            $template = TemplateManager::getInstance()->getCurentTemplate();
                             return "/templates/" . $template->name . "/css/{$colorScheme}/" . $value[$key];
                         } else {
                             return "/templates/{$settings['site_template']}/images/" . array_shift($value);

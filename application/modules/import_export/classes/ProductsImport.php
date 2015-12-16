@@ -13,7 +13,8 @@ use TrueBV\Punycode;
  *
  * @property CI_DB_active_record $db
  */
-class ProductsImport extends BaseImport {
+class ProductsImport extends BaseImport
+{
 
     /**
      * Class ProductsImport
@@ -49,13 +50,13 @@ class ProductsImport extends BaseImport {
      * Main currency
      * @var array
      */
-    private $mainCur = array();
+    private $mainCur = [];
 
     public function __construct() {
         $this->load->helper('translit');
         parent::__construct();
         $this->mainCur = $this->db
-            ->get_where('shop_currencies', array('is_default' => '1'))
+            ->get_where('shop_currencies', ['is_default' => '1'])
             ->row_array();
 
         if (!is_dir($this->imagetemppathOrigin)) {
@@ -71,6 +72,8 @@ class ProductsImport extends BaseImport {
      * @access public
      * @author Kaero
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
+     * @param array $EmptyFields
+     * @return bool
      */
     public function make($EmptyFields) {
         if (ImportBootstrap::hasErrors()) {
@@ -84,6 +87,7 @@ class ProductsImport extends BaseImport {
      * Start Core Process
      * @author Kaero
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
+     * @param array $EmptyFields
      */
     private function startCoreProcess($EmptyFields) {
         foreach (BaseImport::create()->content as $key => $node) {
@@ -113,7 +117,7 @@ class ProductsImport extends BaseImport {
     /**
      * Run Product Update Query
      * @param integer $productId
-     * @param array   $arg         Processed arguments list
+     * @param array $arg Processed arguments list
      * @param boolean $EmptyFields
      * @return array|void
      * @author Kaero
@@ -133,20 +137,20 @@ class ProductsImport extends BaseImport {
 
         if (isset($arg['name']) && $arg['name'] == '') {
             Logger::create()
-                    ->set('Колонка имени товара пустая. ID - ' . $productId . ' update. - IMPORT');
+                ->set('Колонка имени товара пустая. ID - ' . $productId . ' update. - IMPORT');
             return;
         }
 
         if (isset($arg['cat']) && $arg['cat'] == '') {
             Logger::create()
-                    ->set('Колонка категории товара пустая. ID - ' . $productId . ' update. - IMPORT');
+                ->set('Колонка категории товара пустая. ID - ' . $productId . ' update. - IMPORT');
             return;
         }
 
         /* START product Update query block */
         $prepareNames = $binds = $updateData = [];
 
-        $productAlias = array(
+        $productAlias = [
             'act' => 'active',
             'CategoryId' => 'category_id',
             'url' => 'url',
@@ -157,7 +161,7 @@ class ProductsImport extends BaseImport {
             'BrandId' => 'brand_id',
             'relp' => 'related_products',
             'mimg' => 'mainImage',
-        );
+        ];
 
         foreach ($arg as $key => $val) {
             if (isset($productAlias[$key])) {
@@ -179,19 +183,19 @@ class ProductsImport extends BaseImport {
             $updateData[] = $value . '="' . $binds[$value] . '"';
         }
 
-        $this->db->query('UPDATE shop_products SET ' . implode(',', $updateData) . ' WHERE `id`= ?', array($productId));
+        $this->db->query('UPDATE shop_products SET ' . implode(',', $updateData) . ' WHERE `id`= ?', [$productId]);
         /* END product Update query block */
 
         /* START product i18n Update query block */
-        $prepareNames = $binds = $updateData = array();
+        $prepareNames = $binds = $updateData = [];
 
-        $productAlias = array(
+        $productAlias = [
             'name' => 'name',
             'shdesc' => 'short_description',
             'desc' => 'full_description',
             'mett' => 'meta_title',
             'metd' => 'meta_description',
-            'metk' => 'meta_keywords');
+            'metk' => 'meta_keywords'];
 
         foreach ($arg as $key => $val) {
             if (isset($productAlias[$key])) {
@@ -227,15 +231,15 @@ class ProductsImport extends BaseImport {
         $this->updateSProductsCategories($arg, $productId, $EmptyFields);
         $varId = $this->runProductVariantUpdateQuery($arg, $productId, $EmptyFields);
 
-        return array(
+        return [
             'ProductId' => $productId,
-            'variantId' => $varId);
+            'variantId' => $varId];
     }
 
     /**
      * Run Product Variant Update Query
-     * @param array   $arg         Processed arguments list
-     * @param integer $productId   Product Id for alias
+     * @param array $arg Processed arguments list
+     * @param integer $productId Product Id for alias
      * @param boolean $EmptyFields
      * @return boolean
      * @access private
@@ -245,12 +249,12 @@ class ProductsImport extends BaseImport {
     private function runProductVariantUpdateQuery(&$arg, &$productId, $EmptyFields) {
         /* START product variant insert query block */
 
-        $prepareNames = $binds = $updateData = array();
+        $prepareNames = $binds = $updateData = [];
 
-        $productAlias = array(
+        $productAlias = [
             'stk' => 'stock',
             'prc' => 'price',
-            'num' => 'number');
+            'num' => 'number'];
 
         if ($arg['prc']) {
             $arg['prc'] = str_replace(',', '.', $arg['prc']);
@@ -260,7 +264,7 @@ class ProductsImport extends BaseImport {
             if (isset($productAlias[$key])) {
                 if (!$EmptyFields) {
                     //Если галочка обновления, то обновлять если поле пустое
-                    if (!isset($val) && $key != 'num') {
+                    if ('' === $val && $key != 'num') {
                         continue;
                     }
                 }
@@ -270,10 +274,10 @@ class ProductsImport extends BaseImport {
         }
 
         if ($arg['cur']) {
-            $prepareNames = array_merge($prepareNames, array('currency'));
+            $prepareNames = array_merge($prepareNames, ['currency']);
 
             $cur = $this->db->select('id')
-                ->get_where('shop_currencies', array('id' => $arg['cur']))
+                ->get_where('shop_currencies', ['id' => $arg['cur']])
                 ->row()->id;
 
             if (!$cur) {
@@ -282,8 +286,8 @@ class ProductsImport extends BaseImport {
 
             $binds = array_merge(
                 $binds,
-                array(
-                'currency' => $cur)
+                [
+                    'currency' => $cur]
             );
         }
 
@@ -292,32 +296,32 @@ class ProductsImport extends BaseImport {
             if (trim($arg['prc'])) {
                 $binds = array_merge(
                     $binds,
-                    array(
-                    'price_in_main' => $arg['prc'])
+                    [
+                        'price_in_main' => $arg['prc']]
                 );
-                $prepareNames = array_merge($prepareNames, array('price_in_main'));
+                $prepareNames = array_merge($prepareNames, ['price_in_main']);
             }
         } else {
             $binds = array_merge(
                 $binds,
-                array(
-                'price_in_main' => $arg['prc'])
+                [
+                    'price_in_main' => $arg['prc']]
             );
-            $prepareNames = array_merge($prepareNames, array('price_in_main'));
+            $prepareNames = array_merge($prepareNames, ['price_in_main']);
         }
 
         foreach ($prepareNames as $value) {
             $updateData[] = $value . '="' . $binds[$value] . '"';
         }
 
-        $this->db->query('UPDATE shop_product_variants SET ' . implode(',', $updateData) . ' WHERE `number`= ? AND `product_id` = ?', array($arg['num'], $productId));
+        $this->db->query('UPDATE shop_product_variants SET ' . implode(',', $updateData) . ' WHERE `number`= ? AND `product_id` = ?', [$arg['num'], $productId]);
 
-        $variantModel = $this->db->query('SELECT id FROM shop_product_variants WHERE `number` = ? AND `product_id` = ?', array($arg['num'], $productId))->row();
+        $variantModel = $this->db->query('SELECT id FROM shop_product_variants WHERE `number` = ? AND `product_id` = ?', [$arg['num'], $productId])->row();
         /* END product variant insert query block */
 
         /* START product variant i18n insert query block */
-        $prepareNames = $binds = $updateData = array();
-        $productAlias = (isset($arg['var'])) ? array('var' => 'name') : array('name' => 'name');
+        $prepareNames = $binds = $updateData = [];
+        $productAlias = (isset($arg['var'])) ? ['var' => 'name'] : ['name' => 'name'];
 
         foreach ($arg as $key => $val) {
             if (isset($productAlias[$key])) {
@@ -340,7 +344,7 @@ class ProductsImport extends BaseImport {
 
         $checkIdProductVariantI18n = $this->db->where('id', $variantModel->id)->where('locale', $this->languages)->get('shop_product_variants_i18n')->row()->id;
         if ($checkIdProductVariantI18n) {
-            $this->db->query('UPDATE shop_product_variants_i18n SET ' . implode(',', $updateData) . ' WHERE `locale`= ? AND `id` = ?', array($this->languages, $variantModel->id));
+            $this->db->query('UPDATE shop_product_variants_i18n SET ' . implode(',', $updateData) . ' WHERE `locale`= ? AND `id` = ?', [$this->languages, $variantModel->id]);
         } else {
             $insertData['locale'] = $this->languages;
             $insertData['id'] = $variantModel->id;
@@ -353,7 +357,7 @@ class ProductsImport extends BaseImport {
 
     /**
      * Run Product Insert Query
-     * @param array   $arg         Processed arguments list
+     * @param array $arg Processed arguments list
      * @param boolean $EmptyFields
      * @return boolean
      * @author Kaero
@@ -363,13 +367,13 @@ class ProductsImport extends BaseImport {
     private function runProductInsertQuery($arg, $EmptyFields) {
         if ($arg['name'] == '') {
             Logger::create()
-                    ->set('Колонка имени товара пустая. NUM - ' . $arg['num'] . ' insert. - IMPORT');
+                ->set('Колонка имени товара пустая. NUM - ' . $arg['num'] . ' insert. - IMPORT');
             return;
         }
 
         if ($arg['cat'] == '') {
             Logger::create()
-                    ->set('Колонка категории товара пустая. NUM - ' . $arg['num'] . ' insert. - IMPORT');
+                ->set('Колонка категории товара пустая. NUM - ' . $arg['num'] . ' insert. - IMPORT');
             return;
         }
 
@@ -387,14 +391,14 @@ class ProductsImport extends BaseImport {
         if ($result) {
             $this->updateSProductsCategories($arg, $result->id, $EmptyFields);
             $varId = $this->runProductVariantInsertQuery($arg, $result->id);
-            return array(
+            return [
                 'ProductId' => $result->id,
-                'variantId' => $varId);
+                'variantId' => $varId];
         }
 
         /* START product insert query block */
-        $prepareNames = $binds = array();
-        $productAlias = array(
+        $prepareNames = $binds = [];
+        $productAlias = [
             'act' => 'active',
             'CategoryId' => 'category_id',
             'oldprc' => 'old_price',
@@ -403,7 +407,7 @@ class ProductsImport extends BaseImport {
             'action' => 'action',
             'BrandId' => 'brand_id',
             'relp' => 'related_products',
-            'mimg' => 'mainImage');
+            'mimg' => 'mainImage'];
 
         foreach ($arg as $key => $val) {
             if (isset($productAlias[$key])) {
@@ -418,20 +422,20 @@ class ProductsImport extends BaseImport {
             }
         }
 
-        $prepareNames = array_merge($prepareNames, array('created', 'updated', 'url'));
+        $prepareNames = array_merge($prepareNames, ['created', 'updated', 'url']);
 
         $binds = array_merge(
             $binds,
-            array(
-            'created' => date('U'),
-            'updated' => date('U'),
-            'url' => 'temp')
+            [
+                'created' => date('U'),
+                'updated' => date('U'),
+                'url' => 'temp']
         );
 
         $this->db->query('INSERT INTO shop_products (' . implode(',', $prepareNames) . ') VALUES (' . substr(str_repeat('?,', count($prepareNames)), 0, -1) . ')', $binds);
         $productId = $this->db->insert_id();
 
-        $this->db->query('UPDATE shop_products SET `url`= ? WHERE `id`= ?', array($this->urlCheck($arg['url'], $productId, $arg['name']), $productId));
+        $this->db->query('UPDATE shop_products SET `url`= ? WHERE `id`= ?', [$this->urlCheck($arg['url'], $productId, $arg['name']), $productId]);
 
         // Удаляет редирект товара если таков имеется.
         $translitName = translit_url(trim($arg['name']));
@@ -444,15 +448,15 @@ class ProductsImport extends BaseImport {
         }
 
         /* START product i18n insert query block */
-        $prepareNames = $binds = array();
+        $prepareNames = $binds = [];
 
-        $productAlias = array(
+        $productAlias = [
             'name' => 'name',
             'shdesc' => 'short_description',
             'desc' => 'full_description',
             'mett' => 'meta_title',
             'metd' => 'meta_description',
-            'metk' => 'meta_keywords');
+            'metk' => 'meta_keywords'];
 
         foreach ($arg as $key => $val) {
             if (isset($productAlias[$key])) {
@@ -460,13 +464,13 @@ class ProductsImport extends BaseImport {
                 $binds[$productAlias[$key]] = $val;
             }
         }
-        $prepareNames = array_merge($prepareNames, array('locale', 'id'));
+        $prepareNames = array_merge($prepareNames, ['locale', 'id']);
 
         $binds = array_merge(
             $binds,
-            array(
-            'locale' => $this->languages,
-            'id' => $productId)
+            [
+                'locale' => $this->languages,
+                'id' => $productId]
         );
 
         $this->db->query('INSERT INTO shop_products_i18n (' . implode(',', $prepareNames) . ') VALUES (' . substr(str_repeat('?,', count($prepareNames)), 0, -1) . ')', $binds);
@@ -475,14 +479,14 @@ class ProductsImport extends BaseImport {
         $this->updateSProductsCategories($arg, $productId, $EmptyFields);
         $varId = $this->runProductVariantInsertQuery($arg, $productId);
 
-        return array(
+        return [
             'ProductId' => $productId,
-            'variantId' => $varId);
+            'variantId' => $varId];
     }
 
     /**
      * Run Product Variant Insert Query
-     * @param array   $arg       Processed arguments list
+     * @param array $arg Processed arguments list
      * @param integer $productId Product Id for alias
      * @return boolean
      * @access private
@@ -499,11 +503,11 @@ class ProductsImport extends BaseImport {
         $arg['stk'] = isset($arg['stk']) ? $arg['stk'] : 0;
 
         /* START product variant insert query block */
-        $prepareNames = $binds = array();
-        $productAlias = array(
+        $prepareNames = $binds = [];
+        $productAlias = [
             'stk' => 'stock',
             'prc' => 'price',
-            'num' => 'number');
+            'num' => 'number'];
 
         foreach ($arg as $key => $val) {
             if (isset($productAlias[$key])) {
@@ -513,20 +517,20 @@ class ProductsImport extends BaseImport {
         }
 
         $cur = $this->db->select('id')
-            ->get_where('shop_currencies', array('id' => $arg['cur']))
+            ->get_where('shop_currencies', ['id' => $arg['cur']])
             ->row()->id;
 
         if ($cur == null) {
             $cur = $this->mainCur['id'];
         }
 
-        $prepareNames = array_merge($prepareNames, array('product_id', 'currency', 'price_in_main', 'position'));
+        $prepareNames = array_merge($prepareNames, ['product_id', 'currency', 'price_in_main', 'position']);
         $binds = array_merge(
             $binds,
-            array(
-            'product_id' => $productId,
-            'currency' => $cur,
-            'price_in_main' => $arg['prc'], 0)
+            [
+                'product_id' => $productId,
+                'currency' => $cur,
+                'price_in_main' => $arg['prc'], 0]
         );
         $this->db->query(
             'INSERT INTO shop_product_variants (' . implode(',', $prepareNames) . ')
@@ -537,8 +541,8 @@ class ProductsImport extends BaseImport {
         /* END product variant insert query block */
 
         /* START product variant i18n insert query block */
-        $prepareNames = $binds = array();
-        $productAlias = (isset($arg['var'])) ? array('var' => 'name') : array('name' => 'name');
+        $prepareNames = $binds = [];
+        $productAlias = (isset($arg['var'])) ? ['var' => 'name'] : ['name' => 'name'];
         foreach ($arg as $key => $val) {
             if (isset($productAlias[$key])) {
                 array_push($prepareNames, $productAlias[$key]);
@@ -546,12 +550,12 @@ class ProductsImport extends BaseImport {
             }
         }
 
-        $prepareNames = array_merge($prepareNames, array('id', 'locale'));
+        $prepareNames = array_merge($prepareNames, ['id', 'locale']);
         $binds = array_merge(
             $binds,
-            array(
-            'id' => $productVariantId,
-            'locale' => $this->languages)
+            [
+                'id' => $productVariantId,
+                'locale' => $this->languages]
         );
         $this->db->query(
             'INSERT INTO shop_product_variants_i18n (' . implode(',', $prepareNames) . ')
@@ -565,30 +569,21 @@ class ProductsImport extends BaseImport {
 
     /**
      * Update Shop Products Categories
-     * @param array   $arg       Processed arguments list
+     * @param array $arg Processed arguments list
      * @param integer $productId Product Id for alias
-     * @return boolean|null
+     * @param $EmptyFields
+     * @return bool|null
      * @author Kaero
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
      */
     private function updateSProductsCategories(&$arg, $productId, $EmptyFields) {
-        $arr = array();
-        $arrNames = array();
-
-        if (isset($arg['cat'])) {
-            $arr[] = $this->full_path_category($arg['cat']);
-        } elseif (isset($arg['addcats'])) {
-            if (!$EmptyFields) {
-                if (!trim($arg['addcats'])) {
-                    return;
-                }
-            }
-        } else {
+        if (!isset($arg['addcats']) || ('' === trim($arg['addcats']) && !$EmptyFields)) {
             return;
         }
 
-        $this->db->delete('shop_product_categories', array('product_id' => $productId));
+        $this->db->delete('shop_product_categories', ['product_id' => $productId]);
 
+        $arrNames = [];
         foreach (explode('|', $arg['addcats']) as $k => $val) {
             $temp = explode('/', $val);
             $arrNames[$k]['category'] = end($temp);
@@ -644,9 +639,9 @@ class ProductsImport extends BaseImport {
                 if ($categoryId) {
                     $this->db->insert(
                         'shop_product_categories',
-                        array(
-                        'product_id' => $productId,
-                        'category_id' => $categoryId)
+                        [
+                            'product_id' => $productId,
+                            'category_id' => $categoryId]
                     );
                 }
             } catch (Exception $exc) {
@@ -666,13 +661,12 @@ class ProductsImport extends BaseImport {
 
     /**
      * Process Brands
-     * @return type
      * @author Kaero
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
      */
     protected function processBrands() {
         $this->load->helper('translit');
-        foreach (BaseImport ::create()->content as $key => $node) {
+        foreach (BaseImport::create()->content as $key => $node) {
             if (isset($node['brd']) && !empty($node['brd'])) {
                 $result = $this->db->query(
                     "
@@ -681,13 +675,13 @@ class ProductsImport extends BaseImport {
                 LEFT OUTER JOIN `shop_brands_i18n` AS SBrandsI18n ON SBrandsI18n.id = SBrands.id
                 WHERE SBrandsI18n.name = ? AND locale = ?
                 LIMIT 1",
-                    array($node['brd'], $this->languages)
+                    [$node['brd'], $this->languages]
                 )->row();
                 if (!($result instanceof stdClass)) {
-                    $this->db->insert('shop_brands', array('url' => translit_url($node['brd'])));
+                    $this->db->insert('shop_brands', ['url' => translit_url($node['brd'])]);
                     $brandId = $this->db->insert_id();
                     foreach ($this->allLanguages as $val) {
-                        $this->db->insert('shop_brands_i18n', array('name' => $node['brd'], 'locale' => $val, 'id' => $brandId));
+                        $this->db->insert('shop_brands_i18n', ['name' => $node['brd'], 'locale' => $val, 'id' => $brandId]);
                     }
                     BaseImport::create()->content[$key]['BrandId'] = $brandId;
                 } else {
@@ -754,14 +748,14 @@ class ProductsImport extends BaseImport {
     /**
      * Save the picture on coal in the original folder or the origin/additional
      * @param string $param url
-     * @param string $type  (origin|additional)
-     * @return boolean|string Name of file OR False
+     * @param bool|string $type (origin|additional)
+     * @return bool|string Name of file OR False
      * @access private
      */
     private function saveImgByUrl($param, $type = false) {
         if (!$type) {
             Logger::create()
-                    ->set('$type is false. saveImgByUrl() ProductsImport.php. - IMPORT');
+                ->set('$type is false. saveImgByUrl() ProductsImport.php. - IMPORT');
             return FALSE;
         }
         $path = ($type && $type == 'origin') ? './uploads/origin/' : './uploads/origin/additional/';
@@ -787,11 +781,13 @@ class ProductsImport extends BaseImport {
             case 'jpg':
             case 'jpeg':
             case 'png':
-            case 'gif': $flag = TRUE;
+            case 'gif':
+                $flag = TRUE;
                 break;
-            default: $flag = FALSE;
+            default:
+                $flag = FALSE;
                 Logger::create()
-                        ->set('The link does not lead to the image or images in the correct format ProductsImport.php. - IMPORT');
+                    ->set('The link does not lead to the image or images in the correct format ProductsImport.php. - IMPORT');
                 break;
         }
 
@@ -810,7 +806,7 @@ class ProductsImport extends BaseImport {
                     file_put_contents($path . $goodName . '.' . $format, $s);
                 } else {
                     Logger::create()
-                            ->set('Server with a picture does not answer ' . $timeoutlimit . ' sec. ProductsImport.php. - IMPORT');
+                        ->set('Server with a picture does not answer ' . $timeoutlimit . ' sec. ProductsImport.php. - IMPORT');
                 }
                 return $goodName . '.' . $format;
             }
@@ -824,9 +820,9 @@ class ProductsImport extends BaseImport {
 
     /**
      * Does not allow duplicate url
-     * @param string  $url
-     * @param integer $id
-     * @param string  $name
+     * @param string $url
+     * @param int|string $id
+     * @param string $name
      * @return string
      */
     public function urlCheck($url, $id = '', $name = '') {
@@ -855,7 +851,7 @@ class ProductsImport extends BaseImport {
      * If the file is in the folder origin/additional, then copied to the original and
      * entered into the db. If the file does not exist in the folder origin/additional
      * but already exists in the original, just entered into the database
-     * @param array   $arg
+     * @param array $arg
      * @param integer $id
      */
     public function runAditionalImages($arg, $id) {

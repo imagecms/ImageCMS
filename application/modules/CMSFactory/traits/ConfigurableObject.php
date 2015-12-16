@@ -5,13 +5,14 @@ namespace CMSFactory\traits;
 /**
  *
  */
-trait ConfigurableObject {
+trait ConfigurableObject
+{
 
     /**
      *
      * @param array $config
      */
-    public function __construct(array $config = array()) {
+    public function __construct(array $config = []) {
         $this->configure($config);
         $this->init();
     }

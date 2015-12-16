@@ -5,7 +5,8 @@ namespace Banners\Entities;
 /**
  * @author cray
  */
-class BannerEffects implements \ArrayAccess {
+class BannerEffects implements \ArrayAccess
+{
 
     protected $effects = [
         //@var boolean
@@ -106,7 +107,7 @@ class BannerEffects implements \ArrayAccess {
 
         foreach ($effects as $property => $value) {
             $value = (('on' === $value) ? 1 : $value);
-            if (key_exists($property, $this->effects)) {
+            if (array_key_exists($property, $this->effects)) {
 
                 if ($this->effectsTypes[$property]) {
                     settype($value, $this->effectsTypes[$property]);
@@ -126,7 +127,7 @@ class BannerEffects implements \ArrayAccess {
      * -------------------------------------------------------------------------
      */
     public function offsetExists($offset) {
-        return key_exists($offset, $this->effects);
+        return array_key_exists($offset, $this->effects);
     }
 
     public function offsetGet($offset) {

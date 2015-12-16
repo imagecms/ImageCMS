@@ -17,34 +17,17 @@
                 <table class="table  table-bordered table-hover table-condensed t-l_a">
                     <thead>
                     <tr>
-                        {/*}
-                        <th class="t-a_c span1">
-                                    <span class="frame_label">
-                                        <span class="niceCheck b_n">
-                                            <input type="checkbox"/>
-                                        </span>
-                                    </span>
-                        </th>
-                        { */}
                         <th class="span1">ID</th>
                         <th>{lang('Title','admin')}</th>
                         <th>{lang('Delete','admin')}</th>
                     </tr>
                     </thead>
-                    <tbody class="sortable save_positions"
+                    <tbody class="sortable save_positions ui-sortable"
                            data-url="/admin/components/run/callbacks/reorderThemes">
                     {foreach $model as $c}
                         <tr data-id="{echo $c->getId()}">
-                            {/*}
-                            <td class="t-a_c">
-                                        <span class="frame_label">
-                                            <span class="niceCheck b_n">
-                                                <input type="checkbox" name="ids" value="{echo $c->getId()}"/>
-                                            </span>
-                                        </span>
-                            </td>
-                            { */}
-                            <td>{echo $c->getId()}</td>
+                            <input type="hidden" name="ids" value="{echo $c->getId()}">
+                            <td >{echo $c->getId()}</td>
                             <td>
                                 <a href="{$ADMIN_URL}callbacks/updateTheme/{echo $c->getId()}/{$locale}"
                                    data-rel="tooltip"

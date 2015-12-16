@@ -390,9 +390,12 @@ abstract class BannerImage implements ActiveRecordInterface
 
         $cls = new \ReflectionClass($this);
         $propertyNames = [];
-        foreach($cls->getProperties() as $property) {
+        $serializableProperties = array_diff($cls->getProperties(), $cls->getProperties(\ReflectionProperty::IS_STATIC));
+
+        foreach($serializableProperties as $property) {
             $propertyNames[] = $property->getName();
         }
+
         return $propertyNames;
     }
 
@@ -1831,6 +1834,10 @@ abstract class BannerImage implements ActiveRecordInterface
 
         if (!$this->collBannerImageI18ns->contains($l)) {
             $this->doAddBannerImageI18n($l);
+
+            if ($this->bannerImageI18nsScheduledForDeletion and $this->bannerImageI18nsScheduledForDeletion->contains($l)) {
+                $this->bannerImageI18nsScheduledForDeletion->remove($this->bannerImageI18nsScheduledForDeletion->search($l));
+            }
         }
 
         return $this;

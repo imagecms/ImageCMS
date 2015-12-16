@@ -128,7 +128,7 @@ class Mod_discount extends \MY_Controller
             \CMSFactory\assetManager::create()->discount = 0;
 
             if (\mod_discount\classes\BaseDiscount::checkModuleInstall()) {
-                \mod_discount\discount_product::create()->getProductDiscount($arr_for_discount);
+                \mod_discount\Discount_product::create()->getProductDiscount($arr_for_discount);
             }
 
             if ($discount = \CMSFactory\assetManager::create()->discount) {

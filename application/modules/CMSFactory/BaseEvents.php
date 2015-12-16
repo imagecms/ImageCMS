@@ -6,19 +6,12 @@ namespace CMSFactory;
  * @abstract
  * @version CMS Event system v.1 Beta
  */
-abstract class BaseEvents {
+abstract class BaseEvents
+{
 
-    public $holder = array();
+    public $holder = [];
 
-    protected $storage = array();
-
-    /**
-     * Returns or creates and returns an BaseEvents instance.
-     * Is a static method. Chaining method allows you to simplify your syntax by connecting multiple functions.
-     * @return Events
-     * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
-     */
-    //abstract static function create();
+    protected $storage = [];
 
     /**
      * Declares a new event. The method adds the general pool of information about the event and sets it as held. The user can call the place where, in his opinion, there is a need. Will be generated key that consists of a pair of "Class: method."
@@ -26,6 +19,7 @@ abstract class BaseEvents {
      * @param string $key
      * @access public
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
+     * @return $this
      */
     public function registerEvent($data = null, $key = null) {
         if (NULL == $key) {
@@ -39,9 +33,11 @@ abstract class BaseEvents {
 
     /**
      * Run listeners for one event. After runing removes listeners.
+     * @param array $data
      * @param string $eventAlias
+     * @return $this
      */
-    public function raiseEvent($data = array(), $eventAlias) {
+    public function raiseEvent($data = [], $eventAlias) {
         $this->registerEvent($data, $eventAlias);
         $this->runFactory($eventAlias, false);
         return $this;
@@ -66,6 +62,7 @@ abstract class BaseEvents {
      * </code>
      * @param string $callback Indicates the name of the method that will be called in response to a trigger-event. The method will be matched in the class from which the requested binding.
      * @param string $alias <b>[optional]</b> The second parameter is optional if you make a call type was given an expected event.
+     * @throws \Exception
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
     public function setListener($callback, $alias = null) {
@@ -99,7 +96,7 @@ abstract class BaseEvents {
         if ($isClosure == false) {
             $this->holder[$alias][$method] = $class;
         }
-        $storageData = array('collMethod' => $method, 'collClass' => $class, 'isClosure' => $isClosure);
+        $storageData = ['collMethod' => $method, 'collClass' => $class, 'isClosure' => $isClosure];
         $this->storage[$alias]['collable'][] = $storageData;
     }
 
@@ -121,7 +118,7 @@ abstract class BaseEvents {
                 if ($value['run'] === TRUE && isset($value['collable'])) {
                     foreach ($value['collable'] as $collableKey => $run) {
                         if ($run['isClosure'] === false) {
-                            call_user_func(array($run['collClass'], $run['collMethod']), $value['params']);
+                            call_user_func([$run['collClass'], $run['collMethod']], $value['params']);
                         } else {
                             call_user_func($run['collMethod'], $value['params']);
                         }

@@ -64,7 +64,7 @@
                                                             <ul>
                                                                 {foreach $pages.pages_list as $item}
                                                                     <li><a href="#" class="page_title" data-title="{$item.title}" data-id="{$item.id}">{echo $item.title}</a></li>
-                                                                    {/foreach}
+                                                                {/foreach}
                                                             </ul>
                                                         </div>
                                                     </div>        

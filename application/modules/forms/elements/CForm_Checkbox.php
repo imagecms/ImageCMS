@@ -1,6 +1,7 @@
 <?php
 
-class CForm_Checkbox {
+class CForm_Checkbox
+{
 
     public $ci = NULL;
 
@@ -8,7 +9,7 @@ class CForm_Checkbox {
 
     public $field = NULL;
 
-    public function __construct($name, $field = array()) {
+    public function __construct($name, $field = []) {
 
         $this->form =& get_instance();
         $this->form = $this->form->load->module('forms');
@@ -28,7 +29,7 @@ class CForm_Checkbox {
 
     public function label() {
 
-        return '<label for="'.$this->name.'" class="'.$this->form->_config['label_class'].$r_class.'">&nbsp;</label>';
+        return '<label for="' . $this->name . '" class="' . $this->form->_config['label_class'] . $r_class . '">&nbsp;</label>';
     }
 
     public function setInitial($data) {
@@ -38,7 +39,7 @@ class CForm_Checkbox {
 
     public function setAttributes($data) {
 
-        if ($data == $this->field->initial OR $data == 'on' ) {
+        if ($data == $this->field->initial OR $data == 'on') {
             $this->field->checked = TRUE;
         }
     }
@@ -57,29 +58,20 @@ class CForm_Checkbox {
         }
         if ($this->form->form_validation->run($this->ci) == FALSE) {
             return form_error($this->name, ' ', ' ');
-        }
-        else {
+        } else {
             return FALSE;
         }
     }
 
     public function renderHtml() {
 
-        if (isset($this->field->initial)) {
-            $value = $this->field->initial;
-        }
-        else {
-            $value = '';
-        }
-
-        if ($this->field->checked == TRUE) {
+        if ($this->field->checked === TRUE) {
             $checked = 'checked="checked"';
-        }
-        else {
+        } else {
             $checked = '';
         }
 
-        return '<label><input type="checkbox" '.$this->form->_check_attr($this->name, $this->field).' value="'.$value.'" '.$checked.' /> '.$this->field->label.'</label>';
+        return '<label><input type="checkbox" ' . $this->form->_check_attr($this->name, $this->field) . '  ' . $checked . ' /> ' . $this->field->label . '</label>';
     }
 
 }

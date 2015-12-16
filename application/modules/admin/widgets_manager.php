@@ -1,5 +1,8 @@
 <?php
 
+use CMSFactory\Events;
+use translator\classes\Replacer;
+
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
@@ -7,6 +10,9 @@ if (!defined('BASEPATH')) {
 /**
  * Image CMS
  * Widget manager class
+ * @property Lib_admin $lib_admin
+ * @property string widgets_path
+ * @property Components $components
  */
 class Widgets_manager extends BaseAdminController
 {
@@ -21,6 +27,8 @@ class Widgets_manager extends BaseAdminController
 
         $this->load->library('lib_admin');
         $this->lib_admin->init_settings();
+
+        $this->load->module('admin/components', 'components');
     }
 
     /**
@@ -28,7 +36,7 @@ class Widgets_manager extends BaseAdminController
      */
     public function index() {
 
-        if (!$this->_is_wratible()) {
+        if (!$this->_is_writable()) {
             $this->template->assign('error', lang("Set the directory access rights to continue the work with widgets", "admin") . '<b>' . $this->widgets_path . '</b>');
             $this->template->show('widgets_list', FALSE);
             exit;
@@ -49,7 +57,7 @@ class Widgets_manager extends BaseAdminController
                 if (empty($widgets[$i]['data'])) {
                     continue;
                 }
-                $moduleInfo = $this->load->module('admin/components')->get_module_info($widgets[$i]['data']);
+                $moduleInfo = $this->components->get_module_info($widgets[$i]['data']);
                 $subpath = isset($moduleInfo['widgets_subpath']) ? $moduleInfo['widgets_subpath'] . '/' : '';
                 $modulePath = getModulePath($widgets[$i]['data']);
                 $form_file = $modulePath . $subpath . 'templates/' . $widgets[$i]['method'] . '_form.tpl';
@@ -69,11 +77,11 @@ class Widgets_manager extends BaseAdminController
         $this->template->show('widgets_list', FALSE);
     }
 
-    /*
-     * Check if widgets folder is wratible
+    /**
+     * Check if widgets folder is writable
+     * @return null|false
      */
-
-    private function _is_wratible() {
+    private function _is_writable() {
         $this->db->where('s_name', 'main');
         $this->db->select('site_template');
         $query = $this->db->get('settings')->row_array();
@@ -87,8 +95,11 @@ class Widgets_manager extends BaseAdminController
         }
     }
 
+    /**
+     * @return bool
+     */
     public function create() {
-        if (!$this->_is_wratible()) {
+        if (!$this->_is_writable()) {
             showMessage(lang("Set the directory access rights to continue the work with widgets", "admin") . '<b>' . $this->widgets_path . '</b>', '', 'r');
             exit;
         }
@@ -127,7 +138,7 @@ class Widgets_manager extends BaseAdminController
                 $findId = $this->db->insert_id();
 
                 // Copy widgets template
-                $moduleInfo = $this->load->module('admin/components')->get_module_info($data['data']);
+                $moduleInfo = $this->components->get_module_info($data['data']);
                 $subpath = isset($moduleInfo['widgets_subpath']) ? $moduleInfo['widgets_subpath'] . '/' : '';
 
                 $currentTemplate = $this->db->get('settings')->row()->site_template;
@@ -148,7 +159,7 @@ class Widgets_manager extends BaseAdminController
                     $this->load->helper('file');
 
                     $tpl_data = read_file($tpl_file);
-                    $tpl_data = \translator\classes\Replacer::getInstatce()->replaceFileLangsWithDomain($tpl_data, $query['site_template']);
+                    $tpl_data = Replacer::getInstatce()->replaceFileLangsWithDomain($tpl_data, $query['site_template']);
 
                     write_file(PUBPATH . '/templates/' . $query['site_template'] . '/widgets/' . $data['name'] . '.tpl', $tpl_data);
                     chmod(PUBPATH . '/templates/' . $query['site_template'] . '/widgets/' . $data['name'] . '.tpl', '511');
@@ -224,7 +235,7 @@ class Widgets_manager extends BaseAdminController
     public function create_tpl() {
         //cp_check_perm('widget_create');
 
-        if (!$this->_is_wratible()) {
+        if (!$this->_is_writable()) {
             $this->template->assign('error', lang("Set the directory access rights to continue the work with widgets", "admin") . '<b>' . $this->widgets_path . '</b>');
             $this->template->show('widgets_list', FALSE);
             exit;
@@ -239,6 +250,9 @@ class Widgets_manager extends BaseAdminController
         $this->template->show('widget_create', FALSE);
     }
 
+    /**
+     * @param integer $id
+     */
     public function edit($id) {
         //cp_check_perm('widget_access_settings');
 
@@ -293,7 +307,6 @@ class Widgets_manager extends BaseAdminController
                     'data' => $this->input->post('html_code'),
                     'title' => $this->input->post('title'),
                 ];
-                //                var_dumps_exit($data);
                 $this->db->where('id', $id);
                 $this->db->where('locale', $locale);
                 $this->db->update('widget_i18n', $data);
@@ -305,13 +318,11 @@ class Widgets_manager extends BaseAdminController
                     'title' => $this->input->post('title'),
                     'locale' => $locale
                 ];
-                //                var_dumps_exit($data);
 
                 $this->db->insert('widget_i18n', $data);
             }
 
             $this->lib_admin->log(lang("Widget settings edited", "admin") . " " . $data['name']);
-            //            $this->lib_admin->log(lang("Changed a widget", "admin") . " " . $data['name']);
             $this->cache->delete_all();
 
             showMessage(lang("Changes has been saved", "admin"));
@@ -321,10 +332,15 @@ class Widgets_manager extends BaseAdminController
         }
     }
 
+    /**
+     * @param integer $id
+     * @param bool|FALSE $update_info
+     * @param null|string $locale
+     * @return bool
+     */
     public function update_widget($id, $update_info = FALSE, $locale = NULL) {
         //cp_check_perm('widget_access_settings');
         $locale = $locale ? $locale : MY_Controller::defaultLocale();
-        //        var_dumps_exit($locale);
         $widget = $this->get($id);
 
         if ($widget->num_rows() == 1) {
@@ -395,14 +411,12 @@ class Widgets_manager extends BaseAdminController
         }
     }
 
-    // Update widget config
-
+    /**
+     * Update widget config
+     * @param bool|FALSE|int $id
+     * @param array $new_settings
+     */
     public function update_config($id = FALSE, $new_settings = []) {
-        //cp_check_perm('widget_access_settings');
-        //        echo "<pre>";
-        //        var_dump($id);
-        //        exit();
-
         if ($id != FALSE AND count($new_settings) > 0) {
             $settings = serialize($new_settings);
             $this->db->where('id', $id);
@@ -411,8 +425,6 @@ class Widgets_manager extends BaseAdminController
     }
 
     public function delete() {
-        //cp_check_perm('widget_delete');
-
         $name = $this->input->post('ids');
         $this->db->where_in('name', $name);
         $this->db->delete('widgets');
@@ -432,15 +444,23 @@ class Widgets_manager extends BaseAdminController
         pjax('/admin/widgets_manager/index');
     }
 
+    /**
+     * @param integer $id
+     * @return object
+     */
     public function get($id) {
         return $this->db->get_where('widgets', ['id' => $id]);
     }
 
+    /**
+     * @param integer $id
+     * @param bool|FALSE $update_info
+     * @param null|string $locale
+     */
     public function edit_html_widget($id, $update_info = FALSE, $locale = null) {
         $locale = $locale ? $locale : MY_Controller::defaultLocale();
 
         $lang = $this->db->get('languages')->result_array();
-        //cp_check_perm('widget_access_settings');
 
         $widget = $this->get($id)->row_array();
 
@@ -451,8 +471,8 @@ class Widgets_manager extends BaseAdminController
         $widget['title'] = $w_i18['title'];
 
         /** Init Event. Pre Create Category */
-        \CMSFactory\Events::create()->registerEvent(['widgetId' => $id], 'WidgetHTML:preUpdate');
-        \CMSFactory\Events::runFactory();
+        Events::create()->registerEvent(['widgetId' => $id], 'WidgetHTML:preUpdate');
+        Events::runFactory();
 
         $this->template->assign('locale', $locale);
         $this->template->assign('languages', $lang);
@@ -484,8 +504,8 @@ class Widgets_manager extends BaseAdminController
                 ->get('widgets');
 
             /** Init Event. Pre Create Category */
-            \CMSFactory\Events::create()->registerEvent(['widgetId' => $id], 'WidgetModule:preUpdate');
-            \CMSFactory\Events::runFactory();
+            Events::create()->registerEvent(['widgetId' => $id], 'WidgetModule:preUpdate');
+            Events::runFactory();
 
             $widget = $widget->row_array();
             $settings = @unserialize($widget['settings']);
@@ -506,6 +526,8 @@ class Widgets_manager extends BaseAdminController
 
     /**
      * Search for aviable widgets in all modules except admin module
+     * @param bool|string $type
+     * @return array
      */
     public function display_create_tpl($type = FALSE) {
         if ($type == 'tmodule') {
@@ -523,7 +545,7 @@ class Widgets_manager extends BaseAdminController
                 $all_widgets = [];
 
                 foreach ($modules as $module) {
-                    $moduleInfo = $this->load->module('admin/components')->get_module_info($module['name']);
+                    $moduleInfo = $this->components->get_module_info($module['name']);
                     $modulePath = getModulePath($module['name']);
 
                     $widgets_info = realpath($modulePath . 'widgets_info.php');
@@ -582,12 +604,16 @@ class Widgets_manager extends BaseAdminController
         return [];
     }
 
+    /**
+     * @param string $dir
+     * @return string
+     */
     private function get_module_name($dir) {
         if ($dir == 'core') {
             return lang("Core", "admin");
         }
 
-        $info = $this->load->module('admin/components')->get_module_info($dir);
+        $info = $this->components->get_module_info($dir);
         return $info['menu_name'];
     }
 

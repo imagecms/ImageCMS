@@ -8,14 +8,15 @@ use CI_Input;
 use CSSmin;
 use Exception;
 use Modules;
-use Patchwork\JSqueeze;
+use MY_Controller;
 use template_manager\classes\Template;
 
 /**
  * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
  * @property CI_Input $input
  */
-class assetManager {
+class assetManager
+{
 
     protected static $_BehaviorInstance;
 
@@ -31,6 +32,10 @@ class assetManager {
      */
     protected $template;
 
+    /**
+     *
+     * @var MY_Controller
+     */
     protected $ci;
 
     private function __construct() {
@@ -80,7 +85,7 @@ class assetManager {
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
     public function setData($item, $value = null) {
-        if ($value != null AND ! is_array($item)) {
+        if ($value != null AND !is_array($item)) {
             $data[$item] = $value;
         } else {
             $data = $item;
@@ -91,7 +96,7 @@ class assetManager {
 
     /**
      * @param string $item
-     * @return assetManager
+     * @return string|integer|float|array|boolean
      * @access public
      * @author
      * @copyright
@@ -182,6 +187,16 @@ class assetManager {
     }
 
     /**
+     * @param string $message
+     * @param string $title
+     * @param string $class
+     */
+    public function registerJsMessage($message, $title, $class = '') {
+        $script = showMessage($message, $title, $class, true, true);
+        CI_Controller::get_instance()->template->registerJsScript($script, 'after');
+    }
+
+    /**
      * @return assetManager
      * @access public
      * @author Kaero
@@ -192,10 +207,16 @@ class assetManager {
      */
     public function registerStyle($name, $useCompress = FALSE) {
         /** Start. Load file into template */
-        if ($useCompress) {
-            CI_Controller::get_instance()->template->registerCss('<style>' . $this->compressCss(file_get_contents($this->buildStylePath($name))) . '</style>', 'before');
-        } else {
-            CI_Controller::get_instance()->template->registerCssFile('/' . $this->buildStylePath($name), 'before');
+
+        $path = $this->buildStylePath($name);
+        if ('' != $path) {
+            if ($useCompress) {
+                if ($content = file_get_contents($path)) {
+                    CI_Controller::get_instance()->template->registerCss('<style>' . $this->compressCss($content) . '</style>', 'before');
+                }
+            } else {
+                CI_Controller::get_instance()->template->registerCssFile('/' . $path, 'before');
+            }
         }
 
         return $this;
@@ -224,7 +245,8 @@ class assetManager {
     /**
      * Render Admin view
      * @param string $tpl Template file name
-     * @return void
+     * @param bool $ignoreWrap
+     * @param bool $fetchJsTpl
      * @access public
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
@@ -236,7 +258,8 @@ class assetManager {
     /**
      * Render public view
      * @param string $tpl Template file name
-     * @return void
+     * @param bool $ignoreWrap
+     * @param bool $fetchJsTpl
      * @access public
      * @author Kaero
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
@@ -253,6 +276,9 @@ class assetManager {
      * @param boolean $admin
      */
     private function _render($tpl, $ignoreWrap = FALSE, $fetchJsTpl = TRUE, $admin = FALSE) {
+        if (CI_Controller::get_instance()->input->is_ajax_request()) {
+            $ignoreWrap = TRUE;
+        }
         if (CI_Controller::get_instance()->input->post('ignoreWrap')) {
             $ignoreWrap = TRUE;
         }
@@ -457,9 +483,9 @@ class assetManager {
     private function buildAdminTemplatePath($fileName) {
         $path = $this->getModuleFilePath(
             [
-                    sprintf('%s/assets/admin/%s.tpl', $this->getTrace(), $fileName),
-                    sprintf('%s/assets/admin/%s.tpl', CI::$APP->uri->segment(4), $fileName)
-                ]
+                sprintf('%s/assets/admin/%s.tpl', $this->getTrace(), $fileName),
+                sprintf('%s/assets/admin/%s.tpl', CI::$APP->uri->segment(4), $fileName)
+            ]
         );
         return $path;
     }
@@ -481,9 +507,9 @@ class assetManager {
         } else {
             $url = $this->getModuleFilePath(
                 [
-                sprintf('%s/assets/js/%s.js', $moduleName, $fileName),
-                sprintf('%s/assets/js/%s.js', CI::$APP->uri->segment(4), $fileName)
-                    ],
+                    sprintf('%s/assets/js/%s.js', $moduleName, $fileName),
+                    sprintf('%s/assets/js/%s.js', CI::$APP->uri->segment(4), $fileName)
+                ],
                 false
             );
         }
@@ -510,9 +536,9 @@ class assetManager {
         } else {
             $url = $this->getModuleFilePath(
                 [
-                sprintf('%s/assets/css/%s.css', $moduleName, $fileName),
-                sprintf('%s/assets/css/%s.css', CI::$APP->uri->segment(4), $fileName)
-                    ],
+                    sprintf('%s/assets/css/%s.css', $moduleName, $fileName),
+                    sprintf('%s/assets/css/%s.css', CI::$APP->uri->segment(4), $fileName)
+                ],
                 false
             );
         }
@@ -547,27 +573,19 @@ class assetManager {
     }
 
     /**
-     * Compressing js file
-     * @param string $js text of js
-     * @copyright ImageCMS (c) 2013, a.gula <a.gula@imagecms.net>
+     * @param string $js
+     * @return string
+     * @todo compress and cache
      */
     private function compressJs($js) {
-        $jz = new JSqueeze();
-
-        $minifiedJs = $jz->squeeze(
-            $js, // $text of js
-            true, // $singleLine
-            false, // $keepImportantComments
-            false   // $specialVarRx
-        );
-
-        return $minifiedJs;
+        return $js;
     }
 
     /**
      * Compressing css file
      * @param string $css text of css file
      * @copyright ImageCMS (c) 2013, a.gula <a.gula@imagecms.net>
+     * @return string
      */
     private function compressCss($css) {
         $compressor = new CSSmin();

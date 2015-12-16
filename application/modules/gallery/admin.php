@@ -10,7 +10,8 @@ if (!defined('BASEPATH')) {
  * Gallery Module _Admin_
  */
 //class Admin extends MY_Controller {
-class Admin extends BaseAdminController {
+class Admin extends BaseAdminController
+{
 
     // Gallery config
     public $conf = [
@@ -658,11 +659,19 @@ class Admin extends BaseAdminController {
 
         $size = $this->get_image_size($file_data['full_path']);
 
+        $size = byte_format(filesize($file_data['full_path']));
+
+        $size = str_replace(
+            ['bytes', 'kilobyte_abbr', 'megabyte_abbr' , 'gigabyte_abbr' , 'terabyte_abbr'],
+            ['B', 'kB','MB', 'GB', 'TB'],
+            $size
+        );
+
         $image_info = [
             'album_id' => $album_id,
             'file_name' => $file_data['raw_name'],
             'file_ext' => $file_data['file_ext'],
-            'file_size' => byte_format(filesize($file_data['full_path'])),
+            'file_size' => $size,
             'width' => $size['width'],
             'height' => $size['height'],
             'uploaded' => time(),
@@ -843,7 +852,7 @@ class Admin extends BaseAdminController {
      * @param string $field name of the input[name]
      */
     private function transform_FILES($field = 'userfile') {
-        if (!key_exists($field, $_FILES)) {
+        if (!array_key_exists($field, $_FILES)) {
             return FALSE;
         }
 

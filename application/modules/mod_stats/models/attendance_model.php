@@ -8,7 +8,8 @@
  * @property CI_DB_active_record $db
  * @package ImageCMSModule
  */
-class Attendance_model extends CI_Model {
+class Attendance_model extends CI_Model
+{
 
     /**
      * Common attendance by unique users per day(month|year)
@@ -28,7 +29,7 @@ class Attendance_model extends CI_Model {
         ];
 
         foreach ($params_ as $key => $value) {
-            if (key_exists($key, $params)) {
+            if (array_key_exists($key, $params)) {
                 $params[$key] = $params_[$key];
             }
         }

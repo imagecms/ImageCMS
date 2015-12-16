@@ -8,7 +8,8 @@
  * Image CMS
  * Emails
  */
-class CMSEmail extends MY_Controller {
+class CMSEmail extends MY_Controller
+{
 
     public function __construct() {
         parent::__construct();

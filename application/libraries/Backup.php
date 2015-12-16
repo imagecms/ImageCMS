@@ -9,7 +9,8 @@ namespace libraries;
  *
  * @author kolia
  */
-class Backup {
+class Backup
+{
 
     /**
      *
@@ -27,30 +28,30 @@ class Backup {
      * Aviable extentions
      * @var array
      */
-    protected $ext = array('sql', 'zip', 'gzip');
+    protected $ext = ['sql', 'zip', 'gzip'];
 
     /**
      * Patterns for backup file names
      * key - regex pattern, value - boolean (allow delete)
      * @var array
      */
-    protected $filePatterns = array(
+    protected $filePatterns = [
         // для файлів із авт. підбором імені.
-        '/^[a-zA-Z]{1,10}_[0-9]{2}-[0-9]{2}-[0-9]{4}_[0-9]{2}.[0-9]{2}.[0-9]{2}.(zip|gzip|sql|txt)$/' => array(
+        '/^[a-zA-Z]{1,10}_[0-9]{2}-[0-9]{2}-[0-9]{4}_[0-9]{2}.[0-9]{2}.[0-9]{2}.(zip|gzip|sql|txt)$/' => [
             'allowDelete' => TRUE,
             'type' => "default"
-        ),
+        ],
         // для старіших бекапів із обновлення
-        '/^[0-9]{10}.(zip|gzip|sql|txt)$/' => array(
+        '/^[0-9]{10}.(zip|gzip|sql|txt)$/' => [
             'allowDelete' => TRUE,
             'type' => "update"
-        ),
+        ],
         // для новіших бекапів із обновлення
-        '/^backup.(zip|gzip|sql|txt)$/' => array(
+        '/^backup.(zip|gzip|sql|txt)$/' => [
             'allowDelete' => FALSE,
             'type' => "update"
-        )
-    );
+        ]
+    ];
 
     /**
      *
@@ -86,10 +87,10 @@ class Backup {
     public function setSetting($key, $value) {
         $settings = $this->getSetting();
         if (!is_array($settings)) { //no settings yet
-            $settings = array();
+            $settings = [];
         }
         $settings[$key] = $value;
-        return $this->ci->db->update('settings', array('backup' => serialize($settings)));
+        return $this->ci->db->update('settings', ['backup' => serialize($settings)]);
     }
 
     /**
@@ -103,7 +104,7 @@ class Backup {
         if ($result) {
             $row = $result->result_array();
         } else {
-            $row = array();
+            $row = [];
         }
 
         $backupSettings = unserialize($row[0]['backup']);
@@ -111,7 +112,7 @@ class Backup {
             return NULL;
         }
         if ($key != null) {
-            if (!key_exists($key, $backupSettings)) {
+            if (!array_key_exists($key, $backupSettings)) {
                 return NULL;
             }
             return $backupSettings[$key];
@@ -122,11 +123,12 @@ class Backup {
     /**
      * Creating the backup file
      * @param string $ext extention (txt|zip|gzip)
-     * @param string $fullName (optional) filename
      * @param string $prefix
-     * @return string|false filename|FALSE
+     * @param bool|string $fullName (optional) filename
+     * @param array $params
+     * @return false|string filename|FALSE
      */
-    public function createBackup($ext, $prefix = NULL, $fullName = FALSE, $params = array()) {
+    public function createBackup($ext, $prefix = NULL, $fullName = FALSE, $params = []) {
         if (is_really_writable($this->directory)) {
             if ($prefix == null) {
                 $prefix = "sql";
@@ -137,9 +139,9 @@ class Backup {
                 $fileName = $prefix . "_" . date("d-m-Y_H.i.s");
             }
 
-            $params = array(
+            $params = [
                 'format' => $ext == 'sql' ? 'txt' : $ext,
-            );
+            ];
 
             $currentDbInstance = $this->ci->db;
 
@@ -165,15 +167,15 @@ class Backup {
      */
     private function initBackupDB() {
         // this is just all config keys
-        $configNames = array(
+        $configNames = [
             'hostname', 'username', 'password',
             'database', 'dbdriver', 'dbprefix',
             'pconnect', 'db_debug', 'cache_on',
             'cachedir', 'char_set', 'dbcollat',
             'swap_pre', 'autoinit', 'stricton',
-        );
+        ];
 
-        $config = array();
+        $config = [];
         foreach ($configNames as $key) {
             $config[$key] = $key == 'dbdriver' ? 'mysql' : $this->ci->db->$key;
         }
@@ -219,7 +221,7 @@ class Backup {
                 unlink($this->directory . "/" . $fileToDelete['filename']);
             } while ($deletEdOnSize < $deleteSize);
 
-            return array('count' => $filesCount, 'size' => $deletEdOnSize);
+            return ['count' => $filesCount, 'size' => $deletEdOnSize];
         }
         return FALSE;
     }
@@ -231,7 +233,7 @@ class Backup {
     public function getOldestFileToDelete() {
         $files_ = $this->backupFiles();
         // getting only files that allow to delete by pattern
-        $files = array();
+        $files = [];
         foreach ($files_ as $file) {
             if ($this->checkFileName($file['filename'], 'allowDelete') && $file['locked'] != 1) {
                 $files[] = $file;
@@ -262,21 +264,21 @@ class Backup {
     public function backupFiles() {
         $lockedFiles = $this->getSetting('lockedFiles');
         if (!is_array($lockedFiles)) {
-            $lockedFiles = array();
+            $lockedFiles = [];
         }
-        $files = array();
+        $files = [];
         if ($dir = opendir($this->directory)) {
             while (FALSE !== ($fileName = readdir($dir))) {
                 if ($fileName != "." & $fileName !== "..") {
                     if (TRUE === $this->checkFileName($fileName)) {
-                        $file = array(
+                        $file = [
                             'filename' => $fileName,
                             'allowDelete' => $this->checkFileName($fileName, 'allowDelete') == TRUE ? 1 : 0,
                             'type' => $this->checkFileName($fileName, 'type'),
                             'ext' => pathinfo($fileName, PATHINFO_EXTENSION),
                             'size' => filesize($this->directory . "/" . $fileName),
                             'timeUpdate' => filemtime($this->directory . "/" . $fileName)
-                        );
+                        ];
                         if ($file['type'] == "default") {
                             $prefIndex = strpos($fileName, "_");
                             $file['prefix'] = substr($fileName, 0, $prefIndex);

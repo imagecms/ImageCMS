@@ -9,11 +9,12 @@ if (!function_exists('module')) {
     /**
      * Module loader
      *
-     * @param $moduleName
+     * @param string $moduleName
      * @return DummyModule
      */
     function module($moduleName) {
-        return moduleExists($moduleName) ? CI::$APP->load->module($moduleName) : new DummyModule($moduleName);
+        $module = CI::$APP->load->module($moduleName);
+        return $module ? : new DummyModule($moduleName);
     }
 
 }
@@ -124,7 +125,7 @@ if (!function_exists('emmet_money')) {
      * @return EmmetMoneyFormatter
      */
     function emmet_money($price, $priceWrapper = null, $coinsWrapper = null, $symbolWrapper = null, $currency = null) {
-        $currency = $currency ? : Currency::create()->getMainCurrency();
+        $currency = $currency ?: Currency::create()->getMainCurrency();
         $formatter = new EmmetMoneyFormatter($price, $currency);
         $formatter->setWrappers($priceWrapper, $coinsWrapper, $symbolWrapper);
         return $formatter;
@@ -153,6 +154,63 @@ if (!function_exists('emmet_money_additional')) {
             array_push($formatters, emmet_money($convertedPrice, $priceWrapper, $coinsWrapper, $symbolWrapper, $currency));
         }
         return $formatters;
+    }
+
+}
+
+if (!function_exists('filter_except')) {
+
+    /**
+     * Remove url for filter without passed parameters
+     *
+     * @param array $data
+     * @return string
+     */
+    function filter_except($data) {
+        $get = array_except($data, CI::$APP->input->get());
+        $query = http_build_query($get);
+        $query = $query ? '?' . $query : $query;
+        return site_url('/shop/category/' . module('smart_filter')->formCategoryPath()) . $query;
+    }
+
+}
+
+if (!function_exists('array_except')) {
+
+    /**
+     * Remove array of values from array
+     *
+     * @param array $except
+     * @param array $array
+     * @return mixed
+     */
+    function array_except($except, $array) {
+        foreach ($array as $key => $value) {
+            if (is_array($value)) {
+                if (isset($except[$key]) && count(array_intersect($value, $except[$key])) > 0) {
+                    $array[$key] = array_diff($value, $except[$key]);
+                } else {
+                    $array[$key] = array_except($except, $value);
+                }
+            } elseif (array_key_exists($key, $except) && $except[$key] == $value) {
+                unset($array[$key]);
+            }
+        }
+        return $array;
+    }
+
+}
+
+if (!function_exists('flashdata')) {
+
+    /**
+     * Session flashdata
+     *
+     * @param string $key
+     * @return string
+     */
+    function flashdata($key) {
+        return CI::$APP->session->flashdata($key);
     }
 
 }

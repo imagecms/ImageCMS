@@ -51,7 +51,7 @@
                                                         </span>
                                                         Url 
                                                     </span>
-                                                    {if count($CI->db->get_where('components', array('name' => 'shop'))->row()) > 0}
+                                                    {if SHOP_INSTALLED}
                                                         <span class="frame_label no_connection m-r_15" id="prod">
                                                             <span class="niceRadio b_n">
                                                                 <input type="radio" name="redirect_type" value="product" />
@@ -105,7 +105,7 @@
                                                 </div>
                                             </div>
 
-                                            {if count($CI->db->get_where('components', array('name' => 'shop'))->row()) > 0}
+                                            {if SHOP_INSTALLED}
                                                 <div class="control-group" style="display: none" id="forProd">
                                                     <label class="control-label" for="products">{lang('Product', 'trash')}:</label>
                                                     <div class="controls">

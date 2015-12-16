@@ -7,20 +7,49 @@ if (!defined('BASEPATH')) {
 /**
  * Image CMS
  */
-class Admin extends BaseAdminController {
+class Admin extends BaseAdminController
+{
 
+    /**
+     *
+     * @var array
+     */
     private $root_menu = [];
 
+    /**
+     *
+     * @var array
+     */
     private $sub_menu = [];
 
+    /**
+     *
+     * @var array
+     */
     private $sub_menus = [];
 
+    /**
+     *
+     * @var integer
+     */
     private $padding = 0;
 
+    /**
+     *
+     * @var array
+     */
     private $menu_result = [];
 
+    /**
+     *
+     * @var array
+     */
     private $for_delete = [];
 
+    /**
+     *
+     * @var string
+     */
     private $default_lang_id;
 
     public function __construct() {
@@ -62,6 +91,8 @@ class Admin extends BaseAdminController {
 
     /**
      * List all menu items
+     *
+     * @param string $name
      */
     public function menu_item($name = '') {
 
@@ -75,7 +106,6 @@ class Admin extends BaseAdminController {
         $this->template->assign('menu_result', $this->menu_result);
         $this->template->assign('insert_id', $ins_id['id']);
         $this->template->assign('menu_title', $ins_id['main_title']);
-
         $this->template->assign('tree', $this->_printRecursiveMenuItems($this->root_menu));
 
         $this->display_tpl('main');
@@ -311,7 +341,7 @@ class Admin extends BaseAdminController {
 
         $this->load->module('admin/components');
 
-        $modules = $this->db->where('identif !=', 'mainsaas')->get('components')->result_array();
+        $modules = $this->db->get('components')->result_array();
         $id = $this->uri->segment(6);
         $id = (int) $id;
         $cnt = count($modules);
@@ -339,9 +369,9 @@ class Admin extends BaseAdminController {
     /**
      * Get menu name by ID
      *
-     * @param  integer $id
+     * @param $id integer
      * @access public
-     * @return array
+     * @return arra
      */
     public function get_name_by_id($id) {
 
@@ -357,7 +387,6 @@ class Admin extends BaseAdminController {
      */
     public function delete_item($id = null) {
 
-        //cp_check_perm('menu_edit');
         if ($this->input->post('ids')) {
             $id = $this->input->post('ids');
             foreach ($id as $i) {
@@ -397,7 +426,7 @@ class Admin extends BaseAdminController {
     /**
      * Find sub items for delete
      *
-     * @param  integer $id - item id
+     * @param $id integer - item id
      * @access private
      * @return array
      */
@@ -416,7 +445,7 @@ class Admin extends BaseAdminController {
     /**
      * Find all subitems and push in $this->sub_menus array
      *
-     * @param  integer $id  - item id
+     * @param $id integer - item id
      * @access private
      */
     private function _get_sub_items($id) {
@@ -464,7 +493,6 @@ class Admin extends BaseAdminController {
             $parents = $this->db
                 ->select('menus_data.*, menu_translate.title')
                 ->where('menu_id', $item['menu_id'])
-                ->where('menus_data.id !=', $item['id'])
                 ->join('menu_translate', 'menus_data.id = menu_translate.item_id')
                 ->where('lang_id', $this->default_lang_id)
                 ->get('menus_data')->result_array();
@@ -698,9 +726,6 @@ class Admin extends BaseAdminController {
      * Set positions
      */
     public function insert_menu_item() {
-
-        //cp_check_perm('menu_edit');
-
         $roles = $this->input->post('roles');
         if ($roles == NULL) {
             $roles = '';
@@ -976,9 +1001,6 @@ class Admin extends BaseAdminController {
     }
 
     public function create_tpl() {
-
-        //cp_check_perm('menu_create');
-
         $this->display_tpl('create_menu');
     }
 
@@ -1124,8 +1146,10 @@ class Admin extends BaseAdminController {
         }
     }
 
-    // Template functions
-
+    /**
+     *
+     * @param string $file
+     */
     public function display_tpl($file) {
 
         $file = realpath(dirname(__FILE__)) . '/templates/' . $file;
@@ -1154,10 +1178,8 @@ class Admin extends BaseAdminController {
             $n++;
         }
 
-        $menu_id = $this->db->where('id', $id)->get('menus_data')->row();
-        $menu_id = $menu_id->menu_id;
-        $menu_url = $this->db->where('id', $menu_id)->get('menus')->row();
-        $menu_url = $menu_url->name;
+        $menu_id = $this->db->where('id', $id)->get('menus_data')->row()->menu_id;
+        $menu_url = $this->db->where('id', $menu_id)->get('menus')->row()->name;
 
         $this->template->assign('langs', $langs);
         $this->template->assign('id', $id);
@@ -1167,30 +1189,30 @@ class Admin extends BaseAdminController {
     }
 
     public function translate_item($id) {
-
-        //cp_check_perm('menu_edit');
-
         $langs = $this->_get_langs();
 
         $this->db->where('item_id', $id);
         $this->db->delete('menu_translate');
 
         foreach ($langs as $lang) {
-            if ($this->input->post('lang_' . $lang['id'])) {
-                if (trim($this->input->post('lang_' . $lang['id'])) != '') {
-                    $data = [
-                        'item_id' => (int) $id,
-                        'lang_id' => $lang['id'],
-                        'title' => $this->input->post('lang_' . $lang['id']),
-                    ];
-                    $this->db->insert('menu_translate', $data);
-                }
+            $postLang = trim($this->input->post("lang_{$lang['id']}"));
+
+            if (isset($postLang)) {
+                $data = [
+                    'item_id' => (int) $id,
+                    'lang_id' => $lang['id'],
+                    'title' => $postLang,
+                ];
+                $this->db->insert('menu_translate', $data);
             }
         }
         showMessage(lang("Changes saved", 'menu'));
-        //closeWindow('translate_m_Window');
     }
 
+    /**
+     *
+     * @return array
+     */
     public function _get_langs() {
 
         $query = $this->db->get('languages');
@@ -1200,6 +1222,16 @@ class Admin extends BaseAdminController {
         } else {
             return [];
         }
+    }
+
+    public function render($viewName, array $data = [], $return = false) {
+
+        if (!empty($data)) {
+            $this->template->add_array($data);
+        }
+
+        $mod = getModContDirName('menu');
+        $this->template->show("file:application/$mod/menu/templates/$viewName");
     }
 
     public function change_hidden() {

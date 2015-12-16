@@ -1,4 +1,5 @@
 <?php
+use Propel\Runtime\Exception\PropelException;
 
 /**
  * @property CI_DB_active_record $db
@@ -38,6 +39,7 @@ class Seoexpert_model extends CI_Model
 
     /**
      * Get module settings
+     * @param string $locale
      * @return array
      */
     public function getSettings($locale = 'ru') {
@@ -48,7 +50,7 @@ class Seoexpert_model extends CI_Model
             ->row_array();
 
         $settings = unserialize($settings['settings']);
-        return $settings ? $settings : FALSE;
+        return $settings ? $settings : false;
     }
 
     /**
@@ -76,7 +78,7 @@ class Seoexpert_model extends CI_Model
 
     /**
      * Get categories by ID, NAME
-     * @param string $term id,name
+     * @param string  $term  id,name
      * @param integer $limit limit for results
      * @return boolean|array
      */
@@ -101,14 +103,16 @@ class Seoexpert_model extends CI_Model
 
     /**
      * Get top Brands in category
-     * @param integer $categoryId
-     * @param string $locale
-     * @return boolean|array
+     * @param bool|int    $categoryId
+     * @param int         $limit
+     * @param bool|string $locale
+     * @return array|bool
+     * @throws PropelException
      */
-    public function getTopBrandsInCategory($categoryId = FALSE, $limit = 3, $locale = FALSE) {
+    public function getTopBrandsInCategory($categoryId = false, $limit = 3, $locale = false) {
 
         if (!$categoryId) {
-            return FALSE;
+            return false;
         }
         if (!$locale) {
             $locale = \MY_Controller::getCurrentLocale();
@@ -134,15 +138,15 @@ class Seoexpert_model extends CI_Model
             ->order_by('count', 'DESC')
             ->get('shop_products', $limit);
 
-        return $res ? $res->result_array() : FALSE;
+        return $res ? $res->result_array() : false;
     }
 
     /**
      * Get language id
-     * @param string $locale
-     * @return boolean|int
+     * @param bool|string $locale
+     * @return bool|int
      */
-    public function getLangIdByLocale($locale = FALSE) {
+    public function getLangIdByLocale($locale = false) {
 
         if (!$locale) {
             $locale = \MY_Controller::getCurrentLocale();
@@ -153,18 +157,18 @@ class Seoexpert_model extends CI_Model
             return $res['id'];
         }
 
-        return FALSE;
+        return false;
     }
 
     /**
      * Get base settings
-     * @param integer $langId
-     * @return boolean|array
+     * @param bool|int $langId
+     * @return array|bool
      */
-    public function getBaseSettings($langId = FALSE) {
+    public function getBaseSettings($langId = false) {
 
-        if (!$langId || is_numeric($langId) == FALSE) {
-            return FALSE;
+        if (!$langId || is_numeric($langId) == false) {
+            return false;
         }
         $settings = $this->db->select('add_site_name, add_site_name_to_cat, delimiter, create_keywords, create_description')->where('s_name', 'main')->get('settings')->row_array();
         $settingsIn = $this->db->where('lang_ident', $langId)->get('settings_i18n')->row_array();
@@ -174,19 +178,19 @@ class Seoexpert_model extends CI_Model
         if ($res) {
             return $res;
         }
-        return FALSE;
+        return false;
     }
 
     /**
      * Set Base settings
-     * @param integer $langId
-     * @param array $settings
-     * @return boolean
+     * @param bool|int $langId
+     * @param array    $settings
+     * @return bool
      */
-    public function setBaseSettings($langId = FALSE, $settings) {
+    public function setBaseSettings($langId = false, $settings) {
 
         if (!$langId) {
-            return FALSE;
+            return false;
         }
         // Update shop settings table
         $mainSettings = [
@@ -216,7 +220,7 @@ class Seoexpert_model extends CI_Model
             return $this->db->insert('settings_i18n', $mainSettingsIn);
         }
 
-        return FALSE;
+        return false;
     }
 
     /**
@@ -256,7 +260,7 @@ class Seoexpert_model extends CI_Model
         $this->db->query($sql);
 
         $this->db->where('name', 'mod_seo')->update('components', ['autoload' => 1, 'in_menu' => 1]);
-        return TRUE;
+        return true;
     }
 
     /**

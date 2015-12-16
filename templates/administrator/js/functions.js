@@ -881,8 +881,12 @@ var orders = new Object({
                     vKeys = Object.keys(ui.item.variants);
 
                     $('#product_variant_name').html('');
-                    for (var i = 0; i < vKeys.length; i++)
+                    for (var i = 0; i < vKeys.length; i++){
                         $('#product_variant_name').append(new Option(ui.item.variants[vKeys[i]].name + ' - ' + ui.item.variants[vKeys[i]].price + " " + ui.item.cs, vKeys[i], true, true));
+                    }
+
+                    $("#product_variant_name").trigger("chosen:updated")
+
                 },
                 close: function () {
                     $('#product_name').val(productName);

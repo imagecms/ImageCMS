@@ -8,7 +8,8 @@
  * @property search_model $search_model
  * @package ImageCMSModule
  */
-class SearchController extends ControllerBase {
+class SearchController extends ControllerBase
+{
 
     public function __construct($some) {
         parent::__construct($some);
@@ -77,8 +78,8 @@ class SearchController extends ControllerBase {
             'dateFrom' => $dateFrom,
             'dateTo' => $dateTo,
             'interval' => CI::$APP->input->get('group') ?: 'day',
-            'swr' => CI::$APP->input->get('swr') ? (int)CI::$APP->input->get('swr') : 9,
-            'swc' => CI::$APP->input->get('swc') ? (int)CI::$APP->input->get('swc') : 9
+            'swr' => CI::$APP->input->get('swr') ? (int) CI::$APP->input->get('swr') : 9,
+            'swc' => CI::$APP->input->get('swc') ? (int) CI::$APP->input->get('swc') : 9
         ];
 
         $keywordsArray = $this->controller->search_model->queryKeywordsByDateRange($params, $params['swc']);
@@ -86,7 +87,7 @@ class SearchController extends ControllerBase {
         $queryStringWhere = $this->prepareQueryStringForSearchAnalisis($keywordsArray);
 
         if ($queryStringWhere != false) {
-            $array = $this->controller->search_model->analysis{$type}($queryStringWhere, $params);
+            $array = $this->controller->search_model->{"analysis$type"}($queryStringWhere, $params);
         } else {
             return FALSE;
         }

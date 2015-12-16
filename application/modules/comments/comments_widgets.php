@@ -9,7 +9,8 @@ if (!defined('BASEPATH')) {
  *
  * Comments widgets
  */
-class Comments_Widgets extends MY_Controller {
+class Comments_Widgets extends MY_Controller
+{
 
     private $defaults = [
         'comments_count' => 100,

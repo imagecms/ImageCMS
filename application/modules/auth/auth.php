@@ -9,7 +9,8 @@ if (!defined('BASEPATH')) {
  * auth.php
  */
 
-class Auth extends MY_Controller {
+class Auth extends MY_Controller
+{
 
     // Used for registering and changing password form validation
     public $min_username = 4;
@@ -123,16 +124,15 @@ class Auth extends MY_Controller {
                 if ($this->input->server('HTTP_X_REQUESTED_WITH') != 'XMLHttpRequest') {
                     redirect('', 'location');
                 } else {
-                    $this->template->add_array(array('is_logged_in' => $this->dx_auth->is_logged_in()));
-                    $template = $this->template->fetch('shop/default/auth_data');
-                    return json_encode(
-                        array(
-                            'close' => true,
-                            'msg' => "<div class='fancy authcomplete'><h1>" . lang('Authorization', 'auth') . "</h1><div class='comparison_slider'><div class='f-s_18 m-t_29 t-a_c'>" . lang('Authorization successfully completed', 'auth') . "</div></div></div>",
-                            'header' => $template,
-                            'reload' => 1,
-                        )
+                    $this->template->add_array(
+                        [
+                        'is_logged_in' => $this->dx_auth->is_logged_in(),
+                        'success' => true
+                        ]
                     );
+
+                    $this->template->display('login_popup');
+
                 }
             } else {
                 $this->template->assign('info_message', $this->dx_auth->get_auth_error());
@@ -173,7 +173,7 @@ class Auth extends MY_Controller {
         }
     }
 
-    public function render_min($name, $data = array()) {
+    public function render_min($name, $data = []) {
         $this->template->add_array($data);
         return $this->template->display($name . '.tpl');
     }
@@ -222,7 +222,7 @@ class Auth extends MY_Controller {
                     $this->template->show('register_success');
                     exit;
                 } else {
-                    $this->template->display('register_popup', array('succes' => TRUE));
+                    $this->template->display('register_popup', ['succes' => TRUE]);
                 }
             } else {
 
@@ -337,12 +337,15 @@ class Auth extends MY_Controller {
             $val->set_rules('confirm_new_password', lang('Repeat new password', 'auth'), 'trim|required|xss_clean');
 
             // Validate rules and change password
-            if ($val->run() AND $this->dx_auth->change_password($val->set_value('old_password'), $val->set_value('new_password'))) {
+            if ($val->run() AND $res = $this->dx_auth->change_password($val->set_value('old_password'), $val->set_value('new_password'))) {
                 $data['auth_message'] = lang('Your password was successfully changed.', 'auth');
-
                 $this->template->assign('content', $data['auth_message']);
                 $this->template->show();
             } else {
+                if ($this->input->post() && !$res) {
+                    $this->template->assign('info_message', lang('Field Old password is not correct', 'auth'));
+                }
+                $this->core->set_meta_tags(lang('Change password', 'auth'));
                 $this->template->show('change_password');
             }
         } else {

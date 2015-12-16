@@ -869,6 +869,7 @@ $(document).ready(function () {
         var clonedVarTr = $('.variantRowSample').find('tr').clone();
         var randId = Math.ceil(Math.random() * 1000000);
         var countVarRows = $('#variantHolder').children('tr').length;
+
         clonedVarTr.find('.random_id').attr('value', randId);
         clonedVarTr.find('[name="variants[mainPhoto][]"]').attr('name', 'variants[mainPhoto][' + randId + ']');
         clonedVarTr.find('[name="variants[smallPhoto][]"]').attr('name', 'variants[smallPhoto][' + randId + ']');
@@ -888,6 +889,10 @@ $(document).ready(function () {
 
         mainImageName = mainImageName ? mainImageName : '../../nophoto/nophoto.jpg'
         var imageInet = $('.variantsProduct tbody').find('tr').last().find('input[name^="variants[inetImage]"]').val();
+        if(imageInet){
+            clonedVarTr.find('[name="variants[inetImage][]"]').val(imageInet);
+            clonedVarTr.find('.changeImage').val(1);
+        }
         var src = $('.variantsProduct tbody').find('tr').last().find('.photo-block > img').attr('src');
         clonedVarTr.find('.photo-block > img').attr('src', src);
 

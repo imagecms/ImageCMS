@@ -6,6 +6,9 @@ if (!defined('BASEPATH')) {
 
 if (!function_exists('admin_or_redirect')) {
 
+    /**
+     * @return bool
+     */
     function admin_or_redirect() {
         if (PHP_SAPI == 'cli') {
             return true;
@@ -38,6 +41,10 @@ if (!function_exists('admin_or_redirect')) {
 // Check user access to control panel page
 if (!function_exists('cp_check_perm')) {
 
+    /**
+     * @param string $perm
+     * @return bool
+     */
     function cp_check_perm($perm) {
         $ci = & get_instance();
 
@@ -69,6 +76,10 @@ if (!function_exists('cp_check_perm')) {
 // Check if user permission
 if (!function_exists('check_perm')) {
 
+    /**
+     * @param string $perm
+     * @return bool
+     */
     function check_perm($perm) {
         $ci = & get_instance();
 
@@ -88,6 +99,9 @@ if (!function_exists('check_perm')) {
 
 if (!function_exists('get_perms_groups')) {
 
+    /**
+     * @return array
+     */
     function get_perms_groups() {
         $group_names = [
             'cp' => lang("Operation panel", "admin"),
@@ -114,6 +128,9 @@ if (!function_exists('get_perms_groups')) {
 
 if (!function_exists('get_permissions_array')) {
 
+    /**
+     * @return array
+     */
     function get_permissions_array() {
         $all_perms = [
             'cp_access' => lang("Access Control Panel", "admin"),

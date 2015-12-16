@@ -4,15 +4,20 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-class Base extends CI_Model {
+class Base extends CI_Model
+{
 
     public function __construct() {
         parent::__construct();
     }
 
     /**
+     * @param int $item_id
+     * @param int $status
      * @param string $module
+     * @param int $limit
      * @param string $order_by
+     * @return bool|array
      */
     public function get($item_id, $status = 0, $module, $limit = 999999, $order_by) {
         $this->db->where('item_id', $item_id);
@@ -123,9 +128,6 @@ class Base extends CI_Model {
     public function count_by_status($status = 0) {
         $this->db->where('status', $status);
         $this->db->from('comments');
-
-        //        if($status == 0)
-        //            var_dumps($this->db->get()->result_array());
 
         return $this->db->count_all_results();
     }

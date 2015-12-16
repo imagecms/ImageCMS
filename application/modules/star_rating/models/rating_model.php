@@ -1,6 +1,7 @@
 <?php
 
-class Rating_model extends CI_Model {
+class Rating_model extends CI_Model
+{
 
     public function __construct() {
 
@@ -53,16 +54,6 @@ class Rating_model extends CI_Model {
         $this->db->set('settings', $settings);
         $this->db->where('name', 'star_rating');
         $this->db->update('components');
-    }
-
-    /**
-     * Check is shop installed
-     * @return type
-     */
-    public function is_shop() {
-
-        $res = $this->db->where('name', 'star_rating')->get('components')->row();
-        return $res;
     }
 
 }

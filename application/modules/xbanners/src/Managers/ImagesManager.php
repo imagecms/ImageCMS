@@ -16,7 +16,8 @@ use Propel\Runtime\ActiveQuery\Criteria;
  * Date: 19.03.15
  * Time: 15:46
  */
-class ImagesManager {
+class ImagesManager
+{
 
     /**
      * Path name for origins images folder without uploads path
@@ -36,7 +37,7 @@ class ImagesManager {
     /**
      * Image upload file allowed types
      */
-    const IMAGES_UPLOAD_ALLOWED_TYPES = 'jpg|gif|png';
+    const IMAGES_UPLOAD_ALLOWED_TYPES = 'jpg|gif|png|jpeg';
 
     /**
      * Image file max size
@@ -245,10 +246,10 @@ class ImagesManager {
 
         if ($error_message) {
             echo json_encode(
-                array(
+                [
                     "status" => false,
                     "errorMessage" => $error_message,
-                )
+                ]
             );
 
             return FALSE;

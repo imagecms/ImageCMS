@@ -17,19 +17,20 @@ use CI_DB_active_record;
  *
  * @author kolia
  */
-class ModuleSettings {
+class ModuleSettings
+{
 
     /**
      *
      * @var array
      */
-    protected static $instances = array();
+    protected static $instances = [];
 
     /**
      *
      * @var array
      */
-    protected $settings = array();
+    protected $settings = [];
 
     /**
      *
@@ -142,6 +143,7 @@ class ModuleSettings {
      * Returns specified setting item
      * @param string (optional) $key config key. if not specified all settings will be returned
      * @param string $key
+     * @return array|null
      */
     public function get($key = null) {
         if ($key == null) {

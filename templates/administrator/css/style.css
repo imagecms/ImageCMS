@@ -351,6 +351,11 @@ form > *{font-size: 12px;}
 .form-horizontal .control-group{margin-bottom: 10px;}
 .ctext{padding-top: 4px;}
 
+.form-horizontal .table-full-labels .control-label.control-label-full-w {float:none;}
+.form-horizontal .table-full-labels .controls.controls-full-width {margin-left: 17px !important;}
+.form-horizontal .table-full-labels .control-label {width: 170px !important;}
+.form-horizontal .table-full-labels .controls {margin-left: 180px !important;}
+
 .btn-primary [class^="icon-"],
 .btn-primary [class*=" icon-"],
 .nav > .active > a > [class^="icon-"],
@@ -631,6 +636,7 @@ span.must{color:red;}
 }
 .modal .chosen-container-single.chosen-with-drop .chosen-drop {left: 0; position: relative;}
 .modal.modalSelect, .modal.modalSelect .modal-body {overflow: visible;}
+.modal.modalSelect.modal_edit_menu_item .modal-body {overflow-y: auto; margin-left: 0 !important;}
 .chosen-container-single .chosen-single div{width: 26px;height: 26px;background: #f0f0f0!important;border-left: 1px solid #dedede!important;}
 .chosen-container-single .chosen-single span{margin-right: 29px;}
 .chosen-container-single .chosen-single div b{width: 7px; height: 5px; background-position: -2px -7px; background-repeat: no-repeat; display: block; z-index: 2; position: absolute; top: 50%; left: 50%; margin-left: -3px; margin-top: -3px;}

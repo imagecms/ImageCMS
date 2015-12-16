@@ -11,7 +11,8 @@ if (!defined('BASEPATH')) {
  * @property Forms $forms
  * @property Cfcm $cfcm
  */
-class Admin extends BaseAdminController {
+class Admin extends BaseAdminController
+{
 
     public function __construct() {
         parent::__construct();
@@ -61,15 +62,15 @@ class Admin extends BaseAdminController {
 
         if ($this->input->post()) {
 
-            if (empty($_POST['field_name'])) {
+            if (!$this->input->post('field_name')) {
                 showMessage(lang("Specify the field name", 'cfcm'), false, 'r');
                 exit;
             }
-            if (empty($_POST['label'])) {
+            if (!$this->input->post('label')) {
                 showMessage(lang("Specify <b>Label</b> field", 'cfcm'), false, 'r');
                 exit;
             }
-            if (!preg_match("/^[0-9a-z_]+$/i", $_POST['field_name'])) {
+            if (!preg_match("/^[0-9a-z_]+$/i", $this->input->post('field_name'))) {
                 showMessage(lang("Field Name cant contain only Latin alphanumeric characters", 'cfcm'), false, 'r');
                 exit;
             }
@@ -106,7 +107,7 @@ class Admin extends BaseAdminController {
                         }
                     }
 
-                    $this->lib_admin->log(lang("Field created", "cfcm") . ' - field_' . $_POST['field_name']);
+                    $this->lib_admin->log(lang("Field created", "cfcm") . ' - field_' . $this->input->post('field_name'));
                     showMessage(lang("Field created", 'cfcm'));
 
                     if ($this->input->post('action') === 'close') {
@@ -200,7 +201,7 @@ class Admin extends BaseAdminController {
         if ($field->num_rows() == 1) {
             $field = $field->row();
             $field_data = unserialize($field->data);
-            $form = $this->load->module('cfcm/cfcm_forms')->edit_field($field->type);
+            $form = $this->load->module('cfcm/cfcm_forms')->edit_field($this->input->post('type')?:$field->type);
 
             $form->title = lang("Field editing", 'cfcm') . ': ' . $field->label;
             $form->action = $this->get_url('edit_field/' . $name);
@@ -230,6 +231,7 @@ class Admin extends BaseAdminController {
                 $groups = $data['groups'];
                 $data['field_name'] = end($this->uri->segment_array());
 
+                $this->db->delete('content_fields_groups_relations', ['field_name' => $data['field_name']]);
                 if (count($groups)) {
                     foreach ($groups as $group) {
                         $toInsert[] = ['field_name' => $data['field_name'],
@@ -237,9 +239,6 @@ class Admin extends BaseAdminController {
                         ];
                     }
 
-                    if (count($toInsert)) {
-                        $this->db->delete('content_fields_groups_relations', ['field_name' => $data['field_name']]);
-                    }
                     $this->db->insert_batch('content_fields_groups_relations', $toInsert);
                 }
 
@@ -298,7 +297,7 @@ class Admin extends BaseAdminController {
         $form->title = lang("Creating a group", 'cfcm');
         $form->type = "group";
         if ($this->input->post()) {
-            if (empty($_POST['name'])) {
+            if (!$this->input->post('name')) {
                 showMessage(lang("Specify the group name", 'cfcm'), false, 'r');
                 exit;
             }
@@ -411,10 +410,10 @@ class Admin extends BaseAdminController {
     }
 
     public function save_weight() {
-        if (count($_POST['fields_names']) > 0) {
-            foreach ($_POST['fields_names'] as $k => $v) {
+        if (count($this->input->post('fields_names')) > 0) {
+            foreach ($this->input->post('fields_names') as $k => $v) {
                 $name = (string) substr($v, 5);
-                $weight = (int) $_POST['fields_pos'][$k];
+                $weight = (int) $this->input->post('fields_pos')[$k];
 
                 $this->db->where('field_name', $name);
                 $this->db->update('content_fields', ['weight' => $weight]);

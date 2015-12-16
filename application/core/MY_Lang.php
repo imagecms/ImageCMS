@@ -1,5 +1,7 @@
 <?php
 
+use translator\classes\PoFileManager;
+
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
@@ -13,7 +15,8 @@ if (!defined('BASEPATH')) {
  * @version $Id$
  * @access public
  */
-class MY_Lang extends MX_Lang {
+class MY_Lang extends MX_Lang
+{
 
     public $gettext_language;
 
@@ -146,7 +149,7 @@ class MY_Lang extends MX_Lang {
      * @param    string $origin the language line
      * @return    string
      */
-    public function line($origin = '', $params = FALSE) {
+    public function line($origin = '') {
         if (self::isNewPHP()) {
             return $this->getTranslationForNewPHP($origin);
         }
@@ -176,7 +179,7 @@ class MY_Lang extends MX_Lang {
 
     /**
      * Returns translation string
-     * @param $origin - string to translate
+     * @param string $origin - string to translate
      * @param string $domain - mo-file identifier
      * @return string
      */
@@ -189,17 +192,17 @@ class MY_Lang extends MX_Lang {
      * @return bool
      */
     protected static function isNewPHP() {
-        return (version_compare(PHP_VERSION, '5.5.0') >= 0 && strtoupper(substr(PHP_OS, 0, 3)) === 'WIN');
+        return version_compare(PHP_VERSION, '5.5.0') >= 0;
     }
 
     /**
      * Get translation for php version less then 5.5.0
-     * @param $origin
+     * @param string $origin
      * @param string $domain
      * @return string
      */
     protected static function getTranslationForOldPHP($origin, $domain = "main") {
-        $domain = (new translator\classes\PoFileManager())->prepareDomain($domain);
+        $domain = (new PoFileManager())->prepareDomain($domain);
 
         self::switchDomain($domain);
 
@@ -212,7 +215,7 @@ class MY_Lang extends MX_Lang {
 
     /**
      * Get translation for php version more then on equal 5.5.0
-     * @param $origin
+     * @param string $origin
      * @param string $domain
      * @return string
      */

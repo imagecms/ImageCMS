@@ -2,6 +2,8 @@
 
 namespace cmsemail\classes;
 
+use CMSFactory\Events;
+
 /**
  * Image CMS
  * Module Wishlist
@@ -12,7 +14,8 @@ namespace cmsemail\classes;
  * @property \CI_Input $input
  * @version 1.0 big start!
  */
-class ParentEmail extends \MY_Controller {
+class ParentEmail extends \MY_Controller
+{
 
     /**
      * Email sender name
@@ -135,57 +138,58 @@ class ParentEmail extends \MY_Controller {
      * send email
      *
      * @param string $send_to - recepient email
-     * @param string $patern_name - email patern  name
+     * @param string $pattern_name - email patern  name
      * @param array $variables - variables to raplase in message:
      *   $variables = array('$user$' => 'UserName')
+     * @param bool|string $attachment
      * @return bool
      */
-    public function sendEmail($send_to, $patern_name, $variables, $attachment = FALSE) {
+    public function sendEmail($send_to, $pattern_name, $variables, $attachment = FALSE) {
         //loading CodeIgniter Email library
         $this->load->library('email');
         $locale = \MY_Controller::getCurrentLocale();
 
         //Getting settings
-        $patern_settings = $this->cmsemail_model->getPaternSettings($patern_name);
+        $pattern_settings = $this->cmsemail_model->getPaternSettings($pattern_name);
         $default_settings = $this->cmsemail_model->getSettings($locale);
 
         //Prepare settings into correct array for initialize library
-        if ($patern_settings) {
-            foreach ($patern_settings as $key => $value) {
+        if ($pattern_settings) {
+            foreach ($pattern_settings as $key => $value) {
                 if (!$value) {
                     if ($default_settings[$key]) {
-                        $patern_settings[$key] = $default_settings[$key];
+                        $pattern_settings[$key] = $default_settings[$key];
                     }
                 }
             }
         }
-        $default_settings['type'] = strtolower($patern_settings['type']);
-        $patern_settings['protocol'] = $default_settings['protocol'];
+        $default_settings['type'] = strtolower($pattern_settings['type']);
+        $pattern_settings['protocol'] = $default_settings['protocol'];
         if (strtolower($default_settings['protocol']) == strtolower("SMTP")) {
-            $patern_settings['smtp_port'] = $default_settings['port'];
-            $patern_settings['smtp_host'] = $default_settings['smtp_host'];
-            $patern_settings['smtp_user'] = $default_settings['smtp_user'];
-            $patern_settings['smtp_pass'] = $default_settings['smtp_pass'];
-            $patern_settings['smtp_crypto'] = $default_settings['encryption'];
+            $pattern_settings['smtp_port'] = $default_settings['port'];
+            $pattern_settings['smtp_host'] = $default_settings['smtp_host'];
+            $pattern_settings['smtp_user'] = $default_settings['smtp_user'];
+            $pattern_settings['smtp_pass'] = $default_settings['smtp_pass'];
+            $pattern_settings['smtp_crypto'] = $default_settings['encryption'];
             $this->email->set_newline("\r\n");
         }
 
         //Initializing library settings
-        $this->_set_config($patern_settings);
+        $this->_set_config($pattern_settings);
 
         //Sending user email if active in options
-        if ($patern_settings['user_message_active']) {
-            $this->from_email = $patern_settings['from_email'];
-            $this->from = $patern_settings['from'];
+        if ($pattern_settings['user_message_active']) {
+            $this->from_email = $pattern_settings['from_email'];
+            $this->from = $pattern_settings['from'];
             $this->send_to = $send_to;
-            $this->theme = $patern_settings['theme'];
-            $this->message = $this->replaceVariables($patern_settings['user_message'], $variables);
+            $this->theme = $pattern_settings['theme'];
+            $this->message = $this->replaceVariables($pattern_settings['user_message'], $variables);
 
             if (!$this->_sendEmail()) {
                 $this->errors[] = lang('User message doesnt send', 'cmsemail');
             } else {
                 //Registering event is success
-                \CMSFactory\Events::create()->registerEvent(
+                Events::create()->registerEvent(
                     [
                     'from' => $this->from,
                     'from_email' => $this->from_email,
@@ -195,29 +199,29 @@ class ParentEmail extends \MY_Controller {
                         ],
                     'ParentEmail:userSend'
                 );
-                \CMSFactory\Events::runFactory();
+                Events::runFactory();
             }
         }
         //Sending administrator email if active in options
-        if ($patern_settings['admin_message_active']) {
-            $this->from_email = $patern_settings['from_email'];
-            $this->from = $patern_settings['from'];
+        if ($pattern_settings['admin_message_active']) {
+            $this->from_email = $pattern_settings['from_email'];
+            $this->from = $pattern_settings['from'];
 
-            if ($patern_settings['admin_email']) {
-                $this->send_to = $patern_settings['admin_email'];
+            if ($pattern_settings['admin_email']) {
+                $this->send_to = $pattern_settings['admin_email'];
             } else {
                 $this->send_to = $default_settings['admin_email'];
             }
 
-            $this->theme = $patern_settings['theme'];
-            $this->message = $this->replaceVariables($patern_settings['admin_message'], $variables);
+            $this->theme = $pattern_settings['theme'];
+            $this->message = $this->replaceVariables($pattern_settings['admin_message'], $variables);
             $this->attachment = $attachment;
 
             if (!$this->_sendEmail()) {
                 $this->errors[] = lang('User message doesnt send', 'cmsemail');
             } else {
                 //Registering event is success
-                \CMSFactory\Events::create()->registerEvent(
+                Events::create()->registerEvent(
                     [
                     'from' => $this->from,
                     'from_email' => $this->from_email,
@@ -227,16 +231,12 @@ class ParentEmail extends \MY_Controller {
                         ],
                     'ParentEmail:adminSend'
                 );
-                \CMSFactory\Events::runFactory();
+                Events::runFactory();
             }
         }
 
         //Returning status
-        if ($this->errors) {
-            return FALSE;
-        } else {
-            return TRUE;
-        }
+        return $this->errors ? FALSE : TRUE;
     }
 
     /**

@@ -8,11 +8,12 @@ namespace CMSFactory;
  * @package CMSFactory
  * @copyright ImageCMS (c) 2013, <dev@imagecms.net>
  */
-class Events extends BaseEvents {
+class Events extends BaseEvents
+{
 
     protected static $_BehaviorInstance;
 
-    public $storage = array();
+    public $storage = [];
 
     public $key = null;
 

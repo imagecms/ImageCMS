@@ -309,7 +309,7 @@
                             {/if}
                         </ul>
                     </div>
-                    {if MAINSITE}
+                    {if MAINSITE &&  $CI->load->module('mainsaas')->getDomainBiling() !== 'http://premmerce.com'}
                         <div class="span3" style="margin-left: 0;float: right;">
                             <a href="{echo $CI->load->module('mainsaas')->getThemesUrl()}" class="frame-add-new-templ">
                                 <span class="helper"></span>

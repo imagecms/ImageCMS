@@ -2,7 +2,8 @@
 
 namespace admin_menu\classes;
 
-class MenuCallbacks {
+class MenuCallbacks
+{
 
     private function __construct() {
 
@@ -22,7 +23,7 @@ class MenuCallbacks {
      * @param array $data
      * @return string
      */
-    public function getNewOrdersCount($data = array()) {
+    public function getNewOrdersCount($data = []) {
         if (SHOP_INSTALLED) {
             $orders_count = count($data) ? array_shift($data) : \SOrdersQuery::create()->filterByStatus(1)->find()->count();
 
@@ -38,7 +39,7 @@ class MenuCallbacks {
      * @param array $data
      * @return string
      */
-    public function getNewCallbacksCount($data = array()) {
+    public function getNewCallbacksCount($data = []) {
 
         //        SELECT `id` FROM `shop_callbacks_statuses` WHERE `is_default`=1;
 
@@ -59,7 +60,7 @@ class MenuCallbacks {
      * @param array $data
      * @return string
      */
-    public function getNewNotificationsCount($data = array()) {
+    public function getNewNotificationsCount($data = []) {
         if (SHOP_INSTALLED) {
             if (count($data)) {
                 $newNotificationsCount = array_shift($data);
@@ -77,14 +78,17 @@ class MenuCallbacks {
      * @param array $data
      * @return string
      */
-    public function getNewCommentsCount($data = array()) {
+    public function getNewCommentsCount($data = []) {
         if (SHOP_INSTALLED) {
             if (count($data)) {
                 $waitingForModerationCount = array_shift($data);
             } else {
-                 $waitingForModerationCount = \CI::$APP->load->module('comments')->getWaitingForMaderationCount();
-                //                $waitingForModerationCount = $waitingForModeration ?
+                $waitingForModerationCount = 0;
+                if (\CI::$APP->db->where('name', 'comments')->get('components')->result_array()) {
+                    $waitingForModerationCount = \CI::$APP->load->module('comments')->getWaitingForMaderationCount();
+                }
             }
+
             return ($waitingForModerationCount > 0 ) ? '<span class="menu-counter">' . $waitingForModerationCount . '</span>' : '';
         }
         return '';

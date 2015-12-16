@@ -8,7 +8,8 @@
  * @property CI_DB_active_record $db
  * @package ImageCMSModule
  */
-class Products_model extends \CI_Model {
+class Products_model extends \CI_Model
+{
 
     protected $locale;
 
@@ -35,7 +36,7 @@ class Products_model extends \CI_Model {
         $brands = $this->getAllBrands();
         if (is_array($brandIds)) {
             foreach ($brands as $id => $name) {
-                if (!key_exists($id, $brandIds)) {
+                if (!array_key_exists($id, $brandIds)) {
                     unset($brands[$id]);
                 }
             }

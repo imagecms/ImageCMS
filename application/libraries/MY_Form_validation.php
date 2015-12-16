@@ -22,7 +22,12 @@ class MY_Form_validation extends CI_Form_validation {
     public function run($module = '', $group = '') {
         (is_object($module)) AND $this->CI = & $module;
         $result = parent::run($group);
-        CI::$APP->session->set_flashdata(['_error_array' => $this->_error_array, '_field_data' => $this->_field_data]);
+        if(!CI::$APP->input->is_ajax_request()){
+            CI::$APP->session->set_flashdata([
+                '_error_array' => $this->_error_array,
+                '_field_data' => $this->_field_data
+            ]);
+        }
         return $result;
     }
 

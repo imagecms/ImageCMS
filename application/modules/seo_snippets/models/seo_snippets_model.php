@@ -4,7 +4,8 @@
  * @property CI_DB_active_record $db
  * @property DX_Auth $dx_auth
  */
-class Seo_snippets_model extends CI_Model {
+class Seo_snippets_model extends CI_Model
+{
 
     public function __construct() {
         parent::__construct();

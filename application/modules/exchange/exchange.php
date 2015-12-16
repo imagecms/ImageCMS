@@ -4,6 +4,7 @@
 
 use exchange\classes\VariantCharacteristics;
 use CMSFactory\ModuleSettings;
+use libraries\Backup;
 
 /**
  * Exchange Class
@@ -16,7 +17,10 @@ use CMSFactory\ModuleSettings;
 class Exchange extends \MY_Controller
 {
 
-    /** array which contains 1c settings  */
+    /**
+     * array which contains 1c settings
+     * @var array|null
+     */
     private $my_config = [];
 
     /** default directory for saving files from 1c */
@@ -25,12 +29,18 @@ class Exchange extends \MY_Controller
     /** contains default locale */
     private $locale;
 
+    /**
+     * @var array
+     */
     private $allowed_image_extensions = [];
 
     private $login;
 
     private $password;
 
+    /**
+     * @var array
+     */
     private $brand = [];
 
     /** Runtime variable */
@@ -135,7 +145,7 @@ class Exchange extends \MY_Controller
      */
     protected function makeDBBackup() {
         if (is_really_writable(BACKUPFOLDER)) {
-            \libraries\Backup::create()->createBackup("zip", "exchange");
+            Backup::create()->createBackup("zip", "exchange");
         } else {
             $this->error_log(langf('Can not create a database snapshot, check the folder {0} on writing possibility', 'exchange', [BACKUPFOLDER]));
         }
@@ -143,7 +153,7 @@ class Exchange extends \MY_Controller
 
     /**
      * get 1c settings from modules table
-     * @return
+     * @return array|null
      */
     private function get1CSettings() {
         return ModuleSettings::ofModule('exchange')->get();
@@ -192,7 +202,7 @@ class Exchange extends \MY_Controller
     /**
      * Error loging methods
      * @param string $error
-     * @param string $send_email
+     * @param bool|string $send_email
      */
     public function error_log($error, $send_email = false) {
         $intIp = $_SERVER["REMOTE_ADDR"];
@@ -369,7 +379,7 @@ class Exchange extends \MY_Controller
     /**
      * loading xml file to $this->xml variable
      * uses simple xml extension
-     * @param type $file
+     * @param string $file
      * @return null|SimpleXMLElement
      */
     private function _readXmlFile($file) {
@@ -575,6 +585,8 @@ class Exchange extends \MY_Controller
      * creating xml document with orders to make possible for 1c to grab it
      */
     private function command_sale_query() {
+        $xml_order = '';
+
         if ($this->check_perm() === true) {
             $this->load->helper('html');
             $model = SOrdersQuery::create()->findByStatus($this->my_config['userstatuses']);

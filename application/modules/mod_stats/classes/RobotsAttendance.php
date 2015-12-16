@@ -6,7 +6,8 @@
  * @copyright (c) 2014, ImageCMS
  * @package ImageCMSModule
  */
-class RobotsAttendance {
+class RobotsAttendance
+{
 
     const PAGE = 1;
     const CATEGORY = 2;
@@ -123,7 +124,7 @@ class RobotsAttendance {
      * @return boolean
      */
     public function getRobotName($robotId) {
-        if (key_exists($robotId, $this->robots)) {
+        if (array_key_exists($robotId, $this->robots)) {
             return $this->robots[$robotId];
         }
         return FALSE;
