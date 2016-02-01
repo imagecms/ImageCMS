@@ -23,6 +23,6 @@ Open source php CMS based on CodeIgniter
   * /application/backups
 
 ###Composer packages
-- open openserver termainl - http://prntscr.com/833pmi
+- open openserver terminal - http://prntscr.com/833pmi
 - cd to project folder
 - run “composer_update.bat”. Note: if you’ll see this http://prntscr.com/833tvj kind of message while installing just ignore it and push enter
