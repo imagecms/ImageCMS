@@ -1,13 +1,15 @@
 <?php
 
 use Currency\Currency;
+use Propel\Runtime\Collection\ObjectCollection;
 use Propel\Runtime\Exception\PropelException;
 
 /**
  * @property CI_DB_active_record $db
  * @property DX_Auth $dx_auth
  */
-class Ymarket_model extends CI_Model {
+class Ymarket_model extends CI_Model
+{
 
     const DEFAULT_TYPE = 1;
     const PRICE_UA_TYPE = 2;
@@ -16,6 +18,7 @@ class Ymarket_model extends CI_Model {
     public $settings;
 
     public function __construct() {
+
         parent::__construct();
     }
 
@@ -58,8 +61,9 @@ class Ymarket_model extends CI_Model {
      * @return array Products and products variants
      */
     public function getProducts($idsCat, $ignoreSettings = false, $brandIds) {
+
         $products = SProductsQuery::create()
-                ->distinct();
+            ->distinct();
         if (!$ignoreSettings) {
             if ($idsCat) {
                 $products->filterByCategoryId($idsCat);
@@ -82,11 +86,12 @@ class Ymarket_model extends CI_Model {
 
     /**
      * Generates a name of the product depending on the name and version of the product name.
-     * @param str $productName product name
-     * @param str $variantName variant name
+     * @param string $productName product name
+     * @param string $variantName variant name
      * @return string
      */
     public function forName($productName, $variantName) {
+
         if (encode($productName) == encode($variantName)) {
             $name = htmlspecialchars($productName);
         } else {
@@ -96,30 +101,32 @@ class Ymarket_model extends CI_Model {
     }
 
     /**
-     * @param SProductVariants $products - products collection
+     * @param ObjectCollection $products - products collection
      * @return array
      * @throws PropelException
      */
     public function getProperties($products) {
+
         $productsIds = [];
+        /** @var SProductVariants $product */
         foreach ($products as $product) {
             $productsIds[] = $product->getProductId();
         }
         $properties = SPropertiesQuery::create()
-                ->joinSProductPropertiesData()
-                ->joinWithI18n(MY_Controller::getCurrentLocale())
-                ->select(['SProductPropertiesData.ProductId', 'SProductPropertiesData.Value', 'SPropertiesI18n.Name'])
-                ->where('SProductPropertiesData.ProductId IN ?', $productsIds)
-                ->where('SProductPropertiesData.Locale = ?', MY_Controller::getCurrentLocale())
-                ->withColumn('SProductPropertiesData.ProductId', 'ProductId')
-                ->withColumn('SProductPropertiesData.Value', 'Value')
-                ->withColumn('SPropertiesI18n.Name', 'Name')
-                ->where('SProperties.Active = ?', 1)
-                ->where("SProductPropertiesData.Value != ?", '')
-                ->where('SProperties.ShowOnSite = ?', 1)
-                ->orderByPosition()
-                ->find()
-                ->toArray();
+            ->joinSProductPropertiesData()
+            ->joinWithI18n(MY_Controller::getCurrentLocale())
+            ->select(['SProductPropertiesData.ProductId', 'SProductPropertiesData.Value', 'SPropertiesI18n.Name'])
+            ->where('SProductPropertiesData.ProductId IN ?', $productsIds)
+            ->where('SProductPropertiesData.Locale = ?', MY_Controller::getCurrentLocale())
+            ->withColumn('SProductPropertiesData.ProductId', 'ProductId')
+            ->withColumn('SProductPropertiesData.Value', 'Value')
+            ->withColumn('SPropertiesI18n.Name', 'Name')
+            ->where('SProperties.Active = ?', 1)
+            ->where('SProductPropertiesData.Value != ?', '')
+            ->where('SProperties.ShowOnSite = ?', 1)
+            ->orderByPosition()
+            ->find()
+            ->toArray();
         $productsData = [];
         array_map(
             function ($property) use (&$productsData) {
@@ -136,13 +143,13 @@ class Ymarket_model extends CI_Model {
         );
         $productsData = array_map(
             function ($property) {
-                    return array_map(
-                        function ($propertyValues) {
-                            $propertyValues['value'] = implode(', ', $propertyValues['value']);
-                            return $propertyValues;
-                        },
-                        $property
-                    );
+                return array_map(
+                    function ($propertyValues) {
+                        $propertyValues['value'] = implode(', ', $propertyValues['value']);
+                        return $propertyValues;
+                    },
+                    $property
+                );
             },
             $productsData
         );
@@ -154,6 +161,7 @@ class Ymarket_model extends CI_Model {
      * @return array
      */
     public function getAdditionalImagesBYVariants($variants) {
+
         $productsIds = [];
         foreach ($variants as $variant) {
             $productsIds[] = $variant->getProductId();
@@ -163,7 +171,7 @@ class Ymarket_model extends CI_Model {
         $productsData = [];
         array_map(
             function ($image) use (&$productsData) {
-                    $productsData[$image['product_id']][] = productImageUrl('products/additional/' . $image['image_name']);
+                $productsData[$image['product_id']][] = productImageUrl('products/additional/' . $image['image_name']);
             },
             $images
         );
@@ -186,6 +194,7 @@ class Ymarket_model extends CI_Model {
         $offers = [];
         list($currencies, $mainCurr) = $this->makeCurrency();
 
+        /** @var SProductVariants $variant */
         foreach ($variants as $variant) {
             $unique_id = $variant->getId();
             $offers[$unique_id]['url'] = base_url('shop/product/' . $variant->getSProducts()->getUrl());
@@ -197,7 +206,7 @@ class Ymarket_model extends CI_Model {
             }
 
             $mainPhoto = $variant->getMainImage() ? productImageUrl('products/main/' . $variant->getMainImage()) : null;
-            $photos = $additionalImages[$variant->getProductId()] ? : [];
+            $photos = $additionalImages[$variant->getProductId()] ?: [];
 
             $offers[$unique_id]['currencyId'] = $currencyId;
             $offers[$unique_id]['categoryId'] = $variant->getSProducts()->getCategoryId();
@@ -207,7 +216,9 @@ class Ymarket_model extends CI_Model {
             $offers[$unique_id]['vendorCode'] = $variant->getNumber() ? $variant->getNumber() : '';
             $offers[$unique_id]['description'] = htmlspecialchars($variant->getSProducts()->getFullDescription());
             $offers[$unique_id]['cpa'] = $variant->getStock() ? 1 : 0;
-            $offers[$unique_id]['quantity'] = $variant->getStock();
+            if ($this->uri->uri_string() !== 'ymarket') {
+                $offers[$unique_id]['quantity'] = $variant->getStock();
+            }
 
             if ($productFields[$variant->getProductId()]) {
                 foreach (['country_of_origin', 'manufacturer_warranty', 'seller_warranty'] as $value) {
@@ -234,6 +245,7 @@ class Ymarket_model extends CI_Model {
      * @return array<string,string>[]
      */
     public function makeCurrency() {
+
         $_currencies = Currency::create()->getCurrencies();
 
         $checkRUB = false;
@@ -296,27 +308,28 @@ class Ymarket_model extends CI_Model {
      * @return SProductVariants
      */
     public function getVariants($idsCat, $ignoreSettings = false, $brandIds) {
+
         if (!$ignoreSettings) {
             $variants = SProductVariantsQuery::create()
-                    ->useSProductsQuery()
-                    ->filterByActive(true)
-                    ->_if($idsCat)
-                    ->filterByCategoryId($idsCat)
-                    ->_endif()
-                    ->_if($brandIds)
-                    ->filterByBrandId($brandIds)
-                    ->_endif()
-                    ->distinct()
-                    ->endUse()
-                    ->filterByStock(['min' => 1])
-                    ->filterByPrice(['min' => 0.00001])
-                    ->find();
+                ->useSProductsQuery()
+                ->filterByActive(true)
+                ->_if($idsCat)
+                ->filterByCategoryId($idsCat)
+                ->_endif()
+                ->_if($brandIds)
+                ->filterByBrandId($brandIds)
+                ->_endif()
+                ->distinct()
+                ->endUse()
+                ->filterByStock(['min' => 1])
+                ->filterByPrice(['min' => 0.00001])
+                ->find();
         } else {
             $variants = SProductVariantsQuery::create()
-                    ->useSProductsQuery()
-                    ->distinct()
-                    ->endUse()
-                    ->find();
+                ->useSProductsQuery()
+                ->distinct()
+                ->endUse()
+                ->find();
         }
         return $variants;
     }
@@ -325,6 +338,7 @@ class Ymarket_model extends CI_Model {
      * Model saves the selected user categories in the table
      */
     public function setCategories() {
+
         $tempCats = $this->input->post('displayedCats') ? serialize($this->input->post('displayedCats')) : '';
         $displayedBrands = $this->input->post('displayedBrands') ? serialize($this->input->post('displayedBrands')) : '';
         $tempAdult = $this->input->post('adult') ? 1 : 0;
@@ -356,6 +370,7 @@ class Ymarket_model extends CI_Model {
      * @param bool $update - update or insert, default update
      */
     private function saveCategoriesSettings($data, $update = true) {
+
         if ($update) {
             $this->db->where('id', $data['id'])
                 ->update('mod_ymarket', $data);

@@ -1,4 +1,5 @@
 <?php
+use mod_stats\classes\AdminHelper;
 
 /**
  * Class AdminAddController for mod_stats module
@@ -8,7 +9,8 @@
  * @property stats_model $stats_model
  * @package ImageCMSModule
  */
-class AdminAddController extends ControllerBase {
+class AdminAddController extends ControllerBase
+{
 
     public function __construct($some) {
         parent::__construct($some);
@@ -19,23 +21,21 @@ class AdminAddController extends ControllerBase {
      * Ajax update setting by value and setting name
      */
     public function ajaxUpdateSettingValue() {
-        \mod_stats\classes\AdminHelper::create()->ajaxUpdateSettingValue();
+        AdminHelper::create()->ajaxUpdateSettingValue();
     }
 
     /**
-     * Autocomlete products
-     * @return jsone
+     * Autocomplete products
      */
     public function autoCompleteProducts() {
-        \mod_stats\classes\AdminHelper::create()->autoCompleteProducts();
+        AdminHelper::create()->autoCompleteProducts();
     }
 
     /**
-     * Autocomlete categories
-     * @return jsone
+     * Autocomplete categories
      */
     public function autoCompleteCategories() {
-        \mod_stats\classes\AdminHelper::create()->autoCompleteCategories();
+        AdminHelper::create()->autoCompleteCategories();
     }
 
 }

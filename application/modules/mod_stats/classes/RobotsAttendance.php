@@ -120,7 +120,7 @@ class RobotsAttendance
 
     /**
      *
-     * @param type $robotId
+     * @param int $robotId
      * @return boolean
      */
     public function getRobotName($robotId) {

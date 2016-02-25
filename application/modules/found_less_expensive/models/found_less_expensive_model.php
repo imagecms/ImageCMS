@@ -1,6 +1,7 @@
 <?php
 
-class Found_less_expensive_model extends CI_Model {
+class Found_less_expensive_model extends CI_Model
+{
 
     public function __construct() {
 
@@ -27,7 +28,7 @@ class Found_less_expensive_model extends CI_Model {
 
     /**
      * Get count of all messages about found less expensive
-     * @param type $status
+     * @param array $status
      * @return integer
      */
     public function getCountAll($status) {
@@ -37,7 +38,7 @@ class Found_less_expensive_model extends CI_Model {
 
     /**
      * Delete
-     * @param type $id
+     * @param int $id
      * @return boolean
      */
     public function deleteByIds($id) {
@@ -47,7 +48,7 @@ class Found_less_expensive_model extends CI_Model {
 
     /**
      * Get module settings
-     * @return type
+     * @return mixed
      */
     public function getModuleSettings () {
         $data = $this->db->select('settings')->where('name', 'found_less_expensive')->get('components')->row_array();

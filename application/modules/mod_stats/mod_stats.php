@@ -1,18 +1,22 @@
 <?php
 
+use CMSFactory\Events;
+use mod_stats\classes\AdminHelper;
+
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'interfaces' . DIRECTORY_SEPARATOR . 'FileImport' . EXT;
 
 /**
  * Class Mod_stats for mod_stats module
- * @uses \MY_Controller
+ * @uses MY_Controller
  * @author DevImageCms
  * @copyright (c) 2014, ImageCMS
  * @property stats_model $stats_model
  * @package ImageCMSModule
  */
-class Mod_stats extends \MY_Controller implements FileImport {
+class Mod_stats extends MY_Controller implements FileImport
+{
 
     //use FileImportTrait;
     private static $USED_EVENTS = [];
@@ -20,8 +24,6 @@ class Mod_stats extends \MY_Controller implements FileImport {
     public function __construct() {
         parent::__construct();
         $this->load->model('stats_model');
-        //        $lang = new MY_Lang();
-        //        $lang->load('mod_stats');
     }
 
     public function index() {
@@ -32,18 +34,18 @@ class Mod_stats extends \MY_Controller implements FileImport {
         /** Check setting 'save_search_result' * */
         if ($this->stats_model->getSettingByName('save_search_results_ac') == '1') {
             //Autocomplete results
-            \CMSFactory\Events::create()->on('search:AC')->setListener('saveSearchedKeyWordsAC');
+            Events::create()->onShopSearchAC()->setListener('saveSearchedKeyWordsAC');
         }
 
         if (!$this->input->is_ajax_request()) {
             /** Check setting 'save_search_result' * */
             if ($this->stats_model->getSettingByName('save_search_results') == '1') {
                 // When enter press
-                \CMSFactory\Events::create()->on('ShopBaseSearch:preSearch')->setListener('saveSearchedKeyWords');
+                Events::create()->on('ShopBaseSearch:preSearch')->setListener('saveSearchedKeyWords');
             }
 
             if ($this->stats_model->getSettingByName('save_users_attendance') == '1') {
-                \CMSFactory\Events::create()->on('Core:pageLoaded')->setListener('saveAttendance');
+                Events::create()->onCorePageLoaded()->setListener('saveAttendance');
             }
         }
     }
@@ -51,9 +53,8 @@ class Mod_stats extends \MY_Controller implements FileImport {
     /**
      * Save search keywords for autocomplete
      * @param string $text
-     * @return
      */
-    public function saveSearchedKeyWordsAC($text = '') {
+    public static function saveSearchedKeyWordsAC($text = '') {
         if (self::$USED_EVENTS[__FUNCTION__]) {
             return;
         }
@@ -82,7 +83,7 @@ class Mod_stats extends \MY_Controller implements FileImport {
         $thisObj->load->library('user_agent');
         if ($thisObj->agent->is_robot()) {
             $thisObj->import('classes/RobotsAttendance');
-            if ((int) \mod_stats\classes\AdminHelper::create()->getSetting('save_robots_attendance') == 1) {
+            if ((int) AdminHelper::create()->getSetting('save_robots_attendance') == 1) {
                 RobotsAttendance::getInstance()->add(CI::$APP->core->core_data, CI::$APP->agent->robot());
             }
             return;
@@ -117,9 +118,8 @@ class Mod_stats extends \MY_Controller implements FileImport {
     /**
      * Save search keywords
      * @param string $text
-     * @return
      */
-    public function saveSearchedKeyWords($text = '') {
+    public static function saveSearchedKeyWords($text = '') {
         if (self::$USED_EVENTS[__FUNCTION__]) {
             return;
         }
@@ -139,7 +139,7 @@ class Mod_stats extends \MY_Controller implements FileImport {
      */
     public function import($filePath) {
         $ext = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
-        if ($ext != 'php' && $ext != "") {
+        if ($ext != 'php' && $ext != '') {
             return;
         }
 

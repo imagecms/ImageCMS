@@ -6,7 +6,8 @@
  * Image CMS
  * Module Frame
  */
-class Payment_method_webmoney extends MY_Controller {
+class Payment_method_webmoney extends MY_Controller
+{
 
     public $paymentMethod;
 
@@ -112,7 +113,7 @@ class Payment_method_webmoney extends MY_Controller {
 
         $data = [
             'merchant_purse' => $publicKey,
-            'amount' => $price,
+            'amount' => str_replace(',', '.', round($price, 2)),
             'currency' => $code,
             'description' => $descr,
             'order_id' => $param->id,
@@ -155,8 +156,10 @@ class Payment_method_webmoney extends MY_Controller {
         $key = $userOrder->payment_method . '_' . $this->moduleName;
         $paySettings = $this->getPaymentSettings($key);
 
-        $forHash = $param['LMI_PAYEE_PURSE'] .
-                $param['LMI_PAYMENT_AMOUNT'] .
+        $price = $userOrder->delivery_price + $userOrder->total_price;
+        $price = str_replace(',', '.', round($price, 2));
+        $forHash = $paySettings['merchant_purse'] .
+                $price .
                 $param['LMI_PAYMENT_NO'] .
                 $param['LMI_MODE'] .
                 $param['LMI_SYS_INVS_NO'] .
@@ -200,7 +203,7 @@ class Payment_method_webmoney extends MY_Controller {
             show_error($ci->db->_error_message());
         }
 
-        \CMSFactory\Events::create()->registerEvent(['system' => __CLASS__, 'order_id' => $order_id], "PaimentSystem:successPaid");
+        \CMSFactory\Events::create()->registerEvent(['system' => __CLASS__, 'order_id' => $order_id], 'PaimentSystem:successPaid');
         \CMSFactory\Events::runFactory();
 
         /* Учитывается цена с доставкой */

@@ -2,6 +2,8 @@
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
+use CMSFactory\assetManager;
+use import_export\classes\Export;
 use import_export\classes\Logger as LOG;
 use import_export\classes\BaseImport as Imports;
 
@@ -9,19 +11,24 @@ use import_export\classes\BaseImport as Imports;
  * Image CMS
  * Import_export Module Admin
  */
-class Admin extends BaseAdminController {
+class Admin extends BaseAdminController
+{
 
-    private $languages = null;
-
-    private $checkedFields = array(
+    /**
+     * @var array
+     */
+    private $checkedFields = [
         'name',
         //'url',
         'prc',
         //'var',
         'cat',
         'num'
-    );
+    ];
 
+    /**
+     * @var string
+     */
     private $uploadDir = './application/backups/';
 
     public function __construct() {
@@ -56,8 +63,8 @@ class Admin extends BaseAdminController {
 
     public function getExport() {
         $postData = $this->input->post();
-        $export = new \import_export\classes\Export(
-            array(
+        $export = new Export(
+            [
             'attributes' => $postData['attribute'],
             'attributesCF' => $postData['cf'],
             'import_type' => trim($postData['import_type']),
@@ -68,26 +75,26 @@ class Admin extends BaseAdminController {
             'languages' => trim($postData['language']),
             'selectedCats' => $postData['selectedCats'],
             'withZip' => $postData['withZip']
-                )
+                ]
         );
         if ($export->hasErrors() == FALSE) {
             $export->getDataArray();
             if (!$this->input->is_ajax_request()) {
-                $this->createFile($_POST['type'], $export);
-                $this->downloadFile($_POST['type']);
+                $this->createFile($this->input->post('type'), $export);
+                $this->downloadFile($this->input->post('type'));
                 return;
             }
-            if (FALSE !== $this->createFile($_POST['type'], $export)) {
-                if ($_POST['withZip']) {
+            if (FALSE !== $this->createFile($this->input->post('type'), $export)) {
+                if ($this->input->post('withZip')) {
                     $export->addToArchive($export->resultArray);
                 }
-                echo $_POST['type'];
-                LOG::create()->set("Експорт завершен успешно!");
-                $this->lib_admin->log(lang("Products was exported", "import_export") . ' - ' . $_POST['type']);
+                echo $this->input->post('type');
+                LOG::create()->set('Експорт завершен успешно!');
+                $this->lib_admin->log(lang('Products was exported', 'import_export') . ' - ' . $this->input->post('type'));
                 return;
             }
-            LOG::create()->set("Ошибка при експорте!");
-            echo "Ошибка при експорте!";
+            LOG::create()->set('Ошибка при експорте!');
+            echo 'Ошибка при експорте!';
         } else {
             echo $this->processErrors($export->getErrors());
         }
@@ -105,11 +112,9 @@ class Admin extends BaseAdminController {
      * @param string $check (import | export)
      */
     public function getTpl($check) {
-        $ci = & get_instance();
-
         $langs = $this->getLangs();
         if ($check == 'import') {
-            \CMSFactory\assetManager::create()
+            assetManager::create()
                     ->setData('languages', $langs)
                     ->registerScript('importAdmin')
                     ->renderAdmin('import');
@@ -117,13 +122,12 @@ class Admin extends BaseAdminController {
         if ($check == 'export') {
             $customFields = SPropertiesQuery::create()->orderByPosition()->find();
             $cFieldsTemp = $customFields->toArray();
-            $cFields = array();
+            $cFields = [];
             foreach ($cFieldsTemp as $f) {
                 $cFields[] = $f['CsvName'];
             }
-            \CMSFactory\assetManager::create()
+            assetManager::create()
                     ->registerScript('importExportAdmin')
-                    //->setData('attributes',ImportCSV\BaseImport::create()->makeAttributesList()->possibleAttributes)
                     ->setData('attributes', Imports::create()->makeAttributesList()->possibleAttributes)
                     ->setData('languages', $langs)
                     ->setData('cFields', $cFields)
@@ -132,7 +136,7 @@ class Admin extends BaseAdminController {
         }
         if ($check == 'archiveList') {
             $dir = $this->uploadDir;
-            $files = array();
+            $files = [];
             if (is_dir($dir)) {
                 if ($dh = opendir($dir)) {
                     $arr = scandir($dir);
@@ -144,7 +148,7 @@ class Admin extends BaseAdminController {
                 }
             }
             arsort($files);
-            \CMSFactory\assetManager::create()
+            assetManager::create()
                     ->registerScript('importExportAdmin')
                     ->setData('files', $files)
                     ->renderAdmin('list');
@@ -154,16 +158,16 @@ class Admin extends BaseAdminController {
     /**
      * File creating
      * @param string $type file type
-     * @param ShopExportDataBase $export
+     * @param Export $export
      * @return string file name
      */
     protected function createFile($type, $export) {
         switch ($type) {
-            case "xls":
-                return $export->saveToExcelFile($this->uploadDir, "Excel5");
+            case 'xls':
+                return $export->saveToExcelFile($this->uploadDir, 'Excel5');
                 break;
-            case "xlsx":
-                return $export->saveToExcelFile($this->uploadDir, "Excel2007");
+            case 'xlsx':
+                return $export->saveToExcelFile($this->uploadDir, 'Excel2007');
                 break;
             default: // csv
                 return $export->saveToCsvFile($this->uploadDir);
@@ -175,7 +179,7 @@ class Admin extends BaseAdminController {
      * @param string $type file type csv|xls|xlsx
      */
     protected function downloadFile($type = 'csv') {
-        if (!in_array($type, array('csv', 'xls', 'xlsx'))) {
+        if (!in_array($type, ['csv', 'xls', 'xlsx'])) {
             return;
         }
         $file = 'products.' . $type;
@@ -215,7 +219,7 @@ class Admin extends BaseAdminController {
     public function deleteArchive($str) {
         $dir = $this->uploadDir;
         unlink($dir . $str);
-        $this->lib_admin->log(lang("Import_export backup photos was deleted", "import_export") . ' - ' . $str);
+        $this->lib_admin->log(lang('Import_export backup photos was deleted', 'import_export') . ' - ' . $str);
         $this->getTpl('archiveList');
     }
 

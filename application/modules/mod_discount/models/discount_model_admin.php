@@ -27,9 +27,9 @@ class Discount_model_admin extends CI_Model
      */
     public function getDiscountsList($discountType = null, $rowCount = null, $offset = null, $locale) {
         $locale = $locale ? $locale : \MY_Controller::getCurrentLocale();
-        $query = $this->db->select("*, mod_shop_discounts.id as id")->join('mod_shop_discounts_i18n', "mod_shop_discounts_i18n.id = mod_shop_discounts.id and mod_shop_discounts_i18n.locale = '" . $locale . "'", 'left')
+        $query = $this->db->select('*, mod_shop_discounts.id as id')->join('mod_shop_discounts_i18n', "mod_shop_discounts_i18n.id = mod_shop_discounts.id and mod_shop_discounts_i18n.locale = '" . $locale . "'", 'left')
                         //->where("mod_shop_discounts_i18n.locale " , $locale )
-            ->join('mod_discount_all_order', "mod_discount_all_order.discount_id = mod_shop_discounts.id", 'left')
+            ->join('mod_discount_all_order', 'mod_discount_all_order.discount_id = mod_shop_discounts.id', 'left')
             ->order_by('mod_shop_discounts.active', 'desc')->order_by('mod_shop_discounts.id', 'desc');
         if ($discountType != null) {
             $query = $query->where('mod_shop_discounts.type_discount', $discountType);
@@ -313,7 +313,7 @@ class Discount_model_admin extends CI_Model
 
     /**
      * Delete discount by id
-     * @param type $id
+     * @param int $id
      * @return boolean
      */
     public function deleteDiscountById($id) {
@@ -369,23 +369,23 @@ class Discount_model_admin extends CI_Model
 
         $column = $this->db->query("SHOW COLUMNS FROM `shop_orders` where `Field` = 'discount'")->num_rows();
         if (!$column) {
-            $sql = "ALTER TABLE shop_orders ADD discount float(10,2);";
+            $sql = 'ALTER TABLE shop_orders ADD discount float(10,2);';
             $this->db->query($sql);
         }
 
         $column = $this->db->query("SHOW COLUMNS FROM `shop_orders` where `Field` = 'discount_info'")->num_rows();
         if (!$column) {
-            $sql = "ALTER TABLE shop_orders ADD discount_info TEXT;";
+            $sql = 'ALTER TABLE shop_orders ADD discount_info TEXT;';
             $this->db->query($sql);
         }
 
         $column = $this->db->query("SHOW COLUMNS FROM `shop_orders` where `Field` = 'origin_price'")->num_rows();
         if (!$column) {
-            $sql = "ALTER TABLE shop_orders ADD origin_price float(10,2);";
+            $sql = 'ALTER TABLE shop_orders ADD origin_price float(10,2);';
             $this->db->query($sql);
         }
 
-        $sql = "CREATE  TABLE IF NOT EXISTS `mod_shop_discounts` (
+        $sql = 'CREATE  TABLE IF NOT EXISTS `mod_shop_discounts` (
                   `id` INT NOT NULL AUTO_INCREMENT ,
                   `key` VARCHAR(25) NULL ,
                   `active` TINYINT NULL ,
@@ -400,21 +400,21 @@ class Discount_model_admin extends CI_Model
                   UNIQUE INDEX `key_UNIQUE` (`key` ASC) )
                 ENGINE = MyISAM
                 DEFAULT CHARACTER SET = utf8
-                COLLATE = utf8_general_ci;";
+                COLLATE = utf8_general_ci;';
         $this->db->query($sql);
 
-        $sql = "CREATE  TABLE IF NOT EXISTS `mod_shop_discounts_i18n` (
+        $sql = 'CREATE  TABLE IF NOT EXISTS `mod_shop_discounts_i18n` (
                   `id` INT NOT NULL ,
                   `locale` VARCHAR(5) NOT NULL ,
                   `name` VARCHAR(150) NULL ,
                   PRIMARY KEY (`id`,`locale`) )
                 ENGINE = MyISAM
                 DEFAULT CHARACTER SET = utf8
-                COLLATE = utf8_general_ci;";
+                COLLATE = utf8_general_ci;';
 
         $this->db->query($sql);
 
-        $sql = "CREATE  TABLE IF NOT EXISTS `mod_discount_product` (
+        $sql = 'CREATE  TABLE IF NOT EXISTS `mod_discount_product` (
                   `id` INT NOT NULL AUTO_INCREMENT ,
                   `product_id` INT NULL ,
                   `discount_id` INT NULL ,                 
@@ -423,10 +423,10 @@ class Discount_model_admin extends CI_Model
                   INDEX(`product_id`))
                 ENGINE = MyISAM
                 DEFAULT CHARACTER SET = utf8
-                COLLATE = utf8_general_ci;";
+                COLLATE = utf8_general_ci;';
         $this->db->query($sql);
 
-        $sql = "CREATE  TABLE IF NOT EXISTS `mod_discount_category` (
+        $sql = 'CREATE  TABLE IF NOT EXISTS `mod_discount_category` (
                   `id` INT NOT NULL AUTO_INCREMENT ,
                   `category_id` INT NULL ,
                   `discount_id` INT NULL ,
@@ -435,10 +435,10 @@ class Discount_model_admin extends CI_Model
                   INDEX(`category_id`))
                 ENGINE = MyISAM
                 DEFAULT CHARACTER SET = utf8
-                COLLATE = utf8_general_ci;";
+                COLLATE = utf8_general_ci;';
         $this->db->query($sql);
 
-        $sql = "CREATE  TABLE IF NOT EXISTS `mod_discount_user` (
+        $sql = 'CREATE  TABLE IF NOT EXISTS `mod_discount_user` (
                   `id` INT NOT NULL AUTO_INCREMENT ,
                   `user_id` INT NULL ,
                   `discount_id` INT NULL ,                 
@@ -447,10 +447,10 @@ class Discount_model_admin extends CI_Model
                   INDEX(`user_id`))
                 ENGINE = MyISAM
                 DEFAULT CHARACTER SET = utf8
-                COLLATE = utf8_general_ci;";
+                COLLATE = utf8_general_ci;';
         $this->db->query($sql);
 
-        $sql = "CREATE  TABLE IF NOT EXISTS `mod_discount_group_user` (
+        $sql = 'CREATE  TABLE IF NOT EXISTS `mod_discount_group_user` (
                   `id` INT NOT NULL AUTO_INCREMENT ,
                   `group_id` INT NULL ,
                   `discount_id` INT NULL ,                  
@@ -459,10 +459,10 @@ class Discount_model_admin extends CI_Model
                   INDEX(`group_id`))
                 ENGINE = MyISAM
                 DEFAULT CHARACTER SET = utf8
-                COLLATE = utf8_general_ci;";
+                COLLATE = utf8_general_ci;';
         $this->db->query($sql);
 
-        $sql = "CREATE  TABLE IF NOT EXISTS `mod_discount_comulativ` (
+        $sql = 'CREATE  TABLE IF NOT EXISTS `mod_discount_comulativ` (
                   `id` INT NOT NULL AUTO_INCREMENT ,
                   `discount_id` INT NULL ,
                   `begin_value` INT NULL ,
@@ -471,10 +471,10 @@ class Discount_model_admin extends CI_Model
                   INDEX(`discount_id`))
                 ENGINE = MyISAM
                 DEFAULT CHARACTER SET = utf8
-                COLLATE = utf8_general_ci;";
+                COLLATE = utf8_general_ci;';
         $this->db->query($sql);
 
-        $sql = "CREATE  TABLE IF NOT EXISTS `mod_discount_all_order` (
+        $sql = 'CREATE  TABLE IF NOT EXISTS `mod_discount_all_order` (
                   `id` INT NOT NULL AUTO_INCREMENT ,
                   `for_autorized` TINYINT NULL ,
                   `discount_id` INT NULL ,
@@ -484,10 +484,10 @@ class Discount_model_admin extends CI_Model
                   INDEX(`discount_id`))
                 ENGINE = MyISAM
                 DEFAULT CHARACTER SET = utf8
-                COLLATE = utf8_general_ci;";
+                COLLATE = utf8_general_ci;';
         $this->db->query($sql);
 
-        $sql = "CREATE  TABLE IF NOT EXISTS `mod_discount_brand` (
+        $sql = 'CREATE  TABLE IF NOT EXISTS `mod_discount_brand` (
                   `id` INT NOT NULL AUTO_INCREMENT ,
                   `brand_id` INT NULL ,
                   `discount_id` INT NULL ,                  
@@ -496,7 +496,7 @@ class Discount_model_admin extends CI_Model
                   INDEX(`brand_id`))
                 ENGINE = MyISAM
                 DEFAULT CHARACTER SET = utf8
-                COLLATE = utf8_general_ci;";
+                COLLATE = utf8_general_ci;';
         $this->db->query($sql);
 
         $this->db->where('name', 'mod_discount');
@@ -554,22 +554,22 @@ class Discount_model_admin extends CI_Model
             return FALSE;
         }
 
-        $sql = "SELECT * FROM `mod_discount_comulativ` ";
+        $sql = 'SELECT * FROM `mod_discount_comulativ` ';
         if ($data['end_value'] != NULL) {
             if ($id != NULL) {
-                $sql .= "WHERE `discount_id` <> " . $id . " AND ((`begin_value` BETWEEN  " . $data['begin_value'] . " AND " . $data['end_value'] . ") 
-                OR (`end_value` BETWEEN " . $data['begin_value'] . " AND " . $data['end_value'] . ")
-                OR (`begin_value` <= " . $data['begin_value'] . " AND `end_value` >= " . $data['end_value'] . "))";
+                $sql .= 'WHERE `discount_id` <> ' . $id . ' AND ((`begin_value` BETWEEN  ' . $data['begin_value'] . ' AND ' . $data['end_value'] . ') 
+                OR (`end_value` BETWEEN ' . $data['begin_value'] . ' AND ' . $data['end_value'] . ')
+                OR (`begin_value` <= ' . $data['begin_value'] . ' AND `end_value` >= ' . $data['end_value'] . '))';
             } else {
-                $sql .= "WHERE (`begin_value` BETWEEN  " . $data['begin_value'] . " AND " . $data['end_value'] . ") 
-                OR (`end_value` BETWEEN " . $data['begin_value'] . " AND " . $data['end_value'] . ")
-                OR (`begin_value` <= " . $data['begin_value'] . " AND `end_value` >= " . $data['end_value'] . ")";
+                $sql .= 'WHERE (`begin_value` BETWEEN  ' . $data['begin_value'] . ' AND ' . $data['end_value'] . ') 
+                OR (`end_value` BETWEEN ' . $data['begin_value'] . ' AND ' . $data['end_value'] . ')
+                OR (`begin_value` <= ' . $data['begin_value'] . ' AND `end_value` >= ' . $data['end_value'] . ')';
             }
         } else {
             if ($id != NULL) {
-                $sql .= "WHERE `discount_id` <> " . $id . " AND " . $data['begin_value'] . " < `begin_value`";
+                $sql .= 'WHERE `discount_id` <> ' . $id . ' AND ' . $data['begin_value'] . ' < `begin_value`';
             } else {
-                $sql .= "WHERE " . $data['begin_value'] . " < `begin_value`";
+                $sql .= 'WHERE ' . $data['begin_value'] . ' < `begin_value`';
             }
         }
 

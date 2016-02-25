@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ruleset name="ImageCMS">
     <description>
-        The ImageCMS coding standard. 
-        Autor Gula Andriy
+        The ImageCMS coding standard.
+        Author Gula Andriy
         Created with the PHP Coding Standard Generator. http://edorian.github.com/php-coding-standard-generator/#phpcs
     </description>
-    
-    <exclude-pattern>*/generated-classes/Base/*</exclude-pattern>
-    <exclude-pattern>*/generated-classes/*/Map/*</exclude-pattern>
-    <exclude-pattern>*/generated-classes/*/Base/*</exclude-pattern>
-    <exclude-pattern>*/generated-classes/Map/*</exclude-pattern>
+
+    <exclude-pattern>*/models/Base/*</exclude-pattern>
+    <exclude-pattern>*/models/Map/*</exclude-pattern>
     <exclude-pattern>*/application/third_party/*</exclude-pattern>
     <exclude-pattern>*/application/libraries/elfinder/*</exclude-pattern>
     <exclude-pattern>*/vendor/*</exclude-pattern>
@@ -22,7 +20,8 @@
     <exclude-pattern>*/mod_stats/assets/js/*</exclude-pattern>
     <exclude-pattern>*/admin_menu/assets/js/*</exclude-pattern>
     <exclude-pattern>*/admin_menu/menus/*</exclude-pattern>
- 
+    <exclude-pattern>index.php</exclude-pattern>
+
     <arg name="extensions" value="php"/>
     <arg name="encoding" value="utf-8"/>
     <arg name="generator" value="text"/>
@@ -107,6 +106,10 @@
     <rule ref="Squiz.Scope.MemberVarScope"/>
     <rule ref="Squiz.Scope.MethodScope"/>
     <rule ref="Squiz.Scope.StaticThisUsage"/>
+    <rule ref="Squiz.Strings.DoubleQuoteUsage"/>
+    <rule ref="Squiz.Strings.DoubleQuoteUsage.ContainsVar">
+        <severity>1</severity>
+    </rule>
     <rule ref="Squiz.WhiteSpace.FunctionSpacing">
         <properties>
             <property name="spacing" value="1"/>

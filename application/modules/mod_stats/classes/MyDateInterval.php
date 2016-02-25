@@ -1,7 +1,12 @@
 <?php
 namespace mod_stats\classes;
 
-class DateInterval {
+/**
+ * Class MyDateInterval
+ * @package mod_stats\classes
+ */
+class MyDateInterval
+{
 
     /**
      * Returns date pattern for mysql (select part)
@@ -32,8 +37,7 @@ class DateInterval {
      * @return string condition of date range
      */
     public static function prepareDateBetweenCondition($field, array $params = []) {
-        $table = !isset($params['table']) ? "" : "`{$params['table']}`.";
-        $betweenCondition = "";
+        $betweenCondition = '';
         if (isset($params['dateFrom']) || isset($params['dateTo'])) {
             $dateFrom = isset($params['dateFrom']) ? $params['dateFrom'] : '2005-01-01';
             $dateTo = isset($params['dateTo']) ? $params['dateTo'] : date('Y-m-d');

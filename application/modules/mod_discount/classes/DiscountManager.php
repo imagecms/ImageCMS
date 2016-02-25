@@ -279,7 +279,7 @@ class DiscountManager extends MY_Controller
         $typeDiscountTableName = 'mod_discount_' . $typeDiscount;
 
         // Check range for cumulative discount
-        if ($typeDiscount == "comulativ" AND $this->discount_model_admin->checkRangeForCumulativeDiscount($postArray[$typeDiscount])) {
+        if ($typeDiscount == 'comulativ' AND $this->discount_model_admin->checkRangeForCumulativeDiscount($postArray[$typeDiscount])) {
             return ['success' => false, 'error' => [lang('Has been already created with the cumulative discount value', 'mod_discount')]];
         }
 
@@ -350,7 +350,7 @@ class DiscountManager extends MY_Controller
         $typeDiscount = $postArray['type_discount'];
 
         if (!in_array($typeDiscount, ['certificate', 'all_order', 'comulativ', 'user', 'group_user', 'category', 'product', 'brand'])) {
-            $this->error[] = lang('Wrong type discount');
+            $this->error[] = lang('Wrong type discount', 'mod_discount');
         }
 
         if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] && !preg_match('/^[0-9]{1,15}$/', $postArray[$typeDiscount]['end_value'])) {

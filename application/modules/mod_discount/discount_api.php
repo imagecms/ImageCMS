@@ -213,23 +213,16 @@ class discount_api extends MY_Controller
         }
 
         $this->baseDiscount = BaseDiscount::create();
-        if (BaseDiscount::checkModuleInstall()) {
-            usort(
-                $this->baseDiscount->discountType['comulativ'],
-                function($a, $b) {
-                        return strnatcmp($a["begin_value"], $b["begin_value"]);
-                }
-            );
-        }
-        return $this->baseDiscount->discountType['comulativ'];
+
+        return user_function_sort($this->baseDiscount->discountType['comulativ'], 'begin_value');
     }
 
     /**
      * get one discount
      * @access public
      * @author DevImageCms
-     * @param (string) key: criteria
-     * @param (int) id: id discount
+     * @param string $key: criteria
+     * @param int $id: id discount
      * @return string|false
      * @copyright (c) 2013, ImageCMS
      */

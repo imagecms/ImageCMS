@@ -2,7 +2,8 @@
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
-class Admin extends BaseAdminController {
+class Admin extends BaseAdminController
+{
 
     public function __construct() {
         parent::__construct();
@@ -41,7 +42,7 @@ class Admin extends BaseAdminController {
     }
 
     private function display_tpl($file = '') {
-        $file = realpath(dirname(__FILE__)) . '/templates/admin/' . $file;
+        $file = realpath(__DIR__) . '/templates/admin/' . $file;
         $this->template->show('file:' . $file);
     }
 

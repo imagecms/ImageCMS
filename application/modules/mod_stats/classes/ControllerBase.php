@@ -1,4 +1,5 @@
 <?php
+use CMSFactory\assetManager;
 
 /**
  * Class ControllerBase for mod_stats module
@@ -6,7 +7,8 @@
  * @copyright (c) 2014, ImageCMS
  * @package ImageCMSModule
  */
-abstract class ControllerBase {
+abstract class ControllerBase
+{
 
     /**
      * Instance of main admin controler
@@ -16,7 +18,7 @@ abstract class ControllerBase {
 
     /**
      *
-     * @var \CMSFactory\assetManager
+     * @var assetManager
      */
     protected $assetManager;
 
@@ -70,6 +72,7 @@ abstract class ControllerBase {
     /**
      * Prepare data for line
      * @param array $array
+     * @param null|array $labels
      * @return array
      */
     public static function prepareDataForLineChart($array = null, $labels = null) {
@@ -89,6 +92,7 @@ abstract class ControllerBase {
     /**
      * Prepare data for multi line
      * @param array $array
+     * @param null|array $labels
      * @return array
      */
     public static function prepareDataForLineMultChart($array = null, $labels = null) {

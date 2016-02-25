@@ -5,15 +5,19 @@
  *
  * @author
  */
-class ZeroFiller {
+class ZeroFiller
+{
 
     const DAY = 1;
     const MONTH = 2;
     const YEAR = 3;
 
     /**
+     * @param array $values
      * @param string $timeKey
      * @param string $valueKey
+     * @param int $dateRange
+     * @return array
      */
     public static function fill(array $values, $timeKey, $valueKey, $dateRange) {
 

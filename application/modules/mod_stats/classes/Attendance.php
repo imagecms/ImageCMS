@@ -6,7 +6,8 @@
  * @copyright (c) 2014, ImageCMS
  * @package ImageCMSModule
  */
-class Attendance {
+class Attendance
+{
 
     const PAGE = 1;
     const CATEGORY = 2;
@@ -28,6 +29,9 @@ class Attendance {
     private function __construct() {
     }
 
+    /**
+     * @return Attendance
+     */
     public static function getInstance() {
         if (self::$instance == null) {
             self::$instance = new Attendance;
@@ -42,7 +46,8 @@ class Attendance {
     }
 
     /**
-     *
+     * @param array $coreData
+     * @param int $userId
      */
     public function add($coreData, $userId) {
         if (FALSE == $typeId = $this->getTypeId($coreData['data_type'])) {

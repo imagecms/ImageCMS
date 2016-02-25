@@ -71,10 +71,10 @@
                     </div>
                 </td>
                 <td>
-                    <input type="text" name="user_name" value="{$_GET.user_name}" maxlength="500"/>
+                    <input type="text" name="user_name" value="{htmlspecialchars($_GET.user_name)}" maxlength="500"/>
                 </td>
                 <td>
-                    <input type="text" name="phone" value="{$_GET.phone}" maxlength="500"/>
+                    <input type="text" name="phone" value="{htmlspecialchars($_GET.phone)}" maxlength="500"/>
                 </td>
                 <td>
                     <select onchange="$(this).closest('form').submit()" name="ThemeId">

@@ -8,7 +8,8 @@ if (!defined('BASEPATH')) {
  * Image CMS
  * Comments admin
  */
-class Admin extends BaseAdminController {
+class Admin extends BaseAdminController
+{
 
     private $per_page = 12;
 
@@ -153,7 +154,7 @@ class Admin extends BaseAdminController {
      * @param string $file
      */
     private function display_tpl($file = '') {
-        $file = realpath(dirname(__FILE__)) . '/assets/admin/' . $file;
+        $file = realpath(__DIR__) . '/assets/admin/' . $file;
         $this->template->show('file:' . $file);
     }
 

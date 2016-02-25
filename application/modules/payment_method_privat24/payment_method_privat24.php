@@ -1,12 +1,16 @@
 <?php
 
+use CMSFactory\Events;
+use Currency\Currency;
+
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /**
  * Image CMS
  * Module Sample
  */
-class Payment_method_privat24 extends MY_Controller {
+class Payment_method_privat24 extends MY_Controller
+{
 
     public $paymentMethod;
 
@@ -70,13 +74,13 @@ class Payment_method_privat24 extends MY_Controller {
     //Конвертация в другую валюту
 
     public function convert($price, $currencyId) {
-        if ($currencyId == \Currency\Currency::create()->getMainCurrency()->getId()) {
+        if ($currencyId == Currency::create()->getMainCurrency()->getId()) {
             $return['price'] = $price;
-            $return['code'] = \Currency\Currency::create()->getMainCurrency()->getCode();
+            $return['code'] = Currency::create()->getMainCurrency()->getCode();
             return $return;
         } else {
-            $return['price'] = \Currency\Currency::create()->convert($price, $currencyId);
-            $return['code'] = \Currency\Currency::create()->getCodeById($currencyId);
+            $return['price'] = Currency::create()->convert($price, $currencyId);
+            $return['code'] = Currency::create()->getCodeById($currencyId);
             return $return;
         }
     }
@@ -93,8 +97,8 @@ class Payment_method_privat24 extends MY_Controller {
 
     /**
      *  Виводить кнопку "Оплатити" при замовленні товару
-     * @param type $param
-     * @return type
+     * @param SOrders $param
+     * @return string
      */
     public function getForm($param) {
         $id = $param->getPaymentMethod();
@@ -102,7 +106,7 @@ class Payment_method_privat24 extends MY_Controller {
         $paySettings = $this->getPaymentSettings($key);
 
         $data['summ'] = $param->getDeliveryPrice() ? ($param->getTotalPrice() + $param->getDeliveryPrice()) : $param->getTotalPrice();
-        $data['currId'] = \Currency\Currency::create()->getMainCurrency()->getCode();
+        $data['currId'] = Currency::create()->getMainCurrency()->getCode();
 
         if ($paySettings['merchant_currency']) {
             $arrPriceCode = $this->convert($data['summ'], $paySettings['merchant_currency']);
@@ -203,8 +207,8 @@ class Payment_method_privat24 extends MY_Controller {
             show_error($ci->db->_error_message());
         }
 
-        \CMSFactory\Events::create()->registerEvent(['system' => __CLASS__, 'order_id' => $order_id], "PaimentSystem:successPaid");
-        \CMSFactory\Events::runFactory();
+        Events::create()->registerEvent(['system' => __CLASS__, 'order_id' => $order_id], 'PaimentSystem:successPaid');
+        Events::runFactory();
 
         $result = $ci->db
             ->where('id', $userOrder->user_id)

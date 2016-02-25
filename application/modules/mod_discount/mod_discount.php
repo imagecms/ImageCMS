@@ -139,7 +139,7 @@ class Mod_discount extends \MY_Controller
                 if ($cartItem['success'] === TRUE) {
                     $cartItem['data']->discountKey = $dkey;
                 }
-                $cart->setItemPrice($productData, $priceNew);
+                $cart->setItemPrice($productData, round($priceNew, ShopCore::app()->SSettings->pricePrecision));
 
                 if (!isset($this->appliesControl[$dkey])) {
                     $appliesLeft = \mod_discount\classes\BaseDiscount::create()->getAppliesLeft($item->discountKey);

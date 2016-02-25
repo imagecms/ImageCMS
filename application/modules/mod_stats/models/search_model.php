@@ -1,4 +1,5 @@
 <?php
+use mod_stats\classes\MyDateInterval;
 
 /**
  * Class Search_model for mod_stats module
@@ -8,7 +9,8 @@
  * @property CI_DB_active_record $db
  * @package ImageCMSModule
  */
-class Search_model extends CI_Model {
+class Search_model extends CI_Model
+{
 
     /**
      * Current locale
@@ -18,7 +20,7 @@ class Search_model extends CI_Model {
 
     public function __construct() {
         parent::__construct();
-        $this->locale = \MY_Controller::getCurrentLocale();
+        $this->locale = MY_Controller::getCurrentLocale();
     }
 
     /**
@@ -30,7 +32,7 @@ class Search_model extends CI_Model {
      */
     protected function prepareConditions(array $params) {
 
-        $betweenCondition = "";
+        $betweenCondition = '';
         if (isset($params['dateFrom']) || isset($params['dateTo'])) {
             $dateFrom = isset($params['dateFrom']) ? $params['dateFrom'] : '2005-01-01';
             $dateTo = isset($params['dateTo']) ? $params['dateTo'] : date('Y-m-d');
@@ -42,7 +44,9 @@ class Search_model extends CI_Model {
 
     /**
      * Get searched keywords by time interval
-     * @return query
+     * @param array $params
+     * @param int $resultsLimit
+     * @return string
      */
     public function queryKeywordsByDateRange(array $params = [], $resultsLimit = 100) {
         list($betweenCondition) = $this->prepareConditions($params);
@@ -50,17 +54,17 @@ class Search_model extends CI_Model {
 
         $query = "
             SELECT  `mod_stats_search`.`key` ,
-                    DATE_FORMAT( FROM_UNIXTIME( max(`mod_stats_search`.`date`) ), '" . \mod_stats\classes\DateInterval::getDatePattern($interval) . "' ) AS  `date_search` ,
+                    DATE_FORMAT( FROM_UNIXTIME( max(`mod_stats_search`.`date`) ), '" . MyDateInterval::getDatePattern($interval) . "' ) AS  `date_search` ,
                     COUNT(  `mod_stats_search`.`key` ) AS  `key_count` 
             FROM  
                 `mod_stats_search` 
             WHERE 1
-                " . $betweenCondition . " 
+                " . $betweenCondition . ' 
             GROUP BY  
                 `mod_stats_search`.`key`
             ORDER BY
                 key_count DESC
-            LIMIT 0 , " . $resultsLimit;
+            LIMIT 0 , ' . $resultsLimit;
 
         $result = $this->db->query($query);
         if ($result) {
@@ -72,8 +76,9 @@ class Search_model extends CI_Model {
 
     /**
      * Get brands in search results
-     * @param type $params
-     * @return boolean
+     * @param string $whereQuery
+     * @param array $params
+     * @return bool
      */
     public function analysisBrands($whereQuery = '', $params) {
         if (!$whereQuery) {
@@ -102,8 +107,9 @@ class Search_model extends CI_Model {
 
     /**
      * Get categories in search results
-     * @param type $params
-     * @return boolean
+     * @param string $whereQuery
+     * @param array $params
+     * @return bool
      */
     public function analysisCategories($whereQuery = '', $params) {
         if (!$whereQuery) {

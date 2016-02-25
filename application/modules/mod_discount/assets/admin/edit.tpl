@@ -38,7 +38,7 @@
                             <div class="form-horizontal">
                                 <label class="">
                                     <span class="span4">{lang('Discount name', 'mod_discount')}:</span>
-                                    <span class="span8 discount-name"><input type="text" name='name' value="{echo $discount['name']}" /></span>
+                                    <span class="span8 discount-name"><input type="text" name='name' value="{echo htmlspecialchars($discount['name'])}" /></span>
                                 </label>
                                 <label class="">
                                     <span class="span4">{lang('Discount code', 'mod_discount')}:</span>

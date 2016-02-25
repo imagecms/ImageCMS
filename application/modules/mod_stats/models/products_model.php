@@ -21,7 +21,7 @@ class Products_model extends \CI_Model
 
     public function __construct() {
         parent::__construct();
-        $this->locale = \MY_Controller::getCurrentLocale();
+        $this->locale = MY_Controller::getCurrentLocale();
     }
 
     /**
@@ -286,9 +286,9 @@ class Products_model extends \CI_Model
      * @return boolean|array
      */
     public function getFirstLevelCategoriesIds() {
-        $query = "SELECT id 
+        $query = 'SELECT id 
                 FROM `shop_category` 
-                WHERE  `url`=`full_path`";
+                WHERE  `url`=`full_path`';
         $result = $this->db->query($query)->result_array();
         if ($result != null) {
             return $this->prepareArray($result);

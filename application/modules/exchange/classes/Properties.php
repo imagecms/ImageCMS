@@ -114,7 +114,7 @@ class Properties extends ExchangeBase
      * Якщо бренд не існує, то він буде створений (правда це трошки трошки не продуктивно,
      * бо краще було б зв’язувати по exId, але це буде не універсально, бо зараз
      * бренд ід береться із властивостей - шоби не рухати більше ніж треба коду в модулі)
-     * @param type $brandName
+     * @param string $brandName
      * @return null|int
      */
     public function getBrandIdByName($brandName) {
@@ -203,7 +203,7 @@ class Properties extends ExchangeBase
 
             $this->propertiesData[$externalId]['name'] = $name;
 
-            $propertyData['csv_name'] = str_replace(["-", "_", "'"], '', translit_url($property->Наименование));
+            $propertyData['csv_name'] = str_replace(['-', '_', "'"], '', translit_url($property->Наименование));
 
             // type ("Справочник"|"Число")
             $type = (string) $property->ТипЗначений == 'Справочник' ? self::PROPTYPE_SPR : self::PROPTYPE_NUM;

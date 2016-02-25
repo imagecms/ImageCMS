@@ -13,7 +13,7 @@ if (!defined('BASEPATH')) {
   |  needs write permittion
   |
  */
-$config["is_installed"] = FALSE;
+$config['is_installed'] = TRUE;
 
 
 /*

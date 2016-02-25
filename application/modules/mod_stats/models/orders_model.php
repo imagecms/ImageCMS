@@ -1,4 +1,5 @@
 <?php
+use mod_stats\classes\MyDateInterval;
 
 /**
  * Class Orders_model for mod_stats module
@@ -18,19 +19,19 @@ class Orders_model extends CI_Model
      */
     protected function prepareConditions(array $params) {
 
-        $paidCondition = "";
+        $paidCondition = '';
         if (isset($params['paid'])) {
             switch ($params['paid']) {
                 case 1:
-                    $paidCondition = "AND `paid` = 1";
+                    $paidCondition = 'AND `paid` = 1';
                     break;
                 case 0:
-                    $paidCondition = "AND (`paid` <> 1 OR `paid` IS NULL)";
+                    $paidCondition = 'AND (`paid` <> 1 OR `paid` IS NULL)';
                     break;
             }
         }
 
-        $betweenCondition = "";
+        $betweenCondition = '';
         if (isset($params['dateFrom']) || isset($params['dateTo'])) {
             $dateFrom = isset($params['dateFrom']) ? $params['dateFrom'] : '2005-01-01';
             $dateTo = isset($params['dateTo']) ? $params['dateTo'] : date('Y-m-d');
@@ -64,49 +65,49 @@ class Orders_model extends CI_Model
                     COUNT(DISTINCT `shop_orders_products`.`product_id`) as `products_count`,
                     (SELECT price_sum
                         FROM (SELECT DISTINCT ord.id, SUM(ord.total_price) as price_sum,
-                            DATE_FORMAT(FROM_UNIXTIME(ord.`date_created`), '" . \mod_stats\classes\DateInterval::getDatePattern($interval) . "')  as date
+                            DATE_FORMAT(FROM_UNIXTIME(ord.`date_created`), '" . MyDateInterval::getDatePattern($interval) . "')  as date
                           FROM  shop_orders as ord
                         GROUP BY
                             date
                     ) AS orn
-                    WHERE date =  DATE_FORMAT(FROM_UNIXTIME(`shop_orders`.`date_created`), '" . \mod_stats\classes\DateInterval::getDatePattern($interval) . "')
+                    WHERE date =  DATE_FORMAT(FROM_UNIXTIME(`shop_orders`.`date_created`), '" . MyDateInterval::getDatePattern($interval) . "')
                     )  AS price_sum,
 
                     IF(`shop_orders`.`status` = 2, 1, 0) as `status`,
                     SUM( `shop_orders_products`.`quantity`) as `quantity`,
-                    DATE_FORMAT(FROM_UNIXTIME(`date_created`), '" . \mod_stats\classes\DateInterval::getDatePattern($interval) . "') as `date`,
+                    DATE_FORMAT(FROM_UNIXTIME(`date_created`), '" . MyDateInterval::getDatePattern($interval) . "') as `date`,
                     `shop_orders`.`date_created` as `unix_date`,
                     COUNT(DISTINCT `shop_orders`.`id`) as `orders_count`,
                     (SELECT delivered
                         FROM (SELECT DISTINCT ord.id, SUM(CASE WHEN `ord`.`status` = 2 THEN 1 ELSE 0 END) as delivered,
-                            DATE_FORMAT(FROM_UNIXTIME(ord.`date_created`), '" . \mod_stats\classes\DateInterval::getDatePattern($interval) . "')  as date
+                            DATE_FORMAT(FROM_UNIXTIME(ord.`date_created`), '" . MyDateInterval::getDatePattern($interval) . "')  as date
                           FROM  shop_orders as ord
                         GROUP BY
                             date
                     ) AS orn
-                    WHERE date =  DATE_FORMAT(FROM_UNIXTIME(`shop_orders`.`date_created`), '" . \mod_stats\classes\DateInterval::getDatePattern($interval) . "')
+                    WHERE date =  DATE_FORMAT(FROM_UNIXTIME(`shop_orders`.`date_created`), '" . MyDateInterval::getDatePattern($interval) . "')
                     )  AS delivered,
                     (SELECT paid
                         FROM (SELECT DISTINCT ord.id, SUM(CASE WHEN `ord`.`paid` = 1 THEN 1 ELSE 0 END) as paid,
-                            DATE_FORMAT(FROM_UNIXTIME(ord.`date_created`), '" . \mod_stats\classes\DateInterval::getDatePattern($interval) . "')  as date
+                            DATE_FORMAT(FROM_UNIXTIME(ord.`date_created`), '" . MyDateInterval::getDatePattern($interval) . "')  as date
                           FROM  shop_orders as ord
                         GROUP BY
                             date
                     ) AS orn
-                    WHERE date =  DATE_FORMAT(FROM_UNIXTIME(`shop_orders`.`date_created`), '" . \mod_stats\classes\DateInterval::getDatePattern($interval) . "')
+                    WHERE date =  DATE_FORMAT(FROM_UNIXTIME(`shop_orders`.`date_created`), '" . MyDateInterval::getDatePattern($interval) . "')
                     )  AS paid
                     FROM
                       `shop_orders`
                     lEFT JOIN `shop_orders_products` on `shop_orders_products`.`order_id` = `shop_orders`.`id`
                     WHERE 1
                       AND FROM_UNIXTIME(`shop_orders`.`date_created`) <= NOW() + INTERVAL 1 DAY
-                      " . \mod_stats\classes\DateInterval::prepareDateBetweenCondition('date_created', $params) . "
+                      " . MyDateInterval::prepareDateBetweenCondition('date_created', $params) . '
                     GROUP BY
                      date
                     ORDER BY
                         FROM_UNIXTIME(`date_created`)
 
-        ";
+        ';
 
         $result = $this->db->query($query);
 
@@ -156,13 +157,13 @@ class Orders_model extends CI_Model
         $order = in_array(strtolower($this->input->get('order')), ['desc', 'asc']) ? $this->input->get('order') : 'DESC';
         $orderBy = NULL;
         if ($this->input->get('orderMethod') && $this->input->get('order')) {
-            if (in_array($this->input->get('orderMethod'), $columns) && ($this->input->get('order') == "ASC" || $this->input->get('order') == "DESC")) {
-                $orderBy = "ORDER BY `" . $this->input->get('orderMethod') . "` " . $order;
+            if (in_array($this->input->get('orderMethod'), $columns) && ($this->input->get('order') == 'ASC' || $this->input->get('order') == 'DESC')) {
+                $orderBy = 'ORDER BY `' . $this->input->get('orderMethod') . '` ' . $order;
             }
         }
         $orderBy = $orderBy === null ? 'ORDER BY `orders_count` DESC' : $orderBy;
 
-        $otherConditions = "";
+        $otherConditions = '';
         if ($params['username'] !== null && !empty($params['username'])) {
             $otherConditions .= " AND `username` LIKE '%{$params['username']}%' ";
         }
@@ -172,7 +173,7 @@ class Orders_model extends CI_Model
 
         $query = "
             SELECT
-                DATE_FORMAT(FROM_UNIXTIME(`date_created`), '" . \mod_stats\classes\DateInterval::getDatePattern($params['interval']) . "') as `date`,
+                DATE_FORMAT(FROM_UNIXTIME(`date_created`), '" . MyDateInterval::getDatePattern($params['interval']) . "') as `date`,
                 COUNT(`order_id`) as `orders_count`,
                 SUM(`paid`) as `paid`,
                 COUNT(`order_id`) - SUM(`paid`) as `unpaid`,
@@ -182,7 +183,7 @@ class Orders_model extends CI_Model
                     LEFT JOIN `shop_orders_products` ON `shop_orders_products`.`order_id` = `shop_orders`.`id`
                     WHERE 1
                     AND FROM_UNIXTIME(`shop_orders`.`date_created`) <= NOW() + INTERVAL 1 DAY
-                    " . \mod_stats\classes\DateInterval::prepareDateBetweenCondition('date_created', $params) . "
+                    " . MyDateInterval::prepareDateBetweenCondition('date_created', $params) . "
                     AND user_id = dtable.user_id
                     GROUP BY user_id) as products_count,
                 SUM(`quantity`) as `quantity`,
@@ -201,7 +202,7 @@ class Orders_model extends CI_Model
                     `quantity`,
                     IFNULL(`users`.`id`,'-') as `user_id`, 
                     IFNULL(`users`.`username`,'-') as `username`,
-                    DATE_FORMAT(FROM_UNIXTIME(`shop_orders`.`date_created`), '" . \mod_stats\classes\DateInterval::getDatePattern($params['interval']) . "') as `date`
+                    DATE_FORMAT(FROM_UNIXTIME(`shop_orders`.`date_created`), '" . MyDateInterval::getDatePattern($params['interval']) . "') as `date`
                  FROM 
                     `shop_orders`
                  LEFT JOIN (
@@ -219,7 +220,7 @@ class Orders_model extends CI_Model
                  LEFT JOIN `users` ON `shop_orders`.`user_id` = `users`.`id`
                  WHERE 1
                     AND FROM_UNIXTIME(`shop_orders`.`date_created`) <= NOW() + INTERVAL 1 DAY 
-                    " . \mod_stats\classes\DateInterval::prepareDateBetweenCondition('date_created', $params) . "
+                    " . MyDateInterval::prepareDateBetweenCondition('date_created', $params) . "
                     {$otherConditions}
                  ORDER BY
                    FROM_UNIXTIME(`shop_orders`.`date_created`)

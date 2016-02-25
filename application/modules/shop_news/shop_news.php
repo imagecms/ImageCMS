@@ -13,7 +13,8 @@
  * {$CI->load->module('shop_news')->getShopNews()}
  *
  */
-class Shop_news extends MY_Controller {
+class Shop_news extends MY_Controller
+{
 
     public function __construct() {
         parent::__construct();
@@ -29,7 +30,7 @@ class Shop_news extends MY_Controller {
      * Display module template on tab "Modules additions" when edit page.
      * @param type $shopNewsData
      */
-    public function _extendPageAdmin($shopNewsData) {
+    public static function _extendPageAdmin($shopNewsData) {
         $shopNews = new Shop_news();
 
         $view = $shopNews->prepareInterface($shopNewsData, $shopNewsData['pageId']);

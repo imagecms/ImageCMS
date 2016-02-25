@@ -577,50 +577,51 @@ class ProductsImport extends BaseImport
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
      */
     private function updateSProductsCategories(&$arg, $productId, $EmptyFields) {
-        if (!isset($arg['addcats']) || ('' === trim($arg['addcats']) && !$EmptyFields)) {
-            return;
-        }
-
-        $this->db->delete('shop_product_categories', ['product_id' => $productId]);
-
-        $arrNames = [];
-        foreach (explode('|', $arg['addcats']) as $k => $val) {
-            $temp = explode('/', $val);
-            $arrNames[$k]['category'] = end($temp);
-            if ($temp[count($temp) - 2]) {
-                $arrNames[$k]['parent'] = $temp[count($temp) - 2];
-            }
-        }
-        // Привязка к имени доп категорий а не к транслиту full_path_url
-        foreach ($arrNames as $key => $value) {
-            if ($value['parent']) {
-                $parentId = $this->db->select('id')
-                    ->where('name', $value['parent'])
-                    ->where('locale', $this->input->post('language'))
-                    ->get('shop_category_i18n')
-                    ->row()
-                    ->id;
-
-                $idAddCat = $this->db->select('shop_category_i18n.id')
-                    ->where('shop_category_i18n.name', $value['category'])
-                    ->where('shop_category.parent_id', $parentId)
-                    ->join('shop_category', 'shop_category.id=shop_category_i18n.id')
-                    ->where('shop_category_i18n.locale', $this->input->post('language'))
-                    ->get('shop_category_i18n')
-                    ->row_array();
-            } else {
-                $idAddCat = $this->db->select('id')
-                    ->where('name', $value['category'])
-                    ->where('locale', $this->input->post('language'))
-                    ->get('shop_category_i18n')
-                    ->row_array();
-            }
-            $idsAddCat[$key]['id'] = $idAddCat['id'];
-        }
-
         $shopCategoryIds = [];
-        foreach ($idsAddCat as $one) {
-            array_push($shopCategoryIds, (int) $one['id']);
+
+        $updateAddCategories = isset($arg['addcats']) && ('' !== trim($arg['addcats']) || $EmptyFields);
+        if ($updateAddCategories) {
+
+            $this->db->delete('shop_product_categories', ['product_id' => $productId]);
+
+            $arrNames = [];
+            foreach (explode('|', $arg['addcats']) as $k => $val) {
+                $temp = explode('/', $val);
+                $arrNames[$k]['category'] = end($temp);
+                if ($temp[count($temp) - 2]) {
+                    $arrNames[$k]['parent'] = $temp[count($temp) - 2];
+                }
+            }
+            // Привязка к имени доп категорий а не к транслиту full_path_url
+            foreach ($arrNames as $key => $value) {
+                if ($value['parent']) {
+                    $parentId = $this->db->select('id')
+                        ->where('name', $value['parent'])
+                        ->where('locale', $this->input->post('language'))
+                        ->get('shop_category_i18n')
+                        ->row()
+                        ->id;
+
+                    $idAddCat = $this->db->select('shop_category_i18n.id')
+                        ->where('shop_category_i18n.name', $value['category'])
+                        ->where('shop_category.parent_id', $parentId)
+                        ->join('shop_category', 'shop_category.id=shop_category_i18n.id')
+                        ->where('shop_category_i18n.locale', $this->input->post('language'))
+                        ->get('shop_category_i18n')
+                        ->row_array();
+                } else {
+                    $idAddCat = $this->db->select('id')
+                        ->where('name', $value['category'])
+                        ->where('locale', $this->input->post('language'))
+                        ->get('shop_category_i18n')
+                        ->row_array();
+                }
+                $idsAddCat[$key]['id'] = $idAddCat['id'];
+            }
+
+            foreach ($idsAddCat as $one) {
+                array_push($shopCategoryIds, (int) $one['id']);
+            }
         }
 
         $mainCategory = $this->db

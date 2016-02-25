@@ -1,4 +1,5 @@
 <?php
+use mod_stats\classes\MyDateInterval;
 
 /**
  * Class Users_model for mod_stats module
@@ -25,7 +26,7 @@ class Users_model extends CI_Model
 
     public function __construct() {
         parent::__construct();
-        $this->locale = \MY_Controller::getCurrentLocale();
+        $this->locale = MY_Controller::getCurrentLocale();
     }
 
     /**
@@ -50,7 +51,7 @@ class Users_model extends CI_Model
     public function getRegister() {
         $query = "
             SELECT
-                DATE_FORMAT(FROM_UNIXTIME(`created`), '" . \mod_stats\classes\DateInterval::getDatePattern($this->params['interval']) . "') as `date`,
+                DATE_FORMAT(FROM_UNIXTIME(`created`), '" . MyDateInterval::getDatePattern($this->params['interval']) . "') as `date`,
                 `created` as `unix_date`,    
                 COUNT(`id`) as `count`
             FROM 
@@ -67,10 +68,10 @@ class Users_model extends CI_Model
                     FROM_UNIXTIME(`users`.`created`)
                 ) as dtable
             WHERE 1 
-                 " . \mod_stats\classes\DateInterval::prepareDateBetweenCondition('created', $this->params) . " 
+                 " . MyDateInterval::prepareDateBetweenCondition('created', $this->params) . '
             GROUP BY `date`
             ORDER BY FROM_UNIXTIME(`created`)
-        ";
+        ';
 
         $result = $this->db->query($query);
         if ($result === FALSE) {

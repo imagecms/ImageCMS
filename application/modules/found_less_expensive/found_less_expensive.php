@@ -1,5 +1,7 @@
 <?php
 
+use CMSFactory\assetManager;
+
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
@@ -13,7 +15,8 @@ if (!defined('BASEPATH')) {
  *
  * Нашли дешевле
  */
-class Found_less_expensive extends MY_Controller {
+class Found_less_expensive extends MY_Controller
+{
 
     public function __construct() {
         parent::__construct();
@@ -31,7 +34,7 @@ class Found_less_expensive extends MY_Controller {
      * Display button and form
      */
     public function showButtonWithForm() {
-        \CMSFactory\assetManager::create()
+        assetManager::create()
                 ->registerStyle('style')
                 ->registerScript('scripts')
                 ->render('buttonWithForm', true);
@@ -54,7 +57,7 @@ class Found_less_expensive extends MY_Controller {
 
     /**
      * Get email settings
-     * @param type $messageData
+     * @param array $messageData
      */
     public function prepareEmailData($messageData) {
         $data = $this->found_less_expensive_model->getModuleSettings();
@@ -63,6 +66,11 @@ class Found_less_expensive extends MY_Controller {
 
     /**
      * Send email
+     * @param string $fromEmail
+     * @param string $toEmail
+     * @param string $subject
+     * @param string $message
+     * @param array $messageData
      */
     public function sendEmail($fromEmail, $toEmail, $subject, $message, $messageData) {
 
@@ -87,7 +95,7 @@ class Found_less_expensive extends MY_Controller {
 
         $this->email->initialize($config);
 
-        $message = "<html><body>" . $message . "</body></html>";
+        $message = '<html><body>' . $message . '</body></html>';
 
         // Replace %linkPage%, %linkProduct%
         $message = str_replace('%linkPage%', $messageData['productUrl'], $message);

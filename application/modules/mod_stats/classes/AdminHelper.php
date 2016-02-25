@@ -2,35 +2,36 @@
 
 namespace mod_stats\classes;
 
+use MY_Controller;
+use MY_Lang;
+use Stats_model;
+
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
 /**
  * Class AdminHelper for mod_stats module
- * @uses \MY_Controller
+ * @uses MY_Controller
  * @author DevImageCms
  * @copyright (c) 2014, ImageCMS
- * @property stats_model $stats_model
+ * @property Stats_model $stats_model
  * @package ImageCMSModule
  */
-class AdminHelper extends \MY_Controller {
+class AdminHelper extends MY_Controller
+{
 
     protected static $_instance;
 
     /**
-     * __construct base object loaded
-     * @access public
-     * @author DevImageCms
-     * @param ---
-     * @return ---
-     * @copyright (c) 2013, ImageCMS
+     * AdminHelper constructor.
      */
     public function __construct() {
+
         parent::__construct();
         /** Load model * */
         $this->load->model('stats_model');
-        $lang = new \MY_Lang();
+        $lang = new MY_Lang();
         $lang->load('mod_stats');
     }
 
@@ -39,6 +40,7 @@ class AdminHelper extends \MY_Controller {
      * @return AdminHelper
      */
     public static function create() {
+
         (null !== self::$_instance) OR self::$_instance = new self();
         return self::$_instance;
     }
@@ -47,6 +49,7 @@ class AdminHelper extends \MY_Controller {
      * Ajax update setting by value and setting name
      */
     public function ajaxUpdateSettingValue() {
+
         /** Get data from post * */
         $settingName = $this->input->get('setting');
         $settingValue = $this->input->get('value');
@@ -65,64 +68,66 @@ class AdminHelper extends \MY_Controller {
     /**
      * Get setting by value
      * @param string $settingName
-     * @return string|boolean
+     * @return array
      */
     public function getSetting($settingName) {
+
         return $this->stats_model->getSettingByName($settingName);
     }
 
     /**
      * Get main currency symbol
-     * @return string
+     * @return array
      */
     public function getCurrencySymbol() {
+
         return $this->stats_model->getMainCurrencySymbol();
     }
 
     /**
      * Autocomlete products
-     * @return jsone
      */
     public function autoCompleteProducts() {
-        $sCoef = $this->input->get('term');
-        $sLimit = $this->input->get('limit');
 
-        $products = $this->stats_model->getProductsByIdNameNumber($sCoef, $sLimit);
+        echo json_encode($this->autocomplete('product'));
 
-        if ($products != false) {
-            foreach ($products as $product) {
-                $response[] = [
-                    'value' => $product['name'],
-                    'id' => $product['id'],
-                ];
-            }
-            echo json_encode($response);
-            return;
-        }
-        echo '';
     }
 
     /**
      * Autocomlete categories
-     * @return jsone
      */
     public function autoCompleteCategories() {
+
+        echo json_encode($this->autocomplete('category'));
+    }
+
+    /**
+     * @param string $type
+     * @return array
+     */
+    private function autocomplete($type) {
+
         $sCoef = $this->input->get('term');
         $sLimit = $this->input->get('limit');
 
-        $categories = $this->stats_model->getCategoriesByIdName($sCoef, $sLimit);
+        $response = [];
+        $datas = [];
 
-        if ($categories != false) {
-            foreach ($categories as $category) {
-                $response[] = [
-                    'value' => $category['name'],
-                    'id' => $category['id'],
-                ];
-            }
-            echo json_encode($response);
-            return;
+        switch ($type) {
+            case 'category':
+                $datas = $this->stats_model->getCategoriesByIdName($sCoef, $sLimit);
+                break;
+            case 'product':
+                $datas = $this->stats_model->getProductsByIdNameNumber($sCoef, $sLimit);
+                break;
         }
-        echo '';
-    }
 
+        foreach ($datas as $data) {
+            $response[] = [
+                'value' => $data['name'],
+                'id' => $data['id'],
+            ];
+        }
+        return $response;
+    }
 }

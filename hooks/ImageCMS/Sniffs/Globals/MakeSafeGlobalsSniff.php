@@ -6,7 +6,7 @@ class ImageCMS_Sniffs_Globals_MakeSafeGlobalsSniff extends MySource_Sniffs_PHP_G
         $tokens = $phpcsFile->getTokens();
 
         $varName = $tokens[$stackPtr]['content'];
-        if ($varName !== '$_REQUEST' && $varName !== '$_GET' && $varName !== '$_POST' && $varName !== '$_FILES' && $varName !== '$_SERVER') {
+        if ($varName !== '$_REQUEST' && $varName !== '$_GET' && $varName !== '$_POST' && $varName !== '$_SERVER') {
             return;
         }
 

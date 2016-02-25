@@ -117,7 +117,7 @@ class BaseDiscount
     public static function checkModuleInstall() {
         $ci = &get_instance();
         if (self::$moduleInstalled == null) {
-            self::$moduleInstalled = (count($ci->db->where('name', 'mod_discount')->get('components')->result_array()) == 0) ? false : true;
+            self::$moduleInstalled = count($ci->db->where('name', 'mod_discount')->get('components')->result_array()) !== 0;
         }
         return self::$moduleInstalled;
     }
@@ -167,7 +167,7 @@ class BaseDiscount
      * @copyright (c) 2013, ImageCMS
      */
     private static function setUserId($userId = null) {
-        self::$userId = $userId ? $userId : CI::$APP->dx_auth->get_user_id();
+        self::$userId = $userId ?: CI::$APP->dx_auth->get_user_id();
     }
 
     /**
@@ -266,13 +266,13 @@ class BaseDiscount
      */
     public static function getDiscountsLabels($type = NULL) {
         $discounts = [
-            "all_order" => lang('Order amount of more than', 'mod_discount'),
-            "comulativ" => lang('Cumulative discount', 'mod_discount'),
-            "user" => lang('User', 'mod_discount'),
-            "group_user" => lang('Users group', 'mod_discount'),
-            "category" => lang('Category', 'mod_discount'),
-            "product" => lang('Product', 'mod_discount'),
-            "brand" => lang('Brand', 'mod_discount'),
+            'all_order' => lang('Order amount of more than', 'mod_discount'),
+            'comulativ' => lang('Cumulative discount', 'mod_discount'),
+            'user' => lang('User', 'mod_discount'),
+            'group_user' => lang('Users group', 'mod_discount'),
+            'category' => lang('Category', 'mod_discount'),
+            'product' => lang('Product', 'mod_discount'),
+            'brand' => lang('Brand', 'mod_discount'),
         ];
         if ($type == null) {
             return $discounts;
@@ -395,8 +395,8 @@ class BaseDiscount
      * update discount apply
      * @access public
      * @author DevImageCms
-     * @param type $key
-     * @param type $gift optional
+     * @param string $key
+     * @param string $gift optional
      * @return int|null
      * @copyright (c) 2013, ImageCMS
      */

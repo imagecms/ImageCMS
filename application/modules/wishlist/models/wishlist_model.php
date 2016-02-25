@@ -4,7 +4,8 @@
  * @property CI_DB_active_record $db
  * @property DX_Auth $dx_auth
  */
-class Wishlist_model extends CI_Model {
+class Wishlist_model extends CI_Model
+{
 
     public function __construct() {
         parent::__construct();
@@ -581,7 +582,7 @@ class Wishlist_model extends CI_Model {
      */
     public function getUserWishListItemsCount($user_id) {
         $query = $this->db->where('mod_wish_list.user_id', $user_id)
-            ->join("mod_wish_list_products", 'mod_wish_list_products.wish_list_id=mod_wish_list.id')
+            ->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id')
             ->get('mod_wish_list');
         if ($query) {
             return count($query->result_array());
@@ -683,7 +684,7 @@ class Wishlist_model extends CI_Model {
             'access' => [
                 'type' => 'ENUM',
                 'constraint' => "'public','private','shared'",
-                'default' => "shared"
+                'default' => 'shared'
             ],
             'user_id' => [
                 'type' => 'INT',
@@ -788,10 +789,10 @@ class Wishlist_model extends CI_Model {
         $this->db->where_in('id', '111')->delete('mod_email_paterns');
         $this->db->where_in('id', '111')->delete('mod_email_paterns_i18n');
 
-        $file = $this->load->file(dirname(__FILE__) . '/patern.sql', true);
+        $file = $this->load->file(__DIR__ . '/patern.sql', true);
         $this->db->query($file);
 
-        $file = $this->load->file(dirname(__FILE__) . '/patern_i18n.sql', true);
+        $file = $this->load->file(__DIR__ . '/patern_i18n.sql', true);
         $this->db->query($file);
     }
 

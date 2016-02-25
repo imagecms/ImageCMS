@@ -11,8 +11,10 @@ use Currency\Currency;
  * Image CMS
  * Module ymarket
  * @property Ymarket_model $ymarket_model
+ * @property Ymarket_products_fields_model ymarket_products_fields_model
  */
-class Ymarket extends ShopController {
+class Ymarket extends ShopController
+{
 
     const DEFAULT_TYPE = 1;
     const PRICE_UA_TYPE = 2;
@@ -57,21 +59,6 @@ class Ymarket extends ShopController {
     }
 
     /**
-     * Price.ua
-     * @url http://price.ua/assets/0123b18f5c083be5/example.xml
-     */
-    public function priceua() {
-        $this->index(false, self::PRICE_UA_TYPE);
-    }
-
-    /**
-     * Nadavi.com.ua
-     */
-    public function nadaviua() {
-        $this->index(false, self::NADAVI_UA_TYPE);
-    }
-
-    /**
      * Generates an array of data to create a body xml
      *
      * @param boolean $ignoreSettings
@@ -90,36 +77,6 @@ class Ymarket extends ShopController {
                 $this->priceuaCore();
                 break;
         }
-    }
-
-    /**
-     *
-     * @param boolean $ignoreSettings
-     */
-    private function priceuaCore($ignoreSettings = false) {
-        $ci = ShopCore::$ci;
-
-        $currencies = Currency::create()->getMainCurrency();
-        $this->mainCurr['id'] = $currencies->getId();
-        $this->mainCurr['rate'] = number_format($currencies->getRate(), 3);
-        $this->mainCurr['code'] = $currencies->getCode();
-
-        $params = [];
-        $productFields = [];
-
-        $offers = $this->ymarket_model->formOffers($ignoreSettings, $productFields, $params);
-
-        $infoXml = [];
-        $infoXml['categories'] = $this->categories;
-        $infoXml['offers'] = $offers;
-        $infoXml['site_title'] = $this->settings['site_title'];
-        $infoXml['base_url'] = $ci->config->item('base_url');
-        $infoXml['mainCurr'] = $this->mainCurr;
-
-        assetManager::create()
-                ->setData('full', $ignoreSettings)
-                ->setData('infoXml', $infoXml)
-                ->render('priceua', true);
     }
 
     /**

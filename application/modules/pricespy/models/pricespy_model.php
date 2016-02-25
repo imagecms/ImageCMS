@@ -1,6 +1,7 @@
 <?php
 
-class Pricespy_model extends CI_Model {
+class Pricespy_model extends CI_Model
+{
 
     public function __construct() {
         parent::__construct();
@@ -21,8 +22,7 @@ class Pricespy_model extends CI_Model {
 
     /**
      * Deleting user spys products from list
-     * @param type $ids
-     * @return type
+     * @param int $ids
      */
     public function delSpysbyIds($ids) {
         $this->db->where_in('productId', $ids);
@@ -31,8 +31,7 @@ class Pricespy_model extends CI_Model {
 
     /**
      * Deleting user spys products from list
-     * @param type $hash
-     * @return type
+     * @param string $hash
      */
     public function delSpyByHash($hash) {
         return $this->db->delete('mod_price_spy', ['hash' => $hash]);
@@ -41,7 +40,7 @@ class Pricespy_model extends CI_Model {
     /**
      *
      * @param integer $varId
-     * @return type
+     * @return int
      */
     public function getProductById($varId) {
         return $this->db
@@ -52,10 +51,9 @@ class Pricespy_model extends CI_Model {
 
     /**
      * Insert new spy for user
-     * @param type $id
-     * @param type $varId
-     * @param type $productPrice
-     * @return type
+     * @param int $id
+     * @param int $varId
+     * @param double $productPrice
      */
     public function setSpy($id, $varId, $productPrice) {
         return $this->db

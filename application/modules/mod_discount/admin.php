@@ -219,7 +219,7 @@ class Admin extends ShopAdminController
         $res = $this->discount_model_admin->changeActive($id);
         if ($res) {
             $key = $this->db->where('id', $id)->get('mod_shop_discounts')->row()->key;
-            $this->lib_admin->log(lang("Status discount was changed", "mod_discount") . '. Key: ' . $key);
+            $this->lib_admin->log(lang('Status discount was changed', 'mod_discount') . '. Key: ' . $key);
             $msg = showMessage(lang('Status changed', 'mod_discount'), '', '', TRUE);
             echo json_encode(['status' => 1, 'msg' => $msg]);
         }
@@ -232,7 +232,7 @@ class Admin extends ShopAdminController
     public function ajaxDeleteDiscount() {
         $id = $this->input->post('id');
         $key = $this->db->where('id', $id)->get('mod_shop_discounts')->row()->key;
-        $this->lib_admin->log(lang("Discount was removed", "mod_discount") . '. Key: ' . $key);
+        $this->lib_admin->log(lang('Discount was removed', 'mod_discount') . '. Key: ' . $key);
         echo $this->discount_model_admin->deleteDiscountById($id);
     }
 

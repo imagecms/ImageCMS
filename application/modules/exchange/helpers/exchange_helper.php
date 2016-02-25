@@ -183,8 +183,8 @@ if (!function_exists('is_prop_multiple')) {
 
     /**
      *
-     * @param type $prop_id
-     * @param type $props all properties
+     * @param int $prop_id
+     * @param array $props all properties
      * @return boolean
      */
     function is_prop_multiple($prop_id, $props) {
@@ -203,6 +203,12 @@ if (!function_exists('is_prop_multiple')) {
 
 if (!function_exists('is_prop_data')) {
 
+    /**
+     * @param int $prop_id
+     * @param int $prod_id
+     * @param array $props
+     * @return bool
+     */
     function is_prop_data($prop_id, $prod_id, $props) {
 
         return array_key_exists($prop_id . '_' . $prod_id, $props);

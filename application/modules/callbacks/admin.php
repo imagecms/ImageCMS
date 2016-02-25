@@ -27,6 +27,15 @@ class Admin extends BaseAdminController
      * Callbacks list
      */
     public function index() {
+        /** Callbacks Pagination */
+        if ($this->input->get('per_page')) {
+            $callbacksSession = [
+                'callback_url' => '?per_page=' . $this->input->get('per_page'),
+            ];
+            $this->session->set_userdata($callbacksSession);
+        } else {
+            $this->session->unset_userdata('callback_url');
+        }
         $offset = $this->input->get('per_page');
         $model = SCallbacksQuery::create()
             ->joinSCallbackStatuses(null, 'left join')
@@ -104,6 +113,9 @@ class Admin extends BaseAdminController
     public function update($callbackId = null) {
         $model = SCallbacksQuery::create()->findPk((int) $callbackId);
 
+        $paginationBrand = $this->session->userdata('callback_url');
+        $paginationBrand = $paginationBrand ? $paginationBrand : null;
+
         if ($model === null) {
             $this->error404(lang('Error', 'admin'));
         }
@@ -124,7 +136,7 @@ class Admin extends BaseAdminController
                 showMessage(lang('Changes have been saved', 'admin'));
 
                 if ($this->input->post('action') == 'close') {
-                    $redirect_url = '/admin/components/run/callbacks';
+                    $redirect_url = '/admin/components/run/callbacks'. $paginationBrand;
                 }
 
                 if ($this->input->post('action') == 'edit') {
@@ -147,7 +159,7 @@ class Admin extends BaseAdminController
                 ->find();
 
             assetManager::create()
-                ->setData(compact('model', 'statuses', 'themes'))
+                ->setData(compact('model', 'statuses', 'themes', 'paginationBrand'))
                 ->renderAdmin('edit');
         }
     }

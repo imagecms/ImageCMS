@@ -8,7 +8,8 @@
  * @property CI_DB_active_record $db
  * @package ImageCMSModule
  */
-class Stats_model extends CI_Model {
+class Stats_model extends CI_Model
+{
 
     const TIME_BETWEEN_REQUESTS = 10;
 
@@ -19,7 +20,7 @@ class Stats_model extends CI_Model {
     /**
      * Get setting by name
      * @param string $settingName
-     * @return boolean|array
+     * @return array
      */
     public function getSettingByName($settingName = '') {
         if ($settingName == '') {
@@ -37,7 +38,7 @@ class Stats_model extends CI_Model {
         if ($query != null) {
             return $query['value'];
         } else {
-            return FALSE;
+            return [];
         }
     }
 
@@ -111,6 +112,10 @@ class Stats_model extends CI_Model {
         return TRUE;
     }
 
+    /**
+     * @param int $userId
+     * @param string $url
+     */
     public function saveUrl($userId, $url) {
         $this->db->insert(
             'mod_stats_urls',
@@ -125,7 +130,7 @@ class Stats_model extends CI_Model {
      *
      * @param string $term
      * @param integer $limit
-     * @return boolean|array
+     * @return array
      */
     public function getProductsByIdNameNumber($term, $limit = 7) {
         $locale = MY_Controller::getCurrentLocale();
@@ -142,13 +147,13 @@ class Stats_model extends CI_Model {
         if ($query) {
             return $query;
         } else {
-            return false;
+            return [];
         }
     }
 
     /**
      * Get main currency symbol
-     * @return boolean
+     * @return array
      */
     public function getMainCurrencySymbol() {
         $query = $this->db->select('symbol')->where('main', 1)->get('shop_currencies')->row_array();
@@ -156,13 +161,15 @@ class Stats_model extends CI_Model {
         if ($query) {
             return $query['symbol'];
         } else {
-            return false;
+            return [];
         }
     }
 
     /**
      * Get first level categories
-     * @return boolean|array
+     * @param string $term
+     * @param int $limit
+     * @return bool
      */
     public function getCategoriesByIdName($term, $limit = 7) {
         $locale = MY_Controller::getCurrentLocale();
@@ -178,7 +185,7 @@ class Stats_model extends CI_Model {
         if ($query) {
             return $query->result_array();
         } else {
-            return false;
+            return [];
         }
     }
 
@@ -310,11 +317,11 @@ class Stats_model extends CI_Model {
      * @return int
      */
     public function getNewUnregisteredUserId() {
-        $query = "
+        $query = '
             select 
                 (min(`id_user`) - 1) as `u2id` 
             FROM 
-                `mod_stats_attendance`";
+                `mod_stats_attendance`';
 
         $result = $this->db->query($query);
         if ($result) {

@@ -1,4 +1,5 @@
 <?php
+use mod_stats\classes\MyDateInterval;
 
 /**
  * Class Attendance_model for mod_stats module
@@ -34,7 +35,7 @@ class Attendance_model extends CI_Model
             }
         }
 
-        $registeredCondition = "";
+        $registeredCondition = '';
         if ($params['type'] != 'all') {
             $sign = $params['type'] == 'registered' ? '>' : '<';
             $registeredCondition = "AND `id_user` {$sign} 0 ";
@@ -43,12 +44,12 @@ class Attendance_model extends CI_Model
         $query = "
             SELECT 
                 `time_add` as `unix_date`,
-                DATE_FORMAT(FROM_UNIXTIME(`time_add`), '" . \mod_stats\classes\DateInterval::getDatePattern($params['interval']) . "') as `date`,
+                DATE_FORMAT(FROM_UNIXTIME(`time_add`), '" . MyDateInterval::getDatePattern($params['interval']) . "') as `date`,
                 COUNT(DISTINCT `id_user`) as `users_count`
             FROM 
                 `mod_stats_attendance`
             WHERE 1 
-                " . \mod_stats\classes\DateInterval::prepareDateBetweenCondition('time_add', $params) . " 
+                " . MyDateInterval::prepareDateBetweenCondition('time_add', $params) . "
                 {$registeredCondition}
             GROUP BY 
                 `date`
@@ -131,14 +132,15 @@ class Attendance_model extends CI_Model
      * Dynamic of categories attendance
      * @param array $params standart params (date, interval)
      * @param array $categoriesIds ids of categories witch attendance return
+     * @return array
      */
     public function getCategoriesAttendance(array $params, array $categoriesIds) {
-        $datePattern = \mod_stats\classes\DateInterval::getDatePattern($params['interval']);
-        $dateBetween = \mod_stats\classes\DateInterval::prepareDateBetweenCondition('time_add', $params);
+        $datePattern = MyDateInterval::getDatePattern($params['interval']);
+        $dateBetween = MyDateInterval::prepareDateBetweenCondition('time_add', $params);
 
         $categoriesAttendance = [];
         foreach ($categoriesIds as $categoryId => $categoryIds) {
-            $condition = "AND `id_entity` IN (" . implode(',', $categoryIds) . ")";
+            $condition = 'AND `id_entity` IN (' . implode(',', $categoryIds) . ')';
 
             $query = "
                 SELECT 

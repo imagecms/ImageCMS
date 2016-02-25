@@ -18,4 +18,5 @@
     <rule ref="rulesets/naming.xml/ShortMethodName"/>
     <rule ref="rulesets/naming.xml/ConstructorWithNameAsEnclosingClass"/>
     <rule ref="rulesets/unusedcode.xml"/>
+    <rule ref="rulesets/unusedcode.xml/UnusedPrivateMethod"/>
 </ruleset>

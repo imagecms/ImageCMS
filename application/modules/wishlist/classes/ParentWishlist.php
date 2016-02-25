@@ -262,7 +262,7 @@ class ParentWishlist extends MY_Controller
             $this->wishlist_model->updateWishListItemsComments($id, $comments);
         }
         if ($return) {
-            $this->dataModel[] = lang("Updated", "wishlist");
+            $this->dataModel[] = lang('Updated', 'wishlist');
         } else {
             $this->errors[] = lang('Not updated', 'wishlist');
         }
@@ -280,6 +280,7 @@ class ParentWishlist extends MY_Controller
      * @return boolean
      */
     public function createWishList($user_id, $listName, $wlType, $wlDescription) {
+
         if ($listName) {
             $count_lists = $this->wishlist_model->getUserWishListCount($user_id);
         }
@@ -298,8 +299,9 @@ class ParentWishlist extends MY_Controller
             if (iconv_strlen($listName, 'UTF-8') > $this->settings['maxListName']) {
                 $listName = mb_substr($listName, 0, (int) $this->settings['maxListName'], 'utf-8');
                 $this->errors[] = lang('Wish list name will be changed', 'wishlist') . '. ' . lang('List name length maximum', 'wishlist') . ' - ' . $this->settings['maxListName'];
+            } else {
+                $this->wishlist_model->createWishList($listName, $user_id, $wlType, $wlDescription);
             }
-            $this->wishlist_model->createWishList($listName, $user_id, $wlType, $wlDescription);
         } else {
             $this->errors[] = lang('Wish List name can not be empty!', 'wishlist');
         }
@@ -407,7 +409,7 @@ class ParentWishlist extends MY_Controller
         }
 
         if ($listName) {
-            $listId = "";
+            $listId = '';
             $count_lists = $this->wishlist_model->getUserWishListCount($userId);
         }
 
@@ -574,9 +576,9 @@ class ParentWishlist extends MY_Controller
 
         $allowedFileFormats = ['image/gif', 'image/jpeg', 'image/png', 'image/jpg'];
 
-        list($width, $height) = getimagesize($_FILES["file"]['tmp_name']);
+        list($width, $height) = getimagesize($_FILES['file']['tmp_name']);
 
-        if ($this->settings['maxImageSize'] < $_FILES["file"]['size']) {
+        if ($this->settings['maxImageSize'] < $_FILES['file']['size']) {
             $this->errors[] = lang('Maximum image size is exceeded', 'wishlist') . ' (' . lang('max size', 'wishlist') . ' ' . $this->settings['maxImageSize'] . ')';
         }
         if ($this->settings['maxImageWidth'] < $width) {
@@ -585,7 +587,7 @@ class ParentWishlist extends MY_Controller
         if ($this->settings['maxImageHeight'] < $height) {
             $this->errors[] = lang('Max image height exceeded', 'wishlist') . ' (' . lang('max height', 'wishlist') . ' ' . $this->settings['maxImageHeight'] . 'px)';
         }
-        if (!in_array($_FILES["file"]['type'], $allowedFileFormats)) {
+        if (!in_array($_FILES['file']['type'], $allowedFileFormats)) {
             $this->errors[] = lang('Invalid file format', 'wishlist');
         }
         if ($this->errors) {
@@ -665,8 +667,8 @@ class ParentWishlist extends MY_Controller
      */
     public function deleteImage($image, $user_id) {
         $this->db->where('id', $user_id)->update('mod_wish_list_users', ['user_image' => '']);
-        $basePath = substr(dirname(__FILE__), 0, strpos(dirname(__FILE__), "application"));
-        return unlink($basePath . "uploads/mod_wishlist/" . $image);
+        $basePath = substr(__DIR__, 0, strpos(__DIR__, 'application'));
+        return unlink($basePath . 'uploads/mod_wishlist/' . $image);
     }
 
     /**

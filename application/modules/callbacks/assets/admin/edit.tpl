@@ -8,7 +8,7 @@
         <div class="pull-right">
             <span class="help-inline"></span>
             <div class="d-i_b">
-                <a href="{$ADMIN_URL}callbacks" class="pjax t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Go back','admin')}</span></a>
+                <a href="{$ADMIN_URL}callbacks{echo $paginationBrand}" class="pjax t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Go back','admin')}</span></a>
                 <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-action="edit" data-form="#editCallbackForm" data-submit><i class="icon-plus-sign icon-white"></i>{lang('Save','admin')}</button>
                 <button type="button" class="btn btn-small action_on formSubmit" data-action="close" data-form="#editCallbackForm"><i class="icon-check"></i>{lang('Save and go back','admin')}</button>
             </div>

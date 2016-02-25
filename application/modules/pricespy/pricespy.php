@@ -11,7 +11,8 @@ use CMSFactory\Events;
  * Класс слежения за ценой
  * @property pricespy_model $pricespy_model
  */
-class Pricespy extends MY_Controller {
+class Pricespy extends MY_Controller
+{
 
     public $product;
 
@@ -27,22 +28,22 @@ class Pricespy extends MY_Controller {
 
     /**
      * send email to user
-     * @param type $email
-     * @param type $name
-     * @param type $hash
+     * @param string $email
+     * @param string $name
+     * @param string $hash
      */
     private static function sendNotificationByEmail($email, $name, $hash) {
         $CI = &get_instance();
         $CI->load->library('email');
 
-        $CI->email->from("noreplay@" . $CI->input->server('HTTP_HOST'));
+        $CI->email->from('noreplay@' . $CI->input->server('HTTP_HOST'));
         $CI->email->to($email);
         $CI->email->set_mailtype('html');
         $CI->email->subject(lang('Price changing', 'pricespy'));
         $CI->email->message(
             lang('Price on', 'pricespy') . $name . lang('for which you watch on site', 'pricespy') . site_url() . lang('changed', 'pricespy') . ".<br>
                 <a href='" . site_url('pricespy') . "' title='" . lang('View watch list', 'pricespy') . "'>" . lang('View watch list', 'pricespy') . "</a><br>
-                <a href='" . site_url("pricespy/$hash") . "' title='" . lang('Unsubscribe tracking', 'pricespy') . "'>" . lang('Unsubscribe tracking', 'pricespy') . "</a><br>"
+                <a href='" . site_url("pricespy/$hash") . "' title='" . lang('Unsubscribe tracking', 'pricespy') . "'>" . lang('Unsubscribe tracking', 'pricespy') . '</a><br>'
         );
         $CI->email->send();
     }
@@ -69,7 +70,7 @@ class Pricespy extends MY_Controller {
 
     /**
      * deleting from spy if product deleted
-     * @param type $product
+     * @param array $product
      */
     public static function priceDelete($product) {
         if (!$product) {
@@ -90,7 +91,7 @@ class Pricespy extends MY_Controller {
 
     /**
      * updating price
-     * @param type $product
+     * @param array $product
      */
     public static function priceUpdate($product) {
         if (!$product) {
@@ -123,8 +124,8 @@ class Pricespy extends MY_Controller {
 
     /**
      * set spy for product
-     * @param type $id product ID
-     * @param type $varId variant ID
+     * @param int $id product ID
+     * @param int $varId variant ID
      */
     public function spy($id, $varId) {
         $product = $this->pricespy_model->getProductById($varId);
@@ -142,7 +143,7 @@ class Pricespy extends MY_Controller {
 
     /**
      *
-     * @param type $hash
+     * @param string $hash
      */
     public function unSpy($hash) {
         if ($this->pricespy_model->delSpyByHash($hash)) {
@@ -189,8 +190,8 @@ class Pricespy extends MY_Controller {
 
     /**
      * render spy buttons
-     * @param type $id product ID
-     * @param type $varId variant ID
+     * @param int $id product ID
+     * @param int $varId variant ID
      */
     public function renderButton($id, $varId) {
         if ($this->dx_auth->is_logged_in()) {

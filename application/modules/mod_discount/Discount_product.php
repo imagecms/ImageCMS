@@ -3,6 +3,7 @@
 namespace mod_discount;
 
 use CMSFactory\assetManager;
+use discount_model_front;
 use mod_discount\classes\BaseDiscount;
 
 if (!defined('BASEPATH')) {
@@ -25,7 +26,7 @@ class Discount_product
 
     /**
      * singelton method
-     * @return object BaseDiscount
+     * @return Discount_product
      */
     public static function create() {
         if (!self::$object) {
@@ -46,7 +47,7 @@ class Discount_product
         $lang = new \MY_Lang();
         $lang->load('mod_discount');
         include_once __DIR__ . '/models/discount_model_front.php';
-        $this->ci->discount_model_front = new \discount_model_front;
+        $this->ci->discount_model_front = new discount_model_front;
         $this->baseDiscount = BaseDiscount::create();
         $this->discountForProduct = array_merge($this->baseDiscount->discountType['product'], $this->baseDiscount->discountType['brand'], $this->createChildDiscount($this->baseDiscount->discountType['category']));
     }
