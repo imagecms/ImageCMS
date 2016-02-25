@@ -2,23 +2,36 @@
 
 namespace cmsemail\classes;
 
+use CI_DB_active_record;
+use CI_Input;
+use CI_URI;
+use DX_Auth;
+use MY_Lang;
+
 /**
  * Image CMS
  * Module cmsemail
- * @property \DX_Auth $dx_auth
- * @property \CI_URI $uri
- * @property \CI_DB_active_record $db
- * @property \CI_Input $input
+ * @property DX_Auth $dx_auth
+ * @property CI_URI $uri
+ * @property CI_DB_active_record $db
+ * @property CI_Input $input
  */
 class BaseEmail extends ParentEmail
 {
 
+    /**
+     * BaseEmail constructor.
+     */
     public function __construct() {
         parent::__construct();
-        $lang = new \MY_Lang();
+        $lang = new MY_Lang();
         $lang->load('cmsemail');
     }
 
+    /**
+     * @param array $params
+     * @return bool|mixed
+     */
     public function create($params = []) {
         if (parent::create($params = [])) {
             if ($this->input->post()) {
@@ -44,6 +57,12 @@ class BaseEmail extends ParentEmail
         }
     }
 
+    /**
+     * @param int $id
+     * @param array $params
+     * @param string $locale
+     * @return bool
+     */
     public function edit($id, $params = [], $locale) {
         if (parent::edit($id, $params = [])) {
             if ($this->input->post()) {
@@ -70,12 +89,13 @@ class BaseEmail extends ParentEmail
 
     /**
      * send email
-     * @param type $send_to
+     * @param string $send_to
      * @param string $pattern_name
-     * @param type $variables
-     * @return boolean
+     * @param array $variables
+     * @param bool $attachment
+     * @return bool
      */
-    public function sendEmail($send_to, $pattern_name, $variables, $attachment = FALSE) {
+    public function sendEmail($send_to, $pattern_name, array $variables, $attachment = FALSE) {
         return parent::sendEmail($send_to, $pattern_name, $variables, $attachment) ? TRUE : $this->errors;
     }
 

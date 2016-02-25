@@ -12,6 +12,10 @@ use SCategory;
 use ShopProductCategoriesQuery;
 use SProductsQuery;
 
+/**
+ * Class ShopCategoryMetaManipulator
+ * @package CMSFactory\MetaManipulator
+ */
 class ShopCategoryMetaManipulator extends MetaManipulator
 {
 
@@ -26,11 +30,9 @@ class ShopCategoryMetaManipulator extends MetaManipulator
     protected $brands;
 
     /**
-     * @var array
+     * @var int
      */
-    protected $matching = [
-        'desc' => 'description'
-    ];
+    protected $brandsCount = 3;
 
     /**
      * @var string
@@ -43,38 +45,35 @@ class ShopCategoryMetaManipulator extends MetaManipulator
     protected $minPrice;
 
     /**
-     * @var SCategory
-     */
-    protected $model;
-
-    /**
-     * @param int $limit
      * @return string
      * @throws PropelException
      */
-    public function getBrands($limit = 3) {
+    public function getBrands() {
 
         if (!$this->brands) {
 
-            $productsIds = ShopProductCategoriesQuery::create()
-                ->select('ProductId')
+            $locale = MY_Controller::getCurrentLocale();
+
+            $query = SProductsQuery::create()
+                ->select('shop_brands_i18n.name')
+                ->withColumn('COUNT(shop_products.brand_id)', 'count_brands')
+                ->limit($this->getBrandsCount())
+                ->joinBrand()
+                ->joinShopProductCategories()
+                ->useShopProductCategoriesQuery()
                 ->distinct()
                 ->filterByCategoryId($this->getModel()->getId())
-                ->find()->toArray();
+                ->endUse()
+                ->useBrandQuery()
+                ->joinI18n($locale)
+                ->endUse()
+                ->groupByBrandId()
+                ->orderBy('count_brands', Criteria::DESC)
+                ->orderBy('shop_brands_i18n.name', Criteria::ASC)
+                ->find()
+                ->toKeyValue('shop_brands_i18n.name', 'count_brands');
 
-            $locale = MY_Controller::getCurrentLocale();
-            /* @TODO $res to propel!! */
-            $res = CI::$APP->db
-                ->select('shop_products.brand_id, shop_brands_i18n.name , COUNT(shop_products.brand_id) AS  count')
-                ->join('shop_brands_i18n', 'shop_brands_i18n.id = shop_products.brand_id')
-                ->where('shop_brands_i18n.locale', $locale)
-                ->where_in('shop_products.id', $productsIds)
-                ->group_by('brand_id')
-                ->order_by('count', 'DESC')
-                ->get('shop_products', $limit)
-                ->result_array();
-
-            $this->setBrands(implode(', ', array_column($res, 'name')));
+            $this->setBrands(implode(', ', array_keys($query)));
         }
 
         return $this->brands;
@@ -89,19 +88,19 @@ class ShopCategoryMetaManipulator extends MetaManipulator
     }
 
     /**
-     * @return SCategory
+     * @return int
      */
-    public function getModel() {
+    public function getBrandsCount() {
 
-        return $this->model;
+        return $this->brandsCount;
     }
 
     /**
-     * @param SCategory $model
+     * @param int $brandsCount
      */
-    public function setModel($model) {
+    public function setBrandsCount($brandsCount) {
 
-        $this->model = $model;
+        $this->brandsCount = $brandsCount ?: 3;
     }
 
     /**
@@ -110,7 +109,7 @@ class ShopCategoryMetaManipulator extends MetaManipulator
     public function getH1() {
 
         if (!$this->H1) {
-            $this->setH1($this->getModel()->getH1());
+            $this->setH1($this->getModel()->getH1() ?: $this->getModel()->getName());
         }
         return $this->H1;
     }
@@ -145,7 +144,7 @@ class ShopCategoryMetaManipulator extends MetaManipulator
     /**
      * @throws PropelException
      */
-    protected function setMaxMinPrice() {
+    public function setMaxMinPrice() {
 
         $data = SProductsQuery::create()
             ->select(['maxPrice', 'minPrice'])
@@ -161,8 +160,13 @@ class ShopCategoryMetaManipulator extends MetaManipulator
             ->endUse()
             ->findOne();
 
-        $this->setMaxPrice(Currency::create()->convert($data['maxPrice']));
-        $this->setMinPrice(Currency::create()->convert($data['minPrice']));
+        if (!isset($this->maxPrice)) {
+             $this->setMaxPrice(Currency::create()->convert($data['maxPrice']));
+        }
+
+        if (!isset($this->minPrice)) {
+            $this->setMinPrice(Currency::create()->convert($data['minPrice']));
+        }
     }
 
     /**
@@ -170,7 +174,7 @@ class ShopCategoryMetaManipulator extends MetaManipulator
      */
     public function getMinPrice() {
 
-        if (!$this->maxPrice) {
+        if (!$this->minPrice) {
             $this->setMaxMinPrice();
         }
         return $this->minPrice;

@@ -1,16 +1,6 @@
-/* global arr */
-
 $(document).ready(function () {
-    $.each(arr, function (key, value) {
-        ga("ec:addImpression", {
-            "id": "'" + value.id + "'",
-            "name": "'" + value.name + "'",
-            "price": "'" + value.price + "'",
-            "brand": "'" + value.brand + "'",
-            "category": "'" + value.category + "'",
-            "position": "'" + value.position + "'",
-            "list": "'" + value.list + "'"
-        });
-    });
+    for(var gaProductKey in gaProducts){
+        ga("ec:addImpression", gaProducts[gaProductKey])
+    }
     ga("send", "pageview");
 });

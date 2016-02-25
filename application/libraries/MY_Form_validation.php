@@ -4,31 +4,43 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-class MY_Form_validation extends CI_Form_validation {
+class MY_Form_validation extends CI_Form_validation
+{
 
     public function __construct() {
+
         parent::__construct();
-        $this->set_message('valid_date', 'Поле %s должно содержать правильную дату.');
-        $this->set_message('valid_time', 'Поле %s должно содержать правильное время.');
-        $this->set_message('phone', 'Поле %s должно содержать корректный номер.');
+        $this->set_message('valid_date', lang('Поле %s должно содержать правильную дату.'));
+        $this->set_message('valid_time', lang('Поле %s должно содержать правильное время.'));
+        $this->set_message('phone', lang('Поле %s должно содержать корректный номер.'));
+        $this->set_message('least_one_symbol', lang('Поле %s должно содержать как минимум один символ.'));
     }
 
     public function getErrorsArray() {
+
         return $this->_error_array;
     }
 
     // --------------------------------------------------------------------
 
     public function run($module = '', $group = '') {
-        (is_object($module)) AND $this->CI = & $module;
+
+        (is_object($module)) AND $this->CI = &$module;
         $result = parent::run($group);
-        if(!CI::$APP->input->is_ajax_request()){
-            CI::$APP->session->set_flashdata([
-                '_error_array' => $this->_error_array,
-                '_field_data' => $this->_field_data
-            ]);
+        if (!CI::$APP->input->is_ajax_request()) {
+            CI::$APP->session->set_flashdata(
+                [
+                    '_error_array' => $this->_error_array,
+                    '_field_data' => $this->_field_data
+                ]
+            );
         }
         return $result;
+    }
+
+    public function least_one_symbol($str) {
+
+        return preg_match('/[a-zA-Z]/', $str) ? true : false;
     }
 
     /**
@@ -39,8 +51,9 @@ class MY_Form_validation extends CI_Form_validation {
      * @return    bool
      */
     public function valid_date($str) {
+
         if (preg_match('/([0-9]{4})\-([0-9]{1,2})\-([0-9]{1,2})/', $str)) {
-            $arr = explode("-", $str);
+            $arr = explode('-', $str);
             $yyyy = $arr[0];
             $mm = $arr[1];
             $dd = $arr[2];
@@ -58,6 +71,7 @@ class MY_Form_validation extends CI_Form_validation {
      * @return boolean
      */
     public function valid_time($str) {
+
         if (preg_match('/([0-9]{1,2})\:([0-9]{1,2})\:([0-9]{1,2})/', $str)) {
             return TRUE;
         } else {
@@ -68,10 +82,11 @@ class MY_Form_validation extends CI_Form_validation {
     /**
      * VAlidete phone number symbols
      * +-)([0-9]
-     * @param type $number
+     * @param string $number
      * @return boolean
      */
     public function phone($number) {
+
         return (bool) !preg_match('/[^\d\-\+\s\)\(]/', $number);
     }
 

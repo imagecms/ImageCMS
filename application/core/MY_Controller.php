@@ -1,5 +1,7 @@
 <?php
 
+use CMSFactory\DependencyInjection\DependencyInjectionProvider;
+
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /* The MX_Controller class is autoloaded as required */
@@ -38,7 +40,7 @@
  * @property CI_Upload $upload                    File Uploading Class
  * @property CI_URI $uri                          Parses URIs and determines routing
  * @property CI_User_agent $user_agent            Identifies the platform, browser, robot, or mobile devise of the browsing agent
- * @property CI_Validation $validation            //dead
+ * @property CI_Form_validation $validation            //dead
  * @property CI_Xmlrpc $xmlrpc                    XML-RPC request handler class
  * @property CI_Xmlrpcs $xmlrpcs                  XML-RPC server class
  * @property CI_Zip $zip                          Zip Compression Class
@@ -50,15 +52,24 @@
  * @property Template $template Description
  * @property Console $console Description
  * @property CI_DB_Cache $cache
+ * @property CI_User_agent $agent
  */
 class MY_Controller extends MX_Controller
 {
 
+    /**
+     * @var bool
+     */
     public $pjaxRequest = false;
 
+    /**
+     * @var bool
+     */
     public $ajaxRequest = false;
 
     public static $currentLocale = null;
+
+    public static $currentLangId = null;
 
     public static $currentLanguage = null;
 
@@ -66,7 +77,13 @@ class MY_Controller extends MX_Controller
 
     public static $detect_load = [];
 
+    /**
+     * @var array
+     */
+    private static $getDefaultLanguage;
+
     public function __construct() {
+
         parent::__construct();
 
         if ($this->input->server('HTTP_X_PJAX') && $this->input->server('HTTP_X_PJAX') == true) {
@@ -86,6 +103,7 @@ class MY_Controller extends MX_Controller
      * @return boolean
      */
     private function checkForShop() {
+
         if ($this->db) {
             $this->db->cache_on();
             $res = $this->db->where('identif', 'shop')
@@ -110,14 +128,18 @@ class MY_Controller extends MX_Controller
      * @return string
      */
     public static function getCurrentLocale() {
+
         $ci = get_instance();
-        if (self::$currentLocale) {
+        $lang_id = $ci->config->item('cur_lang');
+        if (self::$currentLocale && $lang_id == self::$currentLangId) {
             return self::$currentLocale;
         }
+
         if (preg_match('/^\/install/', $ci->input->server('PATH_INFO'))) {
             return;
         }
-        $lang_id = $ci->config->item('cur_lang');
+        self::$currentLangId = $lang_id;
+
         if ($lang_id) {
             $query = $ci->db
                 ->query("SELECT `identif` FROM `languages` WHERE `id`=$lang_id AND active=1")
@@ -139,6 +161,7 @@ class MY_Controller extends MX_Controller
      * @return string
      */
     public static function getAdminInterfaceLocale() {
+
         $locale = CI::$APP->config->item('language') ? CI::$APP->config->item('language') : 'ru_RU';
         return array_shift(explode('_', $locale));
     }
@@ -146,9 +169,10 @@ class MY_Controller extends MX_Controller
     /**
      * Get current language
      * @param string|null $field
-     * @return string|boolean
+     * @return string|boolean|array
      */
     public static function getCurrentLanguage($field = null) {
+
         if (!self::$currentLanguage) {
             $ci = get_instance();
             if (preg_match('/^\/install/', $ci->input->server('PATH_INFO'))) {
@@ -176,6 +200,7 @@ class MY_Controller extends MX_Controller
      * @return string
      */
     public static function defaultLocale() {
+
         $lang = self::getDefaultLanguage();
         return $lang['identif'];
     }
@@ -184,7 +209,12 @@ class MY_Controller extends MX_Controller
      * Get default language
      * @return array
      */
-    private function getDefaultLanguage() {
+    public static function getDefaultLanguage() {
+
+        if (self::$getDefaultLanguage) {
+            return self::$getDefaultLanguage;
+        }
+
         $ci = get_instance();
         $languages = $ci->db
             ->where('default', 1)
@@ -194,10 +224,15 @@ class MY_Controller extends MX_Controller
             $languages = $languages->row_array();
         }
 
+        self::$getDefaultLanguage = $languages;
         return $languages;
     }
 
+    /**
+     * @return array|null
+     */
     public static function getAllLocales() {
+
         $query = \CI::$APP->db->select('identif')->get('languages');
         return $query->num_rows() ? array_column($query->result_array(), 'identif') : null;
     }
@@ -206,6 +241,7 @@ class MY_Controller extends MX_Controller
      * Admin Autoload empty method
      */
     public static function adminAutoload() {
+
         /** Must be an empty */
     }
 
@@ -215,6 +251,7 @@ class MY_Controller extends MX_Controller
      * @throws Exception
      */
     public static function isPremiumCMS() {
+
         return self::checkCMSVersion('premium');
     }
 
@@ -224,6 +261,7 @@ class MY_Controller extends MX_Controller
      * @throws Exception
      */
     public static function isProCMS() {
+
         return self::checkCMSVersion('pro');
     }
 
@@ -233,6 +271,7 @@ class MY_Controller extends MX_Controller
      * @throws Exception
      */
     public static function isCorporateCMS() {
+
         return self::checkCMSVersion('corporate');
     }
 
@@ -243,10 +282,17 @@ class MY_Controller extends MX_Controller
      * @throws Exception
      */
     private static function checkCMSVersion($version) {
+
         if (!in_array($version, ['premium', 'pro', 'corporate'])) {
             throw new Exception('You must specify version to define it: premium, pro, corporate');
         }
         return strstr(strtolower(IMAGECMS_NUMBER), $version) ? true : false;
+    }
+
+    public function getContainer() {
+
+        return DependencyInjectionProvider::getContainer();
+
     }
 
 }

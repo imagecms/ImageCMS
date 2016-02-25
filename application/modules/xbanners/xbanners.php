@@ -2,9 +2,10 @@
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
-use Banners\Installers\BannersModuleManager;
-use Banners\Installers\TemplatePlacesInstaller;
-use Banners\Statistic\ClickStatistic;
+use xbanners\src\Installers\BannersModuleManager;
+use xbanners\src\Installers\TemplatePlacesInstaller;
+use xbanners\models\BannersQuery;
+use xbanners\src\Statistic\ClickStatistic;
 use template_manager\classes\Template;
 use CMSFactory\Events;
 
@@ -36,7 +37,8 @@ use CMSFactory\Events;
  *          - array  CI::$APP->load->module('xbanners')->gerBanner(string $place)->asArray()
  * -----------------------------------------------------------------------------
  */
-class Xbanners extends MY_Controller {
+class Xbanners extends MY_Controller
+{
 
     protected $moduleName = 'xbanners';
 
@@ -44,7 +46,6 @@ class Xbanners extends MY_Controller {
         parent::__construct();
         $lang = new MY_Lang();
         $lang->load($this->moduleName);
-        self::registerNameSpaces();
     }
 
     public function index() {
@@ -54,12 +55,12 @@ class Xbanners extends MY_Controller {
     /**
      * @uses xbanners_helper.php getBanner()
      * @param string $place
-     * @return Banners\Models\Banners
+     * @return BannersQuery
      */
     public function getBanner($place) {
         $locale = MY_Controller::getCurrentLocale();
         $pageId = \CI::$APP->core->core_data['id'];
-        return \Banners\Models\BannersQuery::create()
+        return BannersQuery::create()
                         ->getTranslatedByPlace($place, $locale, $pageId);
     }
 
@@ -104,7 +105,7 @@ class Xbanners extends MY_Controller {
      */
     public static function adminAutoload() {
         Events::create()
-                ->on("postTemplateInstall")
+                ->on('postTemplateInstall')
                 ->setListener('postTemplateInstallListener');
     }
 
@@ -117,7 +118,6 @@ class Xbanners extends MY_Controller {
      */
     public static function postTemplateInstallListener(Template $template) {
         try {
-            self::registerNameSpaces();
             $installer = new TemplatePlacesInstaller($template->name);
             $installer->install();
         } catch (Exception $exc) {
@@ -140,12 +140,6 @@ class Xbanners extends MY_Controller {
         }
     }
 
-    protected static function registerNameSpaces() {
-        ClassLoader::getInstance()
-                ->registerNamespacedPath(__DIR__ . '/models/propel/generated-classes')
-                ->registerAlias(__DIR__ . '/src', 'Banners');
-    }
-
     public function show($data) {
         return CMSFactory\assetManager::create()
                         ->setData($data)
@@ -153,6 +147,4 @@ class Xbanners extends MY_Controller {
                         ->fetchTemplate('banner');
     }
 
-    /** -----------------------TEST AREA------------------------------------- */
-    /** -----------------------TEST AREA------------------------------------- */
 }

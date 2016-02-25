@@ -24,7 +24,7 @@
                                     <select name="category_id" id="category_id">
                                         <!-- <option value="0">{lang('No', 'gallery')}</option> -->
                                         {foreach $categories as $item}
-                                            <option value="{$item.id}">{$item.id} - {$item.name}</option>
+                                            <option value="{$item.id}" {if $item.id == $selectCategory}selected="selected"{/if}>{$item.id} - {$item.name}</option>
                                         {/foreach}
                                     </select>
                                 </div>

@@ -16,7 +16,8 @@ if (!defined('BASEPATH')) {
  * @license        MIT License Copyright (c) 2008 Erick Hartanto
  * @credits        http://dexcell.shinsengumiteam.com/dx_auth/general/credits.html
  */
-class DX_Auth {
+class DX_Auth
+{
 
     // Private
     var $_banned;
@@ -135,7 +136,7 @@ class DX_Auth {
             $_pass = str_split($_password);
         } // if PHP4
         else {
-            $_pass = array();
+            $_pass = [];
             if (is_string($_password)) {
                 for ($i = 0; $i < strlen($_password); $i++) {
                     array_push($_pass, $_password[$i]);
@@ -156,7 +157,7 @@ class DX_Auth {
     public function _array_in_array($needle, $haystack) {
         //Make sure $needle is an array for foreach
         if (!is_array($needle)) {
-            $needle = array($needle);
+            $needle = [$needle];
         }
 
         //For each value in $needle, return TRUE if in $haystack
@@ -184,7 +185,7 @@ class DX_Auth {
     // Set last ip and last login function when user login
 
     public function _set_last_ip_and_last_login($user_id) {
-        $data = array();
+        $data = [];
 
         if ($this->ci->config->item('DX_login_record_ip')) {
             $data['last_ip'] = $this->ci->input->ip_address();
@@ -234,10 +235,10 @@ class DX_Auth {
 
         // Clear return value
         $role_name = '';
-        $parent_roles_id = array();
-        $parent_roles_name = array();
-        $permission = array();
-        $parent_permissions = array();
+        $parent_roles_id = [];
+        $parent_roles_name = [];
+        $permission = [];
+        $parent_permissions = [];
 
         /* Get role_name, parent_roles_id and parent_roles_name */
 
@@ -335,10 +336,10 @@ class DX_Auth {
         $result = FALSE;
 
         // User wants to be remembered
-        $user = array(
+        $user = [
             'key_id' => substr(md5(uniqid(rand() . $this->ci->input->cookie($this->ci->config->item('sess_cookie_name')))), 0, 16),
             'user_id' => $user_id
-        );
+        ];
 
         // Load Models
         $this->ci->load->model('dx_auth/user_autologin', 'user_autologin');
@@ -412,7 +413,7 @@ class DX_Auth {
         $role_data = $this->_get_role_data($data->role_id);
 
         // Set session data array
-        $user = array(
+        $user = [
             'DX_user_id' => $data->id,
             'DX_username' => $data->username,
             'DX_role_id' => $data->role_id,
@@ -422,7 +423,7 @@ class DX_Auth {
             'DX_permission' => $role_data['permission'],
             'DX_parent_permissions' => $role_data['parent_permissions'],
             'DX_logged_in' => TRUE
-        );
+        ];
 
         $this->ci->session->set_userdata($user);
     }
@@ -431,11 +432,11 @@ class DX_Auth {
         // Load Cookie Helper
         $this->ci->load->helper('cookie');
 
-        $cookie = array(
+        $cookie = [
             'name' => $this->ci->config->item('DX_autologin_cookie_name'),
             'value' => serialize($data),
             'expire' => $this->ci->config->item('DX_autologin_cookie_life')
-        );
+        ];
 
         set_cookie($cookie);
     }
@@ -466,7 +467,7 @@ class DX_Auth {
                 // Loop each roles URI permissions
                 foreach ($roles_allowed_uris as $allowed_uris) {
                     // Check if user allowed to access URI
-                    if ($this->_array_in_array(array('/', $controller, $action), $allowed_uris)) {
+                    if ($this->_array_in_array(['/', $controller, $action], $allowed_uris)) {
                         $found = TRUE;
                         // Stop loop
                         break;
@@ -552,7 +553,7 @@ class DX_Auth {
      * @param string $key
      */
     public function get_permissions_value($key, $array_key = 'default') {
-        $result = array();
+        $result = [];
 
         $role_id = $this->ci->session->userdata('DX_role_id');
         $role_name = $this->ci->session->userdata('DX_role_name');
@@ -653,7 +654,7 @@ class DX_Auth {
     // Check is user is has admin privilege
 
     public function is_admin() {
-        if (php_sapi_name() == 'cli') {
+        if (PHP_SAPI == 'cli') {
             return true;
         }
         return strtolower($this->ci->session->userdata('DX_role_name')) == 'admin';
@@ -664,12 +665,12 @@ class DX_Auth {
     // else $roles is role_id such as 0, 1, 2
     // If $check_parent is TRUE means if roles not found in user role, it will check if user role parent has that roles
 
-    public function is_role($roles = array(), $use_role_name = TRUE, $check_parent = TRUE) {
+    public function is_role($roles = [], $use_role_name = TRUE, $check_parent = TRUE) {
         // Default return value
         $result = FALSE;
 
         // Build checking array
-        $check_array = array();
+        $check_array = [];
 
         if ($check_parent) {
             // Add parent roles into check array
@@ -689,7 +690,7 @@ class DX_Auth {
 
         // If $roles not array then we add it into an array
         if (!is_array($roles)) {
-            $roles = array($roles);
+            $roles = [$roles];
         }
 
         if ($use_role_name) {
@@ -881,7 +882,7 @@ class DX_Auth {
 
         $siteSettings = $this->ci->cms_base->get_settings();
 
-        $new_user = array(
+        $new_user = [
             'username' => $username,
             'password' => crypt($this->_encode($password)),
             'address' => $address,
@@ -890,7 +891,7 @@ class DX_Auth {
             'phone' => $phone,
             'last_ip' => $this->ci->input->ip_address(),
             'role_id' => $siteSettings['users_registration_role_id'] ? $siteSettings['users_registration_role_id'] : 0,
-        );
+        ];
 
         // Do we need to send email to activate user
 
@@ -919,12 +920,12 @@ class DX_Auth {
             foreach ($this->ci->input->post('custom_field') as $k => $custom_fields) {
                 $this->ci->db->insert(
                     'custom_fields_data',
-                    array(
+                    [
                     'field_id' => $k,
                     'entity_id' => $last_user_id,
                     'field_data' => $custom_fields,
-                    'locale' => \MY_Controller::getCurrentLocale(),
-                        )
+                    'locale' => \MY_Controller::defaultLocale(),
+                        ]
                 );
             }
 
@@ -969,13 +970,13 @@ class DX_Auth {
                     //                    $this->_email($email, $from, $subject, $message);
                 }
 
-                $user_variables = array(
+                $user_variables = [
                     'user_name' => $username,
                     'user_password' => $password,
                     'user_address' => $address,
                     'user_email' => $email,
                     'user_phone' => $phone
-                );
+                ];
 
                 \cmsemail\email::getInstance()->sendEmail($email, 'create_user', $user_variables);
 
@@ -1032,13 +1033,13 @@ class DX_Auth {
                     // $this->ci->dx_auth_event->sending_forgot_password_email($data, $message);
 
                     $settings = $this->ci->cms_base->get_settings();
-                    $replaceData = array(
+                    $replaceData = [
                         'webSiteName' => $settings['site_title'] ? $settings['site_title'] : $this->ci->config->item('DX_website_name'),
                         'resetPasswordUri' => $data['reset_password_uri'],
                         'password' => $data['password'],
                         'key' => $data['key'],
                         'webMasterEmail' => $this->ci->config->item('DX_webmaster_email')
-                    );
+                    ];
 
                     \cmsemail\email::getInstance()->sendEmail($row->email, 'forgot_password', $replaceData);
 
@@ -1147,10 +1148,10 @@ class DX_Auth {
                 // Trigger event
                 $this->ci->dx_auth_event->user_changed_password($this->ci->session->userdata('DX_user_id'), $new_pass);
 
-                $replaceData = array(
+                $replaceData = [
                     'user_name' => $row->username,
                     'password' => $new_pass_for_user
-                );
+                ];
 
                 \cmsemail\email::getInstance()->sendEmail($row->email, 'change_password', $replaceData);
 
@@ -1203,7 +1204,7 @@ class DX_Auth {
         $this->ci->load->helper('dx_captcha');
         // Load library SESSION
 
-        $vals = array(
+        $vals = [
             'img_path' => $this->ci->config->item('DX_captcha_path'),
             'img_url' => media_url() . 'captcha/',
             'font_path' => $this->ci->config->item('DX_captcha_fonts_path'),
@@ -1212,14 +1213,14 @@ class DX_Auth {
             'img_height' => $this->ci->config->item('DX_captcha_height'),
             'show_grid' => $this->ci->config->item('DX_captcha_grid'),
             'expiration' => $this->ci->config->item('DX_captcha_expire')
-        );
+        ];
 
         $cap = create_captcha($vals);
 
-        $store = array(
+        $store = [
             'captcha_word' => $cap['word'],
             'captcha_time' => $cap['time']
-        );
+        ];
 
         // Plain, simple but effective
         $this->ci->session->set_flashdata($store);
@@ -1241,7 +1242,7 @@ class DX_Auth {
 
     public function is_captcha_expired() {
         // Captcha Expired
-        list($usec, $sec) = explode(" ", microtime());
+        list($usec, $sec) = explode(' ', microtime());
         $now = ((float) $usec + (float) $sec);
 
         // Check if captcha already expired
@@ -1270,15 +1271,15 @@ class DX_Auth {
         if ($this->use_recaptcha) {
             $result = $this->is_recaptcha_match();
             if (!$result) {
-                $CI->form_validation->set_message('captcha_check', lang("Improper protection code"));
+                $CI->form_validation->set_message('captcha_check', lang('Improper protection code'));
             }
         } else {
             if ($this->is_captcha_expired()) {
                 // Will replace this error msg with $lang
-                $CI->form_validation->set_message('captcha_check', lang("Improper protection code"));
+                $CI->form_validation->set_message('captcha_check', lang('Improper protection code'));
                 $result = FALSE;
             } elseif (!$this->is_captcha_match($code)) {
-                $CI->form_validation->set_message('captcha_check', lang("Improper protection code"));
+                $CI->form_validation->set_message('captcha_check', lang('Improper protection code'));
                 $result = FALSE;
             }
         }
@@ -1342,7 +1343,7 @@ class DX_Auth {
     public function is_recaptcha_match() {
         $this->ci->load->helper('recaptcha');
 
-        $resp = recaptcha_check_answer($this->ci->config->item('DX_recaptcha_private_key'), $_SERVER["REMOTE_ADDR"], $_POST["recaptcha_challenge_field"], $_POST["recaptcha_response_field"]);
+        $resp = recaptcha_check_answer($this->ci->config->item('DX_recaptcha_private_key'), $_SERVER['REMOTE_ADDR'], $_POST['recaptcha_challenge_field'], $_POST['recaptcha_response_field']);
 
         return $resp->is_valid;
     }

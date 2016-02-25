@@ -8,7 +8,8 @@ if (!defined('BASEPATH')) {
 
 /**
  * Image CMS
- * Comments admin
+ * Star rating admin
+ * @property Rating_model rating_model
  */
 class Admin extends BaseAdminController
 {
@@ -25,7 +26,8 @@ class Admin extends BaseAdminController
     public function index() {
 
         $get_settings = $this->rating_model->get_settings();
-        $settings = json_decode($get_settings['settings']);
+        $settings = json_decode(json_encode($get_settings), FALSE);
+
         $this->template->add_array(
             [
             'settings' => $settings,
@@ -43,8 +45,8 @@ class Admin extends BaseAdminController
         if ($this->input->post('action') == 'tomain') {
             pjax('/admin/components/modules_table');
         }
-        $this->lib_admin->log(lang("Star rating was edited", "star_rating"));
-        showMessage(lang("Settings saved success", 'star_rating'));
+        $this->lib_admin->log(lang('Star rating was edited', 'star_rating'));
+        showMessage(lang('Settings saved success', 'star_rating'));
     }
 
 }

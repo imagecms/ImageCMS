@@ -14,6 +14,7 @@ use Currency\Currency;
  * @version 1.1
  *
  * @property Seo_snippets_model $seo_snippets_model
+ * @property Cms_base cms_base
  */
 class Seo_snippets extends MY_Controller
 {
@@ -133,13 +134,13 @@ class Seo_snippets extends MY_Controller
                 $review[] = [
                     '@type' => 'Review',
                     'author' => $comment['user_name'],
-                    "datePublished" => gmdate("D, d M Y\G\M\T", $comment['date']),
+                    'datePublished' => gmdate('D, d M Y\G\M\T', $comment['date']),
                     'description' => $comment['text'],
                     'reviewRating' => [
-                        "@type" => "Rating",
-                        "bestRating" => "5",
-                        "ratingValue" => $comment['rate'],
-                        "worstRating" => 0
+                        '@type' => 'Rating',
+                        'bestRating' => '5',
+                        'ratingValue' => $comment['rate'],
+                        'worstRating' => 0
                     ]
                 ];
             }
@@ -153,7 +154,7 @@ class Seo_snippets extends MY_Controller
                 'brand' => [],
                 'offers' => [
                     '@type' => 'Offer',
-                    "availability" => $model->getFirstVariant()->getStock() > 0 ? "http://schema.org/InStock" : "http://schema.org/SoldOut",
+                    'availability' => $model->getFirstVariant()->getStock() > 0 ? 'http://schema.org/InStock' : 'http://schema.org/SoldOut',
                     'price' => $model->getFirstVariant()->toCurrency('Price'),
                     'priceCurrency' => Currency::create()->getCode(),
                 ],

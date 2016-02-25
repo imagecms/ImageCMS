@@ -143,7 +143,7 @@ class ModuleSettings
      * Returns specified setting item
      * @param string (optional) $key config key. if not specified all settings will be returned
      * @param string $key
-     * @return array|null
+     * @return array|null|string
      */
     public function get($key = null) {
         if ($key == null) {

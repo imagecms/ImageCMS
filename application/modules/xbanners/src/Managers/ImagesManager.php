@@ -1,10 +1,11 @@
 <?php
 
-namespace Banners\Managers;
+namespace xbanners\src\Managers;
 
-use Banners\Models\BannerImageI18nQuery;
-use Banners\Models\BannerImageQuery;
-use Banners\Models\Base\Banners;
+use Propel\Runtime\Exception\PropelException;
+use xbanners\models\BannerImageI18nQuery;
+use xbanners\models\BannerImageQuery;
+use xbanners\models\Base\Banners;
 use CI;
 use DirectoryIterator;
 use Exception;
@@ -43,16 +44,6 @@ class ImagesManager
      * Image file max size
      */
     const IMAGE_MAX_SIZE = '51200';
-
-    /**
-     * @var Images origin folder path
-     */
-    private static $IMAGES_ORIGIN_PATH;
-
-    /**
-     * @var Images tuned folder path
-     */
-    private static $IMAGES_TUNED_PATH;
 
     /**
      * @var ImagesManager instance
@@ -113,7 +104,10 @@ class ImagesManager
 
     /**
      * Delete image files: origin image and tuned image from uploads
+     * @param int $imageId
+     * @param null|string $locale
      * @return bool
+     * @throws PropelException
      */
     public function delete($imageId, $locale = NULL) {
         if (!$imageId) {
@@ -247,8 +241,8 @@ class ImagesManager
         if ($error_message) {
             echo json_encode(
                 [
-                    "status" => false,
-                    "errorMessage" => $error_message,
+                    'status' => false,
+                    'errorMessage' => $error_message,
                 ]
             );
 
@@ -336,7 +330,7 @@ class ImagesManager
         $data['active'] = isset($data['active']) ? 1 : 0;
         $data['active_from'] = $data['active_from'] && !$data['permanent'] ? strtotime($data['active_from']) : NULL;
         //        $data['active_from'] = $data['active_to'] && !$data['active_from'] ? time() : $data['active_from'];
-        $data['active_to'] = $data['active_to'] & !$data['permanent'] ? strtotime($data['active_to']) : NULL;
+        $data['active_to'] = $data['active_to'] && !$data['permanent'] ? strtotime($data['active_to']) : NULL;
 
         if (($data['active_from'] > $data['active_to'] && ($data['active_from'] && $data['active_to']))
             || ((time() > $data['active_to']) && $data['active_to'])

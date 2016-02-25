@@ -1,10 +1,11 @@
 <?php
 
-namespace Banners\UrlFinder\Finders;
+namespace xbanners\src\UrlFinder\Finders;
 
-use Banners\UrlFinder\Results\Result;
+use xbanners\src\UrlFinder\Results\Result;
 
-final class Pages extends BaseFinder {
+final class Pages extends BaseFinder
+{
 
     protected $table = 'content';
 

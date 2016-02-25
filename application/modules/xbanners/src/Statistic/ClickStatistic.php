@@ -1,13 +1,14 @@
 <?php
 
-namespace Banners\Statistic;
+namespace xbanners\src\Statistic;
 
-use Banners\Models\BannerImageQuery;
+use xbanners\models\BannerImageQuery;
 
 /**
  * Click Statistic class
  */
-class ClickStatistic {
+class ClickStatistic
+{
 
     /**
      * Banner image object
@@ -16,6 +17,7 @@ class ClickStatistic {
     private $bannerImage;
 
     public function __construct($imageIdMd5, $locale = NULL) {
+
         $locale = $locale ? $locale : \MY_Controller::getCurrentLocale();
 
         $this->bannerImage = BannerImageQuery::create()
@@ -28,11 +30,11 @@ class ClickStatistic {
      * Run click statistic
      */
     public function run() {
+
         if ($this->bannerImage->getUrl()) {
             $this->increaseClicks();
             $this->goToUrl();
-        }
-        else {
+        } else {
             \CI::$APP->core->error_404();
         }
     }
@@ -42,6 +44,7 @@ class ClickStatistic {
      * @throws \Propel\Runtime\Exception\PropelException
      */
     public function increaseClicks() {
+
         $this->bannerImage->setClicks($this->bannerImage->getClicks() + 1);
         $this->bannerImage->save();
     }
@@ -50,6 +53,7 @@ class ClickStatistic {
      * Go to banner image url
      */
     private function goToUrl() {
+
         redirect($this->bannerImage->getUrl(), 'location', '301');
     }
 
@@ -59,6 +63,7 @@ class ClickStatistic {
      * @return string
      */
     public static function getUrl($imageId) {
+
         return site_url('xbanners/go') . '/' . md5($imageId);
     }
 

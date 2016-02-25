@@ -45,6 +45,7 @@ class Components extends BaseAdminController
 
         $fs_modules = $this->find_components();
         $db_modules = $this->db->order_by('position', 'asc')->not_like('identif', 'payment_method_')->get('components')->result_array();
+
         // Find not installed modules
         $count = count($fs_modules);
         for ($i = 0; $i < $count; $i++) {
@@ -89,12 +90,17 @@ class Components extends BaseAdminController
 
         Events::create()->registerEvent(
             [
-            'installed' => $db_modules,
-            'not_installed' => $not_installed
-                ],
+                'installed' => $db_modules,
+                'not_installed' => $not_installed
+            ],
             'Components:modules_table'
         )->runFactory();
 
+        $frozen_autoload = ['template_manager', 'admin_menu', 'xbanners', 'menu', 'cmsemail', 'shop'];
+        $frozen_delete = ['template_manager', 'admin_menu', 'xbanners', 'menu', 'cmsemail', 'shop', 'mod_discount', 'auth'];
+
+        $this->template->assign('frozen_autoload', $frozen_autoload);
+        $this->template->assign('frozen_delete', $frozen_delete);
         $this->template->assign('installed', $db_modules);
         $this->template->assign('not_installed', $not_installed);
         $this->template->show('module_table', FALSE);
@@ -165,16 +171,16 @@ class Components extends BaseAdminController
             $this->load->library('cms_hooks');
             $this->cms_hooks->build_hooks();
 
-            $this->lib_admin->log(lang("Installed a module", "admin") . " " . $data['name']);
+            $this->lib_admin->log(lang('Installed a module', 'admin') . ' ' . $data['name']);
 
-            if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
+            if ($this->input->server('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest') {
                 $result = true;
                 echo json_encode(['result' => $result]);
             } else {
                 return TRUE;
             }
         } else {
-            if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
+            if ($this->input->server('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest') {
                 $result = true;
                 echo json_encode(['result' => $result]);
             } else {
@@ -183,8 +189,12 @@ class Components extends BaseAdminController
         }
     }
 
+    /**
+     * @param string $moduleName
+     * @return bool
+     */
     public function deinstall($moduleName) {
-        $modules = $_POST['ids'] ? : [$moduleName];
+        $modules = $this->input->post('ids') ?: [$moduleName];
 
         foreach ($modules as $module) {
             $module = strtolower($module);
@@ -202,17 +212,17 @@ class Components extends BaseAdminController
 
                 $this->db->limit(1);
                 $this->db->delete('components', ['name' => $module]);
-                $this->lib_admin->log(lang("Deleted a module", "admin") . " " . $module);
+                $this->lib_admin->log(lang('Deleted a module', 'admin') . ' ' . $module);
                 if (PHP_SAPI == 'cli') {
                     return true;
                 }
-                showMessage(lang("The module successfully uninstall", "admin"));
+                showMessage(lang('The module successfully uninstall', 'admin'));
                 pjax('/admin/components/modules_table');
             } else {
                 if (PHP_SAPI == 'cli') {
                     return false;
                 }
-                showMessage(lang("Module deletion error", "admin"), false, 'r');
+                showMessage(lang('Module deletion error', 'admin'), false, 'r');
                 pjax('/admin/components/modules_table');
             }
 
@@ -223,7 +233,7 @@ class Components extends BaseAdminController
     }
 
     /**
-     * Check is module exixts
+     * Check is module exists
      * @param string $module_name module name
      * @return boolean
      */
@@ -324,8 +334,10 @@ class Components extends BaseAdminController
         return $components;
     }
 
+    /**
+     * @param string $component
+     */
     public function component_settings($component) {
-        //cp_check_perm('module_admin');
 
         $this->db->where('name', $component);
         $query = $this->db->get('components', 1);
@@ -368,7 +380,7 @@ class Components extends BaseAdminController
             $this->db->where('name', $component);
             $this->db->update('components', $data);
 
-            $this->lib_admin->log(lang("Changed the module settings", "admin") . " " . $com['name']);
+            $this->lib_admin->log(lang('Changed the module settings', 'admin') . ' ' . $com['name']);
         }
 
         jsCode("ajax_div('modules_table',base_url + 'admin/components/modules_table/');");
@@ -379,7 +391,7 @@ class Components extends BaseAdminController
      */
     private function checkPerm($module) {
         if ($this->isNotPermited($module)) {
-            $msg = lang("Error checking permissions");
+            $msg = lang('Error checking permissions');
             die($msg);
         }
     }
@@ -463,11 +475,11 @@ class Components extends BaseAdminController
         $com_info = $this->get_module_info($this->input->post('component'));
 
         if ($com_info != FALSE) {
-            $info_text = '<h1>' . $com_info['menu_name'] . '</h1><p>' . $com_info['description'] . '</p><p><b>' . lang("Author", "admin") . '</b> ' . $com_info['author'] . '<br/><b>' . lang("Version ", "admin") . '</b> ' . $com_info['version'] . '</p>';
+            $info_text = '<h1>' . $com_info['menu_name'] . '</h1><p>' . $com_info['description'] . '</p><p><b>' . lang('Author', 'admin') . '</b> ' . $com_info['author'] . '<br/><b>' . lang('Version ', 'admin') . '</b> ' . $com_info['version'] . '</p>';
 
             jsCode("alertBox.info('" . $info_text . "');");
         } else {
-            showMessage(lang("Can't load module info file", "admin"), false . 'r');
+            showMessage(lang("Can't load module info file", 'admin'), false . 'r');
         }
     }
 
@@ -488,18 +500,26 @@ class Components extends BaseAdminController
     }
 
     public function change_autoload() {
-        if (isset($_POST['mid'])) {
-            $mid = $_POST['mid'];
+        if ($this->input->post('mid')) {
+            $mid = $this->input->post('mid');
             $row = $this->db->where('id', $mid)->get('components')->row();
             if (count($row) > 0) {
                 $autoload = $row->autoload;
                 if ($autoload) {
                     $autoload = 0;
+                    $status = lang('Disable', 'admin');
                 } else {
                     $autoload = 1;
+                    $status = lang('Enable', 'admin');
                 }
                 $this->db->where('id', $mid)->set('autoload', $autoload)->update('components');
                 $row->autoload = $autoload;
+
+                $nameModule = $this->get_module_info($row->identif)['menu_name'];
+
+                $message = lang('Change Autoload. Module : ', 'admin') . ' '
+                    . $nameModule . '. ' . lang('Status', 'admin') . ' : ' . $status . '.';
+                $this->lib_admin->log($message);
                 echo json_encode(['result' => $row]);
             } else {
                 $result = false;
@@ -509,23 +529,51 @@ class Components extends BaseAdminController
     }
 
     public function change_url_access() {
-        if (isset($_POST['mid'])) {
-            $mid = $_POST['mid'];
+        if ($this->input->post('mid')) {
+            $mid = $this->input->post('mid');
             $row = $this->db->where('id', $mid)->get('components')->row();
+
             if (count($row) > 0) {
                 $enabled = $row->enabled;
                 if ($enabled) {
                     $enabled = 0;
+                    $status = lang('Disable', 'admin');
                 } else {
                     $enabled = 1;
+                    $status = lang('Enable', 'admin');
                 }
+
                 $this->db->where('id', $mid)->set('enabled', $enabled)->update('components');
+
                 $row->enabled = $enabled;
-                echo json_encode(['result' => $row]);
-            } else {
-                $result = false;
-                echo json_encode(['result' => $result]);
+                $nameModule = $this->get_module_info($row->identif)['menu_name'];
+
+                $message = lang('Change URL access. Module : ', 'admin') . ' '
+                    . $nameModule . '. ' . lang('Status', 'admin') . ' : ' . $status . '.';
+                $this->lib_admin->log($message);
             }
+        }
+    }
+
+    public function change_show_in_menu() {
+        $id = $this->input->post('id');
+        $row = $this->db->where('id', (int) $id)->get('components')->row();
+        if (count($row) > 0) {
+            $in_menu = $row->in_menu;
+            if ($in_menu == 1) {
+                $in_menu = 0;
+                $status = lang('Disable', 'admin');
+            } else {
+                $in_menu = 1;
+                $status = lang('Enable', 'admin');
+            }
+            $this->db->where('id', (int) $id)->set('in_menu', $in_menu)->update('components');
+
+            $nameModule = $this->get_module_info($row->identif)['menu_name'];
+
+            $message = lang('Change Show in menu. Module : ', 'admin') . ' '
+                . $nameModule . '. ' . lang('Status', 'admin') . ' : ' . $status . '.';
+            $this->lib_admin->log($message);
         }
     }
 
@@ -540,25 +588,9 @@ class Components extends BaseAdminController
                 }
             }
             if ($result) {
-                showMessage(lang("Positions updated", "admin"));
+                showMessage(lang('Positions updated', 'admin'));
             } else {
-                showMessage(lang("Fail", "admin"));
-            }
-        }
-    }
-
-    public function change_show_in_menu() {
-        $id = $this->input->post('id');
-        $row = $this->db->where('id', (int) $id)->get('components')->row();
-        if (count($row) > 0) {
-            $in_menu = $row->in_menu;
-            if ($in_menu == 1) {
-                $in_menu = 0;
-            } else {
-                $in_menu = 1;
-            }
-            if ($this->db->where('id', (int) $id)->set('in_menu', $in_menu)->update('components')) {
-                showMessage(lang("Changes saved", "admin"));
+                showMessage(lang('Fail', 'admin'));
             }
         }
     }

@@ -326,7 +326,9 @@ INSERT INTO `components` (`name`, `identif`, `enabled`, `autoload`, `in_menu`, `
 ( 'imagebox', 'imagebox', 0, 1, 0, NULL, 18),
 ( 'sample_module', 'sample_module', 1, 1, 0, NULL, NULL),
 ( 'template_manager', 'template_manager', 1, 1, 1, NULL, NULL),
-( 'xbanners', 'xbanners', 1, 1, 1, NULL, NULL);
+( 'xbanners', 'xbanners', 1, 1, 1, NULL, NULL),
+('custom_scripts', 'custom_scripts', 0, 1, 0, NULL, NULL);
+
 
 -- --------------------------------------------------------
 
@@ -3752,6 +3754,21 @@ CREATE TABLE IF NOT EXISTS `mod_sitemap_priorities` (
 
 INSERT INTO `mod_sitemap_priorities` (`id`, `main_page_priority`, `cats_priority`, `pages_priority`, `sub_cats_priority`, `products_priority`, `products_categories_priority`, `products_sub_categories_priority`, `brands_priority`) VALUES
 (1, 1, 0.8, 0.9, 0.7, 0.4, 0.6, 0.5, 0.3);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `custom_scripts`
+--
+
+CREATE TABLE IF NOT EXISTS `custom_scripts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` text NOT NULL,
+  `value` text NOT NULL,
+  `position` int(5) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

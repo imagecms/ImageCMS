@@ -7,7 +7,8 @@ if (!defined('BASEPATH')) {
 /**
  * Image CMS
  */
-class Admin extends MY_Controller {
+class Admin extends MY_Controller
+{
 
     public function __construct() {
 
@@ -26,9 +27,9 @@ class Admin extends MY_Controller {
         $tags = $this->tags->prepare_tags();
 
         $this->template->add_array(
-            array(
+            [
                     'tags_cloud' => $this->tags->build_cloud('array'),
-                )
+                ]
         );
 
         $this->display_tpl('tags_admin');
@@ -39,7 +40,7 @@ class Admin extends MY_Controller {
      */
     private function display_tpl($file = '') {
 
-        $file = realpath(dirname(__FILE__)) . '/templates/admin/' . $file . '.tpl';
+        $file = realpath(__DIR__) . '/templates/admin/' . $file . '.tpl';
         $this->template->display('file:' . $file);
     }
 
@@ -48,7 +49,7 @@ class Admin extends MY_Controller {
      */
     private function fetch_tpl($file = '') {
 
-        $file = realpath(dirname(__FILE__)) . '/templates/admin/' . $file . '.tpl';
+        $file = realpath(__DIR__) . '/templates/admin/' . $file . '.tpl';
         return $this->template->fetch('file:' . $file);
     }
 

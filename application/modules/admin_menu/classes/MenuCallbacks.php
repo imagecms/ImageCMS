@@ -2,6 +2,10 @@
 
 namespace admin_menu\classes;
 
+use SCallbacksQuery;
+use SNotificationsQuery;
+use SNotificationStatusesQuery;
+
 class MenuCallbacks
 {
 
@@ -9,9 +13,16 @@ class MenuCallbacks
 
     }
 
+    /**
+     * @var MenuCallbacks
+     */
     private static $instance;
 
+    /**
+     * @return MenuCallbacks
+     */
     public static function getInstance() {
+
         if (null === self::$instance) {
             self::$instance = new self;
         }
@@ -23,9 +34,10 @@ class MenuCallbacks
      * @param array $data
      * @return string
      */
-    public function getNewOrdersCount($data = []) {
+    public function getNewOrdersCount(array $data = []) {
+
         if (SHOP_INSTALLED) {
-            $orders_count = count($data) ? array_shift($data) : \SOrdersQuery::create()->filterByStatus(1)->find()->count();
+            $orders_count = count($data) ? array_shift($data) : \SOrdersQuery::create()->filterByStatus(1)->count();
 
             if ($orders_count) {
                 return '<span class="menu-counter">' . $orders_count . '</span>';
@@ -39,16 +51,14 @@ class MenuCallbacks
      * @param array $data
      * @return string
      */
-    public function getNewCallbacksCount($data = []) {
-
-        //        SELECT `id` FROM `shop_callbacks_statuses` WHERE `is_default`=1;
+    public function getNewCallbacksCount(array $data = []) {
 
         if (SHOP_INSTALLED) {
             if (count($data)) {
                 $newCallbacksCount = array_shift($data);
             } else {
                 $newStatus = \SCallbackStatusesQuery::create()->filterByIsDefault(TRUE)->findOne();
-                $newCallbacksCount = $newStatus ? \SCallbacksQuery::create()->filterByStatusId($newStatus->getId())->find()->count() : 0;
+                $newCallbacksCount = $newStatus ? SCallbacksQuery::create()->filterByStatusId($newStatus->getId())->count() : 0;
             }
             return $newCallbacksCount ? '<span class="menu-counter">' . $newCallbacksCount . '</span>' : '';
         }
@@ -60,13 +70,14 @@ class MenuCallbacks
      * @param array $data
      * @return string
      */
-    public function getNewNotificationsCount($data = []) {
+    public function getNewNotificationsCount(array $data = []) {
+
         if (SHOP_INSTALLED) {
             if (count($data)) {
                 $newNotificationsCount = array_shift($data);
             } else {
-                $newStatus = \SNotificationStatusesQuery::create()->orderById()->findOne();
-                $newNotificationsCount = $newStatus ? \SNotificationsQuery::create()->filterByStatus($newStatus->getId())->find()->count() : 0;
+                $newStatus = SNotificationStatusesQuery::create()->orderById()->findOne();
+                $newNotificationsCount = $newStatus ? SNotificationsQuery::create()->filterByStatus($newStatus->getId())->count() : 0;
             }
             return $newNotificationsCount ? '<span class="menu-counter">' . $newNotificationsCount . '</span>' : '';
         }
@@ -78,7 +89,8 @@ class MenuCallbacks
      * @param array $data
      * @return string
      */
-    public function getNewCommentsCount($data = []) {
+    public function getNewCommentsCount(array $data = []) {
+
         if (SHOP_INSTALLED) {
             if (count($data)) {
                 $waitingForModerationCount = array_shift($data);
@@ -89,7 +101,7 @@ class MenuCallbacks
                 }
             }
 
-            return ($waitingForModerationCount > 0 ) ? '<span class="menu-counter">' . $waitingForModerationCount . '</span>' : '';
+            return ($waitingForModerationCount > 0) ? '<span class="menu-counter">' . $waitingForModerationCount . '</span>' : '';
         }
         return '';
     }
@@ -104,13 +116,13 @@ class MenuCallbacks
         $NewCallbacksCount = MenuCallback::run('getNewCallbacksCount');
         $NewNotificationsCount = MenuCallback::run('getNewNotificationsCount');
 
-        $NewOrdersCount = preg_match('/([\d]+)/', $NewOrdersCount, $NewOrdersCount_matches);
-        $NewCallbacksCount = preg_match('/([\d]+)/', $NewCallbacksCount, $NewCallbacksCount_matches);
-        $NewNotificationsCount = preg_match('/([\d]+)/', $NewNotificationsCount, $NewNotificationsCount_matches);
+        preg_match('/([\d]+)/', $NewOrdersCount, $NewOrdersCount_matches);
+        preg_match('/([\d]+)/', $NewCallbacksCount, $NewCallbacksCount_matches);
+        preg_match('/([\d]+)/', $NewNotificationsCount, $NewNotificationsCount_matches);
 
-        $NewOrdersCount = $NewOrdersCount_matches[1] ? $NewOrdersCount_matches[1] : 0;
-        $NewCallbacksCount = $NewCallbacksCount_matches[1] ? $NewCallbacksCount_matches[1] : 0;
-        $NewNotificationsCount = $NewNotificationsCount_matches[1] ? $NewNotificationsCount_matches[1] : 0;
+        $NewOrdersCount = $NewOrdersCount_matches[1] ?: 0;
+        $NewCallbacksCount = $NewCallbacksCount_matches[1] ?: 0;
+        $NewNotificationsCount = $NewNotificationsCount_matches[1] ?: 0;
 
         $sum = $NewOrdersCount + $NewCallbacksCount + $NewNotificationsCount;
 

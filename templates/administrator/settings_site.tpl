@@ -1,3 +1,4 @@
+
 <div class="container">
     <section class="mini-layout">
         <div class="frame_title clearfix">
@@ -289,8 +290,11 @@
                                                                 <span class="niceRadio b_n">
                                                                     <input type="radio" id="main_types" name="main_type" value="page" {if $main_type == "page"} checked="checked" {/if} />
                                                                 </span>
-                                                            <input type="text" class="input-small" name="main_page_pid" class="textbox_long" style="width:100px" value="{$main_page_id}"/>
-                                                            - {lang("Page ID","admin")}
+                                                            <select name="main_page_pid" class="input-large">
+                                                                {foreach $pages as $p}
+                                                                    <option  {if $p['id'] == $pageSetting}selected="selected"{/if} value="{$p['id']}">{echo $p['title']}</option>
+                                                                {/foreach}
+                                                            </select>
                                                         </div>
                                                     </div>
 

@@ -4,7 +4,8 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-class Cms_hooks {
+class Cms_hooks
+{
 
     private $hooks_file = NULL;
 
@@ -69,7 +70,7 @@ class Cms_hooks {
         xml_parse_into_struct($parser, $xml, $vals);
         xml_parser_free($parser);
 
-        $tmp = array();
+        $tmp = [];
 
         foreach ($vals as $k => $v) {
             if (isset($v['type']) && isset($v['value']) && isset($v['attributes'])) {
@@ -89,7 +90,7 @@ class Cms_hooks {
         $this->create_hooks_file($tmp);
     }
 
-    private function create_hooks_file($hooks_arr = array()) {
+    private function create_hooks_file($hooks_arr = []) {
         $ci = & get_instance();
         $ci->load->helper('file');
 
@@ -108,7 +109,7 @@ class Cms_hooks {
 function get_hook(\$hook_id)
 {
 \$cms_hooks = array (
-    " . $tmp . "
+    $tmp
 );
 
     if (isset(\$cms_hooks[\$hook_id]))

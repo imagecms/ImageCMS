@@ -20,18 +20,21 @@ class Base extends CI_Model
      * @return bool|array
      */
     public function get($item_id, $status = 0, $module, $limit = 999999, $order_by) {
-        $this->db->where('item_id', $item_id);
-        $this->db->where('status', $status);
-        $this->db->where('module', $module);
+        if ($this->db->table_exists('comments')) {
 
-        $order_by = $order_by ? $order_by : 'date.desc';
-        $order_column = array_shift(explode('.', $order_by));
-        $order_way = array_pop(explode('.', $order_by));
-        $this->db->order_by($order_column, $order_way);
-        $query = $this->db->get('comments', $limit);
+            $this->db->where('item_id', $item_id);
+            $this->db->where('status', $status);
+            $this->db->where('module', $module);
 
-        if ($query->num_rows() > 0) {
-            return $query->result_array();
+            $order_by = $order_by ?: 'date.desc';
+            $order_column = array_shift(explode('.', $order_by));
+            $order_way = array_pop(explode('.', $order_by));
+            $this->db->order_by($order_column, $order_way);
+            $query = $this->db->get('comments', $limit);
+
+            if ($query->num_rows() > 0) {
+                return $query->result_array();
+            }
         }
 
         return FALSE;
@@ -125,6 +128,10 @@ class Base extends CI_Model
         return TRUE;
     }
 
+    /**
+     * @param int $status
+     * @return int
+     */
     public function count_by_status($status = 0) {
         $this->db->where('status', $status);
         $this->db->from('comments');
@@ -132,6 +139,9 @@ class Base extends CI_Model
         return $this->db->count_all_results();
     }
 
+    /**
+     * @return array
+     */
     public function get_settings() {
         $this->db->where('name', 'comments');
         $query = $this->db->get('components')->row_array();
@@ -139,11 +149,18 @@ class Base extends CI_Model
         return unserialize($query['settings']);
     }
 
+    /**
+     * @param array $data
+     */
     public function save_settings($data) {
         $this->db->where('name', 'comments');
         $this->db->update('components', ['settings' => serialize($data)]);
     }
 
+    /**
+     * @param array $ids
+     * @return mixed
+     */
     public function get_many($ids) {
         if (is_array($ids)) {
             return $this->db->where_in('id', $ids)->get('comments')->row_array();

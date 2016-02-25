@@ -1,5 +1,7 @@
 <?php
 
+use CMSFactory\Events;
+
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
@@ -9,92 +11,17 @@ if (!defined('BASEPATH')) {
  *
  * Sitemap Module
  * @property Sitemap_model $sitemap_model
+ * @property Lib_category lib_category
+ * @property smart_filter smart_filter
  */
-class Sitemap extends MY_Controller {
+class Sitemap extends MY_Controller
+{
 
     /**
-     * Priority for pages
-     * @var int
+     * Blocked urls array
+     * @var array
      */
-    public $pages_priority = '1';
-
-    /**
-     * Priority for categories
-     * @var int
-     */
-    public $cats_priority = '1';
-
-    /**
-     * Priority for main page
-     * @var int
-     */
-    public $main_page_priority = '1';
-
-    /**
-     * Priority for subcategories pages
-     * @var int
-     */
-    public $sub_cats_priority = '1'; // priority for subcategories pages
-
-    /**
-     * Priority for products pages
-     * @var int
-     */
-    public $products_priority = '1';
-
-    /**
-     * Priority for products categories pages
-     * @var int
-     */
-    public $products_categories_priority = '1';
-
-    /**
-     * Priority for products sub categories pages
-     * @var int
-     */
-    public $products_sub_categories_priority = '1';
-
-    /**
-     * Priority for brands pages
-     * @var int
-     */
-    public $brands_priority = '1';
-
-    /**
-     * Frequency for pages
-     * @var type
-     */
-    public $pages_changefreq = 'daily';
-
-    /**
-     * Frequency for categories pages
-     * @var string
-     */
-    public $categories_changefreq = 'daily';
-
-    /**
-     * Frequency for products categories pages
-     * @var string
-     */
-    public $products_categories_changefreq = 'daily';
-
-    /**
-     * Frequency for products sub categiries pages
-     * @var string
-     */
-    public $products_sub_categories_changefreq = 'daily';
-
-    /**
-     * Frequency for main page
-     * @var string
-     */
-    public $main_page_changefreq = 'daily';
-
-    /**
-     * Frequency for products pages
-     * @var string
-     */
-    public $products_changefreq = 'daily';
+    public $blocked_urls = [];
 
     /**
      * Frequency for brands pages
@@ -103,10 +30,22 @@ class Sitemap extends MY_Controller {
     public $brands_changefreq = 'daily';
 
     /**
-     * Frequency for sub categories pages
+     * Priority for brands pages
+     * @var int
+     */
+    public $brands_priority = '1';
+
+    /**
+     * Frequency for categories pages
      * @var string
      */
-    public $sub_categories_changefreq = 'daily';
+    public $categories_changefreq = 'daily'; // priority for subcategories pages
+
+    /**
+     * Priority for categories
+     * @var int
+     */
+    public $cats_priority = '1';
 
     /**
      * Default frequency
@@ -115,16 +54,94 @@ class Sitemap extends MY_Controller {
     public $changefreq = 'daily';
 
     /**
-     * Blocked urls array
+     * Default lang
      * @var array
      */
-    public $blocked_urls = array();
+    public $default_lang = [];
 
     /**
      * Gzip level
-     * @var type
+     * @var int
      */
     public $gzip_level = 0;
+
+    /**
+     * Sitemap items
+     * @var array
+     */
+    public $items = [];
+
+    /**
+     * Langs array
+     * @var array
+     */
+    public $langs = [];
+
+    /**
+     * Frequency for main page
+     * @var string
+     */
+    public $main_page_changefreq = 'daily';
+
+    /**
+     * Priority for main page
+     * @var int
+     */
+    public $main_page_priority = '1';
+
+    /**
+     * Max url tag count
+     * @var int
+     */
+    private $max_url_count = 30000;
+
+    /**
+     * Frequency for pages
+     * @var string
+     */
+    public $pages_changefreq = 'daily';
+
+    /**
+     * Priority for pages
+     * @var int
+     */
+    public $pages_priority = '1';
+
+    /**
+     * Frequency for products categories pages
+     * @var string
+     */
+    public $products_categories_changefreq = 'daily';
+
+    /**
+     * Priority for products categories pages
+     * @var int
+     */
+    public $products_categories_priority = '1';
+
+    /**
+     * Frequency for products pages
+     * @var string
+     */
+    public $products_changefreq = 'daily';
+
+    /**
+     * Priority for products pages
+     * @var int
+     */
+    public $products_priority = '1';
+
+    /**
+     * Frequency for products sub categiries pages
+     * @var string
+     */
+    public $products_sub_categories_changefreq = 'daily';
+
+    /**
+     * Priority for products sub categories pages
+     * @var int
+     */
+    public $products_sub_categories_priority = '1';
 
     /**
      * Sitemap result
@@ -133,22 +150,10 @@ class Sitemap extends MY_Controller {
     public $result = '';
 
     /**
-     * Langs array
-     * @var array
-     */
-    public $langs = array();
-
-    /**
-     * Default lang
-     * @var type
-     */
-    public $default_lang = array();
-
-    /**
-     * Updated page url
+     * Path to folder where site_maps files exists
      * @var string
      */
-    private $updated_url = '';
+    private $site_map_folder_path = './uploads/sitemaps';
 
     /**
      * Path to saved sitemap file
@@ -157,34 +162,26 @@ class Sitemap extends MY_Controller {
     private $sitemap_path = './uploads/sitemaps/sitemap.xml';
 
     /**
-     * Path to folder where site_maps files exists
-     * @var type
+     * Frequency for sub categories pages
+     * @var string
      */
-    private $site_map_folder_path = './uploads/sitemaps';
+    public $sub_categories_changefreq = 'daily';
 
     /**
-     * Sitemap items
-     * @var array
+     * Priority for subcategories pages
+     * @var int
      */
-    public $items = array();
+    public $sub_cats_priority = '1';
 
     /**
-     * Max url tag count
-     * @var type
+     * Sitemap constructor.
      */
-    private $max_url_count = 30000;
-
-    /**
-     * Category tree
-     * @var type
-     */
-    private $categoryTree = array();
-
     public function __construct() {
+
         parent::__construct();
         $lang = new MY_Lang();
         $lang->load('sitemap');
-        $this->robots = $this->replace(file('robots.txt'));
+
         $this->load->module('core');
         $this->load->model('sitemap_model');
         $this->langs = $this->core->langs;
@@ -201,77 +198,69 @@ class Sitemap extends MY_Controller {
     }
 
     /**
-     * Show sitemap for categories
+     * Create and display sitemap xml
      */
-    public function index() {
-        $categories = $this->lib_category->_build();
+    public function build_xml_map($regenerate = FALSE) {
 
-        $pages = $this->db
-            ->get_where(
-                'content',
-                array(
-                    'category' => 0,
-                    'lang' => $this->config->item('cur_lang'),
-                    'publish_date <=' => time(),
-                    'post_status' => 'publish'
-                        )
-            )
-            ->result_array();
+        $settings = $this->sitemap_model->load_settings();
 
-        $this->template->assign('content', $this->sitemap_ul($categories, $pages));
-        $this->template->show();
-    }
+        // Generate new or use saved map
+        if ((int) $settings['generateXML'] || $regenerate) {
+            $this->_create_map();
+        } else {
+            if (file_exists($this->sitemap_path)) {
+                $this->result = file_get_contents($this->sitemap_path);
+            } else {
+                $this->_create_map();
+            }
+        }
 
-    public static function adminAutoload() {
-        parent::adminAutoload();
-
-        // Set listeners on page pre update to set url
-        \CMSFactory\Events::create()->setListener('setUpdatedUrl', 'ShopAdminProducts:preEdit');
-        \CMSFactory\Events::create()->onAdminPagePreEdit()->setListener('setUpdatedUrl');
-        \CMSFactory\Events::create()->onAdminCategoryPreUpdate()->setListener('setUpdatedUrl');
-        \CMSFactory\Events::create()->onShopCategoryPreEdit()->setListener('setUpdatedUrl');
-        \CMSFactory\Events::create()->onShopBrandPreEdit()->setListener('setUpdatedUrl');
-
-        \CMSFactory\Events::create()->onShopProductCreate()->setListener('ping_google');
-        \CMSFactory\Events::create()->onShopProductUpdate()->setListener('ping_google');
-        \CMSFactory\Events::create()->onShopProductDelete()->setListener('ping_google');
-
-        \CMSFactory\Events::create()->onShopCategoryCreate()->setListener('ping_google');
-        \CMSFactory\Events::create()->onShopCategoryEdit()->setListener('ping_google');
-        \CMSFactory\Events::create()->onShopCategoryDelete()->setListener('ping_google');
-
-        \CMSFactory\Events::create()->onShopBrandCreate()->setListener('ping_google');
-        \CMSFactory\Events::create()->onShopBrandEdit()->setListener('ping_google');
-        \CMSFactory\Events::create()->onShopBrandDelete()->setListener('ping_google');
-
-        \CMSFactory\Events::create()->onAdminPageCreate()->setListener('ping_google');
-        \CMSFactory\Events::create()->onAdminPageUpdate()->setListener('ping_google');
-        \CMSFactory\Events::create()->onAdminPageDelete()->setListener('ping_google');
-
-        \CMSFactory\Events::create()->onAdminCategoryCreate()->setListener('ping_google');
-        \CMSFactory\Events::create()->onAdminCategoryUpdate()->setListener('ping_google');
+        // Show Site Map
+        if ($this->result) {
+            header('content-type: text/xml');
+            echo $this->result;
+        }
     }
 
     /**
-     * Set page url when page item is updated
-     * @param type $data - events array that contains page url $data['url']
-     * @return boolean
+     * Create map
      */
-    public function setUpdatedUrl($data = array()) {
-        $ci = &get_instance();
-        if ($data) {
-            if ($data['url']) {
-                $ci->updated_url = $data['url'];
-                return TRUE;
+    public function _create_map() {
+
+        $this->initialize();
+
+        // Add main page
+        if (!$this->robotsCheck(site_url())) {
+            $this->items[] = [
+                'loc' => site_url(),
+                'changefreq' => $this->main_page_changefreq,
+                'priority' => $this->main_page_priority,
+                'lastmod' => date('Y-m-d', time())
+            ];
+        }
+        $this->getPagesCategories();
+        $this->getAllPages();
+
+        if (SHOP_INSTALLED) {
+
+            $this->getShopCategories();
+            $this->getShopBrands();
+            $this->getShopProducts();
+
+            $this->load->module('smart_filter');
+            if (method_exists($this->smart_filter, 'attachPages')) {
+                $this->smart_filter->attachPages($this);
             }
         }
-        return FALSE;
+        $this->result = $this->generate_xml($this->items);
+        return $this->result;
     }
 
     /**
      * Initialize module settings
      */
     public function initialize() {
+
         // Get sitemap values
         $priorities = $this->sitemap_model->getPriorities();
         $changfreq = $this->sitemap_model->getChangefreq();
@@ -312,292 +301,37 @@ class Sitemap extends MY_Controller {
     }
 
     /**
-     * Display sitemap ul list
-     * @param array $items - site map items
-     * @return string
+     * Check robots
+     * @param string $check
+     * @return boolean
      */
-    public function sitemap_ul($items = array(), $pages_without_category = array()) {
+    public function robotsCheck($check) {
 
-        $out .= '<ul class="sitemap">';
+        $checkSetting = $this->db->get('settings')
+            ->row()
+            ->robots_status;
 
-        foreach ($items as $item) {
-            if (isset($item['path_url'])) {
-                $url = $item['path_url'];
-            } elseif (isset($item['full_url'])) {
-                $url = $item['full_url'];
+        if (!$checkSetting && $checkSetting == '0') {
+            $array = ['/'];
+        }
+
+        foreach ($array as $ar) {
+            if ($ar == '/') {
+                return true;
             }
 
-            $out .= '<li>' . anchor($url, $item['name']) . '</li>';
-
-            // Get category pages
-            if (isset($item['path_url'])) {
-                $pages = $this->sitemap_model->get_cateogry_pages($item['id']);
-
-                if ($pages) {
-                    $out .= $this->sitemap_ul($pages);
-                }
-            }
-
-            if (count($item['subtree']) > 0) {
-                $out .= $this->sitemap_ul($item['subtree']);
+            if (strstr($ar, $check)) {
+                return true;
             }
         }
-
-        foreach ($pages_without_category as $page) {
-            $out .= '<li>' . anchor($page['url'], $page['title']) . '</li>';
-        }
-
-        $out .= '</ul>';
-
-        return $out;
-    }
-
-    /**
-     * Create and display sitemap xml
-     */
-    public function build_xml_map($regenerate = FALSE) {
-        $settings = $this->sitemap_model->load_settings();
-
-        // Generate new or use saved map
-        if ((int) $settings['generateXML'] || $regenerate) {
-            $this->_create_map();
-        } else {
-            if (file_exists($this->sitemap_path)) {
-                $this->result = file_get_contents($this->sitemap_path);
-            } else {
-                $this->_create_map();
-            }
-        }
-
-        // Show Site Map
-        if ($this->result) {
-            header("content-type: text/xml");
-            echo $this->result;
-        }
-    }
-
-    //    НЕ УДАЛЯТЬ, ЭТО НАРАБОТКИ
-    //    public function build_xml_map_regenerated() {
-    //        $this->build_xml_map(TRUE);
-    //    }
-    //
-    //    public function build_html_map() {
-    //        $allCategories = $this->db->select('shop_category_i18n.id as id, shop_category.full_path as full_path,'
-    //                . 'shop_category.full_path_ids as full_path_ids,shop_category_i18n.name as name')
-    //                ->where('shop_category_i18n.locale', \MY_Controller::getCurrentLocale())
-    //                ->join('shop_category_i18n', 'shop_category.id=shop_category_i18n.id')
-    //                ->get('shop_category')
-    //                ->result_array();
-    //
-    //        foreach ($allCategories as $k=>$category) {
-    //            $fullIds = unserialize($category['full_path_ids']);
-    //            $allCategories[$k]['full_path_ids'] = $fullIds;
-    //
-    //            $this->getCategoriesTree($category['id'],$fullIds);
-    //        }
-    //
-    //        var_dump($this->categoryTree);
-    //
-    //    }
-    //
-    //    private function getCategoriesTree($categoryId, $fullIds, $prevCategoryId = 0) {
-    //        if (count($fullIds) == 0){
-    //            $this->categoryTree[] = $categoryId;
-    //            return ;
-    //        }
-    //
-    ////        $a = array();
-    //        foreach ($fullIds as $k => $id) {
-    //            $this->categoryTree[] = $id;
-    //            unset($fullIds[$k]);
-    //
-    //            $this->getCategoriesTree($categoryId, $fullIds, $id);
-    //        }
-    //
-    //    }
-
-    /**
-     * Create map
-     */
-    public function _create_map() {
-        $this->initialize();
-
-        // Add main page
-        if (!$this->robotsCheck(site_url())) {
-            $this->items[] = array(
-                'loc' => site_url(),
-                'changefreq' => $this->main_page_changefreq,
-                'priority' => $this->main_page_priority,
-                'lastmod' => $date = date('Y-m-d', time())
-            );
-        }
-        $this->getPagesCategories();
-        $this->getAllPages();
-
-        if (SHOP_INSTALLED) {
-
-            $this->getShopCategories();
-            $this->getShopBrands();
-            $this->getShopProducts();
-
-            $this->load->module('smart_filter');
-            if (method_exists($this->smart_filter, 'attachPages')) {
-                $this->smart_filter->attachPages($this);
-            }
-        }
-        $this->result = $this->generate_xml($this->items);
-        return $this->result;
-    }
-
-    /**
-     * Get products
-     */
-    private function getShopProducts() {
-        // Get Shop products
-        $shop_products = $this->sitemap_model->get_shop_products();
-
-        // Add Shop products to Site Map
-        foreach ($shop_products as $shopprod) {
-            $url = site_url('shop/product/' . $shopprod['url']);
-            if ($this->not_blocked_url('shop/product/' . $shopprod['url'])) {
-                if (!$this->robotsCheck($url)) {
-                    if ($shopprod['updated'] > 0) {
-                        $date = date('Y-m-d', $shopprod['updated']);
-                    } else {
-                        $date = date('Y-m-d', $shopprod['created']);
-                    }
-                    $this->items[] = array(
-                        'loc' => $url,
-                        'changefreq' => $this->products_changefreq,
-                        'priority' => $this->products_priority,
-                        'lastmod' => $date
-                    );
-                }
-            }
-        }
-    }
-
-    /**
-     * Get products brands
-     */
-    private function getShopBrands() {
-        // Get Shop Brands
-        $shop_brands = $this->sitemap_model->get_shop_brands();
-
-        // Add Shop Brand to Site Map
-        foreach ($shop_brands as $shopbr) {
-            $url = site_url('shop/brand/' . $shopbr['url']);
-            if ($this->not_blocked_url('shop/brand/' . $shopbr['url'])) {
-                if (!$this->robotsCheck($url)) {
-                    // create date
-                    if ($shopbr['updated'] > 0) {
-                        $date = date('Y-m-d', $shopbr['updated']);
-                    } else {
-                        $date = date('Y-m-d', $shopbr['created']);
-                    }
-                    $this->items[] = array(
-                        'loc' => $url,
-                        'changefreq' => $this->brands_changefreq,
-                        'priority' => $this->brands_priority,
-                        'lastmod' => $date
-                    );
-                }
-            }
-        }
-    }
-
-    /**
-     * Get products categories
-     */
-    private function getShopCategories() {
-        // Get Shop Categories
-        $shop_categories = $this->sitemap_model->get_shop_categories();
-
-        // Add categories to Site Map
-        foreach ($shop_categories as $shopcat) {
-            $url = 'shop/category/' . $shopcat['full_path'];
-            if ($this->not_blocked_url($url)) {
-                if (!$this->robotsCheck(site_url($url))) {
-
-                    // Check if category is subcategory
-                    if ((int) $shopcat['parent_id']) {
-                        $changefreq = $this->products_sub_categories_changefreq;
-                        $priority = $this->products_sub_categories_priority;
-                    } else {
-                        $changefreq = $this->products_categories_changefreq;
-                        $priority = $this->products_categories_priority;
-                    }
-
-                    // create date
-                    if ($shopcat['updated'] > 0) {
-                        $date = date('Y-m-d', $shopcat['updated']);
-                    } else {
-                        $date = date('Y-m-d', $shopcat['created']);
-                    }
-
-                    $this->items[] = array(
-                        'loc' => site_url($url),
-                        'changefreq' => $changefreq,
-                        'priority' => $priority,
-                        'lastmod' => $date,
-                    );
-                }
-            }
-        }
-    }
-
-    /**
-     * Get all content pages
-     */
-    private function getAllPages() {
-        // Get all pages
-        $pages = $this->sitemap_model->get_all_pages();
-
-        foreach ($pages as $page) {
-
-            if (!$this->robotsCheck($page['full_url'])) {
-
-                // create page url
-                if ($page['lang'] == $this->default_lang['id']) {
-                    $url = site_url($page['full_url']);
-                    $url_page = $page['full_url'];
-                } else {
-                    $prefix = $this->_get_lang_prefix($page['lang']);
-                    $url_page = $prefix . '/' . $page['full_url'];
-                    $url = site_url($url_page);
-                }
-
-                // create date
-                if ($page['updated'] > 0) {
-                    $date = date('Y-m-d', $page['updated']);
-                } else {
-                    $date = date('Y-m-d', $page['created']);
-                }
-
-                // Set priority, check if page is category
-                $c_priority = $this->cats_priority;
-                if ($page['cat_url'] == '') {
-                    $c_priority = $this->cats_priority;
-                } else {
-                    $c_priority = $this->pages_priority;
-                }
-
-                if ($this->not_blocked_url($url_page)) {
-                    $this->items[] = array(
-                        'loc' => $url,
-                        'changefreq' => $this->pages_changefreq,
-                        'priority' => $c_priority,
-                        'lastmod' => $date
-                    );
-                }
-            }
-        }
+        return false;
     }
 
     /**
      * Get pages categories
      */
     private function getPagesCategories() {
+
         // Add categories to sitemap urls.
         $categories = $this->lib_category->unsorted();
 
@@ -621,12 +355,12 @@ class Sitemap extends MY_Controller {
 
                 if ($this->not_blocked_url($category['path_url'])) {
 
-                    $this->items[] = array(
+                    $this->items[] = [
                         'loc' => site_url($category['path_url']),
                         'changefreq' => $changefreq,
                         'priority' => $priority,
                         'lastmod' => $date
-                    );
+                    ];
                 }
 
                 // Add links to categories in all langs.
@@ -634,12 +368,12 @@ class Sitemap extends MY_Controller {
                     if ($lang['id'] != $this->default_lang['id']) {
                         $url = $lang_indentif . '/' . $category['path_url'];
                         if ($this->not_blocked_url($url)) {
-                            $this->items[] = array(
+                            $this->items[] = [
                                 'loc' => site_url($url),
                                 'changefreq' => $changefreq,
                                 'priority' => $priority,
                                 'lastmod' => $date
-                            );
+                            ];
                         }
                     }
                 }
@@ -653,6 +387,7 @@ class Sitemap extends MY_Controller {
      * @return boolean
      */
     private function not_blocked_url($url) {
+
         if (!in_array($url, $this->blocked_urls) && !in_array(substr($url, 0, -1), $this->blocked_urls)) {
             foreach ($this->blocked_urls as $blocked_url) {
                 $url = str_replace(site_url(), '', $url);
@@ -693,14 +428,189 @@ class Sitemap extends MY_Controller {
     }
 
     /**
+     * Get all content pages
+     */
+    private function getAllPages() {
+
+        // Get all pages
+        $pages = $this->sitemap_model->get_all_pages();
+
+        foreach ($pages as $page) {
+
+            if (!$this->robotsCheck($page['full_url'])) {
+
+                // create page url
+                if ($page['lang'] == $this->default_lang['id']) {
+                    $url = site_url($page['full_url']);
+                    $url_page = $page['full_url'];
+                } else {
+                    $prefix = $this->_get_lang_prefix($page['lang']);
+                    $url_page = $prefix . '/' . $page['full_url'];
+                    $url = site_url($url_page);
+                }
+
+                // create date
+                if ($page['updated'] > 0) {
+                    $date = date('Y-m-d', $page['updated']);
+                } else {
+                    $date = date('Y-m-d', $page['created']);
+                }
+
+                if ($page['cat_url'] == '') {
+                    $c_priority = $this->cats_priority;
+                } else {
+                    $c_priority = $this->pages_priority;
+                }
+
+                if ($this->not_blocked_url($url_page)) {
+                    $this->items[] = [
+                        'loc' => $url,
+                        'changefreq' => $this->pages_changefreq,
+                        'priority' => $c_priority,
+                        'lastmod' => $date
+                    ];
+                }
+            }
+        }
+    }
+
+    /**
+     * Get language prefix by lang id
+     * @param int $id
+     * @return int|string
+     */
+    private function _get_lang_prefix($id) {
+
+        foreach ($this->langs as $k => $v) {
+            if ($v['id'] === $id) {
+                return $k;
+            }
+        }
+    }
+
+    /**
+     * Get products categories
+     */
+    private function getShopCategories() {
+
+        // Get Shop Categories
+        $shop_categories = $this->sitemap_model->get_shop_categories();
+
+        // Add categories to Site Map
+        foreach ($shop_categories as $shopcat) {
+
+            if ($this->sitemap_model->categoryIsActive($shopcat['id'])) {
+
+                $localeSegment = $shopcat['locale'] == self::defaultLocale() ? '' : $shopcat['locale'] . '/';
+
+                $url = $localeSegment . 'shop/category/' . $shopcat['full_path'];
+                if ($this->not_blocked_url($url)) {
+                    if (!$this->robotsCheck(site_url($url))) {
+
+                        // Check if category is subcategory
+                        if ((int) $shopcat['parent_id']) {
+                            $changefreq = $this->products_sub_categories_changefreq;
+                            $priority = $this->products_sub_categories_priority;
+                        } else {
+                            $changefreq = $this->products_categories_changefreq;
+                            $priority = $this->products_categories_priority;
+                        }
+
+                        // create date
+                        if ($shopcat['updated'] > 0) {
+                            $date = date('Y-m-d', $shopcat['updated']);
+                        } else {
+                            $date = date('Y-m-d', $shopcat['created']);
+                        }
+
+                        $this->items[] = [
+                            'loc' => site_url($url),
+                            'changefreq' => $changefreq,
+                            'priority' => $priority,
+                            'lastmod' => $date,
+                        ];
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Get products brands
+     */
+    private function getShopBrands() {
+
+        // Get Shop Brands
+        $shop_brands = $this->sitemap_model->get_shop_brands();
+
+        // Add Shop Brand to Site Map
+        foreach ($shop_brands as $shopbr) {
+
+            $localeSegment = $shopbr['locale'] == self::defaultLocale() ? '' : $shopbr['locale'] . '/';
+
+            $url = site_url($localeSegment . 'shop/brand/' . $shopbr['url']);
+            if ($this->not_blocked_url($localeSegment . 'shop/brand/' . $shopbr['url'])) {
+                if (!$this->robotsCheck($url)) {
+                    // create date
+                    if ($shopbr['updated'] > 0) {
+                        $date = date('Y-m-d', $shopbr['updated']);
+                    } else {
+                        $date = date('Y-m-d', $shopbr['created']);
+                    }
+                    $this->items[] = [
+                        'loc' => $url,
+                        'changefreq' => $this->brands_changefreq,
+                        'priority' => $this->brands_priority,
+                        'lastmod' => $date
+                    ];
+                }
+            }
+        }
+    }
+
+    /**
+     * Get products
+     */
+    private function getShopProducts() {
+
+        // Get Shop products
+        $shop_products = $this->sitemap_model->get_shop_products();
+
+        // Add Shop products to Site Map
+        foreach ($shop_products as $shopprod) {
+            if ($this->sitemap_model->categoryIsActive($shopprod['category_id'])) {
+
+                $localeSegment = $shopprod['locale'] == self::defaultLocale() ? '' : $shopprod['locale'] . '/';
+                $url = site_url($localeSegment . 'shop/product/' . $shopprod['url']);
+                if ($this->not_blocked_url($localeSegment . 'shop/product/' . $shopprod['url'])) {
+                    if (!$this->robotsCheck($url)) {
+                        if ($shopprod['updated'] > 0) {
+                            $date = date('Y-m-d', $shopprod['updated']);
+                        } else {
+                            $date = date('Y-m-d', $shopprod['created']);
+                        }
+                        $this->items[] = [
+                            'loc' => $url,
+                            'changefreq' => $this->products_changefreq,
+                            'priority' => $this->products_priority,
+                            'lastmod' => $date
+                        ];
+                    }
+                }
+            }
+        }
+    }
+
+    /**
      * Generate xml
      * @param array $items
      * @return string
      */
-    private function generate_xml($items = array()) {
+    private function generate_xml(array $items = []) {
+
         $data = '';
 
-        $site_maps = array();
+        $site_maps = [];
         $url_count = 0;
 
         while ($item = current($items)) {
@@ -737,28 +647,11 @@ class Sitemap extends MY_Controller {
     }
 
     /**
-     * Create main sitemap file
-     * @param array $site_maps - array of sitemaps data
-     */
-    private function createMainSitemap($site_maps) {
-        foreach ($site_maps as $number => $site_map) {
-            $number++;
-            $site_map_url = site_url(str_replace('./', '', $this->site_map_folder_path . "/sitemap{$number}.xml"));
-            $data .= '<sitemap><loc>' . $site_map_url . '</loc></sitemap>';
-        }
-
-        $result = '<?xml version="1.0" encoding="UTF-8"?><sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . $data . '</sitemapindex>';
-
-        file_put_contents($this->site_map_folder_path . "/sitemap.xml", $result);
-        chmod($this->site_map_folder_path . "/sitemap.xml", 0777);
-        return $result;
-    }
-
-    /**
      * Save several sitemaps files
      * @param array $site_maps - array of sitemaps data
      */
     private function saveSiteMaps($site_maps) {
+
         if (!is_dir($this->site_map_folder_path)) {
             mkdir($this->site_map_folder_path, 0777);
         }
@@ -779,68 +672,154 @@ class Sitemap extends MY_Controller {
     }
 
     /**
-     * Get language prefix by lang id
+     * Create main sitemap file
+     * @param array $site_maps - array of sitemaps data
+     * @return string
      */
-    private function _get_lang_prefix($id) {
-        foreach ($this->langs as $k => $v) {
-            if ($v['id'] === $id) {
-                return $k;
-            }
+    private function createMainSitemap($site_maps) {
+
+        foreach ($site_maps as $number => $site_map) {
+            $number++;
+            $site_map_url = site_url(str_replace('./', '', $this->site_map_folder_path . "/sitemap{$number}.xml"));
+            $data .= '<sitemap><loc>' . $site_map_url . '</loc></sitemap>';
         }
+
+        $result = '<?xml version="1.0" encoding="UTF-8"?><sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . $data . '</sitemapindex>';
+
+        file_put_contents($this->site_map_folder_path . '/sitemap.xml', $result);
+        chmod($this->site_map_folder_path . '/sitemap.xml', 0777);
+        return $result;
     }
 
     /**
-     * Replace robots disalow
-     * @param type $lines
-     * @return array
+     * Deinstall module
      */
-    public function replace($lines) {
-        if (!$lines) {
-            return FALSE;
-        }
+    public function _deinstall() {
 
-        $array = array();
-        foreach ($lines as $line) {
-            if ((substr_count($line, 'Disallow:') > 0) && (trim(str_replace('Disallow:', '', $line)) != '')) {
-                array_push($array, trim(str_replace('Disallow:', '', $line)));
-            }
-        }
-        return $array;
+        return $this->sitemap_model->deinstallModule();
     }
 
     /**
-     * Check robots
-     * @param type $check
-     * @return boolean
+     * Install module
      */
-    public function robotsCheck($check) {
-        $checkSetting = $this->db->get('settings')
-            ->row()
-            ->robots_status;
-        //            $array = $this->robots;
+    public function _install() {
 
-        if (!$checkSetting && $checkSetting == '0') {
-            $array = array('/');
-        }
+        $robotsCheck = $this->robotsCheck() ? 1 : 0;
+        return $this->sitemap_model->installModule($robotsCheck);
+    }
 
-        foreach ($array as $ar) {
-            if ($ar == '/') {
-                return true;
+    public static function adminAutoload() {
+
+        parent::adminAutoload();
+
+        // Set listeners on page pre update to set url
+        Events::create()->setListener('setUpdatedUrl', 'ShopAdminProducts:preEdit');
+        Events::create()->onAdminPagePreEdit()->setListener('setUpdatedUrl');
+        Events::create()->onAdminCategoryPreUpdate()->setListener('setUpdatedUrl');
+        Events::create()->onShopCategoryPreEdit()->setListener('setUpdatedUrl');
+        Events::create()->onShopBrandPreEdit()->setListener('setUpdatedUrl');
+
+        Events::create()->onShopProductCreate()->setListener('ping_google');
+        Events::create()->onShopProductUpdate()->setListener('ping_google');
+        Events::create()->onShopProductDelete()->setListener('ping_google');
+
+        Events::create()->onShopCategoryCreate()->setListener('ping_google');
+        Events::create()->onShopCategoryEdit()->setListener('ping_google');
+        Events::create()->onShopCategoryDelete()->setListener('ping_google');
+
+        Events::create()->onShopBrandCreate()->setListener('ping_google');
+        Events::create()->onShopBrandEdit()->setListener('ping_google');
+        Events::create()->onShopBrandDelete()->setListener('ping_google');
+
+        Events::create()->onAdminPageCreate()->setListener('ping_google');
+        Events::create()->onAdminPageUpdate()->setListener('ping_google');
+        Events::create()->onAdminPageDelete()->setListener('ping_google');
+
+        Events::create()->onAdminCategoryCreate()->setListener('ping_google');
+        Events::create()->onAdminCategoryUpdate()->setListener('ping_google');
+    }
+
+    /**
+     * Gzip generate
+     */
+    public function gzip() {
+
+        $this->_create_map();
+        echo gzencode($this->result, $this->gzip_level);
+    }
+
+    /**
+     * Show sitemap for categories
+     */
+    public function index() {
+
+        $categories = $this->lib_category->_build();
+
+        $pages = $this->db
+            ->get_where(
+                'content',
+                [
+                    'category' => 0,
+                    'lang' => $this->config->item('cur_lang'),
+                    'publish_date <=' => time(),
+                    'post_status' => 'publish'
+                ]
+            )
+            ->result_array();
+
+        $this->template->assign('content', $this->sitemap_ul($categories, $pages));
+        $this->template->show();
+    }
+
+    /**
+     * Display sitemap ul list
+     * @param array $items - site map items
+     * @param array $pages_without_category
+     * @return string
+     */
+    public function sitemap_ul($items = [], $pages_without_category = []) {
+
+        $out = '<ul class="sitemap">';
+
+        foreach ($items as $item) {
+            if (isset($item['path_url'])) {
+                $url = $item['path_url'];
+            } elseif (isset($item['full_url'])) {
+                $url = $item['full_url'];
             }
 
-            if (strstr($ar, $check)) {
-                return true;
+            $out .= '<li>' . anchor($url, $item['name']) . '</li>';
+
+            // Get category pages
+            if (isset($item['path_url'])) {
+                $pages = $this->sitemap_model->get_cateogry_pages($item['id']);
+
+                if ($pages) {
+                    $out .= $this->sitemap_ul($pages);
+                }
+            }
+
+            if (count($item['subtree']) > 0) {
+                $out .= $this->sitemap_ul($item['subtree']);
             }
         }
-        return false;
+
+        foreach ($pages_without_category as $page) {
+            $out .= '<li>' . anchor($page['url'], $page['title']) . '</li>';
+        }
+
+        $out .= '</ul>';
+
+        return $out;
     }
 
     /**
      * Send xml to google
-     * @param array $data - data array (array('url' => 'pageurl'))
      * return $code if send (200 = ok) else 'false'
+     * @return bool|mixed
      */
-    public static function ping_google($data = array()) {
+    public static function ping_google() {
+
         // Checking is used server is local
 
         $ci = &get_instance();
@@ -859,24 +838,15 @@ class Sitemap extends MY_Controller {
             return FALSE;
         }
 
-        // Check sending Site map url is change
-        //        if ($settings['sendWhenUrlChanged']) {
-        //            if ($ci->updated_url) {
-        //                if ($ci->updated_url == $data['url']) {
-        //                    return FALSE;
-        //                }
-        //                unset($ci->updated_url);
-        //            }
-        //        }
         // Checking time permission(1 hour passed from last send) to send ping
         if ((time() - $settings['lastSend']) / (60 * 60) >= 1) {
 
             $ch = curl_init();
 
-            curl_setopt($ch, CURLOPT_URL, "http://www.google.com/webmasters/tools/ping?sitemap=" . site_url() . "/sitemap.xml");
+            curl_setopt($ch, CURLOPT_URL, 'http://www.google.com/webmasters/tools/ping?sitemap=' . site_url() . '/sitemap.xml');
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-            $output = curl_exec($ch);
+            curl_exec($ch);
             $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
             curl_close($ch);
@@ -886,37 +856,13 @@ class Sitemap extends MY_Controller {
                 $settings['lastSend'] = time();
                 $ci->db->limit(1);
                 $ci->db->where('name', 'sitemap');
-                $ci->db->update('components', array('settings' => serialize($settings)));
+                $ci->db->update('components', ['settings' => serialize($settings)]);
 
-                //                showMessage(lang('Ping sended', 'sitemap'), 'Google ping');
             }
 
             return $code;
         }
         return false;
-    }
-
-    /**
-     * Gzip generate
-     */
-    public function gzip() {
-        $this->_create_map();
-        echo gzencode($this->result, $this->gzip_level);
-    }
-
-    /**
-     * Install module
-     */
-    public function _install() {
-        $robotsCheck = $this->robotsCheck() ? 1 : 0;
-        return $this->sitemap_model->installModule($robotsCheck);
-    }
-
-    /**
-     * Deinstall module
-     */
-    public function _deinstall() {
-        return $this->sitemap_model->deinstallModule();
     }
 
 }

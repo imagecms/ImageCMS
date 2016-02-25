@@ -1,6 +1,6 @@
 <?php
 
-namespace Banners\Entities;
+namespace xbanners\src\Entities;
 
 /**
  * @author cray
@@ -10,76 +10,76 @@ class BannerEffects implements \ArrayAccess
 
     protected $effects = [
         //@var boolean
-        "autoplay" => 0,
+        'autoplay' => 0,
         //@var int
-        "autoplaySpeed" => 0,
+        'autoplaySpeed' => 0,
         //@var boolean
-        "arrows" => 0,
+        'arrows' => 0,
         //@var boolean
-        "centerMode" => 0,
+        'centerMode' => 0,
         //@var boolean
-        "dots" => 0,
+        'dots' => 0,
         //@var boolean
-        "draggable" => 0,
+        'draggable' => 0,
         //@var boolean
-        "fade" => 0,
+        'fade' => 0,
         //@var string
-        "easing" => "",
+        'easing' => '',
         //@var boolean
-        "infinite" => 0,
+        'infinite' => 0,
         //@var boolean
-        "pauseOnHover" => 0,
+        'pauseOnHover' => 0,
         //@var boolean
-        "pauseOnDotsHover" => 0,
+        'pauseOnDotsHover' => 0,
         //@var int
-        "speed" => 0,
+        'speed' => 0,
         //@var boolean
-        "swipe" => 0,
+        'swipe' => 0,
         //@var boolean
-        "touchMove" => 0,
+        'touchMove' => 0,
         //@var boolean
-        "vertical" => 0,
+        'vertical' => 0,
         //@var boolean
-        "rtl" => 0,
+        'rtl' => 0,
         //@var string
-        "scrollSpeed" => 0,
+        'scrollSpeed' => 0,
     ];
 
     protected $effectsTypes = [
         //@var boolean
-        "autoplay" => 'boolean',
+        'autoplay' => 'integer',
         //@var int
-        "autoplaySpeed" => 'integer',
+        'autoplaySpeed' => 'integer',
         //@var boolean
-        "arrows" => 'boolean',
+        'arrows' => 'integer',
         //@var boolean
-        "centerMode" => 'boolean',
+        'centerMode' => 'integer',
         //@var boolean
-        "dots" => 'boolean',
+        'dots' => 'integer',
         //@var boolean
-        "draggable" => 'boolean',
+        'draggable' => 'integer',
         //@var boolean
-        "fade" => 'boolean',
+        'fade' => 'integer',
         //@var string
-        "easing" => "string",
+        'easing' => 'string',
         //@var boolean
-        "infinite" => 'boolean',
+        'infinite' => 'integer',
         //@var boolean
-        "pauseOnHover" => 'boolean',
+        'pauseOnHover' => 'integer',
         //@var boolean
-        "pauseOnDotsHover" => 'boolean',
+        'pauseOnDotsHover' => 'integer',
         //@var int
-        "speed" => 'integer',
+        'speed' => 'integer',
         //@var boolean
-        "swipe" => 'boolean',
+        'swipe' => 'integer',
         //@var boolean
-        "touchMove" => 'boolean',
+        'touchMove' => 'integer',
         //@var boolean
-        "vertical" => 'boolean',
+        'vertical' => 'integer',
         //@var boolean
-        "rtl" => 'boolean',
+        'rtl' => 'integer',
         //@var string
-        "scrollSpeed" => 'string',
+        'scrollSpeed' => 'string',
     ];
 
     /**
@@ -158,23 +158,23 @@ class BannerEffects implements \ArrayAccess
      */
     public function getDefaultEffects() {
         return [
-            "autoplay" => false,
-            "autoplaySpeed" => 3,
-            "arrows" => true,
-            "centerMode" => false,
-            "dots" => false,
-            "draggable" => true,
-            "fade" => false,
-            "easing" => 'linear',
-            "infinite" => true,
-            "pauseOnHover" => true,
-            "pauseOnDotsHover" => false,
-            "speed" => 300,
-            "swipe" => true,
-            "touchMove" => true,
-            "vertical" => false,
-            "rtl" => false,
-            "scrollSpeed" => 300,
+            'autoplay' => false,
+            'autoplaySpeed' => 3,
+            'arrows' => true,
+            'centerMode' => false,
+            'dots' => false,
+            'draggable' => true,
+            'fade' => false,
+            'easing' => 'linear',
+            'infinite' => true,
+            'pauseOnHover' => true,
+            'pauseOnDotsHover' => false,
+            'speed' => 1,
+            'swipe' => true,
+            'touchMove' => true,
+            'vertical' => false,
+            'rtl' => false,
+            'scrollSpeed' => 1,
         ];
     }
 

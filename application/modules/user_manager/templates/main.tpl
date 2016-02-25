@@ -101,8 +101,8 @@
                         <tr class="head_body">
                             <td></td>
                             <td></td>
-                            <td><input type="text" id="nameAutoC" {if isset($_GET['s_data'])}value="{echo $_GET['s_data']}"{/if} name="s_data"/></td>
-                            <td><input type="text" id="emailAutoC" {if isset($_GET['s_email'])}value="{echo $_GET['s_email']}"{/if} name="s_email"/></td>
+                            <td><input type="text" id="nameAutoC" {if isset($_GET['s_data'])}value="{echo htmlspecialchars($_GET['s_data'])}"{/if} name="s_data"/></td>
+                            <td><input type="text" id="emailAutoC" {if isset($_GET['s_email'])}value="{echo htmlspecialchars($_GET['s_email'])}"{/if} name="s_email"/></td>
 
                             <td><select name="role" id="role">
                                 <option {if $_GET['role']==0}selected{/if} value ="0">{lang('All groups', 'user_manager')}</option>

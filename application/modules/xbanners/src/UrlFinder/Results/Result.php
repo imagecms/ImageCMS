@@ -1,10 +1,11 @@
 <?php
 
-namespace Banners\UrlFinder\Results;
+namespace xbanners\src\UrlFinder\Results;
 
 use Countable;
 
-class Result implements ResultInterface, Countable {
+class Result implements ResultInterface, Countable
+{
 
     /**
      * @var string

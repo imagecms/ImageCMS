@@ -4,7 +4,8 @@ namespace translator\classes;
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
-class FileOperator {
+class FileOperator
+{
 
     /**
      * FileOperator instance
@@ -22,7 +23,7 @@ class FileOperator {
      * Errors array
      * @var array
      */
-    private $errors = array();
+    private $errors = [];
 
     /**
      * File data
@@ -76,7 +77,7 @@ class FileOperator {
     }
 
     /**
-     * Macke corect file path
+     * Make correct file path
      * @param string $filePath - file path
      * @return string
      */
@@ -91,7 +92,8 @@ class FileOperator {
     /**
      * Check file on errors
      * @param string $filePath - file path
-     * @return boolean
+     * @param bool $langOn
+     * @return bool
      */
     public function checkFile($filePath, $langOn = TRUE) {
         clearstatcache();
@@ -134,12 +136,12 @@ class FileOperator {
      * @param string $type - error type
      */
     private function setError($error, $type = '') {
-        $this->errors = array('error' => $error, 'type' => $type);
+        $this->errors = ['error' => $error, 'type' => $type];
     }
 
     /**
      * Get errors
-     * @return type
+     * @return array
      */
     public function getErrors() {
         return $this->errors;

@@ -1,13 +1,12 @@
 <?php
 
-namespace Banners\Installers;
-
-use Banners\Installers\TemplatePlacesInstaller;
+namespace xbanners\src\Installers;
 
 /**
  * @author Crayd
  */
-final class BannersModuleManager {
+final class BannersModuleManager
+{
 
     /**
      * @var string
@@ -52,7 +51,7 @@ final class BannersModuleManager {
 
     public function __construct() {
         $this->db = \CI::$APP->db;
-        $this->sqlFile = realpath(__DIR__ . '/../../models/propel/generated-sql/Shop.sql');
+        $this->sqlFile = realpath(__DIR__ . '/../../models/Shop.sql');
         $this->bannerImagesFolder = UPLOADSPATH . 'images/bimages';
         //        $this->bannerImagesFolder = UPLOADSPATH . 'banners/origins';
         $this->sqlContent = $this->getSqlFile();
@@ -187,7 +186,8 @@ final class BannersModuleManager {
      * Execute array of queries (DROP OR CREATE)
      *
      * @param array $queries
-     * @return boolean Returns true only if all queries are successfull
+     * @return bool Returns true only if all queries are successfull
+     * @throws \Exception
      */
     protected function executeQueries(array $queries) {
         $allQueriesResult = true;

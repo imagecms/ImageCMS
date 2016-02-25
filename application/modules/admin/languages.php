@@ -73,9 +73,9 @@ class Languages extends BaseAdminController
      * Insert new language
      */
     public function insert() {
-        $this->form_validation->set_rules('name', lang("Title", "admin"), 'trim|required|min_length[1]|max_length[100]');
-        $this->form_validation->set_rules('identif', lang("Identifier", "admin"), 'trim|required|min_length[1]|max_length[5]|alpha_dash');
-        $this->form_validation->set_rules('locale', lang("Locale", "admin"), 'required|max_length[250]');
+        $this->form_validation->set_rules('name', lang('Title', 'admin'), 'trim|required|min_length[1]|max_length[100]');
+        $this->form_validation->set_rules('identif', lang('Identifier', 'admin'), 'trim|required|min_length[1]|max_length[5]|alpha_dash');
+        $this->form_validation->set_rules('locale', lang('Locale', 'admin'), 'required|max_length[250]');
 
         if ($this->form_validation->run($this) == FALSE) {
             showMessage(validation_errors(), '', 'r');
@@ -90,18 +90,18 @@ class Languages extends BaseAdminController
 
             $this->cms_admin->insert_lang($data);
 
-            $this->lib_admin->log(lang("Create a language ", "admin") . " " . $data['lang_name']);
+            $this->lib_admin->log(lang('Create a language ', 'admin') . ' ' . $data['lang_name']);
 
             $this->cache->delete('main_site_langs');
 
             $this->createLanguageFolders($data['locale']);
 
-            showMessage(lang("Language has been created", "admin"));
+            showMessage(lang('Language has been created', 'admin'));
 
             if ($this->input->post('create_exit')) {
                 pjax('/admin/languages/');
             } else {
-                $lastLangId = $this->db->query("SELECT id FROM languages ORDER BY id DESC")->row()->id;
+                $lastLangId = $this->db->query('SELECT id FROM languages ORDER BY id DESC')->row()->id;
                 pjax('/admin/languages/edit/' . $lastLangId);
             }
         }
@@ -201,7 +201,7 @@ class Languages extends BaseAdminController
         if (is_dir($templates_dir)) {
             $templates = scandir($templates_dir);
             foreach ($templates as $template) {
-                if (is_dir("$templates_dir/$template") && $template != "." && $template != '..' && $template[0] != '.') {
+                if (is_dir("$templates_dir/$template") && $template != '.' && $template != '..' && $template[0] != '.') {
                     if (!is_dir("$templates_dir/$template/language/$template/$lang")) {
                         mkdir("$templates_dir/$template/language/$template/$lang", 0777);
                         mkdir("$templates_dir/$template/language/$template/$lang/LC_MESSAGES", 0777);
@@ -222,7 +222,7 @@ class Languages extends BaseAdminController
         if (is_dir($modules_dir)) {
             $modules = scandir($modules_dir);
             foreach ($modules as $module) {
-                if (is_dir($modules_dir . '/' . $module . '/language') && $module != "." && $module != '..' && $module[0] != '.') {
+                if (is_dir($modules_dir . '/' . $module . '/language') && $module != '.' && $module != '..' && $module[0] != '.') {
                     if (!is_dir($modules_dir . '/' . $module . '/language/' . $lang)) {
                         mkdir($modules_dir . '/' . $module . '/language/' . $lang, 0777);
                         mkdir($modules_dir . '/' . $module . '/language/' . $lang . '/LC_MESSAGES', 0777);
@@ -314,7 +314,7 @@ class Languages extends BaseAdminController
         if (is_dir($templates_dir)) {
             $templates = scandir($templates_dir);
             foreach ($templates as $template) {
-                if (is_dir($templates_dir . '/' . $template) && $template != "." && $template != '..' && $template[0] != '.') {
+                if (is_dir($templates_dir . '/' . $template) && $template != '.' && $template != '..' && $template[0] != '.') {
                     if (is_dir($templates_dir . '/' . $template . '/language/' . $template . '/' . $lang)) {
                         chmod($templates_dir . '/' . $template . '/language/' . $template . '/' . $lang, 0777);
                         $this->rrmdir($templates_dir . '/' . $template . '/language/' . $template . '/' . $lang);
@@ -333,7 +333,7 @@ class Languages extends BaseAdminController
         if (is_dir($modules_dir)) {
             $modules = scandir($modules_dir);
             foreach ($modules as $module) {
-                if (is_dir($modules_dir . '/' . $module . '/language') && $module != "." && $module != '..' && $module[0] != '.') {
+                if (is_dir($modules_dir . '/' . $module . '/language') && $module != '.' && $module != '..' && $module[0] != '.') {
                     if (is_dir($modules_dir . '/' . $module . '/language/' . $lang)) {
                         chmod($modules_dir . '/' . $module . '/language/' . $lang, 0777);
                         $this->rrmdir($modules_dir . '/' . $module . '/language/' . $lang);
@@ -376,9 +376,9 @@ class Languages extends BaseAdminController
 
         //cp_check_perm('lang_edit');
 
-        $this->form_validation->set_rules('lang_name', lang("Title", "admin"), 'trim|required|min_length[1]|max_length[100]');
-        $this->form_validation->set_rules('identif', lang("Identifier", "admin"), 'trim|required|min_length[1]|max_length[5]|alpha_dash');
-        $this->form_validation->set_rules('locale', lang("Locale", "admin"), 'required|max_length[250]');
+        $this->form_validation->set_rules('lang_name', lang('Title', 'admin'), 'trim|required|min_length[1]|max_length[100]');
+        $this->form_validation->set_rules('identif', lang('Identifier', 'admin'), 'trim|required|min_length[1]|max_length[5]|alpha_dash');
+        $this->form_validation->set_rules('locale', lang('Locale', 'admin'), 'required|max_length[250]');
 
         if ($this->form_validation->run($this) == FALSE) {
             showMessage(validation_errors(), '', 'r');
@@ -396,7 +396,7 @@ class Languages extends BaseAdminController
 
             $this->cms_admin->update_lang($data, $lang_id);
 
-            $this->lib_admin->log(lang("Changed a language", "admin") . " " . $data['lang_name']);
+            $this->lib_admin->log(lang('Changed a language', 'admin') . ' ' . $data['lang_name']);
 
             $this->cache->delete_all();
 
@@ -406,7 +406,7 @@ class Languages extends BaseAdminController
                 $this->createLanguageFolders($post_locale);
             }
 
-            showMessage(lang("Changes has been saved", "admin"));
+            showMessage(lang('Changes has been saved', 'admin'));
 
             $action = $this->input->post('action');
             if ($action == 'close') {
@@ -428,7 +428,7 @@ class Languages extends BaseAdminController
                 $lang = $this->cms_admin->get_lang($item);
                 ($hook = get_hook('admin_language_delete')) ? eval($hook) : NULL;
                 if ($lang['default'] == 1) {
-                    showMessage(lang("This language has been used by default and can not be deleted", "admin"), lang("Blocking", "admin"), 'r');
+                    showMessage(lang('This language has been used by default and can not be deleted', 'admin'), lang('Blocking', 'admin'), 'r');
                     exit;
                 }
                 $this->cms_admin->delete_lang($item);
@@ -437,7 +437,7 @@ class Languages extends BaseAdminController
                 $this->db->where('lang', $item);
                 $this->db->delete('content');
                 $this->cache->delete('main_site_langs');
-                $this->lib_admin->log(lang("Deleted the ID language", "admin") . " " . $item);
+                $this->lib_admin->log(lang('Deleted the ID language', 'admin') . ' ' . $item);
             }
         } else {
             $lang = $this->cms_admin->get_lang($id);
@@ -445,7 +445,7 @@ class Languages extends BaseAdminController
             ($hook = get_hook('admin_language_delete')) ? eval($hook) : NULL;
 
             if ($lang['default'] == 1) {
-                showMessage(lang("This language has been used by default and can not be deleted", "admin"), lang("Blocking", "admin"), 'r');
+                showMessage(lang('This language has been used by default and can not be deleted', 'admin'), lang('Blocking', 'admin'), 'r');
                 exit;
             }
 
@@ -458,9 +458,9 @@ class Languages extends BaseAdminController
             $this->deleteLanguageFolders($lang['locale']);
             $this->cache->delete('main_site_langs');
 
-            $this->lib_admin->log(lang("Deleted the ID language", "admin") . ' ' . $id);
+            $this->lib_admin->log(lang('Deleted the ID language', 'admin') . ' ' . $id);
         }
-        showMessage(lang("the language has been deleted", "admin"));
+        showMessage(lang('the language has been deleted', 'admin'));
         pjax('/admin/languages');
         //updateDiv('languages_page_w_content', site_url('admin/languages/'));
     }
@@ -482,9 +482,9 @@ class Languages extends BaseAdminController
 
         $lang = $this->cms_admin->get_lang($lang_id);
 
-        $this->lib_admin->log(lang("Specified a language or selected a language", "admin") . " " . $lang['lang_name'] . " " . lang("by default", "admin"));
+        $this->lib_admin->log(lang('Specified a language or selected a language', 'admin') . ' ' . $lang['lang_name'] . ' ' . lang('by default', 'admin'));
 
-        showMessage(lang("The language has been installed by default", "admin") . ' <b> ' . $lang['lang_name'] . ' </b>');
+        showMessage(lang('The language has been installed by default', 'admin') . ' <b> ' . $lang['lang_name'] . ' </b>');
     }
 
     /**
@@ -499,7 +499,7 @@ class Languages extends BaseAdminController
 
         if ($handle = opendir(APPPATH . 'language/')) {
             while (false !== ($file = readdir($handle))) {
-                if ($file != "." && $file != ".." && $file != 'administrator') {
+                if ($file != '.' && $file != '..' && $file != 'administrator') {
 
                     if (!is_file(APPPATH . 'language/' . $file)) {
                         $new_arr[$file] = $file;

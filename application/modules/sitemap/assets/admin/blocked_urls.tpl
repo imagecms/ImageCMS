@@ -6,7 +6,7 @@
         </div>
         <div class="pull-right">
             <div class="d-i_b">
-                <a href="/admin/components/init_window/sitemap/priorities" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back", 'admin')}</span></a>
+                <a href="/admin/components/modules_table" class="t-d_n m-r_15 pjax"><span class="f-s_14">←</span> <span class="t-d_u">{lang("Back", 'admin')}</span></a>
                 <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#sitemap_blockedUrls_form" data-submit><i class="icon-ok icon-white"></i>{lang("Save", 'sitemap')}</button>
                 <div class="p_r d-i_b v-a_m">
                     <button type="button" class="btn btn-small btn-info dropdown-toggle" data-toggle="dropdown">
@@ -16,7 +16,7 @@
                     <ul class="dropdown-menu" role="menu" style="right:0;left:auto;">
                         <li><a style="text-decoration: none" class="" href="/admin/components/init_window/sitemap/priorities">{lang('Priorities', 'sitemap')}</a></li>
                         <li><a style="text-decoration: none" class="" href="/admin/components/init_window/sitemap/changefreq">{lang('Change frequency', 'sitemap')}</a></li>
-                        {/*}<li><a style="text-decoration: none" class="" href="/admin/components/init_window/sitemap/blockedUrls">{lang('Block urls', 'sitemap')}</a></li>{ */}
+                        <li><a style="text-decoration: none" class="" href="/admin/components/init_window/sitemap/blockedUrls">{lang('Block urls', 'sitemap')}</a></li>
                         <li class="divider"></li>
                         <li><a style="text-decoration: none" href="{site_url('sitemap.xml')}" target="_blank">{lang("View Site Map", 'sitemap')}</a></li>
                         <li class="divider"></li>
@@ -68,14 +68,6 @@
                                     <input class="hide_url m-r_15" type="text">
                                     <button type="button" onclick="SiteMap.removeHidenUrl($(this))" class="btn btn-small btn-default"><i class="icon-trash"></i></button>
                                 </div>
-                                <div>
-                                    <span class="frame_label no_connection">
-                                        <span class="niceCheck b_n">
-                                            <input type="checkbox" class="robots_check" {if $url['robots_check']}checked="checked"{/if}>
-                                        </span>
-                                        <span>{lang('Block in robots', 'sitemap')}</span>
-                                    </span>
-                                </div>
                             </div>
                         </div>
 
@@ -88,14 +80,6 @@
                                             <span class="add-on" style="height: 17px;">{site_url()}</span>
                                             <input class="hide_url m-r_15" name="hide_urls[]" type="text" value="{echo $url['url']}">
                                             <button type="button" onclick="SiteMap.removeHidenUrl($(this))" class="btn btn-small btn-default"><i class="icon-trash"></i></button>
-                                        </div>
-                                        <div>
-                                            <span class="frame_label no_connection">
-                                                <span class="niceCheck b_n">
-                                                    <input type="checkbox" class="robots_check" name="robots_check[{echo ++$key}]" {if $url['robots_check']}checked="checked"{/if}>
-                                                </span>
-                                                <span>{lang('Block in robots', 'sitemap')}</span>
-                                            </span>
                                         </div>
                                     </div>
                                 </div>

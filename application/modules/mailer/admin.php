@@ -9,7 +9,8 @@ if (!defined('BASEPATH')) {
  *
  * Mailer Admin
  */
-class Admin extends BaseAdminController {
+class Admin extends BaseAdminController
+{
 
     public function __construct() {
         parent::__construct();
@@ -48,10 +49,10 @@ class Admin extends BaseAdminController {
         // Load form validation class
         $this->load->library('form_validation');
 
-        $this->form_validation->set_rules('subject', lang("Theme", 'mailer'), 'required|trim');
-        $this->form_validation->set_rules('name', lang("Your name", 'mailer'), 'required|trim');
-        $this->form_validation->set_rules('email', lang("Your e-mail", 'mailer'), 'required|trim|valid_email');
-        $this->form_validation->set_rules('message', lang("Message", 'mailer'), 'required|trim');
+        $this->form_validation->set_rules('subject', lang('Theme', 'mailer'), 'required|trim');
+        $this->form_validation->set_rules('name', lang('Your name', 'mailer'), 'required|trim');
+        $this->form_validation->set_rules('email', lang('Your e-mail', 'mailer'), 'required|trim|valid_email');
+        $this->form_validation->set_rules('message', lang('Message', 'mailer'), 'required|trim');
 
         if ($this->form_validation->run($this) == FALSE) {
             showMessage(validation_errors(), false, 'r');
@@ -62,27 +63,27 @@ class Admin extends BaseAdminController {
             // Init email config
             $config['wordwrap'] = TRUE;
             $config['charset'] = 'UTF-8';
-            $config['mailtype'] = $_POST['mailtype'];
+            $config['mailtype'] = $this->input->post('mailtype');
             $this->email->initialize($config);
 
             // Get users array
             $users = $this->db->get('mail');
 
             if ($users->num_rows() > 0) {
-                $message = $_POST['message'];
+                $message = $this->input->post('message');
 
-                if ($_POST['mailtype'] == 'html') {
-                    $message = "<html><body>" . nl2br_except_pre($message) . "</body></html>";
+                if ($this->input->post('mailtype') == 'html') {
+                    $message = '<html><body>' . nl2br_except_pre($message) . '</body></html>';
                 }
-                $counter = array('true' => 0, 'all' => 0);
+                $counter = ['true' => 0, 'all' => 0];
                 foreach ($users->result_array() as $user) {
                     // Replace {username}
                     $tmp_msg = str_replace('%username%', $user['username'], $message);
 
-                    $this->email->from($_POST['email'], $_POST['name']);
+                    $this->email->from($this->input->post('email'), $this->input->post('name'));
                     $this->email->to($user['email']);
-                    $this->email->reply_to($_POST['email'], $_POST['name']);
-                    $this->email->subject($_POST['subject']);
+                    $this->email->reply_to($this->input->post('email'), $this->input->post('name'));
+                    $this->email->subject($this->input->post('subject'));
                     $this->email->message($tmp_msg);
                     $counter['all'] ++;
                     if ($this->email->send()) {
@@ -91,7 +92,7 @@ class Admin extends BaseAdminController {
                 }
 
                 $this->load->library('lib_admin');
-                $this->lib_admin->log(lang("Send", 'mailer') . '(' . $counter['true'] . '/' . $counter['all'] . ')' . lang("users e-mail with a subject", 'mailer') . ')' . $_POST['subject']);
+                $this->lib_admin->log(lang('Send', 'mailer') . '(' . $counter['true'] . '/' . $counter['all'] . ')' . lang('users e-mail with a subject', 'mailer') . ')' . $this->input->post('subject'));
                 $class = '';
                 if ($counter['true'] == $counter['all']) {
                     $class = '';
@@ -99,9 +100,9 @@ class Admin extends BaseAdminController {
                     $class = 'r';
                 }
                 if ($class !== 'r') {
-                    showMessage(lang("message has been sent", 'mailer') . ': ' . $counter['true'] . lang("Number of e-mails sent", 'mailer') . $counter['all'] . lang('pcs.', 'mailer') . $class);
+                    showMessage(lang('message has been sent', 'mailer') . ': ' . $counter['true'] . lang('Number of e-mails sent', 'mailer') . $counter['all'] . lang('pcs.', 'mailer') . $class);
                 } else {
-                    showMessage(lang("none of the messages", 'mailer') . $counter['all'] . lang("Number not", 'mailer'), $class);
+                    showMessage(lang('none of the messages', 'mailer') . $counter['all'] . lang('Number not', 'mailer'), $class);
                 }
             }
         }
@@ -109,13 +110,13 @@ class Admin extends BaseAdminController {
 
     public function deleteUsers() {
 
-        if (!empty($_POST['ids'])) {
+        if (!empty($this->input->post('ids'))) {
 
-            foreach ($_POST['ids'] as $id) {
-                $this->db->delete('mail', array('id' => $id));
+            foreach ($this->input->post('ids') as $id) {
+                $this->db->delete('mail', ['id' => $id]);
             }
 
-            showMessage(lang("Subscribers removal", 'mailer'));
+            showMessage(lang('Subscribers removal', 'mailer'));
         } else {
             showMessage(lang('There is not ID', 'mailer'), '', 'r');
         }
@@ -123,18 +124,11 @@ class Admin extends BaseAdminController {
 
     /**
      * Display template file
+     * @param string $file
      */
     private function display_tpl($file = '') {
-        $file = realpath(dirname(__FILE__)) . '/templates/admin/' . $file;
+        $file = realpath(__DIR__) . '/templates/admin/' . $file;
         $this->template->show('file:' . $file);
-    }
-
-    /**
-     * Fetch template file
-     */
-    private function fetch_tpl($file = '') {
-        $file = realpath(dirname(__FILE__)) . '/templates/admin/' . $file . '.tpl';
-        return $this->template->fetch('file:' . $file);
     }
 
 }

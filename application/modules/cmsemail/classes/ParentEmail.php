@@ -2,92 +2,27 @@
 
 namespace cmsemail\classes;
 
+use CI_DB_active_record;
+use CI_Input;
+use CI_URI;
+use Cmsemail_model;
 use CMSFactory\Events;
+use DX_Auth;
+use MY_Controller;
+use MY_Lang;
 
 /**
  * Image CMS
  * Module Wishlist
- * @property \Cmsemail_model $cmsemail_model
- * @property \DX_Auth $dx_auth
- * @property \CI_URI $uri
- * @property \CI_DB_active_record $db
- * @property \CI_Input $input
+ * @property Cmsemail_model $cmsemail_model
+ * @property DX_Auth $dx_auth
+ * @property CI_URI $uri
+ * @property CI_DB_active_record $db
+ * @property CI_Input $input
  * @version 1.0 big start!
  */
-class ParentEmail extends \MY_Controller
+class ParentEmail extends MY_Controller
 {
-
-    /**
-     * Email sender name
-     * @var string
-     */
-    protected $from;
-
-    /**
-     * Email sender email address
-     * @var string
-     */
-    protected $from_email;
-
-    /**
-     * Receiver email
-     * @var string
-     */
-    protected $send_to;
-
-    /**
-     * Attachment file
-     * @var type
-     */
-    protected $attachment;
-
-    /**
-     * Email theme
-     * @var string
-     */
-    protected $theme;
-
-    /**
-     * Email message
-     * @var string
-     */
-    protected $message;
-
-    /**
-     * Mail protocol
-     * @var string
-     */
-    protected $protocol;
-
-    /**
-     * Mail port
-     * @var int
-     */
-    protected $port;
-
-    /**
-     * Mail content type
-     * @var string
-     */
-    protected $type;
-
-    /**
-     * Server path to Sendmail
-     * @var string
-     */
-    protected $mailpath;
-
-    /**
-     * Array of errors
-     * @var array
-     */
-    public $errors = [];
-
-    /**
-     * Array of data
-     * @var array
-     */
-    public $data_model = [];
 
     /**
      * List of accepted params
@@ -107,31 +42,278 @@ class ParentEmail extends \MY_Controller
         'description',
     ];
 
+    /**
+     * Attachment file
+     * @var type
+     */
+    protected $attachment;
+
+    /**
+     * Array of data
+     * @var array
+     */
+    public $data_model = [];
+
+    /**
+     * Array of errors
+     * @var array
+     */
+    public $errors = [];
+
+    /**
+     * Email sender name
+     * @var string
+     */
+    protected $from;
+
+    /**
+     * Email sender email address
+     * @var string
+     */
+    protected $from_email;
+
+    /**
+     * Server path to Sendmail
+     * @var string
+     */
+    protected $mailpath;
+
+    /**
+     * Email message
+     * @var string
+     */
+    protected $message;
+
+    /**
+     * Mail port
+     * @var int
+     */
+    protected $port;
+
+    /**
+     * Mail protocol
+     * @var string
+     */
+    protected $protocol;
+
+    /**
+     * Receiver email
+     * @var string
+     */
+    protected $send_to;
+
+    /**
+     * Email theme
+     * @var string
+     */
+    protected $theme;
+
+    /**
+     * Mail content type
+     * @var string
+     */
+    protected $type;
+
     public function __construct() {
         parent::__construct();
-        $modulePath = getModulePath('cmsemail');
         $this->load->model('../' . getModContDirName('cmsemail') . '/cmsemail/models/cmsemail_model');
-        (new \MY_Lang())->load('cmsemail');
+        (new MY_Lang())->load('cmsemail');
     }
 
     /**
-     * replace variables in patern and wrap it
-     *
-     * @param array $variables
-     * @param string $patern
-     * @return string
+     * @param int $template_id
+     * @param string $variable
+     * @param string $variableValue
+     * @param string $locale
+     * @return object
      */
-    public function replaceVariables($patern, $variables) {
-        foreach ($variables as $variable => $replase_value) {
-            $patern = str_replace('$' . $variable . '$', $replase_value, $patern);
-        }
+    public function addVariable($template_id, $variable, $variableValue, $locale) {
+        return $this->cmsemail_model->addVariable($template_id, $variable, $variableValue, $locale);
+    }
 
-        $wraper = $this->cmsemail_model->getWraper();
+    /**
+     *
+     * @param array $data keys from list:
+     * 'name',
+     * 'from',
+     * 'from_email',
+     * 'theme',
+     * 'type',
+     * 'user_message',
+     * 'user_message_active',
+     * 'admin_message',
+     * 'admin_message_active',
+     * 'admin_email',
+     * 'description'
+     * @return boolean
+     */
+    public function create($data = []) {
+        if ($this->input->post()) {
+            $this->form_validation->set_rules('mail_name', lang('Template name', 'cmsemail'), 'required|alpha_dash');
+            $this->form_validation->set_rules('from_email', lang('From email', 'cmsemail'), 'valid_email');
+            $this->form_validation->set_rules('mail_theme', lang('Template theme', 'cmsemail'), 'required');
 
-        if ($wraper) {
-            $patern = str_replace('$content', $patern, $wraper);
+            if ($this->input->post('userMailTextRadio')) {
+                $this->form_validation->set_rules('userMailText', lang('Template user mail', 'cmsemail'), 'required');
+            }
+
+            if ($this->input->post('adminMailTextRadio')) {
+                $this->form_validation->set_rules('adminMailText', lang('Template admin mail', 'cmsemail'), 'required');
+            }
+
+            $this->form_validation->set_rules('admin_email', lang('Admin address', 'cmsemail'), 'valid_email');
+
+            if ($this->form_validation->run($this) == FALSE) {
+                $this->errors = validation_errors();
+                return FALSE;
+            } else {
+                return TRUE;
+            }
+        } else {
+            if (is_array($data) && !empty($data)) {
+                foreach ($data as $key => $d) {
+                    if (!in_array($key, $this->accepted_params)) {
+                        unset($data[$key]);
+                    }
+                }
+
+                $this->data_model = $data;
+                return TRUE;
+            } else {
+                return FALSE;
+            }
         }
-        return $patern;
+    }
+
+    /**
+     * @param array $ids
+     * @return bool
+     */
+    public function delete(array $ids) {
+        return $this->cmsemail_model->deleteTemplateByID($ids);
+    }
+
+    /**
+     * @param int $template_id
+     * @param string $variable
+     * @param string $locale
+     * @return bool|object
+     */
+    public function deleteVariable($template_id, $variable, $locale) {
+        return $this->cmsemail_model->deleteVariable($template_id, $variable, $locale);
+    }
+
+    /**
+     *
+     * @param integer $id ID of element
+     * @param array $data keys from list:
+     * 'name',
+     * 'from',
+     * 'from_email',
+     * 'theme',
+     * 'type',
+     * 'user_message',
+     * 'user_message_active',
+     * 'admin_message',
+     * 'admin_message_active',
+     * 'admin_email',
+     * 'description'
+     * @return boolean
+     */
+    public function edit($id, $data = []) {
+        if ($this->input->post()) {
+            $this->form_validation->set_rules('from_email', lang('From email', 'cmsemail'), 'valid_email');
+            $this->form_validation->set_rules('mail_theme', lang('Template theme', 'cmsemail'), 'required');
+
+            if ($this->input->post('userMailTextRadio')) {
+                $this->form_validation->set_rules('userMailText', lang('Template user mail', 'cmsemail'), 'required');
+            }
+
+            if ($this->input->post('adminMailTextRadio')) {
+                $this->form_validation->set_rules('adminMailText', lang('Template admin mail', 'cmsemail'), 'required');
+            }
+
+            $this->form_validation->set_rules('admin_email', lang('Admin address', 'cmsemail'), 'valid_email');
+
+            if ($this->form_validation->run($this) == FALSE) {
+                $this->errors = validation_errors();
+                return FALSE;
+            } else {
+                return TRUE;
+            }
+        } else {
+            if (is_array($data) && !empty($data)) {
+                foreach ($data as $key => $d) {
+                    if (!in_array($key, $this->accepted_params)) {
+                        unset($data[$key]);
+                    }
+                }
+
+                $this->data_model = $data;
+                return TRUE;
+            } else {
+                return FALSE;
+            }
+        }
+    }
+
+    /**
+     * @return array|string
+     */
+    public function getAllTemplates() {
+        return $this->cmsemail_model->getAllTemplates();
+    }
+
+    /**
+     * @param bool|string $locale
+     * @return array
+     */
+    public function getSettings($locale = FALSE) {
+        return $this->cmsemail_model->getSettings($locale);
+    }
+
+    /**
+     * @param int $id
+     * @param string $locale
+     * @return mixed
+     */
+    public function getTemplateById($id, $locale) {
+        return $this->cmsemail_model->getTemplateById($id, $locale);
+    }
+
+    /**
+     * @param string $template_id
+     * @param string $locale
+     * @return bool|mixed
+     */
+    public function getTemplateVariables($template_id, $locale) {
+        return $this->cmsemail_model->getTemplateVariables($template_id, $locale);
+    }
+
+    /**
+     * test mail sending
+     *
+     * @param array $config cohfiguration options for sending email:
+     * 'protocol',
+     * 'smtp_port',
+     * 'type',
+     * 'mailpath'
+     */
+    public function mailTest($config) {
+        $this->load->library('email');
+        $this->email->clear();
+
+        $this->_set_config($config);
+        $this->email->initialize($config);
+
+        $this->email->from($this->from_email, $this->from);
+        $this->email->to($this->send_to);
+        $this->email->subject($this->theme);
+        $this->email->message(lang('Check email sending', 'cmsemail'));
+
+        $this->email->send();
+
+        echo $this->email->print_debugger();
     }
 
     /**
@@ -147,7 +329,7 @@ class ParentEmail extends \MY_Controller
     public function sendEmail($send_to, $pattern_name, $variables, $attachment = FALSE) {
         //loading CodeIgniter Email library
         $this->load->library('email');
-        $locale = \MY_Controller::getCurrentLocale();
+        $locale = MY_Controller::getCurrentLocale();
 
         //Getting settings
         $pattern_settings = $this->cmsemail_model->getPaternSettings($pattern_name);
@@ -165,7 +347,7 @@ class ParentEmail extends \MY_Controller
         }
         $default_settings['type'] = strtolower($pattern_settings['type']);
         $pattern_settings['protocol'] = $default_settings['protocol'];
-        if (strtolower($default_settings['protocol']) == strtolower("SMTP")) {
+        if (strtolower($default_settings['protocol']) == strtolower('SMTP')) {
             $pattern_settings['smtp_port'] = $default_settings['port'];
             $pattern_settings['smtp_host'] = $default_settings['smtp_host'];
             $pattern_settings['smtp_user'] = $default_settings['smtp_user'];
@@ -240,115 +422,45 @@ class ParentEmail extends \MY_Controller
     }
 
     /**
+     * set email config
      *
-     * @param array $data keys from list:
-     * 'name',
-     * 'from',
-     * 'from_email',
-     * 'theme',
-     * 'type',
-     * 'user_message',
-     * 'user_message_active',
-     * 'admin_message',
-     * 'admin_message_active',
-     * 'admin_email',
-     * 'description'
-     * @return boolean
+     * @param array $settings
      */
-    public function create($data = []) {
-        if ($this->input->post()) {
-            $this->form_validation->set_rules('mail_name', lang('Template name', 'cmsemail'), 'required|alpha_dash');
-            $this->form_validation->set_rules('from_email', lang('From email', 'cmsemail'), 'valid_email');
-            $this->form_validation->set_rules('mail_theme', lang('Template theme', 'cmsemail'), 'required');
-
-            if ($this->input->post('userMailTextRadio')) {
-                $this->form_validation->set_rules('userMailText', lang('Template user mail', 'cmsemail'), 'required');
-            }
-
-            if ($this->input->post('adminMailTextRadio')) {
-                $this->form_validation->set_rules('adminMailText', lang('Template admin mail', 'cmsemail'), 'required');
-            }
-
-            $this->form_validation->set_rules('admin_email', lang('Admin address', 'cmsemail'), 'valid_email');
-
-            if ($this->form_validation->run($this) == FALSE) {
-                $this->errors = validation_errors();
-                return FALSE;
-            } else {
-                return TRUE;
-            }
-        } else {
-            if (is_array($data) && !empty($data)) {
-                foreach ($data as $key => $d) {
-                    if (!in_array($key, $this->accepted_params)) {
-                        unset($data[$key]);
-                    }
-                }
-
-                $this->data_model = $data;
-                return TRUE;
-            } else {
-                return FALSE;
-            }
+    private function _set_config($settings) {
+        $config['protocol'] = $settings['protocol'];
+        if (strtolower($settings['protocol']) == strtolower('SMTP')) {
+            $config['protocol'] = strtolower($settings['protocol']);
+            $config['smtp_port'] = $settings['smtp_port'];
+            $config['smtp_host'] = $settings['smtp_host'];
+            $config['smtp_user'] = $settings['smtp_user'];
+            $config['smtp_pass'] = $settings['smtp_pass'];
+            $config['smtp_crypto'] = $settings['smtp_crypto'];
         }
+
+        $config['mailtype'] = strtolower($settings['type']);
+        $config['mailpath'] = $settings['mailpath'];
+
+        return $this->email->initialize($config);
     }
 
     /**
+     * replace variables in patern and wrap it
      *
-     * @param integer $id ID of element
-     * @param array $data keys from list:
-     * 'name',
-     * 'from',
-     * 'from_email',
-     * 'theme',
-     * 'type',
-     * 'user_message',
-     * 'user_message_active',
-     * 'admin_message',
-     * 'admin_message_active',
-     * 'admin_email',
-     * 'description'
-     * @return boolean
+     * @param array $variables
+     * @param string $pattern
+     * @return string
      */
-    public function edit($id, $data = []) {
-        if ($this->input->post()) {
-            $this->form_validation->set_rules('from_email', lang('From email', 'cmsemail'), 'valid_email');
-            $this->form_validation->set_rules('mail_theme', lang('Template theme', 'cmsemail'), 'required');
-
-            if ($this->input->post('userMailTextRadio')) {
-                $this->form_validation->set_rules('userMailText', lang('Template user mail', 'cmsemail'), 'required');
-            }
-
-            if ($this->input->post('adminMailTextRadio')) {
-                $this->form_validation->set_rules('adminMailText', lang('Template admin mail', 'cmsemail'), 'required');
-            }
-
-            $this->form_validation->set_rules('admin_email', lang('Admin address', 'cmsemail'), 'valid_email');
-
-            if ($this->form_validation->run($this) == FALSE) {
-                $this->errors = validation_errors();
-                return FALSE;
-            } else {
-                return TRUE;
-            }
-        } else {
-            if (is_array($data) && !empty($data)) {
-                foreach ($data as $key => $d) {
-                    if (!in_array($key, $this->accepted_params)) {
-                        unset($data[$key]);
-                    }
-                }
-
-                $this->data_model = $data;
-                return TRUE;
-            } else {
-                return FALSE;
-            }
+    public function replaceVariables($pattern, $variables) {
+        foreach ($variables as $variable => $replace_value) {
+            $pattern = str_replace('$' . $variable . '$', $replace_value, $pattern);
         }
-    }
 
-    public function delete($ids) {
-        return $this->cmsemail_model->deleteTemplateByID($ids);
+        $wrapper = $this->cmsemail_model->getWraper();
+
+        if ($wrapper) {
+            $pattern = str_replace('$content', $pattern, $wrapper);
+        }
+        return $pattern;
     }
 
     /**
@@ -370,84 +482,23 @@ class ParentEmail extends \MY_Controller
     }
 
     /**
-     * set email config
-     *
      * @param array $settings
      * @return bool
      */
-    private function _set_config($settings) {
-        $config['protocol'] = $settings['protocol'];
-        if (strtolower($settings['protocol']) == strtolower("SMTP")) {
-            $config['protocol'] = strtolower($settings['protocol']);
-            $config['smtp_port'] = $settings['smtp_port'];
-            $config['smtp_host'] = $settings['smtp_host'];
-            $config['smtp_user'] = $settings['smtp_user'];
-            $config['smtp_pass'] = $settings['smtp_pass'];
-            $config['smtp_crypto'] = $settings['smtp_crypto'];
-        }
-
-        $config['mailtype'] = strtolower($settings['type']);
-        $config['mailpath'] = $settings['mailpath'];
-
-        return $this->email->initialize($config);
-    }
-
-    /**
-     * test mail sending
-     *
-     * @param array $config cohfiguration options for sending email:
-     * 'protocol',
-     * 'smtp_port',
-     * 'type',
-     * 'mailpath'
-     */
-    public function mailTest($config) {
-        $this->load->library('email');
-        $this->email->clear();
-
-        $this->_set_config($config);
-        $this->email->initialize($config);
-
-        $this->email->from($this->from_email, $this->from);
-        $this->email->to($this->send_to);
-        $this->email->subject($this->theme);
-        $this->email->message(lang('Check email sending', 'cmsemail'));
-
-        $this->email->send();
-
-        echo $this->email->print_debugger();
-    }
-
-    public function getAllTemplates() {
-        return $this->cmsemail_model->getAllTemplates();
-    }
-
-    public function getSettings($locale = FALSE) {
-        return $this->cmsemail_model->getSettings($locale);
-    }
-
-    public function getTemplateById($id, $locale) {
-        return $this->cmsemail_model->getTemplateById($id, $locale);
-    }
-
     public function setSettings($settings) {
         return $this->cmsemail_model->setSettings($settings);
     }
 
-    public function deleteVariable($template_id, $variable, $locale) {
-        return $this->cmsemail_model->deleteVariable($template_id, $variable, $locale);
-    }
-
+    /**
+     * @param int $template_id
+     * @param string $variable
+     * @param string $variableNewValue
+     * @param string $oldVariable
+     * @param string $locale
+     * @return bool|object
+     */
     public function updateVariable($template_id, $variable, $variableNewValue, $oldVariable, $locale) {
         return $this->cmsemail_model->updateVariable($template_id, $variable, $variableNewValue, $oldVariable, $locale);
-    }
-
-    public function addVariable($template_id, $variable, $variableValue, $locale) {
-        return $this->cmsemail_model->addVariable($template_id, $variable, $variableValue, $locale);
-    }
-
-    public function getTemplateVariables($template_id, $locale) {
-        return $this->cmsemail_model->getTemplateVariables($template_id, $locale);
     }
 
 }

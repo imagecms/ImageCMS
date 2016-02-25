@@ -2,12 +2,15 @@
 
 namespace template_manager\classes;
 
+use SimpleXMLElement;
+
 /**
  * Base class for components. Each component must extend current class
  * Components of the template are sort of modules
  * for CMS, but in template context
  */
-abstract class TComponent {
+abstract class TComponent
+{
 
     /**
      * Data from table `template_settings` of each component
@@ -59,6 +62,7 @@ abstract class TComponent {
     /**
      * Setting params of components into DB
      * @param array $params one dimentional associative array
+     * @return bool
      */
     public function setParams($params = []) {
         if (is_array($params) && !empty($params)) {
@@ -84,7 +88,7 @@ abstract class TComponent {
     }
 
     /**
-     * Gettins param/params of component
+     * Getting param/params of component
      * @param string $key (default null) params name (if no specified, then all params)
      * @param boolean $force (optional, default false) if false then data will be returned from strored vars, if true then from DB.
      * @return null|array array of key => data of component, or specified in argument value
@@ -157,9 +161,9 @@ abstract class TComponent {
      * Method parses params of xml
      * each component can have it's own structure of param tags
      * Kind of template method - in the end need to run setParams() method
-     * @param \SimpleXMLElement $nodes nodes from xml
+     * @param SimpleXMLElement $nodes nodes from xml
      */
-    abstract public function setParamsXml(\SimpleXMLElement $nodes);
+    abstract public function setParamsXml(SimpleXMLElement $nodes);
 
     /**
      * Renders settings page of current component for admin panel

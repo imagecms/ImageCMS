@@ -2,6 +2,8 @@
 
 namespace template_manager\classes;
 
+use PHPSQLParser\PHPSQLParser;
+
 /**
  *
  * Attention! This class has the test, so if you will make some changes in
@@ -9,7 +11,8 @@ namespace template_manager\classes;
  *
  * @author kolia
  */
-class DemodataQueriesFilter {
+class DemodataQueriesFilter
+{
 
     /**
      *
@@ -17,17 +20,25 @@ class DemodataQueriesFilter {
      */
     protected $allowedDemodataTables = [];
 
-    public function __construct(array $allowedDemodataTables = null) {
-        if (is_null($allowedDemodataTables)) {
+    /**
+     * DemodataQueriesFilter constructor.
+     * @param array|null $allowedDemoDataTables
+     */
+    public function __construct(array $allowedDemoDataTables = null) {
+        if (null === $allowedDemoDataTables) {
             $this->allowedDemodataTables = \CI::$APP->load
                 ->module('template_manager')
                 ->config
                 ->item('allowedDemodataTables');
         } else {
-            $this->allowedDemodataTables = $allowedDemodataTables;
+            $this->allowedDemodataTables = $allowedDemoDataTables;
         }
     }
 
+    /**
+     * @param string $query
+     * @return bool
+     */
     public function verifyQuery($query) {
         if (!$query) {
             return false;
@@ -49,11 +60,12 @@ class DemodataQueriesFilter {
         foreach ($this->allowedDemodataTables as $table) {
             // compile patterns for current table
             $tablePatterns = [];
-            for ($i = 0; $i < count($patterns); $i++) {
+            $countPatterns = count($patterns);
+            for ($i = 0; $i < $countPatterns; $i++) {
                 $tablePatterns[$i] = str_replace('__table__', strtolower($table), $patterns[$i] . $constantTablePart);
             }
-
-            for ($j = 0; $j < count($tablePatterns); $j++) {
+            $countTablePatterns = count($tablePatterns);
+            for ($j = 0; $j < $countTablePatterns; $j++) {
                 if (preg_match($tablePatterns[$j], $query) != 0) {
                     return true;
                 }
@@ -63,23 +75,27 @@ class DemodataQueriesFilter {
         return false;
     }
 
+    /**
+     * @param string $query
+     * @return bool|string
+     */
     public function filterSettings($query) {
         if (1 !== preg_match('/insert\s+into\s+\`settings\`/i', trim($query))) {
             return false;
         }
 
-        $parser = new \PHPSQLParser\PHPSQLParser();
+        $parser = new PHPSQLParser();
         $parsed = $parser->parse($query);
 
         $columnsCount = count($parsed['INSERT'][2]['sub_tree']);
-        $valuesCount = count($parsed['VALUES'][0]["data"]);
+        $valuesCount = count($parsed['VALUES'][0]['data']);
         if ($columnsCount === $valuesCount) {
 
             foreach ($parsed['INSERT'][2]['sub_tree'] as $key => $one) {
 
                 if (1 === strpos($one['base_expr'], 'siteinfo')) {
                     $settingsPosition = $key;
-                    $siteInfoData = $parsed['VALUES'][0]["data"][$settingsPosition]['base_expr'];
+                    $siteInfoData = $parsed['VALUES'][0]['data'][$settingsPosition]['base_expr'];
                     $query = "UPDATE `settings` SET `siteinfo`=$siteInfoData";
                     return $query;
                 }

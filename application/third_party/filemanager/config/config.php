@@ -5,9 +5,9 @@ date_default_timezone_set('Europe/Rome');
 
 // Set content charset to Windows-1251 if current OS is Windows and locale in 1251
 $currentLocale = setLocale(LC_ALL, '');
-if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' && strstr($currentLocale, '1251')) {
-    header('Content-Type: text/html; charset=Windows-1251');
-} 
+//if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' && strstr($currentLocale, '1251')) {
+//    header('Content-Type: text/html; charset=Windows-1251');
+//}
 
 /*
 |--------------------------------------------------------------------------
@@ -150,7 +150,7 @@ $config = array(
 
 
 	//Show or not show folder size in list view feature in filemanager (is possible, if there is a large folder, to greatly increase the calculations)
-	'show_folder_size'                        => true,
+	'show_folder_size'                        => false,
 	//Show or not show sorting feature in filemanager
 	'show_sorting_bar'                        => true,
 	//active or deactive the transliteration (mean convert all strange characters in A..Za..z0..9 characters)
@@ -159,6 +159,8 @@ $config = array(
 	'convert_spaces'                          => false,
 	//convert all spaces on files name and folders name this value
 	'replace_with'                            => "_",
+	//convert to lowercase the files and folders name
+	'lower_case'                              => false,
 
 	// -1: There is no lazy loading at all, 0: Always lazy-load images, 0+: The minimum number of the files in a directory
 	// when lazy loading should be turned on.
@@ -221,8 +223,8 @@ $config = array(
 	'duplicate_files'                         => true,
 	'copy_cut_files'                          => true, // for copy/cut files
 	'copy_cut_dirs'                           => true, // for copy/cut directories
-	'chmod_files'                             => false, // change file permissions
-	'chmod_dirs'                              => false, // change folder permissions
+	'chmod_files'                             => true, // change file permissions
+	'chmod_dirs'                              => true, // change folder permissions
 	'preview_text_files'                      => true, // eg.: txt, log etc.
 	'edit_text_files'                         => true, // eg.: txt, log etc.
 	'create_text_files'                       => true, // only create files with exts. defined in $editable_text_file_exts
@@ -266,8 +268,11 @@ $config = array(
 	 * AVIARY config
 	 *******************/
 	'aviary_active'                           => true,
-	'aviary_apiKey'                           => "dvh8qudbp6yx2bnp",
-	'aviary_secret'                           => "m6xaym5q42rpw433",
+	'aviary_apiKey'                           => "2444282ef4344e3dacdedc7a78f8877d",
+	'aviary_language'                         => "en",
+	'aviary_theme'                            => "light",
+	'aviary_tools'                            => "all",
+	'aviary_maxSize'                          => "1400",
 	// Add or modify the Aviary options below as needed - they will be json encoded when added to the configuration so arrays can be utilized as needed
 
 	//The filter and sorter are managed through both javascript and php scripts because if you have a lot of
@@ -359,10 +364,10 @@ return array_merge(
 		// For a list of options see: https://developers.aviary.com/docs/web/setup-guide#constructor-config
 		'aviary_defaults_config' => array(
 			'apiKey'     => $config['aviary_apiKey'],
-			'apiVersion' => 3,
-			'language'   => 'en',
-			'theme'      => 'light',
-			'tools'      => 'all'
+			'language'   => $config['aviary_language'],
+			'theme'      => $config['aviary_theme'],
+			'tools'      => $config['aviary_tools'],
+			'maxSize'    => $config['aviary_maxSize']
 		),
 	)
 );

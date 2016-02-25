@@ -4,7 +4,8 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-class Install extends MY_Controller {
+class Install extends MY_Controller
+{
 
     public $host = '';
 
@@ -29,13 +30,13 @@ class Install extends MY_Controller {
     public function index() {
 
         if (moduleExists('shop')) {
-            $data = array(
-                'content' => $this->load->view('license_shop', array('next_link' => $this->host . '/install/step_1'), TRUE),
-            );
+            $data = [
+                'content' => $this->load->view('license_shop', ['next_link' => $this->host . '/install/step_1'], TRUE),
+            ];
         } else {
-            $data = array(
-                'content' => $this->load->view('license', array('next_link' => $this->host . '/install/step_1'), TRUE),
-            );
+            $data = [
+                'content' => $this->load->view('license', ['next_link' => $this->host . '/install/step_1'], TRUE),
+            ];
         }
         $this->load->view('main', $data);
     }
@@ -44,7 +45,7 @@ class Install extends MY_Controller {
         $result = TRUE;
 
         // Check folders permissions
-        $dir_array = array(
+        $dir_array = [
             './application/config/config.php' => 'ok',
             './system/cache' => 'ok',
             './captcha/' => 'ok',
@@ -52,7 +53,7 @@ class Install extends MY_Controller {
             './uploads/' => 'ok',
             './uploads/images' => 'ok',
             './uploads/files' => 'ok',
-        );
+        ];
 
         foreach ($dir_array as $k => $v) {
             if (!is_really_writable($k)) {
@@ -63,10 +64,10 @@ class Install extends MY_Controller {
 
         // Check server params
 
-        $allow_params = array(
+        $allow_params = [
             'register_globals' => 'ok',
             'safe_mode' => 'ok',
-        );
+        ];
 
         foreach ($allow_params as $k => $v) {
             if (ini_get($k) == 1) {
@@ -84,7 +85,7 @@ class Install extends MY_Controller {
         }
 
         // Check installed php exts.
-        $exts = array(
+        $exts = [
             'curl' => 'ok',
             'json' => 'ok',
             'mbstring' => 'ok',
@@ -93,7 +94,7 @@ class Install extends MY_Controller {
             'zlib' => 'ok',
             'gettext' => 'ok',
             'soap' => 'ok',
-        );
+        ];
 
         if (moduleExists('shop') && end(explode('.', $this->input->server('HTTP_HOST'))) != 'loc') {
             $exts['ionCube Loader'] = 'ok';
@@ -129,10 +130,10 @@ class Install extends MY_Controller {
             }
         }
 
-        $locales = array(
+        $locales = [
             'en_US' => 'ok',
             'ru_RU' => 'ok'
-        );
+        ];
 
         foreach ($locales as $locale => $v) {
             if (!setlocale(LC_ALL, $locale . '.utf8', $locale . '.utf-8', $locale . '.UTF8', $locale . '.UTF-8', $locale . '.utf-8', $locale . '.UTF-8', $locale)) {
@@ -142,20 +143,21 @@ class Install extends MY_Controller {
             }
         }
 
-        $data = array(
+        $data = [
             'dirs' => $dir_array,
             //            'need_params' => $need_params,
             'allow_params' => $allow_params,
             'exts' => $exts,
             'locales' => $locales,
             'next_link' => $this->_get_next_link($result, 1),
-        );
+        ];
         $this->_display($this->load->view('step_1', $data, TRUE));
     }
 
     /**
      * Check is extension loaded
      * @param string $name extension name
+     * @return bool
      */
     private function checkExtensions($name = '') {
         if (in_array($name, $this->loadedExt)) {
@@ -166,7 +168,7 @@ class Install extends MY_Controller {
 
     /**
      * @deprecated since version 4.6
-     * @param type $name
+     * @param string $name
      * @return boolean
      */
     protected function _get_ext($name = '') {
@@ -220,12 +222,12 @@ class Install extends MY_Controller {
             }
         }
 
-        $data = array(
+        $data = [
             'next_link' => $this->_get_next_link($result, 2),
             'other_errors' => $other_errors,
             'host' => $this->host,
             'sqlFileName' => $this->useSqlFile,
-        );
+        ];
         $this->_display($this->load->view('step_2', $data, TRUE));
     }
 
@@ -241,7 +243,7 @@ class Install extends MY_Controller {
         $link = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
 
         // Drop all tables in DB
-        $tables = array();
+        $tables = [];
         $sql = "SHOW TABLES FROM $db_name";
         if ($result = mysqli_query($link, $sql)) {
             while ($row = mysqli_fetch_row($result)) {
@@ -259,7 +261,7 @@ class Install extends MY_Controller {
         }
 
         mysqli_query($link, 'SET NAMES `utf8`');
-        $sqlFileData = read_file(dirname(__FILE__) . '/' . $this->useSqlFile);
+        $sqlFileData = read_file(__DIR__ . '/' . $this->useSqlFile);
 
         $queries = explode(";\n", str_replace(';\r\n', ';\n', $sqlFileData));
 
@@ -277,7 +279,7 @@ class Install extends MY_Controller {
         mysqli_query($link, 'UPDATE `settings` SET `lang_sel`=\'' . mysqli_escape_string($link, $this->input->post('lang_sel')) . '\' ');
 
         // TRUNCATE if "no demodata" checked
-        if ($this->input->post('product_samples') != "on") {
+        if ($this->input->post('product_samples') != 'on') {
             mysqli_query($link, 'TRUNCATE `category`;');
             mysqli_query('INSERT INTO `category` (`id`, `name`, `url`, `per_page`, `order_by`) VALUES (\'1\', \'test\', \'test\', \'1\', \'publish_date\');', $link);
             mysqli_query('UPDATE `settings` SET `main_type`=\'category\', `main_page_cat`=\'1\';', $link);
@@ -300,7 +302,7 @@ class Install extends MY_Controller {
             mysqli_query($link, 'TRUNCATE `content_tags`;');
             mysqli_query($link, 'TRUNCATE `logs`;');
 
-            $this->load->helper("file");
+            $this->load->helper('file');
 
             if (moduleExists('shop')) {
                 delete_files('./uploads/shop', TRUE);
@@ -392,7 +394,7 @@ class Install extends MY_Controller {
         $this->dx_auth->login($this->input->post('admin_login'), $this->input->post('admin_pass'), true);
 
         //redirect('install/done','refresh');
-        header("Location: " . $this->host . "/install/done");
+        header('Location: ' . $this->host . '/install/done');
     }
 
     public function done() {
@@ -430,6 +432,11 @@ class Install extends MY_Controller {
         }
     }
 
+    /**
+     * @param bool $result
+     * @param int $step
+     * @return string
+     */
     private function _get_next_link($result = FALSE, $step = 1) {
         if ($result === TRUE) {
             $next_link = $this->host . '/install/step_' . ($step + 1);
@@ -441,9 +448,9 @@ class Install extends MY_Controller {
     }
 
     public function _display($content) {
-        $data = array(
+        $data = [
             'content' => $content,
-        );
+        ];
 
         $this->load->view('main', $data);
     }

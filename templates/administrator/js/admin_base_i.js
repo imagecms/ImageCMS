@@ -888,7 +888,7 @@ $(document).ready(function () {
         }
 
         mainImageName = mainImageName ? mainImageName : '../../nophoto/nophoto.jpg'
-        var imageInet = $('.variantsProduct tbody').find('tr').last().find('input[name^="variants[inetImage]"]').val();
+        var imageInet = $('.variantsProduct tbody').find('tr').find('input[name^="variants[inetImage]"]').val();
         if(imageInet){
             clonedVarTr.find('[name="variants[inetImage][]"]').val(imageInet);
             clonedVarTr.find('.changeImage').val(1);
@@ -958,6 +958,7 @@ $(document).ready(function () {
         var container = $(this).closest('td');
         //container.find('[name="variants[MainImageForDel][]"]');
         var imageName = container.find('[name="variants[mainImageName][]"]').val();
+        $('[name="file-image"]').val('');
 
         //$(this).closest('tbody').find('input[value="' + imageName + '"]').val('');
         //$(this).closest('tbody').find('img[src$="' + imageName + '"]').attr('src', '/uploads/shop/nophoto/nophoto.jpg');
@@ -1032,33 +1033,14 @@ $(document).ready(function () {
                 $.post("/admin/components/run/shop/products/get_images/url", {
                     q: value
                 }, addUrlImage, 'json');
-            } else { // search with google
-                curPosition = 1;
-                searchImages();
-                //modalBodyMsg("Загрузка...");
-                var loadingImg = '<img src="/templates/administrator/images/loader-2.gif" alt="Loading..."/>';
-                modalBodyMsg(loadingImg);
+                $('.resultMessage').empty();
+            } else {
+                modalBodyMsg(lang("Not Correct Url"));
             }
         } else {
+            modalBodyMsg(lang('Please specify url images'));
             clearImageResults();
         }
-    }
-
-    // start search
-    function searchImages(clear) {
-        if (clear !== false) {
-            $("#image_search_result > .images").empty();
-        }
-        var value = $("#url_image").val();
-        var filesType = $("#images_modal #imageType").val();
-        var loadingImg = '<img src="/templates/administrator/images/loader-2.gif" alt="Loading..."/>';
-        modalBodyMsg(loadingImg);
-
-        $.post("/admin/components/run/shop/products/get_images/search", {
-            q: value,
-            pos: curPosition,
-            filesType: filesType,
-        }, addSearchedImages, 'json');
     }
 
     // removing thumbnails from preview images
@@ -1202,30 +1184,17 @@ $(document).ready(function () {
 
     // adding event to open modal window
     $(".images_modal").live('click', function () {
-        // for saving the position of images page
         curPosition = 1;
         trId = $(this).parents("tr").attr("id");
         var productName = $("input#Name").val();
         if (productName.length > 0) {
-            $("#url_image").val(productName);
-            //imgMessageBottom('');
-            searchImages();
-            var loadingImg = '<img src="/templates/administrator/images/loader-2.gif" alt="Loading..."/>';
-            modalBodyMsg(loadingImg);
+            $("#url_image").val();
         } else {
-            modalBodyMsg(lang('Please specify the product name'));
+            modalBodyMsg(lang('Please specify url images'));
         }
         $("#as_additional").removeAttr("checked").removeAttr("disabled");
         $('#images_modal').modal();
     });
-
-    $("#loadMoreImages").live('click', function () {
-        if ((curPosition + 8) < 40) {
-            curPosition += 8;
-            searchImages(false);
-        }
-    });
-
 
     /*
      * Message to show bottom

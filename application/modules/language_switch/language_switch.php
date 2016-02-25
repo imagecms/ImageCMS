@@ -9,7 +9,8 @@ if (!defined('BASEPATH')) {
  *
  * Language Switcher
  */
-class Language_Switch extends MY_Controller {
+class Language_Switch extends MY_Controller
+{
 
     public function __construct() {
 
@@ -43,7 +44,7 @@ class Language_Switch extends MY_Controller {
         $this->load->dbforge();
 
         $this->db->where('name', 'language_switch');
-        $this->db->update('components', array('autoload' => 0, 'in_menu' => 1));
+        $this->db->update('components', ['autoload' => 0, 'in_menu' => 1]);
     }
 
     // Delete module
@@ -57,7 +58,7 @@ class Language_Switch extends MY_Controller {
      */
     private function display_tpl($file = '') {
 
-        $file = realpath(dirname(__FILE__)) . '/templates/public/' . $file . '.tpl';
+        $file = realpath(__DIR__) . '/templates/public/' . $file . '.tpl';
         $this->template->display('file:' . $file);
     }
 
@@ -66,7 +67,7 @@ class Language_Switch extends MY_Controller {
      */
     private function fetch_tpl($file = '') {
 
-        $file = realpath(dirname(__FILE__)) . '/templates/public/' . $file . '.tpl';
+        $file = realpath(__DIR__) . '/templates/public/' . $file . '.tpl';
         return $this->template->fetch('file:' . $file);
     }
 

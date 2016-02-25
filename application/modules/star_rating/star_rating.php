@@ -1,5 +1,7 @@
 <?php
 
+use CMSFactory\assetManager;
+
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
@@ -8,18 +10,19 @@ if (!defined('BASEPATH')) {
  * Image CMS
  *
  * In oder to show "Star rating" type in template:
-  {$CI->load->module('star_rating')->show_star_rating()}
+ * {$CI->load->module('star_rating')->show_star_rating()}
  *
  * If you want to show "Star rating" for product
  * {$CI->load->module('star_rating')->show_star_rating(SProducts $product)}
-
  *
  * More turn on autoload and url access.
  *
  * Star rating module
  *
+ * @property Rating_model rating_model
  */
-class Star_rating extends MY_Controller {
+class Star_rating extends MY_Controller
+{
 
     private $new_votes = 0;
 
@@ -28,6 +31,7 @@ class Star_rating extends MY_Controller {
     private $list_for_show = ['main', 'category', 'brand', 'product', 'shop_category', 'page'];
 
     public function __construct() {
+
         parent::__construct();
         $this->load->helper('path');
         $this->load->model('rating_model');
@@ -36,6 +40,7 @@ class Star_rating extends MY_Controller {
     }
 
     public static function adminAutoload() {
+
         parent::adminAutoload();
     }
 
@@ -46,11 +51,11 @@ class Star_rating extends MY_Controller {
     /**
      * Show star_rating
      * @param SProducts $item
+     * @param bool $registerScript
+     * @return $this|bool
      */
     public function show_star_rating($item = null, $registerScript = true) {
-        $get_settings = $this->rating_model->get_settings();
-        //prepare array with pages which can display "Star rating"
-        $this->list_for_show = json_decode($get_settings['settings'], true);
+        $this->list_for_show = $this->rating_model->get_settings();
         if ($this->list_for_show == null) {
             $this->list_for_show = [];
         }
@@ -59,7 +64,6 @@ class Star_rating extends MY_Controller {
 
         // product rating
         if ($item != null && $item instanceof SProducts) {
-
             if ($item->getRating() != null) {
                 $rating_s = (int) $item->getRating() * 20; // rating in percent
             } else {
@@ -95,13 +99,12 @@ class Star_rating extends MY_Controller {
             }
         }
 
-        //Show template with prepared parametrs
+        //Show template with prepared parameters
         if ($template !== null) {
-            $renderTemplate = CMSFactory\assetManager::create();
+            $renderTemplate = assetManager::create();
         }
         $renderTemplate->setData($data)
             ->registerStyle('style');
-        //                    if ($template != 'product_star_rating')$registerScript
         if ($registerScript) {
             $renderTemplate->registerScript('scripts');
         }
@@ -114,6 +117,7 @@ class Star_rating extends MY_Controller {
      * @return string|null
      */
     public function ajax_rate() {
+
         $id = $this->input->post('cid');
         $type = $this->input->post('type');
         $rating = (int) $this->input->post('val');
@@ -164,13 +168,14 @@ class Star_rating extends MY_Controller {
             //If ajax request than return data for with new rating and votes
             if ($this->input->is_ajax_request()) {
                 return json_encode(
-                    ["rate" => "$rating_res",
-                            "votes" => "$votes_res"
-                        ]
+                    [
+                        'rate' => "$rating_res",
+                        'votes' => "$votes_res"
+                    ]
                 );
             }
         } else {
-            return json_encode(["rate" => null]);
+            return json_encode(['rate' => null]);
         }
     }
 
@@ -178,6 +183,7 @@ class Star_rating extends MY_Controller {
      * Install module
      */
     public function _install() {
+
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) OR exit;
         $fields = [
@@ -215,6 +221,7 @@ class Star_rating extends MY_Controller {
      * Deinstall module
      */
     public function _deinstall() {
+
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) OR exit;
         $this->dbforge->drop_table('rating');

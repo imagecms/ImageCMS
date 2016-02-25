@@ -1,11 +1,15 @@
 <?php
 
+use cmsemail\email;
+use CMSFactory\assetManager;
+
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /**
  * Image CMS
  * Email Module Admin
  * @property Cache $cache
+ * @property Cms_base $cms_base
  */
 class Admin extends BaseAdminController
 {
@@ -22,13 +26,13 @@ class Admin extends BaseAdminController
     public function __construct() {
         parent::__construct();
         $this->load->language('email');
-        $this->email = \cmsemail\email::getInstance();
+        $this->email = email::getInstance();
         $lang = new MY_Lang();
         $lang->load('cmsemail');
     }
 
     public function index() {
-        \CMSFactory\assetManager::create()
+        assetManager::create()
             ->setData(
                 [
                 'models' => $this->email->getAllTemplates(),
@@ -38,6 +42,9 @@ class Admin extends BaseAdminController
             ->renderAdmin('list');
     }
 
+    /**
+     * @return int
+     */
     private function getMaxDefaultTemplatesCount() {
         if (MY_Controller::isCorporateCMS()) {
             return self::MAX_DEFAULT_TEMPLATES_CORPORATE;
@@ -46,10 +53,13 @@ class Admin extends BaseAdminController
         return self::MAX_DEFAULT_TEMPLATES_SHOP;
     }
 
+    /**
+     * @param string $locale
+     */
     public function settings($locale) {
 
-        $locale = $locale ? $locale : MY_Controller::defaultLocale();
-        \CMSFactory\assetManager::create()
+        $locale = $locale ?: MY_Controller::defaultLocale();
+        assetManager::create()
             ->registerScript('email')
             ->registerStyle('style')
             ->setData('settings', $this->email->getSettings($locale))
@@ -63,7 +73,7 @@ class Admin extends BaseAdminController
         if ($this->input->post()) {
             $id = $this->email->create();
             if ($id) {
-                $this->lib_admin->log(lang("E-mail template created", "cmsemail") . ' - ' . $this->input->post('mail_name'));
+                $this->lib_admin->log(lang('E-mail template created', 'cmsemail') . ' - ' . $this->input->post('mail_name'));
                 showMessage(lang('Template created', 'cmsemail'));
 
                 if ($this->input->post('action') == 'tomain') {
@@ -75,7 +85,7 @@ class Admin extends BaseAdminController
                 showMessage($this->email->errors, '', 'r');
             }
         } else {
-            \CMSFactory\assetManager::create()
+            assetManager::create()
                 ->registerScript('email')
                 ->setData('settings', $this->email->getSettings())
                 ->renderAdmin('create');
@@ -131,7 +141,7 @@ class Admin extends BaseAdminController
                 showMessage($this->email->errors, '', 'r');
             }
         } else {
-            \CMSFactory\assetManager::create()
+            assetManager::create()
                 ->setData('locale', $locale)
                 ->setData('languages', $this->db->get('languages')->result_array())
                 ->setData('model', $model)
@@ -142,11 +152,12 @@ class Admin extends BaseAdminController
     }
 
     /**
-     * updare settings for email
+     * update settings for email
+     * @param string $locale
      */
     public function update_settings($locale) {
 
-        $locale = $locale ? $locale : MY_Controller::defaultLocale();
+        $locale = $locale ?: MY_Controller::defaultLocale();
 
         if ($this->input->post()) {
             $this->form_validation->set_rules('settings[admin_email]', lang('Admin email', 'cmsemail'), 'required|xss_clean|valid_email');
@@ -171,7 +182,7 @@ class Admin extends BaseAdminController
 
                 if ($this->email->setSettings($data)) {
                     showMessage(lang('Settings saved', 'cmsemail'), lang('Message', 'cmsemail'));
-                    $this->lib_admin->log(lang("Template customization mails have been changed", "cmsemail") . '. Id: '); // . $id);??
+                    $this->lib_admin->log(lang('Template customization mails have been changed', 'cmsemail') . '. Id: '); // . $id);??
                 }
             }
 
@@ -179,9 +190,13 @@ class Admin extends BaseAdminController
         }
     }
 
-    public function wraper_check($wraper) {
+    /**
+     * @param string $wrapper
+     * @return bool
+     */
+    public function wraper_check($wrapper) {
 
-        if (preg_match('/\$content/', htmlentities($wraper))) {
+        if (preg_match('/\$content/', htmlentities($wrapper))) {
             return TRUE;
         } else {
             $this->form_validation->set_message('wraper_check', lang('Field', 'cmsemail') . ' %s ' . lang('Must contain variable', 'cmsemail') . ' $content');
@@ -189,6 +204,10 @@ class Admin extends BaseAdminController
         }
     }
 
+    /**
+     * @param null|string $locale
+     * @return bool|object
+     */
     public function deleteVariable($locale = null) {
 
         if (null === $locale) {
@@ -200,6 +219,10 @@ class Admin extends BaseAdminController
         return $this->email->deleteVariable($template_id, $variable, $locale);
     }
 
+    /**
+     * @param null|string $locale
+     * @return bool|object
+     */
     public function updateVariable($locale = null) {
 
         if (null === $locale) {
@@ -212,6 +235,10 @@ class Admin extends BaseAdminController
         return $this->email->updateVariable($template_id, $variable, $variableNewValue, $oldVariable, $locale);
     }
 
+    /**
+     * @param null|string $locale
+     * @return bool
+     */
     public function addVariable($locale = null) {
 
         if (null === $locale) {
@@ -222,7 +249,7 @@ class Admin extends BaseAdminController
         $variableValue = $this->input->post('variableValue');
 
         if ($this->email->addVariable($template_id, $variable, $variableValue, $locale)) {
-            \CMSFactory\assetManager::create()
+            assetManager::create()
                 ->setData('template_id', $template_id)
                 ->setData('variable', $variable)
                 ->setData('variable_value', $variableValue)
@@ -233,6 +260,10 @@ class Admin extends BaseAdminController
         }
     }
 
+    /**
+     * @param null|string $locale
+     * @return bool
+     */
     public function getTemplateVariables($locale = null) {
 
         if (null === $locale) {
@@ -241,7 +272,7 @@ class Admin extends BaseAdminController
         $template_id = $this->input->post('template_id');
         $variables = $this->email->getTemplateVariables($template_id, $locale);
         if ($variables) {
-            return \CMSFactory\assetManager::create()
+            assetManager::create()
                 ->setData('variables', $variables)
                 ->render('variablesSelectOptions', true);
         } else {
@@ -258,14 +289,17 @@ class Admin extends BaseAdminController
         $this->db->where_in('id', [1, 2, 3, 4, 5, 6, 7, 8, 9])->delete('mod_email_paterns_i18n');
 
         if (MY_Controller::isCorporateCMS()) {
-            $file = $this->load->file(dirname(__FILE__) . '/models/paterns_corporate.sql', true);
-            $file_i18n = $this->load->file(dirname(__FILE__) . '/models/patterns_i18n_corporate.sql', true);
+            $file = $this->load->file(__DIR__ . '/models/paterns_corporate.sql', true);
+            $file_i18n = $this->load->file(__DIR__ . '/models/patterns_i18n_corporate.sql', true);
         } else {
-            $file = $this->load->file(dirname(__FILE__) . '/models/paterns.sql', true);
-            $file_i18n = $this->load->file(dirname(__FILE__) . '/models/patterns_i18n.sql', true);
+            $file = $this->load->file(__DIR__ . '/models/paterns.sql', true);
+            $file_i18n = $this->load->file(__DIR__ . '/models/patterns_i18n.sql', true);
         }
         $this->db->query($file);
         $this->db->query($file_i18n);
+
+        $this->lib_admin->log(lang('Email templates were successfully imported', 'cmsemail'));
+
         redirect('/admin/components/cp/cmsemail/');
     }
 

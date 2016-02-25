@@ -13,7 +13,7 @@ class Menu extends MY_Controller
 {
 
     /*     * ***** Это можно редактировать *********** */
-    private $tpl_folder_prefix = "level_";
+    private $tpl_folder_prefix = 'level_';
 
     /**
      *
@@ -32,9 +32,9 @@ class Menu extends MY_Controller
     ];
 
     /*     * ***** То что ниже редактируйте осторожно, вдумчиво :) *********** */
-    private $current_uri = "";
+    private $current_uri = '';
 
-    private $tpl_folder = "";
+    private $tpl_folder = '';
 
     private $stack = [];
 
@@ -149,8 +149,8 @@ class Menu extends MY_Controller
     }
 
     private function clear() {
-        $this->current_uri = "";
-        $this->tpl_folder = "";
+        $this->current_uri = '';
+        $this->tpl_folder = '';
         $this->menu_array = [];
         $this->errors = [];
         $this->sub_menu_array = [];
@@ -250,19 +250,19 @@ class Menu extends MY_Controller
                 }
 
                 if (($menu_array[$start_index]['position'] != $item['position']) AND ( $menu_array[$end_index]['position'] != $item['position'])) {
-                    $this->arranged_menu_array[$arranged_items_count]['edge'] = "default";
+                    $this->arranged_menu_array[$arranged_items_count]['edge'] = 'default';
                 }
 
                 if (($menu_array[$start_index]['position'] == $item['position']) AND ( $menu_array[$end_index]['position'] != $item['position'])) {
-                    $this->arranged_menu_array[$arranged_items_count]['edge'] = "first";
+                    $this->arranged_menu_array[$arranged_items_count]['edge'] = 'first';
                 }
 
                 if (($menu_array[$start_index]['position'] != $item['position']) AND ( $menu_array[$end_index]['position'] == $item['position'])) {
-                    $this->arranged_menu_array[$arranged_items_count]['edge'] = "last";
+                    $this->arranged_menu_array[$arranged_items_count]['edge'] = 'last';
                 }
 
                 if (($menu_array[$start_index]['position'] == $item['position']) AND ( $menu_array[$end_index]['position'] == $item['position'])) {
-                    $this->arranged_menu_array[$arranged_items_count]['edge'] = "one";
+                    $this->arranged_menu_array[$arranged_items_count]['edge'] = 'one';
                 }
 
                 $sub_menus = $this->_get_sub_menus($item['id']);
@@ -280,7 +280,7 @@ class Menu extends MY_Controller
             }
         }
 
-        $wrapper = "";
+        $wrapper = '';
         $stack_item = array_pop($this->stack);
         for ($i = $stack_item + 1; $i <= $arranged_items_count; $i++) {
             if ($this->arranged_menu_array[$i]['level'] <= $this->arranged_menu_array[$stack_item]['level'] + 1) {
@@ -306,7 +306,7 @@ class Menu extends MY_Controller
             'wrapper' => $wrapper,
         ];
 
-        $tpl_path = $this->_get_real_tpl($index, "container");
+        $tpl_path = $this->_get_real_tpl($index, 'container');
         if ($tpl_path) {
             return $this->fetch_tpl($tpl_path, $data);
         } else {
@@ -359,21 +359,21 @@ class Menu extends MY_Controller
      * @access public
      * @return mixed
      */
-    private function _get_real_tpl($index = 0, $mode = "item") {
-        if ($mode == "item") {
+    private function _get_real_tpl($index = 0, $mode = 'item') {
+        if ($mode == 'item') {
             $is_active = $this->arranged_menu_array[$index]['is_active'];
             $edge = $this->arranged_menu_array[$index]['edge'];
 
             switch ($edge) {
-                case "first":
+                case 'first':
                     $item_active_tpl = $this->tpl_file_names['item_first_active'];
                     $item_tpl = $this->tpl_file_names['item_first'];
                     break;
-                case "last":
+                case 'last':
                     $item_active_tpl = $this->tpl_file_names['item_last_active'];
                     $item_tpl = $this->tpl_file_names['item_last'];
                     break;
-                case "one":
+                case 'one':
                     $item_active_tpl = $this->tpl_file_names['item_one_active'];
                     $item_tpl = $this->tpl_file_names['item_one'];
                     break;
@@ -390,40 +390,40 @@ class Menu extends MY_Controller
             for ($level = $this->arranged_menu_array[$index]['level']; $level >= 0; $level--) {
                 if ($is_active) {
                     if ($item_active_tpl) {
-                        $tpl = $this->tpl_folder_prefix . $level . "/" . $this->tpl_file_names[$item_active_tpl];
+                        $tpl = $this->tpl_folder_prefix . $level . '/' . $this->tpl_file_names[$item_active_tpl];
                         if ($this->test_tpl($tpl)) {
                             $is_good = TRUE;
                             break;
                         }
                     }
                     if ($item_tpl) {
-                        $tpl = $this->tpl_folder_prefix . $level . "/" . $this->tpl_file_names[$item_tpl];
+                        $tpl = $this->tpl_folder_prefix . $level . '/' . $this->tpl_file_names[$item_tpl];
                         if ($this->test_tpl($tpl)) {
                             $is_good = TRUE;
                             break;
                         }
                     }
 
-                    $tpl = $this->tpl_folder_prefix . $level . "/" . $this->tpl_file_names[$default_item_active_tpl];
+                    $tpl = $this->tpl_folder_prefix . $level . '/' . $this->tpl_file_names[$default_item_active_tpl];
                     if ($this->test_tpl($tpl)) {
                         $is_good = TRUE;
                         break;
                     }
 
-                    $tpl = $this->tpl_folder_prefix . $level . "/" . $this->tpl_file_names[$default_item_tpl];
+                    $tpl = $this->tpl_folder_prefix . $level . '/' . $this->tpl_file_names[$default_item_tpl];
                     if ($this->test_tpl($tpl)) {
                         $is_good = TRUE;
                         break;
                     }
                 } else {
                     if ($item_tpl) {
-                        $tpl = $this->tpl_folder_prefix . $level . "/" . $this->tpl_file_names[$item_tpl];
+                        $tpl = $this->tpl_folder_prefix . $level . '/' . $this->tpl_file_names[$item_tpl];
                         if ($this->test_tpl($tpl)) {
                             $is_good = TRUE;
                             break;
                         }
                     }
-                    $tpl = $this->tpl_folder_prefix . $level . "/" . $this->tpl_file_names[$default_item_tpl];
+                    $tpl = $this->tpl_folder_prefix . $level . '/' . $this->tpl_file_names[$default_item_tpl];
                     if ($this->test_tpl($tpl)) {
                         $is_good = TRUE;
                         break;
@@ -432,7 +432,7 @@ class Menu extends MY_Controller
             }
         } else {
             for ($level = $this->arranged_menu_array[$index]['level'] + 1; $level >= 0; $level--) {
-                $tpl = $this->tpl_folder_prefix . $level . "/" . $this->tpl_file_names['container'];
+                $tpl = $this->tpl_folder_prefix . $level . '/' . $this->tpl_file_names['container'];
                 if ($this->test_tpl($tpl)) {
                     $is_good = TRUE;
                     break;
@@ -718,7 +718,7 @@ class Menu extends MY_Controller
             $this->template->add_array($data);
         }
 
-        $file = realpath(dirname(__FILE__)) . '/templates/public/' . $file . '.tpl';
+        $file = realpath(__DIR__) . '/templates/public/' . $file . '.tpl';
 
         $this->template->display('file:' . $file);
     }
@@ -734,7 +734,7 @@ class Menu extends MY_Controller
         if ($this->tpl_folder) {
             $file = $this->template->template_dir . $this->tpl_folder . '/' . $file . '.tpl';
         } else {
-            $file = realpath(dirname(__FILE__)) . '/templates/public/' . $file . '.tpl';
+            $file = realpath(__DIR__) . '/templates/public/' . $file . '.tpl';
         }
 
         return $this->template->fetch('file:' . $file);
@@ -744,7 +744,7 @@ class Menu extends MY_Controller
         if ($this->tpl_folder) {
             $file = $this->template->template_dir . $this->tpl_folder . '/' . $file . '.tpl';
         } else {
-            $file = realpath(dirname(__FILE__)) . '/templates/public/' . $file . '.tpl';
+            $file = realpath(__DIR__) . '/templates/public/' . $file . '.tpl';
         }
 
         if (file_exists($file)) {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Banners\BannerPagesTypes;
+namespace xbanners\src\BannerPagesTypes;
 
 use CI;
 
@@ -11,7 +11,8 @@ use CI;
  * Time: 19:19
  */
 
-class Page extends BasePageType {
+class Page extends BasePageType
+{
 
     public function __construct($locale) {
         $this->locale = $locale;

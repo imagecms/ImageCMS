@@ -5,20 +5,12 @@ namespace CMSFactory\MetaManipulator;
 
 use CI;
 
+/**
+ * Class PageMetaManipulator
+ * @package CMSFactory\MetaManipulator
+ */
 class PageMetaManipulator extends MetaManipulator
 {
-
-    /**
-     * @var array
-     */
-    protected $matching = [
-        'desc' => 'description'
-    ];
-
-    /**
-     * @var array
-     */
-    protected $model;
 
     /**
      * @return string
@@ -34,22 +26,6 @@ class PageMetaManipulator extends MetaManipulator
             $this->setCategory($categoryName);
         }
         return $this->category;
-    }
-
-    /**
-     * @return array
-     */
-    public function getModel() {
-
-        return $this->model;
-    }
-
-    /**
-     * @param array $model
-     */
-    public function setModel($model) {
-
-        $this->model = $model;
     }
 
     /**

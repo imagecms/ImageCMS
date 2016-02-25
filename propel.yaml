@@ -1,0 +1,34 @@
+
+propel:
+    database:
+        connections:
+            Shop:
+                adapter: mysql
+                classname: Propel\Runtime\Connection\ConnectionWrapper
+                dsn: "mysql:host=localhost;dbname=imagecms"
+                user: root
+                password: root
+                settings:
+                    charset: utf8
+                    queries:
+                      utf8: "SET NAMES utf8 COLLATE utf8_unicode_ci, COLLATION_CONNECTION = utf8_unicode_ci, COLLATION_DATABASE = utf8_unicode_ci, COLLATION_SERVER = utf8_unicode_ci"
+    runtime:
+        defaultConnection: Shop
+        connections:
+            - Shop
+    generator:
+        defaultConnection: Shop
+        objectModel:
+            emulateForeignKeyConstraints: true
+        connections:
+            - Shop
+#        namespaceAutoPackage: false
+    paths:
+        # The directory where Propel expects to find your `schema.xml` file.
+        schemaDir: ./application/modules/*/
+
+        # The directory where Propel should output generated object model classes.
+        phpDir: application/modules
+
+        # The directory where Propel should output the generated DDL (or data insert statements, etc.)
+        sqlDir: ./application/modules/install/generated-sql

@@ -29,7 +29,7 @@ class ModelWrapper
     }
 
     /**
-     * @return CoreCategory
+     * @return TreeItemInterface
      */
     public function getWrappedModel() {
         return $this->model;

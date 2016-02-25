@@ -87,7 +87,7 @@
                                     </div>
                                     <div class="controls hide-control">
                                         <input type="text" name="image[name]" class="input-long"
-                                               value="{echo $image->getName()}"/>
+                                               value="{echo htmlspecialchars($image->getName())}"/>
                                         <i class="icon-info-sign popover_ref" data-title="" data-original-title=""></i>
 
                                         <div class="d_n">
@@ -156,8 +156,15 @@
                                     </label>
 
                                     <div class="controls" style='margin-top:4px;'>
-                                        {if $image->getUrl()}
-                                            <a href="{echo $image->getUrl()}" target="_blank">{if !strstr($image->getUrl(), 'http')}{echo site_url($image->getUrl())}{else:}{echo $image->getUrl()}{/if}</a>
+                                        {if !strstr($image->getUrl(), 'http')}
+                                            {$slash = strpos($image->getUrl(), '/') === 0?'':'/';}
+                                            {$url = site_url($locale . $slash   . $image->getUrl());}
+                                        {else:}
+                                            {$url =  $image->getUrl();}
+                                        {/if}
+
+                                        {if $url}
+                                            <a href="{echo $url}" target="_blank">{$url}</a>
                                         {/if}
                                     </div>
                                     <div class="controls hide-control">

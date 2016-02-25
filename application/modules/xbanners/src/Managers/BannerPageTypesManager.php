@@ -1,7 +1,8 @@
 <?php
-namespace Banners\Managers;
+namespace xbanners\src\Managers;
 
-class BannerPageTypesManager {
+class BannerPageTypesManager
+{
 
     const PAGE_TYPE_MAIN = 'main';
     const PAGE_TYPE_SHOP_CATEGORY = 'shop_category';
@@ -25,7 +26,7 @@ class BannerPageTypesManager {
      * @return BannerPageTypesManager instance
      */
     public static function getInstance() {
-        if (is_null(self::$instance)) {
+        if (null === self::$instance) {
             self::$instance = new self();
         }
         return self::$instance;
@@ -44,23 +45,23 @@ class BannerPageTypesManager {
             ],
             'shop_category' => [
                 'name' => lang('Product category', 'xbanners'),
-                'class' => '\Banners\BannerPagesTypes\ShopCategory'
+                'class' => '\xbanners\src\BannerPagesTypes\ShopCategory'
             ],
             'product' => [
                 'name' => lang('Product', 'xbanners'),
-                'class' => '\Banners\BannerPagesTypes\Product'
+                'class' => '\xbanners\src\BannerPagesTypes\Product'
             ],
             'category' => [
                 'name' => lang('Page category', 'xbanners'),
-                'class' => '\Banners\BannerPagesTypes\Category'
+                'class' => '\xbanners\src\BannerPagesTypes\Category'
             ],
             'page' => [
                 'name' => lang('Page', 'xbanners'),
-                'class' => '\Banners\BannerPagesTypes\Page'
+                'class' => '\xbanners\src\BannerPagesTypes\Page'
             ],
             'brand' => [
                 'name' => lang('Product brand', 'xbanners'),
-                'class' => '\Banners\BannerPagesTypes\Brand'
+                'class' => '\xbanners\src\BannerPagesTypes\Brand'
             ],
             'search' => [
                 'name' => lang('Search page', 'xbanners'),

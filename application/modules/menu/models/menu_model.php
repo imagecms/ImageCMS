@@ -7,10 +7,6 @@ if (!defined('BASEPATH')) {
 class Menu_model extends CI_Model
 {
 
-    public function __construct() {
-        parent::__construct();
-    }
-
     /**
      *
      * @param integer $id
@@ -112,9 +108,9 @@ class Menu_model extends CI_Model
 
     /**
      *
-     * @param integer $item_id
-     * @param integer $pos
-     * @return boolean
+     * @param bool|int $item_id
+     * @param bool|int $pos
+     * @return bool
      */
     public function set_item_position($item_id = FALSE, $pos = FALSE) {
 

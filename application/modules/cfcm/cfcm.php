@@ -54,7 +54,7 @@ class Cfcm extends MY_Controller
                         $this->update_fields_data($item_id, $data, $type);
 
                         // Delete empty fields
-                        foreach ($fields as $name => $field) {
+                        foreach (array_keys($fields) as $name) {
                             if (!array_key_exists($name, $data)) {
                                 $this->db->where('item_id', $item_id);
                                 $this->db->where('field_name', $name);
@@ -105,7 +105,6 @@ class Cfcm extends MY_Controller
             $group = $this->db->get_where('content_field_groups', ['id' => $category->field_group])->row();
 
             // Get all fields in group
-            $fg = (int) $category->field_group;
             $query = $this->db->select('*')
                 ->from('content_fields')
                 ->join('content_fields_groups_relations', 'content_fields_groups_relations.field_name = content_fields.field_name')
@@ -154,43 +153,57 @@ class Cfcm extends MY_Controller
 
         $this->template->add_array(
             [
-                    'form' => $form,
-                    'hf' => $hiddenField
-                ]
+                'form' => $form,
+                'hf' => $hiddenField
+            ]
         );
 
         $this->display_tpl($tpl);
     }
 
     /**
-     * @param $fields
+     * @param array $fields
      * @param integer $item_id
      * @param string|boolean $item_type
      * @return array|bool
      */
-    public function get_form_attributes($fields, $item_id, $item_type) {
+    public function get_form_attributes(array $fields, $item_id, $item_type) {
 
         $this->db->where('item_id', $item_id);
         $this->db->where('item_type', $item_type);
         $query = $this->db->get('content_fields_data');
 
-        if ($query->num_rows() == 0) {
-            return false;
-        }
-
         $result = [];
-        $data = $query->result_array();
+        if ($query->num_rows() > 0) {
 
-        foreach ($data as $row) {
-            if (!isset($result[$row['field_name']])) {
-                $result[$row['field_name']] = $row['data'];
-            } elseif (isset($result[$row['field_name']])) {
-                $result[$row['field_name']] = (array) $result[$row['field_name']];
-                $result[$row['field_name']][] = $row['data'];
+            $data = $query->result_array();
+
+            foreach ($data as $row) {
+
+                foreach ($fields as $key => $field) {
+                    if ($field['field_name'] === $row['field_name']) {
+                        unset($fields[$key]);
+                    }
+                }
+                if (!isset($result[$row['field_name']])) {
+                    $result[$row['field_name']] = $row['data'];
+                } elseif (isset($result[$row['field_name']])) {
+                    $result[$row['field_name']] = (array) $result[$row['field_name']];
+                    $result[$row['field_name']][] = $row['data'];
+                }
+            }
+
+        }
+        //add unchecked checkboxes
+        if (count($fields) > 0) {
+            foreach ($fields as $field) {
+                if ($field['type'] == 'checkbox') {
+                    $result[$field['field_name']] = false;
+                }
             }
         }
 
-        return $result;
+        return count($result) ? $result : false;
     }
 
     /**
@@ -244,10 +257,6 @@ class Cfcm extends MY_Controller
             return $item_data;
         }
 
-        $replace = [];
-        $wight = [];
-        $fields_data = [];
-
         $item_id = $item_data['id'];
 
         $this->db->where('item_id', $item_id);
@@ -282,7 +291,7 @@ class Cfcm extends MY_Controller
                     $values = explode("\n", $field['initial']);
 
                     $result[$key] = array_flip((array) $result[$key]);
-                    foreach ($result[$key] as $s_key => $s_val) {
+                    foreach (array_keys($result[$key]) as $s_key) {
                         $result[$key][$s_key] = $values[$s_key];
                     }
 
@@ -339,7 +348,7 @@ class Cfcm extends MY_Controller
                     $this->db->where($field_data);
                     $this->db->delete('content_fields_data');
 
-                    foreach ($val as $sub_key => $sub_val) {
+                    foreach ($val as $sub_val) {
                         $field_data['data'] = $sub_val;
                         $this->db->insert('content_fields_data', $field_data);
                     }
@@ -375,7 +384,7 @@ class Cfcm extends MY_Controller
      */
     private function display_tpl($file = '') {
 
-        $file = realpath(dirname(__FILE__)) . '/templates/public/' . $file . '.tpl';
+        $file = realpath(__DIR__) . '/templates/public/' . $file . '.tpl';
         $this->template->display('file:' . $file);
     }
 

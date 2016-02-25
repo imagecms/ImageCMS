@@ -192,7 +192,7 @@ class Commentsapi extends Comments
         echo json_encode(
             [
                     'comments' => $comments,
-                    'total_comments' => $comments_count ? $comments_count . ' ' . SStringHelper::Pluralize($comments_count, [lang("review", 'comments'), lang("reviews", 'comments'), lang("review", 'comments')]) : lang('Leave a comment', 'comments'),
+                    'total_comments' => $comments_count ? $comments_count . ' ' . SStringHelper::Pluralize($comments_count, [lang('review', 'comments'), lang('reviews', 'comments'), lang('review', 'comments')]) : lang('Leave a comment', 'comments'),
                     'commentsCount' => $commentsCount[$item_id],
                     'validation_errors' => $this->validation_errors
                 ]
@@ -207,12 +207,11 @@ class Commentsapi extends Comments
      * @return string
      */
     public function parsUrl($url) {
-        defined('DS') OR define('DS', '/');
 
         if (strstr($url, '/product/')) {
             $url = parse_url($url);
             /** Check is lang segment and remove it from url path * */
-            $urlArraySegments = explode("/", $url["path"]);
+            $urlArraySegments = explode('/', $url['path']);
 
             $id = $this->db->select('id, enable_comments')
                 ->where('url', end($urlArraySegments))
@@ -225,7 +224,7 @@ class Commentsapi extends Comments
             return $id->id;
         }
 
-        if (strstr($url, "/image/")) {
+        if (strstr($url, '/image/')) {
             $url = explode(DS, $url);
             $url = $url[count($url) - 1];
 
@@ -336,9 +335,9 @@ class Commentsapi extends Comments
         if ($this->use_captcha AND ! $this->dx_auth->is_admin()) {
             $this->form_validation->set_message('callback_captcha_check', lang('Wrong code protection', 'comments'));
             if ($this->dx_auth->use_recaptcha) {
-                $this->form_validation->set_rules('recaptcha_response_field', lang("Code protection", 'comments'), 'trim|required|xss_clean|callback_captcha_check');
+                $this->form_validation->set_rules('recaptcha_response_field', lang('Code protection', 'comments'), 'trim|required|xss_clean|callback_captcha_check');
             } else {
-                $this->form_validation->set_rules('captcha', lang("Code protection", 'comments'), 'trim|required|xss_clean|callback_captcha_check');
+                $this->form_validation->set_rules('captcha', lang('Code protection', 'comments'), 'trim|required|xss_clean|callback_captcha_check');
             }
         }
 
@@ -454,9 +453,9 @@ class Commentsapi extends Comments
             ($hook = get_hook('comments_set_captcha')) ? eval($hook) : NULL;
             $this->form_validation->set_message('callback_captcha_check', lang('Wrong code protection', 'comments'));
             if ($this->dx_auth->use_recaptcha) {
-                $this->form_validation->set_rules('recaptcha_response_field', lang("Code protection", 'comments'), 'trim|required|xss_clean|callback_captcha_check');
+                $this->form_validation->set_rules('recaptcha_response_field', lang('Code protection', 'comments'), 'trim|required|xss_clean|callback_captcha_check');
             } else {
-                $this->form_validation->set_rules('captcha', lang("Code protection", 'comments'), 'trim|required|xss_clean|callback_captcha_check');
+                $this->form_validation->set_rules('captcha', lang('Code protection', 'comments'), 'trim|required|xss_clean|callback_captcha_check');
             }
         }
 
@@ -581,10 +580,10 @@ class Commentsapi extends Comments
             $this->db->update('comments', $data);
             $this->session->set_userdata('commentl' . $comid, 1);
             if ($this->input->is_ajax_request()) {
-                return json_encode(["y_count" => "$like"]);
+                return json_encode(['y_count' => "$like"]);
             } else {
                 $like--;
-                return json_encode(["y_count" => "$like"]);
+                return json_encode(['y_count' => "$like"]);
             }
         }
     }
@@ -600,10 +599,10 @@ class Commentsapi extends Comments
             $this->db->update('comments', $data);
             $this->session->set_userdata('commentl' . $comid, 1);
             if ($this->input->is_ajax_request()) {
-                return json_encode(["n_count" => "$disslike"]);
+                return json_encode(['n_count' => "$disslike"]);
             } else {
                 $disslike--;
-                return json_encode(["n_count" => "$disslike"]);
+                return json_encode(['n_count' => "$disslike"]);
             }
         }
     }
@@ -615,7 +614,7 @@ class Commentsapi extends Comments
      * @return array|void
      */
     public function getTotalCommentsForProducts($ids, $module = 'shop', $status = 0) {
-        if ($ids == null) {
+        if ($ids == null || !$this->db->table_exists('comments')) {
             return;
         }
 
@@ -629,12 +628,12 @@ class Commentsapi extends Comments
         $result = [];
 
         foreach ($query as $q) {
-            $result[$q['item_id']] = $q['count'] . ' ' . SStringHelper::Pluralize((int) $q['count'], [lang("review", 'comments'), lang("reviews", 'comments'), lang("review", 'comments')]);
+            $result[$q['item_id']] = $q['count'] . ' ' . SStringHelper::Pluralize((int) $q['count'], [lang('review', 'comments'), lang('reviews', 'comments'), lang('review', 'comments')]);
         }
 
         foreach ((array) $ids as $id) {
             if (!$result[$id]) {
-                $result[$id] = 0 . ' ' . SStringHelper::Pluralize('0', [lang("review", 'comments'), lang("reviews", 'comments'), lang("comments", 'comments')]);
+                $result[$id] = 0 . ' ' . SStringHelper::Pluralize('0', [lang('review', 'comments'), lang('reviews', 'comments'), lang('comments', 'comments')]);
             }
         }
 

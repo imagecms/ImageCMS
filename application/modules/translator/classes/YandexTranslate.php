@@ -2,24 +2,27 @@
 
 namespace translator\classes;
 
+use MY_Controller;
+
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
-class YandexTranslate {
+class YandexTranslate
+{
 
     /**
      * YandexTranslate instance
-     * @var YandexTranslate object
+     * @var YandexTranslate
      */
     private static $instance;
 
     /**
      * Codeigniter object
-     * @var type
+     * @var MY_Controller
      */
     private $CI;
 
     /**
-     * Source laguage
+     * Source language
      * @var string
      */
     private $sourceLanguage;
@@ -52,22 +55,23 @@ class YandexTranslate {
 
     private function initSettings() {
         $settings = getSettings();
-        $this->sourceLanguage = $settings['originsLang'] ? $settings['originsLang'] : 'en';
-        $this->yandexApiKey = $settings['YandexApiKey'] ? $settings['YandexApiKey'] : '';
+        $this->sourceLanguage = $settings['originsLang'] ?: 'en';
+        $this->yandexApiKey = $settings['YandexApiKey'] ?: '';
     }
 
     /**
      * @param string $url
+     * @return mixed
      */
-    private function open_https_url($url, $refer = "") {
+    private function open_https_url($url, $refer = '') {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
         curl_setopt($ch, CURLOPTё_SSL_VERIFYHOST, 2);
         curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_ENCODING, "");
-        curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)");
-        if ($refer != "") {
+        curl_setopt($ch, CURLOPT_ENCODING, '');
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)');
+        if ($refer != '') {
             curl_setopt($ch, CURLOPT_REFERER, $refer);
         }
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -78,9 +82,10 @@ class YandexTranslate {
 
     /**
      * @param string $translationLanguage
+     * @return bool|mixed|string
      */
-    public function translate($translationLanguage, $textToTranslate = "", $sourceLanguage = FALSE) {
-        $this->sourceLanguage = $sourceLanguage ? $sourceLanguage : $this->sourceLanguage;
+    public function translate($translationLanguage, $textToTranslate = '', $sourceLanguage = FALSE) {
+        $this->sourceLanguage = $sourceLanguage ?: $this->sourceLanguage;
         if ($translationLanguage) {
             $translationText = '&text=' . str_replace(' ', '%20', $textToTranslate);
             $translation = $this->open_https_url(self::$yandexApiUrl . 'key=' . $this->yandexApiKey . $translationText . '&lang=' . $translationLanguage . '-' . $this->sourceLanguage . '&format=plain');

@@ -2,11 +2,11 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-26 01:45+0200\n"
-"PO-Revision-Date: 2013-12-26 01:45+0200\n"
-"Last-Translator:  \n"
-"Language-Team:  \n"
-"Language: ru_RU\n"
+"POT-Creation-Date: 2016-02-03 11:53+0200\n"
+"PO-Revision-Date: 2016-02-03 11:53+0200\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,7 +18,23 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: ./application/modules/module_frame/module_info.php:6
-msgid "Module frame"
-msgstr "Каркас модуля"
+#: application/modules/custom_scripts/assets/admin/main.tpl:13
+msgid "Back"
+msgstr "Вернуться"
 
+#: application/modules/custom_scripts/module_info.php:6
+#: application/modules/custom_scripts/assets/admin/main.tpl:6
+msgid "Custom scripts"
+msgstr "Пользовательские скрипты"
+
+#: application/modules/custom_scripts/admin.php:29
+msgid "Saved"
+msgstr "Сохраненно"
+
+#: application/modules/custom_scripts/admin.php:29
+msgid "Success"
+msgstr "Успешно"
+
+#: application/modules/custom_scripts/assets/admin/main.tpl:15
+msgid "Save"
+msgstr "Сохранить"

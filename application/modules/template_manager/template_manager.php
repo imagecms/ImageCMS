@@ -2,6 +2,9 @@
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
+use CMSFactory\Events;
+use template_manager\classes\TComponent;
+use template_manager\classes\Template;
 use template_manager\classes\TemplateManager;
 use template_manager\legacy\DemodataMigrationsControl;
 
@@ -9,10 +12,19 @@ use template_manager\legacy\DemodataMigrationsControl;
  * Image CMS
  * Module template_manager
  */
-class template_manager extends \MY_Controller {
+class template_manager extends \MY_Controller
+{
 
+    /**
+     * @var Template
+     */
     private $templateModel;
 
+    public $templateName;
+
+    /**
+     * template_manager constructor.
+     */
     public function __construct() {
         parent::__construct();
         $lang = new \MY_Lang();
@@ -24,7 +36,7 @@ class template_manager extends \MY_Controller {
 
         $this->templateModel = TemplateManager::getInstance()->getCurentTemplate();
 
-        \CMSFactory\Events::create()->setListener([new DemodataMigrationsControl, 'run'], TemplateManager::EVENT_DEMODATA_INSTALLED);
+        Events::create()->setListener([new DemodataMigrationsControl, 'run'], TemplateManager::EVENT_DEMODATA_INSTALLED);
     }
 
     /**
@@ -81,11 +93,11 @@ class template_manager extends \MY_Controller {
 
     /**
      * Get componeet object
-     * @param type $handler - component class name
-     * @return null|template_manager\classes\TComponent
+     * @param string $handler - component class name
+     * @return null|TComponent
      */
     public function getComponent($handler) {
-        $template = new \template_manager\classes\Template($this->templateName);
+        $template = new Template($this->templateName);
         return $template->getComponent($handler);
     }
 

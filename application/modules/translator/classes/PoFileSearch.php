@@ -2,9 +2,26 @@
 
 namespace translator\classes;
 
+use DirectoryIterator;
+use Exception;
+
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
-class PoFileSearch {
+class PoFileSearch
+{
+
+    /**
+     * @var int
+     */
+    private $cacheTimeSeconds = 25;
+
+    private $data;
+
+    /**
+     * Errors array
+     * @var string
+     */
+    private $errors;
 
     /**
      * PoFileSearch instance
@@ -12,51 +29,51 @@ class PoFileSearch {
      */
     private static $instance;
 
-    /**
-     * File path
-     * @var type
-     */
-    private $filePath;
+    private $languages;
 
     /**
-     * Errors array
-     * @var type
+     * @var PoFileManager
      */
-    private $errors = array();
-
-    /**
-     * File data
-     * @var type
-     */
-    private $data;
-
-    private $searchString;
-
-    private $searchStringMinLength = 2;
-
-    private $searchedPaths;
+    private $poFileManager;
 
     private $searchResult;
 
+    /**
+     * @var array
+     */
     private $searchResultsCount = [];
 
-    private $searchType = NULL;
+    private $searchString;
 
-    private $languages;
+    /**
+     * @var int
+     */
+    private $searchStringMinLength = 2;
 
-    private $poFileManager;
+    private $searchType;
 
-    private $cacheTimeSeconds = 25;
+    /**
+     * @var array
+     */
+    private $searchedPaths;
 
     private function __construct() {
-        $this->searchedPaths = array(
+        $this->searchedPaths = [
             'modules' => DOCUMENT_ROOT . '/application/modules',
             'main' => DOCUMENT_ROOT . '/application/language',
             'templates' => TEMPLATES_PATH
-        );
+        ];
 
         $this->languages = \CI::$APP->db->get('languages')->result_array();
         $this->poFileManager = new PoFileManager();
+    }
+
+    /**
+     * Get errors
+     * @return array
+     */
+    public function getErrors() {
+        return $this->errors;
     }
 
     /**
@@ -71,23 +88,18 @@ class PoFileSearch {
         }
     }
 
-    private function setSearchString($searchString) {
-        $searchString = $this->formStringToSearch(trim($searchString));
-        if (mb_strlen($searchString) >= $this->searchStringMinLength) {
-            $this->searchString = mb_strtolower($searchString);
-        } else {
-            throw new \Exception(lang('Search string can not be smaller then 2 symbols.', 'translator'));
-        }
-    }
-
-    private function setSearchType($searchType) {
-        $this->searchType = $searchType ? $searchType : 'all';
-    }
-
+    /**
+     * @return string
+     */
     public function getSearchString() {
         return $this->searchString;
     }
 
+    /**
+     * @param string $searchString
+     * @param string $searchType
+     * @return bool
+     */
     public function run($searchString, $searchType) {
         try {
             if ($this->getFromCache($searchString)) {
@@ -101,7 +113,7 @@ class PoFileSearch {
             $this->setCache($searchString);
 
             return TRUE;
-        } catch (\Exception $exc) {
+        } catch (Exception $exc) {
             $this->setError($exc->getMessage());
             return FALSE;
         }
@@ -122,14 +134,40 @@ class PoFileSearch {
     }
 
     /**
-     * Create cache for this search string query
-     * @param string $searchString - string to search
+     * Set file data
+     * @param string $data - file data
      */
-    private function setCache($searchString) {
-        if ($this->getData()) {
-            \CI::$APP->cache->store($searchString . $this->searchType, $this->getData(), $this->cacheTimeSeconds, 'translator_full_search');
-            \CI::$APP->cache->store($searchString . $this->searchType . '_result_counts', $this->getResultsCount(), $this->cacheTimeSeconds, 'translator_full_search');
+    private function setData($data) {
+        $this->data = $data;
+    }
+
+    /**
+     * @param string $searchString
+     * @throws Exception
+     */
+    private function setSearchString($searchString) {
+        $searchString = $this->formStringToSearch(trim($searchString));
+        if (mb_strlen($searchString) >= $this->searchStringMinLength) {
+            $this->searchString = mb_strtolower($searchString);
+        } else {
+            throw new Exception(lang('Search string can not be smaller then 2 symbols.', 'translator'));
         }
+    }
+
+    /**
+     * Prepare search string
+     * @param string $string - string to search in
+     * @return string
+     */
+    private function formStringToSearch($string) {
+        return mb_strtolower($string);
+    }
+
+    /**
+     * @param string $searchType
+     */
+    private function setSearchType($searchType) {
+        $this->searchType = $searchType ?: 'all';
     }
 
     private function search() {
@@ -142,9 +180,10 @@ class PoFileSearch {
 
     /**
      * @param string $entity_type
+     * @param string $path
      */
     private function scanSearchDir($entity_type, $path) {
-        foreach (new \DirectoryIterator($path) as $entity) {
+        foreach (new DirectoryIterator($path) as $entity) {
 
             $entity_name = $entity->getFilename();
             if (!$entity->isDot() && $entity->isDir() && $entity_name[0] != '.') {
@@ -161,7 +200,11 @@ class PoFileSearch {
     }
 
     /**
+     * @param string $origin
+     * @param array $data
+     * @param string $entity_type
      * @param string $entity_name
+     * @param array $language
      */
     private function searchLang($origin, $data, $entity_type, $entity_name, $language) {
         switch ($this->searchType) {
@@ -200,47 +243,6 @@ class PoFileSearch {
     }
 
     /**
-     * Prepare search string
-     * @param string $string - string to search in
-     * @return string
-     */
-    private function formStringToSearch($string) {
-        return mb_strtolower($string);
-    }
-
-    /**
-     * Set error
-     * @param string $error - error text
-     */
-    private function setError($error) {
-        $this->errors = $error;
-    }
-
-    /**
-     * Get errors
-     * @return type
-     */
-    public function getErrors() {
-        return $this->errors;
-    }
-
-    /**
-     * Set file data
-     * @param string $data - file data
-     */
-    private function setData($data) {
-        $this->data = $data;
-    }
-
-    /**
-     * Get file data
-     * @return string
-     */
-    public function getData() {
-        return $this->data;
-    }
-
-    /**
      * Set searched results count. For all entities: modules, templates, main
      * @param string $entity_type - entity type: module, template, main
      * @param string $entity_name - entity name, name of: module, template, main(main)
@@ -254,11 +256,38 @@ class PoFileSearch {
     }
 
     /**
+     * Create cache for this search string query
+     * @param string $searchString - string to search
+     */
+    private function setCache($searchString) {
+        if ($this->getData()) {
+            \CI::$APP->cache->store($searchString . $this->searchType, $this->getData(), $this->cacheTimeSeconds, 'translator_full_search');
+            \CI::$APP->cache->store($searchString . $this->searchType . '_result_counts', $this->getResultsCount(), $this->cacheTimeSeconds, 'translator_full_search');
+        }
+    }
+
+    /**
+     * Get file data
+     * @return string
+     */
+    public function getData() {
+        return $this->data;
+    }
+
+    /**
      * Returns searched counts array
      * @return array
      */
     public function getResultsCount() {
         return $this->searchResultsCount;
+    }
+
+    /**
+     * Set error
+     * @param string $error - error text
+     */
+    private function setError($error) {
+        $this->errors = $error;
     }
 
 }

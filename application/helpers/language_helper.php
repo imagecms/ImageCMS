@@ -41,11 +41,12 @@ if (!defined('BASEPATH')) {
  */
 if (!function_exists('lang')) {
 
-    function lang($line, $domain = "main", $wrapper = TRUE) {
+    function lang($line, $domain = 'main', $wrapper = TRUE) {
+
         $translation = MY_Lang::getTranslation($line, $domain);
 
         if ($wrapper && defined('ENABLE_TRANSLATION_API')) {
-            $translation = "<translate origin='" . $line . "' domain='" . $domain . "'>" . $translation . "</translate>";
+            $translation = "<translate origin='" . $line . "' domain='" . $domain . "'>" . $translation . '</translate>';
         }
 
         return $translation;
@@ -137,12 +138,13 @@ if (!function_exists('getMoFileName')) {
      * @return string
      */
     function getMoFileName($domain) {
+
         if ($domain) {
-            if (isset($GLOBALS['MO_FILE_NAMES'][$domain])) {
+            if (array_key_exists('MO_FILE_NAMES', $GLOBALS) && array_key_exists($domain, $GLOBALS['MO_FILE_NAMES'])) {
                 return $GLOBALS['MO_FILE_NAMES'][$domain];
             }
 
-            $GLOBALS['MO_FILE_NAMES'] = $GLOBALS['MO_FILE_NAMES'] ? $GLOBALS['MO_FILE_NAMES'] : [];
+            $GLOBALS['MO_FILE_NAMES'] = array_key_exists('MO_FILE_NAMES', $GLOBALS) && $GLOBALS['MO_FILE_NAMES'] ? $GLOBALS['MO_FILE_NAMES'] : [];
             $GLOBALS['MO_FILE_NAMES'][$domain] = str_replace('.mo', '', basename(getMoFilePath($domain)));
             return $GLOBALS['MO_FILE_NAMES'][$domain];
         }
@@ -158,6 +160,7 @@ if (!function_exists('getMoFilePath')) {
      * @return string
      */
     function getMoFilePath($domain) {
+
         if ($domain) {
             if (!defined('CUR_LOCALE')) {
                 $CI = &get_instance();
@@ -165,7 +168,7 @@ if (!function_exists('getMoFilePath')) {
                 if (strstr($CI->input->server('REQUEST_URI'), 'install')) {
                     $lang = $CI->config->item('language');
 
-                    $locale = $lang ? $lang : 'ru_RU';
+                    $locale = $lang ?: 'ru_RU';
                 } else {
                     if (strstr(uri_string(), 'admin')) {
                         $locale = $CI->config->item('language');
@@ -186,7 +189,6 @@ if (!function_exists('getMoFilePath')) {
                 $locale = CUR_LOCALE;
             }
 
-            $name = NULL;
             switch ($domain) {
                 case 'main':
                     $searched = glob(correctUrl('./application/language/main/' . $locale) . '/' . $locale . '/LC_MESSAGES/main*.mo');
@@ -226,6 +228,7 @@ if (!function_exists('correctUrl')) {
      * @return string
      */
     function correctUrl($url) {
+
         if (MAINSITE) {
             if (!is_dir($url)) {
                 $url = MAINSITE . str_replace('./', '/', $url);
@@ -290,6 +293,7 @@ if (!function_exists('chose_language')) {
  * @return array
  */
 function get_main_lang($flag = null) {
+
     $ci = &get_instance();
     if (!$ci->db) {
         return FALSE;
@@ -330,6 +334,7 @@ function get_main_lang($flag = null) {
  * Get admin locale name
  */
 function get_admin_locale() {
+
     $ci = &get_instance();
     $admin_language = $ci->config->item('language');
     $all_languages = $ci->config->item('languages');
@@ -349,12 +354,12 @@ if (!function_exists('langf')) {
 
     /**
      * @param string $line
-     *
      * @param string $name
      * @param array $data
      * @return null|string
      */
-    function langf($line, $name = "main", array $data = []) {
+    function langf($line, $name = 'main', array $data = []) {
+
         $line = lang($line, $name);
 
         foreach ($data as $key => $value) {
@@ -373,6 +378,7 @@ if (!function_exists('tlang')) {
      * @return string
      */
     function tlang($line) {
+
         $CI = &get_instance();
         $name = $CI->config->item('template');
 
@@ -389,6 +395,7 @@ if (!function_exists('tlangf')) {
      * @return mixed|string
      */
     function tlangf($line, array $data = []) {
+
         $CI = &get_instance();
         $name = $CI->config->item('template');
         $line = lang($line, $name);
@@ -409,6 +416,7 @@ if (!function_exists('getLanguage')) {
      * @return array
      */
     function getLanguage($where_array = []) {
+
         $languages = CI::$APP->db->where($where_array)->get('languages');
         return $languages ? $languages->row_array() : [];
     }
@@ -421,6 +429,7 @@ if (!function_exists('current_language')) {
      * @return string
      */
     function current_language() {
+
         $language = MY_Controller::getCurrentLanguage();
         /* Return language code from locale */
         return strstr($language['locale'], '_', true);

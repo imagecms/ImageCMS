@@ -2,7 +2,7 @@
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
-            <span class="title">{lang("Create a category", 'gallery')}</span>
+            <span class="title">{lang("Create category", 'gallery')}</span>
         </div>
         <div class="pull-right">
             <div class="d-i_b">

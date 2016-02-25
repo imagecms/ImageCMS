@@ -1,10 +1,11 @@
 <?php
 
-namespace Banners\Entities;
+namespace xbanners\src\Entities;
 
-use Banners\Models\Banners;
+use xbanners\models\Banners;
 
-class BannerView {
+class BannerView
+{
 
     /**
      * @var \Banners\Models\Banners

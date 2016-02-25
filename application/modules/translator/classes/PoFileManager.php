@@ -2,30 +2,28 @@
 
 namespace translator\classes;
 
-use translator\classes\FileOperator as FileOperator;
-
 class PoFileManager
 {
 
     /**
      * Templates folder path
      */
-    const TEMPLATES_PATH = "./templates/";
+    const TEMPLATES_PATH = './templates/';
 
     /**
      * Main lang folder path
      */
-    const MAIN_PATH = "./application/language/main/";
+    const MAIN_PATH = './application/language/main/';
 
     /**
      * Errors holder array
-     * @var type
+     * @var array
      */
     private static $ERRORS = [];
 
     /**
      * Po-file settings array
-     * @var type
+     * @var array
      */
     private $po_settings = [];
 
@@ -114,7 +112,7 @@ class PoFileManager
     /**
      * Prepare correct domain name
      * @param string $domain - domain name
-     * @return type
+     * @return string
      */
     public function prepareDomain($domain) {
         $CI = &get_instance();
@@ -198,7 +196,6 @@ class PoFileManager
         if (self::$SAAS_URL) {
             $url = str_replace('./', self::$SAAS_URL . '/', $url);
         }
-        //        var_dumps($url);
         return $url;
     }
 
@@ -312,7 +309,7 @@ class PoFileManager
                 return FALSE;
             }
 
-            if (!@fopen($url, "wb")) {
+            if (!@fopen($url, 'wb')) {
                 $this->setError(lang('Can not create file. Check if path to the file is correct - ', 'translator') . $url);
                 return FALSE;
             }
@@ -344,6 +341,13 @@ class PoFileManager
         return $data;
     }
 
+    /**
+     * @param string $name
+     * @param string $type
+     * @param string $lang
+     * @param string $domain_path
+     * @return bool
+     */
     public function saas_update_one($name, $type, $lang, $domain_path) {
         $this->setSaasUrl('/var/www/saas_data/mainsaas');
         $saas_file = $this->toArray($name, $type, $lang);
@@ -369,6 +373,13 @@ class PoFileManager
         return TRUE;
     }
 
+    /**
+     * @param string $name
+     * @param string $type
+     * @param string $lang
+     * @param array $data
+     * @return bool
+     */
     public function update($name, $type, $lang, $data) {
         $po_data = $this->toArray($name, $type, $lang);
 
@@ -407,6 +418,10 @@ class PoFileManager
         return FALSE;
     }
 
+    /**
+     * @param array $data
+     * @return mixed
+     */
     public function prepareUpdateSettings($data) {
         if (!isset($data['Project-Id-Version']) || !$data['Project-Id-Version']) {
             $data['projectName'] = '';
@@ -516,8 +531,6 @@ class PoFileManager
 
         $po_file_data = $this->makePoFileData($data);
         $po_file_content = b"\xEF\xBB\xBF" . $settings . "\n\n" . $po_file_data;
-        //        var_dumps($lang);
-        //var_dumps($po_file_content);
         if (file_put_contents($url, $po_file_content)) {
             if ($this->convertToMO($url)) {
                 return TRUE;
@@ -533,7 +546,7 @@ class PoFileManager
 
     /**
      * Prepare correct po-file data
-     * @param type $data
+     * @param array $data
      * @return string
      */
     private function preparePoFileData($data) {
@@ -567,17 +580,17 @@ class PoFileManager
                 $po = $this->preparePoFileData((array) $po);
 
                 if ($po['comment']) {
-                    $resultData[] = "# " . $po['comment'];
+                    $resultData[] = '# ' . $po['comment'];
                 }
 
                 if ($po['links']) {
                     foreach ($po['links'] as $link) {
-                        $resultData[] = "#: " . $link;
+                        $resultData[] = '#: ' . $link;
                     }
                 }
 
                 if ($po['fuzzy']) {
-                    $resultData[] = "#, fuzzy";
+                    $resultData[] = '#, fuzzy';
                 }
 
                 if ($key) {
@@ -600,13 +613,20 @@ class PoFileManager
      * @return boolean|null
      */
     public function convertToMO($url = '') {
-        include_once realpath(dirname(__FILE__) . '/..') . '/lib/php-mo.php';
+        include_once realpath(__DIR__ . '/..') . '/lib/php-mo.php';
 
         if ($url) {
-            return \phpmo_convert($url);
+            return phpmo_convert($url);
         }
     }
 
+    /**
+     * @param string $name
+     * @param string $type
+     * @param string $lang
+     * @param bool $langOn
+     * @return array|bool
+     */
     public function toArray($name, $type, $lang, $langOn = TRUE) {
         $path = $this->getPoFileUrl($name, $type, $lang);
 
@@ -622,7 +642,6 @@ class PoFileManager
         $this->po_settings = [];
 
         foreach ($po as $key => $line) {
-
             if (!($key > 2 && $origin)) {
                 $this->prepareSettingsValues($line);
             }
@@ -643,7 +662,7 @@ class PoFileManager
             }
 
             if (substr($line, 0, 5) == 'msgid') {
-                if (preg_match('/"(.*?)"$/', $line, $matches)) {
+                if (preg_match('/"(.*?)"$/', trim($line), $matches)) {
                     $origin = $matches[1];
                     if (!strlen($origin)) {
                         $origin = 0;
@@ -655,7 +674,7 @@ class PoFileManager
 
             if (substr($line, 0, 6) == 'msgstr') {
                 if ($origin) {
-                    preg_match('/"(.*?)"$/', $line, $translation);
+                    preg_match('/"(.*?)"$/', trim($line), $translation);
                     $translations[$origin] = [
                         'translation' => isset($translation[1]) ? $translation[1] : '',
                         'comment' => $comment,
@@ -669,7 +688,7 @@ class PoFileManager
             }
         }
 
-        $translations = $translations ? $translations : [];
+        $translations = $translations ?: [];
         $result = [
             'settings' => $this->po_settings,
             'po_array' => $translations
@@ -678,6 +697,10 @@ class PoFileManager
         return $result;
     }
 
+    /**
+     * @param string $line
+     * @return array
+     */
     private function prepareSettingsValues($line) {
         foreach ($this->po_settings_keys as $key) {
             if (preg_match('/' . $key . '/', $line)) {
@@ -721,6 +744,13 @@ class PoFileManager
         return $this->po_settings;
     }
 
+    /**
+     * @param string $name
+     * @param string $type
+     * @param string $lang
+     * @param string $searchString
+     * @return array
+     */
     public function searchPoFileAutocomplete($name, $type, $lang, $searchString) {
         $poFile = $this->toArray($name, $type, $lang);
         $poFileData = $poFile['po_array'];
@@ -743,11 +773,11 @@ class PoFileManager
         }
         ksort($results);
         $resultsData = [];
-        foreach ($results as $key => $result) {
+        foreach ($results as $result) {
             natcasesort($result);
             $resultsData = array_merge($resultsData, $result);
         }
-        return $resultsData ? $resultsData : [];
+        return $resultsData ?: [];
     }
 
 }

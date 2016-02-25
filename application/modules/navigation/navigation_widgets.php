@@ -112,7 +112,7 @@ class Navigation_Widgets extends MY_Controller
                     $tpl_data = ['navi_cats' => $paths];
                     return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
                 } else {
-                    throw new Exception("Category not found");
+                    throw new Exception('Category not found');
                 }
 
                 break;
@@ -126,7 +126,7 @@ class Navigation_Widgets extends MY_Controller
                     if ($product) {
 
                         if ($product->getCategoryId() == null && $product->getCategoryId() == 0) {
-                            throw new Exception("Category not found");
+                            throw new Exception('Category not found');
                         }
 
                         $category = SCategoryQuery::create()->findOneById($product->getCategoryId());
@@ -147,7 +147,7 @@ class Navigation_Widgets extends MY_Controller
                         $tpl_data = ['navi_cats' => $path];
                         return $this->template->fetch('widgets/' . $widget['name'], $tpl_data);
                     } else {
-                        throw new Exception("Product not found");
+                        throw new Exception('Product not found');
                     }
                 }
                 break;
@@ -253,14 +253,14 @@ class Navigation_Widgets extends MY_Controller
     public function display_tpl($file, $vars = []) {
         $this->template->add_array($vars);
 
-        $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';
+        $file = realpath(__DIR__) . '/templates/' . $file . '.tpl';
         $this->template->display('file:' . $file);
     }
 
     public function fetch_tpl($file, $vars = []) {
         $this->template->add_array($vars);
 
-        $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';
+        $file = realpath(__DIR__) . '/templates/' . $file . '.tpl';
         return $this->template->fetch('file:' . $file);
     }
 

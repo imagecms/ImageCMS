@@ -24,19 +24,19 @@ function showMessage($message, $title = FALSE, $class = '', $ret = false, $timeo
     $title = str_replace($del, '', $title);
 
     if ($title == FALSE) {
-        $title = lang('Message') . ": ";
+        $title = lang('Message') . ': ';
         if ($class == 'r') {
-            $title = lang('Error') . ": ";
+            $title = lang('Error') . ': ';
         }
         if ($class == 'g') {
-            $title = lang('Success') . ": ";
+            $title = lang('Success') . ': ';
         }
     }
     $CI = &get_instance();
     $message .= '<br/><strong>' . lang('Requests to the database') . ': ' . $CI->db->total_queries() . '</strong>';
     $message = str_replace("\n", '<br/>', $message);
-    $message = str_replace("<p>", '', $message);
-    $message = str_replace("</p>", '', $message);
+    $message = str_replace('<p>', '', $message);
+    $message = str_replace('</p>', '', $message);
     if (!$ret) {
         echo "<script type=\"text/javascript\"> showMessage('" . $title . "','" . $message . "','" . $class . "'); </script>";
     } elseif (!$timeout) {
@@ -86,7 +86,8 @@ function ajax_div($div_id, $url) {
  * @param string $code
  */
 function jsCode($code) {
-    echo "<script type=\"text/javascript\"> " . $code . " </script>";
+
+    echo '<script type="text/javascript"> ' . $code . ' </script>';
 }
 
 if (!function_exists('checkAjaxRequest')) {

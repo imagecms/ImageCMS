@@ -13,7 +13,8 @@ use template_manager\legacy\DemodataMigrationsControl;
  * Image CMS
  * tenplate Manager Module Admin
  */
-class Admin extends BaseAdminController {
+class Admin extends BaseAdminController
+{
 
     /**
      * Templates repository url
@@ -22,19 +23,19 @@ class Admin extends BaseAdminController {
 
     /**
      * Errors array
-     * @var type
+     * @var array
      */
     public $errors = [];
 
     /**
      * Template uploads path
-     * @var type
+     * @var string
      */
     private $templatesUploadPath;
 
     /**
      * Current template object
-     * @var type
+     * @var Template
      */
     private $currentTemplate;
 
@@ -128,7 +129,7 @@ class Admin extends BaseAdminController {
             $lang = new MY_Lang();
             $lang->load('template_manager');
 
-            $this->lib_admin->log(lang("Template demo data was successfully installed", "template_manager") . ' - ' . $templateName);
+            $this->lib_admin->log(lang('Template demo data was successfully installed', 'template_manager') . ' - ' . $templateName);
             return json_encode(['success' => TRUE, 'message' => lang('Template demo data was successfully installed', 'template_manager')]);
         } else {
             $error = TemplateManager::getInstance()->messages ? TemplateManager::getInstance()->messages : lang('Error', 'template_manager');
@@ -179,7 +180,7 @@ class Admin extends BaseAdminController {
         // upload or delete (or do nothing) favicon and logo
         if ($this->input->post('si_delete_favicon') == 1 && !$_FILES['siteinfo_favicon']) {
             if (isset($siteinfo['siteinfo_favicon'])) {
-                $siteinfo['siteinfo_favicon'] = "";
+                $siteinfo['siteinfo_favicon'] = '';
             }
         } else {
             $this->processLogoOrFavicon('siteinfo_favicon', $siteinfo);
@@ -187,7 +188,7 @@ class Admin extends BaseAdminController {
 
         if ($this->input->post('si_delete_logo') == 1 && !$_FILES['siteinfo_logo']) {
             if (isset($siteinfo['siteinfo_logo'])) {
-                $siteinfo['siteinfo_logo'] = "";
+                $siteinfo['siteinfo_logo'] = '';
             }
         } else {
             $this->processLogoOrFavicon('siteinfo_logo', $siteinfo);
@@ -199,7 +200,7 @@ class Admin extends BaseAdminController {
             ->limit(1)
             ->update('settings', ['siteinfo' => $siteinfoString], ['s_name' => 'main']);
 
-        $message = lang("Template Logo and Favicon changed.", "template_manager");
+        $message = lang('Template Logo and Favicon changed.', 'template_manager');
         $this->lib_admin->log($message);
 
         $error = CI::$APP->db->_error_message();
@@ -210,7 +211,9 @@ class Admin extends BaseAdminController {
 
     /**
      * Process and upload logo and favicon
-     * @param type $paramName
+     * @param string $paramName
+     * @param SiteInfo $siteinfo
+     * @throws Exception
      */
     protected function processLogoOrFavicon($paramName, &$siteinfo) {
         if (!isset($_FILES[$paramName])) {
@@ -259,8 +262,8 @@ class Admin extends BaseAdminController {
 
     /**
      * Upload template
-     * @param string $url
-     * @return boolan|string
+     * @return bool|string
+     * @throws Exception
      */
     private function upload() {
         if (!$this->input->post('template_url') & empty($_FILES['template_file'])) {
@@ -321,7 +324,9 @@ class Admin extends BaseAdminController {
 
     /**
      * Upload template from PC
-     * @return boolean|string
+     * @param string $fieldName
+     * @return bool|string
+     * @throws Exception
      */
     private function uploadFromPc($fieldName) {
         if (!file_exists($this->templatesUploadPath)) {
@@ -376,6 +381,8 @@ class Admin extends BaseAdminController {
     /**
      * Delete template by name
      * @param string $templateName - template name
+     * @return bool
+     * @throws Exception
      */
     public function deleteTemplate($templateName) {
         // Template directory path
@@ -426,7 +433,9 @@ class Admin extends BaseAdminController {
 
     /**
      * Get remote free template by ID
-     * @param integer $templateId - template id
+     * @param null|integer $templateId - template id
+     * @return string
+     * @throws Exception
      */
     public function getRemoteTemplate($templateId = NULL) {
         if ($templateId) {

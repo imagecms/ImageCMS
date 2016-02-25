@@ -9,27 +9,47 @@ if (!defined('BASEPATH')) {
  * Seo module
  * Create keywords and description
  */
-class Lib_seo {
+class Lib_seo
+{
 
-    protected $orderJustMaked = FALSE;
+    /**
+     * @var bool
+     */
+    protected $orderJustMacked = FALSE;
 
+    /**
+     * @var array
+     */
     public $origin_arr;
 
+    /**
+     * @var array
+     */
     public $modif_arr;
 
+    /**
+     * @var int
+     */
     public $min_word_length = 3;
 
+    /**
+     * @var int
+     */
     public $desc_chars = 160;
 
     /**
      * GA custom params
      * @var array
      */
-    private $custom = array();
+    private $custom = [];
 
+    /**
+     * Lib_seo constructor.
+     */
     public function __construct() {
+
         if (CI::$APP->session->flashdata('makeOrderForGA') == true) {
-            $this->orderJustMaked = TRUE;
+            $this->orderJustMacked = TRUE;
         }
 
         CI::$APP->load->library('DX_Auth');
@@ -39,8 +59,12 @@ class Lib_seo {
         }
     }
 
+    /**
+     * @param array $settings
+     */
     public function init($settings) {
-        $CI = & get_instance();
+
+        $CI = &get_instance();
         if (!strstr($CI->uri->uri_string(), 'shop/order/view')) {
             $CI->template->registerJsScript($this->renderGA($settings));
         }
@@ -50,26 +74,33 @@ class Lib_seo {
     }
 
     /**
-     * Create keywrods from text
+     * Create keywords from text
+     * @param string $text
+     * @param bool $as_array
+     * @return array|string
      */
     public function get_keywords($text, $as_array = FALSE) {
+
         $text = strip_tags($text);
         $text = mb_strtolower($text, 'utf-8');
         $this->explode_str_on_words($text);
         $this->count_words();
         $arr = array_slice($this->modif_arr, 0, 30);
-        $str = "";
 
-        if ($as_array == FALSE) {
-            $str = implode(', ', array_keys($arr));
-            return $str;
+        if ($as_array === FALSE) {
+            return implode(', ', array_keys($arr));
         } else {
             return $arr;
         }
     }
 
+    /**
+     * @param string $text
+     * @return string
+     */
     public function get_description($text) {
-        $delete = array(';', '"', '&mdash', '&nbsp;');
+
+        $delete = [';', '"', '&mdash', '&nbsp;'];
 
         $tags = get_html_translation_table(HTML_ENTITIES);
 
@@ -85,11 +116,13 @@ class Lib_seo {
     }
 
     /**
-     * 	Explode text on words
+     * Explode text on words
      * @param string $text
+     * @return array
      */
     public function explode_str_on_words($text) {
-        $search = array("'ё'",
+
+        $search = ["'ё'",
             "'<script[^>]*?>.*?</script>'si",
             "'<[\/\!]*?[^<>]*?>'si",
             "'([\r\n])[\s]+'",
@@ -103,38 +136,38 @@ class Lib_seo {
             "'&(pound|#163);'i",
             "'&(copy|#169);'i",
             "'&#(\d+);'i"
-        );
-        $replace = array("е",
-            " ",
-            " ",
-            "\\1 ",
-            "\" ",
-            " ",
-            " ",
-            " ",
-            " ",
+        ];
+        $replace = ['е',
+            ' ',
+            ' ',
+            '\\1 ',
+            '" ',
+            ' ',
+            ' ',
+            ' ',
+            ' ',
             chr(161),
             chr(162),
             chr(163),
             chr(169),
-            "chr(\\1)"
-        );
+            'chr(\\1)'
+        ];
 
         $text = preg_replace($search, $replace, $text);
-        $del_symbols = array(",", ".", ";", ":", "\"", "#", "\$", "%", "^",
-            "!", "@", "`", "~", "*", "-", "=", "+", "\\",
-            "|", "/", ">", "<", "(", ")", "&", "?", "¹", "\t",
-            "\r", "\n", "{", "}", "[", "]", "'", "“", "”", "•",
-            " как ", " для ", " что ", " или ", " это ", " этих ",
-            "всех ", " вас ", " они ", " оно ", " еще ", " когда ",
-            " где ", " эта ", " лишь ", " уже ", " вам ", " нет ",
-            " если ", " надо ", " все ", " так ", " его ", " чем ",
-            " даже ", " мне ", " есть ", " раз ", " два ", "raquo", "laquo",
-            "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "mdash"
-        );
+        $del_symbols = [',', '.', ';', ':', '"', '#', '\$', '%', '^',
+            '!', '@', '`', '~', '*', '-', '=', '+', '\\',
+            '|', '/', '>', '<', '(', ')', '&', '?', '¹', "\t",
+            "\r", "\n", '{', '}', '[', ']', "'", '“', '”', '•',
+            ' как ', ' для ', ' что ', ' или ', ' это ', ' этих ',
+            'всех ', ' вас ', ' они ', ' оно ', ' еще ', ' когда ',
+            ' где ', ' эта ', ' лишь ', ' уже ', ' вам ', ' нет ',
+            ' если ', ' надо ', ' все ', ' так ', ' его ', ' чем ',
+            ' даже ', ' мне ', ' есть ', ' раз ', ' два ', 'raquo', 'laquo',
+            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'mdash'
+        ];
         $text = str_replace($del_symbols, ' ', $text);
-        $text = preg_replace("( +)", " ", $text);
-        $this->origin_arr = explode(" ", trim($text));
+        $text = preg_replace('( +)', ' ', $text);
+        $this->origin_arr = explode(' ', trim($text));
         return $this->origin_arr;
     }
 
@@ -142,23 +175,28 @@ class Lib_seo {
      * Count words in text
      */
     public function count_words() {
-        $tmp_arr = array();
+
+        $tmp_arr = [];
         foreach ($this->origin_arr as $val) {
             if (strlen(utf8_decode($val)) >= $this->min_word_length) {
                 $val = mb_strtolower($val, 'utf-8');
 
                 if (array_key_exists($val, $tmp_arr)) {
-                    $tmp_arr[$val] ++;
+                    $tmp_arr[$val]++;
                 } else {
                     $tmp_arr[$val] = 1;
                 }
             }
         }
-        //arsort ($tmp_arr);
         $this->modif_arr = $tmp_arr;
     }
 
+    /**
+     * @param null|string $GAid
+     * @return string
+     */
     public function renderGA($GAid = null) {
+
         /* Show Google Analytics code if some value inserted in admin panel */
         if ($GAid['google_analytics_id']) {
             if ($this->getCustomParams()) {
@@ -188,17 +226,20 @@ class Lib_seo {
         }
     }
 
+    /**
+     * @param null|SProducts $model
+     * @param null|string $GAid
+     * @return string
+     */
     public function renderGAForCart($model = null, $GAid = null) {
+
         /* Show Google Analytics code if some value inserted in admin panel */
         if ($GAid['google_analytics_id']) {
             if ($this->getCustomParams()) {
                 $custom = ', ' . $this->getCustomParams();
             }
-            if ($GAid['google_analytics_ee'] == '1') {
-                $require = "ga('require', 'ec');";
-            } else {
-                $require = "ga('require', 'ecommerce', 'ecommerce.js');";
-            }
+            $require = $GAid['google_analytics_ee'] == '1' ? "ga('require', 'ec');" : "ga('require', 'ecommerce', 'ecommerce.js');";
+
             $ga = "<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -211,7 +252,7 @@ class Lib_seo {
   
   $require";
             /* @var $model SOrders */
-            if ($model && $this->orderJustMaked) {
+            if ($model && $this->orderJustMacked && $GAid['google_analytics_ee'] !== '1') {
                 if ($model->getSDeliveryMethods()) {
                     $affiliation = $model->getSDeliveryMethods()->getName();
                 }
@@ -225,7 +266,6 @@ class Lib_seo {
 });";
 
                 foreach ($model->getSOrderProductss() as $item) {
-                    $total = $total + $item->getQuantity() * $item->toCurrency();
                     /* @var $product SProducts */
                     $product = $item->getSProducts();
                     foreach ($product->getProductVariants() as $v) {
@@ -236,52 +276,27 @@ class Lib_seo {
                     }
                     $ga .= "ga('ecommerce:addItem', {
     'id': '" . $model->getId() . "',
-    'name': '" . encode($product->getName()) . " " . encode($item->getVariantName()) . "',
+    'name': '" . encode($product->getName()) . ' ' . encode($item->getVariantName()) . "',
     'sku': '" . encode($Variant->getNumber()) . "',
     'category': '" . encode($product->getMainCategory()->getName()) . "',
     'price': '" . $item->toCurrency() . "',
     'quantity': '" . $item->getQuantity() . "',
   });";
                 }
-                $ga .= "ga('ecommerce:send');</script>";
+                $ga .= "ga('ecommerce:send');";
             }
+            $ga .= '</script>';
 
             return $ga;
         }
     }
 
-    public function makeOrderForGoogle($model) {
-        if ($model && $this->orderJustMaked) {
-            $ga = "
-                    <script>
-            ga('ecommerce:addTransaction', {
-  'id': '" . $model->id . "',
-  'affiliation': '" . $model->getSDeliveryMethods()->name . "',
-  'revenue': '" . $model->getTotalPrice() . "',
-  'shipping': '',
-  'tax': '',
-});";
-
-            foreach ($model->getSOrderProductss() as $item) {
-                $total = $total + $item->getQuantity() * $item->toCurrency();
-                $product = $item->getSProducts();
-
-                $ga .= "ga('ecommerce:addItem', {
-    'id': '" . $model->id . "',
-    'name': '" . encode($product->getName()) . " " . encode($item->getVariantName()) . "',
-    'sku': '" . $product->getUrl() . "',
-    'category': '" . encode($product->getMainCategory()->name) . "',
-    'price': '" . $item->toCurrency() . "',
-    'quantity': '" . $item->getQuantity() . "',
-  });";
-            }
-            $ga .= "ga('ecommerce:send');</script>";
-
-            return $ga;
-        }
-    }
-
+    /**
+     * @param null|string $YaMetricaId
+     * @return string
+     */
     public function renderYaMetrica($YaMetricaId = null) {
+
         $YandexMetrik = '';
         if ($YaMetricaId['yandex_metric']) {
             $YandexMetrik = '<!-- Yandex.Metrika counter -->
@@ -317,6 +332,7 @@ class Lib_seo {
     }
 
     public function renderYandexWebmaster($YaWebmasterId = null) {
+
         $YaWebmaster = '';
         if ($YaWebmasterId['yandex_webmaster']) {
             $YaWebmaster = '<meta name=\'yandex-verification\' content=\'' . $YaWebmasterId['yandex_webmaster'] . '\' />';
@@ -326,6 +342,7 @@ class Lib_seo {
     }
 
     public function renderGoogleWebmaster($GWebmasterId = null) {
+
         $GWebmaster = '';
         if ($GWebmasterId['google_webmaster']) {
             $GWebmaster = '<meta name="google-site-verification" content="' . $GWebmasterId['google_webmaster'] . '" />';
@@ -335,6 +352,7 @@ class Lib_seo {
     }
 
     public function getCustomParams($type = 'json') {
+
         if (empty($this->custom)) {
             return;
         }
@@ -352,6 +370,7 @@ class Lib_seo {
      * @param string $val
      */
     public function setCustomParams($name, $val) {
+
         if ($name != '') {
             $this->custom[$name] = $val;
         }

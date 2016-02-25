@@ -78,6 +78,17 @@
             </div>
         </div>
     {else:}
+
+        {if $error}
+                <div class="span3 pull-right"style="padding-top: 20px;">
+                    <div class="alert alert-error alert-block">
+                        <button type="button" class="close" data-dismiss="alert">X</button>
+                                          <h4>{lang('Error', 'admin')}!</h4>
+                        {echo $error}
+                    </div>
+                </div>
+            {/if}
+
         <div class="alert alert-info" style="margin-bottom: 18px; margin-top: 18px;">
             {lang('You have actual system version.', 'admin')}
         </div>

@@ -7,9 +7,10 @@
  * Time: 9:54
  */
 
-namespace Banners\BannerPagesTypes;
+namespace xbanners\src\BannerPagesTypes;
 
-class BasePageType {
+class BasePageType
+{
 
     protected $locale;
 

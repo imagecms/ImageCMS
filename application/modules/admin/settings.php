@@ -50,10 +50,17 @@ class Settings extends BaseAdminController
 
         $siteinfo = $siteinfo = $this->siteinfo->getSiteInfoData(TRUE);
 
+        /// Вибірка сторінок по мові \\\\\\\
+        $language = MY_Controller::getCurrentLanguage();
+        $query = $this->db->select('*')->where('lang', $language['id'])->get('content');
+        $pages = $query->result_array();
+        $this->template->assign('pages', $pages);
+
         if (is_array($siteinfo)) {
             $this->template->add_array($siteinfo);
         }
 
+        $this->template->assign('pageSetting', $settings['main_page_id']);
         $this->template->add_array($settings);
         $this->template->assign('templates', $this->_get_templates());
         $this->template->assign('template_selected', $settings['site_template']);
@@ -64,7 +71,7 @@ class Settings extends BaseAdminController
         $this->template->assign('robots_settings', $settings['robots_settings']);
         $this->template->assign('robots_status', $settings['robots_status']);
 
-        $this->template->assign('work_values', ['yes' => lang("Yes", "admin"), 'no' => lang("No", "admin")]);
+        $this->template->assign('work_values', ['yes' => lang('Yes', 'admin'), 'no' => lang('No', 'admin')]);
         $this->template->assign('site_offline', $settings['site_offline']);
 
         $this->config->set_item('cur_lang', $this->load->module('core')->def_lang[0]['id']);
@@ -101,7 +108,7 @@ class Settings extends BaseAdminController
             'mod_seo', 'mod_discount', 'smart_filter', 'mobile', 'trash', 'language_switch', 'star_rating', 'imagebox', 'sample_module', 'template_manager',
             'payment_method_2checkout', 'payment_method_oschadbank', 'payment_method_robokassa', 'payment_method_webmoney', 'payment_method_paypal',
             'payment_method_liqpay', 'payment_method_privat24', 'payment_method_sberbank', 'payment_method_qiwi', 'payment_method_interkassa',
-            'import_export', 'admin_menu', 'related_products', 'ymarket', 'xbanners', 'moy_sklad',
+            'import_export', 'admin_menu', 'related_products', 'ymarket', 'xbanners', 'moy_sklad','custom_scripts','ga_dashboard', 'seo_snippets', 'payment_method_yakassa'
         ];
         $this->template->assign('modules', $this->db->where_not_in('name', $notAvailableModules)->get('components')->result_array());
 
@@ -192,7 +199,6 @@ class Settings extends BaseAdminController
      * @access public
      */
     public function save() {
-
         //cp_check_perm('cp_site_settings');
 
         $this->form_validation->set_rules('siteinfo_adminemail', lang('Admin email', 'admin'), 'trim|valid_email');
@@ -219,7 +225,7 @@ class Settings extends BaseAdminController
 
                     $this->cms_admin->save_settings($data);
                 } else {
-                    showMessage(lang("Page has not been found", "admin"), false, 'r');
+                    showMessage(lang('Page has not been found', 'admin'), false, 'r');
                     exit;
                 }
                 break;
@@ -273,11 +279,11 @@ class Settings extends BaseAdminController
 
         $this->cache->delete_all();
 
-        $this->lib_admin->log(lang("Changed wesite settings", "admin"));
+        $this->lib_admin->log(lang('Changed wesite settings', 'admin'));
 
         echo "<script>var textEditor = '{$data_m['text_editor']}';</script>";
         if (!validation_errors()) {
-            showMessage(lang("Settings have been saved", "admin"));
+            showMessage(lang('Settings have been saved', 'admin'));
         }
     }
 
@@ -291,33 +297,32 @@ class Settings extends BaseAdminController
         $this->load->library('SiteInfo', $this->input->post('siteinfo_locale'));
 
         // getting all parameters with keys
-        $siteinfo = [];
+        $siteInfo = [];
         $postData = $this->input->post();
         unset($postData['siteinfo_locale']);
         foreach ($postData as $key => $value) {
-            if (0 === strpos($key, "siteinfo_")) {
-                $siteinfo[$key] = $value;
+            if (0 === strpos($key, 'siteinfo_')) {
+                $siteInfo[$key] = $value;
                 unset($postData[$key]);
             }
         }
 
         // remap additional fields
         $additional = [];
-        $countKeys = count($siteinfo['siteinfo_contactkey']);
-        $countValues = count($siteinfo['siteinfo_contactvalue']);
+        $countKeys = count($siteInfo['siteinfo_contactkey']);
+        $countValues = count($siteInfo['siteinfo_contactvalue']);
         if ($countKeys == $countValues & $countValues > 0) {
             for ($i = 0; $i < $countKeys; $i++) {
-                if (!empty($siteinfo['siteinfo_contactkey'][$i])) {
-                    $additional[$siteinfo['siteinfo_contactkey'][$i]] = $siteinfo['siteinfo_contactvalue'][$i];
-                    //$siteinfo["siteinfo_" . $siteinfo['siteinfo_contactkey'][$i]] = $siteinfo['siteinfo_contactvalue'][$i];
+                if (!empty($siteInfo['siteinfo_contactkey'][$i])) {
+                    $additional[$siteInfo['siteinfo_contactkey'][$i]] = $siteInfo['siteinfo_contactvalue'][$i];
                 }
             }
         }
 
-        unset($siteinfo['siteinfo_contactkey']);
-        unset($siteinfo['siteinfo_contactvalue']);
+        unset($siteInfo['siteinfo_contactkey']);
+        unset($siteInfo['siteinfo_contactvalue']);
 
-        $siteinfo['contacts'] = $additional;
+        $siteInfo['contacts'] = $additional;
 
         $upload_path = rtrim(FCPATH, '/') . $this->siteinfo->imagesPath;
 
@@ -328,33 +333,33 @@ class Settings extends BaseAdminController
 
         // upload or delete (or do nothing) favicon and logo
         if ($this->input->post('si_delete_favicon') == 1) {
-            if (isset($siteinfo['siteinfo_favicon'])) {
-                unset($siteinfo['siteinfo_favicon']);
+            if (isset($siteInfo['siteinfo_favicon'])) {
+                unset($siteInfo['siteinfo_favicon']);
             }
         } else {
-            $this->processLogoOrFavicon('siteinfo_favicon', $siteinfo);
+            $this->processLogoOrFavicon('siteinfo_favicon', $siteInfo);
         }
 
         if ($this->input->post('si_delete_logo') == 1) {
-            if (isset($siteinfo['siteinfo_logo'])) {
-                unset($siteinfo['siteinfo_logo']);
+            if (isset($siteInfo['siteinfo_logo'])) {
+                unset($siteInfo['siteinfo_logo']);
             }
         } else {
-            $this->processLogoOrFavicon('siteinfo_logo', $siteinfo);
+            $this->processLogoOrFavicon('siteinfo_logo', $siteInfo);
         }
 
         // saving admin's email in application/config/auth.php
-        $authFullPath = "./application/config/auth.php";
+        $authFullPath = './application/config/auth.php';
         $authContents = file_get_contents($authFullPath);
         $pattern = '/(\$config\[\'DX_webmaster_email\'\][\s\=]{1,})[\'\"0-9A-Za-z\@\.\-\_]+/i';
-        $replacement = '$1\'' . $siteinfo['siteinfo_adminemail'] . '\'';
+        $replacement = '$1\'' . $siteInfo['siteinfo_adminemail'] . '\'';
         $newAuthContents = preg_replace($pattern, $replacement, $authContents);
         if (is_writable($authFullPath)) {
             $this->load->helper('file');
             write_file($authFullPath, $newAuthContents);
         }
 
-        $this->siteinfo->setSiteInfoData($siteinfo);
+        $this->siteinfo->setSiteInfoData($siteInfo);
         if ($this->input->post('si_delete_favicon') == 1) {
             $this->siteinfo->deleteSiteInfoValue('favicon');
         }
@@ -398,7 +403,7 @@ class Settings extends BaseAdminController
                 ->update('settings');
             $this->session->set_userdata('language', $lang);
         }
-        redirect($this->input->server('HTTP_REFERER') ? $this->input->server('HTTP_REFERER') : '/admin/dashboard');
+        redirect($this->input->server('HTTP_REFERER') ?: '/admin/dashboard');
     }
 
     /**

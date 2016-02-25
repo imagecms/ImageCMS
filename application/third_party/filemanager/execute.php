@@ -11,11 +11,7 @@ if ($_SESSION['RF']["verify"] != "RESPONSIVEfilemanager")
 	exit;
 }
 
-$thumb_pos  = strpos($_POST['path_thumb'], $thumbs_base_path);
-
-if ($thumb_pos !=0
-    || strpos($_POST['path_thumb'],'../',strlen($thumbs_base_path)+$thumb_pos)!==FALSE
-    || strpos($_POST['path'],'/')===0
+if (strpos($_POST['path'],'/')===0
     || strpos($_POST['path'],'../')!==FALSE
     || strpos($_POST['path'],'./')===0)
 {
@@ -35,7 +31,7 @@ else
 }
 
 $base = $current_path;
-$path = $current_path.$_POST['path'];
+$path = $base.$_POST['path'];
 $cycle = TRUE;
 $max_cycles = 50;
 $i = 0;
@@ -54,7 +50,7 @@ while($cycle && $i<$max_cycles)
 }
 
 $path = $current_path.$_POST['path'];
-$path_thumb = $_POST['path_thumb'];
+$path_thumb = $thumbs_base_path.$_POST['path'];
 if (isset($_POST['name']))
 {
     $name = fix_filename($_POST['name'],$transliteration,$convert_spaces, $replace_with);
@@ -134,6 +130,10 @@ if (isset($_GET['action']))
         case 'create_folder':
             if ($create_folders)
             {
+
+                $name = fix_filename($_POST['name'],$transliteration,$convert_spaces, $replace_with);
+                $path .= $name;
+                $path_thumb .= $name;
                 create_folder(fix_path($path,$transliteration,$convert_spaces, $replace_with),fix_path($path_thumb,$transliteration,$convert_spaces, $replace_with));
             }
             break;
@@ -197,25 +197,20 @@ if (isset($_GET['action']))
 				exit;
             }
 
-            // correct paths
-            $path = str_replace($old_name, $name, $path);
-            $path_thumb = str_replace($old_name, $name, $path_thumb);
-
             // file already exists
-            if (file_exists($path)) {
+            if (file_exists($path.$name)) {
                 response(trans('Rename_existing_file'), 403)->send();
 				exit;
             }
 
             $content = $_POST['new_content'];
-
-            if (@file_put_contents($path, $content) === FALSE) {
+            if (@file_put_contents($path.$name, $content) === FALSE) {
                 response(trans('File_Save_Error'), 500)->send();
 				exit;
             }
             else {
                 if (is_function_callable('chmod') !== FALSE){
-                    chmod($path, 0644);
+                    chmod($path.$name, 0644);
                 }
                 response(trans('File_Save_OK'))->send();
 				exit;
@@ -295,10 +290,9 @@ if (isset($_GET['action']))
             }
             break;
         case 'paste_clipboard':
-            if ( ! isset($_SESSION['RF']['clipboard_action'], $_SESSION['RF']['clipboard']['path'], $_SESSION['RF']['clipboard']['path_thumb'])
+            if ( ! isset($_SESSION['RF']['clipboard_action'], $_SESSION['RF']['clipboard']['path'])
                 || $_SESSION['RF']['clipboard_action'] == ''
-                || $_SESSION['RF']['clipboard']['path'] == ''
-                || $_SESSION['RF']['clipboard']['path_thumb'] == '')
+                || $_SESSION['RF']['clipboard']['path'] == '')
             {
                 response()->send();
 				exit;
@@ -306,6 +300,7 @@ if (isset($_GET['action']))
 
             $action = $_SESSION['RF']['clipboard_action'];
             $data = $_SESSION['RF']['clipboard'];
+            $data['path_thumb'] = $thumbs_base_path.$data['path'];
             $data['path'] = $current_path.$data['path'];
             $pinfo = pathinfo($data['path']);
 
@@ -358,7 +353,6 @@ if (isset($_GET['action']))
 
             // cleanup
             $_SESSION['RF']['clipboard']['path'] = NULL;
-            $_SESSION['RF']['clipboard']['path_thumb'] = NULL;
             $_SESSION['RF']['clipboard_action'] = NULL;
 
             break;

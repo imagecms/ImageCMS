@@ -144,10 +144,10 @@
                                     <input type="text" name="id" data-original-title="{lang('Digits only','admin')}" value="{$_POST['id']}"/>
                                 </td>
                                 <td>
-                                    <input type="text" name="title" value="{$_POST['title']}"/>
+                                    <input type="text" name="title" value="{htmlspecialchars($_POST['title'])}"/>
                                 </td>
                                 <td>
-                                    <input type="text" name="url" value="{$_POST['url']}"/>
+                                    <input type="text" name="url" value="{htmlspecialchars($_POST['url'])}"/>
                                 </td>
                                 {if $show_cat_list != 'yes'}
                                 <td>

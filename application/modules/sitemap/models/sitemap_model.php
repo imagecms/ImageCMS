@@ -8,9 +8,18 @@ if (!defined('BASEPATH')) {
  * @property CI_DB_active_record $db
  * @property DX_Auth $dx_auth
  */
-class Sitemap_model extends CI_Model {
+class Sitemap_model extends CI_Model
+{
 
+    protected $activeCategories = [];
+
+    protected $categoriesSelected;
+
+    /**
+     * Sitemap_model constructor.
+     */
     public function __construct() {
+
         parent::__construct();
     }
 
@@ -19,6 +28,7 @@ class Sitemap_model extends CI_Model {
      * @return array
      */
     public function getPriorities() {
+
         $priorities = $this->db->limit(1)->get('mod_sitemap_priorities');
         if ($priorities) {
             return $priorities->row_array();
@@ -32,9 +42,10 @@ class Sitemap_model extends CI_Model {
      * @return array
      */
     public function getChangefreq() {
-        $changefreq = $this->db->limit(1)->get('mod_sitemap_changefreq');
-        if ($changefreq) {
-            return $changefreq->row_array();
+
+        $changeFreq = $this->db->limit(1)->get('mod_sitemap_changefreq');
+        if ($changeFreq) {
+            return $changeFreq->row_array();
         } else {
             return [];
         }
@@ -45,34 +56,38 @@ class Sitemap_model extends CI_Model {
      * @return array
      */
     public function getBlockedUrls() {
+
         $urls = $this->db->get('mod_sitemap_blocked_urls');
         return $this->returnData($urls);
     }
 
     /**
      * Update priorities
-     * @param type $data - data array
+     * @param array $data - data array
      * @return boolean
      */
     public function updatePriorities($data = []) {
+
         return $this->db->where('id', 1)->update('mod_sitemap_priorities', $data);
     }
 
     /**
      * Update change frequency
-     * @param type $data - data array
+     * @param array $data - data array
      * @return boolean
      */
     public function updateChangefreq($data = []) {
+
         return $this->db->where('id', 1)->update('mod_sitemap_changefreq', $data);
     }
 
     /**
      * Update blocked urls
-     * @param type $data - data array
+     * @param array $data - data array
      * @return boolean
      */
     public function updateBlockedUrls($data = []) {
+
         $this->db->where('id >', 0)->delete('mod_sitemap_blocked_urls');
 
         return $this->db->insert_batch('mod_sitemap_blocked_urls', $data);
@@ -84,6 +99,7 @@ class Sitemap_model extends CI_Model {
      * @return bool
      */
     public function updateSettings($data = []) {
+
         $this->db->limit(1);
         $this->db->where('name', 'sitemap');
         return $this->db->update('components', ['settings' => serialize($data)]);
@@ -94,6 +110,7 @@ class Sitemap_model extends CI_Model {
      * @return array
      */
     public function load_settings() {
+
         $this->db->select('settings');
         $this->db->where('name', 'sitemap');
         $query = $this->db->get('components', 1)->row_array();
@@ -106,6 +123,7 @@ class Sitemap_model extends CI_Model {
      * @return array
      */
     public function get_all_pages() {
+
         $this->db->select('id, created, updated, lang,cat_url');
         $this->db->select('CONCAT_WS("", cat_url, url) as full_url', FALSE);
         $this->db->where('post_status', 'publish');
@@ -121,6 +139,7 @@ class Sitemap_model extends CI_Model {
      * @return array
      */
     public function get_cateogry_pages($id = 0) {
+
         $this->db->select('id, created, updated, lang, title as name');
         $this->db->select('CONCAT_WS("", cat_url, url) as full_url', FALSE);
         $this->db->where('lang', $this->config->item('cur_lang'));
@@ -137,11 +156,57 @@ class Sitemap_model extends CI_Model {
      * @return array
      */
     public function get_shop_categories() {
-        //        $this->db->select('full_path, parent_id');
-        $this->db->where('active', 1);
-        $result = $this->db->get('shop_category');
 
-        return $this->returnData($result);
+        $result = $this->db
+            ->select('shop_category_i18n.locale, shop_category.*')
+            ->join('languages', 'languages.identif = shop_category_i18n.locale and languages.active = 1')
+            ->join('shop_category', 'shop_category_i18n.id = shop_category.id')
+            ->where('shop_category.active', 1)
+            ->get('shop_category_i18n');
+
+        $categories = $this->returnData($result);
+        $this->checkActivity($categories);
+        $this->categoriesSelected = true;
+        return $categories;
+    }
+
+    /**
+     * Check if all parents are active
+     * @param $categoryId
+     * @return bool
+     */
+    public function categoryIsActive($categoryId) {
+        if (!$this->categoriesSelected) {
+            $this->get_shop_categories();
+        }
+        return in_array((int) $categoryId, $this->activeCategories);
+    }
+
+    /**
+     * Fill array of un active categories
+     * Category is un active if at leas one parent is not active
+     * @param $categories
+     */
+    private function checkActivity($categories) {
+        $activeCategories = [];
+        foreach ($categories as $category) {
+            if (!in_array((int) $category['id'], $activeCategories)) {
+                array_push($activeCategories, (int) $category['id']);
+
+            }
+        }
+
+        $unActive = [];
+        foreach ($categories as $category) {
+            $parentCategories = unserialize($category['full_path_ids']);
+            $count = count($parentCategories);
+            $countIntersect = count(array_intersect($activeCategories, $parentCategories));
+            if ($count > 0 && $count !== $countIntersect && !in_array($category['id'], $unActive)) {
+                $unActive[] = $category['id'];
+            }
+        }
+
+        $this->activeCategories = array_diff($activeCategories, $unActive);
     }
 
     /**
@@ -149,8 +214,12 @@ class Sitemap_model extends CI_Model {
      * @return array
      */
     public function get_shop_brands() {
-        //        $this->db->select('url');
-        $result = $this->db->get('shop_brands');
+
+        $result = $this->db
+            ->select('shop_brands_i18n.locale, shop_brands.*')
+            ->join('languages', 'languages.identif = shop_brands_i18n.locale and languages.active = 1')
+            ->join('shop_brands', 'shop_brands.id = shop_brands_i18n.id')
+            ->get('shop_brands_i18n');
 
         return $this->returnData($result);
     }
@@ -160,12 +229,15 @@ class Sitemap_model extends CI_Model {
      * @return array
      */
     public function get_shop_products() {
-        $this->db->select('shop_products.url, shop_products.updated, shop_products.created, shop_category.active, shop_category.id');
+
+        $this->db->select('shop_products_i18n.locale, shop_products.url, shop_products.category_id, shop_products.updated, shop_products.created, shop_category.active, shop_category.id');
         $result = $this->db
+            ->join('languages', 'languages.identif = shop_products_i18n.locale and languages.active = 1')
+            ->join('shop_products', 'shop_products_i18n.id=shop_products.id')
             ->join('shop_category', 'shop_category.id=shop_products.category_id')
             ->where('shop_category.active', 1)
             ->where('shop_products.active', 1)
-            ->get('shop_products');
+            ->get('shop_products_i18n');
 
         return $this->returnData($result);
     }
@@ -176,6 +248,7 @@ class Sitemap_model extends CI_Model {
      * @return array
      */
     public function returnData($result) {
+
         if ($result) {
             return $result->result_array();
         } else {
@@ -246,15 +319,15 @@ class Sitemap_model extends CI_Model {
         $this->db->insert(
             'mod_sitemap_priorities',
             [
-            'main_page_priority' => 1,
-            'cats_priority' => 1,
-            'pages_priority' => 1,
-            'sub_cats_priority' => 1,
-            'products_priority' => 1,
-            'products_categories_priority' => 1,
-            'products_sub_categories_priority' => 1,
-            'brands_priority' => 1
-                ]
+                'main_page_priority' => 1,
+                'cats_priority' => 1,
+                'pages_priority' => 1,
+                'sub_cats_priority' => 1,
+                'products_priority' => 1,
+                'products_categories_priority' => 1,
+                'products_sub_categories_priority' => 1,
+                'brands_priority' => 1
+            ]
         );
 
         $fields = [
@@ -311,15 +384,15 @@ class Sitemap_model extends CI_Model {
         $this->db->insert(
             'mod_sitemap_changefreq',
             [
-            'main_page_changefreq' => 'weekly',
-            'pages_changefreq' => 'weekly',
-            'product_changefreq' => 'weekly',
-            'categories_changefreq' => 'weekly',
-            'products_categories_changefreq' => 'weekly',
-            'products_sub_categories_changefreq' => 'weekly',
-            'brands_changefreq' => 'weekly',
-            'sub_categories_changefreq' => 'weekly'
-                ]
+                'main_page_changefreq' => 'weekly',
+                'pages_changefreq' => 'weekly',
+                'product_changefreq' => 'weekly',
+                'categories_changefreq' => 'weekly',
+                'products_categories_changefreq' => 'weekly',
+                'products_sub_categories_changefreq' => 'weekly',
+                'brands_changefreq' => 'weekly',
+                'sub_categories_changefreq' => 'weekly'
+            ]
         );
 
         $fields = [
@@ -354,19 +427,23 @@ class Sitemap_model extends CI_Model {
             'sendWhenUrlChanged' => 0
         ];
 
-        return $this->db->insert(
+        $this->db->insert(
             'components',
             [
-                    'name' => 'sitemap',
-                    'identif' => 'sitemap',
-                    'autoload' => '1',
-                    'enabled' => '1',
-                    'settings' => serialize($data)
-                        ]
+                'name' => 'sitemap',
+                'identif' => 'sitemap',
+                'autoload' => '1',
+                'enabled' => '1',
+                'settings' => serialize($data)
+            ]
         );
     }
 
+    /**
+     * @return true
+     */
     public function deinstallModule() {
+
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) OR exit;
 

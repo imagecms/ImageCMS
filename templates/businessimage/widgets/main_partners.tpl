@@ -10,8 +10,8 @@
 		{foreach $loc_main_partners_list->getBannerImages() as $item}
 			{$loc_url_target = $item->getTarget() == 1 ? "target=\"_blank\"" : ""}
 			<div class="b-partner-w__item js">
-				{if $item->getUrl()}
-				<a href="{echo $item->getUrl()}" {$loc_url_target}><img src="{echo $item->getImageOriginPath()}" alt="{echo $item->getName()}"></a>
+				{if $item->getStatisticUrl()}
+				<a href="{echo $item->getStatisticUrl()}" {$loc_url_target}><img src="{echo $item->getImageOriginPath()}" alt="{echo $item->getName()}"></a>
 				{else:}
 				<img src="{echo $item->getImageOriginPath()}" alt="{echo $item->getName()}}">
 				{/if}

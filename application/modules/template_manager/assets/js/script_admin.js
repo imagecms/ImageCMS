@@ -40,6 +40,8 @@ $('#logofav input[type="file"]').off('change').on('change', function (e) {
     var file = this.files[0];
     var img = document.createElement("img");
     var reader = new FileReader();
+    var imageContainer = $('.siteinfo_image_container');
+
     reader.onloadend = function () {
         img.src = reader.result;
     };
@@ -47,6 +49,14 @@ $('#logofav input[type="file"]').off('change').on('change', function (e) {
     reader.readAsDataURL(file);
     $(img).addClass('img-polaroid');
     $(this).closest('.control-group').find('.controls').html(img);
+
+    imageContainer.each(function(){
+        var imageEmpty = $(this).find('.siteinfo_is_empty').size();
+
+        if(imageEmpty == 0){
+            $(this).append('<button type="button" class="btn btn-small remove_btn"><i class="icon-trash"></i></button>');
+        }
+    });
 
 });
 

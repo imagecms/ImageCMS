@@ -106,7 +106,7 @@ class assetManager
     }
 
     /**
-     * @param string $item
+     * @param string|array $item
      * @param string|integer|float $value
      * @return assetManager
      * @access public
@@ -166,12 +166,12 @@ class assetManager
     }
 
     /**
-     * @return assetManager
      * @access public
      * @author a.gula
      * @param string $script
      * @param boolean $useCompress
      * @param string $position after|before
+     * @param string $type
      * @return assetManager
      * @copyright ImageCMS (c) 2013, a.gula <a.gula@imagecms.net>
      */
@@ -209,7 +209,7 @@ class assetManager
         /** Start. Load file into template */
 
         $path = $this->buildStylePath($name);
-        if ('' != $path) {
+        if ('' !== $path) {
             if ($useCompress) {
                 if ($content = file_get_contents($path)) {
                     CI_Controller::get_instance()->template->registerCss('<style>' . $this->compressCss($content) . '</style>', 'before');
@@ -296,7 +296,8 @@ class assetManager
             $data = [];
             if ($fetchJsTpl) {
                 /** Start. If file doesn't exists thorow exception */
-                $js_langs_path = $this->buildAdminTemplatePath($this->module_js);
+
+                $js_langs_path = $this->buildTemplatePath($this->module_js);
                 if (file_exists($js_langs_path . '.tpl')) {
                     /** Start. Load template file */
                     if (MAINSITE) {
@@ -422,7 +423,7 @@ class assetManager
     }
 
     /**
-     * Return formated path
+     * Return formatted path
      * @access private
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      * @param string $tpl
@@ -474,7 +475,7 @@ class assetManager
     }
 
     /**
-     * Return formated path
+     * Return formatted path
      * @param string $fileName
      * @return string
      * @access private
@@ -548,9 +549,11 @@ class assetManager
     /**
      * Checks if file exists in any of modules dirs. If exists returns its path
      * @param string|array $files example: ['menu/assets/css/style.css']
-     * @return string|boolean returns file path or FALSE
+     * @param bool $noExt
+     * @return bool|string returns file path or FALSE
      */
     private function getModuleFilePath($files, $noExt = true) {
+
         if (is_string($files)) {
             $files = [$files];
         }

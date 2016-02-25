@@ -7,7 +7,12 @@
             </div>
             <div class="pull-right">
                 <div class="d-i_b">
-                    <button  data-form="#customScripts"  class="btn btn-small btn-primary formSubmit"><i class="icon-ok"></i></i>{lang('Save')}</button>
+                    <a href="{$BASE_URL}admin/components/"
+                       class="t-d_n m-r_15 pjax">
+                        <span class="f-s_14">←</span>
+                        <span class="t-d_u">{lang('Back', 'custom_scripts')}</span>
+                    </a>
+                    <button  data-form="#customScripts"  class="btn btn-small btn-primary formSubmit"><i class="icon-ok"></i></i>{lang('Save', 'custom_scripts')}</button>
                 </div>
             </div>
         </div>

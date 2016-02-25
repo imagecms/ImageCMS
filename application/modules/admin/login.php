@@ -52,8 +52,8 @@ class Login extends BaseAdminController
      */
     public function do_login() {
 
-        $this->form_validation->set_rules('login', lang("E-mail", 'admin'), 'trim|required|min_length[3]|max_length[50]|valid_email');
-        $this->form_validation->set_rules('password', lang("Password", "admin"), 'trim|required|min_length[5]|max_length[32]');
+        $this->form_validation->set_rules('login', lang('E-mail', 'admin'), 'trim|required|min_length[3]|max_length[50]|valid_email');
+        $this->form_validation->set_rules('password', lang('Password', 'admin'), 'trim|required|min_length[5]|max_length[32]');
 
         if ($this->input->post('remember')) {
             $remember = true;
@@ -62,7 +62,7 @@ class Login extends BaseAdminController
         }
 
         if ($this->dx_auth->is_max_login_attempts_exceeded()) {
-            $this->form_validation->set_rules('captcha', lang("Protection code", "admin"), 'trim|required|xss_clean|callback_captcha_check');
+            $this->form_validation->set_rules('captcha', lang('Protection code', 'admin'), 'trim|required|xss_clean|callback_captcha_check');
         }
 
         if ($this->form_validation->run($this) == FALSE) {
@@ -78,14 +78,14 @@ class Login extends BaseAdminController
             if ($result == TRUE) {
 
                 if ($this->check_permissions($this->input->post('login'))) {
-                    $this->lib_admin->log(lang("Entered the IP control panel", "admin") . " " . $this->input->ip_address());
+                    $this->lib_admin->log(lang('Entered the IP control panel', 'admin') . ' ' . $this->input->ip_address());
                     redirect('admin/admin/init');
                 } else {
-                    $this->template->assign('login_failed', lang("Not enough access rights", "admin"));
+                    $this->template->assign('login_failed', lang('Not enough access rights', 'admin'));
                     $this->dx_auth->logout();
                 }
             } else {
-                $this->template->assign('login_failed', lang("Username and password have not been found", "admin"));
+                $this->template->assign('login_failed', lang('Username and password have not been found', 'admin'));
             }
         }
 
@@ -114,11 +114,11 @@ class Login extends BaseAdminController
         $val = $this->form_validation;
 
         // Set form validation rules
-        $val->set_rules('login', lang("E-mail", "admin"), 'trim|required|xss_clean');
+        $val->set_rules('login', lang('E-mail', 'admin'), 'trim|required|xss_clean');
 
         // Validate rules and call forgot password function
         if ($val->run() AND $this->dx_auth->forgot_password($this->input->post('login'))) {
-            $this->template->assign('info_message', '<div class="alert alert-info">' . lang("Please check your email for instructions on how to activate the new password.", "admin") . '</div>');
+            $this->template->assign('info_message', '<div class="alert alert-info">' . lang('Please check your email for instructions on how to activate the new password.', 'admin') . '</div>');
         }
 
         if ($this->dx_auth->_auth_error != NULL) {
@@ -139,11 +139,11 @@ class Login extends BaseAdminController
         $result = TRUE;
 
         if ($this->dx_auth->is_captcha_expired()) {
-            $this->form_validation->set_message('captcha_check', lang("Wrong protection code", "admin"));
+            $this->form_validation->set_message('captcha_check', lang('Wrong protection code', 'admin'));
             $result = FALSE;
             //            $result = TRUE;
         } elseif (!$this->dx_auth->is_captcha_match($code)) {
-            $this->form_validation->set_message('captcha_check', lang("Wrong protection code", "admin"));
+            $this->form_validation->set_message('captcha_check', lang('Wrong protection code', 'admin'));
             $result = FALSE;
             //            $result = TRUE;
         }

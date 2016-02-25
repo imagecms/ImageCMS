@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-23 10:30+0300\n"
-"PO-Revision-Date: 2015-09-23 10:30+0300\n"
+"POT-Creation-Date: 2016-02-08 07:35+0200\n"
+"PO-Revision-Date: 2016-02-08 07:35+0200\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -18,6 +18,49 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
+#: application/modules/xbanners/assets/admin/banner/settings.tpl:132
+msgid "Switching banners will be a smooth change rather than scrolling from side to side"
+msgstr "Переключение баннеров будет осуществляться плавным изменением, а не прокруткой из стороны в сторону"
+
+#: application/modules/xbanners/assets/admin/banner/settings.tpl:225
+msgid "touchMove"
+msgstr "Движение по клику"
+
+#: application/modules/xbanners/assets/admin/banner/slides_list.tpl:169
+#: application/modules/xbanners/assets/admin/banner/add_slide.tpl:126
+msgid "Slide url. Search to find url to your site page or paste remote one."
+msgstr "Ссылка перехода при клике по слайду."
+
+#: application/modules/xbanners/admin.php:73
+msgid "autoplaySpeed"
+msgstr "Автопрокрутка"
+
+#: application/modules/xbanners/assets/admin/banner/slides_list.tpl:113
+#: application/modules/xbanners/assets/admin/banner/slides_list.tpl:147
+#: application/modules/xbanners/assets/admin/banner/add_slide.tpl:110
+msgid "to"
+msgstr "до"
+
+#: application/modules/xbanners/assets/admin/banner/settings.tpl:52
+msgid "autoplay"
+msgstr "Автопрокрутка"
+
+#: application/modules/xbanners/assets/admin/banner/settings.tpl:64
+msgid "If this option selected banner slides will be scrolled automatically without user actions."
+msgstr "Если этот параметр выбран, слайды будут прокручиваться автоматически без действия пользователя."
+
+#: application/modules/xbanners/assets/admin/banner/settings.tpl:69
+msgid "autoplaySpeed, (sec)"
+msgstr "Скорость автопрокрутки, (сек)"
+
+#: application/modules/xbanners/assets/admin/banner/settings.tpl:77
+msgid "This option determines automatic scroll speed, time interval through which next slide should be shown."
+msgstr "Этот параметр определяет скорость автоматической прокрутки, интервал времени, через который следующий слайд будет показан."
+
+#: application/modules/xbanners/assets/admin/banner/slides_list.tpl:183
+msgid "transition to a new window"
+msgstr "переход на новое окно"
+
 #: application/modules/xbanners/assets/admin/banner/settings.tpl:152
 msgid "Scroll speed(sec)"
 msgstr "Скорость прокрутки(сек)"
@@ -25,10 +68,6 @@ msgstr "Скорость прокрутки(сек)"
 #: application/modules/xbanners/assets/admin/banner/settings.tpl:160
 msgid "Speed with which slide will be changed."
 msgstr "Скорость с которой будет изменятся слайд."
-
-#: application/modules/xbanners/assets/admin/banner/settings.tpl:132
-msgid "Switching banners will be a smooth change rather than scrolling from side to side"
-msgstr "Переключение баннеров будет осуществляться плавным изменением, а не прокруткой из стороны в сторону"
 
 #: application/modules/xbanners/assets/admin/banner/slides_list.tpl:172
 #: application/modules/xbanners/assets/admin/banner/add_slide.tpl:128
@@ -93,10 +132,6 @@ msgstr "Пауза при наведении на буллет"
 msgid "swipe"
 msgstr "Swipe"
 
-#: application/modules/xbanners/assets/admin/banner/settings.tpl:225
-msgid "touchMove"
-msgstr "Движение по клику"
-
 #: application/modules/xbanners/assets/admin/banner/settings.tpl:233
 msgid "vertical"
 msgstr "Вертикальная прокрутка"
@@ -108,11 +143,6 @@ msgstr "Листать справа налево"
 #: application/modules/xbanners/assets/admin/banner/slides_list.tpl:104
 msgid "Permanently active"
 msgstr "Постоянно действующий"
-
-#: application/modules/xbanners/assets/admin/banner/slides_list.tpl:169
-#: application/modules/xbanners/assets/admin/banner/add_slide.tpl:126
-msgid "Slide url. Search to find url to your site page or paste remote one."
-msgstr "Ссылка перехода при клике по слайду."
 
 #: application/modules/xbanners/admin.php:86
 msgid "Banner successfully update"
@@ -221,10 +251,6 @@ msgstr "Активность"
 msgid "Name"
 msgstr "Название"
 
-#: application/modules/xbanners/admin.php:73
-msgid "autoplaySpeed"
-msgstr "Автопрокрутка"
-
 #: application/modules/xbanners/admin.php:74
 msgid "speed"
 msgstr "Скорость"
@@ -312,12 +338,6 @@ msgstr "выбрать дату"
 msgid "from"
 msgstr "от"
 
-#: application/modules/xbanners/assets/admin/banner/slides_list.tpl:113
-#: application/modules/xbanners/assets/admin/banner/slides_list.tpl:147
-#: application/modules/xbanners/assets/admin/banner/add_slide.tpl:110
-msgid "to"
-msgstr "к"
-
 #: application/modules/xbanners/assets/admin/banner/slides_list.tpl:155
 #: application/modules/xbanners/assets/admin/banner/add_slide.tpl:117
 msgid "Url"
@@ -401,22 +421,6 @@ msgstr "Редактирование"
 msgid "Effects"
 msgstr "Эффекты"
 
-#: application/modules/xbanners/assets/admin/banner/settings.tpl:52
-msgid "autoplay"
-msgstr "Автопрокрутка"
-
-#: application/modules/xbanners/assets/admin/banner/settings.tpl:64
-msgid "If this option selected banner slides will be scrolled automatically without user actions."
-msgstr "Если этот параметр выбран, слайды будут прокручиваться автоматически без действия пользователя."
-
-#: application/modules/xbanners/assets/admin/banner/settings.tpl:69
-msgid "autoplaySpeed, (sec)"
-msgstr "Скорость автопрокрутки, (сек)"
-
-#: application/modules/xbanners/assets/admin/banner/settings.tpl:77
-msgid "This option determines automatic scroll speed, time interval through which next slide should be shown."
-msgstr "Этот параметр определяет скорость автоматической прокрутки, интервал времени, через который следующий слайд будет показан."
-
 #: application/modules/xbanners/assets/admin/banner/settings.tpl:82
 msgid "arrows"
 msgstr "Навигация стрелками"
@@ -446,10 +450,6 @@ msgstr "Активный"
 #: application/modules/xbanners/assets/admin/banner/slides_list.tpl:118
 msgid "Inactive"
 msgstr "Не активен"
-
-#: application/modules/xbanners/assets/admin/banner/slides_list.tpl:183
-msgid "transition to a new window"
-msgstr "переход на новое окно"
 
 #: application/modules/xbanners/assets/admin/banner/slides_list.tpl:183
 msgid "no"

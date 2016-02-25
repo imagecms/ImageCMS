@@ -9,7 +9,8 @@ use admin_menu\classes\AdminMenuBuilder as AdminMenuBuilder;
  * Admin_menu controller
  * @property Admin_menu_model $admin_menu_model
  */
-class Admin_menu extends MY_Controller {
+class Admin_menu extends MY_Controller
+{
 
     static private $SAAS;
 
@@ -21,7 +22,7 @@ class Admin_menu extends MY_Controller {
 
     static private $MENU_TYPE;
 
-    static private $HIDEN_MODULES = array('language_switch', 'payment_method_paypal', 'payment_method_webmoney', 'payment_method_privat24', 'payment_method_liqpay', 'payment_method_oschadbank', 'payment_method_sberbank', 'payment_method_robokassa', 'payment_method_interkassa', 'test', 'admin', 'CMSFactory', 'core', 'imagebox', 'forms', 'admin_menu', 'cfcm', 'auth', 'shop', 'smart_filter', 'tags', 'navigation', 'shop_news', 'admin_menu', 'new_level', 'ga_dashboard');
+    static private $HIDEN_MODULES = ['language_switch', 'payment_method_paypal', 'payment_method_webmoney', 'payment_method_privat24', 'payment_method_liqpay', 'payment_method_oschadbank', 'payment_method_sberbank', 'payment_method_robokassa', 'payment_method_interkassa', 'test', 'admin', 'CMSFactory', 'core', 'imagebox', 'forms', 'admin_menu', 'cfcm', 'auth', 'shop', 'smart_filter', 'tags', 'navigation', 'shop_news', 'admin_menu', 'new_level', 'ga_dashboard'];
 
     public function __construct() {
         parent::__construct();
@@ -131,24 +132,27 @@ class Admin_menu extends MY_Controller {
         $menu_name = self::$DEV_MODE ? self::$MENU_NAME : $menu_name;
 
         $menu = AdminMenuBuilder::getMenu($menu_name, self::$MENU_TYPE);
-        $modules = self::$DEV_MODE ? array() : $this->getModules();
+        $modules = self::$DEV_MODE ? [] : $this->getModules();
 
         if ($menu) {
             $tpl = self::$DEV_MODE ? 'dev_menu' : 'menu';
 
             return CMSFactory\assetManager::create()
                             ->setData(
-                                array(
+                                [
                                 'menu' => $menu,
                                 'modules' => $modules,
                                 'SAAS' => self::$SAAS
-                                )
+                                ]
                             )
                             ->registerScript('admin_menu')
                             ->fetchAdminTemplate($tpl);
         }
     }
 
+    /**
+     * @return mixed
+     */
     public function getModules() {
         if (self::$SAAS) {
             $tariff_modules_ids = json_decode(self::$SAAS_USER->saasTariff->module);
@@ -174,10 +178,10 @@ class Admin_menu extends MY_Controller {
 
                 if (file_exists($info_file)) {
                     include $info_file;
-                    $modules[$key] = array('name' => $module_name);
+                    $modules[$key] = ['name' => $module_name];
                     $modules[$key] = array_merge($modules[$key], $com_info);
                 } else {
-                    $modules[$key] = array('menu_name' => $module_name, 'name' => $module_name);
+                    $modules[$key] = ['menu_name' => $module_name, 'name' => $module_name];
                 }
                 unset($com_info);
             }

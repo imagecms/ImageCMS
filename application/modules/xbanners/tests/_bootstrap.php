@@ -1,14 +1,11 @@
 <?php
 
 define('BASEPATH', '');
-//imageCms autoloader
-include realpath(__DIR__ . '/../../../../application/libraries/ClassLoader.php');
+
 include __DIR__ . '/../../../third_party/autoload.php';
 include __DIR__ . '/../../../config/database.php';
 include __DIR__ . '/../../../../system/helpers/url_helper.php';
-ClassLoader::getInstance()
-    ->registerNamespacedPath(__DIR__ . '/../models/propel/generated-classes')
-    ->registerAlias(__DIR__ . '/../src', 'Banners');
+
 
 
 //for propel

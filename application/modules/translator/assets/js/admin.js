@@ -905,80 +905,85 @@ var Translator = {
                 success: function (data) {
                     if (data) {
                         var results = JSON.parse(data);
-                        var newCount = 0;
-                        var oldCount = 0;
-                        var ignoredCount = 0;
-                        $('.modal_update_results').removeClass('hide').removeClass('fade');
-                        $('.modal_update_results').modal('show');
-                        $('.modal-backdrop').show();
-                        $('.newStrings').html('');
-                        $('.obsoleteStrings').html('');
-                        $('.notCorrectStrings').html('');
+
+                        if (results['error']) {
+                            showMessage(lang('Error'), results['error'], 'r');
+                        } else {
+                            var newCount = 0;
+                            var oldCount = 0;
+                            var ignoredCount = 0;
+                            $('.modal_update_results').removeClass('hide').removeClass('fade');
+                            $('.modal_update_results').modal('show');
+                            $('.modal-backdrop').show();
+                            $('.newStrings').html('');
+                            $('.obsoleteStrings').html('');
+                            $('.notCorrectStrings').html('');
 
 
-                        for (var newString in results['new']) {
-                            if (newString && newString.match(/[\D]/)) {
-                                var paths = [];
-                                var tooltipMsg = '';
-
-                                newCount++;
-                                for (var path in results['new'][newString]) {
-                                    paths.push(results['new'][newString][path]);
-                                }
-                                for (var path in paths) {
-                                    tooltipMsg += paths[path] + '<br>';
-                                }
-                                $('.newStrings').append('<span data-rel="tooltip" data-original-title=\'' + tooltipMsg + '\' data-paths=\'' + JSON.stringify(paths) + '\'>' + newString + '</span><br>');
-                            } else {
-                                if (!newString.match(/[\D]/)) {
+                            for (var newString in results['new']) {
+                                if (newString && newString.match(/[\D]/)) {
                                     var paths = [];
                                     var tooltipMsg = '';
 
-                                    ignoredCount++;
+                                    newCount++;
                                     for (var path in results['new'][newString]) {
                                         paths.push(results['new'][newString][path]);
                                     }
                                     for (var path in paths) {
                                         tooltipMsg += paths[path] + '<br>';
                                     }
-                                    $('.notCorrectStrings').append('<span data-rel="tooltip" data-original-title=\'' + tooltipMsg + '\' data-paths=\'' + JSON.stringify(paths) + '\'>' + newString + '</span><br>');
+                                    $('.newStrings').append('<span data-rel="tooltip" data-original-title=\'' + tooltipMsg + '\' data-paths=\'' + JSON.stringify(paths) + '\'>' + newString + '</span><br>');
+                                } else {
+                                    if (!newString.match(/[\D]/)) {
+                                        var paths = [];
+                                        var tooltipMsg = '';
+
+                                        ignoredCount++;
+                                        for (var path in results['new'][newString]) {
+                                            paths.push(results['new'][newString][path]);
+                                        }
+                                        for (var path in paths) {
+                                            tooltipMsg += paths[path] + '<br>';
+                                        }
+                                        $('.notCorrectStrings').append('<span data-rel="tooltip" data-original-title=\'' + tooltipMsg + '\' data-paths=\'' + JSON.stringify(paths) + '\'>' + newString + '</span><br>');
+                                    }
                                 }
                             }
-                        }
 
-                        for (var obsoleteString in results['old']) {
-                            if (obsoleteString && obsoleteString != '0') {
-                                var paths = [];
-                                var tooltipMsg = '';
+                            for (var obsoleteString in results['old']) {
+                                if (obsoleteString && obsoleteString != '0') {
+                                    var paths = [];
+                                    var tooltipMsg = '';
 
-                                oldCount++;
-                                for (var path in results['old'][obsoleteString]['links']) {
-                                    paths.push(results['old'][obsoleteString]['links'][path]);
+                                    oldCount++;
+                                    for (var path in results['old'][obsoleteString]['links']) {
+                                        paths.push(results['old'][obsoleteString]['links'][path]);
+                                    }
+                                    for (var path in paths) {
+                                        tooltipMsg += paths[path] + '<br>';
+                                    }
+
+                                    $('.obsoleteStrings').append('<span data-rel="tooltip" data-original-title=\'' + tooltipMsg + '\' data-paths=\'' + JSON.stringify(paths) + '\'>' + obsoleteString + '</span><br>');
                                 }
-                                for (var path in paths) {
-                                    tooltipMsg += paths[path] + '<br>';
+                            }
+
+
+                            $('.parsedNewStringsCount').html(newCount);
+                            $('.parsedRemoveStringsCount').html(oldCount);
+
+                            if (ignoredCount) {
+                                $('.notCorrectStringsLI').show();
+                                $('.notCorrectStringsCount').html(ignoredCount);
+                            }
+
+                            $('.updateResults span').tooltip({
+                                'delay': {
+                                    show: 300,
+                                    hide: 100
                                 }
+                            });
 
-                                $('.obsoleteStrings').append('<span data-rel="tooltip" data-original-title=\'' + tooltipMsg + '\' data-paths=\'' + JSON.stringify(paths) + '\'>' + obsoleteString + '</span><br>');
-                            }
                         }
-
-
-                        $('.parsedNewStringsCount').html(newCount);
-                        $('.parsedRemoveStringsCount').html(oldCount);
-
-                        if (ignoredCount) {
-                            $('.notCorrectStringsLI').show();
-                            $('.notCorrectStringsCount').html(ignoredCount);
-                        }
-
-                        $('.updateResults span').tooltip({
-                            'delay': {
-                                show: 300,
-                                hide: 100
-                            }
-                        });
-
                     }
                     $('#loading').hide();
 

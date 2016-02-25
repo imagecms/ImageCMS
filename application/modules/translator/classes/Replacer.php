@@ -2,12 +2,17 @@
 
 namespace translator\classes;
 
+use FilesystemIterator;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
+
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /**
  * Replacer - class for replacing russian origin strings to english
  */
-class Replacer {
+class Replacer
+{
 
     /**
      * FileOperator instance
@@ -40,7 +45,7 @@ class Replacer {
     /**
      * Prepare po file translation
      * @param array $po_file - po file array
-     * @param string $isOrigin - is po file locale is origins locale
+     * @param bool|string $isOrigin - is po file locale is origins locale
      * @return array
      */
     private function prepareFile($po_file, $isOrigin = TRUE) {
@@ -81,7 +86,7 @@ class Replacer {
      */
     private function filesChange($origin, $new_origin, $template_name) {
         $dir = './templates/' . $template_name;
-        $baseDir = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($dir));
+        $baseDir = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dir));
         foreach ($baseDir as $file) {
             if ($file->isFile()) {
                 if (in_array($file->getExtension(), FilesParser::$ALLOW_EXTENSIONS) && !strstr($file->getBasename(), 'jsLangs')) {
@@ -158,11 +163,11 @@ class Replacer {
             echo 'Template backup folder - ' . $dest . '<br>';
             echo '<a target="_blanck" href="/translator/restoreTemplate/?source=' . $template_name . '&backup=' . $dest . '">Restore template from backup</a>';
         } else {
-            echo "Success restore.";
+            echo 'Success restore.';
         }
 
         mkdir($dest, 0777);
-        foreach ($iterator = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($source, \RecursiveDirectoryIterator::SKIP_DOTS), \RecursiveIteratorIterator::SELF_FIRST) as $item) {
+        foreach ($iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($source, RecursiveDirectoryIterator::SKIP_DOTS), RecursiveIteratorIterator::SELF_FIRST) as $item) {
             if ($item->isDir()) {
                 mkdir($dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName(), 0777);
                 chmod($dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName(), 0777);
@@ -179,7 +184,7 @@ class Replacer {
      * @param string $dirPath - directory path
      */
     private function removeDir($dirPath) {
-        foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($dirPath, \FilesystemIterator::SKIP_DOTS), \RecursiveIteratorIterator::CHILD_FIRST) as $path) {
+        foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dirPath, FilesystemIterator::SKIP_DOTS), RecursiveIteratorIterator::CHILD_FIRST) as $path) {
             $path->isDir() && !$path->isLink() ? rmdir($path->getPathname()) : unlink($path->getPathname());
         }
         rmdir($dirPath);

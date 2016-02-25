@@ -10,9 +10,18 @@ if (!defined('BASEPATH')) {
 class Cms_base extends CI_Model
 {
 
-    private static $arr;
+    /**
+     * @var array
+     */
+    private static $settings;
+
+    /**
+     * @var array
+     */
+    private static $language;
 
     public function __construct() {
+
         parent::__construct();
     }
 
@@ -20,19 +29,20 @@ class Cms_base extends CI_Model
      * Select main settings
      *
      * @access public
+     * @param string|null $key
      * @return array
      */
-    public function get_settings() {
-        if (self::$arr) {
-            return self::$arr;
+    public function get_settings($key = null) {
+
+        if (self::$settings) {
+            return $key === null ? self::$settings : self::$settings[$key];
         }
 
-        //$this->db->cache_on();         //!!! Відключив через кешування запитів і повернення неправильних даних
         $this->db->where('s_name', 'main');
         $query = $this->db->get('settings', 1);
 
         if ($query and $query->num_rows() == 1) {
-            $arr = $query->row_array();
+            $settings = $query->row_array();
             $lang_arr = get_main_lang();
             $meta = $this->db
                 ->where('lang_ident', $lang_arr['id'])
@@ -40,13 +50,13 @@ class Cms_base extends CI_Model
                 ->get('settings_i18n')
                 ->result_array();
 
-            $arr['site_short_title'] = $meta[0]['short_name'];
-            $arr['site_title'] = $meta[0]['name'];
-            $arr['site_description'] = $meta[0]['description'];
-            $arr['site_keywords'] = $meta[0]['keywords'];
+            $settings['site_short_title'] = $meta[0]['short_name'];
+            $settings['site_title'] = $meta[0]['name'];
+            $settings['site_description'] = $meta[0]['description'];
+            $settings['site_keywords'] = $meta[0]['keywords'];
             $this->db->cache_off();
-            self::$arr = $arr;
-            return $arr;
+            self::$settings = $settings;
+            return $key === null ? $settings : $settings[$key];
         } else {
             show_error($this->db->_error_message());
         }
@@ -56,25 +66,27 @@ class Cms_base extends CI_Model
 
     /**
      * Select site languages
-     *
      * @access public
+     * @param bool $active
      * @return array
      */
     public function get_langs($active = FALSE) {
-        $this->db->cache_on();
 
+        if (self::$language[(int) $active]) {
+            return self::$language[(int) $active];
+        }
         if ($active) {
             $this->db->where('active', 1);
         }
+
         $query = $this->db->get('languages');
 
         if ($query) {
             $query = $query->result_array();
+            self::$language[(int) $active] = $query;
         } else {
             show_error($this->db->_error_message());
         }
-
-        $this->db->cache_off();
 
         return $query;
     }
@@ -83,6 +95,7 @@ class Cms_base extends CI_Model
      * Load modules
      */
     public function get_modules() {
+
         $this->db->cache_on();
         $query = $this->db
             ->select('id, name, identif, autoload, enabled')
@@ -93,7 +106,12 @@ class Cms_base extends CI_Model
         return $query;
     }
 
+    /**
+     * @param int $cat_id
+     * @return bool|object
+     */
     public function get_category_pages($cat_id) {
+
         $this->db->cache_on();
         $this->db->where('category', $cat_id);
         $this->db->where('post_status', 'publish');
@@ -113,7 +131,12 @@ class Cms_base extends CI_Model
         }
     }
 
+    /**
+     * @param bool|int $page_id
+     * @return bool|object
+     */
     public function get_page_by_id($page_id = FALSE) {
+
         if ($page_id != FALSE) {
             $this->db->cache_on();
             $this->db->where('post_status', 'publish');
@@ -133,7 +156,12 @@ class Cms_base extends CI_Model
         return FALSE;
     }
 
+    /**
+     * @param bool|int $page_id
+     * @return bool|object
+     */
     public function get_page($page_id = FALSE) {
+
         return $this->get_page_by_id($page_id);
     }
 
@@ -144,6 +172,7 @@ class Cms_base extends CI_Model
      * @return array
      */
     public function get_categories() {
+
         $this->db->order_by('position', 'ASC');
         $query = $this->db->get('category');
 
@@ -164,6 +193,10 @@ class Cms_base extends CI_Model
         return FALSE;
     }
 
+    /**
+     * @param int $id
+     * @return bool
+     */
     public function get_category_by_id($id) {
 
         $query = $this->db
@@ -180,7 +213,12 @@ class Cms_base extends CI_Model
         return FALSE;
     }
 
+    /**
+     * @param int $id
+     * @return string
+     */
     public function get_category_full_path($id) {
+
         $cats = $this->get_category_by_id($id);
         $url = $cats['url'];
 
@@ -193,7 +231,11 @@ class Cms_base extends CI_Model
         return $url;
     }
 
+    /**
+     * @return array
+     */
     public function getCategoriesPagesCounts() {
+
         // getting counts
         $result = $this->db
             ->select(['category.id', 'category.parent_id', 'count(content.id) as pages_count'])

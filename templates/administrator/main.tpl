@@ -131,42 +131,6 @@
                 </div>
             </div>
         {/if}
-        {if !SHOP_INSTALLED}
-            <div class="imagecms-top-fixed-header{if $_COOKIE['condPromoToolbar'] == '1' || $_COOKIE['condPromoToolbar'] == NULL} imagecms-active{/if}">
-                <div class="imagecms-inside">
-                    <div class="container">
-                        <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '1' || $_COOKIE['condPromoToolbar'] == NULL}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '0');
-                                $('.imagecms-top-fixed-header').removeClass('imagecms-active');
-                                $(this).hide().next().show();
-                                $(window).scroll();">
-                            <span class="imagecms-toggle-close-text imagecms-bar-close-text"><span style="font-size: 14px;">↑</span> {lang('Hide', 'admin')}</span>
-                        </button>
-                        <button type="button" class="imagecms-close" {if $_COOKIE['condPromoToolbar'] == '0'}style="display: block;"{/if} onclick="setCookie('condPromoToolbar', '1');
-                                $('.imagecms-top-fixed-header').addClass('imagecms-active');
-                                $(this).hide().prev().show();
-                                $(window).scroll();">
-                            <span class="imagecms-toggle-close-text imagecms-bar-show-text"><span style="font-size: 14px;">↓</span> {lang('Show', 'admin')}</span>
-                        </button>
-                        <div class="imagecms-buy-license">
-                            <a href="http://www.imagecms.net/download/corporate" target="_blank" onclick="_gaq.push(['_trackEvent', 'demo-admin', '/download/corporate']);">
-                                <span class="imagecms-text-el">Скачать бесплатно</span>
-                            </a>
-                        </div>
-                        <ul class="imagecms-list">
-                            <li>
-                                <a href="http://www.imagecms.net/free-cms-corporate" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demo-admin', '/free-cms-corporate']);">Обзор продукта</a>
-                            </li>
-                            <li>
-                                <a href="http://www.imagecms.net/corporate-bazovye-vozmozhnosti" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demo-admin', '/corporate-bazovye-vozmozhnosti']);">Базовые возможности</a>
-                            </li>
-                            <li>
-                                <a href="http://www.imagecms.net/blog" target="_blank" class="imagecms-ref" onclick="_gaq.push(['_trackEvent', 'demo-admin', '/blog']);">Блог</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        {/if}
         <div class="main_body">
             <div id="fixPage"></div>
             <!-- Here be notifications -->

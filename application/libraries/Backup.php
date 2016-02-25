@@ -16,7 +16,7 @@ class Backup
      *
      * @var Backup
      */
-    protected static $instanse;
+    protected static $instance;
 
     /**
      * Backup directory
@@ -75,8 +75,8 @@ class Backup
      * @return Backup
      */
     public static function create() {
-        (null !== self::$instanse) OR self::$instanse = new self();
-        return self::$instanse;
+        (null !== self::$instance) OR self::$instance = new self();
+        return self::$instance;
     }
 
     /**
@@ -206,7 +206,7 @@ class Backup
         // start deleting if overload more then max size
         if ($size > $maxSize) {
             $deleteSize = $size - $maxSize;
-            $deletEdOnSize = 0;
+            $deleteEdOnSize = 0;
             $filesCount = 0;
             do {
                 $fileToDelete = $this->getOldestFileToDelete();
@@ -217,11 +217,11 @@ class Backup
                     break;
                 }
                 $filesCount++;
-                $deletEdOnSize += $fileToDelete['size'];
+                $deleteEdOnSize += $fileToDelete['size'];
                 unlink($this->directory . "/" . $fileToDelete['filename']);
-            } while ($deletEdOnSize < $deleteSize);
+            } while ($deleteEdOnSize < $deleteSize);
 
-            return ['count' => $filesCount, 'size' => $deletEdOnSize];
+            return ['count' => $filesCount, 'size' => $deleteEdOnSize];
         }
         return FALSE;
     }

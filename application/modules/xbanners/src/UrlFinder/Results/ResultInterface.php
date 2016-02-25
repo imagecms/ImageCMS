@@ -1,8 +1,9 @@
 <?php
 
-namespace Banners\UrlFinder\Results;
+namespace xbanners\src\UrlFinder\Results;
 
-interface ResultInterface {
+interface ResultInterface
+{
 
     public function __construct($groupName);
 

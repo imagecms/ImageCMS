@@ -112,7 +112,7 @@
                                                     <img class="img-polaroid" src="{site_url($logo)}"
                                                          alt="{lang('Click to select the image', 'admin')}"/>
                                                 {else:}
-                                                    <img class="img-polaroid"
+                                                    <img class="img-polaroid siteinfo_is_empty"
                                                          src="{$BASE_URL}templates/administrator/images/select-picture.png"
                                                          alt="{lang('Click to select the image', 'admin')}"/>
                                                 {/if}
@@ -145,7 +145,7 @@
                                                         <img class="img-polaroid" src="{site_url($favicon)}"
                                                              alt="{lang('Click to select the image', 'admin')}"/>
                                                     {else:}
-                                                        <img class="img-polaroid"
+                                                        <img class="img-polaroid siteinfo_is_empty"
                                                              src="{$BASE_URL}templates/administrator/images/select-picture.png"
                                                              alt="{lang('Click to select the image', 'admin')}"/>
                                                     {/if}

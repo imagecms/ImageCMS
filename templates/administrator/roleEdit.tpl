@@ -29,7 +29,7 @@
                                 <div class="control-group m-t_10">
                                     <label class="control-label" for="Name">{lang('Title', 'admin')}:<span class="must" ">*</span></label>
                                     <div class="controls">
-                                        <input type="text" name="alt_name" required="required" class="required" id="alt_name" value="{echo $model->alt_name}" />
+                                        <input type="text" name="alt_name" required="required" class="required" id="alt_name" value="{echo htmlspecialchars($model->alt_name)}" />
                                     </div>
                                 </div>
 

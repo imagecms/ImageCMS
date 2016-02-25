@@ -4,6 +4,12 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
+/**
+ * @property Filter filter
+ * @property Lib_category lib_category
+ * @property Lib_admin lib_admin
+ * @property Search search
+ */
 class Admin_search extends BaseAdminController
 {
 
@@ -19,9 +25,7 @@ class Admin_search extends BaseAdminController
         $this->load->library('lib_admin');
         $this->lib_admin->init_settings();
 
-        $_POST['search_text'] = urldecode($_POST['search_text']);
-
-        //cp_check_perm('cp_page_search');
+        $_POST['search_text'] = urldecode($this->input->post('search_text'));
     }
 
     public function index($hash = '', $offset = 0) {
@@ -59,9 +63,6 @@ class Admin_search extends BaseAdminController
                     'id =' => (int) $searchText,
                     'backticks' => 'both',
                 ],
-                //                  array(
-                //                          'lang_alias ' => '0',
-                //                      ),
                 [
                     'prev_text' => $searchText,
                     'operator' => 'LIKE',
@@ -92,7 +93,7 @@ class Admin_search extends BaseAdminController
                 $config['base_url'] = site_url('admin/admin_search/index/' . $result['hash'] . '/');
                 $config['total_rows'] = $result['total_rows'];
                 $config['per_page'] = $this->search->row_count;
-                $config['suffix'] = '?' . http_build_query($_GET, '', "&");
+                $config['suffix'] = '?' . http_build_query($this->input->get(), '', '&');
                 $config['uri_segment'] = 5;
 
                 $config['first_link'] = lang('First link', 'admin');
@@ -227,14 +228,14 @@ class Admin_search extends BaseAdminController
         $this->load->module('filter');
         $this->load->module('forms');
 
-        $form = $this->filter->create_filter_form($_POST['use_cfcm_group']);
+        $form = $this->filter->create_filter_form($this->input->post('use_cfcm_group'));
 
         if ($form) {
             if ($form->isValid()) {
                 $data = $form->getData();
-                $data['category'] = $_POST['category'];
-                $data['search_text'] = $_POST['search_text'];
-                $data['use_cfcm_group'] = $_POST['use_cfcm_group'];
+                $data['category'] = $this->input->post('category');
+                $data['search_text'] = $this->input->post('search_text');
+                $data['use_cfcm_group'] = $this->input->post('use_cfcm_group');
 
                 $url = http_build_query($data, '', '/');
                 updateDiv('page', site_url('admin/admin_search/do_advanced_search/' . $url));
@@ -242,7 +243,7 @@ class Admin_search extends BaseAdminController
                 showMessage($form->_validation_errors(), false, 'r');
             }
         } else {
-            $data = $_POST;
+            $data = $this->input->post();
             $url = http_build_query($data, '', '/');
             updateDiv('page', site_url('admin/admin_search/do_advanced_search/' . $url));
         }
@@ -274,6 +275,12 @@ class Admin_search extends BaseAdminController
         echo '<input type="hidden" value="' . $group_id . '" name="use_cfcm_group" />';
     }
 
+    /**
+     * @param int $ids
+     * @param array $search_data
+     * @param bool $count
+     * @return object|string
+     */
     public function _filter_pages($ids, $search_data, $count = false) {
 
         $where = [

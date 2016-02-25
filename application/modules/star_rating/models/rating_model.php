@@ -1,16 +1,13 @@
 <?php
 
+use CMSFactory\ModuleSettings;
+
 class Rating_model extends CI_Model
 {
 
-    public function __construct() {
-
-        parent::__construct();
-    }
-
     /**
      * Get rating rom database
-     * @param id $id_g
+     * @param int $id_g
      * @param string $type_g
      * @return array
      */
@@ -31,7 +28,7 @@ class Rating_model extends CI_Model
 
     /**
      * Insert rating in database if rate at first
-     * @param type $data
+     * @param array $data
      */
     public function insert_rating($data) {
         $this->db->insert('rating', $data);
@@ -39,16 +36,16 @@ class Rating_model extends CI_Model
 
     /**
      * Get module settings
-     * @return type
+     * @return array
      */
     public function get_settings() {
-        $res = $this->db->select('settings')->where('name', 'star_rating')->get('components')->row_array();
+        $res = ModuleSettings::ofModule('star_rating')->get();
         return $res;
     }
 
     /**
      * Update module settings
-     * @param type $settings
+     * @param array $settings
      */
     public function update_settings($settings) {
         $this->db->set('settings', $settings);

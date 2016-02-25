@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database name="Shop" defaultIdMethod="native"  package="xbanners" namespace="xbanners\models">
+
+    <!--table banners-->
+    <table name="banners">
+        <vendor type="mysql">
+            <parameter name="Engine" value="MYISAM"/>
+            <parameter name="Charset" value="utf8"/>
+        </vendor>
+        <column name="id" size="11" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="place" type="varchar" size="255" required="true"/>
+
+        <column name="width" type="integer" size="5" required="true"/>
+        <column name="height" type="integer" size="5" required="true"/>
+        <column name="effects" type="longvarchar"/>
+        <column name="page_type" type="varchar" size="255" required="true"/>
+        <!--i18n columns-->
+        <column name="name" type="varchar" size="255"/>
+        <!--/i18n columns-->
+        <behavior name="i18n">
+            <parameter name="i18n_columns" value="name"/>
+            <parameter name="default_locale" value="ru"/>
+        </behavior>
+    </table>
+    <!--/table banners-->
+
+    <!--table banners_i18n-->
+    <table name="banners_i18n">
+        <vendor type="mysql">
+            <parameter name="Engine" value="MYISAM"/>
+            <parameter name="Charset" value="utf8"/>
+        </vendor>
+    </table>
+    <!--/table banners_i18n-->
+
+    <!--table banners_images-->
+    <table name="banner_image">
+        <vendor type="mysql">
+            <parameter name="Engine" value="MYISAM"/>
+            <parameter name="Charset" value="utf8"/>
+        </vendor>
+        <column name="id" size="11" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="banner_id" size="11" type="integer" required="true"/>
+        <column name="target" type="integer" size="2"/>
+        <column name="url" type="varchar" size="255"/>
+        <column name="allowed_page" type="integer" size="11"/>
+        <column name="position" size="11" type="integer"/>
+        <!--Only display this banner between specific dates
+        From Day  Month  Year  Through Day  Month  Year -->
+        <column name="active_from" size="11" type="integer"/>
+        <column name="active_to" size="11" type="integer"/>
+        <column name="active" size="1" type="integer"/>
+        <column name="permanent" size="1" type="integer"/>
+        <!--i18n columns-->
+        <column name="clicks" size="20" type="integer"/>
+        <column name="src" type="varchar" size="255"/>
+        <column name="name" type="varchar" size="255"/>
+        <column name="description" type="longvarchar" required="false"/>
+        <!--/i18n columns-->
+        <behavior name="i18n">
+            <parameter name="i18n_columns" value="src, name, clicks, description"/>
+            <parameter name="default_locale" value="ru"/>
+        </behavior>
+        <foreign-key foreignTable="banners" onDelete="CASCADE" onUpdate="CASCADE">
+            <reference local="banner_id" foreign="id"/>
+        </foreign-key>
+    </table>
+    <!--/table banners_images-->
+
+    <!--table banners_image_i18n-->
+    <table name="banner_image_i18n">
+        <vendor type="mysql">
+            <parameter name="Engine" value="MYISAM"/>
+            <parameter name="Charset" value="utf8"/>
+        </vendor>
+    </table>
+    <!--/table banners_image_i18n-->
+
+</database>

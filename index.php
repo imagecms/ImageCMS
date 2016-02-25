@@ -141,7 +141,7 @@ $application_folder = 'application';
 // Set the current directory correctly for CLI requests
 
 if (defined('STDIN')) {
-    chdir(dirname(__FILE__));
+    chdir(__DIR__);
 }
 
 if (realpath($system_path) !== FALSE) {
@@ -167,6 +167,9 @@ define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
 // The PHP file extension
 // this global constant is deprecated.
 define('EXT', '.php');
+
+// this global constant is deprecated.
+define('DS', '/');
 
 // Path to the system folder
 define('BASEPATH', str_replace("\\", "/", $system_path));
@@ -197,16 +200,23 @@ if (is_dir($application_folder)) {
     define('APPPATH', BASEPATH . $application_folder . '/');
 }
 
-define('IMAGECMS_NUMBER', '4.8.1 Corporate');
+define('IMAGECMS_NUMBER', '4.9 Corporate');
 
 define('IMAGECMS_VERSION', '20150715');
 
 define('IMAGECMS_BUILD_ID', '${buildid}');
 
-define('BUILD_ID', '481.1153');
+define('BUILD_ID', '49.1289');
 
 define('IMAGECMS_PUBLIC_ID', '51035d2a96a227c54d0dea3ff415ced6d39266c3');
 
+
+/*
+ * --------------------------------------------------------------------
+ * COMPOSER AUTOLOADER
+ * --------------------------------------------------------------------
+ */
+require_once "application/third_party/autoload.php";
 
 /*
  * --------------------------------------------------------------------

@@ -18,7 +18,7 @@
 							</div>
 							{/if}
 							{if $item->getUrl()}
-							<a class="b-banner-main__button g-btn_l" {$loc_url_target} href="{echo $item->getUrl()}">{tlang('Read more')}</a>
+							<a class="b-banner-main__button g-btn_l" {$loc_url_target} {if $item->getStatisticUrl()}href="{echo $item->getStatisticUrl()}"{/if}">{tlang('Read more')}</a>
 							{/if}
 						</div>
 					</div>

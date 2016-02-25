@@ -1,10 +1,11 @@
 <?php
 
-namespace Banners\UrlFinder\Finders;
+namespace xbanners\src\UrlFinder\Finders;
 
-use Banners\UrlFinder\Results\Result;
+use xbanners\src\UrlFinder\Results\Result;
 
-final class PageCategories extends BaseFinder {
+final class PageCategories extends BaseFinder
+{
 
     protected $table = 'category';
 
@@ -33,16 +34,21 @@ final class PageCategories extends BaseFinder {
      */
     public function getResultsFor($word, $language, $limit = 10) {
         $languageId = $this->correctLocale($language);
-        /* @var $db \CI_DB_active_record */
         $db = \CI::$APP->db;
+        if ($language == \MY_Controller::defaultLocale()) {
+            $this->nameColumn = 'category.name';
+        } else {
+            $db->join($this->translations, "{$this->table}.id = {$this->translations}.alias");
+            $db->where($this->langColumn, $languageId);
+        };
+        /* @var $db \CI_DB_active_record */
         $results = $db->select("$this->nameColumn, $this->urlColumn, $this->parentId")
             ->from($this->table)
-            ->join($this->translations, "{$this->table}.id = {$this->translations}.alias")
             ->like($this->nameColumn, $word)
-            ->where($this->langColumn, $languageId)
             ->limit($limit)
             ->get()
             ->result_array();
+
         $result = new Result($this->getGroupName());
         foreach ($results as $oneResult) {
             if ($oneResult['parent_id'] > 0) {

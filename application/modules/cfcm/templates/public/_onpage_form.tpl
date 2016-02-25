@@ -18,8 +18,9 @@
                                 </label>
                                 <div class="controls">
 
-                                    {if $f.info.enable_image_browser == 1}
-                                        <div class="group_icon pull-right">   
+
+                                    {if $f['info']['enable_image_browser'] == "on" || $f['info']['enable_image_browser'] == 1}
+                                        <div class="group_icon pull-right">
                                                 <a href="{echo site_url('application/third_party/filemanager/dialog.php?type=1&field_id=' . $f.name);}" class="btn iframe-btn" type="button">
                                                     <i class="icon-picture"></i>
                                                     {lang("Select an image", 'cfcm')}
@@ -27,7 +28,7 @@
                                         </div>
                                     {/if}
 
-                                    {if $f.info.enable_file_browser == 1}
+                                    {if $f['info']['enable_file_browser'] == 'on' || $f['info']['enable_file_browser'] == 1 }
                                         <div class="group_icon pull-right">
                                                 <a href="{echo site_url('application/third_party/filemanager/dialog.php?type=2&field_id=' . $f.name);}" class="btn  iframe-btn" type="button">
                                                     <i class="icon-picture"></i>

@@ -202,7 +202,7 @@ class Admin extends BaseAdminController
 
         $this->load->module('comments')->_recount_comments($comment['item_id'], $comment['module']);
 
-        $this->lib_admin->log(lang("Comment successfully updated", "comments"));
+        $this->lib_admin->log(lang('Comment successfully updated', 'comments'));
         showMessage(lang('Comment successfully updated', 'comments'), lang('Message', 'comments'));
 
         if ($this->input->post('action') == 'exit') {
@@ -226,7 +226,7 @@ class Admin extends BaseAdminController
          */
 
         $ids = is_array($this->input->post('id')) ? implode(', ', $this->input->post('id')) : $this->input->post('id');
-        $this->lib_admin->log(lang("Comments status was updated", "comments") . '. Ids: ' . $ids);
+        $this->lib_admin->log(lang('Comments status was updated', 'comments') . '. Ids: ' . $ids);
         showMessage(lang('Status updated', 'comments'), lang('Message', 'comments'));
         $this->load->helper('url');
         $url = '/' . str_replace(base_url(), '', $this->input->server('HTTP_REFERER'));
@@ -252,7 +252,7 @@ class Admin extends BaseAdminController
             $this->load->module('comments')->_recount_comments($comment['item_id'], $comment['module']);
 
             $id = is_array($id) ? implode(', ', $id) : $id;
-            $this->lib_admin->log(lang("Comment(s) deleted", "comments") . '. Ids: ' . $id);
+            $this->lib_admin->log(lang('Comment(s) deleted', 'comments') . '. Ids: ' . $id);
             showMessage(lang('Comment(s) deleted', 'comments'));
 
             $this->load->helper('url');
@@ -310,15 +310,21 @@ class Admin extends BaseAdminController
         ];
 
         $this->comments->save_settings($data);
-        $this->lib_admin->log(lang("Comments settings was edited", "comments"));
+        $this->lib_admin->log(lang('Comments settings was edited', 'comments'));
         showMessage(lang('Changes saved', 'comments'));
-        pjax('/admin/components/cp/comments');
+
+        if ($this->input->post('action') == 'toedit') {
+            pjax('/admin/components/cp/comments/show_settings');
+        } else {
+            pjax('/admin/components/cp/comments');
+        }
+
     }
 
     // Template functions
 
     private function display_tpl($file) {
-        $file = realpath(dirname(__FILE__)) . '/templates/' . $file;
+        $file = realpath(__DIR__) . '/templates/' . $file;
         $this->template->show('file:' . $file);
     }
 

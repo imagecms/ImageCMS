@@ -20,6 +20,7 @@ if (!function_exists('widget')) {
      */
     function widget($name = FALSE, $cache = FALSE) {
         $ci = &get_instance();
+        $widget = [];
 
         $query = $ci->db->limit(1)->get_where('widgets', ['name' => $name]);
 

@@ -2,19 +2,24 @@
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
-use Banners\Managers\ImagesManager;
-use Banners\Models\BannerImage;
-use Banners\Models\BannerImageI18n;
-use Banners\Models\BannerImageQuery;
-use Banners\Models\BannerImageI18nQuery;
-use Banners\Managers\BannerPageTypesManager;
-use Banners\UrlFinder\DelegationFinder;
+use Propel\Runtime\Exception\PropelException;
+use xbanners\src\Installers\BannersModuleManager;
+use xbanners\src\Managers\ImagesManager;
+use CMSFactory\assetManager;
+use xbanners\models\BannersQuery;
+use xbanners\models\BannerImage;
+use xbanners\models\BannerImageI18n;
+use xbanners\models\BannerImageQuery;
+use xbanners\models\BannerImageI18nQuery;
+use xbanners\src\Managers\BannerPageTypesManager;
+use xbanners\src\UrlFinder\DelegationFinder;
 
 /**
  * Image CMS
  * Sample Module Admin
  */
-class Admin extends BaseAdminController {
+class Admin extends BaseAdminController
+{
 
     public function __construct() {
         parent::__construct();
@@ -23,11 +28,10 @@ class Admin extends BaseAdminController {
         $this->load->library('form_validation');
         $this->load->helper('xbanners');
 
-        ClassLoader::getInstance()->registerNamespacedPath(__DIR__ . '/models/propel/generated-classes')->registerAlias(__DIR__ . '/src', 'Banners');
     }
 
     public function deleteA() {
-        \Banners\Models\BannersQuery::create()->deleteAll();
+        BannersQuery::create()->deleteAll();
     }
 
     /**
@@ -36,9 +40,9 @@ class Admin extends BaseAdminController {
     public function index() {
 
         ImagesManager::getInstance()->setInactiveOnTimeOut();
-        $banners = \Banners\Models\BannersQuery::create()->joinWithI18n(MY_Controller::defaultLocale())->find();
+        $banners = BannersQuery::create()->joinWithI18n(MY_Controller::defaultLocale())->find();
 
-        \CMSFactory\assetManager::create()
+        assetManager::create()
             ->setData(
                 [
                     'banners' => $banners,
@@ -54,12 +58,12 @@ class Admin extends BaseAdminController {
      * Edit banner page
      * @param integer $id - banner id
      * @param string $locale - locale name
-     * @throws \Propel\Runtime\Exception\PropelException
+     * @throws PropelException
      */
     public function edit_banner($id, $locale = NULL) {
-        $locale = $locale ? $locale : MY_Controller::defaultLocale();
+        $locale = $locale ?: MY_Controller::defaultLocale();
 
-        $banner = \Banners\Models\BannersQuery::create()
+        $banner = BannersQuery::create()
             ->findPk($id);
 
         if (!$banner) {
@@ -86,11 +90,11 @@ class Admin extends BaseAdminController {
                 showMessage(lang('Banner successfully update', 'xbanners'), lang('Success', 'admin'));
             }
         } else {
-            $bannerImages = \Banners\Managers\ImagesManager::getInstance()->getImagesByPageType($banner, $locale);
+            $bannerImages = ImagesManager::getInstance()->getImagesByPageType($banner, $locale);
             $allowedPagesOptions = BannerPageTypesManager::getInstance()->getView($banner->getPageType(), $locale);
             $options = $banner->getEffects();
 
-            \CMSFactory\assetManager::create()->setData(
+            assetManager::create()->setData(
                 [
                     'banner' => $banner,
                     'allowedPagesOptions' => $allowedPagesOptions,
@@ -198,7 +202,7 @@ class Admin extends BaseAdminController {
      * @param integer $bannerId - banner id
      * @param integer $imageId - image id
      * @param string $locale - locale name
-     * @throws \Propel\Runtime\Exception\PropelException
+     * @throws PropelException
      */
     public function deleteSlide($bannerId, $imageId, $locale) {
         if ($imageId && $locale) {
@@ -242,7 +246,7 @@ class Admin extends BaseAdminController {
     }
 
     public function updateBannersPlaces() {
-        $man = new \Banners\Installers\BannersModuleManager();
+        $man = new BannersModuleManager();
         try {
             $man->updateTemplatePlaces();
             showMessage(lang('Successfully saved', 'xbanners'), lang('Success', 'admin'));

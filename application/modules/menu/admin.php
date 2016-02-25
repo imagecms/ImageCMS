@@ -1,11 +1,15 @@
 <?php
 
+use CMSFactory\assetManager;
+
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
 /**
  * Image CMS
+ * @param lib_category Lib_category
+ * @param menu Menu
  */
 class Admin extends BaseAdminController
 {
@@ -52,6 +56,9 @@ class Admin extends BaseAdminController
      */
     private $default_lang_id;
 
+    /**
+     * Admin constructor.
+     */
     public function __construct() {
 
         parent::__construct();
@@ -76,9 +83,9 @@ class Admin extends BaseAdminController
     public function index() {
 
         $root_menus = $this->db->get('menus')->result_array();
-        \CMSFactory\assetManager::create()
-                ->setData('menus', $root_menus)
-                ->renderAdmin('menu_list');
+        assetManager::create()
+            ->setData('menus', $root_menus)
+            ->renderAdmin('menu_list');
     }
 
     public function chose_hidden() {
@@ -86,7 +93,7 @@ class Admin extends BaseAdminController
         $status = $this->input->post('status') === 'false' ? 0 : 1;
         $id = $this->input->post('id');
         $this->db->query("update menus_data set hidden = '$status' where id = '$id'");
-        $this->lib_admin->log(lang("Status menus item was changed", "menu") . '. Id: ' . $id);
+        $this->lib_admin->log(lang('Status menus item was changed', 'menu') . '. Id: ' . $id);
     }
 
     /**
@@ -120,6 +127,7 @@ class Admin extends BaseAdminController
 
     /**
      * Display create_item.tpl
+     * @param null|int $id
      */
     public function create_item($id = null) {
 
@@ -136,10 +144,10 @@ class Admin extends BaseAdminController
             $pages = $this->get_pages(0, 0, 'controller');
             //$query = $this->db->get('shop_rbac_roles');
             $locale = MY_Controller::getCurrentLocale();
-            $this->db->select("shop_rbac_roles.*", FALSE);
-            $this->db->select("shop_rbac_roles_i18n.alt_name", FALSE);
+            $this->db->select('shop_rbac_roles.*', FALSE);
+            $this->db->select('shop_rbac_roles_i18n.alt_name', FALSE);
             $this->db->where('locale', $locale);
-            $this->db->join("shop_rbac_roles_i18n", "shop_rbac_roles_i18n.id = shop_rbac_roles.id");
+            $this->db->join('shop_rbac_roles_i18n', 'shop_rbac_roles_i18n.id = shop_rbac_roles.id');
             $role = $this->db->get('shop_rbac_roles')->result_array();
 
             $this->template->assign('roles', $role);
@@ -279,6 +287,8 @@ class Admin extends BaseAdminController
 
     /**
      * Display template to select/edit menu item
+     * @param int $id
+     * @param string $type
      */
     public function display_selector($id, $type = 'page') {
 
@@ -371,7 +381,7 @@ class Admin extends BaseAdminController
      *
      * @param $id integer
      * @access public
-     * @return arra
+     * @return array
      */
     public function get_name_by_id($id) {
 
@@ -462,7 +472,6 @@ class Admin extends BaseAdminController
 
     /**
      * ajax
-     * @param type $title
      */
     public function loadPathImg() {
 
@@ -474,6 +483,7 @@ class Admin extends BaseAdminController
 
     /**
      * Display edit item window
+     * @param int $item_id
      */
     public function edit_item($item_id) {
 
@@ -490,9 +500,11 @@ class Admin extends BaseAdminController
                     ->where('menus_data.id', $item_id)
                     ->get('menus_data')->row_array();
             }
+
             $parents = $this->db
                 ->select('menus_data.*, menu_translate.title')
                 ->where('menu_id', $item['menu_id'])
+                ->where('menus_data.id <>', $item['id'])
                 ->join('menu_translate', 'menus_data.id = menu_translate.item_id')
                 ->where('lang_id', $this->default_lang_id)
                 ->get('menus_data')->result_array();
@@ -503,10 +515,10 @@ class Admin extends BaseAdminController
             $cats = $this->lib_category->build();
             $pages = $this->get_pages($category_id, 0, 'controller');
             $locale = MY_Controller::getCurrentLocale();
-            $this->db->select("shop_rbac_roles.*", FALSE);
-            $this->db->select("shop_rbac_roles_i18n.alt_name", FALSE);
+            $this->db->select('shop_rbac_roles.*', FALSE);
+            $this->db->select('shop_rbac_roles_i18n.alt_name', FALSE);
             $this->db->where('locale', $locale);
-            $this->db->join("shop_rbac_roles_i18n", "shop_rbac_roles_i18n.id = shop_rbac_roles.id");
+            $this->db->join('shop_rbac_roles_i18n', 'shop_rbac_roles_i18n.id = shop_rbac_roles.id');
             $role = $this->db->get('shop_rbac_roles')->result_array();
 
             //$query = $this->db->get('shop_rbac_roles');
@@ -676,6 +688,10 @@ class Admin extends BaseAdminController
         }
     }
 
+    /**
+     * @param array $items
+     * @return string
+     */
     private function _printRecursiveMenuItems($items) {
 
         $html = '';
@@ -684,8 +700,7 @@ class Admin extends BaseAdminController
             if ($submenus = $this->menu->_get_sub_menus($item['id'])) {
                 $item['hasKids'] = true;
             }
-            //            $html .= '<div class="item">';
-            //            $html .= $item['title'];
+
             $html .= '<div>';
 
             $this->template->assign('item', $item);
@@ -702,6 +717,9 @@ class Admin extends BaseAdminController
         return $html;
     }
 
+    /**
+     * @param array $array
+     */
     public function process_root($array) {
 
         foreach ($array as $item) {
@@ -718,7 +736,7 @@ class Admin extends BaseAdminController
                 $this->process_root($sub_menus);
             }
         }
-        $this->padding -= 1;
+        --$this->padding;
     }
 
     /**
@@ -726,6 +744,7 @@ class Admin extends BaseAdminController
      * Set positions
      */
     public function insert_menu_item() {
+
         $roles = $this->input->post('roles');
         if ($roles == NULL) {
             $roles = '';
@@ -854,7 +873,7 @@ class Admin extends BaseAdminController
             $k = $k + 1;
             $this->menu_model->set_item_position((int) $v, (int) $k);
         }
-        showMessage(lang("Positions updated", 'menu'));
+        showMessage(lang('Positions updated', 'menu'));
     }
 
     /**
@@ -866,18 +885,18 @@ class Admin extends BaseAdminController
 
         //cp_check_perm('menu_create');
         if ($this->input->post('menu_name') == NULL) {
-            showMessage(lang("Name field sieve", 'menu'), '', 'r');
+            showMessage(lang('Name field sieve', 'menu'), '', 'r');
 
             exit;
         }
         $this->check_menu_data();
 
         $val = $this->form_validation;
-        $val->set_rules('menu_name', lang("Name", 'menu'), 'required|min_length[2]|max_length[25]|alpha_dash');
-        $val->set_rules('main_title', lang("Name", 'menu'), 'required|max_length[100]');
+        $val->set_rules('menu_name', lang('Name', 'menu'), 'required|min_length[2]|max_length[25]|alpha_dash');
+        $val->set_rules('main_title', lang('Name', 'menu'), 'required|max_length[100]');
         //        $val->set_rules('menu_tpl', lang("Template folder", 'menu'), 'required|max_length[255]');
-        $val->set_rules('menu_desc', lang("Description", 'menu'), 'max_length[500]');
-        $val->set_rules('menu_expand_level', lang("Nesting level", 'menu'), 'numeric|max_length[2]');
+        $val->set_rules('menu_desc', lang('Description', 'menu'), 'max_length[500]');
+        $val->set_rules('menu_expand_level', lang('Nesting level', 'menu'), 'numeric|max_length[2]');
 
         if ($this->form_validation->run($this) == FALSE) {
             showMessage(validation_errors(), '', 'r');
@@ -893,8 +912,8 @@ class Admin extends BaseAdminController
 
             $menu_id = $this->menu_model->insert_menu($data);
 
-            $this->lib_admin->log(lang("Menu was created", "menu") . '. Id: ' . $menu_id);
-            showMessage(lang("Menu created", 'menu'));
+            $this->lib_admin->log(lang('Menu was created', 'menu') . '. Id: ' . $menu_id);
+            showMessage(lang('Menu created', 'menu'));
             if ($this->input->post('action') == 'tomain') {
                 pjax('/admin/components/cp/menu');
             } else {
@@ -903,6 +922,9 @@ class Admin extends BaseAdminController
         }
     }
 
+    /**
+     * @param int $id
+     */
     public function edit_menu($id) {
 
         //cp_check_perm('menu_edit');
@@ -911,14 +933,17 @@ class Admin extends BaseAdminController
         $this->display_tpl('edit_menu');
     }
 
+    /**
+     * @param int $id
+     */
     public function update_menu($id) {
 
         $val = $this->form_validation;
-        $val->set_rules('menu_name', lang("Name", 'menu'), 'required|min_length[2]|max_length[25]|alpha_dash');
-        $val->set_rules('main_title', lang("Name", 'menu'), 'required|max_length[100]');
+        $val->set_rules('menu_name', lang('Name', 'menu'), 'required|min_length[2]|max_length[25]|alpha_dash');
+        $val->set_rules('main_title', lang('Name', 'menu'), 'required|max_length[100]');
         //        $val->set_rules('menu_tpl', lang("Template folder", 'menu'), 'required|max_length[5000]');
-        $val->set_rules('menu_desc', lang("Description", 'menu'), 'max_length[500]');
-        $val->set_rules('menu_expand_level', lang("Nesting level", 'menu'), 'numeric|max_length[2]');
+        $val->set_rules('menu_desc', lang('Description', 'menu'), 'max_length[500]');
+        $val->set_rules('menu_expand_level', lang('Nesting level', 'menu'), 'numeric|max_length[2]');
 
         if ($this->form_validation->run($this) == FALSE) {
             showMessage(validation_errors(), '', 'r');
@@ -935,7 +960,7 @@ class Admin extends BaseAdminController
 
             $this->db->where('id', $id);
             $this->db->update('menus', $data);
-            $this->lib_admin->log(lang("Menu was edited", "menu") . '. Id: ' . $id);
+            $this->lib_admin->log(lang('Menu was edited', 'menu') . '. Id: ' . $id);
             showMessage(lang('Changes saved', 'menu'));
             if ($this->input->post('action') == 'tomain') {
                 pjax('/admin/components/cp/menu');
@@ -946,16 +971,19 @@ class Admin extends BaseAdminController
     public function check_menu_data() {
 
         if ($this->input->post('menu_name') == NULL) {
-            showMessage(lang("The field is required to be filled in"), false, 'r');
+            showMessage(lang('The field is required to be filled in'), false, 'r');
             exit;
         }
 
         if ($this->db->get_where('menus', ['name' => $this->input->post('menu_name')])->num_rows() > 0) {
-            showMessage(lang("The menu with the same name has been created yet"), false, 'r');
+            showMessage(lang('The menu with the same name has been created yet'), false, 'r');
             exit;
         }
     }
 
+    /**
+     * @param null|string $name
+     */
     public function delete_menu($name = null) {
 
         if ($name == null) {
@@ -976,8 +1004,8 @@ class Admin extends BaseAdminController
                 //delete main menu
                 $this->menu_model->delete_menu($n);
             }
-            $this->lib_admin->log(lang("Menu removed", "menu"));
-            showMessage(lang("Menu removed", 'menu'));
+            $this->lib_admin->log(lang('Menu removed', 'menu'));
+            showMessage(lang('Menu removed', 'menu'));
             pjax('/admin/components/cp/menu');
         } else {
             $this->menu->prepare_menu_array($name);
@@ -994,18 +1022,22 @@ class Admin extends BaseAdminController
             }
             //delete main menu
             $this->menu_model->delete_menu($name);
-            $this->lib_admin->log(lang("Menu removed", "menu") . '. Id: ' . $menu['id']);
-            showMessage(lang("Menu removed", 'menu'));
+            $this->lib_admin->log(lang('Menu removed', 'menu') . '. Id: ' . $menu['id']);
+            showMessage(lang('Menu removed', 'menu'));
             pjax('/admin/components/cp/menu');
         }
     }
 
     public function create_tpl() {
-        $this->display_tpl('create_menu');
+
+        assetManager::create()->renderAdmin('create_menu');
     }
 
     /**
      * Get pages and return in JSON
+     * @param int $cat_id
+     * @param int $cur_page
+     * @param null $referer
      */
     public function get_pages($cat_id = 0, $cur_page = 0, $referer = null) {
 
@@ -1031,7 +1063,6 @@ class Admin extends BaseAdminController
         if ($pages->num_rows() > 0) {
             $pages = $pages->result_array();
             $data['pages_list'] = $pages;
-            //            $total = $this->db->get_where('content', array('lang_alias' => 0, 'category' => $cat_id))->num_rows();
             $total = $this->db->get_where('content', ['lang' => $this->default_lang_id, 'category' => $cat_id])->num_rows();
 
             $data['links'] = ceil($total / $per_page);
@@ -1052,6 +1083,7 @@ class Admin extends BaseAdminController
 
     /**
      * Search pages
+     * @param int $cur_page
      */
     public function search_pages($cur_page = 0) {
 
@@ -1152,16 +1184,19 @@ class Admin extends BaseAdminController
      */
     public function display_tpl($file) {
 
-        $file = realpath(dirname(__FILE__)) . '/templates/' . $file;
+        $file = realpath(__DIR__) . '/templates/' . $file;
         $this->template->show('file:' . $file);
     }
 
     public function fetch_tpl($file) {
 
-        $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';
+        $file = realpath(__DIR__) . '/templates/' . $file . '.tpl';
         return $this->template->fetch('file:' . $file);
     }
 
+    /**
+     * @param int $id
+     */
     public function translate_window($id) {
 
         $langs = $this->_get_langs();
@@ -1181,14 +1216,18 @@ class Admin extends BaseAdminController
         $menu_id = $this->db->where('id', $id)->get('menus_data')->row()->menu_id;
         $menu_url = $this->db->where('id', $menu_id)->get('menus')->row()->name;
 
-        $this->template->assign('langs', $langs);
-        $this->template->assign('id', $id);
-        $this->template->assign('menu_name', $menu_url);
-
-        $this->display_tpl('translate_item');
+        assetManager::create()
+            ->setData('langs', $langs)
+            ->setData('id', $id)
+            ->setData('menu_name', $menu_url)
+            ->renderAdmin('translate_item');
     }
 
+    /**
+     * @param int $id
+     */
     public function translate_item($id) {
+
         $langs = $this->_get_langs();
 
         $this->db->where('item_id', $id);
@@ -1206,7 +1245,7 @@ class Admin extends BaseAdminController
                 $this->db->insert('menu_translate', $data);
             }
         }
-        showMessage(lang("Changes saved", 'menu'));
+        showMessage(lang('Changes saved', 'menu'));
     }
 
     /**
@@ -1224,16 +1263,6 @@ class Admin extends BaseAdminController
         }
     }
 
-    public function render($viewName, array $data = [], $return = false) {
-
-        if (!empty($data)) {
-            $this->template->add_array($data);
-        }
-
-        $mod = getModContDirName('menu');
-        $this->template->show("file:application/$mod/menu/templates/$viewName");
-    }
-
     public function change_hidden() {
 
         $id = $this->input->post('id');
@@ -1248,14 +1277,18 @@ class Admin extends BaseAdminController
         $this->menu_model->update_item($id, $data);
     }
 
+    /**
+     * @param int $parent_id
+     * @param int $menu_id
+     */
     public function get_children_items($parent_id, $menu_id) {
 
         $result = $this->db->select('id, title')->where('parent_id', $parent_id)->where('menu_id', $menu_id)->get('menus_data')->result_array();
-        $html .= "<option value='0'> " . lang('No', 'menu') . " </option>";
-        $html .= "<option value='first'> " . lang('First', 'menu') . " </option>";
+        $html .= "<option value='0'> " . lang('No', 'menu') . ' </option>';
+        $html .= "<option value='first'> " . lang('First', 'menu') . ' </option>';
         if (count($result) > 0) {
             foreach ($result as $item) {
-                $html .= "<option value='" . $item['id'] . "'> - " . $item['title'] . "</option>";
+                $html .= "<option value='" . $item['id'] . "'> - " . $item['title'] . '</option>';
             }
         }
         echo $html;

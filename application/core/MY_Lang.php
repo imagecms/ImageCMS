@@ -22,25 +22,28 @@ class MY_Lang extends MX_Lang
 
     public $gettext_domain;
 
+    /**
+     * @var
+     */
     public static $LANG;
 
-    protected static $DOMAINS_TRANSLATORS = [];
+    /**
+     * @var string
+     */
+    public static $settings;
 
     /**
-     * The constructor initialize the library
-     *
-     * @return MY_Lang
+     * @var array
      */
-    public function __construct() {
-        parent::__construct();
-    }
+    protected static $DOMAINS_TRANSLATORS = [];
 
     /**
      * @return string
      */
     private function getAdminLocale() {
+
         $locale = CI::$APP->config->item('language');
-        return $locale ? $locale : 'ru_RU';
+        return $locale ?: 'ru_RU';
     }
 
     /**
@@ -49,8 +52,8 @@ class MY_Lang extends MX_Lang
      * @return array
      */
     private function getFrontLangCode($language) {
-        $languages = CI::$APP->db->select('lang_name, identif, locale')->get('languages');
-        $languages = $languages ? $languages->result_array() : [];
+
+        $languages = CI::$APP->cms_base->get_langs();
 
         foreach ($languages as $lang) {
             if (in_array($language, $lang)) {
@@ -62,6 +65,7 @@ class MY_Lang extends MX_Lang
     }
 
     private function _init() {
+
         if (!strstr(CI::$APP->input->server('REQUEST_URI'), 'install')) {
             if (null == CI::$APP->db) {
                 $error = &load_class('Exceptions', 'core');
@@ -69,11 +73,10 @@ class MY_Lang extends MX_Lang
                 exit;
             }
 
-            $sett = CI::$APP->db->where('s_name', 'main')->get('settings')->row();
+            $lang_sel = CI::$APP->cms_base->get_settings('lang_sel');
 
-            if ($sett->lang_sel) {
-                CI::$APP->config->set_item('language', str_replace('_lang', '', $sett->lang_sel));
-            }
+            CI::$APP->config->set_item('language', str_replace('_lang', '', $lang_sel));
+
             $this->gettext_language = CI::$APP->config->item('language');
         } else {
             if (!CI::$APP->session->userdata('language')) {
@@ -84,13 +87,12 @@ class MY_Lang extends MX_Lang
 
     /**
      * Load a language file
-     *
-     * @access    public
-     * @param    mixed    the name of the language file to be loaded. Can be an array
-     * @param    string    the language (english, etc.)
-     * @return    mixed
+     * @access public
+     * @param string $module the name of the language file to be loaded. Can be an array
+     * @return mixed
      */
     public function load($module = 'main') {
+
         $this->_init();
 
         if (strstr(uri_string(), 'admin')) {
@@ -126,12 +128,13 @@ class MY_Lang extends MX_Lang
     }
 
     /**
-     * @param String $directory
-     * @param String $domain
-     * @param String $locale
+     * @param string $directory
+     * @param string $domain
+     * @param string $locale
      * @return mixed|void
      */
     private function addDomain($directory, $domain, $locale) {
+
         if (!setlocale(LC_ALL, $locale . '.utf8', $locale . '.utf-8', $locale . '.UTF8', $locale . '.UTF-8', $locale . '.utf-8', $locale . '.UTF-8', $locale)) {
             // Set current locale
             setlocale(LC_ALL, '');
@@ -145,20 +148,21 @@ class MY_Lang extends MX_Lang
     /**
      * Fetch a single line of text from the language array
      *
-     * @access    public
-     * @param    string $origin the language line
-     * @return    string
+     * @access public
+     * @param string $origin the language line
+     * @return string
      */
     public function line($origin = '') {
+
         if (self::isNewPHP()) {
             return $this->getTranslationForNewPHP($origin);
         }
 
-        $origin = str_replace('$', "\\$", $origin);
+        $origin = str_replace('$', '\\$', $origin);
         $translation = gettext($origin);
         $origin = str_replace('\$', '$', $translation);
 
-        return $translation ? $translation : $origin;
+        return $translation ?: $origin;
     }
 
     /**
@@ -166,6 +170,7 @@ class MY_Lang extends MX_Lang
      * @param string $lang
      */
     public static function setLang($lang) {
+
         self::$LANG = $lang;
     }
 
@@ -174,6 +179,7 @@ class MY_Lang extends MX_Lang
      * @param $domain - mo-file identifier
      */
     public static function switchDomain($domain) {
+
         textdomain(getMoFileName($domain));
     }
 
@@ -183,7 +189,8 @@ class MY_Lang extends MX_Lang
      * @param string $domain - mo-file identifier
      * @return string
      */
-    public static function getTranslation($origin, $domain = "main") {
+    public static function getTranslation($origin, $domain = 'main') {
+
         return self::isNewPHP() ? self::getTranslationForNewPHP($origin, $domain) : self::getTranslationForOldPHP($origin, $domain);
     }
 
@@ -192,6 +199,7 @@ class MY_Lang extends MX_Lang
      * @return bool
      */
     protected static function isNewPHP() {
+
         return version_compare(PHP_VERSION, '5.5.0') >= 0;
     }
 
@@ -201,7 +209,8 @@ class MY_Lang extends MX_Lang
      * @param string $domain
      * @return string
      */
-    protected static function getTranslationForOldPHP($origin, $domain = "main") {
+    protected static function getTranslationForOldPHP($origin, $domain = 'main') {
+
         $domain = (new PoFileManager())->prepareDomain($domain);
 
         self::switchDomain($domain);
@@ -219,7 +228,8 @@ class MY_Lang extends MX_Lang
      * @param string $domain
      * @return string
      */
-    protected static function getTranslationForNewPHP($origin, $domain = "main") {
+    protected static function getTranslationForNewPHP($origin, $domain = 'main') {
+
         if (self::$DOMAINS_TRANSLATORS[$domain]) {
             $translator = self::$DOMAINS_TRANSLATORS[$domain];
         } else {

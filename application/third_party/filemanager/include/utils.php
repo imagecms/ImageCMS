@@ -143,6 +143,7 @@ function duplicate_file($old_path, $name)
 	}
 }
 
+
 /**
  * Rename file
  *
@@ -206,19 +207,20 @@ function rename_folder($old_path, $name, $transliteration)
  */
 function create_img($imgfile, $imgthumb, $newwidth, $newheight = null, $option = "crop")
 {
-	$timeLimit = ini_get('max_execution_time');
-	set_time_limit(30);
 	$result = false;
-	if (image_check_memory_usage($imgfile, $newwidth, $newheight))
-	{
-		require_once('php_image_magician.php');
-		$magicianObj = new imageLib($imgfile);
-		$magicianObj->resizeImage($newwidth, $newheight, $option);
-		$magicianObj->saveImage($imgthumb, 80);
-		$result = true;
+	if(file_exists($imgfile) || strpos($imgfile,'http')===0){
+		$timeLimit = ini_get('max_execution_time');
+		set_time_limit(30);
+		if (strpos($imgfile,'http')===0 || image_check_memory_usage($imgfile, $newwidth, $newheight))
+		{
+			require_once('php_image_magician.php');
+			$magicianObj = new imageLib($imgfile);
+			$magicianObj->resizeImage($newwidth, $newheight, $option);
+			$magicianObj->saveImage($imgthumb, 80);
+			$result = true;
+		}
+		set_time_limit($timeLimit);
 	}
-	set_time_limit($timeLimit);
-
 	return $result;
 }
 
@@ -249,12 +251,13 @@ function makeSize($size)
  *
  * @return  int
  */
-function foldersize($path)
+function folder_info($path)
 {
 	$total_size = 0;
 	$files = scandir($path);
 	$cleanPath = rtrim($path, '/') . '/';
-
+	$files_count = 0;
+	$folders_count = 0;
 	foreach ($files as $t)
 	{
 		if ($t != "." && $t != "..")
@@ -262,18 +265,20 @@ function foldersize($path)
 			$currentFile = $cleanPath . $t;
 			if (is_dir($currentFile))
 			{
-				$size = foldersize($currentFile);
+				list($size,$tmp,$tmp1) = folder_info($currentFile);
 				$total_size += $size;
+				$folders_count ++;
 			}
 			else
 			{
 				$size = filesize($currentFile);
 				$total_size += $size;
+				$files_count++;
 			}
 		}
 	}
 
-	return $total_size;
+	return array($total_size,$files_count,$folders_count);
 }
 
 /**
@@ -564,7 +569,10 @@ function image_check_memory_usage($img, $max_breedte, $max_hoogte)
 		$image_properties = getimagesize($img);
 		$image_width = $image_properties[0];
 		$image_height = $image_properties[1];
-		$image_bits = $image_properties['bits'];
+		if (isset($image_properties['bits'])) 
+			$image_bits = $image_properties['bits']; 
+		else 
+			$image_bits = 0;
 		$image_memory_usage = $K64 + ($image_width * $image_height * ($image_bits) * 2);
 		$thumb_memory_usage = $K64 + ($max_breedte * $max_hoogte * ($image_bits) * 2);
 		$memory_needed = intval($memory_usage + $image_memory_usage + $thumb_memory_usage);

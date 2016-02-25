@@ -13,7 +13,8 @@ if (!defined('BASEPATH')) {
  *      file: libraries/Xml.php
  */
 
-class Lib_xml {
+class Lib_xml
+{
 
     public $CI;
 
@@ -28,10 +29,11 @@ class Lib_xml {
     /**
      * @param string $file
      * Load an file for parsing
+     * @return bool
      */
     public function load($file) {
-        $bad = array('|//+|', '|\.\./|');
-        $good = array('/', '');
+        $bad = ['|//+|', '|\.\./|'];
+        $good = ['/', ''];
         $file = preg_replace($bad, $good, $file) . '.xml';
 
         if (!file_exists($file)) {
@@ -74,10 +76,11 @@ class Lib_xml {
     /**
      * @param DOMDocument $node
      * Helper function to flatten an XML document into an array
+     * @return array
      */
     private function flatten_node($node) {
 
-        $array = array();
+        $array = [];
 
         foreach ($node->childNodes as $child) {
             if ($child->hasChildNodes()) {

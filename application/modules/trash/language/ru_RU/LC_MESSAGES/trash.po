@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-29 04:16+0300\n"
-"PO-Revision-Date: 2015-09-29 04:16+0300\n"
+"POT-Creation-Date: 2016-02-24 03:36+0200\n"
+"PO-Revision-Date: 2016-02-24 03:36+0200\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -35,6 +35,57 @@ msgstr "Редирект был отредактирован"
 msgid "Redirect deleted"
 msgstr "Редирект удален"
 
+#: application/modules/trash/assets/admin/main.tpl:39
+msgid "search by redirect"
+msgstr "поиск по редиректу"
+
+#: application/modules/trash/templates/admin/create_trash_list.tpl:6
+msgid "New redirect list creation"
+msgstr "Создание списка редиректов"
+
+#: application/modules/trash/assets/admin/main.tpl:21
+#: application/modules/trash/assets/admin/main.tpl:58
+msgid "Redirect"
+msgstr "Перенаправление"
+
+#: application/modules/trash/assets/admin/main.tpl:29
+msgid "Create redirect list"
+msgstr "Создать список редиректов"
+
+#: application/modules/trash/assets/admin/main.tpl:6
+msgid "Redirect links removing"
+msgstr "Удаление ссылки редиректа"
+
+#: application/modules/trash/assets/admin/main.tpl:28
+msgid "Create redirect"
+msgstr "Создать редирект"
+
+#: application/modules/trash/assets/admin/main.tpl:56
+#: application/modules/trash/templates/admin/create_trash_list.tpl:42
+msgid "Redirect type"
+msgstr "Тип редиректа"
+
+#: application/modules/trash/assets/admin/main.tpl:57
+msgid "Redirect kind"
+msgstr "Вид редиректа"
+
+#: application/modules/trash/templates/admin/create_trash.tpl:6
+msgid "New redirect creation"
+msgstr "Создание нового редиректа"
+
+#: application/modules/trash/templates/admin/create_trash.tpl:102
+#: application/modules/trash/templates/admin/edit_trash.tpl:104
+msgid "Redirect Url"
+msgstr "URL редиректа"
+
+#: application/modules/trash/module_info.php:8
+msgid "Module of redirects"
+msgstr "Модуль редиректов"
+
+#: application/modules/trash/module_info.php:9
+msgid "Module for creating redirects 301, 302"
+msgstr "Модуль для создания редиректов 301, 302"
+
 #: application/modules/trash/admin.php:207
 #: application/modules/trash/admin.php:209
 msgid "Trash was created"
@@ -43,10 +94,6 @@ msgstr "Редирект создан"
 #: application/modules/trash/assets/admin/main.tpl:38
 msgid "search by old URL"
 msgstr "поиск по старому URL"
-
-#: application/modules/trash/assets/admin/main.tpl:39
-msgid "search by redirect"
-msgstr "поиск по редиректу"
 
 #: application/modules/trash/admin.php:312
 msgid "Successfully saved"
@@ -77,18 +124,9 @@ msgstr "Создать"
 msgid "Create and exit"
 msgstr "Создать и выйти"
 
-#: application/modules/trash/templates/admin/create_trash_list.tpl:6
-msgid "New redirect list creation"
-msgstr "Создание списка редиректов"
-
 #: application/modules/trash/admin.php:113
 msgid "Error"
 msgstr "Ошибка"
-
-#: application/modules/trash/assets/admin/main.tpl:21
-#: application/modules/trash/assets/admin/main.tpl:58
-msgid "Redirect"
-msgstr "Список редиректов"
 
 #: application/modules/trash/templates/admin/edit_trash.tpl:19
 msgid "Link edit"
@@ -122,10 +160,6 @@ msgstr "Старый адрес не указан"
 msgid "Old URL"
 msgstr "Старый URL"
 
-#: application/modules/trash/assets/admin/main.tpl:29
-msgid "Create redirect list"
-msgstr "Создать список редиректов"
-
 #: application/modules/trash/templates/admin/create_trash_list.tpl:33
 #: application/modules/trash/templates/admin/create_trash_list.tpl:58
 msgid "Example"
@@ -139,30 +173,9 @@ msgstr "Новый URL-адрес"
 msgid "New URL is not specified"
 msgstr "Новый URL-адрес не указан"
 
-#: application/modules/trash/assets/admin/main.tpl:6
-msgid "Redirect links removing"
-msgstr "Удаление ссылки редиректа"
-
 #: application/modules/trash/assets/admin/main.tpl:9
 msgid "Remove links?"
 msgstr "Удалить ссылки?"
-
-#: application/modules/trash/assets/admin/main.tpl:28
-msgid "Create redirect"
-msgstr "Создать редирект"
-
-#: application/modules/trash/assets/admin/main.tpl:56
-#: application/modules/trash/templates/admin/create_trash_list.tpl:42
-msgid "Redirect type"
-msgstr "Тип редиректа"
-
-#: application/modules/trash/assets/admin/main.tpl:57
-msgid "Redirect kind"
-msgstr "Вид редиректа"
-
-#: application/modules/trash/templates/admin/create_trash.tpl:6
-msgid "New redirect creation"
-msgstr "Создание нового редиректа"
 
 #: application/modules/trash/templates/admin/create_trash.tpl:23
 msgid "New trash data"
@@ -174,11 +187,6 @@ msgstr "Новые данные"
 #: application/modules/trash/templates/admin/edit_trash.tpl:86
 msgid "Type"
 msgstr "Тип"
-
-#: application/modules/trash/templates/admin/create_trash.tpl:102
-#: application/modules/trash/templates/admin/edit_trash.tpl:104
-msgid "Redirect Url"
-msgstr "URL редиректа"
 
 #: application/modules/trash/templates/admin/create_trash.tpl:121
 #: application/modules/trash/templates/admin/edit_trash.tpl:122
@@ -205,11 +213,3 @@ msgstr "Сохранить"
 #: application/modules/trash/templates/admin/edit_trash.tpl:11
 msgid "Save and exit"
 msgstr "Сохранить и выйти"
-
-#: application/modules/trash/module_info.php:8
-msgid "Module of redirects"
-msgstr "Модуль редиректов"
-
-#: application/modules/trash/module_info.php:9
-msgid "Module for creating redirects 301, 302"
-msgstr "Модуль для создания редиректов 301, 302"

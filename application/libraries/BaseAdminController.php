@@ -1,8 +1,15 @@
 <?php
 
-class BaseAdminController extends MY_Controller {
+/**
+ * @property Lib_admin lib_admin
+ */
+class BaseAdminController extends MY_Controller
+{
 
-    public static $currentLocale = null;
+    /**
+     * @var string
+     */
+    public static $currentLocale;
 
     public function __construct() {
         parent::__construct();
@@ -42,7 +49,6 @@ class BaseAdminController extends MY_Controller {
                 if (class_exists($moduleName)) {
                     if (method_exists($moduleName, 'adminAutoload')) {
                         $moduleName::adminAutoload();
-                        // self::$detect_load_admin[$moduleName] = 1;
                     }
                 }
             }

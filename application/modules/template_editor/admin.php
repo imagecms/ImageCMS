@@ -9,7 +9,8 @@ if (!defined('BASEPATH')) {
  *
  * Template Editor Module
  */
-class Admin extends BaseAdminController {
+class Admin extends BaseAdminController
+{
 
     public function __construct() {
         parent::__construct();
@@ -39,7 +40,7 @@ class Admin extends BaseAdminController {
      * Display template file
      */
     private function display_tpl($file = '') {
-        $file = realpath(dirname(__FILE__)) . '/templates/admin/' . $file;
+        $file = realpath(__DIR__) . '/templates/admin/' . $file;
         $this->template->show('file:' . $file);
     }
 
@@ -47,7 +48,7 @@ class Admin extends BaseAdminController {
      * Fetch template file
      */
     private function fetch_tpl($file = '') {
-        $file = realpath(dirname(__FILE__)) . '/templates/admin/' . $file . '.tpl';
+        $file = realpath(__DIR__) . '/templates/admin/' . $file . '.tpl';
         return $this->template->fetch('file:' . $file);
     }
 

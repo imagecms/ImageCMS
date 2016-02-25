@@ -1,10 +1,11 @@
 <?php
 
-namespace Banners\UrlFinder;
+namespace xbanners\src\UrlFinder;
 
-use Banners\UrlFinder\Results\Result;
+use xbanners\src\UrlFinder\Results\Result;
 
-class ResultsCollection {
+class ResultsCollection
+{
 
     /**
      * @var null

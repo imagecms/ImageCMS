@@ -1,6 +1,7 @@
 <?php
 
-use translator\classes\PoFileManager as PoFileManager;
+use translator\classes\PoFileManager;
+use translator\classes\Replacer;
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
@@ -8,7 +9,8 @@ use translator\classes\PoFileManager as PoFileManager;
  * Image CMS
  * Translator Module
  */
-class Translator extends MY_Controller {
+class Translator extends MY_Controller
+{
 
     public function __construct() {
         parent::__construct();
@@ -21,9 +23,10 @@ class Translator extends MY_Controller {
         $this->core->error_404();
     }
 
+    /**
+     * @param string $templateName
+     */
     public function replaceKeys($templateName) {
-        //        $templateName = 'newLevel2';
-        //        var_dumps_exit($templateName);
         $templatesPath = ' ./templates / ' . $templateName;
 
         $fromLocale = 'en_US';
@@ -84,7 +87,7 @@ class Translator extends MY_Controller {
         }
 
         $pofilePathRu = str_replace('en_US', 'ru_RU', $pofilePath);
-        file_put_contents($pofilePathRu, implode("", $poFile));
+        file_put_contents($pofilePathRu, implode('', $poFile));
 
         foreach ($poFile as $key => $line) {
             if (strstr($line, 'msgstr') && $key > 5) {
@@ -92,7 +95,7 @@ class Translator extends MY_Controller {
             }
         }
 
-        file_put_contents($pofilePath, implode("", $poFile));
+        file_put_contents($pofilePath, implode('', $poFile));
         $poFileManager = new PoFileManager();
 
         $poFileManager->convertToMO($pofilePath);
@@ -139,6 +142,9 @@ class Translator extends MY_Controller {
         }
     }
 
+    /**
+     * @return string
+     */
     public function translate() {
         $domain = $this->input->post('domain');
         $translation = $this->input->post('translation');
@@ -166,6 +172,9 @@ class Translator extends MY_Controller {
         }
     }
 
+    /**
+     * @return string
+     */
     public function getSettings() {
         $settings = getSettings();
 
@@ -211,7 +220,7 @@ class Translator extends MY_Controller {
      */
     public function replaceLangs($template_name) {
         if ($template_name) {
-            translator\classes\Replacer::getInstatce()->run($template_name);
+            Replacer::getInstatce()->run($template_name);
         }
     }
 
@@ -223,13 +232,13 @@ class Translator extends MY_Controller {
         $backup = $this->input->get('backup');
 
         if ($source) {
-            translator\classes\Replacer::getInstatce()->restoreTemplate($source, $backup);
+            Replacer::getInstatce()->restoreTemplate($source, $backup);
         }
     }
 
     public function copyLangs() {
 
-        $it = new RecursiveDirectoryIterator("/var/www/_image.loc/");
+        $it = new RecursiveDirectoryIterator('/var/www/_image.loc/');
 
         foreach (new RecursiveIteratorIterator($it) as $file) {
             $file = (string) $file;
@@ -248,9 +257,7 @@ class Translator extends MY_Controller {
                     $path = $path . '/LC_MESSAGES';
                     mkdir($path);
                     chmod($path, 0777);
-                    // var_dumps_exit($path);
 
-                    //var_dumps($path);
                     unlink($copyTo);
                     copy($file, $copyTo);
                     chmod($copyTo, 0777);
@@ -278,5 +285,3 @@ class Translator extends MY_Controller {
     }
 
 }
-
-/* End of file sample_module.php */

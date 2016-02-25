@@ -45,7 +45,7 @@ class Sys_info extends BaseAdminController
         if ($this->db->dbdriver == 'mysql') {
             $this->load->helper('number');
 
-            $sql = "SHOW TABLE STATUS FROM `" . $this->db->database . "`";
+            $sql = 'SHOW TABLE STATUS FROM `' . $this->db->database . '`';
             $query = $this->db->query($sql)->result_array();
 
             // Get total DB size
@@ -56,7 +56,7 @@ class Sys_info extends BaseAdminController
                 $total_rows += $v['Rows'];
             }
 
-            $sql = "SELECT VERSION()";
+            $sql = 'SELECT VERSION()';
             $query = $this->db->query($sql);
 
             $version = $query->row_array();

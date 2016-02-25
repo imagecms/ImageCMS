@@ -73,7 +73,7 @@
                                             <tr data-id="{$module.id}" class="module_row">
                                                 <td class="t-a_c">
                                                     <span class="frame_label">
-                                                        {if $module.name != 'shop' && $module.name != 'cmsemail'}
+                                                        {if !in_array($module.name, $frozen_delete) }
                                                             <span class="niceCheck b_n">
                                                                 <input type="checkbox" name="ids" value="{$module.name}"/>
                                                             </span>
@@ -115,9 +115,11 @@
 
                                                 </td>
                                                 <td class="t-a_c">
+                                                    {if !in_array($module.name, $frozen_autoload) }
                                                     <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{if !$module.autoload}{lang('switch off','admin')}{else:}{lang('switch on','admin')}{/if}"  data-off="{lang('switch off','admin')}">
                                                         <span class="prod-on_off autoload_ch {if !$module.autoload}disable_tovar{/if}" data-mid="{$module.id}"></span>
                                                     </div>
+                                                    {/if}
                                                 </td>
                                                 <td class="t-a_c">
                                                     <div class="frame_prod-on_off" data-rel="tooltip" data-placement="top" data-original-title="{if !$module.enabled}{lang('switch off','admin')}{else:}{lang('switch on','admin')}{/if}"  data-off="{lang('switch off','admin')}">

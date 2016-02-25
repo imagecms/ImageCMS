@@ -8,7 +8,7 @@
             <span class="help-inline"></span>
 
             <div class="d-i_b">
-                <a href="/admin/pages/GetPagesByCategory" class="t-d_n m-r_15"><span class="f-s_14">←</span>
+                <a href="/admin/pages/GetPagesByCategory/all/{$pagesPagination}" class="t-d_n m-r_15"><span class="f-s_14">←</span>
                     <span class="t-d_u">{lang("Back","admin")}</span></a>
                 <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-action="edit" data-form="#edit_page_form" data-submit>
                     <i class="icon-ok icon-white"></i>{lang("Save","admin")}</button>
@@ -265,8 +265,10 @@
                     </tbody>
                 </table>
             </div>
-            <div class="tab-pane" id="addfields_article">
-                {echo $this->CI->load->module('cfcm/admin')->form_from_category_group($category['id'], $id, 'page')}
+            <div class="tab-pane" id="addfields_article" >
+                <div id="cfcm_fields_block">
+                {echo $this->CI->load->module('cfcm/admin')->form_from_category_group($category['id']?:0, $id, 'page')}
+                </div>
             </div>
             <div class="tab-pane" id="setings_article">
                 <table class="table  table-bordered table-hover table-condensed content_big_td">
@@ -394,7 +396,3 @@
         <a href="#" class="btn btn-primary" onclick="pagesAdmin.quickAddCategory()">{lang('Create','admin')}</a>
     </div>
 </div>
-<script>
-    if (window.hasOwnProperty('pagesAdmin'))
-        pagesAdmin.initialize();
-</script>

@@ -44,10 +44,14 @@ class Docs extends BaseAdminController
     }
 
     private function exportData() {
-        $result = $this->db->select(['title', 'url', 'full_text'])
-            ->where(['lang' => '35', 'category' => 92, 'post_status' => 'publish'])
-            ->order_by("position")
+        $dsn = 'mysqli://root:root@localhost/premmerce';
+        $db = $this->load->database($dsn,true);
+
+        $result = $db->select(['title', 'url', 'full_text'])
+            ->where(['lang' => '3', 'category' => 92, 'post_status' => 'publish'])
+            ->order_by('position')
             ->get('content')->result_array();
+//        dd($result);
 
         $jsonsDataArray = [];
         foreach ($result as $pageFromDatabase) {
@@ -55,10 +59,12 @@ class Docs extends BaseAdminController
 
             $pageTitle = '<div class="title-default-main"><div class="title">'
                     . $pageFromDatabase['title'] . '</div></div>';
+
+            $pageFromDatabase['full_text'] = str_replace('/academy/start-s-nyla/filling-store', '/admin/docs/show', $pageFromDatabase['full_text']);
             $cont = $pageTitle . $pageFromDatabase['full_text'];
             $path = $this->docsPath . $pageFromDatabase['url'] . '.html';
 
-            echo $path . "\n";
+            echo nl2br($path . "\n");
             $pageFromDatabase = file_put_contents($path, $cont);
         }
         file_put_contents($this->jsonListFile, json_encode($jsonsDataArray));

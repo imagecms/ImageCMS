@@ -4,6 +4,10 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
+/**
+ * Class Dashboard
+ * @property Cms_admin cms_admin
+ */
 class Dashboard extends BaseAdminController
 {
 
@@ -15,20 +19,18 @@ class Dashboard extends BaseAdminController
 
         $this->load->library('lib_admin');
         $this->lib_admin->init_settings();
-
-        // $this->lang->load_gettext('ru','utf-8', 'default', 'application/language/admiin');
-        //$this->lang->load_gettext('en','utf-8', 'messages', 'application/language');
-        //$this->lang->load_gettext('en','utf-8', 'newdomen', 'application/language');
     }
 
     public function index() {
+        $language = $this->cms_admin->get_default_lang();
+
         // get latest pages
         $this->db->limit(5);
         $this->db->order_by('created', 'DESC');
         $this->db->where('lang_alias', 0);
         $latest = $this->db->get('content')->result_array();
 
-        // get recenly updated pages
+        // get recently updated pages
         $this->db->limit(5);
         $this->db->order_by('updated', 'DESC');
         $this->db->where('updated >', 0);
@@ -49,7 +51,7 @@ class Dashboard extends BaseAdminController
         }
 
         // total pages
-        $this->db->where('post_status', 'publish');
+        $this->db->where('post_status', 'publish')->where('lang', $language['id']);
         $this->db->from('content');
         $total_pages = $this->db->count_all_results();
 

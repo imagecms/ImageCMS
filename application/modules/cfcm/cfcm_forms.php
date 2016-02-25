@@ -35,11 +35,11 @@ class Cfcm_forms extends MY_Controller
                 'validation' => 'max_length[255]',
                 'class' => 'required'
             ],
-            'in_search' => [
-                'type' => 'checkbox',
-                'label' => lang('Participate in search', 'cfcm'),
-                'initial' => '1',
-            ],
+            //            'in_search' => [
+            //                'type' => 'checkbox',
+            //                'label' => lang('Participate in search', 'cfcm'),
+            //                'initial' => '1',
+            //            ],
             'type' => [
                 'type' => 'select',
                 'label' => lang('Type', 'cfcm') . ':',
@@ -87,9 +87,8 @@ class Cfcm_forms extends MY_Controller
             'initial' => '1',
         ];
         $f['type'] = [
-            'type' => 'select',
-            'label' => lang('Type', 'cfcm') . ':',
-            'initial' => $this->field_types,
+            'type' => 'text',
+            'style' => 'display: none'
         ];
 
         if (in_array($type, ['select', 'checkgroup', 'radiogroup'])) {

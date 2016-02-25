@@ -402,7 +402,7 @@ function init_2() {
                 dataType: 'jsonp',
                 type: 'POST',
                 data: {
-                    "for": '4.8.1 Corporate',
+                    "for": '4.9 Corporate',
                 },
                 url: atob('aHR0cDovL3JlcXVlc3RzLmltYWdlY21zLm5ldC9pbmRleC5waHAvbmV3cy9hcGk')
             });
@@ -903,7 +903,7 @@ function autocomplete() {
                     '<input type="hidden" name="AttachedProductsIds[]" value="' + ui.item.identifier.id + '" class="input-mini"/>' +
                     '</span>&nbsp;' +
                     '<span class="d-i_b v-a_b">' +
-                    '<span class="help-inline d_b">' + langs.name + '</span>' +
+                    '<span class="help-inline d_b">' + lang('Title') + '</span>' +
                     '<input type="text" id="AttachedProducts" value="' + ui.item.label + '" class="input-xxlarge"/>' +
                     '</span>&nbsp;' +
                     '<span class="d-i_b number v-a_b">' +
@@ -918,6 +918,7 @@ function autocomplete() {
 },
 close: function (event, ui) {
     $('#AttachedProducts').val('');
+    validateNumeric('.valueInputN');
 }
 });
 }
@@ -1696,21 +1697,7 @@ $('body').on('click', '.CreateFastT', function () {
 
 });
 
-$('.valueInputN').bind('keyup', function () {
-    var value = $(this).val();
-    var regexp = /[^0-9]/gi;
-    value = value.replace(regexp, '');
-
-        // Can not begin from 0
-        if (parseInt(value) == 0)
-            value = '';
-        $(this).val(value);
-
-        // Percent
-        if (parseInt(value) > 99) {
-            $(this).val(99);
-        }
-    })
+validateNumeric('.valueInputN');
 
 $('body').on('click', '.closeFast', function () {
     var $this = $(this),
@@ -2004,35 +1991,51 @@ $(document).on('pjax:start', function () {
 var Update = {
     processBackup: function () {
         showLoading();
+        var data = 1;
         $.ajax({
             type: "POST",
+            data : data,
             url: '/admin/sys_update/backup',
-            complete: function (res) {
-                hideLoading();
-                showMessage('Резервное копирование', 'Успешно');
-                window.location.reload();
-            }
+            success : (function(data) {
+                if (data){
+                    showMessage(lang('Error'), lang(data) , 'r');
+                    hideLoading();
+                } else {
+                    showMessage(lang('Message'), lang('Backup success create'));
+                    hideLoading();
+                    window.location.reload();
+                }})
         });
     },
     processUpdate: function () {
+        var data = 1;
+        showLoading();
         $.ajax({
             type: "POST",
             url: '/admin/sys_update/do_update',
-            complete: function (res) {
-                $.ajax({
-                    type: "POST",
-                    asunc: false,
-                    url: '/admin/sys_update/getQuerys',
-                    success: function (res) {
-                        var obj = JSON.parse(res);
-                        var portion = (parseInt(obj.length / 100) + 1);
-                        $('#progres').css('width', '0%');
-                        $('.progressDB').fadeIn(600);
-                        Update.restoreDBprocess(0, 0, portion, obj);
+            data : data,
+            success : function(data){
+                if (data){
+                    hideLoading();
+                    showMessage(lang('Error'), lang(data) , 'r');
+                } else {
+                        $.ajax({
+                            type: "POST",
+                            asunc: false,
+                            url: '/admin/sys_update/getQuerys',
+                            success: function (res) {
+                                var obj = JSON.parse(res);
+                                var portion = (parseInt(obj.length / 100) + 1);
+                                $('#progres').css('width', '0%');
+                                $('.progressDB').fadeIn(600);
+                                Update.restoreDBprocess(0, 0, portion, obj);
+                                hideLoading();
+                            }
+                        });
                     }
-                });
+                }
             }
-        });
+        );
     },
     restoreDBprocess: function (i, j, portion, obj) {
         var array = [];
@@ -2057,7 +2060,7 @@ var Update = {
                 } else {
                     $('#progres').css('width', '0%');
                     $('.progressDB').fadeOut(600);
-                    showMessage('Обновление', 'Обновление успешно');
+                    showMessage('Обновление', 'Обновление прошло успешно');
                 }
             }
         });
@@ -2073,9 +2076,9 @@ var Update = {
             success: function (res) {
                 hideLoading();
                 if (res) {
-                    showMessage('Сообщение', 'Успешно воставлено');
-                } else {
-                    showMessage('Ошибка', 'Ошибка востановления. Целевая папка недоступна', 'r');
+                    showMessage(lang('Message'), lang('Succes restored'));
+                } else { 
+                    showMessage(lang('Error'), lang('Error restored. Root directory dont have permissions.'), 'r');
                 }
             }
         });

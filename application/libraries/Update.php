@@ -20,7 +20,7 @@ class Update
      * update server
      * @var string
      */
-    private $US = "http://upd.imagecms.net/";
+    private $US = 'http://upd.imagecms.net/';
 
     /**
      * path to update server
@@ -52,10 +52,6 @@ class Update
      * @var array
      */
     private $distinctFiles = [
-        'product.php',
-        'category.php',
-        'brand.php',
-        'cart.php',
         'md5.txt',
         '.htaccess',
         'config.php'
@@ -80,83 +76,70 @@ class Update
     public $settings;
 
     public function __construct() {
+
         $this->ci = &get_instance();
-        $this->pathUS = $this->US . "application/modules/update/UpdateService.wsdl";
+        $this->pathUS = $this->US . 'application/modules/update/UpdateService.wsdl';
         $this->client = new SoapClient($this->pathUS);
         $this->settings = $this->getSettings();
     }
 
     /**
-     * check for new version
-     * @return array return info about new relise or 0 if version is actual
+     * check new Version
+     * @return mixed
+     * @throws Exception
      */
     public function getStatus() {
-        if (time() >= $this->getSettings('checkTime') + 60 * 10) {
-            $domen = $_SERVER['SERVER_NAME'];
-            $result = $this->client->getStatus($domen, BUILD_ID, IMAGECMS_NUMBER);
 
-            $this->setSettings(["newVersion" => $result]);
-            $this->setSettings(["checkTime" => time()]);
-        } else {
-            $result = $this->getSettings('newVersion');
+        $domen = $this->ci->input->server('SERVER_NAME');
+
+        $result = $this->client->getStatus($domen, BUILD_ID, IMAGECMS_NUMBER);
+
+        if (mb_strlen($result) < 5 and $result == !0) {
+            throw new Exception(lang('Cant get status', 'admin'));
         }
+        $this->setSettings(['newVersion' => $result]);
+        $this->setSettings(['checkTime' => time()]);
+
         return unserialize($result);
     }
 
     /**
-     * getting hash from server
-     * @return array Array of hashsum files new version
+     * getting hash from setting
+     * @return array
+     * @throws Exception
      */
     public function getHashSum() {
-        if (time() >= $this->getSettings('checkTime') + 60 * 10) {
-            $domen = $_SERVER['SERVER_NAME'];
-            $key = $this->getSettings('careKey');
-            $result = $this->client->getHashSum($domen, IMAGECMS_NUMBER, BUILD_ID, $key);
 
-            write_file(BACKUPFOLDER . 'md5.txt', $result);
-            $result = (array) json_decode($result);
+        $domen = $this->ci->input->server('SERVER_NAME');
+        $key = $this->getSettings('careKey');
 
-            $this->setSettings(["checkTime" => time()]);
-        } else {
-            $result = (array) json_decode(read_file(BACKUPFOLDER . 'md5.txt'));
+        $result = $this->client->getHashSum($domen, IMAGECMS_NUMBER, BUILD_ID, $key);
+
+        $error = (array) json_decode($result);
+        if ($error['error']) {
+            throw new Exception($error['error']);
         }
+
+        write_file(BACKUPFOLDER . 'md5.txt', $result);
+        $result = (array) json_decode($result);
+
+        $this->setSettings(['checkTime' => time()]);
 
         return $result;
     }
 
     public function getUpdate() {
-        ini_set("soap.wsdl_cache_enabled", "0");
-        $domain = $_SERVER['SERVER_NAME'];
+
+        ini_set('soap.wsdl_cache_enabled', '0');
+        $domain = $this->ci->input->server('SERVER_NAME');
+
         $href = $this->client->getUpdate($domain, IMAGECMS_NUMBER, $this->settings['careKey']);
+        if (!$href) {
+            throw new Exception(lang('Wrong generate hash code', 'admin'));
+        }
+
         $all_href = $this->US . 'update/takeUpdate/' . $href . '/' . $domain . '/' . IMAGECMS_NUMBER . '/' . BUILD_ID;
         file_put_contents(BACKUPFOLDER . 'updates.zip', file_get_contents($all_href));
-    }
-
-    /**
-     * form XML doc
-     */
-    public function formXml() {
-        $modules = getModulesPaths();
-        $array = [];
-        foreach ($modules as $moduleName => $modulePath) {
-            $ver = read_file($modulePath . "module_info.php");
-            preg_match("/'version'(\s*)=>(\s*)'(.*)',/", $ver, $find);
-            $array[$moduleName] = end($find);
-        }
-
-        $array['core'] = IMAGECMS_NUMBER;
-        header('content-type: text/xml');
-        $xml = "<?xml version='1.0' encoding='UTF-8'?>" . "\n" .
-                "<КонтейнерСписков ВерсияСхемы='0.1'  ДатаФормирования='" . date('Y-m-d') . "'>" . "\n";
-        foreach ($array as $key => $arr) {
-            $xml .= '<modul>';
-            $xml .= "<name>$key</name>";
-            $xml .= "<version>$arr</version>";
-            $xml .= '</modul>';
-        }
-        $xml .= "</КонтейнерСписков>\n";
-        echo $xml;
-        exit;
     }
 
     /**
@@ -165,46 +148,66 @@ class Update
      * @return string
      */
     public function getOldMD5File($file = 'md5.txt') {
+
         return (array) json_decode(read_file($file));
     }
 
     /**
      * zipping files
      * @param array $files
+     * @return bool
+     * @throws Exception
      */
     public function add_to_ZIP($files = []) {
+
         if (empty($files)) {
-            return FALSE;
+            throw new Exception(lang('Nothing to create', 'admin'));
         }
 
         $zip = new ZipArchive();
-        $time = time();
-        $filename = BACKUPFOLDER . "backup.zip";
+        $filename = BACKUPFOLDER . 'backup.zip';
 
         if (file_exists($filename)) {
-            rename($filename, BACKUPFOLDER . "$time.zip");
+
+            $nameFolder = filemtime($filename);
+            rename($filename, BACKUPFOLDER . "$nameFolder.zip");
+            touch($filename, $nameFolder);
+
         }
 
-        if ($zip->open($filename, ZipArchive::CREATE) !== TRUE) {
-            exit("cannot open <$filename>\n");
+        if ($zip->open($filename, ZipArchive::CREATE) !== true) {
+            throw new Exception(lang('Dont have permissions folder backup', 'admin'));
         }
 
-        foreach ($files as $key => $value) {
+        foreach (array_keys($files) as $key) {
+            if (!is_readable('.' . $key)) {
+                continue;
+            }
             $zip->addFile('.' . $key, $key);
         }
-
         $zip->close();
     }
 
+    /**
+     * @throws Exception
+     */
     public function createBackUp() {
+
         $old = $this->getOldMD5File(BACKUPFOLDER . 'md5.txt');
         $array = $this->parse_md5();
         $diff = array_diff($array, $old);
+        chmod(BACKUPFOLDER, 0755);
+
+        if (!is_writable(BACKUPFOLDER)) {
+            throw new Exception(lang('Dont have permissions folder backup', 'admin'));
+        }
+
         $this->add_to_ZIP($diff);
 
-        $filename = BACKUPFOLDER . "backup.zip";
+        $filename = BACKUPFOLDER . 'backup.zip';
         $zip = new ZipArchive();
         $zip->open($filename);
+
         $db = $this->db_backup();
         $zip->addFile(BACKUPFOLDER . $db, $db);
         $zip->close();
@@ -214,17 +217,20 @@ class Update
     }
 
     /**
-     * restore files from zip
-     * @param string $file path to zip file
-     * @param string $destination path to destination folder
+     * restore file to zip
+     * @param string $file
+     * @param mixed|string $destination
+     * @return bool
+     * @throws Exception
      */
     public function restoreFromZIP($file, $destination = FCPATH) {
+
         if (!$file) {
-            $file = BACKUPFOLDER . "backup.zip";
+            $file = BACKUPFOLDER . 'backup.zip';
         }
 
         if (!file_exists($file) || substr(decoct(fileperms($destination)), 2) != '777') {
-            return FALSE;
+            throw  new Exception(lang('Dont have permissions folder backup', 'admin'));
         }
 
         $zip = new ZipArchive();
@@ -245,6 +251,7 @@ class Update
      * запускати два рази переоприділивши $this->path_parse
      * $this->path_parse = realpath('') текущі.
      * $this->path_parse = rtrim($this->dir_old_upd, '\')
+     * @param null|string $directory
      * @return array
      */
     public function parse_md5($directory = null) {
@@ -274,9 +281,10 @@ class Update
      * @return string
      */
     public function db_backup() {
+
         if (is_really_writable(BACKUPFOLDER)) {
             $this->ci->load->dbutil();
-            $filePath = Backup::create()->createBackup("sql", "backup", TRUE);
+            $filePath = Backup::create()->createBackup('sql', 'backup', TRUE);
             return pathinfo($filePath, PATHINFO_BASENAME);
         } else {
             showMessage(langf('Can not create a database snapshot, Check the folder {0} on the ability to record', 'admin', [BACKUPFOLDER]));
@@ -289,6 +297,7 @@ class Update
      * @return boolean
      */
     public function db_restore($file) {
+
         if (empty($file)) {
             return FALSE;
         }
@@ -302,9 +311,10 @@ class Update
 
     /**
      * Create restore files list
-     * @return boolean
+     * @return boolean|array
      */
     public function restore_files_list() {
+
         if (is_readable(BACKUPFOLDER)) {
             $dh = opendir(BACKUPFOLDER);
             while ($filename = readdir($dh)) {
@@ -336,7 +346,8 @@ class Update
      * @param string $dir - path to directory
      */
     public function removeDirRec($dir) {
-        if ($objs = glob($dir . "/*")) {
+
+        if ($objs = glob($dir . '/*')) {
             foreach ($objs as $obj) {
                 is_dir($obj) ? $this->removeDirRec($obj) : unlink($obj);
             }
@@ -352,6 +363,7 @@ class Update
      * @return boolean
      */
     public function db_update($file_name = 'sql_19-08-2013_17.16.14.txt') {
+
         if (is_readable(BACKUPFOLDER . $file_name)) {
             $restore = file_get_contents(BACKUPFOLDER . $file_name);
             return $this->query_from_file($restore);
@@ -366,6 +378,7 @@ class Update
      * @return boolean
      */
     public function query_from_file($file) {
+
         $string_query = rtrim($file, "\n;");
         $array_query = explode(";\n", $string_query);
 
@@ -381,6 +394,7 @@ class Update
     }
 
     public function get_files_dates() {
+
         if (!empty($this->files_dates)) {
             return $this->files_dates;
         } else {
@@ -389,9 +403,11 @@ class Update
     }
 
     /**
+     * @param bool|string $param
      * @return string
      */
     public function getSettings($param = false) {
+
         $settings = $this->ci->db
             ->get('settings')
             ->row_array();
@@ -410,6 +426,7 @@ class Update
      * @return bool
      */
     public function setSettings($settings) {
+
         if (!is_array($settings)) {
             return FALSE;
         }

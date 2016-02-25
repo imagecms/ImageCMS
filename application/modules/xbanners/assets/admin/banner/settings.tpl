@@ -22,7 +22,7 @@
                             <label class="control-label" for="Name">{lang('Name', 'xbanners')}:</label>
 
                             <div class="controls">
-                                <input type="text" name="banner[name]" class="input-long" value="{echo $banner->getName()}"/>
+                                <input type="text" name="banner[name]" class="input-long" value="{echo htmlspecialchars($banner->getName())}"/>
                             </div>
                             <!-- -->
                         </div>

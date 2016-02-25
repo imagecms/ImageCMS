@@ -14,18 +14,19 @@ class Mabilis
     /**
      * @var Mabilis_Compiler
      */
-    private $compiler = NULL;
+    private $compiler;
 
     /**
      * @var Mabilis_Config
      */
-    private $config = NULL;
+    private $config;
 
     /**
      * Mabilis constructor.
      * @param array $config
      */
     public function __construct(&$config = []) {
+
         $this->load_config($config);
     }
 
@@ -37,9 +38,10 @@ class Mabilis
      * @return string
      */
     public function view($file, $data = [], $return = FALSE) {
+
         // Delete double .tpl.tpl
         //TODO remove this and find root of problem
-        if(false !== strpos($file, '.tpl.tpl')) {
+        if (false !== strpos($file, '.tpl.tpl')) {
             $file = substr($file, 0, -4);
         }
 
@@ -76,13 +78,7 @@ class Mabilis
         ob_start();
 
         if (file_exists($compiled_file)) {
-
-            //            if (!in_array($compiled_file, $this->arr)) {
             include $compiled_file;
-            //                $this->arr[$compiled_file] = $compiled_file;
-            //            }
-            //            else
-            //                include $this->arr[$compiled_file];
         } else {
             print '<p class="error">Error: ' . $compiled_file . ' does not exists!</p>';
         }
@@ -111,6 +107,7 @@ class Mabilis
      * @return bool
      */
     public function load_config($config = []) {
+
         if (extension_loaded('zlib') AND $config['compress_output'] == TRUE) {
             if (isset($_SERVER['HTTP_ACCEPT_ENCODING']) AND strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip') !== FALSE) {
                 ob_start('ob_gzhandler');
@@ -130,6 +127,7 @@ class Mabilis
      * @param string $value
      */
     public function set_config_value($param, $value) {
+
         $this->config->$param = $value;
     }
 
@@ -138,6 +136,7 @@ class Mabilis
      * @return mixed
      */
     public function get_config_value($param) {
+
         if (isset($this->config->$param)) {
             return $this->config->$param;
         }
@@ -147,6 +146,7 @@ class Mabilis
      * Load compiler class if not loaded yet
      */
     public function load_compiler() {
+
         if ($this->compiler == NULL) {
             include 'Mabilis.compiler.php';
             $this->compiler = new Mabilis_Compiler($this->config);

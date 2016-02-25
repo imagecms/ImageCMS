@@ -9,6 +9,7 @@ if (!defined('BASEPATH')) {
  *
  * Backup Class
  *
+ * @property Lib_admin lib_admin
  */
 class Backup extends BaseAdminController
 {
@@ -19,53 +20,59 @@ class Backup extends BaseAdminController
         $this->load->library('DX_Auth');
         admin_or_redirect();
 
+        $this->load->library('form_validation');
         $this->load->library('lib_admin');
         $this->lib_admin->init_settings();
-
-        //cp_check_perm('backup_create');
     }
 
     public function save_settings() {
         $backup = \libraries\Backup::create();
 
-        $settings = [
-            'backup_del_status' => isset($_POST['backup_del_status']) ? $_POST['backup_del_status'] : 0,
-            'backup_term' => isset($_POST['backup_term']) ? $_POST['backup_term'] : 6,
-            'backup_maxsize' => isset($_POST['backup_maxsize']) ? $_POST['backup_maxsize'] : 1000,
-        ];
+        $this->form_validation->set_rules('backup_maxsize', lang('backup_maxsize must be numeric', 'admin'), 'trim|numeric');
 
-        $bad = [];
-        foreach ($settings as $key => $value) {
-            if (false == $backup->setSetting($key, $value)) {
-                $bad[] = $key;
-            }
-        }
+        if ($this->form_validation->run() == FALSE) {
+            showMessage(validation_errors(), '', 'r');
 
-        if (count($bad) > 0) {
-            showMessage(lang('Some of settings not saved', 'admin'), 'Error', 'r');
         } else {
-            showMessage(lang('Settings saved', 'admin'));
+
+            $settings = [
+            'backup_del_status' => $this->input->post('backup_del_status') ?: 0,
+            'backup_term' => $this->input->post('backup_term') ?: 6,
+            'backup_maxsize' => $this->input->post('backup_maxsize') ?: 1000,
+            ];
+
+            $bad = [];
+            foreach ($settings as $key => $value) {
+                if (false == $backup->setSetting($key, $value)) {
+                    $bad[] = $key;
+                }
+            }
+            if (count($bad) > 0) {
+                showMessage(lang('Some of settings not saved', 'admin'), 'Error', 'r');
+            } else {
+                showMessage(lang('Settings saved', 'admin'));
+            }
         }
     }
 
     public function file_actions() {
-        $file = trim($_POST['file']);
-        $locked = isset($_POST['locked']) ? $_POST['locked'] : null;
-        switch ($_POST['action']) {
-            case "backup_lock":
+        $file = trim($this->input->post('file'));
+        $locked = $this->input->post('locked') ?: null;
+        switch ($this->input->post('action')) {
+            case 'backup_lock':
                 $this->filesLocking($file, $locked);
                 $dataTitle = $locked ? lang('unlock', 'admin') : lang('lock', 'admin');
                 echo json_encode(['locked' => $locked, 'dataTitle' => lang($dataTitle, 'admin')]);
                 break;
-            case "backup_delete":
+            case 'backup_delete':
                 $bool = \libraries\Backup::create()->deleteFile($file);
-                echo json_encode(['deleted' => $bool ? "deleted" : "error"]);
+                echo json_encode(['deleted' => $bool ? 'deleted' : 'error']);
                 break;
         }
     }
 
     public function download_file() {
-        echo "file";
+        echo 'file';
     }
 
     /**
@@ -123,9 +130,9 @@ class Backup extends BaseAdminController
             showMessage(langf('Directory |0| has no writing permission', 'admin', [BACKUPFOLDER]), false, 'r');
             exit;
         }
-        switch ($_POST['save_type']) {
+        switch ($this->input->post('save_type')) {
             case 'local':
-                return jsCode("window.location = '" . site_url('admin/backup/force_download/' . $_POST['file_type']) . "'");
+                return jsCode("window.location = '" . site_url('admin/backup/force_download/' . $this->input->post('file_type')) . "'");
 
             case 'server':
                 $this->load->helper('file');
@@ -137,7 +144,7 @@ class Backup extends BaseAdminController
                 } else {
                     $deleteData = null;
                 }
-                if (FALSE !== $backup->createBackup($_POST['file_type'])) {
+                if (FALSE !== $backup->createBackup($this->input->post('file_type'))) {
                     $message = lang('Backup copying has been completed', 'admin');
                     if (is_array($deleteData)) {
                         $mb = number_format($deleteData['size'] / 1024 / 1024, 2);
@@ -166,11 +173,11 @@ class Backup extends BaseAdminController
         } else {
             $user = $this->get_admin_info();
 
-            $fileName = \libraries\Backup::create()->createBackup($_POST['file_type'], "sql");
+            $fileName = \libraries\Backup::create()->createBackup($this->input->post('file_type'), 'sql');
 
-            $this->email->to($_POST['email']);
+            $this->email->to($this->input->post('email'));
             $this->email->from($user['email']);
-            $this->email->subject(lang("Backup copying", "admin") . date('d-m-Y H:i:s'));
+            $this->email->subject(lang('Backup copying', 'admin') . date('d-m-Y H:i:s'));
             $this->email->message(' ');
             $this->email->attach($fileName);
             $this->email->send();
@@ -186,13 +193,13 @@ class Backup extends BaseAdminController
 
     public function force_download($file_type) {
         $this->load->helper('download');
-        $fileName = \libraries\Backup::create()->createBackup($file_type, "sql");
+        $fileName = \libraries\Backup::create()->createBackup($file_type, 'sql');
         $fileContents = file_get_contents($fileName);
         force_download(pathinfo($fileName, PATHINFO_BASENAME), $fileContents);
     }
 
     private function done() {
-        showMessage(lang("Backup copying has been completed", "admin"));
+        showMessage(lang('Backup copying has been completed', 'admin'));
     }
 
     private function get_admin_info() {

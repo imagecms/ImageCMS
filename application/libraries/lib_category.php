@@ -12,13 +12,14 @@ if (!defined('BASEPATH')) {
  * TODO: Rewrites as module
  *       optimize it and write db model
  */
-class Lib_category {
+class Lib_category
+{
 
-    public $categories = array();
+    public $categories = [];
 
     public $level = 0;
 
-    public $path = array();
+    public $path = [];
 
     public $unsorted_arr = FALSE;
 
@@ -32,11 +33,10 @@ class Lib_category {
      *
      * @var array [category_id => [parent_id=>category_id, pages_count=?],...]
      */
-    protected $categoriesPagesCounts = array();
+    protected $categoriesPagesCounts = [];
 
     public function __construct() {
         $this->CI = get_instance();
-
         $this->defaultLocaleId = $this->CI->load->model('cms_admin')->get_default_lang()['id'];
     }
 
@@ -57,13 +57,13 @@ class Lib_category {
         if (($cache = $this->CI->cache->fetch_func($this, '_build')) !== false) {
             return $cache;
         } else {
-            return $this->CI->cache->call(array($this, '_build'));
+            return $this->CI->cache->call([$this, '_build']);
         }
     }
 
     public function buildForAdmin() {
         // check cache file
-        return $this->CI->cache->call(array($this, '_build'));
+        return $this->CI->cache->call([$this, '_build']);
     }
 
     /**
@@ -91,7 +91,7 @@ class Lib_category {
             $this->categories = $this->CI->cms_base->get_categories();
             $this->create_path();
 
-            $cats = array();
+            $cats = [];
             foreach ($this->categories as $category) {
                 $cats[$category['id']] = $category;
             }
@@ -119,7 +119,7 @@ class Lib_category {
         }
 
         if (is_array($id)) {
-            $temp_arr = array();
+            $temp_arr = [];
 
             foreach ($id as $v) {
                 $temp_arr[$v] = $this->unsorted_arr[$v];
@@ -148,6 +148,8 @@ class Lib_category {
      * Get category from array by param
      *
      * @access public
+     * @param string $param
+     * @param string $value
      * @return array
      */
     public function get_category_by($param, $value) {
@@ -176,7 +178,7 @@ class Lib_category {
             $this->create_path();
         }
 
-        $new_cats = array();
+        $new_cats = [];
 
         if ($this->categories) {
             foreach ($this->categories as $cats) {
@@ -235,10 +237,11 @@ class Lib_category {
      * Build sub categories
      *
      * @access private
+     * @param int $parent_id
      * @return array
      */
     public function _get_sub_cats($parent_id) {
-        $new_sub_cats = array();
+        $new_sub_cats = [];
         $this->level++;
 
         foreach ($this->categories as $sub_cats) {
@@ -272,7 +275,7 @@ class Lib_category {
 
         // Create path to each category
         for ($i = 0, $cats_count = count($this->categories); $i < $cats_count; $i++) {
-            $this->path = array(); // make path empty
+            $this->path = []; // make path empty
 
             $path_arr = $this->_PathToCat($this->categories[$i]['id']);
             $this->categories[$i]['path'] = $path_arr; // path array
@@ -307,9 +310,9 @@ class Lib_category {
         //return $this->path;
     }
 
-    public function translate($category = array()) {
+    public function translate($category = []) {
 
-        if ($this->defaultLocaleId == CI::$APP->load->module("core")->def_lang[0]['id']) {
+        if ($this->defaultLocaleId == CI::$APP->load->module('core')->def_lang[0]['id']) {
             return $category;
         }
 
@@ -334,7 +337,7 @@ class Lib_category {
     }
 
     public function get_translated_array() {
-        $translated = array();
+        $translated = [];
         $lang = $this->defaultLocaleId;
         $ck = 'categories_translated_array_' . $lang;
 
@@ -344,7 +347,7 @@ class Lib_category {
             $this->CI->db->where('lang', $lang);
             $translated = $this->CI->db->get('category_translate');
 
-            $parsed = array();
+            $parsed = [];
             if ($translated->num_rows() > 0) {
                 foreach ($translated->result_array() as $t) {
                     $parsed[$t['alias']] = $t;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Banners\BannerPagesTypes;
+namespace xbanners\src\BannerPagesTypes;
 
 /**
  * Created by PhpStorm.
@@ -8,7 +8,8 @@ namespace Banners\BannerPagesTypes;
  * Date: 23.03.15
  * Time: 19:19
  */
-class Category extends BasePageType {
+class Category extends BasePageType
+{
 
     public function __construct($locale) {
         $this->locale = $locale;

@@ -34,9 +34,9 @@
                     <td colspan="6">
                         <div class="inside_padd">
                             <div class="control-group">
-                                <label class="control-label">{lang('Your updation key', 'admin')}:</label>
+                                <label class="control-label">{lang('Your updation key', 'admin')}: <span class="must">*</span></label>
                                 <div class="controls">
-                                    <textarea name="careKey" class="elRTE" rows="10" required>{echo $careKey}</textarea>
+                                    <textarea name="careKey" rows="10" required>{echo $careKey}</textarea>
                                 </div>
                             </div>
                         </div>

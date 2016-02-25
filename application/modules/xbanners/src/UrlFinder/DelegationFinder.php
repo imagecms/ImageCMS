@@ -1,10 +1,16 @@
 <?php
 
-namespace Banners\UrlFinder;
+namespace xbanners\src\UrlFinder;
 
-use Banners\UrlFinder\Finders\BaseFinder;
+use xbanners\src\UrlFinder\Finders\BaseFinder;
+use xbanners\src\UrlFinder\Finders\Brands;
+use xbanners\src\UrlFinder\Finders\PageCategories;
+use xbanners\src\UrlFinder\Finders\Pages;
+use xbanners\src\UrlFinder\Finders\ProductCategories;
+use xbanners\src\UrlFinder\Finders\Products;
 
-class DelegationFinder extends BaseFinder {
+class DelegationFinder extends BaseFinder
+{
 
     /**
      * @var BaseFinder[]
@@ -12,13 +18,22 @@ class DelegationFinder extends BaseFinder {
     protected $finders = [];
 
     public function __construct() {
-        $this->finders = [
-            new \Banners\UrlFinder\Finders\Brands(),
-            new \Banners\UrlFinder\Finders\Products(),
-            new \Banners\UrlFinder\Finders\ProductCategories(),
-            new \Banners\UrlFinder\Finders\Pages(),
-            new \Banners\UrlFinder\Finders\PageCategories(),
-        ];
+        if (\MY_Controller::isCorporateCMS()) {
+            $this->finders = [
+                new Pages(),
+                new PageCategories(),
+
+            ];
+        } else {
+            $this->finders = [
+                new Brands(),
+                new Products(),
+                new ProductCategories(),
+                new Pages(),
+                new PageCategories(),
+            ];
+
+        }
     }
 
     /**

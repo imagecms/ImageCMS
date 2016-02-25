@@ -7,15 +7,23 @@ if (!defined('BASEPATH')) {
 /**
  * Image CMS
  */
-class Gallery_Widgets extends MY_Controller {
+class Gallery_Widgets extends MY_Controller
+{
 
+    /**
+     * Gallery_Widgets constructor.
+     */
     public function __construct() {
         parent::__construct();
         $lang = new MY_Lang();
         $lang->load('gallery');
     }
 
-    public function latest_fotos($widget = array()) {
+    /**
+     * @param array $widget
+     * @return string
+     */
+    public function latest_fotos(array $widget = []) {
         $this->load->helper('gallery');
         $this->load->model('gallery_m');
 
@@ -35,79 +43,91 @@ class Gallery_Widgets extends MY_Controller {
         }
 
         $this->template->add_array(
-            array(
+            [
                     'images' => $images,
-                )
+                ]
         );
 
         return $this->template->fetch('widgets/' . $widget['name'], $data);
     }
 
-    public function latest_fotos_configure($action = 'show_settings', $widget_data = array()) {
+    /**
+     * @param string $action
+     * @param array $widget_data
+     */
+    public function latest_fotos_configure($action = 'show_settings', array $widget_data = []) {
         if ($this->dx_auth->is_admin() == FALSE) {
             exit;
         }
 
         switch ($action) {
             case 'show_settings':
-                //                $this->display_tpl('latest_fotos_form', array('widget' => $widget_data));
-                $this->render('latest_fotos_form', array('widget' => $widget_data));
+                $this->render('latest_fotos_form', ['widget' => $widget_data]);
                 break;
 
             case 'update_settings':
 
                 $this->load->library('Form_validation');
-                $this->form_validation->set_rules('limit', lang("Image limit", 'gallery'), 'trim|required|integer');
+                $this->form_validation->set_rules('limit', lang('Image limit', 'gallery'), 'trim|required|integer');
 
                 if ($this->form_validation->run($this) == FALSE) {
                     showMessage(validation_errors(), false, 'r');
                     exit;
                 }
 
-                $data = array(
-                    'limit' => $_POST['limit'],
-                    'order' => $_POST['order'],
-                );
+                $data = [
+                    'limit' => $this->input->post('limit'),
+                    'order' => $this->input->post('order'),
+                ];
 
                 $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
 
-                showMessage(lang("Settings have been saved", 'gallery'));
-                if ($_POST['action'] == 'tomain') {
+                showMessage(lang('Settings have been saved', 'gallery'));
+                if ($this->input->post('action') == 'tomain') {
                     pjax('/admin/widgets_manager/index');
                 }
                 break;
 
             case 'install_defaults':
-                $data = array(
+                $data = [
                     'limit' => 5,
                     'order' => 'latest',
-                );
+                ];
 
                 $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
                 break;
         }
     }
 
-    // Template functions
-
-    public function display_tpl($file, $vars = array()) {
+    /**
+     * Template functions
+     * @param string $file
+     * @param array $vars
+     */
+    public function display_tpl($file, $vars = []) {
         $this->template->add_array($vars);
 
-        $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';
+        $file = realpath(__DIR__) . '/templates/' . $file . '.tpl';
         $this->template->display('file:' . $file);
     }
 
-    public function fetch_tpl($file, $vars = array()) {
+    /**
+     * @param string $file
+     * @param array $vars
+     * @return string
+     */
+    public function fetch_tpl($file, array $vars = []) {
         $this->template->add_array($vars);
 
-        $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';
+        $file = realpath(__DIR__) . '/templates/' . $file . '.tpl';
         return $this->template->fetch('file:' . $file);
     }
 
     /**
      * @param string $viewName
+     * @param array $data
      */
-    public function render($viewName, array $data = array(), $return = false) {
+    public function render($viewName, array $data = []) {
         if (!empty($data)) {
             $this->template->add_array($data);
         }

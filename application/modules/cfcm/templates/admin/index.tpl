@@ -30,7 +30,7 @@
                                 <th>{lang("Label", 'cfcm')}</th>
                                 <th>{lang("Name", 'cfcm')}</th>
                                 <th>{lang("Type", 'cfcm')}</th>
-                                <th>{lang("Categories", 'cfcm')}</th>
+                                <th>{lang("Field groups", 'cfcm')}</th>
                                 <th class="span1">{lang("Delete", 'cfcm')}</th>
                             </tr>
                             </thead>
@@ -49,9 +49,9 @@
                                         {foreach $groupRels as $gr}
                                             {if $gr['field_name'] == $f.field_name}
                                                 {if $gr.group_id == -1}
-                                                    {$arr[] = lang('Without group',"cfcm");}
+                                                    {$arr[$gr.group_id] = lang('Without group',"cfcm");}
                                                 {else:}
-                                                    {$arr[] = $gr['name'];}
+                                                    {$arr[$gr.group_id] = $gr['name'];}
                                                 {/if}
                                                 {$i++}
                                             {/if}

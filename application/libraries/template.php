@@ -386,7 +386,7 @@ class Template extends Mabilis
 
     /**
      * Place canonical code before /head
-     * @param type $url canonical url
+     * @param string $url canonical url
      */
     public function registerCanonical($url) {
         $this->_canonicals[] = "<link href='" . $url . "' rel='canonical'>";
@@ -424,10 +424,10 @@ class Template extends Mabilis
                 if (!in_array($url, self::$arr)) {
                     switch ($pos) {
                         case 'before':
-                            self::$result_before .= "<link data-arr=\"" . count(self::$arr) * 2 . "\" rel=\"stylesheet\" type=\"text/css\" href=\"$url\" />\n";
+                            self::$result_before .= '<link data-arr="' . count(self::$arr) * 2 . "\" rel=\"stylesheet\" type=\"text/css\" href=\"$url\" />\n";
                             break;
                         case 'after':
-                            self::$result_after .= "<link data-arr=\"" . count(self::$arr) . "\" rel=\"stylesheet\" type=\"text/css\" href=\"$url\" />\n";
+                            self::$result_after .= '<link data-arr="' . count(self::$arr) . "\" rel=\"stylesheet\" type=\"text/css\" href=\"$url\" />\n";
                             break;
                     }
                     self::$arr[] = $url;
@@ -472,7 +472,7 @@ class Template extends Mabilis
 
         if (self::$result_after) {
             if (!$this->CI->input->is_ajax_request()) {
-                $tpl = preg_replace('/(\<\/body>(\s*|\n)<\/html>)(\s*|\n)$/', self::$result_after . "</body></html>", $tpl, 1);
+                $tpl = preg_replace('/(\<\/body>(\s*|\n)<\/html>)(\s*|\n)$/', self::$result_after . '</body></html>', $tpl, 1);
             }
         }
 

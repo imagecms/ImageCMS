@@ -8,7 +8,7 @@
             <div class="d-i_b">
                 <a href="/admin/components/cp/gallery" class="t-d_n m-r_15"><span class="f-s_14">←</span>
                     <span class="t-d_u">{lang("Back", 'admin')}</span></a>
-                <a href="/admin/components/init_window/gallery/show_crate_album" class="btn btn-small pjax btn-success pjax"><i class="icon-plus-sign icon-white"></i>{lang("Create album", 'gallery')}
+                <a href="/admin/components/init_window/gallery/show_crate_album?category_id={$category['id']}" class="btn btn-small pjax btn-success pjax"><i class="icon-plus-sign icon-white"></i>{lang("Create album", 'gallery')}
                 </a>
             </div>
         </div>

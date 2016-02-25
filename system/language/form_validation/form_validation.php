@@ -31,6 +31,7 @@ lang('greater_than');		//= "The %s field must contain a number greater than %s."
 lang('User profile successfully changed');
 lang('Cart');
 lang('Order view');
+lang('Search');
 
 
 

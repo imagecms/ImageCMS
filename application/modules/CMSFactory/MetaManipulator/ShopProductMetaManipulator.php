@@ -6,20 +6,12 @@ use MY_Controller;
 use SProductPropertiesDataQuery;
 use SProducts;
 
+/**
+ * Class ShopProductMetaManipulator
+ * @package CMSFactory\MetaManipulator
+ */
 class ShopProductMetaManipulator extends MetaManipulator
 {
-
-    /**
-     * @var array
-     */
-    protected $matching = [
-        'desc' => 'description'
-    ];
-
-    /**
-     * @var SProducts
-     */
-    private $model;
 
     /**
      * Product property
@@ -73,23 +65,7 @@ class ShopProductMetaManipulator extends MetaManipulator
         $this->properties[$id] = $value;
     }
 
-    /**
-     * @return SProducts
-     */
-    public function getModel() {
-
-        return $this->model;
-    }
-
-    /**
-     * @param SProducts $model
-     */
-    public function setModel($model) {
-
-        $this->model = $model;
-    }
-
-    /**
+     /**
      * @return string
      */
     public function getBrand() {
@@ -119,6 +95,7 @@ class ShopProductMetaManipulator extends MetaManipulator
         if (!$this->description) {
             $this->setDescription($this->getModel()->getFullDescription());
         }
+
         return $this->description;
     }
 

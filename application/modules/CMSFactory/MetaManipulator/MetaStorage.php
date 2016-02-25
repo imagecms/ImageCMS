@@ -2,6 +2,10 @@
 
 namespace CMSFactory\MetaManipulator;
 
+/**
+ * Class MetaStorage
+ * @package CMSFactory\MetaManipulator
+ */
 class MetaStorage
 {
 
@@ -18,12 +22,22 @@ class MetaStorage
     /**
      * @var string
      */
+    private $h1Template;
+
+    /**
+     * @var string
+     */
     private $keywords;
 
     /**
      * @var string
      */
     private $keywordsTemplate;
+
+    /**
+     * @var string
+     */
+    private $paginationTemplate;
 
     /**
      * @var string
@@ -85,6 +99,23 @@ class MetaStorage
     /**
      * @return string
      */
+    public function getH1Template() {
+
+        return $this->h1Template;
+    }
+
+    /**
+     * @param string $h1Template
+     */
+    public function setH1Template($h1Template) {
+
+        $this->setVars($this->parseVars($h1Template));
+        $this->h1Template = $h1Template;
+    }
+
+    /**
+     * @return string
+     */
     public function getKeywords() {
 
         return $this->keywords;
@@ -105,6 +136,23 @@ class MetaStorage
 
         $this->setVars($this->parseVars($keywordsTemplate));
         $this->keywordsTemplate = $keywordsTemplate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPaginationTemplate() {
+
+        return $this->paginationTemplate;
+    }
+
+    /**
+     * @param string $paginationTemplate
+     */
+    public function setPaginationTemplate($paginationTemplate) {
+
+        $this->setVars($this->parseVars($paginationTemplate));
+        $this->paginationTemplate = $paginationTemplate;
     }
 
     /**

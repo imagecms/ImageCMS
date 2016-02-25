@@ -9,9 +9,10 @@ if (!defined('BASEPATH')) {
  *
  * Класс отображения страниц по ID.
  */
-class Mailer extends MY_Controller {
+class Mailer extends MY_Controller
+{
 
-    public $settings = array();
+    public $settings = [];
 
     public function __construct() {
         parent::__construct();
@@ -27,7 +28,7 @@ class Mailer extends MY_Controller {
     public function index() {
 
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('user_email', lang("Your e-mail", 'mailer'), 'required|trim|valid_email');
+        $this->form_validation->set_rules('user_email', lang('Your e-mail', 'mailer'), 'required|trim|valid_email');
 
         if ($this->form_validation->run($this) == FALSE) {
 
@@ -36,7 +37,7 @@ class Mailer extends MY_Controller {
             redirect('/mailer/error/');
         } else {
 
-            $query = $this->db->get_where('mail', array('email' => $this->input->post('user_email')));
+            $query = $this->db->get_where('mail', ['email' => $this->input->post('user_email')]);
             $row = $query->row();
 
             if (!empty($row) && $this->input->post('add_user_mail') != 1) {
@@ -59,24 +60,24 @@ class Mailer extends MY_Controller {
                     }
                 }
 
-                $data = array(
+                $data = [
                     'email' => $email,
                     'date' => $date
-                );
+                ];
 
                 $this->db->insert('mail', $data);
 
                 $this->registerUserByEmail($email);
 
                 $this->template->add_array(
-                    array(
+                    [
                         'email' => $query,
-                    )
+                    ]
                 );
 
                 redirect('/mailer/success/');
             } else {
-                $this->db->delete('mail', array('email' => $this->input->post('user_email')));
+                $this->db->delete('mail', ['email' => $this->input->post('user_email')]);
                 redirect('/mailer/cancel/');
             }
         }
@@ -85,18 +86,18 @@ class Mailer extends MY_Controller {
     public function ajaxSubmit() {
 
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('user_email', lang("Your e-mail", 'mailer'), 'required|trim|valid_email');
+        $this->form_validation->set_rules('user_email', lang('Your e-mail', 'mailer'), 'required|trim|valid_email');
 
         if ($this->form_validation->run($this) == FALSE) {
             CMSFactory\assetManager::create()->setData(
-                array(
+                [
                     'mailer_errors' => validation_errors(),
-                )
+                ]
             );
             CMSFactory\assetManager::create()->render('error', true);
         } else {
 
-            $query = $this->db->get_where('mail', array('email' => $this->input->post('user_email')));
+            $query = $this->db->get_where('mail', ['email' => $this->input->post('user_email')]);
             $row = $query->row();
 
             if (!empty($row) && $this->input->post('add_user_mail') != 1) {
@@ -111,10 +112,10 @@ class Mailer extends MY_Controller {
                 $email = $this->input->post('user_email');
 
                 $date = date('U');
-                $data = array(
+                $data = [
                     'email' => $email,
                     'date' => $date
-                );
+                ];
 
                 $this->db->insert('mail', $data);
 
@@ -125,13 +126,13 @@ class Mailer extends MY_Controller {
                 }
 
                 CMSFactory\assetManager::create()->setData(
-                    array(
+                    [
                         'email' => $query,
-                    )
+                    ]
                 );
                 CMSFactory\assetManager::create()->render('success', true);
             } else {
-                $this->db->delete('mail', array('email' => $this->input->post('user_email')));
+                $this->db->delete('mail', ['email' => $this->input->post('user_email')]);
                 CMSFactory\assetManager::create()->render('cancel', true);
             }
         }
@@ -199,19 +200,19 @@ class Mailer extends MY_Controller {
             exit;
         }
         //Create Table MAIL
-        $sql = "CREATE TABLE IF NOT EXISTS `mail` (
+        $sql = 'CREATE TABLE IF NOT EXISTS `mail` (
                     `id` int(11) NOT NULL AUTO_INCREMENT,
                     `email` varchar(255) DEFAULT NULL,
                     `date` int(15) DEFAULT NULL,
                     PRIMARY KEY (`id`)
-                    ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;";
+                    ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;';
 
         $this->db->query($sql);
 
         // Включаем доступ к модулю по URL
         $this->db->limit(1);
         $this->db->where('name', 'mailer');
-        $this->db->update('components', array('enabled' => 1));
+        $this->db->update('components', ['enabled' => 1]);
     }
 
     public function _deinstall() {
@@ -219,7 +220,7 @@ class Mailer extends MY_Controller {
             exit;
         }
         //Delete Table MAIL
-        $sql = "DROP TABLE `mail`;";
+        $sql = 'DROP TABLE `mail`;';
 
         $this->db->query($sql);
 
@@ -254,7 +255,7 @@ class Mailer extends MY_Controller {
         if (file_exists($templateModulePath . $file) || file_exists($templateModulePath . $file . '.tpl')) {
             return $templateModulePath . $file;
         }
-        return realpath(dirname(__FILE__)) . '/templates/public/' . $file;
+        return realpath(__DIR__) . '/templates/public/' . $file;
     }
 
 }

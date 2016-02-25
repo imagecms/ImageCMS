@@ -8,13 +8,14 @@ if (!defined('BASEPATH')) {
  * Image CMS
  * CSRF Library Beta.
  */
-class Lib_csrf {
+class Lib_csrf
+{
 
     public $ci = NULL;
 
     private $enc_key = '';
 
-    private $tokens = array();     // User token.
+    private $tokens = [];     // User token.
 
     private $sess_id = NULL;     // Session id.
 
@@ -27,7 +28,7 @@ class Lib_csrf {
     public $log_ajax_requests = FALSE;
 
     public function __construct() {
-        $this->ci = & get_instance();
+        $this->ci = &get_instance();
 
         $this->_generate_token();
 
@@ -42,10 +43,57 @@ class Lib_csrf {
         }
     }
 
+    private function addDisabledCsrfUrls() {
+
+        // Diable CSRF library form web money service
+        $ci = $this->ci;
+        if ($ci->uri->segment(1) == 'shop' && $ci->uri->segment(2) == 'cart' && $ci->uri->segment(3) == 'view' && $ci->input->get('result') == 'true' && $ci->input->get('pm') > 0) {
+            define('ICMS_DISBALE_CSRF', true);
+        }
+        // Support for robokassa
+        if ($ci->uri->segment(1) == 'shop' && $ci->uri->segment(2) == 'cart' && $ci->uri->segment(3) == 'view' && $ci->input->get('getResult') == 'true') {
+            define('ICMS_DISBALE_CSRF', true);
+        }
+        if ($ci->uri->segment(1) == 'exchange') {
+            define('ICMS_DISBALE_CSRF', true);
+        }
+        // Support for privat
+        if ($ci->uri->segment(1) == 'shop' && $ci->uri->segment(2) == 'order' && $ci->uri->segment(3) == 'view' && $ci->input->post()) {
+            define('ICMS_DISBALE_CSRF', true);
+        }
+        if ($ci->uri->segment(1) == 'shop' && $ci->uri->segment(2) == 'cart' && $ci->uri->segment(3) == 'view' && $ci->input->get('succes') == 'true') {
+            define('ICMS_DISBALE_CSRF', true);
+        }
+        if ($ci->uri->segment(1) == 'shop' && $ci->uri->segment(2) == 'cart' && $ci->uri->segment(3) == 'view' && $ci->input->get('fail') == 'true') {
+            define('ICMS_DISBALE_CSRF', true);
+        }
+        if ($ci->input->server('HTTP_REFERER') AND strpos($ci->input->server('HTTP_REFERER') . "", 'facebook.com')) {
+            define('ICMS_DISBALE_CSRF', true);
+        }
+        if ($ci->input->server('HTTP_REFERER') AND strpos($ci->input->server('HTTP_REFERER') . "", 'facebook.com')) {
+            define('ICMS_DISBALE_CSRF', true);
+        }
+        // Support for privat
+
+        if ($ci->uri->segment(1) == 'shop' && $ci->uri->segment(2) == 'order' && $ci->uri->segment(3) == 'view') {
+            define('ICMS_DISBALE_CSRF', true);
+        }
+        //new payment system
+        if (preg_match("/payment_method_/i", $ci->uri->segment(1)) || preg_match("/payment_method_/i", $ci->uri->segment(2))) {
+            define('ICMS_DISBALE_CSRF', true);
+        }
+        if ($ci->uri->segment(1) == 'facebook_store' && $ci->uri->segment(2) == 'auth_from_fb_store') {
+            define('ICMS_DISBALE_CSRF', true);
+        }
+
+        if ($ci->uri->segment(4) == 'xbanners') {
+            define('ICMS_DISBALE_CSRF', true);
+        }
+    }
+
     private function check_token() {
+        $this->addDisabledCsrfUrls();
         if (count($_POST) > 0) {
-            //            if ($this->ci->uri->segment(2) == 'elfinder_init')
-            //                return TRUE;
             if (defined('ICMS_DISBALE_CSRF') AND ICMS_DISBALE_CSRF === TRUE) {
                 return TRUE;
             }
@@ -111,7 +159,7 @@ class Lib_csrf {
                 $this->tokens[] = $n_token;
             }
         } else {
-            $this->tokens = array();
+            $this->tokens = [];
             $this->tokens[] = $n_token;
         }
 

@@ -199,7 +199,9 @@
                 </table>
             </div>
             <div class="tab-pane" id="addfields_article">
-                <div id="cfcm_fields_block"></div>
+                <div id="cfcm_fields_block">
+                    {echo $this->CI->load->module('cfcm/admin')->form_from_category_group(0, 0, 'page')}
+                </div>
             </div>
 
             <div class="tab-pane" id="setings_article">
@@ -318,8 +320,3 @@
         <a href="#" class="btn btn-primary" onclick="pagesAdmin.quickAddCategory()">{lang('Create','admin')}</a>
     </div>
 </div>
-
-<script>
-if (window.hasOwnProperty('pagesAdmin'))
-    pagesAdmin.initialize();
-</script>

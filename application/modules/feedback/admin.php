@@ -1,5 +1,7 @@
 <?php
 
+use CMSFactory\assetManager;
+
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
@@ -12,6 +14,9 @@ if (!defined('BASEPATH')) {
 class Admin extends BaseAdminController
 {
 
+    /**
+     * Admin constructor.
+     */
     public function __construct() {
         parent::__construct();
         $lang = new MY_Lang();
@@ -19,16 +24,21 @@ class Admin extends BaseAdminController
 
         // Only admin access
         $this->load->library('DX_Auth');
-        //cp_check_perm('module_admin');
     }
 
-    // Display settings form
-
+    /**
+     * Display settings form
+     */
     public function index() {
-        $this->template->assign('settings', $this->settings());
-        $this->display_tpl('admin/settings');
+        assetManager::create()
+            ->setData('settings', $this->settings())
+            ->renderAdmin('settings');
     }
 
+    /**
+     * @param string $action
+     * @return mixed
+     */
     public function settings($action = 'get') {
         switch ($action) {
             case 'get':
@@ -43,11 +53,11 @@ class Admin extends BaseAdminController
                 break;
 
             case 'update':
-                if (count($_POST) > 0) {
+                if (count($this->input->post()) > 0) {
                     $this->load->library('form_validation');
 
-                    $this->form_validation->set_rules('email', lang("E-Mail", 'feedback'), 'trim|valid_email|required|xss_clean');
-                    $this->form_validation->set_rules('message_max_len', lang("Maximum message length", 'feedback'), 'trim|integer|required|xss_clean');
+                    $this->form_validation->set_rules('email', lang('E-Mail', 'feedback'), 'trim|valid_email|required|xss_clean');
+                    $this->form_validation->set_rules('message_max_len', lang('Maximum message length', 'feedback'), 'trim|integer|required|xss_clean');
 
                     if ($this->form_validation->run($this) == FALSE) {
                         showMessage(validation_errors(), false, 'r');
@@ -59,20 +69,12 @@ class Admin extends BaseAdminController
                         $this->db->where('name', 'feedback');
                         $this->db->update('components', ['settings' => serialize($data)]);
 
-                        $this->lib_admin->log(lang("Feedbacks settings was edited", "feedback"));
-                        showMessage(lang("Settings have been saved", 'feedback'));
+                        $this->lib_admin->log(lang('Feedbacks settings was edited', 'feedback'));
+                        showMessage(lang('Settings have been saved', 'feedback'));
                     }
                 }
                 break;
         }
-    }
-
-    /**
-     * Display template file
-     */
-    private function display_tpl($file = '') {
-        $file = realpath(dirname(__FILE__)) . '/templates/' . $file;
-        $this->template->show('file:' . $file, FALSE);
     }
 
 }

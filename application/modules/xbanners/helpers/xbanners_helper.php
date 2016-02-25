@@ -11,7 +11,7 @@ if (!function_exists('getBanner')) {
     function getBanner($place, $type = 'view') {
         $banner = CI::$APP->load->module('xbanners')->getBanner($place);
 
-        if (!($banner instanceof Banners\Models\Banners)) {
+        if (!($banner instanceof \xbanners\models\Banners)) {
             return null;
         }
         switch ($type) {

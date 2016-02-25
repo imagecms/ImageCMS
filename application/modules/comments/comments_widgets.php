@@ -1,5 +1,7 @@
 <?php
 
+use CMSFactory\assetManager;
+
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
@@ -12,6 +14,9 @@ if (!defined('BASEPATH')) {
 class Comments_Widgets extends MY_Controller
 {
 
+    /**
+     * @var array
+     */
     private $defaults = [
         'comments_count' => 100,
         'symbols_count' => 0,
@@ -23,15 +28,13 @@ class Comments_Widgets extends MY_Controller
         $lang->load('comments');
     }
 
-    // Get and display recent comments
-
     /**
-     *
+     * Get and display recent comments
      * @param array $widget
      * @return string
      */
-    public function recent_comments($widget = []) {
-        if ($widget['settings'] == FALSE) {
+    public function recent_comments(array $widget = []) {
+        if ($widget['settings'] === FALSE) {
             $settings = $this->defaults;
         } else {
             $settings = $widget['settings'];
@@ -62,36 +65,35 @@ class Comments_Widgets extends MY_Controller
         }
     }
 
-    public function render($viewName, array $data = [], $return = false) {
+    /**
+     * @param string $viewName
+     * @param array $data
+     */
+    public function render($viewName, array $data = []) {
         if (!empty($data)) {
             $this->template->add_array($data);
         }
 
-        $this->template->show('file:' . 'application/' . getModContDirName('comments') . '/comments/templates/' . $viewName);
-        exit;
-
-        if ($return === false) {
-            $this->template->show('file:' . 'application/' . getModContDirName('comments') . '/comments/templates/' . $viewName);
-        } else {
-            return $this->template->fetch('file:' . 'application/' . getModContDirName('comments') . '/comments/templates/' . $viewName);
-        }
+        $this->template->show('file:application/' . getModContDirName('comments') . '/comments/templates/' . $viewName);
     }
 
-    // Configure widget settings
-
-    public function recent_comments_configure($action = 'show_settings', $widget_data = []) {
+    /**
+     * Configure widget settings
+     * @param string $action
+     * @param array $widget_data
+     */
+    public function recent_comments_configure($action = 'show_settings', array $widget_data = []) {
         if ($this->dx_auth->is_admin() == FALSE) {
             exit; // Only admin access
         }
         switch ($action) {
             case 'show_settings':
-                //$this->display_tpl('recent_comments_form', array('widget' => $widget_data));
-                \CMSFactory\assetManager::create()->setData('widget', $widget_data)->renderAdmin('recent_comments_form');
+                assetManager::create()->setData('widget', $widget_data)->renderAdmin('recent_comments_form');
                 break;
 
             case 'update_settings':
-                $this->form_validation->set_rules('comments_count', lang("Number of comments", 'comments'), 'trim|required|is_natural_no_zero|min_length[1]');
-                $this->form_validation->set_rules('symbols_count', lang("Number of characters", 'comments'), 'required|trim|is_natural');
+                $this->form_validation->set_rules('comments_count', lang('Number of comments', 'comments'), 'trim|required|is_natural_no_zero|min_length[1]');
+                $this->form_validation->set_rules('symbols_count', lang('Number of characters', 'comments'), 'required|trim|is_natural');
 
                 if ($this->form_validation->run($this) == FALSE) {
                     showMessage(validation_errors());
@@ -102,7 +104,7 @@ class Comments_Widgets extends MY_Controller
                     ];
 
                     $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
-                    showMessage(lang("Settings have been saved", 'comments'));
+                    showMessage(lang('Settings have been saved', 'comments'));
                     if ($this->input->post('action') == 'tomain') {
                         pjax('/admin/widgets_manager/index');
                     }
@@ -115,10 +117,13 @@ class Comments_Widgets extends MY_Controller
         }
     }
 
-    // Get and display recent product comments
-
-    public function recent_product_comments($widget = []) {
-        if ($widget['settings'] == FALSE) {
+    /**
+     * Get and display recent product comments
+     * @param array $widget
+     * @return string
+     */
+    public function recent_product_comments(array $widget = []) {
+        if ($widget['settings'] === FALSE) {
             $settings = $this->defaults;
         } else {
             $settings = $widget['settings'];
@@ -148,20 +153,23 @@ class Comments_Widgets extends MY_Controller
         }
     }
 
-    // Configure widget settings
-
-    public function recent_product_comments_configure($action = 'show_settings', $widget_data = []) {
+    /**
+     * Configure widget settings
+     * @param string $action
+     * @param array $widget_data
+     */
+    public function recent_product_comments_configure($action = 'show_settings', array $widget_data = []) {
         if ($this->dx_auth->is_admin() == FALSE) {
             exit; // Only admin access
         }
         switch ($action) {
             case 'show_settings':
-                \CMSFactory\assetManager::create()->setData('widget', $widget_data)->renderAdmin('recent_product_comments_form');
+                assetManager::create()->setData('widget', $widget_data)->renderAdmin('recent_product_comments_form');
                 break;
 
             case 'update_settings':
-                $this->form_validation->set_rules('comments_count', lang("Number of responses"), 'trim|required|is_natural_no_zero|min_length[1]');
-                $this->form_validation->set_rules('symbols_count', lang("Number of characters"), 'required|trim|is_natural');
+                $this->form_validation->set_rules('comments_count', lang('Number of responses'), 'trim|required|is_natural_no_zero|min_length[1]');
+                $this->form_validation->set_rules('symbols_count', lang('Number of characters'), 'required|trim|is_natural');
 
                 if ($this->form_validation->run($this) == FALSE) {
                     showMessage(validation_errors());
@@ -172,7 +180,7 @@ class Comments_Widgets extends MY_Controller
                     ];
 
                     $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
-                    showMessage(lang("Settings have been saved", 'comments'));
+                    showMessage(lang('Settings have been saved', 'comments'));
                     if ($this->input->post('action') == 'tomain') {
                         pjax('/admin/widgets_manager/index');
                     }
@@ -183,22 +191,6 @@ class Comments_Widgets extends MY_Controller
                 $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $this->defaults);
                 break;
         }
-    }
-
-    // Template functions
-
-    public function display_tpl($file, $vars = []) {
-        $this->template->add_array($vars);
-
-        $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';
-        $this->template->display('file:' . $file);
-    }
-
-    public function fetch_tpl($file, $vars = []) {
-        $this->template->add_array($vars);
-
-        $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';
-        return $this->template->fetch('file:' . $file);
     }
 
 }

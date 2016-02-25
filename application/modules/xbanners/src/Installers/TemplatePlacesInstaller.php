@@ -1,18 +1,19 @@
 <?php
 
-namespace Banners\Installers;
+namespace xbanners\src\Installers;
 
-use Banners\Models\Banners;
-use Banners\Models\BannersQuery;
+use xbanners\models\Banners;
+use xbanners\models\BannersQuery;
 use template_manager\classes\TemplateManager;
-use Banners\Entities\BannerEffects;
+use xbanners\src\Entities\BannerEffects;
 
 /**
  * Install all banners from temlate
  *
  * @author Crayd
  */
-final class TemplatePlacesInstaller {
+final class TemplatePlacesInstaller
+{
 
     /**
      * @var string
@@ -62,20 +63,20 @@ final class TemplatePlacesInstaller {
     }
 
     public function dropAll() {
-        \Banners\Models\BannersQuery::create()->deleteAll();
+        BannersQuery::create()->deleteAll();
     }
 
     /**
      * Get template banners
      *
      * @return array
-     * @throws Exception
+     * @throws \Exception
      */
     protected function getBanners() {
         if (file_exists($this->bannersConfigFile)) {
             return include $this->bannersConfigFile;
         }
-        throw new \Exception(lang("Could not find banner settings", 'xbanners'));
+        throw new \Exception(lang('Could not find banner settings', 'xbanners'));
     }
 
 }

@@ -8,7 +8,8 @@
  * @author <dev@imagecms.net>
  * @version 0.3 PHP5
  * ************************************************ */
-class Mabilis_Compiler extends Mabilis {
+class Mabilis_Compiler extends Mabilis
+{
 
     public $config = NULL;
 
@@ -16,7 +17,7 @@ class Mabilis_Compiler extends Mabilis {
     // Each of this function will be renamed as tpl_$func
     private $func_prefix = 'func_';
 
-    private $func_array = array('counter', 'truncate');
+    private $func_array = ['counter', 'truncate'];
 
     // Constructor
 
@@ -32,6 +33,7 @@ class Mabilis_Compiler extends Mabilis {
      *
      * @access public
      * @param string $file filename
+     * @return bool
      */
     public function compile($file) {
         // Read template data
@@ -44,7 +46,7 @@ class Mabilis_Compiler extends Mabilis {
 
             $curFilePath = dirname(realpath($file));
 
-            $include_functions = array();
+            $include_functions = [];
 
             // Replace all {$variable} as echo $variable
             //$tpl_data = preg_replace('/({\s*)\s*(\$\w*?)\s*(\s*\})/', '$1 echo $2;$3', $tpl_data);
@@ -88,10 +90,10 @@ class Mabilis_Compiler extends Mabilis {
             $tpl_data = preg_replace('/\{\s*(\w*)\s*(\(.*?\))\s*\}/', '{ echo $1 $2; }', $tpl_data);
 
             // Replace PHP tags
-            $tpl_data = preg_replace("/<\?php(.*?)\?>/si", '<!user_php$1user_php!>', $tpl_data);
+            $tpl_data = preg_replace('/<\?php(.*?)\?>/si', '<!user_php$1user_php!>', $tpl_data);
 
             // Replace literal tags
-            $tpl_data = preg_replace("/\{\s*literal\s*\}(.*?)\{\s*\/literal\}/si", '<!user_literal$1user_literal!>', $tpl_data);
+            $tpl_data = preg_replace('/\{\s*literal\s*\}(.*?)\{\s*\/literal\}/si', '<!user_literal$1user_literal!>', $tpl_data);
 
             // Replace delimiters to php tags
             $tpl_data = preg_replace('/(\s*)\{(\s*)/', '$1<?php$2', $tpl_data);
@@ -109,7 +111,7 @@ class Mabilis_Compiler extends Mabilis {
 
             // Foreach
             $tpl_data = preg_replace('/<\?php\s*\/foreach\s*\?>/', '<?php }} ?>', $tpl_data);
-            $tpl_data = preg_replace('/<\?php\s*(foreach)\s*(\$.*?)\s*as\s*(\$.*?)\s*\?>/', "<?php if(is_true_array($2)){ $1 ($2 as $3){ ?>", $tpl_data);
+            $tpl_data = preg_replace('/<\?php\s*(foreach)\s*(\$.*?)\s*as\s*(\$.*?)\s*\?>/', '<?php if(is_true_array($2)){ $1 ($2 as $3){ ?>', $tpl_data);
             $tpl_data = preg_replace('/<\?php\s*(foreach)\s*(.*?)\s*as\s*(\$.*?)\s*\?>/', "<?php  \$result = $2; \n if(is_true_array(\$result)){ $1 (\$result as $3){ ?>", $tpl_data);
 
             // For
@@ -126,7 +128,7 @@ class Mabilis_Compiler extends Mabilis {
 
             // Include_tpl
             $tpl_data = preg_replace_callback(
-                "/<\?php.*include\_tpl.*\((.*)\).*\?>/",
+                '/<\?php.*include\_tpl.*\((.*)\).*\?>/',
                 function ($arr) use ($curFilePath) {
                         return '<?php $this->include_tpl(' . $arr[1] . ', \'' . $curFilePath . '\'); ?>';
                 },
@@ -141,9 +143,9 @@ class Mabilis_Compiler extends Mabilis {
                 $tpl_data
             );
 
-            preg_match_all("/<\!user_php(.*)\s*user_php\!>/", $tpl_data, $_match);
+            preg_match_all('/<\!user_php(.*)\s*user_php\!>/', $tpl_data, $_match);
 
-            $php_patterns = array('/<\?php/', '/\?>/');
+            $php_patterns = ['/<\?php/', '/\?>/'];
 
             foreach ($_match[0] as $k => $v) {
                 $text = preg_replace($php_patterns, $this->config->delimiters, $v);
@@ -154,9 +156,9 @@ class Mabilis_Compiler extends Mabilis {
             $tpl_data = preg_replace('/user_php!>/', '?>', $tpl_data);
 
             // Replace php tags to { } between literal tags
-            preg_match_all("/<\!user_literal(.*?)user_literal\!>/si", $tpl_data, $_match);
+            preg_match_all('/<\!user_literal(.*?)user_literal\!>/si', $tpl_data, $_match);
 
-            $php_patterns = array('/<\?php/', '/\?>/');
+            $php_patterns = ['/<\?php/', '/\?>/'];
 
             foreach ($_match[0] as $k => $v) {
                 $text = preg_replace($php_patterns, $this->config->delimiters, $v);

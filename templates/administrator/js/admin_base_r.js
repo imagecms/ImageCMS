@@ -27,6 +27,8 @@ var pagesAdmin = new Object({
             },
             complete: function (data) {
                 $("#cfcm_fields_block").html(data.responseText);
+                pagesAdmin.initEditor();
+
             }
         });
     },
@@ -41,8 +43,21 @@ var pagesAdmin = new Object({
             },
             complete: function (data) {
                 $("#cfcm_fields_block").html(data.responseText);
+                pagesAdmin.initEditor();
+
             }
         });
+    },
+    initEditor: function(){
+        $('.customTextArea').each(function(key,el){
+            var id = $(el).attr('id');
+            try{
+                tinyMCE.execCommand('mceRemoveEditor', true, id);
+                tinyMCE.execCommand('mceAddEditor', false, id);
+            }catch (e){
+            }
+        });
+
     },
     confirmListAction: function (actionURL) {
         //event.preventDefault();
@@ -102,5 +117,7 @@ var CFAdmin = new Object({
 });
 
 
-pagesAdmin.initialize();
+$(document).on('pjax:end', function () {
+    pagesAdmin.initialize();
+});
 

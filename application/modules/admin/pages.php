@@ -106,7 +106,7 @@ class Pages extends BaseAdminController
         $this->db->delete('content_fields_data');
         $this->cache->delete('cfcm_field_' . $page_id . 'page');
 
-        $this->lib_admin->log(lang("Deleted ID page", "admin") . " " . $page_id);
+        $this->lib_admin->log(lang('Deleted ID page', 'admin') . ' ' . $page_id);
 
         // Delete content_permissions
         $this->db->where('page_id', $page_id);
@@ -142,17 +142,17 @@ class Pages extends BaseAdminController
      * Language default
      */
     public function add() {
-        $this->form_validation->set_rules('page_title', lang("Title", "admin"), 'trim|required|min_length[1]|max_length[500]');
-        $this->form_validation->set_rules('page_url', lang("URL", "admin"), 'alpha_dash');
-        $this->form_validation->set_rules('prev_text', lang("Preliminary contents", "admin"), 'trim|required');
-        $this->form_validation->set_rules('page_description', lang("Description ", "admin"), 'trim');
-        $this->form_validation->set_rules('full_tpl', lang("Page template", "admin"), 'trim|max_length[150]|min_length[2]|callback_tpl_validation');
-        $this->form_validation->set_rules('create_date', lang("Creation date", "admin"), 'required');
-        $this->form_validation->set_rules('create_time', lang("Creation time", "admin"), 'required');
-        $this->form_validation->set_rules('publish_date', lang("Publication date", "admin"), 'required');
-        $this->form_validation->set_rules('publish_time', lang("Publication time", "admin"), 'required');
+        $this->form_validation->set_rules('page_title', lang('Title', 'admin'), 'trim|required|min_length[1]|max_length[500]');
+        $this->form_validation->set_rules('page_url', lang('URL', 'admin'), 'alpha_dash|least_one_symbol');
+        $this->form_validation->set_rules('prev_text', lang('Preliminary contents', 'admin'), 'trim|required');
+        $this->form_validation->set_rules('page_description', lang('Description ', 'admin'), 'trim');
+        $this->form_validation->set_rules('full_tpl', lang('Page template', 'admin'), 'trim|max_length[150]|min_length[2]|callback_tpl_validation');
+        $this->form_validation->set_rules('create_date', lang('Creation date', 'admin'), 'required');
+        $this->form_validation->set_rules('create_time', lang('Creation time', 'admin'), 'required');
+        $this->form_validation->set_rules('publish_date', lang('Publication date', 'admin'), 'required');
+        $this->form_validation->set_rules('publish_time', lang('Publication time', 'admin'), 'required');
 
-        $this->form_validation->set_rules('main_tpl', lang("Main page template", "admin"), 'trim|max_length[50]|min_length[2]|callback_tpl_validation');
+        $this->form_validation->set_rules('main_tpl', lang('Main page template', 'admin'), 'trim|max_length[50]|min_length[2]|callback_tpl_validation');
 
         if ($this->form_validation->run($this) == FALSE) {
             $error = $this->form_validation->error_string('<p>', '</p>');
@@ -165,8 +165,7 @@ class Pages extends BaseAdminController
             $def_lang = $this->cms_admin->get_default_lang();
 
             if ($this->input->post('page_url') == '' or $this->input->post('page_url') == NULL) {
-                $this->load->helper('translit');
-                $url = translit_url($this->input->post('page_title'));
+                $url = $this->createUrl($this->input->post('page_title'));
             } else {
                 $url = $this->input->post('page_url');
             }
@@ -176,7 +175,7 @@ class Pages extends BaseAdminController
             $query = $this->db->get('components');
 
             if ($query->num_rows() > 0) {
-                showMessage(lang("Reserved the same name module", "admin"), false, 'r');
+                showMessage(lang('Reserved the same name module', 'admin'), false, 'r');
                 return;
             }
             // end module check
@@ -185,7 +184,7 @@ class Pages extends BaseAdminController
             $query = $this->db->get('category', 1);
 
             if ($query->num_rows() > 0) {
-                showMessage(lang("Category or page with such url already exist", "admin"), false, 'r');
+                showMessage(lang('Category or page with such url already exist', 'admin'), false, 'r');
                 return;
             }
             // end check
@@ -197,7 +196,7 @@ class Pages extends BaseAdminController
             $query = $this->db->get('content', 1);
 
             if ($query->num_rows() > 0) {
-                showMessage(lang("Page with the same URL has been created yet. Specify or select another URL"), false, 'r');
+                showMessage(lang('Page with the same URL has been created yet. Specify or select another URL'), false, 'r');
                 return;
             }
             // end check
@@ -259,8 +258,8 @@ class Pages extends BaseAdminController
             $this->on_page_add($data);
 
             $this->lib_admin->log(
-                lang("Created a page", "admin") . " " .
-                '<a href="/admin/pages/edit/' . $page_id . '">' . $data['title'] . '</a>'
+                lang('Created a page', 'admin') .
+                " <a href='/admin/pages/edit/$page_id'>{$data['title']}</a>"
             );
 
             $action = $this->input->post('action');
@@ -270,7 +269,7 @@ class Pages extends BaseAdminController
                 $path = '/admin/pages/edit/' . $page_id;
             }
 
-            showMessage(lang("Page has been created", "admin"));
+            showMessage(lang('Page has been created', 'admin'));
             pjax($path);
         }
     }
@@ -323,7 +322,7 @@ class Pages extends BaseAdminController
     public function edit($page_id, $lang = 0) {
 
         if ($this->cms_admin->get_page($page_id) == FALSE) {
-            showMessage(lang("Page", "admin") . $page_id . lang("Not found", "admin"), false, 'r');
+            showMessage(lang('Page', 'admin') . $page_id . lang('Not found', 'admin'), false, 'r');
             return;
         }
 
@@ -413,6 +412,9 @@ class Pages extends BaseAdminController
             // Load category
             $category = $this->lib_category->get_category($data['category']);
 
+            $pagesPagination = $this->session->userdata('pages_pag_url');
+            $pagesPagination = $pagesPagination ? $pagesPagination : null;
+
             $this->template->add_array(
                 [
                     'page_lang' => $data['lang'],
@@ -422,7 +424,8 @@ class Pages extends BaseAdminController
                     'langs' => $langs,
                     //                    'defLang' => $def_lang, //??
                     'category' => $category,
-                    'pageExists' => $pageExists
+                    'pageExists' => $pageExists,
+                    'pagesPagination' => $pagesPagination,
                 ]
             );
 
@@ -444,6 +447,9 @@ class Pages extends BaseAdminController
      */
     public function update($page_id) {
 
+        $pagesPagination = $this->session->userdata('pages_pag_url');
+        $pagesPagination = $pagesPagination ? $pagesPagination : null;
+
         //cp_check_perm('page_edit');
 
         $data = $this->db->get_where('content', ['id' => $page_id]);
@@ -457,17 +463,17 @@ class Pages extends BaseAdminController
         Events::create()->registerEvent(['pageId' => $page_id, 'url' => $data['url']], 'BaseAdminPage:preUpdate');
         Events::runFactory();
 
-        $this->form_validation->set_rules('page_title', lang("Title", "admin"), 'trim|required|min_length[1]|max_length[500]');
-        $this->form_validation->set_rules('page_url', lang("URL", "admin"), 'alpha_dash');
-        $this->form_validation->set_rules('page_keywords', lang("Keywords", "admin"), 'trim');
-        $this->form_validation->set_rules('prev_text', lang("Preliminary contents", "admin"), 'trim|required');
-        $this->form_validation->set_rules('page_description', lang("Description ", "admin"), 'trim');
-        $this->form_validation->set_rules('full_tpl', lang("Page template", "admin"), 'trim|max_length[50]|min_length[2]|callback_tpl_validation');
-        $this->form_validation->set_rules('main_tpl', lang("Main page template ", "admin"), 'trim|max_length[50]|min_length[2]|callback_tpl_validation');
-        $this->form_validation->set_rules('create_date', lang("Creation date", "admin"), 'required');
-        $this->form_validation->set_rules('create_time', lang("Creation time", "admin"), 'required');
-        $this->form_validation->set_rules('publish_date', lang("Publication date", "admin"), 'required');
-        $this->form_validation->set_rules('publish_time', lang("Publication time", "admin"), 'required');
+        $this->form_validation->set_rules('page_title', lang('Title', 'admin'), 'trim|required|min_length[1]|max_length[500]');
+        $this->form_validation->set_rules('page_url', lang('URL', 'admin'), 'alpha_dash|least_one_symbol');
+        $this->form_validation->set_rules('page_keywords', lang('Keywords', 'admin'), 'trim');
+        $this->form_validation->set_rules('prev_text', lang('Preliminary contents', 'admin'), 'trim|required');
+        $this->form_validation->set_rules('page_description', lang('Description ', 'admin'), 'trim');
+        $this->form_validation->set_rules('full_tpl', lang('Page template', 'admin'), 'trim|max_length[50]|min_length[2]|callback_tpl_validation');
+        $this->form_validation->set_rules('main_tpl', lang('Main page template ', 'admin'), 'trim|max_length[50]|min_length[2]|callback_tpl_validation');
+        $this->form_validation->set_rules('create_date', lang('Creation date', 'admin'), 'required');
+        $this->form_validation->set_rules('create_time', lang('Creation time', 'admin'), 'required');
+        $this->form_validation->set_rules('publish_date', lang('Publication date', 'admin'), 'required');
+        $this->form_validation->set_rules('publish_time', lang('Publication time', 'admin'), 'required');
 
         $page_category = $this->cms_admin->get_category($data['category']);
 
@@ -501,8 +507,7 @@ class Pages extends BaseAdminController
             showMessage(validation_errors(), false, 'r');
         } else {
             if ($this->input->post('page_url') == '' or $this->input->post('page_url') == NULL) {
-                $this->load->helper('translit');
-                $url = translit_url($this->input->post('page_title'));
+                $url = $this->createUrl($this->input->post('page_title'));
             } else {
                 $url = $this->input->post('page_url');
             }
@@ -512,7 +517,7 @@ class Pages extends BaseAdminController
             $query = $this->db->get('components');
 
             if ($query->num_rows() > 0) {
-                showMessage(lang("Reserved the same name module", "admin"), false, 'r');
+                showMessage(lang('Reserved the same name module', 'admin'), false, 'r');
                 return;
             }
             // end module check
@@ -521,7 +526,7 @@ class Pages extends BaseAdminController
             $query = $this->db->get('category', 1);
 
             if ($query->num_rows() > 0) {
-                showMessage(lang("Reserved of the same name category", "admin"), false, 'r');
+                showMessage(lang('Reserved of the same name category', 'admin'), false, 'r');
                 return;
             }
             // end check
@@ -535,7 +540,7 @@ class Pages extends BaseAdminController
             $query = $this->db->get('content', 1);
 
             if ($query->num_rows() > 0) {
-                showMessage(lang("Page with URL", "admin") . '<b>' . $url . '</b>' . lang("in ID category", "admin") . $this->input->post('category') . lang(" already exists. Specify or select another URL"), false, 'r');
+                showMessage(lang('Page with URL', 'admin') . '<b>' . $url . '</b>' . lang('in ID category', 'admin') . $this->input->post('category') . lang(' already exists. Specify or select another URL'), false, 'r');
                 return;
             }
             // end check
@@ -586,18 +591,18 @@ class Pages extends BaseAdminController
 
             if ($this->cms_admin->update_page($page_id, $data) >= 1) {
                 $this->lib_admin->log(
-                    lang("Changed the page", "admin") . " " .
-                    '<a href="/admin/pages/edit/' . $page_id . '">' . $data['title'] . '</a>'
+                    lang('Changed the page', 'admin') .
+                    " <a href='/admin/pages/edit/$page_id>'{$data['title']}</a>"
                 );
 
                 $action = $this->input->post('action');
-                $path = '/admin/pages/GetPagesByCategory';
+                $path = '/admin/pages/GetPagesByCategory/all/'. $pagesPagination;
 
                 if ($action == 'edit') {
                     $path = "/admin/pages/edit/$page_id";
                 }
 
-                showMessage(lang("Page contents have been updated", "admin"));
+                showMessage(lang('Page contents have been updated', 'admin'));
 
                 $page = $this->cms_admin->get_page($page_id);
                 if ($page) {
@@ -647,7 +652,7 @@ class Pages extends BaseAdminController
             $this->on_page_delete($page['id']);
 
             if ($show_messages == TRUE) {
-                showMessage(lang("Page has been deleted.", "admin"));
+                showMessage(lang('Page has been deleted.', 'admin'));
                 updateDiv('page', site_url('admin/pages/GetPagesByCategory/' . $page['category']));
             }
             return TRUE;
@@ -662,7 +667,7 @@ class Pages extends BaseAdminController
         $this->on_page_delete($page_id);
 
         if ($show_messages == TRUE) {
-            showMessage(lang("Page has been deleted.", "admin"));
+            showMessage(lang('Page has been deleted.', 'admin'));
             updateDiv('page', site_url('admin/pages/edit/' . $root_page['id'] . '/' . $root_page['lang']));
         }
     }
@@ -671,10 +676,7 @@ class Pages extends BaseAdminController
      * Translit title to url
      */
     public function ajax_translit() {
-
-        $this->load->helper('translit');
-        $str = trim($this->input->post('str'));
-        echo translit_url($str);
+        echo $this->createUrl($this->input->post('str'));
     }
 
     public function save_positions() {
@@ -706,9 +708,9 @@ class Pages extends BaseAdminController
             showMessage(lang('Can not delete main page', 'admin'), lang('Message'), 'r');
         }
         if (in_array(true, $res)) {
-            showMessage(lang("Successful delete", "admin"));
+            showMessage(lang('Successful delete', 'admin'));
         }
-        pjax($this->input->server("HTTP_REFERER"));
+        pjax($this->input->server('HTTP_REFERER'));
     }
 
     /**
@@ -786,14 +788,14 @@ class Pages extends BaseAdminController
             $catName = $category['name'] ? ' -> ' . $category['name'] : '';
             if ($action == 'copy') {
                 showMessage(lang('Page successfuly copied', 'admin'));
-                $this->lib_admin->log(lang("Pages was copied", "admin") . '. Id: ' . implode(', ', $ids_key) . '' . $catName);
+                $this->lib_admin->log(lang('Pages was copied', 'admin') . '. Id: ' . implode(', ', $ids_key) . '' . $catName);
             } else if ($action == 'move') {
-                showMessage(lang("Successfull moving", "admin"));
-                $this->lib_admin->log(lang("Pages was moving", "admin") . '. Id: ' . implode(', ', $ids_key) . '' . $catName);
+                showMessage(lang('Successfull moving', 'admin'));
+                $this->lib_admin->log(lang('Pages was moving', 'admin') . '. Id: ' . implode(', ', $ids_key) . '' . $catName);
             }
-            pjax($this->input->server("HTTP_REFERER"));
+            pjax($this->input->server('HTTP_REFERER'));
         } else {
-            showMessage(lang("The operation error", "admin"));
+            showMessage(lang('The operation error', 'admin'));
         }
     }
 
@@ -853,7 +855,7 @@ class Pages extends BaseAdminController
         $text = $this->input->post('keys');
 
         if ($text == '') {
-            echo lang("Zero-length string", 'admin');
+            echo lang('Zero-length string', 'admin');
             return;
         }
 
@@ -952,7 +954,17 @@ class Pages extends BaseAdminController
      * @cat_id int
      * @cur_page int
      */
-    public function GetPagesByCategory($cat_id = 'all') {
+    public function GetPagesByCategory($cat_id = 'all', $pagination = null) {
+
+        //////**********  Pagination pages **********\\\\\\\
+        if ($pagination) {
+            $paginationSession = [
+                'pages_pag_url' => $pagination,
+            ];
+            $this->session->set_userdata($paginationSession);
+        } else {
+            $this->session->unset_userdata('pages_pag_url');
+        }
 
         $def_lang = $this->cms_admin->get_default_lang();
         CI::$APP->config->set_item('cur_lang', $def_lang['id']);
@@ -1077,6 +1089,17 @@ class Pages extends BaseAdminController
 
             $this->template->show('pages_list', FALSE);
         }
+    }
+
+    /**
+     * Crete url with at least one symbol
+     * @param $str
+     * @return string
+     */
+    private function createUrl($str) {
+        $this->load->helper('translit');
+        is_numeric($str) && $str = 'p'. $str;
+        return translit_url($str);
     }
 
 }

@@ -1,8 +1,9 @@
 <?php
 
-namespace Banners\UrlFinder\Finders;
+namespace xbanners\src\UrlFinder\Finders;
 
-final class ProductCategories extends BaseFinder {
+final class ProductCategories extends BaseFinder
+{
 
     protected $table = 'shop_category';
 

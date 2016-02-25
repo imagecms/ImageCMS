@@ -6,8 +6,10 @@ use CMSFactory\assetManager;
 
 /**
  * @author Gula Andrew <a.gula@imagecms.net>
+ * @property Cms_base $cms_base
  */
-class Admin extends BaseAdminController {
+class Admin extends BaseAdminController
+{
 
     public function __construct() {
         parent::__construct();
@@ -26,16 +28,16 @@ class Admin extends BaseAdminController {
         if ($this->input->get()) {
             $get = $this->input->get();
             if ($type_search == 'old') {
-                $this->db->select("id, trash_url as text");
-                $this->db->like("trash_url", $get['term'], 'both');
+                $this->db->select('id, trash_url as text');
+                $this->db->like('trash_url', $get['term'], 'both');
             } else {
-                $this->db->select("id, trash_redirect as text");
-                $this->db->like("trash_redirect", $get['term'], 'both');
+                $this->db->select('id, trash_redirect as text');
+                $this->db->like('trash_redirect', $get['term'], 'both');
             }
 
-            $this->db->order_by("id", "DESC");
+            $this->db->order_by('id', 'DESC');
             $this->db->limit(100);
-            $result = $this->db->get("trash")->result_array();
+            $result = $this->db->get('trash')->result_array();
             $json_answer = [];
             if ($result) {
                 foreach ($result as $res) {
@@ -75,7 +77,7 @@ class Admin extends BaseAdminController {
         assetManager::create()
                 ->setData('model', $query)
                 ->setData('pagination', $this->pagination->create_links_ajax())
-                ->registerScript("admin")
+                ->registerScript('admin')
                 ->renderAdmin('main');
     }
 
@@ -97,7 +99,7 @@ class Admin extends BaseAdminController {
                 $value = explode(' ', $value);
                 try {
                     $this->trash->create_redirect($value[0], $value[1], $value[2]);
-                    $this->lib_admin->log(lang("Redirect created", "trash") . '. Id:' . $this->db->insert_id());
+                    $this->lib_admin->log(lang('Redirect created', 'trash') . '. Id:' . $this->db->insert_id());
                 } catch (Exception $exc) {
                     showMessage($exc->getMessage(), false, 'r');
                     exit;
@@ -121,7 +123,7 @@ class Admin extends BaseAdminController {
 
         $this->_addShopData();
 
-        $this->db->order_by("name", "asc");
+        $this->db->order_by('name', 'asc');
         $query = $this->db->get('category');
         $this->template->add_array(['category_base' => $query->result()]);
 
@@ -134,16 +136,16 @@ class Admin extends BaseAdminController {
 
                 switch ($this->input->post('redirect_type')) {
 
-                    case "url":
+                    case 'url':
                         $array = [
                             'trash_url' => ltrim($this->input->post('url'), '/'),
                             'trash_redirect_type' => $this->input->post('redirect_type'),
                             'trash_type' => $this->input->post('type'),
-                            'trash_redirect' => prep_url($this->input->post('redirect_url'))
+                            'trash_redirect' => $this->input->post('redirect_url')
                         ];
                         break;
 
-                    case "product":
+                    case 'product':
                         $query = $this->db->get_where('shop_products', ['id' => $this->input->post('products')]);
                         $url = $query->row();
                         $array = [
@@ -155,7 +157,7 @@ class Admin extends BaseAdminController {
                         ];
                         break;
 
-                    case "category":
+                    case 'category':
                         $query = $this->db->get_where('shop_category', ['id' => $this->input->post('category')]);
                         $url = $query->row();
                         $array = [
@@ -167,7 +169,7 @@ class Admin extends BaseAdminController {
                         ];
                         break;
 
-                    case "basecategory":
+                    case 'basecategory':
                         $query = $this->db->get_where('category', ['id' => $this->input->post('category_base')]);
                         $url = $query->row();
                         $array = [
@@ -179,9 +181,10 @@ class Admin extends BaseAdminController {
                         ];
                         break;
 
-                    case "404":
+                    case '404':
                         $array = [
                             'trash_url' => ltrim($this->input->post('url'), '/'),
+                            'trash_type' => $this->input->post('type'),
                             'trash_redirect_type' => '404'
                         ];
                         break;
@@ -189,6 +192,7 @@ class Admin extends BaseAdminController {
                     default :
                         $array = [
                             'trash_url' => ltrim($this->input->post('url'), '/'),
+                            'trash_type' => $this->input->post('type'),
                             'trash_redirect_type' => '404'
                         ];
                         break;
@@ -200,7 +204,7 @@ class Admin extends BaseAdminController {
 
                 showMessage(lang('Trash was created', 'trash'));
 
-                $this->lib_admin->log(lang("Trash was created", "trash") . '. Url: ' . $array['trash_url']);
+                $this->lib_admin->log(lang('Trash was created', 'trash') . '. Url: ' . $array['trash_url']);
 
                 if ($this->input->post('action') == 'create') {
                     pjax('/admin/components/init_window/trash/edit_trash/' . $lastId);
@@ -222,7 +226,7 @@ class Admin extends BaseAdminController {
 
         $this->_addShopData();
 
-        $this->db->order_by("name", "asc");
+        $this->db->order_by('name', 'asc');
         $query = $this->db->get('category');
         $this->template->add_array(['category_base' => $query->result()]);
 
@@ -232,17 +236,17 @@ class Admin extends BaseAdminController {
 
         if ($this->input->post()) {
             switch ($this->input->post('redirect_type')) {
-                case "url":
+                case 'url':
                     $array = [
                         'id' => $this->input->post('id'),
                         'trash_url' => $this->input->post('old_url'),
                         'trash_redirect_type' => $this->input->post('redirect_type'),
                         'trash_type' => $this->input->post('type'),
-                        'trash_redirect' => prep_url($this->input->post('redirect_url'))
+                        'trash_redirect' => $this->input->post('redirect_url')
                     ];
                     break;
 
-                case "product":
+                case 'product':
                     $query = $this->db->get_where('shop_products', ['id' => $this->input->post('products')]);
                     $url = $query->row();
 
@@ -256,7 +260,7 @@ class Admin extends BaseAdminController {
                     ];
                     break;
 
-                case "category":
+                case 'category':
                     $query = $this->db->get_where('shop_category', ['id' => $this->input->post('category')]);
                     $url = $query->row();
 
@@ -270,7 +274,7 @@ class Admin extends BaseAdminController {
                     ];
                     break;
 
-                case "basecategory":
+                case 'basecategory':
                     $query = $this->db->get_where('category', ['id' => $this->input->post('category_base')]);
                     $url = $query->row();
 
@@ -284,10 +288,9 @@ class Admin extends BaseAdminController {
                     ];
                     break;
 
-                case "404":
+                case '404':
                     $array = [
                         'id' => $this->input->post('id'),
-                        'trash_url' => $this->input->post('old_url'),
                         'trash_redirect_type' => $this->input->post('redirect_type')
                     ];
                     break;
@@ -303,7 +306,7 @@ class Admin extends BaseAdminController {
 
             $this->db->where('id', $this->input->post('id'));
             $this->db->update('trash', $array);
-            $this->lib_admin->log(lang("Redirect was edited", "trash") . '. Url: ' . $array['trash_url']);
+            $this->lib_admin->log(lang('Redirect was edited', 'trash') . '. Url: ' . $array['trash_url']);
         }
 
         if ($this->input->post('action')) {
@@ -319,7 +322,7 @@ class Admin extends BaseAdminController {
             $this->db->where('id', $item);
             $this->db->delete('trash');
         }
-        $this->lib_admin->log(lang("Redirect deleted", "trash"));
+        $this->lib_admin->log(lang('Redirect deleted', 'trash'));
 
         showMessage(lang('Redirect deleted', 'trash'));
     }
@@ -336,7 +339,7 @@ class Admin extends BaseAdminController {
             assetManager::create()->setData('products', $shop_products_i18n->result());
 
             $shop_category_i18n = $this->db
-                ->order_by("name", "asc")
+                ->order_by('name', 'asc')
                 ->where('locale', $locale)
                 ->get('shop_category_i18n');
             assetManager::create()->setData('category', $shop_category_i18n->result());

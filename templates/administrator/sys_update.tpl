@@ -10,7 +10,7 @@
                     <a href="{$BASE_URL}admin/sys_update"
                        class="t-d_n m-r_15 pjax">
                         <span class="f-s_14">←</span>
-                        <span class="t-d_u">{lang('back', 'admin')}</span>
+                        <span class="t-d_u">{lang('Go back', 'admin')}</span>
                     </a>
                     <button onclick="Update.processBackup();"
                             class="btn btn-small btn-primary pjax">
@@ -29,13 +29,7 @@
         </div>
 
         {if $error}
-            <div class="span3 pull-right"style="padding-top: 20px;">
-                <div class="alert alert-error alert-block">
-                    <button type="button" class="close" data-dismiss="alert">X</button>
-                    <h4>{lang('Error', 'admin')}!</h4>
-                    {echo $error}
-                </div>
-            </div>
+            {showMessage($error , 'Ошибка', 'r')}
         {/if}
 
         <div class="progressDB" style="display: none;">
@@ -66,9 +60,6 @@
                                             <th>
                                                 {lang('Control sum', 'admin')}
                                             </th>
-                                            <th>
-                                                {lang('Date of changes', 'admin')}
-                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -82,14 +73,15 @@
                                                 <td >
                                                     <span>{echo $md5}</span>
                                                 </td>
-                                                <td>
-                                                    {echo date('Y-m-d  h:m:s',$diff_files_dates[$file_path])}
-                                                </td>
                                             </tr>
                                         {/foreach}
                                     </tbody>
                                 </table>
                             </form>
+                            <div style="float:right;padding:10px 10px 0 0" class="pagination">
+                                {echo $paginator}
+                            </div>
+
                         {else:}
                             {if $error}
                                 <div class="alert alert-info" style="margin-bottom: 18px; margin-top: 18px;">
@@ -109,7 +101,7 @@
                         <table class="table  table-bordered table-hover table-condensed t-l_a">
                             <thead>
                                 <tr>
-                                    <th >{lang('Name', 'admin')}</th>
+                                    <th >{lang('Title', 'admin')}</th>
                                     <th >
                                         {if $sort_by == 'size'}
                                             {if $order == 'asc'}
@@ -149,7 +141,7 @@
                                             {echo $file_inf['size']} mb.
                                         </td>
                                         <td>
-                                            {echo date('Y-m-d h:m:s', $file_inf['create_date'])}
+                                            {echo date('d-m-Y H:i:s.', $file_inf['create_date'])}
                                         </td>
                                         <td class="span2">
                                             <button class="btn btn-small btn-success pjax"

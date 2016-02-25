@@ -2,9 +2,17 @@
 
 namespace template_manager\classes;
 
+use CMSFactory\Events;
+use Exception;
+use libraries\Backup;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
 use template_manager\classes\DemodataQueriesFilter;
+use template_manager\installer\DemodataDirector;
+use template_manager\installer\DependenceDirector;
 
-class TemplateManager {
+class TemplateManager
+{
 
     const REMORE_UPDATE_INTERVAL = 7200; // 3 hours
     const EVENT_DEMODATA_INSTALLED = 'demodata:installed';
@@ -67,7 +75,7 @@ class TemplateManager {
      * @return TemplateManager
      */
     public static function getInstance() {
-        self::$instance = self::$instance ? self::$instance : new self;
+        self::$instance = self::$instance ?: new self;
         return self::$instance;
     }
 
@@ -88,10 +96,9 @@ class TemplateManager {
         }
         $componentsPath = __DIR__ . '/../components/';
 
-        $dirList = [];
         if ($handle = opendir($componentsPath)) {
             while (false !== ($componentName = readdir($handle))) {
-                if ($componentName != "." && $componentName != ".." && !in_array($componentName, $except)) {
+                if ($componentName != '.' && $componentName != '..' && !in_array($componentName, $except)) {
                     include_once $componentsPath . "$componentName/$componentName" . EXT;
                     $this->defaultComponents[$componentName] = new $componentName;
                 }
@@ -127,27 +134,28 @@ class TemplateManager {
      * Fires event "postTemplateInstall"
      *
      * @param Template $template
-     * @return boolean|null
+     * @param bool $installDemodata
+     * @param bool $installDemoArchive
+     * @return bool|null
      * @throws Exception
      */
     public function setTemplate(Template $template, $installDemodata = FALSE, $installDemoArchive = FALSE) {
         if ($this->currentTemplate->name == $template->name) {
-            throw new \Exception(lang('Current installed template can not be installed again', 'template_manager'));
+            throw new Exception(lang('Current installed template can not be installed again', 'template_manager'));
         }
 
         //Install template demodata
-        //        if ($installDemodata) {
         if (isset($template->xml->demodata)) {
-            $demodataDirector = new \template_manager\installer\DemodataDirector($template->xml->demodata);
+            $demodataDirector = new DemodataDirector($template->xml->demodata);
             $res = $demodataDirector->install();
             $this->massages = $demodataDirector->getMessages();
             if (FALSE == $res) {
-                throw new \Exception(lang('One or more dependency error', 'template_manager'));
+                throw new Exception(lang('One or more dependency error', 'template_manager'));
             }
         }
 
         $this->copyUploads($template->name);
-        //        }
+
         // Truncate table template_settings
         \CI::$APP->db->truncate('template_settings');
 
@@ -166,22 +174,26 @@ class TemplateManager {
         // processing all dependencies
         if (isset($template->xml->dependencies)) {
             if (isset($template->xml->dependencies->dependence)) {
-                $dependenceDirector = new \template_manager\installer\DependenceDirector($template->xml->dependencies->dependence);
+                $dependenceDirector = new DependenceDirector($template->xml->dependencies->dependence);
                 $res = $dependenceDirector->verify($installDemodata);
                 $this->massages = $dependenceDirector->getMessages();
                 if (FALSE == $res) {
-                    throw new \Exception(lang('One or more dependency error', 'template_manager'));
+                    throw new Exception(lang('One or more dependency error', 'template_manager'));
                 }
             }
         }
 
-        \CMSFactory\Events::create()->registerEvent($template, 'postTemplateInstall');
-        \CMSFactory\Events::runFactory();
+        Events::create()->registerEvent($template, 'postTemplateInstall');
+        Events::runFactory();
     }
 
+    /**
+     * @param string $template_name
+     * @return bool
+     */
     public function installDemoArchive($template_name) {
         try {
-            \CMSFactory\Events::create()->raiseEvent(['templateName' => $template_name], self::EVENT_DEMODATA_PRE_INSTALLED);
+            Events::create()->raiseEvent(['templateName' => $template_name], self::EVENT_DEMODATA_PRE_INSTALLED);
 
             $demodata_atchive = realpath('templates/' . $template_name . '/demodata/uploads.zip');
 
@@ -207,7 +219,7 @@ class TemplateManager {
 
                 $changedDir = [];
                 $uploads_folder = realpath('uploads');
-                foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($uploads_folder)) as $entity) {
+                foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($uploads_folder)) as $entity) {
                     $directory = dirname($entity->getPathname());
                     if (!in_array($directory, $changedDir)) {
                         chmod($directory, 0777);
@@ -231,10 +243,10 @@ class TemplateManager {
                 $this->query_from_file($db_file_content);
             }
 
-            \CMSFactory\Events::create()->raiseEvent(['templateName' => $template_name], self::EVENT_DEMODATA_INSTALLED);
+            Events::create()->raiseEvent(['templateName' => $template_name], self::EVENT_DEMODATA_INSTALLED);
 
             return TRUE;
-        } catch (\Exception $exc) {
+        } catch (Exception $exc) {
             $this->messages = $exc->getMessage();
             return FALSE;
         }
@@ -248,7 +260,7 @@ class TemplateManager {
 
         if (is_really_writable(BACKUPFOLDER)) {
             \CI::$APP->load->dbutil();
-            $filePath = \libraries\Backup::create()->createBackup("sql", "backup_template_manager", TRUE);
+            $filePath = Backup::create()->createBackup('sql', 'backup_template_manager', TRUE);
             chmod(BACKUPFOLDER . 'backup_template_manager.sql', 0777);
             return pathinfo($filePath, PATHINFO_BASENAME);
         }
@@ -281,7 +293,7 @@ class TemplateManager {
         $templateUploadsFolder = "./templates/{$templateName}/uploads";
 
         if (is_dir($templateUploadsFolder)) {
-            foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($templateUploadsFolder)) as $entity) {
+            foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($templateUploadsFolder)) as $entity) {
                 if ($entity->getFilename() != '.' && $entity->getFilename() != '..' && !strstr($entity->getPathname(), '/.')) {
                     preg_match('/uploads.*/', $entity->getPathname(), $matches);
 
@@ -317,6 +329,9 @@ class TemplateManager {
         return $this->currentTemplate;
     }
 
+    /**
+     * @return array
+     */
     public function getCurrentTemplateComponents() {
         if ($this->current_template_components === null) {
             $this->current_template_components = $this->getCurentTemplate()
@@ -329,7 +344,7 @@ class TemplateManager {
      * Templates from ./templates directory
      * @param boolean $validOnly (optional, default TRUE) if false all
      * templates will be shown, if true only those wich have all needed files
-     * @return array arrsy of Template objects
+     * @return array array of Template objects
      */
     public function listLocal($validOnly = TRUE) {
         $templates = [];
@@ -381,6 +396,7 @@ class TemplateManager {
 
     /**
      * @param string $url
+     * @return mixed
      */
     protected function getContents($url) {
         $ch = curl_init($url);

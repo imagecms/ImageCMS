@@ -29,7 +29,7 @@ class CForm_Checkbox
 
     public function label() {
 
-        return '<label for="' . $this->name . '" class="' . $this->form->_config['label_class'] . $r_class . '">&nbsp;</label>';
+        return '<label for="' . $this->name . '" class="' . $this->form->_config['label_class'] . '">&nbsp;</label>';
     }
 
     public function setInitial($data) {
@@ -39,15 +39,17 @@ class CForm_Checkbox
 
     public function setAttributes($data) {
 
-        if ($data == $this->field->initial OR $data == 'on') {
+        if ($data === $this->field->initial OR $data == 'on' or $data) {
             $this->field->checked = TRUE;
+        } else {
+            $this->field->checked = FALSE;
         }
     }
 
     public function getData() {
 
-        if (isset($_POST[$this->name])) {
-            return $_POST[$this->name];
+        if (array_key_exists($this->name, $_POST)) {
+            return 1;
         }
     }
 
@@ -64,8 +66,7 @@ class CForm_Checkbox
     }
 
     public function renderHtml() {
-
-        if ($this->field->checked === TRUE) {
+        if ($this->field->checked || $this->field->checked == 'on') {
             $checked = 'checked="checked"';
         } else {
             $checked = '';

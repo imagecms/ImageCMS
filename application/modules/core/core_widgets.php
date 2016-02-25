@@ -102,8 +102,8 @@ class Core_Widgets extends MY_Controller
                 break;
 
             case 'update_settings':
-                $this->form_validation->set_rules('news_count', lang("Amount of news", "core"), 'trim|required|is_natural_no_zero|min_length[1]');
-                $this->form_validation->set_rules('max_symdols', lang("Maximum number of characters", "core"), 'trim|required|is_natural|min_length[1]');
+                $this->form_validation->set_rules('news_count', lang('Amount of news', 'core'), 'trim|required|is_natural_no_zero|min_length[1]');
+                $this->form_validation->set_rules('max_symdols', lang('Maximum number of characters', 'core'), 'trim|required|is_natural|min_length[1]');
 
                 if ($this->form_validation->run($this) == FALSE) {
                     showMessage(validation_errors());
@@ -117,7 +117,7 @@ class Core_Widgets extends MY_Controller
 
                     $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
 
-                    showMessage(lang("Settings have been saved", 'core'));
+                    showMessage(lang('Settings have been saved', 'core'));
 
                     if ($this->input->post('action') == 'tomain') {
                         pjax('/admin/widgets_manager/index');
@@ -153,8 +153,8 @@ class Core_Widgets extends MY_Controller
             case 'update_settings':
                 $settings = $this->input->post('settings');
 
-                $this->form_validation->set_rules('settings[limit]', lang("Similar pages limit", "core"), 'trim');
-                $this->form_validation->set_rules('settings[max_short_description_words]', lang("Maximum short description words count", "core"), 'trim');
+                $this->form_validation->set_rules('settings[limit]', lang('Similar pages limit', 'core'), 'trim');
+                $this->form_validation->set_rules('settings[max_short_description_words]', lang('Maximum short description words count', 'core'), 'trim');
 
                 if (!$this->form_validation->run($this)) {
                     showMessage(validation_errors(), '', 'r');
@@ -162,7 +162,7 @@ class Core_Widgets extends MY_Controller
                 } else {
                     $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $settings);
 
-                    showMessage(lang("Settings have been saved", 'core'));
+                    showMessage(lang('Settings have been saved', 'core'));
 
                     if ($this->input->post('action') == 'tomain') {
                         pjax('/admin/widgets_manager/index');
@@ -202,14 +202,14 @@ class Core_Widgets extends MY_Controller
     public function display_tpl($file, $vars = []) {
         $this->template->add_array($vars);
 
-        $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';
+        $file = realpath(__DIR__) . '/templates/' . $file . '.tpl';
         $this->template->display('file:' . $file);
     }
 
     public function fetch_tpl($file, $vars = []) {
         $this->template->add_array($vars);
 
-        $file = realpath(dirname(__FILE__)) . '/templates/' . $file . '.tpl';
+        $file = realpath(__DIR__) . '/templates/' . $file . '.tpl';
         return $this->template->fetch('file:' . $file);
     }
 

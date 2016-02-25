@@ -263,6 +263,26 @@ function ajax_div(target, url) {
         }
     });
 }
+function validateNumeric(selector){
+    $(selector).bind('keyup', function () {
+
+        var value = $(this).val();
+        console.log(value);
+        var regexp = /[^0-9]/gi;
+        value = value.replace(regexp, '');
+
+        // Can not begin from 0
+        if (parseInt(value) == 0)
+            value = '';
+        $(this).val(value);
+
+        // Percent
+        if (parseInt(value) > 99) {
+            $(this).val(99);
+        }
+    })
+
+}
 
 //submit form
 $('form input[type="submit"], form button[type="submit"]').off('click.validate').on('click.validate', function (e) {

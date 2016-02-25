@@ -50,52 +50,53 @@ class SiteInfo
      *
      * @var array
      */
-    public static $siteinfoObgect;
+    public static $siteInfoObject;
 
     /**
      * Setting class variables
      * @param string $locale locale to intiate class with
      */
     public function __construct($locale = NULL) {
-        if ($this->useLocales == TRUE) {
-            $this->locale = $locale != null ? $locale : MY_Controller::getCurrentLocale();
+        if ($this->useLocales === TRUE) {
+            $this->locale = $locale !== null ? $locale : MY_Controller::getCurrentLocale();
         }
 
-        if (!self::$siteinfoObgect) {
-            $locales_ = CI::$APP->db->select('identif,id')->get('languages')->result_array();
+        if (!self::$siteInfoObject) {
+            $locales_ = CI::$APP->cms_base->get_langs();
+
             foreach ($locales_ as $row) {
                 $this->locales[$row['id']] = $row['identif'];
             }
 
             // getting data from DB
             $result = CI::$APP->db->select('siteinfo')->get('settings')->row_array();
-            self::$siteinfoObgect = unserialize($result['siteinfo']);
-            if (is_array(self::$siteinfoObgect)) {
-                $this->siteinfo = self::$siteinfoObgect;
+            self::$siteInfoObject = unserialize($result['siteinfo']);
+            if (is_array(self::$siteInfoObject)) {
+                $this->siteinfo = self::$siteInfoObject;
             }
         } else {
-            $this->siteinfo = self::$siteinfoObgect;
+            $this->siteinfo = self::$siteInfoObject;
         }
     }
 
     /**
      * Sets all params in one array (mostly on saving)
-     * @param array $siteinfo
+     * @param array $siteInfo
      */
-    public function setSiteInfoData(array $siteinfo) {
+    public function setSiteInfoData(array $siteInfo) {
 
         $languages = CI::$APP->db->get('languages')->result_array();
 
-        if ($this->useLocales == TRUE) {
+        if ($this->useLocales === TRUE) {
             if (!array_key_exists($this->locale, $this->siteinfo)) {
                 $this->siteinfo[$this->locale] = [];
             }
-            foreach ($siteinfo as $key => $value) {
+            foreach ($siteInfo as $key => $value) {
                 if (in_array($key, $this->nonLocaleKeys)) {
                     $this->siteinfo[$key] = $value;
                 } else {
                     foreach ($languages as $lang) {
-                        if ($lang['identif'] == $this->locale) {
+                        if ($lang['identif'] === $this->locale) {
                             $this->siteinfo[$this->locale][$key] = $value;
                         } elseif ($key == 'contacts') {
                             $this->contactsKeys($key, $lang);
@@ -104,7 +105,7 @@ class SiteInfo
                 }
             }
         } else {
-            $this->siteinfo = $siteinfo;
+            $this->siteinfo = $siteInfo;
         }
     }
 
@@ -212,7 +213,7 @@ class SiteInfo
     /**
      * Returns all params in one array (for serialize)
      * @param boolean $byLocale if true then will be returned data by locale, else all dataS
-     * @return type
+     * @return array
      */
     public function getSiteInfoData($byLocale = FALSE) {
         if ($this->useLocales == TRUE & $byLocale !== FALSE) {

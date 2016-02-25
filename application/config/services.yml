@@ -1,0 +1,6 @@
+parameters:
+    # ...
+
+services:
+    dispatcher:
+        class: Symfony\Component\EventDispatcher\EventDispatcher

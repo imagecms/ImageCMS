@@ -1,14 +1,5 @@
 <?php
 
-if (!function_exists('lang')) {
-
-    function lang($v) {
-
-        return $v;
-    }
-
-}
-
 if (!function_exists('sort_names')) {
 
     /**
@@ -18,113 +9,108 @@ if (!function_exists('sort_names')) {
      */
     function sort_names($arr) {
 
-        usort(
-            $arr,
-            function ($a, $b) {
-                    $first = $a['menu_name'];
-                    $second = $b['menu_name'];
-                    return strnatcmp($first, $second);
-            }
-        );
-        return $arr;
+        return user_function_sort($arr, 'menu_name');
     }
 
 }
 
 if (!function_exists('get_language_name')) {
 
+    /**
+     * @return array
+     */
     function get_language_names() {
 
         $languageCodes = [
-            "ab" => lang("Abkhazian", 'translator', FALSE),
-            "ae" => lang("Avestan", 'translator', FALSE),
-            "an" => lang("Aragonese", 'translator', FALSE),
-            "ar" => lang("Arabic", 'translator', FALSE),
-            "az" => lang("Azerbaijani", 'translator', FALSE),
-            "ba" => lang("Bashkir", 'translator', FALSE),
-            "be" => lang("Belarusian", 'translator', FALSE),
-            "bg" => lang("Bulgarian", 'translator', FALSE),
-            "bh" => lang("Bihari", 'translator', FALSE),
-            "bn" => lang("Bengali", 'translator', FALSE),
-            "br" => lang("Breton", 'translator', FALSE),
-            "bs" => lang("Bosnian", 'translator', FALSE),
-            "ca" => lang("Catalan", 'translator', FALSE),
-            "co" => lang("Corsican", 'translator', FALSE),
-            "cr" => lang("Cree", 'translator', FALSE),
-            "cs" => lang("Czech", 'translator', FALSE),
-            "cv" => lang("Chuvash", 'translator', FALSE),
-            "cy" => lang("Welsh", 'translator', FALSE),
-            "da" => lang("Danish", 'translator', FALSE),
-            "de" => lang("German", 'translator', FALSE),
-            "el" => lang("Greek", 'translator', FALSE),
-            "en" => lang("English", 'translator', FALSE),
-            "eo" => lang("Esperanto", 'translator', FALSE),
-            "es" => lang("Spanish", 'translator', FALSE),
-            "et" => lang("Estonian", 'translator', FALSE),
-            "eu" => lang("Basque", 'translator', FALSE),
-            "fj" => lang("Fijian", 'translator', FALSE),
-            "fo" => lang("Faroese", 'translator', FALSE),
-            "fr" => lang("French", 'translator', FALSE),
-            "ga" => lang("Irish", 'translator', FALSE),
-            "he" => lang("Hebrew", 'translator', FALSE),
-            "hu" => lang("Hungarian", 'translator', FALSE),
-            "hy" => lang("Armenian", 'translator', FALSE),
-            "id" => lang("Indonesian", 'translator', FALSE),
-            "is" => lang("Icelandic", 'translator', FALSE),
-            "it" => lang("Italian", 'translator', FALSE),
-            "iu" => lang("Inuktitut", 'translator', FALSE),
-            "ja" => lang("Japanese", 'translator', FALSE),
-            "jv" => lang("Javanese", 'translator', FALSE),
-            "ka" => lang("Georgian", 'translator', FALSE),
-            "kk" => lang("Kazakh", 'translator', FALSE),
-            "kl" => lang("Kalaallisut", 'translator', FALSE),
-            "kn" => lang("Kannada", 'translator', FALSE),
-            "ko" => lang("Korean", 'translator', FALSE),
-            "kw" => lang("Cornish", 'translator', FALSE),
-            "ky" => lang("Kirghiz", 'translator', FALSE),
-            "la" => lang("Latin", 'translator', FALSE),
-            "lb" => lang("Luxembourgish", 'translator', FALSE),
-            "lg" => lang("Ganda", 'translator', FALSE),
-            "li" => lang("Limburgish", 'translator', FALSE),
-            "ln" => lang("Lingala", 'translator', FALSE),
-            "lo" => lang("Lao", 'translator', FALSE),
-            "lt" => lang("Lithuanian", 'translator', FALSE),
-            "lv" => lang("Latvian", 'translator', FALSE),
-            "mh" => lang("Marshallese", 'translator', FALSE),
-            "mi" => lang("Maori", 'translator', FALSE),
-            "mk" => lang("Macedonian", 'translator', FALSE),
-            "mn" => lang("Mongolian", 'translator', FALSE),
-            "ne" => lang("Nepali", 'translator', FALSE),
-            "nl" => lang("Dutch", 'translator', FALSE),
-            "no" => lang("Norwegian", 'translator', FALSE),
-            "ny" => lang("Chichewa", 'translator', FALSE),
-            "os" => lang("Ossetian", 'translator', FALSE),
-            "pi" => lang("Pali", 'translator', FALSE),
-            "pl" => lang("Polish", 'translator', FALSE),
-            "ps" => lang("Pashto", 'translator', FALSE),
-            "pt" => lang("Portuguese", 'translator', FALSE),
-            "qu" => lang("Quechua", 'translator', FALSE),
-            "ro" => lang("Romanian", 'translator', FALSE),
-            "ru" => lang("Russian", 'translator', FALSE),
-            "sa" => lang("Sanskrit", 'translator', FALSE),
-            "sg" => lang("Sango", 'translator', FALSE),
-            "sk" => lang("Slovak", 'translator', FALSE),
-            "sl" => lang("Slovenian", 'translator', FALSE),
-            "so" => lang("Somali", 'translator', FALSE),
-            "sq" => lang("Albanian", 'translator', FALSE),
-            "sr" => lang("Serbian", 'translator', FALSE),
-            "su" => lang("Sundanese", 'translator', FALSE),
-            "sv" => lang("Swedish", 'translator', FALSE),
-            "ta" => lang("Tamil", 'translator', FALSE),
-            "tk" => lang("Turkmen", 'translator', FALSE),
-            "tn" => lang("Tswana", 'translator', FALSE),
-            "tr" => lang("Turkish", 'translator', FALSE),
-            "tt" => lang("Tatar", 'translator', FALSE),
-            "uk" => lang("Ukrainian", 'translator', FALSE),
-            "uz" => lang("Uzbek", 'translator', FALSE),
-            "vi" => lang("Vietnamese", 'translator', FALSE),
-            "yi" => lang("Yiddish", 'translator', FALSE),
-            "zh" => lang("Chinese", 'translator', FALSE),
+            'ab' => lang('Abkhazian', 'translator', FALSE),
+            'ae' => lang('Avestan', 'translator', FALSE),
+            'an' => lang('Aragonese', 'translator', FALSE),
+            'ar' => lang('Arabic', 'translator', FALSE),
+            'az' => lang('Azerbaijani', 'translator', FALSE),
+            'ba' => lang('Bashkir', 'translator', FALSE),
+            'be' => lang('Belarusian', 'translator', FALSE),
+            'bg' => lang('Bulgarian', 'translator', FALSE),
+            'bh' => lang('Bihari', 'translator', FALSE),
+            'bn' => lang('Bengali', 'translator', FALSE),
+            'br' => lang('Breton', 'translator', FALSE),
+            'bs' => lang('Bosnian', 'translator', FALSE),
+            'ca' => lang('Catalan', 'translator', FALSE),
+            'co' => lang('Corsican', 'translator', FALSE),
+            'cr' => lang('Cree', 'translator', FALSE),
+            'cs' => lang('Czech', 'translator', FALSE),
+            'cv' => lang('Chuvash', 'translator', FALSE),
+            'cy' => lang('Welsh', 'translator', FALSE),
+            'da' => lang('Danish', 'translator', FALSE),
+            'de' => lang('German', 'translator', FALSE),
+            'el' => lang('Greek', 'translator', FALSE),
+            'en' => lang('English', 'translator', FALSE),
+            'eo' => lang('Esperanto', 'translator', FALSE),
+            'es' => lang('Spanish', 'translator', FALSE),
+            'et' => lang('Estonian', 'translator', FALSE),
+            'eu' => lang('Basque', 'translator', FALSE),
+            'fj' => lang('Fijian', 'translator', FALSE),
+            'fo' => lang('Faroese', 'translator', FALSE),
+            'fr' => lang('French', 'translator', FALSE),
+            'ga' => lang('Irish', 'translator', FALSE),
+            'he' => lang('Hebrew', 'translator', FALSE),
+            'hu' => lang('Hungarian', 'translator', FALSE),
+            'hy' => lang('Armenian', 'translator', FALSE),
+            'id' => lang('Indonesian', 'translator', FALSE),
+            'is' => lang('Icelandic', 'translator', FALSE),
+            'it' => lang('Italian', 'translator', FALSE),
+            'iu' => lang('Inuktitut', 'translator', FALSE),
+            'ja' => lang('Japanese', 'translator', FALSE),
+            'jv' => lang('Javanese', 'translator', FALSE),
+            'ka' => lang('Georgian', 'translator', FALSE),
+            'kk' => lang('Kazakh', 'translator', FALSE),
+            'kl' => lang('Kalaallisut', 'translator', FALSE),
+            'kn' => lang('Kannada', 'translator', FALSE),
+            'ko' => lang('Korean', 'translator', FALSE),
+            'kw' => lang('Cornish', 'translator', FALSE),
+            'ky' => lang('Kirghiz', 'translator', FALSE),
+            'la' => lang('Latin', 'translator', FALSE),
+            'lb' => lang('Luxembourgish', 'translator', FALSE),
+            'lg' => lang('Ganda', 'translator', FALSE),
+            'li' => lang('Limburgish', 'translator', FALSE),
+            'ln' => lang('Lingala', 'translator', FALSE),
+            'lo' => lang('Lao', 'translator', FALSE),
+            'lt' => lang('Lithuanian', 'translator', FALSE),
+            'lv' => lang('Latvian', 'translator', FALSE),
+            'mh' => lang('Marshallese', 'translator', FALSE),
+            'mi' => lang('Maori', 'translator', FALSE),
+            'mk' => lang('Macedonian', 'translator', FALSE),
+            'mn' => lang('Mongolian', 'translator', FALSE),
+            'ne' => lang('Nepali', 'translator', FALSE),
+            'nl' => lang('Dutch', 'translator', FALSE),
+            'no' => lang('Norwegian', 'translator', FALSE),
+            'ny' => lang('Chichewa', 'translator', FALSE),
+            'os' => lang('Ossetian', 'translator', FALSE),
+            'pi' => lang('Pali', 'translator', FALSE),
+            'pl' => lang('Polish', 'translator', FALSE),
+            'ps' => lang('Pashto', 'translator', FALSE),
+            'pt' => lang('Portuguese', 'translator', FALSE),
+            'qu' => lang('Quechua', 'translator', FALSE),
+            'ro' => lang('Romanian', 'translator', FALSE),
+            'ru' => lang('Russian', 'translator', FALSE),
+            'sa' => lang('Sanskrit', 'translator', FALSE),
+            'sg' => lang('Sango', 'translator', FALSE),
+            'sk' => lang('Slovak', 'translator', FALSE),
+            'sl' => lang('Slovenian', 'translator', FALSE),
+            'so' => lang('Somali', 'translator', FALSE),
+            'sq' => lang('Albanian', 'translator', FALSE),
+            'sr' => lang('Serbian', 'translator', FALSE),
+            'su' => lang('Sundanese', 'translator', FALSE),
+            'sv' => lang('Swedish', 'translator', FALSE),
+            'ta' => lang('Tamil', 'translator', FALSE),
+            'tk' => lang('Turkmen', 'translator', FALSE),
+            'tn' => lang('Tswana', 'translator', FALSE),
+            'tr' => lang('Turkish', 'translator', FALSE),
+            'tt' => lang('Tatar', 'translator', FALSE),
+            'uk' => lang('Ukrainian', 'translator', FALSE),
+            'uz' => lang('Uzbek', 'translator', FALSE),
+            'vi' => lang('Vietnamese', 'translator', FALSE),
+            'yi' => lang('Yiddish', 'translator', FALSE),
+            'zh' => lang('Chinese', 'translator', FALSE),
         ];
 
         asort($languageCodes);
@@ -132,6 +118,7 @@ if (!function_exists('get_language_name')) {
     }
 
 }
+
 if (!function_exists('isLocale')) {
 
     /**
@@ -148,6 +135,9 @@ if (!function_exists('isLocale')) {
 
 if (!function_exists('getEditorStyles')) {
 
+    /**
+     * @return array
+     */
     function getEditorStyles() {
 
         $files = scandir(getModulePath('translator') . '/assets/js/src-min');
@@ -200,7 +190,7 @@ if (!function_exists('updateSettings')) {
                 ->update(
                     'components',
                     ['settings' => serialize($settings)
-                                    ]
+                    ]
                 );
         } else {
             return FALSE;
@@ -211,7 +201,12 @@ if (!function_exists('updateSettings')) {
 
 if (!function_exists('makeCorrectUrl')) {
 
-    function makeCorrectUrl($from = '', $to = "") {
+    /**
+     * @param string $from
+     * @param string $to
+     * @return mixed|string
+     */
+    function makeCorrectUrl($from = '', $to = '') {
 
         $dotsCount = substr_count($to, '..');
 
@@ -251,7 +246,7 @@ if (!function_exists('makeCorrectUrl')) {
 function get_sec() {
 
     $mtime = microtime();
-    $mtime = explode(" ", $mtime);
+    $mtime = explode(' ', $mtime);
     $mtime = $mtime[1] + $mtime[0];
     return $mtime;
 }
@@ -321,7 +316,7 @@ if (!function_exists('get_file_name')) {
 
         switch ($type) {
             case 'modules':
-                $module_info = (MAINSITE ? MAINSITE : '.') . "/application/" . getModContDirName($name) . "/{$name}/module_info.php";
+                $module_info = (MAINSITE ? MAINSITE : '.') . '/application/' . getModContDirName($name) . "/{$name}/module_info.php";
                 include $module_info;
                 $lang = new MY_Lang();
                 $lang->load($name);
