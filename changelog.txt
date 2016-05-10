@@ -1,0 +1,88 @@
+Version 4.10 (2016-??-??)
+    We've stopped providing support for a 5.4 php version and the work of ImageCMS is not guaranteed
+    Add template manager install permission
+    Fixed url autocomplite in xbanners module (ICMS-3303)
+    Fixed comments rating count (ICMS-3336 ICMS-3320)
+    Fixed sorting category Tree (ICMS-3307)
+    Fixed adding product properties value "0" (ICMS-3503)
+    Fixed empty sorting settings in module shop (ICMS-3229)
+    Fixed validation url for brand creation (ICMS-3257)
+    Fixed cart orders, when not logged in user make order (ICMS-3504)
+    Fixed validation minimum order price in shop settings (ICMS-3274 , ICMS-3539)
+    Fixed similar module (ICMS-3253)
+    Fixed Redirect 404 Corporate (ICMS-3268)
+    Fixed permission static call (ICMS-3485)
+    Fixed content field group positions in fields list (ICMS-3462)
+    Fixed clean cart from inactive items (ICMS-3517)
+    Fixed additional images watermark size (ICMS-3461)
+    Fixed check kit products stock (ICMS-3369)
+    Fixed upload products images in edit products (ICMS-3536)
+    Fixed widget latest news validation count news (ICMS-3256)
+    Fixed extra get parameters when filter applied
+    Fixed comments widget url (ICMS-3258)
+    Fixed gallery widget , wrong href (ICMS-3259)
+    Fixed fast create products select (ICMS-3254)
+    Fixed kit product, only first variant number (ICMS-3546)
+    Fixed add first comment in new product (ICMS-3540)
+    Fixed kit with no related products (ICMS-3547)
+    Fixed new page translation custom fields (ICMS-2987)
+    Fixed download images from "https" in module import-export (ICMS-3492)
+    Fixed cart items that not available in stock (ICMS-3069)
+    Fixed module redirect, edit 404 type (ICMS-3302)
+    Fixed order product origin price precision (ICMS-2364)
+    Fixed properties filter by id , input only numeric (ICMS-2988)
+    Fixed empty properties in show product (ICMS-3394)
+    Fixed additional photo positions, in edit products (ICMS-3534)
+    Fixed upload additional photo max_size in edit product (ICMS-3550)
+    Fixed rbac user priveleges custom scripts modules (ICMS-3552)
+    Fixed rbac user priveleges shop product edit additional images (ICMS-3553)
+    Deleted gallery "Delete Image" button (ICMS-3415)
+    Deleted CategoryImport and PropertyImport classes, functionality moved to BaseImport
+    Deleted shop_kit_product onDelete shop_product_variants propel trigger (ICMS-3428)
+    Deleted "field" position in create pages category (ICMS-3491)
+
+Version 4.9.0.4 (2016-04-22)
+    Add "noindex, follow" for brands pagination pages
+    Add privileges users for module "callback"
+    Fixed discount "date from" date picker
+    Fixed max pages per page in category validation (ICMS-3400)
+    Fixed banner urls autocomplete
+    Fixed webmoney price format
+    Fixed empty price filter
+    Fixed non-strict check in product properties values in products edit
+    Fixed non-strict check in product properties values in import-export module
+    Fixed shipping and payments positions on product page
+    Fixed lang in custom fields data-title
+    Fixed duplicated pages in database when change status
+    Fixed sorting name in gallery for Corporate
+    Fixed Yandex Metrica code
+    Fixed seo module search meta params
+    Fixed add new categories with empty url (ICMS-3453)
+    Fixed history order status when delete status
+    Fixed order sorting history status (ICMS-3467)
+    Fixed count orders in delete orders status (ICMS-3482)
+    Fixed removal order status and history status
+    Fixed add new categories with empty url
+    Fixed 'orderLink' when order created from admin area (ICMS-3269)
+    Fixed validation user profile data, in custom fields (ICMS-3430)
+    Fixed product variants sorting (ICMS-3477)
+    Fixed category select on category creation (ICMS-3484)
+    Fixed user_maneger create/edit users validation phone (ICMS-2844)
+    Fixed callback url, when change location (ICMS-3512)
+    Fixed redirect get params if locale in url is default (ICMS-3440)
+    Fixed 404 error on brand page with other locale in url (ICMS-3446)
+    Fixed full path in responsivefilemanager (ICMS-3519)
+    Deleted banner url validation (ICMS-3414)
+    Deleted unused function in "Search" class
+    Deleted banner slide image "Delete" button (ICMS-3415)
+    Deleted export checkbox "skip column"  (ICMS-3486)
+
+Version 4.9.0.3 (2016-03-21)
+    Add TinyMCE to composer requirements
+    Add support for old banners paths
+    Fixed double admin autoload
+    Fixed php 5.4 error in mailer module
+    Fixed showing non-active product in "similar products" widget
+    Fixed showing non-active product in related products
+    Fixed pagination for old templates
+    Updated Chosen to 1.5.1

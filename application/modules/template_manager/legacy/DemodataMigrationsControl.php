@@ -3,14 +3,15 @@
 namespace template_manager\legacy;
 
 /**
- * This class is for controll every demodata install
+ * This class is for control every demodata install
  * to check if the migrations where implemented in demodata sql-file.
  * If not, then fix all needed columns
  *
  *
  * @author kolia
  */
-class DemodataMigrationsControl extends \CI_Model {
+class DemodataMigrationsControl extends \CI_Model
+{
 
     public function __construct() {
         parent::__construct();
@@ -34,9 +35,9 @@ class DemodataMigrationsControl extends \CI_Model {
             'shop_orders',
             'key',
             [
-            'name' => 'order_key',
-            'type' => 'VARCHAR',
-            'constraint' => '255',
+             'name'       => 'order_key',
+             'type'       => 'VARCHAR',
+             'constraint' => '255',
             ]
         );
 
@@ -44,9 +45,9 @@ class DemodataMigrationsControl extends \CI_Model {
             'shop_gifts',
             'key',
             [
-            'name' => 'gift_key',
-            'type' => 'VARCHAR',
-            'constraint' => '255',
+             'name'       => 'gift_key',
+             'type'       => 'VARCHAR',
+             'constraint' => '255',
             ]
         );
     }
@@ -80,7 +81,8 @@ class DemodataMigrationsControl extends \CI_Model {
             return null;
         }
         $fields = [];
-        for ($i = 0; $i < count($result); $i++) {
+        $count = count($result);
+        for ($i = 0; $i < $count; $i++) {
             $fields[] = $result[$i]['Field'];
         }
         return $fields;

@@ -90,7 +90,7 @@ if (!function_exists('siteInfoAdditionalManipulations')) {
                         if (SHOP_INSTALLED) {
                             $colorScheme = CI::$APP->load->module('template_manager')->getComponent('TColorScheme')->getColorSheme();
                             $template = TemplateManager::getInstance()->getCurentTemplate();
-                            return "/templates/" . $template->name . "/css/{$colorScheme}/" . $value[$key];
+                            return '/templates/' . $template->name . "/css/{$colorScheme}/" . $value[$key];
                         } else {
                             return "/templates/{$settings['site_template']}/images/" . array_shift($value);
                         }

@@ -30,7 +30,6 @@ msgstr ""
 msgid "Brands"
 msgstr "Manufacturers"
 
-# ? (Оля)
 #: application/modules/star_rating/admin.php:42
 msgid "Settings saved success"
 msgstr "Settings saved successfully/ Settings have been saved successfully "

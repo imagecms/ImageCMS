@@ -9,7 +9,8 @@ if (!defined('BASEPATH')) {
  * Memcache Class
  *
  */
-class Mem_cache extends Memcache {
+class Mem_cache extends Memcache
+{
 
     public $CI;
 
@@ -20,14 +21,15 @@ class Mem_cache extends Memcache {
     public $key_prefix = '';
 
     //Cache config
-    public $_Config = array(
-        'store' => 'cache',
-        'ttl' => 3600);
+    public $_Config = [
+                       'store' => 'cache',
+                       'ttl'   => 3600,
+                      ];
 
     public function __construct() {
 
         $this->CI = & get_instance();
-        $this->connect('localhost', 11211) or die("Could not connect to memcache server.");
+        $this->connect('localhost', 11211) or die('Could not connect to memcache server.');
         $this->key_prefix = base_url();
     }
 
@@ -59,7 +61,7 @@ class Mem_cache extends Memcache {
     /**
      * Fetch cached function
      */
-    public function fetch_func($object, $func, $args = array()) {
+    public function fetch_func($object, $func, $args = []) {
 
         $key = $this->generatekey(get_class($object) . '::' . $func . '::' . serialize($args));
 
@@ -95,7 +97,7 @@ class Mem_cache extends Memcache {
      * @return mixed
      * @access public
      */
-    public function call($func = array(), $args = array(), $ttl = FALSE) {
+    public function call($func = [], $args = [], $ttl = FALSE) {
 
         if ($ttl === FALSE) {
             $ttl = $this->_Config['ttl'];
@@ -157,7 +159,7 @@ class Mem_cache extends Memcache {
      *
      * @return bool
      */
-    public function delete_func($object, $func, $args = array()) {
+    public function delete_func($object, $func, $args = []) {
 
         $file = $this->generatekey(get_class($object) . '::' . $func . '::' . serialize($args));
         $this->delete($file);

@@ -27,7 +27,8 @@ if (!defined('BASEPATH')) {
  * @author        Dariusz Debowczyk
  * @link        http://www.codeigniter.com/user_guide/libraries/sessions.html
  */
-class Native_session {
+class Native_session
+{
 
     var $session_id_ttl = 7200; // session id time to live (TTL) in seconds
 
@@ -35,7 +36,7 @@ class Native_session {
 
     public function __construct() {
 
-        log_message('debug', "Native_session Class Initialized");
+        log_message('debug', 'Native_session Class Initialized');
 
         $CI = & get_instance();
         $this->session_id_ttl = $CI->config->item('sess_expiration');
@@ -123,10 +124,10 @@ class Native_session {
     /**
      * Sets session attributes to the given values
      */
-    public function set_userdata($newdata = array(), $newval = '') {
+    public function set_userdata($newdata = [], $newval = '') {
 
         if (is_string($newdata)) {
-            $newdata = array($newdata => $newval);
+            $newdata = [$newdata => $newval];
         }
 
         if (count($newdata) > 0) {
@@ -139,10 +140,10 @@ class Native_session {
     /**
      * Erases given session attributes
      */
-    public function unset_userdata($newdata = array()) {
+    public function unset_userdata($newdata = []) {
 
         if (is_string($newdata)) {
-            $newdata = array($newdata => '');
+            $newdata = [$newdata => ''];
         }
 
         if (count($newdata) > 0) {
@@ -197,13 +198,13 @@ class Native_session {
      * be deleted from session). You can use it to implement "Save succeeded" messages
      * after redirect.
      */
-    public function set_flashdata($newdata = array(), $newval = '') {
+    public function set_flashdata($newdata = [], $newval = '') {
 
         // $flash_key = $this->flash_key.':new:'.$key;
         // $this->set_userdata($flash_key, $value);
 
         if (is_string($newdata)) {
-            $newdata = array($newdata => $newval);
+            $newdata = [$newdata => $newval];
         }
 
         if (count($newdata) > 0) {

@@ -11,6 +11,7 @@ if (!defined('BASEPATH')) {
  * @property Cms_admin cms_admin
  * @property Lib_admin lib_admin
  * @property Lib_category lib_category
+ * @property Cms_base cms_base
  */
 class Categories extends BaseAdminController
 {
@@ -64,19 +65,26 @@ class Categories extends BaseAdminController
      * @param int $cat_id
      */
     public function create($action, $cat_id = 0) {
+        $url = $this->formUrl();
+
         $this->form_validation->set_rules('name', lang('Title', 'admin'), 'trim|required|min_length[1]|max_length[160]|xss_clean');
-        $this->form_validation->set_rules('url', lang('URL categories', 'admin'), 'trim|min_length[1]|max_length[300]|alpha_dash');
+
+        /** Добавил необходимое условие так как если передать спец символы url не генерирует */
+        if ($url) {
+            $this->form_validation->set_rules('url', lang('URL categories', 'admin'), 'trim|min_length[1]|max_length[200]|alpha_dash|least_one_symbol');
+        } else {
+            $this->form_validation->set_rules('url', lang('URL categories', 'admin'), 'required|trim|min_length[1]|max_length[200]|alpha_dash|least_one_symbol');
+        }
         $this->form_validation->set_rules('image', lang('Image', 'admin'), 'max_length[250]');
-        $this->form_validation->set_rules('position', lang('Position', 'admin'), 'required|integer|max_length[11]');
         $this->form_validation->set_rules('parent_id', lang('Parent', 'admin'), 'trim|required|integer|max_length[160]');
         $this->form_validation->set_rules('description', lang('Description ', 'admin'), 'trim');
         $this->form_validation->set_rules('keywords', lang('Keywords', 'admin'), 'trim');
         $this->form_validation->set_rules('short_desc', lang('Short description', 'admin'), 'trim');
-        $this->form_validation->set_rules('title', lang('Title', 'admin'), 'trim|max_length[250]');
+        $this->form_validation->set_rules('title', lang('Meta Title', 'admin'), 'trim|max_length[250]');
         $this->form_validation->set_rules('tpl', lang('Template', 'admin'), 'trim|max_length[50]');
         $this->form_validation->set_rules('page_tpl', lang('Page template', 'admin'), 'trim|max_length[50]|callback_tpl_validation');
         $this->form_validation->set_rules('main_tpl', lang('Main template', 'admin'), 'trim|max_length[50]|callback_tpl_validation');
-        $this->form_validation->set_rules('per_page', lang('Per page', 'admin'), 'required|trim|integer|max_length[9]|min_length[1]|is_natural_no_zero');
+        $this->form_validation->set_rules('per_page', lang('Posts on page', 'admin'), 'required|trim|integer|max_length[4]|min_length[1]|is_natural_no_zero');
         if ($cat_id) {
             $cat = $this->cms_admin->get_category($cat_id);
             $groupId = (int) $cat['category_field_group'];
@@ -91,7 +99,6 @@ class Categories extends BaseAdminController
 
             showMessage(validation_errors(), false, 'r');
         } else {
-            $url = $this->formUrl();
 
             $fetch_pages = $this->input->post('fetch_pages');
 
@@ -99,30 +106,29 @@ class Categories extends BaseAdminController
                 $fetch_pages = serialize($fetch_pages);
             }
             $settings = [
-                'category_apply_for_subcats' => $this->input->post('category_apply_for_subcats'),
-                'apply_for_subcats' => $this->input->post('apply_for_subcats'),
-            ];
+                         'category_apply_for_subcats' => $this->input->post('category_apply_for_subcats'),
+                         'apply_for_subcats'          => $this->input->post('apply_for_subcats'),
+                        ];
             $data = [
-                'name' => $this->input->post('name'),
-                'url' => $url,
-                'image' => $this->lib_admin->db_post('image'),
-                'position' => $this->input->post('position'),
-                'short_desc' => $this->lib_admin->db_post('short_desc'),
-                'parent_id' => $this->input->post('parent_id'),
-                'description' => $this->lib_admin->db_post('description'),
-                'keywords' => $this->lib_admin->db_post('keywords'),
-                'title' => $this->lib_admin->db_post('title'),
-                'tpl' => $this->lib_admin->db_post('tpl'),
-                'main_tpl' => $this->lib_admin->db_post('main_tpl'),
-                'page_tpl' => $this->lib_admin->db_post('page_tpl'),
-                'per_page' => $this->lib_admin->db_post('per_page'),
-                'order_by' => $this->lib_admin->db_post('order_by'),
-                'sort_order' => $this->lib_admin->db_post('sort_order'),
-                'comments_default' => $this->lib_admin->db_post('comments_default'),
-                'fetch_pages' => $fetch_pages,
-                'settings' => serialize($settings),
-                'updated' => time()
-            ];
+                     'name'             => $this->input->post('name'),
+                     'url'              => $url,
+                     'image'            => $this->lib_admin->db_post('image'),
+                     'short_desc'       => $this->lib_admin->db_post('short_desc'),
+                     'parent_id'        => $this->input->post('parent_id'),
+                     'description'      => $this->lib_admin->db_post('description'),
+                     'keywords'         => $this->lib_admin->db_post('keywords'),
+                     'title'            => $this->lib_admin->db_post('title'),
+                     'tpl'              => $this->lib_admin->db_post('tpl'),
+                     'main_tpl'         => $this->lib_admin->db_post('main_tpl'),
+                     'page_tpl'         => $this->lib_admin->db_post('page_tpl'),
+                     'per_page'         => $this->lib_admin->db_post('per_page'),
+                     'order_by'         => $this->lib_admin->db_post('order_by'),
+                     'sort_order'       => $this->lib_admin->db_post('sort_order'),
+                     'comments_default' => $this->lib_admin->db_post('comments_default'),
+                     'fetch_pages'      => $fetch_pages,
+                     'settings'         => serialize($settings),
+                     'updated'          => time(),
+                    ];
 
             $parent = $this->lib_category->get_category($data['parent_id']);
 
@@ -221,9 +227,8 @@ class Categories extends BaseAdminController
      */
     private function formUrl() {
         // Create category URL
-        if ($this->input->post('url') == FALSE) {
-            $this->load->helper('translit');
-            $url = translit_url($this->input->post('name'));
+        if ($this->input->post('url') == null || $this->input->post('url') == '') {
+            $url = $this->createUrl($this->input->post('name'));
         } else {
             $url = $this->input->post('url');
         }
@@ -495,7 +500,7 @@ class Categories extends BaseAdminController
 
         $this->template->add_array(
             [
-                'tree' => $this->lib_category->build(),
+             'tree' => $this->lib_category->build(),
             ]
         );
 
@@ -514,23 +519,23 @@ class Categories extends BaseAdminController
                 $fetch_pages = '';
 
                 $data = [
-                    'name' => $this->input->post('name'),
-                    'url' => $url,
-                    'position' => '0',
-                    'short_desc' => '',
-                    'parent_id' => $this->input->post('parent_id'),
-                    'description' => '',
-                    'keywords' => '',
-                    'title' => '',
-                    'tpl' => '',
-                    'main_tpl' => '',
-                    'page_tpl' => '',
-                    'per_page' => 15,
-                    'order_by' => 'publish_date',
-                    'sort_order' => 'desc',
-                    'comments_default' => '1',
-                    'fetch_pages' => $fetch_pages,
-                ];
+                         'name'             => $this->input->post('name'),
+                         'url'              => $url,
+                         'position'         => '0',
+                         'short_desc'       => '',
+                         'parent_id'        => $this->input->post('parent_id'),
+                         'description'      => '',
+                         'keywords'         => '',
+                         'title'            => '',
+                         'tpl'              => '',
+                         'main_tpl'         => '',
+                         'page_tpl'         => '',
+                         'per_page'         => 15,
+                         'order_by'         => 'publish_date',
+                         'sort_order'       => 'desc',
+                         'comments_default' => '1',
+                         'fetch_pages'      => $fetch_pages,
+                        ];
 
                 $parent = $this->lib_category->get_category($data['parent_id']);
 
@@ -556,8 +561,8 @@ class Categories extends BaseAdminController
 
                 $this->template->add_array(
                     [
-                        'tree' => $this->lib_category->build(),
-                        'sel_cat' => $id,
+                     'tree'    => $this->lib_category->build(),
+                     'sel_cat' => $id,
                     ]
                 );
 
@@ -593,8 +598,8 @@ class Categories extends BaseAdminController
 
         $this->template->add_array(
             [
-                'tree' => $tree,
-                'catTreeHTML' => $this->renderCatList($tree)
+             'tree'        => $tree,
+             'catTreeHTML' => $this->renderCatList($tree),
             ]
         );
 
@@ -740,15 +745,15 @@ class Categories extends BaseAdminController
             if ($query->num_rows() > 0) {
                 $this->template->add_array(
                     [
-                        'cat' => $query->row_array(),
+                     'cat' => $query->row_array(),
                     ]
                 );
             }
 
             $this->template->add_array(
                 [
-                    'orig_cat' => $cat,
-                    'lang' => $lang,
+                 'orig_cat' => $cat,
+                 'lang'     => $lang,
                 ]
             );
 
@@ -774,8 +779,8 @@ class Categories extends BaseAdminController
     public function update_fast_block($sel_id) {
         $this->template->add_array(
             [
-                'tree' => $this->lib_category->build(),
-                'sel_cat' => $sel_id,
+             'tree'    => $this->lib_category->build(),
+             'sel_cat' => $sel_id,
             ]
         );
 
@@ -785,6 +790,17 @@ class Categories extends BaseAdminController
         $this->template->show('cats_select', FALSE);
 
         echo '</select>';
+    }
+
+    /**
+     * Crete url with at least one symbol
+     * @param $str
+     * @return string
+     */
+    private function createUrl($str) {
+        $this->load->helper('translit');
+        is_numeric($str) && $str = 'p' . $str;
+        return translit_url($str);
     }
 
 }

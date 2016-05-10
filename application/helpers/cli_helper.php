@@ -16,7 +16,7 @@ if (!function_exists('_readLine')) {
      */
     function _readLine($message = '') {
         file_put_contents('php://stdout', $message);
-        $handle = fopen("php://stdin", "r");
+        $handle = fopen('php://stdin', 'r');
         return trim(fgets($handle), PHP_EOL);
     }
 
@@ -33,8 +33,8 @@ if (!function_exists('_confirm')) {
     function _confirm($question, $defaultApprove = true) {
         $question = rtrim($question);
 
-        file_put_contents('php://stdout', sprintf("%s? [%s]: ", $question, $defaultApprove ? 'Y/n' : 'y/N'));
-        $handle = fopen("php://stdin", "r");
+        file_put_contents('php://stdout', sprintf('%s? [%s]: ', $question, $defaultApprove ? 'Y/n' : 'y/N'));
+        $handle = fopen('php://stdin', 'r');
         $input = trim(fgets($handle), PHP_EOL);
 
         if (empty($input) && $defaultApprove) {

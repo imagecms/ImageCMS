@@ -45,7 +45,6 @@
                                 <div class="fon"></div>
                                 <div class="btn-group f-s_0">
                                     <button type="button" class="btn change_image btn-small" data-rel="tooltip" data-title="{lang('Edit','xbanners')}" data-original-title=""><i class="icon-edit"></i></button>
-                                    <button type="button" class="btn delete_image btn-small" data-rel="tooltip" data-title="{lang('Remove','xbanners')}"><i class="icon-trash"></i></button>
                                 </div>
                                 <div class="photo-block">
                                     <span class="helper"></span>
@@ -118,7 +117,7 @@
 
                                 <div class="controls">
 
-                                    <input type="text" name="image[url]" class="input-long urlcomplete"
+                                    <input type="text" data-locale="{$locale}" name="image[url]" class="input-long urlcomplete"
                                            value=""/>
                                     <i class="icon-info-sign popover_ref" data-title="" data-original-title=""></i>
 

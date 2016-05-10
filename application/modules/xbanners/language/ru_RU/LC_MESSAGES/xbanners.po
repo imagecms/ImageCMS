@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-08 07:35+0200\n"
-"PO-Revision-Date: 2016-02-08 07:35+0200\n"
+"POT-Creation-Date: 2016-03-24 09:31+0200\n"
+"PO-Revision-Date: 2016-03-24 09:31+0200\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -17,6 +17,18 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: application/modules/xbanners/src/UrlFinder/Finders/PageCategories.php:25
+msgid "Page Categories"
+msgstr "Категории страниц"
+
+#: application/modules/xbanners/src/UrlFinder/Finders/ProductCategories.php:21
+msgid "Product Categories"
+msgstr "Категории товаров"
+
+#: application/modules/xbanners/src/UrlFinder/Finders/Products.php:21
+msgid "Products"
+msgstr "Товары"
 
 #: application/modules/xbanners/assets/admin/banner/settings.tpl:132
 msgid "Switching banners will be a smooth change rather than scrolling from side to side"
@@ -189,14 +201,6 @@ msgstr "Главная"
 #: application/modules/xbanners/src/Managers/BannerPageTypesManager.php:50
 msgid "Product"
 msgstr "Товар"
-
-#: application/modules/xbanners/src/UrlFinder/Finders/ProductCategories.php:21
-msgid "Product Categories"
-msgstr "Категории Продукта"
-
-#: application/modules/xbanners/src/UrlFinder/Finders/Products.php:21
-msgid "Products"
-msgstr "Продукты"
 
 #: application/modules/xbanners/assets/admin/banner/settings.tpl:10
 msgid "Options"
@@ -495,10 +499,6 @@ msgstr "Изображения без связи"
 #: application/modules/xbanners/src/UrlFinder/Finders/Brands.php:21
 msgid "Brands"
 msgstr "Бренды"
-
-#: application/modules/xbanners/src/UrlFinder/Finders/PageCategories.php:25
-msgid "Page Categories"
-msgstr "Страница Категории"
 
 #: application/modules/xbanners/src/UrlFinder/Finders/Pages.php:20
 msgid "Pages"

@@ -95,23 +95,23 @@ class Cms_admin extends CI_Model
     }
 
     /**
-     * Updating page by id
-     *
-     * @param integer $id
-     * @param array $data
+     * @param $id
+     * @param $data
+     * @param bool $exists
      * @return bool
      */
-    public function update_page($id, $data) {
+    public function update_page($id, $data , $exists = false) {
 
         $lang_id = $this->input->post('lang_id');
         $pageExists = (int) $this->input->post('pageExists');
 
-        if (!$pageExists) {
+        if (!$pageExists && $exists == false) {
             unset($data['id']);
             $data['lang_alias'] = $id;
             $data['lang'] = $lang_id;
             $id = $this->add_page($data);
             $inserted = $id ? true : false;
+
         }
 
         $page = $this->get_page($id);
@@ -131,18 +131,12 @@ class Cms_admin extends CI_Model
             $data['url'] = $page['url'];
         }
 
-        // update page
         $this->db->where('id', $id);
         $this->db->update('content', $data);
-        // end update page
 
         $affectedRows = $this->db->affected_rows();
-        return $affectedRows || $inserted;
+        return ($affectedRows || $inserted) ? $id : false;
     }
-
-    /*     * ***********************************************************
-     * 	Categories
-     * ********************************************************** */
 
     /**
      * Creates new category

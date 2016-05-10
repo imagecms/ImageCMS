@@ -13,11 +13,12 @@
  *
  * @author kolia
  */
-class CustomCache {
+class CustomCache
+{
 
     const CACHE_PATH = 'system/cache/';
 
-    protected static $cacheFilenames = array();
+    protected static $cacheFilenames = [];
 
     /**
      * Interval in seconds

@@ -1,6 +1,11 @@
 <?php
 
 use CMSFactory\DependencyInjection\DependencyInjectionProvider;
+use Doctrine\Common\Cache\Cache;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
+use Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException;
+use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
@@ -162,7 +167,7 @@ class MY_Controller extends MX_Controller
      */
     public static function getAdminInterfaceLocale() {
 
-        $locale = CI::$APP->config->item('language') ? CI::$APP->config->item('language') : 'ru_RU';
+        $locale = CI::$APP->config->item('language') ?: 'ru_RU';
         return array_shift(explode('_', $locale));
     }
 
@@ -289,10 +294,28 @@ class MY_Controller extends MX_Controller
         return strstr(strtolower(IMAGECMS_NUMBER), $version) ? true : false;
     }
 
+    /**
+     * @return ContainerBuilder
+     */
     public function getContainer() {
 
         return DependencyInjectionProvider::getContainer();
+    }
 
+    /**
+     * @return Cache
+     * @throws ServiceNotFoundException
+     * @throws ServiceCircularReferenceException
+     * @throws InvalidArgumentException
+     * @throws Exception
+     */
+    public function getCache() {
+
+        return $this->getContainer()->get('cache');
+    }
+
+    public function get($id) {
+        return $this->getContainer()->get($id);
     }
 
 }

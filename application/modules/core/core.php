@@ -7,6 +7,12 @@ if (!defined('BASEPATH')) {
 }
 
 /**
+ * TODO COMPLETED:
+ * remove _prepare_content method
+ * remove bridge
+ * simplify language url segment
+ *
+ *
  * Image CMS
  *
  * core.php
@@ -83,8 +89,195 @@ class Core extends MY_Controller
         $this->load->module('cfcm');
     }
 
+    public function index() {
+
+        //module url segment
+        $mod_segment = 1;
+        $data_type = '';
+
+        $cat_path = $this->uri->uri_string();
+        $this->settings = $this->cms_base->get_settings();
+
+        // Set site main template
+        $this->config->set_item('template', $this->settings['site_template']);
+        $this->load->library('template');
+
+        if (($this->input->get() || strstr($this->input->server('REQUEST_URI'), '?')) && $this->uri->uri_string() == '') {
+            $this->template->registerCanonical(site_url());
+        }
+
+        /* Show Analytic codes if some value inserted in admin panel */
+        $this->load->library('lib_seo');
+        $this->lib_seo->init($this->settings);
+
+        if ($uri_lang = $this->detectLanguage($cat_path)) {
+            $cat_path = substr($cat_path, strlen($uri_lang) + 1);
+            $mod_segment = 2;
+        }
+
+        $this->load_functions_file($this->settings['site_template']);
+
+        $this->checkOffline();
+
+        $this->correctDefaultLangUrl();
+
+        $this->load->library('lib_category');
+        $this->lib_category->setLocaleId($this->config->item('cur_lang'));
+        $categories = $this->lib_category->build();
+        $this->tpl_data['categories'] = $categories;
+        $cats_unsorted = $this->lib_category->unsorted();
+
+        $this->initModules();
+
+        $this->load->library('DX_Auth');
+
+        if ($cat_path == FALSE) {
+            $data_type = 'main';
+        }
+
+        $last_element = key($this->uri->uri_to_assoc(0));
+
+        //is pagination page
+        if (is_numeric($last_element)) {
+            $cat_path = $this->_prepCatPath($cat_path);
+            $this->by_pages = TRUE;
+            $this->cat_page = $last_element;
+        }
+
+        foreach ($cats_unsorted as $cat) {
+            if ($cat['path_url'] == $cat_path . '/') {
+                $this->cat_content = $cat;
+                $data_type = 'category';
+                break;
+            }
+        }
+
+        if ($data_type != 'main' AND $data_type != 'category') {
+
+            if ($this->findPage($cat_path, $last_element, $cats_unsorted)) {
+                $data_type = 'page';
+            } else {
+                $data_type = '404';
+            }
+
+        }
+
+        // Possible values: page/category/main/404
+        $this->core_data['data_type'] = $data_type;
+
+        $this->assignTemplateData();
+
+        // Assign template variables and load modules
+        $this->_process_core_data();
+
+        // Check url segments
+        $this->_check_url();
+
+        // on every page load
+        Events::create()->registerEvent(NULL, 'Core:pageLoaded');
+
+        // If module than exit from core and load module
+        if ($this->is_module($mod_segment) == TRUE) {
+            return;
+        }
+
+        $this->display();
+
+    }
+
+    private function display() {
+        if ($this->core_data['data_type'] == 'main') {
+            switch ($this->settings['main_type']) {
+                case 'page':
+                    $main_id = $this->settings['main_page_id'];
+                    break;
+                case 'category':
+                    $main_id = $this->settings['main_page_cat'];
+                    break;
+                case 'module':
+                    $main_id = $this->settings['main_page_module'];
+                    break;
+            }
+            $this->core->core_data['id'] = $main_id;
+            $this->_mainpage();
+        } elseif ($this->core_data['data_type'] == 'category') {
+            $this->core->core_data['id'] = $this->cat_content['id'];
+            $this->_display_category($this->cat_content);
+        } elseif ($this->core_data['data_type'] == 'page') {
+            $this->check_page_access($this->page_content['roles']);
+            $this->core->core_data['id'] = $this->page_content['id'];
+            $this->_display_page_and_cat($this->page_content, $this->cat_content);
+        } elseif ($this->core_data['data_type'] == '404') {
+            $this->error_404();
+        }
+    }
+
+    /**
+     * @return string|null
+     */
+    private function detectLanguage() {
+
+        $haveSegments = $this->uri->total_segments() >= 1;
+        $languageExists = array_key_exists($this->uri->segment(1), $this->langs);
+        if ($haveSegments && $languageExists) {
+
+            $uri_lang = $this->uri->segment(1);
+            $this->setLanguage($this->langs[$uri_lang]);
+            // Reload template settings
+            $this->template->set_config_value('tpl_path', TEMPLATES_PATH . $this->settings['site_template'] . '/');
+            $this->template->load();
+
+            // Add language identifier to base_url
+            $this->config->set_item('base_url', base_url() . $uri_lang);
+
+            return $uri_lang;
+        }
+
+        $this->setLanguage($this->def_lang[0]);
+    }
+
+    /**
+     * @param array $language
+     */
+    private function setLanguage(array $language) {
+
+        $this->config->set_item('language', $language['folder']);
+        // Load Language
+        $this->lang->load('main', $language['folder']);
+        // Set current language variable
+        $this->config->set_item('cur_lang', $language['id']);
+    }
+
+    /**
+     * Show offline page if site in offline mode
+     */
+    private function checkOffline() {
+        $isMainSaasRequest = 0 === strpos($this->input->server('PATH_INFO'), '/mainsaas');
+        $siteIsOffline = $this->settings['site_offline'] == 'yes';
+        $isAdmin = $this->session->userdata('DX_role_id') == 1;
+        if ($siteIsOffline && !$isMainSaasRequest && !$isAdmin) {
+            header('HTTP/1.1 503 Service Unavailable');
+            $this->template->display('offline');
+            exit;
+        }
+    }
+
+    /**
+     * redirect to url without default lang segment
+     */
+    private function correctDefaultLangUrl() {
+        if ($this->uri->segment(1) == $this->def_lang[0]['identif']) {
+            $get = $this->input->server('QUERY_STRING') ? '?' . $this->input->server('QUERY_STRING') : '';
+            $url = implode('/', array_slice($this->uri->segment_array(), 1));
+            header('Location:/' . $url . $get);
+            exit;
+        }
+    }
+
     /**
      * Load site languages
+     *
+     * move to model
      */
     public function _load_languages() {
 
@@ -97,281 +290,16 @@ class Core extends MY_Controller
 
         foreach ($langs as $lang) {
             $this->langs[$lang['identif']] = [
-                'id' => $lang['id'],
-                'name' => $lang['lang_name'],
-                'folder' => $lang['folder'],
-                'template' => $lang['template'],
-                'image' => $lang['image']
-            ];
+                                              'id'       => $lang['id'],
+                                              'name'     => $lang['lang_name'],
+                                              'folder'   => $lang['folder'],
+                                              'template' => $lang['template'],
+                                              'image'    => $lang['image'],
+                                             ];
 
             if ($lang['default'] == 1) {
                 $this->def_lang = [$lang];
             }
-        }
-    }
-
-    /**
-     * htmlspecialchars_decode text
-     *
-     * @param string $text
-     * @return string
-     */
-    public function _prepare_content($text = '') {
-
-        return htmlspecialchars_decode($text);
-    }
-
-    public function index() {
-
-        $without_cat = FALSE;
-        $SLASH = '';
-        $mod_segment = 1;
-        $data_type = '';
-        $com_links = [];
-
-        $cat_path = $this->uri->uri_string();
-
-        $this->settings = $this->cms_base->get_settings();
-
-        // Set site main template
-        $this->config->set_item('template', $this->settings['site_template']);
-
-        $this->load->library('template');
-
-        if (($this->input->get() || strstr($this->input->server('REQUEST_URI'), '?')) && $this->uri->uri_string() == '') {
-            $this->template->registerCanonical(site_url());
-        }
-
-        $last_element = key($this->uri->uri_to_assoc(0));
-
-        if (defined('ICMS_INIT') AND ICMS_INIT === TRUE) {
-            $data_type = 'bridge';
-        }
-
-        /* Show Analytic codes if some value inserted in admin panel */
-        $this->load->library('lib_seo')->init($this->settings);
-
-        // DETECT LANGUAGE
-        if ($this->uri->total_segments() >= 1) {
-            if (array_key_exists($this->uri->segment(1), $this->langs)) {
-                $cat_path = substr($cat_path, strlen($this->uri->segment(1)));
-
-                // Delete first slash
-                if (substr($cat_path, 0, 1) == '/') {
-                    $cat_path = substr($cat_path, 1);
-                }
-
-                $uri_lang = $this->uri->segment(1);
-
-                $this->config->set_item('language', $this->langs[$uri_lang]['folder']);
-                $this->lang->load('main', $this->langs[$uri_lang]['folder']);
-
-                $this->config->set_item('cur_lang', $this->langs[$uri_lang]['id']);
-
-                // Set language template
-                //                $this->config->set_item('template', $this->langs[$uri_lang]['template']);
-
-                $this->template->set_config_value('tpl_path', TEMPLATES_PATH . $this->settings['site_template'] . '/');
-
-                $this->load_functions_file($this->settings['site_template']);
-
-                // Reload template settings
-                $this->template->load();
-
-                // Add language identificator to base_url
-                $this->config->set_item('base_url', base_url() . $uri_lang);
-
-                $mod_segment = 2;
-            } else {
-                $this->use_def_language();
-            }
-        } else {
-            $this->use_def_language();
-        }
-        // End language detect
-        if (!preg_match('/^\/mainsaas/', $this->input->server('PATH_INFO'))) {
-            if ($this->settings['site_offline'] == 'yes') {
-                if ($this->session->userdata('DX_role_id') != 1) {
-                    header('HTTP/1.1 503 Service Unavailable');
-                    $this->template->display('offline');
-                    exit;
-                }
-            }
-        }
-
-        if ($this->uri->segment(1) == $this->def_lang[0]['identif']) {
-            $url = implode('/', array_slice($this->uri->segment_array(), 1));
-            header('Location:/' . $url);
-        }
-
-        $this->load->library('lib_category');
-
-        $this->lib_category->setLocaleId(CI::$APP->config->item('cur_lang'));
-
-        $categories = $this->lib_category->build();
-
-        $this->tpl_data['categories'] = $categories;
-        $cats_unsorted = $this->lib_category->unsorted();
-
-        // Load modules
-        $query = $this->cms_base->get_modules();
-
-        if ($query->num_rows() > 0) {
-            $this->modules = $query->result_array();
-            foreach ($this->modules as $k) {
-                $com_links[$k['name']] = '/' . $k['identif'];
-            }
-
-            $this->tpl_data['modules'] = $com_links;
-        }
-        $this->load->library('DX_Auth');
-
-        // Are we on main page?
-        if (($cat_path == '/' OR $cat_path == FALSE) AND $data_type != 'bridge') {
-            $data_type = 'main';
-        }
-
-        if (is_numeric($last_element) AND is_int($last_element)) {
-            $cat_path = $this->_prepCatPath($cat_path);
-            $this->by_pages = TRUE;
-            $this->cat_page = $last_element;
-        }
-
-        if (substr($cat_path, -1) != '/') {
-            $SLASH = '/';
-        }
-
-        foreach ($cats_unsorted as $cat) {
-            if ($cat['path_url'] == $cat_path . $SLASH) {
-                $this->cat_content = $cat;
-                $data_type = 'category';
-                break;
-            }
-        }
-
-        if ($data_type != 'main' AND $data_type != 'category' AND $data_type != 'bridge') {
-            $cat_path_url = substr($cat_path, 0, strripos($cat_path, '/') + 1);
-
-            // Select page permissions and page data
-            $this->db->select('content.*');
-            $this->db->select('CONCAT(content.cat_url,content.url ) as full_url');
-            $this->db->select('content_permissions.data as roles', FALSE);
-            $this->db->where('url', $last_element);
-            $this->db->where('post_status', 'publish');
-            $this->db->where('publish_date <=', time());
-            $this->db->where('lang', $this->config->item('cur_lang'));
-            $this->db->join('content_permissions', 'content_permissions.page_id = content.id', 'left');
-
-            if ($this->db->table_exists('comments')) {
-                $this->db->select('count(comments.id) as comments_count');
-                $this->db->join('comments', "comments.item_id = content.id AND comments.module='core' AND comments.status=0", 'left');
-            }
-
-            // Search page without category
-            if ($cat_path == $last_element) {
-                $this->db->where('content.category', 0);
-                $without_cat = TRUE;
-            } else {
-                $this->db->where('content.cat_url', $cat_path_url);
-            }
-
-            $query = $this->db->get('content', 1);
-
-            $page_info = $query->num_rows() > 0 ? $query->row_array() : NULL;
-
-            if ($page_info['id']) {
-
-                $cat_path = $this->_prepCatPath($cat_path);
-
-                $page_info['roles'] = unserialize($page_info['roles']);
-                if ($without_cat == FALSE) {
-                    // load page and category
-                    foreach ($cats_unsorted as $cat) {
-                        if (($cat['path_url'] == $cat_path . $SLASH) AND ($cat['id'] == $page_info['category'])) {
-                            $data_type = 'page';
-                            $this->page_content = $page_info;
-                            $this->cat_content = $cat;
-                            $this->page_content = $this->cfcm->connect_fields($this->page_content, 'page');
-                            break;
-                        }
-                    }
-                } else {
-                    // display page without category
-                    $data_type = 'page';
-                    $this->page_content = $page_info;
-                    $this->page_content = $this->cfcm->connect_fields($this->page_content, 'page');
-                }
-            } else {
-                $data_type = '404';
-            }
-        }
-
-        $this->core_data = [
-            'data_type' => $data_type, // Possible values: page/category/main/404
-        ];
-
-        // Assign userdata
-        if ($this->dx_auth->is_logged_in() == TRUE) {
-            $this->tpl_data['is_logged_in'] = TRUE;
-            $this->tpl_data['username'] = $this->dx_auth->get_username();
-        }
-        $agent = $this->user_browser();
-
-        $this->template->add_array(
-            [
-                'agent' => $agent,
-            ]
-        );
-
-        //Assign captcha type
-        if ($this->dx_auth->use_recaptcha) {
-            $this->tpl_data['captcha_type'] = 'recaptcha';
-        } else {
-            $this->tpl_data['captcha_type'] = 'captcha';
-        }
-
-        // Assign template variables and load modules
-        $this->_process_core_data();
-
-        $fullUrl = explode('?', $this->input->server('HTTP_HOST') . $this->input->server('REQUEST_URI'));
-        $urlWithoutGet = $fullUrl[0];
-        if (strstr($urlWithoutGet, '//')) {
-            $this->error_404();
-        }
-
-        // on every page load
-        Events::create()->registerEvent(NULL, 'Core:pageLoaded');
-
-        // If module than exit from core and load module
-        if ($this->is_module($mod_segment) == TRUE) {
-            return TRUE;
-        }
-
-        switch ($this->settings['main_type']) {
-            case 'page':
-                $main_id = $this->settings['main_page_id'];
-                break;
-            case 'category':
-                $main_id = $this->settings['main_page_cat'];
-                break;
-            case 'module':
-                $main_id = $this->settings['main_page_module'];
-                break;
-        }
-        if ($this->core_data['data_type'] == 'main') {
-            $this->core->core_data['id'] = $main_id;
-            $this->_mainpage();
-        } elseif ($this->core_data['data_type'] == 'category') {
-            $this->core->core_data['id'] = $this->cat_content['id'];
-            $this->_display_category($this->cat_content);
-        } elseif ($this->core_data['data_type'] == 'page') {
-            $this->check_page_access($this->page_content['roles']);
-            $this->core->core_data['id'] = $this->page_content['id'];
-            $this->_display_page_and_cat($this->page_content, $this->cat_content);
-        } elseif ($this->core_data['data_type'] == '404') {
-            $this->error_404();
-        } elseif ($this->core_data['data_type'] == 'bridge') {
-            log_message('debug', 'Bridge initialized.');
         }
     }
 
@@ -388,36 +316,13 @@ class Core extends MY_Controller
     }
 
     /**
-     * Use default language
-     */
-    private function use_def_language() {
-
-        $this->load_functions_file($this->settings['site_template']);
-
-        // Set config item
-        $this->config->set_item('language', $this->def_lang[0]['folder']);
-
-        // Load Language
-        $this->lang->load('main', $this->def_lang[0]['folder']);
-
-        // Set current language variable
-        $this->config->set_item('cur_lang', $this->def_lang[0]['id']);
-    }
-
-    /**
      *
      * @param string $cat_path
      * @return string
      */
     public function _prepCatPath($cat_path) {
-
-        if (substr($cat_path, -1) == '/') {
-            $cat_path = substr($cat_path, 0, -1);
-        }
-
         // Delete page number from path
-        $cat_path = substr($cat_path, 0, strripos($cat_path, '/'));
-
+        $cat_path = substr($cat_path, 0, strrpos($cat_path, '/'));
         return $cat_path;
     }
 
@@ -425,9 +330,9 @@ class Core extends MY_Controller
 
         $this->load->library('user_agent');
         $browserIn = [
-            '0' => $this->agent->browser(),
-            '1' => $this->agent->version()
-        ];
+                      '0' => $this->agent->browser(),
+                      '1' => $this->agent->version(),
+                     ];
         return $browserIn;
     }
 
@@ -456,33 +361,41 @@ class Core extends MY_Controller
                 }
             }
         }
-
-        // Check url segments
-        $this->_check_url();
     }
 
     /**
+     * todo: check error method and remove
      * Deny access to modules install/deinstall/rules/etc/ methods
      */
     private function _check_url() {
 
+        $fullUrl = explode('?', $this->input->server('HTTP_HOST') . $this->input->server('REQUEST_URI'));
+        $urlWithoutGet = $fullUrl[0];
+        if (strstr($urlWithoutGet, '//')) {
+            $this->error_404();
+        }
+
         $CI = &get_instance();
 
-        $error_text = $this->lang->line('uri_access_deny');
-
-        $not_permitted = ['_install', '_deinstall', '_install_rules', 'autoload', '__construct'];
+        $not_permitted = [
+                          '_install',
+                          '_deinstall',
+                          '_install_rules',
+                          'autoload',
+                          '__construct',
+                         ];
 
         $url_segs = $CI->uri->segment_array();
 
         // Deny uri access to all methods like _somename
         if (count(explode('/_', $CI->uri->uri_string())) > 1) {
-            $this->error($error_text, FALSE);
+            $this->error_404();
         }
 
         if (count($url_segs) > 0) {
             foreach ($url_segs as $segment) {
                 if (in_array($segment, $not_permitted) == TRUE) {
-                    $this->error($error_text, FALSE);
+                    $this->error_404();
                 }
             }
         }
@@ -497,7 +410,7 @@ class Core extends MY_Controller
 
         $this->template->add_array(
             [
-                'content' => $this->template->read('error', ['error_text' => $text, 'back_button' => $back])
+             'content' => $this->template->read('error', ['error_text' => $text, 'back_button' => $back]),
             ]
         );
 
@@ -532,9 +445,9 @@ class Core extends MY_Controller
         if ($this->core_data['data_type'] == 'main') {
             $this->template->add_array(
                 [
-                    'site_title' => empty($this->settings['site_title']) ? $title : $this->settings['site_title'],
-                    'site_description' => empty($this->settings['site_description']) ? $description : $this->settings['site_description'],
-                    'site_keywords' => empty($this->settings['site_keywords']) ? $keywords : $this->settings['site_keywords']
+                 'site_title'       => empty($this->settings['site_title']) ? $title : $this->settings['site_title'],
+                 'site_description' => empty($this->settings['site_description']) ? $description : $this->settings['site_description'],
+                 'site_keywords'    => empty($this->settings['site_keywords']) ? $keywords : $this->settings['site_keywords'],
                 ]
             );
         } else {
@@ -586,10 +499,10 @@ class Core extends MY_Controller
             $page_number = $page_number ?: (int) $this->pagination->cur_page;
             $this->template->add_array(
                 [
-                    'site_title' => $title,
-                    'site_description' => htmlspecialchars($description),
-                    'site_keywords' => htmlspecialchars($keywords),
-                    'page_number' => $page_number
+                 'site_title'       => $title,
+                 'site_description' => htmlspecialchars($description),
+                 'site_keywords'    => htmlspecialchars($keywords),
+                 'page_number'      => $page_number,
                 ]
             );
         }
@@ -675,7 +588,8 @@ class Core extends MY_Controller
             }
         }
 
-        for ($i = 0, $cnt = count($args); $i < $cnt; $i++) {
+        $count = count($args);
+        for ($i = 0, $cnt = $count; $i < $cnt; $i++) {
             if ($args[$i] === FALSE) {
                 unset($args[$i]);
             }
@@ -851,7 +765,6 @@ class Core extends MY_Controller
             $this->set_meta_tags($category['title'], $category['keywords'], $category['description']);
         }
 
-        //        dd($content);
         $this->template->assign('content', $content);
 
         Events::create()->registerEvent($this->cat_content, 'pageCategory:load');
@@ -874,7 +787,7 @@ class Core extends MY_Controller
      * @param bool|FALSE $count
      * @return array|string
      */
-    public function _get_category_pages($category = [], $row_count = 0, $offset = 0, $count = FALSE) {
+    public function _get_category_pages(array $category = [], $row_count = 0, $offset = 0, $count = FALSE) {
 
         $this->db->where('post_status', 'publish');
         $this->db->where('publish_date <=', time());
@@ -918,6 +831,7 @@ class Core extends MY_Controller
     /**
      *
      * @param string $description
+     * @param null|string $text
      * @return string
      */
     public function _makeDescription($description, $text = null) {
@@ -993,7 +907,7 @@ class Core extends MY_Controller
      * @param array $page
      * @param array $category
      */
-    public function _display_page_and_cat($page = [], $category = []) {
+    public function _display_page_and_cat($page = [], array $category = []) {
 
         /** Register event 'Core:_displayPage' */
         Events::create()->registerEvent($this->page_content, 'Core:_displayPage')->runFactory();
@@ -1022,8 +936,8 @@ class Core extends MY_Controller
 
         $this->template->add_array(
             [
-                'page' => $page,
-                'category' => $category
+             'page'     => $page,
+             'category' => $category,
             ]
         );
 
@@ -1096,21 +1010,6 @@ class Core extends MY_Controller
     }
 
     /**
-     *  Language detection in url segments
-     * @param integer $n
-     * @return string
-     */
-    public function segment($n) {
-
-        if (array_key_exists($this->uri->segment(1), $this->langs)) {
-            $n++;
-            return $this->uri->segment($n);
-        }
-
-        return $this->uri->segment($n);
-    }
-
-    /**
      *
      * @param int $LastModified_unix
      * @return void
@@ -1136,6 +1035,93 @@ class Core extends MY_Controller
             return;
         }
         header('Last-Modified: ' . $LastModified);
+    }
+
+    private function initModules() {
+
+        $query = $this->cms_base->get_modules();
+
+        if ($query->num_rows() > 0) {
+            $this->modules = $query->result_array();
+
+            foreach ($this->modules as $k) {
+                $com_links[$k['name']] = '/' . $k['identif'];
+            }
+
+            $this->tpl_data['modules'] = $com_links;
+        }
+    }
+
+    private function assignTemplateData() {
+        // Assign user data
+        if ($this->dx_auth->is_logged_in() == TRUE) {
+            $this->tpl_data['is_logged_in'] = TRUE;
+            $this->tpl_data['username'] = $this->dx_auth->get_username();
+        }
+        $this->template->add_array(['agent' => $this->user_browser()]);
+
+        //Assign captcha type
+        if ($this->dx_auth->use_recaptcha) {
+            $this->tpl_data['captcha_type'] = 'recaptcha';
+        } else {
+            $this->tpl_data['captcha_type'] = 'captcha';
+        }
+    }
+
+    private function findPage($cat_path, $last_element, $cats_unsorted) {
+        $without_cat = FALSE;
+        $cat_path_url = substr($cat_path, 0, strrpos($cat_path, '/') + 1);
+
+        // Select page permissions and page data
+        $this->db->select('content.*');
+        $this->db->select('CONCAT(content.cat_url,content.url ) as full_url');
+        $this->db->select('content_permissions.data as roles', FALSE);
+        $this->db->where('url', $last_element);
+        $this->db->where('post_status', 'publish');
+        $this->db->where('publish_date <=', time());
+        $this->db->where('lang', $this->config->item('cur_lang'));
+        $this->db->join('content_permissions', 'content_permissions.page_id = content.id', 'left');
+
+        if ($this->db->table_exists('comments')) {
+            $this->db->select('count(comments.id) as comments_count');
+            $this->db->join('comments', "comments.item_id = content.id AND comments.module='core' AND comments.status=0", 'left');
+        }
+
+        $withoutCategory = ($cat_path == $last_element);
+        // Search page without category
+        if ($withoutCategory) {
+            $this->db->where('content.category', 0);
+            $without_cat = TRUE;
+        } else {
+            $this->db->where('content.cat_url', $cat_path_url);
+        }
+
+        $query = $this->db->get('content', 1);
+
+        $page_info = $query->num_rows() > 0 ? $query->row_array() : NULL;
+
+        if ($page_info['id']) {
+
+            $cat_path = $this->_prepCatPath($cat_path);
+
+            $page_info['roles'] = unserialize($page_info['roles']);
+            if ($without_cat == FALSE) {
+                // load page and category
+                foreach ($cats_unsorted as $cat) {
+                    if (($cat['path_url'] == $cat_path . '/') AND ($cat['id'] == $page_info['category'])) {
+                        $this->page_content = $page_info;
+                        $this->cat_content = $cat;
+                        $this->page_content = $this->cfcm->connect_fields($this->page_content, 'page');
+                        break;
+                    }
+                }
+            } else {
+                // display page without category
+                $this->page_content = $page_info;
+                $this->page_content = $this->cfcm->connect_fields($this->page_content, 'page');
+            }
+            return true;
+        }
     }
 
 }

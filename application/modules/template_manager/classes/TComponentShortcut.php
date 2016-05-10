@@ -3,7 +3,7 @@
 namespace template_manager\classes;
 
 /**
- * From instance of this class you can esier get to the methods of components
+ * From instance of this class you can easier get to the methods of components
  * (compontents of current template)
  *
  * For example to call function getColorSheme() of TColorScheme component:
@@ -14,11 +14,12 @@ namespace template_manager\classes;
  *
  * (monostate)
  */
-class TComponentShortcut {
+class TComponentShortcut
+{
 
     /**
      *
-     * @param type $componentName
+     * @param string $componentName
      * @return \template_manager\classes\TComponentShortcutWrapper
      */
     public function __get($componentName) {
@@ -38,7 +39,7 @@ class TComponentShortcut {
 
     /**
      *
-     * @param type $componentName
+     * @param string $componentName
      * @return string
      */
     private static function getShortName($componentName) {
@@ -48,7 +49,8 @@ class TComponentShortcut {
         $upper = str_split($componentNameUpper);
 
         $shortName = '';
-        for ($i = 0; $i < count($origin); $i++) {
+        $count = count($origin);
+        for ($i = 0; $i < $count; $i++) {
             if ($origin[$i] === $upper[$i]) {
                 $shortName .= $upper[$i];
             }

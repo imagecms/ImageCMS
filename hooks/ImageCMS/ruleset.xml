@@ -93,6 +93,7 @@
     <rule ref="PSR1.Files.SideEffects"/>
     <rule ref="PSR2.ControlStructures.ElseIfDeclaration"/>
     <rule ref="PSR2.Namespaces.NamespaceDeclaration"/>
+    <rule ref="Squiz.Arrays"/>
     <rule ref="Squiz.PHP.DisallowObEndFlush"/>
     <rule ref="Squiz.PHP.DisallowSizeFunctionsInLoops"/>
     <rule ref="Squiz.PHP.EmbeddedPhp"/>

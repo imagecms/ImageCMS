@@ -90,14 +90,30 @@ class Components extends BaseAdminController
 
         Events::create()->registerEvent(
             [
-                'installed' => $db_modules,
-                'not_installed' => $not_installed
+             'installed'     => $db_modules,
+             'not_installed' => $not_installed,
             ],
             'Components:modules_table'
         )->runFactory();
 
-        $frozen_autoload = ['template_manager', 'admin_menu', 'xbanners', 'menu', 'cmsemail', 'shop'];
-        $frozen_delete = ['template_manager', 'admin_menu', 'xbanners', 'menu', 'cmsemail', 'shop', 'mod_discount', 'auth'];
+        $frozen_autoload = [
+                            'template_manager',
+                            'admin_menu',
+                            'xbanners',
+                            'menu',
+                            'cmsemail',
+                            'shop',
+                           ];
+        $frozen_delete = [
+                          'template_manager',
+                          'admin_menu',
+                          'xbanners',
+                          'menu',
+                          'cmsemail',
+                          'shop',
+                          'mod_discount',
+                          'auth',
+                         ];
 
         $this->template->assign('frozen_autoload', $frozen_autoload);
         $this->template->assign('frozen_delete', $frozen_delete);
@@ -125,7 +141,10 @@ class Components extends BaseAdminController
                 unset($not_installed[$key]);
             }
         }
-        return [$db_modules, $not_installed];
+        return [
+                $db_modules,
+                $not_installed,
+               ];
     }
 
     private function setInstalled() {
@@ -156,9 +175,9 @@ class Components extends BaseAdminController
         if (file_exists($modulePath . $module . '.php') AND $this->is_installed($module) == 0) {
             // Make module install
             $data = [
-                'name' => $module,
-                'identif' => $module
-            ];
+                     'name'    => $module,
+                     'identif' => $module,
+                    ];
 
             $this->db->insert('components', $data);
             $this->load->module($module);
@@ -276,12 +295,12 @@ class Components extends BaseAdminController
                 }
 
                 $new_com = [
-                    'menu_name' => $com_info['menu_name'],
-                    'com_name' => $moduleName,
-                    'admin_file' => $admin_file,
-                    'installed' => $ins,
-                    'type' => $com_info['type'],
-                ];
+                            'menu_name'  => $com_info['menu_name'],
+                            'com_name'   => $moduleName,
+                            'admin_file' => $admin_file,
+                            'installed'  => $ins,
+                            'type'       => $com_info['type'],
+                           ];
 
                 array_push($components, $new_com);
             }
@@ -370,12 +389,12 @@ class Components extends BaseAdminController
 
         if ($query->num_rows() >= 1) {
             $data = [
-                'enabled' => (int) $this->input->post('status'),
+                     'enabled'  => (int) $this->input->post('status'),
                 //'identif' => $this->input->post('identif'),
-                'identif' => $com['name'],
-                'autoload' => (int) $this->input->post('autoload'),
-                'in_menu' => (int) $this->input->post('in_menu')
-            ];
+                     'identif'  => $com['name'],
+                     'autoload' => (int) $this->input->post('autoload'),
+                     'in_menu'  => (int) $this->input->post('in_menu'),
+                    ];
 
             $this->db->where('name', $component);
             $this->db->update('components', $data);
@@ -391,7 +410,7 @@ class Components extends BaseAdminController
      */
     private function checkPerm($module) {
         if ($this->isNotPermited($module)) {
-            $msg = lang('Error checking permissions');
+            $msg = count($this->permited) ? lang('Error checking permissions') : lang('Please wait for a few minutes. Your configuration file is being created.');
             die($msg);
         }
     }

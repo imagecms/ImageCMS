@@ -337,9 +337,9 @@ class DX_Auth
 
         // User wants to be remembered
         $user = [
-            'key_id' => substr(md5(uniqid(rand() . $this->ci->input->cookie($this->ci->config->item('sess_cookie_name')))), 0, 16),
-            'user_id' => $user_id
-        ];
+                 'key_id'  => substr(md5(uniqid(rand() . $this->ci->input->cookie($this->ci->config->item('sess_cookie_name')))), 0, 16),
+                 'user_id' => $user_id,
+                ];
 
         // Load Models
         $this->ci->load->model('dx_auth/user_autologin', 'user_autologin');
@@ -414,16 +414,16 @@ class DX_Auth
 
         // Set session data array
         $user = [
-            'DX_user_id' => $data->id,
-            'DX_username' => $data->username,
-            'DX_role_id' => $data->role_id,
-            'DX_role_name' => $role_data['role_name'],
-            'DX_parent_roles_id' => $role_data['parent_roles_id'], // Array of parent role_id
-            'DX_parent_roles_name' => $role_data['parent_roles_name'], // Array of parent role_name
-            'DX_permission' => $role_data['permission'],
-            'DX_parent_permissions' => $role_data['parent_permissions'],
-            'DX_logged_in' => TRUE
-        ];
+                 'DX_user_id'            => $data->id,
+                 'DX_username'           => $data->username,
+                 'DX_role_id'            => $data->role_id,
+                 'DX_role_name'          => $role_data['role_name'],
+                 'DX_parent_roles_id'    => $role_data['parent_roles_id'], // Array of parent role_id
+                 'DX_parent_roles_name'  => $role_data['parent_roles_name'], // Array of parent role_name
+                 'DX_permission'         => $role_data['permission'],
+                 'DX_parent_permissions' => $role_data['parent_permissions'],
+                 'DX_logged_in'          => TRUE,
+                ];
 
         $this->ci->session->set_userdata($user);
     }
@@ -433,10 +433,10 @@ class DX_Auth
         $this->ci->load->helper('cookie');
 
         $cookie = [
-            'name' => $this->ci->config->item('DX_autologin_cookie_name'),
-            'value' => serialize($data),
-            'expire' => $this->ci->config->item('DX_autologin_cookie_life')
-        ];
+                   'name'   => $this->ci->config->item('DX_autologin_cookie_name'),
+                   'value'  => serialize($data),
+                   'expire' => $this->ci->config->item('DX_autologin_cookie_life'),
+                  ];
 
         set_cookie($cookie);
     }
@@ -881,17 +881,16 @@ class DX_Auth
         $result = FALSE;
 
         $siteSettings = $this->ci->cms_base->get_settings();
-
         $new_user = [
-            'username' => $username,
-            'password' => crypt($this->_encode($password)),
-            'address' => $address,
-            'email' => $email,
-            'key' => $key,
-            'phone' => $phone,
-            'last_ip' => $this->ci->input->ip_address(),
-            'role_id' => $siteSettings['users_registration_role_id'] ? $siteSettings['users_registration_role_id'] : 0,
-        ];
+                     'username' => $username,
+                     'password' => crypt($this->_encode($password)),
+                     'address'  => $address,
+                     'email'    => $email,
+                     'key'      => $key,
+                     'phone'    => $phone,
+                     'last_ip'  => $this->ci->input->ip_address(),
+                     'role_id'  => $siteSettings['users_registration_role_id'] ?: 0,
+                    ];
 
         // Do we need to send email to activate user
 
@@ -921,11 +920,11 @@ class DX_Auth
                 $this->ci->db->insert(
                     'custom_fields_data',
                     [
-                    'field_id' => $k,
-                    'entity_id' => $last_user_id,
-                    'field_data' => $custom_fields,
-                    'locale' => \MY_Controller::defaultLocale(),
-                        ]
+                     'field_id'   => $k,
+                     'entity_id'  => $last_user_id,
+                     'field_data' => $custom_fields,
+                     'locale'     => \MY_Controller::defaultLocale(),
+                    ]
                 );
             }
 
@@ -971,12 +970,12 @@ class DX_Auth
                 }
 
                 $user_variables = [
-                    'user_name' => $username,
-                    'user_password' => $password,
-                    'user_address' => $address,
-                    'user_email' => $email,
-                    'user_phone' => $phone
-                ];
+                                   'user_name'     => $username,
+                                   'user_password' => $password,
+                                   'user_address'  => $address,
+                                   'user_email'    => $email,
+                                   'user_phone'    => $phone,
+                                  ];
 
                 \cmsemail\email::getInstance()->sendEmail($email, 'create_user', $user_variables);
 
@@ -1034,12 +1033,12 @@ class DX_Auth
 
                     $settings = $this->ci->cms_base->get_settings();
                     $replaceData = [
-                        'webSiteName' => $settings['site_title'] ? $settings['site_title'] : $this->ci->config->item('DX_website_name'),
-                        'resetPasswordUri' => $data['reset_password_uri'],
-                        'password' => $data['password'],
-                        'key' => $data['key'],
-                        'webMasterEmail' => $this->ci->config->item('DX_webmaster_email')
-                    ];
+                                    'webSiteName'      => $settings['site_title'] ? $settings['site_title'] : $this->ci->config->item('DX_website_name'),
+                                    'resetPasswordUri' => $data['reset_password_uri'],
+                                    'password'         => $data['password'],
+                                    'key'              => $data['key'],
+                                    'webMasterEmail'   => $this->ci->config->item('DX_webmaster_email'),
+                                   ];
 
                     \cmsemail\email::getInstance()->sendEmail($row->email, 'forgot_password', $replaceData);
 
@@ -1149,9 +1148,9 @@ class DX_Auth
                 $this->ci->dx_auth_event->user_changed_password($this->ci->session->userdata('DX_user_id'), $new_pass);
 
                 $replaceData = [
-                    'user_name' => $row->username,
-                    'password' => $new_pass_for_user
-                ];
+                                'user_name' => $row->username,
+                                'password'  => $new_pass_for_user,
+                               ];
 
                 \cmsemail\email::getInstance()->sendEmail($row->email, 'change_password', $replaceData);
 
@@ -1205,22 +1204,22 @@ class DX_Auth
         // Load library SESSION
 
         $vals = [
-            'img_path' => $this->ci->config->item('DX_captcha_path'),
-            'img_url' => media_url() . 'captcha/',
-            'font_path' => $this->ci->config->item('DX_captcha_fonts_path'),
-            'font_size' => $this->ci->config->item('DX_captcha_font_size'),
-            'img_width' => $this->ci->config->item('DX_captcha_width'),
-            'img_height' => $this->ci->config->item('DX_captcha_height'),
-            'show_grid' => $this->ci->config->item('DX_captcha_grid'),
-            'expiration' => $this->ci->config->item('DX_captcha_expire')
-        ];
+                 'img_path'   => $this->ci->config->item('DX_captcha_path'),
+                 'img_url'    => media_url() . 'captcha/',
+                 'font_path'  => $this->ci->config->item('DX_captcha_fonts_path'),
+                 'font_size'  => $this->ci->config->item('DX_captcha_font_size'),
+                 'img_width'  => $this->ci->config->item('DX_captcha_width'),
+                 'img_height' => $this->ci->config->item('DX_captcha_height'),
+                 'show_grid'  => $this->ci->config->item('DX_captcha_grid'),
+                 'expiration' => $this->ci->config->item('DX_captcha_expire'),
+                ];
 
         $cap = create_captcha($vals);
 
         $store = [
-            'captcha_word' => $cap['word'],
-            'captcha_time' => $cap['time']
-        ];
+                  'captcha_word' => $cap['word'],
+                  'captcha_time' => $cap['time'],
+                 ];
 
         // Plain, simple but effective
         $this->ci->session->set_flashdata($store);

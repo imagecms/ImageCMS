@@ -7,7 +7,7 @@ if (! function_exists('func_counter')) {
 
     function func_counter() {
 
-        static $count = array();
+        static $count = [];
         static $n;
 
         $params = func_get_args();

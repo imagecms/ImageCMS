@@ -2326,6 +2326,7 @@ function fastCreateProduct() {
                     $('.products_table > tbody').prepend(dataReturn.viewOneProduct);
                     $('.products_table .fast-create').replaceWith(dataReturn.viewFastCreateForm);
                     initNiceCheck();
+                    initChosenSelect();
                 }
             }
 

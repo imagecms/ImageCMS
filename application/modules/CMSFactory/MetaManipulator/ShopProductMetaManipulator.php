@@ -102,6 +102,28 @@ class ShopProductMetaManipulator extends MetaManipulator
     /**
      * @return string
      */
+    public function getID() {
+
+        if (!$this->ID) {
+            $this->setID($this->getModel()->getId());
+        }
+        return $this->ID;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName() {
+
+        if (!$this->name) {
+            $this->setName($this->getModel()->getName());
+        }
+        return $this->name;
+    }
+
+    /**
+     * @return string
+     */
     public function getPrice() {
 
         if (!$this->price) {

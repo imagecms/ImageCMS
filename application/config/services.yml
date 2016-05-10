@@ -1,6 +1,61 @@
 parameters:
-    # ...
+    memcached.host: localhost
+    memcached.port: 11211
+
+    cache.directory: system/cache/
+    cache.folder: doctrine
+
+    cache.provider.priority:
+      - cache.provider.memcache
+      - cache.provider.filesystem
+      - cache.provider.memcached
+      - cache.provider.apc
 
 services:
     dispatcher:
         class: Symfony\Component\EventDispatcher\EventDispatcher
+
+    cache:
+        class: Doctrine\Common\Cache\Cache
+        factory: ["@cache.factory", createCacheProvider]
+
+
+    # Do not use this services as they are private.
+
+    # Doctrine Cache Providers
+
+    cache.provider.apc:
+        class: Doctrine\Common\Cache\ApcCache
+
+    cache.provider.memcache:
+        class: Doctrine\Common\Cache\MemcacheCache
+        calls:
+            - [setMemcache, ['@memcache']]
+
+    cache.provider.memcached:
+        class: Doctrine\Common\Cache\MemcachedCache
+        calls:
+            - [setMemcached, ['@memcached']]
+
+    cache.provider.filesystem:
+        class: Doctrine\Common\Cache\FilesystemCache
+        arguments: [%cache.directory%%cache.folder%]
+
+
+    # Dependencies
+    memcache:
+            class: Memcache
+            calls:
+                - [connect, ['%memcached.host%', '%memcached.port%']]
+
+    memcached:
+            class: Memcached
+            calls:
+                - [addServer, ['%memcached.host%', '%memcached.port%']]
+
+    # Factory
+    cache.factory:
+        public: false
+        class: CMSFactory\Services\Cache\CacheFactory
+        calls:
+            - [setContainer, ['@service_container']]

@@ -22,18 +22,15 @@ msgstr ""
 msgid "Contents"
 msgstr "Content"
 
-# ?
 #: ./application/modules/comments/assets/comments_api.tpl:34
 #: ./application/modules/comments/assets/comments_api.tpl:169
 msgid "Minuses"
 msgstr "Minuses"
 
-# ?
 #: ./application/modules/comments/templates/settings.tpl:38
 msgid "Comment frequency restriction per minute . O - check off"
 msgstr "Comment frequency restriction per minute . 0 - check off"
 
-# ?
 #: ./application/modules/comments/assets/comments_api.tpl:28
 #: ./application/modules/comments/assets/comments_api.tpl:163
 msgid "Pluses"

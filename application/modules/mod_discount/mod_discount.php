@@ -1,5 +1,13 @@
 <?php
 
+use Cart\BaseCart;
+use CMSFactory\assetManager;
+use CMSFactory\Events;
+use Currency\Currency;
+use mod_discount\classes\BaseDiscount;
+use mod_discount\Discount_product;
+use Propel\Runtime\Exception\PropelException;
+
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
@@ -11,6 +19,7 @@ if (!defined('BASEPATH')) {
  * @copyright (c) 2013, ImageCMS
  * @package ImageCMSModule
  * @property discount_model_admin $discount_model_admin
+ * @property BaseDiscount baseDiscount
  */
 class Mod_discount extends \MY_Controller
 {
@@ -51,9 +60,10 @@ class Mod_discount extends \MY_Controller
      * @access public
      * @author DevImageCms
      * @copyright (c) 2013, ImageCMS
+     * @throws \Exception
      */
     public function autoload() {
-        if (\mod_discount\classes\BaseDiscount::checkModuleInstall()) {
+        if (BaseDiscount::checkModuleInstall()) {
 
             $this->applyDiscountCartItems();
 
@@ -65,10 +75,10 @@ class Mod_discount extends \MY_Controller
 
             $giftKey = \CI::$APP->session->flashdata('makeOrderGiftKey');
             if (!empty($giftKey)) {
-                \mod_discount\classes\BaseDiscount::create()->updateDiskApply($giftKey, 'gift');
+                BaseDiscount::create()->updateDiskApply($giftKey, 'gift');
             }
 
-            \CMSFactory\Events::create()->setListener([$this, 'updateDiscountsApplies'], 'Cart:OrderValidated');
+            Events::create()->setListener([$this, 'updateDiscountsApplies'], 'Cart:OrderValidated');
 
             /* $cartItems = \Cart\BaseCart::getInstance()->getItems();
               $diff = 0;
@@ -104,53 +114,58 @@ class Mod_discount extends \MY_Controller
      * @access private
      * @author DevImageCms
      * @copyright (c) 2013, ImageCMS
+     * @throws PropelException
      */
     private function applyDiscountCartItems() {
-        $cart = \Cart\BaseCart::getInstance();
+        $cart = BaseCart::getInstance();
         $cartItems = $cart->getItems('SProducts');
 
         if (count($cartItems['data']) == 0) {
             return;
         }
 
+        /** @var SProducts|ShopKit $item */
         foreach ($cartItems['data'] as $item) {
             if ($item->originPrice > $item->price) {
                 continue;
             }
 
             $arr_for_discount = [
-                'product_id' => $item->getSProducts()->getId(),
-                'category_id' => $item->getSProducts()->getCategoryId(),
-                'brand_id' => $item->getSProducts()->getBrandId(),
-                'vid' => $item->id,
-                'id' => $item->getSProducts()->getId()
-            ];
-            \CMSFactory\assetManager::create()->discount = 0;
+                                 'product_id'  => $item->getSProducts()->getId(),
+                                 'category_id' => $item->getSProducts()->getCategoryId(),
+                                 'brand_id'    => $item->getSProducts()->getBrandId(),
+                                 'vid'         => $item->id,
+                                 'id'          => $item->getSProducts()->getId(),
+                                ];
+            assetManager::create()->discount = 0;
 
-            if (\mod_discount\classes\BaseDiscount::checkModuleInstall()) {
-                \mod_discount\Discount_product::create()->getProductDiscount($arr_for_discount);
+            if (BaseDiscount::checkModuleInstall()) {
+                Discount_product::create()->getProductDiscount($arr_for_discount);
             }
 
-            if ($discount = \CMSFactory\assetManager::create()->discount) {
+            if ($discount = assetManager::create()->discount) {
                 $priceNew = ((float) $item->originPrice - (float) $discount['discount_value'] < 0) ? 1 : (float) $item->originPrice - (float) $discount['discount_value'];
-                $productData = ['instance' => 'SProducts', 'id' => $item->id];
+                $productData = [
+                                'instance' => 'SProducts',
+                                'id'       => $item->id,
+                               ];
                 $cartItem = $cart->getItem($productData);
                 $dkey = $discount['discount_max']['key'];
                 if ($cartItem['success'] === TRUE) {
                     $cartItem['data']->discountKey = $dkey;
                 }
-                $cart->setItemPrice($productData, round($priceNew, ShopCore::app()->SSettings->pricePrecision));
+                $cart->setItemPrice($productData, round($priceNew, ShopCore::app()->SSettings->getPricePrecision()));
 
                 if (!isset($this->appliesControl[$dkey])) {
-                    $appliesLeft = \mod_discount\classes\BaseDiscount::create()->getAppliesLeft($item->discountKey);
+                    $appliesLeft = BaseDiscount::create()->getAppliesLeft($item->discountKey);
                     if ($appliesLeft === null) {
                         continue;
                     }
                     $this->appliesControl[$dkey] = [
-                        'appliesLeft' => $appliesLeft,
-                        'assumedApplies' => 0,
-                        'overloadPrice' => 0.0
-                    ];
+                                                    'appliesLeft'    => $appliesLeft,
+                                                    'assumedApplies' => 0,
+                                                    'overloadPrice'  => 0.0,
+                                                   ];
                 }
 
                 // gradually gathering overload (if will be)
@@ -171,10 +186,10 @@ class Mod_discount extends \MY_Controller
      * @copyright (c) 2013, ImageCMS
      */
     private function applyResultDiscount() {
-        \mod_discount\classes\BaseDiscount::prepareOption(['reBuild' => 1]);
-        $this->baseDiscount = \mod_discount\classes\BaseDiscount::create();
+        BaseDiscount::prepareOption(['reBuild' => 1]);
+        $this->baseDiscount = BaseDiscount::create();
 
-        if (\mod_discount\classes\BaseDiscount::checkModuleInstall()) {
+        if (BaseDiscount::checkModuleInstall()) {
             $discount['max_discount'] = $this->baseDiscount->discountMax;
             $discount['sum_discount_product'] = $this->baseDiscount->discountProductVal;
             $discount['sum_discount_no_product'] = $this->baseDiscount->discountNoProductVal;
@@ -189,7 +204,7 @@ class Mod_discount extends \MY_Controller
             if ($discount['result_sum_discount'] > 0) {
                 $cartTotalPrice = $this->baseDiscount->cart->getOriginTotalPrice() - $discount['result_sum_discount'];
 
-                $this->baseDiscount->cart->setTotalPrice($cartTotalPrice > 0 ? $cartTotalPrice : \Cart\BaseCart::MIN_ORDER_PRICE);
+                $this->baseDiscount->cart->setTotalPrice($cartTotalPrice > 0 ? $cartTotalPrice : BaseCart::MIN_ORDER_PRICE);
                 $this->baseDiscount->cart->discount_info = $discount;
                 $this->baseDiscount->cart->discount_type = $discount['type'];
             }
@@ -197,10 +212,10 @@ class Mod_discount extends \MY_Controller
     }
 
     public function updateDiscountsApplies() {
-        \mod_discount\classes\BaseDiscount::prepareOption(['reBuild' => 1]);
-        $baseDiscount = \mod_discount\classes\BaseDiscount::create();
+        BaseDiscount::prepareOption(['reBuild' => 1]);
+        $baseDiscount = BaseDiscount::create();
 
-        if (\mod_discount\classes\BaseDiscount::checkModuleInstall()) {
+        if (BaseDiscount::checkModuleInstall()) {
             if ($baseDiscount->discountProductVal > $baseDiscount->discountNoProductVal) {
                 $discount['result_sum_discount'] = $baseDiscount->discountProductVal;
                 $discount['type'] = 'product';
@@ -214,19 +229,19 @@ class Mod_discount extends \MY_Controller
                 if ($discount['type'] != 'product') {
                     $baseDiscount->updateDiskApply($baseDiscount->discountMax['key']);
                 } else {
-                    $cartItems = \Cart\BaseCart::getInstance()->getItems();
+                    $cartItems = BaseCart::getInstance()->getItems();
                     $diff = 0;
                     foreach ($cartItems['data'] as $item) {
                         if ($item->discountKey == null) {
                             continue;
                         }
-                        $appliesLeft = \mod_discount\classes\BaseDiscount::create()->getAppliesLeft($item->discountKey);
+                        $appliesLeft = BaseDiscount::create()->getAppliesLeft($item->discountKey);
                         if ($appliesLeft === null) {
                             continue;
                         }
                         for ($i = 0; $i < $item->quantity; $i++) {
                             if ($appliesLeft-- > 0) {
-                                \mod_discount\classes\BaseDiscount::create()->updateDiskApply($item->discountKey);
+                                BaseDiscount::create()->updateDiskApply($item->discountKey);
                             }
                         }
                         if ($appliesLeft < 0) {
@@ -235,7 +250,7 @@ class Mod_discount extends \MY_Controller
                         }
                     }
                     if ($diff > 0) {
-                        \CMSFactory\Events::create()->setListener(
+                        Events::create()->setListener(
                             function($params) use ($diff) {
                                     $order = $params['order'];
                                     $price = $params['price'];
@@ -272,12 +287,12 @@ class Mod_discount extends \MY_Controller
                 $value = $this->baseDiscount->getDiscountValue($disc, $this->baseDiscount->cart->getTotalPrice());
 
                 $this->baseDiscount->cart->gift_info = $disc['key'];
-                $this->baseDiscount->cart->gift_value = Currency\Currency::create()->convertFloor($value);
-                if (\ShopCore::app()->SSettings->pricePrecision == 0) {
+                $this->baseDiscount->cart->gift_value = Currency::create()->convertFloor($value);
+                if (\ShopCore::app()->SSettings->getPricePrecision() == 0) {
                     $this->baseDiscount->cart->gift_value = floor($value);
                 }
                 $cartTotalPrice = $this->baseDiscount->cart->getTotalPrice() - $value;
-                $this->baseDiscount->cart->setTotalPrice($cartTotalPrice > 0 ? $cartTotalPrice : \Cart\BaseCart::MIN_ORDER_PRICE);
+                $this->baseDiscount->cart->setTotalPrice($cartTotalPrice > 0 ? $cartTotalPrice : BaseCart::MIN_ORDER_PRICE);
                 $aplyGift = true;
                 break;
             }

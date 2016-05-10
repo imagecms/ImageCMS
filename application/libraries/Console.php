@@ -22,17 +22,18 @@ if (!defined('BASEPATH')) {
   MIT
  */
 
-class Console {
+class Console
+{
 
     /*
       Var: $logs
       Contains all of the logs that are collected.
      */
-    private static $logs = array(
-        'console' => array(),
-        'log_count' => 0,
-        'memory_count' => 0,
-    );
+    private static $logs = [
+                            'console'      => [],
+                            'log_count'    => 0,
+                            'memory_count' => 0,
+                           ];
 
     /*
       Var: $ci
@@ -89,10 +90,10 @@ class Console {
             $data = 'empty';
         }
 
-        $log_item = array(
-            'data' => $data,
-            'type' => 'log'
-        );
+        $log_item = [
+                     'data' => $data,
+                     'type' => 'log',
+                    ];
 
         self::add_to_console('log_count', $log_item);
     }
@@ -117,12 +118,12 @@ class Console {
             $memory = strlen(serialize($object));
         }
 
-        $log_item = array(
-            'data' => $memory,
-            'type' => 'memory',
-            'name' => $name,
-            'data_type' => gettype($object)
-        );
+        $log_item = [
+                     'data'      => $memory,
+                     'type'      => 'memory',
+                     'name'      => $name,
+                     'data_type' => gettype($object),
+                    ];
 
         self::add_to_console('memory_count', $log_item);
     }

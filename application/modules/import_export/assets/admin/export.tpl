@@ -33,7 +33,7 @@
                                     <label class="control-label" for="">{lang('Columns','import_export')}:</label>
                                     <div class="control-group">
                                         {foreach $attributes as $attrKey => $attrName}
-                                            {if $attrName != 'skip' and !in_array($attrKey, $cFields)}
+                                            {if $attrKey != 'skip' and !in_array($attrKey, $cFields)}
                                                 <div class="controls">
                                                     <span class="frame_label no_connection eattrcol">
                                                         <span class="niceCheck b_n">

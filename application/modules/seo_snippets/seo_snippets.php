@@ -62,34 +62,34 @@ class Seo_snippets extends MY_Controller
 
     private function makeLocalBusinessSnippet() {
         $LocalBusiness = [
-            '@context' => 'http://schema.org',
-            '@type' => 'LocalBusiness',
-            'name' => $this->settings['site_title'],
-            'image' => site_url(siteinfo('siteinfo_logo_url')),
-            'telephone' => siteinfo('siteinfo_mainphone'),
-            'email' => siteinfo('Email'),
-            'address' => [
-                '@type' => 'PostalAddress',
-                'streetAddress' => siteinfo('siteinfo_address'),
-            ],
-            'url' => site_url(),
-        ];
+                          '@context'  => 'http://schema.org',
+                          '@type'     => 'LocalBusiness',
+                          'name'      => $this->settings['site_title'],
+                          'image'     => site_url(siteinfo('siteinfo_logo_url')),
+                          'telephone' => siteinfo('siteinfo_mainphone'),
+                          'email'     => siteinfo('Email'),
+                          'address'   => [
+                                          '@type'         => 'PostalAddress',
+                                          'streetAddress' => siteinfo('siteinfo_address'),
+                                         ],
+                          'url'       => site_url(),
+                         ];
         return $LocalBusiness;
     }
 
     private function makeWebSiteSnippet() {
         $WebSite = [
-            '@context' => 'http://schema.org',
-            '@type' => 'WebSite',
-            'name' => $this->settings['site_short_title'],
-            'alternateName' => $this->settings['site_title'],
-            'url' => site_url(),
-            'potentialAction' => [
-                '@type' => 'SearchAction',
-                'target' => site_url('shop/search?text={search_term_string}'),
-                'query-input' => 'required name=search_term_string',
-            ],
-        ];
+                    '@context'        => 'http://schema.org',
+                    '@type'           => 'WebSite',
+                    'name'            => $this->settings['site_short_title'],
+                    'alternateName'   => $this->settings['site_title'],
+                    'url'             => site_url(),
+                    'potentialAction' => [
+                                          '@type'       => 'SearchAction',
+                                          'target'      => site_url('shop/search?text={search_term_string}'),
+                                          'query-input' => 'required name=search_term_string',
+                                         ],
+                   ];
         return $WebSite;
     }
 
@@ -122,9 +122,9 @@ class Seo_snippets extends MY_Controller
             /* @var $similarProduct SProducts */
             foreach ($similarProducts as $similarProduct) {
                 $similar[] = [
-                    'url' => shop_url('product/' . $similarProduct->getUrl()),
-                    'image' => site_url($similarProduct->getFirstVariant()->getMainPhoto())
-                ];
+                              'url'   => shop_url('product/' . $similarProduct->getUrl()),
+                              'image' => site_url($similarProduct->getFirstVariant()->getMainPhoto()),
+                             ];
             }
 
             CI::$APP->load->module('comments')->load->model('base');
@@ -132,49 +132,49 @@ class Seo_snippets extends MY_Controller
 
             foreach ($comments as $comment) {
                 $review[] = [
-                    '@type' => 'Review',
-                    'author' => $comment['user_name'],
-                    'datePublished' => gmdate('D, d M Y\G\M\T', $comment['date']),
-                    'description' => $comment['text'],
-                    'reviewRating' => [
-                        '@type' => 'Rating',
-                        'bestRating' => '5',
-                        'ratingValue' => $comment['rate'],
-                        'worstRating' => 0
-                    ]
-                ];
+                             '@type'         => 'Review',
+                             'author'        => $comment['user_name'],
+                             'datePublished' => gmdate('D, d M Y\G\M\T', $comment['date']),
+                             'description'   => $comment['text'],
+                             'reviewRating'  => [
+                                                 '@type'       => 'Rating',
+                                                 'bestRating'  => '5',
+                                                 'ratingValue' => $comment['rate'],
+                                                 'worstRating' => 0,
+                                                ],
+                            ];
             }
             $Product = [
-                '@context' => 'http://schema.org',
-                '@type' => 'Product',
-                'name' => $name,
-                'image' => site_url($model->getFirstVariant()->getMainPhoto()),
-                'description' => $model->getFullDescription(),
-                'url' => shop_url('product/' . $model->getUrl()),
-                'brand' => [],
-                'offers' => [
-                    '@type' => 'Offer',
-                    'availability' => $model->getFirstVariant()->getStock() > 0 ? 'http://schema.org/InStock' : 'http://schema.org/SoldOut',
-                    'price' => $model->getFirstVariant()->toCurrency('Price'),
-                    'priceCurrency' => Currency::create()->getCode(),
-                ],
-                'isSimilarTo' => $similar,
-                'aggregateRating' => [
-                    '@type' => 'AggregateRating',
-                    'ratingValue' => (float) (($aggregateRating['reviewCount'] ? : 0) / ($aggregateRating['ratingCount'] ? : 0)),
-                    'bestRating' => 5,
-                    'worstRating' => 0,
-                    'ratingCount' => $aggregateRating['ratingCount'] ? : 0,
-                ],
-                'review' => $review
-            ];
+                        '@context'        => 'http://schema.org',
+                        '@type'           => 'Product',
+                        'name'            => $name,
+                        'image'           => site_url($model->getFirstVariant()->getMainPhoto()),
+                        'description'     => mb_substr(strip_tags($model->getFullDescription()), 0, 200, 'utf-8'),
+                        'url'             => shop_url('product/' . $model->getUrl()),
+                        'brand'           => [],
+                        'offers'          => [
+                                              '@type'         => 'Offer',
+                                              'availability'  => $model->getFirstVariant()->getStock() > 0 ? 'http://schema.org/InStock' : 'http://schema.org/SoldOut',
+                                              'price'         => $model->getFirstVariant()->toCurrency('Price'),
+                                              'priceCurrency' => Currency::create()->getCode(),
+                                             ],
+                        'isSimilarTo'     => $similar,
+                        'aggregateRating' => [
+                                              '@type'       => 'AggregateRating',
+                                              'ratingValue' => (float) (($aggregateRating['reviewCount'] ? : 0) / ($aggregateRating['ratingCount'] ? : 0)),
+                                              'bestRating'  => 5,
+                                              'worstRating' => 0,
+                                              'ratingCount' => $aggregateRating['ratingCount'] ? : 0,
+                                             ],
+                        'review'          => $review,
+                       ];
 
             if ($model->getBrand()) {
                 $Product['brand'] = [
-                    '@type' => 'Brand',
-                    'name' => $model->getBrand()->getName(),
-                    'logo' => site_url('/uploads/shop/brands/' . $model->getBrand()->getImage()),
-                ];
+                                     '@type' => 'Brand',
+                                     'name'  => $model->getBrand()->getName(),
+                                     'logo'  => site_url('/uploads/shop/brands/' . $model->getBrand()->getImage()),
+                                    ];
             }
 
             $data = json_encode(array_filter($Product));

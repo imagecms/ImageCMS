@@ -67,10 +67,10 @@ class Lib_csrf
         if ($ci->uri->segment(1) == 'shop' && $ci->uri->segment(2) == 'cart' && $ci->uri->segment(3) == 'view' && $ci->input->get('fail') == 'true') {
             define('ICMS_DISBALE_CSRF', true);
         }
-        if ($ci->input->server('HTTP_REFERER') AND strpos($ci->input->server('HTTP_REFERER') . "", 'facebook.com')) {
+        if ($ci->input->server('HTTP_REFERER') AND strpos($ci->input->server('HTTP_REFERER') . '', 'facebook.com')) {
             define('ICMS_DISBALE_CSRF', true);
         }
-        if ($ci->input->server('HTTP_REFERER') AND strpos($ci->input->server('HTTP_REFERER') . "", 'facebook.com')) {
+        if ($ci->input->server('HTTP_REFERER') AND strpos($ci->input->server('HTTP_REFERER') . '', 'facebook.com')) {
             define('ICMS_DISBALE_CSRF', true);
         }
         // Support for privat
@@ -79,7 +79,7 @@ class Lib_csrf
             define('ICMS_DISBALE_CSRF', true);
         }
         //new payment system
-        if (preg_match("/payment_method_/i", $ci->uri->segment(1)) || preg_match("/payment_method_/i", $ci->uri->segment(2))) {
+        if (preg_match('/payment_method_/i', $ci->uri->segment(1)) || preg_match('/payment_method_/i', $ci->uri->segment(2))) {
             define('ICMS_DISBALE_CSRF', true);
         }
         if ($ci->uri->segment(1) == 'facebook_store' && $ci->uri->segment(2) == 'auth_from_fb_store') {

@@ -11,7 +11,7 @@
                 <a href="{$ADMIN_URL}callbacks/themes" class="pjax t-d_n m-r_15"><span class="f-s_14">←</span> <span class="t-d_u">{lang('Go back','admin')}</span></a>
                 <button type="button" class="btn btn-small btn-primary action_on formSubmit" data-action="edit" data-form="#addCallbackStatusForm" data-submit><i class="icon-ok icon-white"></i>{lang('Save','admin')}</button>
                 <button type="button" class="btn btn-small action_on formSubmit" data-action="close" data-form="#addCallbackStatusForm"><i class="icon-check"></i>{lang('Save and go back','admin')}</button>
-                    {echo create_language_select($languages, $locale, '/admin/components/run/shop/callbacks/updateTheme/'. $model->getId())}
+                    {echo create_language_select($languages, $locale, '/admin/components/run/callbacks/updateTheme/'. $model->getId())}
             </div>
         </div>                            
     </div>

@@ -6,6 +6,10 @@ if (!defined('BASEPATH')) {
 
 if (!function_exists('media_url')) {
 
+    /**
+     * @param string|array $url
+     * @return string
+     */
     function media_url($url = '') {
 
         $CI = &get_instance();
@@ -25,11 +29,9 @@ if (!function_exists('media_url')) {
             $lenstr = strlen(MY_Controller::getCurrentLocale() . '/');
             $cut = 0 - (int) $lenstr;
             $mediaUrl = substr($config->slash_item('base_url'), 0, $cut);
-            $return = $mediaUrl . '/' . $index_page . preg_replace("|^/*(.+?)/*$|", "\\1", $url);
-
-            //            $return = rtrim($config->slash_item('base_url'), MY_Controller::getCurrentLocale() . '/') . '/' . $index_page . preg_replace("|^/*(.+?)/*$|", "\\1", $url); // отпадает когда домен .ua и локаль ua
+            $return = $mediaUrl . $index_page . preg_replace('|^/*(.+?)/*$|', "\\1", $url);
         } else {
-            $return = $config->slash_item('base_url') . $index_page . preg_replace("|^/*(.+?)/*$|", "\\1", $url);
+            $return = $config->slash_item('base_url') . $index_page . preg_replace('|^/*(.+?)/*$|', "\\1", $url);
         }
 
         return $return;

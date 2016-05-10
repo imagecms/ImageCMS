@@ -23,9 +23,9 @@ class Roles extends CI_Model
 
     public function create_role($name, $parent_id = 0) {
         $data = [
-            'name' => $name,
-            'parent_id' => $parent_id
-        ];
+                 'name'      => $name,
+                 'parent_id' => $parent_id,
+                ];
 
         $this->db->insert($this->_table, $data);
     }

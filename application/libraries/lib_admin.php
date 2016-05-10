@@ -9,7 +9,8 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-class Lib_admin {
+class Lib_admin
+{
 
     public $CI;
 
@@ -31,7 +32,7 @@ class Lib_admin {
         //        else
         //            $this->CI->config->set_item('language', 'russian');
 
-        $this->CI->config->set_item('langs', array('russian', 'english'));
+        $this->CI->config->set_item('langs', ['russian', 'english']);
 
         $this->CI->load->library('DX_Auth');
 
@@ -66,12 +67,12 @@ class Lib_admin {
     }
 
     public function log($message) {
-        $data = array(
-            'user_id' => $this->CI->dx_auth->get_user_id(),
-            'username' => $this->CI->dx_auth->get_username(),
-            'message' => $message,
-            'date' => time(),
-        );
+        $data = [
+                 'user_id'  => $this->CI->dx_auth->get_user_id(),
+                 'username' => $this->CI->dx_auth->get_username(),
+                 'message'  => $message,
+                 'date'     => time(),
+                ];
 
         $this->CI->db->insert('logs', $data);
     }

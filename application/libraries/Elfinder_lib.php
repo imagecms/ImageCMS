@@ -9,7 +9,8 @@ require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'elfinder/elFinder.class.
 require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'elfinder/elFinderVolumeDriver.class.php';
 require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'elfinder/elFinderVolumeLocalFileSystem.class.php';
 
-class Elfinder_lib {
+class Elfinder_lib
+{
 
     public function __construct($opts) {
 

@@ -42,11 +42,11 @@ class Admin extends BaseAdminController
             if ($result) {
                 foreach ($result as $res) {
                     $json_answer[] = [
-                        'value' => $res['text'],
-                        'identifier' => [
-                            'id' => $res['id']
-                        ]
-                    ];
+                                      'value'      => $res['text'],
+                                      'identifier' => [
+                                                       'id' => $res['id'],
+                                                      ],
+                                     ];
                 }
                 return json_encode($json_answer);
             } else {
@@ -138,63 +138,63 @@ class Admin extends BaseAdminController
 
                     case 'url':
                         $array = [
-                            'trash_url' => ltrim($this->input->post('url'), '/'),
-                            'trash_redirect_type' => $this->input->post('redirect_type'),
-                            'trash_type' => $this->input->post('type'),
-                            'trash_redirect' => $this->input->post('redirect_url')
-                        ];
+                                  'trash_url'           => ltrim($this->input->post('url'), '/'),
+                                  'trash_redirect_type' => $this->input->post('redirect_type'),
+                                  'trash_type'          => $this->input->post('type'),
+                                  'trash_redirect'      => $this->input->post('redirect_url'),
+                                 ];
                         break;
 
                     case 'product':
                         $query = $this->db->get_where('shop_products', ['id' => $this->input->post('products')]);
                         $url = $query->row();
                         $array = [
-                            'trash_id' => $this->input->post('products'),
-                            'trash_url' => ltrim($this->input->post('url'), '/'),
-                            'trash_redirect_type' => $this->input->post('redirect_type'),
-                            'trash_type' => $this->input->post('type'),
-                            'trash_redirect' => site_url() . 'shop/product/' . $url->url
-                        ];
+                                  'trash_id'            => $this->input->post('products'),
+                                  'trash_url'           => ltrim($this->input->post('url'), '/'),
+                                  'trash_redirect_type' => $this->input->post('redirect_type'),
+                                  'trash_type'          => $this->input->post('type'),
+                                  'trash_redirect'      => site_url() . 'shop/product/' . $url->url,
+                                 ];
                         break;
 
                     case 'category':
                         $query = $this->db->get_where('shop_category', ['id' => $this->input->post('category')]);
                         $url = $query->row();
                         $array = [
-                            'trash_id' => $this->input->post('category'),
-                            'trash_url' => ltrim($this->input->post('url'), '/'),
-                            'trash_redirect_type' => $this->input->post('redirect_type'),
-                            'trash_type' => $this->input->post('type'),
-                            'trash_redirect' => site_url() . 'shop/category/' . $url->full_path
-                        ];
+                                  'trash_id'            => $this->input->post('category'),
+                                  'trash_url'           => ltrim($this->input->post('url'), '/'),
+                                  'trash_redirect_type' => $this->input->post('redirect_type'),
+                                  'trash_type'          => $this->input->post('type'),
+                                  'trash_redirect'      => site_url() . 'shop/category/' . $url->full_path,
+                                 ];
                         break;
 
                     case 'basecategory':
                         $query = $this->db->get_where('category', ['id' => $this->input->post('category_base')]);
                         $url = $query->row();
                         $array = [
-                            'trash_id' => $this->input->post('category_base'),
-                            'trash_url' => ltrim($this->input->post('url'), '/'),
-                            'trash_redirect_type' => $this->input->post('redirect_type'),
-                            'trash_type' => $this->input->post('type'),
-                            'trash_redirect' => site_url($this->cms_base->get_category_full_path($url->id))
-                        ];
+                                  'trash_id'            => $this->input->post('category_base'),
+                                  'trash_url'           => ltrim($this->input->post('url'), '/'),
+                                  'trash_redirect_type' => $this->input->post('redirect_type'),
+                                  'trash_type'          => $this->input->post('type'),
+                                  'trash_redirect'      => site_url($this->cms_base->get_category_full_path($url->id)),
+                                 ];
                         break;
 
                     case '404':
                         $array = [
-                            'trash_url' => ltrim($this->input->post('url'), '/'),
-                            'trash_type' => $this->input->post('type'),
-                            'trash_redirect_type' => '404'
-                        ];
+                                  'trash_url'           => ltrim($this->input->post('url'), '/'),
+                                  'trash_type'          => $this->input->post('type'),
+                                  'trash_redirect_type' => '404',
+                                 ];
                         break;
 
                     default :
                         $array = [
-                            'trash_url' => ltrim($this->input->post('url'), '/'),
-                            'trash_type' => $this->input->post('type'),
-                            'trash_redirect_type' => '404'
-                        ];
+                                  'trash_url'           => ltrim($this->input->post('url'), '/'),
+                                  'trash_type'          => $this->input->post('type'),
+                                  'trash_redirect_type' => '404',
+                                 ];
                         break;
                 }
 
@@ -238,12 +238,12 @@ class Admin extends BaseAdminController
             switch ($this->input->post('redirect_type')) {
                 case 'url':
                     $array = [
-                        'id' => $this->input->post('id'),
-                        'trash_url' => $this->input->post('old_url'),
-                        'trash_redirect_type' => $this->input->post('redirect_type'),
-                        'trash_type' => $this->input->post('type'),
-                        'trash_redirect' => $this->input->post('redirect_url')
-                    ];
+                              'id'                  => $this->input->post('id'),
+                              'trash_url'           => $this->input->post('old_url'),
+                              'trash_redirect_type' => $this->input->post('redirect_type'),
+                              'trash_type'          => $this->input->post('type'),
+                              'trash_redirect'      => $this->input->post('redirect_url'),
+                             ];
                     break;
 
                 case 'product':
@@ -251,13 +251,13 @@ class Admin extends BaseAdminController
                     $url = $query->row();
 
                     $array = [
-                        'id' => $this->input->post('id'),
-                        'trash_id' => $this->input->post('products'),
-                        'trash_url' => $this->input->post('old_url'),
-                        'trash_redirect_type' => $this->input->post('redirect_type'),
-                        'trash_type' => $this->input->post('type'),
-                        'trash_redirect' => site_url() . 'shop/product/' . $url->url
-                    ];
+                              'id'                  => $this->input->post('id'),
+                              'trash_id'            => $this->input->post('products'),
+                              'trash_url'           => $this->input->post('old_url'),
+                              'trash_redirect_type' => $this->input->post('redirect_type'),
+                              'trash_type'          => $this->input->post('type'),
+                              'trash_redirect'      => site_url() . 'shop/product/' . $url->url,
+                             ];
                     break;
 
                 case 'category':
@@ -265,13 +265,13 @@ class Admin extends BaseAdminController
                     $url = $query->row();
 
                     $array = [
-                        'id' => $this->input->post('id'),
-                        'trash_id' => $this->input->post('category'),
-                        'trash_url' => $this->input->post('old_url'),
-                        'trash_redirect_type' => $this->input->post('redirect_type'),
-                        'trash_type' => $this->input->post('type'),
-                        'trash_redirect' => site_url() . 'shop/category/' . $url->full_path
-                    ];
+                              'id'                  => $this->input->post('id'),
+                              'trash_id'            => $this->input->post('category'),
+                              'trash_url'           => $this->input->post('old_url'),
+                              'trash_redirect_type' => $this->input->post('redirect_type'),
+                              'trash_type'          => $this->input->post('type'),
+                              'trash_redirect'      => site_url() . 'shop/category/' . $url->full_path,
+                             ];
                     break;
 
                 case 'basecategory':
@@ -279,28 +279,31 @@ class Admin extends BaseAdminController
                     $url = $query->row();
 
                     $array = [
-                        'id' => $this->input->post('id'),
-                        'trash_id' => $this->input->post('category_base'),
-                        'trash_url' => $this->input->post('old_url'),
-                        'trash_redirect_type' => $this->input->post('redirect_type'),
-                        'trash_type' => $this->input->post('type'),
-                        'trash_redirect' => site_url($this->cms_base->get_category_full_path($url->id))
-                    ];
+                              'id'                  => $this->input->post('id'),
+                              'trash_id'            => $this->input->post('category_base'),
+                              'trash_url'           => $this->input->post('old_url'),
+                              'trash_redirect_type' => $this->input->post('redirect_type'),
+                              'trash_type'          => $this->input->post('type'),
+                              'trash_redirect'      => site_url($this->cms_base->get_category_full_path($url->id)),
+                             ];
                     break;
 
                 case '404':
                     $array = [
-                        'id' => $this->input->post('id'),
-                        'trash_redirect_type' => $this->input->post('redirect_type')
-                    ];
+                              'id'                  => $this->input->post('id'),
+                              'trash_redirect_type' => $this->input->post('redirect_type'),
+                              'trash_type'          => $this->input->post('type'),
+                              'trash_redirect'      => '',
+                             ];
+
                     break;
 
                 default :
                     $array = [
-                        'id' => $this->input->post('id'),
-                        'trash_url' => $this->input->post('old_url'),
-                        'trash_redirect_type' => $this->input->post('redirect_type')
-                    ];
+                              'id'                  => $this->input->post('id'),
+                              'trash_url'           => $this->input->post('old_url'),
+                              'trash_redirect_type' => $this->input->post('redirect_type'),
+                             ];
                     break;
             }
 

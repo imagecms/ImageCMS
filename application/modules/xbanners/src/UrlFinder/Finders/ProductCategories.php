@@ -11,7 +11,7 @@ final class ProductCategories extends BaseFinder
 
     protected $nameColumn = 'shop_category_i18n.name';
 
-    protected $urlColumn = 'shop_category.url';
+    protected $urlColumn = 'shop_category.full_path as url';
 
     protected $langColumn = 'shop_category_i18n.locale';
 

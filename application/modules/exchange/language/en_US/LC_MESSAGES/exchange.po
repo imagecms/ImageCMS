@@ -18,7 +18,6 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
-# ? (Андрій)
 #: ./application/modules/exchange/templates/admin/settings.tpl:180
 #: ./application/modules/exchange/assets/admin/settings.tpl:174
 msgid "If you specify an email errors when incorrect password"
@@ -29,7 +28,6 @@ msgstr "If you specify an email errors when incorrect password"
 msgid "Run automatically resize images?"
 msgstr "Run image resize automatically?"
 
-# ?(Андрій)
 #: ./application/modules/exchange/templates/admin/settings.tpl:181
 #: ./application/modules/exchange/assets/admin/settings.tpl:175
 msgid "and security  will be sent to administrator"
@@ -40,7 +38,6 @@ msgstr "и безопасности будет отправлено админи
 msgid "1C Ip addres "
 msgstr "1C IР address"
 
-# ? (Оля) Властивість, яка буде записана як бренд
 #: ./application/modules/exchange/templates/admin/settings.tpl:125
 #: ./application/modules/exchange/assets/admin/settings.tpl:119
 msgid "Property, which will be mean like brand"
@@ -51,7 +48,6 @@ msgstr "Property, which will be meant by Brand"
 msgid "All errors will be written to the file"
 msgstr "All errors will be written to the file"
 
-# ?(Андрій)
 #: ./application/modules/exchange/templates/admin/settings.tpl:182
 #: ./application/modules/exchange/assets/admin/settings.tpl:176
 msgid "Email Administrator for sending important safety mistakes"
@@ -62,7 +58,6 @@ msgstr ""
 msgid "Fix"
 msgstr "Fix"
 
-# ? (Оля)
 #: ./application/modules/exchange/assets/admin/Log.tpl:11
 msgid "Clear log"
 msgstr "Clear the log"

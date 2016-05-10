@@ -64,7 +64,6 @@ msgstr "Redirect creating"
 msgid "Redirect kind"
 msgstr "Redirect kind"
 
-# ?
 #: application/modules/trash/templates/admin/edit_trash.tpl:74
 #: application/modules/trash/templates/admin/create_trash.tpl:72
 #: application/modules/trash/templates/admin/create_trash.tpl:133

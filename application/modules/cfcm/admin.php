@@ -74,9 +74,10 @@ class Admin extends BaseAdminController
                     $toInsert = [];
                     if (count($groups)) {
                         foreach ($groups as $group) {
-                            $toInsert[] = ['field_name' => $data['field_name'],
-                                'group_id' => $group
-                            ];
+                            $toInsert[] = [
+                                           'field_name' => $data['field_name'],
+                                           'group_id'   => $group,
+                                          ];
                         }
 
                         if (count($toInsert)) {
@@ -99,9 +100,7 @@ class Admin extends BaseAdminController
             }
         } else {
             $this->template->add_array(
-                [
-                        'form' => $form,
-                    ]
+                ['form' => $form]
             );
 
             $this->render('_form');
@@ -153,9 +152,7 @@ class Admin extends BaseAdminController
         }
 
         $this->template->add_array(
-            [
-                    'form' => $form,
-                ]
+            ['form' => $form]
         );
 
         $this->render('_form');
@@ -235,10 +232,10 @@ class Admin extends BaseAdminController
                 $this->db->update(
                     'content_fields',
                     [
-                    'data' => serialize($data),
-                    'type' => $data['type'],
-                    'label' => $data['label'],
-                        ]
+                     'data'  => serialize($data),
+                     'type'  => $data['type'],
+                     'label' => $data['label'],
+                    ]
                 );
 
                 $groups = $data['groups'];
@@ -247,9 +244,10 @@ class Admin extends BaseAdminController
                 $this->db->delete('content_fields_groups_relations', ['field_name' => $data['field_name']]);
                 if (count($groups)) {
                     foreach ($groups as $group) {
-                        $toInsert[] = ['field_name' => $data['field_name'],
-                            'group_id' => $group
-                        ];
+                        $toInsert[] = [
+                                       'field_name' => $data['field_name'],
+                                       'group_id'   => $group,
+                                      ];
                     }
 
                     $this->db->insert_batch('content_fields_groups_relations', $toInsert);
@@ -265,9 +263,7 @@ class Admin extends BaseAdminController
                 $modulePath = getModulePath('cfcm');
                 $this->template->registerJsFile($modulePath . 'templates/scripts/admin.js', 'after');
                 $this->template->add_array(
-                    [
-                            'form' => $form,
-                        ]
+                    ['form' => $form]
                 );
 
                 $this->render('_form');
@@ -317,9 +313,7 @@ class Admin extends BaseAdminController
         $form->field_name->field->attributes = 'disabled="disabled"';
 
         $this->template->add_array(
-            [
-                    'form' => $form,
-                ]
+            ['form' => $form]
         );
 
         $this->render('_form');
@@ -370,9 +364,7 @@ class Admin extends BaseAdminController
         $form->setAttributes($group);
 
         $this->template->add_array(
-            [
-                    'form' => $form,
-                ]
+            ['form' => $form]
         );
 
         $this->render('_form');
@@ -431,14 +423,15 @@ class Admin extends BaseAdminController
     public function index() {
         $this->template->add_array(
             [
-                    'fields' => $this->db->order_by('weight', 'ASC')->get('content_fields')->result_array(),
-                    'groups' => $this->load->module('cfcm/cfcm_forms')->prepare_groups_select(),
-                    'groupRels' => $this->db
-                        ->select('*')
-                        ->join('content_field_groups', 'content_field_groups.id = content_fields_groups_relations.group_id OR content_fields_groups_relations.group_id = -1')
-                        ->get('content_fields_groups_relations')
-                        ->result_array()
-                ]
+             'fields'    => $this->db->order_by('weight', 'ASC')->get('content_fields')->result_array(),
+             'groups'    => $this->load->module('cfcm/cfcm_forms')->prepare_groups_select(),
+             'groupRels' => $this->db
+                 ->select('*')
+                 ->join('content_field_groups', 'content_field_groups.id = content_fields_groups_relations.group_id OR content_fields_groups_relations.group_id = -1')
+                 ->order_by('content_field_groups.id')
+                 ->get('content_fields_groups_relations')
+                 ->result_array(),
+            ]
         );
 
         $groups = $this->db->get('content_field_groups');

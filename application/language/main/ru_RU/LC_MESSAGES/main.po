@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-17 10:15+0200\n"
-"PO-Revision-Date: 2016-02-17 10:15+0200\n"
+"POT-Creation-Date: 2016-05-05 05:40+0300\n"
+"PO-Revision-Date: 2016-05-05 05:40+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -31,29 +31,49 @@ msgstr ""
 "X-Poedit-SearchPath-12: ../../../../../application/modules/shop/widgets\n"
 "X-Poedit-SearchPath-13: ../../../../../application/modules/shop/models2\n"
 
+#: application/libraries/Update.php:138
+msgid "Wrong generated hash code"
+msgstr ""
+
+#: system/language/form_validation/form_validation.php:35
+msgid "Phone"
+msgstr "Телефон"
+
+#: application/libraries/MY_Form_validation.php:13
+msgid "Поле %s должно содержать правильную дату."
+msgstr ""
+
+#: application/libraries/MY_Form_validation.php:14
+msgid "Поле %s должно содержать правильное время."
+msgstr ""
+
+#: application/libraries/MY_Form_validation.php:15
+msgid "Поле %s должно содержать корректный номер."
+msgstr ""
+
+#: application/libraries/MY_Form_validation.php:16
+msgid "Поле %s должно содержать как минимум один символ."
+msgstr ""
+
+#: system/language/form_validation/form_validation.php:36
+msgid "Cannot create order with price less than |currencySymbol| |minPrice|"
+msgstr "Невозможно создать заказ с ценой менее |currencySymbol| |minPrice|"
+
 #: system/language/form_validation/form_validation.php:34
 msgid "Search"
 msgstr "Поиск"
 
-#: application/libraries/Update.php:100
+#: application/libraries/Update.php:98
 msgid "Cant get status"
 msgstr ""
 
-#: application/libraries/Update.php:125
-msgid "Dont Hash Sum"
-msgstr ""
-
-#: application/libraries/Update.php:152
-msgid "Wrong generate hash code"
-msgstr ""
-
-#: application/libraries/Update.php:179
+#: application/libraries/Update.php:164
 msgid "Nothing to create"
 msgstr ""
 
-#: application/libraries/Update.php:194
-#: application/libraries/Update.php:218
-#: application/libraries/Update.php:249
+#: application/libraries/Update.php:179
+#: application/libraries/Update.php:202
+#: application/libraries/Update.php:233
 msgid "Dont have permissions folder backup"
 msgstr ""
 
@@ -61,7 +81,7 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: application/modules/shop/classes/Category/CategoryApi.php:230
+#: application/modules/shop/classes/Category/CategoryApi.php:236
 msgid "The Category icon field legth must be smaler than 255 symbols."
 msgstr "Поле Логотип не может превышать 255 символов в длину."
 
@@ -73,11 +93,11 @@ msgstr "Выберите файл"
 msgid "Number"
 msgstr "Акртикул"
 
-#: application/modules/shop/classes/Products/ProductApi.php:235
+#: application/modules/shop/classes/Products/ProductApi.php:237
 msgid "The field Price must be numeric"
 msgstr "Поле Цена должно содержать только цифры."
 
-#: application/modules/shop/classes/Products/ProductApi.php:148
+#: application/modules/shop/classes/Products/ProductApi.php:150
 msgid "URL field can not contain first symbol: _"
 msgstr "Поле URL не может содержать первым символом: _"
 
@@ -127,28 +147,28 @@ msgstr "Не выбрано"
 msgid "Your name"
 msgstr "Ваше имя"
 
-#: application/libraries/MY_Pagination.php:14
+#: application/libraries/MY_Pagination.php:15
 msgid "First"
 msgstr "Начало"
 
-#: application/libraries/MY_Pagination.php:15
+#: application/libraries/MY_Pagination.php:16
 msgid "Last"
 msgstr "Конец"
 
-#: application/libraries/Permitions.php:771
+#: application/libraries/Permitions.php:776
 msgid "Role was deleted"
 msgstr "Роль пользователя удалена"
 
-#: application/libraries/Permitions.php:681
+#: application/libraries/Permitions.php:686
 msgid "Role was edited"
 msgstr "Роль пользователя отредактирована"
 
-#: application/libraries/Permitions.php:544
+#: application/libraries/Permitions.php:551
 msgid "The role is created"
 msgstr "Роль пользователя создана"
 
-#: application/modules/shop/classes/Products/ProductApi.php:152
-#: application/modules/shop/classes/Products/ProductApi.php:157
+#: application/modules/shop/classes/Products/ProductApi.php:154
+#: application/modules/shop/classes/Products/ProductApi.php:159
 msgid "URL field can only contain alphanumeric characters and symbols: - , _"
 msgstr "Поле URL может содержать только латинские символы, цифры и символы: - , _"
 
@@ -156,36 +176,36 @@ msgstr "Поле URL может содержать только латински
 msgid "Бренды"
 msgstr ""
 
-#: application/modules/shop/widgets/templates/products_form.tpl:5
 #: application/modules/shop/widgets/templates/brands_form.tpl:5
+#: application/modules/shop/widgets/templates/products_form.tpl:5
 #: application/modules/shop/widgets/templates/similar_products_form.tpl:5
 #: application/modules/shop/widgets/templates/view_product_form.tpl:5
 msgid "Настройки виджета"
 msgstr ""
 
-#: application/modules/shop/widgets/templates/products_form.tpl:9
 #: application/modules/shop/widgets/templates/brands_form.tpl:10
+#: application/modules/shop/widgets/templates/products_form.tpl:9
 #: application/modules/shop/widgets/templates/similar_products_form.tpl:9
 #: application/modules/shop/widgets/templates/view_product_form.tpl:9
 msgid "Вернуться"
 msgstr ""
 
-#: application/modules/shop/widgets/templates/products_form.tpl:10
 #: application/modules/shop/widgets/templates/brands_form.tpl:12
+#: application/modules/shop/widgets/templates/products_form.tpl:10
 #: application/modules/shop/widgets/templates/similar_products_form.tpl:10
 #: application/modules/shop/widgets/templates/view_product_form.tpl:10
 msgid "Сохранить"
 msgstr ""
 
-#: application/modules/shop/widgets/templates/products_form.tpl:11
 #: application/modules/shop/widgets/templates/brands_form.tpl:14
+#: application/modules/shop/widgets/templates/products_form.tpl:11
 #: application/modules/shop/widgets/templates/similar_products_form.tpl:11
 #: application/modules/shop/widgets/templates/view_product_form.tpl:11
 msgid "Сохранить и выйти"
 msgstr ""
 
-#: application/modules/shop/widgets/templates/products_form.tpl:18
 #: application/modules/shop/widgets/templates/brands_form.tpl:22
+#: application/modules/shop/widgets/templates/products_form.tpl:18
 #: application/modules/shop/widgets/templates/similar_products_form.tpl:18
 #: application/modules/shop/widgets/templates/view_product_form.tpl:18
 msgid "Настройки"
@@ -250,27 +270,27 @@ msgstr ""
 msgid "Учитывать категорию:"
 msgstr ""
 
-#: application/libraries/Permitions.php:519
+#: application/libraries/Permitions.php:526
 msgid "Важность"
 msgstr ""
 
-#: application/libraries/Permitions.php:773
+#: application/libraries/Permitions.php:778
 msgid "Role(s) successfully deleted"
 msgstr "Роль(и) успешно удалена(ы)"
 
-#: application/modules/shop/classes/Products/ProductApi.php:219
+#: application/modules/shop/classes/Products/ProductApi.php:221
 msgid "not specified product_name"
 msgstr "product_name не указан"
 
-#: application/libraries/CustomCache.php:56
+#: application/libraries/CustomCache.php:57
 msgid "Cache file name is not valid string. "
 msgstr "Имя файла кэша не является допустимой строкой. "
 
-#: application/libraries/CustomCache.php:59
+#: application/libraries/CustomCache.php:60
 msgid "Cache file with such name already exist. Please chose another name"
 msgstr "Кэш-файл с таким именем уже существует. Пожалуйста, выбрала другое имя"
 
-#: application/libraries/DX_Auth.php:852
+#: application/libraries/DX_Auth.php:853
 msgid "auth login username not exist"
 msgstr "Имя пользователя не существует"
 
@@ -278,7 +298,7 @@ msgstr "Имя пользователя не существует"
 msgid "auth username or email not exist"
 msgstr "Имя пользователя или e-mail не существует"
 
-#: application/modules/shop/classes/Products/ProductApi.php:957
+#: application/modules/shop/classes/Products/ProductApi.php:999
 msgid "You did not specified image name"
 msgstr "Вы не уточнил название изображения"
 
@@ -318,12 +338,12 @@ msgstr "Похожие продукты"
 msgid "Displays on the product page block with similar products."
 msgstr "Отображение на странице товара блока с похожими товарами"
 
-#: application/modules/shop/classes/Products/ProductApi.php:199
-#: application/modules/shop/classes/Products/ProductApi.php:291
+#: application/modules/shop/classes/Products/ProductApi.php:201
+#: application/modules/shop/classes/Products/ProductApi.php:293
 msgid "hit not 1 or 0"
 msgstr "hit должно бить 1 или 0"
 
-#: application/modules/shop/classes/Products/ProductApi.php:307
+#: application/modules/shop/classes/Products/ProductApi.php:309
 msgid "The main template field can not contain more than 250 characters"
 msgstr "Поле Главный шаблон не может содержать более 250 символов"
 
@@ -344,11 +364,11 @@ msgstr "E-Mail"
 msgid "English"
 msgstr "Английский"
 
-#: application/libraries/CustomCache.php:51
+#: application/libraries/CustomCache.php:52
 msgid "Interval argument must be integer"
 msgstr "Интервал аргумент должен быть целым"
 
-#: application/libraries/template.php:67
+#: application/libraries/template.php:71
 msgid "Main layout file don\"
 msgstr "Основной макет файла Дон\"
 
@@ -369,23 +389,23 @@ msgstr "Это поле обязательно для заполнения"
 msgid "No category"
 msgstr "Нет категории"
 
-#: application/helpers/javascript_helper.php:27
+#: application/helpers/javascript_helper.php:30
 msgid "Message"
 msgstr "Сообщение"
 
-#: application/helpers/javascript_helper.php:29
+#: application/helpers/javascript_helper.php:32
 msgid "Error"
 msgstr "Ошибка"
 
-#: application/helpers/javascript_helper.php:32
+#: application/helpers/javascript_helper.php:35
 msgid "Success"
 msgstr "Успех"
 
-#: application/helpers/javascript_helper.php:36
+#: application/helpers/javascript_helper.php:39
 msgid "Requests to the database"
 msgstr "Запросов к базе"
 
-#: application/helpers/javascript_helper.php:63
+#: application/helpers/javascript_helper.php:66
 msgid "Redirecting"
 msgstr "Перенаправление"
 
@@ -597,11 +617,11 @@ msgstr "Редактирование файлов"
 msgid "Edit Folders"
 msgstr "Редактирование папок"
 
-#: application/libraries/DX_Auth.php:841
+#: application/libraries/DX_Auth.php:842
 msgid "auth login incorrect password"
 msgstr "Неверный пароль"
 
-#: application/libraries/DX_Auth.php:847
+#: application/libraries/DX_Auth.php:848
 msgid "auth not activated"
 msgstr "Доступ не активирован"
 
@@ -632,114 +652,114 @@ msgstr "Пароль Мерчанта"
 msgid "Improper protection code"
 msgstr "Неверный код защиты"
 
-#: application/libraries/Permitions.php:545
-#: application/libraries/Permitions.php:602
-#: application/libraries/Permitions.php:682
-#: application/libraries/Permitions.php:859
+#: application/libraries/Permitions.php:552
+#: application/libraries/Permitions.php:607
+#: application/libraries/Permitions.php:687
+#: application/libraries/Permitions.php:862
 msgid "Changes have been saved"
 msgstr "Изменения сохранены"
 
-#: application/libraries/Permitions.php:637
+#: application/libraries/Permitions.php:642
 msgid "Role not found"
 msgstr "Роль не найдена"
 
-#: application/libraries/Permitions.php:810
+#: application/libraries/Permitions.php:815
 msgid "Privilege created"
 msgstr "Привилегия создана"
 
-#: application/libraries/Permitions.php:850
+#: application/libraries/Permitions.php:853
 msgid "The privilege is not found"
 msgstr "Привилегия не найдена"
 
-#: application/libraries/Update.php:307
+#: application/libraries/Update.php:290
 msgid "Can not create a database snapshot, Check the folder {0} on the ability to record"
 msgstr "Невозможно создать снимок базы, проверте папку {0} на возможность записи"
 
-#: application/modules/shop/classes/Products/ProductApi.php:110
-#: application/modules/shop/classes/Products/ProductApi.php:1123
-#: application/modules/shop/classes/Products/ProductApi.php:1175
+#: application/modules/shop/classes/Category/CategoryApi.php:110
+#: application/modules/shop/classes/Category/CategoryApi.php:327
+#: application/modules/shop/classes/Category/CategoryApi.php:616
+#: application/modules/shop/classes/Category/CategoryApi.php:678
+#: application/modules/shop/classes/Products/ProductApi.php:111
+#: application/modules/shop/classes/Products/ProductApi.php:1167
 #: application/modules/shop/classes/Products/ProductApi.php:1220
 #: application/modules/shop/classes/Products/ProductApi.php:1266
-#: application/modules/shop/classes/Category/CategoryApi.php:104
-#: application/modules/shop/classes/Category/CategoryApi.php:321
-#: application/modules/shop/classes/Category/CategoryApi.php:603
-#: application/modules/shop/classes/Category/CategoryApi.php:665
+#: application/modules/shop/classes/Products/ProductApi.php:1313
 msgid "You did not specified data array"
 msgstr "Вы не указали массив данных"
 
-#: application/modules/shop/classes/Products/ProductApi.php:114
-#: application/modules/shop/classes/Products/ProductApi.php:1127
-#: application/modules/shop/classes/Products/ProductApi.php:1179
+#: application/modules/shop/classes/Category/CategoryApi.php:114
+#: application/modules/shop/classes/Category/CategoryApi.php:331
+#: application/modules/shop/classes/Category/CategoryApi.php:620
+#: application/modules/shop/classes/Category/CategoryApi.php:682
+#: application/modules/shop/classes/Products/ProductApi.php:115
+#: application/modules/shop/classes/Products/ProductApi.php:1171
 #: application/modules/shop/classes/Products/ProductApi.php:1224
 #: application/modules/shop/classes/Products/ProductApi.php:1270
-#: application/modules/shop/classes/Category/CategoryApi.php:108
-#: application/modules/shop/classes/Category/CategoryApi.php:325
-#: application/modules/shop/classes/Category/CategoryApi.php:607
-#: application/modules/shop/classes/Category/CategoryApi.php:669
+#: application/modules/shop/classes/Products/ProductApi.php:1317
 msgid "Second parameter $data must be array"
 msgstr "Второй параметр $data должен быть массив"
 
-#: application/modules/shop/classes/Category/CategoryApi.php:317
-#: application/modules/shop/classes/Category/CategoryApi.php:362
-#: application/modules/shop/classes/Category/CategoryApi.php:599
-#: application/modules/shop/classes/Category/CategoryApi.php:661
+#: application/modules/shop/classes/Category/CategoryApi.php:323
+#: application/modules/shop/classes/Category/CategoryApi.php:368
+#: application/modules/shop/classes/Category/CategoryApi.php:612
+#: application/modules/shop/classes/Category/CategoryApi.php:674
 msgid "Category(ies) id(s) not specified"
 msgstr "Идентификатор категории(й) не указан"
 
-#: application/modules/shop/classes/Category/CategoryApi.php:641
+#: application/modules/shop/classes/Category/CategoryApi.php:654
 msgid "Category with such ID not exist"
 msgstr "Категория с таким идентификатором не существует"
 
-#: application/modules/shop/classes/Category/CategoryApi.php:539
+#: application/modules/shop/classes/Category/CategoryApi.php:552
 msgid "Category(ies) was not found"
 msgstr "Категория(и) не найдена"
 
-#: application/modules/shop/classes/Category/CategoryApi.php:439
+#: application/modules/shop/classes/Category/CategoryApi.php:445
 msgid "Category(ies) not exists"
 msgstr "Категория(и) не существует(ют)"
 
-#: application/modules/shop/classes/Category/CategoryApi.php:148
-#: application/modules/shop/classes/Category/CategoryApi.php:152
+#: application/modules/shop/classes/Category/CategoryApi.php:154
+#: application/modules/shop/classes/Category/CategoryApi.php:158
 msgid "Invalid url"
 msgstr "Недопустимый url-адрес"
 
-#: application/modules/shop/classes/Products/ProductApi.php:169
-#: application/modules/shop/classes/Products/ProductApi.php:183
-#: application/modules/shop/classes/Category/CategoryApi.php:165
-#: application/modules/shop/classes/Category/CategoryApi.php:180
+#: application/modules/shop/classes/Category/CategoryApi.php:171
+#: application/modules/shop/classes/Category/CategoryApi.php:186
+#: application/modules/shop/classes/Products/ProductApi.php:171
+#: application/modules/shop/classes/Products/ProductApi.php:185
 msgid "This URL is already in use!"
 msgstr "Этот URL-адрес уже используется!"
 
-#: application/modules/shop/classes/Products/ProductApi.php:191
-#: application/modules/shop/classes/Category/CategoryApi.php:188
+#: application/modules/shop/classes/Category/CategoryApi.php:194
+#: application/modules/shop/classes/Products/ProductApi.php:193
 msgid "active not 1 or 0"
 msgstr "active должно бить 1 или 0"
 
-#: application/modules/shop/classes/Category/CategoryApi.php:196
+#: application/modules/shop/classes/Category/CategoryApi.php:202
 msgid "showsitetitle not 1 or 0"
 msgstr "showsitetitle не 1 или 0"
 
-#: application/modules/shop/classes/Category/CategoryApi.php:204
+#: application/modules/shop/classes/Category/CategoryApi.php:210
 msgid "Invalid order method"
 msgstr "Невалидное значение метода доставки"
 
-#: application/modules/shop/classes/Category/CategoryApi.php:212
+#: application/modules/shop/classes/Category/CategoryApi.php:218
 msgid "Invalid parent_id"
 msgstr "Неверное значение parent_id"
 
-#: application/modules/shop/classes/Category/CategoryApi.php:220
+#: application/modules/shop/classes/Category/CategoryApi.php:226
 msgid "The tpl field legth must be smaler than 250 symbols."
 msgstr "Длина поля Шаблон должна быть менше чем 250 символов."
 
-#: application/modules/shop/classes/Category/CategoryApi.php:224
+#: application/modules/shop/classes/Category/CategoryApi.php:230
 msgid "The tpl field can only contain Latin alpha-numeric characters"
 msgstr "Поле Шаблон категории может содержать только латинские алфавитно-цифровые символы"
 
-#: application/modules/shop/classes/Category/CategoryApi.php:234
+#: application/modules/shop/classes/Category/CategoryApi.php:240
 msgid "Invalid file type."
 msgstr "Неверный формат файла."
 
-#: application/modules/shop/classes/Category/CategoryApi.php:582
+#: application/modules/shop/classes/Category/CategoryApi.php:595
 msgid "Can not buid category tree"
 msgstr "Не возможно построить дерево категорий"
 
@@ -747,13 +767,13 @@ msgstr "Не возможно построить дерево категорий
 msgid "Compare list"
 msgstr "Список сравнения"
 
-#: application/modules/shop/classes/MediaManager/Image.php:681
-#: application/modules/shop/classes/MediaManager/Image.php:708
+#: application/modules/shop/classes/MediaManager/Image.php:679
+#: application/modules/shop/classes/MediaManager/Image.php:706
 msgid "Image wasnt loaded"
 msgstr "Образ был загружен"
 
-#: application/modules/shop/classes/MediaManager/Image.php:689
-#: application/modules/shop/classes/MediaManager/Image.php:717
+#: application/modules/shop/classes/MediaManager/Image.php:687
+#: application/modules/shop/classes/MediaManager/Image.php:715
 msgid "Wrong variant id"
 msgstr "Неправильный вариант id"
 
@@ -761,123 +781,123 @@ msgstr "Неправильный вариант id"
 msgid "Password"
 msgstr "Пароль"
 
-#: application/modules/shop/classes/Products/ProductApi.php:695
-#: application/modules/shop/classes/Products/ProductApi.php:732
-#: application/modules/shop/classes/Products/ProductApi.php:748
-#: application/modules/shop/classes/Products/ProductApi.php:768
-#: application/modules/shop/classes/Products/ProductApi.php:787
-#: application/modules/shop/classes/Products/ProductApi.php:828
-#: application/modules/shop/classes/Products/ProductApi.php:841
-#: application/modules/shop/classes/Products/ProductApi.php:894
-#: application/modules/shop/classes/Products/ProductApi.php:952
-#: application/modules/shop/classes/Products/ProductApi.php:1119
-#: application/modules/shop/classes/Products/ProductApi.php:1171
+#: application/modules/shop/classes/Products/ProductApi.php:724
+#: application/modules/shop/classes/Products/ProductApi.php:762
+#: application/modules/shop/classes/Products/ProductApi.php:779
+#: application/modules/shop/classes/Products/ProductApi.php:800
+#: application/modules/shop/classes/Products/ProductApi.php:820
+#: application/modules/shop/classes/Products/ProductApi.php:865
+#: application/modules/shop/classes/Products/ProductApi.php:879
+#: application/modules/shop/classes/Products/ProductApi.php:935
+#: application/modules/shop/classes/Products/ProductApi.php:994
+#: application/modules/shop/classes/Products/ProductApi.php:1163
 #: application/modules/shop/classes/Products/ProductApi.php:1216
+#: application/modules/shop/classes/Products/ProductApi.php:1262
 msgid "You did not specified product id"
 msgstr "Вы не указали код продукта"
 
-#: application/modules/shop/classes/Products/ProductApi.php:1143
+#: application/modules/shop/classes/Products/ProductApi.php:1187
 msgid "Product with such ID not exist"
 msgstr "Продукт с таким ID не существует"
 
-#: application/modules/shop/classes/Products/ProductApi.php:1262
+#: application/modules/shop/classes/Products/ProductApi.php:1309
 msgid "You did not specified product variant id"
 msgstr "Вы не указали id варианта продукта"
 
-#: application/modules/shop/classes/Products/ProductApi.php:207
+#: application/modules/shop/classes/Products/ProductApi.php:209
 msgid "Invalid stock"
 msgstr "Неверное значение stock"
 
-#: application/modules/shop/classes/Products/ProductApi.php:215
+#: application/modules/shop/classes/Products/ProductApi.php:217
 msgid "Invalid brand_id"
 msgstr "Неверное значение brand_id"
 
-#: application/modules/shop/classes/Products/ProductApi.php:223
+#: application/modules/shop/classes/Products/ProductApi.php:225
 msgid "currency not specified"
 msgstr "currency не указан"
 
-#: application/modules/shop/classes/Products/ProductApi.php:227
+#: application/modules/shop/classes/Products/ProductApi.php:229
 msgid "currency not exist"
 msgstr "currency не существует"
 
-#: application/modules/shop/classes/Products/ProductApi.php:231
+#: application/modules/shop/classes/Products/ProductApi.php:233
 msgid "price_in_main not specified"
 msgstr "price_in_main не указан"
 
-#: application/modules/shop/classes/Products/ProductApi.php:240
+#: application/modules/shop/classes/Products/ProductApi.php:242
 msgid "Invalid category_id"
 msgstr "Неверное значение category_id"
 
-#: application/modules/shop/classes/Products/ProductApi.php:243
+#: application/modules/shop/classes/Products/ProductApi.php:245
 msgid "category_id not specified"
 msgstr "category_id не указан"
 
-#: application/modules/shop/classes/Products/ProductApi.php:263
+#: application/modules/shop/classes/Products/ProductApi.php:265
 msgid "Invalid old_price"
 msgstr "Неверное значение old_price"
 
-#: application/modules/shop/classes/Products/ProductApi.php:271
+#: application/modules/shop/classes/Products/ProductApi.php:273
 msgid "Invalid views"
 msgstr "Неверное значение views"
 
-#: application/modules/shop/classes/Products/ProductApi.php:277
+#: application/modules/shop/classes/Products/ProductApi.php:279
 msgid "Invalid added_to_cart_count"
 msgstr "Неверное значение added_to_cart_count"
 
-#: application/modules/shop/classes/Products/ProductApi.php:285
+#: application/modules/shop/classes/Products/ProductApi.php:287
 msgid "hot not 1 or 0"
 msgstr "hot должно бить 1 или 0"
 
-#: application/modules/shop/classes/Products/ProductApi.php:297
+#: application/modules/shop/classes/Products/ProductApi.php:299
 msgid "action not 1 or 0"
 msgstr "action должно бить 1 или 0"
 
-#: application/modules/shop/classes/Products/ProductApi.php:303
+#: application/modules/shop/classes/Products/ProductApi.php:305
 msgid "The Main tpl field can only contain Latin alpha-numeric characters"
 msgstr "Поле Главный шаблон может содержать только латинские алфавитно-цифровые символы"
 
-#: application/modules/shop/classes/Products/ProductApi.php:908
+#: application/modules/shop/classes/Products/ProductApi.php:949
 msgid "Product category does not exists"
 msgstr "Продукт категория не существует"
 
-#: application/modules/shop/classes/Products/ProductApi.php:914
+#: application/modules/shop/classes/Products/ProductApi.php:955
 msgid "Product has no properties"
 msgstr "Продукт не имеет свойств"
 
-#: application/modules/shop/classes/Products/ProductApi.php:917
+#: application/modules/shop/classes/Products/ProductApi.php:958
 msgid "Product has no category"
 msgstr "Продукт не имеет категории"
 
-#: application/modules/shop/classes/Products/ProductApi.php:920
+#: application/modules/shop/classes/Products/ProductApi.php:961
 msgid "Product that you specified does not exist"
 msgstr "Продукт, который указан не существует"
 
-#: application/modules/shop/classes/Products/ProductApi.php:1033
+#: application/modules/shop/classes/Products/ProductApi.php:1074
 msgid "Not multiple property cant set few values"
 msgstr "Не несколько собственности не могу задать несколько значений"
 
-#: application/modules/shop/classes/Products/ProductApi.php:1051
+#: application/modules/shop/classes/Products/ProductApi.php:1092
 msgid "Property that you specified does not exist"
 msgstr "Свойство, которое вы указали не существует"
 
-#: application/modules/shop/classes/Products/ProductApi.php:1055
-#: application/modules/shop/classes/Products/ProductApi.php:1072
+#: application/modules/shop/classes/Products/ProductApi.php:1096
+#: application/modules/shop/classes/Products/ProductApi.php:1114
 msgid "Not valid arguments passed to the method"
 msgstr "Не действительных аргументов, передаваемых методу"
 
-#: application/modules/shop/classes/Products/ProductApi.php:592
+#: application/modules/shop/classes/Products/ProductApi.php:618
 msgid "Additional categories ids must be array"
 msgstr "Идентификаторы дополнительных категорий должны быть в массиве"
 
-#: application/modules/shop/classes/Products/ProductApi.php:597
+#: application/modules/shop/classes/Products/ProductApi.php:623
 msgid "You did not specified product model"
 msgstr "Вы не уточнил модель продукта"
 
-#: application/modules/shop/classes/Products/ProductApi.php:601
+#: application/modules/shop/classes/Products/ProductApi.php:627
 msgid "You did not specified categories array"
 msgstr "Вы не указан массив категорий"
 
-#: application/modules/shop/classes/Products/ProductApi.php:962
+#: application/modules/shop/classes/Products/ProductApi.php:1004
 msgid "You did not specified image position"
 msgstr "Вы не уточнил, положение изображения"
 
@@ -889,9 +909,9 @@ msgstr "Профиль"
 msgid "none"
 msgstr "нет"
 
-#: application/modules/shop/widgets/templates/products.tpl:75
-#: application/modules/shop/widgets/templates/similar_products.tpl:62
 #: application/modules/shop/widgets/templates/view_product.tpl:62
+#: application/modules/shop/widgets/templates/similar_products.tpl:62
+#: application/modules/shop/widgets/templates/products.tpl:75
 msgid "Buy"
 msgstr "Купить"
 
@@ -1142,13 +1162,13 @@ msgstr "Успешно сохранено"
 msgid "Number of items to display"
 msgstr "Количество элементов для отображения"
 
-#: application/modules/shop/widgets/templates/products.tpl:84
-#: application/modules/shop/widgets/templates/similar_products.tpl:71
 #: application/modules/shop/widgets/templates/view_product.tpl:70
+#: application/modules/shop/widgets/templates/similar_products.tpl:71
+#: application/modules/shop/widgets/templates/products.tpl:84
 msgid "Report message"
 msgstr "Сообщить о появлении"
 
-#: application/libraries/Permitions.php:518
-#: application/libraries/Permitions.php:641
+#: application/libraries/Permitions.php:525
+#: application/libraries/Permitions.php:646
 msgid "Title"
 msgstr "Название"

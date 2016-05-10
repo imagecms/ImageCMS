@@ -106,6 +106,17 @@ class ShopCategoryMetaManipulator extends MetaManipulator
     /**
      * @return string
      */
+    public function getDescription() {
+
+        if (!$this->description) {
+            $this->setDescription($this->getModel()->getDescription());
+        }
+        return $this->description;
+    }
+
+    /**
+     * @return string
+     */
     public function getH1() {
 
         if (!$this->H1) {
@@ -120,6 +131,17 @@ class ShopCategoryMetaManipulator extends MetaManipulator
     public function setH1($H1) {
 
         $this->H1 = $H1;
+    }
+
+    /**
+     * @return string
+     */
+    public function getID() {
+
+        if (!$this->ID) {
+            $this->setID($this->getModel()->getId());
+        }
+        return $this->ID;
     }
 
     /**
@@ -186,6 +208,17 @@ class ShopCategoryMetaManipulator extends MetaManipulator
     public function setMinPrice($minPrice) {
 
         $this->minPrice = $minPrice;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName() {
+
+        if (!$this->name) {
+            $this->setName($this->getModel()->getName());
+        }
+        return $this->name;
     }
 
 }

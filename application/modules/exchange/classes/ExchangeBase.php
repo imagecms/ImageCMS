@@ -51,7 +51,7 @@ abstract class ExchangeBase
 
     /**
      *
-     * @var type
+     * @var SimpleXMLElement
      */
     protected $xml;
 
@@ -110,10 +110,10 @@ abstract class ExchangeBase
         }
         // gathering statistics
         ExchangeBase::$stats[] = [
-            'query type' => 'insert',
-            'table name' => $tableName,
-            'affected rows' => count($data)
-        ];
+                                  'query type'    => 'insert',
+                                  'table name'    => $tableName,
+                                  'affected rows' => count($data),
+                                 ];
     }
 
     public function setXml(SimpleXMLElement $xml) {
@@ -140,10 +140,10 @@ abstract class ExchangeBase
 
         // gathering statistics
         ExchangeBase::$stats[] = [
-            'query type' => 'update',
-            'table name' => $tableName,
-            'affected rows' => count($data)
-        ];
+                                  'query type'    => 'update',
+                                  'table name'    => $tableName,
+                                  'affected rows' => count($data),
+                                 ];
     }
 
     /**
@@ -183,7 +183,7 @@ abstract class ExchangeBase
 
             log_message('error', sprintf("DB error: '%s'", $error));
 
-            if (config_item("update:failOnError") == true) {
+            if (config_item('update:failOnError') == true) {
                 throw new Exception("Error on updating `{$tableName}`: " . $error);
             }
         }

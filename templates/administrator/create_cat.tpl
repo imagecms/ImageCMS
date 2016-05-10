@@ -43,7 +43,7 @@
                                 <div class="inside_padd">
                                     <div class="form-horizontal">
                                         <div class="control-group">
-                                            <label class="control-label" for="name">{lang("Name","admin")}:
+                                            <label class="control-label" for="name">{lang("Title","admin")}:
                                                 <span class="must">*</span></label>
 
                                             <div class="controls">
@@ -146,15 +146,6 @@
                                         </div>
 
                                         <div class="control-group">
-                                            <label class="control-label" for="position">{lang("Position","admin")}
-                                                :</label>
-
-                                            <div class="controls">
-                                                <input type="text" name="position" value="0" id="position"/>
-                                            </div>
-                                        </div>
-
-                                        <div class="control-group">
                                             <label class="control-label" for="short_desc">{lang("Description","admin")}
                                                 :</label>
 
@@ -208,7 +199,7 @@
 
                                         <div class="control-group">
                                             <label class="control-label" for="per_page">{lang("Posts on page","admin")}
-                                                :</label>
+                                                : <span class="must"> *</span></label>
 
                                             <div class="controls">
                                                 <input type="text" name="per_page" value="15" id="per_page"/>
@@ -221,20 +212,16 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="control-group span6">
+                                        <div class="control-group">
                                             <label class="control-label" for="fetch_pages">{lang("Display pages of other categories","admin")}
                                                 :</label>
 
                                             <div class="controls">
-
-                                                <div class="o_h">
                                                     <select name="fetch_pages[]" multiple="multiple" size="5" id="fetch_pages">
                                                         {foreach $include_cats as $c}
                                                             <option value="{$c.id}"> {for $i=0; $i < $c.level;$i++}-{/for} {$c.name}</option>
                                                         {/foreach}
                                                     </select>
-
-                                                </div>
                                             </div>
                                         </div>
 

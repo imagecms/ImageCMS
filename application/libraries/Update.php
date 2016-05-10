@@ -33,29 +33,29 @@ class Update
      * @var array
      */
     private $distinctDirs = [
-        '.',
-        '..',
-        '.git',
-        'uploads',
-        'cache',
-        'templates',
-        'tests',
-        'captcha',
-        'nbproject',
-        'uploads_site',
-        'backups',
-        'cmlTemp',
-    ];
+                             '.',
+                             '..',
+                             '.git',
+                             'uploads',
+                             'cache',
+                             'templates',
+                             'tests',
+                             'captcha',
+                             'nbproject',
+                             'uploads_site',
+                             'backups',
+                             'cmlTemp',
+                            ];
 
     /**
      * файли, які не враховувати при обновлені
      * @var array
      */
     private $distinctFiles = [
-        'md5.txt',
-        '.htaccess',
-        'config.php'
-    ];
+                              'md5.txt',
+                              '.htaccess',
+                              'config.php',
+                             ];
 
     /**
      * instance of ci
@@ -135,7 +135,7 @@ class Update
 
         $href = $this->client->getUpdate($domain, IMAGECMS_NUMBER, $this->settings['careKey']);
         if (!$href) {
-            throw new Exception(lang('Wrong generate hash code', 'admin'));
+            throw new Exception(lang('Wrong generated hash code', 'admin'));
         }
 
         $all_href = $this->US . 'update/takeUpdate/' . $href . '/' . $domain . '/' . IMAGECMS_NUMBER . '/' . BUILD_ID;
@@ -326,10 +326,10 @@ class Update
                         $zip->open(BACKUPFOLDER . $filename);
                         if ($zip->statName('backup.sql')) {
                             $this->restore_files[] = [
-                                'name' => $filename,
-                                'size' => round(filesize(BACKUPFOLDER . $filename) / 1024 / 1024, 2),
-                                'create_date' => filemtime(BACKUPFOLDER . $filename)
-                            ];
+                                                      'name'        => $filename,
+                                                      'size'        => round(filesize(BACKUPFOLDER . $filename) / 1024 / 1024, 2),
+                                                      'create_date' => filemtime(BACKUPFOLDER . $filename),
+                                                     ];
                         }
                         $zip->close();
                     }

@@ -474,7 +474,6 @@ msgstr ""
 msgid "Select admin language"
 msgstr "Admin panel language"
 
-# ?
 #: application/modules/shop/admin/categories.php:358
 msgid "Category deleted"
 msgstr "Category deleted/ Category has been deleted"
@@ -499,7 +498,6 @@ msgstr "Category has been created or created a category"
 msgid "Category has been created"
 msgstr "Category has been created"
 
-# ?
 #: application/modules/shop/admin/categories.php:161
 #: application/modules/shop/admin/categories.php:162
 #: application/modules/shop/admin/categories.php:239
@@ -507,18 +505,15 @@ msgstr "Category has been created"
 msgid "Category created"
 msgstr "Category was created"
 
-# ?
 #: application/modules/admin/categories.php:646
 #: application/modules/admin/categories.php:678
 msgid "Deleted ID category or ID category has been deleted"
 msgstr "Deleted ID category or ID category has been deleted"
 
-# ?
 #: application/modules/admin/categories.php:553
 msgid "Translated the category"
 msgstr "Category has been translated/ Category translated "
 
-# ?
 #: application/modules/admin/categories.php:270
 msgid "Changed the category"
 msgstr "Category has been changed/ Category changed"
@@ -527,7 +522,6 @@ msgstr "Category has been changed/ Category changed"
 msgid "The file has been successfully created"
 msgstr "Template file was created"
 
-# ?
 #: application/modules/admin/categories.php:277
 #: application/modules/admin/sys_update.php:106
 #: application/modules/admin/components.php:563
@@ -1880,18 +1874,15 @@ msgstr "Shipping price"
 msgid "Sorting method updated"
 msgstr "Sorting method updated"
 
-# ?
 #: application/modules/admin/widgets_manager.php:170
 #: application/modules/admin/widgets_manager.php:194
 msgid "Widget created"
 msgstr "Widget has been created"
 
-# ?
 #: application/modules/admin/widgets_manager.php:429
 msgid "Widget successfully deleted"
 msgstr "Widget has been successfully deleted"
 
-# ?
 #: application/modules/admin/sys_update.php:108
 msgid "Changes not saved"
 msgstr "Changes not saved / Changes has not been saved"
@@ -1940,13 +1931,11 @@ msgstr "The language has been deleted"
 msgid "You can not delete the last category from the list"
 msgstr "You can not delete the last category from the list"
 
-# ?
 #: application/modules/admin/languages.php:440
 #: application/modules/admin/languages.php:461
 msgid "Deleted the ID language"
 msgstr "Deleted the ID language/Delete the ID language/ ID language has been deleted"
 
-# ?
 #: application/modules/admin/pages.php:100
 msgid "Deleted ID page"
 msgstr "Deleted ID page/ Delete the ID page/ The ID page has been deleted"
@@ -1976,7 +1965,6 @@ msgstr "Successful delete"
 msgid "Outdated files have been deleted"
 msgstr "Outdated files have been deleted"
 
-# ?
 #: application/modules/admin/languages.php:431
 #: application/modules/admin/languages.php:448
 msgid "This language has been used by default and can not be deleted"
@@ -2386,7 +2374,6 @@ msgstr "User comment"
 msgid "Exit"
 msgstr "Exit"
 
-# ?
 #: application/modules/admin/admin.php:196
 msgid "Exited the control panel"
 msgstr "Exited the control panel/ You have exited the control panel"
@@ -2798,12 +2785,10 @@ msgstr "PHP GD library is not installed on your web server"
 msgid "profiler_"
 msgstr "profiler_"
 
-# ?
 #: application/modules/admin/pages.php:512
 msgid "Reserved of the same name category"
 msgstr "Reserved of the same name category"
 
-# ?
 #: application/modules/admin/pages.php:172
 #: application/modules/admin/pages.php:503
 msgid "Reserved the same name module"
@@ -3033,7 +3018,6 @@ msgstr "Whether to display the site name in the title page"
 msgid "Will be recalculated prices of products in accordance to the default currency"
 msgstr "Will be recalculated prices of products in accordance to the default currency"
 
-# ?
 #: application/modules/admin/pages.php:908
 #: application/modules/admin/pages.php:919
 msgid "Has been published"
@@ -3048,7 +3032,6 @@ msgstr "Has been created"
 msgid "in"
 msgstr "in"
 
-# ?
 #: application/modules/admin/pages.php:526
 msgid "in ID category"
 msgstr "in ID category"
@@ -3133,7 +3116,6 @@ msgstr "Product variations "
 msgid "Your updation key"
 msgstr "Your key updation"
 
-# ?
 #: application/modules/admin/admin.php:207
 msgid "Your remark"
 msgstr "Your remark"
@@ -3349,7 +3331,6 @@ msgstr "Publication time/ Time of publication"
 msgid "Time of registration"
 msgstr "Time of registration"
 
-# ?
 #: application/modules/admin/pages.php:144
 #: application/modules/admin/pages.php:456
 msgid "Creation time"
@@ -3737,7 +3718,6 @@ msgstr " User notification request date"
 msgid "Date active to"
 msgstr "Date active to"
 
-# ?
 #: application/modules/admin/pages.php:145
 #: application/modules/admin/pages.php:457
 msgid "Publication date"
@@ -3751,7 +3731,6 @@ msgstr "Date of registration"
 msgid "Date of release"
 msgstr "Date of release"
 
-# ?
 #: application/modules/admin/pages.php:143
 #: application/modules/admin/pages.php:455
 msgid "Creation date"
@@ -4510,7 +4489,6 @@ msgstr "Field constructor"
 msgid "Contacts"
 msgstr "Contacts"
 
-# ?
 #: application/modules/admin/pages.php:588
 msgid "Page contents have been updated"
 msgstr "Page contents have been updated/ Page content has been updated"
@@ -4578,7 +4556,6 @@ msgstr "Currency rate"
 msgid "Cache has been cleared"
 msgstr "Cache has been cleared"
 
-# ?
 #: application/modules/admin/admin.php:91
 msgid "Cleared the cache"
 msgstr "Cleared the cache/ Clear the cache/ the cash has been cleared"
@@ -4593,7 +4570,6 @@ msgstr "login"
 msgid "Localization"
 msgstr "Localization"
 
-# ?
 #: application/modules/admin/languages.php:78
 #: application/modules/admin/languages.php:381
 msgid "Locale"
@@ -4709,7 +4685,6 @@ msgstr "Module search"
 msgid "Module search is being developed"
 msgstr "Module search is being developed"
 
-# ?
 #: application/modules/admin/components.php:208
 msgid "The module successfully uninstall"
 msgstr "Module has been successfully uninstalled"
@@ -4874,7 +4849,6 @@ msgstr "Analytics settings"
 msgid "Shop settings"
 msgstr "Shop settings"
 
-# ?
 #: application/modules/admin/components.php:368
 msgid "Changed the module settings"
 msgstr "Change the module settings / Module settings have been changed"
@@ -4891,12 +4865,10 @@ msgstr "Gift certificate settings"
 msgid "Site settings"
 msgstr "Site settings"
 
-# ?
 #: application/modules/admin/settings.php:270
 msgid "Changed wesite settings"
 msgstr "Changed wesite settings/ Website settings have been changed"
 
-# ?
 #: application/modules/admin/backup.php:47
 msgid "Settings saved"
 msgstr "Settings saved/ Settings have been saved"
@@ -4963,7 +4935,6 @@ msgstr "Not found"
 msgid "Not paid"
 msgstr "Not paid"
 
-# ?
 #: application/modules/admin/pages.php:898
 msgid "Has not been published"
 msgstr "Has not been published/ Not published"
@@ -4997,7 +4968,6 @@ msgstr "Do not show short name of the site in the Meta Data"
 msgid "No widgets created"
 msgstr "No widgets created"
 
-# ?
 #: application/modules/admin/components.php:476
 msgid "Can't load module info file"
 msgstr "Cannot load module info file"
@@ -5034,7 +5004,6 @@ msgstr "Not enough access rights"
 msgid "inactive"
 msgstr "inactive"
 
-# ?
 #: application/modules/admin/backup.php:45
 msgid "Some of settings not saved"
 msgstr "Some settings are being not saved/ Some settings have not been saved"
@@ -5111,7 +5080,6 @@ msgstr "No files"
 msgid "No recovery files."
 msgstr "No recovery files."
 
-# ?
 #: application/modules/admin/components.php:547
 msgid "Fail"
 msgstr "Fail/ Failure/ Failed"
@@ -5531,7 +5499,6 @@ msgstr "Conversion error"
 msgid "Conversion error, "
 msgstr "Conversion error, "
 
-# ?
 #: application/modules/admin/pages.php:153
 msgid "From validation error: <br />"
 msgstr "From validation error: <br /> / Form validation error: <br />"
@@ -5580,7 +5547,6 @@ msgstr "Password"
 msgid "Customer password"
 msgstr "Customer password"
 
-# ?
 #: application/modules/admin/admin_search.php:98
 #: application/modules/admin/admin_search.php:202
 msgid "First link"
@@ -5595,12 +5561,10 @@ msgstr "Translation"
 msgid "Category translation"
 msgstr "Category translation"
 
-# ?
 #: application/modules/admin/categories.php:562
 msgid "Changed the category translation"
 msgstr "Change the category translation/ Category translation has been changed"
 
-# ?
 #: application/modules/admin/categories.php:574
 msgid "Category translation updated"
 msgstr "Category translation updated/ Category translation has been updated"
@@ -5961,7 +5925,6 @@ msgstr "Access rights define <br />a set of actions (eg, read,<br /> write, exec
 msgid "Write permission"
 msgstr "Write permission"
 
-# ?
 #: application/modules/admin/pages.php:140
 #: application/modules/admin/pages.php:451
 msgid "Preliminary contents"
@@ -6156,7 +6119,6 @@ msgstr "Comment permission"
 msgid "Print receipt"
 msgstr "Print receipt"
 
-# ?
 #: application/modules/admin/sys_update.php:18
 msgid "PHP SOAP extension is not installed"
 msgstr "PHP SOAP extension is not installed/ PHP SOAP extension has not been installed"
@@ -6200,7 +6162,6 @@ msgstr "Resize products images"
 msgid "Sharp"
 msgstr "Sharp"
 
-# ?
 #: application/modules/admin/categories.php:144
 #: application/modules/admin/categories.php:345
 msgid "Parent"
@@ -6389,7 +6350,6 @@ msgstr "Displacement"
 msgid "Create copy"
 msgstr "Create copy"
 
-# ?
 #: application/modules/admin/pages.php:255
 msgid "Created a page"
 msgstr "Created a page/ Create a page/ Page has been created"
@@ -6994,7 +6954,6 @@ msgstr "Notification statuses"
 msgid "Page"
 msgstr "Page"
 
-# ?
 #: application/modules/admin/admin.php:220
 msgid "page"
 msgstr "page/ Page"
@@ -7003,7 +6962,6 @@ msgstr "page/ Page"
 msgid "Page has been created"
 msgstr "Page has been created"
 
-# ?
 #: application/modules/admin/pages.php:577
 msgid "Changed the page"
 msgstr "Changed the page/ The page has been changed/ Change the page"
@@ -7012,7 +6970,6 @@ msgstr "Changed the page/ The page has been changed/ Change the page"
 msgid "Page has not been found"
 msgstr "Page has not been found"
 
-# ?
 #: application/modules/admin/pages.php:526
 msgid "Page with URL"
 msgstr "Page with URL"
@@ -7372,7 +7329,6 @@ msgstr "Order status deleting"
 msgid "Hold down Shift to select multiple images"
 msgstr "Hold down the Shift key to select multiple images"
 
-# ?
 #: application/modules/admin/pages.php:526
 msgid " already exists. Specify or select another URL"
 msgstr " already exists. Specify or select another URL"
@@ -7381,7 +7337,6 @@ msgstr " already exists. Specify or select another URL"
 msgid "Specify"
 msgstr "Specify"
 
-# ?
 #: application/modules/admin/languages.php:485
 msgid "Specified a language or selected a language"
 msgstr "Specify a language or select a language"
@@ -7417,7 +7372,6 @@ msgstr "Level of server utilisation"
 msgid "Success"
 msgstr "Success"
 
-# ?
 #: application/modules/admin/pages.php:770
 msgid "Successfull moving"
 msgstr "Successful move/ Moved successfully"

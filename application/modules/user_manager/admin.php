@@ -31,9 +31,7 @@ class Admin extends BaseAdminController
 
         //////**********  Pagination pages **********\\\\\\\
         if ($pagination) {
-            $paginationSession = [
-                'usr_manager_url' => $pagination,
-            ];
+            $paginationSession = ['usr_manager_url' => $pagination];
             $this->session->set_userdata($paginationSession);
         } else {
             $this->session->unset_userdata('usr_manager_url');
@@ -127,9 +125,9 @@ class Admin extends BaseAdminController
             }
         }
         return [
-            'users' => $users,
-            'cur_page' => $offset,
-        ];
+                'users'    => $users,
+                'cur_page' => $offset,
+               ];
     }
 
     /**
@@ -156,12 +154,12 @@ class Admin extends BaseAdminController
         foreach ($users as $user) {
             if ($type == 'email') {
                 $response[] = [
-                    'value' => $user['email']
-                ];
+                               'value' => $user['email'],
+                              ];
             } else {
                 $response[] = [
-                    'value' => $user['username']
-                ];
+                               'value' => $user['username'],
+                              ];
             }
         }
         echo json_encode($response);
@@ -181,7 +179,15 @@ class Admin extends BaseAdminController
             $val->set_rules('password', lang('Password', 'user_manager'), 'trim|min_length[' . $this->config->item('DX_login_min_length') . ']|max_length[' . $this->config->item('DX_login_max_length') . ']|required|xss_clean');
             $val->set_rules('password_conf', lang('Confirm the password', 'user_manager'), 'matches[password]|required');
             $val->set_rules('email', lang('E-Mail', 'user_manager'), 'trim|required|xss_clean|valid_email');
-            $val->set_rules('phone', lang('Phone', 'user_manager'), 'trim');
+
+            if (preg_match('/[а-яА-Яіїёъa-zA-Z]/i', $this->input->post('phone'))) {
+
+                $val->set_rules('phone', lang('Phone', 'user_manager'), 'trim|xss_clean|numeric');
+
+            } else {
+                $val->set_rules('phone', lang('Phone', 'user_manager'), 'trim|xss_clean');
+
+            }
 
             ($hook = get_hook('users_create_set_val_rules')) ? eval($hook) : NULL;
 
@@ -216,7 +222,13 @@ class Admin extends BaseAdminController
                     pjax('/admin/components/init_window/user_manager');
                 }
             } else {
-                $fields = ['username', 'password', 'password_conf', 'email', 'phone'];
+                $fields = [
+                           'username',
+                           'password',
+                           'password_conf',
+                           'email',
+                           'phone',
+                          ];
                 $script = '<script type="text/javascript">';
                 foreach ($fields as $field) {
                     $error = $val->error($field);
@@ -389,7 +401,15 @@ class Admin extends BaseAdminController
         $val->set_rules('username', lang('amt_user_login'), 'trim|xss_clean');
         $val->set_rules('new_pass', lang('amt_password'), 'trim|max_length[' . $this->config->item('DX_login_max_length') . ']|xss_clean');
         $val->set_rules('new_pass_conf', lang('amt_new_pass_confirm'), 'matches[new_pass]');
-        $val->set_rules('phone', lang('Phone', 'user_manager'), 'trim|numeric');
+
+        if (preg_match('/[а-яА-Яіїёъa-zA-Z]/i', $this->input->post('phone'))) {
+
+            $val->set_rules('phone', lang('Phone', 'user_manager'), 'trim|xss_clean|numeric');
+
+        } else {
+            $val->set_rules('phone', lang('Phone', 'user_manager'), 'trim|xss_clean');
+
+        }
         $val->set_rules('email', lang('amt_email'), 'trim|xss_clean|valid_email');
 
         $user_data = $this->user2->get_user_field($user_id, ['username', 'email'])->row_array();
@@ -408,13 +428,13 @@ class Admin extends BaseAdminController
 
         if ($val->run()) {
             $data = [
-                'username' => $this->input->post('username'),
-                'email' => $this->input->post('email'),
-                'role_id' => $this->input->post('role_id'),
-                'phone' => $this->input->post('phone'),
-                'banned' => $this->input->post('banned'),
-                'ban_reason' => $this->input->post('ban_reason')
-            ];
+                     'username'   => $this->input->post('username'),
+                     'email'      => $this->input->post('email'),
+                     'role_id'    => $this->input->post('role_id'),
+                     'phone'      => $this->input->post('phone'),
+                     'banned'     => $this->input->post('banned'),
+                     'ban_reason' => $this->input->post('ban_reason'),
+                    ];
 
             //change password
             if ($this->input->post('new_pass')) {
@@ -428,9 +448,9 @@ class Admin extends BaseAdminController
             $this->db->update('users', $data);
 
             $replaceData = [
-                'user_name' => $this->input->post('username'),
-                'password' => $this->input->post('new_pass')
-            ];
+                            'user_name' => $this->input->post('username'),
+                            'password'  => $this->input->post('new_pass'),
+                           ];
 
             if ($replaceData['password']) {
                 \cmsemail\email::getInstance()->sendEmail($this->input->post('email'), 'change_password', $replaceData);
@@ -483,10 +503,10 @@ class Admin extends BaseAdminController
                 showMessage(validation_errors(), false, 'r');
             } else {
                 $data = [
-                    'name' => $this->input->post('name'),
-                    'alt_name' => $this->input->post('alt_name'),
-                    'desc' => $this->lib_admin->db_post('desc')
-                ];
+                         'name'     => $this->input->post('name'),
+                         'alt_name' => $this->input->post('alt_name'),
+                         'desc'     => $this->lib_admin->db_post('desc'),
+                        ];
 
                 ($hook = get_hook('users_create_role')) ? eval($hook) : NULL;
 
@@ -576,13 +596,13 @@ class Admin extends BaseAdminController
 
         $this->template->add_array(
             [
-                    'selected_role' => $id,
-                    'roles' => $role,
-                    'all_perms' => $all_perms,
-                    'permissions' => $permissions,
-                    'groups' => $groups,
-                    'group_names' => $this->get_group_names(),
-                ]
+             'selected_role' => $id,
+             'roles'         => $role,
+             'all_perms'     => $all_perms,
+             'permissions'   => $permissions,
+             'groups'        => $groups,
+             'group_names'   => $this->get_group_names(),
+            ]
         );
     }
 

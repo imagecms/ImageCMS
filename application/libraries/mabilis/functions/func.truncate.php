@@ -25,7 +25,7 @@ if (!function_exists('func_truncate')) {
             return extension_loaded('tidy') ? call_user_func(
                 function () use ($att) {
                             $tidy = new tidy();
-                            $tidy->parseString($att, array('show-body-only' => TRUE, 'indent' => TRUE, 'output-xhtml' => TRUE, 'wrap' => 200), 'utf8');
+                            $tidy->parseString($att, ['show-body-only' => TRUE, 'indent' => TRUE, 'output-xhtml' => TRUE, 'wrap' => 200], 'utf8');
                             return $tidy->value . $end;
                 }
             ) : $att;
@@ -33,7 +33,7 @@ if (!function_exists('func_truncate')) {
             return extension_loaded('tidy') ? call_user_func(
                 function () use ($var) {
                             $tidy = new tidy();
-                            $tidy->parseString($var, array('show-body-only' => TRUE, 'indent' => TRUE, 'output-xhtml' => TRUE, 'wrap' => 200), 'utf8');
+                            $tidy->parseString($var, ['show-body-only' => TRUE, 'indent' => TRUE, 'output-xhtml' => TRUE, 'wrap' => 200], 'utf8');
                             return $tidy->value . $end;
                 }
             ) : $var;

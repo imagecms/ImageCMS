@@ -48,7 +48,6 @@ msgstr "Permanent"
 msgid "Active until"
 msgstr "Active untill"
 
-# deleted
 #: application/modules/banners/assets/admin/list.tpl:40
 msgid "Active to"
 msgstr "Active untill"
@@ -58,7 +57,6 @@ msgstr "Active untill"
 msgid "Text banner"
 msgstr "Banner description"
 
-# ?
 #: application/modules/banners/assets/admin/create.tpl:5
 msgid "Banner creating"
 msgstr "Add banner"

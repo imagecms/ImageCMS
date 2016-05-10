@@ -151,17 +151,17 @@ class ProductsImport extends BaseImport
         $prepareNames = $binds = $updateData = [];
 
         $productAlias = [
-            'act' => 'active',
-            'CategoryId' => 'category_id',
-            'url' => 'url',
-            'oldprc' => 'old_price',
-            'hit' => 'hit',
-            'hot' => 'hot',
-            'action' => 'action',
-            'BrandId' => 'brand_id',
-            'relp' => 'related_products',
-            'mimg' => 'mainImage',
-        ];
+                         'act'        => 'active',
+                         'CategoryId' => 'category_id',
+                         'url'        => 'url',
+                         'oldprc'     => 'old_price',
+                         'hit'        => 'hit',
+                         'hot'        => 'hot',
+                         'action'     => 'action',
+                         'BrandId'    => 'brand_id',
+                         'relp'       => 'related_products',
+                         'mimg'       => 'mainImage',
+                        ];
 
         foreach ($arg as $key => $val) {
             if (isset($productAlias[$key])) {
@@ -190,12 +190,13 @@ class ProductsImport extends BaseImport
         $prepareNames = $binds = $updateData = [];
 
         $productAlias = [
-            'name' => 'name',
-            'shdesc' => 'short_description',
-            'desc' => 'full_description',
-            'mett' => 'meta_title',
-            'metd' => 'meta_description',
-            'metk' => 'meta_keywords'];
+                         'name'   => 'name',
+                         'shdesc' => 'short_description',
+                         'desc'   => 'full_description',
+                         'mett'   => 'meta_title',
+                         'metd'   => 'meta_description',
+                         'metk'   => 'meta_keywords',
+                        ];
 
         foreach ($arg as $key => $val) {
             if (isset($productAlias[$key])) {
@@ -232,8 +233,9 @@ class ProductsImport extends BaseImport
         $varId = $this->runProductVariantUpdateQuery($arg, $productId, $EmptyFields);
 
         return [
-            'ProductId' => $productId,
-            'variantId' => $varId];
+                'ProductId' => $productId,
+                'variantId' => $varId,
+               ];
     }
 
     /**
@@ -252,9 +254,10 @@ class ProductsImport extends BaseImport
         $prepareNames = $binds = $updateData = [];
 
         $productAlias = [
-            'stk' => 'stock',
-            'prc' => 'price',
-            'num' => 'number'];
+                         'stk' => 'stock',
+                         'prc' => 'price',
+                         'num' => 'number',
+                        ];
 
         if ($arg['prc']) {
             $arg['prc'] = str_replace(',', '.', $arg['prc']);
@@ -286,8 +289,7 @@ class ProductsImport extends BaseImport
 
             $binds = array_merge(
                 $binds,
-                [
-                    'currency' => $cur]
+                ['currency' => $cur]
             );
         }
 
@@ -297,7 +299,8 @@ class ProductsImport extends BaseImport
                 $binds = array_merge(
                     $binds,
                     [
-                        'price_in_main' => $arg['prc']]
+                     'price_in_main' => $arg['prc'],
+                    ]
                 );
                 $prepareNames = array_merge($prepareNames, ['price_in_main']);
             }
@@ -305,7 +308,8 @@ class ProductsImport extends BaseImport
             $binds = array_merge(
                 $binds,
                 [
-                    'price_in_main' => $arg['prc']]
+                 'price_in_main' => $arg['prc'],
+                ]
             );
             $prepareNames = array_merge($prepareNames, ['price_in_main']);
         }
@@ -392,22 +396,24 @@ class ProductsImport extends BaseImport
             $this->updateSProductsCategories($arg, $result->id, $EmptyFields);
             $varId = $this->runProductVariantInsertQuery($arg, $result->id);
             return [
-                'ProductId' => $result->id,
-                'variantId' => $varId];
+                    'ProductId' => $result->id,
+                    'variantId' => $varId,
+                   ];
         }
 
         /* START product insert query block */
         $prepareNames = $binds = [];
         $productAlias = [
-            'act' => 'active',
-            'CategoryId' => 'category_id',
-            'oldprc' => 'old_price',
-            'hit' => 'hit',
-            'hot' => 'hot',
-            'action' => 'action',
-            'BrandId' => 'brand_id',
-            'relp' => 'related_products',
-            'mimg' => 'mainImage'];
+                         'act'        => 'active',
+                         'CategoryId' => 'category_id',
+                         'oldprc'     => 'old_price',
+                         'hit'        => 'hit',
+                         'hot'        => 'hot',
+                         'action'     => 'action',
+                         'BrandId'    => 'brand_id',
+                         'relp'       => 'related_products',
+                         'mimg'       => 'mainImage',
+                        ];
 
         foreach ($arg as $key => $val) {
             if (isset($productAlias[$key])) {
@@ -427,9 +433,10 @@ class ProductsImport extends BaseImport
         $binds = array_merge(
             $binds,
             [
-                'created' => date('U'),
-                'updated' => date('U'),
-                'url' => 'temp']
+             'created' => date('U'),
+             'updated' => date('U'),
+             'url'     => 'temp',
+            ]
         );
 
         $this->db->query('INSERT INTO shop_products (' . implode(',', $prepareNames) . ') VALUES (' . substr(str_repeat('?,', count($prepareNames)), 0, -1) . ')', $binds);
@@ -451,12 +458,13 @@ class ProductsImport extends BaseImport
         $prepareNames = $binds = [];
 
         $productAlias = [
-            'name' => 'name',
-            'shdesc' => 'short_description',
-            'desc' => 'full_description',
-            'mett' => 'meta_title',
-            'metd' => 'meta_description',
-            'metk' => 'meta_keywords'];
+                         'name'   => 'name',
+                         'shdesc' => 'short_description',
+                         'desc'   => 'full_description',
+                         'mett'   => 'meta_title',
+                         'metd'   => 'meta_description',
+                         'metk'   => 'meta_keywords',
+                        ];
 
         foreach ($arg as $key => $val) {
             if (isset($productAlias[$key])) {
@@ -469,8 +477,9 @@ class ProductsImport extends BaseImport
         $binds = array_merge(
             $binds,
             [
-                'locale' => $this->languages,
-                'id' => $productId]
+             'locale' => $this->languages,
+             'id'     => $productId,
+            ]
         );
 
         $this->db->query('INSERT INTO shop_products_i18n (' . implode(',', $prepareNames) . ') VALUES (' . substr(str_repeat('?,', count($prepareNames)), 0, -1) . ')', $binds);
@@ -480,8 +489,9 @@ class ProductsImport extends BaseImport
         $varId = $this->runProductVariantInsertQuery($arg, $productId);
 
         return [
-            'ProductId' => $productId,
-            'variantId' => $varId];
+                'ProductId' => $productId,
+                'variantId' => $varId,
+               ];
     }
 
     /**
@@ -505,9 +515,10 @@ class ProductsImport extends BaseImport
         /* START product variant insert query block */
         $prepareNames = $binds = [];
         $productAlias = [
-            'stk' => 'stock',
-            'prc' => 'price',
-            'num' => 'number'];
+                         'stk' => 'stock',
+                         'prc' => 'price',
+                         'num' => 'number',
+                        ];
 
         foreach ($arg as $key => $val) {
             if (isset($productAlias[$key])) {
@@ -528,9 +539,10 @@ class ProductsImport extends BaseImport
         $binds = array_merge(
             $binds,
             [
-                'product_id' => $productId,
-                'currency' => $cur,
-                'price_in_main' => $arg['prc'], 0]
+             'product_id'    => $productId,
+             'currency'      => $cur,
+             'price_in_main' => $arg['prc'], 0
+            ]
         );
         $this->db->query(
             'INSERT INTO shop_product_variants (' . implode(',', $prepareNames) . ')
@@ -554,8 +566,9 @@ class ProductsImport extends BaseImport
         $binds = array_merge(
             $binds,
             [
-                'id' => $productVariantId,
-                'locale' => $this->languages]
+             'id'     => $productVariantId,
+             'locale' => $this->languages,
+            ]
         );
         $this->db->query(
             'INSERT INTO shop_product_variants_i18n (' . implode(',', $prepareNames) . ')
@@ -641,8 +654,9 @@ class ProductsImport extends BaseImport
                     $this->db->insert(
                         'shop_product_categories',
                         [
-                            'product_id' => $productId,
-                            'category_id' => $categoryId]
+                         'product_id'  => $productId,
+                         'category_id' => $categoryId,
+                        ]
                     );
                 }
             } catch (Exception $exc) {
@@ -670,13 +684,16 @@ class ProductsImport extends BaseImport
         foreach (BaseImport::create()->content as $key => $node) {
             if (isset($node['brd']) && !empty($node['brd'])) {
                 $result = $this->db->query(
-                    "
+                    '
                 SELECT SBrands.id as BrandId
                 FROM `shop_brands` as SBrands
                 LEFT OUTER JOIN `shop_brands_i18n` AS SBrandsI18n ON SBrandsI18n.id = SBrands.id
                 WHERE SBrandsI18n.name = ? AND locale = ?
-                LIMIT 1",
-                    [$node['brd'], $this->languages]
+                LIMIT 1',
+                    [
+                     $node['brd'],
+                     $this->languages,
+                    ]
                 )->row();
                 if (!($result instanceof stdClass)) {
                     $this->db->insert('shop_brands', ['url' => translit_url($node['brd'])]);
@@ -712,7 +729,7 @@ class ProductsImport extends BaseImport
      */
     private function runCopyImages($result) {
         foreach ((array) $result as $item) {
-            if (preg_match("/http\:\/\//i", $item['vimg'])) {
+            if (preg_match('/http\:\/\//i', $item['vimg']) || preg_match('/https\:\/\//i', $item['vimg'])) {
                 $filename = $this->saveImgByUrl($item['vimg'], 'origin');
                 if ($filename) {
                     copy($this->imagetemppathOrigin . $filename, $this->imageOriginPath . $filename);
@@ -798,7 +815,7 @@ class ProductsImport extends BaseImport
                 $url = $param;
                 $timeoutlimit = '5';
                 ini_set('default_socket_timeout', $timeoutlimit);
-                $fp = fopen($url, "r");
+                $fp = fopen($url, 'r');
                 $res = fread($fp, 500);
                 fclose($fp);
                 if (strlen($res) > 0) {
@@ -865,7 +882,7 @@ class ProductsImport extends BaseImport
                 $this->db->set('product_id', $id);
                 $img = trim($img);
 
-                if (preg_match("/http\:\/\//i", $img)) {
+                if (preg_match('/http\:\/\//i', $img) || preg_match('/https\:\/\//i', $img)) {
                     $filename = $this->saveImgByUrl($img, 'additional');
                     if ($filename) {
                         copy($this->imagetemppathAdd . $filename, $this->imageAddPath . $filename);

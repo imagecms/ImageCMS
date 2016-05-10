@@ -7,6 +7,7 @@ if (!defined('BASEPATH')) {
 /**
  * Image CMS
  * Comments admin
+ * @property Base comments
  */
 class Admin extends BaseAdminController
 {
@@ -140,14 +141,14 @@ class Admin extends BaseAdminController
             \CMSFactory\assetManager::create()
             ->setData(
                 [
-                'comments_cur_url' => site_url(trim_slashes($this->uri->uri_string())),
-                'comments' => $comments,
-                'status' => $status,
-                'children' => $children,
-                'total_waiting' => $this->comments->count_by_status(1),
-                'total_spam' => $this->comments->count_by_status(2),
-                'total_app' => $this->comments->count_by_status(0),
-                'all_comm_show' => $total,
+                 'comments_cur_url' => site_url(trim_slashes($this->uri->uri_string())),
+                 'comments'         => $comments,
+                 'status'           => $status,
+                 'children'         => $children,
+                 'total_waiting'    => $this->comments->count_by_status(1),
+                 'total_spam'       => $this->comments->count_by_status(2),
+                 'total_app'        => $this->comments->count_by_status(0),
+                 'all_comm_show'    => $total,
                 ]
             )
             ->registerScript('admin')
@@ -188,11 +189,11 @@ class Admin extends BaseAdminController
 
     public function update() {
         $data = [
-            'text' => $this->input->post('text'),
-            'user_name' => htmlspecialchars($this->input->post('user_name')),
-            'user_mail' => htmlspecialchars($this->input->post('user_mail')),
-            'status' => (int) $this->input->post('status'),
-        ];
+                 'text'      => $this->input->post('text'),
+                 'user_name' => htmlspecialchars($this->input->post('user_name')),
+                 'user_mail' => htmlspecialchars($this->input->post('user_mail')),
+                 'status'    => (int) $this->input->post('status'),
+                ];
 
         $this->comments->update($this->input->post('id'), $data);
 
@@ -301,13 +302,13 @@ class Admin extends BaseAdminController
 
     public function update_settings() {
         $data = [
-            'max_comment_length' => (int) $this->input->post('max_comment_length'),
-            'period' => (int) $this->input->post('period'),
-            'can_comment' => (int) $this->input->post('can_comment'),
-            'use_captcha' => (bool) $this->input->post('use_captcha'),
-            'use_moderation' => (bool) $this->input->post('use_moderation'),
-            'order_by' => $this->input->post('order_by'),
-        ];
+                 'max_comment_length' => (int) $this->input->post('max_comment_length'),
+                 'period'             => (int) $this->input->post('period'),
+                 'can_comment'        => (int) $this->input->post('can_comment'),
+                 'use_captcha'        => (bool) $this->input->post('use_captcha'),
+                 'use_moderation'     => (bool) $this->input->post('use_moderation'),
+                 'order_by'           => $this->input->post('order_by'),
+                ];
 
         $this->comments->save_settings($data);
         $this->lib_admin->log(lang('Comments settings was edited', 'comments'));

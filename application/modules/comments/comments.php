@@ -274,14 +274,14 @@ class Comments extends MY_Controller
         }
 
         $data = [
-            'comments_arr' => $comments,
-            'comment_ch' => $comment_ch,
-            'comment_controller' => $this->comment_controller,
-            'total_comments' => lang('Total comments: ', 'comments') . count($comments),
-            'can_comment' => $this->can_comment,
-            'use_captcha' => $this->use_captcha,
-            'item_id' => $item_id
-        ];
+                 'comments_arr'       => $comments,
+                 'comment_ch'         => $comment_ch,
+                 'comment_controller' => $this->comment_controller,
+                 'total_comments'     => lang('Total comments: ', 'comments') . count($comments),
+                 'can_comment'        => $this->can_comment,
+                 'use_captcha'        => $this->use_captcha,
+                 'item_id'            => $item_id,
+                ];
 
         if ($this->use_captcha == TRUE) {
             $this->dx_auth->captcha();
@@ -296,9 +296,7 @@ class Comments extends MY_Controller
         //$this->render('comments_list', array('comments'=>$comments));
 
         $this->template->add_array(
-            [
-                'comments' => $comments,
-            ]
+            ['comments' => $comments]
         );
     }
 
@@ -354,9 +352,9 @@ class Comments extends MY_Controller
         if ($this->use_captcha == TRUE AND $this->dx_auth->is_admin() == FALSE) {
             ($hook = get_hook('comments_set_captcha')) ? eval($hook) : NULL;
             if ($this->dx_auth->use_recaptcha) {
-                $this->form_validation->set_rules('recaptcha_response_field', lang("Code protection"), 'trim|required|xss_clean|callback_captcha_check');
+                $this->form_validation->set_rules('recaptcha_response_field', lang('Code protection'), 'trim|required|xss_clean|callback_captcha_check');
             } else {
-                $this->form_validation->set_rules('captcha', lang("Code protection"), 'trim|required|xss_clean|callback_captcha_check');
+                $this->form_validation->set_rules('captcha', lang('Code protection'), 'trim|required|xss_clean|callback_captcha_check');
             }
         }
 
@@ -406,22 +404,22 @@ class Comments extends MY_Controller
 
             if ($comment_text != '') {
                 $comment_data = [
-                    'module' => $this->module,
-                    'user_id' => $this->dx_auth->get_user_id(), // 0 if unregistered
-                    'user_name' => htmlspecialchars($comment_author),
-                    'user_mail' => $comment_email,
-                    'user_site' => htmlspecialchars($this->input->post('comment_site')),
-                    'text' => $comment_text,
-                    'text_plus' => $comment_text_plus,
-                    'text_minus' => $comment_text_minus,
-                    'item_id' => $item_id,
-                    'status' => $this->_comment_status(),
-                    'agent' => $this->agent->agent_string(),
-                    'user_ip' => $this->input->ip_address(),
-                    'date' => time(),
-                    'rate' => $rate,
-                    'parent' => $parent,
-                ];
+                                 'module'     => $this->module,
+                                 'user_id'    => $this->dx_auth->get_user_id(), // 0 if unregistered
+                                 'user_name'  => htmlspecialchars($comment_author),
+                                 'user_mail'  => $comment_email,
+                                 'user_site'  => htmlspecialchars($this->input->post('comment_site')),
+                                 'text'       => $comment_text,
+                                 'text_plus'  => $comment_text_plus,
+                                 'text_minus' => $comment_text_minus,
+                                 'item_id'    => $item_id,
+                                 'status'     => $this->_comment_status(),
+                                 'agent'      => $this->agent->agent_string(),
+                                 'user_ip'    => $this->input->ip_address(),
+                                 'date'       => time(),
+                                 'rate'       => $rate,
+                                 'parent'     => $parent,
+                                ];
 
                 ($hook = get_hook('comments_db_insert')) ? eval($hook) : NULL;
 
@@ -495,22 +493,22 @@ class Comments extends MY_Controller
         ($hook = get_hook('comments_write_cookie')) ? eval($hook) : NULL;
 
         $cookie_name = [
-            'name' => 'comment_author',
-            'value' => $name,
-            'expire' => '30000000',
-        ];
+                        'name'   => 'comment_author',
+                        'value'  => $name,
+                        'expire' => '30000000',
+                       ];
 
         $cookie_email = [
-            'name' => 'comment_email',
-            'value' => $email,
-            'expire' => '30000000',
-        ];
+                         'name'   => 'comment_email',
+                         'value'  => $email,
+                         'expire' => '30000000',
+                        ];
 
         $cookie_site = [
-            'name' => 'comment_site',
-            'value' => $site,
-            'expire' => '30000000',
-        ];
+                        'name'   => 'comment_site',
+                        'value'  => $site,
+                        'expire' => '30000000',
+                       ];
 
         set_cookie($cookie_name);
         set_cookie($cookie_email);
@@ -581,7 +579,7 @@ class Comments extends MY_Controller
             $this->session->set_userdata('commentl' . $comid, 1);
         }
         if ($this->input->is_ajax_request()) {
-            return json_encode(["y_count" => $like]);
+            return json_encode(['y_count' => $like]);
         } else {
             redirect($this->input->server('HTTP_REFERER'));
         }
@@ -596,7 +594,7 @@ class Comments extends MY_Controller
             $this->session->set_userdata('commentl' . $comid, 1);
         }
         if ($this->input->is_ajax_request()) {
-            return json_encode(["n_count" => $disslike]);
+            return json_encode(['n_count' => $disslike]);
         } else {
             redirect($this->input->server('HTTP_REFERER'));
         }
@@ -611,82 +609,82 @@ class Comments extends MY_Controller
         $this->load->dbforge();
 
         $fields = [
-            'id' => [
-                'type' => 'INT',
-                'constraint' => 11,
-                'auto_increment' => TRUE,
-            ],
-            'module' => [
-                'type' => 'varchar',
-                'constraint' => 25,
-            ],
-            'user_id' => [
-                'type' => 'INT',
-                'constraint' => 11,
-            ],
-            'user_name' => [
-                'type' => 'varchar',
-                'constraint' => 50,
-            ],
-            'user_mail' => [
-                'type' => 'varchar',
-                'constraint' => 50,
-            ],
-            'user_site' => [
-                'type' => 'varchar',
-                'constraint' => 250,
-            ],
-            'item_id' => [
-                'type' => 'bigint',
-                'constraint' => 11,
-            ],
-            'text' => [
-                'type' => 'varchar',
-                'constraint' => 500,
-            ],
-            'date' => [
-                'type' => 'int',
-                'constraint' => 11,
-            ],
-            'status' => [
-                'type' => 'smallint',
-                'constraint' => 1,
-            ],
-            'agent' => [
-                'type' => 'varchar',
-                'constraint' => 250,
-            ],
-            'user_ip' => [
-                'type' => 'varchar',
-                'constraint' => 64,
-            ],
-            'rate' => [
-                'type' => 'int',
-                'constraint' => 11,
-            ],
-            'text_plus' => [
-                'type' => 'varchar',
-                'constraint' => 500,
-            ],
-            'text_minus' => [
-                'type' => 'varchar',
-                'constraint' => 500,
-            ],
-            'like' => [
-                'type' => 'int',
-                'constraint' => 11,
-                'default' => 0,
-            ],
-            'disslike' => [
-                'type' => 'int',
-                'constraint' => 11,
-                'default' => 0,
-            ],
-            'parent' => [
-                'type' => 'int',
-                'constraint' => 11,
-            ],
-        ];
+                   'id'         => [
+                                    'type'           => 'INT',
+                                    'constraint'     => 11,
+                                    'auto_increment' => TRUE,
+                                   ],
+                   'module'     => [
+                                    'type'       => 'varchar',
+                                    'constraint' => 25,
+                                   ],
+                   'user_id'    => [
+                                    'type'       => 'INT',
+                                    'constraint' => 11,
+                                   ],
+                   'user_name'  => [
+                                    'type'       => 'varchar',
+                                    'constraint' => 50,
+                                   ],
+                   'user_mail'  => [
+                                    'type'       => 'varchar',
+                                    'constraint' => 50,
+                                   ],
+                   'user_site'  => [
+                                    'type'       => 'varchar',
+                                    'constraint' => 250,
+                                   ],
+                   'item_id'    => [
+                                    'type'       => 'bigint',
+                                    'constraint' => 11,
+                                   ],
+                   'text'       => [
+                                    'type'       => 'varchar',
+                                    'constraint' => 500,
+                                   ],
+                   'date'       => [
+                                    'type'       => 'int',
+                                    'constraint' => 11,
+                                   ],
+                   'status'     => [
+                                    'type'       => 'smallint',
+                                    'constraint' => 1,
+                                   ],
+                   'agent'      => [
+                                    'type'       => 'varchar',
+                                    'constraint' => 250,
+                                   ],
+                   'user_ip'    => [
+                                    'type'       => 'varchar',
+                                    'constraint' => 64,
+                                   ],
+                   'rate'       => [
+                                    'type'       => 'int',
+                                    'constraint' => 11,
+                                   ],
+                   'text_plus'  => [
+                                    'type'       => 'varchar',
+                                    'constraint' => 500,
+                                   ],
+                   'text_minus' => [
+                                    'type'       => 'varchar',
+                                    'constraint' => 500,
+                                   ],
+                   'like'       => [
+                                    'type'       => 'int',
+                                    'constraint' => 11,
+                                    'default'    => 0,
+                                   ],
+                   'disslike'   => [
+                                    'type'       => 'int',
+                                    'constraint' => 11,
+                                    'default'    => 0,
+                                   ],
+                   'parent'     => [
+                                    'type'       => 'int',
+                                    'constraint' => 11,
+                                   ],
+                  ];
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_field($fields);
         $this->dbforge->create_table('comments', TRUE);
@@ -705,7 +703,7 @@ class Comments extends MY_Controller
 
     public function getWaitingForMaderationCount() {
 
-        $count = $this->db->where("status", 1)->count_all_results('comments');
+        $count = $this->db->where('status', 1)->count_all_results('comments');
         return $count;
     }
 

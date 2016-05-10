@@ -32,7 +32,7 @@ if (!function_exists('seo_nofollow_replace')) {
 
         list($original, $tag) = $match;
 
-        if (strpos($tag, "nofollow")) {
+        if (strpos($tag, 'nofollow')) {
             return $original; // уже есть
         } elseif (strpos($tag, $CI->input->server('SERVER_NAME')) || strpos($tag, 'href="/') || strpos($tag, "href='/")) {
             return $original; // исключения
@@ -80,16 +80,15 @@ if (!function_exists('form_property_select')) {
         $result = "<select name='$name' $multiple>";
 
         if (!$multiple) {
-            $result .= "<option value='' >- " . lang('Unspecified') . " -</option>";
+            $result .= "<option value='' >- " . lang('Unspecified') . ' -</option>';
         }
 
         $data = array_map('htmlspecialchars_decode', $data);
         $selected = array_map('htmlspecialchars_decode', $selected);
-        foreach ($data as $option) {
 
-            $selectedAttr = in_array($option, $selected) ? 'selected="selected"' : '';
-            $option_value = htmlspecialchars($option, ENT_QUOTES, ini_get("default_charset"), false);
-            //            $option_value = $option;
+        foreach ($data as $option) {
+            $selectedAttr = in_array($option, $selected, true) ? 'selected="selected"' : '';
+            $option_value = htmlspecialchars($option, ENT_QUOTES, ini_get('default_charset'), false);
             $option = html_entity_decode($option);
             if (strpos($option_value, '"') !== FALSE) {
                 $result .= "<option value='$option_value' $selectedAttr>$option</option>";
@@ -98,7 +97,7 @@ if (!function_exists('form_property_select')) {
             }
         }
 
-        $result .= "</select>";
+        $result .= '</select>';
 
         return $result;
     }

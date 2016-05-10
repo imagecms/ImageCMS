@@ -21,9 +21,7 @@ class Login_Attempts extends CI_Model
 
     public function increase_attempt($ip_address) {
         // Insert new record
-        $data = [
-            'ip_address' => $ip_address
-        ];
+        $data = ['ip_address' => $ip_address];
 
         $this->db->insert($this->_table, $data);
     }

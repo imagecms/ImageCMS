@@ -94,7 +94,6 @@ msgstr "Field constructor"
 msgid "ID group editing"
 msgstr "Group editing"
 
-# ?
 #: ./application/modules/cfcm/cfcm_forms.php:28
 msgid "To name will be prefixed with"
 msgstr "The name will be prefixed with"

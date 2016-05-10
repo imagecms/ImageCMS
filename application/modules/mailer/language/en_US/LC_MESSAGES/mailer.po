@@ -59,22 +59,18 @@ msgstr "Number of e-mails sent"
 msgid "pcs."
 msgstr "pcs."
 
-# ?
 #: ./application/modules/mailer/admin.php:104
 msgid "none of the messages"
 msgstr "none of the messages"
 
-# ?
 #: ./application/modules/mailer/admin.php:104
 msgid "Number not"
 msgstr ""
 
-# ?
 #: ./application/modules/mailer/admin.php:119
 msgid "Subscribers removal"
 msgstr "Subscribers removal/ Removing subscribers"
 
-# ?
 #: ./application/modules/mailer/admin.php:121
 msgid "There is not ID"
 msgstr "There is no ID"

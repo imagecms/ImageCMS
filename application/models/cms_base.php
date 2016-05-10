@@ -255,9 +255,9 @@ class Cms_base extends CI_Model
         $count = count($result);
         for ($i = 0; $i < $count; $i++) {
             $categoriesPagesCounts[$result[$i]['id']] = [
-                'parent_id' => $result[$i]['parent_id'],
-                'pages_count' => $result[$i]['pages_count'],
-            ];
+                                                         'parent_id'   => $result[$i]['parent_id'],
+                                                         'pages_count' => $result[$i]['pages_count'],
+                                                        ];
         }
 
         return $categoriesPagesCounts;

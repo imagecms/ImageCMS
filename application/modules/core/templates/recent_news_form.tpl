@@ -22,10 +22,10 @@
                     <td>
                         <div class="inside_padd">
                             <div class="control-group">
-                                <label class="control-label" for="comcount">{lang("Pages", 'core')}:</label>
+                                <label class="control-label" for="comcount">{lang("Sorting for", 'core')}:</label>
                                 <div class="controls">
                                     <select name="display" id="comcount">
-                                        <option value="recent"  {if $widget.settings.display == 'recent'} selected="selected" {/if} >{lang("Latest", 'core')}</option>
+                                        <option value="recent"  {if $widget.settings.display == 'recent'} selected="selected" {/if} >{lang("Last", 'core')}</option>
                                         <option value="popular" {if $widget.settings.display == 'popular'} selected="selected" {/if}>{lang("Popular", 'core')}</option>
                                     </select>
                                 </div>

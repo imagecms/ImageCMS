@@ -7,15 +7,16 @@ if (!defined('BASEPATH')) {
 /**
  * Image CMS
  * @property Similar_Posts similar_library
+ * @property Lib_category lib_category
  */
 class Core_Widgets extends MY_Controller
 {
 
     private $defaults = [
-        'news_count' => 10,
-        'max_symdols' => 150,
-        'display' => 'recent' //possible values: recent/popular
-    ];
+                         'news_count'  => 10,
+                         'max_symdols' => 150,
+                         'display'     => 'recent',//possible values: recent/popular
+                        ];
 
     public function __construct() {
         parent::__construct();
@@ -64,7 +65,7 @@ class Core_Widgets extends MY_Controller
 
                 // Truncate text
                 if ($settings['max_symdols'] > 0 AND mb_strlen($news[$i]['prev_text'], 'utf-8') > $settings['max_symdols']) {
-                    $news[$i]['prev_text'] = strip_tags(mb_substr($news[$i]['prev_text'], 0, $settings['max_symdols'], 'utf-8')) . '...';
+                    $news[$i]['prev_text'] = mb_substr(strip_tags($news[$i]['prev_text']), 0, $settings['max_symdols'], 'utf-8') . '...';
                 }
             }
 
@@ -75,7 +76,6 @@ class Core_Widgets extends MY_Controller
             $data['recent_news'] = $news;
 
             return $this->template->fetch('widgets/' . $widget['name'], $data);
-            //return $this->fetch_tpl('recent_news', $data);
         } else {
             return '';
         }
@@ -97,23 +97,23 @@ class Core_Widgets extends MY_Controller
                 $this->load->library('lib_category');
                 $cats = $this->lib_category->build();
 
-                //$this->display_tpl('recent_news_form', array('widget' => $widget_data, 'cats' => $cats));
                 $this->render('recent_news_form', ['widget' => $widget_data, 'cats' => $cats]);
                 break;
 
             case 'update_settings':
-                $this->form_validation->set_rules('news_count', lang('Amount of news', 'core'), 'trim|required|is_natural_no_zero|min_length[1]');
+                $this->form_validation->set_rules('news_count', lang('Amount of news', 'core'), 'trim|required|is_natural|min_length[1]');
                 $this->form_validation->set_rules('max_symdols', lang('Maximum number of characters', 'core'), 'trim|required|is_natural|min_length[1]');
 
                 if ($this->form_validation->run($this) == FALSE) {
-                    showMessage(validation_errors());
+                    showMessage(validation_errors(), '', 'r');
+                    exit;
                 } else {
                     $data = [
-                        'news_count' => $this->input->post('news_count'),
-                        'max_symdols' => $this->input->post('max_symdols'),
-                        'categories' => $this->input->post('categories'),
-                        'display' => $this->input->post('display'),
-                    ];
+                             'news_count'  => $this->input->post('news_count'),
+                             'max_symdols' => $this->input->post('max_symdols'),
+                             'categories'  => $this->input->post('categories'),
+                             'display'     => $this->input->post('display'),
+                            ];
 
                     $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
 
@@ -191,30 +191,15 @@ class Core_Widgets extends MY_Controller
             $similarPages = $this->similar_library->find($this->core->page_content['id'], $title, $widget['settings']);
 
             $data = [
-                'pages' => $similarPages ? $similarPages : [],
-            ];
+                     'pages' => $similarPages ?: [],
+                    ];
             return $this->template->fetch('widgets/' . $widget['name'], $data);
         }
     }
 
-    // Template functions
-
-    public function display_tpl($file, $vars = []) {
-        $this->template->add_array($vars);
-
-        $file = realpath(__DIR__) . '/templates/' . $file . '.tpl';
-        $this->template->display('file:' . $file);
-    }
-
-    public function fetch_tpl($file, $vars = []) {
-        $this->template->add_array($vars);
-
-        $file = realpath(__DIR__) . '/templates/' . $file . '.tpl';
-        return $this->template->fetch('file:' . $file);
-    }
-
     /**
      * @param string $viewName
+     * @param array $data
      */
     public function render($viewName, array $data = []) {
         if (!empty($data)) {

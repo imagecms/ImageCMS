@@ -75,7 +75,6 @@ msgstr "Discount period"
 msgid "Discounts list is empty"
 msgstr "Discount list is empty"
 
-# ?
 #: ./application/modules/mod_discount/classes/DiscountManager.php:361
 #: ./application/modules/mod_discount/classes/DiscountManager.php:364
 msgid "Invalid type value!"
@@ -110,7 +109,6 @@ msgstr "Limit"
 msgid "End time"
 msgstr "Discount finishes"
 
-# ?
 #: ./application/modules/mod_discount/assets/discount_order.tpl:4
 msgid "Maximum possible discount is using"
 msgstr "Maximum possible discount is being used/ Maximum possible discount is used "
@@ -120,7 +118,6 @@ msgstr "Maximum possible discount is being used/ Maximum possible discount is us
 msgid "Change child category"
 msgstr "Use for subcategory"
 
-# ?
 #: ./application/modules/mod_discount/assets/discount_order.tpl:12
 msgid "discount name"
 msgstr "Discount name/title"
@@ -166,7 +163,6 @@ msgstr "Amount can not be greater than <<to>>"
 msgid "Error creating discount"
 msgstr "Error occured when creating the discount"
 
-# ?  сертификат на сумму
 #: ./application/modules/mod_discount/assets/gift_succes.tpl:6
 msgid "on amount"
 msgstr "on amount"

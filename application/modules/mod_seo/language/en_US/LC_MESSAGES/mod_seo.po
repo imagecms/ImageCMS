@@ -123,7 +123,6 @@ msgstr ""
 msgid "Seo status empty meta category was changed"
 msgstr ""
 
-# ?
 #: application/modules/mod_seo/assets/admin/main.tpl:214
 #: application/modules/mod_seo/assets/admin/main.tpl:248
 #: application/modules/mod_seo/assets/admin/main.tpl:353
@@ -304,7 +303,6 @@ msgstr ""
 msgid "Deleted complete"
 msgstr ""
 
-# ? Будет ли отображаться название категории страницы в title страницы
 #: application/modules/mod_seo/assets/admin/main.tpl:86
 msgid "Will added the category name in the page title page"
 msgstr "Display page category name in the page title?"
@@ -425,7 +423,6 @@ msgstr "Brand, which is assigned to the product"
 msgid "Back"
 msgstr "Back"
 
-# ? виведет значение свойства, вместе xxxx - id свойства
 #: application/modules/mod_seo/assets/admin/main.tpl:210
 #: application/modules/mod_seo/assets/admin/main.tpl:244
 #: application/modules/mod_seo/assets/admin/main.tpl:283
@@ -684,7 +681,6 @@ msgstr "Subcategory"
 msgid "Show"
 msgstr "Show"
 
-# ?
 #: application/modules/mod_seo/assets/admin/main.tpl:345
 #: application/modules/mod_seo/assets/admin/main.tpl:379
 #: application/modules/mod_seo/assets/admin/main.tpl:429

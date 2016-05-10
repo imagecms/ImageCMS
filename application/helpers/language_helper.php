@@ -81,24 +81,24 @@ if (!function_exists('getPoFileAttributes')) {
                 switch ($domain) {
                     case 'main':
                         $attributes = [
-                            'name' => 'main',
-                            'type' => 'main',
-                            'lang' => $locale
-                        ];
+                                       'name' => 'main',
+                                       'type' => 'main',
+                                       'lang' => $locale,
+                                      ];
                         break;
                     default :
                         if (moduleExists($domain)) {
                             $attributes = [
-                                'name' => $domain,
-                                'type' => 'modules',
-                                'lang' => $locale
-                            ];
+                                           'name' => $domain,
+                                           'type' => 'modules',
+                                           'lang' => $locale,
+                                          ];
                         } elseif (file_exists('./templates/' . $domain)) {
                             $attributes = [
-                                'name' => $domain,
-                                'type' => 'templates',
-                                'lang' => $locale
-                            ];
+                                           'name' => $domain,
+                                           'type' => 'templates',
+                                           'lang' => $locale,
+                                          ];
                         }
                         break;
                 }
@@ -326,7 +326,10 @@ function get_main_lang($flag = null) {
     }
 
     if ($flag == null) {
-        return ['id' => $lang_id, 'identif' => $lang_ident];
+        return [
+                'id'      => $lang_id,
+                'identif' => $lang_ident,
+               ];
     }
 }
 

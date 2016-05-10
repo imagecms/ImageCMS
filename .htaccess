@@ -27,7 +27,7 @@ ExpiresByType text/html "access 1 year"
 RewriteRule ^(.*)\.tpl$ [R=404]
 RewriteRule ^(.*)backups(.*)\.zip$ [R=404]
 
-RewriteCond $1 !^(index\.php|assets/.*|uploads/.*|application/third_party/(tinymce|filemanager).*|favicon\.ico|favicon\.png|captcha/.*|application/.*/templates|application/.*/assets/js|application/.*/assets/css|application/.*/assets/images|CHANGELOG.xml|templates|js)
+RewriteCond $1 !^(index\.php|assets/.*|uploads/.*|application/third_party/(tinymce|filemanager).*|favicon\.ico|favicon\.png|captcha/.*|application/.*/templates|application/.*/assets/js|application/.*/assets/css|application/.*/assets/images|CHANGELOG.xml|templates|js|application/modules/update/UpdateService.wsdl)
 RewriteRule ^(.*)$ /index.php/$1 [L]
 
 ####################################

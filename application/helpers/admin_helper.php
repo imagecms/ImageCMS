@@ -20,19 +20,19 @@ if (!function_exists('check_admin_redirect')) {
                     $locale = $language['identif'];
                     $html .= "<input type='hidden' name='Locale' value='" . $language['identif'] . "'/>";
                     $html .= "<span class='caret'></span>";
-                    $html .= "</a>";
+                    $html .= '</a>';
                 }
             }
             $html .= "<ul class='dropdown-menu pull-right'>";
             foreach ($languages as $language) {
                 if ($language['identif'] != $locale) {
-                    $html .= "<li>";
-                    $html .= "<a href='" . $url . "/" . $language['identif'] . "' class='" . ($pjax ? 'pjax' : '') . "'>" . $language['lang_name'] . "</a>";
-                    $html .= "</li>";
+                    $html .= '<li>';
+                    $html .= "<a href='" . $url . '/' . $language['identif'] . "' class='" . ($pjax ? 'pjax' : '') . "'>" . $language['lang_name'] . '</a>';
+                    $html .= '</li>';
                 }
             }
             if (count($languages) > 1) {
-                $html .= "</ul></div>";
+                $html .= '</ul></div>';
             }
         }
         return $html ?: '';
@@ -85,7 +85,7 @@ if (!function_exists('check_admin_redirect')) {
 
         if (is_array($cats)) {
             foreach ($cats as $cat) {
-                echo "<option";
+                echo '<option';
                 if (is_array($selected_cats)) {
                     foreach ($selected_cats as $k) {
                         if ($k == $cat['id']) {
@@ -97,7 +97,7 @@ if (!function_exists('check_admin_redirect')) {
                 for ($i = 0; $i < $cat['level']; $i++) {
                     echo '-';
                 }
-                echo $cat['name'] . "</option>";
+                echo $cat['name'] . '</option>';
                 if ($cat['subtree']) {
                     build_cats_tree($cat['subtree'], $selected_cats);
                 }
@@ -120,12 +120,12 @@ if (!function_exists('check_admin_redirect')) {
             }
 
             foreach ($cats as $cat) {
-                echo "<li>";
+                echo '<li>';
                 if ($cat['id'] == $item_id) {
-                    echo "<b><a class='category_item' data-title='" . $cat['name'] . "' data-id='" . $cat['id'] . "' href='#'>" . $subst . $cat['name'] . "</a></b>";
+                    echo "<b><a class='category_item' data-title='" . $cat['name'] . "' data-id='" . $cat['id'] . "' href='#'>" . $subst . $cat['name'] . '</a></b>';
                 } else {
 
-                    echo "<a class='category_item' data-title='" . $cat['name'] . "' data-id='" . $cat['id'] . "' href='#'>" . $subst . $cat['name'] . "</a>";
+                    echo "<a class='category_item' data-title='" . $cat['name'] . "' data-id='" . $cat['id'] . "' href='#'>" . $subst . $cat['name'] . '</a>';
                 }
                 if ($cat['subtree']) {
                     build_cats_tree_ul_li($cat['subtree'], $item_id, ++$level);

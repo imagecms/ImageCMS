@@ -32,8 +32,14 @@ class Lib_xml
      * @return bool
      */
     public function load($file) {
-        $bad = ['|//+|', '|\.\./|'];
-        $good = ['/', ''];
+        $bad = [
+                '|//+|',
+                '|\.\./|',
+               ];
+        $good = [
+                 '/',
+                 '',
+                ];
         $file = preg_replace($bad, $good, $file) . '.xml';
 
         if (!file_exists($file)) {

@@ -63,7 +63,8 @@ use import_export\classes\ImportBootstrap as Imp;
 use import_export\classes\Logger as LOG;
 use MediaManager\Image;
 
-class Import extends ShopAdminController {
+class Import extends ShopAdminController
+{
 
     /**
      * Folder backup
@@ -84,7 +85,7 @@ class Import extends ShopAdminController {
      * @var array
      * @access private
      */
-    private $uplaodedFileInfo = array();
+    private $uplaodedFileInfo = [];
 
     private $fullPath = '/var/www/saas_data/mainsaas/';
 
@@ -105,7 +106,7 @@ class Import extends ShopAdminController {
 
         if (($_POST['offers'] >= $_POST['countProd']) && $_POST['offers']) {
             $this->resizeAndUpdatePrice($_POST['withResize'], $_POST['withCurUpdate'], $result);
-            $this->lib_admin->log(lang("Products was imported", "import_export"));
+            $this->lib_admin->log(lang('Products was imported', 'import_export'));
             echo (json_encode($result));
         } elseif (!$bool) {
             //            var_dump($result);
@@ -125,17 +126,17 @@ class Import extends ShopAdminController {
         if (count($_FILES)) {
             $this->saveCSVFile();
             chmod($this->uploadDir . $this->csvFileName, 0777);
-            $path = $this->uploadDir . strtr($_FILES['userfile']['name'], array(' ' => '_'));
+            $path = $this->uploadDir . strtr($_FILES['userfile']['name'], [' ' => '_']);
             if (isset($path)) {
-                $this->lib_admin->log(lang("Loaded import file", "import_export") . '. File: ' . $_FILES['userfile']['name']);
+                $this->lib_admin->log(lang('Loaded import file', 'import_export') . '. File: ' . $_FILES['userfile']['name']);
                 unlink($path);
             }
         }
-        //        var_dumps_exit($_POST['attributes']);
+
         if (count($_POST['attributes']) && $_POST['csvfile']) {
             $importSettings = $this->cache->fetch('ImportExportCache');
             if (empty($importSettings) || $importSettings['withBackup'] != $this->input->post('withBackup')) {
-                $this->cache->store('ImportExportCache', array('withBackup' => $this->input->post('withBackup')), '25920000');
+                $this->cache->store('ImportExportCache', ['withBackup' => $this->input->post('withBackup')], '25920000');
             }
             Imp::create()->withBackup();
             $result = $this->segmentImport(TRUE);
@@ -193,16 +194,16 @@ class Import extends ShopAdminController {
 
         $this->load->library(
             'upload',
-            array(
-            'overwrite' => true,
-            'upload_path' => $this->uploadDir,
-            'allowed_types' => '*',
-                )
+            [
+             'overwrite'     => true,
+             'upload_path'   => $this->uploadDir,
+             'allowed_types' => '*',
+            ]
         );
 
         $fileExt = pathinfo($_FILES['userfile']['name'], PATHINFO_EXTENSION);
-        if (!in_array($fileExt, array('csv', 'xls', 'xlsx'))) {
-            echo json_encode(array('error' => lang('Wrong file type. Only csv|xls|xlsx')));
+        if (!in_array($fileExt, ['csv', 'xls', 'xlsx'])) {
+            echo json_encode(['error' => lang('Wrong file type. Only csv|xls|xlsx')]);
             return;
         }
 
@@ -218,7 +219,7 @@ class Import extends ShopAdminController {
 
             $this->configureImportProcess();
         } else {
-            echo json_encode(array('error' => $this->upload->display_errors()));
+            echo json_encode(['error' => $this->upload->display_errors()]);
         }
     }
 
@@ -227,7 +228,7 @@ class Import extends ShopAdminController {
      * @access private
      */
     private function takeFileName() {
-        $fileNumber = (in_array($_POST['csvfile'], array(1, 2, 3))) ? intval($_POST['csvfile']) : 1;
+        $fileNumber = (in_array($_POST['csvfile'], [1, 2, 3])) ? intval($_POST['csvfile']) : 1;
         $this->csvFileName = "product_csv_$fileNumber.csv";
     }
 
@@ -252,7 +253,7 @@ class Import extends ShopAdminController {
         fopen($this->uploadDir . $filename, 'w+');
         if (is_writable($this->uploadDir . $filename)) {
             if (!$handle = fopen($this->uploadDir . $filename, 'w+')) {
-                echo json_encode(array('error' => Factor::ErrorFolderPermission));
+                echo json_encode(['error' => Factor::ErrorFolderPermission]);
                 exit;
             }
 
@@ -272,7 +273,7 @@ class Import extends ShopAdminController {
     private function configureImportProcess($vector = true) {
         if (file_exists($this->uploadDir . $this->csvFileName)) {
             $file = fopen($this->uploadDir . $this->csvFileName, 'r');
-            $row = array_diff(fgetcsv($file, 1000000, ";", '"'), array(null));
+            $row = array_diff(fgetcsv($file, 1000000, ';', '"'), [null]);
             fclose($file);
             $this->getFilesInfo();
             foreach ($this->uplaodedFileInfo as $file) {
@@ -280,20 +281,20 @@ class Import extends ShopAdminController {
             }
             if ($vector && $this->input->is_ajax_request() && $_FILES) {
                 echo json_encode(
-                    array(
-                            'success' => true,
-                            'row' => $row,
-                            'attributes' => BaseImport::create()->attributes,
-                            'filesInfo' => $uploadedFiles
-                        )
+                    [
+                     'success'    => true,
+                     'row'        => $row,
+                     'attributes' => BaseImport::create()->attributes,
+                     'filesInfo'  => $uploadedFiles,
+                    ]
                 );
             } else {
                 $this->template->add_array(
-                    array(
-                            'rows' => $row,
-                            'attributes' => BaseImport::create()->makeAttributesList()->possibleAttributes,
-                            'filesInfo' => $uploadedFiles
-                        )
+                    [
+                     'rows'       => $row,
+                     'attributes' => BaseImport::create()->makeAttributesList()->possibleAttributes,
+                     'filesInfo'  => $uploadedFiles,
+                    ]
                 );
             }
         }

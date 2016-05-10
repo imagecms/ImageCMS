@@ -4,7 +4,6 @@ namespace xbanners\models\Base;
 
 use \Exception;
 use \PDO;
-use Base\PropelBaseModelClass;
 use Propel\Runtime\Propel;
 use Propel\Runtime\ActiveQuery\Criteria;
 use Propel\Runtime\ActiveQuery\ModelCriteria;
@@ -34,7 +33,7 @@ use xbanners\models\Map\BannersTableMap;
  *
 * @package    propel.generator.xbanners.models.Base
 */
-abstract class Banners extends PropelBaseModelClass implements ActiveRecordInterface
+abstract class Banners implements ActiveRecordInterface
 {
     /**
      * TableMap class name
@@ -745,8 +744,8 @@ abstract class Banners extends PropelBaseModelClass implements ActiveRecordInter
         }
 
         return $con->transaction(function () use ($con) {
-            $isInsert = $this->isNew();
             $ret = $this->preSave($con);
+            $isInsert = $this->isNew();
             if ($isInsert) {
                 $ret = $ret && $this->preInsert($con);
             } else {
@@ -2018,6 +2017,9 @@ abstract class Banners extends PropelBaseModelClass implements ActiveRecordInter
      */
     public function preSave(ConnectionInterface $con = null)
     {
+        if (is_callable('parent::preSave')) {
+            return parent::preSave($con);
+        }
         return true;
     }
 
@@ -2027,7 +2029,9 @@ abstract class Banners extends PropelBaseModelClass implements ActiveRecordInter
      */
     public function postSave(ConnectionInterface $con = null)
     {
-
+        if (is_callable('parent::postSave')) {
+            parent::postSave($con);
+        }
     }
 
     /**
@@ -2037,6 +2041,9 @@ abstract class Banners extends PropelBaseModelClass implements ActiveRecordInter
      */
     public function preInsert(ConnectionInterface $con = null)
     {
+        if (is_callable('parent::preInsert')) {
+            return parent::preInsert($con);
+        }
         return true;
     }
 
@@ -2046,7 +2053,9 @@ abstract class Banners extends PropelBaseModelClass implements ActiveRecordInter
      */
     public function postInsert(ConnectionInterface $con = null)
     {
-
+        if (is_callable('parent::postInsert')) {
+            parent::postInsert($con);
+        }
     }
 
     /**
@@ -2056,6 +2065,9 @@ abstract class Banners extends PropelBaseModelClass implements ActiveRecordInter
      */
     public function preUpdate(ConnectionInterface $con = null)
     {
+        if (is_callable('parent::preUpdate')) {
+            return parent::preUpdate($con);
+        }
         return true;
     }
 
@@ -2065,7 +2077,9 @@ abstract class Banners extends PropelBaseModelClass implements ActiveRecordInter
      */
     public function postUpdate(ConnectionInterface $con = null)
     {
-
+        if (is_callable('parent::postUpdate')) {
+            parent::postUpdate($con);
+        }
     }
 
     /**
@@ -2075,6 +2089,9 @@ abstract class Banners extends PropelBaseModelClass implements ActiveRecordInter
      */
     public function preDelete(ConnectionInterface $con = null)
     {
+        if (is_callable('parent::preDelete')) {
+            return parent::preDelete($con);
+        }
         return true;
     }
 
@@ -2084,7 +2101,9 @@ abstract class Banners extends PropelBaseModelClass implements ActiveRecordInter
      */
     public function postDelete(ConnectionInterface $con = null)
     {
-
+        if (is_callable('parent::postDelete')) {
+            parent::postDelete($con);
+        }
     }
 
 

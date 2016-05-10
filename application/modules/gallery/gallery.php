@@ -18,9 +18,9 @@ class Gallery extends MY_Controller
 {
 
     public $conf = [
-        'upload_url' => 'uploads/gallery/',
-        'thumbs_folder' => '_thumbs',
-    ];
+                    'upload_url'    => 'uploads/gallery/',
+                    'thumbs_folder' => '_thumbs',
+                   ];
 
     private $settings = [];
 
@@ -51,10 +51,10 @@ class Gallery extends MY_Controller
         $albums = $this->gallery_m->get_albums($this->settings['order_by'], $this->settings['sort_order']);
 
         $data = [
-            'gallery_category' => $categories,
-            'total' => $this->gallery_m->getTotalImages(),
-            'categories' => $categories
-        ];
+                 'gallery_category' => $categories,
+                 'total'            => $this->gallery_m->getTotalImages(),
+                 'categories'       => $categories,
+                ];
 
         // Get covers
         $data['albums'] = is_array($albums) ? $this->create_albums_covers($albums) : NULL;
@@ -72,9 +72,9 @@ class Gallery extends MY_Controller
         $albums = $this->gallery_m->get_albums($this->settings['order_by'], $this->settings['sort_order']);
 
         $data = [
-            'gallery_category' => $categories,
-            'total' => $this->gallery_m->getTotalImages()
-        ];
+                 'gallery_category' => $categories,
+                 'total'            => $this->gallery_m->getTotalImages(),
+                ];
 
         // Get covers
         $data['albums'] = is_array($albums) ? $this->create_albums_covers($albums) : NULL;
@@ -104,10 +104,10 @@ class Gallery extends MY_Controller
             }
 
             $data = [
-                'albums' => $albums,
-                'current_category' => $category,
-                'gallery_category' => $this->gallery_m->get_categories($this->settings['order_by'], $this->settings['sort_order']),
-            ];
+                     'albums'           => $albums,
+                     'current_category' => $category,
+                     'gallery_category' => $this->gallery_m->get_categories($this->settings['order_by'], $this->settings['sort_order']),
+                    ];
 
             assetManager::create()
                 ->setData($data)
@@ -166,17 +166,17 @@ class Gallery extends MY_Controller
         $prev_img['url'] = $this->conf['upload_url'] . $album['id'] . '/' . $prev_img['file_name'] . '_prev' . $prev_img['file_ext'];
 
         $data = [
-            'album' => $album,
-            'thumb_url' => $this->conf['upload_url'] . $album['id'] . '/' . $this->conf['thumbs_folder'] . '/',
-            'album_link' => 'gallery/album/' . $album['id'] . '/',
-            'album_url' => $this->conf['upload_url'] . $album['id'] . '/',
-            'prev_img' => $prev_img,
-            'next' => $next,
-            'prev' => $prev,
-            'current_pos' => $current_pos,
-            'current_category' => $this->gallery_m->get_category($album['category_id']),
-            'gallery_category' => $this->gallery_m->get_categories($this->settings['order_by'], $this->settings['sort_order']),
-        ];
+                 'album'            => $album,
+                 'thumb_url'        => $this->conf['upload_url'] . $album['id'] . '/' . $this->conf['thumbs_folder'] . '/',
+                 'album_link'       => 'gallery/album/' . $album['id'] . '/',
+                 'album_url'        => $this->conf['upload_url'] . $album['id'] . '/',
+                 'prev_img'         => $prev_img,
+                 'next'             => $next,
+                 'prev'             => $prev,
+                 'current_pos'      => $current_pos,
+                 'current_category' => $this->gallery_m->get_category($album['category_id']),
+                 'gallery_category' => $this->gallery_m->get_categories($this->settings['order_by'], $this->settings['sort_order']),
+                ];
 
         $this->gallery_m->increase_image_views($prev_img['id']);
         $this->core->set_meta_tags([$album['name']]);
@@ -210,22 +210,25 @@ class Gallery extends MY_Controller
         $this->pagination = new \CI_Pagination();
         $paginationConfig['uri_segment'] = 4;
         $paginationConfig['base_url'] = site_url('gallery/thumbnails/' . $id);
-        $paginationConfig['page_query_string'] = false;
         $paginationConfig['total_rows'] = ceil($album[count] / 15);
         $paginationConfig['last_link'] = ceil($album[count] / 15);
         $paginationConfig['per_page'] = 1;
+
+        $paginationConfig['page_query_string'] = true;
+        $paginationConfig['first_link'] = '1';
+        $paginationConfig['num_links'] = 3;
         include_once "./templates/{$this->config->item('template')}/paginations.php";
 
         $this->pagination->initialize($paginationConfig);
 
         $data = [
-            'album' => $album,
-            'thumb_url' => $this->conf['upload_url'] . $album['id'] . '/' . $this->conf['thumbs_folder'] . '/',
-            'album_link' => 'gallery/album/' . $album['id'] . '/',
-            'album_url' => $this->conf['upload_url'] . $album['id'] . '/',
-            'current_category' => $this->gallery_m->get_category($album['category_id']),
-            'pagination' => $this->pagination->create_links(),
-        ];
+                 'album'            => $album,
+                 'thumb_url'        => $this->conf['upload_url'] . $album['id'] . '/' . $this->conf['thumbs_folder'] . '/',
+                 'album_link'       => 'gallery/album/' . $album['id'] . '/',
+                 'album_url'        => $this->conf['upload_url'] . $album['id'] . '/',
+                 'current_category' => $this->gallery_m->get_category($album['category_id']),
+                 'pagination'       => $this->pagination->create_links(),
+                ];
 
         $this->core->set_meta_tags([$album['name']]);
 

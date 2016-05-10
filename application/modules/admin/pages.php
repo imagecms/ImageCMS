@@ -15,9 +15,7 @@ if (!defined('BASEPATH')) {
 class Pages extends BaseAdminController
 {
 
-    public $_Config = [
-        'per_page' => 20 // Show news per one page
-    ];
+    public $_Config = ['per_page' => 20];
 
     public function __construct() {
 
@@ -46,10 +44,10 @@ class Pages extends BaseAdminController
 
         $this->template->add_array(
             [
-                'tree' => $this->lib_category->build(), // Load category tree
-                'cur_time' => date('H:i:s'),
-                'cur_date' => date('Y-m-d'),
-                'sel_cat' => $uri_segs['category']
+             'tree'     => $this->lib_category->build(), // Load category tree
+             'cur_time' => date('H:i:s'),
+             'cur_date' => date('Y-m-d'),
+             'sel_cat'  => $uri_segs['category'],
             ]
         );
         /** Init Event. Pre Create Page */
@@ -61,66 +59,6 @@ class Pages extends BaseAdminController
 
     /*     * **************************************************
      * PAGE EVENTS
-     * ************************************************* */
-
-    /**
-     * This event occurs right after page inserted in DB
-     */
-    private function on_page_add($page) {
-
-        $this->load->module('cfcm')->save_item_data($page['id'], 'page');
-
-        /** Set page roles */
-        $this->_set_page_roles($page['id'], $this->input->post('roles'));
-
-        /** Set page tags */
-        $this->load->module('tags')->_set_page_tags($this->input->post('search_tags'), $page['id']);
-
-        /** Init CMS Events system */
-        Events::create()->registerEvent($page, 'Page:create');
-    }
-
-    /**
-     * This event occurs right after page updated
-     * @param array $page
-     */
-    private function on_page_update($page) {
-
-        /** Update page roles */
-        $this->_set_page_roles($page['id'], $this->input->post('roles'));
-
-        /** Update page tags */
-        $this->load->module('tags')->_set_page_tags($this->input->post('search_tags'), (int) $page['id']);
-
-        /** Init CMS Events system */
-        Events::create()->registerEvent($page, 'Page:update');
-    }
-
-    /**
-     * This event occurs right after page deleted
-     * @param integer $page_id
-     */
-    private function on_page_delete($page_id) {
-        $this->db->where('item_id', $page_id);
-        $this->db->where('item_type', 'page');
-        $this->db->delete('content_fields_data');
-        $this->cache->delete('cfcm_field_' . $page_id . 'page');
-
-        $this->lib_admin->log(lang('Deleted ID page', 'admin') . ' ' . $page_id);
-
-        // Delete content_permissions
-        $this->db->where('page_id', $page_id);
-        $this->db->delete('content_permissions');
-
-        // Delete page tags
-        $this->load->module('tags')->_remove_orphans($page_id);
-
-        /** Init CMS Events system */
-        Events::create()->registerEvent(['pageId' => $page_id, 'userId' => $this->dx_auth->get_user_id()], 'Page:delete');
-    }
-
-    /*     * **************************************************
-     * END PAGE EVENTS
      * ************************************************* */
 
     /**
@@ -142,6 +80,7 @@ class Pages extends BaseAdminController
      * Language default
      */
     public function add() {
+
         $this->form_validation->set_rules('page_title', lang('Title', 'admin'), 'trim|required|min_length[1]|max_length[500]');
         $this->form_validation->set_rules('page_url', lang('URL', 'admin'), 'alpha_dash|least_one_symbol');
         $this->form_validation->set_rules('prev_text', lang('Preliminary contents', 'admin'), 'trim|required');
@@ -196,7 +135,7 @@ class Pages extends BaseAdminController
             $query = $this->db->get('content', 1);
 
             if ($query->num_rows() > 0) {
-                showMessage(lang('Page with the same URL has been created yet. Specify or select another URL'), false, 'r');
+                showMessage(lang('Page with the same URL has been created yet. Specify or select another URL', 'admin'), false, 'r');
                 return;
             }
             // end check
@@ -226,26 +165,26 @@ class Pages extends BaseAdminController
             $create_date = $this->input->post('create_date') . ' ' . $this->input->post('create_time');
 
             $data = [
-                'title' => trim($this->input->post('page_title')),
-                'meta_title' => trim($this->input->post('meta_title')),
-                'url' => str_replace('.', '', trim($url)), //Delete dots from url
-                'cat_url' => $full_url,
-                'keywords' => $keywords,
-                'description' => $description,
+                     'title'           => trim($this->input->post('page_title')),
+                     'meta_title'      => trim($this->input->post('meta_title')),
+                     'url'             => str_replace('.', '', trim($url)), //Delete dots from url
+                     'cat_url'         => $full_url,
+                     'keywords'        => $keywords,
+                     'description'     => $description,
                 //'full_text' => htmlspecialchars(trim($this->input->post('full_text'))),
-                'full_text' => trim($this->input->post('full_text')),
-                'prev_text' => trim($this->lib_admin->db_post('prev_text')),
+                     'full_text'       => trim($this->input->post('full_text')),
+                     'prev_text'       => trim($this->lib_admin->db_post('prev_text')),
                 //'prev_text' => htmlspecialchars(trim($this->lib_admin->db_post('prev_text'))),
-                'category' => $this->input->post('category'),
-                'full_tpl' => $this->input->post('full_tpl'),
-                'main_tpl' => $this->input->post('main_tpl'),
-                'comments_status' => $this->input->post('comments_status'),
-                'post_status' => $this->input->post('post_status'),
-                'author' => $this->dx_auth->get_username(),
-                'publish_date' => strtotime($publish_date),
-                'created' => strtotime($create_date),
-                'lang' => $def_lang['id']
-            ];
+                     'category'        => $this->input->post('category'),
+                     'full_tpl'        => $this->input->post('full_tpl'),
+                     'main_tpl'        => $this->input->post('main_tpl'),
+                     'comments_status' => $this->input->post('comments_status'),
+                     'post_status'     => $this->input->post('post_status'),
+                     'author'          => $this->dx_auth->get_username(),
+                     'publish_date'    => strtotime($publish_date),
+                     'created'         => strtotime($create_date),
+                     'lang'            => $def_lang['id'],
+                    ];
 
             $page_id = $this->cms_admin->add_page($data);
 
@@ -275,6 +214,39 @@ class Pages extends BaseAdminController
     }
 
     /**
+     * Crete url with at least one symbol
+     * @param $str
+     * @return string
+     */
+    private function createUrl($str) {
+
+        $this->load->helper('translit');
+        is_numeric($str) && $str = 'p' . $str;
+        return translit_url($str);
+    }
+
+    /*     * **************************************************
+     * END PAGE EVENTS
+     * ************************************************* */
+
+    /**
+     * This event occurs right after page inserted in DB
+     */
+    private function on_page_add($page) {
+
+        $this->load->module('cfcm')->save_item_data($page['id'], 'page');
+
+        /** Set page roles */
+        $this->_set_page_roles($page['id'], $this->input->post('roles'));
+
+        /** Set page tags */
+        $this->load->module('tags')->_set_page_tags($this->input->post('search_tags'), $page['id']);
+
+        /** Init CMS Events system */
+        Events::create()->registerEvent($page, 'Page:create');
+    }
+
+    /**
      * Set roles for page
      * @param integer $page_id
      * @param array $roles
@@ -291,9 +263,9 @@ class Pages extends BaseAdminController
             }
 
             $n_data = [
-                'page_id' => $page_id,
-                'data' => serialize($page_roles)
-            ];
+                       'page_id' => $page_id,
+                       'data'    => serialize($page_roles),
+                      ];
 
             // Delete page roles
             $this->db->where('page_id', $page_id);
@@ -417,15 +389,15 @@ class Pages extends BaseAdminController
 
             $this->template->add_array(
                 [
-                    'page_lang' => $data['lang'],
-                    'page_identif' => $data['identif'],
-                    'tree' => $this->lib_category->build(),
-                    'parent_id' => $data['category'],
-                    'langs' => $langs,
+                 'page_lang'       => $data['lang'],
+                 'page_identif'    => $data['identif'],
+                 'tree'            => $this->lib_category->build(),
+                 'parent_id'       => $data['category'],
+                 'langs'           => $langs,
                     //                    'defLang' => $def_lang, //??
-                    'category' => $category,
-                    'pageExists' => $pageExists,
-                    'pagesPagination' => $pagesPagination,
+                 'category'        => $category,
+                 'pageExists'      => $pageExists,
+                 'pagesPagination' => $pagesPagination,
                 ]
             );
 
@@ -540,7 +512,7 @@ class Pages extends BaseAdminController
             $query = $this->db->get('content', 1);
 
             if ($query->num_rows() > 0) {
-                showMessage(lang('Page with URL', 'admin') . '<b>' . $url . '</b>' . lang('in ID category', 'admin') . $this->input->post('category') . lang(' already exists. Specify or select another URL'), false, 'r');
+                showMessage(lang('Page with the same URL in this category has been created yet. Specify or select another URL', 'admin'), false, 'r');
                 return;
             }
             // end check
@@ -558,24 +530,24 @@ class Pages extends BaseAdminController
             $create_date = $this->input->post('create_date') . ' ' . $this->input->post('create_time');
 
             $data = [
-                'title' => trim($this->input->post('page_title')),
-                'meta_title' => trim($this->input->post('meta_title')),
-                'url' => str_replace('.', '', trim($url)), //Delete dots from url
-                'cat_url' => $full_url,
-                'keywords' => $keywords,
-                'description' => $description,
-                'full_text' => trim($this->input->post('full_text')),
-                'prev_text' => trim($this->lib_admin->db_post('prev_text')),
-                'category' => $this->input->post('category'),
-                'full_tpl' => $this->input->post('full_tpl'),
-                'main_tpl' => $this->input->post('main_tpl'),
-                'comments_status' => $this->input->post('comments_status'),
-                'post_status' => $this->input->post('post_status'),
-                'author' => $this->dx_auth->get_username(),
-                'publish_date' => strtotime($publish_date),
-                'created' => strtotime($create_date),
-                'updated' => time()
-            ];
+                     'title'           => trim($this->input->post('page_title')),
+                     'meta_title'      => trim($this->input->post('meta_title')),
+                     'url'             => str_replace('.', '', trim($url)), //Delete dots from url
+                     'cat_url'         => $full_url,
+                     'keywords'        => $keywords,
+                     'description'     => $description,
+                     'full_text'       => trim($this->input->post('full_text')),
+                     'prev_text'       => trim($this->lib_admin->db_post('prev_text')),
+                     'category'        => $this->input->post('category'),
+                     'full_tpl'        => $this->input->post('full_tpl'),
+                     'main_tpl'        => $this->input->post('main_tpl'),
+                     'comments_status' => $this->input->post('comments_status'),
+                     'post_status'     => $this->input->post('post_status'),
+                     'author'          => $this->dx_auth->get_username(),
+                     'publish_date'    => strtotime($publish_date),
+                     'created'         => strtotime($create_date),
+                     'updated'         => time(),
+                    ];
 
             $data['id'] = $page_id;
 
@@ -585,18 +557,20 @@ class Pages extends BaseAdminController
 
             $this->on_page_update($data);
 
-            $this->load->module('cfcm')->save_item_data($page_id, 'page');
+            $last_id = $this->cms_admin->update_page($page_id, $data);
 
-            $this->cache->delete_all();
+            if ($last_id >= 1) {
+                $this->load->module('cfcm')->save_item_data($last_id, 'page');
 
-            if ($this->cms_admin->update_page($page_id, $data) >= 1) {
+                $this->cache->delete_all();
+
                 $this->lib_admin->log(
                     lang('Changed the page', 'admin') .
                     " <a href='/admin/pages/edit/$page_id>'{$data['title']}</a>"
                 );
 
                 $action = $this->input->post('action');
-                $path = '/admin/pages/GetPagesByCategory/all/'. $pagesPagination;
+                $path = '/admin/pages/GetPagesByCategory/all/' . $pagesPagination;
 
                 if ($action == 'edit') {
                     $path = "/admin/pages/edit/$page_id";
@@ -618,6 +592,62 @@ class Pages extends BaseAdminController
                 showMessage('Error', false, 'r');
             }
         }
+    }
+
+    /**
+     * This event occurs right after page updated
+     * @param array $page
+     */
+    private function on_page_update($page) {
+
+        /** Update page roles */
+        $this->_set_page_roles($page['id'], $this->input->post('roles'));
+
+        /** Update page tags */
+        $this->load->module('tags')->_set_page_tags($this->input->post('search_tags'), (int) $page['id']);
+
+        /** Init CMS Events system */
+        Events::create()->registerEvent($page, 'Page:update');
+    }
+
+    /**
+     * Translit title to url
+     */
+    public function ajax_translit() {
+
+        echo $this->createUrl($this->input->post('str'));
+    }
+
+    public function save_positions() {
+
+        foreach ($this->input->post('pages_pos') as $k => $v) {
+            $item = explode('_', substr($v, 4));
+
+            $data = ['position' => $k];
+            $this->db->where('id', $item[0]);
+            //            $this->db->or_where('lang_alias', $item[1]);
+            $this->db->update('content', $data);
+        }
+    }
+
+    public function delete_pages() {
+
+        $ids = $this->input->post('pages');
+
+        if (count($ids) > 0) {
+            foreach ($ids as $v) {
+                $page_id = substr($v, 5);
+                $res[$page_id] = $this->delete($page_id, FALSE);
+            }
+        }
+
+        if (in_array(false, $res)) {
+            showMessage(lang('Can not delete main page', 'admin'), lang('Message'), 'r');
+        }
+        if (in_array(true, $res)) {
+            showMessage(lang('Successful delete', 'admin'));
+        }
+        pjax($this->input->server('HTTP_REFERER'));
     }
 
     /**
@@ -673,44 +703,27 @@ class Pages extends BaseAdminController
     }
 
     /**
-     * Translit title to url
+     * This event occurs right after page deleted
+     * @param integer $page_id
      */
-    public function ajax_translit() {
-        echo $this->createUrl($this->input->post('str'));
-    }
+    private function on_page_delete($page_id) {
 
-    public function save_positions() {
+        $this->db->where('item_id', $page_id);
+        $this->db->where('item_type', 'page');
+        $this->db->delete('content_fields_data');
+        $this->cache->delete('cfcm_field_' . $page_id . 'page');
 
-        foreach ($this->input->post('pages_pos') as $k => $v) {
-            $item = explode('_', substr($v, 4));
+        $this->lib_admin->log(lang('Deleted ID page', 'admin') . ' ' . $page_id);
 
-            $data = [
-                'position' => $k
-            ];
-            $this->db->where('id', $item[0]);
-            //            $this->db->or_where('lang_alias', $item[1]);
-            $this->db->update('content', $data);
-        }
-    }
+        // Delete content_permissions
+        $this->db->where('page_id', $page_id);
+        $this->db->delete('content_permissions');
 
-    public function delete_pages() {
+        // Delete page tags
+        $this->load->module('tags')->_remove_orphans($page_id);
 
-        $ids = $this->input->post('pages');
-
-        if (count($ids) > 0) {
-            foreach ($ids as $v) {
-                $page_id = substr($v, 5);
-                $res[$page_id] = $this->delete($page_id, FALSE);
-            }
-        }
-
-        if (in_array(false, $res)) {
-            showMessage(lang('Can not delete main page', 'admin'), lang('Message'), 'r');
-        }
-        if (in_array(true, $res)) {
-            showMessage(lang('Successful delete', 'admin'));
-        }
-        pjax($this->input->server('HTTP_REFERER'));
+        /** Init CMS Events system */
+        Events::create()->registerEvent(['pageId' => $page_id, 'userId' => $this->dx_auth->get_user_id()], 'Page:delete');
     }
 
     /**
@@ -736,9 +749,9 @@ class Pages extends BaseAdminController
                 $page_id = substr($v, 5);
 
                 $data = [
-                    'category' => $category['id'],
-                    'cat_url' => $category['path_url']
-                ];
+                         'category' => $category['id'],
+                         'cat_url'  => $category['path_url'],
+                        ];
 
                 switch ($action) {
                     case 'move':
@@ -897,6 +910,7 @@ class Pages extends BaseAdminController
      */
     public function ajax_change_status($page_id) {
 
+        $exsists = true;
         $page = $this->cms_admin->get_page($page_id);
 
         switch ($page['post_status']) {
@@ -904,44 +918,26 @@ class Pages extends BaseAdminController
                 //$data = array('post_status' => 'pending');
                 $data = $page;
                 $data['post_status'] = 'draft';
-                $this->cms_admin->update_page($page['id'], $data);
-                /*
-                  jsCode(" $('p_status_" . $page_id . "').src = theme + '/images/pending.png'; ");
-                  jsCode(" $('p_status_" . $page_id . "').title = '" . lang("Pending approval","admin") . "'; ");
-                 */
+                $this->cms_admin->update_page($page['id'], $data, $exsists);
                 break;
 
             case 'pending':
-                //$data = array('post_status' => 'draft');
-                //                $data = array('post_status' => 'publish');
                 $data = $page;
                 $data['post_status'] = 'publish';
-                $this->cms_admin->update_page($page['id'], $data);
-                /*
-                  jsCode(" $('p_status_" . $page_id . "').src = theme + '/images/draft.png'; ");
-                  jsCode(" $('p_status_" . $page_id . "').title = '" . lang("Has not been published","admin") . "'; ");
-                 */
+                $this->cms_admin->update_page($page['id'], $data, $exsists);
+
                 break;
 
             case 'draft':
                 $data = $page;
                 $data['post_status'] = 'publish';
-                $this->cms_admin->update_page($page['id'], $data);
-                /*
-                  jsCode(" $('p_status_" . $page_id . "').src = theme + '/images/publish.png'; ");
-                  jsCode(" $('p_status_" . $page_id . "').title = '" . lang("Has been published","admin") . "'; ");
-                 */
-                break;
+                $this->cms_admin->update_page($page['id'], $data, $exsists);
 
-            //For new admin interface
+                break;
             default :
                 $data = $page;
                 $data['post_status'] = 'publish';
-                $this->cms_admin->update_page($page['id'], $data);
-                /*
-                  jsCode(" $('p_status_" . $page_id . "').src = theme + '/images/publish.png'; ");
-                  jsCode(" $('p_status_" . $page_id . "').title = '" . lang("Has been published","admin") . "'; ");
-                 */
+                $this->cms_admin->update_page($page['id'], $data, $exsists);
                 break;
         }
         showMessage(lang('Status change success', 'admin'));
@@ -958,9 +954,7 @@ class Pages extends BaseAdminController
 
         //////**********  Pagination pages **********\\\\\\\
         if ($pagination) {
-            $paginationSession = [
-                'pages_pag_url' => $pagination,
-            ];
+            $paginationSession = ['pages_pag_url' => $pagination];
             $this->session->set_userdata($paginationSession);
         } else {
             $this->session->unset_userdata('pages_pag_url');
@@ -970,17 +964,17 @@ class Pages extends BaseAdminController
         CI::$APP->config->set_item('cur_lang', $def_lang['id']);
         if ($cat_id != 'all') {
             $db_where = [
-                'category' => $cat_id,
+                         'category' => $cat_id,
                 //'lang_alias' => 0,
-                'lang' => (int) $def_lang['id']
-            ];
+                         'lang'     => (int) $def_lang['id'],
+                        ];
         } else {
             //$this->db->select('content.*, category.name as cat_name');
             $db_where = [
-                'category >=' => 0,
+                         'category >=' => 0,
                 //'lang_alias' => 0,
-                'lang' => (int) $def_lang['id']
-            ];
+                         'lang'        => (int) $def_lang['id'],
+                        ];
         }
         $main_settings = $this->cms_base->get_settings();
 
@@ -1063,14 +1057,14 @@ class Pages extends BaseAdminController
 
             $this->template->add_array(
                 [
-                    'paginator' => $this->pagination->create_links_ajax(),
-                    'total_pages' => $total_pages,
-                    'pages' => $pages,
-                    'cat_id' => $cat_id,
-                    'category' => $category,
-                    'cats' => $allCats,
-                    'tree' => $this->lib_category->build(),
-                    'show_cat_list' => $main_settings['cat_list'],
+                 'paginator'     => $this->pagination->create_links_ajax(),
+                 'total_pages'   => $total_pages,
+                 'pages'         => $pages,
+                 'cat_id'        => $cat_id,
+                 'category'      => $category,
+                 'cats'          => $allCats,
+                 'tree'          => $this->lib_category->build(),
+                 'show_cat_list' => $main_settings['cat_list'],
                 ]
             );
             $this->template->show('pages_list', FALSE);
@@ -1078,28 +1072,17 @@ class Pages extends BaseAdminController
 
             $this->template->add_array(
                 [
-                    'no_pages' => TRUE,
-                    'category' => $category,
-                    'total_pages' => $total_pages,
-                    'tree' => $this->lib_category->build(),
-                    'cat_id' => $cat_id,
-                    'show_cat_list' => $main_settings['cat_list'],
+                 'no_pages'      => TRUE,
+                 'category'      => $category,
+                 'total_pages'   => $total_pages,
+                 'tree'          => $this->lib_category->build(),
+                 'cat_id'        => $cat_id,
+                 'show_cat_list' => $main_settings['cat_list'],
                 ]
             );
 
             $this->template->show('pages_list', FALSE);
         }
-    }
-
-    /**
-     * Crete url with at least one symbol
-     * @param $str
-     * @return string
-     */
-    private function createUrl($str) {
-        $this->load->helper('translit');
-        is_numeric($str) && $str = 'p'. $str;
-        return translit_url($str);
     }
 
 }

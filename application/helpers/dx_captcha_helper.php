@@ -166,14 +166,14 @@ if (!function_exists('create_captcha')) {
 
             function color($type) {
                 switch ($type) {
-                    case "bg":
+                    case 'bg':
                         //$color = rand(224,255);
                         $color = 255;
                         break;
-                    case "text":
+                    case 'text':
                         $color = rand(0, 127);
                         break;
-                    case "grid":
+                    case 'grid':
                         $color = rand(200, 224);
                         break;
                     default:
@@ -185,7 +185,19 @@ if (!function_exists('create_captcha')) {
 
         }
 
-        $defaults = ['word' => '', 'img_path' => '', 'img_url' => '', 'img_width' => '150', 'img_height' => '30', 'font_size' => '', 'font_path' => '', 'show_grid' => true, 'skew' => true, 'expiration' => 7200, 'alt' => 'captcha'];
+        $defaults = [
+                     'word'       => '',
+                     'img_path'   => '',
+                     'img_url'    => '',
+                     'img_width'  => '150',
+                     'img_height' => '30',
+                     'font_size'  => '',
+                     'font_path'  => '',
+                     'show_grid'  => true,
+                     'skew'       => true,
+                     'expiration' => 7200,
+                     'alt'        => 'captcha',
+                    ];
 
         foreach ($defaults as $key => $val) {
             if (!is_array($data)) {
@@ -236,14 +248,14 @@ if (!function_exists('create_captcha')) {
         // Remove old images
         // -----------------------------------
 
-        list($usec, $sec) = explode(" ", microtime());
+        list($usec, $sec) = explode(' ', microtime());
         $now = ((float) $usec + (float) $sec);
 
         $current_dir = @opendir($img_path);
 
         while ($filename = @readdir($current_dir)) {
-            if ($filename != "." and $filename != ".." and $filename != "index.html") {
-                $name = str_replace(".png", "", $filename);
+            if ($filename != '.' and $filename != '..' and $filename != 'index.html') {
+                $name = str_replace('.png', '', $filename);
 
                 if (($name + $expiration) < $now) {
                     @unlink($img_path . $filename);
@@ -339,7 +351,15 @@ if (!function_exists('create_captcha')) {
                 $x += ($font_size * 2);
             } else {
                 $letter = substr($word, $i, 1);
-                $less_rotate = ['c', 'N', 'U', 'Z', '7', '6', '9']; //letters that we don't want rotated too much...
+                $less_rotate = [
+                                'c',
+                                'N',
+                                'U',
+                                'Z',
+                                '7',
+                                '6',
+                                '9',
+                               ]; //letters that we don't want rotated too much...
 
                 $angle = $skew == TRUE ? (in_array($letter, $less_rotate)) ? rand(-5, 5) : rand(-15, 15) : 0;
                 $y = $img_height / 2 + ($font_size >> 1) + ($skew == TRUE ? rand(-9, 9) : 0);
@@ -367,7 +387,11 @@ if (!function_exists('create_captcha')) {
 
         imagedestroy($im);
 
-        return ['word' => $word, 'time' => $now, 'image' => $img];
+        return [
+                'word'  => $word,
+                'time'  => $now,
+                'image' => $img,
+               ];
     }
 
 }

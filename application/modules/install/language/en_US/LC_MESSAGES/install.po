@@ -53,7 +53,6 @@ msgstr "Language"
 msgid "Database connection error"
 msgstr "Database connection error"
 
-# ?
 #: ./application/modules/install/_install.php:415
 msgid "Error writing file config.php"
 msgstr "Error writing file config.php"
@@ -73,27 +72,22 @@ msgstr "Accept license"
 msgid "Cancel"
 msgstr "Cancel"
 
-# ?
 #: ./application/modules/install/views/done.php:1
 msgid "Installation complete"
 msgstr "Installation completed/ Installation has been completed"
 
-# ?
 #: ./application/modules/install/views/done.php:3
 msgid "Go to Control Panel"
 msgstr "Go to Control Panel"
 
-# ?
 #: ./application/modules/install/views/done.php:5
 msgid "Main page"
 msgstr "Main page/ Home page"
 
-# ?
 #: ./application/modules/install/views/step_1.php:1
 msgid "Directories checking"
 msgstr "Directory check / Directory checking/ Checking directories"
 
-# ?
 #: ./application/modules/install/views/step_1.php:3
 msgid "To continue the installation, install the write rights"
 msgstr "To continue  installation, set the write rights"
@@ -122,12 +116,9 @@ msgstr "For best performance, install the PHP modules"
 msgid "Verifying locales"
 msgstr "Verifying locales"
 
-# ?
 #: ./application/modules/install/views/step_1.php:35
 msgid "To use these locales, install them on the server"
-msgstr "To use these locales, install them on the server/
-The locales must be installed on the server to be used
-"
+msgstr "To use these locales, install them on the server/The locales must be installed on the server to be used"
 
 #: ./application/modules/install/views/step_1.php:47
 #: ./application/modules/install/views/step_2.php:99
@@ -150,7 +141,6 @@ msgstr "Site settings"
 msgid "Site title"
 msgstr "Site title"
 
-# ?
 #: ./application/modules/install/views/step_2.php:19
 msgid "Language of the administrative part"
 msgstr "Language of the administrative part/ Language of the operation panel/ The operation panel language"
@@ -164,7 +154,6 @@ msgstr "Russian"
 msgid "English (beta)"
 msgstr "English (beta)"
 
-# ?
 #: ./application/modules/install/views/step_2.php:28
 msgid "Install demo data"
 msgstr "Install demo data/ Install demo version"

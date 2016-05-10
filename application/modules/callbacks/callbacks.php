@@ -3,6 +3,8 @@
 use callbacks\Exceptions\ValidationException;
 use cmsemail\email;
 use CMSFactory\assetManager;
+use CMSFactory\Events;
+use Propel\Runtime\ActiveQuery\Criteria;
 use Propel\Runtime\Exception\PropelException;
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
@@ -25,6 +27,7 @@ class Callbacks extends MY_Controller
      * Render form and save callback
      *
      * @return void
+     * @throws PropelException
      */
     public function index() {
 
@@ -45,6 +48,7 @@ class Callbacks extends MY_Controller
         $message = isset($success) ? $success : $this->session->flashdata('success_message');
 
         assetManager::create()
+            ->setData('themes', SCallbackThemesQuery::create()->joinWithI18n(MY_Controller::getCurrentLocale(), Criteria::INNER_JOIN)->find())
             ->setData(['success' => $message])
             ->render('callback');
     }
@@ -65,8 +69,8 @@ class Callbacks extends MY_Controller
         if (!$this->form_validation->run()) {
             throw new ValidationException(
                 [
-                    'message' => validation_errors(),
-                    'errors' => $this->form_validation->getErrorsArray()
+                 'message' => validation_errors(),
+                 'errors'  => $this->form_validation->getErrorsArray(),
                 ]
             );
         }
@@ -81,7 +85,7 @@ class Callbacks extends MY_Controller
         $model->save();
 
         $this->sendEmail($model);
-        CMSFactory\Events::create()->raiseEvent(['model' => $model], 'Shop:callback');
+        Events::create()->raiseEvent(['model' => $model], 'Shop:callback');
         return $this->getMessage();
     }
 
@@ -104,17 +108,18 @@ class Callbacks extends MY_Controller
     /**
      * @param SCallbacks $callback
      * @return bool
+     * @throws PropelException
      */
     protected function sendEmail(SCallbacks $callback) {
 
         $callback_variables = [
-            'callbackStatus' => $callback->getSCallbackStatuses() ? $callback->getSCallbackStatuses()->getText() : '',
-            'callbackTheme' => $callback->getSCallbackThemes() ? $callback->getSCallbackThemes()->getText() : '',
-            'userName' => $callback->getName(),
-            'userPhone' => $callback->getPhone(),
-            'dateCreated' => date("d-m-Y H:i:s", $callback->getDate()),
-            'userComment' => $callback->getComment()
-        ];
+                               'callbackStatus' => $callback->getSCallbackStatuses() ? $callback->getSCallbackStatuses()->getText() : '',
+                               'callbackTheme'  => $callback->getSCallbackThemes() ? $callback->getSCallbackThemes()->getText() : '',
+                               'userName'       => $callback->getName(),
+                               'userPhone'      => $callback->getPhone(),
+                               'dateCreated'    => date('d-m-Y H:i:s', $callback->getDate()),
+                               'userComment'    => $callback->getComment(),
+                              ];
         return email::getInstance()->sendEmail($this->dx_auth->get_user_email(), 'callback', $callback_variables);
     }
 

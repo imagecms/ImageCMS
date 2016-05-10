@@ -26,7 +26,7 @@ class Custom_scripts_model extends CI_Model
      */
     public function saveScript($position, $script) {
         if (!in_array($position, [1, -1])) {
-            throw new \Exception('Undefined position');
+            throw new Exception('Undefined position');
         }
 
         $query = $this->db->select('value')->where('position', $position)->get('custom_scripts');

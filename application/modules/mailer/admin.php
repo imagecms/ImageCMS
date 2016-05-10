@@ -75,7 +75,10 @@ class Admin extends BaseAdminController
                 if ($this->input->post('mailtype') == 'html') {
                     $message = '<html><body>' . nl2br_except_pre($message) . '</body></html>';
                 }
-                $counter = ['true' => 0, 'all' => 0];
+                $counter = [
+                            'true' => 0,
+                            'all'  => 0,
+                           ];
                 foreach ($users->result_array() as $user) {
                     // Replace {username}
                     $tmp_msg = str_replace('%username%', $user['username'], $message);
@@ -110,7 +113,7 @@ class Admin extends BaseAdminController
 
     public function deleteUsers() {
 
-        if (!empty($this->input->post('ids'))) {
+        if ($this->input->post('ids')) {
 
             foreach ($this->input->post('ids') as $id) {
                 $this->db->delete('mail', ['id' => $id]);

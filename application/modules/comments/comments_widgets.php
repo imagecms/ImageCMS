@@ -18,9 +18,9 @@ class Comments_Widgets extends MY_Controller
      * @var array
      */
     private $defaults = [
-        'comments_count' => 100,
-        'symbols_count' => 0,
-    ];
+                         'comments_count' => 100,
+                         'symbols_count'  => 0,
+                        ];
 
     public function __construct() {
         parent::__construct();
@@ -99,9 +99,9 @@ class Comments_Widgets extends MY_Controller
                     showMessage(validation_errors());
                 } else {
                     $data = [
-                        'comments_count' => $this->input->post('comments_count'),
-                        'symbols_count' => $this->input->post('symbols_count')
-                    ];
+                             'comments_count' => $this->input->post('comments_count'),
+                             'symbols_count'  => $this->input->post('symbols_count'),
+                            ];
 
                     $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
                     showMessage(lang('Settings have been saved', 'comments'));
@@ -149,6 +149,16 @@ class Comments_Widgets extends MY_Controller
                 }
             }
 
+            /** Перебор комментариев, и подставка url продукта */
+            foreach ($comments as $key => $comment) {
+
+                $url = SProductsQuery::create()
+                    ->findOneById($comment['item_id']);
+
+                $comments[$key]['product_url'] = $url ? $url->getUrl() : $url;
+
+            }
+
             return $this->template->fetch('widgets/' . $widget['name'], ['comments' => $comments]);
         }
     }
@@ -175,9 +185,9 @@ class Comments_Widgets extends MY_Controller
                     showMessage(validation_errors());
                 } else {
                     $data = [
-                        'comments_count' => $this->input->post('comments_count'),
-                        'symbols_count' => $this->input->post('symbols_count')
-                    ];
+                             'comments_count' => $this->input->post('comments_count'),
+                             'symbols_count'  => $this->input->post('symbols_count'),
+                            ];
 
                     $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
                     showMessage(lang('Settings have been saved', 'comments'));

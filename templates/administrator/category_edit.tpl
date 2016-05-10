@@ -67,11 +67,11 @@
                                     <div class="inside_padd">
                                         <div class="form-horizontal">
                                             <div class="control-group">
-                                                <label class="control-label" for="name">{lang("Name","admin")}: <span
+                                                <label class="control-label" for="name">{lang("Title","admin")}: <span
                                                         class="must">*</span></label>
 
                                                 <div class="controls">
-                                                    <input type="text" name="name" value="{$name}" id="name">
+                                                    <input type="text" name="name" value="{htmlspecialchars($name)}" id="name">
                                                 </div>
                                             </div>
                                             <div class="control-group">
@@ -173,13 +173,6 @@
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label" for="position">{lang('Position', 'admin')}:</label>
-
-                                            <div class="controls">
-                                                <input type="text" name="position" value="{$position}" id="position">
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
                                             <label class="control-label" for="short_desc">{lang('Description', 'admin')}
                                                 :</label>
 
@@ -233,7 +226,7 @@
 
                                             <div class="control-group">
                                                 <label class="control-label" for="per_page">{lang('Posts on page', 'admin')}
-                                                    :</label>
+                                                    : <span class="must"> *</span></label>
 
                                                 <div class="controls">
                                                     <input type="text" name="per_page" value="{$per_page}" id="per_page"/>
@@ -366,7 +359,7 @@
                                                                               for="title">{lang('Meta Title', 'admin')}:</label>
 
                                                 <div class="controls">
-                                                    <input type="text" name="title" value="{$title}" id="title"/>
+                                                    <input type="text" name="title" value="{htmlspecialchars($title)}" id="title"/>
                                                 </div>
                                             </div>
                                             <div class="control-group"><label class="control-label"
@@ -375,7 +368,7 @@
 
                                                 <div class="controls">
                                                     <textarea id="description" name="description" rows="10"
-                                                              cols="180">{$description}</textarea>
+                                                              cols="180">{htmlspecialchars($description)}</textarea>
                                                 </div>
                                             </div>
                                             <div class="control-group"><label class="control-label"
@@ -384,7 +377,7 @@
 
                                                 <div class="controls">
                                                     <textarea id="keywords" name="keywords" rows="10"
-                                                              cols="180">{$keywords}</textarea>
+                                                              cols="180">{htmlspecialchars($keywords)}</textarea>
                                                 </div>
                                             </div>
                                         </div>

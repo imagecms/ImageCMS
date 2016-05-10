@@ -19,7 +19,10 @@ class SiteInfo
      * (only if $useLocales is TRUE)
      * @var array
      */
-    protected $nonLocaleKeys = ['siteinfo_logo', 'siteinfo_favicon'];
+    protected $nonLocaleKeys = [
+                                'siteinfo_logo',
+                                'siteinfo_favicon',
+                               ];
 
     /**
      * Current locale

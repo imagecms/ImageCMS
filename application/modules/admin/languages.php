@@ -4,6 +4,9 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
+/**
+ * @property Cms_admin cms_admin
+ */
 class Languages extends BaseAdminController
 {
 
@@ -82,11 +85,11 @@ class Languages extends BaseAdminController
         } else {
 
             $data = [
-                'lang_name' => $this->input->post('name'),
-                'identif' => $this->input->post('identif'),
-                'locale' => $this->input->post('locale'),
-                'active' => $this->input->post('active'),
-            ];
+                     'lang_name' => $this->input->post('name'),
+                     'identif'   => $this->input->post('identif'),
+                     'locale'    => $this->input->post('locale'),
+                     'active'    => $this->input->post('active'),
+                    ];
 
             $this->cms_admin->insert_lang($data);
 
@@ -371,6 +374,7 @@ class Languages extends BaseAdminController
 
     /**
      * Update language
+     * @param int $lang_id
      */
     public function update($lang_id) {
 
@@ -388,11 +392,11 @@ class Languages extends BaseAdminController
             $post_locale = trim($this->input->post('locale'));
 
             $data = [
-                'lang_name' => $this->input->post('lang_name'),
-                'identif' => $this->input->post('identif'),
-                'locale' => $post_locale,
-                'active' => $this->input->post('active'),
-            ];
+                     'lang_name' => $this->input->post('lang_name'),
+                     'identif'   => $this->input->post('identif'),
+                     'locale'    => $post_locale,
+                     'active'    => $this->input->post('active'),
+                    ];
 
             $this->cms_admin->update_lang($data, $lang_id);
 

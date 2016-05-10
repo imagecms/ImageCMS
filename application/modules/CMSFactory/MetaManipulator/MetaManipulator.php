@@ -132,11 +132,18 @@ class MetaManipulator
     /**
      * @var array
      */
-    private $graments = ['ИМ', 'РД', 'ДТ', 'ВН', 'ТВ', 'ПР'];
+    private $graments = [
+                         'ИМ',
+                         'РД',
+                         'ДТ',
+                         'ВН',
+                         'ТВ',
+                         'ПР',
+                        ];
 
     /**
      * method processing meta data
-     * @var
+     * @var phpMorphy
      */
     private $phpMorphy;
 
@@ -157,13 +164,13 @@ class MetaManipulator
             // PHPMORPHY_STORAGE_SHM - load dictionary in shared memory(using shmop php extension), this is preferred mode
             // PHPMORPHY_STORAGE_MEM - load dict to memory each time when phpMorphy initialized, this useful when shmop ext. not activated.
             //                          Speed same as for PHPMORPHY_STORAGE_SHM type
-            'storage' => extension_loaded('shmop') ? PHPMORPHY_STORAGE_SHM : PHPMORPHY_STORAGE_MEM,
+                 'storage'           => extension_loaded('shmop') ? PHPMORPHY_STORAGE_SHM : PHPMORPHY_STORAGE_MEM,
             // Enable prediction by suffix
-            'predict_by_suffix' => true,
+                 'predict_by_suffix' => true,
             // Enable prediction by prefix
-            'predict_by_db' => true,
-            'graminfo_as_text' => true,
-        ];
+                 'predict_by_db'     => true,
+                 'graminfo_as_text'  => true,
+                ];
 
         $this->setPhpMorphy(new phpMorphy($dir, 'ru_RU', $opts));
 
@@ -301,7 +308,7 @@ class MetaManipulator
 
     /**
      * @param object $paradigm
-     * @param  string $param
+     * @param string $param
      * @param null|string $gramat
      * @return array
      */
@@ -311,7 +318,7 @@ class MetaManipulator
         if ($gramat != null) {
 
             foreach ($this->getGraments() as $key => $val) {
-                foreach ($paradigm->getWordFormsByGrammems([$param['param'], $val , $gramat]) as $form) {
+                foreach ($paradigm->getWordFormsByGrammems([$param['param'], $val, $gramat]) as $form) {
                     if (!$result[$key]) {
                         $result[$key] = $form->getWord();
                     }
@@ -342,9 +349,9 @@ class MetaManipulator
         $typeSpeech = $this->getTypeSpeechWord($word, $param);
 
         $result = [
-            'param' => $param,
-            'TypeSpeech' => $typeSpeech
-        ];
+                   'param'      => $param,
+                   'TypeSpeech' => $typeSpeech,
+                  ];
 
         return $result;
     }
@@ -535,9 +542,6 @@ class MetaManipulator
      */
     public function getDescription() {
 
-        if (!$this->description) {
-            $this->setDescription($this->getModel()->getDescription());
-        }
         return $this->description;
     }
 
@@ -578,9 +582,6 @@ class MetaManipulator
      */
     public function getID() {
 
-        if (!$this->ID) {
-            $this->setID($this->getModel()->getId());
-        }
         return $this->ID;
     }
 
@@ -661,9 +662,6 @@ class MetaManipulator
      */
     public function getName() {
 
-        if (!$this->name) {
-            $this->setName($this->getModel()->getName());
-        }
         return $this->name;
     }
 

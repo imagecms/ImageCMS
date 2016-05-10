@@ -4,7 +4,8 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-class MY_Pagination extends CI_Pagination {
+class MY_Pagination extends CI_Pagination
+{
 
     public $container = 'page';
 
@@ -149,13 +150,13 @@ class MY_Pagination extends CI_Pagination {
 
         // Kill double slashes.  Note: Sometimes we can end up with a double slash
         // in the penultimate link so we'll kill all double slashes.
-        $output = preg_replace("#([^:])//+#", "\\1/", $output);
+        $output = preg_replace('#([^:])//+#', "\\1/", $output);
 
         // Add the wrapper HTML if exists
         $output = $this->full_tag_open . $output . $this->full_tag_close;
 
         if ($this->separate_controls) {
-            $controls_output = preg_replace("#([^:])//+#", "\\1/", $controls_output);
+            $controls_output = preg_replace('#([^:])//+#', "\\1/", $controls_output);
             $controls_output = $this->controls_tag_open . $controls_output . $this->controls_tag_close;
 
             $output = $output . $controls_output;

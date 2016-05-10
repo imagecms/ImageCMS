@@ -50,15 +50,15 @@ class Commentsapi extends Comments
         }
 
         $data = [
-            'comments_arr' => $comments,
-            'comment_ch' => $comment_ch,
-            'comment_controller' => $this->comment_controller,
-            'total_comments' => lang('Total comments: ', 'comments') . count($comments),
-            'can_comment' => $this->can_comment,
-            'use_captcha' => $this->use_captcha,
-            'use_moderation' => $this->use_moderation,
-            'enable_comments' => $this->enable_comments
-        ];
+                 'comments_arr'       => $comments,
+                 'comment_ch'         => $comment_ch,
+                 'comment_controller' => $this->comment_controller,
+                 'total_comments'     => lang('Total comments: ', 'comments') . count($comments),
+                 'can_comment'        => $this->can_comment,
+                 'use_captcha'        => $this->use_captcha,
+                 'use_moderation'     => $this->use_moderation,
+                 'enable_comments'    => $this->enable_comments,
+                ];
 
         if ($this->use_captcha == TRUE) {
             $this->dx_auth->captcha();
@@ -107,15 +107,15 @@ class Commentsapi extends Comments
         }
 
         $data = [
-            'comments_arr' => $comments,
-            'comment_ch' => $comment_ch,
-            'comment_controller' => $this->comment_controller,
-            'total_comments' => lang('Total comments: ', 'comments') . count($comments),
-            'can_comment' => $this->can_comment,
-            'use_captcha' => $this->use_captcha,
-            'use_moderation' => $this->use_moderation,
-            'enable_comments' => $this->enable_comments
-        ];
+                 'comments_arr'       => $comments,
+                 'comment_ch'         => $comment_ch,
+                 'comment_controller' => $this->comment_controller,
+                 'total_comments'     => lang('Total comments: ', 'comments') . count($comments),
+                 'can_comment'        => $this->can_comment,
+                 'use_captcha'        => $this->use_captcha,
+                 'use_moderation'     => $this->use_moderation,
+                 'enable_comments'    => $this->enable_comments,
+                ];
 
         if ($this->use_captcha == TRUE) {
             $this->dx_auth->captcha();
@@ -127,11 +127,11 @@ class Commentsapi extends Comments
 
         ($hook = get_hook('comments_assign_tpl_data')) ? eval($hook) : NULL;
         return [
-            'comments' => $comments,
-            'commentsCount' => $commentsCount[$item_id],
-            'total_comments' => $comments_count ? $comments_count . ' ' . SStringHelper::Pluralize($comments_count, [lang('comment', 'comments'), lang('comment', 'comments'), lang('comments', 'comments')]) : lang('Leave comment', 'comments'),
-            'validation_errors' => $this->validation_errors
-        ];
+                'comments'          => $comments,
+                'commentsCount'     => $commentsCount[$item_id],
+                'total_comments'    => $comments_count ? $comments_count . ' ' . SStringHelper::Pluralize($comments_count, [lang('comment', 'comments'), lang('comment', 'comments'), lang('comments', 'comments')]) : lang('Leave comment', 'comments'),
+                'validation_errors' => $this->validation_errors,
+               ];
     }
 
     public function renderPosts() {
@@ -168,16 +168,16 @@ class Commentsapi extends Comments
         }
 
         $data = [
-            'comments_arr' => $comments,
-            'comment_ch' => $comment_ch,
-            'comment_controller' => $this->comment_controller,
-            'total_comments' => lang('Total comments: ', 'comments') . count($comments),
-            'can_comment' => $this->can_comment,
-            'use_captcha' => $this->use_captcha,
-            'use_moderation' => $this->use_moderation,
-            'enable_comments' => $this->enable_comments,
-            'visibleMainForm' => $this->input->post('visibleMainForm')
-        ];
+                 'comments_arr'       => $comments,
+                 'comment_ch'         => $comment_ch,
+                 'comment_controller' => $this->comment_controller,
+                 'total_comments'     => lang('Total comments: ', 'comments') . count($comments),
+                 'can_comment'        => $this->can_comment,
+                 'use_captcha'        => $this->use_captcha,
+                 'use_moderation'     => $this->use_moderation,
+                 'enable_comments'    => $this->enable_comments,
+                 'visibleMainForm'    => $this->input->post('visibleMainForm'),
+                ];
 
         if ($this->use_captcha == TRUE && !$this->dx_auth->is_admin()) {
             $this->dx_auth->captcha();
@@ -191,11 +191,11 @@ class Commentsapi extends Comments
 
         echo json_encode(
             [
-                    'comments' => $comments,
-                    'total_comments' => $comments_count ? $comments_count . ' ' . SStringHelper::Pluralize($comments_count, [lang('review', 'comments'), lang('reviews', 'comments'), lang('review', 'comments')]) : lang('Leave a comment', 'comments'),
-                    'commentsCount' => $commentsCount[$item_id],
-                    'validation_errors' => $this->validation_errors
-                ]
+             'comments'          => $comments,
+             'total_comments'    => $comments_count ? $comments_count . ' ' . SStringHelper::Pluralize($comments_count, [lang('review', 'comments'), lang('reviews', 'comments'), lang('review', 'comments')]) : lang('Leave a comment', 'comments'),
+             'commentsCount'     => $commentsCount[$item_id],
+             'validation_errors' => $this->validation_errors,
+            ]
         );
     }
 
@@ -319,9 +319,9 @@ class Commentsapi extends Comments
 
         if ($this->period > 0 && !$this->check_comment_period()) {
             return [
-                'answer' => 'error',
-                'validation_errors' => ['time_error' => lang('The following comment can be left through', 'comments') . ' ' . $this->period . ' ' . lang('minutes', 'comments')]
-            ];
+                    'answer'            => 'error',
+                    'validation_errors' => ['time_error' => lang('The following comment can be left through', 'comments') . ' ' . $this->period . ' ' . lang('minutes', 'comments')],
+                   ];
         }
 
         // Validate email and nickname from unregistered users.
@@ -351,9 +351,9 @@ class Commentsapi extends Comments
             //            $this->dx_auth->captcha();
             //            $cap_image = $this->dx_auth->get_captcha_image();
             return [
-                'answer' => 'error',
-                'validation_errors' => $this->form_validation->getErrorsArray(),
-            ];
+                    'answer'            => 'error',
+                    'validation_errors' => $this->form_validation->getErrorsArray(),
+                   ];
         } else {
             if (!$this->dx_auth->is_logged_in()) {
                 $comment_author = $this->input->post('comment_author');
@@ -386,22 +386,22 @@ class Commentsapi extends Comments
                 ->row();
 
             $comment_data = [
-                'module' => $this->module,
-                'user_id' => $this->dx_auth->get_user_id(), // 0 if unregistered
-                'user_name' => $this->dx_auth->is_logged_in() ? $this->dx_auth->get_username() : $this->input->post('comment_author'),
-                'user_mail' => $this->dx_auth->is_logged_in() ? $email->email : $this->input->post('comment_email'),
-                'user_site' => $this->input->post('comment_site'),
-                'text' => $comment_text,
-                'text_plus' => $comment_text_plus,
-                'text_minus' => $comment_text_minus,
-                'item_id' => $item_id,
-                'status' => $this->_comment_status(),
-                'agent' => $this->agent->agent_string(),
-                'user_ip' => $this->input->ip_address(),
-                'date' => time(),
-                'rate' => $this->input->post('ratec'),
-                'parent' => $this->input->post('comment_parent')
-            ];
+                             'module'     => $this->module,
+                             'user_id'    => $this->dx_auth->get_user_id(), // 0 if unregistered
+                             'user_name'  => $this->dx_auth->is_logged_in() ? $this->dx_auth->get_username() : $this->input->post('comment_author'),
+                             'user_mail'  => $this->dx_auth->is_logged_in() ? $email->email : $this->input->post('comment_email'),
+                             'user_site'  => $this->input->post('comment_site'),
+                             'text'       => $comment_text,
+                             'text_plus'  => $comment_text_plus,
+                             'text_minus' => $comment_text_minus,
+                             'item_id'    => $item_id,
+                             'status'     => $this->_comment_status(),
+                             'agent'      => $this->agent->agent_string(),
+                             'user_ip'    => $this->input->ip_address(),
+                             'date'       => time(),
+                             'rate'       => $this->input->post('ratec'),
+                             'parent'     => $this->input->post('comment_parent'),
+                            ];
             $this->db->insert('comments', $comment_data);
             $this->_recount_comments($item_id, $comment_data['module']);
             \CMSFactory\Events::create()->registerEvent(['commentId' => $this->db->insert_id()]);
@@ -409,12 +409,15 @@ class Commentsapi extends Comments
 
             //return sucesfull answer
             return [
-                'answer' => 'sucesfull',
-                'moderation_enabled' => $this->_comment_status()
-            ];
+                    'answer'             => 'sucesfull',
+                    'moderation_enabled' => $this->_comment_status(),
+                   ];
         }
     }
 
+    /**
+     * @throws \Propel\Runtime\Exception\PropelException
+     */
     public function newPost() {
         $this->load->model('base');
         $this->_init_settings();
@@ -431,9 +434,9 @@ class Commentsapi extends Comments
             if ($this->check_comment_period() == FALSE) {
                 echo json_encode(
                     [
-                            'answer' => 'error',
-                            'validation_errors' => lang('The following comment can be left through', 'comments') . ' ' . $this->period . ' ' . lang('minutes', 'comments')
-                        ]
+                     'answer'            => 'error',
+                     'validation_errors' => lang('The following comment can be left through', 'comments') . ' ' . $this->period . ' ' . lang('minutes', 'comments'),
+                    ]
                 );
                 return;
             }
@@ -515,22 +518,39 @@ class Commentsapi extends Comments
 
             if (!validation_errors()) {
                 $comment_data = [
-                    'module' => $this->module,
-                    'user_id' => $this->dx_auth->get_user_id(), // 0 if unregistered
-                    'user_name' => $this->dx_auth->is_logged_in() ? $this->dx_auth->get_username() : trim(htmlspecialchars($this->input->post('comment_author'))),
-                    'user_mail' => $this->dx_auth->is_logged_in() ? $email->email : trim(htmlspecialchars($this->input->post('comment_email'))),
-                    'user_site' => htmlspecialchars($this->input->post(comment_site)),
-                    'text' => $comment_text,
-                    'text_plus' => $comment_text_plus,
-                    'text_minus' => $comment_text_minus,
-                    'item_id' => $item_id,
-                    'status' => $this->_comment_status(),
-                    'agent' => $this->agent->agent_string(),
-                    'user_ip' => $this->input->ip_address(),
-                    'date' => time(),
-                    'rate' => $this->input->post('ratec'),
-                    'parent' => $this->input->post('comment_parent')
-                ];
+                                 'module'     => $this->module,
+                                 'user_id'    => $this->dx_auth->get_user_id(), // 0 if unregistered
+                                 'user_name'  => $this->dx_auth->is_logged_in() ? $this->dx_auth->get_username() : trim(htmlspecialchars($this->input->post('comment_author'))),
+                                 'user_mail'  => $this->dx_auth->is_logged_in() ? $email->email : trim(htmlspecialchars($this->input->post('comment_email'))),
+                                 'user_site'  => htmlspecialchars($this->input->post(comment_site)),
+                                 'text'       => $comment_text,
+                                 'text_plus'  => $comment_text_plus,
+                                 'text_minus' => $comment_text_minus,
+                                 'item_id'    => $item_id,
+                                 'status'     => $this->_comment_status(),
+                                 'agent'      => $this->agent->agent_string(),
+                                 'user_ip'    => $this->input->ip_address(),
+                                 'date'       => time(),
+                                 'rate'       => $this->input->post('ratec'),
+                                 'parent'     => $this->input->post('comment_parent'),
+                                ];
+
+                /** Добавляем количество отзывов в таблицу shop_products_rating */
+                $products = SProductsRatingQuery::create()
+                     ->findOneByProductId($item_id);
+
+                if ($products) {
+                    $products_votes = $products->getVotes() + 1;
+                    $products->setVotes($products_votes);
+                    $products->save();
+                } else {
+                    /** @var SProductsRating $products */
+                    $products = new SProductsRating();
+                    $products->setProductId($item_id);
+                    $products->setVotes(1);
+                    $products->save();
+                }
+
                 $this->db->insert('comments', $comment_data);
                 $this->_recount_comments($item_id, $comment_data['module']);
                 \CMSFactory\Events::create()->registerEvent(['commentId' => $this->db->insert_id()]);
@@ -538,9 +558,7 @@ class Commentsapi extends Comments
 
                 //return sucesfull JSON answer
                 echo json_encode(
-                    [
-                            'answer' => 'sucesfull'
-                        ]
+                    ['answer' => 'sucesfull']
                 );
             } else {
 
@@ -560,10 +578,10 @@ class Commentsapi extends Comments
                 //                }
                 echo json_encode(
                     [
-                            'answer' => 'error',
-                            'validation_errors' => validation_errors(),
-                            'cap_image' => $cap_image
-                        ]
+                     'answer'            => 'error',
+                     'validation_errors' => validation_errors(),
+                     'cap_image'         => $cap_image,
+                    ]
                 );
             }
         }

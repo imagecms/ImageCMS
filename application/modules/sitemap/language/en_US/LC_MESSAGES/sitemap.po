@@ -124,7 +124,6 @@ msgstr "Product subcategory priority"
 msgid "Products categories priority"
 msgstr "Product category priority"
 
-# ? (Оля)
 #: ./application/modules/sitemap/sitemap.php:777
 msgid "Ping sended"
 msgstr "Ping sent/ Ping has been sent"

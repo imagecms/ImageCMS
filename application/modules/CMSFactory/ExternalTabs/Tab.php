@@ -80,8 +80,8 @@ class Tab
         return self::replaceStringPlaceholders(
             $this->tabButtonTemplate,
             [
-                    'tabId' => translit_url($this->tabName),
-                    'tabName' => $this->tabName,
+             'tabId'   => translit_url($this->tabName),
+             'tabName' => $this->tabName,
             ]
         );
     }
@@ -94,8 +94,8 @@ class Tab
         return self::replaceStringPlaceholders(
             $this->tabContentTemplate,
             [
-                    'tabId' => translit_url($this->tabName),
-                    'tabContent' => $this->tabContent,
+             'tabId'      => translit_url($this->tabName),
+             'tabContent' => $this->tabContent,
             ]
         );
     }
@@ -113,6 +113,7 @@ class Tab
      * @param string $string
      * @param array $data
      * @param array $placeholderWrappers array with 2 elements
+     * @return string
      */
     private static function replaceStringPlaceholders($string, array $data, array $placeholderWrappers = ['{', '}']) {
 
@@ -121,11 +122,14 @@ class Tab
         }
 
         if (count($placeholderWrappers) < 2) {
-            $placeholderWrappers = ['{', '}'];
+            $placeholderWrappers = [
+                                    '{',
+                                    '}',
+                                   ];
         }
 
         foreach ($data as $key => $value) {
-            $string = str_replace("{$placeholderWrappers[0]}{$key}{$placeholderWrappers[1]}", $value, $string);
+            $string = str_replace("{$placeholderWrappers[0]}$key{$placeholderWrappers[1]}", $value, $string);
         }
 
         return $string;

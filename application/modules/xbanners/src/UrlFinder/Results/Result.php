@@ -25,7 +25,7 @@ class Result implements ResultInterface, Countable
     }
 
     public function addResult($name, $url) {
-        $this->urls[$name] = $url;
+            $this->urls[$name .' ('. array_pop(explode('/', $url)).')'] = $url;
     }
 
     /**
@@ -47,7 +47,7 @@ class Result implements ResultInterface, Countable
     }
 
     public function toArray() {
-        return [ $this->getGroupName() => $this->getResults()];
+        return [$this->getGroupName() => $this->getResults()];
     }
 
 }

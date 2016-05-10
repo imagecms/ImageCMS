@@ -156,7 +156,6 @@ msgstr "Error"
 msgid "Translation file was successfuly saved."
 msgstr "Translation file has been successfully saved."
 
-# ?
 #: application/modules/translator/admin.php:545
 msgid "Selection path memory was successfuly cleared."
 msgstr "Selection path memory has been successfully cleared."
@@ -184,7 +183,6 @@ msgstr "Back"
 msgid "Save"
 msgstr "Save"
 
-# ?
 #: application/modules/translator/assets/admin/create.tpl:24
 msgid "Save and Go to Edit"
 msgstr "Save and Go to Edit"
@@ -245,7 +243,6 @@ msgstr "Main"
 msgid "Project Name"
 msgstr "Project name"
 
-# ?
 #: application/modules/translator/assets/admin/create.tpl:81
 #: application/modules/translator/assets/admin/po_table.tpl:63
 msgid "Translator email"
@@ -292,7 +289,6 @@ msgstr "Language"
 msgid "Country"
 msgstr "Country"
 
-# ?
 #: application/modules/translator/assets/admin/exchange.tpl:7
 #: application/modules/translator/assets/admin/list.tpl:151
 msgid "Translation exchange"
@@ -306,12 +302,10 @@ msgstr "Exchange"
 msgid "Exchange files"
 msgstr "Exchange files"
 
-# ?
 #: application/modules/translator/assets/admin/exchange.tpl:40
 msgid "Choose file exchanger location"
 msgstr "Choose file exchanger location"
 
-# ?
 #: application/modules/translator/assets/admin/exchange.tpl:69
 msgid "Choose file receiver location"
 msgstr "Choose file receiver location"
@@ -320,7 +314,6 @@ msgstr "Choose file receiver location"
 msgid "File editing"
 msgstr "File editing"
 
-# ?
 #: application/modules/translator/assets/admin/list.tpl:47
 msgid "Editor theme"
 msgstr "Editor's theme"
@@ -344,7 +337,6 @@ msgstr "Cancel"
 msgid "Translation tool"
 msgstr "Translation tool"
 
-# ?
 #: application/modules/translator/assets/admin/list.tpl:8
 msgid "Choose languages"
 msgstr "Choose languages/ Choose a language"
@@ -427,7 +419,6 @@ msgstr "Translate the untranslated/ Translate untranslated words"
 msgid "Settings"
 msgstr "Settings"
 
-# ?
 #: application/modules/translator/assets/admin/list.tpl:160
 msgid "Clear translator memory"
 msgstr "Clear translator memory"
@@ -519,12 +510,10 @@ msgstr "Default sort"
 msgid "Comment"
 msgstr "Comment"
 
-# ?
 #: application/modules/translator/assets/admin/list.tpl:296
 msgid "Paths to contains files"
 msgstr "Containing file paths"
 
-# ?
 #: application/modules/translator/assets/admin/list.tpl:305
 msgid "There is no Po-file in such locale"
 msgstr "There is no .po file in such locale"
@@ -533,7 +522,6 @@ msgstr "There is no .po file in such locale"
 msgid "Create file"
 msgstr "Create file / Create a file"
 
-# ?
 #: application/modules/translator/assets/admin/list.tpl:340
 #: application/modules/translator/assets/admin/settings.tpl:53
 msgid "Origins language"
@@ -553,7 +541,6 @@ msgstr "Get Yandex API key"
 msgid "Translation file information"
 msgstr "Translation file information"
 
-# ?
 #: application/modules/translator/assets/admin/list.tpl:394
 msgid "Searched langs paths"
 msgstr "Translation file information"
@@ -599,7 +586,6 @@ msgstr "Save and exit"
 msgid "Information"
 msgstr "Information"
 
-# ?
 #: application/modules/translator/assets/admin/settings.tpl:51
 msgid "Language name of source string which need to translate."
 msgstr "Language of the source string which needs to be translated"
@@ -620,17 +606,14 @@ msgstr "To display translation form press Ctrl+Alt and move mouse cursor on stri
 msgid "Show fast translation form"
 msgstr "Show fast translation form"
 
-# ?
 #: application/modules/translator/assets/admin/templates_names.tpl:1
 msgid "Choose template"
 msgstr "Choose template / Choose a template"
 
-# ?
 #: application/modules/translator/assets/js/admin.js:227
 msgid "Successfully sorted."
 msgstr "Successfully sorted."
 
-# ?
 #: application/modules/translator/assets/js/admin.js:229
 msgid "Can not sort."
 msgstr "Can not sort. / Can not be sorted"
@@ -678,7 +661,6 @@ msgstr "File was successfully saved."
 msgid "You have not specified Yandex Api Key."
 msgstr "You have not specified Yandex API key."
 
-# ?
 #: application/modules/translator/assets/js/admin.js:1148
 #: application/modules/translator/assets/js/admin.js:1247
 msgid "You have not specified origins strings language."
@@ -745,7 +727,6 @@ msgstr "Set translation direction is not supported"
 msgid "Translation fails."
 msgstr "Translation failed"
 
-# ?
 #: application/modules/translator/assets/js/admin.js:1354
 msgid "Yandex Api Key was successfully setted."
 msgstr "Yandex API key was successfully set / Yandex API key has been successfully set"
@@ -767,7 +748,6 @@ msgstr "You have not specified translation text language."
 msgid "You have not specified text to translate."
 msgstr "You have not specified text to translate."
 
-# ?
 #: application/modules/translator/assets/js/admin.js:1444
 msgid "Can not define language"
 msgstr "Cannot define the language / Cannot identify the language"
@@ -781,34 +761,28 @@ msgstr "First"
 msgid "Last "
 msgstr "Last "
 
-# ?
 #: application/modules/translator/assets/js/admin.js:1605
 #: application/modules/translator/assets/js/admin.js:1610
 msgid "Select all paths to files."
 msgstr "Select all paths to files."
 
-# ?
 #: application/modules/translator/translator.php:158
 #: application/modules/translator/translator.php:182
 msgid "Successfully translated."
 msgstr "Successfully translated / Translation success"
 
-# ?
 #: application/modules/translator/assets/js/translateSingleLang.js:169
 msgid "You did not specified Yandex Api Key. Please set it in translator module settins."
 msgstr "You have not specify Yandex API key. Please set it in Translator module settins."
 
-# ?
 #: application/modules/translator/assets/translationApiForm.tpl:130
 msgid "Hide form"
 msgstr "Hide form / Hide the form"
 
-# ?
 #: application/modules/translator/assets/translationApiForm.tpl:137
 msgid "Autotranslate"
 msgstr "Autotranslate / Autotranslation"
 
-# ?
 #: application/modules/translator/classes/FileOperator.php:101
 msgid "File cant be read. Please, set read file permissions."
 msgstr "File cannot be read. Please, set up read file permissions."

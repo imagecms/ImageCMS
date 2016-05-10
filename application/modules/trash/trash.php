@@ -68,6 +68,10 @@ class Trash extends MY_Controller
             ->get('trash')->row();
 
         if ($row != null) {
+            /** Подключает модули, в авто лоаде они идут после*/
+            $this->load->helper('menu/menu');
+            $this->load->helper('xbanners/xbanners');
+
             ($row->trash_redirect_type != '404') OR $this->core->error_404();
             redirect($this->formRedirectUrl($row->trash_redirect), 'location', $row->trash_type);
         } else {
@@ -117,11 +121,11 @@ class Trash extends MY_Controller
         }
 
         $array = [
-            'trash_url' => ltrim($trash_url, '/'),
-            'trash_redirect_type' => 'url',
-            'trash_type' => in_array($type, [301, 302]) ? $type : 301,
-            'trash_redirect' => '/' . str_replace(['http://', 'https://'], '', $redirect_url)
-        ];
+                  'trash_url'           => ltrim($trash_url, '/'),
+                  'trash_redirect_type' => 'url',
+                  'trash_type'          => in_array($type, [301, 302]) ? $type : 301,
+                  'trash_redirect'      => '/' . str_replace(['http://', 'https://'], '', $redirect_url),
+                 ];
 
         $this->db->insert('trash', $array);
 
@@ -166,12 +170,12 @@ class Trash extends MY_Controller
             $ci->db->where('trash_url', 'shop/product/' . $model->getUrl())->delete('trash');
             if (!$model->getActive()) {
                 $array = [
-                    'trash_id' => $model->getCategoryId(),
-                    'trash_url' => 'shop/product/' . $model->getUrl(),
-                    'trash_redirect_type' => 'category',
-                    'trash_type' => '302',
-                    'trash_redirect' => shop_url('category/' . $model->getMainCategory()->getFullPath())
-                ];
+                          'trash_id'            => $model->getCategoryId(),
+                          'trash_url'           => 'shop/product/' . $model->getUrl(),
+                          'trash_redirect_type' => 'category',
+                          'trash_type'          => '302',
+                          'trash_redirect'      => shop_url('category/' . $model->getMainCategory()->getFullPath()),
+                         ];
                 $ci->db->insert('trash', $array);
             }
         }
@@ -187,12 +191,12 @@ class Trash extends MY_Controller
         /** @var SProducts $model */
         foreach ($models as $model) {
             $array = [
-                'trash_id' => $model->getCategoryId(),
-                'trash_url' => 'shop/product/' . $model->getUrl(),
-                'trash_redirect_type' => 'category',
-                'trash_type' => '301',
-                'trash_redirect' => shop_url('category/' . $model->getMainCategory()->getFullPath())
-            ];
+                      'trash_id'            => $model->getCategoryId(),
+                      'trash_url'           => 'shop/product/' . $model->getUrl(),
+                      'trash_redirect_type' => 'category',
+                      'trash_type'          => '301',
+                      'trash_redirect'      => shop_url('category/' . $model->getMainCategory()->getFullPath()),
+                     ];
             $ci->db->insert('trash', $array);
         }
     }
@@ -202,36 +206,36 @@ class Trash extends MY_Controller
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) OR exit;
         $fields = [
-            'id' => [
-                'type' => 'INT',
-                'auto_increment' => true
-            ],
-            'trash_id' => [
-                'type' => 'VARCHAR',
-                'constraint' => '255',
-                'null' => true,
-            ],
-            'trash_url' => [
-                'type' => 'VARCHAR',
-                'constraint' => '255',
-                'null' => true,
-            ],
-            'trash_redirect_type' => [
-                'type' => 'VARCHAR',
-                'constraint' => '20',
-                'null' => true,
-            ],
-            'trash_redirect' => [
-                'type' => 'VARCHAR',
-                'constraint' => '255',
-                'null' => true,
-            ],
-            'trash_type' => [
-                'type' => 'VARCHAR',
-                'constraint' => '3',
-                'null' => true,
-            ],
-        ];
+                   'id'                  => [
+                                             'type'           => 'INT',
+                                             'auto_increment' => true,
+                                            ],
+                   'trash_id'            => [
+                                             'type'       => 'VARCHAR',
+                                             'constraint' => '255',
+                                             'null'       => true,
+                                            ],
+                   'trash_url'           => [
+                                             'type'       => 'VARCHAR',
+                                             'constraint' => '255',
+                                             'null'       => true,
+                                            ],
+                   'trash_redirect_type' => [
+                                             'type'       => 'VARCHAR',
+                                             'constraint' => '20',
+                                             'null'       => true,
+                                            ],
+                   'trash_redirect'      => [
+                                             'type'       => 'VARCHAR',
+                                             'constraint' => '255',
+                                             'null'       => true,
+                                            ],
+                   'trash_type'          => [
+                                             'type'       => 'VARCHAR',
+                                             'constraint' => '3',
+                                             'null'       => true,
+                                            ],
+                  ];
 
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', true);

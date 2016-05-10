@@ -26,11 +26,11 @@ class Users extends CI_Model
             $locale = MY_Controller::getCurrentLocale();
             $this->db->select("$users_table.*", FALSE);
             $this->db->select("$roles_table.name AS role_name", FALSE);
-            $this->db->select("shop_rbac_roles_i18n.alt_name AS role_alt_name", FALSE);
-            $this->db->join($roles_table, "$roles_table.id = $users_table.role_id", "left");
-            $this->db->join("shop_rbac_roles_i18n", "shop_rbac_roles_i18n.id = shop_rbac_roles.id AND shop_rbac_roles_i18n.locale ='$locale'", "left");
+            $this->db->select('shop_rbac_roles_i18n.alt_name AS role_alt_name', FALSE);
+            $this->db->join($roles_table, "$roles_table.id = $users_table.role_id", 'left');
+            $this->db->join('shop_rbac_roles_i18n', "shop_rbac_roles_i18n.id = shop_rbac_roles.id AND shop_rbac_roles_i18n.locale ='$locale'", 'left');
             //$this->db->where('shop_rbac_roles_i18n.locale', MY_Controller::getCurrentLocale());
-            $this->db->order_by("$users_table.id", "ASC");
+            $this->db->order_by("$users_table.id", 'ASC');
 
             $query = $this->db->get($this->_table, $row_count, $offset);
         } else {
@@ -83,24 +83,22 @@ class Users extends CI_Model
 
     public function ban_user($user_id, $reason = NULL) {
         $data = [
-            'banned' => 1,
-            'ban_reason' => $reason
-        ];
+                 'banned'     => 1,
+                 'ban_reason' => $reason,
+                ];
         return $this->set_user($user_id, $data);
     }
 
     public function unban_user($user_id) {
         $data = [
-            'banned' => 0,
-            'ban_reason' => NULL
-        ];
+                 'banned'     => 0,
+                 'ban_reason' => NULL,
+                ];
         return $this->set_user($user_id, $data);
     }
 
     public function set_role($user_id, $role_id) {
-        $data = [
-            'role_id' => $role_id
-        ];
+        $data = ['role_id' => $role_id];
         return $this->set_user($user_id, $data);
     }
 
@@ -132,10 +130,10 @@ class Users extends CI_Model
 
     public function newpass($user_id, $pass, $key) {
         $data = [
-            'newpass' => $pass,
-            'newpass_key' => $key,
-            'newpass_time' => date('Y-m-d h:i:s', time() + $this->config->item('DX_forgot_password_expire'))
-        ];
+                 'newpass'      => $pass,
+                 'newpass_key'  => $key,
+                 'newpass_time' => date('Y-m-d h:i:s', time() + $this->config->item('DX_forgot_password_expire')),
+                ];
         return $this->set_user($user_id, $data);
     }
 
@@ -152,10 +150,10 @@ class Users extends CI_Model
 
     public function clear_newpass($user_id) {
         $data = [
-            'newpass' => NULL,
-            'newpass_key' => NULL,
-            'newpass_time' => NULL
-        ];
+                 'newpass'      => NULL,
+                 'newpass_key'  => NULL,
+                 'newpass_time' => NULL,
+                ];
         return $this->set_user($user_id, $data);
     }
 

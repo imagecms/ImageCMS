@@ -2,6 +2,7 @@
 
 use CMSFactory\assetManager;
 use CMSFactory\Events;
+use Propel\Runtime\Exception\PropelException;
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
@@ -26,10 +27,11 @@ class Ga_dashboard extends MY_Controller
 
     /**
      * @param Search $categoryObj
+     * @throws PropelException
      */
     public static function CategorySearchPageLoad($categoryObj) {
 
-        $products = $categoryObj->data['products'] ? $categoryObj->data['products']->getData() : $categoryObj['products']->getData();
+        $products = $categoryObj->data['products'] ?: $categoryObj['products'];
 
         if (count($products) > 0) {
 
@@ -46,7 +48,8 @@ class Ga_dashboard extends MY_Controller
             /* @var $product SProducts */
             $gaProducts = [];
             foreach ($products as $key => $product) {
-                $brand = $product->getBrand() ? $product->getBrand()->getName() : '';
+                $SBrands = $product->getBrand();
+                $brand = $SBrands ? $SBrands->getName() : '';
                 $gaProducts[$key]['id'] = $product->getId();
                 $gaProducts[$key]['name'] = $product->getName();
                 $gaProducts[$key]['price'] = $product->getFirstVariant()->toCurrency();
@@ -94,7 +97,8 @@ class Ga_dashboard extends MY_Controller
         $gaProduct['id'] = $model->getId();
         $gaProduct['name'] = $model->getName();
         $gaProduct['price'] = $model->getFirstVariant()->toCurrency();
-        $gaProduct['brand'] = $model->getBrand() ? $model->getBrand()->getName() : '';
+        $SBrands = $model->getBrand();
+        $gaProduct['brand'] = $SBrands ? $SBrands->getName() : '';
         $gaProduct['category'] = $model->getMainCategory()->getName();
 
         assetManager::create()
@@ -121,6 +125,7 @@ class Ga_dashboard extends MY_Controller
 
     /**
      * @param array $data
+     * @throws PropelException
      */
     public static function ShopOrderView($data) {
 
@@ -140,7 +145,8 @@ class Ga_dashboard extends MY_Controller
                     $products[$key]['id'] = $productVariant->getId();
                     $products[$key]['name'] = $orderProduct->getProductName();
                     $products[$key]['price'] = $orderProduct->getPrice();
-                    $products[$key]['brand'] = $product->getBrand() ? $product->getBrand()->getName() : '';
+                    $SBrands = $product->getBrand();
+                    $products[$key]['brand'] = $SBrands ? $SBrands->getName() : '';
                     $products[$key]['category'] = $product->getMainCategory()->getName();
                     $products[$key]['variant'] = $productVariant->getName();
                     $products[$key]['position'] = $key;

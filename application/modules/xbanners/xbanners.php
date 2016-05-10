@@ -2,12 +2,13 @@
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
+use CMSFactory\assetManager;
+use CMSFactory\Events;
+use template_manager\classes\Template;
+use xbanners\models\BannersQuery;
 use xbanners\src\Installers\BannersModuleManager;
 use xbanners\src\Installers\TemplatePlacesInstaller;
-use xbanners\models\BannersQuery;
 use xbanners\src\Statistic\ClickStatistic;
-use template_manager\classes\Template;
-use CMSFactory\Events;
 
 /**
  * -----------------------------------------------------------------------------
@@ -27,7 +28,7 @@ use CMSFactory\Events;
  *  3. Banner object Methods:
  *      get array from concrete object with only initialized relations:
  *          - Banner $banner->asArray()
- *      get redrered tpl of concrete Banner object
+ *      get rendered tpl of concrete Banner object
  *          - Banner $banner->show()
  * -----------------------------------------------------------------------------
  *  4. Controller Methods:
@@ -43,51 +44,17 @@ class Xbanners extends MY_Controller
     protected $moduleName = 'xbanners';
 
     public function __construct() {
+
         parent::__construct();
         $lang = new MY_Lang();
         $lang->load($this->moduleName);
-    }
-
-    public function index() {
-        $this->core->error_404();
-    }
-
-    /**
-     * @uses xbanners_helper.php getBanner()
-     * @param string $place
-     * @return BannersQuery
-     */
-    public function getBanner($place) {
-        $locale = MY_Controller::getCurrentLocale();
-        $pageId = \CI::$APP->core->core_data['id'];
-        return BannersQuery::create()
-                        ->getTranslatedByPlace($place, $locale, $pageId);
-    }
-
-    /**
-     * Front End Autoload
-     */
-    public function autoload() {
-        $this->load->helper($this->moduleName);
-    }
-
-    /**
-     * Install Module
-     */
-    public function _install() {
-        $man = new BannersModuleManager();
-        try {
-            $man->install();
-            $man->installTemplatePlaces();
-        } catch (Exception $e) {
-
-        }
     }
 
     /**
      * Uninstall Module
      */
     public function _deinstall() {
+
         try {
             (new BannersModuleManager())->deinstall();
         } catch (Exception $exc) {
@@ -98,25 +65,81 @@ class Xbanners extends MY_Controller
     }
 
     /**
+     * Install Module
+     */
+    public function _install() {
+
+        $man = new BannersModuleManager();
+        try {
+            $man->install();
+            $man->installTemplatePlaces();
+        } catch (Exception $e) {
+
+        }
+    }
+
+    /**
      * Admin Autoload Method
      *
      * Register Event Listener
      *      self::postTemplateInstallListener()
      */
     public static function adminAutoload() {
+
         Events::create()
-                ->on('postTemplateInstall')
-                ->setListener('postTemplateInstallListener');
+            ->on('postTemplateInstall')
+            ->setListener('postTemplateInstallListener');
+    }
+
+    /**
+     * Front End Autoload
+     */
+    public function autoload() {
+
+        $this->load->helper($this->moduleName);
+    }
+
+    /**
+     * @uses xbanners_helper.php getBanner()
+     * @param string $place
+     * @return BannersQuery
+     */
+    public function getBanner($place) {
+
+        $locale = MY_Controller::getCurrentLocale();
+        $pageId = \CI::$APP->core->core_data['id'];
+        return BannersQuery::create()
+            ->getTranslatedByPlace($place, $locale, $pageId);
+    }
+
+    /**
+     * Go to banner url and run click statistic
+     * @param integer $imageId - banner image Id
+     */
+    public function go($imageId) {
+
+        if ($imageId) {
+            $click = new ClickStatistic($imageId);
+            $click->run();
+        } else {
+            $this->core->error_404();
+        }
+    }
+
+    public function index() {
+
+        $this->core->error_404();
     }
 
     /**
      * Event listener
      *
      * Listen TemplateManager::setTemplate() "postTemplateInstall" event
-     * @param template_manager\classes\Template $template
+     * @param Template $template
      * @uses BannersInstaller
      */
     public static function postTemplateInstallListener(Template $template) {
+
         try {
             $installer = new TemplatePlacesInstaller($template->name);
             $installer->install();
@@ -128,23 +151,15 @@ class Xbanners extends MY_Controller
     }
 
     /**
-     * Go to banner url and run click statistic
-     * @param integer $imageId - banner image Id
+     * @param array $data
+     * @return string
      */
-    public function go($imageId) {
-        if ($imageId) {
-            $click = new ClickStatistic($imageId);
-            $click->run();
-        } else {
-            $this->core->error_404();
-        }
-    }
-
     public function show($data) {
-        return CMSFactory\assetManager::create()
-                        ->setData($data)
-                        ->registerScript('slick.min')
-                        ->fetchTemplate('banner');
+
+        return assetManager::create()
+            ->setData($data)
+            ->registerScript('slick.min')
+            ->fetchTemplate('banner');
     }
 
 }

@@ -18,12 +18,25 @@ use template_manager\classes\Template;
 class assetManager
 {
 
+    /**
+     * @var assetManager
+     */
     protected static $_BehaviorInstance;
 
-    protected $callMapp = null;
+    /**
+     * @var array
+     */
+    protected $callMapp;
 
-    protected $useCompress = false;
+    /**
+     *
+     * @var MY_Controller
+     */
+    protected $ci;
 
+    /**
+     * @var string
+     */
     protected $module_js = 'jsLangs';
 
     /**
@@ -33,11 +46,13 @@ class assetManager
     protected $template;
 
     /**
-     *
-     * @var MY_Controller
+     * @var bool
      */
-    protected $ci;
+    protected $useCompress = false;
 
+    /**
+     * assetManager constructor.
+     */
     private function __construct() {
 
     }
@@ -47,32 +62,14 @@ class assetManager
     }
 
     /**
-     * Changing main layout file
-     * @param string $mainLayout
+     * @param string|array $item
+     * @param string|integer|float $value
      * @return assetManager
+     * @access public
+     * @copyright ImageCMS (c) 2013, Roman <dev@imagecms.net>
      */
-    public function setMainLayout($mainLayout) {
-        try {
-            CI_Controller::get_instance()->template->set_main_layout($mainLayout);
-        } catch (Exception $exc) {
-            log_message('error', $exc->getMessage());
-            show_error($exc->getMessage(), 500, 'An Template Error Was Encountered');
-        }
-        return $this;
-    }
-
-    /**
-     * Changing main layout file by full path
-     * @param string $mainLayout
-     * @return assetManager
-     */
-    public function setMainLayoutByFullPath($mainLayout) {
-        try {
-            CI_Controller::get_instance()->template->set_main_layout_by_full_path($mainLayout);
-        } catch (Exception $exc) {
-            log_message('error', $exc->getMessage());
-            show_error($exc->getMessage(), 500, 'An Template Error Was Encountered');
-        }
+    public function appendData($item, $value) {
+        $this->setData($item, CI_Controller::get_instance()->template->get_var($item) . $value);
         return $this;
     }
 
@@ -95,6 +92,66 @@ class assetManager
     }
 
     /**
+     * @return assetManager
+     * @access public
+     * @author Kaero
+     * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
+     */
+    public static function create() {
+        (null !== self::$_BehaviorInstance) OR self::$_BehaviorInstance = new self();
+        self::$_BehaviorInstance->callMapp = debug_backtrace();
+        return self::$_BehaviorInstance;
+    }
+
+    /**
+     * fetch admin view
+     * @param string $tpl Template file name
+     * @param boolean $fetchLangsTpl
+     * @return string
+     * @access public
+     * @author Kaero
+     * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
+     */
+    public function fetchAdminTemplate($tpl, $fetchLangsTpl = TRUE) {
+        try {
+
+            if ($fetchLangsTpl) {
+                /** Start. Load template file */
+                $view = CI_Controller::get_instance()->template->fetch('file:' . $this->_buildTemplatePath($this->module_js));
+            }
+
+            if (isset($view)) {
+                return $view . CI_Controller::get_instance()->template->fetch('file:' . $this->_buildTemplatePath($tpl, null, true));
+            } else {
+                return CI_Controller::get_instance()->template->fetch('file:' . $this->_buildTemplatePath($tpl, null, true));
+            }
+            /** Start. Return template file */
+        } catch (Exception $exc) {
+            log_message('error', $exc->getMessage());
+            show_error($exc->getMessage(), 500, 'An Template Error Was Encountered');
+        }
+    }
+
+    /**
+     * fetch public view
+     * @param string $tpl Template file name
+     * @param string $moduleName
+     * @return string
+     * @access public
+     * @author Kaero
+     * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
+     */
+    public function fetchTemplate($tpl, $moduleName = null) {
+        try {
+            /** Start. Return template file */
+            return CI_Controller::get_instance()->template->fetch('file:' . $this->_buildTemplatePath($tpl, $moduleName));
+        } catch (Exception $exc) {
+            log_message('error', $exc->getMessage());
+            show_error($exc->getMessage(), 500, 'An Template Error Was Encountered');
+        }
+    }
+
+    /**
      * @param string $item
      * @return string|integer|float|array|boolean
      * @access public
@@ -106,14 +163,44 @@ class assetManager
     }
 
     /**
-     * @param string|array $item
-     * @param string|integer|float $value
+     *
+     * @param string $path
+     * @param string $position
      * @return assetManager
-     * @access public
-     * @copyright ImageCMS (c) 2013, Roman <dev@imagecms.net>
      */
-    public function appendData($item, $value) {
-        $this->setData($item, CI_Controller::get_instance()->template->get_var($item) . $value);
+    public function registerJsFullpath($path, $position = 'after') {
+        CI_Controller::get_instance()->template->registerJsFile($path, $position, false);
+        return $this;
+    }
+
+    /**
+     * @param string $message
+     * @param string $title
+     * @param string $class
+     */
+    public function registerJsMessage($message, $title, $class = '') {
+        $script = showMessage($message, $title, $class, true, true);
+        CI_Controller::get_instance()->template->registerJsScript($script, 'after');
+    }
+
+    /**
+     * @access public
+     * @author a.gula
+     * @param string $script
+     * @param boolean $useCompress
+     * @param string $position after|before
+     * @param string $type
+     * @return assetManager
+     * @copyright ImageCMS (c) 2013, a.gula <a.gula@imagecms.net>
+     */
+    public function registerJsScript($script, $useCompress = FALSE, $position = 'after', $type = 'text/javascript') {
+        /** Start. Load JS script into template */
+        if ($useCompress) {
+            CI_Controller::get_instance()->template->registerJsScript("<script type='$type'>" . $this->compressJs($script) . '</script>', $position);
+        } else {
+            CI_Controller::get_instance()->template->registerJsScript("<script type='$type'>" . $script . '</script>', $position);
+        }
+
         return $this;
     }
 
@@ -139,14 +226,93 @@ class assetManager
     }
 
     /**
-     *
-     * @param string $path
-     * @param string $position
-     * @return assetManager
+     * @param string $js
+     * @return string
+     * @todo compress and cache
      */
-    public function registerJsFullpath($path, $position = 'after') {
-        CI_Controller::get_instance()->template->registerJsFile($path, $position, false);
-        return $this;
+    private function compressJs($js) {
+        return $js;
+    }
+
+    /**
+     * Return formated path for JS - script files
+     * @param string $fileName
+     * @return string
+     * @access private
+     * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
+     */
+    private function buildScriptPath($fileName) {
+        $this->template = CI_Controller::get_instance()->config->item('template');
+
+        $moduleName = $this->getTrace();
+        $path = sprintf('templates/%s/%s/js/%s.js', $this->template, $moduleName, $fileName);
+        if (file_exists($path)) {
+            $url = $path;
+        } else {
+            $url = $this->getModuleFilePath(
+                [
+                 sprintf('%s/assets/js/%s.js', $moduleName, $fileName),
+                 sprintf('%s/assets/js/%s.js', CI::$APP->uri->segment(4), $fileName),
+                ],
+                false
+            );
+        }
+
+        return str_replace(MAINSITE, '', $url);
+    }
+
+    /**
+     * @param string $list
+     * @return array
+     * @access public
+     * @author cutter
+     */
+    private function getTrace($list = 'first_file') {
+        if ($list == 'first_file') {
+            $paths = explode(DIRECTORY_SEPARATOR, $this->callMapp[0]['file']);
+            return $paths[count($paths) - 2];
+        }
+
+        if ($list == 'first') {
+            return $this->callMapp[0];
+        }
+
+        if ($list == 'all') {
+            return $this->callMapp;
+        }
+        if (is_numeric($list)) {
+            return $this->callMapp[$list];
+        }
+        return false;
+    }
+
+    /**
+     * Checks if file exists in any of modules dirs. If exists returns its path
+     * @param string|array $files example: ['menu/assets/css/style.css']
+     * @param bool $noExt
+     * @return bool|string returns file path or FALSE
+     */
+    private function getModuleFilePath($files, $noExt = true) {
+
+        if (is_string($files)) {
+            $files = [$files];
+        }
+
+        foreach (Modules::$locations as $path => $relPath) {
+            foreach ($files as $fp) {
+                $absPath = $path . ltrim($fp, '/');
+                if (file_exists($absPath)) {
+                    if ($noExt == true) {
+                        $absPath = explode('.', $absPath);
+                        array_pop($absPath);
+                        return implode('.', $absPath);
+                    } else {
+                        return $absPath;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     /**
@@ -155,45 +321,6 @@ class assetManager
     public function registerScriptWithoutTemplate($name) {
         $script = '/' . $this->buildScriptPath($name);
         $this->setData([$name => $script]);
-    }
-
-    /**
-     * @param string $name
-     */
-    public function registerStyleWithoutTemplate($name) {
-        $script = '/' . $this->buildStylePath($name);
-        $this->setData([$name => $script]);
-    }
-
-    /**
-     * @access public
-     * @author a.gula
-     * @param string $script
-     * @param boolean $useCompress
-     * @param string $position after|before
-     * @param string $type
-     * @return assetManager
-     * @copyright ImageCMS (c) 2013, a.gula <a.gula@imagecms.net>
-     */
-    public function registerJsScript($script, $useCompress = FALSE, $position = 'after', $type = 'text/javascript') {
-        /** Start. Load JS script into template */
-        if ($useCompress) {
-            CI_Controller::get_instance()->template->registerJsScript("<script type='$type'>" . $this->compressJs($script) . '</script>', $position);
-        } else {
-            CI_Controller::get_instance()->template->registerJsScript("<script type='$type'>" . $script . '</script>', $position);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param string $message
-     * @param string $title
-     * @param string $class
-     */
-    public function registerJsMessage($message, $title, $class = '') {
-        $script = showMessage($message, $title, $class, true, true);
-        CI_Controller::get_instance()->template->registerJsScript($script, 'after');
     }
 
     /**
@@ -223,6 +350,18 @@ class assetManager
     }
 
     /**
+     * Compressing css file
+     * @param string $css text of css file
+     * @copyright ImageCMS (c) 2013, a.gula <a.gula@imagecms.net>
+     * @return string
+     */
+    private function compressCss($css) {
+        $compressor = new CSSmin();
+
+        return $compressor->run($css);
+    }
+
+    /**
      * Put css string into template
      * @return assetManager
      * @access public
@@ -243,16 +382,39 @@ class assetManager
     }
 
     /**
-     * Render Admin view
-     * @param string $tpl Template file name
-     * @param bool $ignoreWrap
-     * @param bool $fetchJsTpl
-     * @access public
-     * @author Kaero
+     * @param string $name
+     */
+    public function registerStyleWithoutTemplate($name) {
+        $script = '/' . $this->buildStylePath($name);
+        $this->setData([$name => $script]);
+    }
+
+    /**
+     * Return formated path for css
+     * @param string $fileName
+     * @return string
+     * @access private
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
      */
-    public function renderAdmin($tpl, $ignoreWrap = FALSE, $fetchJsTpl = TRUE) {
-        $this->_render($tpl, $ignoreWrap, $fetchJsTpl, TRUE);
+    private function buildStylePath($fileName) {
+        if (!$this->template) {
+            $this->template = CI_Controller::get_instance()->config->item('template');
+        }
+
+        $moduleName = $this->getTrace();
+        $path = sprintf('templates/%s/%s/css/%s.css', $this->template, $moduleName, $fileName);
+        if (file_exists($path)) {
+            $url = $path;
+        } else {
+            $url = $this->getModuleFilePath(
+                [
+                 sprintf('%s/assets/css/%s.css', $moduleName, $fileName),
+                 sprintf('%s/assets/css/%s.css', CI::$APP->uri->segment(4), $fileName),
+                ],
+                false
+            );
+        }
+        return str_replace(MAINSITE, '', $url);
     }
 
     /**
@@ -266,6 +428,19 @@ class assetManager
      */
     public function render($tpl, $ignoreWrap = FALSE, $fetchJsTpl = TRUE) {
         $this->_render($tpl, $ignoreWrap, $fetchJsTpl);
+    }
+
+    /**
+     * Render Admin view
+     * @param string $tpl Template file name
+     * @param bool $ignoreWrap
+     * @param bool $fetchJsTpl
+     * @access public
+     * @author Kaero
+     * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
+     */
+    public function renderAdmin($tpl, $ignoreWrap = FALSE, $fetchJsTpl = TRUE) {
+        $this->_render($tpl, $ignoreWrap, $fetchJsTpl, TRUE);
     }
 
     /**
@@ -317,112 +492,6 @@ class assetManager
     }
 
     /**
-     * fetch public view
-     * @param string $tpl Template file name
-     * @param string $moduleName
-     * @return string
-     * @access public
-     * @author Kaero
-     * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
-     */
-    public function fetchTemplate($tpl, $moduleName = null) {
-        try {
-            /** Start. Return template file */
-            return CI_Controller::get_instance()->template->fetch('file:' . $this->_buildTemplatePath($tpl, $moduleName));
-        } catch (Exception $exc) {
-            log_message('error', $exc->getMessage());
-            show_error($exc->getMessage(), 500, 'An Template Error Was Encountered');
-        }
-    }
-
-    /**
-     * fetch admin view
-     * @param string $tpl Template file name
-     * @param boolean $fetchLangsTpl
-     * @return string
-     * @access public
-     * @author Kaero
-     * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
-     */
-    public function fetchAdminTemplate($tpl, $fetchLangsTpl = TRUE) {
-        try {
-
-            if ($fetchLangsTpl) {
-                /** Start. Load template file */
-                $view = CI_Controller::get_instance()->template->fetch('file:' . $this->_buildTemplatePath($this->module_js));
-            }
-
-            if (isset($view)) {
-                return $view . CI_Controller::get_instance()->template->fetch('file:' . $this->_buildTemplatePath($tpl, null, true));
-            } else {
-                return CI_Controller::get_instance()->template->fetch('file:' . $this->_buildTemplatePath($tpl, null, true));
-            }
-            /** Start. Return template file */
-        } catch (Exception $exc) {
-            log_message('error', $exc->getMessage());
-            show_error($exc->getMessage(), 500, 'An Template Error Was Encountered');
-        }
-    }
-
-    /**
-     * @return assetManager
-     * @access public
-     * @author Kaero
-     * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
-     */
-    public static function create() {
-        (null !== self::$_BehaviorInstance) OR self::$_BehaviorInstance = new self();
-        self::$_BehaviorInstance->callMapp = debug_backtrace();
-        return self::$_BehaviorInstance;
-    }
-
-    /**
-     * @param string $list
-     * @return array
-     * @access public
-     * @author cutter
-     */
-    private function getTrace($list = 'first_file') {
-        if ($list == 'first_file') {
-            $paths = explode(DIRECTORY_SEPARATOR, $this->callMapp[0]['file']);
-            return $paths[count($paths) - 2];
-        }
-
-        if ($list == 'first') {
-            return $this->callMapp[0];
-        }
-
-        if ($list == 'all') {
-            return $this->callMapp;
-        }
-        if (is_numeric($list)) {
-            return $this->callMapp[$list];
-        }
-        return false;
-    }
-
-    /**
-     *
-     * @param string $tpl
-     * @param string $moduleName
-     * @param boolean $admin
-     * @return string
-     * @throws Exception
-     */
-    private function _buildTemplatePath($tpl, $moduleName = null, $admin = FALSE) {
-        if ($admin) {
-            $path = $this->buildAdminTemplatePath($tpl);
-        } else {
-            $path = $this->buildTemplatePath($tpl, $moduleName);
-        }
-        /** Start. If file doesn't exists thorow exception */
-        if (!file_exists($path . '.tpl')) {
-            throw new Exception("Can't load template file: <i>$path.tpl</i>");
-        }
-        return $path;
-    }
-
-    /**
      * Return formatted path
      * @access private
      * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
@@ -458,6 +527,7 @@ class assetManager
     protected function makePath($path) {
         $path = str_replace(['/', '\\'], DIRECTORY_SEPARATOR, $path);
         $parts = array_filter(explode(DIRECTORY_SEPARATOR, $path), 'strlen');
+        $startSlash = strpos($path, '/') === 0 ? '/' : '';
 
         $absolutes = [];
         foreach ($parts as $part) {
@@ -471,7 +541,28 @@ class assetManager
             }
         }
 
-        return implode(DIRECTORY_SEPARATOR, $absolutes);
+        return $startSlash . implode(DIRECTORY_SEPARATOR, $absolutes);
+    }
+
+    /**
+     *
+     * @param string $tpl
+     * @param string $moduleName
+     * @param boolean $admin
+     * @return string
+     * @throws Exception
+     */
+    private function _buildTemplatePath($tpl, $moduleName = null, $admin = FALSE) {
+        if ($admin) {
+            $path = $this->buildAdminTemplatePath($tpl);
+        } else {
+            $path = $this->buildTemplatePath($tpl, $moduleName);
+        }
+        /** Start. If file doesn't exists thorow exception */
+        if (!file_exists($path . '.tpl')) {
+            throw new Exception("Can't load template file: <i>$path.tpl</i>");
+        }
+        return $path;
     }
 
     /**
@@ -484,116 +575,41 @@ class assetManager
     private function buildAdminTemplatePath($fileName) {
         $path = $this->getModuleFilePath(
             [
-                sprintf('%s/assets/admin/%s.tpl', $this->getTrace(), $fileName),
-                sprintf('%s/assets/admin/%s.tpl', CI::$APP->uri->segment(4), $fileName)
+             sprintf('%s/assets/admin/%s.tpl', $this->getTrace(), $fileName),
+             sprintf('%s/assets/admin/%s.tpl', CI::$APP->uri->segment(4), $fileName),
             ]
         );
         return $path;
     }
 
     /**
-     * Return formated path for JS - script files
-     * @param string $fileName
-     * @return string
-     * @access private
-     * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
+     * Changing main layout file
+     * @param string $mainLayout
+     * @return assetManager
      */
-    private function buildScriptPath($fileName) {
-        $this->template = CI_Controller::get_instance()->config->item('template');
-
-        $moduleName = $this->getTrace();
-        $path = sprintf('templates/%s/%s/js/%s.js', $this->template, $moduleName, $fileName);
-        if (file_exists($path)) {
-            $url = $path;
-        } else {
-            $url = $this->getModuleFilePath(
-                [
-                    sprintf('%s/assets/js/%s.js', $moduleName, $fileName),
-                    sprintf('%s/assets/js/%s.js', CI::$APP->uri->segment(4), $fileName)
-                ],
-                false
-            );
+    public function setMainLayout($mainLayout) {
+        try {
+            CI_Controller::get_instance()->template->set_main_layout($mainLayout);
+        } catch (Exception $exc) {
+            log_message('error', $exc->getMessage());
+            show_error($exc->getMessage(), 500, 'An Template Error Was Encountered');
         }
-
-        return str_replace(MAINSITE, '', $url);
+        return $this;
     }
 
     /**
-     * Return formated path for css
-     * @param string $fileName
-     * @return string
-     * @access private
-     * @copyright ImageCMS (c) 2013, Kaero <dev@imagecms.net>
+     * Changing main layout file by full path
+     * @param string $mainLayout
+     * @return assetManager
      */
-    private function buildStylePath($fileName) {
-        if (!$this->template) {
-            $this->template = CI_Controller::get_instance()->config->item('template');
+    public function setMainLayoutByFullPath($mainLayout) {
+        try {
+            CI_Controller::get_instance()->template->set_main_layout_by_full_path($mainLayout);
+        } catch (Exception $exc) {
+            log_message('error', $exc->getMessage());
+            show_error($exc->getMessage(), 500, 'An Template Error Was Encountered');
         }
-
-        $moduleName = $this->getTrace();
-        $path = sprintf('templates/%s/%s/css/%s.css', $this->template, $moduleName, $fileName);
-        if (file_exists($path)) {
-            $url = $path;
-        } else {
-            $url = $this->getModuleFilePath(
-                [
-                    sprintf('%s/assets/css/%s.css', $moduleName, $fileName),
-                    sprintf('%s/assets/css/%s.css', CI::$APP->uri->segment(4), $fileName)
-                ],
-                false
-            );
-        }
-        return str_replace(MAINSITE, '', $url);
-    }
-
-    /**
-     * Checks if file exists in any of modules dirs. If exists returns its path
-     * @param string|array $files example: ['menu/assets/css/style.css']
-     * @param bool $noExt
-     * @return bool|string returns file path or FALSE
-     */
-    private function getModuleFilePath($files, $noExt = true) {
-
-        if (is_string($files)) {
-            $files = [$files];
-        }
-
-        foreach (Modules::$locations as $path => $relPath) {
-            foreach ($files as $fp) {
-                $absPath = $path . ltrim($fp, '/');
-                if (file_exists($absPath)) {
-                    if ($noExt == true) {
-                        $absPath = explode('.', $absPath);
-                        array_pop($absPath);
-                        return implode('.', $absPath);
-                    } else {
-                        return $absPath;
-                    }
-                }
-            }
-        }
-        return false;
-    }
-
-    /**
-     * @param string $js
-     * @return string
-     * @todo compress and cache
-     */
-    private function compressJs($js) {
-        return $js;
-    }
-
-    /**
-     * Compressing css file
-     * @param string $css text of css file
-     * @copyright ImageCMS (c) 2013, a.gula <a.gula@imagecms.net>
-     * @return string
-     */
-    private function compressCss($css) {
-        $compressor = new CSSmin();
-
-        return $compressor->run($css);
+        return $this;
     }
 
 }

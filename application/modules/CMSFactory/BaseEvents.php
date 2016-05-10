@@ -796,7 +796,11 @@ abstract class BaseEvents
         if ($isClosure == false) {
             $this->holder[$alias][$method] = $class;
         }
-        $storageData = ['collMethod' => $method, 'collClass' => $class, 'isClosure' => $isClosure];
+        $storageData = [
+                        'collMethod' => $method,
+                        'collClass'  => $class,
+                        'isClosure'  => $isClosure,
+                       ];
         $this->storage[$alias]['collable'][] = $storageData;
     }
 

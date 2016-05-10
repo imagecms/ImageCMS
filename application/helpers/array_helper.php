@@ -130,7 +130,11 @@ if (!function_exists('pluralize')) {
     function pluralize($count = 0, array $words = []) {
 
         if (empty($words)) {
-            $words = [' ', ' ', ' '];
+            $words = [
+                      ' ',
+                      ' ',
+                      ' ',
+                     ];
         }
 
         $numeric = (int) abs($count);

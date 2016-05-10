@@ -7,6 +7,11 @@ if (!defined('BASEPATH')) {
 class Base extends CI_Model
 {
 
+    /**
+     * @var array
+     */
+    public $comments_product_id = [];
+
     public function __construct() {
         parent::__construct();
     }
@@ -110,14 +115,23 @@ class Base extends CI_Model
         return $res ? $disslike : false;
     }
 
+    /**
+     * @param int $id
+     * @return bool
+     */
     public function delete($id) {
         if (is_array($id)) {
+            foreach ($id as $item) {
+                $this->changeVotesAfterDelete($item);
+            }
+
             $this->db->where_in('id', $id);
             $this->db->delete('comments');
             //delete child comments
             $this->db->where_in('parent', $id);
             $this->db->delete('comments');
         } else {
+            $this->changeVotesAfterDelete($id);
             $this->db->limit(1);
             $this->db->where('id', $id);
             $this->db->delete('comments');
@@ -125,7 +139,39 @@ class Base extends CI_Model
             $this->db->where('parent', $id);
             $this->db->delete('comments');
         }
+
+        $this->setVoutesAfterDelete();
+
         return TRUE;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function changeVotesAfterDelete($id) {
+
+            $comments = $this->db->get_where('comments', ['id' => (int) $id])->row_array();
+
+        if (!in_array($comments['item_id'], $this->comments_product_id)) {
+            $this->comments_product_id[] = $comments['item_id'];
+        }
+    }
+
+    /**
+     * @throws \Propel\Runtime\Exception\PropelException
+     */
+    public function setVoutesAfterDelete() {
+
+        foreach ($this->comments_product_id as $item) {
+
+                $count_result = count($this->db->get_where('comments', ['item_id' => (int) $item ])->result_array());
+
+                $products = SProductsRatingQuery::create()
+                    ->findOneByProductId($item);
+                $products->setVotes($count_result);
+                $products->save();
+
+        }
     }
 
     /**

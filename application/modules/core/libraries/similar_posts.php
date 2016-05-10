@@ -15,10 +15,10 @@ class Similar_Posts
      * @var array
      */
     private $defaultSettings = [
-        'categories' => ['all'],
-        'limit' => 5,
-        'max_short_description_words' => 500,
-    ];
+                                'categories'                  => ['all'],
+                                'limit'                       => 5,
+                                'max_short_description_words' => 500,
+                               ];
 
     /**
      * @var array
@@ -130,4 +130,5 @@ class Similar_Posts
 
         return $result ? $result->result_array() : [];
     }
+
 }

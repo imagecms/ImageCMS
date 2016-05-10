@@ -66,12 +66,18 @@ class Mabilis_Config
     /**
      * @var array
      */
-    public $delimiters = ['{', '}'];
+    public $delimiters = [
+                          '{',
+                          '}',
+                         ];
 
     /**
      * @var array
      */
-    public $php_delimiters = ['<?php ', ' ?>'];
+    public $php_delimiters = [
+                              '<?php ',
+                              ' ?>',
+                             ];
 
     /**
      * Mabilis_Config constructor.

@@ -75,7 +75,11 @@ function initBanners() {
         return false;
     });
     $(".urlcomplete").autocomplete({
-        source: "/admin/components/cp/xbanners/url_search_autocomplete/",
+        source: function(){
+            var  locale = $('.urlcomplete').data('locale');
+            return "/admin/components/cp/xbanners/url_search_autocomplete/" + locale;
+
+        }(),
         create: function (ev, ui) {
             $(this).data('autocomplete')._renderMenu = function (ul, items) {
                 var self = this;

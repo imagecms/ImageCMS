@@ -111,15 +111,17 @@ class Payment_method_webmoney extends MY_Controller
             $price = $this->markup($price, $paySettings['merchant_markup']);
         }
 
+        $price = number_format(str_replace(',', '.', $price), 2, '.', '');
+
         $data = [
-            'merchant_purse' => $publicKey,
-            'amount' => str_replace(',', '.', round($price, 2)),
-            'currency' => $code,
-            'description' => $descr,
-            'order_id' => $param->id,
-            'server_url' => site_url() . $this->moduleName . '/callback',
-            'result_url' => site_url() . 'shop/order/view/' . $param->getKey(),
-        ];
+                 'merchant_purse' => $publicKey,
+                 'amount'         => $price,
+                 'currency'       => $code,
+                 'description'    => $descr,
+                 'order_id'       => $param->id,
+                 'server_url'     => site_url() . $this->moduleName . '/callback',
+                 'result_url'     => site_url() . 'shop/order/view/' . $param->getKey(),
+                ];
 
         $codeTpl = \CMSFactory\assetManager::create()
                 ->setData('data', $data)
@@ -157,7 +159,9 @@ class Payment_method_webmoney extends MY_Controller
         $paySettings = $this->getPaymentSettings($key);
 
         $price = $userOrder->delivery_price + $userOrder->total_price;
-        $price = str_replace(',', '.', round($price, 2));
+
+        $price = number_format(str_replace(',', '.', $price), 2, '.', '');
+
         $forHash = $paySettings['merchant_purse'] .
                 $price .
                 $param['LMI_PAYMENT_NO'] .
@@ -223,8 +227,8 @@ class Payment_method_webmoney extends MY_Controller
             ->update(
                 'users',
                 [
-                    'amout' => str_replace(',', '.', $amount)
-                    ]
+                 'amout' => str_replace(',', '.', $amount),
+                ]
             );
         if ($ci->db->_error_message()) {
             show_error($ci->db->_error_message());
@@ -252,9 +256,9 @@ class Payment_method_webmoney extends MY_Controller
             ->update(
                 'shop_payment_methods',
                 [
-                    'active' => '0',
-                    'payment_system_name' => '0',
-                    ]
+                 'active'              => '0',
+                 'payment_system_name' => '0',
+                ]
             );
         if ($ci->db->_error_message()) {
             show_error($ci->db->_error_message());

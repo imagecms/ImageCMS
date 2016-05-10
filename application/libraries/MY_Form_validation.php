@@ -30,8 +30,8 @@ class MY_Form_validation extends CI_Form_validation
         if (!CI::$APP->input->is_ajax_request()) {
             CI::$APP->session->set_flashdata(
                 [
-                    '_error_array' => $this->_error_array,
-                    '_field_data' => $this->_field_data
+                 '_error_array' => $this->_error_array,
+                 '_field_data'  => $this->_field_data,
                 ]
             );
         }

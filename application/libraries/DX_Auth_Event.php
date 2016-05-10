@@ -8,7 +8,8 @@ if (!defined('BASEPATH')) {
 // You can use DX_Auth_Event to extend DX_Auth to fullfil your needs
 // For example: you can use event below to PM user when he already activated the account, etc.
 
-class DX_Auth_Event {
+class DX_Auth_Event
+{
 
     var $ci;
 
@@ -107,15 +108,15 @@ class DX_Auth_Event {
 
     public function sending_forgot_password_email($data, &$content) {
         if (class_exists(ShopCore)) {
-            $replaceData = array(
-                '%webSiteName%' => $this->ci->config->item('DX_website_name'),
-                '%resetPasswordUri%' => $data['reset_password_uri'],
-                '%password%' => $data['password'],
-                '%key%' => $data['key'],
-                '%webMasterEmail%' => $this->ci->config->item('DX_webmaster_email')
-            );
+            $replaceData = [
+                            '%webSiteName%'      => $this->ci->config->item('DX_website_name'),
+                            '%resetPasswordUri%' => $data['reset_password_uri'],
+                            '%password%'         => $data['password'],
+                            '%key%'              => $data['key'],
+                            '%webMasterEmail%'   => $this->ci->config->item('DX_webmaster_email'),
+                           ];
 
-            $content = str_replace(array_keys($replaceData), $replaceData, ShopCore::app()->SSettings->forgotPasswordMessageText);
+            $content = str_replace(array_keys($replaceData), $replaceData, ShopCore::app()->SSettings->getForgotPasswordMessageText());
         } else {
             // Create content
             $content = sprintf($this->ci->lang->line('auth_forgot_password_content'), $this->ci->config->item('DX_website_name'), $data['reset_password_uri'], $data['password'], $data['key'], $this->ci->config->item('DX_webmaster_email'), $this->ci->config->item('DX_website_name'));

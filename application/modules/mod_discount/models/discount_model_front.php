@@ -76,7 +76,7 @@ class discount_model_front extends CI_Model
     public function getPrice($id) {
 
         $priceProd = $this->db->query("select price from shop_product_variants where id = '$id'")->row();
-        return number_format($priceProd->price, ShopCore::app()->SSettings->pricePrecision, '.', '');
+        return number_format($priceProd->price, ShopCore::app()->SSettings->getPricePrecision(), '.', '');
     }
 
     /**

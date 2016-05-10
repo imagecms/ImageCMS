@@ -1221,6 +1221,11 @@ $(document).ready(function () {
             errorOnSave('Не выбрано ни одного изображения');
             return;
         }
+
+
+
+
+        /// Добавить дополнительные изображения  через ссылку , планируется удалить!
         if ($('#as_additional').attr('checked')) {
             var urlArray = [];
             $(selectedImages).each(function () {
@@ -1235,6 +1240,10 @@ $(document).ready(function () {
             }
             return true;
         }
+
+
+        
+
 
         // go furter if one image is selected
         var selectedImageUrl = $("span.selected_image img").attr("src");

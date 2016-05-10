@@ -45,8 +45,8 @@ class Admin extends BaseAdminController
         assetManager::create()
             ->setData(
                 [
-                    'banners' => $banners,
-                    'pageTypes' => BannerPageTypesManager::getInstance()->getPagesTypes(),
+                 'banners'   => $banners,
+                 'pageTypes' => BannerPageTypesManager::getInstance()->getPagesTypes(),
                 ]
             )
             ->registerStyle('style')
@@ -96,12 +96,12 @@ class Admin extends BaseAdminController
 
             assetManager::create()->setData(
                 [
-                    'banner' => $banner,
-                    'allowedPagesOptions' => $allowedPagesOptions,
-                    'bannerImages' => $bannerImages,
-                    'locale' => $locale,
-                    'languages' => $this->load->model('cms_admin')->get_langs(true),
-                    'options' => $options
+                 'banner'              => $banner,
+                 'allowedPagesOptions' => $allowedPagesOptions,
+                 'bannerImages'        => $bannerImages,
+                 'locale'              => $locale,
+                 'languages'           => $this->load->model('cms_admin')->get_langs(true),
+                 'options'             => $options,
                 ]
             )
                 ->registerStyle('style')
@@ -160,17 +160,6 @@ class Admin extends BaseAdminController
     }
 
     public function validate_url($url) {
-        if (!preg_match("/^[\w\d-._~:\[\]@!$&'()*+;=]*$/", $matches)) {
-            $this->form_validation->set_message('validate_url', lang('The %s field can only contain alphanumeric characters and symbols: - , _', 'xbanners'));
-            return FALSE;
-        }
-
-        preg_match('/[а-яА-Я #?]/i', $url, $matches);
-        if (!empty($matches)) {
-            $this->form_validation->set_message('validate_url', lang('The %s field can only contain alphanumeric characters and symbols: - , _', 'xbanners'));
-            return FALSE;
-        }
-
         return TRUE;
     }
 
@@ -228,6 +217,7 @@ class Admin extends BaseAdminController
 
     /**
      * @uses /xbanners/assets/js/script.js autocomplete
+     * @param string $locale
      * @param string $_GET ['term']
      * @return string json : [
      *      GroupName: {'Name' : 'url', ... },
@@ -237,11 +227,11 @@ class Admin extends BaseAdminController
      *          ... }
      *      ]
      */
-    public function url_search_autocomplete() {
+    public function url_search_autocomplete($locale) {
         $word = $this->input->get('term');
-
+        $locale = $locale ?: MY_Controller::defaultLocale();
         echo (new DelegationFinder())
-            ->getResultsFor($word, MY_Controller::defaultLocale())
+            ->getResultsFor($word, $locale)
             ->toJson();
     }
 

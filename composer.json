@@ -15,7 +15,8 @@
       "": [
         "application/modules/",
         "application/modules/shop/classes/",
-        "application/modules/shop/models/"
+        "application/modules/shop/models/",
+        "hooks"
       ],
       "libraries\\": [
         "application/libraries/"
@@ -25,7 +26,7 @@
   "require": {
     "php": ">=5.5",
     "ext-curl": "*",
-    "propel/propel": "2.0.*@dev",
+    "propel/propel": "dev-master",
     "monolog/monolog": ">1.12",
     "phpoffice/phpexcel": ">1.8",
     "tubalmartin/cssmin": "dev-master",
@@ -38,17 +39,26 @@
     "gettext/gettext": ">=3.5.3",
     "retailcrm/api-client-php": ">=3.0",
     "artem_c/emmet": "^1.0",
-    "symfony/var-dumper": "^2.8",
-    "symfony/console": "^2.8",
-    "symfony/config": "^2.8",
-    "symfony/event-dispatcher": "^2.8",
-    "symfony/dependency-injection": "^2.8"
+    "symfony/config": "^3.0",
+    "symfony/var-dumper": "^3.0",
+    "symfony/event-dispatcher": "^3.0",
+    "symfony/dependency-injection": "^3.0",
+    "tinymce/tinymce": ">=4",
+    "doctrine/common": "^2.6"
   },
   "require-dev": {
-    "eventviva/php-image-resize": ">=1.4",
     "phpmd/phpmd": ">=2.2.2",
     "nubera-ebusiness/intercom-php": "dev-master",
     "fzaninotto/faker": "^1.5",
-    "imagecms/coding-standard": "dev-master"
+    "imagecms/coding-standard": "dev-master",
+    "intervention/image": "^2.3"
+  },
+  "scripts": {
+    "post-update-cmd": [
+      "ImageCMSHooks::copyTinyMCEFiles"
+    ],
+    "post-install-cmd": [
+      "ImageCMSHooks::copyTinyMCEFiles"
+    ]
   }
 }

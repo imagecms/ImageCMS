@@ -29,22 +29,22 @@ class ParentEmail extends MY_Controller
      * @var array
      */
     public $accepted_params = [
-        'name',
-        'from',
-        'from_email',
-        'theme',
-        'type',
-        'user_message',
-        'user_message_active',
-        'admin_message',
-        'admin_message_active',
-        'admin_email',
-        'description',
-    ];
+                               'name',
+                               'from',
+                               'from_email',
+                               'theme',
+                               'type',
+                               'user_message',
+                               'user_message_active',
+                               'admin_message',
+                               'admin_message_active',
+                               'admin_email',
+                               'description',
+                              ];
 
     /**
      * Attachment file
-     * @var type
+     * @var string
      */
     protected $attachment;
 
@@ -373,12 +373,12 @@ class ParentEmail extends MY_Controller
                 //Registering event is success
                 Events::create()->registerEvent(
                     [
-                    'from' => $this->from,
-                    'from_email' => $this->from_email,
-                    'send_to' => $this->send_to,
-                    'theme' => $this->theme,
-                    'message' => $this->message
-                        ],
+                     'from'       => $this->from,
+                     'from_email' => $this->from_email,
+                     'send_to'    => $this->send_to,
+                     'theme'      => $this->theme,
+                     'message'    => $this->message,
+                    ],
                     'ParentEmail:userSend'
                 );
                 Events::runFactory();
@@ -405,12 +405,12 @@ class ParentEmail extends MY_Controller
                 //Registering event is success
                 Events::create()->registerEvent(
                     [
-                    'from' => $this->from,
-                    'from_email' => $this->from_email,
-                    'send_to' => $this->send_to,
-                    'theme' => $this->theme,
-                    'message' => $this->message
-                        ],
+                     'from'       => $this->from,
+                     'from_email' => $this->from_email,
+                     'send_to'    => $this->send_to,
+                     'theme'      => $this->theme,
+                     'message'    => $this->message,
+                    ],
                     'ParentEmail:adminSend'
                 );
                 Events::runFactory();

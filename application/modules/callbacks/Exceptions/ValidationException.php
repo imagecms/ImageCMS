@@ -17,7 +17,7 @@ class ValidationException extends \Exception
      * @param Exception $previous [optional] The previous exception used for the exception chaining. Since 5.3.0
      * @since 5.1.0
      */
-    public function __construct($message = "", $code = 0, Exception $previous = null) {
+    public function __construct($message = '', $code = 0, Exception $previous = null) {
         $validation_message = isset($message['message']) ? $message['message'] : '';
         $this->validationErrors = isset($message['errors']) && is_array($message['errors']) ? $message['errors'] : [];
         parent::__construct($validation_message, $code, $previous);

@@ -9,7 +9,7 @@ use Propel\Runtime\Propel;
 use Propel\Runtime\Connection\ConnectionManagerSingle;
 
 /**
- * Executing custom CMS initialication code
+ * Executing custom CMS initialization code
  */
 class Lib_init
 {
@@ -24,6 +24,18 @@ class Lib_init
      * Lib_init constructor.
      */
     public function __construct() {
+
+        /*
+         * include composer autoloader
+         */
+        include_once APPPATH . 'third_party/autoload.php';
+
+        /*
+         * Define DS for Premmerce compatibility
+         * TODO: Remove DS usage from all project
+         *
+         */
+        defined('DS') or define('DS', '/');
 
         try {
 
@@ -89,7 +101,7 @@ class Lib_init
         // Not installed
         if ($isNotInstalledInConfig && $installControllerExists) {
             if ($this->CI->uri->segment(1) != 'install') {
-                redirect("/install");
+                redirect('/install');
             }
             return false;
         }
@@ -134,12 +146,10 @@ class Lib_init
 
         $manager->setConfiguration(
             [
-                'dsn' => 'mysql:host=' . $this->CI->db->hostname . ';dbname=' . $this->CI->db->database,
-                'user' => $this->CI->db->username,
-                'password' => $this->CI->db->password,
-                'settings' => [
-                    'charset' => 'utf8'
-                ],
+             'dsn'      => 'mysql:host=' . $this->CI->db->hostname . ';dbname=' . $this->CI->db->database,
+             'user'     => $this->CI->db->username,
+             'password' => $this->CI->db->password,
+             'settings' => ['charset' => 'utf8'],
             ]
         );
 
@@ -189,7 +199,8 @@ class Lib_init
         $uri = $parts[0];
         if (isset($parts[1])) {
             $_SERVER['QUERY_STRING'] = $parts[1];
-            parse_str($this->CI->input->server('QUERY_STRING'), $this->CI->input->get());
+            /*  !!!important directly $_GET array is required here to write query string */
+            parse_str($this->CI->input->server('QUERY_STRING'), $_GET);
         } else {
             $_SERVER['QUERY_STRING'] = '';
             $_GET = [];

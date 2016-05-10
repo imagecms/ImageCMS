@@ -266,14 +266,14 @@ class BaseDiscount
      */
     public static function getDiscountsLabels($type = NULL) {
         $discounts = [
-            'all_order' => lang('Order amount of more than', 'mod_discount'),
-            'comulativ' => lang('Cumulative discount', 'mod_discount'),
-            'user' => lang('User', 'mod_discount'),
-            'group_user' => lang('Users group', 'mod_discount'),
-            'category' => lang('Category', 'mod_discount'),
-            'product' => lang('Product', 'mod_discount'),
-            'brand' => lang('Brand', 'mod_discount'),
-        ];
+                      'all_order'  => lang('Order amount of more than', 'mod_discount'),
+                      'comulativ'  => lang('Cumulative discount', 'mod_discount'),
+                      'user'       => lang('User', 'mod_discount'),
+                      'group_user' => lang('Users group', 'mod_discount'),
+                      'category'   => lang('Category', 'mod_discount'),
+                      'product'    => lang('Product', 'mod_discount'),
+                      'brand'      => lang('Brand', 'mod_discount'),
+                     ];
         if ($type == null) {
             return $discounts;
         }
@@ -339,7 +339,16 @@ class BaseDiscount
      * @return array
      */
     private function emptyToArray($discount) {
-        $toEmpty = ['product', 'brand', 'category', 'certificate', 'all_order', 'comulativ', 'group_user', 'user'];
+        $toEmpty = [
+                    'product',
+                    'brand',
+                    'category',
+                    'certificate',
+                    'all_order',
+                    'comulativ',
+                    'group_user',
+                    'user',
+                   ];
 
         foreach ($toEmpty as $key) {
             if (!isset($discount[$key])) {
@@ -487,7 +496,7 @@ class BaseDiscount
      */
     private function getDiscountProducts() {
         foreach ($this->cartData as $item) {
-            $priceOrigin = number_format($item->originPrice, ShopCore::app()->SSettings->pricePrecision, '.', ''); // new Cart
+            $priceOrigin = number_format($item->originPrice, ShopCore::app()->SSettings->getPricePrecision(), '.', ''); // new Cart
             if (abs($priceOrigin - $item->price) >= 1) {
                 $discountValue += ($priceOrigin - $item->price) * $item->quantity;
             }

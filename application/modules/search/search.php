@@ -11,7 +11,8 @@ if (!defined('BASEPATH')) {
  * TODO:
  *     refresh cache after $search_ttl expry.
  */
-class Search extends MY_Controller {
+class Search extends MY_Controller
+{
 
     public $search_ttl = 3600; //Search time to live in minutes.
 
@@ -56,7 +57,7 @@ class Search extends MY_Controller {
     // Search pages
 
     public function index($hash = '', $offset = 0) {
-        $this->template->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW");
+        $this->template->registerMeta('ROBOTS', 'NOINDEX, NOFOLLOW');
 
         $offset = (int) $offset;
 
@@ -71,30 +72,33 @@ class Search extends MY_Controller {
 
         if ($text_len >= $this->min_s_len AND $text_len < 50) {
             $config = [
-                'table' => 'content',
-                'order_by' => ['publish_date' => 'DESC'],
-                'select' => ['content.*', 'CONCAT_WS( "", content.cat_url, content.url ) as full_url'],
-            ];
+                       'table'    => 'content',
+                       'order_by' => ['publish_date' => 'DESC'],
+                       'select'   => [
+                                      'content.*',
+                                      'CONCAT_WS( "", content.cat_url, content.url ) as full_url',
+                                     ],
+                      ];
 
             $this->init($config);
 
             $where = [
-                [
-                    'post_status' => 'publish',
-                    'operator' => 'WHERE',
-                ],
-                [
-                    'publish_date <=' => 'UNIX_TIMESTAMP()',
-                    'backticks' => FALSE,
-                ],
-                [
-                    'lang' => $this->config->item('cur_lang'),
-                ],
-                [
-                    'group1' => '(title LIKE "%' . $this->db->escape_str($s_text) . '%" OR prev_text LIKE "%' . $this->db->escape_str($s_text) . '%" OR full_text LIKE "%' . $this->db->escape_str($s_text) . '%" )',
-                    'group' => TRUE,
-                ],
-            ];
+                      [
+                       'post_status' => 'publish',
+                       'operator'    => 'WHERE',
+                      ],
+                      [
+                       'publish_date <=' => 'UNIX_TIMESTAMP()',
+                       'backticks'       => FALSE,
+                      ],
+                      [
+                       'lang' => $this->config->item('cur_lang'),
+                      ],
+                      [
+                       'group1' => '(title LIKE "%' . $this->db->escape_str($s_text) . '%" OR prev_text LIKE "%' . $this->db->escape_str($s_text) . '%" OR full_text LIKE "%' . $this->db->escape_str($s_text) . '%" )',
+                       'group'  => TRUE,
+                      ],
+                     ];
 
             /** Data for categories in search * */
             $dataForFoundInCategories = $this->countSearchResults($where);
@@ -141,7 +145,7 @@ class Search extends MY_Controller {
 
         $data = $this->_highlight_text($data, $s_text);
 
-        $this->core->set_meta_tags([lang("Search", 'search'), $this->search_title]);
+        $this->core->set_meta_tags([lang('Search', 'search'), $this->search_title]);
         $this->core->core_data['data_type'] = 'search';
         $this->_display($data, $dataForFoundInCategories);
     }
@@ -199,19 +203,6 @@ class Search extends MY_Controller {
         }
     }
 
-    public function save_positions() {
-        $positions = $this->input->post('positions');
-        if (count($positions) == 0) {
-            return false;
-        }
-
-        foreach ($positions as $key => $val) {
-            $query = "UPDATE `shop_product_variants` SET `position`=" . $key . " WHERE `id`=" . (int) $val . "; ";
-            $this->db->query($query);
-        }
-        showMessage(lang('Positions saved', 'search'));
-    }
-
     public function clear() {
         $this->search_ttl = 600;
         $this->table = '';
@@ -247,7 +238,7 @@ class Search extends MY_Controller {
         $collect_ids = FALSE;
 
         if ($this->table == '') {
-            $error = lang("Error. Select or specify the table for search", 'search');
+            $error = lang('Error. Select or specify the table for search', 'search');
             return $error;
         }
 
@@ -272,15 +263,15 @@ class Search extends MY_Controller {
                 }
 
                 $q_data = [
-                    'hash' => $this->query_hash,
-                    'datetime' => time(),
-                    'where_array' => serialize($where),
-                    'select_array' => serialize($this->select),
-                    'table_name' => $this->table,
-                    'order_by' => serialize($this->order_by),
-                    'row_count' => $this->row_count,
-                    'search_title' => $this->search_title,
-                ];
+                           'hash'         => $this->query_hash,
+                           'datetime'     => time(),
+                           'where_array'  => serialize($where),
+                           'select_array' => serialize($this->select),
+                           'table_name'   => $this->table,
+                           'order_by'     => serialize($this->order_by),
+                           'row_count'    => $this->row_count,
+                           'search_title' => $this->search_title,
+                          ];
 
                 $this->db->insert($this->search_table, $q_data);
             }
@@ -375,11 +366,11 @@ class Search extends MY_Controller {
             }
 
             $data = [
-                'query' => $this->db->get($this->table),
-                'total_rows' => $this->hash_data->total_rows,
-                'hash' => $this->query_hash,
-                'search_title' => $this->search_title,
-            ];
+                     'query'        => $this->db->get($this->table),
+                     'total_rows'   => $this->hash_data->total_rows,
+                     'hash'         => $this->query_hash,
+                     'search_title' => $this->search_title,
+                    ];
 
             return $data;
         }
@@ -484,12 +475,12 @@ class Search extends MY_Controller {
 
             $this->template->add_array(
                 [
-                        'items' => $pages,
-                        'categoriesInSearchResults' => $categoriesInSearchResults,
-                        'tree' => $tree,
-                        'countAll' => count($foundInCategories),
-                        'categoriesInfo' => $categoriesInfo
-                    ]
+                 'items'                     => $pages,
+                 'categoriesInSearchResults' => $categoriesInSearchResults,
+                 'tree'                      => $tree,
+                 'countAll'                  => count($foundInCategories),
+                 'categoriesInfo'            => $categoriesInfo,
+                ]
             );
         }
 
@@ -536,48 +527,40 @@ class Search extends MY_Controller {
         $this->load->dbforge();
 
         $fields = [
-            'id' => [
-                'type' => 'INT',
-                'constraint' => 11,
-                'auto_increment' => TRUE,
-            ],
-            'hash' => [
-                'type' => 'VARCHAR',
-                'constraint' => 264,
-            ],
-            'datetime' => [
-                'type' => 'INT',
-                'constraint' => 11,
-            ],
-            'where_array' => [
-                'type' => 'TEXT',
-            ],
-            'select_array' => [
-                'type' => 'TEXT',
-            ],
-            'table_name' => [
-                'type' => 'VARCHAR',
-                'constraint' => 100,
-            ],
-            'order_by' => [
-                'type' => 'TEXT',
-            ],
-            'row_count' => [
-                'type' => 'INT',
-                'constraint' => 11,
-            ],
-            'total_rows' => [
-                'type' => 'INT',
-                'constraint' => 11,
-            ],
-            'ids' => [
-                'type' => 'TEXT',
-            ],
-            'search_title' => [
-                'type' => 'VARCHAR',
-                'constraint' => '250',
-            ],
-        ];
+                   'id'           => [
+                                      'type'           => 'INT',
+                                      'constraint'     => 11,
+                                      'auto_increment' => TRUE,
+                                     ],
+                   'hash'         => [
+                                      'type'       => 'VARCHAR',
+                                      'constraint' => 264,
+                                     ],
+                   'datetime'     => [
+                                      'type'       => 'INT',
+                                      'constraint' => 11,
+                                     ],
+                   'where_array'  => ['type' => 'TEXT'],
+                   'select_array' => ['type' => 'TEXT'],
+                   'table_name'   => [
+                                      'type'       => 'VARCHAR',
+                                      'constraint' => 100,
+                                     ],
+                   'order_by'     => ['type' => 'TEXT'],
+                   'row_count'    => [
+                                      'type'       => 'INT',
+                                      'constraint' => 11,
+                                     ],
+                   'total_rows'   => [
+                                      'type'       => 'INT',
+                                      'constraint' => 11,
+                                     ],
+                   'ids'          => ['type' => 'TEXT'],
+                   'search_title' => [
+                                      'type'       => 'VARCHAR',
+                                      'constraint' => '250',
+                                     ],
+                  ];
 
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_field($fields);

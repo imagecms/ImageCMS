@@ -94,7 +94,6 @@ msgstr "Name"
 msgid "Old password"
 msgstr "Old password"
 
-# ?
 #: ./application/modules/auth/auth.php:337
 #: ./application/modules/auth/authapi.php:259
 msgid "You have successfully zeroed my password. "

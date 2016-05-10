@@ -4,7 +4,7 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-class Permitions
+class Permitions extends BaseAdminController
 {
 
     private static $shop_controllers_path;  //define shop admin controllers path
@@ -21,7 +21,11 @@ class Permitions
 
     private static $rbac_roles_privileges_table = 'shop_rbac_roles_privileges'; //define roles privileges table
 
-    private static $controller_types = ['shop', 'base', 'module'];         //define controllers types
+    private static $controller_types = [
+                                        'shop',
+                                        'base',
+                                        'module',
+                                       ];         //define controllers types
 
     private static $installed_modules = [];         //define installed modules
 
@@ -205,7 +209,10 @@ class Permitions
         }
 
         if ($checkLink AND $link != '') {
-            return ['adminClassName' => $adminClassName, 'adminMethod' => $adminMethod];
+            return [
+                    'adminClassName' => $adminClassName,
+                    'adminMethod'    => $adminMethod,
+                   ];
         } else {
             self::checkAllPermitions($adminClassName, $adminMethod);
         }
@@ -411,8 +418,8 @@ class Permitions
 
             $this->template->add_array(
                 [
-                    'model' => $model,
-                    'privileges' => $model->result(),
+                 'model'      => $model,
+                 'privileges' => $model->result(),
                 ]
             );
 
@@ -461,8 +468,8 @@ class Permitions
 
             $this->template->add_array(
                 [
-                    'model' => $model->row(),
-                    'privileges' => $sqlPrivilege
+                 'model'      => $model->row(),
+                 'privileges' => $sqlPrivilege,
                 ]
             );
 
@@ -479,7 +486,7 @@ class Permitions
 
         $this->template->add_array(
             [
-                'model' => $query->result()
+             'model' => $query->result(),
             ]
         );
 
@@ -570,9 +577,7 @@ class Permitions
             $result = self::makeRolesArray($controller_types, $locale);
 
             $this->template->add_array(
-                [
-                    'types' => $result
-                ]
+                ['types' => $result]
             );
 
             $this->template->show('roleCreate', FALSE);
@@ -609,9 +614,9 @@ class Permitions
 
             $this->template->add_array(
                 [
-                    'model' => $queryModel,
-                    'idRole' => $id,
-                    'lang_sel' => $lang
+                 'model'    => $queryModel,
+                 'idRole'   => $id,
+                 'lang_sel' => $lang,
                 ]
             );
             $this->template->show('translateRole', FALSE);
@@ -715,10 +720,10 @@ class Permitions
             $Lang = $this->db->query($sqlLangSel)->row();
             $this->template->add_array(
                 [
-                    'model' => $queryModel->row(),
-                    'lang_sel' => $Lang,
-                    'types' => $result,
-                    'privilegeCheck' => $role_privileges
+                 'model'          => $queryModel->row(),
+                 'lang_sel'       => $Lang,
+                 'types'          => $result,
+                 'privilegeCheck' => $role_privileges,
                 ]
             );
 
@@ -735,7 +740,7 @@ class Permitions
     public static function roleList() {
         CI::$APP->template->add_array(
             [
-                'model' => self::getRoles()
+             'model' => self::getRoles(),
             ]
         );
 
@@ -822,9 +827,7 @@ class Permitions
             $queryRBACGroup = $this->db->query($sql)->result();
 
             $this->template->add_array(
-                [
-                    'groups' => $queryRBACGroup
-                ]
+                ['groups' => $queryRBACGroup]
             );
 
             $this->template->show('privilegeCreate', FALSE);
@@ -871,8 +874,8 @@ class Permitions
 
             $this->template->add_array(
                 [
-                    'model' => $queryRBACPrivilege,
-                    'groups' => $queryRBACGroup
+                 'model'  => $queryRBACPrivilege,
+                 'groups' => $queryRBACGroup,
                 ]
             );
 
@@ -905,8 +908,8 @@ class Permitions
 
         $this->template->add_array(
             [
-                'model' => $queryRBACGroup,
-                'groups' => $queryGroups
+             'model'  => $queryRBACGroup,
+             'groups' => $queryGroups,
             ]
         );
 

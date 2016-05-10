@@ -4,7 +4,6 @@ namespace xbanners\models\Base;
 
 use \Exception;
 use \PDO;
-use Base\PropelBaseModelClass;
 use Propel\Runtime\Propel;
 use Propel\Runtime\ActiveQuery\Criteria;
 use Propel\Runtime\ActiveQuery\ModelCriteria;
@@ -28,7 +27,7 @@ use xbanners\models\Map\BannerImageI18nTableMap;
  *
 * @package    propel.generator.xbanners.models.Base
 */
-abstract class BannerImageI18n extends PropelBaseModelClass implements ActiveRecordInterface
+abstract class BannerImageI18n implements ActiveRecordInterface
 {
     /**
      * TableMap class name
@@ -728,8 +727,8 @@ abstract class BannerImageI18n extends PropelBaseModelClass implements ActiveRec
         }
 
         return $con->transaction(function () use ($con) {
-            $isInsert = $this->isNew();
             $ret = $this->preSave($con);
+            $isInsert = $this->isNew();
             if ($isInsert) {
                 $ret = $ret && $this->preInsert($con);
             } else {
@@ -1389,6 +1388,9 @@ abstract class BannerImageI18n extends PropelBaseModelClass implements ActiveRec
      */
     public function preSave(ConnectionInterface $con = null)
     {
+        if (is_callable('parent::preSave')) {
+            return parent::preSave($con);
+        }
         return true;
     }
 
@@ -1398,7 +1400,9 @@ abstract class BannerImageI18n extends PropelBaseModelClass implements ActiveRec
      */
     public function postSave(ConnectionInterface $con = null)
     {
-
+        if (is_callable('parent::postSave')) {
+            parent::postSave($con);
+        }
     }
 
     /**
@@ -1408,6 +1412,9 @@ abstract class BannerImageI18n extends PropelBaseModelClass implements ActiveRec
      */
     public function preInsert(ConnectionInterface $con = null)
     {
+        if (is_callable('parent::preInsert')) {
+            return parent::preInsert($con);
+        }
         return true;
     }
 
@@ -1417,7 +1424,9 @@ abstract class BannerImageI18n extends PropelBaseModelClass implements ActiveRec
      */
     public function postInsert(ConnectionInterface $con = null)
     {
-
+        if (is_callable('parent::postInsert')) {
+            parent::postInsert($con);
+        }
     }
 
     /**
@@ -1427,6 +1436,9 @@ abstract class BannerImageI18n extends PropelBaseModelClass implements ActiveRec
      */
     public function preUpdate(ConnectionInterface $con = null)
     {
+        if (is_callable('parent::preUpdate')) {
+            return parent::preUpdate($con);
+        }
         return true;
     }
 
@@ -1436,7 +1448,9 @@ abstract class BannerImageI18n extends PropelBaseModelClass implements ActiveRec
      */
     public function postUpdate(ConnectionInterface $con = null)
     {
-
+        if (is_callable('parent::postUpdate')) {
+            parent::postUpdate($con);
+        }
     }
 
     /**
@@ -1446,6 +1460,9 @@ abstract class BannerImageI18n extends PropelBaseModelClass implements ActiveRec
      */
     public function preDelete(ConnectionInterface $con = null)
     {
+        if (is_callable('parent::preDelete')) {
+            return parent::preDelete($con);
+        }
         return true;
     }
 
@@ -1455,7 +1472,9 @@ abstract class BannerImageI18n extends PropelBaseModelClass implements ActiveRec
      */
     public function postDelete(ConnectionInterface $con = null)
     {
-
+        if (is_callable('parent::postDelete')) {
+            parent::postDelete($con);
+        }
     }
 
 

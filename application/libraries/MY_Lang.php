@@ -19,7 +19,8 @@ if (!defined('BASEPATH')) {
  */
 // ------------------------------------------------------------------------
 
-class MY_Lang extends CI_Lang {
+class MY_Lang extends CI_Lang
+{
 
     private $ci;
 
@@ -178,7 +179,7 @@ class MY_Lang extends CI_Lang {
      * @return string
      */
     private function replaceDynamically($sString) {
-        $aTrad = array();
+        $aTrad = [];
         for ($i = 1, $iMax = func_num_args(); $i < $iMax; $i++) {
             $arg = func_get_arg($i);
             if (is_array($arg)) {

@@ -18,7 +18,6 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
-# ? (Андрій)
 #: ./application/modules/tags/tags.php:160
 msgid "Search title"
 msgstr "Search title"

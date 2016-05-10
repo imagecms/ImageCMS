@@ -17,7 +17,10 @@ class Mabilis_Compiler extends Mabilis
     // Each of this function will be renamed as tpl_$func
     private $func_prefix = 'func_';
 
-    private $func_array = ['counter', 'truncate'];
+    private $func_array = [
+                           'counter',
+                           'truncate',
+                          ];
 
     // Constructor
 
@@ -145,7 +148,10 @@ class Mabilis_Compiler extends Mabilis
 
             preg_match_all('/<\!user_php(.*)\s*user_php\!>/', $tpl_data, $_match);
 
-            $php_patterns = ['/<\?php/', '/\?>/'];
+            $php_patterns = [
+                             '/<\?php/',
+                             '/\?>/',
+                            ];
 
             foreach ($_match[0] as $k => $v) {
                 $text = preg_replace($php_patterns, $this->config->delimiters, $v);
@@ -158,7 +164,10 @@ class Mabilis_Compiler extends Mabilis
             // Replace php tags to { } between literal tags
             preg_match_all('/<\!user_literal(.*?)user_literal\!>/si', $tpl_data, $_match);
 
-            $php_patterns = ['/<\?php/', '/\?>/'];
+            $php_patterns = [
+                             '/<\?php/',
+                             '/\?>/',
+                            ];
 
             foreach ($_match[0] as $k => $v) {
                 $text = preg_replace($php_patterns, $this->config->delimiters, $v);

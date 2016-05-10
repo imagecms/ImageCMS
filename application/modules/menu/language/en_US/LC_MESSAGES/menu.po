@@ -42,7 +42,6 @@ msgstr "Add menu item"
 msgid "Create a menu"
 msgstr "Add new menu"
 
-# ?
 #: ./application/modules/menu/admin.php:224
 msgid "The menu item was successfully created"
 msgstr "The menu item successfully created"
@@ -107,7 +106,6 @@ msgstr "Menu item translation"
 msgid "Not found the required template file for menu"
 msgstr "The requaired template file for menu not found"
 
-# ?
 #: ./application/modules/menu/admin.php:815
 msgid "Name field sieve"
 msgstr "Field name saved/ Field name has been saved"
@@ -119,7 +117,6 @@ msgstr "Field name saved/ Field name has been saved"
 msgid "Specify or select a link to the page"
 msgstr "Specify or select a link to the page"
 
-# ?
 #: ./application/modules/menu/admin.php:612
 msgid "Can not be root menu in subparagraph"
 msgstr "Root menu cannot be used as a child item"

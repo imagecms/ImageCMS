@@ -6,9 +6,8 @@ use CI_DB_active_record;
 use CI_Model;
 use Core;
 use Exception;
-use import_export\classes\CategoryImport as CategoriesHandler;
 use import_export\classes\ProductsImport as ProductsHandler;
-use import_export\classes\PropertiesImport as PropertiesHandler;
+use My_Controller;
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
@@ -59,7 +58,7 @@ class BaseImport extends CI_Model
      * CSV delimiter
      * @var string
      */
-    public $delimiter = ";";
+    public $delimiter = ';';
 
     /**
      * CSV enclosure
@@ -77,7 +76,7 @@ class BaseImport extends CI_Model
      * Attributes
      * @var array
      */
-    public $attributes = "";
+    public $attributes = '';
 
     /**
      * The maximum number of fields
@@ -113,8 +112,8 @@ class BaseImport extends CI_Model
 
     public function __construct() {
         parent::__construct();
-        $this->languages = \My_Controller::getCurrentLocale();
-        $this->languages = $this->input->post('language') ? $this->input->post('language') : $this->languages;
+        $this->languages = My_Controller::getCurrentLocale();
+        $this->languages = $this->input->post('language') ?: $this->languages;
         $this->getLangs();
     }
 
@@ -146,9 +145,9 @@ class BaseImport extends CI_Model
             $this->validateFile($offers, $limit);
         } else {
             $this->parseFile($offers, $limit);
-            CategoriesHandler::loadCategories($EmptyFields);
+            $this->loadCategories($EmptyFields);
             ProductsHandler::create()->make($EmptyFields);
-            PropertiesHandler::runProperties();
+            $this->runProperties();
         }
         if (ImportBootstrap::noErrors()) {
             ImportBootstrap::create()->addMessage(Factor::SuccessImportCompleted . '<b>' . $countProd . '</b>', Factor::MessageTypeSuccess);
@@ -219,9 +218,9 @@ class BaseImport extends CI_Model
         }
         if ((count($this->possibleAttributes) - count(array_diff($this->possibleAttributes, $row))) == count($this->attributes)) {
             $this->attributes = $row;
-        } elseif (count($row) === count($this->attributes))
+        } elseif (count($row) === count($this->attributes)) {
             rewind($file);
-        else {
+        } else {
             ImportBootstrap::addMessage(Factor::ErrorPossibleAttrValues);
             return FALSE;
         }
@@ -265,7 +264,6 @@ class BaseImport extends CI_Model
                 }
                 $cnt++;
             }
-            //                var_dump($this->content);
         } else {
             $cnt = 0;
             while (($row = fgetcsv($file, $this->maxRowLegth, $this->delimiter, $this->enclosure)) !== false) {
@@ -282,6 +280,7 @@ class BaseImport extends CI_Model
 
     /**
      * Set Import Type. Must be setted before import start.
+     * @param $type
      * @return BaseImport
      * @access public
      * @author Kaero
@@ -294,6 +293,7 @@ class BaseImport extends CI_Model
 
     /**
      * Set Import Settings. Must be setted before import start.
+     * @param $settings
      * @return BaseImport
      * @access public
      * @author Kaero
@@ -351,31 +351,31 @@ class BaseImport extends CI_Model
     public function makeAttributesList() {
         if (!count($this->possibleAttributes)) {
             $this->possibleAttributes = [
-                'skip' => lang('Skip column', 'import_export'),
-                'name' => lang('Product Name', 'import_export'),
-                'url' => lang('URL', 'import_export'),
-                'prc' => lang('Price', 'import_export'),
-                'oldprc' => lang('Old Price', 'import_export'),
-                'stk' => lang('Amount', 'import_export'),
-                'num' => lang('Article', 'import_export'),
-                'var' => lang('Variant name', 'import_export'),
-                'act' => lang('Active', 'import_export'),
-                'hit' => lang('Hit', 'import_export'),
-                'hot' => lang('Hot', 'import_export'),
-                'action' => lang('Action', 'import_export'),
-                'brd' => lang('Brand', 'import_export'),
-                'cat' => lang('Category', 'import_export'),
-                'addcats' => lang('Additional categories', 'import_export'),
-                'relp' => lang('Related products', 'import_export'),
-                'vimg' => lang('Main image variant', 'import_export'),
-                'cur' => lang('Currencies', 'import_export'),
-                'imgs' => lang('Additional images', 'import_export'),
-                'shdesc' => lang('Short description', 'import_export'),
-                'desc' => lang('Full description', 'import_export'),
-                'mett' => lang('Meta Title', 'import_export'),
-                'metd' => lang('Meta Description', 'import_export'),
-                'metk' => lang('Meta Keywords', 'import_export')
-            ];
+                                         'skip'    => lang('Skip column', 'import_export'),
+                                         'name'    => lang('Product Name', 'import_export'),
+                                         'url'     => lang('URL', 'import_export'),
+                                         'prc'     => lang('Price', 'import_export'),
+                                         'oldprc'  => lang('Old Price', 'import_export'),
+                                         'stk'     => lang('Amount', 'import_export'),
+                                         'num'     => lang('Article', 'import_export'),
+                                         'var'     => lang('Variant name', 'import_export'),
+                                         'act'     => lang('Active', 'import_export'),
+                                         'hit'     => lang('Hit', 'import_export'),
+                                         'hot'     => lang('Hot', 'import_export'),
+                                         'action'  => lang('Action', 'import_export'),
+                                         'brd'     => lang('Brand', 'import_export'),
+                                         'cat'     => lang('Category', 'import_export'),
+                                         'addcats' => lang('Additional categories', 'import_export'),
+                                         'relp'    => lang('Related products', 'import_export'),
+                                         'vimg'    => lang('Main image variant', 'import_export'),
+                                         'cur'     => lang('Currencies', 'import_export'),
+                                         'imgs'    => lang('Additional images', 'import_export'),
+                                         'shdesc'  => lang('Short description', 'import_export'),
+                                         'desc'    => lang('Full description', 'import_export'),
+                                         'mett'    => lang('Meta Title', 'import_export'),
+                                         'metd'    => lang('Meta Description', 'import_export'),
+                                         'metk'    => lang('Meta Keywords', 'import_export'),
+                                        ];
 
             $properties = $this->db->query(
                 '
@@ -392,6 +392,224 @@ class BaseImport extends CI_Model
             }
         }
         return $this;
+    }
+
+    /**
+     * FROM PropertiesImport
+     */
+
+    /**
+     * Process Properties Handling
+     * @access public
+     * @author Kaero
+     * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
+     */
+    public function runProperties() {
+        if (ImportBootstrap::hasErrors()) {
+            return FALSE;
+        }
+        $properties = $this->db->query('SELECT `id`, `csv_name` FROM `shop_product_properties`')->result();
+        foreach ($properties as $property) {
+            $properyAlias[$property->csv_name] = $property->id;
+        }
+
+        foreach ($this->content as $node) {
+            foreach ($node as $nodeKey => $nodeElement) {
+
+                if (array_key_exists($nodeKey, $properyAlias)) {
+                    $result = $this->db->query('SELECT * FROM `shop_product_properties_data` WHERE `product_id` = ? AND `property_id` = ?', [$node['ProductId'], $properyAlias[$nodeKey]])->row();
+
+                    if ($result instanceof \stdClass) {
+                        $this->db->delete(
+                            'shop_product_properties_data',
+                            [
+                             'product_id'  => $node['ProductId'],
+                             'property_id' => $properyAlias[$nodeKey],
+                             'locale'      => $this->languages,
+                            ]
+                        );
+                    }
+                    $insertdata = [];
+                    $values = array_map('trim', explode('|', $nodeElement));
+                    foreach ($values as $v) {
+                        $v = htmlspecialchars($v);
+                        if ($v !== '') {
+                            $insertdata[] = [
+                                             'product_id'  => $node['ProductId'],
+                                             'property_id' => $properyAlias[$nodeKey],
+                                             'locale'      => $this->languages,
+                                             'value'       => $v,
+                                            ];
+                        }
+                    }
+                    $this->db->insert_batch('shop_product_properties_data', $insertdata);
+
+                    foreach ($node['CategoryIds'] as $categoryId) {
+                        $result = $this->db->query('SELECT * FROM `shop_product_properties_categories` WHERE `category_id` = ? AND `property_id` = ?', [$categoryId, $properyAlias[$nodeKey]])->row();
+                        if (!($result instanceof \stdClass) && !empty($nodeElement)) {
+                            $this->db->insert('shop_product_properties_categories', ['property_id' => $properyAlias[$nodeKey], 'category_id' => $categoryId]);
+                        }
+                    }
+
+                    $propery = $this->db->query(
+                        '
+                    SELECT `id`, `data`
+                    FROM `shop_product_properties_i18n`
+                    WHERE id = ? AND locale = ?',
+                        [
+                         $properyAlias[$nodeKey],
+                         $this->languages,
+                        ]
+                    )->row();
+                    $data = (!empty($propery->data)) ? unserialize($propery->data) : [];
+                    $changed = false;
+                    foreach ($values as $v) {
+                        if (!in_array($v, $data, true)) {
+                            $changed = true;
+                            $data[] = $v;
+                        }
+                    }
+                    if ($changed) {
+                        $this->db->update('shop_product_properties_i18n', ['data' => serialize($data)], ['id' => $properyAlias[$nodeKey], 'locale' => $this->languages]);
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Add new value to custom field and save it.
+     * @param mixed $name
+     * @param mixed $value
+     * @access public
+     * @return void
+     * @author Kaero
+     * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
+     */
+    public function addCustomFieldValue($name, $value) {
+        if (array_key_exists($name, $this->customFieldsCache)) {
+            $fieldDataArray = $this->customFieldsCache[$name]->getDataArray();
+
+            if ($fieldDataArray === null) {
+                $fieldDataArray = [];
+            }
+
+            if (!in_array($value, $fieldDataArray)) {
+                array_push($fieldDataArray, $value);
+                $newData = implode("\n", $fieldDataArray);
+                $this->customFieldsCache[$name]->setData($newData);
+                $this->customFieldsCache[$name]->save();
+                $this->customFieldsCache[$name]->setVirtualColumn('dataArray', $fieldDataArray);
+                $this->customFieldsCache[$name]->setData($newData);
+            }
+        }
+    }
+
+    /**
+     * FROM CategoryImport
+     */
+
+    /**
+     * Process Categories
+     * @access public
+     * @author Kaero
+     * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
+     */
+    public function loadCategories() {
+        if (ImportBootstrap::hasErrors()) {
+            return FALSE;
+        }
+        $this->load->helper('translit');
+        foreach ($this->content as $key => $node) {
+            if ($node['cat'] == '') {
+                continue;
+            }
+
+            if (trim($node['addcats'])) {
+                $cats = explode('|', $node['addcats']);
+                foreach ($cats as $cat) {
+                    $this->content(['cat' => $cat], $key);
+                }
+            }
+            $this->content($node, $key);
+        }
+    }
+
+    /**
+     * @param string $node
+     * @param string $key
+     */
+    private function content($node, $key) {
+
+        $parts = $this->parseCategoryName($node['cat']);
+        $pathIds = $pathNames = [];
+        $parentId = $line = 0;
+        foreach ($parts as $part) {
+            $pathNames[] = $part;
+
+            /* Find existing category */
+            $binds = [
+                      $part,
+                      $this->languages,
+                      $parentId,
+                     ];
+            //                $binds = array($part, $this->mainLanguages, $parentId);
+            $result = $this->db->query(
+                '
+                SELECT SCategory.id as CategoryId
+                FROM `shop_category_i18n` as SCategoryI18n
+                RIGHT OUTER JOIN `shop_category` AS SCategory ON SCategory.id = SCategoryI18n.id
+                WHERE SCategoryI18n.name = ? AND SCategoryI18n.locale = ? AND SCategory.parent_id = ?',
+                $binds
+            );
+            if ($result) {
+                $result = $result->row();
+            } else {
+                Logger::create()->set('Error $result in CategoryImport.php - IMPORT');
+            }
+
+            if (!($result instanceof \stdClass)) {
+                /* Create new category */
+                $lastPosition = $this->db->query('SELECT max(position) as maxPos FROM `shop_category`')->row()->maxPos;
+                $binds = [
+                          'parent_id'     => $parentId,
+                          'full_path_ids' => serialize($pathIds),
+                          'full_path'     => implode('/', array_map('translit_url', $pathNames)),
+                          'url'           => translit_url($part),
+                          'active'        => 1,
+                          'position'      => $lastPosition + 1,
+                         ];
+                $this->db->insert('shop_category', $binds);
+                $newCategoryId = $this->db->insert_id();
+                if (!$newCategoryId) {
+                    Logger::create()->set('Error INSERT category or SELECT id new category in CategoryImport.php - IMPORT');
+                }
+
+                /* Add translation data for new category  */
+                foreach ($this->allLanguages as $val) {
+                    $this->db->insert('shop_category_i18n', ['id' => $newCategoryId, 'locale' => $val, 'name' => trim($part)]);
+                }
+
+                $this->content[$key]['CategoryId'] = $pathIds[] = $parentId = $newCategoryId;
+                $this->content[$key]['CategoryIds'] = $pathIds;
+            } else {
+                $this->content[$key]['CategoryId'] = $pathIds[] = $parentId = $result->CategoryId;
+                $this->content[$key]['CategoryIds'] = $pathIds;
+            }
+        }
+    }
+
+    /**
+     * Parse Category Name by slashes
+     * @param string $name
+     * @return array
+     * @access private
+     * @author Kaero
+     * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
+     */
+    private function parseCategoryName($name) {
+        $result = array_map('trim', array_map('stripcslashes', preg_split('/\\REPLACE((?:[^\\\\\REPLACE]|\\\\.)*)/', $name, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY)));
+        return explode('/', $result[0]);
     }
 
 }

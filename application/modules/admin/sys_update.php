@@ -51,16 +51,16 @@ class Sys_update extends BaseAdminController
 
         if ($array) {
             $data = [
-                'build' => $array['build_id'],
-                'date' => date('Y-m-d', $array['time']),
-                'size' => number_format($array['size'] / 1024 / 1024, 3),
-                'newRelise' => TRUE,
-            ];
+                     'build'     => $array['build_id'],
+                     'date'      => date('Y-m-d', $array['time']),
+                     'size'      => number_format($array['size'] / 1024 / 1024, 3),
+                     'newRelise' => TRUE,
+                    ];
         } else {
             $data = [
-                'newRelise' => FALSE,
-                'error' => $error,
-            ];
+                     'newRelise' => FALSE,
+                     'error'     => $error,
+                    ];
         }
 
         $this->template->show('sys_update_info', FALSE, $data);
@@ -70,6 +70,8 @@ class Sys_update extends BaseAdminController
      * initiate update process
      */
     public function do_update() {
+        chmod(DOCUMENT_ROOT . '/backup.sql', 777);
+        unlink(DOCUMENT_ROOT . '/backup.sql');
 
         set_time_limit(99999999999999);
 
@@ -135,26 +137,26 @@ class Sys_update extends BaseAdminController
         $config['first_tag_open'] = '<li>';
         $config['first_tag_close'] = '</li>';
 
-        $result = array_chunk($result , 25 , true);
+        $result = array_chunk($result, 25, true);
         $this->pagination->initialize($config);
 
-        $page_num = $this->input->get('per_page') >= 25  ? $this->input->get('per_page') / 25 : 0;
+        $page_num = $this->input->get('per_page') >= 25 ? $this->input->get('per_page') / 25 : 0;
         if (!$result[0]['error']) {
             $data = [
-                'paginator' => $this->pagination->create_links_ajax(),
-                'filesCount' => $filesCount,
-                'sort_by' => $sort_by,
-                'order' => $order,
-                'diff_files_dates' => $this->update->get_files_dates(),
-                'diff_files' => $result[$page_num] ,
-                'restore_files' => $this->sort($this->update->restore_files_list(), $sort_by, $order),
-                'new_version' => $status ? TRUE : FALSE
-            ];
+                     'paginator'        => $this->pagination->create_links_ajax(),
+                     'filesCount'       => $filesCount,
+                     'sort_by'          => $sort_by,
+                     'order'            => $order,
+                     'diff_files_dates' => $this->update->get_files_dates(),
+                     'diff_files'       => $result[$page_num],
+                     'restore_files'    => $this->sort($this->update->restore_files_list(), $sort_by, $order),
+                     'new_version'      => $status ? TRUE : FALSE,
+                    ];
         } else {
             $data = [
-                'restore_files' => $this->sort($this->update->restore_files_list(), $sort_by, $order),
-                'error' => $result[0]['error']
-            ];
+                     'restore_files' => $this->sort($this->update->restore_files_list(), $sort_by, $order),
+                     'error'         => $result[0]['error'],
+                    ];
         }
         $this->template->show('sys_update', FALSE, $data);
     }
@@ -203,8 +205,8 @@ class Sys_update extends BaseAdminController
             }
         } else {
             $data = [
-                'careKey' => $this->update->getSettings('careKey')
-            ];
+                     'careKey' => $this->update->getSettings('careKey'),
+                    ];
             $this->template->show('sys_update_properties', FALSE, $data);
         }
     }

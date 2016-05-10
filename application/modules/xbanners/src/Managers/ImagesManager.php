@@ -91,7 +91,24 @@ class ImagesManager
      * @return string
      */
     public function getImageOriginPath($image_name = NULL) {
-        return $image_name ? self::IMAGES_ORIGIN_DIR_PATH . $image_name : NULL;
+
+        if ($image_name) {
+
+            $path1 = ltrim(self::IMAGES_ORIGIN_DIR_PATH, '/') . $image_name;
+            $fullPath1 = FCPATH . $path1;
+
+            if (file_exists($fullPath1)) {
+                return '/' . $path1;
+            }
+
+            $path2 = 'uploads/banners/origins/' . $image_name;
+            $fullPath2 = FCPATH . $path2;
+            if (file_exists($fullPath2)) {
+                return '/' . $path2;
+            }
+            return $image_name ? self::IMAGES_ORIGIN_DIR_PATH . $image_name : NULL;
+        }
+
     }
 
     /** Get origin image path
@@ -241,8 +258,8 @@ class ImagesManager
         if ($error_message) {
             echo json_encode(
                 [
-                    'status' => false,
-                    'errorMessage' => $error_message,
+                 'status'       => false,
+                 'errorMessage' => $error_message,
                 ]
             );
 

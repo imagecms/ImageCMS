@@ -18,12 +18,10 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
-# ?
 #: ./application/modules/core/core.php:355
 msgid "Home page not found."
 msgstr "Home page not found / Home page has not been  found."
 
-# ?
 #: ./application/modules/core/core.php:402
 msgid "Module uploading or loading  error"
 msgstr "Module uploading or loading  error"
@@ -40,22 +38,18 @@ msgstr "Last"
 msgid "Can't locate category template file."
 msgstr "Cannot locate category template file"
 
-# ?
 #: ./application/modules/core/core.php:607
 msgid "In the category has no pages."
 msgstr "The category has no pages"
 
-# ?
 #: ./application/modules/core/core.php:766
 msgid "Page not found"
 msgstr "Page not found/Page has not been found"
 
-# ?
 #: ./application/modules/core/core.php:768
 msgid "Page not found."
 msgstr "Page not found/Page has not been found"
 
-# ?
 #: ./application/modules/core/core_widgets.php:88
 msgid "Amount of news"
 msgstr "Amount of news"
@@ -109,7 +103,6 @@ msgstr "Categories"
 msgid "Without a category"
 msgstr "Without a category"
 
-# ?
 #: ./application/modules/core/templates/recent_news_form.tpl:44
 msgid "Number of news for display"
 msgstr "Number of news posts  for display"

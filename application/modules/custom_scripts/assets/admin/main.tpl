@@ -12,7 +12,7 @@
                         <span class="f-s_14">←</span>
                         <span class="t-d_u">{lang('Back', 'custom_scripts')}</span>
                     </a>
-                    <button  data-form="#customScripts"  class="btn btn-small btn-primary formSubmit"><i class="icon-ok"></i></i>{lang('Save', 'custom_scripts')}</button>
+                    <button  data-form="#customScripts"  class="btn btn-small btn-primary formSubmit"><i class="icon-ok"></i>{lang('Save', 'custom_scripts')}</button>
                 </div>
             </div>
         </div>

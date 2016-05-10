@@ -38,7 +38,6 @@ class Auth extends MY_Controller
     }
 
     public function index() {
-        $this->template->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW");
         $this->login();
     }
 
@@ -85,7 +84,7 @@ class Auth extends MY_Controller
     public function recaptcha_check() {
         $result = $this->dx_auth->is_recaptcha_match();
         if (!$result) {
-            $this->form_validation->set_message('recaptcha_check', lang("Improper protection code"));
+            $this->form_validation->set_message('recaptcha_check', lang('Improper protection code'));
         }
 
         return $result;
@@ -98,13 +97,14 @@ class Auth extends MY_Controller
      */
 
     public function login() {
+        $this->template->registerMeta('ROBOTS', 'NOINDEX, NOFOLLOW');
         $this->core->set_meta_tags(lang('Authorization', 'auth'));
         if (!$this->dx_auth->is_logged_in()) {
             $val = $this->form_validation;
 
             // Set form validation rules
-            $val->set_rules('email', lang("Email"), 'trim|required|min_length[3]|xss_clean|valid_email');
-            $val->set_rules('password', lang("Password"), 'trim|required|min_length[3]|max_length[30]|xss_clean');
+            $val->set_rules('email', lang('Email'), 'trim|required|min_length[3]|xss_clean|valid_email');
+            $val->set_rules('password', lang('Password'), 'trim|required|min_length[3]|max_length[30]|xss_clean');
             $val->set_rules('remember', 'Remember me', 'integer');
 
             // Set captcha rules if login attempts exceed max attempts in config
@@ -126,8 +126,8 @@ class Auth extends MY_Controller
                 } else {
                     $this->template->add_array(
                         [
-                        'is_logged_in' => $this->dx_auth->is_logged_in(),
-                        'success' => true
+                         'is_logged_in' => $this->dx_auth->is_logged_in(),
+                         'success'      => true,
                         ]
                     );
 
@@ -186,7 +186,7 @@ class Auth extends MY_Controller
 
     public function register() {
         $this->core->set_meta_tags(lang('Registration', 'auth'));
-        $this->template->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW");
+        $this->template->registerMeta('ROBOTS', 'NOINDEX, NOFOLLOW');
 
         $this->load->library('Form_validation');
         if (!$this->dx_auth->is_logged_in() AND $this->dx_auth->allow_registration) {
@@ -197,6 +197,20 @@ class Auth extends MY_Controller
             $val->set_rules('username', lang('Name'), 'trim|xss_clean');
             $val->set_rules('password', lang('Password'), 'trim|required|xss_clean|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']|matches[confirm_password]');
             $val->set_rules('confirm_password', lang('Repeat Password'), 'trim|required|xss_clean');
+
+            /** Проверка по кастомным полям */
+            foreach (ShopCore::app()->CustomFieldsHelper->getCustomFielsdAsArray('user') as $item) {
+
+                if ($item['is_active'] == 1) {
+                    if ($item['is_required'] == 1) {
+                        $val->set_rules('custom_field['. $item['id'] .']', lang($item['field_name']), 'trim|xss_clean|required');
+                    } else {
+                        $val->set_rules('custom_field['. $item['id'] .']', lang($item['field_name']), 'trim|xss_clean');
+                    }
+
+                }
+
+            }
 
             if ($this->dx_auth->captcha_registration) {
                 if ($this->dx_auth->use_recaptcha) {
@@ -270,7 +284,7 @@ class Auth extends MY_Controller
 
     public function forgot_password() {
         $this->core->set_meta_tags(lang('Forgot password', 'auth'));
-        $this->template->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW");
+        $this->template->registerMeta('ROBOTS', 'NOINDEX, NOFOLLOW');
         $this->load->library('Form_validation');
 
         $val = $this->form_validation;
@@ -362,7 +376,7 @@ class Auth extends MY_Controller
             $val = $this->form_validation;
 
             // Set form validation rules
-            $val->set_rules('password', lang('Password', 'auth'), "trim|required|xss_clean");
+            $val->set_rules('password', lang('Password', 'auth'), 'trim|required|xss_clean');
 
             // Validate rules and change password
             if ($val->run() AND $this->dx_auth->cancel_account($val->set_value('password'))) {

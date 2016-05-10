@@ -76,7 +76,6 @@ msgstr "Watermark text"
 msgid "Save ratio"
 msgstr "Save ratio"
 
-# ?
 #: application/modules/gallery/templates/admin/categories.tpl:67
 msgid "Delete category?"
 msgstr "Delete category?/Remove category?"
@@ -353,7 +352,6 @@ msgstr "ID"
 msgid "Width"
 msgstr "Width"
 
-# ?
 #: application/modules/gallery/templates/admin/album_list.tpl:51
 #: application/modules/gallery/templates/admin/edit_image.tpl:31
 msgid "Views"

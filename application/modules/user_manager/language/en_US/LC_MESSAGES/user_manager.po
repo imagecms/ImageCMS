@@ -18,7 +18,6 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
-# ? (Андрій)
 #: ./application/modules/user_manager/templates/groups.tpl:2
 msgid "Preliminary contents"
 msgstr "Preliminary contents"
@@ -29,13 +28,11 @@ msgstr "Preliminary contents"
 msgid "Phone"
 msgstr "Phone number"
 
-# ?
 #: ./application/modules/user_manager/admin.php:392
 #: ./application/modules/user_manager/admin.php:400
 msgid "amt_new_pass_confirm"
 msgstr "amt_new_pass_confirm"
 
-# ?
 #: ./application/modules/user_manager/admin.php:367
 msgid "amt_users_not_found"
 msgstr "amt_users_not_found"
@@ -44,7 +41,6 @@ msgstr "amt_users_not_found"
 msgid "Password confirm"
 msgstr "Password confirmation"
 
-# ?
 #: ./application/modules/user_manager/admin.php:390
 msgid "amt_user_login"
 msgstr "amt_user_login"
@@ -57,7 +53,6 @@ msgstr "No group"
 msgid "User editing"
 msgstr "User editing"
 
-# ?
 #: ./application/modules/user_manager/admin.php:405
 msgid "amt_email_exists"
 msgstr "amt_email_exists"
@@ -70,13 +65,11 @@ msgstr "Group editing"
 msgid "Latest Entry or Last Entry"
 msgstr "Last Entry"
 
-# ?
 #: ./application/modules/user_manager/admin.php:391
 #: ./application/modules/user_manager/admin.php:399
 msgid "amt_password"
 msgstr "amt_password"
 
-# ?
 #: ./application/modules/user_manager/admin.php:349
 msgid "a_bas_filt_pass_not_post"
 msgstr "a_bas_filt_pass_not_post"
@@ -85,12 +78,10 @@ msgstr "a_bas_filt_pass_not_post"
 msgid "Filter admin"
 msgstr "Filter"
 
-# ? (Оля)
 #: ./application/modules/user_manager/templates/main.tpl:9
 msgid "Remove selected users?"
 msgstr "Remove selected users?/ Delete selected users?"
 
-# ?
 #: ./application/modules/user_manager/admin.php:433
 msgid "amt_updated_user"
 msgstr "amt_updated_user"
@@ -103,12 +94,10 @@ msgstr "Cancel all"
 msgid "User create"
 msgstr "Create a user"
 
-# ? (Оля)
 #: ./application/modules/user_manager/admin.php:204
 msgid "Create a user or the username has been created"
 msgstr "Create a user/ The username has been created"
 
-# ?
 #: ./application/modules/user_manager/admin.php:394
 msgid "amt_email"
 msgstr "amt_email"

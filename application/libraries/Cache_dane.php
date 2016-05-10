@@ -4,7 +4,8 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-class Cache_dane {
+class Cache_dane
+{
 
     public static $path = 'system/cache/dane/';
 

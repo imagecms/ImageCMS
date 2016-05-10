@@ -42,17 +42,6 @@
                                     <div class="btn-group f-s_0" style="display: none">
                                         <button type="button" class="btn change_image btn-small" data-rel="tooltip" data-title="{lang('Edit','xbanners')}" data-original-title="">
                                             <i class="icon-edit"></i></button>
-                                        {if !$image->getSrc()}
-                                            <button type="button" class="btn delete_image btn-small" data-rel="tooltip" data-title="{lang('Delete','xbanners')}">
-                                                <i class="icon-trash"></i></button>
-                                        {/if}
-                                        {if $image->getSrc()}
-                                            <a href="{site_url('/admin/components/init_window/xbanners/deleteSlideImage')}/{echo $banner->getId()}/{echo $image->getId()}/{$locale}" class="btn delete_image btn-small pjax"
-                                               data-rel="tooltip"
-                                               data-title="{lang('Delete', 'xbanners')}">
-                                                <i class="icon-trash"></i>
-                                            </a>
-                                        {/if}
                                     </div>
                                     <div class="photo-block {if $image->getSrc()}isImage{/if}">
                                         <span class="helper"></span>

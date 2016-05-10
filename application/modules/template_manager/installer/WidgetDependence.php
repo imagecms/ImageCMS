@@ -2,12 +2,15 @@
 
 namespace template_manager\installer;
 
+use SimpleXMLElement;
+
 /**
  * Image CMS
  * Module Template_manager
  * class WidgetDependence
  */
-class WidgetDependence extends DependenceBase {
+class WidgetDependence extends DependenceBase
+{
 
     /**
      * Widget relation (required, wishful, add)
@@ -29,7 +32,7 @@ class WidgetDependence extends DependenceBase {
 
     /**
      * Dependency SimpleXMLElement node
-     * @var \SimpleXMLElement
+     * @var SimpleXMLElement
      */
     public $node;
 
@@ -71,11 +74,11 @@ class WidgetDependence extends DependenceBase {
 
     /**
      * Check install demodata or not
-     * @var type
+     * @var bool
      */
     private $rewriteData;
 
-    public function __construct(\SimpleXMLElement $node) {
+    public function __construct(SimpleXMLElement $node) {
         $attributes = $node->attributes();
 
         /**
@@ -97,17 +100,18 @@ class WidgetDependence extends DependenceBase {
 
     /**
      * Verify widgets dependence relations
-     * @return boolean
+     * @param bool $rewriteData
+     * @return bool
      */
     public function verify($rewriteData = FALSE) {
         $this->rewriteData = $rewriteData;
         $this->getWidgets();
         switch ($this->relation) {
-            case "add":
+            case 'add':
                 return $this->add();
-            case "required":
+            case 'required':
                 return $this->required();
-            case "wishful":
+            case 'wishful':
                 return $this->wishful();
         }
         return FALSE;
@@ -166,15 +170,15 @@ class WidgetDependence extends DependenceBase {
              * Prepare data to insert into DB table `widgets`
              */
             $data = [
-                'name' => $this->name,
-                'description' => $this->description,
-                'data' => $widgetData,
-                'type' => $this->widgetType,
-                'method' => $this->method,
-                'settings' => $this->moduleSettings ? serialize($this->moduleSettings) : '',
-                'description' => $this->description,
-                'created' => time()
-            ];
+                     'name'        => $this->name,
+                     'description' => $this->description,
+                     'data'        => $widgetData,
+                     'type'        => $this->widgetType,
+                     'method'      => $this->method,
+                     'settings'    => $this->moduleSettings ? serialize($this->moduleSettings) : '',
+                     'description' => $this->description,
+                     'created'     => time(),
+                    ];
 
             if ($this->rewriteData) {
                 \CI::$APP->db->where('name', $data['name'])->delete('widgets');
@@ -202,10 +206,10 @@ class WidgetDependence extends DependenceBase {
                     }
 
                     $data_i18n[] = [
-                        'id' => $widget_id,
-                        'locale' => (string) $attributes->locale ? (string) $attributes->locale : \MY_Controller::getCurrentLocale(),
-                        'data' => $data
-                    ];
+                                    'id'     => $widget_id,
+                                    'locale' => (string) $attributes->locale ? (string) $attributes->locale : \MY_Controller::getCurrentLocale(),
+                                    'data'   => $data,
+                                   ];
                 }
             }
 

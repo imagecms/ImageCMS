@@ -197,6 +197,10 @@ class Sitemap extends MY_Controller
         }
     }
 
+    public function build_xml_map_regenerated() {
+        $this->build_xml_map(TRUE);
+    }
+
     /**
      * Create and display sitemap xml
      */
@@ -232,11 +236,11 @@ class Sitemap extends MY_Controller
         // Add main page
         if (!$this->robotsCheck(site_url())) {
             $this->items[] = [
-                'loc' => site_url(),
-                'changefreq' => $this->main_page_changefreq,
-                'priority' => $this->main_page_priority,
-                'lastmod' => date('Y-m-d', time())
-            ];
+                              'loc'        => site_url(),
+                              'changefreq' => $this->main_page_changefreq,
+                              'priority'   => $this->main_page_priority,
+                              'lastmod'    => date('Y-m-d', time()),
+                             ];
         }
         $this->getPagesCategories();
         $this->getAllPages();
@@ -356,11 +360,11 @@ class Sitemap extends MY_Controller
                 if ($this->not_blocked_url($category['path_url'])) {
 
                     $this->items[] = [
-                        'loc' => site_url($category['path_url']),
-                        'changefreq' => $changefreq,
-                        'priority' => $priority,
-                        'lastmod' => $date
-                    ];
+                                      'loc'        => site_url($category['path_url']),
+                                      'changefreq' => $changefreq,
+                                      'priority'   => $priority,
+                                      'lastmod'    => $date,
+                                     ];
                 }
 
                 // Add links to categories in all langs.
@@ -369,11 +373,11 @@ class Sitemap extends MY_Controller
                         $url = $lang_indentif . '/' . $category['path_url'];
                         if ($this->not_blocked_url($url)) {
                             $this->items[] = [
-                                'loc' => site_url($url),
-                                'changefreq' => $changefreq,
-                                'priority' => $priority,
-                                'lastmod' => $date
-                            ];
+                                              'loc'        => site_url($url),
+                                              'changefreq' => $changefreq,
+                                              'priority'   => $priority,
+                                              'lastmod'    => $date,
+                                             ];
                         }
                     }
                 }
@@ -464,11 +468,11 @@ class Sitemap extends MY_Controller
 
                 if ($this->not_blocked_url($url_page)) {
                     $this->items[] = [
-                        'loc' => $url,
-                        'changefreq' => $this->pages_changefreq,
-                        'priority' => $c_priority,
-                        'lastmod' => $date
-                    ];
+                                      'loc'        => $url,
+                                      'changefreq' => $this->pages_changefreq,
+                                      'priority'   => $c_priority,
+                                      'lastmod'    => $date,
+                                     ];
                 }
             }
         }
@@ -524,11 +528,11 @@ class Sitemap extends MY_Controller
                         }
 
                         $this->items[] = [
-                            'loc' => site_url($url),
-                            'changefreq' => $changefreq,
-                            'priority' => $priority,
-                            'lastmod' => $date,
-                        ];
+                                          'loc'        => site_url($url),
+                                          'changefreq' => $changefreq,
+                                          'priority'   => $priority,
+                                          'lastmod'    => $date,
+                                         ];
                     }
                 }
             }
@@ -558,11 +562,11 @@ class Sitemap extends MY_Controller
                         $date = date('Y-m-d', $shopbr['created']);
                     }
                     $this->items[] = [
-                        'loc' => $url,
-                        'changefreq' => $this->brands_changefreq,
-                        'priority' => $this->brands_priority,
-                        'lastmod' => $date
-                    ];
+                                      'loc'        => $url,
+                                      'changefreq' => $this->brands_changefreq,
+                                      'priority'   => $this->brands_priority,
+                                      'lastmod'    => $date,
+                                     ];
                 }
             }
         }
@@ -590,11 +594,11 @@ class Sitemap extends MY_Controller
                             $date = date('Y-m-d', $shopprod['created']);
                         }
                         $this->items[] = [
-                            'loc' => $url,
-                            'changefreq' => $this->products_changefreq,
-                            'priority' => $this->products_priority,
-                            'lastmod' => $date
-                        ];
+                                          'loc'        => $url,
+                                          'changefreq' => $this->products_changefreq,
+                                          'priority'   => $this->products_priority,
+                                          'lastmod'    => $date,
+                                         ];
                     }
                 }
             }
@@ -759,10 +763,10 @@ class Sitemap extends MY_Controller
             ->get_where(
                 'content',
                 [
-                    'category' => 0,
-                    'lang' => $this->config->item('cur_lang'),
-                    'publish_date <=' => time(),
-                    'post_status' => 'publish'
+                 'category'        => 0,
+                 'lang'            => $this->config->item('cur_lang'),
+                 'publish_date <=' => time(),
+                 'post_status'     => 'publish',
                 ]
             )
             ->result_array();
