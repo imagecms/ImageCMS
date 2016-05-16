@@ -164,11 +164,23 @@ class Base extends CI_Model
 
         foreach ($this->comments_product_id as $item) {
 
-                $count_result = count($this->db->get_where('comments', ['item_id' => (int) $item ])->result_array());
+            $query = $this->db->select('SUM(rate) AS rate , COUNT(rate) AS votes')
+                ->from('comments')
+                ->where('item_id', (int) $item)
+                ->where('rate >', 0)
+                ->get();
 
+            $rate = 0;
+            $votes = 0;
+            /** Если значений больше 0 вставляем их в rate и votes */
+            if ($query->num_rows() > 0) {
+                list($rate, $votes) = array_values($query->row_array());
+
+            }
                 $products = SProductsRatingQuery::create()
                     ->findOneByProductId($item);
-                $products->setVotes($count_result);
+                $products->setVotes($votes);
+                $products->setRating($rate);
                 $products->save();
 
         }
@@ -209,7 +221,7 @@ class Base extends CI_Model
      */
     public function get_many($ids) {
         if (is_array($ids)) {
-            return $this->db->where_in('id', $ids)->get('comments')->row_array();
+            return $this->db->where_in('id', $ids)->get('comments')->result_array();
         }
     }
 

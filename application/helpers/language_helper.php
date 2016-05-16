@@ -230,9 +230,7 @@ if (!function_exists('correctUrl')) {
     function correctUrl($url) {
 
         if (MAINSITE) {
-            if (!is_dir($url)) {
                 $url = MAINSITE . str_replace('./', '/', $url);
-            }
         }
 
         $last_slash_pos = strrpos($url, '/');

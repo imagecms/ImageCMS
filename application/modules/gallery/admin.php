@@ -15,47 +15,47 @@ class Admin extends BaseAdminController
 
     // Gallery config
     public $conf = [
-        'engine' => 'gd2', // Image library. Possible values: GD, GD2, ImageMagick, NetPBM
-        'max_file_size' => 5, // Max file size for upload in Mb.
-        'max_archive_size' => 50,
-        'max_width' => 0, // Max image width.
-        'max_height' => 0, // Max image height.
-        'allowed_types' => 'gif|jpg|jpeg|png|zip', // Allowed image types.
-        'allowed_archive_types' => 'zip',
-        'upload_path' => './uploads/gallery/', // Image upload dir. With ending slash.
-        'upload_url' => 'uploads/gallery/', // Image upload url. With ending slash.
-        'cache_path' => './system/cache/',
-        'quality' => '90%', // Image quality
-        'thumb_width' => '100', // Thumb width. min. 20px; max 1000px;
-        'thumb_height' => '100', // Thumb height min. 20px; max 1000px;
-        'thumb_marker' => '', // Thumb suffix
-        'thumbs_folder' => '_thumbs', // Thumbs folder name. ! Without ending slash.
-        'prev_img_marker' => '_prev', // Preview image suffix
-        'maintain_ratio' => TRUE, // Specifies whether to maintain the original aspect ratio when resizing.
-        'maintain_ratio_prev' => TRUE, // Specifies whether to maintain the original aspect ratio when resizing prev image.
-        'maintain_ratio_icon' => TRUE, // Specifies whether to maintain the original aspect ratio when resizing icon.
-        'crop' => TRUE, // Specifies whether to crop image for save the original aspect ratio when resizing.
-        'crop_prev' => TRUE, // Specifies whether to crop image for save the original aspect ratio when resizing prev image.
-        'crop_icon' => TRUE, // Specifies whether to crop image for save the original aspect ratio when resizing icon.
-        'prev_img_width' => '500', // Preview image width
-        'prev_img_height' => '375', // Preview image height
+                    'engine'                  => 'gd2', // Image library. Possible values: GD, GD2, ImageMagick, NetPBM
+                    'max_file_size'           => 5, // Max file size for upload in Mb.
+                    'max_archive_size'        => 50,
+                    'max_width'               => 0, // Max image width.
+                    'max_height'              => 0, // Max image height.
+                    'allowed_types'           => 'gif|jpg|jpeg|png|zip', // Allowed image types.
+                    'allowed_archive_types'   => 'zip',
+                    'upload_path'             => './uploads/gallery/', // Image upload dir. With ending slash.
+                    'upload_url'              => 'uploads/gallery/', // Image upload url. With ending slash.
+                    'cache_path'              => './system/cache/',
+                    'quality'                 => '90%', // Image quality
+                    'thumb_width'             => '100', // Thumb width. min. 20px; max 1000px;
+                    'thumb_height'            => '100', // Thumb height min. 20px; max 1000px;
+                    'thumb_marker'            => '', // Thumb suffix
+                    'thumbs_folder'           => '_thumbs', // Thumbs folder name. ! Without ending slash.
+                    'prev_img_marker'         => '_prev', // Preview image suffix
+                    'maintain_ratio'          => TRUE, // Specifies whether to maintain the original aspect ratio when resizing.
+                    'maintain_ratio_prev'     => TRUE, // Specifies whether to maintain the original aspect ratio when resizing prev image.
+                    'maintain_ratio_icon'     => TRUE, // Specifies whether to maintain the original aspect ratio when resizing icon.
+                    'crop'                    => TRUE, // Specifies whether to crop image for save the original aspect ratio when resizing.
+                    'crop_prev'               => TRUE, // Specifies whether to crop image for save the original aspect ratio when resizing prev image.
+                    'crop_icon'               => TRUE, // Specifies whether to crop image for save the original aspect ratio when resizing icon.
+                    'prev_img_width'          => '500', // Preview image width
+                    'prev_img_height'         => '375', // Preview image height
         // Watermark params
-        'watermark_text' => '', // Watermark text.
-        'watermark_image' => '', // Path to watermark image.
-        'watermark_image_opacity' => '', // Watermark image opacity.
-        'watermark_type' => 'overlay', // Watermark type. Possible values: text/overlay.
-        'wm_vrt_alignment' => 'bottom', // Watermark vertical position. Possible values: top, middle, bottom.
-        'wm_hor_alignment' => 'right', // Watermark horizontal position. Possible values: left, center, right.
-        'watermark_font_path' => './system/fonts/1.ttf', // Path to watermark font.
-        'watermark_font_size' => 16, // Watermark font size.
-        'watermark_padding' => '-5', // Watermark padding.
-        'watermark_color' => 'ffffff', // Watermark font color.
-        'watermark_min_width' => '10', // Min. image width to draw watermark.
-        'watermark_min_height' => '10', // Min. image height to draw watermark.
+                    'watermark_text'          => '', // Watermark text.
+                    'watermark_image'         => '', // Path to watermark image.
+                    'watermark_image_opacity' => '', // Watermark image opacity.
+                    'watermark_type'          => 'overlay', // Watermark type. Possible values: text/overlay.
+                    'wm_vrt_alignment'        => 'bottom', // Watermark vertical position. Possible values: top, middle, bottom.
+                    'wm_hor_alignment'        => 'right', // Watermark horizontal position. Possible values: left, center, right.
+                    'watermark_font_path'     => './system/fonts/1.ttf', // Path to watermark font.
+                    'watermark_font_size'     => 16, // Watermark font size.
+                    'watermark_padding'       => '-5', // Watermark padding.
+                    'watermark_color'         => 'ffffff', // Watermark font color.
+                    'watermark_min_width'     => '10', // Min. image width to draw watermark.
+                    'watermark_min_height'    => '10', // Min. image height to draw watermark.
         // Albums
-        'order_by' => 'date', // Albums order. Posiible values: date/name/position.
-        'sort_order' => 'desc'          // Sort order. Possible values: desc/asc.
-    ];
+                    'order_by'                => 'date', // Albums order. Posiible values: date/name/position.
+                    'sort_order'              => 'desc',// Sort order. Possible values: desc/asc.
+                   ];
 
     protected $lastnewid;
 
@@ -92,7 +92,7 @@ class Admin extends BaseAdminController
             \CMSFactory\assetManager::create()
                 ->setData(
                     [
-                        'error' => lang('Create a directory to continue your work with the gallery', 'gallery') . $this->conf['upload_path'] . lang('Set the write access', 'gallery')
+                     'error' => lang('Create a directory to continue your work with the gallery', 'gallery') . $this->conf['upload_path'] . lang('Set the write access', 'gallery'),
                     ]
                 )
                 ->renderAdmin('error');
@@ -122,9 +122,7 @@ class Admin extends BaseAdminController
 
         \CMSFactory\assetManager::create()
             ->setData(
-                [
-                    'categories' => $categories,
-                ]
+                ['categories' => $categories]
             )
             ->renderAdmin('categories');
     }
@@ -163,8 +161,8 @@ class Admin extends BaseAdminController
         \CMSFactory\assetManager::create()
             ->setData(
                 [
-                    'albums' => $albums,
-                    'category' => $this->gallery_m->get_category($id)
+                 'albums'   => $albums,
+                 'category' => $this->gallery_m->get_category($id),
                 ]
             )
             ->renderAdmin('album_list');
@@ -180,7 +178,7 @@ class Admin extends BaseAdminController
                 \CMSFactory\assetManager::create()
                     ->setData(
                         [
-                            'settings' => $this->gallery_m->load_settings()
+                         'settings' => $this->gallery_m->load_settings(),
                         ]
                     )
                     ->renderAdmin('settings');
@@ -222,48 +220,53 @@ class Admin extends BaseAdminController
 
                 // Check if watermark font exists.
                 $params = [
-                    'max_image_size' => $this->input->post('max_image_size'),
-                    'max_width' => $this->input->post('max_width'),
-                    'max_height' => $this->input->post('max_height'),
-                    'quality' => $this->input->post('quality'),
-                    'maintain_ratio' => (bool) $this->input->post('maintain_ratio'),
-                    'maintain_ratio_prev' => (bool) $this->input->post('maintain_ratio_prev'),
-                    'maintain_ratio_icon' => (bool) $this->input->post('maintain_ratio_icon'),
-                    'crop' => (bool) $this->input->post('crop'),
-                    'crop_prev' => (bool) $this->input->post('crop_prev'),
-                    'crop_icon' => (bool) $this->input->post('crop_icon'),
-                    'prev_img_width' => $this->input->post('prev_img_width'),
-                    'prev_img_height' => $this->input->post('prev_img_height'),
-                    'thumb_width' => $this->input->post('thumb_width'),
-                    'thumb_height' => $this->input->post('thumb_height'),
+                           'max_image_size'          => $this->input->post('max_image_size'),
+                           'max_width'               => $this->input->post('max_width'),
+                           'max_height'              => $this->input->post('max_height'),
+                           'quality'                 => $this->input->post('quality'),
+                           'maintain_ratio'          => (bool) $this->input->post('maintain_ratio'),
+                           'maintain_ratio_prev'     => (bool) $this->input->post('maintain_ratio_prev'),
+                           'maintain_ratio_icon'     => (bool) $this->input->post('maintain_ratio_icon'),
+                           'crop'                    => (bool) $this->input->post('crop'),
+                           'crop_prev'               => (bool) $this->input->post('crop_prev'),
+                           'crop_icon'               => (bool) $this->input->post('crop_icon'),
+                           'prev_img_width'          => $this->input->post('prev_img_width'),
+                           'prev_img_height'         => $this->input->post('prev_img_height'),
+                           'thumb_width'             => $this->input->post('thumb_width'),
+                           'thumb_height'            => $this->input->post('thumb_height'),
                     // watermark settings
-                    'watermark_text' => trim($this->input->post('watermark_text')),
-                    'wm_vrt_alignment' => $this->input->post('wm_vrt_alignment'),
-                    'wm_hor_alignment' => $this->input->post('wm_hor_alignment'),
-                    'watermark_font_size' => trim($this->input->post('watermark_font_size')),
-                    'watermark_color' => trim($this->input->post('watermark_color')),
-                    'watermark_padding' => trim($this->input->post('watermark_padding')),
-                    'watermark_image' => $imagePath,
-                    'watermark_image_opacity' => trim($this->input->post('watermark_image_opacity')),
-                    'watermark_type' => trim($this->input->post('watermark_type')),
-                    'order_by' => $this->input->post('order_by'),
-                    'sort_order' => $this->input->post('sort_order'),
-                ];
+                           'watermark_text'          => trim($this->input->post('watermark_text')),
+                           'wm_vrt_alignment'        => $this->input->post('wm_vrt_alignment'),
+                           'wm_hor_alignment'        => $this->input->post('wm_hor_alignment'),
+                           'watermark_font_size'     => trim($this->input->post('watermark_font_size')),
+                           'watermark_color'         => trim($this->input->post('watermark_color')),
+                           'watermark_padding'       => trim($this->input->post('watermark_padding')),
+                           'watermark_image'         => $imagePath,
+                           'watermark_image_opacity' => trim($this->input->post('watermark_image_opacity')),
+                           'watermark_type'          => trim($this->input->post('watermark_type')),
+                           'order_by'                => $this->input->post('order_by'),
+                           'sort_order'              => $this->input->post('sort_order'),
+                          ];
                 $uploadPath = './uploads/';
                 $this->load->library(
                     'upload',
                     [
-                        'upload_path' => $uploadPath,
-                        'max_size' => 1024 * 1024 * 2, //2 Mb
+                     'upload_path'   => $uploadPath,
+                     'max_size'      => 1024 * 1024 * 2, //2 Mb
                         //'allowed_types' => 'ttf|fnt|fon|otf'
-                        'allowed_types' => '*'
+                     'allowed_types' => '*',
                     ]
                 );
                 // saving font file, if specified
                 if (isset($_FILES['watermark_font_path'])) {
                     $uploadPath = './uploads/';
                     // TODO: there are no mime-types for fonts in application/config/mimes.php
-                    $allowedTypes = ['ttf', 'fnt', 'fon', 'otf'];
+                    $allowedTypes = [
+                                     'ttf',
+                                     'fnt',
+                                     'fon',
+                                     'otf',
+                                    ];
                     $ext = pathinfo($_FILES['watermark_font_path']['name'], PATHINFO_EXTENSION);
                     if (in_array($ext, $allowedTypes)) {
                         if (!$this->upload->do_upload('watermark_font_path')) {
@@ -361,21 +364,21 @@ class Admin extends BaseAdminController
         }
 
         $data = [
-            'category_id' => (int) $this->input->post('cat_id'),
+                 'category_id' => (int) $this->input->post('cat_id'),
             // 'name' => $this->input->post('name'),
             // 'description' => trim($this->input->post('description')),
-            'position' => (int) $this->input->post('position'),
-            'tpl_file' => $this->input->post('tpl_file')
-        ];
+                 'position'    => (int) $this->input->post('position'),
+                 'tpl_file'    => $this->input->post('tpl_file'),
+                ];
 
         $this->gallery_m->update_album($id, $data);
 
         $data_locale = [
-            'id' => $id,
-            'locale' => $locale,
-            'name' => $this->input->post('name'),
-            'description' => trim($this->input->post('description')),
-        ];
+                        'id'          => $id,
+                        'locale'      => $locale,
+                        'name'        => $this->input->post('name'),
+                        'description' => trim($this->input->post('description')),
+                       ];
 
         if ($this->db->where('id', $id)->where('locale', $locale)->get('gallery_albums_i18n')->num_rows()) {
             $this->db->where('id', $id)->where('locale', $locale);
@@ -408,10 +411,10 @@ class Admin extends BaseAdminController
             \CMSFactory\assetManager::create()
                 ->setData(
                     [
-                        'locale' => $locale,
-                        'languages' => $this->db->get('languages')->result_array(),
-                        'album' => $album,
-                        'categories' => $this->gallery_m->get_categories($album['category_id']),
+                     'locale'     => $locale,
+                     'languages'  => $this->db->get('languages')->result_array(),
+                     'album'      => $album,
+                     'categories' => $this->gallery_m->get_categories($album['category_id']),
                     ]
                 )
                 ->renderAdmin('album_params');
@@ -463,8 +466,8 @@ class Admin extends BaseAdminController
         \CMSFactory\assetManager::create()
             ->setData(
                 [
-                    'categories' => $cats,
-                    'selectCategory' => $selectCategory,
+                 'categories'     => $cats,
+                 'selectCategory' => $selectCategory,
                 ]
             )
             ->renderAdmin('create_album');
@@ -479,9 +482,9 @@ class Admin extends BaseAdminController
         \CMSFactory\assetManager::create()
             ->setData(
                 [
-                    'album' => $album,
-                    'category' => $this->gallery_m->get_category($album['category_id']),
-                    'album_url' => $this->conf['upload_url'] . $id
+                 'album'     => $album,
+                 'category'  => $this->gallery_m->get_category($album['category_id']),
+                 'album_url' => $this->conf['upload_url'] . $id,
                 ]
             )
             ->renderAdmin('edit_album');
@@ -501,12 +504,12 @@ class Admin extends BaseAdminController
             \CMSFactory\assetManager::create()
                 ->setData(
                     [
-                        'locale' => $locale,
-                        'languages' => $this->db->get('languages')->result_array(),
-                        'image' => $image,
-                        'album' => $album,
-                        'category' => $this->gallery_m->get_category($album['category_id']),
-                        'album_url' => $this->conf['upload_url'] . $album['id']
+                     'locale'    => $locale,
+                     'languages' => $this->db->get('languages')->result_array(),
+                     'image'     => $image,
+                     'album'     => $album,
+                     'category'  => $this->gallery_m->get_category($album['category_id']),
+                     'album_url' => $this->conf['upload_url'] . $album['id'],
                     ]
                 )
                 ->renderAdmin('edit_image');
@@ -607,9 +610,9 @@ class Admin extends BaseAdminController
             $album = $this->gallery_m->get_album($image['album_id'], FALSE);
 
             $data = [
-                'description' => trim($this->input->post('description')),
-                'title' => trim($this->input->post('title')),
-            ];
+                     'description' => trim($this->input->post('description')),
+                     'title'       => trim($this->input->post('title')),
+                    ];
 
             $this->gallery_m->update_description($id, $data, $locale);
 
@@ -664,21 +667,33 @@ class Admin extends BaseAdminController
         $size = byte_format(filesize($file_data['full_path']));
 
         $size = str_replace(
-            ['bytes', 'kilobyte_abbr', 'megabyte_abbr' , 'gigabyte_abbr' , 'terabyte_abbr'],
-            ['B', 'kB','MB', 'GB', 'TB'],
+            [
+             'bytes',
+             'kilobyte_abbr',
+             'megabyte_abbr',
+             'gigabyte_abbr',
+             'terabyte_abbr',
+            ],
+            [
+             'B',
+             'kB',
+             'MB',
+             'GB',
+             'TB',
+            ],
             $size
         );
 
         $image_info = [
-            'album_id' => $album_id,
-            'file_name' => $file_data['raw_name'],
-            'file_ext' => $file_data['file_ext'],
-            'file_size' => $size,
-            'width' => $size['width'],
-            'height' => $size['height'],
-            'uploaded' => time(),
-            'views' => 0
-        ];
+                       'album_id'  => $album_id,
+                       'file_name' => $file_data['raw_name'],
+                       'file_ext'  => $file_data['file_ext'],
+                       'file_size' => $size,
+                       'width'     => $size['width'],
+                       'height'    => $size['height'],
+                       'uploaded'  => time(),
+                       'views'     => 0,
+                      ];
 
         $this->gallery_m->add_image($image_info);
     }
@@ -691,9 +706,9 @@ class Admin extends BaseAdminController
             $image = @getimagesize($file_path);
 
             $size = [
-                'width' => $image[0],
-                'height' => $image[1]
-            ];
+                     'width'  => $image[0],
+                     'height' => $image[1],
+                    ];
 
             return $size;
         }
@@ -725,18 +740,18 @@ class Admin extends BaseAdminController
             $data = [
                 //'name' => $this->input->post('name'),
                 //'description' => trim($this->input->post('description')),
-                'position' => $this->input->post('position'),
-                'created' => time(),
-            ];
+                     'position' => $this->input->post('position'),
+                     'created'  => time(),
+                    ];
 
             $last_id = $this->gallery_m->create_category($data);
 
             $data_locale = [
-                'id' => $last_id,
-                'locale' => $locale,
-                'name' => $this->input->post('name'),
-                'description' => trim($this->input->post('description')),
-            ];
+                            'id'          => $last_id,
+                            'locale'      => $locale,
+                            'name'        => $this->input->post('name'),
+                            'description' => trim($this->input->post('description')),
+                           ];
 
             $this->db->insert('gallery_category_i18n', $data_locale);
 
@@ -762,9 +777,9 @@ class Admin extends BaseAdminController
         \CMSFactory\assetManager::create()
             ->setData(
                 [
-                    'category' => $category,
-                    'locale' => $locale,
-                    'languages' => $this->db->get('languages')->result_array()
+                 'category'  => $category,
+                 'locale'    => $locale,
+                 'languages' => $this->db->get('languages')->result_array(),
                 ]
             )
             ->renderAdmin('edit_category');
@@ -781,17 +796,17 @@ class Admin extends BaseAdminController
             showMessage(validation_errors(), false, 'r');
         } else {
             $data = [
-                'position' => $this->input->post('position')
-            ];
+                     'position' => $this->input->post('position'),
+                    ];
 
             $this->gallery_m->update_category($data, $id);
 
             $data_locale = [
-                'id' => $id,
-                'locale' => $locale,
-                'name' => $this->input->post('name'),
-                'description' => trim($this->input->post('description')),
-            ];
+                            'id'          => $id,
+                            'locale'      => $locale,
+                            'name'        => $this->input->post('name'),
+                            'description' => trim($this->input->post('description')),
+                           ];
 
             if ($this->db->where('id', $id)->where('locale', $locale)->get('gallery_category_i18n')->num_rows()) {
                 $this->db->where('id', $id)->where('locale', $locale);
@@ -1036,7 +1051,7 @@ class Admin extends BaseAdminController
             if (($this->conf['maintain_ratio_icon']) AND ($this->conf['crop_icon'])) { // Уменьшаем изображение и обрезаем края
                 $size = $this->get_image_size($file['full_path']); // Получаем размеры сторон изображения
 
-                $size['width'] >= $size['height'] ? $config['master_dim'] = 'width' : $config['master_dim'] = 'height'; // Задаем master_dim
+                $size['width'] >= $size['height'] ? $config['master_dim'] = 'height' : $config['master_dim'] = 'width'; // Задаем master_dim
 
                 $this->image_lib->clear();
                 $this->image_lib->initialize($config);

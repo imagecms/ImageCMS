@@ -61,18 +61,16 @@ class Mailer extends MY_Controller
                 }
 
                 $data = [
-                    'email' => $email,
-                    'date' => $date
-                ];
+                         'email' => $email,
+                         'date'  => $date,
+                        ];
 
                 $this->db->insert('mail', $data);
 
                 $this->registerUserByEmail($email);
 
                 $this->template->add_array(
-                    [
-                        'email' => $query,
-                    ]
+                    ['email' => $query]
                 );
 
                 redirect('/mailer/success/');
@@ -91,7 +89,7 @@ class Mailer extends MY_Controller
         if ($this->form_validation->run($this) == FALSE) {
             CMSFactory\assetManager::create()->setData(
                 [
-                    'mailer_errors' => validation_errors(),
+                 'mailer_errors' => validation_errors(),
                 ]
             );
             CMSFactory\assetManager::create()->render('error', true);
@@ -113,9 +111,9 @@ class Mailer extends MY_Controller
 
                 $date = date('U');
                 $data = [
-                    'email' => $email,
-                    'date' => $date
-                ];
+                         'email' => $email,
+                         'date'  => $date,
+                        ];
 
                 $this->db->insert('mail', $data);
 
@@ -126,9 +124,7 @@ class Mailer extends MY_Controller
                 }
 
                 CMSFactory\assetManager::create()->setData(
-                    [
-                        'email' => $query,
-                    ]
+                    ['email' => $query]
                 );
                 CMSFactory\assetManager::create()->render('success', true);
             } else {

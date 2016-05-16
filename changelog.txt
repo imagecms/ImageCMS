@@ -1,7 +1,8 @@
-Version 4.10 (2016-??-??)
+Version 4.10 (2016-05-16)
     We've stopped providing support for a 5.4 php version and the work of ImageCMS is not guaranteed
+    Add search with transliteration, indexation unique words and permutation of cases
     Add template manager install permission
-    Fixed url autocomplite in xbanners module (ICMS-3303)
+    Fixed url autocomplete in xbanners module (ICMS-3303)
     Fixed comments rating count (ICMS-3336 ICMS-3320)
     Fixed sorting category Tree (ICMS-3307)
     Fixed adding product properties value "0" (ICMS-3503)
@@ -34,12 +35,21 @@ Version 4.10 (2016-??-??)
     Fixed empty properties in show product (ICMS-3394)
     Fixed additional photo positions, in edit products (ICMS-3534)
     Fixed upload additional photo max_size in edit product (ICMS-3550)
-    Fixed rbac user priveleges custom scripts modules (ICMS-3552)
-    Fixed rbac user priveleges shop product edit additional images (ICMS-3553)
+    Fixed rbac user privileges shop product edit additional images (ICMS-3553)
+    Fixed rbac user privileges custom scripts modules (ICMS-3552)
+    Fixed additional image sizes (ICMS-2777)
+    Fixed sorting position main properties, in products (ICMS-2957)
+    Fixed default generate meta keywords (ICMS-3561)
+    Fixed kit additional product price when position changed (ICMS-3556)
+    Fixed order products table (ICMS-3556, ICMS-2822)
+    Fixed resize gallery images (ICMS-2803)
+    Deleted 'noindex, follow' meta from pagination pages (ICMS-3472)
+    Deleted 'noindex, follow' meta static filter pages (ICMS-3427)
     Deleted gallery "Delete Image" button (ICMS-3415)
     Deleted CategoryImport and PropertyImport classes, functionality moved to BaseImport
     Deleted shop_kit_product onDelete shop_product_variants propel trigger (ICMS-3428)
     Deleted "field" position in create pages category (ICMS-3491)
+    Updated Font Awesome to 4.6.2
 
 Version 4.9.0.4 (2016-04-22)
     Add "noindex, follow" for brands pagination pages
@@ -52,6 +62,7 @@ Version 4.9.0.4 (2016-04-22)
     Fixed non-strict check in product properties values in products edit
     Fixed non-strict check in product properties values in import-export module
     Fixed shipping and payments positions on product page
+    Fixed search count setting in admin
     Fixed lang in custom fields data-title
     Fixed duplicated pages in database when change status
     Fixed sorting name in gallery for Corporate

@@ -266,7 +266,9 @@ class Core extends MY_Controller
      * redirect to url without default lang segment
      */
     private function correctDefaultLangUrl() {
+
         if ($this->uri->segment(1) == $this->def_lang[0]['identif']) {
+
             $get = $this->input->server('QUERY_STRING') ? '?' . $this->input->server('QUERY_STRING') : '';
             $url = implode('/', array_slice($this->uri->segment_array(), 1));
             header('Location:/' . $url . $get);
@@ -949,7 +951,7 @@ class Core extends MY_Controller
 
         $page['description'] = $this->_makeDescription($page['description'], $page['full_text']);
 
-        $page['keywords'] = $this->_makeKeywords($page['keywords'], $page['prev_text']);
+        $page['keywords'] = $this->_makeKeywords($page['keywords'], $page['full_text'] ?: $page['prev_text']);
         $this->set_meta_tags($page['meta_title'] == NULL ? $page['title'] : $page['meta_title'], $page['keywords'], $page['description']);
 
         $this->db->set('showed', 'showed + 1', FALSE);

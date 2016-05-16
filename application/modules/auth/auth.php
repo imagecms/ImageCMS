@@ -57,6 +57,10 @@ class Auth extends MY_Controller
         return true;
     }
 
+    /**
+     * @param string $email
+     * @return bool
+     */
     public function email_check($email) {
         $result = $this->dx_auth->is_email_available($email);
         if (!$result) {
@@ -66,6 +70,10 @@ class Auth extends MY_Controller
         return $result;
     }
 
+    /**
+     * @param string $code
+     * @return bool
+     */
     public function captcha_check($code) {
         if (!$this->dx_auth->captcha_check($code)) {
             return FALSE;
@@ -198,18 +206,18 @@ class Auth extends MY_Controller
             $val->set_rules('password', lang('Password'), 'trim|required|xss_clean|min_length[' . $this->min_password . ']|max_length[' . $this->max_password . ']|matches[confirm_password]');
             $val->set_rules('confirm_password', lang('Repeat Password'), 'trim|required|xss_clean');
 
-            /** Проверка по кастомным полям */
-            foreach (ShopCore::app()->CustomFieldsHelper->getCustomFielsdAsArray('user') as $item) {
+            if (SHOP_INSTALLED) {
+                /** Проверка по кастомным полям */
+                foreach (ShopCore::app()->CustomFieldsHelper->getCustomFielsdAsArray('user') as $item) {
 
-                if ($item['is_active'] == 1) {
-                    if ($item['is_required'] == 1) {
-                        $val->set_rules('custom_field['. $item['id'] .']', lang($item['field_name']), 'trim|xss_clean|required');
-                    } else {
-                        $val->set_rules('custom_field['. $item['id'] .']', lang($item['field_name']), 'trim|xss_clean');
+                    if ($item['is_active'] == 1) {
+                        if ($item['is_required'] == 1) {
+                            $val->set_rules('custom_field[' . $item['id'] . ']', lang($item['field_name']), 'trim|xss_clean|required');
+                        } else {
+                            $val->set_rules('custom_field[' . $item['id'] . ']', lang($item['field_name']), 'trim|xss_clean');
+                        }
                     }
-
                 }
-
             }
 
             if ($this->dx_auth->captcha_registration) {

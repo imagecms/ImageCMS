@@ -1240,6 +1240,7 @@ button[data-title-new][disabled="disabled"]:before, button[data-title-new][disab
 .additionals-one-fields.form-horizontal .control-label label, .additionals-one-fields.form-horizontal .control-label{margin-bottom: 0 !important;}
 
 #searchPanel .control-group{margin-bottom: 0;}
+.control-group--vert-align {    display: inline-block;  vertical-align: middle;  margin: 0 0 0 15px!important;}
 .table-translator-search td{border-top: 0px;}
 
 #modules table td[colspan]{border: 0;}
@@ -1262,3 +1263,5 @@ button[data-title-new][disabled="disabled"]:before, button[data-title-new][disab
 @media screen and (max-width: 1169px){
     .elips-text {width: 170px;}
 }
+
+.searchSetting {color: grey;}

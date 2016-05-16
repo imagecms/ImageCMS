@@ -21,6 +21,24 @@ $(document).ajaxComplete(function(event, XHR, ajaxOptions) {
     export_csv();
 });
 
+
+function wordsIndex() {
+    showLoading();
+
+    var data = "update";
+    $.ajax({
+        url: '/shop/search/updateIndexationWords',
+        type: "POST",
+        data: data,
+        success: function(data){
+
+            showMessage(lang('message') , "Обновление прошло успешно");
+
+            hideLoading();
+        }
+    });
+}
+
 $(document).ready(function() {
     export_csv();
 

@@ -28,7 +28,14 @@ class Star_rating extends MY_Controller
 
     private $new_rating = 0;
 
-    private $list_for_show = ['main', 'category', 'brand', 'product', 'shop_category', 'page'];
+    private $list_for_show = [
+                              'main',
+                              'category',
+                              'brand',
+                              'product',
+                              'shop_category',
+                              'page',
+                             ];
 
     public function __construct() {
 
@@ -70,12 +77,18 @@ class Star_rating extends MY_Controller
                 $rating_s = 0;
             }
 
+            /** Берем все комментарии по данному товару*/
+            $count_commment = $this->db->select('rate')
+                ->from('comments')
+                ->where('item_id', $item->getId())
+                ->count_all_results();
+
             $data = [
-                'id_type' => $item->getId(),
-                'type' => 'product',
-                'votes' => $item->getVotes(),
-                'rating' => $rating_s
-            ];
+                     'id_type' => $item->getId(),
+                     'type'    => 'product',
+                     'votes'   => $count_commment,
+                     'rating'  => $rating_s,
+                    ];
             $template = 'product_star_rating';
         } else {
             if (in_array($type, array_keys($this->list_for_show))) {
@@ -86,11 +99,11 @@ class Star_rating extends MY_Controller
                     $rating_s = 0;
                 }
                 $data = [
-                    'id' => $rating->id,
-                    'type' => $rating->type,
-                    'votes' => $rating->votes,
-                    'rating' => $rating_s
-                ];
+                         'id'     => $rating->id,
+                         'type'   => $rating->type,
+                         'votes'  => $rating->votes,
+                         'rating' => $rating_s,
+                        ];
 
                 $template = 'star_rating';
             } else {
@@ -129,19 +142,19 @@ class Star_rating extends MY_Controller
                 $this->new_votes = $check->votes + 1;
                 $this->new_rating = $check->rating + $rating;
                 $data = [
-                    'votes' => $this->new_votes,
-                    'rating' => $this->new_rating
-                ];
+                         'votes'  => $this->new_votes,
+                         'rating' => $this->new_rating,
+                        ];
                 $rating_res = $this->new_rating / $this->new_votes * 20;
                 $votes_res = $this->new_votes;
                 $this->rating_model->update_rating($id, $type, $data);
             } else {
                 $data = [
-                    'id_type' => $id,
-                    'type' => $type,
-                    'votes' => 1,
-                    'rating' => $rating
-                ];
+                         'id_type' => $id,
+                         'type'    => $type,
+                         'votes'   => 1,
+                         'rating'  => $rating,
+                        ];
                 $votes_res = 1;
                 $rating_res = $rating * 20;
                 $this->rating_model->insert_rating($data);
@@ -169,8 +182,8 @@ class Star_rating extends MY_Controller
             if ($this->input->is_ajax_request()) {
                 return json_encode(
                     [
-                        'rate' => "$rating_res",
-                        'votes' => "$votes_res"
+                     'rate'  => "$rating_res",
+                     'votes' => "$votes_res",
                     ]
                 );
             }
@@ -187,27 +200,23 @@ class Star_rating extends MY_Controller
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) OR exit;
         $fields = [
-            'id' => [
-                'type' => 'INT',
-                'auto_increment' => TRUE
-            ],
-            'id_type' => [
-                'type' => 'VARCHAR',
-                'constraint' => '25',
-                'null' => TRUE,
-            ],
-            'type' => [
-                'type' => 'VARCHAR',
-                'constraint' => '25',
-                'null' => TRUE,
-            ],
-            'votes' => [
-                'type' => 'INT',
-            ],
-            'rating' => [
-                'type' => 'INT',
-            ],
-        ];
+                   'id'      => [
+                                 'type'           => 'INT',
+                                 'auto_increment' => TRUE,
+                                ],
+                   'id_type' => [
+                                 'type'       => 'VARCHAR',
+                                 'constraint' => '25',
+                                 'null'       => TRUE,
+                                ],
+                   'type'    => [
+                                 'type'       => 'VARCHAR',
+                                 'constraint' => '25',
+                                 'null'       => TRUE,
+                                ],
+                   'votes'   => ['type' => 'INT'],
+                   'rating'  => ['type' => 'INT'],
+                  ];
 
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', TRUE);

@@ -16,7 +16,7 @@ class Replacer
 
     /**
      * FileOperator instance
-     * @var FileOperator object
+     * @var Replacer object
      */
     private static $instance;
 
@@ -218,9 +218,9 @@ class Replacer
         }
 
         $regExpr = [
-            "/(?<!\w)t?langf?\([']{1}(?!\")(.*?)[']{1}.*?[)]{1}/" => "lang('$1', '$domain')",
-            '/(?<!\w)t?langf?\([\"]{1}(?!\')(.*?)[\"]{1}.*?[)]{1}/' => "lang(\"$1\", '$domain')"
-        ];
+                    "/(?<!\w)t?langf?\([']{1}(?!\")(.*?)[']{1}.*?[)]{1}/"   => "lang('$1', '$domain')",
+                    '/(?<!\w)t?langf?\([\"]{1}(?!\')(.*?)[\"]{1}.*?[)]{1}/' => "lang(\"$1\", '$domain')",
+                   ];
 
         foreach ($regExpr as $pattern => $replacement) {
             $fileData = preg_replace($pattern, $replacement, $fileData);

@@ -202,11 +202,11 @@ if (is_dir($application_folder)) {
 
 define('IMAGECMS_NUMBER', '4.8.1 Corporate');
 
-define('IMAGECMS_VERSION', '20150715');
+define('IMAGECMS_VERSION', '20160516');
 
 define('IMAGECMS_BUILD_ID', '${buildid}');
 
-define('BUILD_ID', '49.1289');
+define('BUILD_ID', '410.1289');
 
 define('IMAGECMS_PUBLIC_ID', '51035d2a96a227c54d0dea3ff415ced6d39266c3');
 

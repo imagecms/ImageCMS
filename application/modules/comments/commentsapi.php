@@ -535,22 +535,6 @@ class Commentsapi extends Comments
                                  'parent'     => $this->input->post('comment_parent'),
                                 ];
 
-                /** Добавляем количество отзывов в таблицу shop_products_rating */
-                $products = SProductsRatingQuery::create()
-                     ->findOneByProductId($item_id);
-
-                if ($products) {
-                    $products_votes = $products->getVotes() + 1;
-                    $products->setVotes($products_votes);
-                    $products->save();
-                } else {
-                    /** @var SProductsRating $products */
-                    $products = new SProductsRating();
-                    $products->setProductId($item_id);
-                    $products->setVotes(1);
-                    $products->save();
-                }
-
                 $this->db->insert('comments', $comment_data);
                 $this->_recount_comments($item_id, $comment_data['module']);
                 \CMSFactory\Events::create()->registerEvent(['commentId' => $this->db->insert_id()]);

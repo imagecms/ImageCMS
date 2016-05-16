@@ -205,7 +205,7 @@
                     <div class="tab-pane active" id="poTab">
                         <div class="pull-left poSelectorsHolder">
                             <div class="d-i_b">
-                                <select id="langs" onchange="Selectors.langs($(this))" class="notchosen">
+                                <select id="langs" onchange="Selectors.langs($(this)); {if MAINSITE}Selectors.types($('#types')){/if}" class="notchosen">
                                     {if $langs}
                                         <option value="">-- {lang('Choose locale', 'translator')} --</option>
                                         {foreach $langs as $locale}
@@ -218,10 +218,12 @@
                             </div>
                             <div class="d-i_b">
                                 <select id="types" style="display: none" onchange="Selectors.types($(this))" class="notchosen">
+                                    {if !MAINSITE}
                                     <option value="">-- {lang('Choose type', 'translator')} --</option>
-                                    <option class="modules" value="modules">{lang('Modules', 'translator')}</option>
-                                    <option class="templates" value="templates">{lang('Templates', 'translator')}</option>
                                     <option class="main" value="main">{lang('Main', 'translator')}</option>
+                                    <option class="modules" value="modules">{lang('Modules', 'translator')}</option>
+                                    {/if}
+                                    <option class="templates" value="templates">{lang('Templates', 'translator')}</option>
                                 </select>
                             </div>
                             <div class="d-i_b">

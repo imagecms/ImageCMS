@@ -882,12 +882,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/propelorm/Propel2.git",
-                "reference": "b511db089c7ff4f3353e75db49fb6870b3a656b1"
+                "reference": "b89b3e7e50bc28afe201264c9a58bc6a0316a33a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/propelorm/Propel2/zipball/b511db089c7ff4f3353e75db49fb6870b3a656b1",
-                "reference": "b511db089c7ff4f3353e75db49fb6870b3a656b1",
+                "url": "https://api.github.com/repos/propelorm/Propel2/zipball/b89b3e7e50bc28afe201264c9a58bc6a0316a33a",
+                "reference": "b89b3e7e50bc28afe201264c9a58bc6a0316a33a",
                 "shasum": ""
             },
             "require": {
@@ -939,7 +939,7 @@
                 "orm",
                 "persistence"
             ],
-            "time": "2016-04-21 16:23:18"
+            "time": "2016-05-10 10:30:58"
         },
         {
             "name": "psr/log",
@@ -1740,16 +1740,16 @@
         },
         {
             "name": "tinymce/tinymce",
-            "version": "4.3.11",
+            "version": "4.3.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tinymce/tinymce-dist.git",
-                "reference": "969503f87d04a41ad0b84b1d215a98fba13ca5a9"
+                "reference": "dfa88d1f6868aa80081f35f3bb0b8257181b6fdf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/969503f87d04a41ad0b84b1d215a98fba13ca5a9",
-                "reference": "969503f87d04a41ad0b84b1d215a98fba13ca5a9",
+                "url": "https://api.github.com/repos/tinymce/tinymce-dist/zipball/dfa88d1f6868aa80081f35f3bb0b8257181b6fdf",
+                "reference": "dfa88d1f6868aa80081f35f3bb0b8257181b6fdf",
                 "shasum": ""
             },
             "type": "component",
@@ -1782,7 +1782,7 @@
                 "tinymce",
                 "wysiwyg"
             ],
-            "time": "2016-04-25 02:19:14"
+            "time": "2016-05-10 11:15:05"
         },
         {
             "name": "true/punycode",
