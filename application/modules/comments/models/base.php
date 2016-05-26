@@ -4,6 +4,10 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
+/**
+ * @property CI_DB_active_record $db
+ * Class Base
+ */
 class Base extends CI_Model
 {
 
@@ -170,20 +174,29 @@ class Base extends CI_Model
                 ->where('rate >', 0)
                 ->get();
 
-            $rate = 0;
-            $votes = 0;
-            /** Если значений больше 0 вставляем их в rate и votes */
-            if ($query->num_rows() > 0) {
-                list($rate, $votes) = array_values($query->row_array());
+            $mod_shop = $this->db->get_where('comments', ['item_id' => $item, 'module' => 'shop']);
 
-            }
+            /* Если коментарии относятся к shop  тогда записываем рейтинг */
+            if ($mod_shop->num_rows() > 0) {
+
+                $rate = 0;
+                $votes = 0;
+
+                /** Если значений больше 0 вставляем их в rate и votes */
+                if ($query->num_rows() > 0) {
+                    list($rate, $votes) = array_values($query->row_array());
+
+                }
+
                 $products = SProductsRatingQuery::create()
                     ->findOneByProductId($item);
                 $products->setVotes($votes);
                 $products->setRating($rate);
                 $products->save();
 
+            }
         }
+
     }
 
     /**

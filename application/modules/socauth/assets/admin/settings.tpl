@@ -220,6 +220,29 @@
                 </tr>
             </tbody>
         </table>
+        <table class="table  table-bordered table-hover table-condensed content_big_td">
+            <thead>
+            <tr>
+                <th colspan="6">
+                    {lang('Url for redirect', 'socauth')}
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td colspan="6">
+                    <div class="inside_padd">
+                        <div class="control-group">
+                            <label class="control-label">{lang('Url for redirect', 'socauth')}:</label>
+                            <div class="controls">
+                                <input type = "text" name = "URLredirect" value ="{$settings['URLredirect']}"/>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
 
         <!--<table class="table  table-bordered table-hover table-condensed content_big_td">
             <thead>

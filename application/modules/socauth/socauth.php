@@ -8,11 +8,30 @@
  * @author a.gula <a.gula@imagecms.net>
  * @property socauth_model $socauth_model
  */
-class Socauth extends MY_Controller {
+
+
+use OAuth\Common\Consumer\Credentials;
+use OAuth\Common\Http\Uri;
+use OAuth\Common\Storage\Session;
+use OAuth\OAuth2\Service\Facebook;
+use OAuth\OAuth2\Service\Vkontakte;
+
+/**
+ * @property Socauth_model socauth_model
+ */
+class Socauth extends MY_Controller
+{
 
     public $settings;
 
+    public $serviceFactory;
+
+    public $uriFactory;
+
+    public $currentUri;
+
     public function __construct() {
+
         parent::__construct();
         $lang = new MY_Lang();
         $lang->load('socauth');
@@ -20,33 +39,10 @@ class Socauth extends MY_Controller {
         $this->load->model('socauth_model');
 
         $this->settings = $this->socauth_model->getSettings();
-    }
-
-    /**
-     * Write cookies for auth
-     */
-    private function writeCookies() {
-        $this->load->helper('cookie');
-        if (!strstr($this->uri->uri_string(), 'socauth/vk')) {
-            $cookie = array(
-                'name' => 'url',
-                'value' => $this->uri->uri_string(),
-                'expire' => '15000000',
-                'prefix' => ''
-            );
-            $this->input->set_cookie($cookie);
-        }
-    }
-
-    /**
-     *
-     * @param string $soc type of social service
-     * @param string $socId social service ID
-     */
-    public function link($soc, $socId) {
-        $this->socauth_model->setLink($soc, $socId);
-
-        redirect($this->input->cookie('url'));
+        $this->serviceFactory = new \OAuth\ServiceFactory();
+        $this->uriFactory = new Uri\UriFactory();
+        $this->currentUri = $this->uriFactory->createFromSuperGlobalArray($_SERVER);
+        $this->currentUri->setQuery('');
     }
 
     /**
@@ -54,9 +50,10 @@ class Socauth extends MY_Controller {
      * @param type $soc type of social service
      */
     public function unlink($soc) {
+
         if ($this->dx_auth->is_logged_in()) {
             if ($this->socauth_model->delUserSocial($soc)) {
-                echo json_encode(array('answer' => 'sucesfull'));
+                echo json_encode(['answer' => 'sucesfull']);
             }
         }
     }
@@ -65,6 +62,7 @@ class Socauth extends MY_Controller {
      * Just alias (not action, because starts from "_", and now accessable in system)
      */
     public function _socAuth($social, $id, $username, $email, $address, $key, $phone, $redirect = true) {
+
         return $this->socAuth($social, $id, $username, $email, $address, $key, $phone, $redirect);
     }
 
@@ -79,6 +77,7 @@ class Socauth extends MY_Controller {
      * @param type $phone phone in social service
      */
     private function socAuth($social, $id, $username, $email, $address, $key, $phone, $redirect = true) {
+
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             redirect('/socauth/error');
         }
@@ -89,23 +88,21 @@ class Socauth extends MY_Controller {
 
             $emailCheck = $this->socauth_model->getUserByEmail($email);
 
-            if (count($emailCheck) > 0) {
+            if (count($emailCheck) > 0 ) {
+
                 redirect('/socauth/error');
             }
 
             $pass = random_string('alnum', 20);
 
-            //            $this->sendPassByEmail($email, $pass);
-
-            $register = $this->dx_auth->register($username, $pass, $email, $address, $key, $phone, TRUE);
-
+                $register = $this->dx_auth->register($username, $pass, $email, $address, $key, $phone, TRUE);
             if (!$register) {
                 redirect('/socauth/error');
             }
 
             $userId = $this->socauth_model->getUserByEmail($email);
 
-            $this->socauth_model->setUserSoc($id, $social, $userId->id);
+            $this->socauth_model->setUserSoc($id, $social, $userId['id']);
         } else {
             $data = new stdClass;
             $userData = $this->db
@@ -133,15 +130,6 @@ class Socauth extends MY_Controller {
     }
 
     public function index() {
-        if (!$this->dx_auth->is_logged_in()) {
-            redirect('/auth/login');
-        } else {
-            redirect($this->input->cookie('url'));
-        }
-    }
-
-    public function error() {
-        $this->core->set_meta_tags('SocAuts');
 
         if (!$this->dx_auth->is_logged_in()) {
             redirect('/auth/login');
@@ -154,11 +142,29 @@ class Socauth extends MY_Controller {
      * rendering login buttons
      */
     public function renderLogin() {
+
         if (!$this->dx_auth->is_logged_in()) {
             $this->writeCookies();
             \CMSFactory\assetManager::create()
-                    ->setData($this->settings)
-                    ->render('loginButtons', TRUE);
+                ->setData($this->settings)
+                ->render('loginButtons', TRUE);
+        }
+    }
+
+    /**
+     * Write cookies for auth
+     */
+    private function writeCookies() {
+
+        $this->load->helper('cookie');
+        if (!strstr($this->uri->uri_string(), 'socauth/vk')) {
+            $cookie = [
+                       'name'   => 'url',
+                       'value'  => $this->input->server('HTTP_REFERER'),
+                       'expire' => '15000000',
+                       'prefix' => '',
+                      ];
+            $this->input->set_cookie($cookie);
         }
     }
 
@@ -166,6 +172,7 @@ class Socauth extends MY_Controller {
      * rendering link buttons
      */
     public function renderLink() {
+
         if ($this->dx_auth->is_logged_in()) {
             $this->writeCookies();
 
@@ -188,10 +195,10 @@ class Socauth extends MY_Controller {
             }
 
             \CMSFactory\assetManager::create()
-                    ->setData($this->settings)
-                    ->setData($social)
-                    ->registerScript('socauth')
-                    ->render('linkButtons', TRUE);
+                ->setData($this->settings)
+                ->setData($social)
+                ->registerScript('socauth')
+                ->render('linkButtons', TRUE);
         }
     }
 
@@ -201,35 +208,37 @@ class Socauth extends MY_Controller {
     public function ya() {
 
         if ($this->input->get()) {
-            $postdata = "grant_type=authorization_code&code={$this->input->get('code')}&client_id={$this->settings['yandexClientID']}&client_secret={$this->settings['yandexClientSecret']}";
 
+            $params = [
+                       'grant_type'    => 'authorization_code',
+                       'code'          => $this->input->get('code'),
+                       'client_id'     => $this->settings['yandexClientID'],
+                       'client_secret' => $this->settings['yandexClientSecret'],
+                      ];
+            $url = 'https://oauth.yandex.ru/token';
             $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, 'https://oauth.yandex.ru/token');
-            curl_setopt($curl, CURLOPT_HEADER, 0);
-            curl_setopt($curl, CURLOPT_NOBODY, 0);
+            curl_setopt($curl, CURLOPT_URL, $url);
             curl_setopt($curl, CURLOPT_POST, 1);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($curl, CURLOPT_POSTFIELDS, $postdata);
-            curl_setopt($curl, CURLOPT_REFERER, site_url('socauth/ya'));
-            $res = curl_exec($curl);
-            $res = json_decode($res);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, urldecode(http_build_query($params)));
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+            $result = curl_exec($curl);
             curl_close($curl);
+            $tokenInfo = json_decode($result, true);
 
-            $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, "https://login.yandex.ru/info?format=json&oauth_token={$res->access_token}");
-            curl_setopt($curl, CURLOPT_HEADER, 0);
-            curl_setopt($curl, CURLOPT_NOBODY, 0);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($curl, CURLOPT_USERAGENT, 'MSIE 9');
-            curl_setopt($curl, CURLOPT_REFERER, site_url('socauth/ya'));
-            $res = curl_exec($curl);
-            $res = json_decode($res);
-            curl_close($curl);
+            if (isset($tokenInfo['access_token'])) {
+                $params = [
+                           'format'      => 'json',
+                           'oauth_token' => $tokenInfo['access_token'],
+                          ];
 
+                $userInfo = json_decode(file_get_contents('https://login.yandex.ru/info' . '?' . urldecode(http_build_query($params))), true);
+
+            }
             if (!$this->dx_auth->is_logged_in()) {
-                $this->socAuth('ya', $res->id, $res->display_name, $res->default_email, '', '', '');
+                $this->socAuth('ya', $userInfo['id'], $userInfo['real_name'], $userInfo['default_email'], '', '', '');
             } else {
-                $this->link('ya', $res->id);
+                $this->link('ya', $userInfo['id']);
             }
         } else {
             $this->core->error_404();
@@ -237,41 +246,51 @@ class Socauth extends MY_Controller {
     }
 
     /**
+     *
+     * @param string $soc type of social service
+     * @param string $socId social service ID
+     */
+    public function link($soc, $socId) {
+
+        $this->socauth_model->setLink($soc, $socId);
+
+        if ($this->settings['URLredirect']) {
+            redirect(site_url() . $this->settings['URLredirect']);
+        }
+        redirect($this->input->cookie('url'));
+    }
+
+    /**
      * get data from facebook
      */
     public function facebook() {
+
         if ($this->input->get()) {
-            $url = site_url('socauth/facebook');
+            $storage = new Session();
 
-            $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, "https://graph.facebook.com/oauth/access_token?client_id={$this->settings['facebookClientID']}&redirect_uri=$url&client_secret={$this->settings['facebookClientSecret']}&code={$this->input->get('code')}");
-            curl_setopt($curl, CURLOPT_HEADER, 0);
-            curl_setopt($curl, CURLOPT_NOBODY, 0);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($curl, CURLOPT_USERAGENT, 'MSIE 9');
-            curl_setopt($curl, CURLOPT_REFERER, site_url('socauth/facebook'));
-            $res = curl_exec($curl);
-            curl_close($curl);
+            $credentials = new Credentials(
+                $this->settings['facebookClientID'],
+                $this->settings['facebookClientSecret'],
+                $this->currentUri->getAbsoluteUri()
+            );
 
-            $params = array();
-            parse_str($res, $params);
+            /** @var $facebookService Facebook */
+            $facebookService = $this->serviceFactory->createService('facebook', $credentials, $storage);
 
-            $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, "https://graph.facebook.com/me?access_token={$params['access_token']}");
-            curl_setopt($curl, CURLOPT_HEADER, 0);
-            curl_setopt($curl, CURLOPT_NOBODY, 0);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($curl, CURLOPT_USERAGENT, 'MSIE 9');
-            curl_setopt($curl, CURLOPT_REFERER, $url);
-            $res = curl_exec($curl);
-            curl_close($curl);
+            if (!empty($this->input->get('code'))) {
 
-            $res = json_decode($res);
+                $state = $this->input->get('state') ?: null;
+
+                $token = $facebookService->requestAccessToken($this->input->get('code'), $state);
+
+                $result = json_decode($facebookService->request('/me?fields=email,name,location'), true);
+
+            }
 
             if (!$this->dx_auth->is_logged_in()) {
-                $this->socAuth('fb', $res->id, $res->name, $res->email, $res->location->name, '', '');
+                $this->socAuth('fb', $result['id'], $result['name'], $result['email'], $result['location']['name'], '', '');
             } else {
-                $this->link('fb', $res->id);
+                $this->link('fb', $result['id']);
             }
         } else {
             $this->core->error_404();
@@ -282,66 +301,46 @@ class Socauth extends MY_Controller {
      * get data from Vkontakte
      */
     public function vk() {
+
         $this->core->set_meta_tags('SocAuts');
         if ($this->input->get()) {
-            $url = site_url('socauth/vk');
-            $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, "https://oauth.vk.com/access_token?client_id={$this->settings['vkClientID']}&client_secret={$this->settings['vkClientSecret']}&code={$this->input->get('code')}&redirect_uri=$url");
-            curl_setopt($curl, CURLOPT_HEADER, 0);
-            curl_setopt($curl, CURLOPT_NOBODY, 0);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($curl, CURLOPT_USERAGENT, 'MSIE 9');
-            curl_setopt($curl, CURLOPT_REFERER, $url);
-            $res = curl_exec($curl);
-            $res = json_decode($res);
-            curl_close($curl);
 
-            $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, "https://api.vk.com/method/users.get?uids={$res->user_id}&fields=uid,first_name,last_name,nickname,screen_name,sex,bdate,city,country,timezone,photo,photo_medium,photo_big,email&access_token={$res->access_token}");
-            curl_setopt($curl, CURLOPT_HEADER, 0);
-            curl_setopt($curl, CURLOPT_NOBODY, 0);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($curl, CURLOPT_USERAGENT, 'MSIE 9');
-            curl_setopt($curl, CURLOPT_REFERER, $url);
-            $res = curl_exec($curl);
-            $res = json_decode($res);
-            curl_close($curl);
+            $storage = new Session();
 
-            if ($res->error) {
-                $this->error();
+            $credentials = new Credentials(
+                $this->settings['vkClientID'],
+                $this->settings['vkClientSecret'],
+                $this->currentUri->getAbsoluteUri()
+            );
+
+            /** @var $vkService Vkontakte */
+            $vkService = $this->serviceFactory->createService('vkontakte', $credentials, $storage);
+
+            if (!empty($this->input->get('code'))) {
+                $token = $vkService->requestAccessToken($this->input->get('code'));
+                $result = json_decode($vkService->request('/users.get?v=5.80&fields=city,country'), true);
             }
 
-            $isRegistereg = $this->db
-                ->join('users', 'mod_social.userId=users.id')
-                ->where('socialId', $res->response[0]->uid)
-                ->get('mod_social', 1)
-                ->row();
+            $address = $result['response'][0]['city']['title'] . ' ' . $result['response'][0]['country']['title'];
 
-            if (count($isRegistereg) == 0) {
-                \CMSFactory\assetManager::create()
-                        ->setData('data', $res->response[0])
-                        ->render('vklogin');
+            if (!$this->dx_auth->is_logged_in()) {
+                $this->socAuth('vk', $token->getExtraParams()['user_id'], $result['response'][0]['first_name'], $token->getExtraParams()['email'], $address, '', '');
             } else {
-                $this->socAuth('vk', $res->response[0]->uid, $res->response[0]->first_name . ' ' . $res->response[0]->last_name, $isRegistereg->email, '', '', '');
-            }
-        } elseif ($this->input->post()) {
-            $this->load->helper(array('form', 'url'));
-
-            $this->load->library('form_validation');
-            $this->form_validation->set_rules('email', 'Email', 'required|valid_email|xss_clean|trim');
-            $this->form_validation->run();
-
-            if (!validation_errors()) {
-                if (!$this->dx_auth->is_logged_in()) {
-                    $this->socAuth('vk', $this->input->post('uid'), $this->input->post('name'), $this->input->post('email'), '', '', '');
-                } else {
-                    $this->link('vk', $this->input->post('uid'));
-                }
-            } else {
-                redirect();
+                $this->link('vk', $token->getExtraParams()['user_id']);
             }
         } else {
             $this->core->error_404();
+        }
+    }
+
+    public function error() {
+
+        $this->core->set_meta_tags('SocAuts');
+
+        if (!$this->dx_auth->is_logged_in()) {
+            redirect('/auth/login');
+        } else {
+            redirect($this->input->cookie('url'));
         }
     }
 
@@ -351,52 +350,26 @@ class Socauth extends MY_Controller {
     public function google() {
 
         if ($this->input->get()) {
-            $url = site_url('socauth/google');
-            $postdata = array(
-                'code' => $this->input->get(code),
-                'client_id' => "{$this->settings[googleClientID]}",
-                'client_secret' => "{$this->settings[googleClientSecret]}",
-                'redirect_uri' => $url,
-                'grant_type' => 'authorization_code'
+            $storage = new Session();
+            $credentials = new Credentials(
+                $this->settings['googleClientID'],
+                $this->settings['googleClientSecret'],
+                $this->currentUri->getAbsoluteUri()
             );
+            /** @var $googleService Google */
+            $googleService = $this->serviceFactory->createService('google', $credentials, $storage, ['userinfo_email', 'userinfo_profile']);
+            if (!empty($this->input->get('code'))) {
+                $state = $this->input->get('state') ?: null;
+                $googleService->requestAccessToken($this->input->get('code'), $state);
 
-            $opts = array(
-                'http' => array(
-                    'method' => 'POST',
-                    'header' => 'Content-type:application/x-www-form-urlencoded',
-                    'content' => $postdata
-                )
-            );
+                $result = json_decode($googleService->request('userinfo'), true);
 
-            $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, 'https://accounts.google.com/o/oauth2/token');
-            curl_setopt($curl, CURLOPT_HEADER, 0);
-            curl_setopt($curl, CURLOPT_NOBODY, 0);
-            curl_setopt($curl, CURLOPT_POST, 1);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($curl, CURLOPT_POSTFIELDS, $postdata);
-            curl_setopt($curl, CURLOPT_REFERER, $url);
-            $res = curl_exec($curl);
-            $res = json_decode($res);
-
-            curl_close($curl);
-
-            $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, "https://www.googleapis.com/oauth2/v1/userinfo?access_token={$res->access_token}");
-            curl_setopt($curl, CURLOPT_HEADER, 0);
-            curl_setopt($curl, CURLOPT_NOBODY, 0);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($curl, CURLOPT_USERAGENT, 'MSIE 9');
-            curl_setopt($curl, CURLOPT_REFERER, $url);
-            $res = curl_exec($curl);
-            $res = json_decode($res);
-
-            curl_close($curl);
+            }
 
             if (!$this->dx_auth->is_logged_in()) {
-                $this->socAuth('google', $res->id, $res->name, $res->email, '', '', '');
+                $this->socAuth('google', $result['id'], $result['name'], $result['email'], '', '', '');
             } else {
-                $this->link('google', $res->id);
+                $this->link('google', $result['id']);
             }
         } else {
             $this->core->error_404();
@@ -407,29 +380,35 @@ class Socauth extends MY_Controller {
      * install method
      */
     public function _install() {
+
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) OR exit;
-        $fields = array(
-            'id' => array(
-                'type' => 'INT',
-                'auto_increment' => TRUE),
-            'socialId' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '30',
-                'null' => TRUE),
-            'userId' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '25',
-                'null' => TRUE),
-            'social' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '20',
-                'null' => TRUE),
-            'isMain' => array(
-                'type' => 'INT',
-                'constraint' => '1',
-                'null' => TRUE)
-        );
+        $fields = [
+                   'id'       => [
+                                  'type'           => 'INT',
+                                  'auto_increment' => TRUE,
+                                 ],
+                   'socialId' => [
+                                  'type'       => 'VARCHAR',
+                                  'constraint' => '30',
+                                  'null'       => TRUE,
+                                 ],
+                   'userId'   => [
+                                  'type'       => 'VARCHAR',
+                                  'constraint' => '25',
+                                  'null'       => TRUE,
+                                 ],
+                   'social'   => [
+                                  'type'       => 'VARCHAR',
+                                  'constraint' => '20',
+                                  'null'       => TRUE,
+                                 ],
+                   'isMain'   => [
+                                  'type'       => 'INT',
+                                  'constraint' => '1',
+                                  'null'       => TRUE,
+                                 ],
+                  ];
 
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', TRUE);
@@ -438,9 +417,10 @@ class Socauth extends MY_Controller {
         $this->db->where('name', 'socauth');
         $this->db->update(
             'components',
-            array(
-            'enabled' => 1,
-            'autoload' => 0)
+            [
+             'enabled'  => 1,
+             'autoload' => 0,
+            ]
         );
     }
 
@@ -448,6 +428,7 @@ class Socauth extends MY_Controller {
      * deinstall method
      */
     public function _deinstall() {
+
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) OR exit;
         $this->dbforge->drop_table('mod_social');

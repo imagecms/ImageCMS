@@ -57,9 +57,9 @@ function setCookie(name, value, expires, path, domain, secure) {
     }
     var expiresDate = new Date(today.getTime() + (expires));
     document.cookie = name + "=" + encodeURIComponent(value) +
-    ((expires) ? ";expires=" + expiresDate.toGMTString() : "") + ((path) ? ";path=" + path : "") +
-    ((domain) ? ";domain=" + domain : "") +
-    ((secure) ? ";secure" : "");
+        ((expires) ? ";expires=" + expiresDate.toGMTString() : "") + ((path) ? ";path=" + path : "") +
+        ((domain) ? ";domain=" + domain : "") +
+        ((secure) ? ";secure" : "");
 }
 
 // expand categories tree to show last visited category
@@ -263,7 +263,7 @@ function ajax_div(target, url) {
         }
     });
 }
-function validateNumeric(selector){
+function validateNumeric(selector) {
     $(selector).bind('keyup', function () {
 
         var value = $(this).val();
@@ -583,11 +583,10 @@ function initTinyMCE(selector) {
             language: (-1 != availableLocales.indexOf(locale.substr(0, 2))) ? locale.substr(0, 2) : 'en',
             toolbar_items_size: 'small',
             plugins: [
-                "advlist autolink link image lists charmap print preview hr anchor pagebreak",
+                "codemirror advlist autolink link image lists charmap print preview hr anchor pagebreak",
                 "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking",
                 "table contextmenu directionality emoticons paste textcolor responsivefilemanager",
-                "fullscreen imagetools",
-                "code save"
+                "fullscreen imagetools save"
             ],
             convert_urls: false,
             setup: function (editor) {
@@ -599,7 +598,60 @@ function initTinyMCE(selector) {
             toolbar: "undo redo | fontsizeselect | fontselect | bold italic underline | backcolor forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | fullscreen",
             external_filemanager_path: "/application/third_party/filemanager/",
             filemanager_title: "Responsive Filemanager",
-            external_plugins: {"filemanager": "/application/third_party/filemanager/plugin.min.js"}
+            external_plugins: {"filemanager": "/application/third_party/filemanager/plugin.min.js"},
+            codemirror: {
+                indentOnInit: true, // Whether or not to indent code on init.
+                path: 'CodeMirror', // Path to CodeMirror distribution
+                config: {           // CodeMirror config object
+                    mode: 'text/html',
+                    extraKeys: {
+                        "Ctrl-Space": "autocomplete",
+                    },
+                    lineNumbers: true,
+                    lineWrapping: true,
+                    foldGutter: true,
+                    gutters: [
+                        "CodeMirror-linenumbers",
+                        "CodeMirror-foldgutter"
+                    ],
+                    selectionPointer: true,
+                },
+                cssFiles: [
+                    // Start code hinting
+                    'addon/hint/show-hint.css',
+                    // End code hinting
+
+                    // Start code folding
+                    'addon/fold/foldgutter.css',
+                    // End code folding
+                ],
+                jsFiles: [          // Additional JS files to load
+                    'mode/clike/clike.js',
+                    'mode/php/php.js',
+
+                    // Start code hinting
+                    'addon/hint/show-hint.js',
+                    'addon/hint/xml-hint.js',
+                    'addon/hint/html-hint.js',
+                    // End code hinting
+
+                    // Start code folding
+                    "addon/fold/foldcode.js",
+                    "addon/fold/foldgutter.js",
+                    "addon/fold/brace-fold.js",
+                    "addon/fold/xml-fold.js",
+                    "addon/fold/markdown-fold.js",
+                    "addon/fold/comment-fold.js",
+                    // End code folding
+
+                    "addon/selection/selection-pointer.js",
+
+                    "mode/xml/xml.js",
+                    "mode/htmlmixed/htmlmixed.js",
+                    "mode/javascript/javascript.js",
+                    "mode/css/css.js",
+                ]
+            }
         });
         tinymce.initialized = true;
     } catch (err) {
@@ -901,7 +953,7 @@ var orders = new Object({
                     vKeys = Object.keys(ui.item.variants);
 
                     $('#product_variant_name').html('');
-                    for (var i = 0; i < vKeys.length; i++){
+                    for (var i = 0; i < vKeys.length; i++) {
                         $('#product_variant_name').append(new Option(ui.item.variants[vKeys[i]].name + ' - ' + ui.item.variants[vKeys[i]].price + " " + ui.item.cs, vKeys[i], true, true));
                     }
 
@@ -1048,8 +1100,8 @@ var orders = new Object({
                         }
                         var price = parseFloat(productVariants[i]['price']).toFixed(pricePrecision);
                         $this.append($('<option data-number=\'' + productVariants[i]['number'] + '\' data-stock=\'' + productVariants[i]['stock'] + '\' data-price=\'' + price + '\' data-variantName=\'' + variantName +
-                        '\' data-product-id=' + productId + ' data-product-name=\'' + productName + '\' data-productCurrency=' + curr + ' data-variantId=' + productVariants[i]['id'] +
-                        ' value=' + productVariants[i]['id'] + ' data-orig_price="' + productVariants[i]['origPrice'] + '">' + variantName + separate + price + ' ' + curr + '</option>'));
+                            '\' data-product-id=' + productId + ' data-product-name=\'' + productName + '\' data-productCurrency=' + curr + ' data-variantId=' + productVariants[i]['id'] +
+                            ' value=' + productVariants[i]['id'] + ' data-orig_price="' + productVariants[i]['origPrice'] + '">' + variantName + separate + price + ' ' + curr + '</option>'));
 
                         $($this.find('option')[0]).trigger('click');
                         $this.trigger('change');

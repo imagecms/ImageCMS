@@ -70,8 +70,9 @@ class Sys_update extends BaseAdminController
      * initiate update process
      */
     public function do_update() {
-        chmod(DOCUMENT_ROOT . '/backup.sql', 777);
-        unlink(DOCUMENT_ROOT . '/backup.sql');
+
+        chmod(DOCUMENT_ROOT . DIRECTORY_SEPARATOR . 'backup.sql', 777);
+        unlink(DOCUMENT_ROOT . DIRECTORY_SEPARATOR . 'backup.sql');
 
         set_time_limit(99999999999999);
 
@@ -162,7 +163,7 @@ class Sys_update extends BaseAdminController
     }
 
     /**
-     *
+     * @return void
      */
     public function restore() {
 
@@ -176,7 +177,7 @@ class Sys_update extends BaseAdminController
     }
 
     /**
-     *
+     * @return void
      */
     public function renderFile() {
 
@@ -189,7 +190,7 @@ class Sys_update extends BaseAdminController
     }
 
     /**
-     *
+     * @return void
      */
     public function properties() {
 
@@ -212,7 +213,7 @@ class Sys_update extends BaseAdminController
     }
 
     /**
-     *
+     * @return void
      */
     public function get_license() {
 
@@ -229,7 +230,7 @@ class Sys_update extends BaseAdminController
     }
 
     /**
-     *
+     * @return void
      */
     public function backup() {
 

@@ -21,8 +21,6 @@ $config = [
                                        'shop_category_i18n',
                                        'shop_kit',
                                        'shop_kit_product',
-                                       'shop_orders',
-                                       'shop_orders_products',
                                        'shop_products',
                                        'shop_products_i18n',
                                        'shop_product_categories',

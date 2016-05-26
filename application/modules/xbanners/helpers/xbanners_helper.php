@@ -52,7 +52,7 @@ if (!function_exists('getBannerPreviewSrc')) {
      * @return string
      */
     function getBannerPreviewSrc($bannerPlaceName) {
-        $defaultPath = site_url('/templates/administrator/img') . '/test_theme.jpg';
+        $defaultPath = site_url('/application/modules/xbanners/assets/images/default.jpg');
         if (!$bannerPlaceName) {
             return $defaultPath;
         }

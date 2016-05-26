@@ -4,6 +4,7 @@ namespace xbanners\models\Base;
 
 use \Exception;
 use \PDO;
+use Base\PropelBaseModelClass;
 use Propel\Runtime\Propel;
 use Propel\Runtime\ActiveQuery\Criteria;
 use Propel\Runtime\ActiveQuery\ModelCriteria;
@@ -31,9 +32,9 @@ use xbanners\models\Map\BannersTableMap;
  *
  *
  *
-* @package    propel.generator.xbanners.models.Base
-*/
-abstract class Banners implements ActiveRecordInterface
+ * @package    propel.generator.xbanners.models.Base
+ */
+abstract class Banners extends PropelBaseModelClass implements ActiveRecordInterface
 {
     /**
      * TableMap class name

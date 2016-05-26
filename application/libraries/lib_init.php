@@ -86,7 +86,7 @@ class Lib_init
 
         } catch (Exception $ex) {
             log_message('error', $ex->getMessage());
-            show_error('Init error', 500);
+            show_error('Init error - ' . $ex->getMessage(), 500);
         }
     }
 

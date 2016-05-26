@@ -1,3 +1,3 @@
 <li class="b-menu-footer__item">
-	<a href="{$link}" class="g-link_footer">{$title}</a>
+	<a href="{$link}" class="g-link_footer" {$target}>{$title}</a>
 </li>

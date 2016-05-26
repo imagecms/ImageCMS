@@ -191,7 +191,7 @@ class ImagesManager
             $this->buildImagePath(self::IMAGES_ORIGIN_DIR_PATH);
         }
 
-        $config['upload_path'] = '.' . self::IMAGES_ORIGIN_DIR_PATH;
+        $config['upload_path'] = rtrim(PUBPATH, '/') . self::IMAGES_ORIGIN_DIR_PATH;
         $config['allowed_types'] = self::IMAGES_UPLOAD_ALLOWED_TYPES;
         $config['max_size'] = self::IMAGE_MAX_SIZE;
 

@@ -1,3 +1,9 @@
+Version 4.11 (20??-??-??)
+
+Version 4.10 (2016-05-24)
+    Fixed fatal error in nonexistent product (ICMS-3598)
+    Fixed fatal error permissions
+
 Version 4.10 (2016-05-16)
     We've stopped providing support for a 5.4 php version and the work of ImageCMS is not guaranteed
     Add search with transliteration, indexation unique words and permutation of cases
@@ -43,6 +49,9 @@ Version 4.10 (2016-05-16)
     Fixed kit additional product price when position changed (ICMS-3556)
     Fixed order products table (ICMS-3556, ICMS-2822)
     Fixed resize gallery images (ICMS-2803)
+    Fixed fatal error with search pro version (ICMS-3574)
+    Fixed when delete comments in module core (ICMS-3601)
+    Fixed cart behavior when added more items then available in stock (ICMS-3579)
     Deleted 'noindex, follow' meta from pagination pages (ICMS-3472)
     Deleted 'noindex, follow' meta static filter pages (ICMS-3427)
     Deleted gallery "Delete Image" button (ICMS-3415)

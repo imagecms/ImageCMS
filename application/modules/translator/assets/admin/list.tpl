@@ -143,16 +143,19 @@
                         <i class="icon-white icon-refresh"></i>
                         {lang('Update', 'translator')}
                     </button>
+                    {if !MAINSITE}
                     <a class="pjax btn btn-small btn-default" style="text-decoration: none" href="/admin/components/init_window/translator/search">
                         <i class="icon-white icon-search"></i>
                         {lang('Full search', 'translator')}
                     </a>
+                    {/if}
                 <span class="btn-group" style="display: inline-block;">
                     <button type="button" class="btn btn-small dropdown-toggle" data-toggle="dropdown">
                         <i class="icon-list"></i>
                         {lang('Others', 'translator')}<span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu" style="left:auto;right: 0px;">
+                        {if !MAINSITE}
                         <li>
                             <a style="text-decoration: none" href="/admin/components/init_window/translator/createFile">{lang('Create translation file', 'translator')}</a>
                         </li>
@@ -161,6 +164,8 @@
                         </li>
                         <li><a onclick="Translator.correctPaths($(this))">{lang('Correct paths', 'translator')}</a></li>
                         <li class="divider"></li>
+                        {/if}
+
                         <li><a onclick="Translator.translate($(this))">{lang('Translate all', 'translator')}</a></li>
                         <li>
                             <a onclick="Translator.translate($(this), true)">{lang('Translate untranslated', 'translator')}</a>

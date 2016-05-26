@@ -1,6 +1,7 @@
 <?php
 
-class Socauth_model extends CI_Model {
+class Socauth_model extends CI_Model
+{
 
     public function __construct() {
         parent::__construct();
@@ -38,11 +39,14 @@ class Socauth_model extends CI_Model {
      * @param type $userId
      */
     public function setUserSoc($id, $soc, $userId) {
-        $this->db->set('socialId', $id);
-        $this->db->set('userId', $userId);
-        $this->db->set('social', $soc);
-        $this->db->set('isMain', '1');
-        $this->db->insert('mod_social');
+        $data = [
+                 'socialId' => $id,
+                 'userId'   => $userId,
+                 'social'   => $soc,
+                 'isMain'   => 1,
+                ];
+
+        $this->db->insert('mod_social', $data);
     }
 
     /**
@@ -51,7 +55,7 @@ class Socauth_model extends CI_Model {
      * @return type
      */
     public function delUserSocial($soc) {
-        return $this->db->delete('mod_social', array('social' => $soc, 'userId' => $this->dx_auth->get_user_id()));
+        return $this->db->delete('mod_social', ['social' => $soc, 'userId' => $this->dx_auth->get_user_id()]);
     }
 
     /**
@@ -74,8 +78,8 @@ class Socauth_model extends CI_Model {
     public function getUserByEmail($email) {
         return $this->db
             ->where('email', $email)
-            ->get('users', 1)
-            ->result_array();
+            ->get('users')
+            ->row_array();
     }
 
 }

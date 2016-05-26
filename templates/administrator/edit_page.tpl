@@ -42,10 +42,10 @@
     <div class="clearfix">
         <div class="m-t_20 pull-right">
             {if $CI->uri->total_segments()==5}
-                <a href="/{echo $page_lang_identif}/{$cat_url}{$url}" class="t-d_n m-r_15" target="blank">{lang('Show page','admin')}
+                <a href="{$BASE_URL}{echo $page_lang_identif}/{$cat_url}{$url}" class="t-d_n m-r_15" target="blank">{lang('Show page','admin')}
                     <span class="f-s_14">&rarr;</span></a>
             {else:}
-                <a href="/{$cat_url}{$url}" class="t-d_n m-r_15" target="blank">{lang('Show page','admin')}
+                <a href="{$BASE_URL}{$cat_url}{$url}" class="t-d_n m-r_15" target="blank">{lang('Show page','admin')}
                     <span class="f-s_14">&rarr;</span></a>
             {/if}
         </div>

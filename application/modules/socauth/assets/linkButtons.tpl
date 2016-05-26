@@ -14,7 +14,7 @@
 
 {if $useVk == 'on' && $vk != 'linked'}
     {if $vk != 'main'}
-        <a href="http://oauth.vk.com/authorize?client_id={$vkClientID}&redirect_uri=http://{echo $_SERVER[HTTP_HOST]}/socauth/vk&response_type=code&scope=PERMISSIONS&display=popup" 
+        <a href="http://oauth.vk.com/authorize?client_id={$vkClientID}&redirect_uri=http://{echo $_SERVER[HTTP_HOST]}/socauth/vk&response_type=code&scope=email&display=popup"
            title="{lang('VK', 'socauth')}">
             <img src="/application/modules/socauth/assets/images/vk.png"/>
         </a>
@@ -28,7 +28,7 @@
 
 {if $useFaceBook == 'on' && $fb != 'linked'}
     {if $fb != 'main'}
-        <a href="https://www.facebook.com/dialog/oauth?client_id={$facebookClientID}&redirect_uri=http://{echo $_SERVER[HTTP_HOST]}/socauth/facebook&response_type=code&scope=email" 
+        <a href="https://www.facebook.com/dialog/oauth?client_id={$facebookClientID}&redirect_uri=http://{echo $_SERVER[HTTP_HOST]}/socauth/facebook&response_type=code&scope=email,user_hometown"
            title="FaceBook">
             <img src="/application/modules/socauth/assets/images/fb.png"/>
         </a>

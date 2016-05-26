@@ -31,12 +31,12 @@ class Install extends MY_Controller
 
         if (moduleExists('shop')) {
             $data = [
-                'content' => $this->load->view('license_shop', ['next_link' => $this->host . '/install/step_1'], TRUE),
-            ];
+                     'content' => $this->load->view('license_shop', ['next_link' => $this->host . '/install/step_1'], TRUE),
+                    ];
         } else {
             $data = [
-                'content' => $this->load->view('license', ['next_link' => $this->host . '/install/step_1'], TRUE),
-            ];
+                     'content' => $this->load->view('license', ['next_link' => $this->host . '/install/step_1'], TRUE),
+                    ];
         }
         $this->load->view('main', $data);
     }
@@ -46,14 +46,14 @@ class Install extends MY_Controller
 
         // Check folders permissions
         $dir_array = [
-            './application/config/config.php' => 'ok',
-            './system/cache' => 'ok',
-            './captcha/' => 'ok',
-            './system/cache/templates_c' => 'ok',
-            './uploads/' => 'ok',
-            './uploads/images' => 'ok',
-            './uploads/files' => 'ok',
-        ];
+                      './application/config/config.php' => 'ok',
+                      './system/cache'                  => 'ok',
+                      './captcha/'                      => 'ok',
+                      './system/cache/templates_c'      => 'ok',
+                      './uploads/'                      => 'ok',
+                      './uploads/images'                => 'ok',
+                      './uploads/files'                 => 'ok',
+                     ];
 
         foreach ($dir_array as $k => $v) {
             if (!is_really_writable($k)) {
@@ -65,9 +65,9 @@ class Install extends MY_Controller
         // Check server params
 
         $allow_params = [
-            'register_globals' => 'ok',
-            'safe_mode' => 'ok',
-        ];
+                         'register_globals' => 'ok',
+                         'safe_mode'        => 'ok',
+                        ];
 
         foreach ($allow_params as $k => $v) {
             if (ini_get($k) == 1) {
@@ -77,24 +77,24 @@ class Install extends MY_Controller
             }
         }
 
-        if (version_compare(PHP_VERSION, '5.4.0') >= 0) {
-            $allow_params['PHP version >= 5.4'] = 'ok';
+        if (version_compare(PHP_VERSION, '5.5.0') >= 0) {
+            $allow_params['PHP version >= 5.5'] = 'ok';
         } else {
-            $allow_params['PHP version >= 5.4'] = 'err';
+            $allow_params['PHP version >= 5.5'] = 'err';
             $result = false;
         }
 
         // Check installed php exts.
         $exts = [
-            'curl' => 'ok',
-            'json' => 'ok',
-            'mbstring' => 'ok',
-            'iconv' => 'ok',
-            'gd' => 'ok',
-            'zlib' => 'ok',
-            'gettext' => 'ok',
-            'soap' => 'ok',
-        ];
+                 'curl'     => 'ok',
+                 'json'     => 'ok',
+                 'mbstring' => 'ok',
+                 'iconv'    => 'ok',
+                 'gd'       => 'ok',
+                 'zlib'     => 'ok',
+                 'gettext'  => 'ok',
+                 'soap'     => 'ok',
+                ];
 
         if (moduleExists('shop') && end(explode('.', $this->input->server('HTTP_HOST'))) != 'loc') {
             $exts['ionCube Loader'] = 'ok';
@@ -131,9 +131,9 @@ class Install extends MY_Controller
         }
 
         $locales = [
-            'en_US' => 'ok',
-            'ru_RU' => 'ok'
-        ];
+                    'en_US' => 'ok',
+                    'ru_RU' => 'ok',
+                   ];
 
         foreach ($locales as $locale => $v) {
             if (!setlocale(LC_ALL, $locale . '.utf8', $locale . '.utf-8', $locale . '.UTF8', $locale . '.UTF-8', $locale . '.utf-8', $locale . '.UTF-8', $locale)) {
@@ -144,13 +144,13 @@ class Install extends MY_Controller
         }
 
         $data = [
-            'dirs' => $dir_array,
+                 'dirs'         => $dir_array,
             //            'need_params' => $need_params,
-            'allow_params' => $allow_params,
-            'exts' => $exts,
-            'locales' => $locales,
-            'next_link' => $this->_get_next_link($result, 1),
-        ];
+                 'allow_params' => $allow_params,
+                 'exts'         => $exts,
+                 'locales'      => $locales,
+                 'next_link'    => $this->_get_next_link($result, 1),
+                ];
         $this->_display($this->load->view('step_1', $data, TRUE));
     }
 
@@ -223,11 +223,11 @@ class Install extends MY_Controller
         }
 
         $data = [
-            'next_link' => $this->_get_next_link($result, 2),
-            'other_errors' => $other_errors,
-            'host' => $this->host,
-            'sqlFileName' => $this->useSqlFile,
-        ];
+                 'next_link'    => $this->_get_next_link($result, 2),
+                 'other_errors' => $other_errors,
+                 'host'         => $this->host,
+                 'sqlFileName'  => $this->useSqlFile,
+                ];
         $this->_display($this->load->view('step_2', $data, TRUE));
     }
 
@@ -348,17 +348,15 @@ class Install extends MY_Controller
 
         $this->writeDatabaseConfig(
             [
-                    'hostname' => $this->input->post('db_host'),
-                    'username' => $this->input->post('db_user'),
-                    'password' => $this->input->post('db_pass'),
-                    'database' => $this->input->post('db_name'),
-                ]
+             'hostname' => $this->input->post('db_host'),
+             'username' => $this->input->post('db_user'),
+             'password' => $this->input->post('db_pass'),
+             'database' => $this->input->post('db_name'),
+            ]
         );
 
         $this->writeCmsConfig(
-            [
-                    'is_installed' => 'TRUE',
-                ]
+            ['is_installed' => 'TRUE']
         );
 
         $this->load->database();
@@ -383,11 +381,11 @@ class Install extends MY_Controller
 
         $this->writeDatabaseConfig(
             [
-                    'hostname' => $this->input->post('db_host'),
-                    'username' => $this->input->post('db_user'),
-                    'password' => $this->input->post('db_pass'),
-                    'database' => $this->input->post('db_name'),
-                ]
+             'hostname' => $this->input->post('db_host'),
+             'username' => $this->input->post('db_user'),
+             'password' => $this->input->post('db_pass'),
+             'database' => $this->input->post('db_name'),
+            ]
         );
 
         // login admin
@@ -448,9 +446,7 @@ class Install extends MY_Controller
     }
 
     public function _display($content) {
-        $data = [
-            'content' => $content,
-        ];
+        $data = ['content' => $content];
 
         $this->load->view('main', $data);
     }

@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-12 04:28+0300\n"
-"PO-Revision-Date: 2016-05-12 04:28+0300\n"
+"POT-Creation-Date: 2016-05-16 03:54+0300\n"
+"PO-Revision-Date: 2016-05-16 03:54+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -28,7 +28,7 @@ msgstr ""
 
 #: templates/administrator/dashboard.tpl:124
 msgid "Check version update"
-msgstr ""
+msgstr "Обновление системы"
 
 #: templates/administrator/login_page.tpl:71
 msgid "Update the code"
