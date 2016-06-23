@@ -15,12 +15,6 @@ class DataCollector
      *
      * @var array
      */
-    protected $tablesData = [];
-
-    /**
-     *
-     * @var array
-     */
     protected $currentPassData = [];
 
     /**
@@ -31,12 +25,19 @@ class DataCollector
 
     /**
      *
+     * @var array
+     */
+    protected $tablesData = [];
+
+    /**
+     *
      * @param string $table
      * @param array $data
      * @param string|integer $key array key (optioanl)
      * @return bool
      */
     public function addData($table, array $data, $key = NULL) {
+
         if (count($data) == 0) {
             return FALSE;
         }
@@ -52,27 +53,26 @@ class DataCollector
     }
 
     /**
-     * Similar to addData, but adds rows to existing "product"
-     * @param string $table
-     * @param array $data
-     * @param string $key
-     * @return bool
+     *
+     * @param string $tableBName
+     * @return array
      */
-    public function updateData($table, array $data, $key = NULL) {
-        if (count($data) == 0) {
-            return FALSE;
+    public function getData($tableBName = NULL) {
+
+        if ($tableBName == NULL) {
+            return $this->tablesData;
         }
-        $this->currentPassData[$table][] = $data;
-        if ($key != FALSE) {
-            $this->keys[$table] = $key;
+        if (array_key_exists($tableBName, $this->tablesData)) {
+            return $this->tablesData[$tableBName];
         }
-        return FALSE;
+        return [];
     }
 
     /**
      * Collects data of current pass, getting ready for new pass
      */
     public function newPass() {
+
         foreach ($this->currentPassData as $tableName => $tableData) {
             if (isset($this->keys[$tableName])) {
                 $currentKey = $this->keys[$tableName];
@@ -97,24 +97,10 @@ class DataCollector
     /**
      *
      * @param string $tableBName
-     * @return array
-     */
-    public function getData($tableBName = NULL) {
-        if ($tableBName == NULL) {
-            return $this->tablesData;
-        }
-        if (array_key_exists($tableBName, $this->tablesData)) {
-            return $this->tablesData[$tableBName];
-        }
-        return [];
-    }
-
-    /**
-     *
-     * @param string $tableBName
      * @return boolean
      */
     public function unsetData($tableBName = NULL) {
+
         if ($tableBName == NULL) {
             $this->tablesData = [];
             return TRUE;
@@ -122,6 +108,25 @@ class DataCollector
         if (array_key_exists($tableBName, $this->tablesData)) {
             unset($this->tablesData[$tableBName]);
             return TRUE;
+        }
+        return FALSE;
+    }
+
+    /**
+     * Similar to addData, but adds rows to existing "product"
+     * @param string $table
+     * @param array $data
+     * @param string $key
+     * @return bool
+     */
+    public function updateData($table, array $data, $key = NULL) {
+
+        if (count($data) == 0) {
+            return FALSE;
+        }
+        $this->currentPassData[$table][] = $data;
+        if ($key != FALSE) {
+            $this->keys[$table] = $key;
         }
         return FALSE;
     }

@@ -54,9 +54,9 @@ class Admin extends BaseAdminController
                 foreach ($hide_urls as $key => $url) {
                     if ($url) {
                         $data[] = [
-                            'url' => $url,
-                            'robots_check' => $robots_check[$key + 1] ? 1 : 0
-                        ];
+                                   'url'          => $url,
+                                   'robots_check' => $robots_check[$key + 1] ? 1 : 0,
+                                  ];
                     }
                 }
             }
@@ -95,22 +95,22 @@ class Admin extends BaseAdminController
              */
             if (SHOP_INSTALLED) {
                 $data = [
-                    'main_page_changefreq' => $this->input->post('main_page_changefreq'),
-                    'categories_changefreq' => $this->input->post('categories_changefreq'),
-                    'pages_changefreq' => $this->input->post('pages_changefreq'),
-                    'product_changefreq' => $this->input->post('product_changefreq'),
-                    'products_categories_changefreq' => $this->input->post('products_categories_changefreq'),
-                    'products_sub_categories_changefreq' => $this->input->post('products_sub_categories_changefreq'),
-                    'sub_categories_changefreq' => $this->input->post('sub_categories_changefreq'),
-                    'brands_changefreq' => $this->input->post('brands_changefreq'),
-                ];
+                         'main_page_changefreq'               => $this->input->post('main_page_changefreq'),
+                         'categories_changefreq'              => $this->input->post('categories_changefreq'),
+                         'pages_changefreq'                   => $this->input->post('pages_changefreq'),
+                         'product_changefreq'                 => $this->input->post('product_changefreq'),
+                         'products_categories_changefreq'     => $this->input->post('products_categories_changefreq'),
+                         'products_sub_categories_changefreq' => $this->input->post('products_sub_categories_changefreq'),
+                         'sub_categories_changefreq'          => $this->input->post('sub_categories_changefreq'),
+                         'brands_changefreq'                  => $this->input->post('brands_changefreq'),
+                        ];
             } else {
                 $data = [
-                    'main_page_changefreq' => $this->input->post('main_page_changefreq'),
-                    'categories_changefreq' => $this->input->post('categories_changefreq'),
-                    'pages_changefreq' => $this->input->post('pages_changefreq'),
-                    'sub_categories_changefreq' => $this->input->post('sub_categories_changefreq'),
-                ];
+                         'main_page_changefreq'      => $this->input->post('main_page_changefreq'),
+                         'categories_changefreq'     => $this->input->post('categories_changefreq'),
+                         'pages_changefreq'          => $this->input->post('pages_changefreq'),
+                         'sub_categories_changefreq' => $this->input->post('sub_categories_changefreq'),
+                        ];
             }
 
             /** Set changefreq */
@@ -128,16 +128,16 @@ class Admin extends BaseAdminController
                     ->setData($changefreq)
                     ->appendData(
                         [
-                                'changefreq_options' => [
-                                    'always' => lang('always', 'sitemap'),
-                                    'hourly' => lang('hourly', 'sitemap'),
-                                    'daily' => lang('daily', 'sitemap'),
-                                    'weekly' => lang('weekly', 'sitemap'),
-                                    'monthly' => lang('monthly', 'sitemap'),
-                                    'yearly' => lang('yearly', 'sitemap'),
-                                    'never' => lang('never', 'sitemap')
-                                ]
-                            ]
+                         'changefreq_options' => [
+                                                  'always'  => lang('always', 'sitemap'),
+                                                  'hourly'  => lang('hourly', 'sitemap'),
+                                                  'daily'   => lang('daily', 'sitemap'),
+                                                  'weekly'  => lang('weekly', 'sitemap'),
+                                                  'monthly' => lang('monthly', 'sitemap'),
+                                                  'yearly'  => lang('yearly', 'sitemap'),
+                                                  'never'   => lang('never', 'sitemap'),
+                                                 ],
+                        ]
                     )
                     ->renderAdmin('changefreq');
         }
@@ -178,22 +178,22 @@ class Admin extends BaseAdminController
              */
             if (SHOP_INSTALLED) {
                 $data = [
-                    'main_page_priority' => $this->input->post('main_page_priority'),
-                    'cats_priority' => $this->input->post('cats_priority'),
-                    'pages_priority' => $this->input->post('pages_priority'),
-                    'sub_cats_priority' => $this->input->post('sub_cats_priority'),
-                    'products_priority' => $this->input->post('products_priority'),
-                    'brands_priority' => $this->input->post('brands_priority'),
-                    'products_categories_priority' => $this->input->post('products_categories_priority'),
-                    'products_sub_categories_priority' => $this->input->post('products_sub_categories_priority'),
-                ];
+                         'main_page_priority'               => $this->input->post('main_page_priority'),
+                         'cats_priority'                    => $this->input->post('cats_priority'),
+                         'pages_priority'                   => $this->input->post('pages_priority'),
+                         'sub_cats_priority'                => $this->input->post('sub_cats_priority'),
+                         'products_priority'                => $this->input->post('products_priority'),
+                         'brands_priority'                  => $this->input->post('brands_priority'),
+                         'products_categories_priority'     => $this->input->post('products_categories_priority'),
+                         'products_sub_categories_priority' => $this->input->post('products_sub_categories_priority'),
+                        ];
             } else {
                 $data = [
-                    'main_page_priority' => $this->input->post('main_page_priority'),
-                    'cats_priority' => $this->input->post('cats_priority'),
-                    'pages_priority' => $this->input->post('pages_priority'),
-                    'sub_cats_priority' => $this->input->post('sub_cats_priority'),
-                ];
+                         'main_page_priority' => $this->input->post('main_page_priority'),
+                         'cats_priority'      => $this->input->post('cats_priority'),
+                         'pages_priority'     => $this->input->post('pages_priority'),
+                         'sub_cats_priority'  => $this->input->post('sub_cats_priority'),
+                        ];
             }
 
             /** Set priorities */
@@ -306,7 +306,11 @@ class Admin extends BaseAdminController
         } else {
             // Get Information About Saved Site Map
             if (file_exists($this->sitemap_path)) {
-                $file_data = ['url' => $this->sitemap_path, 'time' => filemtime($this->sitemap_path), 'size' => filesize($this->sitemap_path)];
+                $file_data = [
+                              'url'  => $this->sitemap_path,
+                              'time' => filemtime($this->sitemap_path),
+                              'size' => filesize($this->sitemap_path),
+                             ];
             } else {
                 $file_data = [];
             }
@@ -317,9 +321,9 @@ class Admin extends BaseAdminController
                     ->registerScript('admin')
                     ->setData(
                         [
-                                'settings' => $settings,
-                                'fileSiteMapData' => $file_data
-                            ]
+                         'settings'        => $settings,
+                         'fileSiteMapData' => $file_data,
+                        ]
                     )
                     ->renderAdmin('settings');
         }

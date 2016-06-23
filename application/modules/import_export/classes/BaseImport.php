@@ -3,11 +3,14 @@
 namespace import_export\classes;
 
 use CI_DB_active_record;
+use CI_DB_result;
 use CI_Model;
 use Core;
 use Exception;
 use import_export\classes\ProductsImport as ProductsHandler;
 use My_Controller;
+use SPropertyValue;
+use SPropertyValueQuery;
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
@@ -353,6 +356,7 @@ class BaseImport extends CI_Model
             $this->possibleAttributes = [
                                          'skip'    => lang('Skip column', 'import_export'),
                                          'name'    => lang('Product Name', 'import_export'),
+                                         'archive' => lang('Archive', 'import_export'),
                                          'url'     => lang('URL', 'import_export'),
                                          'prc'     => lang('Price', 'import_export'),
                                          'oldprc'  => lang('Old Price', 'import_export'),
@@ -429,20 +433,32 @@ class BaseImport extends CI_Model
                             ]
                         );
                     }
-                    $insertdata = [];
                     $values = array_map('trim', explode('|', $nodeElement));
                     foreach ($values as $v) {
                         $v = htmlspecialchars($v);
                         if ($v !== '') {
-                            $insertdata[] = [
-                                             'product_id'  => $node['ProductId'],
-                                             'property_id' => $properyAlias[$nodeKey],
-                                             'locale'      => $this->languages,
-                                             'value'       => $v,
-                                            ];
+
+                            $property_value = SPropertyValueQuery::create()
+                                ->useSPropertyValueI18nQuery()
+                                    ->filterByLocale($this->languages)
+                                    ->filterByValue($v)
+                                ->endUse()
+                                ->findOneByPropertyId($properyAlias[$nodeKey]);
+
+                            if (!$property_value) {
+
+                                $property_value = new SPropertyValue();
+                                $property_value->setPropertyId($properyAlias[$nodeKey]);
+                                $property_value->setLocale($this->languages);
+                                $property_value->setValue($v);
+                                $property_value->save();
+
+                            }
+
+                            $this->checkPropertiesData($properyAlias[$nodeKey], $node['ProductId'], $property_value->getId());
+
                         }
                     }
-                    $this->db->insert_batch('shop_product_properties_data', $insertdata);
 
                     foreach ($node['CategoryIds'] as $categoryId) {
                         $result = $this->db->query('SELECT * FROM `shop_product_properties_categories` WHERE `category_id` = ? AND `property_id` = ?', [$categoryId, $properyAlias[$nodeKey]])->row();
@@ -475,6 +491,31 @@ class BaseImport extends CI_Model
                 }
             }
         }
+
+    }
+
+    /**
+     * @param int $property_id
+     * @param int $product_id
+     * @param int $value_id
+     * @return bool
+     */
+    private function checkPropertiesData($property_id, $product_id, $value_id) {
+
+        $import_data = [
+                        'property_id' => $property_id,
+                        'product_id'  => $product_id,
+                        'value_id'    => $value_id,
+                       ];
+
+        /** @var CI_DB_result $test */
+        $test = $this->db->get_where('shop_product_properties_data', $import_data);
+
+        if ($test->num_rows() > 0) {
+            return false;
+        }
+
+        $this->db->insert('shop_product_properties_data', $import_data);
     }
 
     /**

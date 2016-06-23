@@ -8,7 +8,7 @@
 
         <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
-        <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
+        <script src="https://use.fontawesome.com/9ea243d1fb.js"></script>
 
         <link rel="stylesheet" type="text/css" href="{$THEME}css/bootstrap_complete.css">
         <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css">
@@ -20,10 +20,18 @@
         <link rel="stylesheet" type="text/css" href="{$THEME}css/jquery/custom-theme/jquery-ui-1.8.16.custom.css">
         <link rel="stylesheet" type="text/css" href="{$THEME}css/jquery/custom-theme/jquery.ui.1.8.16.ie.css">
 
-        <link rel="stylesheet" type="text/css" href="{$JS_URL}/elfinder-2.0/css/Aristo/css/Aristo/Aristo.css" media="screen" charset="utf-8">
+        <!--Elfinder -->
+        <link rel="stylesheet" type="text/css" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" />
 
-        <link rel="stylesheet" type="text/css" href="{$JS_URL}/elfinder-2.0/css/elfinder.min.css" media="screen" charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="{$JS_URL}/elfinder-2.0/css/theme.css" media="screen" charset="utf-8">
+        <link rel="stylesheet" type="text/css" media="screen" href="{site_url('/application/third_party/studio-42/elfinder/css/elfinder.min.css')}">
+
+        <!-- Mac OS X Finder style for jQuery UI smoothness theme (OPTIONAL) -->
+        <link rel="stylesheet" type="text/css" media="screen" href="{site_url('/application/third_party/studio-42/elfinder/css/theme.css')}">
+
+        <link rel="stylesheet" type="text/css" media="screen" href="{site_url('/application/third_party/tinymce/tinymce/plugins/codemirror/CodeMirror/lib/codemirror.css')}">
+        <link rel="stylesheet" type="text/css" media="screen" href="{site_url('/application/third_party/tinymce/tinymce/plugins/codemirror/CodeMirror/addon/fold/foldgutter.css')}">
+
+
         <link rel="stylesheet" type="text/css" href="{$THEME}js/colorpicker/css/colorpicker.css" media="screen" charset="utf-8">
         <script src="{$THEME}js/jquery-1.8.2.min.js" type="text/javascript"></script>
         <script async="async" src="{$THEME}js/jquery-validate/jquery.validate.min.js" type="text/javascript"></script>
@@ -447,16 +455,35 @@
             <script src="{$THEME}js/functions.js" type="text/javascript"></script>
             <script src="{$THEME}js/scripts.js" type="text/javascript"></script>
 
-            <script type="text/javascript" src="{$JS_URL}/elfinder-2.0/js/elfinder.min.js"></script>
+            <script type="text/javascript" src="{site_url('/application/third_party/studio-42/elfinder/js/elfinder.min.js')}"></script>
+
+                                                        <!-- CodeMirror-->
+            <script src="{site_url('/application/third_party/tinymce/tinymce/plugins/codemirror/CodeMirror/lib/codemirror.js')}"></script>
+            <script src="{site_url('/application/third_party/tinymce/tinymce/plugins/codemirror/CodeMirror/mode/javascript/javascript.js')}"></script>
+            <script src="{site_url('/application/third_party/tinymce/tinymce/plugins/codemirror/CodeMirror/mode/htmlmixed/htmlmixed.js')}"></script>
+            <script src="{site_url('/application/third_party/tinymce/tinymce/plugins/codemirror/CodeMirror/mode/php/php.js')}"></script>
+            <script src="{site_url('/application/third_party/tinymce/tinymce/plugins/codemirror/CodeMirror/mode/xml/xml.js')}"></script>
+            <script src="{site_url('/application/third_party/tinymce/tinymce/plugins/codemirror/CodeMirror/mode/css/css.js')}"></script>
+            <script src="{site_url('/application/third_party/tinymce/tinymce/plugins/codemirror/CodeMirror/mode/clike/clike.js')}"></script>
+            <script src="{site_url('/application/third_party/tinymce/tinymce/plugins/codemirror/CodeMirror/addon/fold/foldcode.js')}"></script>
+            <script src="{site_url('/application/third_party/tinymce/tinymce/plugins/codemirror/CodeMirror/addon/fold/foldgutter.js')}"></script>
+            <script src="{site_url('/application/third_party/tinymce/tinymce/plugins/codemirror/CodeMirror/addon/fold/brace-fold.js')}"></script>
+            <script src="{site_url('/application/third_party/tinymce/tinymce/plugins/codemirror/CodeMirror/addon/fold/xml-fold.js')}"></script>
+            <script src="{site_url('/application/third_party/tinymce/tinymce/plugins/codemirror/CodeMirror/addon/fold/markdown-fold.js')}"></script>
+            <script src="{site_url('/application/third_party/tinymce/tinymce/plugins/codemirror/CodeMirror/addon/fold/comment-fold.js')}"></script>
+            <script src="{site_url('/application/third_party/tinymce/tinymce/plugins/codemirror/CodeMirror/addon/selection/selection-pointer.js')}"></script>
 
             <script type="text/javascript" src="{echo site_url('/js/jquery.fancybox-1.3.4/fancybox/jquery.fancybox-1.3.4.pack.js')}"></script>
 
-            {if $this->CI->config->item('language') == 'russian'}
+
+            {if $this->CI->config->item('language') == 'ru_RU'}
                 <script async="async" src="{$THEME}js/jquery-validate/messages_ru.js" type="text/javascript"></script>
-                <script type="text/javascript" src="{$JS_URL}/elfinder-2.0/js/i18n/elfinder.ru.js"></script>
             {/if}
 
-            <script src="{$THEME}js/admin_base_i.js" type="text/javascript"></script>
+            {if $admin_interface_locale}
+                <script type="text/javascript" src="{site_url('/application/third_party/studio-42/elfinder/js/i18n/elfinder.' . $admin_interface_locale .'.js')}"></script>
+            {/if}
+        <script src="{$THEME}js/admin_base_i.js" type="text/javascript"></script>
             <script src="{$THEME}js/admin_base_m.js" type="text/javascript"></script>
             <script src="{$THEME}js/admin_base_r.js" type="text/javascript"></script>
             <script src="{$THEME}js/admin_base_v.js" type="text/javascript"></script>

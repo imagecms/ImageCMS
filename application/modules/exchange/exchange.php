@@ -2,8 +2,12 @@
 
 (defined('BASEPATH')) or exit('No direct script access allowed');
 
-use exchange\classes\VariantCharacteristics;
 use CMSFactory\ModuleSettings;
+use exchange\classes\Categories;
+use exchange\classes\Prices;
+use exchange\classes\Products;
+use exchange\classes\Properties;
+use exchange\classes\VariantCharacteristics;
 use libraries\Backup;
 
 /**
@@ -53,6 +57,7 @@ class Exchange extends \MY_Controller
     private $variantCharacteristics;
 
     public function __construct() {
+
         parent::__construct();
 
         $this->time = time();
@@ -103,7 +108,12 @@ class Exchange extends \MY_Controller
             $this->brand = load_brand();
         }
 
-        $this->allowed_image_extensions = ['jpg', 'jpeg', 'png', 'gif'];
+        $this->allowed_image_extensions = [
+                                           'jpg',
+                                           'jpeg',
+                                           'png',
+                                           'gif',
+                                          ];
 
         //define first get command parameter
         $method = 'command_';
@@ -115,9 +125,9 @@ class Exchange extends \MY_Controller
         if ($_GET) {
             $string = '';
             foreach ($_GET as $key => $value) {
-                $string .= date('c') . " GET - " . $key . ": " . $value . "\n";
+                $string .= date('c') . ' GET - ' . $key . ': ' . $value . "\n";
             }
-            write_file($this->tempDir . "log.txt", $string, 'ab');
+            write_file($this->tempDir . 'log.txt', $string, 'ab');
         }
 
         //preparing method and mode name from $_GET variables
@@ -132,20 +142,22 @@ class Exchange extends \MY_Controller
     }
 
     public function __destruct() {
+
         $this->time = time() - $this->time;
         foreach ($this->input->get() as $get) {
             write_file($this->tempDir . '/time.txt', date('Y-m-d h:i:s') . ': ' . $get . PHP_EOL, FOPEN_WRITE_CREATE);
         }
         write_file($this->tempDir . '/time.txt', date('Y-m-d h:i:s') . ': time - ' . $this->time . PHP_EOL, FOPEN_WRITE_CREATE);
-        write_file($this->tempDir . '/time.txt', "-----------------------------------------" . PHP_EOL, FOPEN_WRITE_CREATE);
+        write_file($this->tempDir . '/time.txt', '-----------------------------------------' . PHP_EOL, FOPEN_WRITE_CREATE);
     }
 
     /**
      * Use this function to make backup before import starts
      */
     protected function makeDBBackup() {
+
         if (is_really_writable(BACKUPFOLDER)) {
-            Backup::create()->createBackup("zip", "exchange");
+            Backup::create()->createBackup('zip', 'exchange');
         } else {
             $this->error_log(langf('Can not create a database snapshot, check the folder {0} on writing possibility', 'exchange', [BACKUPFOLDER]));
         }
@@ -156,6 +168,7 @@ class Exchange extends \MY_Controller
      * @return array|null
      */
     private function get1CSettings() {
+
         return ModuleSettings::ofModule('exchange')->get();
     }
 
@@ -163,29 +176,30 @@ class Exchange extends \MY_Controller
      * module install function
      */
     public function _install() {
+
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) or exit;
         $fields = [
-            'id' => [
-                'type' => 'INT',
-                'auto_increment' => true
-            ],
-            'external_id' => [
-                'type' => 'VARCHAR',
-                'constraint' => '255',
-                'null' => true,
-            ],
-            'property_id' => [
-                'type' => 'VARCHAR',
-                'constraint' => '255',
-                'null' => true,
-            ],
-            'value' => [
-                'type' => 'VARCHAR',
-                'constraint' => '20',
-                'null' => true,
-            ]
-        ];
+                   'id'          => [
+                                     'type'           => 'INT',
+                                     'auto_increment' => true,
+                                    ],
+                   'external_id' => [
+                                     'type'       => 'VARCHAR',
+                                     'constraint' => '255',
+                                     'null'       => true,
+                                    ],
+                   'property_id' => [
+                                     'type'       => 'VARCHAR',
+                                     'constraint' => '255',
+                                     'null'       => true,
+                                    ],
+                   'value'       => [
+                                     'type'       => 'VARCHAR',
+                                     'constraint' => '20',
+                                     'null'       => true,
+                                    ],
+                  ];
 
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', true);
@@ -194,6 +208,7 @@ class Exchange extends \MY_Controller
     }
 
     public function _deinstall() {
+
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) or exit;
         $this->dbforge->drop_table('mod_exchange');
@@ -205,17 +220,18 @@ class Exchange extends \MY_Controller
      * @param bool|string $send_email
      */
     public function error_log($error, $send_email = false) {
-        $intIp = $_SERVER["REMOTE_ADDR"];
-        if (isset($_SERVER["HTTP_X_FORWARDED_FOR"])) {
-            if (isset($_SERVER["HTTP_X_REAL_IP"])) {
-                $intIp = $_SERVER["HTTP_X_REAL_IP"];
+
+        $intIp = $_SERVER['REMOTE_ADDR'];
+        if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            if (isset($_SERVER['HTTP_X_REAL_IP'])) {
+                $intIp = $_SERVER['HTTP_X_REAL_IP'];
             } else {
-                $intIp = $_SERVER["HTTP_X_FORWARDED_FOR"];
+                $intIp = $_SERVER['HTTP_X_FORWARDED_FOR'];
             }
         }
 
         if ($this->my_config['debug']) {
-            write_file($this->tempDir . "error_log.txt", $intIp . ' - ' . date('c') . ' - ' . $error . PHP_EOL, 'ab');
+            write_file($this->tempDir . 'error_log.txt', $intIp . ' - ' . date('c') . ' - ' . $error . PHP_EOL, 'ab');
         }
 
         if ($send_email and $this->my_config['email']) {
@@ -232,6 +248,7 @@ class Exchange extends \MY_Controller
     }
 
     public function __autoload() {
+
         return;
     }
 
@@ -239,10 +256,11 @@ class Exchange extends \MY_Controller
      * checking password from $_GET['password'] if use_password option in settings is "On"
      */
     private function check_password() {
+
         if (($this->my_config['login'] == $this->login) && ($this->my_config['password'] == $this->password)) {
             $this->checkauth();
         } else {
-            echo "failure. wrong password";
+            echo 'failure. wrong password';
             $this->error_log(lang('Wrong password', 'exchange'), true);
         }
     }
@@ -252,6 +270,7 @@ class Exchange extends \MY_Controller
      * to initialize import start
      */
     private function command_catalog_checkauth() {
+
         if ($this->my_config['usepassword'] == 'on') {
             $this->check_password();
         } else {
@@ -266,11 +285,12 @@ class Exchange extends \MY_Controller
      * deleting old import files
      */
     private function checkauth() {
+
         echo "success\n";
         echo session_name() . "\n";
         echo session_id() . "\n";
         $string = md5(session_id());
-        write_file($this->tempDir . "session.txt", $string, 'w');
+        write_file($this->tempDir . 'session.txt', $string, 'w');
     }
 
     /**
@@ -298,9 +318,10 @@ class Exchange extends \MY_Controller
      * @file_limit in bytes
      */
     private function command_catalog_init() {
+
         if ($this->check_perm() === true) {
-            echo "zip=" . $this->my_config['zip'] . "\n";
-            echo "file_limit=" . $this->my_config['filesize'] . "\n";
+            echo 'zip=' . $this->my_config['zip'] . "\n";
+            echo 'file_limit=' . $this->my_config['filesize'] . "\n";
         }
         exit();
     }
@@ -311,6 +332,7 @@ class Exchange extends \MY_Controller
      * images wil be saved  to tempDir/images as jpg files
      */
     private function command_catalog_file() {
+
         if ($this->check_perm() === true) {
             $file_info = pathinfo($this->input->get('filename'));
             $file_extension = $file_info['extension'];
@@ -320,12 +342,12 @@ class Exchange extends \MY_Controller
                 //saving images to cmlTemp/images folder
                 @mkdir($this->tempDir . $path, 0777, true);
                 if (write_file($this->tempDir . $this->input->get('filename'), file_get_contents('php://input'), 'w+')) {
-                    echo "success";
+                    echo 'success';
                 }
             } else {
                 //saving xml files to cmlTemp
                 if (write_file($this->tempDir . $this->input->get('filename'), file_get_contents('php://input'), 'w+')) {
-                    echo "success";
+                    echo 'success';
                 }
             }
             //extracting filles
@@ -359,10 +381,10 @@ class Exchange extends \MY_Controller
                             $this->error_log("Can't open file.");
                             break;
                         case ZipArchive::ER_READ:
-                            $this->error_log("Read error.");
+                            $this->error_log('Read error.');
                             break;
                         case ZipArchive::ER_SEEK:
-                            $this->error_log("Seek error.");
+                            $this->error_log('Seek error.');
                             break;
                     }
                     echo 'failure';
@@ -383,6 +405,7 @@ class Exchange extends \MY_Controller
      * @return null|SimpleXMLElement
      */
     private function _readXmlFile($file) {
+
         $path = $this->tempDir . $file;
         if (!file_exists($path) || !is_file($path)) {
             exit('Error opening file: ' . $path);
@@ -391,6 +414,7 @@ class Exchange extends \MY_Controller
     }
 
     public function command_catalog_import() {
+
         if ($this->check_perm() === true) {
             if ($this->my_config['backup']) {
                 $this->makeDBBackup();
@@ -403,14 +427,14 @@ class Exchange extends \MY_Controller
                 if (isset($xml->Классификатор->Свойства)) {
                     $props = $xml->Классификатор->Свойства;
                     $propertiesData = isset($props->СвойствоНоменклатуры) ? $props->СвойствоНоменклатуры : $props->Свойство;
-                    \exchange\classes\Properties::getInstance()
-                            ->setBrandIdentif($this->my_config['brand'])
-                            ->import($propertiesData);
+                    Properties::getInstance()
+                        ->setBrandIdentif($this->my_config['brand'])
+                        ->import($propertiesData);
                 }
 
                 // IMPORT CATEGORIES
                 if (isset($xml->Классификатор->Группы)) {
-                    \exchange\classes\Categories::getInstance()->import($xml->Классификатор->Группы->Группа);
+                    Categories::getInstance()->import($xml->Классификатор->Группы->Группа);
                 }
 
                 // IMPORT PRODUCTS
@@ -421,17 +445,17 @@ class Exchange extends \MY_Controller
                         $res = false;
                     }
 
-                    \exchange\classes\Products::getInstance()
-                            ->setTempDir($this->tempDir)
-                            ->setResize($res)
-                            ->import($xml->Каталог->Товары->Товар);
+                    Products::getInstance()
+                        ->setTempDir($this->tempDir)
+                        ->setResize($res)
+                        ->import($xml->Каталог->Товары->Товар);
                 }
 
                 // IMPORT PRICES (IF THERE ARE ANY)
-                \exchange\classes\Prices::getInstance()->setXml($xml);
+                Prices::getInstance()->setXml($xml);
                 if (isset($xml->ПакетПредложений->Предложения)) {
-                    \exchange\classes\Prices::getInstance()
-                            ->import($xml->ПакетПредложений->Предложения->Предложение);
+                    Prices::getInstance()
+                        ->import($xml->ПакетПредложений->Предложения->Предложение);
                 }
 
                 /**
@@ -441,7 +465,7 @@ class Exchange extends \MY_Controller
             } catch (Exception $e) {
                 $this->error_log(lang('Import error', 'exchange') . ': ' . $e->getMessage() . $e->getFile() . $e->getLine());
                 echo $e->getMessage() . $e->getFile() . $e->getLine();
-                echo "failure";
+                echo 'failure';
                 exit;
             }
             $this->cache->delete_all();
@@ -453,6 +477,7 @@ class Exchange extends \MY_Controller
      * checkauth for orders import
      */
     private function command_sale_checkauth() {
+
         if ($this->my_config['usepassword'] == 'on') {
             $this->check_password();
         } else {
@@ -467,6 +492,7 @@ class Exchange extends \MY_Controller
      * @file_limit in bytes
      */
     private function command_sale_init() {
+
         if ($this->check_perm() === true) {
             $this->command_catalog_init();
         }
@@ -478,10 +504,11 @@ class Exchange extends \MY_Controller
      * and runs orders import
      */
     private function command_sale_file() {
+
         if ($this->check_perm() === true) {
             $this->load->helper('file');
             if (write_file($this->tempDir . $_GET['filename'], file_get_contents('php://input'), 'a+')) {
-                echo "success";
+                echo 'success';
             }
             $this->command_sale_import();
         }
@@ -493,13 +520,14 @@ class Exchange extends \MY_Controller
      * @return string
      */
     private function command_sale_import() {
+
         if ($this->check_perm() != true) {
             exit();
         }
 
         $this->xml = $this->_readXmlFile($_GET['filename']);
         if (!$this->xml) {
-            return "failure";
+            return 'failure';
         }
         foreach ($this->xml->Документ as $order) {
             $orderId = (string) $order->Номер;
@@ -515,17 +543,17 @@ class Exchange extends \MY_Controller
                             $model->setStatus(1);
                         }
                     }
-                    if ((string) $item->Наименование . "" == 'Проведен') {
+                    if ((string) $item->Наименование . '' == 'Проведен') {
                         if ((string) $item->Значение == true) {
                             $model->setStatus(10);
                         }
                     }
 
-                    if ((string) $item->Наименование . "" == 'Дата оплаты по 1С') {
+                    if ((string) $item->Наименование . '' == 'Дата оплаты по 1С') {
                         if (strtotime((string) $item->Значение)) {
-                            if ((string) $item->Значение . "" != "Т") {
+                            if ((string) $item->Значение . '' != 'Т') {
                                 $model->setPaid(1);
-                                echo "success</br>";
+                                echo 'success</br>';
                             }
                         }
                     }
@@ -535,15 +563,15 @@ class Exchange extends \MY_Controller
                 }
                 $model->save();
             } else {
-                echo sprintf("Error - order with id [%s] not found", $orderId);
+                echo sprintf('Error - order with id [%s] not found', $orderId);
             }
         }
 
         if (!$this->my_config['debug']) {
-            rename($this->tempDir . $_GET['filename'], $this->tempDir . "success_" . $_GET['filename']);
+            rename($this->tempDir . $_GET['filename'], $this->tempDir . 'success_' . $_GET['filename']);
         }
 
-        exit("success");
+        exit('success');
     }
 
     /**
@@ -551,6 +579,7 @@ class Exchange extends \MY_Controller
      * and sets some status for imported orders "waiting" for example
      */
     private function command_sale_success() {
+
         if ($this->check_perm() === true) {
             $model = SOrdersQuery::create()->findByStatus($this->my_config['userstatuses']);
             foreach ($model as $order) {
@@ -567,6 +596,7 @@ class Exchange extends \MY_Controller
      * @return string part of xml
      */
     private function getVariantCharacteristicsXML($variantName) {
+
         $characteristics = $this->variantCharacteristics->getVariantCharacteristics($variantName);
         if (count($characteristics) == 0) {
             return '';
@@ -585,6 +615,7 @@ class Exchange extends \MY_Controller
      * creating xml document with orders to make possible for 1c to grab it
      */
     private function command_sale_query() {
+
         $xml_order = '';
 
         if ($this->check_perm() === true) {
@@ -592,68 +623,68 @@ class Exchange extends \MY_Controller
             $model = SOrdersQuery::create()->findByStatus($this->my_config['userstatuses']);
             header('content-type: text/xml; charset=utf-8');
             $xml_order .= "<?xml version='1.0' encoding='UTF-8'?>" . "\n" .
-                    "<КоммерческаяИнформация ВерсияСхемы='2.03' ДатаФормирования='" . date('Y-m-d') . "'>" . "\n";
+                "<КоммерческаяИнформация ВерсияСхемы='2.03' ДатаФормирования='" . date('Y-m-d') . "'>" . "\n";
             foreach ($model as $order) {
                 $xml_order .= "<Документ>\n" .
-                        "<Ид>" . $order->Id . "</Ид>\n" .
-                        "<Номер>" . $order->Id . "</Номер>\n" .
-                        "<Дата>" . date('Y-m-d', $order->date_created) . "</Дата>\n" .
-                        "<ХозОперация>Заказ товара</ХозОперация>\n" .
-                        "<Роль>Продавец</Роль>\n" .
-                        "<Валюта>" . \Currency\Currency::create()->main->getCode() . "</Валюта>\n" .
-                        "<Курс>1</Курс>\n" .
-                        "<Сумма>" . $order->totalprice . "</Сумма>\n" .
-                        "<Контрагенты>\n" .
-                        "<Контрагент>\n" .
-                        "<Ид>" . $order->user_id . "</Ид>\n" .
-                        "<Наименование>" . $order->UserFullName . "</Наименование>\n" .
-                        "<Роль>Покупатель</Роль>" .
-                        "<ПолноеНаименование>" . $order->UserFullName . "</ПолноеНаименование>\n" .
-                        "<Фамилия>" . $order->UserFullName . "</Фамилия>" .
-                        "<Имя>" . $order->UserFullName . "</Имя>" .
-                        "<АдресРегистрации>" .
-                        "<Представление>" . $order->user_deliver_to . "</Представление>" .
-                        "<Комментарий></Комментарий>"
-                        . "</АдресРегистрации>" .
-                        "<Контакты>" .
-                        "<Контакт>" .
-                        "<Тип>ТелефонРабочий</Тип>" .
-                        "<Значение>" . $order->user_phone . "</Значение>" .
-                        "<Комментарий></Комментарий>" .
-                        "</Контакт>" .
-                        "<Контакт>" .
-                        "<Тип>Почта</Тип>" .
-                        "<Значение>" . $order->user_email . "</Значение>" .
-                        "<Комментарий>Пользовательская почта</Комментарий>" .
-                        "</Контакт>" .
-                        "</Контакты>" .
-                        "</Контрагент>\n" .
-                        "</Контрагенты>\n" .
-                        "<Время>" . date('G:i:s', $order->date_created) . "</Время>\n" .
-                        "<Комментарий>" . $order->user_comment . "</Комментарий>\n" .
-                        "<Товары>\n";
+                    '<Ид>' . $order->Id . "</Ид>\n" .
+                    '<Номер>' . $order->Id . "</Номер>\n" .
+                    '<Дата>' . date('Y-m-d', $order->date_created) . "</Дата>\n" .
+                    "<ХозОперация>Заказ товара</ХозОперация>\n" .
+                    "<Роль>Продавец</Роль>\n" .
+                    '<Валюта>' . \Currency\Currency::create()->main->getCode() . "</Валюта>\n" .
+                    "<Курс>1</Курс>\n" .
+                    '<Сумма>' . $order->totalprice . "</Сумма>\n" .
+                    "<Контрагенты>\n" .
+                    "<Контрагент>\n" .
+                    '<Ид>' . $order->user_id . "</Ид>\n" .
+                    '<Наименование>' . $order->UserFullName . "</Наименование>\n" .
+                    '<Роль>Покупатель</Роль>' .
+                    '<ПолноеНаименование>' . $order->UserFullName . "</ПолноеНаименование>\n" .
+                    '<Фамилия>' . $order->UserFullName . '</Фамилия>' .
+                    '<Имя>' . $order->UserFullName . '</Имя>' .
+                    '<АдресРегистрации>' .
+                    '<Представление>' . $order->user_deliver_to . '</Представление>' .
+                    '<Комментарий></Комментарий>'
+                    . '</АдресРегистрации>' .
+                    '<Контакты>' .
+                    '<Контакт>' .
+                    '<Тип>ТелефонРабочий</Тип>' .
+                    '<Значение>' . $order->user_phone . '</Значение>' .
+                    '<Комментарий></Комментарий>' .
+                    '</Контакт>' .
+                    '<Контакт>' .
+                    '<Тип>Почта</Тип>' .
+                    '<Значение>' . $order->user_email . '</Значение>' .
+                    '<Комментарий>Пользовательская почта</Комментарий>' .
+                    '</Контакт>' .
+                    '</Контакты>' .
+                    "</Контрагент>\n" .
+                    "</Контрагенты>\n" .
+                    '<Время>' . date('G:i:s', $order->date_created) . "</Время>\n" .
+                    '<Комментарий>' . $order->user_comment . "</Комментарий>\n" .
+                    "<Товары>\n";
                 $ordered_products = SOrderProductsQuery::create()
-                        ->joinSProducts()
-                        ->findByOrderId($order->Id);
+                    ->joinSProducts()
+                    ->findByOrderId($order->Id);
                 if ($order->deliverymethod != null) {
                     $xml_order .= "<Товар>\n" .
-                            "<Ид>ORDER_DELIVERY</Ид>\n" .
-                            "<Наименование>Доставка заказа</Наименование>\n" .
-                            '<БазоваяЕдиница Код="2009" НаименованиеПолное="Штука" МеждународноеСокращение="PCE">шт</БазоваяЕдиница>' . "\n" .
-                            "<ЦенаЗаЕдиницу>" . $order->deliveryprice . "</ЦенаЗаЕдиницу>\n" .
-                            "<Количество>1</Количество>\n" .
-                            "<Сумма>" . $order->deliveryprice . "</Сумма>\n" .
-                            "<ЗначенияРеквизитов>\n" .
-                            "<ЗначениеРеквизита>\n" .
-                            "<Наименование>ВидНоменклатуры</Наименование>\n" .
-                            "<Значение>Услуга</Значение>\n" .
-                            "</ЗначениеРеквизита>\n" .
-                            "<ЗначениеРеквизита>\n" .
-                            "<Наименование>ТипНоменклатуры</Наименование>\n" .
-                            "<Значение>Услуга</Значение>\n" .
-                            "</ЗначениеРеквизита>\n" .
-                            "</ЗначенияРеквизитов>\n" .
-                            "</Товар>\n";
+                        "<Ид>ORDER_DELIVERY</Ид>\n" .
+                        "<Наименование>Доставка заказа</Наименование>\n" .
+                        '<БазоваяЕдиница Код="2009" НаименованиеПолное="Штука" МеждународноеСокращение="PCE">шт</БазоваяЕдиница>' . "\n" .
+                        '<ЦенаЗаЕдиницу>' . $order->deliveryprice . "</ЦенаЗаЕдиницу>\n" .
+                        "<Количество>1</Количество>\n" .
+                        '<Сумма>' . $order->deliveryprice . "</Сумма>\n" .
+                        "<ЗначенияРеквизитов>\n" .
+                        "<ЗначениеРеквизита>\n" .
+                        "<Наименование>ВидНоменклатуры</Наименование>\n" .
+                        "<Значение>Услуга</Значение>\n" .
+                        "</ЗначениеРеквизита>\n" .
+                        "<ЗначениеРеквизита>\n" .
+                        "<Наименование>ТипНоменклатуры</Наименование>\n" .
+                        "<Значение>Услуга</Значение>\n" .
+                        "</ЗначениеРеквизита>\n" .
+                        "</ЗначенияРеквизитов>\n" .
+                        "</Товар>\n";
                 }
                 /* @var $product SOrderProducts */
                 foreach ($ordered_products as $product) {
@@ -666,25 +697,25 @@ class Exchange extends \MY_Controller
                     }
 
                     $xml_order .= "<Товар>\n" .
-                            "<Ид>" . $product->getSProducts()->getExternalId() . "</Ид>\n" .
-                            "<ИдКаталога>{$category['external_id']}</ИдКаталога>\n" .
-                            "<Наименование>" . ShopCore::encode($product->product_name) . "</Наименование>\n" .
-                            '<БазоваяЕдиница Код="2009" НаименованиеПолное="Штука" МеждународноеСокращение="PCE">шт</БазоваяЕдиница>' . "\n" .
-                            "<ЦенаЗаЕдиницу>" . $product->price . "</ЦенаЗаЕдиницу>\n" .
-                            "<Количество>$product->quantity</Количество>\n" .
-                            "<Сумма>" . ($product->price) * ($product->quantity) . "</Сумма>\n" .
-                            $variantCharacteristicsXmlPart .
-                            "<ЗначенияРеквизитов>\n" .
-                            "<ЗначениеРеквизита>\n" .
-                            "<Наименование>ВидНоменклатуры</Наименование>\n" .
-                            "<Значение>Товар</Значение>\n" .
-                            "</ЗначениеРеквизита>\n" .
-                            "<ЗначениеРеквизита>\n" .
-                            "<Наименование>ТипНоменклатуры</Наименование>\n" .
-                            "<Значение>Товар</Значение>\n" .
-                            "</ЗначениеРеквизита>\n" .
-                            "</ЗначенияРеквизитов>\n" .
-                            "</Товар>\n";
+                        '<Ид>' . $product->getSProducts()->getExternalId() . "</Ид>\n" .
+                        "<ИдКаталога>{$category['external_id']}</ИдКаталога>\n" .
+                        '<Наименование>' . ShopCore::encode($product->product_name) . "</Наименование>\n" .
+                        '<БазоваяЕдиница Код="2009" НаименованиеПолное="Штука" МеждународноеСокращение="PCE">шт</БазоваяЕдиница>' . "\n" .
+                        '<ЦенаЗаЕдиницу>' . $product->price . "</ЦенаЗаЕдиницу>\n" .
+                        "<Количество>$product->quantity</Количество>\n" .
+                        '<Сумма>' . ($product->price) * ($product->quantity) . "</Сумма>\n" .
+                        $variantCharacteristicsXmlPart .
+                        "<ЗначенияРеквизитов>\n" .
+                        "<ЗначениеРеквизита>\n" .
+                        "<Наименование>ВидНоменклатуры</Наименование>\n" .
+                        "<Значение>Товар</Значение>\n" .
+                        "</ЗначениеРеквизита>\n" .
+                        "<ЗначениеРеквизита>\n" .
+                        "<Наименование>ТипНоменклатуры</Наименование>\n" .
+                        "<Значение>Товар</Значение>\n" .
+                        "</ЗначениеРеквизита>\n" .
+                        "</ЗначенияРеквизитов>\n" .
+                        "</Товар>\n";
                 }
                 $xml_order .= "</Товары>\n";
                 if ($order->paid == 0) {
@@ -694,40 +725,40 @@ class Exchange extends \MY_Controller
                 }
                 $status = SOrders::getStatusName('Id', $order->getStatus());
                 $xml_order .= "<ЗначенияРеквизитов>\n" .
-                        "<ЗначениеРеквизита>\n" .
-                        "<Наименование>Метод оплаты</Наименование>\n" .
-                        "<Значение>" . $order->getpaymentMethodName() . "</Значение>\n" .
-                        "</ЗначениеРеквизита>\n" .
-                        "<ЗначениеРеквизита>\n" .
-                        "<Наименование>Заказ оплачен</Наименование>\n" .
-                        "<Значение>" . $paid_status . "</Значение>\n" .
-                        "</ЗначениеРеквизита>\n" .
-                        "<ЗначениеРеквизита>\n" .
-                        "<Наименование>Доставка разрешена</Наименование>\n" .
-                        "<Значение>true</Значение>\n" .
-                        "</ЗначениеРеквизита>\n" .
-                        "<ЗначениеРеквизита>\n" .
-                        "<Наименование>Отменен</Наименование>\n" .
-                        "<Значение>false</Значение>\n" .
-                        "</ЗначениеРеквизита>\n" .
-                        "<ЗначениеРеквизита>\n" .
-                        "<Наименование>Финальный статус</Наименование>\n" .
-                        "<Значение>false</Значение>\n" .
-                        "</ЗначениеРеквизита>\n" .
-                        "<ЗначениеРеквизита>\n" .
-                        "<Наименование>Статус заказа</Наименование>\n" .
-                        "<Значение>" . $status . "</Значение>\n" .
-                        "</ЗначениеРеквизита>\n" .
-                        "<ЗначениеРеквизита>\n" .
-                        "<Наименование>Дата изменения статуса</Наименование>\n" .
-                        "<Значение>" . date('Y-m-d H:i:s', $order->date_updated) . "</Значение>\n" .
-                        "</ЗначениеРеквизита>\n" .
-                        "</ЗначенияРеквизитов>\n";
+                    "<ЗначениеРеквизита>\n" .
+                    "<Наименование>Метод оплаты</Наименование>\n" .
+                    '<Значение>' . $order->getpaymentMethodName() . "</Значение>\n" .
+                    "</ЗначениеРеквизита>\n" .
+                    "<ЗначениеРеквизита>\n" .
+                    "<Наименование>Заказ оплачен</Наименование>\n" .
+                    '<Значение>' . $paid_status . "</Значение>\n" .
+                    "</ЗначениеРеквизита>\n" .
+                    "<ЗначениеРеквизита>\n" .
+                    "<Наименование>Доставка разрешена</Наименование>\n" .
+                    "<Значение>true</Значение>\n" .
+                    "</ЗначениеРеквизита>\n" .
+                    "<ЗначениеРеквизита>\n" .
+                    "<Наименование>Отменен</Наименование>\n" .
+                    "<Значение>false</Значение>\n" .
+                    "</ЗначениеРеквизита>\n" .
+                    "<ЗначениеРеквизита>\n" .
+                    "<Наименование>Финальный статус</Наименование>\n" .
+                    "<Значение>false</Значение>\n" .
+                    "</ЗначениеРеквизита>\n" .
+                    "<ЗначениеРеквизита>\n" .
+                    "<Наименование>Статус заказа</Наименование>\n" .
+                    '<Значение>' . $status . "</Значение>\n" .
+                    "</ЗначениеРеквизита>\n" .
+                    "<ЗначениеРеквизита>\n" .
+                    "<Наименование>Дата изменения статуса</Наименование>\n" .
+                    '<Значение>' . date('Y-m-d H:i:s', $order->date_updated) . "</Значение>\n" .
+                    "</ЗначениеРеквизита>\n" .
+                    "</ЗначенияРеквизитов>\n";
                 $xml_order .= "</Документ>\n";
             }
-            $xml_order .= "</КоммерческаяИнформация>";
+            $xml_order .= '</КоммерческаяИнформация>';
 
-            $xml_order = iconv("UTF-8", "Windows-1251", $xml_order);
+            $xml_order = iconv('UTF-8', 'Windows-1251', $xml_order);
 
             echo $xml_order;
         }

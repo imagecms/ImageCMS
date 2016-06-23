@@ -251,9 +251,11 @@ class Commentsapi extends Comments
 
         $paths = explode('/', $url);
         $paths = $paths[count($paths) - 1];
+        $lang_id = MY_Controller::getCurrentLanguage('id');
 
         $page = $this->db->select('id, comments_status, category')
             ->where('url', $paths)
+            ->where('lang', $lang_id)
             ->get('content');
 
         if ($page) {

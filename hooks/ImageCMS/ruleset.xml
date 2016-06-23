@@ -15,6 +15,7 @@
     <exclude-pattern>*/tests/*</exclude-pattern>
     <exclude-pattern>system/*</exclude-pattern>
     <exclude-pattern>hooks/*</exclude-pattern>
+    <exclude-pattern>js/*</exclude-pattern>
     <exclude-pattern>*min.js</exclude-pattern>
     <exclude-pattern>*min.css</exclude-pattern>
     <exclude-pattern>*/mod_stats/assets/js/*</exclude-pattern>

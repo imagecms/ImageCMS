@@ -25,6 +25,8 @@ class Admin extends BaseAdminController
     // Find templates and redner list of first template folder
 
     public function index() {
+
+        $this->template->add_array(['admin_interface_locale' => MY_Controller::getAdminInterfaceLocale()]);
         $this->render('index');
     }
 

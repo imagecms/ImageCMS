@@ -2,17 +2,21 @@
     margin-top: 25px;
     border: 1px solid #dfdfdf;
 }
+
 .mini-section-last {
     margin-right: 0px;
 }
+
 .mini-section-header {
     background-color: #fff;
     border-bottom: 1px solid #dfdfdf;
     font-weight: bold;
 }
+
 .mini-section-header .mini-layout_inside-padding {
     padding: 12px;
 }
+
 .mini-section-content .mini-layout_inside-padding {
     padding: 25px;
 }

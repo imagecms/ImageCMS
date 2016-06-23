@@ -2,7 +2,8 @@
 
 namespace sitemap\classes;
 
-class SitemapHtml {
+class SitemapHtml
+{
 
     /**
      * @var \CI_DB_active_record

@@ -34,4 +34,5 @@ class DependencyInjectionProvider
         }
         return static::$container;
     }
+
 }

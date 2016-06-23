@@ -3,8 +3,8 @@
 namespace CMSFactory\MetaManipulator;
 
 use MY_Controller;
+use Propel\Runtime\Exception\PropelException;
 use SProductPropertiesDataQuery;
-use SProducts;
 
 /**
  * Class ShopProductMetaManipulator
@@ -23,6 +23,7 @@ class ShopProductMetaManipulator extends MetaManipulator
      * @param string $name
      * @param string $arguments
      * @return string
+     * @throws PropelException
      */
     public function __call($name, $arguments) {
 
@@ -38,18 +39,23 @@ class ShopProductMetaManipulator extends MetaManipulator
     /**
      * @param int|null $id
      * @return string|array
+     * @throws PropelException
      */
     public function getProperties($id = null) {
 
-        if (empty($this->properties)) {
+        if (count($this->properties) === 0) {
 
             $properties = $this->getModel()->getSProductPropertiesDatas(
                 SProductPropertiesDataQuery::create()
-                    ->filterByLocale(MY_Controller::getCurrentLocale())
+                    ->setComment(__METHOD__)
+                    ->joinWithSPropertyValue()
+                    ->useSPropertyValueQuery()
+                    ->joinWithI18n(MY_Controller::getCurrentLocale())
+                    ->endUse()
             );
 
             foreach ($properties as $property) {
-                $this->setProperties($property->getPropertyId(), $property->getValue());
+                $this->setProperties($property->getPropertyId(), $property->getSPropertyValue()->getValue());
             }
         }
 
@@ -62,11 +68,16 @@ class ShopProductMetaManipulator extends MetaManipulator
      */
     public function setProperties($id, $value) {
 
-        $this->properties[$id] = $value;
+        if (array_key_exists($id, $this->properties)) {
+            $this->properties[$id] .= ", $value";
+        } else {
+            $this->properties[$id] = $value;
+        }
     }
 
-     /**
+    /**
      * @return string
+     * @throws PropelException
      */
     public function getBrand() {
 
@@ -78,6 +89,7 @@ class ShopProductMetaManipulator extends MetaManipulator
 
     /**
      * @return string
+     * @throws PropelException
      */
     public function getCategory() {
 

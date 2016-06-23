@@ -616,6 +616,9 @@ function initTinyMCE(selector) {
                     ],
                     selectionPointer: true,
                 },
+
+
+
                 cssFiles: [
                     // Start code hinting
                     'addon/hint/show-hint.css',
@@ -678,6 +681,7 @@ function elFinderPopup(type, id, path, onlyMimes) {
     if (!dlg) {
         dlg = $('#elFinder').dialogelfinder({
             url: '/admin/elfinder_init',
+
             lang: locale.substr(0, 2),
             commands: [
                 'open', 'reload', 'home', 'up', 'back', 'forward', 'getfile', 'quicklook',
@@ -778,7 +782,42 @@ function elFinderTPLEd() {
         height: $(window).height() * 0.6,
         lang: locale.substr(0, 2),
         commands: commands,
-        commandsOptions: {},
+        commandsOptions: {
+            edit: {
+            	dialogWidth: 980,
+                mimes: ['text/plain', 'text/css', 'text/html', 'text/javascript', 'text/x-php'],
+                editors: [{
+                    mimes: ['text/plain', 'text/css', 'text/html', 'text/javascript', 'text/x-php'],
+                    load: function (textarea) {
+
+                        textarea.editor = {
+                            instance: null
+                        };
+
+                        var mimeType = this.file.mime;
+                        return CodeMirror.fromTextArea(textarea, {
+                            mode: mimeType,
+                            lineNumbers: true,
+                            //extraKeys: {
+                            //    "Ctrl-Space": "autocomplete"
+                            //},
+                            lineWrapping: true,
+                            foldGutter: true,
+                            gutters: [
+                                "CodeMirror-linenumbers",
+                                "CodeMirror-foldgutter"
+                            ],
+                            //
+                            selectionPointer: true
+
+                        });
+                    },
+                    save: function (textarea, editor) {
+                        $(textarea).val(editor.getValue());
+                    }
+                }]
+            }
+        },
         uiOptions: {
             // toolbar configuration
             toolbar: [
@@ -806,15 +845,6 @@ function elFinderTPLEd() {
                 // auto load current dir parents
                 syncTree: true
             },
-        },
-        editors: {
-            editor: {
-                load: function () {
-                },
-                save: function () {
-                },
-                mimes: []
-            }
         },
         getFileCallback: function (e, ev, c) {
             //self.fm.select($(this), true);

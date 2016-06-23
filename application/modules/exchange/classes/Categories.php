@@ -14,16 +14,16 @@ final class Categories extends ExchangeBase
 {
 
     /**
+     *
+     * @var array
+     */
+    private $categoriesNames = [];
+
+    /**
      * Parsed categories from XML to one-dimention array
      * @var array
      */
     private $categoriesXml = [];
-
-    /**
-     *
-     * @var array
-     */
-    private $new = [];
 
     /**
      *
@@ -40,53 +40,29 @@ final class Categories extends ExchangeBase
      *
      * @var array
      */
-    private $categoriesNames = [];
+    private $new = [];
 
     /**
-     * Creates one-dimension array with categories from XML-file
-     * (method is filling  $categories, $new and $existing arrays of class instance)
-     * @param \SimpleXMLElement $categories
-     * @param string $parent (default null) external id of parent if there is
+     * Check if category exists (by external id) (helper)
+     * @param string $externalId
+     * @param boolean $returnCategoryId if TRUE, then method will return id of category
+     * @return boolean|int FALSE if category is new, TRUE otherwise
      */
-    private function processCategories(\SimpleXMLElement $categories, $parent = NULL) {
-        foreach ($categories as $category) {
-            $externalId = (string) $category->Ид;
+    public function categoryExists2($externalId, $returnCategoryId = FALSE) {
 
-            // splitting on those which need to be updated and new (by external id)
-            if (FALSE == $this->categoryExists($externalId)) {
-                $this->new[] = $externalId;
-                $name = $this->getCategoryName((string) $category->Наименование);
-            } else {
-                $this->existing[] = $externalId;
-                $name = (string) $category->Наименование;
-            }
-
-            $this->categoriesXml[$externalId] = [
-                'name' => $name,
-                'active' => (string) $category->Статус == 'Удален' ? 0 : 1,
-                'external_id' => $externalId,
-                'parent_external_id' => $parent === null ? 0 : $parent
-            ];
-
-            if (isset($category->Группы)) {
-                $this->processCategories($category->Группы->Группа, $externalId);
+        if (null === $this->externalIds) {
+            $this->externalIds = [];
+            foreach ($this->categories as $categoryId => $categoryData) {
+                if (!empty($categoryData['external_id'])) {
+                    $this->externalIds[$categoryData['external_id']] = $categoryId;
+                }
             }
         }
-
-    }
-
-    /**
-     * @param string $name
-     * @return string
-     */
-    private function getCategoryName($name) {
-        $nameTemp = $name;
-        $i = 1;
-        while (in_array($nameTemp, $this->categoriesNames)) {
-            $nameTemp = $name . ' ' . $i++;
+        $exists = isset($this->externalIds[$externalId]);
+        if ($exists == TRUE) {
+            return $returnCategoryId !== TRUE ? TRUE : $this->externalIds[$externalId];
         }
-        array_push($this->categoriesNames, $nameTemp);
-        return $nameTemp;
+        return FALSE;
     }
 
     /**
@@ -94,6 +70,7 @@ final class Categories extends ExchangeBase
      * @return boolean|array FALSE|array(count of inserted, count of deleted)
      */
     protected function import_() {
+
         // getting categories names for checking fr unique names
         $categoriesI18n = $this->db
             ->where('locale', \MY_Controller::getCurrentLocale())
@@ -133,24 +110,104 @@ final class Categories extends ExchangeBase
     }
 
     /**
+     * Creates one-dimension array with categories from XML-file
+     * (method is filling  $categories, $new and $existing arrays of class instance)
+     * @param \SimpleXMLElement $categories
+     * @param string $parent (default null) external id of parent if there is
+     */
+    private function processCategories(\SimpleXMLElement $categories, $parent = NULL) {
+
+        foreach ($categories as $category) {
+            $externalId = (string) $category->Ид;
+
+            // splitting on those which need to be updated and new (by external id)
+            if (FALSE == $this->categoryExists($externalId)) {
+                $this->new[] = $externalId;
+                $name = $this->getCategoryName((string) $category->Наименование);
+            } else {
+                $this->existing[] = $externalId;
+                $name = (string) $category->Наименование;
+            }
+
+            $this->categoriesXml[$externalId] = [
+                                                 'name'               => $name,
+                                                 'active'             => (string) $category->Статус == 'Удален' ? 0 : 1,
+                                                 'external_id'        => $externalId,
+                                                 'parent_external_id' => $parent === null ? 0 : $parent,
+                                                ];
+
+            if (isset($category->Группы)) {
+                $this->processCategories($category->Группы->Группа, $externalId);
+            }
+        }
+
+    }
+
+    /**
+     * Check if category exists (by external id) (helper)
+     * @param string $externalId
+     * @return boolean FALSE if category is new, FALSE otherwise
+     */
+    public function categoryExists($externalId) {
+
+        foreach ($this->categories as $categoryId => $categoryData) {
+            if ($externalId == $categoryData['external_id']) {
+                return TRUE;
+            }
+        }
+        return FALSE;
+    }
+
+    /**
+     * @param string $name
+     * @return string
+     */
+    private function getCategoryName($name) {
+
+        $nameTemp = $name;
+        $i = 1;
+        while (in_array($nameTemp, $this->categoriesNames)) {
+            $nameTemp = $name . ' ' . $i++;
+        }
+        array_push($this->categoriesNames, $nameTemp);
+        return $nameTemp;
+    }
+
+    /**
      * Prepare array for DB insert/update query
      * (returns array redy to inserting in database)
      * @param array $categoriesExternalIds
      * @return array
      */
     private function getPreparedData(array $categoriesExternalIds) {
+
         $dbArray = [];
         foreach ($categoriesExternalIds as $externalId) {
             // fitment of category url (might be busy)
             $url = translit_url($this->categoriesXml[$externalId]['name']);
             // preparing array for insert
             $dbArray[] = [
-                'external_id' => $externalId,
-                'url' => $url,
-                'active' => $this->categoriesXml[$externalId]['active'],
-            ];
+                          'external_id' => $externalId,
+                          'url'         => $url,
+                          'active'      => $this->categoriesXml[$externalId]['active'],
+                         ];
         }
         return $dbArray;
+    }
+
+    private function geti18nData($categoriesExternalIds) {
+
+        $i18n = [];
+        foreach ($this->categories as $categoryId => $categoryData) {
+            if (in_array($categoryData['external_id'], $categoriesExternalIds)) {
+                $i18n[] = [
+                           'id'     => $categoryData['id'],
+                           'locale' => $this->locale,
+                           'name'   => $this->categoriesXml[$categoryData['external_id']]['name'],
+                          ];
+            }
+        }
+        return $i18n;
     }
 
     /**
@@ -158,6 +215,7 @@ final class Categories extends ExchangeBase
      * @return boolean
      */
     private function getPathsAndParents() {
+
         $categoriesExternalIds = array_merge($this->new, $this->existing);
         // UPDATING INSERTED CATEGORIES (add parent ids & full path)
         $this->dataLoad->getNewData('categories'); // getting dategories form db again
@@ -167,9 +225,9 @@ final class Categories extends ExchangeBase
         foreach ($this->categories as $categoryId => $categoryData) {
             if (in_array($categoryData['external_id'], $categoriesExternalIds)) {
                 $categories[$categoryData['id']] = [
-                    'id' => $categoryData['id'],
-                    'parent_id' => $this->getParentIdDb($categoryData['external_id'])
-                ];
+                                                    'id'        => $categoryData['id'],
+                                                    'parent_id' => $this->getParentIdDb($categoryData['external_id']),
+                                                   ];
             }
         }
 
@@ -193,26 +251,13 @@ final class Categories extends ExchangeBase
         return $categories;
     }
 
-    private function geti18nData($categoriesExternalIds) {
-        $i18n = [];
-        foreach ($this->categories as $categoryId => $categoryData) {
-            if (in_array($categoryData['external_id'], $categoriesExternalIds)) {
-                $i18n[] = [
-                    'id' => $categoryData['id'],
-                    'locale' => $this->locale,
-                    'name' => $this->categoriesXml[$categoryData['external_id']]['name']
-                ];
-            }
-        }
-        return $i18n;
-    }
-
     /**
      * Returning DB id of category by external_id (helper)
      * @param string $externalId
      * @return int|boolean id (DB primary key) of category|FALSE
      */
     private function getParentIdDb($externalId) {
+
         $parentExternalId = $this->categoriesXml[$externalId]['parent_external_id'];
         if ((string) $parentExternalId == '0') {
             return 0;
@@ -231,48 +276,13 @@ final class Categories extends ExchangeBase
      * @return boolean
      */
     private function isUrlFree($url) {
+
         foreach ($this->categories as $categoryData) {
             if (strtolower($url) == strtolower($categoryData['url'])) {
                 return FALSE;
             }
         }
         return TRUE;
-    }
-
-    /**
-     * Check if category exists (by external id) (helper)
-     * @param string $externalId
-     * @return boolean FALSE if category is new, FALSE otherwise
-     */
-    public function categoryExists($externalId) {
-        foreach ($this->categories as $categoryId => $categoryData) {
-            if ($externalId == $categoryData['external_id']) {
-                return TRUE;
-            }
-        }
-        return FALSE;
-    }
-
-    /**
-     * Check if category exists (by external id) (helper)
-     * @param string $externalId
-     * @param boolean $returnCategoryId if TRUE, then method will return id of category
-     * @return boolean|int FALSE if category is new, TRUE otherwise
-     */
-    public function categoryExists2($externalId, $returnCategoryId = FALSE) {
-        if (null === $this->externalIds) {
-            $this->externalIds = [];
-            foreach ($this->categories as $categoryId => $categoryData) {
-                if (!empty($categoryData['external_id'])) {
-                    $this->externalIds[$categoryData['external_id']] = $categoryId;
-                }
-            }
-        }
-        $exists = isset($this->externalIds[$externalId]);
-        if ($exists == TRUE) {
-            return $returnCategoryId !== TRUE ? TRUE : $this->externalIds[$externalId];
-        }
-        return FALSE;
     }
 
 }

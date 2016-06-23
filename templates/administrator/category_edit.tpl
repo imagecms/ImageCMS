@@ -266,7 +266,7 @@
                                                     :</label>
 
                                                 <div class="controls span6">
-                                                    <div class="group_icon pull-right" style="margin-right: 45px;">
+                                                    <div class="group_icon pull-right" style="margin-right: 30px;">
                                                         <button type="button" class="btn btn-small btn-success" id="create_category_tpl">
                                                             <i class="icon-plus-sign icon-white"></i>{lang('Create a new template','admin')}
                                                         </button>
@@ -291,7 +291,7 @@
                                                     :</label>
 
                                                 <div class="controls span6">
-                                                    <div class="group_icon pull-right" style="margin-right: 45px;">
+                                                    <div class="group_icon pull-right" style="margin-right: 30px;">
                                                         <button type="button" class="btn btn-small btn-success" id="create_category_tpl">
                                                             <i class="icon-plus-sign icon-white"></i>{lang('Create a new template','admin')}
                                                         </button>
@@ -315,7 +315,7 @@
                                                     :</label>
 
                                                 <div class="controls span6">
-                                                    <div class="group_icon pull-right" style="margin-right: 45px;">
+                                                    <div class="group_icon pull-right" style="margin-right: 30px;">
                                                         <button type="button" class="btn btn-small btn-success" id="create_category_tpl">
                                                             <i class="icon-plus-sign icon-white"></i>{lang('Create a new template','admin')}
                                                         </button>

@@ -50,6 +50,11 @@ class MetaStorage
     private $titleTemplate;
 
     /**
+     * @var string
+     */
+    private $seoTextTemplate;
+
+    /**
      * @var array
      */
     private $vars = [];
@@ -77,6 +82,22 @@ class MetaStorage
 
         $this->setVars($this->parseVars($descriptionTemplate));
         $this->descriptionTemplate = $descriptionTemplate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSeoTextTemplate() {
+        return $this->seoTextTemplate;
+    }
+
+    /**
+     * @param $seoTextTemplate
+     */
+    public function setSeoTextTemplate($seoTextTemplate) {
+
+        $this->setVars($this->parseVars($seoTextTemplate));
+        $this->seoTextTemplate = $seoTextTemplate;
     }
 
     /**

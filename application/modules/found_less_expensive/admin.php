@@ -1,5 +1,7 @@
 <?php
 
+use CMSFactory\assetManager;
+
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
@@ -7,6 +9,7 @@ if (!defined('BASEPATH')) {
 /**
  * Image CMS
  * Comments admin
+ * @property Found_less_expensive_model found_less_expensive_model
  */
 class Admin extends BaseAdminController
 {
@@ -21,17 +24,16 @@ class Admin extends BaseAdminController
      * Init
      */
     private function init() {
-        \CMSFactory\assetManager::create()
+        assetManager::create()
                 ->registerScript('scripts');
         $this->load->model('found_less_expensive_model');
         $lang = new MY_Lang();
         $lang->load('found_less_expensive');
     }
 
-    /*
+    /**
      * Show list of notifications about found less expensive
      */
-
     public function index() {
         $this->init();
         $status = $this->uri->segment(7);
@@ -40,7 +42,10 @@ class Admin extends BaseAdminController
         //Prepare data
         switch ($status) {
             case 'all':
-                $status_all = ['0', '1'];
+                $status_all = [
+                               '0',
+                               '1',
+                              ];
                 break;
 
             case 'new':
@@ -52,7 +57,10 @@ class Admin extends BaseAdminController
                 break;
 
             default:
-                $status_all = ['0', '1'];
+                $status_all = [
+                               '0',
+                               '1',
+                              ];
 
                 break;
         }
@@ -93,36 +101,34 @@ class Admin extends BaseAdminController
 
         $this->template
             ->add_array(
-                ['data' => $data,
-                    'pagination' => $pagination,
-                    'status' => $status,
-                    'countAll' => $this->found_less_expensive_model->getCountAll([0, 1]),
-                    'countNew' => $this->found_less_expensive_model->getCountAll(0),
-                    'countAccepted' => $this->found_less_expensive_model->getCountAll(1),
-                    ]
+                [
+                 'data'          => $data,
+                 'pagination'    => $pagination,
+                 'status'        => $status,
+                 'countAll'      => $this->found_less_expensive_model->getCountAll([0, 1]),
+                 'countNew'      => $this->found_less_expensive_model->getCountAll(0),
+                 'countAccepted' => $this->found_less_expensive_model->getCountAll(1),
+                ]
             );
         $this->display_tpl('list');
     }
 
-    /*
+    /**
      * Render settings template
      */
-
     public function settings() {
         $this->init();
         $data = $this->found_less_expensive_model->getModuleSettings();
         $this->template
             ->add_array(
-                ['settings' => $data,
-                    ]
+                ['settings' => $data]
             );
         $this->display_tpl('settings');
     }
 
-    /*
+    /**
      * Save settings
      */
-
     public function ajax_save_settings() {
         $value = serialize($this->input->post());
         $this->db->where('name', 'found_less_expensive')->update('components', ['settings' => $value]);
@@ -130,7 +136,7 @@ class Admin extends BaseAdminController
     }
 
     /**
-     *  Delete comment
+     * Delete comment
      */
     public function ajax_delete() {
         $id = $this->input->post('id');
@@ -140,7 +146,7 @@ class Admin extends BaseAdminController
     }
 
     /**
-     * Chenge status
+     * Change status
      */
     public function ajax_change_status() {
         $id = $this->input->post('id');

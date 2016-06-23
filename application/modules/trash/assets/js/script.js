@@ -5,6 +5,7 @@ $('#prod').on(
         $('#forUrl').fadeOut();
         $('#forCat').fadeOut();
         $('#forBase').fadeOut();
+        initChosenSelect();
     }
 );
 $('#url').on(
@@ -23,6 +24,7 @@ $('#cat').on(
         $('#forUrl').fadeOut();
         $('#forProd').fadeOut();
         $('#forBase').fadeOut();
+        initChosenSelect();
     }
 );
 $('#base').on(
@@ -32,6 +34,7 @@ $('#base').on(
         $('#forProd').fadeOut();
         $('#forCat').fadeOut();
         $('#forBase').fadeIn();
+        initChosenSelect();
     }
 );
 $('#404').on(

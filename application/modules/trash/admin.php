@@ -231,7 +231,9 @@ class Admin extends BaseAdminController
         $this->template->add_array(['category_base' => $query->result()]);
 
         if (!$this->ajaxRequest) {
-            assetManager::create()->renderAdmin('edit_trash');
+            assetManager::create()
+                ->registerScript('admin')
+                ->renderAdmin('edit_trash');
         }
 
         if ($this->input->post()) {
@@ -341,11 +343,7 @@ class Admin extends BaseAdminController
                 ->get('shop_products_i18n');
             assetManager::create()->setData('products', $shop_products_i18n->result());
 
-            $shop_category_i18n = $this->db
-                ->order_by('name', 'asc')
-                ->where('locale', $locale)
-                ->get('shop_category_i18n');
-            assetManager::create()->setData('category', $shop_category_i18n->result());
+            assetManager::create()->setData('category', ShopCore::app()->SCategoryTree->getTree_());
         }
     }
 

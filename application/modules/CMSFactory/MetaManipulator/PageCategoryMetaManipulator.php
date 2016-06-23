@@ -31,4 +31,5 @@ class PageCategoryMetaManipulator extends MetaManipulator
         }
         return $this->name;
     }
+
 }

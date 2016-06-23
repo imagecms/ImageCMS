@@ -1479,7 +1479,9 @@ INSERT INTO `mod_email_paterns` (`id`, `name`, `patern`, `from`, `from_email`, `
 VALUES
   (4, 'create_user', '', 'Admin', 'no-replay@mysite.com', '', 'HTML', 1, 1),
   (5, 'forgot_password', '', 'Администрация сайта', 'no-replay@mysite.com', '', 'HTML', 1, 0),
-  (6, 'change_password', '', 'Администрация сайта', 'no-replay@mysite.com', '', 'HTML', 1, 0);
+  (6, 'change_password', '', 'Администрация сайта', 'no-replay@mysite.com', '', 'HTML', 1, 0),
+  (7, 'feedback', '', '', '', '', 'HTML', 1, 1);
+
 
 -- --------------------------------------------------------
 
@@ -1519,7 +1521,11 @@ VALUES
   (6, 'ru', 'Смена пароля',
    '<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Здравствуйте $user_name$!</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Ваш пароль был успешно восстановлен.</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Новый пароль: $password$</p>\n<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Если это письмо попало к Вам по ошибке просто проигнорируйте его.</p>',
    '', '<p>Шаблон письма изменения пароля</p>',
-   'a:2:{s:11:"$user_name$";s:31:"Имя пользователя";s:10:"$password$";s:23:"новый пароль";}');
+   'a:2:{s:11:"$user_name$";s:31:"Имя пользователя";s:10:"$password$";s:23:"новый пароль";}'),
+  (7, 'ru', 'Обратная связь',
+   '<p style="font-family: arial; font-size: 13px; margin-top: 10px;" data-mce-style="font-family: arial; font-size: 13px; margin-top: 10px;">Здравствуйте, $userName$!<br>Вы заказали консультацию в нашей компании, мы свяжемся с Вами в ближайшее время</p>',
+   '<p style="font-family: arial; font-size: 13px; margin-top: 10px;" data-mce-style="font-family: arial; font-size: 13px; margin-top: 10px;">Новий запрос Обратной связи от $userName$</p><p style="font-family: arial; font-size: 13px; margin-top: 10px;" data-mce-style="font-family: arial; font-size: 13px; margin-top: 10px;"><span data-mce-style="color: #666;" style="color: #666;">Тема: </span>$Theme$<br></p><div style="font-family: arial; font-size: 13px; margin-top: 10px;" data-mce-style="font-family: arial; font-size: 13px; margin-top: 10px;"><span style="color: #666;" data-mce-style="color: #666;">Email: </span>$userEmail$</div><div style="font-family: arial; font-size: 13px; margin-top: 10px;" data-mce-style="font-family: arial; font-size: 13px; margin-top: 10px;"><span style="color: #666;" data-mce-style="color: #666;">Сообщение: </span>$userMessage$</div><p><span><br></span></p>',
+   '<p>шаблон заказа обратной связи</p>', 'a:4:{s:10:"$userName$";s:31:"Имя пользователя";s:7:"$Theme$";s:27:"тема сообщения";s:11:"$userEmail$";s:30:"Email пользователя";s:13:"$userMessage$";s:29:"Сообщение юзера";}');
 
 -- --------------------------------------------------------
 

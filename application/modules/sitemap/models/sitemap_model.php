@@ -266,51 +266,51 @@ class Sitemap_model extends CI_Model
         ($this->dx_auth->is_admin()) OR exit;
 
         $fields = [
-            'id' => [
-                'type' => 'INT',
-                'auto_increment' => TRUE
-            ],
-            'main_page_priority' => [
-                'type' => 'FLOAT',
-                'null' => TRUE,
-                'default' => 1
-            ],
-            'cats_priority' => [
-                'type' => 'FLOAT',
-                'null' => TRUE,
-                'default' => 1
-            ],
-            'pages_priority' => [
-                'type' => 'FLOAT',
-                'null' => TRUE,
-                'default' => 1
-            ],
-            'sub_cats_priority' => [
-                'type' => 'FLOAT',
-                'null' => TRUE,
-                'default' => 1
-            ],
-            'products_priority' => [
-                'type' => 'FLOAT',
-                'null' => TRUE,
-                'default' => 1
-            ],
-            'products_categories_priority' => [
-                'type' => 'FLOAT',
-                'null' => TRUE,
-                'default' => 1
-            ],
-            'products_sub_categories_priority' => [
-                'type' => 'FLOAT',
-                'null' => TRUE,
-                'default' => 1
-            ],
-            'brands_priority' => [
-                'type' => 'FLOAT',
-                'null' => TRUE,
-                'default' => 1
-            ],
-        ];
+                   'id'                               => [
+                                                          'type'           => 'INT',
+                                                          'auto_increment' => TRUE,
+                                                         ],
+                   'main_page_priority'               => [
+                                                          'type'    => 'FLOAT',
+                                                          'null'    => TRUE,
+                                                          'default' => 1,
+                                                         ],
+                   'cats_priority'                    => [
+                                                          'type'    => 'FLOAT',
+                                                          'null'    => TRUE,
+                                                          'default' => 1,
+                                                         ],
+                   'pages_priority'                   => [
+                                                          'type'    => 'FLOAT',
+                                                          'null'    => TRUE,
+                                                          'default' => 1,
+                                                         ],
+                   'sub_cats_priority'                => [
+                                                          'type'    => 'FLOAT',
+                                                          'null'    => TRUE,
+                                                          'default' => 1,
+                                                         ],
+                   'products_priority'                => [
+                                                          'type'    => 'FLOAT',
+                                                          'null'    => TRUE,
+                                                          'default' => 1,
+                                                         ],
+                   'products_categories_priority'     => [
+                                                          'type'    => 'FLOAT',
+                                                          'null'    => TRUE,
+                                                          'default' => 1,
+                                                         ],
+                   'products_sub_categories_priority' => [
+                                                          'type'    => 'FLOAT',
+                                                          'null'    => TRUE,
+                                                          'default' => 1,
+                                                         ],
+                   'brands_priority'                  => [
+                                                          'type'    => 'FLOAT',
+                                                          'null'    => TRUE,
+                                                          'default' => 1,
+                                                         ],
+                  ];
 
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', TRUE);
@@ -319,63 +319,63 @@ class Sitemap_model extends CI_Model
         $this->db->insert(
             'mod_sitemap_priorities',
             [
-                'main_page_priority' => 1,
-                'cats_priority' => 1,
-                'pages_priority' => 1,
-                'sub_cats_priority' => 1,
-                'products_priority' => 1,
-                'products_categories_priority' => 1,
-                'products_sub_categories_priority' => 1,
-                'brands_priority' => 1
+             'main_page_priority'               => 1,
+             'cats_priority'                    => 1,
+             'pages_priority'                   => 1,
+             'sub_cats_priority'                => 1,
+             'products_priority'                => 1,
+             'products_categories_priority'     => 1,
+             'products_sub_categories_priority' => 1,
+             'brands_priority'                  => 1,
             ]
         );
 
         $fields = [
-            'id' => [
-                'type' => 'INT',
-                'auto_increment' => TRUE
-            ],
-            'main_page_changefreq' => [
-                'type' => 'VARCHAR',
-                'null' => TRUE,
-                'constraint' => '255'
-            ],
-            'pages_changefreq' => [
-                'type' => 'VARCHAR',
-                'null' => TRUE,
-                'constraint' => '255'
-            ],
-            'product_changefreq' => [
-                'type' => 'VARCHAR',
-                'null' => TRUE,
-                'constraint' => '255'
-            ],
-            'categories_changefreq' => [
-                'type' => 'VARCHAR',
-                'null' => TRUE,
-                'constraint' => '255'
-            ],
-            'products_categories_changefreq' => [
-                'type' => 'VARCHAR',
-                'null' => TRUE,
-                'constraint' => '255'
-            ],
-            'products_sub_categories_changefreq' => [
-                'type' => 'VARCHAR',
-                'null' => TRUE,
-                'constraint' => '255'
-            ],
-            'brands_changefreq' => [
-                'type' => 'VARCHAR',
-                'null' => TRUE,
-                'constraint' => '255'
-            ],
-            'sub_categories_changefreq' => [
-                'type' => 'VARCHAR',
-                'null' => TRUE,
-                'constraint' => '255'
-            ],
-        ];
+                   'id'                                 => [
+                                                            'type'           => 'INT',
+                                                            'auto_increment' => TRUE,
+                                                           ],
+                   'main_page_changefreq'               => [
+                                                            'type'       => 'VARCHAR',
+                                                            'null'       => TRUE,
+                                                            'constraint' => '255',
+                                                           ],
+                   'pages_changefreq'                   => [
+                                                            'type'       => 'VARCHAR',
+                                                            'null'       => TRUE,
+                                                            'constraint' => '255',
+                                                           ],
+                   'product_changefreq'                 => [
+                                                            'type'       => 'VARCHAR',
+                                                            'null'       => TRUE,
+                                                            'constraint' => '255',
+                                                           ],
+                   'categories_changefreq'              => [
+                                                            'type'       => 'VARCHAR',
+                                                            'null'       => TRUE,
+                                                            'constraint' => '255',
+                                                           ],
+                   'products_categories_changefreq'     => [
+                                                            'type'       => 'VARCHAR',
+                                                            'null'       => TRUE,
+                                                            'constraint' => '255',
+                                                           ],
+                   'products_sub_categories_changefreq' => [
+                                                            'type'       => 'VARCHAR',
+                                                            'null'       => TRUE,
+                                                            'constraint' => '255',
+                                                           ],
+                   'brands_changefreq'                  => [
+                                                            'type'       => 'VARCHAR',
+                                                            'null'       => TRUE,
+                                                            'constraint' => '255',
+                                                           ],
+                   'sub_categories_changefreq'          => [
+                                                            'type'       => 'VARCHAR',
+                                                            'null'       => TRUE,
+                                                            'constraint' => '255',
+                                                           ],
+                  ];
 
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', TRUE);
@@ -384,33 +384,33 @@ class Sitemap_model extends CI_Model
         $this->db->insert(
             'mod_sitemap_changefreq',
             [
-                'main_page_changefreq' => 'weekly',
-                'pages_changefreq' => 'weekly',
-                'product_changefreq' => 'weekly',
-                'categories_changefreq' => 'weekly',
-                'products_categories_changefreq' => 'weekly',
-                'products_sub_categories_changefreq' => 'weekly',
-                'brands_changefreq' => 'weekly',
-                'sub_categories_changefreq' => 'weekly'
+             'main_page_changefreq'               => 'weekly',
+             'pages_changefreq'                   => 'weekly',
+             'product_changefreq'                 => 'weekly',
+             'categories_changefreq'              => 'weekly',
+             'products_categories_changefreq'     => 'weekly',
+             'products_sub_categories_changefreq' => 'weekly',
+             'brands_changefreq'                  => 'weekly',
+             'sub_categories_changefreq'          => 'weekly',
             ]
         );
 
         $fields = [
-            'id' => [
-                'type' => 'INT',
-                'auto_increment' => TRUE
-            ],
-            'url' => [
-                'type' => 'VARCHAR',
-                'null' => FALSE,
-                'constraint' => '255'
-            ],
-            'robots_check' => [
-                'type' => 'INT',
-                'null' => TRUE,
-                'default' => 0
-            ],
-        ];
+                   'id'           => [
+                                      'type'           => 'INT',
+                                      'auto_increment' => TRUE,
+                                     ],
+                   'url'          => [
+                                      'type'       => 'VARCHAR',
+                                      'null'       => FALSE,
+                                      'constraint' => '255',
+                                     ],
+                   'robots_check' => [
+                                      'type'    => 'INT',
+                                      'null'    => TRUE,
+                                      'default' => 0,
+                                     ],
+                  ];
 
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', TRUE);
@@ -420,21 +420,21 @@ class Sitemap_model extends CI_Model
         $this->db->delete('components');
 
         $data = [
-            'robotsStatus' => $robotsCheck,
-            'generateXML' => 1,
-            'sendSiteMap' => 1,
-            'lastSend' => 0,
-            'sendWhenUrlChanged' => 0
-        ];
+                 'robotsStatus'       => $robotsCheck,
+                 'generateXML'        => 1,
+                 'sendSiteMap'        => 1,
+                 'lastSend'           => 0,
+                 'sendWhenUrlChanged' => 0,
+                ];
 
         $this->db->insert(
             'components',
             [
-                'name' => 'sitemap',
-                'identif' => 'sitemap',
-                'autoload' => '1',
-                'enabled' => '1',
-                'settings' => serialize($data)
+             'name'     => 'sitemap',
+             'identif'  => 'sitemap',
+             'autoload' => '1',
+             'enabled'  => '1',
+             'settings' => serialize($data),
             ]
         );
     }

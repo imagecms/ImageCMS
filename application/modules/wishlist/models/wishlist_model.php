@@ -33,8 +33,9 @@ class Wishlist_model extends CI_Model
         return $this->db->where('identif', 'wishlist')
             ->update(
                 'components',
-                ['settings' => serialize($settings)
-                                ]
+                [
+                 'settings' => serialize($settings),
+                ]
             );
     }
 
@@ -191,9 +192,9 @@ class Wishlist_model extends CI_Model
             ->delete(
                 'mod_wish_list_products',
                 [
-                    'variant_id' => $variant_id,
-                    'wish_list_id' => $wish_list_id,
-                        ]
+                 'variant_id'   => $variant_id,
+                 'wish_list_id' => $wish_list_id,
+                ]
             );
         if ($this->db->affected_rows() == 0) {
             return FALSE;
@@ -454,9 +455,9 @@ class Wishlist_model extends CI_Model
         }
 
         $data = [
-            'variant_id' => $varId,
-            'wish_list_id' => $listId
-        ];
+                 'variant_id'   => $varId,
+                 'wish_list_id' => $listId,
+                ];
 
         return $this->db->insert('mod_wish_list_products', $data);
     }
@@ -483,9 +484,9 @@ class Wishlist_model extends CI_Model
             $this->db->insert(
                 'mod_wish_list_users',
                 [
-                'id' => $user_id,
-                'user_name' => $user_name
-                    ]
+                 'id'        => $user_id,
+                 'user_name' => $user_name,
+                ]
             );
             return TRUE;
         }
@@ -521,22 +522,22 @@ class Wishlist_model extends CI_Model
     public function createWishList($listName, $user_id, $access = 'shared', $description) {
         $this->createUserIfNotExist($user_id);
         $data = [
-            'title' => $listName,
-            'user_id' => $user_id,
-            'description' => $description,
-            'hash' => random_string('alpha', 16),
-            'access' => $access
-        ];
+                 'title'       => $listName,
+                 'user_id'     => $user_id,
+                 'description' => $description,
+                 'hash'        => random_string('alpha', 16),
+                 'access'      => $access,
+                ];
 
         \cmsemail\email::getInstance()->sendEmail(
             $this->dx_auth->get_user_email(),
             'wish_list',
             [
-            'wishListViews' => '',
-            'userName' => $this->dx_auth->get_username(),
-            'wishName' => $listName,
-            'wishLink' => site_url('wishlist/show') . '/' . $data['hash']
-                ]
+             'wishListViews' => '',
+             'userName'      => $this->dx_auth->get_username(),
+             'wishName'      => $listName,
+             'wishLink'      => site_url('wishlist/show') . '/' . $data['hash'],
+            ]
         );
 
         return $this->db->insert('mod_wish_list', $data);
@@ -637,9 +638,7 @@ class Wishlist_model extends CI_Model
             ->where('id', $userID)
             ->update(
                 'mod_wish_list_users',
-                [
-                            'user_image' => $file_name
-                                ]
+                ['user_image' => $file_name]
             );
     }
 
@@ -668,89 +667,89 @@ class Wishlist_model extends CI_Model
         @mkdir('./uploads/mod_wishlist', 0777);
 
         $fields = [
-            'id' => [
-                'type' => 'INT',
-                'auto_increment' => TRUE
-            ],
-            'title' => [
-                'type' => 'VARCHAR',
-                'constraint' => '254',
-                'null' => FALSE
-            ],
-            'description' => [
-                'type' => 'Text',
-                'null' => TRUE
-            ],
-            'access' => [
-                'type' => 'ENUM',
-                'constraint' => "'public','private','shared'",
-                'default' => 'shared'
-            ],
-            'user_id' => [
-                'type' => 'INT',
-                'null' => FALSE
-            ],
-            'review_count' => [
-                'type' => 'INT',
-                'null' => FALSE,
-                'default' => 0
-            ],
-            'hash' => [
-                'type' => 'VARCHAR',
-                'constraint' => '16',
-                'null' => FALSE
-            ]
-        ];
+                   'id'           => [
+                                      'type'           => 'INT',
+                                      'auto_increment' => TRUE,
+                                     ],
+                   'title'        => [
+                                      'type'       => 'VARCHAR',
+                                      'constraint' => '254',
+                                      'null'       => FALSE,
+                                     ],
+                   'description'  => [
+                                      'type' => 'Text',
+                                      'null' => TRUE,
+                                     ],
+                   'access'       => [
+                                      'type'       => 'ENUM',
+                                      'constraint' => "'public','private','shared'",
+                                      'default'    => 'shared',
+                                     ],
+                   'user_id'      => [
+                                      'type' => 'INT',
+                                      'null' => FALSE,
+                                     ],
+                   'review_count' => [
+                                      'type'    => 'INT',
+                                      'null'    => FALSE,
+                                      'default' => 0,
+                                     ],
+                   'hash'         => [
+                                      'type'       => 'VARCHAR',
+                                      'constraint' => '16',
+                                      'null'       => FALSE,
+                                     ],
+                  ];
 
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->create_table('mod_wish_list');
 
         $fields = [
-            'id' => [
-                'type' => 'INT',
-                'auto_increment' => TRUE
-            ],
-            'wish_list_id' => [
-                'type' => 'INT',
-                'null' => FALSE
-            ],
-            'variant_id' => [
-                'type' => 'INT',
-                'null' => FALSE
-            ],
-            'comment' => [
-                'type' => 'TEXT',
-                'null' => TRUE
-            ]
-        ];
+                   'id'           => [
+                                      'type'           => 'INT',
+                                      'auto_increment' => TRUE,
+                                     ],
+                   'wish_list_id' => [
+                                      'type' => 'INT',
+                                      'null' => FALSE,
+                                     ],
+                   'variant_id'   => [
+                                      'type' => 'INT',
+                                      'null' => FALSE,
+                                     ],
+                   'comment'      => [
+                                      'type' => 'TEXT',
+                                      'null' => TRUE,
+                                     ],
+                  ];
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->create_table('mod_wish_list_products');
 
         $fields = [
-            'id' => [
-                'type' => 'INT',
-                'null' => FALSE
-            ],
-            'user_name' => [
-                'type' => 'VARCHAR',
-                'constraint' => '254',
-                'null' => TRUE
-            ],
-            'user_image' => [
-                'type' => 'TEXT',
-                'null' => TRUE
-            ],
-            'user_birthday' => [
-                'type' => 'INT',
-                'null' => TRUE
-            ],
-            'description' => [
-                'type' => 'TEXT',
-                'null' => TRUE
-            ]
-        ];
+                   'id'            => [
+                                       'type' => 'INT',
+                                       'null' => FALSE,
+                                      ],
+                   'user_name'     => [
+                                       'type'       => 'VARCHAR',
+                                       'constraint' => '254',
+                                       'null'       => TRUE,
+                                      ],
+                   'user_image'    => [
+                                       'type' => 'TEXT',
+                                       'null' => TRUE,
+                                      ],
+                   'user_birthday' => [
+                                       'type' => 'INT',
+                                       'null' => TRUE,
+                                      ],
+                   'description'   => [
+                                       'type' => 'TEXT',
+                                       'null' => TRUE,
+                                      ],
+                  ];
 
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', TRUE);
@@ -761,23 +760,23 @@ class Wishlist_model extends CI_Model
             ->update(
                 'components',
                 [
-                    'settings' => serialize(
-                        [
-                                'maxUserName' => 256,
-                                'maxListName' => 254,
-                                'maxListsCount' => 10,
-                                'maxItemsCount' => 100,
-                                'maxCommentLenght' => 500,
-                                'maxDescLenght' => 1000,
-                                'maxWLDescLenght' => 1000,
-                                'maxImageWidth' => 150,
-                                'maxImageHeight' => 150,
-                                'maxImageSize' => 2000000
-                            ]
-                    ),
-                    'enabled' => 1,
-                    'autoload' => 1
-                        ]
+                 'settings' => serialize(
+                     [
+                      'maxUserName'      => 256,
+                      'maxListName'      => 254,
+                      'maxListsCount'    => 10,
+                      'maxItemsCount'    => 100,
+                      'maxCommentLenght' => 500,
+                      'maxDescLenght'    => 1000,
+                      'maxWLDescLenght'  => 1000,
+                      'maxImageWidth'    => 150,
+                      'maxImageHeight'   => 150,
+                      'maxImageSize'     => 2000000,
+                     ]
+                 ),
+                 'enabled'  => 1,
+                 'autoload' => 0,
+                ]
             );
 
         $this->insertPaterns();

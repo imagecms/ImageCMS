@@ -3,13 +3,10 @@
 namespace CMSFactory\MetaManipulator;
 
 use CI;
-use CMSFactory\assetManager;
 use Currency\Currency;
 use MY_Controller;
 use Propel\Runtime\ActiveQuery\Criteria;
 use Propel\Runtime\Exception\PropelException;
-use SCategory;
-use ShopProductCategoriesQuery;
 use SProductsQuery;
 
 /**
@@ -23,6 +20,11 @@ class ShopCategoryMetaManipulator extends MetaManipulator
      * @var string
      */
     protected $H1;
+
+    /**
+     * @var string
+     */
+    protected $brandName;
 
     /**
      * @var string
@@ -43,6 +45,44 @@ class ShopCategoryMetaManipulator extends MetaManipulator
      * @var string
      */
     protected $minPrice;
+
+    /**
+     * @var string
+     */
+    protected $propertyName;
+
+    /**
+     * @var string
+     */
+    protected $propertyValue;
+
+    /**
+     * @var string
+     */
+    protected $seoText;
+
+    public function __construct($model, MetaStorage $storage) {
+        parent::__construct($model, $storage);
+        $this->setSeoText($this->getStorage()->getSeoTextTemplate());
+        $this->setMetaArray(['seoText']);
+
+    }
+
+    /**
+     * @return string
+     */
+    public function getBrandName() {
+
+        return $this->brandName;
+    }
+
+    /**
+     * @param string $brandName
+     */
+    public function setBrandName($brandName) {
+
+        $this->brandName = $brandName;
+    }
 
     /**
      * @return string
@@ -146,6 +186,7 @@ class ShopCategoryMetaManipulator extends MetaManipulator
 
     /**
      * @return string
+     * @throws PropelException
      */
     public function getMaxPrice() {
 
@@ -193,6 +234,7 @@ class ShopCategoryMetaManipulator extends MetaManipulator
 
     /**
      * @return string
+     * @throws PropelException
      */
     public function getMinPrice() {
 
@@ -219,6 +261,52 @@ class ShopCategoryMetaManipulator extends MetaManipulator
             $this->setName($this->getModel()->getName());
         }
         return $this->name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPropertyName() {
+
+        return $this->propertyName;
+    }
+
+    /**
+     * @param string $propertyName
+     */
+    public function setPropertyName($propertyName) {
+
+        $this->propertyName = $propertyName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPropertyValue() {
+
+        return $this->propertyValue;
+    }
+
+    /**
+     * @param string $propertyValue
+     */
+    public function setPropertyValue($propertyValue) {
+
+        $this->propertyValue = $propertyValue;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSeoText() {
+        return $this->seoText;
+    }
+
+    /**
+     * @param string $seoText
+     */
+    public function setSeoText($seoText) {
+        $this->seoText = $seoText;
     }
 
 }

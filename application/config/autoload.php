@@ -56,7 +56,11 @@ $autoload['packages'] = [];
   |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
  */
 
-$autoload['libraries'] = ['lib_modules', 'lib_init', 'lib_csrf'];
+$autoload['libraries'] = [
+                          'lib_modules',
+                          'lib_init',
+                          'lib_csrf',
+                         ];
 
 
 /*
@@ -68,7 +72,26 @@ $autoload['libraries'] = ['lib_modules', 'lib_init', 'lib_csrf'];
   |	$autoload['helper'] = array('url', 'file');
  */
 
-$autoload['helper'] = ['template', 'url', 'language', 'array', 'rules', 'widget', 'form_csrf', 'my_url', 'category', 'page', 'cache', 'html', 'javascript', 'security', 'siteinfo', 'form_helper', 'module', 'filesystem'];
+$autoload['helper'] = [
+                       'template',
+                       'url',
+                       'language',
+                       'array',
+                       'rules',
+                       'widget',
+                       'form_csrf',
+                       'my_url',
+                       'category',
+                       'page',
+                       'cache',
+                       'html',
+                       'javascript',
+                       'security',
+                       'siteinfo',
+                       'form_helper',
+                       'module',
+                       'filesystem',
+                      ];
 
 
 /*
@@ -84,7 +107,12 @@ $autoload['helper'] = ['template', 'url', 'language', 'array', 'rules', 'widget'
   |
  */
 
-$autoload['config'] = ['auth', 'language', 'cms'];
+$autoload['config'] = [
+                       'auth',
+                       'language',
+                       'cms',
+                       'filter',
+                      ];
 
 
 /*

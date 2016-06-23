@@ -203,6 +203,7 @@ class Sitemap extends MY_Controller
 
     /**
      * Create and display sitemap xml
+     * @param bool $regenerate
      */
     public function build_xml_map($regenerate = FALSE) {
 

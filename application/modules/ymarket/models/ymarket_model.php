@@ -1,12 +1,14 @@
 <?php
 
 use Currency\Currency;
+use Propel\Runtime\ActiveQuery\Criteria;
 use Propel\Runtime\Collection\ObjectCollection;
 use Propel\Runtime\Exception\PropelException;
 
 /**
  * @property CI_DB_active_record $db
  * @property DX_Auth $dx_auth
+ * @property Cms_base cms_base
  */
 class Ymarket_model extends CI_Model
 {
@@ -24,7 +26,8 @@ class Ymarket_model extends CI_Model
 
     /**
      * Selects the category assigned by the user
-     * @return object Information about the selected category
+     * @param $type int
+     * @return array Information about the selected category
      */
     public function init($type) {
 
@@ -58,6 +61,9 @@ class Ymarket_model extends CI_Model
 
     /**
      * Selection of products in the categories specified by the user
+     * @param $idsCat
+     * @param bool $ignoreSettings
+     * @param $brandIds
      * @return array Products and products variants
      */
     public function getProducts($idsCat, $ignoreSettings = false, $brandIds) {
@@ -73,11 +79,13 @@ class Ymarket_model extends CI_Model
                 $products = $products->filterByBrandId($brandIds);
             }
 
-            $products = $products->useProductVariantQuery()
+            $products = $products
+                ->useProductVariantQuery()
                 ->filterByStock(['min' => 1])
                 ->filterByPrice(['min' => 0.00001])
                 ->endUse()
-                ->filterByActive(true);
+                ->filterByActive(true)
+                ->filterByArchive(false);
         }
         $res = $products->find();
         $res->populateRelation('ProductVariant');
@@ -112,29 +120,34 @@ class Ymarket_model extends CI_Model
         foreach ($products as $product) {
             $productsIds[] = $product->getProductId();
         }
-        $properties = SPropertiesQuery::create()
-            ->joinSProductPropertiesData()
-            ->joinWithI18n(MY_Controller::getCurrentLocale())
-            ->select(['SProductPropertiesData.ProductId', 'SProductPropertiesData.Value', 'SPropertiesI18n.Name'])
-            ->where('SProductPropertiesData.ProductId IN ?', $productsIds)
-            ->where('SProductPropertiesData.Locale = ?', MY_Controller::getCurrentLocale())
+
+        $properties = SProductPropertiesDataQuery::create()
+            ->select(['ProductId', 'Value', 'Name'])
+            ->useSPropertiesQuery()
+            ->joinWithI18n(MY_Controller::getCurrentLocale(), Criteria::INNER_JOIN)
+             ->orderByPosition()
+            ->endUse()
+            ->useSPropertyValueQuery()
+            ->joinWithI18n(MY_Controller::getCurrentLocale(), Criteria::INNER_JOIN)
+             ->orderByPosition()
+            ->endUse()
             ->withColumn('SProductPropertiesData.ProductId', 'ProductId')
-            ->withColumn('SProductPropertiesData.Value', 'Value')
+            ->withColumn('SPropertyValueI18n.Value', 'Value')
             ->withColumn('SPropertiesI18n.Name', 'Name')
+            ->filterByProductId($productsIds, Criteria::IN)
             ->where('SProperties.Active = ?', 1)
-            ->where('SProductPropertiesData.Value != ?', '')
+            ->where('SPropertyValueI18n.Value != ?', '')
             ->where('SProperties.ShowOnSite = ?', 1)
-            ->orderByPosition()
-            ->find()
-            ->toArray();
+            ->find()->toArray();
+
         $productsData = [];
         array_map(
             function ($property) use (&$productsData) {
                 if (!$productsData[$property['ProductId']][$property['Name']]) {
                     $productsData[$property['ProductId']][$property['Name']] = [
-                        'name' => $property['Name'],
-                        'value' => [$property['Value']]
-                    ];
+                                                                                'name'  => $property['Name'],
+                                                                                'value' => [$property['Value']],
+                                                                               ];
                 } else {
                     $productsData[$property['ProductId']][$property['Name']]['value'][] = $property['Value'];
                 }
@@ -183,6 +196,7 @@ class Ymarket_model extends CI_Model
      * @param boolean $ignoreSettings
      * @param array $productFields
      * @return array
+     * @throws PropelException
      */
     public function formOffers($ignoreSettings, $productFields) {
 
@@ -205,7 +219,7 @@ class Ymarket_model extends CI_Model
                 $currencyId = $currencies[$variant->getCurrency()]['code'];
             }
 
-            $mainPhoto = $variant->getMainImage() ? productImageUrl('products/main/' . $variant->getMainImage()) : null;
+            $mainPhoto = $variant->getMainimage() ? productImageUrl('products/main/' . $variant->getMainimage()) : null;
             $photos = $additionalImages[$variant->getProductId()] ?: [];
 
             $offers[$unique_id]['currencyId'] = $currencyId;
@@ -213,7 +227,7 @@ class Ymarket_model extends CI_Model
             $offers[$unique_id]['picture'] = array_merge([$mainPhoto], $photos);
             $offers[$unique_id]['name'] = $this->forName($variant->getSProducts()->getName(), $variant->getName());
             $offers[$unique_id]['vendor'] = $variant->getSProducts()->getBrand() ? htmlspecialchars($variant->getSProducts()->getBrand()->getName()) : '';
-            $offers[$unique_id]['vendorCode'] = $variant->getNumber() ? $variant->getNumber() : '';
+            $offers[$unique_id]['vendorCode'] = $variant->getNumber() ?: '';
             $offers[$unique_id]['description'] = htmlspecialchars($variant->getSProducts()->getFullDescription());
             $offers[$unique_id]['cpa'] = $variant->getStock() ? 1 : 0;
             if ($this->uri->uri_string() !== 'ymarket') {
@@ -294,10 +308,13 @@ class Ymarket_model extends CI_Model
             }
 
             $currencies[$value->getId()]['code'] = $value->getCode();
-            $rate = $rates[$value->getCode()]['rate'] ? $rates[$value->getCode()]['rate'] : 1 / $value->getRate();
+            $rate = $rates[$value->getCode()]['rate'] ?: 1 / $value->getRate();
             $currencies[$value->getId()]['rate'] = number_format($rate, 3);
         }
-        return [$currencies, $mainCurr];
+        return [
+                $currencies,
+                $mainCurr,
+               ];
     }
 
     /**
@@ -313,6 +330,7 @@ class Ymarket_model extends CI_Model
             $variants = SProductVariantsQuery::create()
                 ->useSProductsQuery()
                 ->filterByActive(true)
+                ->filterByArchive(false)
                 ->_if($idsCat)
                 ->filterByCategoryId($idsCat)
                 ->_endif()
@@ -355,13 +373,28 @@ class Ymarket_model extends CI_Model
             $ids[] = $v['id'];
         }
 
-        $data = ['id' => self::DEFAULT_TYPE, 'categories' => $tempCats, 'brands' => $displayedBrands, 'adult' => $tempAdult];
+        $data = [
+                 'id'         => self::DEFAULT_TYPE,
+                 'categories' => $tempCats,
+                 'brands'     => $displayedBrands,
+                 'adult'      => $tempAdult,
+                ];
         $this->saveCategoriesSettings($data, in_array(self::DEFAULT_TYPE, $ids));
 
-        $data = ['id' => self::PRICE_UA_TYPE, 'categories' => $tempCatsPriceUa, 'brands' => $displayedBrandsPriceUa, 'adult' => 0];
+        $data = [
+                 'id'         => self::PRICE_UA_TYPE,
+                 'categories' => $tempCatsPriceUa,
+                 'brands'     => $displayedBrandsPriceUa,
+                 'adult'      => 0,
+                ];
         $this->saveCategoriesSettings($data, in_array(self::PRICE_UA_TYPE, $ids));
 
-        $data = ['id' => self::NADAVI_UA_TYPE, 'categories' => $tempCatsNadaviUa, 'brands' => $displayedBrandsNadaviUa, 'adult' => 0];
+        $data = [
+                 'id'         => self::NADAVI_UA_TYPE,
+                 'categories' => $tempCatsNadaviUa,
+                 'brands'     => $displayedBrandsNadaviUa,
+                 'adult'      => 0,
+                ];
         $this->saveCategoriesSettings($data, in_array(self::NADAVI_UA_TYPE, $ids));
     }
 

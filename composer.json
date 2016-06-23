@@ -32,7 +32,6 @@
     "tubalmartin/cssmin": "dev-master",
     "patchwork/jsqueeze": "~2.0",
     "tecnickcom/tcpdf": ">=6",
-    "google/apiclient": ">=1.1.2",
     "greenlion/php-sql-parser": ">=4.0",
     "true/punycode": "^2.0",
     "nqxcode/phpmorphy": "^1.0",
@@ -44,7 +43,8 @@
     "symfony/event-dispatcher": "^3.0",
     "symfony/dependency-injection": "^3.0",
     "tinymce/tinymce": ">=4",
-    "doctrine/common": "^2.6"
+    "doctrine/common": "^2.6",
+    "studio-42/elfinder" : "~2.1.12"
   },
   "require-dev": {
     "phpmd/phpmd": ">=2.2.2",

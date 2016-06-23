@@ -1,6 +1,43 @@
-Version 4.11 (20??-??-??)
+Version 4.11.0.0 (20??-??-??)
+    Add checkbox "show in menu" in create/edit shop category (ICMS-3677)
+    Add button change show in menu in the fast create shop category (ICMS-3678)
+    Add feedback module to cms email manager(ICMS-3643)
+    Add show categories in menu panel, and new render menu (ICMS-3641)
+    Add cache render in BaseProduct and BaseSearch
+    Add cache in smart_filter render properties
+    Add automatic clear cache after create, update, delete in the Orders, Properties, Brands (ICMS-3720, ICMS-3722)
+    Add cache in the widgets (special_products , brands and products_similar_sidebar)
+    Add elfinder in third_party and composer
+    Add "Product Archive" functional (ICMS-3639)
+    Updated elFinder
+    Updated Chosen Select
+    Fixed add new category in product create/edit (ICMS-3689)
+    Fixed button add to archive in fast create product (ICMS-3674)
+    Fixed fast create products, button add to archive (ICMS-3675)
+    Fixed search query with full search setting.
+    Fixed show category tree, and initChosen in the trash module (ICMS-3567)
+    Fixed validation in edit comments in the admin panel (ICMS-3683)
+    Fixed delivery and payment methods in the products page (ICMS-3691)
+    Fixed validation in the add shop setting show count product in site (ICMS-3697)
+    Fixed count comment in the categories list (ICMS-3600)
+    Fixed sorting payment methods in cart (ICMS-3667)
+    Fixed payment methods in cart filter by active (ICMS-3668)
+    Fixed add additional images, copies origin images.
+    Fixed add many products in the archive (ICMS-3670)
+    Fixed  sorting by archive status in the shop search list (ICMS-3671)
+    Fixed sorting properties in SPropertiesRender (ICMS-3706)
+    Fixed unishop demo data properties (ICMS-3718)
+    Fixed add empty properties in the edit product (ICMS-3709)
+    Fixed edit properties, add htmlspecialchars in input value (ICMS-3713)
+    Fixed fixed deactive properties in smart_filter (ICMS-3719)
+    Fixed show main property in the product pages (ICMS-3714)
+    Fixed clear cache in admin panel, (ICMS-3710)
+    Fixed add properties in product query (ICMS-3716)
+    Fixed autocomplete add kits in the edit products, and in the orders create/update(ICMS-3721)
+    Fixed SEO-expert "p_xxxx" tag (ICMS-3725, ICMS-3732, ICMS-3734)
+    Delete default comment enabled in create categories (ICMS-3666)
 
-Version 4.10 (2016-05-24)
+Version 4.10.0.1 (2016-05-24)
     Fixed fatal error in nonexistent product (ICMS-3598)
     Fixed fatal error permissions
 
@@ -63,6 +100,7 @@ Version 4.10 (2016-05-16)
 Version 4.9.0.4 (2016-04-22)
     Add "noindex, follow" for brands pagination pages
     Add privileges users for module "callback"
+    Add new parameters for seo categories static pages: "propertyName", "propertyValue", "brandName"
     Fixed discount "date from" date picker
     Fixed max pages per page in category validation (ICMS-3400)
     Fixed banner urls autocomplete
@@ -106,3 +144,4 @@ Version 4.9.0.3 (2016-03-21)
     Fixed showing non-active product in related products
     Fixed pagination for old templates
     Updated Chosen to 1.5.1
++

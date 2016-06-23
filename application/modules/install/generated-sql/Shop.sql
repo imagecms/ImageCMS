@@ -125,20 +125,19 @@ CREATE TABLE `shop_kit`
 ) ENGINE=InnoDB CHARACTER SET='utf8';
 
 -- ---------------------------------------------------------------------
--- shop_gifts
+-- shop_products_words
 -- ---------------------------------------------------------------------
 
-DROP TABLE IF EXISTS `shop_gifts`;
+DROP TABLE IF EXISTS `shop_products_words`;
 
-CREATE TABLE `shop_gifts`
+CREATE TABLE `shop_products_words`
 (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `gift_key` VARCHAR(255),
-    `active` INTEGER,
-    `price` INTEGER,
-    `created` INTEGER,
-    `espdate` INTEGER,
-    PRIMARY KEY (`id`)
+    `name` VARCHAR(255) NOT NULL,
+    `local` VARCHAR(4) NOT NULL,
+    PRIMARY KEY (`id`),
+    UNIQUE INDEX `shop_products_words_u_d94269` (`name`),
+    INDEX `shop_products_words_i_ca2c66` (`name`, `locale`)
 ) ENGINE=InnoDB CHARACTER SET='utf8';
 
 -- ---------------------------------------------------------------------
@@ -163,8 +162,7 @@ CREATE TABLE `shop_kit_product`
     CONSTRAINT `shop_kit_product_fk_f2c410`
         FOREIGN KEY (`product_id`)
         REFERENCES `shop_product_variants` (`product_id`)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE,
+        ON UPDATE CASCADE,
     CONSTRAINT `shop_kit_product_fk_350dcb`
         FOREIGN KEY (`kit_id`)
         REFERENCES `shop_kit` (`id`)
@@ -195,7 +193,10 @@ CREATE TABLE `shop_products_i18n`
         FOREIGN KEY (`id`)
         REFERENCES `shop_products` (`id`)
         ON UPDATE CASCADE
-        ON DELETE CASCADE
+        ON DELETE CASCADE,
+    CONSTRAINT `shop_products_i18n_fk_bc3b70`
+        FOREIGN KEY (`id`)
+        REFERENCES `shop_product_variants` (`product_id`)
 ) ENGINE=InnoDB CHARACTER SET='utf8';
 
 -- ---------------------------------------------------------------------
@@ -391,6 +392,36 @@ CREATE TABLE `shop_product_properties_i18n`
 ) ENGINE=InnoDB CHARACTER SET='utf8';
 
 -- ---------------------------------------------------------------------
+-- shop_product_property_value
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `shop_product_property_value`;
+
+CREATE TABLE `shop_product_property_value`
+(
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `property_id` INTEGER NOT NULL,
+    `position` INTEGER,
+    PRIMARY KEY (`id`),
+    INDEX `shop_product_property_value_fi_0dfa18` (`property_id`)
+) ENGINE=MYISAM CHARACTER SET='utf8';
+
+-- ---------------------------------------------------------------------
+-- shop_product_property_value_i18n
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `shop_product_property_value_i18n`;
+
+CREATE TABLE `shop_product_property_value_i18n`
+(
+    `id` INTEGER NOT NULL,
+    `locale` VARCHAR(5) NOT NULL,
+    `value` VARCHAR(255) NOT NULL,
+    PRIMARY KEY (`id`,`locale`),
+    INDEX `shop_product_property_value_i18n_i_794a79` (`locale`(5))
+) ENGINE=MYISAM CHARACTER SET='utf8';
+
+-- ---------------------------------------------------------------------
 -- shop_product_properties_categories
 -- ---------------------------------------------------------------------
 
@@ -424,21 +455,15 @@ CREATE TABLE `shop_product_properties_data`
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `property_id` INTEGER,
     `product_id` INTEGER,
+    `value_id` INTEGER,
     `value` VARCHAR(500) NOT NULL,
     `locale` VARCHAR(5) NOT NULL,
     PRIMARY KEY (`id`),
     INDEX `shop_product_properties_data_i_563e74` (`value`),
+    INDEX `shop_product_properties_data_fi_c526ab` (`value_id`),
     INDEX `shop_product_properties_data_fi_0dfa18` (`property_id`),
-    INDEX `shop_product_properties_data_fi_6a9780` (`product_id`),
-    CONSTRAINT `shop_product_properties_data_fk_0dfa18`
-        FOREIGN KEY (`property_id`)
-        REFERENCES `shop_product_properties` (`id`)
-        ON DELETE CASCADE,
-    CONSTRAINT `shop_product_properties_data_fk_6a9780`
-        FOREIGN KEY (`product_id`)
-        REFERENCES `shop_products` (`id`)
-        ON DELETE CASCADE
-) ENGINE=InnoDB CHARACTER SET='utf8';
+    INDEX `shop_product_properties_data_fi_6a9780` (`product_id`)
+) ENGINE=MYISAM CHARACTER SET='utf8';
 
 -- ---------------------------------------------------------------------
 -- shop_notifications
@@ -728,7 +753,8 @@ CREATE TABLE `shop_orders_status_history`
     CONSTRAINT `shop_orders_status_history_fk_da0862`
         FOREIGN KEY (`status_id`)
         REFERENCES `shop_order_statuses` (`id`)
-        ON DELETE SET NULL
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
 ) ENGINE=InnoDB CHARACTER SET='utf8';
 
 -- ---------------------------------------------------------------------
@@ -839,11 +865,8 @@ CREATE TABLE `shop_sorting`
 (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `pos` INTEGER(11),
-    `name` VARCHAR(50) NOT NULL,
-    `name_front` VARCHAR(50),
-    `tooltip` VARCHAR(100),
     `get` VARCHAR(25) NOT NULL,
-    `active` TINYINT(1),
+    `active` TINYINT(1) DEFAULT 1,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB CHARACTER SET='utf8';
 
@@ -1022,24 +1045,6 @@ CREATE TABLE `custom_fields_i18n`
 ) ENGINE=InnoDB CHARACTER SET='utf8';
 
 -- ---------------------------------------------------------------------
--- shop_comulativ_discount
--- ---------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `shop_comulativ_discount`;
-
-CREATE TABLE `shop_comulativ_discount`
-(
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `description` VARCHAR(255),
-    `discount` INTEGER(3),
-    `active` INTEGER(1),
-    `date` INTEGER(15),
-    `total` INTEGER(255),
-    `total_a` INTEGER(255),
-    PRIMARY KEY (`id`)
-) ENGINE=InnoDB CHARACTER SET='utf8';
-
--- ---------------------------------------------------------------------
 -- custom_fields_data
 -- ---------------------------------------------------------------------
 
@@ -1124,6 +1129,27 @@ CREATE TABLE `banner_image_i18n`
     `description` TEXT,
     PRIMARY KEY (`id`,`locale`)
 ) ENGINE=MYISAM CHARACTER SET='utf8';
+
+-- ---------------------------------------------------------------------
+-- shop_sorting_i18n
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `shop_sorting_i18n`;
+
+CREATE TABLE `shop_sorting_i18n`
+(
+    `id` INTEGER NOT NULL,
+    `locale` VARCHAR(5) DEFAULT 'en_US' NOT NULL,
+    `name` VARCHAR(50) NOT NULL,
+    `name_front` VARCHAR(50),
+    `tooltip` VARCHAR(100),
+    PRIMARY KEY (`id`,`locale`),
+    INDEX `shop_sorting_i18n_i_794a79` (`locale`(5)),
+    CONSTRAINT `shop_sorting_i18n_fk_ef8849`
+        FOREIGN KEY (`id`)
+        REFERENCES `shop_sorting` (`id`)
+        ON DELETE CASCADE
+) ENGINE=InnoDB;
 
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;

@@ -159,7 +159,13 @@ class MetaManipulator
 
         // set some options
         $opts = [
-                 'storage'           => extension_loaded('shmop') ? (extension_loaded('phpMorphy_Exception') ? PHPMORPHY_STORAGE_SHM : PHPMORPHY_STORAGE_MEM ) : PHPMORPHY_STORAGE_MEM,
+            // storage type, follow types supported
+            // PHPMORPHY_STORAGE_FILE - use file operations(fread, fseek) for dictionary access, this is very slow...
+            // PHPMORPHY_STORAGE_SHM - load dictionary in shared memory(using shmop php extension), this is preferred mode
+            // PHPMORPHY_STORAGE_MEM - load dict to memory each time when phpMorphy initialized, this useful when shmop ext. not activated.
+            //                          Speed same as for PHPMORPHY_STORAGE_SHM type
+                 'storage'           => PHPMORPHY_STORAGE_MEM,
+            // Enable prediction by suffix
 
                  'predict_by_suffix' => true,
                  'graminfo_as_text'  => true,
@@ -810,4 +816,5 @@ class MetaManipulator
 
         $this->metaArray = array_unique($this->metaArray);
     }
+
 }

@@ -4,10 +4,15 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'elfinder/elFinderConnector.class.php';
-require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'elfinder/elFinder.class.php';
-require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'elfinder/elFinderVolumeDriver.class.php';
-require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'elfinder/elFinderVolumeLocalFileSystem.class.php';
+
+define('PATH_TO_ELFINDER', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'third_party'. DIRECTORY_SEPARATOR . 'studio-42'. DIRECTORY_SEPARATOR .'elfinder' . DIRECTORY_SEPARATOR .'php' . DIRECTORY_SEPARATOR);
+
+
+
+require_once PATH_TO_ELFINDER . 'elFinderConnector.class.php';
+require_once PATH_TO_ELFINDER . 'elFinder.class.php';
+require_once PATH_TO_ELFINDER . 'elFinderVolumeDriver.class.php';
+require_once PATH_TO_ELFINDER . 'elFinderVolumeLocalFileSystem.class.php';
 
 class Elfinder_lib
 {

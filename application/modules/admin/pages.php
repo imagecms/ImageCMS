@@ -164,6 +164,9 @@ class Pages extends BaseAdminController
             $publish_date = $this->input->post('publish_date') . ' ' . $this->input->post('publish_time');
             $create_date = $this->input->post('create_date') . ' ' . $this->input->post('create_time');
 
+            /** @var array $category_default_comments */
+            $category_default_comments = $this->lib_category->get_category($this->input->post('category'));
+
             $data = [
                      'title'           => trim($this->input->post('page_title')),
                      'meta_title'      => trim($this->input->post('meta_title')),
@@ -178,7 +181,7 @@ class Pages extends BaseAdminController
                      'category'        => $this->input->post('category'),
                      'full_tpl'        => $this->input->post('full_tpl'),
                      'main_tpl'        => $this->input->post('main_tpl'),
-                     'comments_status' => $this->input->post('comments_status'),
+                     'comments_status' => $category_default_comments['comments_default']?: 0,
                      'post_status'     => $this->input->post('post_status'),
                      'author'          => $this->dx_auth->get_username(),
                      'publish_date'    => strtotime($publish_date),

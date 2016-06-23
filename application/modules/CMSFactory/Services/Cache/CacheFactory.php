@@ -53,24 +53,20 @@ class CacheFactory
 
     /**
      * @return bool
-     */
-    private function checkApc() {
-
-        return extension_loaded('apc') && ini_get('apc.enabled');
-    }
-
-    /**
-     * @return bool
      * @throws ServiceNotFoundException
      * @throws InvalidArgumentException
      * @throws ServiceCircularReferenceException
      */
     private function checkMemcache() {
 
+        if (!extension_loaded('memcache') or !class_exists('Memcache')) {
+            return false;
+        }
+
         /** @var Memcache $memcache */
         $memcache = $this->container->get('memcache');
         $host = $this->container->getParameter('memcached.host');
-        return extension_loaded('memcache') && class_exists('Memcache') && $memcache->getserverstatus($host) !== 0;
+        return $memcache->getserverstatus($host) !== 0;
     }
 
     /**
@@ -81,6 +77,10 @@ class CacheFactory
      */
     private function checkMemcached() {
 
+        if (!extension_loaded('memcached') or !class_exists('Memcached')) {
+            return false;
+        }
+
         /** @var Memcached $memcached */
         $memcached = $this->container->get('memcached');
         $host = $this->container->getParameter('memcached.host');
@@ -88,9 +88,7 @@ class CacheFactory
 
         $server = "{$host}:{$port}";
         $stats = $memcached->getStats();
-        $connected = array_key_exists($server, $stats) && $stats[$server]['pid'] > 0;
-
-        return extension_loaded('memcached') && class_exists('Memcached') && $connected;
+        return array_key_exists($server, $stats) && $stats[$server]['pid'] > 0;
     }
 
     /**
@@ -102,6 +100,14 @@ class CacheFactory
         $cacheDirectory = $this->container->getParameter('cache.directory');
         return file_exists($cacheDirectory) && is_writable($cacheDirectory);
 
+    }
+
+    /**
+     * @return bool
+     */
+    private function checkApc() {
+
+        return extension_loaded('apc') && ini_get('apc.enabled');
     }
 
 }

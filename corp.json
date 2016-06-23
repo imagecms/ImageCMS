@@ -30,7 +30,6 @@
     "monolog/monolog": ">1.12",
     "tubalmartin/cssmin": "dev-master",
     "patchwork/jsqueeze": "~2.0",
-    "google/apiclient": ">=1.1.2",
     "greenlion/php-sql-parser": ">=4.0",
     "nqxcode/phpmorphy": "^1.0",
     "gettext/gettext": ">=3.5.3",
@@ -42,10 +41,7 @@
     "doctrine/common": "^2.6"
   },
   "require-dev": {
-    "eventviva/php-image-resize": ">=1.4",
     "phpmd/phpmd": ">=2.2.2",
-    "nubera-ebusiness/intercom-php": "dev-master",
-    "fzaninotto/faker": "^1.5",
     "imagecms/coding-standard": "dev-master"
   },
   "scripts": {

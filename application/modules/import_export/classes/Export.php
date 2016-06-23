@@ -8,14 +8,17 @@
 
 namespace import_export\classes;
 
+use CI_DB_active_record;
+use CI_DB_result;
 use import_export\classes\Logger as LOG;
+use MY_Controller;
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 class Export
 {
 
-    public $delimiter = ";";
+    public $delimiter = ';';
 
     public $maxRowLength = 10000;
 
@@ -37,24 +40,27 @@ class Export
 
     protected $errors = [];
 
+    /**
+     * @var CI_DB_active_record
+     */
     protected $db;
 
     protected $tablesFields = [];
 
     protected $productsDataTables = [
-        'shop_product_variants',
-        'shop_product_variants_i18n',
-        'shop_products',
-        'shop_products_i18n',
-        'shop_category',
-        'shop_category_i18n',
-        'shop_product_properties',
-        'shop_product_properties_data',
-        'shop_product_properties_i18n',
-        'shop_brands',
-        'shop_brands_i18n',
-        'shop_product_images',
-    ];
+                                     'shop_product_variants',
+                                     'shop_product_variants_i18n',
+                                     'shop_products',
+                                     'shop_products_i18n',
+                                     'shop_category',
+                                     'shop_category_i18n',
+                                     'shop_product_properties',
+                                     'shop_product_properties_data',
+                                     'shop_product_properties_i18n',
+                                     'shop_brands',
+                                     'shop_brands_i18n',
+                                     'shop_product_images',
+                                    ];
 
     public $resultArray = NULL;
 
@@ -88,38 +94,45 @@ class Export
         if ($this->attributes['name'] != '1') {
             $this->addError(lang('Атрибут Имя товара обязательный для експорта!', 'import_export'));
             LOG::create()->set('Атрибут Имя товара обязательный для експорта!');
-            //        } elseif($this->attributes['url'] != '1'){
-            //            $this->addError('Атрибут \'URL\' обязательний для експорта!');
-            //            LOG::create()->set('Атрибут \'URL\' обязательний для експорта!');
+
         } elseif ($this->attributes['prc'] != '1') {
+
             $this->addError(lang('Атрибут Цена обязательный для експорта!', 'import_export'));
             LOG::create()->set('Атрибут Цена обязательний для експорта!');
-            //        } elseif($this->attributes['var'] != '1'){
-            //            $this->addError(lang('Атрибут Имя варианта обязательный для експорта!', 'import_export'));
-            //            LOG::create()->set('Атрибут \'Имя варианта\' обязательный для експорта!');
+
         } elseif ($this->attributes['cat'] != '1') {
+
             $this->addError(lang('Атрибут Категория обязательный для експорта!', 'import_export'));
             LOG::create()->set('Атрибут \'Категория\' обязательный для експорта!');
+
         } elseif ($this->attributes['num'] != '1') {
+
             $this->addError(lang('Атрибут Артикул обязательный для експорта!', 'import_export'));
             LOG::create()->set('Атрибут \'Артикул\' обязательный для експорта!');
+
         }
 
         if (!count($this->attributes) > 0) {
+
             $this->addError(lang('Укажите колонки для экспорта.', 'import_export'));
             LOG::create()->set('Укажите колонки для экспорта.');
+
         } else {
+
             $this->customFields = $this->getCustomFields();
             $this->completeFields = $this->getCompleteFields();
         }
+
         $this->getTablesFields($this->productsDataTables);
         $this->categoriesData = $this->getCategoriesFromBase();
+
         if (array_key_exists('cat', $this->attributes)) {
             $this->categories = $this->getCategoriesPaths();
         }
+
         ini_set('max_execution_time', 900);
         set_time_limit(900);
-        $this->language = \MY_Controller::getCurrentLocale();
+        $this->language = MY_Controller::getCurrentLocale();
     }
 
     /**
@@ -143,12 +156,12 @@ class Export
      * @param string $type format version (Excel2007|Excel5)
      * @return string filename
      */
-    public function saveToExcelFile($pathToFile, $type = "Excel5") {
+    public function saveToExcelFile($pathToFile, $type = 'Excel5') {
         switch ($type) {
-            case "Excel5":
+            case 'Excel5':
                 $path = $pathToFile . 'products.xls';
                 break;
-            case "Excel2007":
+            case 'Excel2007':
                 $path = $pathToFile . 'products.xlsx';
                 break;
             default:
@@ -164,7 +177,7 @@ class Export
         $columnNumber = 0;
         foreach ($someProductData as $field => $junk) {
             if (FALSE == $abbr = $this->getAbbreviation($field)) {
-                $this->addError("Error. Abbreviation not found.");
+                $this->addError('Error. Abbreviation not found.');
                 LOG::create()->set('Error. Abbreviation not found.');
             }
             $objPHPExcel->getActiveSheet()->setCellValueByColumnAndRow($columnNumber++, 1, $abbr);
@@ -365,12 +378,12 @@ class Export
      */
     public function getDataCsv() {
         if (!$this->resultString) {
-            $fileContents = "";
+            $fileContents = '';
             $someProductData = current($this->resultArray);
             $headerArray = [];
             foreach ($someProductData as $field => $junk) {
                 if (FALSE == $abbr = $this->getAbbreviation($field)) {
-                    $this->addError("Error. Abbreviation not found.");
+                    $this->addError('Error. Abbreviation not found.');
                     LOG::create()->set('Ошибка. Абревиатуру не найдено.');
                 }
                 $headerArray[] = $abbr;
@@ -390,7 +403,7 @@ class Export
      * @return string data in quotes and separated by a comma
      */
     protected function getCsvLine($dataArray) {
-        $row = "";
+        $row = '';
         foreach ($dataArray as $value) {
             $row .= $this->enclosure . str_replace($this->enclosure, $this->enclosure . $this->enclosure, $value) . $this->enclosure . $this->delimiter;
         }
@@ -403,8 +416,8 @@ class Export
      */
     protected function createQuery() {
         $fieldsArray = []; // tables and fields
-        $fields = "";
-        $joins = "";
+        $fields = '';
+        $joins = '';
         foreach ($this->completeFields as $field) {
             if (in_array(trim($field), $this->customFields)) {// this is property of product
                 // mysql has no pivot, but max(if... construction helps :
@@ -418,7 +431,7 @@ class Export
                 $this->addError('Error while creating query. Field missing.');
                 LOG::create()->set('Error while creating query. Field missing.');
             }
-            $fields .= $field != FALSE ? " \n {$field}, " : "";
+            $fields .= $field != FALSE ? " \n {$field}, " : '';
         }
         // last comma removing
         $fields = substr($fields, 0, strlen($fields) - 2);
@@ -432,10 +445,10 @@ class Export
                     unset($this->selectedCats[$i]);
                 }
             }
-            $catIds = implode(",", $this->selectedCats);
+            $catIds = implode(',', $this->selectedCats);
             $selCatsCondition = " AND `shop_products`.`category_id` IN ({$catIds}) ";
         } else {
-            $selCatsCondition = " ";
+            $selCatsCondition = ' ';
         }
         $query = "
             SELECT
@@ -452,6 +465,8 @@ class Export
             LEFT JOIN `shop_category_i18n` ON `shop_category_i18n`.`id` = `shop_category`.`id` AND `shop_product_variants_i18n`.`locale` = `shop_category_i18n`.`locale`
 
             LEFT JOIN `shop_product_properties_data` ON `shop_product_properties_data`.`product_id` = `shop_product_variants`.`product_id`
+            LEFT JOIN `shop_product_property_value` ON `shop_product_properties_data`.`value_id` = `shop_product_property_value` .`id`
+            LEFT JOIN `shop_product_property_value_i18n` ON `shop_product_property_value`.`id` = `shop_product_property_value_i18n` .`id`
             LEFT JOIN `shop_product_properties` ON `shop_product_properties`.`id` = `shop_product_properties_data`.`property_id`
             LEFT JOIN `shop_product_properties_i18n` ON `shop_product_properties_i18n`.`id` = `shop_product_properties`.`id` AND `shop_product_variants_i18n`.`locale` = `shop_product_properties_i18n`.`locale`
 
@@ -465,10 +480,6 @@ class Export
             WHERE  1
                 AND `shop_product_variants_i18n`.`locale` = '{$this->language}'
                 {$selCatsCondition}
-                AND (
-                `shop_product_properties_data`.`locale` = '{$this->language}' OR
-                    `shop_product_properties_data`.`locale` IS NULL
-                )
                 
             GROUP BY `shop_product_variants`.`id`
             ORDER BY `shop_products`.`category_id`
@@ -483,9 +494,9 @@ class Export
      * @return FALSE|string FALSE if error or field with it table
      */
     protected function getFullField($fieldName) {
-        if (preg_match("/^\`[0-9a-zA-Z\_]+\`\.\`[0-9a-zA-Z\_]+\`/i", $fieldName)) {
+        if (preg_match('/^\`[0-9a-zA-Z\_]+\`\.\`[0-9a-zA-Z\_]+\`/i', $fieldName)) {
             return $fieldName;
-        } elseif (preg_match("/^[0-9a-zA-Z\_]+$/i", $fieldName)) {
+        } elseif (preg_match('/^[0-9a-zA-Z\_]+$/i', $fieldName)) {
             // тільки поле
             foreach ($this->tablesFields as $table => $fieldsArray) {
                 if (in_array(trim($fieldName), $fieldsArray)) {
@@ -502,7 +513,8 @@ class Export
      * @return string
      */
     protected function getPropertyField($propertyName) {
-        return "GROUP_CONCAT(DISTINCT IF(`shop_product_properties_data`.`property_id` = " . array_search($propertyName, $this->customFields) . ", `shop_product_properties_data`.`value`, NULL) SEPARATOR '|') AS `{$propertyName}`";
+
+        return 'GROUP_CONCAT(DISTINCT IF(`shop_product_properties_data`.`property_id` = ' . array_search($propertyName, $this->customFields) . ", `shop_product_property_value_i18n`.`value`, NULL) SEPARATOR '|') AS `{$propertyName}`";
     }
 
     /**
@@ -510,7 +522,11 @@ class Export
      * @return array
      */
     protected function getCustomFields() {
-        $result = $this->db->query("SELECT `id`,`csv_name` FROM shop_product_properties");
+
+        /** @var CI_DB_result $result */
+        $result = $this->db->select(['id', 'csv_name'])
+            ->from('shop_product_properties')
+            ->get();
         $customFields = [];
         foreach ($result->result() as $row) {
             $customFields[$row->id] = $row->csv_name;
@@ -549,36 +565,38 @@ class Export
     /**
      * Returns field abbreviation
      * @param string $field (optional) if empty returns array of abbreviations
+     * @return array|bool|int|null|string
      */
     protected function getAbbreviation($field = NULL) {
         $abbreviationsArray = [
-            'name' => '`shop_products_i18n`.`name` as product_name', //
-            'url' => 'url', //
-            'oldprc' => 'old_price', //
-            'prc' => 'price_in_main', //
-            'stk' => 'stock', //
-            'num' => 'number', //
-            'var' => '`shop_product_variants_i18n`.`name` as variant_name',
-            'act' => 'active', //
-            'hit' => 'hit', //
-            'hot' => 'hot', //новинка
-            'action' => 'action', //акція
-            'brd' => '`shop_brands_i18n`.`name` as brand_name', //
-            'modim' => 'mainModImage',
-            'modis' => 'smallModImage',
-            'cat' => '`shop_category_i18n`.`name` as category_name',
-            'addcats' => 'addcats',
-            'relp' => 'related_products',
-            'vimg' => 'mainImage',
-            'cur' => 'currency',
-            'imgs' => '`shop_product_images`.`image_name` as additional_images',
-            'shdesc' => 'short_description',
-            'desc' => 'full_description',
-            'mett' => 'meta_title',
-            'metd' => 'meta_description',
-            'metk' => 'meta_keywords',
-            'skip' => 'skip',
-        ];
+                               'name'    => '`shop_products_i18n`.`name` as product_name', //
+                               'url'     => 'url', //
+                               'oldprc'  => 'old_price', //
+                               'archive' => 'archive', //
+                               'prc'     => 'price_in_main', //
+                               'stk'     => 'stock', //
+                               'num'     => 'number', //
+                               'var'     => '`shop_product_variants_i18n`.`name` as variant_name',
+                               'act'     => 'active', //
+                               'hit'     => 'hit', //
+                               'hot'     => 'hot', //новинка
+                               'action'  => 'action', //акція
+                               'brd'     => '`shop_brands_i18n`.`name` as brand_name', //
+                               'modim'   => 'mainModImage',
+                               'modis'   => 'smallModImage',
+                               'cat'     => '`shop_category_i18n`.`name` as category_name',
+                               'addcats' => 'addcats',
+                               'relp'    => 'related_products',
+                               'vimg'    => 'mainImage',
+                               'cur'     => 'currency',
+                               'imgs'    => '`shop_product_images`.`image_name` as additional_images',
+                               'shdesc'  => 'short_description',
+                               'desc'    => 'full_description',
+                               'mett'    => 'meta_title',
+                               'metd'    => 'meta_description',
+                               'metk'    => 'meta_keywords',
+                               'skip'    => 'skip',
+                              ];
         if (!$field) {
             return $abbreviationsArray;
         } else {
@@ -619,10 +637,10 @@ class Export
         }
         foreach ($result->result_array() as $row) {
             $categoriesData[$row['id']] = [
-                'parent_id' => $row['parent_id'],
-                'name' => $row['name'],
-                'full_path_ids' => unserialize($row['full_path_ids']),
-            ];
+                                           'parent_id'     => $row['parent_id'],
+                                           'name'          => $row['name'],
+                                           'full_path_ids' => unserialize($row['full_path_ids']),
+                                          ];
         }
         return $categoriesData;
     }
@@ -640,7 +658,7 @@ class Export
                     $pathNames[] = $this->categoriesData[$parentId]['name'];
                 }
                 $pathNames[] = $data['name'];
-                $categoriesPathes[$id] = implode("/", $pathNames);
+                $categoriesPathes[$id] = implode('/', $pathNames);
             }
         }
         $this->categories = $categoriesPathes;
@@ -707,9 +725,9 @@ class Export
         $zip = new \ZipArchive();
         $date = date('m_d_y');
         $time = date('G_i_s');
-        $zipName = "archive_" . $date . "_" . $time . ".zip";
+        $zipName = 'archive_' . $date . '_' . $time . '.zip';
         if ($zip->open('./application/backups/' . $zipName, \ZipArchive::CREATE) !== TRUE) {
-            LOG::create()->set("Невозможно создать zip-архив.");
+            LOG::create()->set('Невозможно создать zip-архив.');
         }
         //        foreach($arr as $key => $val){
         //            //вигрузка основних фотографій варіанту
@@ -743,12 +761,12 @@ class Export
 
         if ($this->attributes['vimg'] == '1') {
             foreach ($arr as $key => $val) {
-                if (file_exists('./uploads/shop/products/origin/' . $val['mainImage']) && $val['mainImage'] != "") {
-                    $fN = "./uploads/shop/products/origin/" . $val['mainImage'];
+                if (file_exists('./uploads/shop/products/origin/' . $val['mainImage']) && $val['mainImage'] != '') {
+                    $fN = './uploads/shop/products/origin/' . $val['mainImage'];
                     $zFN = 'origin/' . $val['mainImage'];
                     $zip->addFile($fN, $zFN);
                 } else {
-                    LOG::create()->set("Невозможна архивация основного изображения: " . $val['mainImage']);
+                    LOG::create()->set('Невозможна архивация основного изображения: ' . $val['mainImage']);
                 }
             }
         }
@@ -761,11 +779,11 @@ class Export
                 if (count($imgsAdd) > 0) {
                     foreach ($imgsAdd as $img) {
                         if (file_exists('./uploads/shop/products/origin/additional/' . $img['image_name'])) {
-                            $filename = "./uploads/shop/products/origin/additional/" . $img['image_name'];
-                            $zipname = "origin/additional/" . $img['image_name'];
+                            $filename = './uploads/shop/products/origin/additional/' . $img['image_name'];
+                            $zipname = 'origin/additional/' . $img['image_name'];
                             $zip->addFile($filename, $zipname);
                         } else {
-                            LOG::create()->set("Невозможна архивация дополнительного изображения: " . $img['image_name']);
+                            LOG::create()->set('Невозможна архивация дополнительного изображения: ' . $img['image_name']);
                         }
                     }
                 }

@@ -38,6 +38,7 @@ class Admin extends MY_Controller
     private $request_url = 'http://requests.imagecms.net/index.php/requests/req';
 
     public function __construct() {
+
         parent::__construct();
         $this->load->library('DX_Auth');
 
@@ -50,6 +51,108 @@ class Admin extends MY_Controller
         $this->load->library('lib_category');
         $this->lib_admin->init_settings();
     }
+
+    /**
+     * Delete cached files
+     *
+     * @param string
+     * @access public
+     * @return boolean|null
+     */
+    public function delete_cache() {
+
+        //cp_check_perm('cache_clear');
+
+        $param = $this->input->post('param');
+
+        $this->lib_admin->log(lang('Cleared the cache', 'admin'));
+
+        switch ($param) {
+            case 'all':
+                $this->getCache()->flushAll();
+                $files = $this->cache->delete_all();
+                /** clear Doctrine cache */
+                $this->getCache()->deleteAll();
+                if ($files) {
+                    $message = lang('Files deleted', 'admin') . ':' . $files;
+                } else {
+                    $message = lang('Cache has been cleared', 'admin');
+                }
+                break;
+
+            case 'expried':
+                $files = $this->cache->Clean();
+                if ($files) {
+                    $message = lang('Outdated files have been deleted', 'admin') . $files;
+                } else {
+                    $message = lang('Cache has been cleared', 'admin');
+                }
+                break;
+
+            default:
+                $message = lang('Clearing cache error', 'admin');
+                $result = false;
+        }
+
+            echo json_encode(
+                [
+                 'message'    => $message,
+                 'result'     => $result,
+                 'color'      => 'r',
+                 'filesCount' => $this->cache->cache_file(),
+                ]
+            );
+    }
+
+    public function elfinder_init($edMode = false) {
+
+        $this->load->helper('path');
+
+        if (!$edMode) {
+            $path = 'uploads';
+        } else {
+            $path = 'templates';
+        }
+
+        if ($this->input->get('path')) {
+            $path = $this->input->get('path');
+        }
+
+        $opts = [
+            // 'debug' => true,
+                 'roots' => [
+                             [
+                              'driver'        => 'LocalFileSystem',
+                              'path'          => set_realpath($path),
+                              'URL'           => site_url() . $path,
+                              'accessControl' => 'access',
+                              'attributes'    => [
+                                                  [
+                                                   'pattern' => '/administrator/', //You can also set permissions for file types by adding, for example, .jpg inside pattern.
+                                                   'read'    => false,
+                                                   'write'   => false,
+                                                   'locked'  => true,
+                                                  ],
+                        //                        array(
+                        //                            'pattern' => '/commerce/', //You can also set permissions for file types by adding, for example, .jpg inside pattern.
+                        //                            'read'    => true,
+                        //                            'write'   => true,
+                        //                            'locked'  => false
+                        //                        )
+                                                 ],
+                              // more elFinder options here
+                             ],
+                            ],
+                ];
+        $this->load->library('elfinder_lib', $opts);
+    }
+
+    public function get_csrf() {
+
+        echo form_csrf();
+    }
+
+    //initialyze elFinder
 
     public function init() {
 
@@ -67,6 +170,7 @@ class Admin extends MY_Controller
     }
 
     public function index() {
+
         if ($this->dx_auth->is_admin() == true and SHOP_INSTALLED) {
             redirect('/admin/components/run/shop/orders/index');
         }
@@ -77,128 +181,19 @@ class Admin extends MY_Controller
     }
 
     /**
-     * Delete cached files
-     *
-     * @param string
-     * @access public
-     * @return boolean|null
-     */
-    public function delete_cache() {
-        //cp_check_perm('cache_clear');
-
-        $param = $this->input->post('param');
-
-        $this->lib_admin->log(lang('Cleared the cache', 'admin'));
-
-        switch ($param) {
-            case 'all':
-                $files = $this->cache->delete_all();
-                if ($files) {
-                    $message = lang('Files deleted', 'admin') . ':' . $files;
-                } else {
-                    $message = lang('Cache has been cleared', 'admin');
-                }
-                break;
-
-            case 'expried':
-                $files = $this->cache->Clean();
-                if ($files) {
-                    $message = lang('Outdated files have been deleted', 'admin') . $files;
-                } else {
-                    $message = lang('Cache has been cleared', 'admin');
-                }
-                break;
-            default: {
-                    $message = lang('Clearing cache error', 'admin');
-                    $result = false;
-            }
-        }
-        echo json_encode(
-            [
-                    'message' => $message,
-                    'result' => $result,
-                    'color' => 'r',
-                    'filesCount' => $this->cache->cache_file()]
-        );
-    }
-
-    //initialyze elFinder
-
-    public function elfinder_init($edMode = false) {
-        $this->load->helper('path');
-
-        if (!$edMode) {
-            $path = 'uploads';
-        } else {
-            $path = 'templates';
-        }
-
-        if ($this->input->get('path')) {
-            $path = $this->input->get('path');
-        }
-
-        $opts = [
-            // 'debug' => true,
-            'roots' => [
-                [
-                    'driver' => 'LocalFileSystem',
-                    'path' => set_realpath($path),
-                    'URL' => site_url() . $path,
-                    'accessControl' => 'access',
-                    'attributes' => [
-                        [
-                            'pattern' => '/administrator/', //You can also set permissions for file types by adding, for example, .jpg inside pattern.
-                            'read' => false,
-                            'write' => false,
-                            'locked' => true
-                        ],
-                        //                        array(
-                        //                            'pattern' => '/commerce/', //You can also set permissions for file types by adding, for example, .jpg inside pattern.
-                        //                            'read'    => true,
-                        //                            'write'   => true,
-                        //                            'locked'  => false
-                        //                        )
-                    ]
-                    // more elFinder options here
-                ]
-            ]
-        ];
-        $this->load->library('elfinder_lib', $opts);
-    }
-
-    public function get_csrf() {
-        echo form_csrf();
-    }
-
-    public function sidebar_cats() {
-        echo '<div id="categories">';
-        if ($this->input->get('first')) {
-            $this->db->where('name', 'shop');
-            $this->db->limit(1);
-            $query = $this->db->get('components');
-            if ($query->num_rows() > 0) {
-                ShopCore::app()->SAdminSidebarRenderer->render();
-                exit;
-            }
-        }
-
-        $this->template->assign('tree', $this->lib_category->build());
-        $this->template->show('cats_sidebar', false);
-        echo '</div>';
-    }
-
-    /**
      * Clear session data;
      *
      * @access public
      */
     public function logout() {
+
         $this->lib_admin->log(lang('Exited the control panel', 'admin'));
         $this->dx_auth->logout();
         redirect('/admin/login', 'refresh');
     }
 
     public function report_bug() {
+
         $this->load->library('Form_validation');
         /** @var CI_Form_validation $val */
         $val = $this->form_validation;
@@ -206,7 +201,10 @@ class Admin extends MY_Controller
         $val->set_rules('email', lang('Your Email', 'admin'), 'trim|required|xss_clean|valid_email');
         $val->set_rules('text', lang('Your remark', 'admin'), 'trim|required|xss_clean');
 
-        $response = ['status' => 0, 'message' => ''];
+        $response = [
+                     'status'  => 0,
+                     'message' => '',
+                    ];
         if ($val->run()) {
             $message = '';
             $this->load->library('email');
@@ -235,6 +233,24 @@ class Admin extends MY_Controller
         }
 
         echo json_encode($response);
+    }
+
+    public function sidebar_cats() {
+
+        echo '<div id="categories">';
+        if ($this->input->get('first')) {
+            $this->db->where('name', 'shop');
+            $this->db->limit(1);
+            $query = $this->db->get('components');
+            if ($query->num_rows() > 0) {
+                ShopCore::app()->SAdminSidebarRenderer->render();
+                exit;
+            }
+        }
+
+        $this->template->assign('tree', $this->lib_category->build());
+        $this->template->show('cats_sidebar', false);
+        echo '</div>';
     }
 
 }

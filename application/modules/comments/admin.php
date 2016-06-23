@@ -188,6 +188,18 @@ class Admin extends BaseAdminController
     // Update comment
 
     public function update() {
+
+        $this->load->library('form_validation');
+
+        $this->form_validation->set_rules('user_name', lang('Author', 'admin'), 'required|trim|min_length[2]|alpha_dash');
+        $this->form_validation->set_rules('user_mail', lang('Email', 'admin'), 'required|trim|valid_email');
+        $this->form_validation->set_rules('text', lang('Contents', 'comments'), 'required|trim');
+
+        if ($this->form_validation->run() == FALSE) {
+            showMessage(validation_errors(), '', 'r');
+            return;
+        }
+
         $data = [
                  'text'      => $this->input->post('text'),
                  'user_name' => htmlspecialchars($this->input->post('user_name')),

@@ -1,6 +1,6 @@
 /* global base_url */
 
-$(document).ready(
+$(document).on('document:initialized',
     function () {
 
             // переключалка поиска

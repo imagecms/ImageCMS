@@ -9,6 +9,7 @@ class Cli extends \MY_Controller
 {
 
     public function __construct() {
+
         if (PHP_SAPI !== 'cli') {
             $this->core->error_404();
         }
@@ -17,10 +18,41 @@ class Cli extends \MY_Controller
     }
 
     /**
+     *
+     * @param string $name
+     * @param string $email
+     * @param string $password
+     * < php index.php exchange cli create_admin >
+     */
+    public function create_admin($name = null, $email = null, $password = null) {
+
+        // This is defaults. Order must be like in function arguments
+        $argumentsDefaults = [
+                              'admin',
+                              'ad@min.com',
+                              'admin',
+                             ];
+        $argumentsValues = func_get_args();
+        $data = [];
+
+        foreach ($argumentsDefaults as $i => $value) {
+            $data[$i] = $argumentsValues[$i] ?: $argumentsDefaults[$i];
+        }
+
+        $res = $this->dx_auth->register($data[0], $data[2], $data[1], '', '', '');
+
+        $this->db->update('users', ['role_id' => 1], ['email' => $data[1]], 1);
+
+        _outputLine($res ? 'Created' : 'Error');
+
+    }
+
+    /**
      * Truncates data for 1C import
      * < php index.php exchange cli truncate >
      */
     public function truncate() {
+
         //        if (true != _confirm('Really truncate data for import', true)) {
         //            _outputLine('Canceled');
         //            return;
@@ -49,32 +81,6 @@ class Cli extends \MY_Controller
         $this->db->truncate('shop_orders_products');
 
         _outputLine('Data truncated!');
-    }
-
-    /**
-     *
-     * @param string $name
-     * @param string $email
-     * @param string $password
-     * < php index.php exchange cli create_admin >
-     */
-    public function create_admin($name = null, $email = null, $password = null) {
-
-        // This is defaults. Order must be like in function arguments
-        $argumentsDefaults = ['admin', 'ad@min.com', 'admin'];
-        $argumentsValues = func_get_args();
-        $data = [];
-
-        foreach ($argumentsDefaults as $i => $value) {
-            $data[$i] = $argumentsValues[$i] ? : $argumentsDefaults[$i];
-        }
-
-        $res = $this->dx_auth->register($data[0], $data[2], $data[1], '', '', '');
-
-        $this->db->update('users', ['role_id' => 1], ['email' => $data[1]], 1);
-
-        _outputLine($res ? 'Created' : 'Error');
-
     }
 
 }

@@ -25,22 +25,23 @@ class VariantCharacteristics
 {
 
     /**
-     * Path to storage path (whatever it is - txt file or sqlite db file)
-     * @var string
-     */
-    protected $storageFilePath;
-
-    /**
      * Known characteristics
      * @var array [[characteristicName => [possibleValue1, possibleValue2,...]],...]
      */
     protected $characteristics = [];
 
     /**
+     * Path to storage path (whatever it is - txt file or sqlite db file)
+     * @var string
+     */
+    protected $storageFilePath;
+
+    /**
      *
      * @param string $storageFilePath
      */
     public function __construct($storageFilePath) {
+
         $this->storageFilePath = $storageFilePath;
         $this->loadCharacteristics();
     }
@@ -51,6 +52,7 @@ class VariantCharacteristics
      * about $characteristics property
      */
     protected function loadCharacteristics() {
+
         if (!file_exists($this->storageFilePath)) {
             return;
         }
@@ -67,27 +69,53 @@ class VariantCharacteristics
     }
 
     /**
-     * Should be called after any changes in characteristic storage
-     *
-     * This method along with loadCharacteristics
-     * handles storage of characteristics and knows only
-     * about $characteristics property
+     * Stores new characterictic and its value (use on import)
+     * Please run saveCharacteristics() method after one or more changes
+     * @param string $name
+     * @param string $value
      */
-    public function saveCharacteristics() {
+    public function addCharacteristic($name, $value) {
 
-        $dataJson = json_encode($this->characteristics);
-        $writed = file_put_contents($this->storageFilePath, $dataJson);
-
-        if ($writed) {
+        if (!is_string($name) || !is_string($value)) {
+            // not a string
             return;
         }
 
-        $message = sprintf('Unable to write file [%s]', $this->storageFilePath);
+        if (!isset($name[0]) || !isset($value[0])) {
+            // one of arguments are empty
+            return;
+        }
 
-        if (defined('ENVIRONMENT') && ENVIRONMENT != 'production') {
-            throw new \RuntimeException($message);
-        } else {
-            log_message('error', $message);
+        $value = trim($value);
+        if (!isset($this->characteristics[$name])) {
+            $this->characteristics[$name] = [];
+        }
+
+        if (!in_array($value, $this->characteristics[$name])) {
+            $this->characteristics[$name][] = $value;
+        }
+    }
+
+    /**
+     * Dengerous method - deletes one or all characteristics
+     * Please run saveCharacteristics() method after one or more changes
+     * @param string|array $namesToDelete (optional)
+     */
+    public function deleteCharacteristic($namesToDelete = null) {
+
+        if (null === $namesToDelete) {
+            $this->characteristics = [];
+            return;
+        }
+
+        if (!is_array($namesToDelete)) {
+            $namesToDelete = [$namesToDelete];
+        }
+
+        foreach ($this->characteristics as $nameI => $values) {
+            if (in_array($nameI, $namesToDelete)) {
+                unset($this->characteristics[$nameI]);
+            }
         }
     }
 
@@ -115,6 +143,7 @@ class VariantCharacteristics
      * @return array [[name => value],...] list of characteristics names and values
      */
     public function getVariantCharacteristics($variantName) {
+
         /*
          * Примітка до визначення характеристик варіанту - може бути накладка
          * із визначенням характеристик що складаються більше ніж із одного
@@ -136,51 +165,27 @@ class VariantCharacteristics
     }
 
     /**
-     * Stores new characterictic and its value (use on import)
-     * Please run saveCharacteristics() method after one or more changes
-     * @param string $name
-     * @param string $value
+     * Should be called after any changes in characteristic storage
+     *
+     * This method along with loadCharacteristics
+     * handles storage of characteristics and knows only
+     * about $characteristics property
      */
-    public function addCharacteristic($name, $value) {
-        if (!is_string($name) || !is_string($value)) {
-            // not a string
+    public function saveCharacteristics() {
+
+        $dataJson = json_encode($this->characteristics);
+        $writed = file_put_contents($this->storageFilePath, $dataJson);
+
+        if ($writed) {
             return;
         }
 
-        if (!isset($name[0]) || !isset($value[0])) {
-            // one of arguments are empty
-            return;
-        }
+        $message = sprintf('Unable to write file [%s]', $this->storageFilePath);
 
-        $value = trim($value);
-        if (!isset($this->characteristics[$name])) {
-            $this->characteristics[$name] = [];
-        }
-
-        if (!in_array($value, $this->characteristics[$name])) {
-            $this->characteristics[$name][] = $value;
-        }
-    }
-
-    /**
-     * Dengerous method - deletes one or all characteristics
-     * Please run saveCharacteristics() method after one or more changes
-     * @param string|array $namesToDelete (optional)
-     */
-    public function deleteCharacteristic($namesToDelete = null) {
-        if (null === $namesToDelete) {
-            $this->characteristics = [];
-            return;
-        }
-
-        if (!is_array($namesToDelete)) {
-            $namesToDelete = [$namesToDelete];
-        }
-
-        foreach ($this->characteristics as $nameI => $values) {
-            if (in_array($nameI, $namesToDelete)) {
-                unset($this->characteristics[$nameI]);
-            }
+        if (defined('ENVIRONMENT') && ENVIRONMENT != 'production') {
+            throw new \RuntimeException($message);
+        } else {
+            log_message('error', $message);
         }
     }
 

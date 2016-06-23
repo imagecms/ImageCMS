@@ -68,11 +68,11 @@
                                     </span>
                                 </span>
                             </td>
-                            <td class="span3" style="padding: 0px">
+                            <td>
                                 <a href="/admin/components/init_window/trash/edit_trash/{echo $item->id}"
                                 data-rel="tooltip"
                                 data-title="{lang("Editing", 'trash')}">
-                                <pre style="width: 350px; border: none; color: rgb(0, 136, 204);">{echo site_url().$item->trash_url}</pre>
+                                <span class="text-el">{echo site_url().$item->trash_url}</span>
                             </a>
                         </td>
                         <td>
@@ -81,9 +81,9 @@
                         <td>
                             <label>{echo $item->trash_type}</label>
                         </td>
-                        <td style="padding: 0px">
+                        <td>
                             <a href="{echo $item->trash_redirect}" target="_blank">
-                                <pre style="width: 350px; border: none; color: rgb(0, 136, 204);">{echo $item->trash_redirect}</pre>
+                                <span class="text-el">{echo $item->trash_redirect}</span>
                             </a>
                         </td>
                     </tr>

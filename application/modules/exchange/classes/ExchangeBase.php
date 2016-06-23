@@ -3,9 +3,12 @@
 namespace exchange\classes;
 
 use CI_DB_active_record;
+use CI_DB_result;
 use Exception;
 use MY_Controller;
 use SimpleXMLElement;
+use SPropertyValue;
+use SPropertyValueQuery;
 
 /**
  * Base class for import/export
@@ -62,6 +65,7 @@ abstract class ExchangeBase
     public static $stats = [];
 
     private function __construct() {
+
         $this->dataLoad = ExchangeDataLoad::getInstance();
         $this->locale = MY_Controller::getCurrentLocale();
         $ci = &get_instance();
@@ -74,9 +78,10 @@ abstract class ExchangeBase
 
     /**
      *
-     * @return
+     * @return Properties|Products
      */
     public static function getInstance() {
+
         $class = get_called_class();
         if (!isset(self::$instances[$class])) {
             self::$instances[$class] = new $class;
@@ -85,6 +90,7 @@ abstract class ExchangeBase
     }
 
     public function __get($name) {
+
         return $this->dataLoad->$name;
     }
 
@@ -95,6 +101,7 @@ abstract class ExchangeBase
      * @throws Exception
      */
     protected function insertBatch($tableName, $data) {
+
         if (FALSE == (count($data) > 0)) {
             return;
         }
@@ -110,13 +117,78 @@ abstract class ExchangeBase
         }
         // gathering statistics
         ExchangeBase::$stats[] = [
-            'query type' => 'insert',
-            'table name' => $tableName,
-            'affected rows' => count($data)
-        ];
+                                  'query type'    => 'insert',
+                                  'table name'    => $tableName,
+                                  'affected rows' => count($data),
+                                 ];
+    }
+
+    /**
+     * Alias for CI insert_batch
+     * @param string $tableName
+     * @param array $data
+     * @throws Exception
+     * @return bool|void
+     */
+    protected function insertPropertiesData($tableName, $data) {
+
+        if (FALSE == (count($data) > 0)) {
+            return false;
+        }
+
+        foreach ($data as $value) {
+
+            $property_value = SPropertyValueQuery::create()
+                ->useSPropertyValueI18nQuery()
+                ->filterByLocale($value['locale'])
+                ->filterByValue($value['value'])
+                ->endUse()
+                ->findOneByPropertyId($value['property_id']);
+
+            if (!$property_value) {
+
+                $property_value = new SPropertyValue();
+                $property_value->setPropertyId($value['property_id']);
+                $property_value->setLocale($value['locale']);
+                $property_value->setValue($value['value']);
+                $property_value->save();
+
+            }
+
+            $this->db->set($value)->insert($tableName);
+
+            $import_data = [
+                            'property_id' => $value['property_id'],
+                            'product_id'  => $value['product_id'],
+                            'value_id'    => $property_value->getId(),
+                           ];
+
+            /** @var CI_DB_result $test */
+            $test = $this->db->get_where('shop_product_properties_data', $import_data);
+
+            if ($test->num_rows() > 0) {
+                return false;
+            }
+
+            $this->db->insert('shop_product_properties_data', $import_data);
+
+        }
+
+        $error = $this->db->_error_message();
+
+        if (!empty($error)) {
+            throw new Exception("Error on inserting into `{$tableName}`: " . $error);
+        }
+        // gathering statistics
+        ExchangeBase::$stats[] = [
+                                  'query type'    => 'insert',
+                                  'table name'    => $tableName,
+                                  'affected rows' => count($data),
+                                 ];
     }
 
     public function setXml(SimpleXMLElement $xml) {
+
         $this->xml = $xml;
     }
 
@@ -124,9 +196,11 @@ abstract class ExchangeBase
      * Alias for CI update_batch
      * @param string $tableName
      * @param array $data
-     * @param string $keyToComare
+     * @param string $keyToCompare
+     * @throws \Exception
      */
-    protected function updateBatch($tableName, array $data, $keyToComare) {
+    protected function updateBatch($tableName, array $data, $keyToCompare) {
+
         if (FALSE == (count($data) > 0)) {
             return;
         }
@@ -136,14 +210,14 @@ abstract class ExchangeBase
         }
 
         //        $this->_updateBatchGroup($tableName, $data, $keyToComare); // error when more than 1 language
-        $this->_updatePerOne($tableName, $data, $keyToComare);
+        $this->_updatePerOne($tableName, $data, $keyToCompare);
 
         // gathering statistics
         ExchangeBase::$stats[] = [
-            'query type' => 'update',
-            'table name' => $tableName,
-            'affected rows' => count($data)
-        ];
+                                  'query type'    => 'update',
+                                  'table name'    => $tableName,
+                                  'affected rows' => count($data),
+                                 ];
     }
 
     /**
@@ -194,6 +268,7 @@ abstract class ExchangeBase
      * @return array
      */
     public function getStats() {
+
         return $this->stats;
     }
 
@@ -202,6 +277,7 @@ abstract class ExchangeBase
      * @param SimpleXMLElement $importData
      */
     public function import(SimpleXMLElement $importData) {
+
         if (!count($importData) > 0) {
             return;
         }

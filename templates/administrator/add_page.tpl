@@ -179,18 +179,6 @@
                                         </div>
                                     </div>
 
-                                    <div class="control-group">
-                                        <div class="control-label">
-                                        </div>
-                                        <div class="controls">
-                                            <span class="frame_label no_connection">
-                                                <span class="niceCheck b_n">
-                                                    <input name="comments_status"  value="1" type="checkbox" id="comments_status" />
-                                                </span>
-                                                {lang("Comment permission","admin")}
-                                            </span>
-                                        </div>
-                                    </div>
                                 </div>
 
                             </td>

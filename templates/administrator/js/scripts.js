@@ -186,25 +186,6 @@ $(document).on('pjax:start', function () {
     tinymce.initialized = false;
 });
 
-var notificationsInitialized = false;
-$(document).ajaxComplete(function (event, XHR, ajaxOptions) {
-    if (ajaxOptions.url != "/admin/components/run/shop/notifications/getAvailableNotification") {
-        if ((XHR.getAllResponseHeaders().match(/X-PJAX/))) {
-            initAdminArea();
-            number_tooltip_live();
-            $('.tooltip').remove();
-            dropDownMenu();
-            autocomplete();
-            init_2();
-        }
-
-        if ($.exists('#chart'))
-            brands();
-        if ($.exists('#wrapper_gistogram'))
-            gistogram();
-        hideLoading();
-    }
-});
 function share_alt_init() {
     $('.share_alt').hover(function () {
         $(this).find('.go_to_site').css('visibility', 'visible');
@@ -413,12 +394,14 @@ function init_2() {
     $('.frame_nav td:gt(-3)').find('.dropdown-menu').addClass('pull-right');
     $('.products_table').find('span.prod-on_off').add($('[data-page="tovar"]')).off('click').on('click', function () {
         var page_id = $(this).attr('data-id');
-        $.ajax({
-            type: 'POST',
-            url: base_url + 'admin/components/run/shop/products/ajaxChangeActive/' + page_id,
-            onComplete: function (response) {
-            }
-        });
+
+            $.ajax({
+                type: 'POST',
+                url: base_url + 'admin/components/run/shop/products/ajaxChangeActive/' + page_id,
+                onComplete: function (response) {
+                }
+            });
+
     });
     // /if ($.exists('[data-submit]')) $('body').append('<div class="notifications bottom-right"><div class="alert-message" style="color:#666;text-shadow:0 1px #fff;">??? ???? ???? <span style="color:green;font-weight:bold;">'+$('[data-submit]').text()+'</span> ??????????? ?????????? ?????? <span style="color:green;font-weight:bold;">Ctrl + s</span></div></div>')
 
@@ -1971,12 +1954,18 @@ $('body').off('click.pjax').on('click.pjax', 'a.pjax', function (event) {
     });
 
 });
+
+$(document).on('ready pjax:end', function(){
+    $(document).trigger('document:initialized');
+});
+
 $(document).on('pjax:start', function () {
     FFT = null;
     showLoading();
 }).on('pjax:end', function () {
     hideLoading();
     checkMenu();
+    $('document').trigger('ready');
     initFileManager();
     $('#toTranslation').syncTranslit({destination: 'slug'});
     $('.popover').remove();
@@ -2289,6 +2278,10 @@ function fastCreateProduct() {
     if ($('.fast-create .setHit').hasClass('active'))
         hit = 1;
 
+    var archive = 0;
+    if ($('.fast-create .setArchive').hasClass('active'))
+        archive = 1;
+
     var hot = 0;
     if ($('.fast-create .setHot').hasClass('active'))
         hot = 1;
@@ -2305,6 +2298,7 @@ function fastCreateProduct() {
     data.append("hit", hit);
     data.append("hot", hot);
     data.append("action", act);
+    data.append("archive", archive);
     data.append("active", active);
 
     $('#loading').show();
@@ -2368,17 +2362,23 @@ function fastParopCreate(Name, inCat, Csv, actEl) {
     });
 
 }
-function createCatFast(name, catId, url, actEl) {
+function createCatFast(name, catId, url, actEl , showSite) {
 
     var active = 1;
     if (actEl.hasClass('disable_tovar'))
         active = 0;
+
+    var show_in_site = 1;
+    if (showSite.hasClass('disable_tovar'))
+        show_in_site = 0;
+
     $('#loading').show();
     $.post('/admin/components/run/shop/categories/createCatFast', {
         Name: name,
         catId: catId,
         url: url,
-        active: active
+        active: active,
+        show_in_menu : show_in_site
     }, function (data) {
         $('#loading').hide();
         if (data) {
@@ -2430,6 +2430,27 @@ var PropertyFastCreator = {
             return false;
         }
 
+        var id = false;
+        $.post('/admin/components/run/shop/properties/addPropertyValue', {
+                'property_id' : propertySelect.data('id'),
+                'locale' : propertySelect.data('locale'),
+                'value' : propertyValue,
+        }, function(data){
+            var title =  data.success?lang('Success'):lang('Error');
+            var type  =  data.success?null:'r';
+
+            id = data.id;
+            PropertyFastCreator.addOption(propertySelect, id, propertyValue, propertyInput);
+            showMessage(title, data.message, type);
+
+        }, 'json');
+
+
+
+    },
+    addOption: function(propertySelect, id, propertyValue, propertyInput){
+        // var propertySelect = $(curElem).closest('div.control-group').find('select');
+
         var multiple = $(propertySelect).attr('multiple');
         if (!(typeof multiple !== typeof undefined && multiple !== false)) {
             $(propertySelect).find('option:selected').removeAttr('selected');
@@ -2445,18 +2466,15 @@ var PropertyFastCreator = {
             }
         });
 
-        if (!alreadyExist) {
+
+        if (!alreadyExist && id) {
             propertyValue = escapeHtml(propertyValue);
-            if (propertyValue.indexOf('"') !== -1) {
-                $(propertySelect).append("<option value='" + propertyValue + "' selected='selected'>" + propertyValue + "</option>");
-            } else {
-                $(propertySelect).append('<option value="' + propertyValue + '" selected="selected">' + propertyValue + '</option>');
-            }
+            $(propertySelect).append("<option value='" + id + "' selected='selected'>" + propertyValue + "</option>");
+
 
         }
         $(propertySelect).trigger('chosen:updated');
         $(propertyInput).val('');
-
     }
 
 }

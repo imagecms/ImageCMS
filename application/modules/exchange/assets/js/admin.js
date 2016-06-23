@@ -1,7 +1,7 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
     /**
-     * 
+     *
      * @returns {Boolean}
      */
     function isDebugOn() {
@@ -9,11 +9,11 @@ $(document).ready(function() {
     }
 
     /**
-     * 
+     *
      * @param {Boolean} enable
      */
     function changeDebugRelatedInputsState(enable) {
-        $('.debug_related input').each(function() {
+        $('.debug_related input').each(function () {
             if (enable) {
                 $(this).attr('disabled', 'disabled');
             } else {
@@ -27,10 +27,9 @@ $(document).ready(function() {
     }
 
     // not working...
-    $(document).on('change', '#debug', function() {
+    $(document).on('change', '#debug', function () {
         console.log(12345);
     });
-    
-    
+
 
 });

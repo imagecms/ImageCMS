@@ -1,7 +1,7 @@
 <?php
 
 use CMSFactory\DependencyInjection\DependencyInjectionProvider;
-use Doctrine\Common\Cache\Cache;
+use Doctrine\Common\Cache\CacheProvider;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException;
@@ -303,7 +303,7 @@ class MY_Controller extends MX_Controller
     }
 
     /**
-     * @return Cache
+     * @return CacheProvider
      * @throws ServiceNotFoundException
      * @throws ServiceCircularReferenceException
      * @throws InvalidArgumentException

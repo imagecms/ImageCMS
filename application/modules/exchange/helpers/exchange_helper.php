@@ -5,7 +5,8 @@
 if (!function_exists('load_cat')) {
 
     function load_cat() {
-        $ci = & get_instance();
+
+        $ci = &get_instance();
         return $ci->db->get('shop_category')->result_array();
     }
 
@@ -13,6 +14,7 @@ if (!function_exists('load_cat')) {
 if (!function_exists('test_ex')) {
 
     function test_ex() {
+
         exit('1');
     }
 
@@ -20,7 +22,8 @@ if (!function_exists('test_ex')) {
 if (!function_exists('load_product')) {
 
     function load_product() {
-        $ci = & get_instance();
+
+        $ci = &get_instance();
         $arr = [];
         foreach ($ci->db->get('shop_products')->result_array() as $key => $val) {
             $arr[$val['id']] = $val['external_id'];
@@ -33,7 +36,8 @@ if (!function_exists('load_product')) {
 if (!function_exists('load_urls')) {
 
     function load_urls() {
-        $ci = & get_instance();
+
+        $ci = &get_instance();
         $arr = [];
         foreach ($ci->db->get('shop_products')->result_array() as $key => $val) {
             $arr[$val['id']] = $val['url'];
@@ -46,7 +50,8 @@ if (!function_exists('load_urls')) {
 if (!function_exists('load_main_curr')) {
 
     function load_main_curr() {
-        $ci = & get_instance();
+
+        $ci = &get_instance();
         $mainCurrencyId = $ci->db->select('id')->where('main', 1)->get('shop_currencies')->row_array();
         if (!empty($mainCurrencyId)) {
             $mainCurrencyId = $mainCurrencyId['id'];
@@ -62,7 +67,8 @@ if (!function_exists('load_main_curr')) {
 if (!function_exists('get_product_category')) {
 
     function get_product_category($id) {
-        $ci = & get_instance();
+
+        $ci = &get_instance();
         $result = $ci->db
             ->join('shop_category', 'shop_category.id=shop_products.category_id')
             ->where('shop_products.id', $id)
@@ -76,7 +82,8 @@ if (!function_exists('get_product_category')) {
 if (!function_exists('load_brand')) {
 
     function load_brand() {
-        $ci = & get_instance();
+
+        $ci = &get_instance();
         return $ci->db->get('shop_brands_i18n')->result_array();
     }
 
@@ -85,7 +92,8 @@ if (!function_exists('load_brand')) {
 if (!function_exists('load_prop')) {
 
     function load_prop() {
-        $ci = & get_instance();
+
+        $ci = &get_instance();
         return $ci->db->get('shop_product_properties')->result_array();
     }
 
@@ -94,9 +102,17 @@ if (!function_exists('load_prop')) {
 if (!function_exists('load_prop_data')) {
 
     function load_prop_data() {
-        $ci = & get_instance();
+
+        $ci = &get_instance();
         $arr = [];
-        foreach ($ci->db->get('shop_product_properties_data')->result_array() as $val) {
+
+        $productTableProperties = $ci->db->select('shop_product_properties_data.property_id, shop_product_property_value_i18n.value, shop_product_property_value_i18n.locale')
+            ->from('shop_product_properties_data')
+            ->join('shop_product_property_value', 'shop_product_properties_data.value_id = shop_product_property_value.id')
+            ->join('shop_product_property_value_i18n', 'shop_product_property_value.id = shop_product_property_value_i18n.id')
+            ->get()->result_array();
+
+        foreach ($productTableProperties as $val) {
             $arr[$val['property_id'] . '_' . $val['product_id']] = $val['value'];
         }
         return $arr;
@@ -110,7 +126,8 @@ if (!function_exists('load_multiple_prop')) {
      * @return type
      */
     function load_multiple_prop() {
-        $ci = & get_instance();
+
+        $ci = &get_instance();
         $arr = [];
         $result = $ci->db->get('mod_exchange');
         if ($result) {
@@ -168,6 +185,7 @@ if (!function_exists('is_brand')) {
 if (!function_exists('is_prop')) {
 
     function is_prop($prop_id, $props) {
+
         foreach ($props as $val) {
             if ($val['external_id'] == $prop_id) {
                 return $val;

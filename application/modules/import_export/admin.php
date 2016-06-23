@@ -3,9 +3,9 @@
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 use CMSFactory\assetManager;
+use import_export\classes\BaseImport as Imports;
 use import_export\classes\Export;
 use import_export\classes\Logger as LOG;
-use import_export\classes\BaseImport as Imports;
 
 /**
  * Image CMS
@@ -18,13 +18,13 @@ class Admin extends BaseAdminController
      * @var array
      */
     private $checkedFields = [
-        'name',
+                              'name',
         //'url',
-        'prc',
+                              'prc',
         //'var',
-        'cat',
-        'num'
-    ];
+                              'cat',
+                              'num',
+                             ];
 
     /**
      * @var string
@@ -65,17 +65,17 @@ class Admin extends BaseAdminController
         $postData = $this->input->post();
         $export = new Export(
             [
-            'attributes' => $postData['attribute'],
-            'attributesCF' => $postData['cf'],
-            'import_type' => trim($postData['import_type']),
-            'delimiter' => trim($postData['delimiter']),
-            'enclosure' => trim($postData['enclosure']),
-            'encoding' => trim($postData['encoding']),
-            'currency' => trim($postData['currency']),
-            'languages' => trim($postData['language']),
-            'selectedCats' => $postData['selectedCats'],
-            'withZip' => $postData['withZip']
-                ]
+             'attributes'   => $postData['attribute'],
+             'attributesCF' => $postData['cf'],
+             'import_type'  => trim($postData['import_type']),
+             'delimiter'    => trim($postData['delimiter']),
+             'enclosure'    => trim($postData['enclosure']),
+             'encoding'     => trim($postData['encoding']),
+             'currency'     => trim($postData['currency']),
+             'languages'    => trim($postData['language']),
+             'selectedCats' => $postData['selectedCats'],
+             'withZip'      => $postData['withZip'],
+            ]
         );
         if ($export->hasErrors() == FALSE) {
             $export->getDataArray();
