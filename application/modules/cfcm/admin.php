@@ -211,6 +211,7 @@ class Admin extends BaseAdminController
         if ($field->num_rows() == 1) {
             $field = $field->row();
             $field_data = unserialize($field->data);
+
             $form = $this->load->module('cfcm/cfcm_forms')->edit_field($this->input->post('type')?:$field->type);
 
             $form->title = lang('Field editing', 'cfcm') . ': ' . $field->label;
@@ -227,6 +228,15 @@ class Admin extends BaseAdminController
                     $data['validation'] = 'required|' . $data['validation'];
                 }
                 unset($data['validation_required']);
+
+                /** Проверка на наличие сетнутых пунктов изображений и файлов*/
+                if ($data['type'] == 'textarea') {
+
+                    if (($data['enable_image_browser'] || $data['enable_file_browser']) || ($data['enable_image_browser'] && $data['enable_file_browser'])) {
+                        $data['type'] = 'text';
+
+                    }
+                }
 
                 $this->db->where('field_name', $field->field_name);
                 $this->db->update(

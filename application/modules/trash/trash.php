@@ -16,6 +16,11 @@ class Trash extends MY_Controller
 {
 
     /**
+     * @var string $is_create
+     */
+    private $trash_is_create_type;
+
+    /**
      * Construct.
      */
     public function __construct() {
@@ -73,6 +78,8 @@ class Trash extends MY_Controller
             $this->load->helper('xbanners/xbanners');
 
             ($row->trash_redirect_type != '404') OR $this->core->error_404();
+
+            $this->setTrashIsCreateType($row->trash_redirect_type);
             redirect($this->formRedirectUrl($row->trash_redirect), 'location', $row->trash_type);
         } else {
             $url = $this->uri->getBaseUrl() . $this->input->server('REQUEST_URI');
@@ -90,6 +97,14 @@ class Trash extends MY_Controller
     public function formRedirectUrl($url) {
 
         $siteSettings = $this->cms_base->get_settings();
+
+        if ($this->getTrashIsCreateType() && $this->getTrashIsCreateType() != 'url') {
+
+            $site_length = mb_strlen($this->input->server('REQUEST_SCHEME') . '://' .$this->input->server('SERVER_NAME'));
+
+            $url = site_url(substr($url, $site_length));
+
+        }
 
         switch ($siteSettings['www_redirect']) {
             case 'from_www':
@@ -250,6 +265,22 @@ class Trash extends MY_Controller
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) OR exit;
         $this->dbforge->drop_table('trash');
+    }
+
+    /**
+     * @return string
+     */
+    public function getTrashIsCreateType() {
+
+        return $this->trash_is_create_type;
+    }
+
+    /**
+     * @param string $trash_is_create_type
+     */
+    public function setTrashIsCreateType($trash_is_create_type) {
+
+        $this->trash_is_create_type = $trash_is_create_type;
     }
 
 }

@@ -4,6 +4,36 @@
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ---------------------------------------------------------------------
+-- page_link
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `page_link`;
+
+CREATE TABLE `page_link`
+(
+    `id` INTEGER(11) NOT NULL AUTO_INCREMENT,
+    `page_id` INTEGER(11),
+    `active_from` INTEGER(11),
+    `active_to` INTEGER(11),
+    `show_on` TINYINT(1),
+    `permanent` TINYINT(1),
+    PRIMARY KEY (`id`)
+) ENGINE=MYISAM CHARACTER SET='utf8';
+
+-- ---------------------------------------------------------------------
+-- page_link_product
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `page_link_product`;
+
+CREATE TABLE `page_link_product`
+(
+    `link_id` INTEGER NOT NULL,
+    `product_id` INTEGER NOT NULL,
+    PRIMARY KEY (`link_id`,`product_id`)
+) ENGINE=MYISAM CHARACTER SET='utf8';
+
+-- ---------------------------------------------------------------------
 -- shop_category
 -- ---------------------------------------------------------------------
 
@@ -79,6 +109,7 @@ CREATE TABLE `shop_products`
     `hit` TINYINT(1),
     `hot` TINYINT(1),
     `action` TINYINT(1),
+    `archive` TINYINT(1) DEFAULT 0,
     `brand_id` INTEGER,
     `category_id` INTEGER NOT NULL,
     `related_products` VARCHAR(255),
@@ -379,7 +410,6 @@ CREATE TABLE `shop_product_properties_i18n`
     `id` INTEGER NOT NULL,
     `locale` VARCHAR(5) NOT NULL,
     `name` VARCHAR(50) NOT NULL,
-    `data` TEXT,
     `description` TEXT,
     PRIMARY KEY (`id`,`locale`),
     INDEX `shop_product_properties_i18n_i_d94269` (`name`),
@@ -456,8 +486,6 @@ CREATE TABLE `shop_product_properties_data`
     `property_id` INTEGER,
     `product_id` INTEGER,
     `value_id` INTEGER,
-    `value` VARCHAR(500) NOT NULL,
-    `locale` VARCHAR(5) NOT NULL,
     PRIMARY KEY (`id`),
     INDEX `shop_product_properties_data_i_563e74` (`value`),
     INDEX `shop_product_properties_data_fi_c526ab` (`value_id`),
@@ -871,6 +899,27 @@ CREATE TABLE `shop_sorting`
 ) ENGINE=InnoDB CHARACTER SET='utf8';
 
 -- ---------------------------------------------------------------------
+-- shop_sorting_i18n
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `shop_sorting_i18n`;
+
+CREATE TABLE `shop_sorting_i18n`
+(
+    `id` INTEGER NOT NULL,
+    `locale` VARCHAR(5) DEFAULT 'en_US' NOT NULL,
+    `name` VARCHAR(50) NOT NULL,
+    `name_front` VARCHAR(50),
+    `tooltip` VARCHAR(100),
+    PRIMARY KEY (`id`,`locale`),
+    INDEX `shop_sorting_i18n_i_794a79` (`locale`(5)),
+    CONSTRAINT `shop_sorting_i18n_fk_ef8849`
+        FOREIGN KEY (`id`)
+        REFERENCES `shop_sorting` (`id`)
+        ON DELETE CASCADE
+) ENGINE=InnoDB CHARACTER SET='utf8';
+
+-- ---------------------------------------------------------------------
 -- users
 -- ---------------------------------------------------------------------
 
@@ -1060,6 +1109,42 @@ CREATE TABLE `custom_fields_data`
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB CHARACTER SET='utf8';
 
+DROP TABLE IF EXISTS `smart_filter_patterns`;
+
+CREATE TABLE `smart_filter_patterns`
+(
+    `id` INTEGER(11) NOT NULL AUTO_INCREMENT,
+    `category_id` INTEGER(11) NOT NULL,
+    `active` TINYINT(1),
+    `url_pattern` VARCHAR(255),
+    `data` VARCHAR(255),
+    `meta_index` TINYINT DEFAULT null,
+    `meta_follow` TINYINT DEFAULT null,
+    `created` INTEGER(11),
+    `updated` INTEGER(11),
+    PRIMARY KEY (`id`),
+    UNIQUE INDEX `smart_filter_patterns_u_7826e2` (`category_id`, `url_pattern`)
+) ENGINE=MYISAM CHARACTER SET='utf8';
+
+-- ---------------------------------------------------------------------
+-- smart_filter_patterns_i18n
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `smart_filter_patterns_i18n`;
+
+CREATE TABLE `smart_filter_patterns_i18n`
+(
+    `id` INTEGER(11) NOT NULL,
+    `locale` VARCHAR(5) DEFAULT 'ru' NOT NULL,
+    `h1` TEXT,
+    `meta_title` TEXT,
+    `meta_description` TEXT,
+    `meta_keywords` TEXT,
+    `seo_text` TEXT,
+    `name` VARCHAR(255),
+    PRIMARY KEY (`id`,`locale`)
+) ENGINE=MYISAM CHARACTER SET='utf8';
+
 -- ---------------------------------------------------------------------
 -- banners
 -- ---------------------------------------------------------------------
@@ -1129,27 +1214,6 @@ CREATE TABLE `banner_image_i18n`
     `description` TEXT,
     PRIMARY KEY (`id`,`locale`)
 ) ENGINE=MYISAM CHARACTER SET='utf8';
-
--- ---------------------------------------------------------------------
--- shop_sorting_i18n
--- ---------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `shop_sorting_i18n`;
-
-CREATE TABLE `shop_sorting_i18n`
-(
-    `id` INTEGER NOT NULL,
-    `locale` VARCHAR(5) DEFAULT 'en_US' NOT NULL,
-    `name` VARCHAR(50) NOT NULL,
-    `name_front` VARCHAR(50),
-    `tooltip` VARCHAR(100),
-    PRIMARY KEY (`id`,`locale`),
-    INDEX `shop_sorting_i18n_i_794a79` (`locale`(5)),
-    CONSTRAINT `shop_sorting_i18n_fk_ef8849`
-        FOREIGN KEY (`id`)
-        REFERENCES `shop_sorting` (`id`)
-        ON DELETE CASCADE
-) ENGINE=InnoDB;
 
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;

@@ -27,7 +27,7 @@ class Wishlist extends BaseWishlist
     public function index() {
 
         $this->core->set_meta_tags('Wishlist');
-        $this->template->registerMeta("ROBOTS", "NOINDEX, NOFOLLOW");
+        $this->template->registerMeta('ROBOTS', 'NOINDEX, NOFOLLOW');
         if ($this->dx_auth->is_logged_in()) {
             parent::getUserWL($this->dx_auth->get_user_id());
             assetManager::create()
@@ -216,7 +216,8 @@ class Wishlist extends BaseWishlist
      */
     public function renderWLButton($varId, $data = []) {
 
-        $href = $this->dx_auth->is_logged_in() ? '/wishlist/renderPopup/' . $varId : '/auth/login';
+        $locale = MY_Controller::getCurrentLocale();
+        $href = $this->dx_auth->is_logged_in() ? '/' . $locale . '/wishlist/renderPopup/' . $varId : '/auth/login';
 
         if (!in_array($varId, $this->userWishProducts)) {
             $value = lang('Add to Wish List', 'wishlist');
@@ -245,17 +246,22 @@ class Wishlist extends BaseWishlist
      */
     public function renderPopup($varId, $wish_list_id = '') {
 
-        $wish_lists = $this->wishlist_model->getWishLists();
-        $data = ['wish_lists' => $wish_lists];
+        if ($this->ajaxRequest) {
 
-        return assetManager::create()
-            ->registerStyle('style', TRUE)
-            ->setData('class', 'btn')
-            ->setData('wish_list_id', $wish_list_id)
-            ->setData('varId', $varId)
-            ->setData($data)
-            ->setData('max_lists_count', $this->settings['maxListsCount'])
-            ->render('wishPopup', TRUE);
+            $wish_lists = $this->wishlist_model->getWishLists();
+            $data = ['wish_lists' => $wish_lists];
+
+            return assetManager::create()
+                ->registerStyle('style', TRUE)
+                ->setData('class', 'btn')
+                ->setData('wish_list_id', $wish_list_id)
+                ->setData('varId', $varId)
+                ->setData($data)
+                ->setData('max_lists_count', $this->settings['maxListsCount'])
+                ->render('wishPopup', TRUE);
+        } else {
+            $this->core->error_404();
+        }
     }
 
     /**

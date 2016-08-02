@@ -28,7 +28,7 @@ $(document).ready(function () {
                         if (obj.error)
                             showMessage(langs.error, obj.error);
                         if (obj.success == true) {
-                            showMessage(lang('Message') + ': ', lang('Слот') + ' ' + $chekedFile + '. ' + lang('Файл успешно загружен') + '.');
+                            showMessage(lang('Message') + ': ', lang('Slot') + ' ' + $chekedFile + '. ' + lang('File successfully downloaded') + '.');
 //                            showMessage(langs.success, langs.fileLoaded + $chekedFile);
                             if (obj.filesInfo.product_csv_1csv != '')
                                 $('span[data-file=product_csv_1csv]').text(obj.filesInfo.product_csv_1csv);

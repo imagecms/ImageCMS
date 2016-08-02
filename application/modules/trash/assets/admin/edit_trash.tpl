@@ -123,7 +123,7 @@
                                             <div class="controls">
                                                 <select id="inputMainC" value="" name="category">
                                                     {foreach $category as $item}
-                                                        <option {if $trash->trash_id == $item->id}selected{/if} value="{echo $item->id}">{echo $item->name}</option>
+                                                        <option value="{echo $item->getId()}">{str_repeat('-',count(unserialize($item->getFullPathIds())))} {echo $item->getName()}</option>
                                                     {/foreach}
                                                 </select>
                                             </div>

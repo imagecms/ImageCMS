@@ -1,13 +1,14 @@
 <?php
 
-class Shop_news_model extends CI_Model {
+class Shop_news_model extends CI_Model
+{
 
     public function __construct() {
         parent::__construct();
     }
 
     /**
-     * Save categories in wchich show content page
+     * Save categories in which show content page
      * @param array $contentId
      * @param string $categories
      * @return boolean
@@ -24,7 +25,7 @@ class Shop_news_model extends CI_Model {
     /**
      * Return array of content pages ids
      * @param integer $categoryId
-     * @return type
+     * @return array
      */
     public function getContentIds($categoryId) {
         return $this->db->select('content_id')->like('shop_categories_ids', $categoryId)->get('mod_shop_news')->result_array();
@@ -32,9 +33,9 @@ class Shop_news_model extends CI_Model {
 
     /**
      * Return content pages for displaying in category
-     * @param type $ids
-     * @param type $limit
-     * @return type
+     * @param array $ids
+     * @param int $limit
+     * @return array
      */
     public function getContent($ids, $limit) {
         if ($ids != null) {

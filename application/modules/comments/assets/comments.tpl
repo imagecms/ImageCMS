@@ -27,7 +27,7 @@
             </div>
         {/if}
         {/* Форма комента */}
-        <form method="post" action="/comments/addPost">
+        <form method="post" action="{echo $locale}/comments/addPost">
             <div class="frame-form-field o_h">
                 {if !$is_logged_in}
                     <input type="text" name="comment_author" value="{get_cookie('comment_author')}" placeholder="{lang('Ваше имя','fullMarket')}"/>

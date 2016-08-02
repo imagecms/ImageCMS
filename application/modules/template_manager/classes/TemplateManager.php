@@ -7,7 +7,6 @@ use Exception;
 use libraries\Backup;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
-use template_manager\classes\DemodataQueriesFilter;
 use template_manager\installer\DemodataDirector;
 use template_manager\installer\DependenceDirector;
 
@@ -58,9 +57,7 @@ class TemplateManager
      * Folders that not be included in local templates list
      * @var array
      */
-    public $ignoreTemplates = [
-        'administrator'
-    ];
+    public $ignoreTemplates = ['administrator'];
 
     public $current_template_components;
 
@@ -183,8 +180,51 @@ class TemplateManager
             }
         }
 
+        if (isset($template->xml->imageSizes)) {
+            $this->updateImageSizes($template->xml->imageSizes);
+        }
+
         Events::create()->registerEvent($template, 'postTemplateInstall');
         Events::runFactory();
+    }
+
+    /**
+     * @param \SimpleXMLElement $imageSizes
+     */
+    private function updateImageSizes($imageSizes) {
+        $sizes = [];
+        foreach ($imageSizes->size as $size) {
+            if (isset($size['name']) && isset($size['width']) && isset($size['height'])) {
+                if (is_numeric((string) $size['width']) && is_numeric((string) $size['height'])) {
+                    $sizes[(string) $size['name']] = [
+                                                      'name'   => (string) $size['name'],
+                                                      'width'  => (string) $size['width'],
+                                                      'height' => (string) $size['height'],
+                                                     ];
+                }
+            };
+
+        }
+        if (isset($imageSizes->additional)) {
+            foreach ($imageSizes->additional->size as $size) {
+                $additionalSizes = [
+                                    'image' => 'additionalImage',
+                                    'thumb' => 'thumbImage',
+                                   ];
+                if (is_numeric((string) $size['width']) && is_numeric((string) $size['height'])) {
+                    foreach ($additionalSizes as $sizeName => $dataBaseValue) {
+                        if ((string) $size['name'] == $sizeName) {
+                            \CI::$APP->db->where('name', $dataBaseValue . 'Width')->update('shop_settings', ['value' => (string) $size['width']]);
+                            \CI::$APP->db->where('name', $dataBaseValue . 'Height')->update('shop_settings', ['value' => (string) $size['height']]);
+                        }
+                    }
+                }
+            }
+        }
+
+        if (count($sizes) > 0) {
+            \CI::$APP->db->where('name', 'imageSizesBlock')->update('shop_settings', ['value' => serialize($sizes)]);
+        }
     }
 
     /**
@@ -268,20 +308,31 @@ class TemplateManager
     }
 
     /**
-     * @param string $file
+     * @param $sqlString
      */
-    public function query_from_file($file) {
-        $string_query = rtrim($file, "\n;");
+    public function query_from_file($sqlString) {
 
-        $array_query = explode(";\n", str_replace(";\r\n", ";\n", $string_query));
-        $demodataQueriesFilter = new DemodataQueriesFilter();
+        $allowedTables = \CI::$APP->load
+            ->module('template_manager')
+            ->config
+            ->item('allowedDemodataTables');
 
-        foreach ($array_query as $query) {
-            if (false !== ($updateQuery = $demodataQueriesFilter->filterSettings($query))) {
-                \CI::$APP->db->query($updateQuery);
-            }
-            if ($demodataQueriesFilter->verifyQuery($query)) {
+        $queries = new DemoDataSQLFilter($allowedTables);
+        $queries->parse($sqlString);
+
+        $truncated = [];
+        foreach ($queries as $query) {
+            $table = $queries->getCurrentTable();
+            if (\CI::$APP->db->table_exists($table)) {
+
+                //sql dump may have more then one insert query for same table
+                if (!in_array($table, $truncated)) {
+                    \CI::$APP->db->truncate($table);
+                    array_push($truncated, $table);
+                }
+
                 \CI::$APP->db->query($query);
+                //todo: $result = \CI::$APP->db->query($query); if (!$result) log error $table - \CI::$APP->db->_error_message()
             }
         }
     }
@@ -354,11 +405,14 @@ class TemplateManager
 
         usort(
             $templates,
-            function($t1, $t2) {
-                    $names1 = [$t1->name, $t2->name];
-                    $names2 = $names1;
-                    sort($names1);
-                    return ($names1 === $names2) ? -1 : 1;
+            function ($t1, $t2) {
+                $names1 = [
+                           $t1->name,
+                           $t2->name,
+                          ];
+                $names2 = $names1;
+                sort($names1);
+                return ($names1 === $names2) ? -1 : 1;
             }
         );
 

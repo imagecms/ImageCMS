@@ -114,23 +114,6 @@ class Cms_admin extends CI_Model
 
         }
 
-        $page = $this->get_page($id);
-        $alias = $page['lang_alias'];
-
-        if ($alias == 0) {
-            $this->db->where('lang_alias', $page['id']);
-            $this->db->update('content', ['post_status' => $data['post_status'], 'category' => $data['category'], 'cat_url' => $data['cat_url'], 'url' => $data['url']]);
-        } else {
-            $page = $this->get_page($alias);
-            $this->db->where('lang_alias', $page['id']);
-            $this->db->update('content', ['post_status' => $data['post_status'], 'category' => $data['category'], 'cat_url' => $data['cat_url']]);
-
-            $this->db->where('id', $alias);
-            $this->db->update('content', ['post_status' => $data['post_status'], 'category' => $data['category'], 'cat_url' => $data['cat_url']]);
-
-            $data['url'] = $page['url'];
-        }
-
         $this->db->where('id', $id);
         $this->db->update('content', $data);
 

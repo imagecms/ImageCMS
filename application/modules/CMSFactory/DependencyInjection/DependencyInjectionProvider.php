@@ -5,6 +5,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use Symfony\Component\Yaml\Yaml;
 
 class DependencyInjectionProvider
 {
@@ -21,7 +22,7 @@ class DependencyInjectionProvider
 
     protected function __construct() {
         static::$container = new ContainerBuilder();
-        $loader = new YamlFileLoader(static::$container, new FileLocator(PUBPATH . APPPATH));
+        $loader = new YamlFileLoader(static::$container, new FileLocator(__DIR__ . '/../../..'));
         $loader->load('config/services.yml');
     }
 

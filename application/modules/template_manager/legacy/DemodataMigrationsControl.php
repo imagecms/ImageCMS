@@ -19,11 +19,8 @@ class DemodataMigrationsControl extends \CI_Model
     }
 
     public function run() {
-        try {
             $this->corrections_after_ci_and_propel_update();
-        } catch (\Exception $ex) {
-            // well, if something went wrong do nothing...
-        }
+
     }
 
     /**
@@ -36,16 +33,6 @@ class DemodataMigrationsControl extends \CI_Model
             'key',
             [
              'name'       => 'order_key',
-             'type'       => 'VARCHAR',
-             'constraint' => '255',
-            ]
-        );
-
-        $this->ifColumnExistsThenAlter(
-            'shop_gifts',
-            'key',
-            [
-             'name'       => 'gift_key',
              'type'       => 'VARCHAR',
              'constraint' => '255',
             ]

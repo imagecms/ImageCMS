@@ -91,6 +91,7 @@ $autoload['helper'] = [
                        'form_helper',
                        'module',
                        'filesystem',
+                       'translit',
                       ];
 
 
@@ -111,7 +112,6 @@ $autoload['config'] = [
                        'auth',
                        'language',
                        'cms',
-                       'filter',
                       ];
 
 

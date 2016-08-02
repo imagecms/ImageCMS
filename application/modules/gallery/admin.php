@@ -207,15 +207,15 @@ class Admin extends BaseAdminController
                 }
 
                 // Check if watermark image exists.
-                if ($this->input->post('watermark_type') == 'overlay' && !file_exists('./uploads/' . $this->input->post('watermark_image')) && !file_exists($this->input->post('watermark_image'))) {
+                if ($this->input->post('watermark_type') == 'overlay' && !file_exists('.' . $this->input->post('watermark_image'))) {
                     showMessage(lang('Specify the correct path to watermark image', 'gallery'), false, 'r');
                     break;
                 }
 
                 if (file_exists('./uploads/' . $this->input->post('watermark_image'))) {
                     $imagePath = './uploads/' . trim($this->input->post('watermark_image'));
-                } elseif (file_exists($this->input->post('watermark_image'))) {
-                    $imagePath = trim($this->input->post('watermark_image'));
+                } elseif (file_exists('.' . $this->input->post('watermark_image'))) {
+                    $imagePath = trim('.' . $this->input->post('watermark_image'));
                 }
 
                 // Check if watermark font exists.
@@ -912,7 +912,7 @@ class Admin extends BaseAdminController
             $config['upload_path'] = $this->conf['upload_path'];
 
             $config['allowed_types'] = $this->conf['allowed_types'];
-            $config['max_size'] = 1024 * 1024 * $this->max_image_size;
+            $config['max_size'] = 1024 * $this->conf['max_image_size'];
             $config['encrypt_name'] = TRUE;
 
             // init Upload

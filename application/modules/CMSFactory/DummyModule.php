@@ -80,9 +80,9 @@ class DummyModule
      */
     protected function triggerWarning() {
         if (ENVIRONMENT == 'development') {
-            $debug = debug_backtrace();
-            $templateData = $debug[2];
-            trigger_error(sprintf('Call to undefined module %s from file %s line: %s', $this->name, $templateData['file'], $templateData['line']), E_USER_WARNING);
+            //            $debug = debug_backtrace();
+            //            $templateData = $debug[2];
+            //            trigger_error(sprintf('Call to undefined module %s from file %s line: %s', $this->name, $templateData['file'], $templateData['line']), E_USER_WARNING);
         }
     }
 

@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-18 12:31+0300\n"
-"PO-Revision-Date: 2014-07-18 12:31+0300\n"
+"POT-Creation-Date: 2016-07-19 04:23+0300\n"
+"PO-Revision-Date: 2016-07-19 04:23+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -18,6 +18,23 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: ./application/modules/module_frame/module_info.php:6
-msgid "Module frame"
-msgstr "Рамка модуля"
+#: application/modules/custom_scripts/admin.php:29
+msgid "Saved"
+msgstr "Збережено"
+
+#: application/modules/custom_scripts/admin.php:29
+msgid "Success"
+msgstr "Успішно"
+
+#: application/modules/custom_scripts/module_info.php:6
+#: application/modules/custom_scripts/assets/admin/main.tpl:6
+msgid "Custom scripts"
+msgstr "Користувальницькі скрипти"
+
+#: application/modules/custom_scripts/assets/admin/main.tpl:13
+msgid "Back"
+msgstr ""
+
+#: application/modules/custom_scripts/assets/admin/main.tpl:15
+msgid "Save"
+msgstr "Зберегти"

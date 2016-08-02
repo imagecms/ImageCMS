@@ -110,11 +110,11 @@ class Discount_product
         }
 
         assetManager::create()->discount = [
-            'discoun_all_product' => $discountArray,
-            'discount_max' => $discountMax,
-            'discount_value' => $discountValue,
-            'price' => $price
-        ];
+                                            'discoun_all_product' => $discountArray,
+                                            'discount_max'        => $discountMax,
+                                            'discount_value'      => $discountValue,
+                                            'price'               => $price,
+                                           ];
 
         return true;
     }
@@ -133,7 +133,7 @@ class Discount_product
 
         foreach ($this->discountForProduct as $disc) {
             foreach ($product as $key => $value) {
-                if ($disc[$key]) {
+                if ($key !== 'id' && $disc[$key]) {
                     if ($disc[$key] == $value) {
                         $arrDiscount[] = $disc;
                     }

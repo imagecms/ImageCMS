@@ -99,40 +99,18 @@ class Admin extends BaseAdminController
         }
         // End pagination
 
-        $this->template
-            ->add_array(
+        assetManager::create()
+            ->setData(
                 [
                  'data'          => $data,
                  'pagination'    => $pagination,
                  'status'        => $status,
                  'countAll'      => $this->found_less_expensive_model->getCountAll([0, 1]),
-                 'countNew'      => $this->found_less_expensive_model->getCountAll(0),
-                 'countAccepted' => $this->found_less_expensive_model->getCountAll(1),
+                 'countNew'      => $this->found_less_expensive_model->getCountAll([0]),
+                 'countAccepted' => $this->found_less_expensive_model->getCountAll([1]),
                 ]
-            );
-        $this->display_tpl('list');
-    }
-
-    /**
-     * Render settings template
-     */
-    public function settings() {
-        $this->init();
-        $data = $this->found_less_expensive_model->getModuleSettings();
-        $this->template
-            ->add_array(
-                ['settings' => $data]
-            );
-        $this->display_tpl('settings');
-    }
-
-    /**
-     * Save settings
-     */
-    public function ajax_save_settings() {
-        $value = serialize($this->input->post());
-        $this->db->where('name', 'found_less_expensive')->update('components', ['settings' => $value]);
-        showMessage(lang('Settings saved!', 'found_less_expensive'));
+            )
+            ->renderAdmin('list');
     }
 
     /**
@@ -142,7 +120,7 @@ class Admin extends BaseAdminController
         $id = $this->input->post('id');
 
         $this->db->delete('mod_found_less_expensive', ['id' => $id]);
-        showMessage(lang('Succesful deleting', 'found_less_expensive'));
+        showMessage(lang('Successfully deleted', 'found_less_expensive'));
     }
 
     /**
@@ -154,14 +132,4 @@ class Admin extends BaseAdminController
         $this->db->where('id', $id)->update('mod_found_less_expensive', ['status' => $status]);
         showMessage(lang('Status changed', 'found_less_expensive'));
     }
-
-    /**
-     *
-     * @param string $file
-     */
-    private function display_tpl($file = '') {
-        $file = realpath(__DIR__) . '/assets/admin/' . $file;
-        $this->template->show('file:' . $file);
-    }
-
 }

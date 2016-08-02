@@ -295,6 +295,7 @@ class Pages extends BaseAdminController
      * @param int $lang
      */
     public function edit($page_id, $lang = 0) {
+        $this->cms_base->setLocaleId($lang);
 
         if ($this->cms_admin->get_page($page_id) == FALSE) {
             showMessage(lang('Page', 'admin') . $page_id . lang('Not found', 'admin'), false, 'r');

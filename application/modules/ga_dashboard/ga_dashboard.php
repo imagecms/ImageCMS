@@ -26,6 +26,29 @@ class Ga_dashboard extends MY_Controller
     }
 
     /**
+     * @throws Exception
+     */
+    public function autoload() {
+
+        $settings = $this->cms_base->get_settings();
+
+        if ($settings['yandex_metric'] != '') {
+            assetManager::create()->registerJsScript('window.dataLayer = window.dataLayer || [];', false, 'before');
+            Events::create()->onProductPageLoad()->setListener('YMProductPageLoad');
+            Events::create()->onShopOrderView()->setListener('YMShopOrderView');
+        }
+
+        if ($settings['google_analytics_ee'] == 1 and $settings['google_analytics_id'] != '') {
+            Events::create()->onProductPageLoad()->setListener('ProductPageLoad');
+            //            Events::create()->onAddItemToCart()->setListener('ProductAddToCart');
+            Events::create()->onCategoryPageLoad()->setListener('CategorySearchPageLoad');
+            Events::create()->onSearchPageLoad()->setListener('CategorySearchPageLoad');
+            Events::create()->onBrandPageLoad()->setListener('CategorySearchPageLoad');
+            Events::create()->onShopOrderView()->setListener('ShopOrderView');
+        }
+    }
+
+    /**
      * @param Search $categoryObj
      * @throws PropelException
      */
@@ -89,7 +112,54 @@ class Ga_dashboard extends MY_Controller
     }
 
     public static function ProductPageLoad($data) {
+        assetManager::create()
+            ->registerJsScript('var gaProduct = ' . self::createProductData($data) . ';', FALSE, 'before')
+            ->registerScript('product', FALSE, 'after');
+    }
 
+    public static function YMProductPageLoad($data) {
+
+        assetManager::create()
+            ->registerJsScript(
+                'window.dataLayer.push({
+                                    "ecommerce": {
+                                        "detail" : {
+                                            "products" : [' . self::createProductData($data) . ']
+                                        }
+                                    }
+                                });',
+                false,
+                'before'
+            );
+        assetManager::create();
+    }
+
+    /**
+     * @param array $data
+     * @throws PropelException
+     */
+    public static function YMShopOrderView($data) {
+
+        /** @var $data SOrders */
+        if ($data instanceof SOrders && CI::$APP->session->flashdata('makeOrderForGA')) {
+
+            assetManager::create()
+                ->registerJsScript(
+                    'window.dataLayer.push({
+                                    "ecommerce": {
+                                        "purchase" : {
+                                            "actionField": ' . self::createOrderData($data, true) . ',
+                                            "products" : ' . self::createOrderProductsData($data) . '
+                                        }
+                                    }
+                                });',
+                    false,
+                    'before'
+                );
+        }
+    }
+
+    private static function createProductData($data) {
         /* @var $model SProducts */
         $model = $data['model'];
 
@@ -101,26 +171,39 @@ class Ga_dashboard extends MY_Controller
         $gaProduct['brand'] = $SBrands ? $SBrands->getName() : '';
         $gaProduct['category'] = $model->getMainCategory()->getName();
 
-        assetManager::create()
-            ->registerJsScript('var gaProduct = ' . json_encode($gaProduct) . ';', FALSE, 'before')
-            ->registerScript('product', FALSE, 'after');
+        return json_encode($gaProduct);
     }
 
-    /**
-     * @throws Exception
-     */
-    public function autoload() {
-
-        $settings = $this->cms_base->get_settings();
-
-        if ($settings['google_analytics_ee'] == 1 and $settings['google_analytics_id'] != '') {
-            Events::create()->onProductPageLoad()->setListener('ProductPageLoad');
-            //            Events::create()->onAddItemToCart()->setListener('ProductAddToCart');
-            Events::create()->onCategoryPageLoad()->setListener('CategorySearchPageLoad');
-            Events::create()->onSearchPageLoad()->setListener('CategorySearchPageLoad');
-            Events::create()->onBrandPageLoad()->setListener('CategorySearchPageLoad');
-            Events::create()->onShopOrderView()->setListener('ShopOrderView');
+    private static function createOrderData($data, $ym = false) {
+        $order['id'] = $data->getKey();
+        $order['revenue'] = $data->getTotalPrice();
+        if (!$ym) {
+            $order['shipping'] = $data->getDeliveryPrice() ?: 0;
         }
+        return json_encode($order);
+    }
+
+    private static function createOrderProductsData($data) {
+        $products = [];
+        foreach ($data->getSOrderProductss() as $key => $orderProduct) {
+            $productVariant = $orderProduct->getVariant();
+            if ($productVariant instanceof SProductVariants) {
+                $product = $productVariant->getSProducts();
+
+                $products[$key]['id'] = $productVariant->getId();
+                $products[$key]['name'] = $orderProduct->getProductName();
+                $products[$key]['price'] = $orderProduct->getPrice();
+                $SBrands = $product->getBrand();
+                $products[$key]['brand'] = $SBrands ? $SBrands->getName() : '';
+                $products[$key]['category'] = $product->getMainCategory()->getName();
+                $products[$key]['variant'] = $productVariant->getName();
+                $products[$key]['position'] = $key;
+                $products[$key]['quantity'] = $orderProduct->getQuantity();
+            }
+
+        }
+
+        return json_encode($products);
     }
 
     /**
@@ -132,32 +215,9 @@ class Ga_dashboard extends MY_Controller
         /** @var $data SOrders */
         if ($data instanceof SOrders && CI::$APP->session->flashdata('makeOrderForGA')) {
 
-            $order['id'] = $data->getKey();
-            $order['revenue'] = $data->getTotalPrice();
-            $order['shipping'] = $data->getDeliveryPrice() ?: 0;
-
-            $products = [];
-            foreach ($data->getSOrderProductss() as $key => $orderProduct) {
-                $productVariant = $orderProduct->getVariant();
-                if ($productVariant instanceof SProductVariants) {
-                    $product = $productVariant->getSProducts();
-
-                    $products[$key]['id'] = $productVariant->getId();
-                    $products[$key]['name'] = $orderProduct->getProductName();
-                    $products[$key]['price'] = $orderProduct->getPrice();
-                    $SBrands = $product->getBrand();
-                    $products[$key]['brand'] = $SBrands ? $SBrands->getName() : '';
-                    $products[$key]['category'] = $product->getMainCategory()->getName();
-                    $products[$key]['variant'] = $productVariant->getName();
-                    $products[$key]['position'] = $key;
-                    $products[$key]['quantity'] = $orderProduct->getQuantity();
-                }
-
-            }
-
             assetManager::create()
-                ->registerJsScript('var gaOrderObject = ' . json_encode($order) . ';')
-                ->registerJsScript('var gaOrderProductsObject = ' . json_encode($products) . ';')
+                ->registerJsScript('var gaOrderObject = ' . self::createOrderData($data) . ';')
+                ->registerJsScript('var gaOrderProductsObject = ' . self::createOrderProductsData($data) . ';')
                 ->registerScript('order_view', FALSE, 'after');
         }
     }

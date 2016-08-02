@@ -1,3 +1,6 @@
+# Here is example of importing external services
+#imports:
+#    - { resource: 'modules/smart_filter/services.yml' }
 parameters:
     memcached.host: localhost
     memcached.port: 11211
@@ -11,14 +14,38 @@ parameters:
       - cache.provider.memcached
       - cache.provider.apc
 
+    phpmorphy.dictionaries:  "@=constant('APPPATH')~'modules/CMSFactory/MetaManipulator/dics'"
+    phpmorphy.locale: ru_RU
+
+
 services:
     dispatcher:
         class: Symfony\Component\EventDispatcher\EventDispatcher
 
+    morphy:
+        class: CMSFactory\Services\Morphy\Morphy
+        arguments: ['@phpmorphy']
     cache:
         class: Doctrine\Common\Cache\Cache
         factory: ["@cache.factory", createCacheProvider]
 
+    twig:
+        class: Twig_Environment
+        #remove autoreload in production
+        arguments: ['@twig.loader.chain', {cache:%cache.directory%/twig , auto_reload:true}]
+        calls:
+          - [addExtension, ['@twig.extension']]
+
+    twig.loader.chain:
+        class: Twig_Loader_Chain
+        arguments: [['@twig.loader.fs']]
+
+    twig.loader.fs:
+        class: Twig_Loader_Filesystem
+
+    twig.extension:
+        class: CMSFactory\Templating\Twig\Extension\TwigExtension
+        arguments: ['@morphy']
 
     # Do not use this services as they are private.
 
@@ -41,6 +68,8 @@ services:
         class: Doctrine\Common\Cache\FilesystemCache
         arguments: [%cache.directory%%cache.folder%]
 
+    cache.provider.void:
+        class: Doctrine\Common\Cache\VoidCache
 
     # Dependencies
     memcache:
@@ -53,9 +82,18 @@ services:
             calls:
                 - [addServer, ['%memcached.host%', '%memcached.port%']]
 
+    phpmorphy:
+        class: phpMorphy
+        arguments:
+           - %phpmorphy.dictionaries%
+           - %phpmorphy.locale%
+           - {storage: "@=constant('PHPMORPHY_STORAGE_MEM')", predict_by_suffix: true, graminfo_as_text: true}
+
     # Factory
     cache.factory:
         public: false
         class: CMSFactory\Services\Cache\CacheFactory
         calls:
             - [setContainer, ['@service_container']]
+
+

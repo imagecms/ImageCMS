@@ -224,15 +224,15 @@ class Admin extends BaseAdminController
 
                 //preparing main data
                 $item_data = [
-                    'menu_id' => $this->input->post('menu_id'),
-                    'item_id' => $this->input->post('item_id'),
-                    'item_type' => $this->input->post('item_type'),
-                    'title' => htmlentities($this->input->post('title'), ENT_QUOTES, 'UTF-8'),
-                    'hidden' => (int) $hidden,
-                    'item_image' => $image,
-                    'roles' => $roles,
-                    'parent_id' => $this->input->post('parent_id'),
-                ];
+                              'menu_id'    => $this->input->post('menu_id'),
+                              'item_id'    => $this->input->post('item_id'),
+                              'item_type'  => $this->input->post('item_type'),
+                              'title'      => htmlentities($this->input->post('title'), ENT_QUOTES, 'UTF-8'),
+                              'hidden'     => (int) $hidden,
+                              'item_image' => $image,
+                              'roles'      => $roles,
+                              'parent_id'  => $this->input->post('parent_id'),
+                             ];
 
                 //                $item_data['position'] = $all_menu_items_count + 1;
                 $last_item_position = $this->db->where('menu_id', $this->input->post('menu_id'))
@@ -267,10 +267,10 @@ class Admin extends BaseAdminController
                     $this->db->insert('menus_data', $item_data);
                     $lastId = $this->db->insert_id();
                     $translate = [
-                        'item_id' => $lastId,
-                        'title' => $item_data['title'],
-                        'lang_id' => $this->default_lang_id
-                    ];
+                                  'item_id' => $lastId,
+                                  'title'   => $item_data['title'],
+                                  'lang_id' => $this->default_lang_id,
+                                 ];
                     $this->db->insert('menu_translate', $translate);
                     $this->lib_admin->log(lang('The menu item was successfully created', 'menu') . '. Id: ' . $lastId);
                     showMessage(lang('The menu item was successfully created', 'menu'));
@@ -614,15 +614,15 @@ class Admin extends BaseAdminController
                 }
 
                 $item_data = [
-                    'menu_id' => $this->input->post('menu_id'),
-                    'item_id' => $this->input->post('item_id'),
-                    'item_type' => $item_type,
-                    'title' => htmlentities($this->input->post('title'), ENT_QUOTES, 'UTF-8'),
-                    'hidden' => (int) $hidden,
-                    'item_image' => $image,
-                    'roles' => $roles,
-                    'parent_id' => (int) $parent_id,
-                ];
+                              'menu_id'    => $this->input->post('menu_id'),
+                              'item_id'    => $this->input->post('item_id'),
+                              'item_type'  => $item_type,
+                              'title'      => htmlentities($this->input->post('title'), ENT_QUOTES, 'UTF-8'),
+                              'hidden'     => (int) $hidden,
+                              'item_image' => $image,
+                              'roles'      => $roles,
+                              'parent_id'  => (int) $parent_id,
+                             ];
 
                 if ($item_data['item_type'] == 'module') {
                     $data['mod_name'] = $this->input->post('mod_name');
@@ -797,23 +797,23 @@ class Admin extends BaseAdminController
         }
 
         $item_data = [
-            'menu_id' => $this->input->post('menu_id'),
-            'item_id' => $this->input->post('item_id'),
-            'item_type' => $this->input->post('item_type'),
-            'title' => htmlentities($this->input->post('title'), ENT_QUOTES, 'UTF-8'),
-            'hidden' => $this->input->post('hidden'),
-            'item_image' => $this->input->post('item_image'),
-            'roles' => $roles,
-            'parent_id' => $this->input->post('parent_id'),
-            'position' => $position,
-        ];
+                      'menu_id'    => $this->input->post('menu_id'),
+                      'item_id'    => $this->input->post('item_id'),
+                      'item_type'  => $this->input->post('item_type'),
+                      'title'      => htmlentities($this->input->post('title'), ENT_QUOTES, 'UTF-8'),
+                      'hidden'     => $this->input->post('hidden'),
+                      'item_image' => $this->input->post('item_image'),
+                      'roles'      => $roles,
+                      'parent_id'  => $this->input->post('parent_id'),
+                      'position'   => $position,
+                     ];
 
         if ($item_data['item_type'] == 'module') {
             $mod_info = [
-                'mod_name' => $this->input->post('item_id'),
-                'method' => trim($this->input->post('method')),
-                'newpage' => $this->input->post('newpage')
-            ];
+                         'mod_name' => $this->input->post('item_id'),
+                         'method'   => trim($this->input->post('method')),
+                         'newpage'  => $this->input->post('newpage'),
+                        ];
 
             $item_data['item_id'] = 0;
             $item_data['add_data'] = serialize($mod_info);
@@ -902,13 +902,13 @@ class Admin extends BaseAdminController
             showMessage(validation_errors(), '', 'r');
         } else {
             $data = [
-                'name' => $this->input->post('menu_name'),
-                'main_title' => $this->input->post('main_title'),
-                'description' => $this->input->post('menu_desc'),
-                'tpl' => $this->input->post('menu_tpl'),
-                'expand_level' => $this->input->post('menu_expand_level'),
-                'created' => date('Y-m-d H:i:s')
-            ];
+                     'name'         => $this->input->post('menu_name'),
+                     'main_title'   => $this->input->post('main_title'),
+                     'description'  => $this->input->post('menu_desc'),
+                     'tpl'          => $this->input->post('menu_tpl'),
+                     'expand_level' => $this->input->post('menu_expand_level'),
+                     'created'      => date('Y-m-d H:i:s'),
+                    ];
 
             $menu_id = $this->menu_model->insert_menu($data);
 
@@ -940,8 +940,7 @@ class Admin extends BaseAdminController
 
         $val = $this->form_validation;
         $val->set_rules('menu_name', lang('Name', 'menu'), 'required|min_length[2]|max_length[25]|alpha_dash');
-        $val->set_rules('main_title', lang('Name', 'menu'), 'required|max_length[100]');
-        //        $val->set_rules('menu_tpl', lang("Template folder", 'menu'), 'required|max_length[5000]');
+        $val->set_rules('main_title', lang('Title', 'menu'), 'required|max_length[100]');
         $val->set_rules('menu_desc', lang('Description', 'menu'), 'max_length[500]');
         $val->set_rules('menu_expand_level', lang('Nesting level', 'menu'), 'numeric|max_length[2]');
 
@@ -950,13 +949,13 @@ class Admin extends BaseAdminController
         } else {
 
             $data = [
-                'name' => $this->input->post('menu_name'),
-                'main_title' => $this->input->post('main_title'),
-                'description' => $this->input->post('menu_desc'),
-                'tpl' => $this->input->post('menu_tpl'),
-                'expand_level' => $this->input->post('menu_expand_level'),
-                'created' => date('Y-m-d H:i:s')
-            ];
+                     'name'         => $this->input->post('menu_name'),
+                     'main_title'   => $this->input->post('main_title'),
+                     'description'  => $this->input->post('menu_desc'),
+                     'tpl'          => $this->input->post('menu_tpl'),
+                     'expand_level' => $this->input->post('menu_expand_level'),
+                     'created'      => date('Y-m-d H:i:s'),
+                    ];
 
             $this->db->where('id', $id);
             $this->db->update('menus', $data);
@@ -1238,10 +1237,10 @@ class Admin extends BaseAdminController
 
             if (isset($postLang)) {
                 $data = [
-                    'item_id' => (int) $id,
-                    'lang_id' => $lang['id'],
-                    'title' => $postLang,
-                ];
+                         'item_id' => (int) $id,
+                         'lang_id' => $lang['id'],
+                         'title'   => $postLang,
+                        ];
                 $this->db->insert('menu_translate', $data);
             }
         }

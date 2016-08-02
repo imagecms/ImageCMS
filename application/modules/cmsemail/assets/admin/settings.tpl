@@ -140,7 +140,11 @@
                                     <br>
                                     <label class="control-label" for="settings[encryption]">{lang('Encryption', 'cmsemail')}:</label>
                                     <div class="controls ">
-                                        <input type = "text" name = "settings[encryption]" class="portSettings"  value="{$settings['encryption']}"  id="encryption"/>
+                                        <select name="settings[encryption]" class="portSettings" id="encryption">
+                                            {foreach $encryption as $encType}
+                                            <option value="{$encType}" {echo $encType == $settings['encryption']?'selected':''}>{$encType}</option>
+                                            {/foreach}
+                                        </select>
                                     </div>
                                 </div>
 

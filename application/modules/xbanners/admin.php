@@ -74,8 +74,8 @@ class Admin extends BaseAdminController
 
         if ($this->input->post()) {
             $this->form_validation->set_rules('banner[name]', lang('Name', 'xbanners'), 'reguired|min_length[2]|max_length[255]|trim');
-            $this->form_validation->set_rules('options[autoplaySpeed]', lang('autoplaySpeed', 'xbanners'), 'reguired|min_length[1]|max_length[5]|trim|numeric');
-            $this->form_validation->set_rules('options[speed]', lang('speed', 'xbanners'), 'reguired|min_length[2]|max_length[5]|trim|numeric');
+            $this->form_validation->set_rules('options[autoplaySpeed]', lang('autoplaySpeed', 'xbanners'), 'trim|floatval|reguired|greater_than[0]');
+            $this->form_validation->set_rules('options[scrollSpeed]', lang('scrollSpeed', 'xbanners'), 'trim|floatval|reguired|greater_than[0]');
 
             if ($this->form_validation->run($this) === FALSE) {
                 showMessage(validation_errors(), '', 'r');
@@ -139,7 +139,7 @@ class Admin extends BaseAdminController
                     $bannerImage->fromArray($data);
                     $bannerImage->save();
 
-                    if ($bannerImage->setLastPosition()) {
+                    if ($imageId || $bannerImage->setLastPosition()) {
                         $data['id'] = $bannerImage->getId();
 
                         $bannerImageI18n = BannerImageI18nQuery::create()->filterByLocale($locale)->findOneById($imageId);

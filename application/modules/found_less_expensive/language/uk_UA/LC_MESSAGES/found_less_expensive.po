@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-05 01:00+0200\n"
-"PO-Revision-Date: 2014-11-05 01:00+0200\n"
+"POT-Creation-Date: 2016-07-19 04:23+0300\n"
+"PO-Revision-Date: 2016-07-19 04:23+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -18,153 +18,120 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: ./application/modules/found_less_expensive/admin.php:123
-msgid "Settings saved!"
-msgstr "Налаштування зберігаються!"
+#: application/modules/found_less_expensive/found_less_expensive.php:52
+msgid "Name"
+msgstr "Ім'я"
 
-#: ./application/modules/found_less_expensive/assets/admin/settings.tpl:10
-msgid "Save"
-msgstr "Зберегти"
+#: application/modules/found_less_expensive/found_less_expensive.php:53
+msgid "Phone"
+msgstr "Телефон"
 
-#: ./application/modules/found_less_expensive/module_info.php:4
-#: ./application/modules/found_less_expensive/assets/admin/list.tpl:5
+#: application/modules/found_less_expensive/found_less_expensive.php:54
+msgid "Email"
+msgstr "Електронної пошти"
+
+#: application/modules/found_less_expensive/found_less_expensive.php:55
+msgid "link"
+msgstr "посилання"
+
+#: application/modules/found_less_expensive/admin.php:123
+msgid "Successfully deleted"
+msgstr "Успішно видалений"
+
+#: application/modules/found_less_expensive/module_info.php:9
+#: application/modules/found_less_expensive/assets/admin/list.tpl:5
 msgid "Found less expensive"
 msgstr "Знайдені дешевше"
 
-#: ./application/modules/found_less_expensive/module_info.php:5
+#: application/modules/found_less_expensive/module_info.php:10
 msgid "Found less expensive module"
 msgstr "Модуль "
 
-#: ./application/modules/found_less_expensive/admin.php:74
+#: application/modules/found_less_expensive/admin.php:84
 msgid "Next"
 msgstr "Далі"
 
-#: ./application/modules/found_less_expensive/admin.php:75
+#: application/modules/found_less_expensive/admin.php:85
 msgid "Prev"
 msgstr "Prev"
 
-#: ./application/modules/found_less_expensive/admin.php:133
-msgid "Succesful deleting"
-msgstr "Успішне видалення"
-
-#: ./application/modules/found_less_expensive/admin.php:143
+#: application/modules/found_less_expensive/admin.php:133
 msgid "Status changed"
 msgstr "Статус змінився"
 
-#: ./application/modules/found_less_expensive/assets/buttonWithForm.tpl:4
-#: ./application/modules/found_less_expensive/assets/buttonWithForm.tpl:14
+#: application/modules/found_less_expensive/assets/buttonWithForm.tpl:4
+#: application/modules/found_less_expensive/assets/buttonWithForm.tpl:14
 msgid "Found less cheaper"
 msgstr "Знайшов більш менш дешевше"
 
-#: ./application/modules/found_less_expensive/assets/buttonWithForm.tpl:22
+#: application/modules/found_less_expensive/assets/buttonWithForm.tpl:22
 msgid "Your name"
 msgstr "Ваше ім'я"
 
-#: ./application/modules/found_less_expensive/assets/buttonWithForm.tpl:28
+#: application/modules/found_less_expensive/assets/buttonWithForm.tpl:28
 msgid "Phone number"
 msgstr "Номер телефону"
 
-#: ./application/modules/found_less_expensive/assets/buttonWithForm.tpl:40
-#: ./application/modules/found_less_expensive/assets/admin/list.tpl:41
+#: application/modules/found_less_expensive/assets/buttonWithForm.tpl:40
+#: application/modules/found_less_expensive/assets/admin/list.tpl:36
 msgid "Product link"
 msgstr "Product link"
 
-#: ./application/modules/found_less_expensive/assets/buttonWithForm.tpl:46
-#: ./application/modules/found_less_expensive/assets/admin/list.tpl:40
+#: application/modules/found_less_expensive/assets/buttonWithForm.tpl:46
+#: application/modules/found_less_expensive/assets/admin/list.tpl:35
 msgid "Question"
 msgstr "Питання"
 
-#: ./application/modules/found_less_expensive/assets/buttonWithForm.tpl:52
+#: application/modules/found_less_expensive/assets/buttonWithForm.tpl:52
 msgid "Send"
 msgstr "Відправити"
 
-#: ./application/modules/found_less_expensive/assets/admin/settings.tpl:5
-#: ./application/modules/found_less_expensive/assets/admin/list.tpl:9
-msgid "Settings"
-msgstr "Параметри"
-
-#: ./application/modules/found_less_expensive/assets/admin/settings.tpl:9
-msgid "Back"
-msgstr "Тому"
-
-#: ./application/modules/found_less_expensive/assets/admin/settings.tpl:19
-msgid "Properties"
-msgstr "Властивості"
-
-#: ./application/modules/found_less_expensive/assets/admin/settings.tpl:28
-msgid "Mail to receive notifications"
-msgstr "Mail для отримання повідомлень"
-
-#: ./application/modules/found_less_expensive/assets/admin/settings.tpl:34
-msgid "Mail to which send the notification"
-msgstr "Mail, на який надіслати повідомлення"
-
-#: ./application/modules/found_less_expensive/assets/admin/settings.tpl:40
-msgid "Message theme"
-msgstr "Повідомлення теми"
-
-#: ./application/modules/found_less_expensive/assets/admin/settings.tpl:46
-msgid "Message template"
-msgstr "Шаблон повідомлення"
-
-#: ./application/modules/found_less_expensive/assets/admin/settings.tpl:50
-msgid "You can use following variables"
-msgstr "Ви можете використовувати наступні змінні : "
-
-#: ./application/modules/found_less_expensive/assets/admin/settings.tpl:51
-msgid "page reference on which the notice was left"
-msgstr "посилання на сторінку, на яку було залишено повідомлення"
-
-#: ./application/modules/found_less_expensive/assets/admin/settings.tpl:52
-msgid "link to found cheaper product"
-msgstr "посилання знайшов дешевше продукт"
-
-#: ./application/modules/found_less_expensive/assets/admin/list.tpl:14
+#: application/modules/found_less_expensive/assets/admin/list.tpl:9
 msgid "All"
 msgstr "Всі"
 
-#: ./application/modules/found_less_expensive/assets/admin/list.tpl:21
-#: ./application/modules/found_less_expensive/assets/admin/list.tpl:65
+#: application/modules/found_less_expensive/assets/admin/list.tpl:16
+#: application/modules/found_less_expensive/assets/admin/list.tpl:60
 msgid "New"
 msgstr "Нові"
 
-#: ./application/modules/found_less_expensive/assets/admin/list.tpl:24
-#: ./application/modules/found_less_expensive/assets/admin/list.tpl:66
+#: application/modules/found_less_expensive/assets/admin/list.tpl:19
+#: application/modules/found_less_expensive/assets/admin/list.tpl:61
 msgid "Processed"
 msgstr "Оброблені"
 
-#: ./application/modules/found_less_expensive/assets/admin/list.tpl:38
+#: application/modules/found_less_expensive/assets/admin/list.tpl:33
 msgid "ID"
 msgstr "ID"
 
-#: ./application/modules/found_less_expensive/assets/admin/list.tpl:39
+#: application/modules/found_less_expensive/assets/admin/list.tpl:34
 msgid "Contact information"
 msgstr "Контактна інформація"
 
-#: ./application/modules/found_less_expensive/assets/admin/list.tpl:42
+#: application/modules/found_less_expensive/assets/admin/list.tpl:37
 msgid "Page"
 msgstr "Стр."
 
-#: ./application/modules/found_less_expensive/assets/admin/list.tpl:43
+#: application/modules/found_less_expensive/assets/admin/list.tpl:38
 msgid "Status"
 msgstr "Статус"
 
-#: ./application/modules/found_less_expensive/assets/admin/list.tpl:44
+#: application/modules/found_less_expensive/assets/admin/list.tpl:39
 msgid "Date"
 msgstr "Дата"
 
-#: ./application/modules/found_less_expensive/assets/admin/list.tpl:79
+#: application/modules/found_less_expensive/assets/admin/list.tpl:74
 msgid "No data has been found"
 msgstr "Немає даних"
 
-#: ./application/modules/found_less_expensive/assets/js/scripts.js:27
+#: application/modules/found_less_expensive/assets/js/scripts.js:27
 msgid "Fill in required fields!"
 msgstr "Заповніть обов'язкові поля!"
 
-#: ./application/modules/found_less_expensive/assets/js/scripts.js:33
+#: application/modules/found_less_expensive/assets/js/scripts.js:33
 msgid "Invalid email!"
 msgstr "Невірний email!"
 
-#: ./application/modules/found_less_expensive/assets/js/scripts.js:46
+#: application/modules/found_less_expensive/assets/js/scripts.js:46
 msgid "Sent! Thanks for the notification!"
 msgstr "Послав! Дякую за повідомлення!"

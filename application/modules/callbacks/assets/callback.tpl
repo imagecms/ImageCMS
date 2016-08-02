@@ -48,7 +48,7 @@
         <div class="form__field">
           <div class="form__label"></div>
           <div class="form__inner">
-            <input class="btn btn-default btn-primary" type="submit" value="{tlang('Call back')}">
+            <input class="btn btn-primary" type="submit" value="{tlang('Call back')}">
           </div>
         </div>
       

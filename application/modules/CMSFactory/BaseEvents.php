@@ -51,6 +51,18 @@ abstract class BaseEvents
         return $this;
     }
 
+    final public function onShopPropertiesDelete() {
+
+        $this->key = 'ShopAdminProperties::delete';
+        return $this;
+    }
+
+    final public function onShopPropertiesEdit() {
+
+        $this->key = 'ShopAdminProperties:edit';
+        return $this;
+    }
+
     public function get() {
 
         //var_dumps($this->storage);
@@ -265,9 +277,29 @@ abstract class BaseEvents
         return $this;
     }
 
+    public function onActionTypeSearch() {
+        $this->key = 'Action_Type:preSearch';
+        return $this;
+    }
+
     public function onCategoryPageLoad() {
 
         $this->key = 'category:load';
+        return $this;
+    }
+
+    public function onGalleryLoad() {
+        $this->key = 'gallery:load';
+        return $this;
+    }
+
+    public function onGalleryAlbumLoad() {
+        $this->key = 'gallery:album';
+        return $this;
+    }
+
+    public function onGalleryCategoryLoad() {
+        $this->key = 'gallery:category';
         return $this;
     }
 

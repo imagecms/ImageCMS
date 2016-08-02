@@ -44,7 +44,7 @@ class Share extends MY_Controller
         $this->template->add_array(
             'ss',
             [
-                'html' => $this->_make_share_form(),
+             'html' => $this->_make_share_form(),
             ]
         );
     }
@@ -66,6 +66,7 @@ class Share extends MY_Controller
      * @return string
      */
     public function _make_share_form($url = '') {
+        $url = $url ?: site_url($this->uri->uri_string());
 
         $settings = $this->settings;
         $services = '';

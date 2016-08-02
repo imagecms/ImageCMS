@@ -36,7 +36,7 @@
                                 <div class="control-group">
                                     <label class="control-label" for="Description">{lang('Full description','admin')}:</label>
                                     <div class="controls">
-                                        <input type="text" name="Description" id="Description" value="{echo $model->description}"/>
+                                        <input type="text" name="Description" id="Description" value="{echo htmlspecialchars($model->description)}"/>
                                     </div>
                                 </div>
                                 <div class="control-group">

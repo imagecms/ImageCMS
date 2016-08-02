@@ -10,77 +10,77 @@ class BannerEffects implements \ArrayAccess
 
     protected $effects = [
         //@var boolean
-        'autoplay' => 0,
+                          'autoplay'         => 0,
         //@var int
-        'autoplaySpeed' => 0,
+                          'autoplaySpeed'    => 0,
         //@var boolean
-        'arrows' => 0,
+                          'arrows'           => 0,
         //@var boolean
-        'centerMode' => 0,
+                          'centerMode'       => 0,
         //@var boolean
-        'dots' => 0,
+                          'dots'             => 0,
         //@var boolean
-        'draggable' => 0,
+                          'draggable'        => 0,
         //@var boolean
-        'fade' => 0,
+                          'fade'             => 0,
         //@var string
-        'easing' => '',
+                          'easing'           => '',
         //@var boolean
-        'infinite' => 0,
+                          'infinite'         => 0,
         //@var boolean
-        'pauseOnHover' => 0,
+                          'pauseOnHover'     => 0,
         //@var boolean
-        'pauseOnDotsHover' => 0,
+                          'pauseOnDotsHover' => 0,
         //@var int
-        'speed' => 0,
+                          'speed'            => 0,
         //@var boolean
-        'swipe' => 0,
+                          'swipe'            => 0,
         //@var boolean
-        'touchMove' => 0,
+                          'touchMove'        => 0,
         //@var boolean
-        'vertical' => 0,
+                          'vertical'         => 0,
         //@var boolean
-        'rtl' => 0,
+                          'rtl'              => 0,
         //@var string
-        'scrollSpeed' => 0,
-    ];
+                          'scrollSpeed'      => 0,
+                         ];
 
     protected $effectsTypes = [
         //@var boolean
-        'autoplay' => 'integer',
+                               'autoplay'         => 'integer',
         //@var int
-        'autoplaySpeed' => 'integer',
+                               'autoplaySpeed'    => 'string',
         //@var boolean
-        'arrows' => 'integer',
+                               'arrows'           => 'integer',
         //@var boolean
-        'centerMode' => 'integer',
+                               'centerMode'       => 'integer',
         //@var boolean
-        'dots' => 'integer',
+                               'dots'             => 'integer',
         //@var boolean
-        'draggable' => 'integer',
+                               'draggable'        => 'integer',
         //@var boolean
-        'fade' => 'integer',
+                               'fade'             => 'integer',
         //@var string
-        'easing' => 'string',
+                               'easing'           => 'string',
         //@var boolean
-        'infinite' => 'integer',
+                               'infinite'         => 'integer',
         //@var boolean
-        'pauseOnHover' => 'integer',
+                               'pauseOnHover'     => 'integer',
         //@var boolean
-        'pauseOnDotsHover' => 'integer',
+                               'pauseOnDotsHover' => 'integer',
         //@var int
-        'speed' => 'integer',
+                               'speed'            => 'integer',
         //@var boolean
-        'swipe' => 'integer',
+                               'swipe'            => 'integer',
         //@var boolean
-        'touchMove' => 'integer',
+                               'touchMove'        => 'integer',
         //@var boolean
-        'vertical' => 'integer',
+                               'vertical'         => 'integer',
         //@var boolean
-        'rtl' => 'integer',
+                               'rtl'              => 'integer',
         //@var string
-        'scrollSpeed' => 'string',
-    ];
+                               'scrollSpeed'      => 'string',
+                              ];
 
     /**
      * @param jsonString|array $data
@@ -109,6 +109,9 @@ class BannerEffects implements \ArrayAccess
             $value = (('on' === $value) ? 1 : $value);
             if (array_key_exists($property, $this->effects)) {
 
+                if (in_array($property, ['autoplaySpeed', 'scrollSpeed'])) {
+                    $value = str_replace(',', '.', $value);
+                }
                 if ($this->effectsTypes[$property]) {
                     settype($value, $this->effectsTypes[$property]);
                 }
@@ -158,24 +161,24 @@ class BannerEffects implements \ArrayAccess
      */
     public function getDefaultEffects() {
         return [
-            'autoplay' => false,
-            'autoplaySpeed' => 3,
-            'arrows' => true,
-            'centerMode' => false,
-            'dots' => false,
-            'draggable' => true,
-            'fade' => false,
-            'easing' => 'linear',
-            'infinite' => true,
-            'pauseOnHover' => true,
-            'pauseOnDotsHover' => false,
-            'speed' => 1,
-            'swipe' => true,
-            'touchMove' => true,
-            'vertical' => false,
-            'rtl' => false,
-            'scrollSpeed' => 1,
-        ];
+                'autoplay'         => false,
+                'autoplaySpeed'    => 3,
+                'arrows'           => true,
+                'centerMode'       => false,
+                'dots'             => false,
+                'draggable'        => true,
+                'fade'             => false,
+                'easing'           => 'linear',
+                'infinite'         => true,
+                'pauseOnHover'     => true,
+                'pauseOnDotsHover' => false,
+                'speed'            => 1,
+                'swipe'            => true,
+                'touchMove'        => true,
+                'vertical'         => false,
+                'rtl'              => false,
+                'scrollSpeed'      => 1,
+               ];
     }
 
     /**
@@ -183,38 +186,38 @@ class BannerEffects implements \ArrayAccess
      */
     public function getEasingTypes() {
         return [
-            'linear',
-            'easeInSine',
-            'easeOutSine',
-            'easeInOutSine',
-            'easeInQuad',
-            'easeOutQuad',
-            'easeInOutQuad',
-            'easeInCubic',
-            'easeOutCubic',
-            'easeInOutCubic',
-            'easeInQuart',
-            'easeOutQuart',
-            'easeInOutQuart',
-            'easeInQuint',
-            'easeOutQuint',
-            'easeInOutQuint',
-            'easeInExpo',
-            'easeOutExpo',
-            'easeInOutExpo',
-            'easeInCirc',
-            'easeOutCirc',
-            'easeInOutCirc',
-            'easeInBack',
-            'easeOutBack',
-            'easeInOutBack',
-            'easeInElastic',
-            'easeOutElastic',
-            'easeInOutElastic',
-            'easeInBounce',
-            'easeOutBounce',
-            'easeInOutBounce',
-        ];
+                'linear',
+                'easeInSine',
+                'easeOutSine',
+                'easeInOutSine',
+                'easeInQuad',
+                'easeOutQuad',
+                'easeInOutQuad',
+                'easeInCubic',
+                'easeOutCubic',
+                'easeInOutCubic',
+                'easeInQuart',
+                'easeOutQuart',
+                'easeInOutQuart',
+                'easeInQuint',
+                'easeOutQuint',
+                'easeInOutQuint',
+                'easeInExpo',
+                'easeOutExpo',
+                'easeInOutExpo',
+                'easeInCirc',
+                'easeOutCirc',
+                'easeInOutCirc',
+                'easeInBack',
+                'easeOutBack',
+                'easeInOutBack',
+                'easeInElastic',
+                'easeOutElastic',
+                'easeInOutElastic',
+                'easeInBounce',
+                'easeOutBounce',
+                'easeInOutBounce',
+               ];
     }
 
 }

@@ -38,6 +38,39 @@ class Pricespy_model extends CI_Model
     }
 
     /**
+     * @return array
+     */
+    public function getEmailPattern() {
+
+        $data = [
+                 'id'                   => 11,
+                 'name'                 => 'pricespy',
+                 'type'                 => 'HTML',
+                 'user_message_active'  => 0,
+                 'admin_message_active' => 0,
+                ];
+
+        return $data;
+    }
+
+    /**
+     * @return array
+     */
+    public function getEmailPatternI18n() {
+
+        $data = [
+
+                 'id'           => 11,
+                 'locale'       => 'ru',
+                 'theme'        => 'Отслеживание Цен',
+                 'user_message' => '<p style="font-family: arial; font-size: 13px; margin-top: 10px;">Здравствуйте, $userName$!</p>\n<pre class="sf-dump" data-indent-pad="  "><span class="sf-dump-str" title="359 characters">Цена на $</span><span>productName</span><span class="sf-dump-str" title="359 characters">$, что вы смотрели на сайте $siteUrl$ , изменилась.<br /><br /><a href="$linkModule$" target="_blank">Просмотр списка отслеживаемых товаров</a><br /></span></pre>\n<p style="font-family: arial; font-size: 13px; margin-top: 20px;"><a href="$unlinkSpy$" target="_blank">Отписаться от слежения за изменением цен</a></p>',
+                 'variables'    => 'a:6:{s:6:"$hash$";s:13:"Хеш код";s:13:"$productName$";s:23:"Имя продукта";s:10:"$userName$";s:31:"Имя пользователя";s:9:"$siteUrl$";s:21:"Адрес сайта";s:12:"$linkModule$";s:30:"Ссылка на модуль";s:11:"$unlinkSpy$";s:36:"Отписатся от товара";}',
+                ];
+
+        return $data;
+    }
+
+    /**
      *
      * @param integer $varId
      * @return int

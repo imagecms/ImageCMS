@@ -268,7 +268,10 @@ class DiscountManager extends MY_Controller
         $this->validation($postArray);
 
         if (count($this->error) > 0) {
-            return ['success' => false, 'error' => $this->error];
+            return [
+                    'success' => false,
+                    'error'   => $this->error,
+                   ];
         }
 
         if (!$postArray['key']) {
@@ -280,18 +283,21 @@ class DiscountManager extends MY_Controller
 
         // Check range for cumulative discount
         if ($typeDiscount == 'comulativ' AND $this->discount_model_admin->checkRangeForCumulativeDiscount($postArray[$typeDiscount])) {
-            return ['success' => false, 'error' => [lang('Has been already created with the cumulative discount value', 'mod_discount')]];
+            return [
+                    'success' => false,
+                    'error'   => [lang('Has been already created with the cumulative discount value', 'mod_discount')],
+                   ];
         }
 
         $data = [
-            'key' => $postArray['key'],
-            'type_value' => $postArray['type_value'],
-            'value' => $postArray['value'],
-            'type_discount' => $typeDiscount,
-            'date_begin' => strtotime($postArray['date_begin']),
-            'date_end' => strtotime($postArray['date_end']),
-            'active' => '1'
-        ];
+                 'key'           => $postArray['key'],
+                 'type_value'    => $postArray['type_value'],
+                 'value'         => $postArray['value'],
+                 'type_discount' => $typeDiscount,
+                 'date_begin'    => strtotime($postArray['date_begin']),
+                 'date_end'      => strtotime($postArray['date_end']),
+                 'active'        => '1',
+                ];
 
         if ($postArray['max_apply']) {
             $data['max_apply'] = $postArray['max_apply'];
@@ -315,10 +321,10 @@ class DiscountManager extends MY_Controller
         $discountId = $this->discount_model_admin->insertDataToDB('mod_shop_discounts', $data);
 
         $data_locale = [
-            'id' => $discountId,
-            'locale' => MY_Controller::getCurrentLocale(),
-            'name' => $postArray['name']
-        ];
+                        'id'     => $discountId,
+                        'locale' => MY_Controller::getCurrentLocale(),
+                        'name'   => $postArray['name'],
+                       ];
 
         $typeDiscountData = $postArray[$typeDiscount];
 
@@ -331,9 +337,15 @@ class DiscountManager extends MY_Controller
         }
 
         if ($result && $discountId) {
-            return ['success' => true, 'id' => $discountId];
+            return [
+                    'success' => true,
+                    'id'      => $discountId,
+                   ];
         } else {
-            return ['success' => false, 'error' => [lang('Error creating discount', 'mod_discount')]];
+            return [
+                    'success' => false,
+                    'error'   => [lang('Error creating discount', 'mod_discount')],
+                   ];
         }
     }
 
@@ -374,7 +386,7 @@ class DiscountManager extends MY_Controller
         }
 
         if (!$postArray['value'] || !preg_match('/^[0-9]{1,15}$/', $postArray['value'])) {
-            $this->error[] = lang('Value must be numeric');
+            $this->error[] = lang('Value must be numeric', 'mod_discount');
         }
 
         if ($typeDiscount == 'comulativ' && $postArray[$typeDiscount]['end_value'] < $postArray[$typeDiscount]['begin_value'] && is_numeric($postArray[$typeDiscount]['end_value'])) {

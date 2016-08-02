@@ -3,7 +3,6 @@
 use Category\CategoryApi;
 use CMSFactory\assetManager;
 use CMSFactory\Events;
-use Currency\Currency;
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
@@ -141,16 +140,29 @@ class Ymarket extends ShopController
         include_once 'models/ymarket_products_fields_model.php';
         $model = new Ymarket_products_fields_model();
         $countries = include_once 'config/countries.php';
-        $months = [1, 2, 3, 6, 9, 12, 18, 24, 30, 36, 42, 48];
+        $months = [
+                   1,
+                   2,
+                   3,
+                   6,
+                   9,
+                   12,
+                   18,
+                   24,
+                   30,
+                   36,
+                   42,
+                   48,
+                  ];
         if ($ci->input->post()) {
             $post = $ci->input->post('ymarket');
             if ($data['model']) {
                 $productId = $data['model']->getId();
                 $dataFields = [
-                    'country_of_origin' => $post['country_of_origin'] ? $post['country_of_origin'] : null,
-                    'manufacturer_warranty' => $post['manufacturer_warranty']['exist'] ? self::toISO8601Time($post['manufacturer_warranty']['time']) : 'false',
-                    'seller_warranty' => $post['seller_warranty']['exist'] ? self::toISO8601Time($post['seller_warranty']['time']) : 'false',
-                ];
+                               'country_of_origin'     => $post['country_of_origin'] ? $post['country_of_origin'] : null,
+                               'manufacturer_warranty' => $post['manufacturer_warranty']['exist'] ? self::toISO8601Time($post['manufacturer_warranty']['time']) : 'false',
+                               'seller_warranty'       => $post['seller_warranty']['exist'] ? self::toISO8601Time($post['seller_warranty']['time']) : 'false',
+                              ];
                 $model->setFields($productId, $dataFields);
             }
         } else {
@@ -161,10 +173,10 @@ class Ymarket extends ShopController
             $view = assetManager::create()
                     ->setData(
                         [
-                                'countries' => $countries,
-                                'months' => $months,
-                                'fields' => $fields,
-                            ]
+                         'countries' => $countries,
+                         'months'    => $months,
+                         'fields'    => $fields,
+                        ]
                     )
                     ->registerScript('script')
                     ->fetchAdminTemplate('products_extend');
@@ -213,43 +225,50 @@ class Ymarket extends ShopController
     public function _install() {
         $this->load->dbforge();
         $fields = [
-            'id' => ['type' => 'INT', 'constraint' => 11, 'auto_increment' => TRUE],
-            'categories' => ['type' => 'TEXT'],
-            'brands' => ['type' => 'TEXT'],
-            'adult' => ['type' => 'VARCHAR', 'constraint' => 100]
-        ];
+                   'id'         => [
+                                    'type'           => 'INT',
+                                    'constraint'     => 11,
+                                    'auto_increment' => TRUE,
+                                   ],
+                   'categories' => ['type' => 'TEXT'],
+                   'brands'     => ['type' => 'TEXT'],
+                   'adult'      => [
+                                    'type'       => 'VARCHAR',
+                                    'constraint' => 100,
+                                   ],
+                  ];
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_field($fields);
         $this->dbforge->create_table('mod_ymarket', TRUE);
 
         $fields = [
-            'id' => [
-                'type' => 'INT',
-                'constraint' => 11,
-                'auto_increment' => TRUE
-            ],
-            'product_id' => [
-                'type' => 'INT',
-                'constraint' => 11,
-            ],
-            'country_of_origin' => [
-                'type' => 'VARCHAR',
-                'constraint' => 255,
-                'null' => true,
-            ],
-            'manufacturer_warranty' => [
-                'type' => 'VARCHAR',
-                'constraint' => 255,
-                'null' => true,
-                'default' => 'false',
-            ],
-            'seller_warranty' => [
-                'type' => 'VARCHAR',
-                'constraint' => 255,
-                'null' => true,
-                'default' => 'false',
-            ],
-        ];
+                   'id'                    => [
+                                               'type'           => 'INT',
+                                               'constraint'     => 11,
+                                               'auto_increment' => TRUE,
+                                              ],
+                   'product_id'            => [
+                                               'type'       => 'INT',
+                                               'constraint' => 11,
+                                              ],
+                   'country_of_origin'     => [
+                                               'type'       => 'VARCHAR',
+                                               'constraint' => 255,
+                                               'null'       => true,
+                                              ],
+                   'manufacturer_warranty' => [
+                                               'type'       => 'VARCHAR',
+                                               'constraint' => 255,
+                                               'null'       => true,
+                                               'default'    => 'false',
+                                              ],
+                   'seller_warranty'       => [
+                                               'type'       => 'VARCHAR',
+                                               'constraint' => 255,
+                                               'null'       => true,
+                                               'default'    => 'false',
+                                              ],
+                  ];
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_field($fields);
         $this->dbforge->create_table(Ymarket_products_fields_model::TABLE, TRUE);

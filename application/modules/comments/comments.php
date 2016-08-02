@@ -55,8 +55,12 @@ class Comments extends MY_Controller
         if (($result = $this->session->flashdata('result'))) {
             $comments = (array_merge($result, $comments));
         }
+
+        $locale = MY_Controller::getCurrentLocale() == MY_Controller::getDefaultLanguage()['identif'] ? '' : '/'. MY_Controller::getCurrentLocale();
+
         assetManager::create()
             ->setData($comments)
+            ->setData(['locale' => $locale])
             ->render('comments', TRUE);
     }
 

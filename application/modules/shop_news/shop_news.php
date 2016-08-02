@@ -1,5 +1,8 @@
 <?php
 
+use CMSFactory\assetManager;
+use CMSFactory\Events;
+
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /**
@@ -12,6 +15,7 @@
  *
  * {$CI->load->module('shop_news')->getShopNews()}
  *
+ * @property Shop_news_model shop_news_model
  */
 class Shop_news extends MY_Controller
 {
@@ -23,18 +27,18 @@ class Shop_news extends MY_Controller
     }
 
     public static function adminAutoload() {
-        \CMSFactory\Events::create()->onAdminPagePreEdit()->setListener('_extendPageAdmin');
+        Events::create()->onAdminPagePreEdit()->setListener('_extendPageAdmin');
     }
 
     /**
      * Display module template on tab "Modules additions" when edit page.
-     * @param type $shopNewsData
+     * @param array $shopNewsData
      */
     public static function _extendPageAdmin($shopNewsData) {
         $shopNews = new Shop_news();
 
         $view = $shopNews->prepareInterface($shopNewsData, $shopNewsData['pageId']);
-        \CMSFactory\assetManager::create()
+        assetManager::create()
                 ->appendData('moduleAdditions', $view);
     }
 
@@ -64,7 +68,7 @@ class Shop_news extends MY_Controller
 
         $content = $this->shop_news_model->getContent($ids, $limit);
 
-        CMSFactory\assetManager::create()
+        assetManager::create()
                 ->setData(['contentShopNews' => $content])
                 ->registerStyle('style')
                 ->registerScript('scripts')
@@ -81,7 +85,7 @@ class Shop_news extends MY_Controller
         $currentCategories = $this->db->where('content_id', $pageId)->get('mod_shop_news')->row_array();
         $currentCategories = explode(',', $currentCategories['shop_categories_ids']);
 
-        return \CMSFactory\assetManager::create()
+        return assetManager::create()
                         ->setData(['shopNews' => $data, 'categories' => ShopCore::app()->SCategoryTree->getTree(), 'currentCategories' => $currentCategories])
                         ->registerScript('scripts')
                         ->fetchTemplate('/admin/adminModuleInterface');
@@ -109,9 +113,15 @@ class Shop_news extends MY_Controller
         $this->load->dbforge();
 
         $fields = [
-            'content_id' => ['type' => 'INT', 'constraint' => 11],
-            'shop_categories_ids' => ['type' => 'VARCHAR', 'constraint' => 1000]
-        ];
+                   'content_id'          => [
+                                             'type'       => 'INT',
+                                             'constraint' => 11,
+                                            ],
+                   'shop_categories_ids' => [
+                                             'type'       => 'VARCHAR',
+                                             'constraint' => 1000,
+                                            ],
+                  ];
 
         $this->dbforge->add_field($fields);
         $this->dbforge->create_table('mod_shop_news', TRUE);

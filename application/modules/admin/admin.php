@@ -52,6 +52,32 @@ class Admin extends MY_Controller
         $this->lib_admin->init_settings();
     }
 
+    public function init() {
+
+        if (isset($_SESSION['redirect_after_login'])) {
+            $redirectAfterLogin = $_SESSION['redirect_after_login'];
+            unset($_SESSION['redirect_after_login']);
+            redirect($redirectAfterLogin);
+        }
+
+        if (SHOP_INSTALLED) {
+            redirect('/admin/components/run/shop/dashboard');
+        } else {
+            $this->index();
+        }
+    }
+
+    public function index() {
+
+        if ($this->dx_auth->is_admin() == true and SHOP_INSTALLED) {
+            redirect('/admin/components/run/shop/orders/index');
+        }
+        //just show dashboard
+        $this->load->module('admin/dashboard');
+        $this->dashboard->index();
+        exit;
+    }
+
     /**
      * Delete cached files
      *
@@ -88,21 +114,22 @@ class Admin extends MY_Controller
                     $message = lang('Cache has been cleared', 'admin');
                 }
                 break;
-
             default:
                 $message = lang('Clearing cache error', 'admin');
                 $result = false;
         }
 
-            echo json_encode(
-                [
-                 'message'    => $message,
-                 'result'     => $result,
-                 'color'      => 'r',
-                 'filesCount' => $this->cache->cache_file(),
-                ]
-            );
+        echo json_encode(
+            [
+             'message'    => $message,
+             'result'     => $result,
+             'color'      => 'r',
+             'filesCount' => $this->cache->cache_file(),
+            ]
+        );
     }
+
+    //initialyze elFinder
 
     public function elfinder_init($edMode = false) {
 
@@ -152,32 +179,22 @@ class Admin extends MY_Controller
         echo form_csrf();
     }
 
-    //initialyze elFinder
+    public function sidebar_cats() {
 
-    public function init() {
-
-        if (isset($_SESSION['redirect_after_login'])) {
-            $redirectAfterLogin = $_SESSION['redirect_after_login'];
-            unset($_SESSION['redirect_after_login']);
-            redirect($redirectAfterLogin);
+        echo '<div id="categories">';
+        if ($this->input->get('first')) {
+            $this->db->where('name', 'shop');
+            $this->db->limit(1);
+            $query = $this->db->get('components');
+            if ($query->num_rows() > 0) {
+                ShopCore::app()->SAdminSidebarRenderer->render();
+                exit;
+            }
         }
 
-        if (SHOP_INSTALLED) {
-            redirect('/admin/components/run/shop/dashboard');
-        } else {
-            $this->index();
-        }
-    }
-
-    public function index() {
-
-        if ($this->dx_auth->is_admin() == true and SHOP_INSTALLED) {
-            redirect('/admin/components/run/shop/orders/index');
-        }
-        //just show dashboard
-        $this->load->module('admin/dashboard');
-        $this->dashboard->index();
-        exit;
+        $this->template->assign('tree', $this->lib_category->build());
+        $this->template->show('cats_sidebar', false);
+        echo '</div>';
     }
 
     /**
@@ -233,24 +250,6 @@ class Admin extends MY_Controller
         }
 
         echo json_encode($response);
-    }
-
-    public function sidebar_cats() {
-
-        echo '<div id="categories">';
-        if ($this->input->get('first')) {
-            $this->db->where('name', 'shop');
-            $this->db->limit(1);
-            $query = $this->db->get('components');
-            if ($query->num_rows() > 0) {
-                ShopCore::app()->SAdminSidebarRenderer->render();
-                exit;
-            }
-        }
-
-        $this->template->assign('tree', $this->lib_category->build());
-        $this->template->show('cats_sidebar', false);
-        echo '</div>';
     }
 
 }

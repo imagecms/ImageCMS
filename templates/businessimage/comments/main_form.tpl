@@ -1,7 +1,7 @@
 <!-- Checking error in main comment, not in answer form -->
 {$loc_main_comment_error = !$parent_id && $validation_errors}
 
-<form class="g-form-m g-form-m_main" action="/comments/addPost#b-comments__form-anchor" method="post">
+<form class="g-form-m g-form-m_main" action="{echo $locale}/comments/addPost#b-comments__form-anchor" method="post">
 
   <!-- Messages BEGIN -->
   {if $loc_main_comment_error}

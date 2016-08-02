@@ -82,7 +82,7 @@ class Admin extends BaseAdminController
     }
 
     public function create_trash_list() {
-        assetManager::create()->renderAdmin('create_trash_list');
+        assetManager::create()->registerScript('admin')->renderAdmin('create_trash_list');
     }
 
     public function trash_list() {
@@ -125,9 +125,8 @@ class Admin extends BaseAdminController
 
         $this->db->order_by('name', 'asc');
         $query = $this->db->get('category');
-        $this->template->add_array(['category_base' => $query->result()]);
 
-        ($this->ajaxRequest) OR assetManager::create()->renderAdmin('create_trash');
+        ($this->ajaxRequest) OR assetManager::create()->setData(['category_base' => $query->result()])->registerScript('admin')->renderAdmin('create_trash');
 
         if ($this->input->post()) {
             if ($this->form_validation->run($this) == false) {
@@ -228,10 +227,10 @@ class Admin extends BaseAdminController
 
         $this->db->order_by('name', 'asc');
         $query = $this->db->get('category');
-        $this->template->add_array(['category_base' => $query->result()]);
 
         if (!$this->ajaxRequest) {
             assetManager::create()
+                ->setData(['category_base' => $query->result()])
                 ->registerScript('admin')
                 ->renderAdmin('edit_trash');
         }

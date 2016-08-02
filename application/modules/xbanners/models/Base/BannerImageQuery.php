@@ -446,6 +446,9 @@ abstract class BannerImageQuery extends ModelCriteria
         if (null === $comparison) {
             if (is_array($url)) {
                 $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $url)) {
+                $url = str_replace('*', '%', $url);
+                $comparison = Criteria::LIKE;
             }
         }
 

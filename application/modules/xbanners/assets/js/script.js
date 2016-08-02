@@ -18,7 +18,10 @@ function log(param) {
 }
 
 $(document).on("pjax:end", function () {
-    initBanners();
+    setTimeout(function(){
+        initBanners();
+    } , 1000);
+
 });
 
 $(document).ready(function () {

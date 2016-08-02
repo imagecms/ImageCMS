@@ -1,14 +1,9 @@
-<section class="mini-layout">
+<section class="mini-layout found-expensive">
     <div class="frame_title clearfix">
         <div class="pull-left">
             <span class="help-inline"></span>
             <span class="title">{lang('Found less expensive', 'found_less_expensive')}</span>
         </div>
-        <div class="pull-right">
-            <div class="d-i_b">
-                <a class="btn btn-small pjax" href="/admin/components/cp/found_less_expensive/settings"><i class="icon-wrench"></i>{lang('Settings', 'found_less_expensive')}</a>
-            </div>
-        </div>    
     </div>
     <div class="btn-group myTab m-t_20">
         <a class="btn btn-small pjax {if $status == 'all' OR $status== NULL}active{/if}" href="/admin/components/cp/found_less_expensive/index/status/all/0">{lang('All', 'found_less_expensive')}
@@ -35,13 +30,13 @@
                     <thead>
                         <tr>
                             <th class="t-a_c span1"></th>
-                            <th>{lang('ID', 'found_less_expensive')}</th>
-                            <th>{lang('Contact information', 'found_less_expensive')}</th>
-                            <th>{lang('Question', 'found_less_expensive')}</th>
-                            <th>{lang('Product link', 'found_less_expensive')}</th>
-                            <th>{lang('Page', 'found_less_expensive')}</th>
-                            <th>{lang('Status', 'found_less_expensive')}</th>
-                            <th>{lang('Date', 'found_less_expensive')}</th>
+                            <th class="span1">{lang('ID', 'found_less_expensive')}</th>
+                            <th class="span3">{lang('Contact information', 'found_less_expensive')}</th>
+                            <th class="span2">{lang('Question', 'found_less_expensive')}</th>
+                            <th class="span2">{lang('Product link', 'found_less_expensive')}</th>
+                            <th class="span1">{lang('Page', 'found_less_expensive')}</th>
+                            <th class="span2">{lang('Status', 'found_less_expensive')}</th>
+                            <th class="span2">{lang('Date', 'found_less_expensive')}</th>
                         </tr>
                     </thead>
                     <tbody class="">

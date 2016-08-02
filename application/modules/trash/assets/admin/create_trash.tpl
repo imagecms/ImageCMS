@@ -122,7 +122,7 @@
                                                     <div class="controls">
                                                         <select id="inputMainC" value="" name="category">
                                                             {foreach $category as $item}
-                                                                <option value="{echo $item->id}">{echo $item->name}</option> 
+                                                                <option {if $item->getLevel() == 0}style="font-weight: bold;"{/if} value="{echo $item->getId()}">{str_repeat('-',$item->getLevel())} {echo ShopCore::encode($item->getName())}</option>
                                                             {/foreach}
                                                         </select>
                                                     </div>

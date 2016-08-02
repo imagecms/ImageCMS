@@ -1,6 +1,7 @@
 <?php
 
 use CMSFactory\assetManager;
+use CMSFactory\Events;
 
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
@@ -13,6 +14,7 @@ if (!defined('BASEPATH')) {
  * Need Imagebox module
  * @property Gallery_m $gallery_m
  * @property Components comments
+ * @property Gallery_install gallery_install
  */
 class Gallery extends MY_Controller
 {
@@ -59,6 +61,7 @@ class Gallery extends MY_Controller
         // Get covers
         $data['albums'] = is_array($albums) ? $this->create_albums_covers($albums) : NULL;
 
+        Events::create()->raiseEvent($data, 'gallery:load');
         assetManager::create()
             ->setData($data)
             ->registerStyle('style', FAlSE)
@@ -109,6 +112,7 @@ class Gallery extends MY_Controller
                      'gallery_category' => $this->gallery_m->get_categories($this->settings['order_by'], $this->settings['sort_order']),
                     ];
 
+            Events::create()->raiseEvent($data, 'gallery:category');
             assetManager::create()
                 ->setData($data)
                 ->render('albums');
@@ -180,6 +184,7 @@ class Gallery extends MY_Controller
 
         $this->gallery_m->increase_image_views($prev_img['id']);
         $this->core->set_meta_tags([$album['name']]);
+        Events::create()->raiseEvent($data, 'gallery:album');
 
         assetManager::create()
             ->setData($data)
@@ -282,7 +287,9 @@ class Gallery extends MY_Controller
         if ($this->dx_auth->is_admin() == FALSE) {
             exit;
         }
-        $this->load->model('install')->make_install();
+        $this->load->model('gallery_install');
+        $this->gallery_install->make_install();
+
     }
 
     // Delete module
@@ -291,7 +298,8 @@ class Gallery extends MY_Controller
         if ($this->dx_auth->is_admin() == FALSE) {
             exit;
         }
-        $this->load->model('install')->deinstall();
+        $this->load->model('gallery_install');
+        $this->gallery_install->deinstall();
     }
 
 }

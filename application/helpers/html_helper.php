@@ -13,7 +13,7 @@ if (!function_exists('href_nofollow')) {
 
     /**
      * @param string $content
-     * @return mixed
+     * @return string
      */
     function href_nofollow($content) {
         return preg_replace_callback('/<(a\s[^>]+)>/isU', 'seo_nofollow_replace', $content);

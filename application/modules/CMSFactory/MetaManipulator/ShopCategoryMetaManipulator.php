@@ -2,7 +2,6 @@
 
 namespace CMSFactory\MetaManipulator;
 
-use CI;
 use Currency\Currency;
 use MY_Controller;
 use Propel\Runtime\ActiveQuery\Criteria;

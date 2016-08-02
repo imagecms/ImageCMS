@@ -238,6 +238,24 @@ class Base extends CI_Model
         }
     }
 
+    /**
+     * @param int $id
+     * @return int
+     */
+    public function get_count_comments($id) {
+
+        /** @var CI_DB_result $test */
+        $test = $this->db->select('COUNT(id) as count')
+            ->from('comments')
+            ->where('item_id', $id)
+            ->where('status', 0)
+            ->get();
+
+        $count = $test->num_rows() > 0 ? $test->row()->count : 0;
+
+        return $count;
+    }
+
 }
 
 /* End of base.php */

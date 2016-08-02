@@ -283,7 +283,6 @@ table p{margin: 0;word-wrap: break-word;word-break: break-word;}
 .table tbody tr.active td, .active > .row-category > div{background-color: #fcffee !important;}
 /*.table th, .table td{word-break: break-word;word-wrap:break-word;}*/
 .my_btn_s{vertical-align: middle !important;line-height: 0 !important;padding: 0 4px !important;height: 28px !important;}
-
 tr.active .patch_disabled{z-index: 0;}
 .patch_disabled{position: absolute;z-index: 1;width: 100%;}
 .frame_rating a{color: #333;text-decoration: none;}

@@ -3,8 +3,6 @@
 namespace template_manager\classes;
 
 use Exception;
-use Symfony\Component\Config\FileLocator;
-use template_manager\classes\TemplateManager;
 
 /**
  * Representing one template
@@ -36,15 +34,15 @@ class Template
      * @var array
      */
     private $xmlData = [
-        'author' => null,
-        'label' => null,
-        'description' => null,
-        'mainImage' => null,
-        'screenshots' => [],
-        'version' => null,
-        'components' => [],
-        'xml' => NULL
-    ];
+                        'author'      => null,
+                        'label'       => null,
+                        'description' => null,
+                        'mainImage'   => null,
+                        'screenshots' => [],
+                        'version'     => null,
+                        'components'  => [],
+                        'xml'         => NULL,
+                       ];
 
     /**
      * Path to current template

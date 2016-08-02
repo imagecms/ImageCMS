@@ -198,6 +198,7 @@ class Sitemap extends MY_Controller
     }
 
     public function build_xml_map_regenerated() {
+
         $this->build_xml_map(TRUE);
     }
 
@@ -232,29 +233,29 @@ class Sitemap extends MY_Controller
      */
     public function _create_map() {
 
-        $this->initialize();
+        if ($this->robotsCheck()) {
+            $this->initialize();
 
-        // Add main page
-        if (!$this->robotsCheck(site_url())) {
+            // Add main pagez
             $this->items[] = [
                               'loc'        => site_url(),
                               'changefreq' => $this->main_page_changefreq,
                               'priority'   => $this->main_page_priority,
                               'lastmod'    => date('Y-m-d', time()),
                              ];
-        }
-        $this->getPagesCategories();
-        $this->getAllPages();
+            $this->getPagesCategories();
+            $this->getAllPages();
 
-        if (SHOP_INSTALLED) {
+            if (SHOP_INSTALLED) {
 
-            $this->getShopCategories();
-            $this->getShopBrands();
-            $this->getShopProducts();
+                $this->getShopCategories();
+                $this->getShopBrands();
+                $this->getShopProducts();
 
-            $this->load->module('smart_filter');
-            if (method_exists($this->smart_filter, 'attachPages')) {
-                $this->smart_filter->attachPages($this);
+                $this->load->module('smart_filter');
+                if (method_exists($this->smart_filter, 'attachPages')) {
+                    $this->smart_filter->attachPages($this);
+                }
             }
         }
         $this->result = $this->generate_xml($this->items);
@@ -307,29 +308,14 @@ class Sitemap extends MY_Controller
 
     /**
      * Check robots
-     * @param string $check
      * @return boolean
      */
-    public function robotsCheck($check) {
+    public function robotsCheck() {
 
-        $checkSetting = $this->db->get('settings')
+        return (bool) $this->db->get('settings')
             ->row()
             ->robots_status;
 
-        if (!$checkSetting && $checkSetting == '0') {
-            $array = ['/'];
-        }
-
-        foreach ($array as $ar) {
-            if ($ar == '/') {
-                return true;
-            }
-
-            if (strstr($ar, $check)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     /**
@@ -341,48 +327,47 @@ class Sitemap extends MY_Controller
         $categories = $this->lib_category->unsorted();
 
         foreach ($categories as $category) {
-            if (!$this->robotsCheck(site_url($category['path_url']))) {
 
-                if ((int) $category['parent_id']) {
-                    $changefreq = $this->sub_categories_changefreq;
-                    $priority = $this->sub_cats_priority;
-                } else {
-                    $changefreq = $this->categories_changefreq;
-                    $priority = $this->cats_priority;
-                }
+            if ((int) $category['parent_id']) {
+                $changefreq = $this->sub_categories_changefreq;
+                $priority = $this->sub_cats_priority;
+            } else {
+                $changefreq = $this->categories_changefreq;
+                $priority = $this->cats_priority;
+            }
 
-                // create date
-                if ($category['updated'] > 0) {
-                    $date = date('Y-m-d', $category['updated']);
-                } else {
-                    $date = date('Y-m-d', $category['created']);
-                }
+            // create date
+            if ($category['updated'] > 0) {
+                $date = date('Y-m-d', $category['updated']);
+            } else {
+                $date = date('Y-m-d', $category['created']);
+            }
 
-                if ($this->not_blocked_url($category['path_url'])) {
+            if ($this->not_blocked_url($category['path_url'])) {
 
-                    $this->items[] = [
-                                      'loc'        => site_url($category['path_url']),
-                                      'changefreq' => $changefreq,
-                                      'priority'   => $priority,
-                                      'lastmod'    => $date,
-                                     ];
-                }
+                $this->items[] = [
+                                  'loc'        => site_url($category['path_url']),
+                                  'changefreq' => $changefreq,
+                                  'priority'   => $priority,
+                                  'lastmod'    => $date,
+                                 ];
+            }
 
-                // Add links to categories in all langs.
-                foreach ($this->langs as $lang_indentif => $lang) {
-                    if ($lang['id'] != $this->default_lang['id']) {
-                        $url = $lang_indentif . '/' . $category['path_url'];
-                        if ($this->not_blocked_url($url)) {
-                            $this->items[] = [
-                                              'loc'        => site_url($url),
-                                              'changefreq' => $changefreq,
-                                              'priority'   => $priority,
-                                              'lastmod'    => $date,
-                                             ];
-                        }
+            // Add links to categories in all langs.
+            foreach ($this->langs as $lang_indentif => $lang) {
+                if ($lang['id'] != $this->default_lang['id']) {
+                    $url = $lang_indentif . '/' . $category['path_url'];
+                    if ($this->not_blocked_url($url)) {
+                        $this->items[] = [
+                                          'loc'        => site_url($url),
+                                          'changefreq' => $changefreq,
+                                          'priority'   => $priority,
+                                          'lastmod'    => $date,
+                                         ];
                     }
                 }
             }
+
         }
     }
 
@@ -391,7 +376,7 @@ class Sitemap extends MY_Controller
      * @param string $url
      * @return boolean
      */
-    private function not_blocked_url($url) {
+    public function not_blocked_url($url) {
 
         if (!in_array($url, $this->blocked_urls) && !in_array(substr($url, 0, -1), $this->blocked_urls)) {
             foreach ($this->blocked_urls as $blocked_url) {
@@ -442,40 +427,38 @@ class Sitemap extends MY_Controller
 
         foreach ($pages as $page) {
 
-            if (!$this->robotsCheck($page['full_url'])) {
-
-                // create page url
-                if ($page['lang'] == $this->default_lang['id']) {
-                    $url = site_url($page['full_url']);
-                    $url_page = $page['full_url'];
-                } else {
-                    $prefix = $this->_get_lang_prefix($page['lang']);
-                    $url_page = $prefix . '/' . $page['full_url'];
-                    $url = site_url($url_page);
-                }
-
-                // create date
-                if ($page['updated'] > 0) {
-                    $date = date('Y-m-d', $page['updated']);
-                } else {
-                    $date = date('Y-m-d', $page['created']);
-                }
-
-                if ($page['cat_url'] == '') {
-                    $c_priority = $this->cats_priority;
-                } else {
-                    $c_priority = $this->pages_priority;
-                }
-
-                if ($this->not_blocked_url($url_page)) {
-                    $this->items[] = [
-                                      'loc'        => $url,
-                                      'changefreq' => $this->pages_changefreq,
-                                      'priority'   => $c_priority,
-                                      'lastmod'    => $date,
-                                     ];
-                }
+            // create page url
+            if ($page['lang'] == $this->default_lang['id']) {
+                $url = site_url($page['full_url']);
+                $url_page = $page['full_url'];
+            } else {
+                $prefix = $this->_get_lang_prefix($page['lang']);
+                $url_page = $prefix . '/' . $page['full_url'];
+                $url = site_url($url_page);
             }
+
+            // create date
+            if ($page['updated'] > 0) {
+                $date = date('Y-m-d', $page['updated']);
+            } else {
+                $date = date('Y-m-d', $page['created']);
+            }
+
+            if ($page['cat_url'] == '') {
+                $c_priority = $this->cats_priority;
+            } else {
+                $c_priority = $this->pages_priority;
+            }
+
+            if ($this->not_blocked_url($url_page)) {
+                $this->items[] = [
+                                  'loc'        => $url,
+                                  'changefreq' => $this->pages_changefreq,
+                                  'priority'   => $c_priority,
+                                  'lastmod'    => $date,
+                                 ];
+            }
+
         }
     }
 
@@ -510,31 +493,30 @@ class Sitemap extends MY_Controller
 
                 $url = $localeSegment . 'shop/category/' . $shopcat['full_path'];
                 if ($this->not_blocked_url($url)) {
-                    if (!$this->robotsCheck(site_url($url))) {
 
-                        // Check if category is subcategory
-                        if ((int) $shopcat['parent_id']) {
-                            $changefreq = $this->products_sub_categories_changefreq;
-                            $priority = $this->products_sub_categories_priority;
-                        } else {
-                            $changefreq = $this->products_categories_changefreq;
-                            $priority = $this->products_categories_priority;
-                        }
-
-                        // create date
-                        if ($shopcat['updated'] > 0) {
-                            $date = date('Y-m-d', $shopcat['updated']);
-                        } else {
-                            $date = date('Y-m-d', $shopcat['created']);
-                        }
-
-                        $this->items[] = [
-                                          'loc'        => site_url($url),
-                                          'changefreq' => $changefreq,
-                                          'priority'   => $priority,
-                                          'lastmod'    => $date,
-                                         ];
+                    // Check if category is subcategory
+                    if ((int) $shopcat['parent_id']) {
+                        $changefreq = $this->products_sub_categories_changefreq;
+                        $priority = $this->products_sub_categories_priority;
+                    } else {
+                        $changefreq = $this->products_categories_changefreq;
+                        $priority = $this->products_categories_priority;
                     }
+
+                    // create date
+                    if ($shopcat['updated'] > 0) {
+                        $date = date('Y-m-d', $shopcat['updated']);
+                    } else {
+                        $date = date('Y-m-d', $shopcat['created']);
+                    }
+
+                    $this->items[] = [
+                                      'loc'        => site_url($url),
+                                      'changefreq' => $changefreq,
+                                      'priority'   => $priority,
+                                      'lastmod'    => $date,
+                                     ];
+
                 }
             }
         }
@@ -555,20 +537,19 @@ class Sitemap extends MY_Controller
 
             $url = site_url($localeSegment . 'shop/brand/' . $shopbr['url']);
             if ($this->not_blocked_url($localeSegment . 'shop/brand/' . $shopbr['url'])) {
-                if (!$this->robotsCheck($url)) {
-                    // create date
-                    if ($shopbr['updated'] > 0) {
-                        $date = date('Y-m-d', $shopbr['updated']);
-                    } else {
-                        $date = date('Y-m-d', $shopbr['created']);
-                    }
-                    $this->items[] = [
-                                      'loc'        => $url,
-                                      'changefreq' => $this->brands_changefreq,
-                                      'priority'   => $this->brands_priority,
-                                      'lastmod'    => $date,
-                                     ];
+                // create date
+                if ($shopbr['updated'] > 0) {
+                    $date = date('Y-m-d', $shopbr['updated']);
+                } else {
+                    $date = date('Y-m-d', $shopbr['created']);
                 }
+                $this->items[] = [
+                                  'loc'        => $url,
+                                  'changefreq' => $this->brands_changefreq,
+                                  'priority'   => $this->brands_priority,
+                                  'lastmod'    => $date,
+                                 ];
+
             }
         }
     }
@@ -588,19 +569,19 @@ class Sitemap extends MY_Controller
                 $localeSegment = $shopprod['locale'] == self::defaultLocale() ? '' : $shopprod['locale'] . '/';
                 $url = site_url($localeSegment . 'shop/product/' . $shopprod['url']);
                 if ($this->not_blocked_url($localeSegment . 'shop/product/' . $shopprod['url'])) {
-                    if (!$this->robotsCheck($url)) {
-                        if ($shopprod['updated'] > 0) {
-                            $date = date('Y-m-d', $shopprod['updated']);
-                        } else {
-                            $date = date('Y-m-d', $shopprod['created']);
-                        }
-                        $this->items[] = [
-                                          'loc'        => $url,
-                                          'changefreq' => $this->products_changefreq,
-                                          'priority'   => $this->products_priority,
-                                          'lastmod'    => $date,
-                                         ];
+
+                    if ($shopprod['updated'] > 0) {
+                        $date = date('Y-m-d', $shopprod['updated']);
+                    } else {
+                        $date = date('Y-m-d', $shopprod['created']);
                     }
+                    $this->items[] = [
+                                      'loc'        => $url,
+                                      'changefreq' => $this->products_changefreq,
+                                      'priority'   => $this->products_priority,
+                                      'lastmod'    => $date,
+                                     ];
+
                 }
             }
         }

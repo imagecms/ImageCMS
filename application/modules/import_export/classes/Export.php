@@ -513,7 +513,6 @@ class Export
      * @return string
      */
     protected function getPropertyField($propertyName) {
-
         return 'GROUP_CONCAT(DISTINCT IF(`shop_product_properties_data`.`property_id` = ' . array_search($propertyName, $this->customFields) . ", `shop_product_property_value_i18n`.`value`, NULL) SEPARATOR '|') AS `{$propertyName}`";
     }
 
@@ -522,7 +521,6 @@ class Export
      * @return array
      */
     protected function getCustomFields() {
-
         /** @var CI_DB_result $result */
         $result = $this->db->select(['id', 'csv_name'])
             ->from('shop_product_properties')

@@ -25,6 +25,7 @@ class CacheFactory
                 return $this->container->get($provider);
             }
         }
+        return $this->container->get('cache.provider.void');
     }
 
     /**

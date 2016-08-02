@@ -32,7 +32,7 @@
         <div class="pull-right">
             <div class="d-i_b">
                 <a href="{$BASE_URL}admin/components/init_window/exchange"
-                   class="t-d_n m-r_15 pjax">
+                   class="t-d_n m-r_15">
                     <span class="f-s_14">←</span>
                     <span class="t-d_u">{lang('Back', 'admin')}</span>
                 </a>

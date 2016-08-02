@@ -2,11 +2,11 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-26 01:02+0200\n"
-"PO-Revision-Date: 2013-12-26 01:02+0200\n"
-"Last-Translator:  \n"
-"Language-Team:  \n"
-"Language: ru_RU\n"
+"POT-Creation-Date: 2016-07-19 04:24+0300\n"
+"PO-Revision-Date: 2016-07-19 04:24+0300\n"
+"Last-Translator:  <>\n"
+"Language-Team:  <>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,145 +18,120 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: ./application/modules/found_less_expensive/assets/buttonWithForm.tpl:4
-#: ./application/modules/found_less_expensive/assets/buttonWithForm.tpl:14
+#: application/modules/found_less_expensive/found_less_expensive.php:52
+msgid "Name"
+msgstr "Имя"
+
+#: application/modules/found_less_expensive/found_less_expensive.php:53
+msgid "Phone"
+msgstr "Телефон"
+
+#: application/modules/found_less_expensive/found_less_expensive.php:54
+msgid "Email"
+msgstr "Электронная почта"
+
+#: application/modules/found_less_expensive/found_less_expensive.php:55
+msgid "link"
+msgstr "ссылка"
+
+#: application/modules/found_less_expensive/admin.php:84
+msgid "Next"
+msgstr "Далее"
+
+#: application/modules/found_less_expensive/admin.php:85
+msgid "Prev"
+msgstr "Предыдущий"
+
+#: application/modules/found_less_expensive/admin.php:123
+msgid "Successfully deleted"
+msgstr "Успешно удален"
+
+#: application/modules/found_less_expensive/assets/buttonWithForm.tpl:4
+#: application/modules/found_less_expensive/assets/buttonWithForm.tpl:14
 msgid "Found less cheaper"
 msgstr "Нашли  дешевле"
 
-#: ./application/modules/found_less_expensive/assets/buttonWithForm.tpl:22
+#: application/modules/found_less_expensive/assets/buttonWithForm.tpl:22
 msgid "Your name"
 msgstr "Ваше имя"
 
-#: ./application/modules/found_less_expensive/assets/buttonWithForm.tpl:28
+#: application/modules/found_less_expensive/assets/buttonWithForm.tpl:28
 msgid "Phone number"
 msgstr "Номер телефона"
 
-#: ./application/modules/found_less_expensive/assets/buttonWithForm.tpl:40
-#: ./application/modules/found_less_expensive/assets/admin/list.tpl:41
+#: application/modules/found_less_expensive/assets/buttonWithForm.tpl:40
+#: application/modules/found_less_expensive/assets/admin/list.tpl:36
 msgid "Product link"
 msgstr "Ссилка на товар"
 
-#: ./application/modules/found_less_expensive/assets/buttonWithForm.tpl:46
-#: ./application/modules/found_less_expensive/assets/admin/list.tpl:40
+#: application/modules/found_less_expensive/assets/buttonWithForm.tpl:46
+#: application/modules/found_less_expensive/assets/admin/list.tpl:35
 msgid "Question"
 msgstr "Вопрос"
 
-#: ./application/modules/found_less_expensive/assets/buttonWithForm.tpl:52
+#: application/modules/found_less_expensive/assets/buttonWithForm.tpl:52
 msgid "Send"
 msgstr "Послать"
 
-#: ./application/modules/found_less_expensive/assets/js/scripts.js:27
+#: application/modules/found_less_expensive/assets/js/scripts.js:27
 msgid "Fill in required fields!"
 msgstr "Заполните обязательные поля!"
 
-#: ./application/modules/found_less_expensive/assets/js/scripts.js:33
+#: application/modules/found_less_expensive/assets/js/scripts.js:33
 msgid "Invalid email!"
 msgstr "Неверный email!"
 
-#: ./application/modules/found_less_expensive/assets/js/scripts.js:46
+#: application/modules/found_less_expensive/assets/js/scripts.js:46
 msgid "Sent! Thanks for the notification!"
 msgstr "Отправлено! Спасибо за уведомление!"
 
-#: ./application/modules/found_less_expensive/assets/admin/list.tpl:5
-#: ./application/modules/found_less_expensive/module_info.php:4
+#: application/modules/found_less_expensive/module_info.php:9
+#: application/modules/found_less_expensive/assets/admin/list.tpl:5
 msgid "Found less expensive"
 msgstr "Найдены дешевле"
 
-#: ./application/modules/found_less_expensive/assets/admin/list.tpl:9
-#: ./application/modules/found_less_expensive/assets/admin/settings.tpl:5
-msgid "Settings"
-msgstr "Настройки"
-
-#: ./application/modules/found_less_expensive/assets/admin/list.tpl:14
+#: application/modules/found_less_expensive/assets/admin/list.tpl:9
 msgid "All"
 msgstr "Все"
 
-#: ./application/modules/found_less_expensive/assets/admin/list.tpl:21
-#: ./application/modules/found_less_expensive/assets/admin/list.tpl:65
+#: application/modules/found_less_expensive/assets/admin/list.tpl:16
+#: application/modules/found_less_expensive/assets/admin/list.tpl:60
 msgid "New"
 msgstr "Новое"
 
-#: ./application/modules/found_less_expensive/assets/admin/list.tpl:24
-#: ./application/modules/found_less_expensive/assets/admin/list.tpl:66
+#: application/modules/found_less_expensive/assets/admin/list.tpl:19
+#: application/modules/found_less_expensive/assets/admin/list.tpl:61
 msgid "Processed"
 msgstr "Обработано"
 
-#: ./application/modules/found_less_expensive/assets/admin/list.tpl:38
+#: application/modules/found_less_expensive/assets/admin/list.tpl:33
 msgid "ID"
 msgstr "ID"
 
-#: ./application/modules/found_less_expensive/assets/admin/list.tpl:39
+#: application/modules/found_less_expensive/assets/admin/list.tpl:34
 msgid "Contact information"
 msgstr "Контактная информация"
 
-#: ./application/modules/found_less_expensive/assets/admin/list.tpl:42
+#: application/modules/found_less_expensive/assets/admin/list.tpl:37
 msgid "Page"
 msgstr "Страница"
 
-#: ./application/modules/found_less_expensive/assets/admin/list.tpl:43
+#: application/modules/found_less_expensive/assets/admin/list.tpl:38
 msgid "Status"
 msgstr "Статус"
 
-#: ./application/modules/found_less_expensive/assets/admin/list.tpl:44
+#: application/modules/found_less_expensive/assets/admin/list.tpl:39
 msgid "Date"
 msgstr "Дата"
 
-#: ./application/modules/found_less_expensive/assets/admin/list.tpl:79
+#: application/modules/found_less_expensive/assets/admin/list.tpl:74
 msgid "No data has been found"
 msgstr "Не было обнаружено данных"
 
-#: ./application/modules/found_less_expensive/assets/admin/settings.tpl:9
-msgid "Back"
-msgstr "Назад"
-
-#: ./application/modules/found_less_expensive/assets/admin/settings.tpl:10
-msgid "Save"
-msgstr "Сохранить"
-
-#: ./application/modules/found_less_expensive/assets/admin/settings.tpl:19
-msgid "Properties"
-msgstr "Свойства"
-
-#: ./application/modules/found_less_expensive/assets/admin/settings.tpl:28
-msgid "Mail to receive notifications"
-msgstr "Почты, чтобы получать уведомления"
-
-#: ./application/modules/found_less_expensive/assets/admin/settings.tpl:34
-msgid "Mail to which send the notification"
-msgstr "Адрес  на который следует посылать уведомления"
-
-#: ./application/modules/found_less_expensive/assets/admin/settings.tpl:40
-msgid "Message theme"
-msgstr "Тема сообщения"
-
-#: ./application/modules/found_less_expensive/assets/admin/settings.tpl:46
-msgid "Message template"
-msgstr "Шаблон сообщения"
-
-#: ./application/modules/found_less_expensive/assets/admin/settings.tpl:50
-msgid "You can use following variables"
-msgstr "Вы можете использовать следующие переменные"
-
-#: ./application/modules/found_less_expensive/assets/admin/settings.tpl:51
-msgid "page reference on which the notice was left"
-msgstr "ссылка на страницу, на которую было оставлено уведомление"
-
-#: ./application/modules/found_less_expensive/assets/admin/settings.tpl:52
-msgid "link to found cheaper product"
-msgstr "ссылка для поиска товара по-дешевле"
-
-#: ./application/modules/found_less_expensive/admin.php:123
-msgid "Settings saved!"
-msgstr "Настройки сохранены!"
-
-#: ./application/modules/found_less_expensive/admin.php:133
-msgid "Succesful deleting"
-msgstr "Успешное удаление"
-
-#: ./application/modules/found_less_expensive/admin.php:143
+#: application/modules/found_less_expensive/admin.php:133
 msgid "Status changed"
 msgstr "Статус изменился"
 
-#: ./application/modules/found_less_expensive/module_info.php:5
+#: application/modules/found_less_expensive/module_info.php:10
 msgid "Found less expensive module"
 msgstr "Модуль нашли дешевле"

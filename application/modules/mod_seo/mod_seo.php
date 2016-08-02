@@ -1,6 +1,7 @@
 <?php
 
 use CMSFactory\Events;
+use CMSFactory\MetaManipulator\GalleryMetaManipulator;
 use CMSFactory\MetaManipulator\MetaManipulator;
 use CMSFactory\MetaManipulator\MetaStorage;
 use CMSFactory\MetaManipulator\PageCategoryMetaManipulator;
@@ -376,6 +377,108 @@ class Mod_seo extends MY_Controller
         self::setMetaTags($meta['metaTitle'], $meta['metaKeywords'], $meta['metaDescription']);
     }
 
+    /**
+     * @return bool
+     */
+    public static function _buildGalleryMeta() {
+
+        $local = MY_Controller::getCurrentLocale();
+        $settings = CI::$APP->seoexpert_model->getSettings($local);
+
+        if ($settings['useGalleryPattern'] != 1) {
+            return FALSE;
+        }
+
+        $metaStorage = new MetaStorage();
+        $metaStorage->setTitleTemplate($settings['galleryTemplate']);
+        $metaStorage->setDescriptionTemplate($settings['galleryTemplateDesc']);
+        $metaStorage->setKeywordsTemplate($settings['galleryTemplateKey']);
+
+        $metaManipulator = new MetaManipulator([], $metaStorage);
+        $meta = $metaManipulator->render();
+
+        self::setMetaTags($meta['metaTitle'], $meta['metaKeywords'], $meta['metaDescription']);
+    }
+
+    /**
+     * @param array $data
+     * @return bool
+     */
+    public static function _buildGalleryCategoryMeta($data) {
+
+        $local = MY_Controller::getCurrentLocale();
+        $settings = CI::$APP->seoexpert_model->getSettings($local);
+
+        if ($settings['useGalleryCategoryPattern'] != 1) {
+            return FALSE;
+        }
+
+        $metaStorage = new MetaStorage();
+        $metaStorage->setTitleTemplate($settings['galleryCategoryTemplate']);
+        $metaStorage->setDescriptionTemplate($settings['galleryCategoryTemplateDesc']);
+        $metaStorage->setKeywordsTemplate($settings['galleryCategoryTemplateKey']);
+
+        $metaManipulator = new GalleryMetaManipulator($data['current_category'], $metaStorage);
+        $metaManipulator->setDescLength($settings['galleryCategoryTemplateDescCount']);
+        $meta = $metaManipulator->render();
+
+        self::setMetaTags($meta['metaTitle'], $meta['metaKeywords'], $meta['metaDescription']);
+    }
+
+    /**
+     * @param array $data
+     * @return bool
+     */
+    public static function _buildGalleryAlbumMeta($data) {
+
+        /** Передаем имя категории в дату, которая передается в качестве модели*/
+        $data['album']['category_name'] = $data['current_category']['name'];
+
+        $local = MY_Controller::getCurrentLocale();
+        $settings = CI::$APP->seoexpert_model->getSettings($local);
+
+        if ($settings['useGalleryAlbumPattern'] != 1) {
+            return FALSE;
+        }
+
+        $metaStorage = new MetaStorage();
+        $metaStorage->setTitleTemplate($settings['galleryAlbumTemplate']);
+        $metaStorage->setDescriptionTemplate($settings['galleryAlbumTemplateDesc']);
+        $metaStorage->setKeywordsTemplate($settings['galleryAlbumTemplateKey']);
+
+        $metaManipulator = new GalleryMetaManipulator($data['album'], $metaStorage);
+        $metaManipulator->setDescLength($settings['galleryAlbumTemplateDescCount']);
+        $meta = $metaManipulator->render();
+
+        self::setMetaTags($meta['metaTitle'], $meta['metaKeywords'], $meta['metaDescription']);
+    }
+
+    /**
+     * @param array $data
+     * @return bool
+     */
+    public static function _buildActionSearchMeta($data) {
+
+        $local = MY_Controller::getCurrentLocale();
+        $settings = CI::$APP->seoexpert_model->getSettings($local);
+
+        $new_setting = CI::$APP->seoexpert_model->Actions_settings($settings, $data['type']);
+
+        if ($new_setting['usePattern'] != 1) {
+            return FALSE;
+        }
+
+        $metaStorage = new MetaStorage();
+        $metaStorage->setTitleTemplate($new_setting['TitleTemplate']);
+        $metaStorage->setDescriptionTemplate($new_setting['TemplateDesc']);
+        $metaStorage->setKeywordsTemplate($new_setting['KeywordsTemplate']);
+
+        $metaManipulator = new MetaManipulator([], $metaStorage);
+        $meta = $metaManipulator->render();
+
+        self::setMetaTags($meta['metaTitle'], $meta['metaKeywords'], $meta['metaDescription']);
+    }
+
     public function _deinstall() {
 
         CI::$APP->seoexpert_model->deinstall();
@@ -394,9 +497,14 @@ class Mod_seo extends MY_Controller
         Events::create()->onBrandsPageLoad()->setListener('_buildBrandsMeta');
         Events::create()->onProductPageLoad()->setListener('_buildProductsMeta');
         Events::create()->onCategoryPageLoad()->setListener('_buildCategoryMeta');
+        Events::create()->onActionTypeSearch()->setListener('_buildActionSearchMeta');
 
         // Core
         Events::create()->onPageLoad()->setListener('_buildPageMeta');
         Events::create()->onPageCategoryLoad()->setListener('_buildPageCategoryMeta');
+        Events::create()->onGalleryLoad()->setListener('_buildGalleryMeta');
+        Events::create()->onGalleryCategoryLoad()->setListener('_buildGalleryCategoryMeta');
+        Events::create()->onGalleryAlbumLoad()->setListener('_buildGalleryAlbumMeta');
+
     }
 }

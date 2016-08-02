@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-27 06:11+0200\n"
-"PO-Revision-Date: 2016-01-27 06:11+0200\n"
+"POT-Creation-Date: 2016-07-19 04:24+0300\n"
+"PO-Revision-Date: 2016-07-19 04:24+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -22,11 +22,11 @@ msgstr ""
 msgid "Create category"
 msgstr "Создание категории"
 
-#: application/modules/gallery/admin.php:885
+#: application/modules/gallery/admin.php:900
 msgid "You can upload only |max_file_uploads| images at once"
-msgstr ""
+msgstr "Вы можете загружать только |max_file_uploads| изображений одновременно"
 
-#: application/modules/gallery/admin.php:885
+#: application/modules/gallery/admin.php:900
 msgid "Error"
 msgstr "Ошибка"
 
@@ -42,7 +42,7 @@ msgstr "Название файла изображения"
 msgid "Title"
 msgstr "Название"
 
-#: application/modules/gallery/admin.php:527
+#: application/modules/gallery/admin.php:530
 #: application/modules/gallery/assets/admin/edit_image.tpl:77
 msgid "New name"
 msgstr "Новое название"
@@ -68,15 +68,15 @@ msgstr "по центру"
 msgid "in the middle"
 msgstr "по центру"
 
-#: application/modules/gallery/admin.php:831
+#: application/modules/gallery/admin.php:846
 msgid "Gallery category was removed"
 msgstr "Категория галереи удалена"
 
-#: application/modules/gallery/admin.php:590
+#: application/modules/gallery/admin.php:593
 msgid "Album image deleted."
 msgstr "Фотография в альбоме галереи удалена"
 
-#: application/modules/gallery/admin.php:933
+#: application/modules/gallery/admin.php:948
 msgid "Photos in gallery the album are saved"
 msgstr "Фотографии в альбоме галереи сохранены"
 
@@ -96,12 +96,12 @@ msgstr "Категории"
 msgid "There are no categories."
 msgstr "Нет категорий."
 
-#: application/modules/gallery/admin.php:929
+#: application/modules/gallery/admin.php:944
 msgid "Upload success"
 msgstr "Изображение успешно сохранено"
 
-#: application/modules/gallery/assets/thumbnails.tpl:3
 #: application/modules/gallery/assets/index.tpl:5
+#: application/modules/gallery/assets/thumbnails.tpl:3
 msgid "Галерея"
 msgstr "Галерея"
 
@@ -109,8 +109,8 @@ msgstr "Галерея"
 msgid "Альбом"
 msgstr "Альбом"
 
-#: application/modules/gallery/assets/index.tpl:17
 #: application/modules/gallery/assets/albums.tpl:17
+#: application/modules/gallery/assets/index.tpl:17
 msgid "Описание"
 msgstr "Описание"
 
@@ -118,27 +118,27 @@ msgstr "Описание"
 msgid "Альбомов не найдено"
 msgstr "Альбомов не найдено"
 
-#: application/modules/gallery/admin.php:295
+#: application/modules/gallery/admin.php:298
 msgid "Gallery settings was edited"
 msgstr "Настройки галереи были отредактированы"
 
-#: application/modules/gallery/admin.php:330
+#: application/modules/gallery/admin.php:333
 msgid "Gallery album was created"
 msgstr "Альбом галереи был создан"
 
-#: application/modules/gallery/admin.php:359
+#: application/modules/gallery/admin.php:362
 msgid "Gallery album was updated"
 msgstr "Альбом галереи был обновлен"
 
-#: application/modules/gallery/admin.php:445
+#: application/modules/gallery/admin.php:448
 msgid "Gallery album was removed"
 msgstr "Альбом галереи был удален"
 
-#: application/modules/gallery/admin.php:743
+#: application/modules/gallery/admin.php:758
 msgid "Gallery category was created"
 msgstr "Категория галереи создана"
 
-#: application/modules/gallery/admin.php:803
+#: application/modules/gallery/admin.php:818
 msgid "Gallery category was edited"
 msgstr "Категория галереи отредактирована"
 
@@ -192,11 +192,11 @@ msgstr "Алгоритм"
 msgid "Album"
 msgstr "Альбом"
 
-#: application/modules/gallery/assets/admin/edit_album.tpl:74
+#: application/modules/gallery/assets/admin/edit_album.tpl:73
 msgid "Album is empty"
 msgstr "Альбом пуст"
 
-#: application/modules/gallery/admin.php:331
+#: application/modules/gallery/admin.php:334
 msgid "Album created"
 msgstr "Альбом создан"
 
@@ -258,14 +258,14 @@ msgstr "Выбрать все фотографии"
 msgid "Height"
 msgstr "Высота"
 
-#: application/modules/gallery/admin.php:201
+#: application/modules/gallery/admin.php:199
 msgid "Icon height"
 msgstr "Высоты иконки"
 
-#: application/modules/gallery/gallery.php:44
-#: application/modules/gallery/gallery.php:65
-#: application/modules/gallery/gallery.php:88
 #: application/modules/gallery/module_info.php:8
+#: application/modules/gallery/gallery.php:50
+#: application/modules/gallery/gallery.php:72
+#: application/modules/gallery/gallery.php:96
 msgid "Gallery"
 msgstr "Галерея"
 
@@ -290,13 +290,13 @@ msgstr "Добавить изображения"
 msgid "Has been downloaded"
 msgstr "Загружено"
 
-#: application/modules/gallery/admin.php:624
+#: application/modules/gallery/admin.php:627
 msgid "Changes are saved"
 msgstr "Изменения сохранены"
 
-#: application/modules/gallery/admin.php:360
-#: application/modules/gallery/admin.php:553
-#: application/modules/gallery/admin.php:804
+#: application/modules/gallery/admin.php:363
+#: application/modules/gallery/admin.php:556
+#: application/modules/gallery/admin.php:819
 msgid "Changes have been saved"
 msgstr "Изменения сохранены"
 
@@ -312,10 +312,10 @@ msgstr "Изображения"
 msgid "Image icons"
 msgstr "Иконки изображения"
 
-#: application/modules/gallery/admin.php:312
+#: application/modules/gallery/admin.php:315
+#: application/modules/gallery/assets/admin/categories.tpl:5
 #: application/modules/gallery/assets/admin/album_params.tpl:23
 #: application/modules/gallery/assets/admin/create_album.tpl:22
-#: application/modules/gallery/assets/admin/categories.tpl:5
 msgid "Categories"
 msgstr "Категории"
 
@@ -323,7 +323,7 @@ msgstr "Категории"
 msgid "Categories and albums"
 msgstr "Категории и альбомы"
 
-#: application/modules/gallery/admin.php:197
+#: application/modules/gallery/admin.php:195
 #: application/modules/gallery/assets/admin/settings.tpl:95
 msgid "Quality"
 msgstr "Качество"
@@ -336,12 +336,12 @@ msgstr "Лимит изображений"
 msgid "Images limit"
 msgstr "Лимит изображений"
 
-#: application/modules/gallery/admin.php:196
+#: application/modules/gallery/admin.php:194
 #: application/modules/gallery/assets/admin/settings.tpl:87
 msgid "Maximum height"
 msgstr "Максимальная высота"
 
-#: application/modules/gallery/admin.php:195
+#: application/modules/gallery/admin.php:193
 #: application/modules/gallery/assets/admin/settings.tpl:78
 msgid "Maximum width"
 msgstr "Максимальная ширина"
@@ -355,27 +355,27 @@ msgid "My last photo"
 msgstr "Мое последнее фото"
 
 #: application/modules/gallery/templates/latest_fotos_form.tpl:9
-#: application/modules/gallery/assets/admin/edit_image.tpl:11
-#: application/modules/gallery/assets/admin/album_params.tpl:9
-#: application/modules/gallery/assets/admin/album_list.tpl:10
-#: application/modules/gallery/assets/admin/create_category.tpl:9
-#: application/modules/gallery/assets/admin/settings.tpl:9
-#: application/modules/gallery/assets/admin/edit_album.tpl:9
-#: application/modules/gallery/assets/admin/create_album.tpl:9
 #: application/modules/gallery/assets/admin/edit_category.tpl:9
+#: application/modules/gallery/assets/admin/settings.tpl:9
+#: application/modules/gallery/assets/admin/album_list.tpl:10
+#: application/modules/gallery/assets/admin/edit_image.tpl:11
+#: application/modules/gallery/assets/admin/create_category.tpl:9
+#: application/modules/gallery/assets/admin/album_params.tpl:9
+#: application/modules/gallery/assets/admin/create_album.tpl:9
+#: application/modules/gallery/assets/admin/edit_album.tpl:9
 msgid "Back"
 msgstr "Назад"
 
-#: application/modules/gallery/admin.php:310
-#: application/modules/gallery/admin.php:349
-#: application/modules/gallery/admin.php:719
-#: application/modules/gallery/admin.php:777
-#: application/modules/gallery/assets/admin/album_params.tpl:33
-#: application/modules/gallery/assets/admin/album_list.tpl:39
-#: application/modules/gallery/assets/admin/create_category.tpl:22
-#: application/modules/gallery/assets/admin/create_album.tpl:33
-#: application/modules/gallery/assets/admin/categories.tpl:27
+#: application/modules/gallery/admin.php:313
+#: application/modules/gallery/admin.php:352
+#: application/modules/gallery/admin.php:734
+#: application/modules/gallery/admin.php:792
 #: application/modules/gallery/assets/admin/edit_category.tpl:23
+#: application/modules/gallery/assets/admin/album_list.tpl:39
+#: application/modules/gallery/assets/admin/categories.tpl:27
+#: application/modules/gallery/assets/admin/create_category.tpl:22
+#: application/modules/gallery/assets/admin/album_params.tpl:33
+#: application/modules/gallery/assets/admin/create_album.tpl:33
 msgid "Name"
 msgstr "Название"
 
@@ -389,19 +389,19 @@ msgstr "Настройки"
 msgid "Widget settings"
 msgstr "Настройки виджета"
 
-#: application/modules/gallery/admin.php:296
+#: application/modules/gallery/admin.php:299
 #: application/modules/gallery/gallery_widgets.php:85
 msgid "Settings have been saved"
 msgstr "Настройки сохранены"
 
-#: application/modules/gallery/admin.php:419
-#: application/modules/gallery/admin.php:450
+#: application/modules/gallery/admin.php:422
+#: application/modules/gallery/admin.php:453
 msgid "Can't load album information"
 msgstr "Не удается загрузить информацию об альбоме"
 
-#: application/modules/gallery/admin.php:514
-#: application/modules/gallery/admin.php:556
-#: application/modules/gallery/admin.php:628
+#: application/modules/gallery/admin.php:517
+#: application/modules/gallery/admin.php:559
+#: application/modules/gallery/admin.php:631
 msgid "Can't load image information"
 msgstr "Не удается загрузить информацию об изображении"
 
@@ -419,40 +419,40 @@ msgstr "Нет"
 msgid "Has been updated"
 msgstr "Обновлен"
 
-#: application/modules/gallery/admin.php:311
-#: application/modules/gallery/assets/admin/edit_image.tpl:60
-#: application/modules/gallery/assets/admin/album_params.tpl:39
-#: application/modules/gallery/assets/admin/album_list.tpl:60
-#: application/modules/gallery/assets/admin/create_category.tpl:28
-#: application/modules/gallery/assets/admin/create_album.tpl:39
-#: application/modules/gallery/assets/admin/categories.tpl:29
+#: application/modules/gallery/admin.php:314
 #: application/modules/gallery/assets/admin/edit_category.tpl:29
+#: application/modules/gallery/assets/admin/album_list.tpl:60
+#: application/modules/gallery/assets/admin/edit_image.tpl:60
+#: application/modules/gallery/assets/admin/categories.tpl:29
+#: application/modules/gallery/assets/admin/create_category.tpl:28
+#: application/modules/gallery/assets/admin/album_params.tpl:39
+#: application/modules/gallery/assets/admin/create_album.tpl:39
 msgid "Description"
 msgstr "Описание"
 
+#: application/modules/gallery/assets/admin/edit_category.tpl:57
+#: application/modules/gallery/assets/admin/album_list.tpl:95
 #: application/modules/gallery/assets/admin/edit_image.tpl:14
 #: application/modules/gallery/assets/admin/edit_image.tpl:68
-#: application/modules/gallery/assets/admin/album_params.tpl:77
-#: application/modules/gallery/assets/admin/album_list.tpl:95
-#: application/modules/gallery/assets/admin/create_category.tpl:56
-#: application/modules/gallery/assets/admin/edit_album.tpl:91
 #: application/modules/gallery/assets/admin/categories.tpl:70
-#: application/modules/gallery/assets/admin/edit_category.tpl:57
+#: application/modules/gallery/assets/admin/create_category.tpl:56
+#: application/modules/gallery/assets/admin/album_params.tpl:77
+#: application/modules/gallery/assets/admin/edit_album.tpl:90
 msgid "Cancel"
 msgstr "Отмена"
 
-#: application/modules/gallery/admin.php:637
-#: application/modules/gallery/admin.php:645
-#: application/modules/gallery/admin.php:653
+#: application/modules/gallery/admin.php:640
+#: application/modules/gallery/admin.php:648
+#: application/modules/gallery/admin.php:656
 msgid "Positions updated"
 msgstr "Позиции обновлены"
 
-#: application/modules/gallery/admin.php:720
-#: application/modules/gallery/admin.php:778
-#: application/modules/gallery/assets/admin/edit_image.tpl:50
-#: application/modules/gallery/assets/admin/album_params.tpl:45
-#: application/modules/gallery/assets/admin/create_category.tpl:34
+#: application/modules/gallery/admin.php:735
+#: application/modules/gallery/admin.php:793
 #: application/modules/gallery/assets/admin/edit_category.tpl:35
+#: application/modules/gallery/assets/admin/edit_image.tpl:50
+#: application/modules/gallery/assets/admin/create_category.tpl:34
+#: application/modules/gallery/assets/admin/album_params.tpl:45
 msgid "Position"
 msgstr "Позиция"
 
@@ -464,16 +464,16 @@ msgstr "Последние изображения"
 msgid "Image preview"
 msgstr "Предварительный просмотр изображения"
 
-#: application/modules/gallery/admin.php:204
+#: application/modules/gallery/admin.php:202
 #: application/modules/gallery/assets/admin/settings.tpl:286
 msgid "Transparency"
 msgstr "Прозрачность"
 
-#: application/modules/gallery/admin.php:199
+#: application/modules/gallery/admin.php:197
 msgid "pre-image height"
 msgstr "Прообраз высоты"
 
-#: application/modules/gallery/admin.php:198
+#: application/modules/gallery/admin.php:196
 msgid "Pre-image width"
 msgstr "Прообраз ширины"
 
@@ -487,12 +487,12 @@ msgstr "Просмотр альбомов"
 msgid "View images"
 msgstr "Просмотр изображений"
 
-#: application/modules/gallery/assets/admin/edit_image.tpl:37
 #: application/modules/gallery/assets/admin/album_list.tpl:54
+#: application/modules/gallery/assets/admin/edit_image.tpl:37
 msgid "Views"
 msgstr "Просмотров"
 
-#: application/modules/gallery/assets/admin/edit_album.tpl:59
+#: application/modules/gallery/assets/admin/edit_album.tpl:58
 msgid "Size"
 msgstr "Размер"
 
@@ -500,12 +500,12 @@ msgstr "Размер"
 msgid "Image size"
 msgstr "Размер изображения"
 
-#: application/modules/gallery/admin.php:194
+#: application/modules/gallery/admin.php:192
 #: application/modules/gallery/assets/admin/edit_image.tpl:39
 msgid "File size"
 msgstr "Размер файла"
 
-#: application/modules/gallery/admin.php:203
+#: application/modules/gallery/admin.php:201
 #: application/modules/gallery/assets/admin/settings.tpl:313
 msgid "Font size"
 msgstr "Размер шрифта"
@@ -520,7 +520,7 @@ msgid "Category editing"
 msgstr "Редактирование категории"
 
 #: application/modules/gallery/assets/admin/album_list.tpl:74
-#: application/modules/gallery/assets/admin/edit_album.tpl:53
+#: application/modules/gallery/assets/admin/edit_album.tpl:52
 msgid "Edit"
 msgstr "Редактировать"
 
@@ -589,13 +589,13 @@ msgid "Sort"
 msgstr "Сортировать"
 
 #: application/modules/gallery/templates/latest_fotos_form.tpl:10
+#: application/modules/gallery/assets/admin/edit_category.tpl:10
+#: application/modules/gallery/assets/admin/settings.tpl:10
 #: application/modules/gallery/assets/admin/edit_image.tpl:13
 #: application/modules/gallery/assets/admin/edit_image.tpl:67
 #: application/modules/gallery/assets/admin/edit_image.tpl:81
 #: application/modules/gallery/assets/admin/album_params.tpl:10
-#: application/modules/gallery/assets/admin/settings.tpl:10
 #: application/modules/gallery/assets/admin/edit_album.tpl:13
-#: application/modules/gallery/assets/admin/edit_category.tpl:10
 msgid "Save"
 msgstr "Сохранить"
 
@@ -633,7 +633,7 @@ msgstr "Срезать границы"
 msgid "Text"
 msgstr "Текст"
 
-#: application/modules/gallery/admin.php:202
+#: application/modules/gallery/admin.php:200
 msgid "Watermark text"
 msgstr "Текст водяного знака"
 
@@ -645,26 +645,25 @@ msgstr "Тип"
 msgid "Album deletion"
 msgstr "Удаление альбома"
 
-#: application/modules/gallery/assets/admin/create_category.tpl:50
 #: application/modules/gallery/assets/admin/edit_category.tpl:51
+#: application/modules/gallery/assets/admin/create_category.tpl:50
 msgid "Removing categories"
 msgstr "Удаление категорий"
 
-#: application/modules/gallery/assets/admin/edit_album.tpl:88
+#: application/modules/gallery/assets/admin/edit_album.tpl:87
 msgid "Deleting photos"
 msgstr "Удаление фотографий"
 
-#: application/modules/gallery/assets/admin/album_params.tpl:78
+#: application/modules/gallery/assets/admin/edit_category.tpl:58
 #: application/modules/gallery/assets/admin/album_list.tpl:81
 #: application/modules/gallery/assets/admin/album_list.tpl:82
 #: application/modules/gallery/assets/admin/album_list.tpl:97
-#: application/modules/gallery/assets/admin/create_category.tpl:57
-#: application/modules/gallery/assets/admin/edit_album.tpl:14
-#: application/modules/gallery/assets/admin/edit_album.tpl:52
-#: application/modules/gallery/assets/admin/edit_album.tpl:92
 #: application/modules/gallery/assets/admin/categories.tpl:9
 #: application/modules/gallery/assets/admin/categories.tpl:71
-#: application/modules/gallery/assets/admin/edit_category.tpl:58
+#: application/modules/gallery/assets/admin/create_category.tpl:57
+#: application/modules/gallery/assets/admin/album_params.tpl:78
+#: application/modules/gallery/assets/admin/edit_album.tpl:14
+#: application/modules/gallery/assets/admin/edit_album.tpl:91
 msgid "Delete"
 msgstr "Удалить"
 
@@ -672,8 +671,8 @@ msgstr "Удалить"
 msgid "Delete album?"
 msgstr "Удалить альбом?"
 
-#: application/modules/gallery/assets/admin/create_category.tpl:53
 #: application/modules/gallery/assets/admin/edit_category.tpl:54
+#: application/modules/gallery/assets/admin/create_category.tpl:53
 msgid "Remove selected category"
 msgstr "Удалить выбранную категорию"
 
@@ -681,7 +680,7 @@ msgstr "Удалить выбранную категорию"
 msgid "Delete category?"
 msgstr "Удалить категорию?"
 
-#: application/modules/gallery/admin.php:213
+#: application/modules/gallery/admin.php:211
 msgid "Specify the correct path to watermark image"
 msgstr "Укажите правильный путь к изображение водяного знака"
 
@@ -698,7 +697,7 @@ msgstr "Файл должен быть расположен на сервере.
 msgid "Template file"
 msgstr "Файл шаблона"
 
-#: application/modules/gallery/admin.php:591
+#: application/modules/gallery/admin.php:594
 msgid "Photos removed"
 msgstr "Фото удалены"
 
@@ -706,6 +705,6 @@ msgstr "Фото удалены"
 msgid "Font colour"
 msgstr "Цвет шрифта"
 
-#: application/modules/gallery/admin.php:200
+#: application/modules/gallery/admin.php:198
 msgid "Icon width"
 msgstr "Ширины иконки"

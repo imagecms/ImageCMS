@@ -69,8 +69,8 @@
                             <label class="control-label" for="Name">{lang('autoplaySpeed, (sec)', 'xbanners')}
                                 :</label>
 
-                            <div class="controls">
-                                <input type="number" name="options[autoplaySpeed]" class="input-long" value='{echo $options['autoplaySpeed']}'/>
+                            <div class="controls number">
+                                <input onkeyup="checkLenghtStr('autoplaySpeed', 11, 6, event.keyCode)" id="autoplaySpeed" type="text"  name="options[autoplaySpeed]" class="input-long" value='{echo $options['autoplaySpeed']}'/>
                                 <i class="icon-info-sign popover_ref" data-title="" data-original-title=""></i>
 
                                 <div class="d_n">
@@ -152,8 +152,8 @@
                             <label class="control-label" for="Name">{lang('Scroll speed(sec)', 'xbanners')}
                                 :</label>
 
-                            <div class="controls">
-                                <input type="text" name="options[scrollSpeed]" class="input-long" value="{$options['scrollSpeed']}"/>
+                            <div class="controls number">
+                                <input onkeyup="checkLenghtStr('scrollSpeed', 11, 6, event.keyCode)" id="scrollSpeed" type="text" name="options[scrollSpeed]" class="input-long" value="{$options['scrollSpeed']}"/>
                                 <i class="icon-info-sign popover_ref" data-title="" data-original-title=""></i>
 
                                 <div class="d_n">

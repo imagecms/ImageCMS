@@ -6,9 +6,10 @@ use CI;
 use CMSFactory\assetManager;
 use Currency\Currency;
 use Exception;
-use MY_Controller;
 use phpMorphy;
 use phpMorphy_Exception;
+use phpMorphy_Paradigm_ParadigmInterface;
+use phpMorphy_WordForm_WordFormInterface;
 use SBrands;
 use SCategory;
 use SProducts;
@@ -132,7 +133,7 @@ class MetaManipulator
     /**
      * @var array
      */
-    private $graments = [
+    private $grammens = [
                          'ИМ',
                          'РД',
                          'ДТ',
@@ -195,9 +196,9 @@ class MetaManipulator
     /**
      * @return array
      */
-    public function getGraments() {
+    public function getGrammens() {
 
-        return $this->graments;
+        return $this->grammens;
     }
 
     /**
@@ -285,9 +286,9 @@ class MetaManipulator
 
                     foreach ($collection->getByPartOfSpeech($param['TypeSpeech']) as $paradigm) {
 
-                        $checkGrammat = $this->checkGrammat($paradigm, $param, $word);
+                        $checkGrammar = $this->checkGrammar($paradigm, $param, $word);
 
-                        $result = $this->getGrammensWord($paradigm, $param, $checkGrammat);
+                        $result = $this->getGrammensWord($paradigm, $param, $checkGrammar);
 
                         if ($result[0] == $word) {
                             break;
@@ -306,25 +307,29 @@ class MetaManipulator
     }
 
     /**
-     * @param object $paradigm
+     * @param phpMorphy_Paradigm_ParadigmInterface $paradigm
      * @param string $param
-     * @param null|string $gramat
+     * @param null|string $grammar
      * @return array
      */
-    private function getGrammensWord($paradigm, $param, $gramat = null) {
+    private function getGrammensWord($paradigm, $param, $grammar = null) {
 
         $result = [];
-        if ($gramat != null) {
+        if ($grammar !== null) {
 
-            foreach ($this->getGraments() as $key => $val) {
-                foreach ($paradigm->getWordFormsByGrammems([$param['param'], $val, $gramat]) as $form) {
+            foreach ($this->getGrammens() as $key => $val) {
+
+                /** @var phpMorphy_WordForm_WordFormInterface $form */
+                foreach ($paradigm->getWordFormsByGrammems([$param['param'], $val, $grammar]) as $form) {
                     if (!$result[$key]) {
                         $result[$key] = $form->getWord();
                     }
                 }
             }
         } else {
-            foreach ($this->getGraments() as $key => $val) {
+            foreach ($this->getGrammens() as $key => $val) {
+
+                /** @var phpMorphy_WordForm_WordFormInterface $form */
                 foreach ($paradigm->getWordFormsByGrammems([$param['param'], $val]) as $form) {
                     if (!$result[$key]) {
                         $result[$key] = $form->getWord();
@@ -343,7 +348,7 @@ class MetaManipulator
 
         $checkString = $this->getPhpMorphy()->castFormByGramInfo($word, null, ['МН', 'ИМ'], true)[0];
 
-        $param = ($word != $checkString) ? 'ЕД' : 'МН';
+        $param = ($word !== $checkString) ? 'ЕД' : 'МН';
 
         $typeSpeech = $this->getTypeSpeechWord($word, $param);
 
@@ -369,7 +374,7 @@ class MetaManipulator
             foreach ($checkGrammar[$type] as $value) {
 
                 if (empty($resultType)) {
-                    $resultType = $word == $value ? $type : null;
+                    $resultType = $word === $value ? $type : null;
                 }
                 if ($resultType) {
                     break 2;
@@ -382,13 +387,13 @@ class MetaManipulator
     }
 
     /**
-     * @param object $paradigm
+     * @param phpMorphy_Paradigm_ParadigmInterface $paradigm
      * @param array $param
      * @param string $word
      * @return string|null
      */
-    private function checkGrammat($paradigm, $param, $word) {
-
+    private function checkGrammar($paradigm, $param, $word) {
+        /** @var phpMorphy_WordForm_WordFormInterface $form */
         foreach ($paradigm as $form) {
             foreach ($form->getGrammems() as $grammatical) {
                 switch ($grammatical) {
@@ -397,7 +402,7 @@ class MetaManipulator
                     case 'СР':
                         if (empty($checkGrammar)) {
 
-                            $checkGrammar = ($word == $this->getPhpMorphy()->castFormByGramInfo($word, $param['TypeSpeech'], [$param['param'], 'ИМ', $grammatical], true)[0]) ? $grammatical : null;
+                            $checkGrammar = ($word === $this->getPhpMorphy()->castFormByGramInfo($word, $param['TypeSpeech'], [$param['param'], 'ИМ', $grammatical], true)[0]) ? $grammatical : null;
                         }
                         if ($checkGrammar) {
                             continue;
@@ -516,14 +521,7 @@ class MetaManipulator
      * @return int
      */
     public function getDescLength() {
-
-        if ($this->descLength === 0) {
-            return 0;
-        } elseif ($this->descLength > 0) {
-            return $this->descLength;
-        } else {
-            return 100;
-        }
+        return $this->descLength;
     }
 
     /**
@@ -531,7 +529,9 @@ class MetaManipulator
      */
     public function setDescLength($descLength) {
 
-        if ($descLength != null and (int) $descLength >= 0) {
+        if ($descLength === '') {
+            $this->descLength = 100;
+        } elseif ((int) $descLength >= 0) {
             $this->descLength = (int) $descLength;
         }
     }

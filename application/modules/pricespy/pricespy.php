@@ -1,12 +1,18 @@
 <?php
 
+use cmsemail\email;
 use CMSFactory\assetManager;
 use CMSFactory\Events;
+use Propel\Runtime\Collection\ObjectCollection;
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /**
  * Image CMS
+ *
+ *
+ * Вывоз метода на товаре {module('pricespy')->init($model)->renderButton($model->getId() , $variant->getId())}
+ *
  *
  * Класс слежения за ценой
  * @property pricespy_model $pricespy_model
@@ -28,24 +34,21 @@ class Pricespy extends MY_Controller
 
     /**
      * send email to user
-     * @param string $email
-     * @param string $name
-     * @param string $hash
+     * @param $spy
+     * @return bool
      */
-    private static function sendNotificationByEmail($email, $name, $hash) {
-        $CI = &get_instance();
-        $CI->load->library('email');
+    private static function sendNotificationByEmail($spy) {
 
-        $CI->email->from('noreplay@' . $CI->input->server('HTTP_HOST'));
-        $CI->email->to($email);
-        $CI->email->set_mailtype('html');
-        $CI->email->subject(lang('Price changing', 'pricespy'));
-        $CI->email->message(
-            lang('Price on', 'pricespy') . $name . lang('for which you watch on site', 'pricespy') . site_url() . lang('changed', 'pricespy') . ".<br>
-                <a href='" . site_url('pricespy') . "' title='" . lang('View watch list', 'pricespy') . "'>" . lang('View watch list', 'pricespy') . "</a><br>
-                <a href='" . site_url("pricespy/$hash") . "' title='" . lang('Unsubscribe tracking', 'pricespy') . "'>" . lang('Unsubscribe tracking', 'pricespy') . '</a><br>'
-        );
-        $CI->email->send();
+        $data = [
+                 'hash'        => $spy->hash,
+                 'productName' => $spy->name,
+                 'userName'    => $spy->username,
+                 'siteUrl'     => site_url('/'),
+                 'linkModule'  => site_url('/pricespy/'),
+                 'unlinkSpy'   => site_url('/pricespy/unspy/'. $spy->hash),
+                ];
+
+        return email::getInstance()->sendEmail($spy->email, 'pricespy', $data);
     }
 
     public static function adminAutoload() {
@@ -94,32 +97,39 @@ class Pricespy extends MY_Controller
      * @param array $product
      */
     public static function priceUpdate($product) {
+
         if (!$product) {
             return;
         }
 
         $CI = &get_instance();
+
+        /** @var CI_DB_result $spys */
         $spys = $CI->db
             ->from('mod_price_spy')
             ->join('shop_product_variants', 'mod_price_spy.productVariantId=shop_product_variants.id')
             ->join('users', 'mod_price_spy.userId=users.id')
             ->join('shop_products_i18n', 'shop_products_i18n.id=mod_price_spy.productId')
             ->where('mod_price_spy.productId', $product['productId'])
-            ->get()
-            ->result();
+            ->get();
 
-        foreach ($spys as $spy) {
-            if ($spy->price != $spy->productPrice) {
+        if ($spys->num_rows() > 0) {
 
-                $CI->db->set('productPrice', $spy->price);
-                $CI->db->where('productVariantId', $spy->productVariantId);
-                $CI->db->update('mod_price_spy');
+            $spys = $spys->result();
 
-                if ($spy->price < $spy->productPrice) {
-                    self::sendNotificationByEmail($spy->email, $spy->name, $spy->hash);
+            foreach ($spys as $spy) {
+
+                if ($spy->price != $spy->productPrice && $spy->price < $spy->productPrice) {
+
+                    $CI->db->set('productPrice', $spy->price);
+                    $CI->db->where('productVariantId', $spy->productVariantId);
+                    $CI->db->update('mod_price_spy');
+
+                    self::sendNotificationByEmail($spy);
                 }
             }
         }
+
     }
 
     /**
@@ -128,9 +138,11 @@ class Pricespy extends MY_Controller
      * @param int $varId variant ID
      */
     public function spy($id, $varId) {
-        $product = $this->pricespy_model->getProductById($varId);
 
-        if ($this->pricespy_model->setSpy($id, $varId, $product->price)) {
+        $product = SProductVariantsQuery::create()
+            ->findPk($varId);
+
+        if ($this->pricespy_model->setSpy($id, $varId, $product->getPrice())) {
             echo json_encode(
                 ['answer' => 'sucesfull']
             );
@@ -148,44 +160,85 @@ class Pricespy extends MY_Controller
     public function unSpy($hash) {
         if ($this->pricespy_model->delSpyByHash($hash)) {
             echo json_encode(
-                [
-                        'answer' => 'sucesfull',
-                    ]
+                ['answer' => 'sucesfull']
             );
         } else {
             echo json_encode(
-                [
-                        'answer' => 'error',
-                    ]
+                ['answer' => 'error']
             );
         }
     }
 
+    /**
+     * @param SProducts $model
+     * @return $this|bool
+     */
     public function init($model) {
+
         if ($this->dx_auth->is_logged_in()) {
+
             if (!$model instanceof SProducts) {
-                foreach ($model as $key => $m) {
-                    $id[$key] = $m->getid();
-                    $varId[$key] = $m->firstVariant->getid();
-                }
-            } else {
-                $id = $model->getid();
-                $varId = $model->firstVariant->getid();
+                return false;
             }
 
-            $products = $this->db
-                ->where_in('productVariantId', $varId)
-                ->where('userId', $this->dx_auth->get_user_id())
-                ->get('mod_price_spy')
-                ->result_array();
-
-            foreach ($products as $p) {
-                $this->isInSpy[$p['productVariantId']] = $p;
-            }
+            $this->setAllVariantModel($model->getProductVariants());
 
             assetManager::create()
-                    ->registerScript('spy');
+                ->registerScript('spy');
+
+            return $this;
         }
+    }
+
+    /**
+     * @param ObjectCollection $model
+     * @return void
+     */
+    private function setAllVariantModel(ObjectCollection $model) {
+
+        if ($model->count() > 0) {
+            /** @var SProductVariants $item */
+            foreach ($model as $item) {
+
+                $this->checkVariants($item->getId());
+
+            }
+        }
+
+    }
+
+    /**
+     * @param int $variant_id
+     * @return void
+     */
+    private function checkVariants($variant_id) {
+
+        /** @var CI_DB_result $products */
+        $products = $this->db
+            ->where_in('productVariantId', $variant_id)
+            ->where('userId', $this->dx_auth->get_user_id())
+            ->get('mod_price_spy');
+
+        if ($products->num_rows() > 0) {
+
+            $products = $products->result_array();
+            $this->setIsInSpy($products);
+
+        }
+
+    }
+
+    /**
+     * @param array $products
+     * @return void
+     */
+    private function setIsInSpy(array $products) {
+
+        foreach ($products as $product) {
+
+            $this->isInSpy[$product['productVariantId']] = $product;
+        }
+
     }
 
     /**
@@ -197,21 +250,21 @@ class Pricespy extends MY_Controller
         if ($this->dx_auth->is_logged_in()) {
 
             $data = [
-                'Id' => $id,
-                'varId' => $varId,
-            ];
+                     'Id'    => $id,
+                     'varId' => $varId,
+                    ];
 
             if ($this->isInSpy[$varId] == '') {
                 assetManager::create()
                         ->setData('data', $data)
                         ->setData('value', lang('Notify about price cut', 'pricespy'))
-                        ->setData('class', 'btn')
+                        ->setData('class', 'btn btn-info')
                         ->render('button', true);
             } else {
                 assetManager::create()
                         ->setData('data', $data)
                         ->setData('value', lang('Already in tracking', 'pricespy'))
-                        ->setData('class', 'btn inSpy')
+                        ->setData('class', 'btn inSpy btn-success')
                         ->render('button', true);
             }
         }
@@ -235,37 +288,52 @@ class Pricespy extends MY_Controller
     }
 
     public function _install() {
+        $pattern = $this->pricespy_model->getEmailPattern();
+
+        $this->db->insert('mod_email_paterns', $pattern);
+
+        $pattern_i18n = $this->pricespy_model->getEmailPatternI18n();
+
+        $this->db->insert('mod_email_paterns_i18n', $pattern_i18n);
+
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) OR exit;
         $fields = [
-            'id' => [
-                'type' => 'INT',
-                'auto_increment' => TRUE],
-            'userId' => [
-                'type' => 'VARCHAR',
-                'constraint' => '30',
-                'null' => TRUE],
-            'productId' => [
-                'type' => 'VARCHAR',
-                'constraint' => '30',
-                'null' => TRUE],
-            'productVariantId' => [
-                'type' => 'VARCHAR',
-                'constraint' => '30',
-                'null' => TRUE],
-            'productPrice' => [
-                'type' => 'VARCHAR',
-                'constraint' => '30',
-                'null' => TRUE],
-            'oldProductPrice' => [
-                'type' => 'VARCHAR',
-                'constraint' => '30',
-                'null' => TRUE],
-            'hash' => [
-                'type' => 'VARCHAR',
-                'constraint' => '30',
-                'null' => TRUE]
-        ];
+                   'id'               => [
+                                          'type'           => 'INT',
+                                          'auto_increment' => TRUE,
+                                         ],
+                   'userId'           => [
+                                          'type'       => 'VARCHAR',
+                                          'constraint' => '30',
+                                          'null'       => TRUE,
+                                         ],
+                   'productId'        => [
+                                          'type'       => 'VARCHAR',
+                                          'constraint' => '30',
+                                          'null'       => TRUE,
+                                         ],
+                   'productVariantId' => [
+                                          'type'       => 'VARCHAR',
+                                          'constraint' => '30',
+                                          'null'       => TRUE,
+                                         ],
+                   'productPrice'     => [
+                                          'type'       => 'VARCHAR',
+                                          'constraint' => '30',
+                                          'null'       => TRUE,
+                                         ],
+                   'oldProductPrice'  => [
+                                          'type'       => 'VARCHAR',
+                                          'constraint' => '30',
+                                          'null'       => TRUE,
+                                         ],
+                   'hash'             => [
+                                          'type'       => 'VARCHAR',
+                                          'constraint' => '30',
+                                          'null'       => TRUE,
+                                         ],
+                  ];
 
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', TRUE);
@@ -275,8 +343,9 @@ class Pricespy extends MY_Controller
         $this->db->update(
             'components',
             [
-            'enabled' => 1,
-            'autoload' => 1]
+             'enabled'  => 1,
+             'autoload' => 1,
+            ]
         );
     }
 

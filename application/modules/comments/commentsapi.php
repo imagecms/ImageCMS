@@ -7,6 +7,11 @@ class Commentsapi extends Comments
 
     public $validation_errors;
 
+    /**
+     * @var string $comments_locale
+     */
+    private $comments_locale;
+
     public function __construct() {
         parent::__construct();
         $this->load->module('core');
@@ -251,7 +256,8 @@ class Commentsapi extends Comments
 
         $paths = explode('/', $url);
         $paths = $paths[count($paths) - 1];
-        $lang_id = MY_Controller::getCurrentLanguage('id');
+
+        $lang_id = $this->getCommentsLocale() ?: MY_Controller::getCurrentLanguage('id');
 
         $page = $this->db->select('id, comments_status, category')
             ->where('url', $paths)
@@ -310,6 +316,7 @@ class Commentsapi extends Comments
      */
     public function addPost() {
 
+        $this->setCommentsLocale();
         $this->load->model('base');
         $this->_init_settings();
         $this->load->library('user_agent');
@@ -656,6 +663,32 @@ class Commentsapi extends Comments
         } else {
             return false;
         }
+    }
+
+    /**
+     * @return string
+     */
+    public function getCommentsLocale() {
+
+        /** @var CI_DB_result $locale */
+        $locale = $this->db->get_where('languages', ['identif' => $this->comments_locale]);
+
+        if ($locale->num_rows() > 0) {
+
+            $locale_arr = $locale->row_array();
+            return $locale_arr['id'];
+
+        }
+        return false;
+
+    }
+
+    /**
+     * @return void
+     */
+    public function setCommentsLocale() {
+
+        $this->comments_locale = MY_Controller::getCurrentLocale();
     }
 
 }

@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-01 02:01+0200\n"
-"PO-Revision-Date: 2015-12-01 02:01+0200\n"
+"POT-Creation-Date: 2016-07-19 04:22+0300\n"
+"PO-Revision-Date: 2016-07-19 04:22+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -18,44 +18,52 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
+#: application/modules/callbacks/translation.php:2
+msgid "Your name"
+msgstr "Ваше ім'я"
+
+#: application/modules/callbacks/translation.php:3
+msgid "Your phone"
+msgstr "Телефон"
+
 #: application/modules/callbacks/assets/admin/edit_theme.tpl:5
 msgid "Сallback topic editing"
 msgstr "Зворотний дзвінок у розділі редагування"
 
+#: application/modules/callbacks/assets/admin/create_status.tpl:11
 #: application/modules/callbacks/assets/admin/edit_theme.tpl:11
 #: application/modules/callbacks/assets/admin/create_theme.tpl:11
-#: application/modules/callbacks/assets/admin/create_status.tpl:11
-#: application/modules/callbacks/assets/admin/edit_status.tpl:11
 #: application/modules/callbacks/assets/admin/edit.tpl:11
+#: application/modules/callbacks/assets/admin/edit_status.tpl:11
 msgid "Go back"
 msgstr "Повернутися"
 
 #: application/modules/callbacks/assets/admin/edit_theme.tpl:12
-#: application/modules/callbacks/assets/admin/edit_status.tpl:12
 #: application/modules/callbacks/assets/admin/edit.tpl:12
+#: application/modules/callbacks/assets/admin/edit_status.tpl:12
 msgid "Save"
 msgstr "Зберегти"
 
 #: application/modules/callbacks/assets/admin/edit_theme.tpl:13
-#: application/modules/callbacks/assets/admin/edit_status.tpl:13
 #: application/modules/callbacks/assets/admin/edit.tpl:13
+#: application/modules/callbacks/assets/admin/edit_status.tpl:13
 msgid "Save and go back"
 msgstr "Зберегти і повернутися"
 
+#: application/modules/callbacks/assets/admin/create_status.tpl:21
 #: application/modules/callbacks/assets/admin/edit_theme.tpl:22
 #: application/modules/callbacks/assets/admin/create_theme.tpl:21
-#: application/modules/callbacks/assets/admin/create_status.tpl:21
-#: application/modules/callbacks/assets/admin/edit_status.tpl:22
 #: application/modules/callbacks/assets/admin/edit.tpl:22
+#: application/modules/callbacks/assets/admin/edit_status.tpl:22
 msgid "Information"
 msgstr "Інформація"
 
-#: application/modules/callbacks/assets/admin/edit_theme.tpl:33
-#: application/modules/callbacks/assets/admin/status_list.tpl:21
-#: application/modules/callbacks/assets/admin/create_theme.tpl:32
-#: application/modules/callbacks/assets/admin/themes_list.tpl:30
 #: application/modules/callbacks/assets/admin/create_status.tpl:32
+#: application/modules/callbacks/assets/admin/edit_theme.tpl:33
+#: application/modules/callbacks/assets/admin/create_theme.tpl:32
+#: application/modules/callbacks/assets/admin/status_list.tpl:21
 #: application/modules/callbacks/assets/admin/edit_status.tpl:34
+#: application/modules/callbacks/assets/admin/themes_list.tpl:21
 msgid "Title"
 msgstr "Назва"
 
@@ -73,9 +81,9 @@ msgstr "Створити статус"
 msgid "ID"
 msgstr "Ідентифікатор"
 
+#: application/modules/callbacks/assets/admin/create_status.tpl:46
 #: application/modules/callbacks/assets/admin/status_list.tpl:22
 #: application/modules/callbacks/assets/admin/status_list.tpl:35
-#: application/modules/callbacks/assets/admin/create_status.tpl:46
 #: application/modules/callbacks/assets/admin/edit_status.tpl:46
 msgid "By default"
 msgstr "За замовчуванням"
@@ -84,7 +92,7 @@ msgstr "За замовчуванням"
 #: application/modules/callbacks/assets/admin/list.tpl:15
 #: application/modules/callbacks/assets/admin/list.tpl:59
 #: application/modules/callbacks/assets/admin/list.tpl:200
-#: application/modules/callbacks/assets/admin/themes_list.tpl:31
+#: application/modules/callbacks/assets/admin/themes_list.tpl:22
 msgid "Delete"
 msgstr "Видалити"
 
@@ -113,15 +121,15 @@ msgstr "Скинути фільтр"
 msgid "Cancel filter"
 msgstr "Відмінити фільтр"
 
+#: application/modules/callbacks/assets/admin/edit.tpl:61
 #: application/modules/callbacks/assets/admin/list.tpl:54
 #: application/modules/callbacks/assets/admin/list.tpl:194
-#: application/modules/callbacks/assets/admin/edit.tpl:61
 msgid "User name"
 msgstr "Ім'я користувача"
 
+#: application/modules/callbacks/assets/admin/edit.tpl:71
 #: application/modules/callbacks/assets/admin/list.tpl:55
 #: application/modules/callbacks/assets/admin/list.tpl:195
-#: application/modules/callbacks/assets/admin/edit.tpl:71
 msgid "Telephone"
 msgstr "Телефон"
 
@@ -130,9 +138,9 @@ msgstr "Телефон"
 msgid "Theme"
 msgstr "Тема"
 
+#: application/modules/callbacks/assets/admin/edit.tpl:34
 #: application/modules/callbacks/assets/admin/list.tpl:57
 #: application/modules/callbacks/assets/admin/list.tpl:197
-#: application/modules/callbacks/assets/admin/edit.tpl:34
 msgid "Status"
 msgstr "Статус"
 
@@ -146,11 +154,11 @@ msgstr "Дата"
 msgid "All"
 msgstr "Всі"
 
+#: application/modules/callbacks/admin.php:351
+#: application/modules/callbacks/assets/admin/edit.tpl:51
 #: application/modules/callbacks/assets/admin/list.tpl:82
 #: application/modules/callbacks/assets/admin/list.tpl:154
 #: application/modules/callbacks/assets/admin/list.tpl:229
-#: application/modules/callbacks/assets/admin/edit.tpl:51
-#: application/modules/callbacks/admin.php:338
 msgid "Does not have"
 msgstr "Не має"
 
@@ -200,13 +208,13 @@ msgstr "Скасування"
 msgid "Callback topic сreation"
 msgstr "Зворотного виклику створенні нової теми"
 
-#: application/modules/callbacks/assets/admin/create_theme.tpl:12
 #: application/modules/callbacks/assets/admin/create_status.tpl:12
+#: application/modules/callbacks/assets/admin/create_theme.tpl:12
 msgid "Create"
 msgstr "Створити"
 
-#: application/modules/callbacks/assets/admin/create_theme.tpl:13
 #: application/modules/callbacks/assets/admin/create_status.tpl:13
+#: application/modules/callbacks/assets/admin/create_theme.tpl:13
 msgid "Create and exit"
 msgstr "Створення і вихід"
 
@@ -218,7 +226,7 @@ msgstr "Collbacks теми"
 msgid "Create topic"
 msgstr "Створити тему"
 
-#: application/modules/callbacks/assets/admin/themes_list.tpl:51
+#: application/modules/callbacks/assets/admin/themes_list.tpl:34
 msgid "Edit callback theme"
 msgstr "Редагувати зворотного виклику теми"
 
@@ -279,122 +287,122 @@ msgstr "Передзвонити"
 msgid "Callbacks"
 msgstr "Зворотні виклики"
 
-#: application/modules/callbacks/admin.php:108
-#: application/modules/callbacks/admin.php:115
-#: application/modules/callbacks/admin.php:382
-#: application/modules/callbacks/admin.php:455
+#: application/modules/callbacks/admin.php:121
+#: application/modules/callbacks/admin.php:128
+#: application/modules/callbacks/admin.php:396
+#: application/modules/callbacks/admin.php:474
 msgid "Error"
 msgstr "Помилка"
 
-#: application/modules/callbacks/admin.php:123
+#: application/modules/callbacks/admin.php:136
 msgid "Callback edited"
 msgstr "Зворотного виклику відредаговані"
 
-#: application/modules/callbacks/admin.php:124
-#: application/modules/callbacks/admin.php:249
-#: application/modules/callbacks/admin.php:471
+#: application/modules/callbacks/admin.php:137
+#: application/modules/callbacks/admin.php:262
+#: application/modules/callbacks/admin.php:490
 msgid "Changes have been saved"
 msgstr "Зміни"
 
-#: application/modules/callbacks/admin.php:196
+#: application/modules/callbacks/admin.php:209
 msgid "Status callback created"
 msgstr "Статус зворотного виклику створив"
 
-#: application/modules/callbacks/admin.php:197
+#: application/modules/callbacks/admin.php:210
 msgid "Position created"
 msgstr "Позиція створена"
 
-#: application/modules/callbacks/admin.php:229
+#: application/modules/callbacks/admin.php:242
 msgid "Such status does not exist"
 msgstr "Такого статусу не існує"
 
-#: application/modules/callbacks/admin.php:248
+#: application/modules/callbacks/admin.php:261
 msgid "Status callback edited"
 msgstr "Статус зворотного виклику відредаговані"
 
-#: application/modules/callbacks/admin.php:276
+#: application/modules/callbacks/admin.php:289
 msgid "Default status was changed"
 msgstr "За замовчуванням статус був змінений"
 
-#: application/modules/callbacks/admin.php:281
+#: application/modules/callbacks/admin.php:294
 msgid "Callback default status changed. New default status ID:"
 msgstr "Зворотного виклику за замовчуванням статус змінився. Новий статус за замовчуванням ідентифікатор:"
 
-#: application/modules/callbacks/admin.php:301
+#: application/modules/callbacks/admin.php:314
 msgid "Callback status changed to"
 msgstr "Зворотного дзвінка статус змінився на"
 
-#: application/modules/callbacks/admin.php:302
-#: application/modules/callbacks/admin.php:339
+#: application/modules/callbacks/admin.php:315
+#: application/modules/callbacks/admin.php:352
 msgid "Id:"
 msgstr "Ідентифікатор:"
 
-#: application/modules/callbacks/admin.php:306
+#: application/modules/callbacks/admin.php:319
 msgid "Callback's status was changed"
 msgstr "Зворотний виклик статус був змінений"
 
-#: application/modules/callbacks/admin.php:320
+#: application/modules/callbacks/admin.php:333
 msgid "Positions saved successfully"
 msgstr "Позиції успішно збережено"
 
-#: application/modules/callbacks/admin.php:338
+#: application/modules/callbacks/admin.php:351
 msgid "Callback theme changed to"
 msgstr "Зворотного виклику теми змінено на"
 
-#: application/modules/callbacks/admin.php:343
+#: application/modules/callbacks/admin.php:356
 msgid "Callback theme is changed"
 msgstr "Зворотного виклику теми змінено"
 
-#: application/modules/callbacks/admin.php:357
-#: application/modules/callbacks/admin.php:358
+#: application/modules/callbacks/admin.php:371
+#: application/modules/callbacks/admin.php:372
 msgid "Callback was removed"
 msgstr "Зворотний дзвінок був видалений"
 
-#: application/modules/callbacks/admin.php:363
-#: application/modules/callbacks/admin.php:364
+#: application/modules/callbacks/admin.php:377
+#: application/modules/callbacks/admin.php:378
 msgid "Callback(s) was removed"
 msgstr "Зворотний виклик(и) видалено"
 
-#: application/modules/callbacks/admin.php:382
+#: application/modules/callbacks/admin.php:396
 msgid "Unable to remove default status"
 msgstr "Неможливо видалити статус за замовчуванням"
 
-#: application/modules/callbacks/admin.php:391
+#: application/modules/callbacks/admin.php:405
 msgid "Status callback was removed"
 msgstr "Статус зворотного виклику був видалений"
 
-#: application/modules/callbacks/admin.php:392
+#: application/modules/callbacks/admin.php:406
 msgid "Status was removed"
 msgstr "Статус був видалений"
 
-#: application/modules/callbacks/admin.php:429
+#: application/modules/callbacks/admin.php:443
 msgid "Topic callbacks created"
 msgstr "Тема зворотних викликів, створених"
 
-#: application/modules/callbacks/admin.php:430
+#: application/modules/callbacks/admin.php:444
 msgid "Topic started"
 msgstr "Тема розпочата"
 
-#: application/modules/callbacks/admin.php:470
+#: application/modules/callbacks/admin.php:489
 msgid "Topic callbacks edited"
 msgstr "Тему зворотні виклики, редагувати"
 
-#: application/modules/callbacks/admin.php:507
+#: application/modules/callbacks/admin.php:527
 msgid "Topic callbacks deleted"
 msgstr "Тему зворотні виклики віддалених"
 
-#: application/modules/callbacks/admin.php:508
+#: application/modules/callbacks/admin.php:528
 msgid "Topic deleted"
 msgstr "Тема видалена"
 
-#: application/modules/callbacks/admin.php:526
+#: application/modules/callbacks/admin.php:546
 msgid "Next"
 msgstr "Далі"
 
-#: application/modules/callbacks/admin.php:527
+#: application/modules/callbacks/admin.php:547
 msgid "Prev"
 msgstr "Перед"
 
-#: application/modules/callbacks/callbacks.php:31
+#: application/modules/callbacks/callbacks.php:34
 msgid "Callback"
 msgstr "Зворотного дзвінка"

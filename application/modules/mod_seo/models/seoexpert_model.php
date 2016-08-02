@@ -161,23 +161,23 @@ class Seoexpert_model extends CI_Model
         }
         // Update shop settings table
         $mainSettings = [
-            'add_site_name' => $settings['add_site_name'],
-            'add_site_name_to_cat' => $settings['add_site_name_to_cat'],
-            'delimiter' => $settings['delimiter'],
-            'create_keywords' => $settings['create_keywords'],
-            'create_description' => $settings['create_description']
-        ];
+                         'add_site_name'        => $settings['add_site_name'],
+                         'add_site_name_to_cat' => $settings['add_site_name_to_cat'],
+                         'delimiter'            => $settings['delimiter'],
+                         'create_keywords'      => $settings['create_keywords'],
+                         'create_description'   => $settings['create_description'],
+                        ];
         $this->db->where('s_name', 'main')->update('settings', $mainSettings);
 
         //Check exists settings with current langId
         $checkLangSettings = $this->db->where('lang_ident', $langId)->get('settings_i18n')->row_array();
 
         $mainSettingsIn = [
-            'name' => $settings['name'],
-            'short_name' => $settings['short_name'],
-            'description' => $settings['description'],
-            'keywords' => $settings['keywords']
-        ];
+                           'name'        => $settings['name'],
+                           'short_name'  => $settings['short_name'],
+                           'description' => $settings['description'],
+                           'keywords'    => $settings['keywords'],
+                          ];
 
         // Update or insert shop settings I18n table
         if ($checkLangSettings) {
@@ -207,9 +207,46 @@ class Seoexpert_model extends CI_Model
         return $this->db->where('locale', $locale)
             ->update(
                 'mod_seo',
-                ['settings' => serialize($settings)
+                [
+                 'settings' => serialize($settings),
                 ]
             );
+    }
+
+    /**
+     * @param array $setting
+     * @param string $type
+     * @return array
+     */
+    public function Actions_settings($setting, $type) {
+
+        $type = strtolower($type);
+
+        if ($setting) {
+
+            if ($type == 'all') {
+
+                $data = [
+                         'usePattern'       => $setting['useBestsellerPattern'],
+                         'TitleTemplate'    => $setting['BestsellerTemplate'],
+                         'TemplateDesc'     => $setting['BestsellerTemplateDesc'],
+                         'KeywordsTemplate' => $setting['BestsellerTemplateKey'],
+                        ];
+            } else {
+
+                $type = ucfirst($type);
+
+                $data = [
+                         'usePattern'       => $setting['useBestseller' . $type . 'Pattern'] ?: '',
+                         'TitleTemplate'    => $setting['Bestseller' . $type . 'Template'] ?: '',
+                         'TemplateDesc'     => $setting['Bestseller' . $type . 'TemplateDesc'] ?: '',
+                         'KeywordsTemplate' => $setting['Bestseller' . $type . 'TemplateKey'] ?: '',
+                        ];
+            }
+
+            return $data;
+
+        }
     }
 
 }

@@ -69,7 +69,7 @@ class ModelWrapper
      * @return mixed
      */
     public function __call($function, $args) {
-        return $this->model->$function();
+        return call_user_func_array([$this->model, $function], $args);
     }
 
     /**

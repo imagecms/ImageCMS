@@ -343,6 +343,9 @@ abstract class BannersQuery extends ModelCriteria
         if (null === $comparison) {
             if (is_array($place)) {
                 $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $place)) {
+                $place = str_replace('*', '%', $place);
+                $comparison = Criteria::LIKE;
             }
         }
 
@@ -451,6 +454,9 @@ abstract class BannersQuery extends ModelCriteria
         if (null === $comparison) {
             if (is_array($effects)) {
                 $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $effects)) {
+                $effects = str_replace('*', '%', $effects);
+                $comparison = Criteria::LIKE;
             }
         }
 
@@ -477,6 +483,9 @@ abstract class BannersQuery extends ModelCriteria
         if (null === $comparison) {
             if (is_array($pageType)) {
                 $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $pageType)) {
+                $pageType = str_replace('*', '%', $pageType);
+                $comparison = Criteria::LIKE;
             }
         }
 

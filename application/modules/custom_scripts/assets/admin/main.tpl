@@ -10,7 +10,7 @@
                     <a href="{$BASE_URL}admin/components/"
                        class="t-d_n m-r_15 pjax">
                         <span class="f-s_14">←</span>
-                        <span class="t-d_u">{lang('Back', 'custom_scripts')}</span>
+                        <span class="t-d_u">{lang('Back', 'admin')}</span>
                     </a>
                     <button  data-form="#customScripts"  class="btn btn-small btn-primary formSubmit"><i class="icon-ok"></i>{lang('Save', 'custom_scripts')}</button>
                 </div>

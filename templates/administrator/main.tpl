@@ -149,12 +149,12 @@
                         <div class="span3 left-header">
 
                             <a href="{if SHOP_INSTALLED}{base_url('admin/components/run/shop/dashboard')}{else:}/admin/dashboard{/if}" class="logo pull-left pjax">
-                                <span class="helper"></span>
                                 {if MAINSITE}
                                     <img src="{$THEME}img/logo_premmerce.png"/>
                                 {else:}
                                     <img src="{$THEME}img/logo_new.png"/>
                                 {/if}
+                                <span class="helper"></span>
                             </a>
 
                         </div>
@@ -182,20 +182,8 @@
                             <div class="pull-right span3 f-s_0 right-header">
                                 <span class="helper"></span>
                                 <ul class="d_i-b f-s_0">
-                                    {//if MAINSITE}
                                     {if SHOP_INSTALLED}
 
-                                        {/*if $support_answers_count}
-                                            <li>
-                                                <a href="#" class="header-badge-count">
-                                                    <span class="helper"></span>
-                                                    <span class="">
-                                                        <span class="icon-badge-count my_icon"></span>
-                                                        <span class="text-el">{echo $support_answers_count}</span>
-                                                    </span>
-                                                </a>
-                                            </li>
-                                        {/if*/}
                                         <li class="">
                                             <a href="#" data-drop=".frame-add-info-header">
                                                 <span class="helper"></span>
@@ -203,7 +191,6 @@
                                             </a>
                                         </li>
                                     {/if}
-                                    {///if}
 
                                     <li class="dropdown d-i_b v-a_m">
                                         <a data-toggle="dropdown" class="btn-personal-area">
@@ -214,15 +201,7 @@
                                             {echo $CI->load->module('mainsaas')->getSaasDropMenu()}
                                         {else:}
                                             <ul class="frame-dropdown dropdown-menu drop_menu_black">
-                                                {/*}
-                                                <li class="head">
-                                                    {if $CI->dx_auth->get_username()}
-                                                        {echo $CI->dx_auth->get_username()}
-                                                    {else:}
-                                                        {echo lang("Guest","admin")}
-                                                    {/if}
-                                                </li>
-                                                { */}
+
                                                 {if $CI->dx_auth->get_username()}
                                                     <li>
                                                         <a href="

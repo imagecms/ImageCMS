@@ -21,6 +21,9 @@ class Components extends BaseAdminController
      */
     private $installed = [];
 
+    /**
+     * @var array
+     */
     private $permited = [];
 
     public function __construct() {
@@ -122,6 +125,10 @@ class Components extends BaseAdminController
         $this->template->show('module_table', FALSE);
     }
 
+    /**
+     * @param string $moduleName
+     * @return bool
+     */
     private function isNotPermited($moduleName) {
         if (MAINSITE != '') {
             return !in_array($moduleName, $this->permited);
@@ -130,6 +137,11 @@ class Components extends BaseAdminController
         }
     }
 
+    /**
+     * @param array $db_modules
+     * @param array $not_installed
+     * @return array
+     */
     private function isPermitedModules($db_modules, $not_installed) {
         foreach ($db_modules as $key => $db_module) {
             if ($this->isNotPermited($db_module['name'])) {
@@ -159,6 +171,10 @@ class Components extends BaseAdminController
         }
     }
 
+    /**
+     * @param $mod_name
+     * @return bool
+     */
     public function is_installed($mod_name) {
         return in_array($mod_name, $this->installed);
     }
@@ -172,7 +188,7 @@ class Components extends BaseAdminController
 
         $modulePath = getModulePath($module);
 
-        if (file_exists($modulePath . $module . '.php') AND $this->is_installed($module) == 0) {
+        if (file_exists($modulePath . $module . '.php') AND $this->is_installed($module) === false) {
             // Make module install
             $data = [
                      'name'    => $module,
@@ -180,6 +196,14 @@ class Components extends BaseAdminController
                     ];
 
             $this->db->insert('components', $data);
+
+            if ($this->db->_error_message()) {
+                echo json_encode(['result' => false]);
+
+                $this->lib_admin->log($this->db->_error_message() . ' ' . $data['name']);
+                return false;
+            }
+
             $this->load->module($module);
 
             if (method_exists($module, '_install') === TRUE) {
@@ -222,7 +246,7 @@ class Components extends BaseAdminController
 
             $modulePath = getModulePath($module);
 
-            if (file_exists($modulePath . $module . '.php') AND $this->is_installed($module) == 1) {
+            if (file_exists($modulePath . $module . '.php') AND $this->is_installed($module) === true) {
                 $this->load->module($module);
 
                 if (method_exists($module, '_deinstall') === TRUE) {

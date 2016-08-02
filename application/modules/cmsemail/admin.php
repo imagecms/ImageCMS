@@ -35,8 +35,8 @@ class Admin extends BaseAdminController
         assetManager::create()
             ->setData(
                 [
-                'models' => $this->email->getAllTemplates(),
-                'defaultTemplatesCount' => $this->getMaxDefaultTemplatesCount(),
+                 'models'                => $this->email->getAllTemplates(),
+                 'defaultTemplatesCount' => $this->getMaxDefaultTemplatesCount(),
                 ]
             )
             ->renderAdmin('list');
@@ -59,12 +59,17 @@ class Admin extends BaseAdminController
     public function settings($locale) {
 
         $locale = $locale ?: MY_Controller::defaultLocale();
+        $encryption = [
+                       'tls',
+                       'ssl',
+                      ];
         assetManager::create()
             ->registerScript('email')
             ->registerStyle('style')
             ->setData('settings', $this->email->getSettings($locale))
             ->setData('languages', $this->cms_base->get_langs())
             ->setData('locale', $locale)
+            ->setData('encryption', $encryption)
             ->renderAdmin('settings');
     }
 
@@ -176,9 +181,9 @@ class Admin extends BaseAdminController
                 showMessage(validation_errors(), lang('Message', 'cmsemail'), 'r');
             } else {
                 $data = [
-                    'locale' => $locale,
-                    'settings' => $this->input->post('settings')
-                ];
+                         'locale'   => $locale,
+                         'settings' => $this->input->post('settings'),
+                        ];
 
                 if ($this->email->setSettings($data)) {
                     showMessage(lang('Settings saved', 'cmsemail'), lang('Message', 'cmsemail'));

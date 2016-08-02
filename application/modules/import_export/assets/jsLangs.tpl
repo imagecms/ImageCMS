@@ -1,5 +1,5 @@
 <script>
-langs["Message"] = '<?php echo addslashes(lang("Message", "import_export", FALSE)); ?>';
-langs["Слот"] = '<?php echo addslashes(lang("Слот", "import_export", FALSE)); ?>';
-langs["Файл успешно загружен"] = '<?php echo addslashes(lang("Файл успешно загружен", "import_export", FALSE)); ?>';
+langs["Message"] = '<?php echo addslashes(lang("Message", "import_export", FALSE))?>';
+langs["Slot"] = '<?php echo addslashes(lang("Slot", "import_export", FALSE))?>';
+langs["File successfully downloaded"] = '<?php echo addslashes(lang("File successfully downloaded", "import_export", FALSE))?>';
 </script>

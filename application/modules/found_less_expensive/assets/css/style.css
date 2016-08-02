@@ -107,7 +107,11 @@
     background: linear-gradient(to bottom,  #3ec5f4 0%,#16a7d8 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3ec5f4', endColorstr='#16a7d8',GradientType=0 ); /* IE6-9 */
 }
+.my_btn_s{vertical-align: middle !important; padding: 0 4px !important;height: 28px !important;}
 
 .badData {border: 2px solid red !important;}
 .errorMessage {color:red !important;}
 .colorRed {color:red !important;}
+.icon-list, .icon-plus {top: -2px;}
+.found-expensive .icon-trash {top: -2px;}
+.found-expensive .badge.badge-important {min-width: auto; left: 100%; margin-left: -25px;}

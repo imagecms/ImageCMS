@@ -53,12 +53,7 @@ class Lib_category
      */
     public function build() {
 
-        // check cache file
-        if (($cache = $this->CI->cache->fetch_func($this, '_build')) !== false) {
-            return $cache;
-        } else {
-            return $this->CI->cache->call([$this, '_build']);
-        }
+            return $this->_build();
     }
 
     public function buildForAdmin() {
@@ -114,9 +109,7 @@ class Lib_category
      * @return array
      */
     public function get_category($id) {
-        if ($this->unsorted_arr == FALSE) {
-            $this->unsorted();
-        }
+        $this->unsorted();
 
         if (is_array($id)) {
             $temp_arr = [];
