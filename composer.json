@@ -1,5 +1,5 @@
 {
-  "name": "ImageCMS",
+  "name": "imagecms/imagecms",
   "description": "Content managment system in two editions: Corporate (Free) & Shop (Proprietary)",
   "keywords": [
     "CMS",
@@ -14,8 +14,6 @@
     "psr-4": {
       "": [
         "application/modules/",
-        "application/modules/shop/classes/",
-        "application/modules/shop/models/",
         "hooks"
       ],
       "libraries\\": [
