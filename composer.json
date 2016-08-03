@@ -51,5 +51,6 @@
     "post-install-cmd": [
       "ImageCMSHooks::copyTinyMCEFiles"
     ]
-  }
+  },
+  "minimum-stability": "dev"
 }
