@@ -6,7 +6,8 @@
  * Image CMS
  * Module Sample
  */
-class Sample_Module extends MY_Controller {
+class Sample_Module extends MY_Controller
+{
 
     /** Подготовим необходимые свойства для класса */
     private $key = FALSE;
@@ -45,7 +46,7 @@ class Sample_Module extends MY_Controller {
 
     public function changeStatus($commentId, $status, $key) {
         /** Проверим входные данные */
-        ($commentId AND in_array($status, array(0, 1, 2)) AND $key == $this->key) OR $this->core->error_404();
+        ($commentId AND in_array($status, [0, 1, 2]) AND $key == $this->key) OR $this->core->error_404();
 
         /** Обновим статус */
         $this->db
@@ -86,11 +87,11 @@ class Sample_Module extends MY_Controller {
         }
 
         /** Теперь переменная содержит HTML тело нашего письма */
-        $message = \CMSFactory\assetManager::create()->setData(array('comment' => $comment, 'key' => $this->key))->fetchTemplate('emailPattern');
+        $message = \CMSFactory\assetManager::create()->setData(['comment' => $comment, 'key' => $this->key])->fetchTemplate('emailPattern');
 
         /** Настроявием отправку Email http://ellislab.com/codeigniter/user-guide/libraries/email.html */
         $this->load->library('email');
-        $this->email->initialize(array('mailtype' => 'html'));
+        $this->email->initialize(['mailtype' => 'html']);
         $this->email->from('robot@sitename.com', 'Comments Robot');
         $this->email->to($this->mailTo);
         $this->email->subject('New Comment received');
@@ -120,10 +121,21 @@ class Sample_Module extends MY_Controller {
         $this->load->dbforge();
 
         /** Создаем массив полей и их атрибутов для БД */
-        $fields = array(
-            'id' => array('type' => 'INT', 'constraint' => 11, 'auto_increment' => TRUE,),
-            'name' => array('type' => 'VARCHAR', 'constraint' => 50,),
-            'value' => array('type' => 'VARCHAR', 'constraint' => 100,));
+        $fields = [
+                   'id'    => [
+                               'type'           => 'INT',
+                               'constraint'     => 11,
+                               'auto_increment' => TRUE,
+                              ],
+                   'name'  => [
+                               'type'       => 'VARCHAR',
+                               'constraint' => 50,
+                              ],
+                   'value' => [
+                               'type'       => 'VARCHAR',
+                               'constraint' => 100,
+                              ],
+                  ];
 
         /** Указываем на поле, которое будет с ключом Primary */
         $this->dbforge->add_key('id', TRUE);
@@ -133,16 +145,26 @@ class Sample_Module extends MY_Controller {
         $this->dbforge->create_table('mod_sample_settings', TRUE);
 
         /** Заполним поля таблицы временными данными */
-        $data = array(
-            array('name' => 'mailTo', 'value' => 'admin@site.com'),
-            array('name' => 'useEmailNotification', 'value' => 'TRUE'),
-            array('name' => 'key', 'value' => 'UUUsssTTTeee'));
+        $data = [
+                 [
+                  'name'  => 'mailTo',
+                  'value' => 'admin@site.com',
+                 ],
+                 [
+                  'name'  => 'useEmailNotification',
+                  'value' => 'TRUE',
+                 ],
+                 [
+                  'name'  => 'key',
+                  'value' => 'UUUsssTTTeee',
+                 ],
+                ];
         /** ...и добавим их в Базу Данных */
         $this->db->insert_batch('mod_sample_settings', $data);
 
         /** Обновим метаданные модуля, включим автозагрузку модуля и доступ по URL */
         $this->db->where('name', 'sample_module')
-            ->update('components', array('autoload' => '1', 'enabled' => '1'));
+            ->update('components', ['autoload' => '1', 'enabled' => '1']);
     }
 
     /**

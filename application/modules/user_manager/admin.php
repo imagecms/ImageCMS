@@ -22,11 +22,11 @@ class Admin extends BaseAdminController
         $this->load->library('Form_validation');
     }
 
-    /*
+    /**
      * Index function of user_manager admin
-     * Select roles and displau main template
+     * Select roles and display main template
+     * @param null|int $pagination
      */
-
     public function index($pagination = null) {
 
         //////**********  Pagination pages **********\\\\\\\
@@ -44,10 +44,9 @@ class Admin extends BaseAdminController
         $this->display_tpl('main');
     }
 
-    /*
+    /**
      * Assign template roles
      */
-
     public function set_tpl_roles() {
         $locale = MY_Controller::getCurrentLocale();
         $this->db->select('shop_rbac_roles.*', FALSE);
@@ -61,6 +60,9 @@ class Admin extends BaseAdminController
         // roles
     }
 
+    /**
+     * @param int $roleId
+     */
     public function getRolesTable($roleId) {
         $this->template->add_array($this->show_edit_prems_tpl($roleId));
         $this->display_tpl('genreroletable');
@@ -102,6 +104,10 @@ class Admin extends BaseAdminController
             $config['cur_tag_open'] = '<li class="btn-primary active"><span>';
             $config['cur_tag_close'] = '</span></li>';
             $config['prev_tag_open'] = '<li>';
+            $config['last_tag_close'] = '</li>';
+            $config['last_tag_open'] = '<li>';
+            $config['first_tag_close'] = '</li>';
+            $config['first_tag_open'] = '<li>';
             $config['prev_tag_close'] = '</li>';
             $config['next_tag_open'] = '<li>';
             $config['next_tag_close'] = '</li>';
@@ -310,9 +316,9 @@ class Admin extends BaseAdminController
                 $this->template->add_array($this->show_edit_prems_tpl($id = 2));
                 $this->template->add_array(['role_id' => $role]);
                 $this->template->assign('users', FALSE);
-                $rezult_table = $this->fetch_tpl('main');
+                $result_table = $this->fetch_tpl('main');
 
-                echo $rezult_table;
+                echo $result_table;
             } else {
                 $users = $query->result_array();
 
@@ -336,17 +342,16 @@ class Admin extends BaseAdminController
                     $this->template->add_array($this->show_edit_prems_tpl($id = 2));
                     $this->template->add_array(['role_id' => $role]);
                     $this->template->assign('users', FALSE);
-                    $rezult_table = $this->fetch_tpl('main');
+                    $result_table = $this->fetch_tpl('main');
 
-                    echo $rezult_table;
+                    echo $result_table;
                 } else {
 
                     $this->template->assign('users', $users);
                     $this->template->add_array($this->show_edit_prems_tpl($id = 2));
                     $this->template->add_array(['role_id' => $role]);
-                    $rezult_table = $this->fetch_tpl('main');
-
-                    echo $rezult_table;
+                    $result_table = $this->fetch_tpl('main');
+                    echo $result_table;
                 }
             }
         } else {
@@ -376,7 +381,7 @@ class Admin extends BaseAdminController
             if (!$this->ajaxRequest) {
 
                 $userPagination = $this->session->userdata('usr_manager_url');
-                $userPagination = $userPagination ? $userPagination : null;
+                $userPagination = $userPagination ?: null;
 
                 $this->template->assign('userPagination', $userPagination);
                 $this->display_tpl('edit_user');
@@ -394,7 +399,7 @@ class Admin extends BaseAdminController
 
         $this->load->model('dx_auth/users', 'user2');
         $userPagination = $this->session->userdata('usr_manager_url');
-        $userPagination = $userPagination ? $userPagination : null;
+        $userPagination = $userPagination ?: null;
 
         $val = $this->form_validation;
 
@@ -634,7 +639,7 @@ class Admin extends BaseAdminController
     public function setRoleId() {
         $userId = $this->input->post('userId');
         $roleId = $this->input->post('roleId');
-        $userId = is_array($userId) ? $userId : [$userId];
+        $userId = is_array($userId) ?: [$userId];
 
         $this->db->where_in('id', $userId)->set('role_id', $roleId)->update('users');
 

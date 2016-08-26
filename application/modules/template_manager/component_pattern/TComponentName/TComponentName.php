@@ -4,7 +4,8 @@
  * class TComponentName for Components template manager
  *
  */
-class TComponentName extends \template_manager\classes\TComponent {
+class TComponentName extends \template_manager\classes\TComponent
+{
 
     /**
      * Prepare param from xml to save in db

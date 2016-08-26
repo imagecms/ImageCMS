@@ -36,9 +36,9 @@ class ResultsCollection
             if (count($oneResult)) {
                 $oneResultArray = $oneResult->toArray();
                 $array[] = [
-                    'label' => $oneResult->getGroupName(),
-                    'value' => $oneResultArray[$oneResult->getGroupName()],
-                ];
+                            'label' => $oneResult->getGroupName(),
+                            'value' => $oneResultArray[$oneResult->getGroupName()],
+                           ];
 
             }
         }

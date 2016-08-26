@@ -9,7 +9,8 @@ if (!defined('BASEPATH')) {
  *
  * Page tags module
  */
-class Tags extends MY_Controller {
+class Tags extends MY_Controller
+{
 
     public $min_font_size = 10;
 
@@ -148,8 +149,8 @@ class Tags extends MY_Controller {
                     $paginationConfig['total_rows'] = count($pages_id);
                     $paginationConfig['per_page'] = $this->search->row_count;
                     $paginationConfig['uri_segment'] = $this->uri->total_segments();
-                    $paginationConfig['first_link'] = lang("The first", 'tags');
-                    $paginationConfig['last_link'] = lang("Last", 'tags');
+                    $paginationConfig['first_link'] = lang('The first', 'tags');
+                    $paginationConfig['last_link'] = lang('Last', 'tags');
                     include_once "./templates/{$this->config->item('template')}/paginations.php";
                     $paginationConfig['page_query_string'] = FALSE;
 
@@ -336,7 +337,7 @@ class Tags extends MY_Controller {
                 ->select('content_tags.id')
                 ->where('content.id', $page_id)
                 ->or_where('content.lang_alias', $page_id)
-                ->join('content', "content_tags.page_id=content.id")
+                ->join('content', 'content_tags.page_id=content.id')
                 ->get('content_tags');
 
             $content_tags = $content_tags ? $content_tags->result_array() : [];
@@ -406,20 +407,20 @@ class Tags extends MY_Controller {
 
         //content tags
         $fields = [
-            'id' => [
-                'type' => 'INT',
-                'constraint' => 11,
-                'auto_increment' => TRUE,
-            ],
-            'page_id' => [
-                'type' => 'INT',
-                'constraint' => 11,
-            ],
-            'tag_id' => [
-                'type' => 'INT',
-                'constraint' => 11,
-            ],
-        ];
+                   'id'      => [
+                                 'type'           => 'INT',
+                                 'constraint'     => 11,
+                                 'auto_increment' => TRUE,
+                                ],
+                   'page_id' => [
+                                 'type'       => 'INT',
+                                 'constraint' => 11,
+                                ],
+                   'tag_id'  => [
+                                 'type'       => 'INT',
+                                 'constraint' => 11,
+                                ],
+                  ];
 
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_field($fields);
@@ -427,16 +428,16 @@ class Tags extends MY_Controller {
 
         //tags
         $fields = [
-            'id' => [
-                'type' => 'INT',
-                'constraint' => 11,
-                'auto_increment' => TRUE,
-            ],
-            'value' => [
-                'type' => 'VARCHAR',
-                'constraint' => 255,
-            ]
-        ];
+                   'id'    => [
+                               'type'           => 'INT',
+                               'constraint'     => 11,
+                               'auto_increment' => TRUE,
+                              ],
+                   'value' => [
+                               'type'       => 'VARCHAR',
+                               'constraint' => 255,
+                              ],
+                  ];
 
         $this->dbforge->add_key('id', true);
         $this->dbforge->add_key('value');

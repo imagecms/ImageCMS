@@ -8,7 +8,8 @@
  * @property CI_DB_active_record $db
  * @package ImageCMSModule
  */
-class Categories_model extends \CI_Model {
+class Categories_model extends \CI_Model
+{
 
     protected $locale;
 
@@ -92,11 +93,11 @@ class Categories_model extends \CI_Model {
         $this->db
             ->select(
                 [
-                            'shop_category.id',
-                            'shop_category.parent_id',
-                            'shop_category_i18n.name',
-                            'shop_category.full_path_ids'
-                        ]
+                 'shop_category.id',
+                 'shop_category.parent_id',
+                 'shop_category_i18n.name',
+                 'shop_category.full_path_ids',
+                ]
             )
             ->join('shop_category_i18n', "shop_category_i18n.id=shop_category.id AND shop_category_i18n.locale='" . $locale . "'")
             ->order_by('position', 'asc');

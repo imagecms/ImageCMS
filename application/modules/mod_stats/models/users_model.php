@@ -19,10 +19,10 @@ class Users_model extends CI_Model
      * @var array
      */
     protected $params = [
-        'interval' => 'day', //  date interval (string: day|month|year)
-        'dateFrom' => NULL, // NULL for all or date in format (string: YYYY-MM-DD)
-        'dateTo' => NULL, // NULL for all or date in format (string: YYYY-MM-DD)
-    ];
+                         'interval' => 'day', //  date interval (string: day|month|year)
+                         'dateFrom' => NULL, // NULL for all or date in format (string: YYYY-MM-DD)
+                         'dateTo'   => NULL, // NULL for all or date in format (string: YYYY-MM-DD)
+                        ];
 
     public function __construct() {
         parent::__construct();

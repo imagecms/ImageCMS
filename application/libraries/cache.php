@@ -308,6 +308,9 @@ class Cache
     /**
      * Delete Cached Function
      *
+     * @param $object
+     * @param $func
+     * @param array $args
      * @return bool
      */
     public function delete_func($object, $func, $args = []) {
@@ -422,6 +425,7 @@ class Cache
 
     /**
      * @param string $key
+     * @return string
      */
     public function generatekey($key) {
         return md5($key);
@@ -429,6 +433,7 @@ class Cache
 
     /**
      * @param string $msg
+     * @return bool
      */
     private function log_cache_error($msg) {
         $log_path = APPPATH . 'logs/';

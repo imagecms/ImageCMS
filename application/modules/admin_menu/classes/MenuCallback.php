@@ -2,7 +2,8 @@
 
 namespace admin_menu\classes;
 
-class MenuCallback {
+class MenuCallback
+{
 
     private function __construct() {
 
@@ -34,7 +35,7 @@ class MenuCallback {
     public static function run($callback) {
         if ($callback) {
 
-            $data = array();
+            $data = [];
             if (self::isSaas() && !\Admin_menu::$DEV_MODE) {
                 $user = \saas\models\Users::with('saasUser')->where('id', '=', \CI::$APP->dx_auth->get_user_id())->first();
                 if ($user) {

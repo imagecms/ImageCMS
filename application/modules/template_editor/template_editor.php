@@ -7,7 +7,8 @@ if (!defined('BASEPATH')) {
 /**
  * Image CMS
  */
-class Template_editor extends MY_Controller {
+class Template_editor extends MY_Controller
+{
 
     public function __construct() {
 

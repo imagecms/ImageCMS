@@ -1,4 +1,5 @@
 <?php
+use Currency\Currency;
 
 /**
  * Class Stats_model for mod_stats module
@@ -12,10 +13,6 @@ class Stats_model extends CI_Model
 {
 
     const TIME_BETWEEN_REQUESTS = 10;
-
-    public function __construct() {
-        parent::__construct();
-    }
 
     /**
      * Get setting by name
@@ -103,10 +100,10 @@ class Stats_model extends CI_Model
             $this->db->insert(
                 'mod_stats_search',
                 [
-                'key' => $keyword,
-                'date' => time(),
-                'ac' => $ac == true ? 1 : 0
-                    ]
+                 'key'  => $keyword,
+                 'date' => time(),
+                 'ac'   => $ac == true ? 1 : 0,
+                ]
             );
         }
         return TRUE;
@@ -120,9 +117,9 @@ class Stats_model extends CI_Model
         $this->db->insert(
             'mod_stats_urls',
             [
-            'id_user' => $userId,
-            'url' => $url,
-                ]
+             'id_user' => $userId,
+             'url'     => $url,
+            ]
         );
     }
 
@@ -156,13 +153,7 @@ class Stats_model extends CI_Model
      * @return array
      */
     public function getMainCurrencySymbol() {
-        $query = $this->db->select('symbol')->where('main', 1)->get('shop_currencies')->row_array();
-
-        if ($query) {
-            return $query['symbol'];
-        } else {
-            return [];
-        }
+        return Currency::create()->getMainCurrency()->getSymbol();
     }
 
     /**
@@ -182,11 +173,7 @@ class Stats_model extends CI_Model
             ->limit($limit)
             ->get();
 
-        if ($query) {
-            return $query->result_array();
-        } else {
-            return [];
-        }
+        return $query ? $query->result_array() : [];
     }
 
     /**
@@ -196,96 +183,96 @@ class Stats_model extends CI_Model
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) OR exit;
         $fields = [
-            'key' => [
-                'type' => 'VARCHAR',
-                'constraint' => '70',
-                'null' => TRUE,
-            ],
-            'date' => [
-                'type' => 'INT',
-                'null' => TRUE,
-            ],
-            'ac' => [
-                'type' => 'INT',
-                'null' => TRUE,
-            ]
-        ];
+                   'key'  => [
+                              'type'       => 'VARCHAR',
+                              'constraint' => '70',
+                              'null'       => TRUE,
+                             ],
+                   'date' => [
+                              'type' => 'INT',
+                              'null' => TRUE,
+                             ],
+                   'ac'   => [
+                              'type' => 'INT',
+                              'null' => TRUE,
+                             ],
+                  ];
         $this->dbforge->add_field($fields);
         $this->dbforge->create_table('mod_stats_search');
 
         $fields2 = [
-            'setting' => [
-                'type' => 'VARCHAR',
-                'constraint' => '70',
-                'null' => TRUE,
-            ],
-            'value' => [
-                'type' => 'VARCHAR',
-                'constraint' => '500',
-                'null' => TRUE,
-            ],
-        ];
+                    'setting' => [
+                                  'type'       => 'VARCHAR',
+                                  'constraint' => '70',
+                                  'null'       => TRUE,
+                                 ],
+                    'value'   => [
+                                  'type'       => 'VARCHAR',
+                                  'constraint' => '500',
+                                  'null'       => TRUE,
+                                 ],
+                   ];
         $this->dbforge->add_field($fields2);
         $this->dbforge->create_table('mod_stats_settings');
 
         // збереження URL сторінок
         $attendanceFields = [
-            'id' => [
-                'type' => 'INT',
-                'auto_increment' => TRUE
-            ],
-            'id_user' => [
-                'type' => 'int',
-                'constraint' => '5',
-                'null' => FALSE,
-            ],
-            'type_id' => [
-                'type' => 'int',
-                'constraint' => '2',
-                'null' => FALSE,
-            ],
-            'id_entity' => [
-                'type' => 'int',
-                'constraint' => '6',
-                'null' => FALSE,
-            ],
-            'time_add ' => [
-                'type' => 'int',
-                'constraint' => '11',
-                'null' => FALSE,
-            ],
-        ];
+                             'id'        => [
+                                             'type'           => 'INT',
+                                             'auto_increment' => TRUE,
+                                            ],
+                             'id_user'   => [
+                                             'type'       => 'int',
+                                             'constraint' => '5',
+                                             'null'       => FALSE,
+                                            ],
+                             'type_id'   => [
+                                             'type'       => 'int',
+                                             'constraint' => '2',
+                                             'null'       => FALSE,
+                                            ],
+                             'id_entity' => [
+                                             'type'       => 'int',
+                                             'constraint' => '6',
+                                             'null'       => FALSE,
+                                            ],
+                             'time_add ' => [
+                                             'type'       => 'int',
+                                             'constraint' => '11',
+                                             'null'       => FALSE,
+                                            ],
+                            ];
         $this->dbforge->add_field($attendanceFields);
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->create_table('mod_stats_attendance');
 
         // збереження URL сторінок
         $robotsAttendanceFields = [
-            'id' => [
-                'type' => 'INT',
-                'auto_increment' => TRUE
-            ],
-            'id_robot' => [
-                'type' => 'int',
-                'constraint' => '5',
-                'null' => FALSE,
-            ],
-            'type_id' => [
-                'type' => 'int',
-                'constraint' => '2',
-                'null' => FALSE,
-            ],
-            'id_entity' => [
-                'type' => 'int',
-                'constraint' => '6',
-                'null' => FALSE,
-            ],
-            'time_add ' => [
-                'type' => 'int',
-                'constraint' => '11',
-                'null' => FALSE,
-            ],
-        ];
+                                   'id'        => [
+                                                   'type'           => 'INT',
+                                                   'auto_increment' => TRUE,
+                                                  ],
+                                   'id_robot'  => [
+                                                   'type'       => 'int',
+                                                   'constraint' => '5',
+                                                   'null'       => FALSE,
+                                                  ],
+                                   'type_id'   => [
+                                                   'type'       => 'int',
+                                                   'constraint' => '2',
+                                                   'null'       => FALSE,
+                                                  ],
+                                   'id_entity' => [
+                                                   'type'       => 'int',
+                                                   'constraint' => '6',
+                                                   'null'       => FALSE,
+                                                  ],
+                                   'time_add ' => [
+                                                   'type'       => 'int',
+                                                   'constraint' => '11',
+                                                   'null'       => FALSE,
+                                                  ],
+                                  ];
 
         $this->dbforge->add_field($robotsAttendanceFields);
         $this->dbforge->add_key('id', TRUE);
@@ -295,9 +282,9 @@ class Stats_model extends CI_Model
         $this->db->update(
             'components',
             [
-            'enabled' => 1,
-            'autoload' => 1
-                ]
+             'enabled'  => 1,
+             'autoload' => 1,
+            ]
         );
     }
 

@@ -191,7 +191,7 @@ class Admin extends BaseAdminController
 
         $this->load->library('form_validation');
 
-        $this->form_validation->set_rules('user_name', lang('Author', 'admin'), 'required|trim|min_length[2]|alpha_dash');
+        $this->form_validation->set_rules('user_name', lang('Author', 'admin'), 'required|trim|min_length[2]');
         $this->form_validation->set_rules('user_mail', lang('Email', 'admin'), 'required|trim|valid_email');
         $this->form_validation->set_rules('text', lang('Contents', 'comments'), 'required|trim');
 

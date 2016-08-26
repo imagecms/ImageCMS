@@ -1,5 +1,7 @@
 <?php
 
+use CMSFactory\assetManager;
+
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
@@ -18,29 +20,32 @@ class Admin extends BaseAdminController
         $this->load->library('DX_Auth');
         $lang = new MY_Lang();
         $lang->load('mailer');
-        //cp_check_perm('module_admin');
     }
 
+    /**
+     * @TODO: Переписать на ассет менеджер
+     */
     public function index() {
-        // Get all user groups
         $roles = $this->db->get('shop_rbac_roles')->result_array();
-        $this->template->assign('roles', $roles);
 
-        // Get admin email
-        $this->db->select('email');
-        $this->db->where('id', $this->dx_auth->get_user_id());
-        $query = $this->db->get('users', 1)->row_array();
-        $this->template->assign('admin_mail', $query['email']);
-
-        // Get site name
-        $this->template->assign('site_settings', $this->cms_base->get_settings());
-
+        /** @var CI_DB_result $query */
         $query = $this->db->get('mail');
-        $row = $query->result_array();
-        $this->template->assign('all', $row);
+
+        $all_subscribers = $query->num_rows() > 0 ? $query->result_array() : [];
+
+        assetManager::create()
+            ->setData(
+                [
+                 'roles'         => $roles,
+                 'admin_mail'    => $this->dx_auth->get_user_email(),
+                 'all'           => $all_subscribers,
+                 'site_settings' => $this->cms_base->get_settings(),
+                ]
+            );
 
         if (!$this->ajaxRequest) {
-            $this->display_tpl('form');
+            assetManager::create()
+                ->renderAdmin('form', true);
         }
     }
 
@@ -123,15 +128,6 @@ class Admin extends BaseAdminController
         } else {
             showMessage(lang('There is not ID', 'mailer'), '', 'r');
         }
-    }
-
-    /**
-     * Display template file
-     * @param string $file
-     */
-    private function display_tpl($file = '') {
-        $file = realpath(__DIR__) . '/templates/admin/' . $file;
-        $this->template->show('file:' . $file);
     }
 
 }

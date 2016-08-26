@@ -7,7 +7,8 @@
  * WishList Module Admin
  * @property wishlist_model $wishlist_model
  */
-class Admin extends BaseAdminController {
+class Admin extends BaseAdminController
+{
 
     public function __construct() {
         parent::__construct();
@@ -43,8 +44,8 @@ class Admin extends BaseAdminController {
     public function update_settings() {
         if ($this->input->post()) {
             $this->wishlist_model->setSettings($this->input->post('settings'));
-            $this->lib_admin->log(lang("Wishlists settings was edited", "wishlist"));
-            showMessage(lang("Wishlists settings was edited", "wishlist"));
+            $this->lib_admin->log(lang('Wishlists settings was edited', 'wishlist'));
+            showMessage(lang('Wishlists settings was edited', 'wishlist'));
         }
     }
 
@@ -109,12 +110,12 @@ class Admin extends BaseAdminController {
         $wishlist = new \wishlist\classes\ParentWishlist();
         $wishlist->deleteWL($wish_list_id);
 
-        $this->lib_admin->log(lang("Wish list deleted.", "wishlist") . ' ID: ' . $wish_list_id);
+        $this->lib_admin->log(lang('Wish list deleted.', 'wishlist') . ' ID: ' . $wish_list_id);
         if (!strstr($this->uri->uri_string(), 'editWL')) {
             $user_id = $this->session->userdata('admin_edit_user_id');
             redirect('/admin/components/cp/wishlist/userWL/' . $user_id . '#lists');
         } else {
-            redirect($this->input->server('HTTP_REFERER') . "#lists");
+            redirect($this->input->server('HTTP_REFERER') . '#lists');
         }
     }
 
@@ -125,7 +126,7 @@ class Admin extends BaseAdminController {
         $wishlist = new \wishlist\classes\BaseWishlist();
         $wishlist->updateWL();
 
-        $this->lib_admin->log(lang("User wish list edited.", "wishlist"));
+        $this->lib_admin->log(lang('User wish list edited.', 'wishlist'));
         showMessage(lang('Changes have been saved', 'wishlist'));
     }
 
@@ -179,7 +180,7 @@ class Admin extends BaseAdminController {
         $wish_lists = $this->wishlist_model->getWishLists($user_id);
         $data = ['wish_lists' => $wish_lists];
 
-        $variant = SProductVariantsQuery::create()->findOneById($varId);
+        $variant = SProductVariantsQuery::create()->setComment(__METHOD__)->findOneById($varId);
         $fullName = $variant->getSProducts()->getName() . " ({$variant->getName()})";
 
         return \CMSFactory\assetManager::create()
@@ -204,7 +205,7 @@ class Admin extends BaseAdminController {
         $wishlist = new \wishlist\classes\BaseWishlist();
         $wishlist->deleteItem($varId, $wish_list_id);
 
-        $this->lib_admin->log(lang("Product was deleted from wish list.", "wishlist") . ' ID: ' . $varId);
+        $this->lib_admin->log(lang('Product was deleted from wish list.', 'wishlist') . ' ID: ' . $varId);
         redirect($this->input->server('HTTP_REFERER') . '#lists');
     }
 
@@ -219,7 +220,7 @@ class Admin extends BaseAdminController {
         $wishlist->moveItem($varId, $wish_list_id);
         $user_id = $this->session->userdata('admin_edit_user_id');
 
-        $this->lib_admin->log(lang("Wish list product moved to another wish list.", "wishlist"));
+        $this->lib_admin->log(lang('Wish list product moved to another wish list.', 'wishlist'));
         redirect('/admin/components/cp/wishlist/userWL/' . $user_id . '#lists');
     }
 
@@ -238,7 +239,7 @@ class Admin extends BaseAdminController {
             $this->wishlist_model->delUser($id);
         }
 
-        $this->lib_admin->log(lang("Wishlists was removed", "wishlist") . '. Ids users: ' . implode(', ', $this->input->post('ids')));
+        $this->lib_admin->log(lang('Wishlists was removed', 'wishlist') . '. Ids users: ' . implode(', ', $this->input->post('ids')));
     }
 
 }

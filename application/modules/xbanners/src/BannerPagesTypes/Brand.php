@@ -24,9 +24,9 @@ class Brand extends BasePageType
         $data = [];
         foreach ($brands as $brand) {
             $data[$brand->getId()] = [
-                'id' => $brand->getId(),
-                'name' => $brand->getName(),
-            ];
+                                      'id'   => $brand->getId(),
+                                      'name' => $brand->getName(),
+                                     ];
         }
 
         return $data;

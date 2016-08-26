@@ -1,4 +1,4 @@
-<h2><?php echo lang('License Agreement', 'install')?></h2>
+<h2><?php echo lang('License Agreement', 'install'); ?></h2>
 <p>
 <style>
     
@@ -84,7 +84,7 @@
 
 <br />
 <br />
-<a href="<?php echo $next_link ?>" class="btn btn-primary"><i class="icon-ok icon-white"></i><?php echo lang('Accept license', 'install')?>
+<a href="<?php echo $next_link; ?>" class="btn btn-primary"><i class="icon-ok icon-white"></i><?php echo lang('Accept license', 'install'); ?>
 </a>
-<a href="http://www.imagecms.net/" class="btn btn-danger"><i class="icon-ban-circle icon-white"></i><?php echo lang('Cancel', 'install')?></a>
+<a href="http://www.imagecms.net/" class="btn btn-danger"><i class="icon-ban-circle icon-white"></i><?php echo lang('Cancel', 'install'); ?></a>
 </p>

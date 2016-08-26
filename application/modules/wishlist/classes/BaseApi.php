@@ -264,10 +264,10 @@ class BaseApi extends ParentWishlist
         }
 
         $data = [
-            'access' => $this->input->post('access'),
-            'description' => $wlDescription,
-            'title' => $title,
-        ];
+                 'access'      => $this->input->post('access'),
+                 'description' => $wlDescription,
+                 'title'       => $title,
+                ];
 
         parent::updateWL($id, $data, $desc);
     }

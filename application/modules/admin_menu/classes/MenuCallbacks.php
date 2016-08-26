@@ -37,7 +37,7 @@ class MenuCallbacks
     public function getNewOrdersCount(array $data = []) {
 
         if (SHOP_INSTALLED) {
-            $orders_count = count($data) ? array_shift($data) : \SOrdersQuery::create()->filterByStatus(1)->count();
+            $orders_count = count($data) ? array_shift($data) : \SOrdersQuery::create()->setComment(__METHOD__)->filterByStatus(1)->count();
 
             if ($orders_count) {
                 return '<span class="menu-counter">' . $orders_count . '</span>';
@@ -57,8 +57,8 @@ class MenuCallbacks
             if (count($data)) {
                 $newCallbacksCount = array_shift($data);
             } else {
-                $newStatus = \SCallbackStatusesQuery::create()->filterByIsDefault(TRUE)->findOne();
-                $newCallbacksCount = $newStatus ? SCallbacksQuery::create()->filterByStatusId($newStatus->getId())->count() : 0;
+                $newStatus = \SCallbackStatusesQuery::create()->setComment(__METHOD__)->filterByIsDefault(TRUE)->findOne();
+                $newCallbacksCount = $newStatus ? SCallbacksQuery::create()->setComment(__METHOD__)->filterByStatusId($newStatus->getId())->count() : 0;
             }
             return $newCallbacksCount ? '<span class="menu-counter">' . $newCallbacksCount . '</span>' : '';
         }
@@ -76,8 +76,8 @@ class MenuCallbacks
             if (count($data)) {
                 $newNotificationsCount = array_shift($data);
             } else {
-                $newStatus = SNotificationStatusesQuery::create()->orderById()->findOne();
-                $newNotificationsCount = $newStatus ? SNotificationsQuery::create()->filterByStatus($newStatus->getId())->count() : 0;
+                $newStatus = SNotificationStatusesQuery::create()->setComment(__METHOD__)->orderById()->findOne();
+                $newNotificationsCount = $newStatus ? SNotificationsQuery::create()->setComment(__METHOD__)->filterByStatus($newStatus->getId())->count() : 0;
             }
             return $newNotificationsCount ? '<span class="menu-counter">' . $newNotificationsCount . '</span>' : '';
         }

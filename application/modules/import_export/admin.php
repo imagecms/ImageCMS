@@ -120,7 +120,7 @@ class Admin extends BaseAdminController
                     ->renderAdmin('import');
         }
         if ($check == 'export') {
-            $customFields = SPropertiesQuery::create()->orderByPosition()->find();
+            $customFields = SPropertiesQuery::create()->setComment(__METHOD__)->orderByPosition()->find();
             $cFieldsTemp = $customFields->toArray();
             $cFields = [];
             foreach ($cFieldsTemp as $f) {

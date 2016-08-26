@@ -12,7 +12,7 @@ if (!function_exists('page_tags')) {
 
         if ($query->num_rows() > 0) {
             // get page tags
-            $tags = array();
+            $tags = [];
 
             foreach ($query->result_array() as $key) {
                 $tags[] = $key['tag_id'];

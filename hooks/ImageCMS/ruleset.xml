@@ -22,7 +22,7 @@
     <exclude-pattern>*/admin_menu/assets/js/*</exclude-pattern>
     <exclude-pattern>*/admin_menu/menus/*</exclude-pattern>
     <exclude-pattern>index.php</exclude-pattern>
-
+    
     <arg name="extensions" value="php"/>
     <arg name="encoding" value="utf-8"/>
     <arg name="generator" value="text"/>
@@ -101,6 +101,11 @@
     <rule ref="PSR2.ControlStructures.ElseIfDeclaration"/>
     <rule ref="PSR2.Namespaces.NamespaceDeclaration"/>
     <rule ref="Squiz.Arrays"/>
+    <rule ref="Squiz.Functions.FunctionDeclarationArgumentSpacing">
+        <properties>
+            <property name="equalsSpacing" value="1"/>
+        </properties>
+    </rule>
     <rule ref="Squiz.PHP.DisallowObEndFlush"/>
     <rule ref="Squiz.PHP.DisallowSizeFunctionsInLoops"/>
     <rule ref="Squiz.PHP.EmbeddedPhp"/>

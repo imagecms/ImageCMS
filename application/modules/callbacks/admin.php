@@ -9,6 +9,7 @@ use Propel\Runtime\Exception\PropelException;
 /**
  * Image CMS
  * Sample Module Admin
+ * @property Cms_admin $cms_admin
  */
 class Admin extends BaseAdminController
 {
@@ -90,12 +91,12 @@ class Admin extends BaseAdminController
             ->offset((int) $offset)
             ->find();
 
-        $callbackStatuses = SCallbackStatusesQuery::create()->joinWithI18n(MY_Controller::defaultLocale(), Criteria::RIGHT_JOIN)
+        $callbackStatuses = SCallbackStatusesQuery::create()->setComment(__METHOD__)->joinWithI18n(MY_Controller::defaultLocale(), Criteria::RIGHT_JOIN)
             ->where('SCallbackStatusesI18n.Locale = "' . MY_Controller::defaultLocale() . '"')
             ->orderBy('IsDefault', Criteria::DESC)
             ->orderById()
             ->find();
-        $callbackThemes = SCallbackThemesQuery::create()->joinWithI18n(MY_Controller::defaultLocale(), Criteria::JOIN)->orderByPosition()->find();
+        $callbackThemes = SCallbackThemesQuery::create()->setComment(__METHOD__)->joinWithI18n(MY_Controller::defaultLocale(), Criteria::JOIN)->orderByPosition()->find();
 
         // Create pagination
         $pagination = $this->initPagination($totalCallbacks);
@@ -112,7 +113,7 @@ class Admin extends BaseAdminController
      * @throws PropelException
      */
     public function update($callbackId = null) {
-        $model = SCallbacksQuery::create()->findPk((int) $callbackId);
+        $model = SCallbacksQuery::create()->setComment(__METHOD__)->findPk((int) $callbackId);
 
         $paginationBrand = $this->session->userdata('callback_url');
         $paginationBrand = $paginationBrand ?: null;
@@ -133,8 +134,8 @@ class Admin extends BaseAdminController
                 }
                 $model->save();
 
-                $this->lib_admin->log(lang('Callback edited', 'admin') . '. Id: ' . $callbackId);
-                showMessage(lang('Changes have been saved', 'admin'));
+                $this->lib_admin->log(lang('Callback edited', 'callbacks') . '. Id: ' . $callbackId);
+                showMessage(lang('Changes have been saved', 'callbacks'));
 
                 if ($this->input->post('action') == 'close') {
                     $redirect_url = '/admin/components/run/callbacks'. $paginationBrand;
@@ -205,9 +206,8 @@ class Admin extends BaseAdminController
                 $model->fromArray($postData);
                 $model->save();
 
-                $last_status_id = $this->db->order_by('id', 'desc')->get('shop_callbacks_statuses')->row()->id;
-                $this->lib_admin->log(lang('Status callback created', 'admin') . '. Id: ' . $last_status_id);
-                showMessage(lang('Position created', 'admin'));
+                $this->lib_admin->log(lang('Status callback created', 'callbacks') . '. Id: ' . $model->getId());
+                showMessage(lang('Position created', 'callbacks'));
 
                 if ($postData['action'] == 'new') {
                     $redirect_url = '/admin/components/run/callbacks/updateStatus/' . $model->getId();
@@ -236,10 +236,10 @@ class Admin extends BaseAdminController
     public function updateStatus($statusId = null, $locale = null) {
         $locale = $locale ?: self::defaultLocale();
 
-        $model = SCallbackStatusesQuery::create()->findPk((int) $statusId);
+        $model = SCallbackStatusesQuery::create()->setComment(__METHOD__)->findPk((int) $statusId);
 
         if ($model === null) {
-            showMessage(lang('Such status does not exist', 'admin'), '404', 'r');
+            showMessage(lang('Such status does not exist', 'callbacks'), '404', 'r');
         }
 
         if ($this->input->post()) {
@@ -258,8 +258,8 @@ class Admin extends BaseAdminController
                 $model->fromArray($postData);
                 $model->save();
 
-                $this->lib_admin->log(lang('Status callback edited', 'admin') . '. Id: ' . $statusId);
-                showMessage(lang('Changes have been saved', 'admin'));
+                $this->lib_admin->log(lang('Status callback edited', 'callbacks') . '. Id: ' . $statusId);
+                showMessage(lang('Changes have been saved', 'callbacks'));
 
                 if ($postData['action'] == 'close') {
                     $redirect_url = '/admin/components/run/callbacks/statuses';
@@ -274,8 +274,7 @@ class Admin extends BaseAdminController
             }
         } else {
             $model->setLocale($locale);
-            $languages = ShopCore::$ci->cms_admin->get_langs(true);
-
+            $languages = $this->cms_admin->get_langs(true);
             assetManager::create()->setData(compact('model', 'languages', 'locale'))
                 ->renderAdmin('edit_status');
         }
@@ -283,15 +282,15 @@ class Admin extends BaseAdminController
 
     public function setDefaultStatus() {
         if ($this->input->post('id') && is_numeric($this->input->post('id'))) {
-            $model = SCallbackStatusesQuery::create()->findPk($this->input->post('id'));
+            $model = SCallbackStatusesQuery::create()->setComment(__METHOD__)->findPk($this->input->post('id'));
             if ($model) {
                 if ($model->getIsDefault() == FALSE) {
-                    showMessage(lang('Default status was changed', 'admin'));
+                    showMessage(lang('Default status was changed', 'callbacks'));
                 }
                 $model->setIsDefault(true);
                 $model->save();
 
-                $message = lang('Callback default status changed. New default status ID:', 'admin') . ' ' . $model->getId();
+                $message = lang('Callback default status changed. New default status ID:', 'callbacks') . ' ' . $model->getId();
                 $this->lib_admin->log($message);
             }
         }
@@ -304,19 +303,19 @@ class Admin extends BaseAdminController
         $model = SCallbacksQuery::create()
             ->findPk($callbackId);
 
-        $newStatusId = SCallbackStatusesQuery::create()->joinWithI18n(MY_Controller::defaultLocale())->findOneById((int) $statusId);
+        $newStatusId = SCallbackStatusesQuery::create()->setComment(__METHOD__)->joinWithI18n(MY_Controller::defaultLocale())->findOneById((int) $statusId);
 
         if ($newStatusId && $model) {
             $model->setStatusId($statusId);
             $model->setUserId($this->dx_auth->get_user_id());
             $model->save();
 
-            $message = lang('Callback status changed to', 'admin') . ' ' . $newStatusId->getText() . '. '
-                . lang('Id:', 'admin') . ' '
+            $message = lang('Callback status changed to', 'callbacks') . ' ' . $newStatusId->getText() . '. '
+                . lang('Id:', 'callbacks') . ' '
                 . $callbackId;
             $this->lib_admin->log($message);
 
-            showMessage(lang("Callback's status was changed", 'admin'));
+            showMessage(lang("Callback's status was changed", 'callbacks'));
             pjax('/admin/components/run/callbacks#callbacks_' . $this->input->post('StatusId'));
 
         }
@@ -330,7 +329,7 @@ class Admin extends BaseAdminController
                     ->filterById($id)
                     ->update(['Position' => (int) $pos]);
             }
-            showMessage(lang('Positions saved successfully', 'admin'));
+            showMessage(lang('Positions saved successfully', 'callbacks'));
         }
     }
 
@@ -346,14 +345,14 @@ class Admin extends BaseAdminController
             $model->setUserId($this->dx_auth->get_user_id());
             $model->save();
 
-            $theme = SCallbackThemesI18nQuery::create()->filterById($themeId)->filterByLocale(MY_Controller::defaultLocale())->findOne();
+            $theme = SCallbackThemesI18nQuery::create()->setComment(__METHOD__)->filterById($themeId)->filterByLocale(MY_Controller::defaultLocale())->findOne();
 
-            $message = lang('Callback theme changed to', 'admin') . ' ' . ($theme ? $theme->getText() : lang('Does not have', 'admin')) . '. '
-                . lang('Id:', 'admin') . ' '
+            $message = lang('Callback theme changed to', 'callbacks') . ' ' . ($theme ? $theme->getText() : lang('Does not have', 'callbacks')) . '. '
+                . lang('Id:', 'callbacks') . ' '
                 . $callbackId;
             $this->lib_admin->log($message);
 
-            showMessage(lang('Callback theme is changed', 'admin'));
+            showMessage(lang('Callback theme is changed', 'callbacks'));
         }
     }
 
@@ -366,16 +365,16 @@ class Admin extends BaseAdminController
     public function deleteCallback() {
         $id = $this->input->post('id');
         if (is_numeric($id)) {
-            SCallbacksQuery::create()->findPk($id)->delete();
+            SCallbacksQuery::create()->setComment(__METHOD__)->findPk($id)->delete();
 
-            $this->lib_admin->log(lang('Callback was removed', 'admin') . '. Id: ' . $id);
-            showMessage(lang('Callback was removed', 'admin'));
+            $this->lib_admin->log(lang('Callback was removed', 'callbacks') . '. Id: ' . $id);
+            showMessage(lang('Callback was removed', 'callbacks'));
         }
 
         if (is_array($id)) {
-            SCallbacksQuery::create()->findBy('id', $id)->delete();
-            $this->lib_admin->log(lang('Callback(s) was removed', 'admin') . '. Id: ' . implode(', ', $id));
-            showMessage(lang('Callback(s) was removed', 'admin'));
+            SCallbacksQuery::create()->setComment(__METHOD__)->findBy('id', $id)->delete();
+            $this->lib_admin->log(lang('Callback(s) was removed', 'callbacks') . '. Id: ' . implode(', ', $id));
+            showMessage(lang('Callback(s) was removed', 'callbacks'));
         }
 
         pjax('/admin/components/run/callbacks');
@@ -388,22 +387,22 @@ class Admin extends BaseAdminController
      */
     public function deleteStatus() {
         $id = (int) $this->input->post('id');
-        $model = SCallbackStatusesQuery::create()->findPk($id);
+        $model = SCallbackStatusesQuery::create()->setComment(__METHOD__)->findPk($id);
         $mainStatId = $this->db->where('is_default', '1')->get('shop_callbacks_statuses')->row()->id;
 
         if ($model !== null) {
             if ($model->getIsDefault() == true) {
-                showMessage(lang('Unable to remove default status', 'admin'), lang('Error', 'admin'), 'r');
+                showMessage(lang('Unable to remove default status', 'callbacks'), lang('Error', 'callbacks'), 'r');
                 exit;
             }
             $this->db->where('status_id', $model->getId())
                 ->update('shop_callbacks', ['status_id' => $mainStatId]);
 
             $model->delete();
-            SCallbackStatusesI18nQuery::create()->findById($id)->delete();
+            SCallbackStatusesI18nQuery::create()->setComment(__METHOD__)->findById($id)->delete();
 
-            $this->lib_admin->log(lang('Status callback was removed', 'admin') . '. Id: ' . $id);
-            showMessage(lang('Status was removed', 'admin'));
+            $this->lib_admin->log(lang('Status callback was removed', 'callbacks') . '. Id: ' . $id);
+            showMessage(lang('Status was removed', 'callbacks'));
             pjax('/admin/components/run/callbacks/statuses');
         }
     }
@@ -420,6 +419,7 @@ class Admin extends BaseAdminController
             ->orderById(Criteria::ASC)
             ->find();
         $locale = self::defaultLocale();
+
         assetManager::create()->setData(compact('model', 'locale'))->renderAdmin('themes_list');
     }
 
@@ -440,8 +440,8 @@ class Admin extends BaseAdminController
                 $model->save();
 
                 $last_theme_id = $this->db->order_by('id', 'desc')->get('shop_orders')->row()->id;
-                $this->lib_admin->log(lang('Topic callbacks created', 'admin') . '. Id: ' . $last_theme_id);
-                showMessage(lang('Topic started', 'admin'));
+                $this->lib_admin->log(lang('Topic callbacks created', 'callbacks') . '. Id: ' . $last_theme_id);
+                showMessage(lang('Topic started', 'callbacks'));
 
                 if ($postData['action'] == 'close') {
                     $redirect_url = '/admin/components/run/callbacks/themes';
@@ -468,10 +468,10 @@ class Admin extends BaseAdminController
     public function updateTheme($themeId = null, $locale = null) {
         $locale = $locale ?: self::defaultLocale();
 
-        $model = SCallbackThemesQuery::create()->findPk((int) $themeId);
+        $model = SCallbackThemesQuery::create()->setComment(__METHOD__)->findPk((int) $themeId);
 
         if (!$model) {
-            $this->error404(lang('Error', 'admin'));
+            $this->error404(lang('Error', 'callbacks'));
         }
 
         if ($this->input->post()) {
@@ -486,8 +486,8 @@ class Admin extends BaseAdminController
                 $model->fromArray($postData);
                 $model->save();
 
-                $this->lib_admin->log(lang('Topic callbacks edited', 'admin') . '. Id: ' . $themeId);
-                showMessage(lang('Changes have been saved', 'admin'));
+                $this->lib_admin->log(lang('Topic callbacks edited', 'callbacks') . '. Id: ' . $themeId);
+                showMessage(lang('Changes have been saved', 'callbacks'));
 
                 if ($postData['action'] == 'close') {
                     $redirect_url = '/admin/components/run/callbacks/themes';
@@ -501,7 +501,7 @@ class Admin extends BaseAdminController
             }
         } else {
             $model->setLocale($locale);
-            $languages = ShopCore::$ci->cms_admin->get_langs(true);
+            $languages = $this->cms_admin->get_langs(true);
 
             assetManager::create()
                 ->setData(compact('model', 'languages', 'locale'))
@@ -517,15 +517,15 @@ class Admin extends BaseAdminController
      */
     public function deleteTheme() {
         $id = (int) $this->input->post('id');
-        $model = SCallbackThemesQuery::create()->findPk($id);
+        $model = SCallbackThemesQuery::create()->setComment(__METHOD__)->findPk($id);
 
         if ($model !== null) {
             $this->db
                 ->where('status_id', $model->getId())
                 ->update('shop_callbacks', ['theme_id' => '0']);
             $model->delete();
-            $this->lib_admin->log(lang('Topic callbacks deleted', 'admin') . '. Id: ' . $id);
-            showMessage(lang('Topic deleted', 'admin'));
+            $this->lib_admin->log(lang('Topic callbacks deleted', 'callbacks') . '. Id: ' . $id);
+            showMessage(lang('Topic deleted', 'callbacks'));
             pjax('/admin/components/run/callbacks/themes');
         }
     }
@@ -543,8 +543,8 @@ class Admin extends BaseAdminController
         $config['full_tag_close'] = '</ul></div>';
         $config['controls_tag_open'] = '<div class="pagination pull-right"><ul>';
         $config['controls_tag_close'] = '</ul></div>';
-        $config['next_link'] = lang('Next', 'admin') . '&nbsp;&gt;';
-        $config['prev_link'] = '&lt;&nbsp;' . lang('Prev', 'admin');
+        $config['next_link'] = lang('Next', 'callbacks') . '&nbsp;&gt;';
+        $config['prev_link'] = '&lt;&nbsp;' . lang('Prev', 'callbacks');
         $config['cur_tag_open'] = '<li class="btn-primary active"><span>';
         $config['cur_tag_close'] = '</span></li>';
         $config['prev_tag_open'] = '<li>';

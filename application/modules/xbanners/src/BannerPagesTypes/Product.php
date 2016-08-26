@@ -25,9 +25,9 @@ class Product extends BasePageType
         $data = [];
         foreach ($products as $product) {
             $data[$product->getId()] = [
-                'id' => $product->getId(),
-                'name' => $product->getName(),
-            ];
+                                        'id'   => $product->getId(),
+                                        'name' => $product->getName(),
+                                       ];
         }
 
         return $data;

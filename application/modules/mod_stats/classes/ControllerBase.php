@@ -59,9 +59,9 @@ abstract class ControllerBase
                 $key = str_pad($item['name'], $c);
             }
             $chartData[] = [
-                'key' => $key,
-                'y' => (int) $item['count']
-            ];
+                            'key' => $key,
+                            'y'   => (int) $item['count'],
+                           ];
         }
         if ($chartData) {
             return $chartData;
@@ -79,9 +79,9 @@ abstract class ControllerBase
         $finalStruct = [];
         foreach ($array as $key => $values) {
             $temp = [
-                'key' => $labels[$key]['label'],
-                'values' => $values,
-            ];
+                     'key'    => $labels[$key]['label'],
+                     'values' => $values,
+                    ];
             isset($labels[$key]['bar']) ? $temp['bar'] = 'TRUE' : NULL;
             $finalStruct[] = $temp;
         }
@@ -96,15 +96,19 @@ abstract class ControllerBase
      * @return array
      */
     public static function prepareDataForLineMultChart($array = null, $labels = null) {
-        $colors = ['red', 'green', 'blue'];
+        $colors = [
+                   'red',
+                   'green',
+                   'blue',
+                  ];
         $finalStruct = [];
         $i = 0;
         foreach ($array as $key => $values) {
             $temp = [
-                'color' => $colors[$i],
-                'key' => $labels[$key]['label'],
-                'values' => $values,
-            ];
+                     'color'  => $colors[$i],
+                     'key'    => $labels[$key]['label'],
+                     'values' => $values,
+                    ];
             if ($i < (count($colors) + 1)) {
 
                 $i++;

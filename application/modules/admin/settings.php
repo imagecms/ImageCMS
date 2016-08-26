@@ -103,13 +103,62 @@ class Settings extends BaseAdminController
         //++++++++++++++++++++
         // Load modules list
         $notAvailableModules = [
-            'mainsaas', 'saas', 'translator', 'auth', 'user_manager', 'comments', 'navigation', 'tags', 'rss', 'menu', 'sitemap', 'search', 'template_editor',
-            'filter', 'cfcm', 'sample_mail', 'mailer', 'share', 'banners', 'new_level', 'shop_news', 'categories_settings', 'exchange', 'cmsemail', 'mod_stats',
-            'mod_seo', 'mod_discount', 'smart_filter', 'mobile', 'trash', 'language_switch', 'star_rating', 'imagebox', 'sample_module', 'template_manager',
-            'payment_method_2checkout', 'payment_method_oschadbank', 'payment_method_robokassa', 'payment_method_webmoney', 'payment_method_paypal',
-            'payment_method_liqpay', 'payment_method_privat24', 'payment_method_sberbank', 'payment_method_qiwi', 'payment_method_interkassa',
-            'import_export', 'admin_menu', 'related_products', 'ymarket', 'xbanners', 'moy_sklad','custom_scripts','ga_dashboard', 'seo_snippets', 'payment_method_yakassa'
-        ];
+                                'mainsaas',
+                                'saas',
+                                'translator',
+                                'auth',
+                                'user_manager',
+                                'comments',
+                                'navigation',
+                                'tags',
+                                'rss',
+                                'menu',
+                                'sitemap',
+                                'search',
+                                'template_editor',
+                                'filter',
+                                'cfcm',
+                                'sample_mail',
+                                'mailer',
+                                'share',
+                                'banners',
+                                'new_level',
+                                'shop_news',
+                                'categories_settings',
+                                'exchange',
+                                'cmsemail',
+                                'mod_stats',
+                                'mod_seo',
+                                'mod_discount',
+                                'smart_filter',
+                                'mobile',
+                                'trash',
+                                'language_switch',
+                                'star_rating',
+                                'imagebox',
+                                'sample_module',
+                                'template_manager',
+                                'payment_method_2checkout',
+                                'payment_method_oschadbank',
+                                'payment_method_robokassa',
+                                'payment_method_webmoney',
+                                'payment_method_paypal',
+                                'payment_method_liqpay',
+                                'payment_method_privat24',
+                                'payment_method_sberbank',
+                                'payment_method_qiwi',
+                                'payment_method_interkassa',
+                                'import_export',
+                                'admin_menu',
+                                'related_products',
+                                'ymarket',
+                                'xbanners',
+                                'moy_sklad',
+                                'custom_scripts',
+                                'ga_dashboard',
+                                'seo_snippets',
+                                'payment_method_yakassa',
+                               ];
         $this->template->assign('modules', $this->db->where_not_in('name', $notAvailableModules)->get('components')->result_array());
 
         $this->template->show('settings_site', FALSE);
@@ -209,9 +258,9 @@ class Settings extends BaseAdminController
         switch ($this->input->post('main_type')) {
             case 'category':
                 $data = [
-                    'main_type' => 'category',
-                    'main_page_cat' => $this->input->post('main_page_cat'),
-                ];
+                         'main_type'     => 'category',
+                         'main_page_cat' => $this->input->post('main_page_cat'),
+                        ];
 
                 $this->cms_admin->save_settings($data);
                 break;
@@ -219,9 +268,9 @@ class Settings extends BaseAdminController
             case 'page':
                 if ($this->cms_admin->page_exists($this->input->post('main_page_pid'))) {
                     $data = [
-                        'main_type' => 'page',
-                        'main_page_id' => $this->input->post('main_page_pid')
-                    ];
+                             'main_type'    => 'page',
+                             'main_page_id' => $this->input->post('main_page_pid'),
+                            ];
 
                     $this->cms_admin->save_settings($data);
                 } else {
@@ -232,9 +281,9 @@ class Settings extends BaseAdminController
 
             case 'module':
                 $data = [
-                    'main_type' => 'module',
-                    'main_page_module' => $this->input->post('main_page_module'),
-                ];
+                         'main_type'        => 'module',
+                         'main_page_module' => $this->input->post('main_page_module'),
+                        ];
                 $this->cms_admin->save_settings($data);
                 break;
         }
@@ -242,30 +291,30 @@ class Settings extends BaseAdminController
         $this->processSiteInfo();
 
         $data_m = [
-            'create_keywords' => $this->input->post('create_keywords'),
-            'create_description' => $this->input->post('create_description'),
-            'create_cat_keywords' => $this->input->post('create_cat_keywords'),
-            'create_cat_description' => $this->input->post('create_cat_description'),
-            'add_site_name' => $this->input->post('add_site_name'),
-            'add_site_name_to_cat' => $this->input->post('add_site_name_to_cat'),
-            'delimiter' => $this->input->post('delimiter'),
-            'cat_list' => $this->input->post('cat_list'),
-            'editor_theme' => $this->input->post('editor_theme'),
-            'site_offline' => $this->input->post('site_offline'),
-            'google_analytics_id' => $this->input->post('google_analytics_id'),
-            'google_webmaster' => $this->input->post('google_webmaster'),
-            'yandex_webmaster' => $this->input->post('yandex_webmaster'),
-            'yandex_metric' => $this->input->post('yandex_metric'),
-            'site_template' => $this->input->post('template'),
-            'lang_sel' => $this->input->post('lang_sel'),
-            'text_editor' => $this->input->post('text_editor'),
-            'robots_status' => (int) $this->input->post('robots_status'),
-            'robots_settings_status' => (int) $this->input->post('robots_settings_status'),
-            'robots_settings' => $this->input->post('robots_settings'),
-            'google_analytics_ee' => $this->input->post('google_analytics_ee') == 'on' ? 1 : 0,
-            'www_redirect' => $this->input->post('www_redirect'),
-            'users_registration_role_id' => $this->input->post('users_registration_role_id'),
-        ];
+                   'create_keywords'            => $this->input->post('create_keywords'),
+                   'create_description'         => $this->input->post('create_description'),
+                   'create_cat_keywords'        => $this->input->post('create_cat_keywords'),
+                   'create_cat_description'     => $this->input->post('create_cat_description'),
+                   'add_site_name'              => $this->input->post('add_site_name'),
+                   'add_site_name_to_cat'       => $this->input->post('add_site_name_to_cat'),
+                   'delimiter'                  => $this->input->post('delimiter'),
+                   'cat_list'                   => $this->input->post('cat_list'),
+                   'editor_theme'               => $this->input->post('editor_theme'),
+                   'site_offline'               => $this->input->post('site_offline'),
+                   'google_analytics_id'        => $this->input->post('google_analytics_id'),
+                   'google_webmaster'           => $this->input->post('google_webmaster'),
+                   'yandex_webmaster'           => $this->input->post('yandex_webmaster'),
+                   'yandex_metric'              => $this->input->post('yandex_metric'),
+                   'site_template'              => $this->input->post('template'),
+                   'lang_sel'                   => $this->input->post('lang_sel'),
+                   'text_editor'                => $this->input->post('text_editor'),
+                   'robots_status'              => (int) $this->input->post('robots_status'),
+                   'robots_settings_status'     => (int) $this->input->post('robots_settings_status'),
+                   'robots_settings'            => $this->input->post('robots_settings'),
+                   'google_analytics_ee'        => $this->input->post('google_analytics_ee') == 'on' ? 1 : 0,
+                   'www_redirect'               => $this->input->post('www_redirect'),
+                   'users_registration_role_id' => $this->input->post('users_registration_role_id'),
+                  ];
 
         /** Save template path for shop * */
         if ($this->db->table_exists('shop_settings')) {

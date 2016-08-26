@@ -60,10 +60,10 @@ class Products_model extends \CI_Model
             }
 
             $brandsInfo[] = [
-                'id' => $id,
-                'name' => $name,
-                'count' => $uniqueProducts === FALSE ? $countAll : $countUnique,
-            ];
+                             'id'    => $id,
+                             'name'  => $name,
+                             'count' => $uniqueProducts === FALSE ? $countAll : $countUnique,
+                            ];
         }
 
         foreach ($brandsInfo as $key => $row) {
@@ -117,9 +117,9 @@ class Products_model extends \CI_Model
             foreach ($categories as $num => $categoryInfo) {
                 if ($categoryInfo['id'] == $categoryId) {
                     $categoriesCountNew[] = [
-                        'name' => $categoryInfo['name'],
-                        'count' => $count
-                    ];
+                                             'name'  => $categoryInfo['name'],
+                                             'count' => $count,
+                                            ];
                     unset($categories[$num]);
                     break;
                 }
@@ -150,10 +150,10 @@ class Products_model extends \CI_Model
                 $path = $path_;
             }
             $categories[] = [
-                'id' => $row['id'],
-                'parent_id' => $row['parent_id'],
-                'name' => $row['name'],
-            ];
+                             'id'        => $row['id'],
+                             'parent_id' => $row['parent_id'],
+                             'name'      => $row['name'],
+                            ];
         }
 
         return $categories;

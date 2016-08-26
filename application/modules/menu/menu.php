@@ -20,16 +20,16 @@ class Menu extends MY_Controller
      * @var array
      */
     private $tpl_file_names = [
-        'container' => 'container',
-        'item_default' => 'item_default',
-        'item_default_active' => 'item_default_active',
-        'item_first' => 'item_first',
-        'item_first_active' => 'item_first_active',
-        'item_last' => 'item_last',
-        'item_last_active' => 'item_last_active',
-        'item_one' => 'item_one',
-        'item_one_active' => 'item_one_active',
-    ];
+                               'container'           => 'container',
+                               'item_default'        => 'item_default',
+                               'item_default_active' => 'item_default_active',
+                               'item_first'          => 'item_first',
+                               'item_first_active'   => 'item_first_active',
+                               'item_last'           => 'item_last',
+                               'item_last_active'    => 'item_last_active',
+                               'item_one'            => 'item_one',
+                               'item_one_active'     => 'item_one_active',
+                              ];
 
     /*     * ***** То что ниже редактируйте осторожно, вдумчиво :) *********** */
     private $current_uri = '';
@@ -132,10 +132,10 @@ class Menu extends MY_Controller
 
         if ($this->errors) {
             $data = [
-                'menu' => $menu,
-                'errors' => array_unique($this->errors),
-                'tpl_folder' => $this->tpl_folder,
-            ];
+                     'menu'       => $menu,
+                     'errors'     => array_unique($this->errors),
+                     'tpl_folder' => $this->tpl_folder,
+                    ];
             $this->display_tpl('error', $data);
         } else {
             echo $this->arranged_menu_array[-1]['html'];
@@ -302,9 +302,7 @@ class Menu extends MY_Controller
      * @return string|false
      */
     private function _prepare_container_tpl($index = 0, $wrapper = FALSE) {
-        $data = [
-            'wrapper' => $wrapper,
-        ];
+        $data = ['wrapper' => $wrapper];
 
         $tpl_path = $this->_get_real_tpl($index, 'container');
         if ($tpl_path) {
@@ -330,15 +328,15 @@ class Menu extends MY_Controller
         $is_active_hard = $this->arranged_menu_array[$index]['link'] == $this->current_uri ? 1 : 0;
 
         $data = [
-            'id' => $this->arranged_menu_array[$index]['id'],
-            'title' => $this->arranged_menu_array[$index]['title'],
-            'link' => $this->arranged_menu_array[$index]['link'],
-            'image' => $this->arranged_menu_array[$index]['image'],
-            'wrapper' => $wrapper,
-            'target' => $this->arranged_menu_array[$index]['target'],
-            'has_childs' => $this->arranged_menu_array[$index]['has_childs'],
-            'is_active_hard' => $is_active_hard,
-        ];
+                 'id'             => $this->arranged_menu_array[$index]['id'],
+                 'title'          => $this->arranged_menu_array[$index]['title'],
+                 'link'           => $this->arranged_menu_array[$index]['link'],
+                 'image'          => $this->arranged_menu_array[$index]['image'],
+                 'wrapper'        => $wrapper,
+                 'target'         => $this->arranged_menu_array[$index]['target'],
+                 'has_childs'     => $this->arranged_menu_array[$index]['has_childs'],
+                 'is_active_hard' => $is_active_hard,
+                ];
 
         if ($index == -1) {
             $this->arranged_menu_array[$index]['html'] = $wrapper;
@@ -637,9 +635,9 @@ class Menu extends MY_Controller
             }
 
             $data = [
-                'menu_array' => $this->menu_array,
-                'sub_menu_array' => $this->sub_menu_array
-            ];
+                     'menu_array'     => $this->menu_array,
+                     'sub_menu_array' => $this->sub_menu_array,
+                    ];
 
             $this->cache->store($menu_cache_key, $data, FALSE, 'menus');
         }

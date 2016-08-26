@@ -195,13 +195,13 @@ class Forms extends MY_Controller
 
         foreach ($this->fields as $key => $html) {
             $result[$key] = [
-                'label' => $this->label($key, $this->fields[$key]['label']),
-                'field' => $this->$key->renderHtml(),
-                'help_text' => $this->_get_element_help_text($key),
-                'error_text' => $this->_get_inline_error($key),
-                'info' => $this->fields[$key],
-                'name' => $key,
-            ];
+                             'label'      => $this->label($key, $this->fields[$key]['label']),
+                             'field'      => $this->$key->renderHtml(),
+                             'help_text'  => $this->_get_element_help_text($key),
+                             'error_text' => $this->_get_inline_error($key),
+                             'info'       => $this->fields[$key],
+                             'name'       => $key,
+                            ];
         }
 
         //$result['form_errors'] = sprintf($this->config['error_block_html'], $this->_validation_errors());

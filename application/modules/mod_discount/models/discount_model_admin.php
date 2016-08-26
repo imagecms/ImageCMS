@@ -1,5 +1,7 @@
 <?php
 
+use Currency\Currency;
+
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
@@ -53,11 +55,7 @@ class Discount_model_admin extends CI_Model
         }
 
         $active = $discount->active;
-        if ($active == 1) {
-            $active = 0;
-        } else {
-            $active = 1;
-        }
+        $active = $active == 1 ? 0 : 1;
 
         // If updated active succes then return TRUE
         if ($this->db->where('id', $id)->update('mod_shop_discounts', ['active' => $active])) {
@@ -72,27 +70,18 @@ class Discount_model_admin extends CI_Model
      * @return boolean
      */
     public function getMainCurrencySymbol() {
-        $query = $this->db->select('symbol')->where('main', 1)->get('shop_currencies')->row_array();
-
-        if ($query) {
-            return $query['symbol'];
-        } else {
-            return false;
-        }
+        return Currency::create()->getMainCurrency()->getSymbol();
     }
 
     /**
      * Check have any discoun with given key
-     * @return (bool)
+     * @param string $key
+     * @return bool
      */
     public function checkDiscountCode($key) {
         $query = $this->db->where('key', $key)->get('mod_shop_discounts')->row_array();
 
-        if ($query) {
-            return true;
-        } else {
-            return false;
-        }
+        return $query ? true : false;
     }
 
     /**
@@ -100,6 +89,7 @@ class Discount_model_admin extends CI_Model
      * @param string $term
      * @param integer $limit
      * return boolean|array
+     * @return bool
      */
     public function getUsersByIdNameEmail($term, $limit = 7) {
 
@@ -111,11 +101,7 @@ class Discount_model_admin extends CI_Model
             ->get('users')
             ->result_array();
 
-        if ($query) {
-            return $query;
-        } else {
-            return false;
-        }
+        return $query ?: false;
     }
 
     /**
@@ -147,7 +133,7 @@ class Discount_model_admin extends CI_Model
      * @return boolean|array
      */
     public function getProductsByIdNameNumber($term, $limit = 7, $locale = NULL) {
-        $locale = $locale ? $locale : MY_Controller::getCurrentLocale();
+        $locale = $locale ?: MY_Controller::getCurrentLocale();
         $query = $this->db
             ->select('shop_products_i18n.id, shop_products_i18n.name, number, shop_products_i18n.locale')
             ->join('shop_product_variants', 'shop_product_variants.product_id=shop_products_i18n.id')
@@ -526,8 +512,8 @@ class Discount_model_admin extends CI_Model
      */
     public function attributeLabels() {
         return [
-            'value' => ShopCore::t(lang('Value', 'mod_discount')),
-        ];
+                'value' => ShopCore::t(lang('Value', 'mod_discount')),
+               ];
     }
 
     /**
@@ -536,12 +522,12 @@ class Discount_model_admin extends CI_Model
      */
     public function rules() {
         return [
-            [
-                'field' => 'value',
-                'label' => lang('Value', 'mod_discount'),
-                'rules' => 'required|integer',
-            ],
-        ];
+                [
+                 'field' => 'value',
+                 'label' => lang('Value', 'mod_discount'),
+                 'rules' => 'required|integer',
+                ],
+               ];
     }
 
     /**

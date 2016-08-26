@@ -31,8 +31,8 @@ class Admin extends BaseAdminController
             assetManager::create()
                 ->setData(
                     [
-                    'headerScript' => $model->getScript(-1),
-                    'bodyScript' => $model->getScript(1)
+                     'headerScript' => $model->getScript(-1),
+                     'bodyScript'   => $model->getScript(1),
                     ]
                 )
                 ->renderAdmin('main', false);

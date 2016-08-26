@@ -6,7 +6,8 @@
  * Image CMS
  * Module Frame
  */
-class Payment_method_paypal extends MY_Controller {
+class Payment_method_paypal extends MY_Controller
+{
 
     public $paymentMethod;
 
@@ -115,14 +116,14 @@ class Payment_method_paypal extends MY_Controller {
         }
 
         $data = [
-            'marchant' => $marchant,
-            'amount' => strtr($price, [',' => '.']),
-            'currency' => $code,
-            'description' => $descr,
-            'order_id' => $param->id,
-            'server_url' => site_url() . $this->moduleName . '/callback',
-            'result_url' => site_url() . 'shop/order/view/' . $param->getKey(),
-        ];
+                 'marchant'    => $marchant,
+                 'amount'      => strtr($price, [',' => '.']),
+                 'currency'    => $code,
+                 'description' => $descr,
+                 'order_id'    => $param->id,
+                 'server_url'  => site_url() . $this->moduleName . '/callback',
+                 'result_url'  => site_url() . 'shop/order/view/' . $param->getKey(),
+                ];
 
         $codeTpl = \CMSFactory\assetManager::create()
                 ->setData('data', $data)
@@ -156,12 +157,12 @@ class Payment_method_paypal extends MY_Controller {
             show_error($ci->db->_error_message());
         }
 
-        $postdata = "";
+        $postdata = '';
         foreach ($param as $key => $value) {
-            $postdata .= $key . "=" . urlencode($value) . "&";
+            $postdata .= $key . '=' . urlencode($value) . '&';
         }
-        $postdata .= "cmd=_notify-validate";
-        $curl = curl_init("https://www.paypal.com/cgi-bin/webscr"); // https://www.paypal.com/cgi-bin/webscr https://www.sandbox.paypal.com/cgi-bin/webscr
+        $postdata .= 'cmd=_notify-validate';
+        $curl = curl_init('https://www.paypal.com/cgi-bin/webscr'); // https://www.paypal.com/cgi-bin/webscr https://www.sandbox.paypal.com/cgi-bin/webscr
         curl_setopt($curl, CURLOPT_HEADER, 0);
         curl_setopt($curl, CURLOPT_POST, 1);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $postdata);
@@ -171,7 +172,7 @@ class Payment_method_paypal extends MY_Controller {
         $response = curl_exec($curl);
         curl_close($curl);
 
-        if ($response != "VERIFIED") {
+        if ($response != 'VERIFIED') {
             die('wrong sigin');
         } else {
             $this->successPaid($order_id, $userOrder);
@@ -218,7 +219,7 @@ class Payment_method_paypal extends MY_Controller {
             show_error($ci->db->_error_message());
         }
 
-        \CMSFactory\Events::create()->registerEvent(['system' => __CLASS__, 'order_id' => $order_id], "PaimentSystem:successPaid");
+        \CMSFactory\Events::create()->registerEvent(['system' => __CLASS__, 'order_id' => $order_id], 'PaimentSystem:successPaid');
         \CMSFactory\Events::runFactory();
 
         $result = $ci->db
@@ -227,8 +228,8 @@ class Payment_method_paypal extends MY_Controller {
             ->update(
                 'users',
                 [
-                    'amout' => str_replace(',', '.', $amount)
-                    ]
+                 'amout' => str_replace(',', '.', $amount),
+                ]
             );
         if ($ci->db->_error_message()) {
             show_error($ci->db->_error_message());
@@ -256,9 +257,9 @@ class Payment_method_paypal extends MY_Controller {
             ->update(
                 'shop_payment_methods',
                 [
-                    'active' => '0',
-                    'payment_system_name' => '0',
-                    ]
+                 'active'              => '0',
+                 'payment_system_name' => '0',
+                ]
             );
         if ($ci->db->_error_message()) {
             show_error($ci->db->_error_message());

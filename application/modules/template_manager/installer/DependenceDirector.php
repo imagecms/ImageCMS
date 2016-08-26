@@ -7,7 +7,8 @@ namespace template_manager\installer;
  * Module Template_manager
  * class DependenceDirector
  */
-class DependenceDirector {
+class DependenceDirector
+{
 
     /**
      * Status of dependences verify
@@ -38,7 +39,7 @@ class DependenceDirector {
     public function verify($installDemodata = FALSE) {
         foreach ($this->dependicies as $key => $node) {
             $attributes = $node->attributes();
-            $handlerClass = "template_manager\\installer\\" . ucfirst($attributes['entityName']) . 'Dependence';
+            $handlerClass = 'template_manager\\installer\\' . ucfirst($attributes['entityName']) . 'Dependence';
             include_once __DIR__ . DIRECTORY_SEPARATOR . $handlerClass . EXT;
 
             $dependence = new $handlerClass($node);
@@ -52,18 +53,18 @@ class DependenceDirector {
             if (FALSE !== $msgs = $dependence->getMessages()) {
                 foreach ($msgs as $message) {
                     $this->messages[] = [
-                        'text' => $message,
-                        'relation' => $dependence->relation,
-                        'name' => $dependence->name,
-                        'type' => $dependence->type,
-                    ];
+                                         'text'     => $message,
+                                         'relation' => $dependence->relation,
+                                         'name'     => $dependence->name,
+                                         'type'     => $dependence->type,
+                                        ];
                 }
             } elseif ($status == FALSE) {
                 $this->messages[] = [
-                    'relation' => $dependence->relation,
-                    'name' => $dependence->name,
-                    'type' => $dependence->type,
-                ];
+                                     'relation' => $dependence->relation,
+                                     'name'     => $dependence->name,
+                                     'type'     => $dependence->type,
+                                    ];
             }
         }
         return $this->status;

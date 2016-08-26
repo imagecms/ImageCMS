@@ -8,17 +8,18 @@ namespace import_export\classes;
  * @author Kaero
  * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
  */
-class Factor {
+class Factor
+{
 
     /** Message type. */
-    const MessageTypeError = "error";
+    const MessageTypeError = 'error';
 
     /** Message type. */
-    const MessageTypeSuccess = "success";
+    const MessageTypeSuccess = 'success';
 
     /** Import type. */
-    const ImportProducts = "products";
-    const ImportCategories = "categories";
+    const ImportProducts = 'products';
+    const ImportCategories = 'categories';
 
     /** Error messages for Export/Import */
     const ErrorFolderPermission = "Ошибка доступа к целевой папке.<br/>Продолжение невозможно. <a target='_blank' href='http://docs.imagecms.net/administrirovanie-imagecms-shop/nastroiki/import-eksport'>Подробнее</a><br/><br/>Error: EIx004";

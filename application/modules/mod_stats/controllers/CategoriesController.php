@@ -7,7 +7,8 @@
  * @copyright (c) 2014, ImageCMS
  * @package ImageCMSModule
  */
-class CategoriesController extends ControllerBase {
+class CategoriesController extends ControllerBase
+{
 
     protected $params;
 
@@ -16,12 +17,12 @@ class CategoriesController extends ControllerBase {
         $this->controller->load->model('categories_model');
 
         $this->params = [
-            'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
-            'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
-            'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
-            'category_id' => isset($_GET['category_id']) ? $_GET['category_id'] : 0,
-            'includeChilds' => (bool) isset($_GET['include_childs']) ? 1 : 0,
-        ];
+                         'dateFrom'      => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
+                         'dateTo'        => isset($_GET['to']) ? $_GET['to'] : date('Y-m-d'),
+                         'interval'      => isset($_GET['group']) ? $_GET['group'] : 'day',
+                         'category_id'   => isset($_GET['category_id']) ? $_GET['category_id'] : 0,
+                         'includeChilds' => (bool) isset($_GET['include_childs']) ? 1 : 0,
+                        ];
     }
 
     /**
@@ -80,14 +81,14 @@ class CategoriesController extends ControllerBase {
             $oneCategoryAttendanceValues = [];
             foreach ($attendanceData as $attendanceDataDateRow) {
                 $oneCategoryAttendanceValues[] = [
-                    'x' => $attendanceDataDateRow['unix_date'] * 1000,
-                    'y' => $attendanceDataDateRow['users_count'] * 1,
-                ];
+                                                  'x' => $attendanceDataDateRow['unix_date'] * 1000,
+                                                  'y' => $attendanceDataDateRow['users_count'] * 1,
+                                                 ];
             }
             $categoriesAttendance[] = [
-                'key' => $labels[$categoryId],
-                'values' => $oneCategoryAttendanceValues
-            ];
+                                       'key'    => $labels[$categoryId],
+                                       'values' => $oneCategoryAttendanceValues,
+                                      ];
         }
 
         echo json_encode($categoriesAttendance);
@@ -98,8 +99,8 @@ class CategoriesController extends ControllerBase {
      */
     public function getBrandsInCategoriesCharData() {
         $params = [
-            'categoryId' => isset($_GET['ci']) ? $_GET['ci'] : 20,
-        ];
+                   'categoryId' => isset($_GET['ci']) ? $_GET['ci'] : 20,
+                  ];
 
         // Get children categories ids
         $childCategoriesIds = $this->controller->categories_model->getAllChildCategoriesIds($params['categoryId']);

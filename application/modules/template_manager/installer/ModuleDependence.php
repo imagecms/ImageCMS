@@ -7,7 +7,8 @@ namespace template_manager\installer;
  * Module Template_manager
  * class ModuleDependence
  */
-class ModuleDependence extends DependenceBase {
+class ModuleDependence extends DependenceBase
+{
 
     /**
      * Module relation (required, wishful, add)
@@ -53,11 +54,11 @@ class ModuleDependence extends DependenceBase {
     public function verify() {
         $this->getModules();
         switch ($this->relation) {
-            case "required":
+            case 'required':
                 return $this->required();
-            case "wishful":
+            case 'wishful':
                 return $this->wishful();
-            case "add":
+            case 'add':
                 return $this->add();
         }
         return FALSE;
@@ -116,9 +117,9 @@ class ModuleDependence extends DependenceBase {
                 if (method_exists($this->ci->$module, '_install')) {
                     // Make module install
                     $data = [
-                        'name' => $this->name,
-                        'identif' => $this->name
-                    ];
+                             'name'    => $this->name,
+                             'identif' => $this->name,
+                            ];
 
                     $this->ci->db->insert('components', $data);
 

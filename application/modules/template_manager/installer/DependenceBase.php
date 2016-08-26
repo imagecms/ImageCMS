@@ -7,7 +7,8 @@ namespace template_manager\installer;
  * Module Template_manager
  * class DependenceBase
  */
-abstract class DependenceBase {
+abstract class DependenceBase
+{
 
     /**
      * Error messages array

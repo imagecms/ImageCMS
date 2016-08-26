@@ -16,12 +16,12 @@ class Custom_model extends CI_Model
      * @return int
      */
     public function getAllTimeCountUnique() {
-        $query = "
+        $query = '
             SELECT 
                 COUNT(DISTINCT `id_user`) as `count`
             FROM 
                 `mod_stats_attendance`
-        ";
+        ';
 
         return $this->db->query($query)->row()->count;
     }
@@ -31,12 +31,12 @@ class Custom_model extends CI_Model
      * @return int
      */
     public function getAllTimeCountUniqueRobots() {
-        $query = "
+        $query = '
             SELECT 
                 COUNT(DISTINCT `id_robot`) as `count`
             FROM 
                 `mod_stats_attendance_robots`
-        ";
+        ';
 
         return $this->db->query($query)->row()->count;
     }

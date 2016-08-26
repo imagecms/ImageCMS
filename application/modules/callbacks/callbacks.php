@@ -48,7 +48,7 @@ class Callbacks extends MY_Controller
         $message = isset($success) ? $success : $this->session->flashdata('success_message');
 
         assetManager::create()
-            ->setData('themes', SCallbackThemesQuery::create()->joinWithI18n(MY_Controller::getCurrentLocale(), Criteria::INNER_JOIN)->find())
+            ->setData('themes', SCallbackThemesQuery::create()->setComment(__METHOD__)->joinWithI18n(MY_Controller::getCurrentLocale(), Criteria::INNER_JOIN)->find())
             ->setData(['success' => $message])
             ->render('callback');
     }
@@ -75,8 +75,8 @@ class Callbacks extends MY_Controller
             );
         }
 
-        $theme = SCallbackThemesQuery::create()->orderByPosition()->findOne();
-        $status = SCallbackStatusesQuery::create()->filterByIsDefault(TRUE)->findOne();
+        $theme = SCallbackThemesQuery::create()->setComment(__METHOD__)->orderByPosition()->findOne();
+        $status = SCallbackStatusesQuery::create()->setComment(__METHOD__)->filterByIsDefault(TRUE)->findOne();
 
         $model->fromArray($this->input->post());
         $model->setThemeId($theme ? $theme->getId() : 0);

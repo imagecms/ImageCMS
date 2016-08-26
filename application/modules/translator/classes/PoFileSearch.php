@@ -59,10 +59,10 @@ class PoFileSearch
 
     private function __construct() {
         $this->searchedPaths = [
-            'modules' => DOCUMENT_ROOT . '/application/modules',
-            'main' => DOCUMENT_ROOT . '/application/language',
-            'templates' => TEMPLATES_PATH
-        ];
+                                'modules'   => DOCUMENT_ROOT . '/application/modules',
+                                'main'      => DOCUMENT_ROOT . '/application/language',
+                                'templates' => TEMPLATES_PATH,
+                               ];
 
         $this->languages = \CI::$APP->db->get('languages')->result_array();
         $this->poFileManager = new PoFileManager();

@@ -123,9 +123,9 @@ class Cfcm extends MY_Controller
                     }
 
                     $form_fields[$field['field_name']] = [
-                        'type' => $field['type'],
-                        'label' => encode($field['label']),
-                    ];
+                                                          'type'  => $field['type'],
+                                                          'label' => encode($field['label']),
+                                                         ];
 
                     $form_fields[$field['field_name']] = array_merge($form_fields[$field['field_name']], $f_data);
                 }
@@ -153,8 +153,8 @@ class Cfcm extends MY_Controller
 
         $this->template->add_array(
             [
-                'form' => $form,
-                'hf' => $hiddenField
+             'form' => $form,
+             'hf'   => $hiddenField,
             ]
         );
 
@@ -230,9 +230,9 @@ class Cfcm extends MY_Controller
                 }
 
                 $form_fields[$field['field_name']] = [
-                    'type' => $field['type'],
-                    'label' => $field['label'],
-                ];
+                                                      'type'  => $field['type'],
+                                                      'label' => $field['label'],
+                                                     ];
 
                 $form_fields[$field['field_name']] = array_merge($form_fields[$field['field_name']], $f_data);
             }
@@ -329,10 +329,10 @@ class Cfcm extends MY_Controller
         if (count($data) > 0) {
             foreach ($data as $key => $val) {
                 $field_data = [
-                    'item_id' => $item_id,
-                    'item_type' => $type,
-                    'field_name' => $key,
-                ];
+                               'item_id'    => $item_id,
+                               'item_type'  => $type,
+                               'field_name' => $key,
+                              ];
 
                 if (!is_array($val)) {
                     if ($this->db->get_where('content_fields_data', $field_data)->num_rows() > 0) {

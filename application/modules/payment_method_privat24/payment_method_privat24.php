@@ -215,9 +215,7 @@ class Payment_method_privat24 extends MY_Controller
             ->limit(1)
             ->update(
                 'users',
-                [
-                    'amout' => $amout
-                    ]
+                ['amout' => $amout]
             );
 
         if (!$result) {
@@ -257,9 +255,9 @@ class Payment_method_privat24 extends MY_Controller
             ->update(
                 'shop_payment_methods',
                 [
-                    'active' => '0',
-                    'payment_system_name' => '0',
-                        ]
+                 'active'              => '0',
+                 'payment_system_name' => '0',
+                ]
             );
 
         $ci->db->like('name', $this->moduleName)

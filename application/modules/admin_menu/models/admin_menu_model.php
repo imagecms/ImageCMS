@@ -4,7 +4,8 @@
  * @property CI_DB_active_record $db
  * @property DX_Auth $dx_auth
  */
-class Admin_menu_model extends CI_Model {
+class Admin_menu_model extends CI_Model
+{
 
     /**
      * Related_products table name
@@ -17,7 +18,7 @@ class Admin_menu_model extends CI_Model {
 
     public function getUserModulesNames($modules_ids) {
         $modules = $this->db->where_in('id', $modules_ids)->get('saas_modules');
-        return $modules ? $modules->result_array() : array();
+        return $modules ? $modules->result_array() : [];
     }
 
     /**
@@ -25,7 +26,7 @@ class Admin_menu_model extends CI_Model {
      */
     public function install() {
         $this->db->where('name', 'admin_menu')
-            ->update('components', array('autoload' => '1', 'enabled' => '1'));
+            ->update('components', ['autoload' => '1', 'enabled' => '1']);
 
     }
 

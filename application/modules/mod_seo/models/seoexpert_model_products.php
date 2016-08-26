@@ -85,11 +85,12 @@ class Seoexpert_model_products extends CI_Model
         if (empty($data)) {
             return $this->db->insert(
                 'mod_seo_products',
-                ['cat_id' => $id,
-                    'locale' => $locale,
-                    'settings' => serialize($settings),
-                    'active' => $settings['useProductPattern'],
-                    'empty_meta' => $settings['useProductPatternForEmptyMeta']
+                [
+                 'cat_id'     => $id,
+                 'locale'     => $locale,
+                 'settings'   => serialize($settings),
+                 'active'     => $settings['useProductPattern'],
+                 'empty_meta' => $settings['useProductPatternForEmptyMeta'],
                 ]
             );
         }
@@ -100,9 +101,9 @@ class Seoexpert_model_products extends CI_Model
             ->update(
                 'mod_seo_products',
                 [
-                    'settings' => serialize($settings),
-                    'active' => $settings['useProductPattern'],
-                    'empty_meta' => $settings['useProductPatternForEmptyMeta']
+                 'settings'   => serialize($settings),
+                 'active'     => $settings['useProductPattern'],
+                 'empty_meta' => $settings['useProductPatternForEmptyMeta'],
                 ]
             );
     }

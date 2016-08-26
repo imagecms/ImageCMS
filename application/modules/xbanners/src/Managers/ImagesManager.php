@@ -70,7 +70,7 @@ class ImagesManager
      * @deprecated
      */
     public function deleteNotExistingImages() {
-        $images = BannerImageI18nQuery::create()->find();
+        $images = BannerImageI18nQuery::create()->setComment(__METHOD__)->find();
 
         $imagesSrc = [];
         foreach ($images as $image) {

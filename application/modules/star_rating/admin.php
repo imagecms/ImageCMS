@@ -29,9 +29,7 @@ class Admin extends BaseAdminController
         $settings = json_decode(json_encode($get_settings), FALSE);
 
         $this->template->add_array(
-            [
-            'settings' => $settings,
-            ]
+            ['settings' => $settings]
         );
         assetManager::create()
                 ->renderAdmin('settings');

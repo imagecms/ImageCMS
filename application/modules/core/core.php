@@ -1,6 +1,10 @@
 <?php
 
 use CMSFactory\Events;
+use Symfony\Component\Debug\Debug;
+use Symfony\Component\Debug\DebugClassLoader;
+use Symfony\Component\Debug\ErrorHandler;
+use Symfony\Component\Debug\ExceptionHandler;
 
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
@@ -90,6 +94,13 @@ class Core extends MY_Controller
     }
 
     public function index() {
+
+        if (ENVIRONMENT === 'development') {
+            Debug::enable(E_ERROR | E_PARSE);
+            ErrorHandler::register();
+            ExceptionHandler::register();
+            DebugClassLoader::enable();
+        }
 
         //module url segment
         $mod_segment = 1;

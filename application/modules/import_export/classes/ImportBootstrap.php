@@ -12,7 +12,8 @@ use libraries\Backup;
  * @property Core $core
  * @property CI_DB_active_record $db
  */
-class ImportBootstrap {
+class ImportBootstrap
+{
 
     /**
      * Errors
@@ -149,7 +150,11 @@ class ImportBootstrap {
         $extension = 'csv';
         $target = 'csvfile';
         $prefix = 'product_csv';
-        $posibleValues = [1, 2, 3];
+        $posibleValues = [
+                          1,
+                          2,
+                          3,
+                         ];
         $uploadDir = ($fullPath) ? $this->uploadDir : '';
 
         $fileNumber = (in_array($_POST[$target], $posibleValues)) ? intval($_POST[$target]) : 1;
@@ -165,13 +170,14 @@ class ImportBootstrap {
      */
     public static function getSettingsFromPost() {
         return [
-            'attributes' => trim($_POST['attributes']),
-            'import_type' => trim($_POST['import_type']),
-            'delimiter' => trim($_POST['delimiter']),
-            'enclosure' => trim($_POST['enclosure']),
-            'encoding' => trim($_POST['encoding']),
-            'currency' => trim($_POST['currency']),
-            'languages' => trim($_POST['language'])];
+                'attributes'  => trim($_POST['attributes']),
+                'import_type' => trim($_POST['import_type']),
+                'delimiter'   => trim($_POST['delimiter']),
+                'enclosure'   => trim($_POST['enclosure']),
+                'encoding'    => trim($_POST['encoding']),
+                'currency'    => trim($_POST['currency']),
+                'languages'   => trim($_POST['language']),
+               ];
     }
 
     /**
@@ -194,7 +200,7 @@ class ImportBootstrap {
             return $this;
         }
 
-        Backup::create()->createBackup("zip", "import");
+        Backup::create()->createBackup('zip', 'import');
         $this->messages['report']['DBBackup'] = TRUE;
         $this->messages['report']['DBBackuName'] = $backupName;
         return $this;

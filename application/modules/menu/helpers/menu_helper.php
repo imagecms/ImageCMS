@@ -26,7 +26,7 @@ if (!function_exists('menu_inject')) {
 
     function menu_inject($str) {
 
-        preg_match_all("/\{load_menu\((.*?)\)\}/", $str, $matches);
+        preg_match_all('/\{load_menu\((.*?)\)\}/', $str, $matches);
 
         if (count($matches[1]) > 0) {
             foreach($matches[1] as $k => $v)

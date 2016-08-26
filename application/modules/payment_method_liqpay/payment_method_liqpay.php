@@ -6,7 +6,8 @@
  * Image CMS
  * Module Frame
  */
-class Payment_method_liqpay extends MY_Controller {
+class Payment_method_liqpay extends MY_Controller
+{
 
     public $paymentMethod;
 
@@ -113,14 +114,14 @@ class Payment_method_liqpay extends MY_Controller {
         }
 
         $data = [
-            'public_key' => $publicKey,
-            'amount' => $price,
-            'currency' => $code,
-            'description' => $descr,
-            'order_id' => $param->id,
-            'server_url' => site_url() . $this->moduleName . '/callback',
-            'result_url' => site_url() . 'shop/order/view/' . $param->getKey(),
-        ];
+                 'public_key'  => $publicKey,
+                 'amount'      => $price,
+                 'currency'    => $code,
+                 'description' => $descr,
+                 'order_id'    => $param->id,
+                 'server_url'  => site_url() . $this->moduleName . '/callback',
+                 'result_url'  => site_url() . 'shop/order/view/' . $param->getKey(),
+                ];
 
         $inv = $privateKey . $data['amount'] . $data['currency'] . $data['public_key'] . $data['order_id'] . 'buy' . $data['description'] . $data['result_url'] . $data['server_url'];
         $inv = html_entity_decode($inv);
@@ -225,7 +226,7 @@ class Payment_method_liqpay extends MY_Controller {
             show_error($ci->db->_error_message());
         }
 
-        \CMSFactory\Events::create()->registerEvent(['system' => __CLASS__, 'order_id' => $order_id], "PaimentSystem:successPaid");
+        \CMSFactory\Events::create()->registerEvent(['system' => __CLASS__, 'order_id' => $order_id], 'PaimentSystem:successPaid');
         \CMSFactory\Events::runFactory();
 
         $result = $ci->db
@@ -234,8 +235,8 @@ class Payment_method_liqpay extends MY_Controller {
             ->update(
                 'users',
                 [
-                    'amout' => str_replace(',', '.', $amount)
-                    ]
+                 'amout' => str_replace(',', '.', $amount),
+                ]
             );
         if ($ci->db->_error_message()) {
             show_error($ci->db->_error_message());
@@ -263,9 +264,9 @@ class Payment_method_liqpay extends MY_Controller {
             ->update(
                 'shop_payment_methods',
                 [
-                    'active' => '0',
-                    'payment_system_name' => '0',
-                    ]
+                 'active'              => '0',
+                 'payment_system_name' => '0',
+                ]
             );
         if ($ci->db->_error_message()) {
             show_error($ci->db->_error_message());

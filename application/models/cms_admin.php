@@ -48,7 +48,7 @@ class Cms_admin extends CI_Model
      *
      * @param int $id
      * @param int $lang
-     * @return array
+     * @return array|bool
      */
     public function get_page_by_lang($id, $lang = 0) {
 
@@ -67,7 +67,7 @@ class Cms_admin extends CI_Model
      * Select page by id
      *
      * @param integer $id
-     * @return array
+     * @return array|bool
      */
     public function get_page($id) {
 
@@ -95,12 +95,12 @@ class Cms_admin extends CI_Model
     }
 
     /**
-     * @param $id
-     * @param $data
+     * @param int $id
+     * @param array $data
      * @param bool $exists
      * @return bool
      */
-    public function update_page($id, $data , $exists = false) {
+    public function update_page($id, $data, $exists = false) {
 
         $lang_id = $this->input->post('lang_id');
         $pageExists = (int) $this->input->post('pageExists');

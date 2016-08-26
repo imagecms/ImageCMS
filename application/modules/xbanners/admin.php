@@ -31,7 +31,7 @@ class Admin extends BaseAdminController
     }
 
     public function deleteA() {
-        BannersQuery::create()->deleteAll();
+        BannersQuery::create()->setComment(__METHOD__)->deleteAll();
     }
 
     /**
@@ -40,7 +40,7 @@ class Admin extends BaseAdminController
     public function index() {
 
         ImagesManager::getInstance()->setInactiveOnTimeOut();
-        $banners = BannersQuery::create()->joinWithI18n(MY_Controller::defaultLocale())->find();
+        $banners = BannersQuery::create()->setComment(__METHOD__)->joinWithI18n(MY_Controller::defaultLocale())->find();
 
         assetManager::create()
             ->setData(
@@ -135,14 +135,14 @@ class Admin extends BaseAdminController
                         exit;
                     }
 
-                    $bannerImage = $imageId ? BannerImageQuery::create()->findPk($imageId) : (new BannerImage());
+                    $bannerImage = $imageId ? BannerImageQuery::create()->setComment(__METHOD__)->findPk($imageId) : (new BannerImage());
                     $bannerImage->fromArray($data);
                     $bannerImage->save();
 
                     if ($imageId || $bannerImage->setLastPosition()) {
                         $data['id'] = $bannerImage->getId();
 
-                        $bannerImageI18n = BannerImageI18nQuery::create()->filterByLocale($locale)->findOneById($imageId);
+                        $bannerImageI18n = BannerImageI18nQuery::create()->setComment(__METHOD__)->filterByLocale($locale)->findOneById($imageId);
                         if (!$bannerImageI18n) {
                             $bannerImageI18n = new BannerImageI18n();
                         }
@@ -196,7 +196,7 @@ class Admin extends BaseAdminController
     public function deleteSlide($bannerId, $imageId, $locale) {
         if ($imageId && $locale) {
             ImagesManager::getInstance()->delete($imageId);
-            BannerImageQuery::create()->findPk($imageId)->delete();
+            BannerImageQuery::create()->setComment(__METHOD__)->findPk($imageId)->delete();
             showMessage(lang('Banner slide successfully deleted', 'xbanners'), lang('Success', 'admin'));
         } else {
             showMessage(lang('Can not delete banner slide', 'xbanners'), lang('Error', 'admin'), 'r');
@@ -208,7 +208,7 @@ class Admin extends BaseAdminController
     public function changePositions() {
         $positions = array_reverse($this->input->post('positions'));
         foreach ($positions as $position => $id) {
-            $image = BannerImageQuery::create()->findPk($id);
+            $image = BannerImageQuery::create()->setComment(__METHOD__)->findPk($id);
             $image->setPosition($position);
             $image->save();
         }

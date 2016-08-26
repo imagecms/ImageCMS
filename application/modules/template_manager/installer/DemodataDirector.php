@@ -7,7 +7,8 @@ namespace template_manager\installer;
  * Module Template_manager
  * class DependenceDirector
  */
-class DemodataDirector {
+class DemodataDirector
+{
 
     /**
      * Status of dependences verify
@@ -37,7 +38,7 @@ class DemodataDirector {
      */
     public function install() {
         foreach ($this->demodata->children() as $demodataName => $node) {
-            $handlerClass = "Demodata" . ucfirst($demodataName);
+            $handlerClass = 'Demodata' . ucfirst($demodataName);
             include_once __DIR__ . DIRECTORY_SEPARATOR . $handlerClass . EXT;
 
             $handlerClass = 'template_manager\\installer\\' . $handlerClass;
@@ -51,9 +52,7 @@ class DemodataDirector {
             // gathering messages
             if (FALSE !== $msgs = $demodata->getMessages()) {
                 foreach ($msgs as $message) {
-                    $this->messages[] = [
-                        'text' => $message,
-                    ];
+                    $this->messages[] = ['text' => $message];
                 }
             }
         }

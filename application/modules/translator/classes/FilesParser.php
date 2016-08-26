@@ -29,7 +29,11 @@ class FilesParser
      */
     private static $MAIN_PATH = '';
 
-    public static $ALLOW_EXTENSIONS = ['php', 'tpl', 'js'];
+    public static $ALLOW_EXTENSIONS = [
+                                       'php',
+                                       'tpl',
+                                       'js',
+                                      ];
 
     /**
      * Modules locales array
@@ -50,9 +54,9 @@ class FilesParser
     private static $MAIN_LOCALES = [];
 
     public static $PARSE_REGEXPR = [
-        '(?<!\w)t?langf?\([\"]{1}(?!\')(.*?)[\"]{1}',
-        "(?<!\w)t?langf?\([']{1}(?!\")(.*?)[']{1}"
-    ];
+                                    '(?<!\w)t?langf?\([\"]{1}(?!\')(.*?)[\"]{1}',
+                                    "(?<!\w)t?langf?\([']{1}(?!\")(.*?)[']{1}",
+                                   ];
 
     /**
      * @var array
@@ -116,9 +120,9 @@ class FilesParser
                         include $module_info;
                         $menu_name = $com_info['menu_name'] ? $com_info['menu_name'] : $moduleName;
                         self::$MODULES_LOCALES[$locale->getBasename()][] = [
-                            'module' => $moduleName,
-                            'menu_name' => ucfirst($menu_name)
-                        ];
+                                                                            'module'    => $moduleName,
+                                                                            'menu_name' => ucfirst($menu_name),
+                                                                           ];
                         unset($com_info);
                     }
                 }
@@ -149,8 +153,8 @@ class FilesParser
                     foreach ($locales as $locale) {
                         if ($locale->isDir() && !$locale->isDot() && is_dir($language_dir . $locale->getBasename()) && isLocale($locale->getBasename())) {
                             self::$TEMPLATES_LOCALES[$locale->getBasename()][] = [
-                                'template' => $template->getBasename()
-                            ];
+                                                                                  'template' => $template->getBasename(),
+                                                                                 ];
                         }
                     }
                 }
@@ -175,9 +179,7 @@ class FilesParser
             $main = new DirectoryIterator(self::$MAIN_PATH);
             foreach ($main as $locale) {
                 if ($locale->isDir() && !$locale->isDot() && is_dir(self::$MAIN_PATH . $locale->getBasename()) && isLocale($locale->getBasename())) {
-                    self::$MAIN_LOCALES[$locale->getBasename()][] = [
-                        'main' => 'main'
-                    ];
+                    self::$MAIN_LOCALES[$locale->getBasename()][] = ['main' => 'main'];
                 }
             }
             return self::$MAIN_LOCALES;
@@ -238,9 +240,9 @@ class FilesParser
         }
         self::$PARSED_PATHS[] = $dir;
         $data = [
-            'parsed_langs' => self::$FINDED_LANGS,
-            'js_langs' => self::$FINDED_JS_LANGS
-        ];
+                 'parsed_langs' => self::$FINDED_LANGS,
+                 'js_langs'     => self::$FINDED_JS_LANGS,
+                ];
 
         self::$FINDED_LANGS = [];
         self::$FINDED_JS_LANGS = [];

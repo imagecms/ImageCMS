@@ -61,13 +61,13 @@ class Dashboard extends BaseAdminController
 
         $this->template->add_array(
             [
-                    'latest' => $latest,
-                    'updated' => $updated,
-                    'comments' => $comments,
-                    'total_cats' => $total_cats,
-                    'total_pages' => $total_pages,
-                    'total_comments' => $total_comments,
-                ]
+             'latest'         => $latest,
+             'updated'        => $updated,
+             'comments'       => $comments,
+             'total_cats'     => $total_cats,
+             'total_pages'    => $total_pages,
+             'total_comments' => $total_comments,
+            ]
         );
 
         // If we are online - load system news.
@@ -112,9 +112,9 @@ class Dashboard extends BaseAdminController
 
         $this->template->add_array(
             [
-                    'cms_number' => IMAGECMS_NUMBER,
-                    'sys_status' => $status,
-                ]
+             'cms_number' => IMAGECMS_NUMBER,
+             'sys_status' => $status,
+            ]
         );
 
         \CMSFactory\Events::create()->registerEvent('', 'Dashboard:show');

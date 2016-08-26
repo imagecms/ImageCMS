@@ -75,11 +75,11 @@ class ParentWishlist extends MY_Controller
         $this->load->helper('cookie');
         if (!strstr($this->uri->uri_string(), 'wishlist') && !strstr($this->uri->uri_string(), 'sync')) {
             $cookie = [
-                'name' => 'url',
-                'value' => $this->uri->uri_string(),
-                'expire' => '15000',
-                'prefix' => ''
-            ];
+                       'name'   => 'url',
+                       'value'  => $this->uri->uri_string(),
+                       'expire' => '15000',
+                       'prefix' => '',
+                      ];
             @$this->input->set_cookie($cookie);
         }
     }
@@ -102,9 +102,9 @@ class ParentWishlist extends MY_Controller
 
         foreach ($users as $user) {
             $lists[] = [
-                'user' => $user,
-                'lists' => $this->wishlist_model->getWLsByUserId($user['id'], $access)
-            ];
+                        'user'  => $user,
+                        'lists' => $this->wishlist_model->getWLsByUserId($user['id'], $access),
+                       ];
         }
 
         if ($lists) {
@@ -172,11 +172,11 @@ class ParentWishlist extends MY_Controller
             array_push($listsAdded, $hash);
             if ($CI->wishlist_model->addReview($hash)) {
                 $cookie = [
-                    'name' => 'wishListViewer',
-                    'value' => serialize($listsAdded),
-                    'expire' => 60 * 60 * 24,
-                    'prefix' => ''
-                ];
+                           'name'   => 'wishListViewer',
+                           'value'  => serialize($listsAdded),
+                           'expire' => 60 * 60 * 24,
+                           'prefix' => '',
+                          ];
                 @$CI->input->set_cookie($cookie);
                 return TRUE;
             }
@@ -574,7 +574,12 @@ class ParentWishlist extends MY_Controller
             $userID = $this->dx_auth->get_user_id();
         }
 
-        $allowedFileFormats = ['image/gif', 'image/jpeg', 'image/png', 'image/jpg'];
+        $allowedFileFormats = [
+                               'image/gif',
+                               'image/jpeg',
+                               'image/png',
+                               'image/jpg',
+                              ];
 
         list($width, $height) = getimagesize($_FILES['file']['tmp_name']);
 
@@ -712,12 +717,12 @@ class ParentWishlist extends MY_Controller
             $phone = $db_user['phone'] ? $db_user['phone'] : '(---) --- --- --- ';
 
             $user_variables = [
-                'userName' => $name,
-                'userPhone' => $phone,
-                'wishName' => $wish_list['title'],
-                'wishLink' => site_url('wishlist/show/' . $wish_list['hash']),
-                'wishListViews' => $wish_list['hash']['review_count'],
-            ];
+                               'userName'      => $name,
+                               'userPhone'     => $phone,
+                               'wishName'      => $wish_list['title'],
+                               'wishLink'      => site_url('wishlist/show/' . $wish_list['hash']),
+                               'wishListViews' => $wish_list['hash']['review_count'],
+                              ];
 
             email::getInstance()->sendEmail($email, 'wish_list', $user_variables);
 

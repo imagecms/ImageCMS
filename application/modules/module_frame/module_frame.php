@@ -6,7 +6,8 @@
  * Image CMS
  * Module Frame
  */
-class Module_frame extends MY_Controller {
+class Module_frame extends MY_Controller
+{
 
     public function __construct() {
         parent::__construct();

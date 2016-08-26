@@ -48,17 +48,20 @@ class Found_less_expensive extends MY_Controller
      */
     public function save_message() {
 
-        $this->load->library('from_validation');
+        $this->load->library('form_validation');
         $this->form_validation->set_rules('name', lang('Name', 'admin'), 'required');
         $this->form_validation->set_rules('phone', lang('Phone', 'admin'), 'required|numeric');
         $this->form_validation->set_rules('email', lang('Email', 'admin'), 'required|valid_email');
         $this->form_validation->set_rules('link', lang('link', 'admin'), 'required');
 
         if (!$this->form_validation->run()) {
-            return [
-                    'message' => validation_errors(),
-                    'errors'  => $this->form_validation->getErrorsArray(),
-                   ];
+
+            return json_encode(
+                [
+                 'message' => validation_errors(),
+                 'errors'  => $this->form_validation->getErrorsArray(),
+                ]
+            );
         }
 
         $data = $this->input->post();
@@ -67,7 +70,10 @@ class Found_less_expensive extends MY_Controller
         unset($data['cms_token']);
         if ($this->db->insert('mod_found_less_expensive', $data)) {
             $this->sendEmail($data);
-            return 'success';
+
+            return json_encode(
+                ['success' => 'success']
+            );
         }
     }
 

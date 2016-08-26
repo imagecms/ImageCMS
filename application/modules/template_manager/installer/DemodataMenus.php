@@ -7,7 +7,8 @@ namespace template_manager\installer;
  * Module Template_manager
  * class DemodataMenus
  */
-class DemodataMenus extends DemodataDirector {
+class DemodataMenus extends DemodataDirector
+{
 
     /**
      * DemodataMenus SimpleXMLElement node
@@ -68,13 +69,13 @@ class DemodataMenus extends DemodataDirector {
             $attributes = $menu->attributes();
 
             $this->menuData = [
-                'name' => (string) $attributes->name ? (string) $attributes->name : '',
-                'main_title' => (string) $attributes->main_title ? (string) $attributes->main_title : '',
-                'tpl' => (string) $attributes->tpl_folder ? (string) $attributes->tpl_folder : '',
-                'expand_level' => (string) $attributes->expand_level ? (string) $attributes->expand_level : '',
-                'description' => (string) $attributes->description ? (string) $attributes->description : '',
-                'created' => date('Y-m-d H:i:s')
-            ];
+                               'name'         => (string) $attributes->name ? (string) $attributes->name : '',
+                               'main_title'   => (string) $attributes->main_title ? (string) $attributes->main_title : '',
+                               'tpl'          => (string) $attributes->tpl_folder ? (string) $attributes->tpl_folder : '',
+                               'expand_level' => (string) $attributes->expand_level ? (string) $attributes->expand_level : '',
+                               'description'  => (string) $attributes->description ? (string) $attributes->description : '',
+                               'created'      => date('Y-m-d H:i:s'),
+                              ];
 
             $result = $this->ci->db->where('name', $this->menuData['name'])->get('menus');
             if (!$result->num_rows()) {
@@ -99,18 +100,18 @@ class DemodataMenus extends DemodataDirector {
 
             $url = (string) $attributes->url ? (string) $attributes->url : '';
             $this->menuItemData = [
-                'menu_id' => $menu_id,
-                'item_id' => 0,
-                'item_type' => 'url',
-                'item_image' => (string) $attributes->image ? (string) $attributes->image : '',
-                'roles' => NULL,
-                'hidden' => 0,
-                'title' => (string) $attributes->title ? (string) $attributes->title : '',
-                'parent_id' => $this->menuItemParentId,
-                'position' => $this->menuItemPosition,
-                'description' => (string) $attributes->description ? (string) $attributes->description : '',
-                'add_data' => serialize(['url' => $url, 'newpage' => 0])
-            ];
+                                   'menu_id'     => $menu_id,
+                                   'item_id'     => 0,
+                                   'item_type'   => 'url',
+                                   'item_image'  => (string) $attributes->image ? (string) $attributes->image : '',
+                                   'roles'       => NULL,
+                                   'hidden'      => 0,
+                                   'title'       => (string) $attributes->title ? (string) $attributes->title : '',
+                                   'parent_id'   => $this->menuItemParentId,
+                                   'position'    => $this->menuItemPosition,
+                                   'description' => (string) $attributes->description ? (string) $attributes->description : '',
+                                   'add_data'    => serialize(['url' => $url, 'newpage' => 0]),
+                                  ];
 
             $this->ci->db->insert('menus_data', $this->menuItemData);
             $item_id = $this->ci->db->insert_id();
@@ -124,10 +125,10 @@ class DemodataMenus extends DemodataDirector {
                             $locale = (string) $attributes->locale ? (string) $attributes->locale : '';
                             if ($this->localesIds[$locale]) {
                                 $this->menuItemI18nData[] = [
-                                    'title' => (string) $attributes->title ? (string) $attributes->title : '',
-                                    'lang_id' => $this->localesIds[$locale],
-                                    'item_id' => $item_id
-                                ];
+                                                             'title'   => (string) $attributes->title ? (string) $attributes->title : '',
+                                                             'lang_id' => $this->localesIds[$locale],
+                                                             'item_id' => $item_id,
+                                                            ];
                             }
 
                             break;

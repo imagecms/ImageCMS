@@ -33,7 +33,7 @@ class User_Temp extends CI_Model
 
     public function get_login($email) {
         $this->db->where('email', $email);
-        $this->db->or_where('email', email);
+        $this->db->or_where('email', $email);
         return $this->db->get($this->_table);
     }
 

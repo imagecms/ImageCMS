@@ -173,14 +173,8 @@ if (!function_exists('getMoFilePath')) {
                     if (strstr(uri_string(), 'admin')) {
                         $locale = $CI->config->item('language');
                     } else {
-                        $currentLocale = MY_Controller::getCurrentLocale();
-                        $language = $CI->db->where('identif', $currentLocale)->get('languages');
-                        if ($language) {
-                            $language = $language->row_array();
-                        } else {
-                            show_error($CI->db->_error_message());
-                        }
-                        $locale = $language['locale'];
+
+                        $locale = MY_Controller::getCurrentLanguage('locale');
                     }
                 }
 
@@ -230,7 +224,7 @@ if (!function_exists('correctUrl')) {
     function correctUrl($url) {
 
         if (MAINSITE) {
-                $url = MAINSITE . str_replace('./', '/', $url);
+            $url = MAINSITE . str_replace('./', '/', $url);
         }
 
         $last_slash_pos = strrpos($url, '/');
@@ -248,37 +242,18 @@ if (!function_exists('chose_language')) {
      * @return mixed
      */
     function chose_language($active = FALSE) {
-
         $ci = &get_instance();
-        $url = $ci->uri->uri_string();
-        $url_arr = explode('/', $url);
 
-        if ($active) {
-            $ci->db->where('active', 1);
-        }
+        $url_arr = $ci->uri->segment_array();
 
-        $languages = $ci->db->get('languages');
-
-        if ($languages) {
-            $languages = $languages->result_array();
-        } else {
-            show_error($ci->db->_error_message());
-        }
-
-        foreach ($languages as $l) {
+        foreach ((array) MY_Controller::getAllLocales($active) as $l) {
             if (in_array($l['identif'], $url_arr)) {
                 $lang = $l['identif'];
             }
         }
 
         if (!$lang) {
-            $languages = $ci->db->where('default', 1)->get('languages');
-            if ($languages) {
-                $languages = $languages->row();
-            } else {
-                show_error($ci->db->_error_message());
-            }
-            $lang = $languages->identif;
+            $lang = MY_Controller::getDefaultLanguage()['identif'];
         }
 
         return $lang;
@@ -291,7 +266,6 @@ if (!function_exists('chose_language')) {
  * @return array
  */
 function get_main_lang($flag = null) {
-
     $ci = &get_instance();
     if (!$ci->db) {
         return FALSE;

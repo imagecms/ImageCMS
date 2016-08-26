@@ -55,11 +55,11 @@ class Attendance
         }
 
         $this->attendanceData = [
-            'id_user' => $userId,
-            'type_id' => $typeId,
-            'id_entity' => $coreData['id'],
-            'time_add' => time(),
-        ];
+                                 'id_user'   => $userId,
+                                 'type_id'   => $typeId,
+                                 'id_entity' => $coreData['id'],
+                                 'time_add'  => time(),
+                                ];
     }
 
     /**

@@ -13,7 +13,8 @@ namespace template_manager\classes;
  *
  * @author
  */
-class TComponentAssetManager {
+class TComponentAssetManager
+{
 
     private $tComponentPath;
 

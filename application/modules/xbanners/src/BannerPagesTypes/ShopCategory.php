@@ -22,10 +22,10 @@ class ShopCategory extends BasePageType
         $data = [];
         foreach ($categories as $category) {
             $data[$category->getId()] = [
-                'id' => $category->getId(),
-                'name' => $category->getName(),
-                'level' => $category->getLevel(),
-            ];
+                                         'id'    => $category->getId(),
+                                         'name'  => $category->getName(),
+                                         'level' => $category->getLevel(),
+                                        ];
         }
 
         return $data;

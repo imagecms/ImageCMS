@@ -5,6 +5,7 @@ namespace mod_discount;
 use CMSFactory\assetManager;
 use discount_model_front;
 use mod_discount\classes\BaseDiscount;
+use Propel\Runtime\ActiveQuery\Criteria;
 
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
@@ -67,11 +68,15 @@ class Discount_product
             foreach ($discount as $disc) {
                 $resultDiscount[] = $disc;
                 if ($disc['child']) {
-                    $childs = $this->ci->db->like('full_path_ids', ':' . $disc['category_id'] . ';')->get('shop_category')->result_array();
-                    if (count($childs) > 0) {
-                        foreach ($childs as $child) {
+                    $query = \SCategoryQuery::create()
+                        ->setComment(__METHOD__)
+                        ->select(['id'])
+                        ->filterByFullPathIds('%:' . $disc['category_id'] . ';%', Criteria::LIKE)
+                        ->find()->toArray();
+                    if (count($query) > 0) {
+                        foreach ($query as $child) {
                             $discAux = $disc;
-                            $discAux['category_id'] = $child['id'];
+                            $discAux['category_id'] = $child;
                             $resultDiscount[] = $discAux;
                         }
                     }

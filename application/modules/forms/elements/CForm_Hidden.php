@@ -1,6 +1,7 @@
 <?php
 
-class CForm_Hidden {
+class CForm_Hidden
+{
 
     public $ci = NULL;
 
@@ -8,7 +9,7 @@ class CForm_Hidden {
 
     public $field = NULL;
 
-    public function __construct($name, $field = array()) {
+    public function __construct($name, $field = []) {
 
         $this->form =& get_instance();
         $this->form = $this->form->load->module('forms');

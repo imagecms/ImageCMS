@@ -124,9 +124,9 @@ class AdminHelper extends MY_Controller
 
         foreach ($datas as $data) {
             $response[] = [
-                'value' => $data['name'],
-                'id' => $data['id'],
-            ];
+                           'value' => $data['name'],
+                           'id'    => $data['id'],
+                          ];
         }
         return $response;
     }

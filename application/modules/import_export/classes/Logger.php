@@ -12,7 +12,8 @@ use Core;
  * @property Core $core
  * @property CI_DB_active_record $db
  */
-class Logger {
+class Logger
+{
 
     /**
      * Class Logger
@@ -24,9 +25,9 @@ class Logger {
      * Path to file log.txt
      * @var string
      */
-    private $pathFile = "./application/backups/log.txt";
+    private $pathFile = './application/backups/log.txt';
 
-    private $pathFolder = "./application/modules/import_export/";
+    private $pathFolder = './application/modules/import_export/';
 
     /**
      * Function create()
@@ -55,7 +56,7 @@ class Logger {
         } else {
             $handler = fopen($this->pathFile, 'a') or print (' Cannot create log.txt or do not have permission to the folder backup');
         }
-        $message = 'Error userId - ' . CI::$APP->dx_auth->get_user_id() . '. time - ' . date("d.m.Y H:i", time()) . '. Message: ' . $message . "\n";
+        $message = 'Error userId - ' . CI::$APP->dx_auth->get_user_id() . '. time - ' . date('d.m.Y H:i', time()) . '. Message: ' . $message . "\n";
         fwrite($handler, $message);
         fclose($handler);
     }

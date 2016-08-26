@@ -531,10 +531,10 @@ class Exchange extends \MY_Controller
         }
         foreach ($this->xml->Документ as $order) {
             $orderId = (string) $order->Номер;
-            $model = SOrdersQuery::create()->findOneById($orderId);
+            $model = SOrdersQuery::create()->setComment(__METHOD__)->findOneById($orderId);
             if ($model) {
                 $model->setExternalId((string) $order->Ид);
-                $usr = SUserProfileQuery::create()->findById((string) $order->Контрагенты->Контрагент->Ид);
+                $usr = SUserProfileQuery::create()->setComment(__METHOD__)->findById((string) $order->Контрагенты->Контрагент->Ид);
                 $model->setTotalPrice((string) $order->Сумма);
                 $model->setDateUpdated(date('U'));
                 foreach ($order->ЗначенияРеквизитов->ЗначениеРеквизита as $item) {
@@ -581,7 +581,7 @@ class Exchange extends \MY_Controller
     private function command_sale_success() {
 
         if ($this->check_perm() === true) {
-            $model = SOrdersQuery::create()->findByStatus($this->my_config['userstatuses']);
+            $model = SOrdersQuery::create()->setComment(__METHOD__)->findByStatus($this->my_config['userstatuses']);
             foreach ($model as $order) {
                 $order->SetStatus($this->my_config['userstatuses_after']);
                 $order->save();
@@ -620,7 +620,7 @@ class Exchange extends \MY_Controller
 
         if ($this->check_perm() === true) {
             $this->load->helper('html');
-            $model = SOrdersQuery::create()->findByStatus($this->my_config['userstatuses']);
+            $model = SOrdersQuery::create()->setComment(__METHOD__)->findByStatus($this->my_config['userstatuses']);
             header('content-type: text/xml; charset=utf-8');
             $xml_order .= "<?xml version='1.0' encoding='UTF-8'?>" . "\n" .
                 "<КоммерческаяИнформация ВерсияСхемы='2.03' ДатаФормирования='" . date('Y-m-d') . "'>" . "\n";

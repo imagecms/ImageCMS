@@ -4,7 +4,8 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-class Banner_model extends CI_Model {
+class Banner_model extends CI_Model
+{
 
     public function __construct() {
         parent::__construct();
@@ -139,16 +140,16 @@ class Banner_model extends CI_Model {
         $this->load->dbforge();
         ($this->dx_auth->is_admin()) OR exit;
         $fields = [
-            'id' => [
-                'type' => 'INT',
-                'auto_increment' => TRUE
-            ],
-            'name' => [
-                'type' => 'VARCHAR',
-                'constraint' => '255',
-                'null' => TRUE,
-            ],
-        ];
+                   'id'   => [
+                              'type'           => 'INT',
+                              'auto_increment' => TRUE,
+                             ],
+                   'name' => [
+                              'type'       => 'VARCHAR',
+                              'constraint' => '255',
+                              'null'       => TRUE,
+                             ],
+                  ];
 
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', TRUE);
@@ -158,11 +159,12 @@ class Banner_model extends CI_Model {
             $this->dbforge->add_column(
                 'mod_banner',
                 [
-                'group' => [
-                    'type' => 'VARCHAR',
-                    'constraint' => '255',
-                    'null' => TRUE,
-                ]]
+                 'group' => [
+                             'type'       => 'VARCHAR',
+                             'constraint' => '255',
+                             'null'       => TRUE,
+                            ],
+                ]
             );
         }
     }

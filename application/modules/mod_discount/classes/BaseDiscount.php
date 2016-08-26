@@ -108,6 +108,16 @@ class BaseDiscount
     public $discountMax;
 
     /**
+     * @var int
+     */
+    public $user_Id;
+
+    /**
+     * @var float
+     */
+    public $total_Price;
+
+    /**
      * check_module_install
      * @access public
      * @author DevImageCms
@@ -219,21 +229,21 @@ class BaseDiscount
             $this->cart = BaseCart::getInstance();
             if (!self::$userId) {
                 $this->userGroupId = $this->ci->dx_auth->get_role_id();
-                $this->userId = $this->ci->dx_auth->get_user_id();
+                $this->user_Id = $this->ci->dx_auth->get_user_id();
             } else {
-                $this->userId = self::$userId;
-                $this->userGroupId = $this->ci->db->where('id', $this->userId)->get('users')->row()->role_id;
+                $this->user_Id = self::$userId;
+                $this->userGroupId = $this->ci->db->where('id', $this->user_Id)->get('users')->row()->role_id;
             }
             if (!self::$ignoreCart) {
                 $this->cartData = $this->getCartData();
             }
 
-            $this->amoutUser = $this->ci->discount_model_front->getAmoutUser($this->userId);
-            $this->totalPrice = (!self::$totalPrice) ? $this->cart->getOriginTotalPrice() : self::$totalPrice;
+            $this->amoutUser = $this->ci->discount_model_front->getAmoutUser($this->user_Id);
+            $this->total_Price = (!self::$totalPrice) ? $this->cart->getOriginTotalPrice() : self::$totalPrice;
             $this->allDiscount = $this->getAllDiscount();
             $this->discountType = $this->collectType($this->allDiscount);
             $this->discountAllOrder = $this->getAllOrderDiscountNotRegister();
-            if ($this->userId) {
+            if ($this->user_Id) {
                 $this->discountUser = $this->getUserDiscount();
                 $this->discountGroupUser = $this->getUserGroupDiscount();
                 $this->discountComul = $this->getComulativDiscount();
@@ -241,8 +251,8 @@ class BaseDiscount
             }
 
             $this->discountProductVal = (self::$ignoreCart) ? null : $this->getDiscountProducts();
-            $this->discountMax = $this->getMaxDiscount([$this->discountUser, $this->discountGroupUser, $this->discountComul, $this->discountAllOrder], $this->totalPrice);
-            $this->discountNoProductVal = $this->getDiscountValue($this->discountMax, $this->totalPrice);
+            $this->discountMax = $this->getMaxDiscount([$this->discountUser, $this->discountGroupUser, $this->discountComul, $this->discountAllOrder], $this->total_Price);
+            $this->discountNoProductVal = $this->getDiscountValue($this->discountMax, $this->total_Price);
         }
     }
 
@@ -376,6 +386,7 @@ class BaseDiscount
             }
         );
         $maxDiscount = 0;
+        $keyMax = 0;
         foreach ($discount as $key => $disc) {
             $discountValue = $this->getDiscountValue($disc, $price);
             if ($maxDiscount <= $discountValue) {
@@ -441,12 +452,12 @@ class BaseDiscount
 
         $discountUser = [];
         foreach ($this->discountType['user'] as $userDisc) {
-            if ($userDisc['user_id'] == $this->userId) {
+            if ($userDisc['user_id'] == $this->user_Id) {
                 $discountUser[] = $userDisc;
             }
         }
 
-        return (count($discountUser) > 0) ? $this->getMaxDiscount($discountUser, $this->totalPrice) : false;
+        return (count($discountUser) > 0) ? $this->getMaxDiscount($discountUser, $this->total_Price) : false;
     }
 
     /**
@@ -465,7 +476,7 @@ class BaseDiscount
             }
         }
 
-        return (count($discountUserGr) > 0) ? $this->getMaxDiscount($discountUserGr, $this->totalPrice) : false;
+        return (count($discountUserGr) > 0) ? $this->getMaxDiscount($discountUserGr, $this->total_Price) : false;
     }
 
     /**
@@ -484,7 +495,7 @@ class BaseDiscount
             }
         }
 
-        return (count($discountComulativ) > 0) ? $this->getMaxDiscount($discountComulativ, $this->totalPrice) : false;
+        return (count($discountComulativ) > 0) ? $this->getMaxDiscount($discountComulativ, $this->total_Price) : false;
     }
 
     /**
@@ -495,6 +506,7 @@ class BaseDiscount
      * @copyright (c) 2013, ImageCMS
      */
     private function getDiscountProducts() {
+        $discountValue = 0;
         foreach ($this->cartData as $item) {
             $priceOrigin = number_format($item->originPrice, ShopCore::app()->SSettings->getPricePrecision(), '.', ''); // new Cart
             if (abs($priceOrigin - $item->price) >= 1) {
@@ -516,13 +528,13 @@ class BaseDiscount
         $allOrderArrReg = [];
         foreach ($this->discountType['all_order'] as $disc) {
             if (!$disc['is_gift']) {
-                if ($disc['begin_value'] <= (int) $this->totalPrice) {
+                if ($disc['begin_value'] <= (int) $this->total_Price) {
                     $allOrderArrReg[] = $disc;
                 }
             }
         }
 
-        return (count($allOrderArrReg) > 0) ? $this->getMaxDiscount($allOrderArrReg, $this->totalPrice) : false;
+        return (count($allOrderArrReg) > 0) ? $this->getMaxDiscount($allOrderArrReg, $this->total_Price) : false;
     }
 
     /**
@@ -536,13 +548,13 @@ class BaseDiscount
         $allOrderArrNotReg = [];
         foreach ($this->discountType['all_order'] as $disc) {
             if (!$disc['is_gift']) {
-                if ($disc['begin_value'] <= $this->totalPrice and ! $disc['for_autorized']) {
+                if ($disc['begin_value'] <= $this->total_Price and ! $disc['for_autorized']) {
                     $allOrderArrNotReg[] = $disc;
                 }
             }
         }
 
-        return (count($allOrderArrNotReg) > 0) ? $this->getMaxDiscount($allOrderArrNotReg, $this->totalPrice) : false;
+        return (count($allOrderArrNotReg) > 0) ? $this->getMaxDiscount($allOrderArrNotReg, $this->total_Price) : false;
     }
 
 }

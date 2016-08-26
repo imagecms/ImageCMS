@@ -112,13 +112,13 @@ class Admin extends BaseAdminController
                     ->registerScript('script_admin')
                     ->setData(
                         [
-                                'freeTpl' => $freeTpl,
-                                'templateToPay' => TemplateManager::getTemplateToPay(),
-                                'template' => $this->currentTemplate,
-                                'templates' => TemplateManager::getInstance()->listLocal(),
-                                'remoteTemplates' => $this->input->get('remote_templates') ? TemplateManager::getInstance()->listRemote() : [],
-                                'currTpl' => $this->currentTemplate->name
-                            ]
+                         'freeTpl'         => $freeTpl,
+                         'templateToPay'   => TemplateManager::getTemplateToPay(),
+                         'template'        => $this->currentTemplate,
+                         'templates'       => TemplateManager::getInstance()->listLocal(),
+                         'remoteTemplates' => $this->input->get('remote_templates') ? TemplateManager::getInstance()->listRemote() : [],
+                         'currTpl'         => $this->currentTemplate->name,
+                        ]
                     )
                     ->renderAdmin('main');
         }
@@ -143,10 +143,10 @@ class Admin extends BaseAdminController
     public function registerJsVars() {
         $jsData = json_encode(
             [
-                    'acceptLicenseError' => lang('Templates are the intellectual property, so if you <br /> want to install it, you must accept the license agreement.', 'template_manager'),
-                    'wrongFileType' => lang('Wrong filetype. Zip-archives only', 'template_manager'),
-                    'moduleAdminUrl' => site_url('admin/components/cp/template_manager/'),
-                ]
+             'acceptLicenseError' => lang('Templates are the intellectual property, so if you <br /> want to install it, you must accept the license agreement.', 'template_manager'),
+             'wrongFileType'      => lang('Wrong filetype. Zip-archives only', 'template_manager'),
+             'moduleAdminUrl'     => site_url('admin/components/cp/template_manager/'),
+            ]
         );
         $jsCode = "var templateManagerData = {$jsData};";
         assetManager::create()->registerJsScript($jsCode, false, 'before');
@@ -337,11 +337,11 @@ class Admin extends BaseAdminController
         $this->load->library(
             'upload',
             [
-            'upload_path' => $this->templatesUploadPath,
-            'allowed_types' => 'zip',
-            'max_size' => 1024 * 100, // 100 Mb
-            'file_name' => $_FILES[$fieldName]['name'],
-                ]
+             'upload_path'   => $this->templatesUploadPath,
+             'allowed_types' => 'zip',
+             'max_size'      => 1024 * 100, // 100 Mb
+             'file_name'     => $_FILES[$fieldName]['name'],
+            ]
         );
 
         // Upload folder
@@ -450,10 +450,10 @@ class Admin extends BaseAdminController
 
                     $this->load->helper('cookie');
                     $cookie = [
-                        'name' => 'DownloadedTemplateName',
-                        'value' => $unzip->getTemplateName(),
-                        'expire' => '10'
-                    ];
+                               'name'   => 'DownloadedTemplateName',
+                               'value'  => $unzip->getTemplateName(),
+                               'expire' => '10',
+                              ];
 
                     set_cookie($cookie);
                     return $unzip->unpack();

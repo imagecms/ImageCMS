@@ -6,7 +6,8 @@
  * Image CMS
  * Module Frame
  */
-class Mod_auto_number extends MY_Controller {
+class Mod_auto_number extends MY_Controller
+{
 
     public function __construct() {
         parent::__construct();
@@ -45,13 +46,13 @@ class Mod_auto_number extends MY_Controller {
         }
         if ($varId) {
             $ci->db->where('id', $varId)
-                ->update('shop_product_variants', array('number' => $prodId));
+                ->update('shop_product_variants', ['number' => $prodId]);
         }
     }
 
     public function _install() {
         $this->db->where('name', 'mod_auto_number')
-            ->update('components', array('autoload' => '1'));
+            ->update('components', ['autoload' => '1']);
     }
 
     public function _deinstall() {

@@ -6,7 +6,8 @@
  * Image CMS
  * Module Frame
  */
-class Payment_method_yakassa extends MY_Controller {
+class Payment_method_yakassa extends MY_Controller
+{
 
     public $paymentMethod;
 
@@ -111,16 +112,16 @@ class Payment_method_yakassa extends MY_Controller {
         }
 
         $data = [
-            'shopid' => $shopid,
-            'scid' => $scid,
-            'amount' => $price,
-            'description' => $descr,
-            'order_id' => $param->id,
-            'customerNumber' => $_SESSION['DX_user_id'],
-            'result_url' => site_url() . 'shop/order/view/' . $param->getKey(),
-            'settings' => $paySettings,
-            'paymentKey' => $key,
-        ];
+                 'shopid'         => $shopid,
+                 'scid'           => $scid,
+                 'amount'         => $price,
+                 'description'    => $descr,
+                 'order_id'       => $param->id,
+                 'customerNumber' => $_SESSION['DX_user_id'],
+                 'result_url'     => site_url() . 'shop/order/view/' . $param->getKey(),
+                 'settings'       => $paySettings,
+                 'paymentKey'     => $key,
+                ];
 
         $payments = false;
         foreach ($paySettings as $key => $value) {
@@ -174,16 +175,16 @@ class Payment_method_yakassa extends MY_Controller {
     }
 
     public function sendAviso($callbackParams, $code) {
-        header("Content-type: text/xml; charset=utf-8");
+        header('Content-type: text/xml; charset=utf-8');
         $xml = '<?xml version="1.0" encoding="UTF-8"?>
-		<paymentAvisoResponse performedDatetime="' . date("c") . '" code="' . $code . '" invoiceId="' . $callbackParams['invoiceId'] . '" shopId="' . $callbackParams['shopid'] . '"/>';
+		<paymentAvisoResponse performedDatetime="' . date('c') . '" code="' . $code . '" invoiceId="' . $callbackParams['invoiceId'] . '" shopId="' . $callbackParams['shopid'] . '"/>';
         echo $xml;
     }
 
     public function sendCode($callbackParams, $code) {
-        header("Content-type: text/xml; charset=utf-8");
+        header('Content-type: text/xml; charset=utf-8');
         $xml = '<?xml version="1.0" encoding="UTF-8"?>
-		<checkOrderResponse performedDatetime="' . date("c") . '" code="' . $code . '" invoiceId="' . $callbackParams['invoiceId'] . '" shopId="' . $callbackParams['shopid'] . '"/>';
+		<checkOrderResponse performedDatetime="' . date('c') . '" code="' . $code . '" invoiceId="' . $callbackParams['invoiceId'] . '" shopId="' . $callbackParams['shopid'] . '"/>';
         echo $xml;
     }
 
@@ -204,7 +205,7 @@ class Payment_method_yakassa extends MY_Controller {
         if ($callbackParams['action'] == 'checkOrder') {
             $code = $this->checkOrder($param);
             $this->sendCode($param, $code);
-            $order_id = (int) $param["orderNumber"];
+            $order_id = (int) $param['orderNumber'];
         }
         if ($callbackParams['action'] == 'paymentAviso') {
             $this->checkOrder($param, TRUE, TRUE);
@@ -267,7 +268,7 @@ class Payment_method_yakassa extends MY_Controller {
             show_error($ci->db->_error_message());
         }
 
-        \CMSFactory\Events::create()->registerEvent(['system' => __CLASS__, 'order_id' => $order_id], "PaimentSystem:successPaid");
+        \CMSFactory\Events::create()->registerEvent(['system' => __CLASS__, 'order_id' => $order_id], 'PaimentSystem:successPaid');
         \CMSFactory\Events::runFactory();
 
         $result = $ci->db
@@ -276,8 +277,8 @@ class Payment_method_yakassa extends MY_Controller {
             ->update(
                 'users',
                 [
-                    'amout' => str_replace(',', '.', $amount)
-                    ]
+                 'amout' => str_replace(',', '.', $amount),
+                ]
             );
         if ($ci->db->_error_message()) {
             show_error($ci->db->_error_message());
@@ -305,9 +306,9 @@ class Payment_method_yakassa extends MY_Controller {
             ->update(
                 'shop_payment_methods',
                 [
-                    'active' => '0',
-                    'payment_system_name' => '0',
-                    ]
+                 'active'              => '0',
+                 'payment_system_name' => '0',
+                ]
             );
         if ($ci->db->_error_message()) {
             show_error($ci->db->_error_message());

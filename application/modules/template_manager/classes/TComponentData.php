@@ -9,7 +9,9 @@ namespace template_manager\classes;
  *
  *
  */
-class TComponentData { // TLicense
+class TComponentData
+{
+    // TLicense
 
     const KEY_FILE_NAME = 'tlicense.key';
     const TYPE_NONE = -1;
@@ -108,7 +110,7 @@ class TComponentData { // TLicense
         $key = str_replace(['e', 'y', 'u', 'i', 'o', 'a'], ['@', '%', '$', '^', '&', '!'], $key);
         $key = sha1($key);
         $key = array_reverse(str_split($key));
-        $key = base64_encode(implode("", $key));
+        $key = base64_encode(implode('', $key));
         return $key;
     }
 

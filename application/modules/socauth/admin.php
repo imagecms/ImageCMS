@@ -9,7 +9,8 @@
  * @copyright (c) 2013, ImageCMS
  * @package ImageCMSModule
  */
-class Admin extends BaseAdminController {
+class Admin extends BaseAdminController
+{
 
     public function __construct() {
         parent::__construct();
@@ -48,7 +49,7 @@ class Admin extends BaseAdminController {
         /** Save input data */
         $this->db
             ->where('identif', 'socauth')
-            ->update('components', array('settings' => serialize($result)));
+            ->update('components', ['settings' => serialize($result)]);
 
         showMessage(lang('Settings are saved', 'socauth'));
         pjax($this->input->server('HTTP_REFERER'));

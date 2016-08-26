@@ -75,12 +75,12 @@ class Admin extends ShopAdminController
             //Prepare data for template
             $userGroups = $this->discount_model_admin->getUserGroups(MY_Controller::getCurrentLocale());
             $data = [
-                'userGroups' => $userGroups,
-                'CS' => $this->discount_model_admin->getMainCurrencySymbol(),
-                'filterQuery' => $this->session->userdata('QueryDiscountList'),
-                'categories' => ShopCore::app()->SCategoryTree->getTree_(),
-                'brands' => SBrandsQuery::create()->orderByID(Criteria::DESC)->find()
-            ];
+                     'userGroups'  => $userGroups,
+                     'CS'          => $this->discount_model_admin->getMainCurrencySymbol(),
+                     'filterQuery' => $this->session->userdata('QueryDiscountList'),
+                     'categories'  => ShopCore::app()->SCategoryTree->getTree_(),
+                     'brands'      => SBrandsQuery::create()->setComment(__METHOD__)->orderByID(Criteria::DESC)->find(),
+                    ];
 
             //Render template and set data
             assetManager::create()
@@ -120,16 +120,16 @@ class Admin extends ShopAdminController
 
                 //Prepare data for insert in table mod_shop_discounts
                 $data = [
-                    'name' => $postArray['name'],
-                    'key' => $postArray['key'],
-                    'max_apply' => $postArray['max_apply'],
-                    'type_value' => $postArray['type_value'],
-                    'value' => $postArray['value'],
-                    'type_discount' => $typeDiscount,
-                    'date_begin' => strtotime($postArray['date_begin']),
-                    'date_end' => strtotime($postArray['date_end']),
+                         'name'          => $postArray['name'],
+                         'key'           => $postArray['key'],
+                         'max_apply'     => $postArray['max_apply'],
+                         'type_value'    => $postArray['type_value'],
+                         'value'         => $postArray['value'],
+                         'type_discount' => $typeDiscount,
+                         'date_begin'    => strtotime($postArray['date_begin']),
+                         'date_end'      => strtotime($postArray['date_end']),
                         //                    'active' => '1'
-                ];
+                        ];
 
                 //Prepare data for inserting in the table of selected discount type
                 $typeDiscountData = $postArray[$typeDiscount];
@@ -171,15 +171,15 @@ class Admin extends ShopAdminController
 
             //Prepare date for rendering
             $data = [
-                'discount' => $discountData,
-                'userGroups' => $userGroups,
-                'CS' => $this->discount_model_admin->getMainCurrencySymbol(),
-                'filterQuery' => $this->session->userdata('QueryDiscountList'),
-                'categories' => ShopCore::app()->SCategoryTree->getTree_(),
-                'languages' => $this->db->get('languages')->result_array(),
-                'locale' => $locale,
-                'brands' => SBrandsQuery::create()->orderByID(Criteria::DESC)->find()
-            ];
+                     'discount'    => $discountData,
+                     'userGroups'  => $userGroups,
+                     'CS'          => $this->discount_model_admin->getMainCurrencySymbol(),
+                     'filterQuery' => $this->session->userdata('QueryDiscountList'),
+                     'categories'  => ShopCore::app()->SCategoryTree->getTree_(),
+                     'languages'   => $this->db->get('languages')->result_array(),
+                     'locale'      => $locale,
+                     'brands'      => SBrandsQuery::create()->setComment(__METHOD__)->orderByID(Criteria::DESC)->find(),
+                    ];
             $this->cache->delete_all();
             //Render template and set data
             assetManager::create()
@@ -262,11 +262,11 @@ class Admin extends ShopAdminController
         if ($users != false) {
             foreach ($users as $user) {
                 $response[] = [
-                    'value' => $user['id'] . ' - ' . $user['username'] . ' - ' . $user['email'],
-                    'id' => $user['id'],
-                    'name' => $user['username'],
-                    'email' => $user['email'],
-                ];
+                               'value' => $user['id'] . ' - ' . $user['username'] . ' - ' . $user['email'],
+                               'id'    => $user['id'],
+                               'name'  => $user['username'],
+                               'email' => $user['email'],
+                              ];
             }
             echo json_encode($response);
             return;
@@ -288,9 +288,9 @@ class Admin extends ShopAdminController
         if ($products != false) {
             foreach ($products as $product) {
                 $response[] = [
-                    'value' => $product['id'] . ' - ' . $product['name'] . ' - ' . $product['number'],
-                    'id' => $product['id'],
-                ];
+                               'value' => $product['id'] . ' - ' . $product['name'] . ' - ' . $product['number'],
+                               'id'    => $product['id'],
+                              ];
             }
             echo json_encode($response);
             return;

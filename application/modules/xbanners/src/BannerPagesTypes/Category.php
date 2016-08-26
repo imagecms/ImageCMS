@@ -27,9 +27,9 @@ class Category extends BasePageType
         $data = [];
         foreach ($categories as $category) {
             $data[$category['id']] = [
-                'id' => $category['id'],
-                'name' => $category['name'],
-            ];
+                                      'id'   => $category['id'],
+                                      'name' => $category['name'],
+                                     ];
         }
 
         return $data;

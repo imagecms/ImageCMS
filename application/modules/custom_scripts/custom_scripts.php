@@ -37,11 +37,20 @@ class Custom_scripts extends MY_Controller
 
         $this->load->dbforge();
         $fields = [
-            'id' => ['type' => 'INT', 'constraint' => 11, 'auto_increment' => TRUE,],
-            'name' => ['type' => 'TEXT'],
-            'value' => ['type' => 'TEXT'],
-            'position' => ['type' => 'INT', 'constraint' => 5, 'unsigned' => false, 'null' => false],
-        ];
+                   'id'       => [
+                                  'type'           => 'INT',
+                                  'constraint'     => 11,
+                                  'auto_increment' => TRUE,
+                                 ],
+                   'name'     => ['type' => 'TEXT'],
+                   'value'    => ['type' => 'TEXT'],
+                   'position' => [
+                                  'type'       => 'INT',
+                                  'constraint' => 5,
+                                  'unsigned'   => false,
+                                  'null'       => false,
+                                 ],
+                  ];
 
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_field($fields);

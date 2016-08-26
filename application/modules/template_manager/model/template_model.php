@@ -5,7 +5,8 @@
  *
  * @author
  */
-class Template_model extends CI_Model {
+class Template_model extends CI_Model
+{
 
     /**
      *

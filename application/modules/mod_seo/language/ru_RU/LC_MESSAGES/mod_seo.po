@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-20 11:47+0300\n"
-"PO-Revision-Date: 2016-07-20 11:47+0300\n"
+"POT-Creation-Date: 2016-08-03 12:28+0300\n"
+"PO-Revision-Date: 2016-08-03 12:28+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -17,6 +17,10 @@ msgstr ""
 "X-Poedit-Language: \n"
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: ../../..\n"
+
+#: application/modules/mod_seo/assets/admin/main.tpl:69
+msgid "Add the name of the category page"
+msgstr "Добавить название категории страницы"
 
 #: application/modules/mod_seo/assets/admin/include/gallery_album.tpl:36
 msgid "Gallery album description"
@@ -57,10 +61,6 @@ msgstr "Будет ли отображаться название категор
 #: application/modules/mod_seo/assets/admin/advanced/productsCategoryCreate.tpl:27
 msgid "Choose category"
 msgstr "Выбрать категорию"
-
-#: application/modules/mod_seo/assets/admin/main.tpl:69
-msgid "Add the name of the category page"
-msgstr "Добавить название категории страницы"
 
 #: application/modules/mod_seo/assets/admin/advanced/productsList.tpl:29
 msgid "Add new category"

@@ -350,6 +350,27 @@ class assetManager
     }
 
     /**
+     * @param string $path
+     * @param string $position
+     */
+    public function assetTemplateFiles($path, $position = 'before') {
+
+        $template_name = config_item('template');
+
+        $path_info = pathinfo($path);
+
+        $path = '/templates/' . $template_name . '/' . ltrim($path, '/');
+
+        if ($path_info['extension'] == 'css') {
+
+            CI_Controller::get_instance()->template->registerCssFile($path, $position);
+        } elseif ($path_info['extension'] == 'js') {
+
+            CI_Controller::get_instance()->template->registerJsFile($path, $position, false);
+        }
+    }
+
+    /**
      * Compressing css file
      * @param string $css text of css file
      * @copyright ImageCMS (c) 2013, a.gula <a.gula@imagecms.net>

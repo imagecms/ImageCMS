@@ -1,6 +1,10 @@
 <?php
 
-class CForm_Textarea {
+/**
+ * @property Forms form
+ */
+class CForm_Textarea
+{
 
     public $ci = NULL;
 
@@ -8,7 +12,7 @@ class CForm_Textarea {
 
     public $field = NULL;
 
-    public function __construct($name, $field = array()) {
+    public function __construct($name, $field = []) {
 
         $this->form =& get_instance();
         $this->form = $this->form->load->module('forms');
@@ -38,12 +42,7 @@ class CForm_Textarea {
 
     public function getData() {
 
-        if (isset($_POST[$this->name])) {
-            return $_POST[$this->name];
-        }
-        else {
-            return '';
-        }
+        return isset($_POST[$this->name]) ?: '';
     }
 
     public function runValidation() {
@@ -53,8 +52,7 @@ class CForm_Textarea {
         }
         if ($this->form->form_validation->run($this->ci) == FALSE) {
             return form_error($this->name, ' ', ' ');
-        }
-        else {
+        } else {
             return FALSE;
         }
     }

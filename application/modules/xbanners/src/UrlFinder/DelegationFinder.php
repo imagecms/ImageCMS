@@ -20,18 +20,18 @@ class DelegationFinder extends BaseFinder
     public function __construct() {
         if (\MY_Controller::isCorporateCMS()) {
             $this->finders = [
-                new Pages(),
-                new PageCategories(),
+                              new Pages(),
+                              new PageCategories(),
 
-            ];
+                             ];
         } else {
             $this->finders = [
-                new Brands(),
-                new Products(),
-                new ProductCategories(),
-                new Pages(),
-                new PageCategories(),
-            ];
+                              new Brands(),
+                              new Products(),
+                              new ProductCategories(),
+                              new Pages(),
+                              new PageCategories(),
+                             ];
 
         }
     }

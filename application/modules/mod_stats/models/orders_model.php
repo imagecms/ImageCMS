@@ -38,7 +38,10 @@ class Orders_model extends CI_Model
             $betweenCondition = "AND FROM_UNIXTIME(`date_created`) BETWEEN '{$dateFrom} 00:00:00' AND '{$dateTo} 23:59:59'";
         }
 
-        return [$paidCondition, $betweenCondition];
+        return [
+                $paidCondition,
+                $betweenCondition,
+               ];
     }
 
     /**
@@ -138,12 +141,12 @@ class Orders_model extends CI_Model
      */
     public function getUsers(array $params_ = []) {
         $params = [
-            'interval' => 'day',
-            'dateFrom' => NULL,
-            'dateTo' => NULL,
-            'username' => NULL,
-            'order_id' => NULL,
-        ];
+                   'interval' => 'day',
+                   'dateFrom' => NULL,
+                   'dateTo'   => NULL,
+                   'username' => NULL,
+                   'order_id' => NULL,
+                  ];
         foreach (array_keys($params_) as $key) {
             if (array_key_exists($key, $params)) {
                 $params[$key] = $params_[$key];
@@ -151,8 +154,18 @@ class Orders_model extends CI_Model
         }
 
         $columns = [
-            'date', 'orders_count', 'paid', 'unpaid', 'delivered', 'price_sum', 'products_count', 'quantity', 'orders_ids', 'username', 'user_id'
-        ];
+                    'date',
+                    'orders_count',
+                    'paid',
+                    'unpaid',
+                    'delivered',
+                    'price_sum',
+                    'products_count',
+                    'quantity',
+                    'orders_ids',
+                    'username',
+                    'user_id',
+                   ];
 
         $order = in_array(strtolower($this->input->get('order')), ['desc', 'asc']) ? $this->input->get('order') : 'DESC';
         $orderBy = NULL;

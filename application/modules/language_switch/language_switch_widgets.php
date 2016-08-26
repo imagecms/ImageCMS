@@ -9,7 +9,8 @@ if (!defined('BASEPATH')) {
 /**
  * language_switch widgets
  */
-class Language_switch_Widgets extends MY_Controller {
+class Language_switch_Widgets extends MY_Controller
+{
 
     public function __construct() {
         parent::__construct();

@@ -234,9 +234,14 @@ class MY_Controller extends MX_Controller
     }
 
     /**
+     * @param bool $active
      * @return array|null
      */
-    public static function getAllLocales() {
+    public static function getAllLocales($active = false) {
+
+        if ($active) {
+            \CI::$APP->db->where('active', 1);
+        }
 
         $query = \CI::$APP->db->select('identif')->get('languages');
         return $query->num_rows() ? array_column($query->result_array(), 'identif') : null;
@@ -310,6 +315,8 @@ class MY_Controller extends MX_Controller
      * @throws Exception
      */
     public function getCache() {
+
+        $this->getContainer()->get('cache')->setNamespace($this->input->server('HTTP_HOST'));
 
         return $this->getContainer()->get('cache');
     }

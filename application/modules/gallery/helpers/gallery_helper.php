@@ -42,7 +42,7 @@ if (!function_exists('gallery_latest_images')) {
 
                 return $result;
             } else {
-                return array();
+                return [];
             }
         }
     }

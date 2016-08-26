@@ -5,7 +5,8 @@
  *
  * @author kolia
  */
-class TTemplateEditor extends \template_manager\classes\TComponent {
+class TTemplateEditor extends \template_manager\classes\TComponent
+{
 
     /**
      * prepare param from xml to save in db

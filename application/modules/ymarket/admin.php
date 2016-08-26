@@ -7,7 +7,8 @@
  * Sample ymarket Admin
  * @property Ymarket_model $ymarket_model
  */
-class Admin extends BaseAdminController {
+class Admin extends BaseAdminController
+{
     const DEFAULT_TYPE = 1;
     const PRICE_UA_TYPE = 2;
     const NADAVI_UA_TYPE = 3;
@@ -58,7 +59,7 @@ class Admin extends BaseAdminController {
             $this->ymarket_model->setCategories();
 
             showMessage(lang('Saved', 'admin'));
-            $this->lib_admin->log(lang("Yandex marker settings was edited", "ymarket"));
+            $this->lib_admin->log(lang('Yandex marker settings was edited', 'ymarket'));
         }
     }
 

@@ -25,7 +25,11 @@ class Admin extends BaseAdminController
     /**
      * @var array
      */
-    public $allowed_extentions = ['php', 'tpl', 'js'];
+    public $allowed_extentions = [
+                                  'php',
+                                  'tpl',
+                                  'js',
+                                 ];
 
     /**
      * @var string
@@ -409,9 +413,15 @@ class Admin extends BaseAdminController
 
         foreach ($languages as $key => $lang) {
             if (strstr(mb_strtolower($lang), $language) && $language != 'all_languages') {
-                $data[] = ['locale' => $key, 'label' => $lang];
+                $data[] = [
+                           'locale' => $key,
+                           'label'  => $lang,
+                          ];
             } elseif ($language == 'all_languages') {
-                $data[] = ['locale' => $key, 'label' => $lang];
+                $data[] = [
+                           'locale' => $key,
+                           'label'  => $lang,
+                          ];
             }
         }
         return json_encode($data);
@@ -669,12 +679,12 @@ class Admin extends BaseAdminController
             assetManager::create()
                 ->setData(
                     [
-                        'searchResult' => $searchResult ?: $this->session->flashdata('searchResult'),
-                        'searchError' => $searchError ?: $this->session->flashdata('searchError'),
-                        'searchResultsCount' => $searchResultsCount ?: $this->session->flashdata('searchResultsCount'),
-                        'languages' => $languages_data,
-                        'search' => $search,
-                        'searchType' => $searchType,
+                     'searchResult'       => $searchResult ?: $this->session->flashdata('searchResult'),
+                     'searchError'        => $searchError ?: $this->session->flashdata('searchError'),
+                     'searchResultsCount' => $searchResultsCount ?: $this->session->flashdata('searchResultsCount'),
+                     'languages'          => $languages_data,
+                     'search'             => $search,
+                     'searchType'         => $searchType,
                     ]
                 )
                 ->registerScript('admin')
@@ -694,9 +704,9 @@ class Admin extends BaseAdminController
         $returnsData = [];
         foreach ($result as $item) {
             $returnsData[] = [
-                'label' => $item,
-                'value' => $item,
-            ];
+                              'label' => $item,
+                              'value' => $item,
+                             ];
         }
 
         return json_encode(['results' => $returnsData]);
@@ -779,12 +789,12 @@ class Admin extends BaseAdminController
 
             return json_encode(
                 [
-                    'data' => assetManager::create()
+                 'data' => assetManager::create()
                         ->setData('po_array', $po_array)
                         ->setData('page', 1)
                         ->setData('rows_count', ceil(count($po_array) / 11))
                         ->setData('can_edit_file', $can_edit_file)
-                        ->fetchAdminTemplate('po_table', FALSE)
+                        ->fetchAdminTemplate('po_table', FALSE),
                 ]
             );
         }
@@ -919,9 +929,9 @@ class Admin extends BaseAdminController
         $this->session->set_userdata(
             'translation',
             [
-                'name' => $name,
-                'type' => $type,
-                'lang' => $lang,
+             'name' => $name,
+             'type' => $type,
+             'lang' => $lang,
             ]
         );
     }
@@ -940,9 +950,7 @@ class Admin extends BaseAdminController
         $poFileManager = new PoFileManager();
 
         if ($name && $type && $locale && $origin) {
-            $data[$origin] = [
-                'translation' => $translation
-            ];
+            $data[$origin] = ['translation' => $translation];
 
             if ($poFileManager->update($name, $type, $locale, $data)) {
                 return json_encode(['success' => TRUE, 'message' => lang('Successfully translated.', 'translator')]);

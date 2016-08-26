@@ -117,7 +117,12 @@ class BaseEmail extends ParentEmail
             $this->protocol = $this->input->post('protocol');
             $this->mailpath = $this->input->post('mailpath');
             $this->type = 'text';
-            $config = ['port' => $this->port, 'protocol' => $this->protocol, 'mailpath' => $this->mailpath, 'type' => $this->type];
+            $config = [
+                       'port'     => $this->port,
+                       'protocol' => $this->protocol,
+                       'mailpath' => $this->mailpath,
+                       'type'     => $this->type,
+                      ];
 
             return parent::mailTest($config);
         }
@@ -125,13 +130,13 @@ class BaseEmail extends ParentEmail
 
     public function smtpMailTest() {
         $config = [
-            'protocol' => 'smtp', //smtp
-            'smtp_host' => $this->input->post('smtp_host'), //'smtp.gmail.com',
-            'smtp_port' => $this->input->post('smtp_port'), // 587, 465
-            'smtp_crypto' => $this->input->post('smtp_crypto'), //tls||ssl
-            'smtp_user' => $this->input->post('smtp_user'),
-            'smtp_pass' => $this->input->post('smtp_pass'),
-        ];
+                   'protocol'    => 'smtp', //smtp
+                   'smtp_host'   => $this->input->post('smtp_host'), //'smtp.gmail.com',
+                   'smtp_port'   => $this->input->post('smtp_port'), // 587, 465
+                   'smtp_crypto' => $this->input->post('smtp_crypto'), //tls||ssl
+                   'smtp_user'   => $this->input->post('smtp_user'),
+                   'smtp_pass'   => $this->input->post('smtp_pass'),
+                  ];
         $this->load->library('email', $config);
         $this->email->from($this->input->post('from_email'), $this->input->post('from'));
         $this->email->to($this->input->post('send_to'));

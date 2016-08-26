@@ -29,9 +29,9 @@ class Admin extends BaseAdminController
         $cats = $this->lib_category->build();
 
         $data = [
-                'cats' => $cats,
-                'settings' => $this->get_settings()
-            ];
+                 'cats'     => $cats,
+                 'settings' => $this->get_settings(),
+                ];
         assetManager::create()->setData($data)->renderAdmin('settings');
     }
 
@@ -41,12 +41,12 @@ class Admin extends BaseAdminController
     public function settings_update() {
 
         $data = [
-            'title' => $this->input->post('title'),
-            'description' => $this->input->post('description'),
-            'categories' => $this->input->post('categories'),
-            'cache_ttl' => (int) $this->input->post('cache_ttl'),
-            'pages_count' => (int) $this->input->post('pages_count'),
-        ];
+                 'title'       => $this->input->post('title'),
+                 'description' => $this->input->post('description'),
+                 'categories'  => $this->input->post('categories'),
+                 'cache_ttl'   => (int) $this->input->post('cache_ttl'),
+                 'pages_count' => (int) $this->input->post('pages_count'),
+                ];
 
         $this->db->where('name', 'rss');
         $this->db->update('components', ['settings' => serialize($data)]);

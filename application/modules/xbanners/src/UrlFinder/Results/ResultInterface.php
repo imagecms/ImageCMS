@@ -11,7 +11,7 @@ interface ResultInterface
      * @param string $name
      * @param string $url
      */
-    public function addResult($name , $url);
+    public function addResult($name, $url);
 
     /**
      * @return string

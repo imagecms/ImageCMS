@@ -12,7 +12,8 @@ if (!defined('BASEPATH')) {
  * @package ImageCMSModule
  * @property Banner_model $banner_model
  */
-class Banners extends MY_Controller {
+class Banners extends MY_Controller
+{
 
     public $no_install = true;
 
@@ -99,18 +100,18 @@ class Banners extends MY_Controller {
      */
     public function _install() {
 
-        $sql = "CREATE TABLE IF NOT EXISTS `mod_banner` (
+        $sql = 'CREATE TABLE IF NOT EXISTS `mod_banner` (
           `id` int(11) NOT NULL AUTO_INCREMENT,
           `active` tinyint(4) NOT NULL,
           `active_to` int(11) DEFAULT NULL,
           `where_show` text CHARACTER SET utf8,
           `position` int(11) DEFAULT NULL,
           PRIMARY KEY (`id`)
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;";
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;';
 
         $this->db->query($sql);
 
-        $sql = "CREATE TABLE IF NOT EXISTS `mod_banner_i18n` (
+        $sql = 'CREATE TABLE IF NOT EXISTS `mod_banner_i18n` (
           `id` int(11) NOT NULL,
           `url` text CHARACTER SET utf8,
           `locale` varchar(5) CHARACTER SET utf8 NOT NULL,
@@ -118,7 +119,7 @@ class Banners extends MY_Controller {
           `description` text CHARACTER SET utf8,
           `photo` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
           KEY `id` (`id`,`locale`)
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8;';
 
         $this->db->query($sql);
 
@@ -176,7 +177,10 @@ class Banners extends MY_Controller {
             return $lang_ident;
         }
         if ($flag == null) {
-            return ['id' => $lang_id, 'identif' => $lang_ident];
+            return [
+                    'id'      => $lang_id,
+                    'identif' => $lang_ident,
+                   ];
         }
     }
 

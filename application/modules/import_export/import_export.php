@@ -7,7 +7,8 @@
  * Module Sample
  */
 
-class Import_export extends MY_Controller {
+class Import_export extends MY_Controller
+{
 
     public function __construct() {
         parent::__construct();

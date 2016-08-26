@@ -73,7 +73,7 @@ class Navigation_Widgets extends MY_Controller
 
             case 'brand':
                 if ($this->core->core_data['id'] != null) {
-                    $brand = SBrandsQuery::create()->joinWithI18n(MY_Controller::getCurrentLocale())->findOneById($this->core->core_data['id']);
+                    $brand = SBrandsQuery::create()->setComment(__METHOD__)->joinWithI18n(MY_Controller::getCurrentLocale())->findOneById($this->core->core_data['id']);
 
                     $navi_cats[] = [
                                     'path_url' => 'shop/brand/',
@@ -127,7 +127,7 @@ class Navigation_Widgets extends MY_Controller
             case 'shop_category':
                 if ($this->core->core_data['id'] !== null && $this->core->core_data > 0) {
 
-                    $category = SCategoryQuery::create()->findOneById($this->core->core_data['id']);
+                    $category = SCategoryQuery::create()->setComment(__METHOD__)->findOneById($this->core->core_data['id']);
                     $categories = $category->buildCategoryPath(Criteria::ASC, MY_Controller::getCurrentLocale());
                     $paths = [];
 
@@ -158,7 +158,7 @@ class Navigation_Widgets extends MY_Controller
                             throw new Exception('Category not found');
                         }
 
-                        $category = SCategoryQuery::create()->findOneById($product->getCategoryId());
+                        $category = SCategoryQuery::create()->setComment(__METHOD__)->findOneById($product->getCategoryId());
                         $categories = $category->buildCategoryPath(Criteria::ASC, MY_Controller::getCurrentLocale());
 
                         foreach ($categories as $category) {

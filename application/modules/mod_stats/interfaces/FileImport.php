@@ -1,6 +1,7 @@
 <?php
 
-interface FileImport{
+interface FileImport
+{
 
     /**
      * Include file (or all recursively files in dir)

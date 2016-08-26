@@ -8,7 +8,8 @@ use admin_menu\classes\AdminMenuBuilder as AdminMenuBuilder;
  * Image CMS
  * Related_products Module Admin
  */
-class Admin extends BaseAdminController {
+class Admin extends BaseAdminController
+{
 
     public function __construct() {
         parent::__construct();
@@ -38,12 +39,12 @@ class Admin extends BaseAdminController {
         $lang = new \MY_Lang();
         $lang->load('admin_menu');
 
-        $menus = array(
-            'full' => $this->load->module('admin_menu')->setDevMode('full')->show(),
-            'corporate' => $this->load->module('admin_menu')->setDevMode('corporate')->show(),
-            'professional' => $this->load->module('admin_menu')->setDevMode('professional')->show(),
-            'premium' => $this->load->module('admin_menu')->setDevMode('premium')->show(),
-        );
+        $menus = [
+                  'full'         => $this->load->module('admin_menu')->setDevMode('full')->show(),
+                  'corporate'    => $this->load->module('admin_menu')->setDevMode('corporate')->show(),
+                  'professional' => $this->load->module('admin_menu')->setDevMode('professional')->show(),
+                  'premium'      => $this->load->module('admin_menu')->setDevMode('premium')->show(),
+                 ];
 
         $menus = array_filter($menus);
 
@@ -70,10 +71,10 @@ class Admin extends BaseAdminController {
             $tariffs[$key]->menu = $this->load->module('admin_menu')->setDevMode("Tariff_{$tariff->id}_menu", $type)->show();
         }
 
-        $menus = array(
-            'full' => $this->load->module('admin_menu')->setDevMode('full')->show(),
-            'tariffs' => $tariffs
-        );
+        $menus = [
+                  'full'    => $this->load->module('admin_menu')->setDevMode('full')->show(),
+                  'tariffs' => $tariffs,
+                 ];
 
         $menus = array_filter($menus);
 
@@ -94,12 +95,12 @@ class Admin extends BaseAdminController {
     private function cms() {
         \CMSFactory\assetManager::create()
             ->setData(
-                array(
-                    'full_menu' => AdminMenuBuilder::getMenuList(AdminMenuBuilder::$FULL_MENU),
-                    'corporate_menu' => AdminMenuBuilder::getMenuList(AdminMenuBuilder::$CORPORATE_MENU),
-                    'professional_menu' => AdminMenuBuilder::getMenuList(AdminMenuBuilder::$PROFESSIONAL_MENU),
-                    'premium_menu' => AdminMenuBuilder::getMenuList(AdminMenuBuilder::$PREMIUM_MENU),
-                )
+                [
+                 'full_menu'         => AdminMenuBuilder::getMenuList(AdminMenuBuilder::$FULL_MENU),
+                 'corporate_menu'    => AdminMenuBuilder::getMenuList(AdminMenuBuilder::$CORPORATE_MENU),
+                 'professional_menu' => AdminMenuBuilder::getMenuList(AdminMenuBuilder::$PROFESSIONAL_MENU),
+                 'premium_menu'      => AdminMenuBuilder::getMenuList(AdminMenuBuilder::$PREMIUM_MENU),
+                ]
             )
             ->registerStyle('admin_menu')
             ->registerScript('admin_menu')
@@ -117,10 +118,10 @@ class Admin extends BaseAdminController {
 
         \CMSFactory\assetManager::create()
             ->setData(
-                array(
-                    'tariffs' => $tariffs,
-                    'full_menu' => AdminMenuBuilder::getMenuList(AdminMenuBuilder::$FULL_MENU),
-                )
+                [
+                 'tariffs'   => $tariffs,
+                 'full_menu' => AdminMenuBuilder::getMenuList(AdminMenuBuilder::$FULL_MENU),
+                ]
             )
             ->registerStyle('admin_menu')
             ->registerScript('admin_menu')
@@ -164,7 +165,7 @@ class Admin extends BaseAdminController {
     public function uploadTariffsMenus() {
         $tariffs_menus_paths = glob(AdminMenuBuilder::getMenuPath() . 'store/Tariff_*_menu.php');
 
-        $menus = array();
+        $menus = [];
         foreach ($tariffs_menus_paths as $path) {
             $saas_path = str_replace('./', '/var/www/saas_data/mainsaas/', $path);
             $menus[$saas_path] = file_get_contents($path);
@@ -183,7 +184,7 @@ class Admin extends BaseAdminController {
         $type = 'modules';
         $lang = $this->config->item('language');
 
-        $po_data = array();
+        $po_data = [];
         $po_data[$data['origin']]['translation'] = $data['translate'];
 
         $poFileManager->update($name, $type, $lang, $po_data);

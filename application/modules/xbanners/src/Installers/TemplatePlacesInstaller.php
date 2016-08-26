@@ -49,7 +49,7 @@ final class TemplatePlacesInstaller
 
     public function update() {
         foreach ($this->getBanners() as $place => $banner) {
-            $bannerModel = BannersQuery::create()->findOneByPlace($place);
+            $bannerModel = BannersQuery::create()->setComment(__METHOD__)->findOneByPlace($place);
             if (!count($bannerModel)) {
                 $bannerModel = new Banners();
                 $bannerModel->setPlace($place);
@@ -63,7 +63,7 @@ final class TemplatePlacesInstaller
     }
 
     public function dropAll() {
-        BannersQuery::create()->deleteAll();
+        BannersQuery::create()->setComment(__METHOD__)->deleteAll();
     }
 
     /**

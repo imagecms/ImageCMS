@@ -8,7 +8,8 @@ if (!defined('BASEPATH')) {
  * Image CMS
  * Comments admin
  */
-class Admin extends BaseAdminController {
+class Admin extends BaseAdminController
+{
 
     public function __construct() {
         parent::__construct();
@@ -37,14 +38,14 @@ class Admin extends BaseAdminController {
             pjax('/admin/components/modules_table');
         }
 
-        $this->lib_admin->log(lang("Social buttons was updated", "share"));
+        $this->lib_admin->log(lang('Social buttons was updated', 'share'));
 
         showMessage(lang('Settings successfully saved', 'share'));
     }
 
     public function get_settings() {
         $this->db->select('settings');
-        $this->settings = unserialize(implode(',', $this->db->get_where('components', array('name' => 'share'))->row_array()));
+        $this->settings = unserialize(implode(',', $this->db->get_where('components', ['name' => 'share'])->row_array()));
         return $this->settings;
     }
 

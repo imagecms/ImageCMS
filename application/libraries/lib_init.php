@@ -4,7 +4,8 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-use Monolog\Handler\StreamHandler;
+use Monolog\Handler\RotatingFileHandler;
+use Monolog\Logger;
 use Propel\Runtime\Propel;
 use Propel\Runtime\Connection\ConnectionManagerSingle;
 
@@ -158,11 +159,11 @@ class Lib_init
         Propel::getConnection('Shop')->query('SET NAMES utf8 COLLATE utf8_unicode_ci');
 
         // log propel queries
-        if (ENVIRONMENT == 'development') {
+        if (ENVIRONMENT === 'development') {
             $con = Propel::getWriteConnection('Shop');
             $con->useDebug(true);
-            $logger = new Monolog\Logger('defaultLogger');
-            $logger->pushHandler(new StreamHandler(APPPATH . 'logs/propel.log'));
+            $logger = new Logger('defaultLogger');
+            $logger->pushHandler(new RotatingFileHandler(APPPATH . 'logs/propel.log', 1, Logger::DEBUG, true, 0777));
             $serviceContainer->setLogger('defaultLogger', $logger);
         }
     }

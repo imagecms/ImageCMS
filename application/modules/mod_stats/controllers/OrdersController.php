@@ -27,24 +27,25 @@ class OrdersController extends ControllerBase
         // Set default view type
         $result = $this->controller->orders_model->getOrdersInfo(
             [
-            'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
-            'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
-            'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
+             'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
+             'dateTo'   => isset($_GET['to']) ? $_GET['to'] : date('Y-m-d'),
+             'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
             ]
         );
         $this->renderAdmin(
             'charts',
             [
-            'data' => $result,
-            'viewType' => $viewType,
-            'show_by' => !empty($_GET['show_by']) ? $_GET['show_by'] : 'Price']
+             'data'     => $result,
+             'viewType' => $viewType,
+             'show_by'  => !empty($_GET['show_by']) ? $_GET['show_by'] : 'Price',
+            ]
         );
     }
 
     public function getChartDataPrice() {
         $this->outputChart(
             [
-            'price_sum' => lang('Price', 'mod_stats'),
+             'price_sum' => lang('Price', 'mod_stats'),
             ]
         );
     }
@@ -52,10 +53,10 @@ class OrdersController extends ControllerBase
     public function getChartDataCount() {
         $this->outputChart(
             [
-            'orders_count' => lang('Orders', 'mod_stats'),
-            'products_count' => lang('Products', 'mod_stats'),
-            'paid' => lang('Paid', 'mod_stats'),
-            'delivered' => lang('Delivered', 'mod_stats')
+             'orders_count'   => lang('Orders', 'mod_stats'),
+             'products_count' => lang('Products', 'mod_stats'),
+             'paid'           => lang('Paid', 'mod_stats'),
+             'delivered'      => lang('Delivered', 'mod_stats'),
             ]
         );
     }
@@ -66,9 +67,9 @@ class OrdersController extends ControllerBase
     private function outputChart(array $lines) {
         $result = $this->controller->orders_model->getOrdersInfo(
             [
-            'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
-            'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
-            'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
+             'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
+             'dateTo'   => isset($_GET['to']) ? $_GET['to'] : date('Y-m-d'),
+             'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
             ]
         );
 
@@ -77,10 +78,10 @@ class OrdersController extends ControllerBase
             foreach ($row as $field => $value) {
                 if (array_key_exists($field, $lines)) {
                     $countsData[$field][] = [
-                        'date' => $result[$i]['date'],
-                        'x' => $result[$i]['unix_date'] * 1000,
-                        'y' => $value
-                    ];
+                                             'date' => $result[$i]['date'],
+                                             'x'    => $result[$i]['unix_date'] * 1000,
+                                             'y'    => $value,
+                                            ];
                 }
             }
         }
@@ -90,10 +91,10 @@ class OrdersController extends ControllerBase
         $chartData = [];
         foreach ($countsData as $labelKey => $valuesArray) {
             $chartData[] = [
-                'key' => $lines[$labelKey],
+                            'key'    => $lines[$labelKey],
                 //'values' => $valuesArray,// without filling zeros
-                'values' => ZeroFiller::fill($valuesArray, 'x', 'y', isset($_GET['group']) ? $_GET['group'] : 'day'),
-            ];
+                            'values' => ZeroFiller::fill($valuesArray, 'x', 'y', isset($_GET['group']) ? $_GET['group'] : 'day'),
+                           ];
         }
 
         echo json_encode($chartData);
@@ -105,9 +106,9 @@ class OrdersController extends ControllerBase
     public function info() {
         $result = $this->controller->orders_model->getOrdersInfo(
             [
-            'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
-            'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
-            'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
+             'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
+             'dateTo'   => isset($_GET['to']) ? $_GET['to'] : date('Y-m-d'),
+             'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
             ]
         );
 
@@ -124,11 +125,11 @@ class OrdersController extends ControllerBase
         // getting all data
         $data = $this->controller->orders_model->getUsers(
             [
-            'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '20014-01-01',
-            'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
-            'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
-            'username' => isset($_GET['username']) ? $_GET['username'] : NULL,
-            'order_id' => isset($_GET['order_id']) ? $_GET['order_id'] : NULL,
+             'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '20014-01-01',
+             'dateTo'   => isset($_GET['to']) ? $_GET['to'] : date('Y-m-d'),
+             'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
+             'username' => isset($_GET['username']) ? $_GET['username'] : NULL,
+             'order_id' => isset($_GET['order_id']) ? $_GET['order_id'] : NULL,
             ]
         );
 
@@ -151,9 +152,9 @@ class OrdersController extends ControllerBase
         $this->renderAdmin(
             'users',
             [
-            'data' => $data,
-            'viewType' => $viewType,
-            'chartField' => isset($_GET['chart_field']) ? $_GET['chart_field'] : 'orders_count',
+             'data'       => $data,
+             'viewType'   => $viewType,
+             'chartField' => isset($_GET['chart_field']) ? $_GET['chart_field'] : 'orders_count',
             ]
         );
     }
@@ -164,10 +165,10 @@ class OrdersController extends ControllerBase
     public function getUsersChartData() {
 
         $params = [
-            'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
-            'dateTo' => isset($_GET['to']) ? $_GET['to'] : date("Y-m-d"),
-            'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
-        ];
+                   'dateFrom' => isset($_GET['from']) ? $_GET['from'] : '2005-05-05',
+                   'dateTo'   => isset($_GET['to']) ? $_GET['to'] : date('Y-m-d'),
+                   'interval' => isset($_GET['group']) ? $_GET['group'] : 'day',
+                  ];
 
         $field = isset($_GET['chart_field']) ? $_GET['chart_field'] : 'orders_count';
 
@@ -176,9 +177,9 @@ class OrdersController extends ControllerBase
         $chartData = [];
         foreach ($data as $user) {
             $chartData[] = [
-                'key' => $user['username'],
-                'y' => (int) $user[$field]
-            ];
+                            'key' => $user['username'],
+                            'y'   => (int) $user[$field],
+                           ];
         }
         echo json_encode($chartData);
     }

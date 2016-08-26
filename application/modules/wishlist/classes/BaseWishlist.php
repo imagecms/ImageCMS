@@ -221,10 +221,10 @@ class BaseWishlist extends ParentWishlist
         }
 
         $data = [
-            'access' => $this->input->post('access'),
-            'description' => $wlDescription,
-            'title' => $title,
-        ];
+                 'access'      => $this->input->post('access'),
+                 'description' => $wlDescription,
+                 'title'       => $title,
+                ];
 
         return parent::updateWL($id, $data, $desc);
     }

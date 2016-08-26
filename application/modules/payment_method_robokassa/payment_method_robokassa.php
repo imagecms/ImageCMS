@@ -6,7 +6,8 @@
  * Image CMS
  * Module Frame
  */
-class Payment_method_robokassa extends MY_Controller {
+class Payment_method_robokassa extends MY_Controller
+{
 
     public $paymentMethod;
 
@@ -99,7 +100,7 @@ class Payment_method_robokassa extends MY_Controller {
         $mrh_login = $paySettings['login'];
         $mrh_pass1 = $paySettings['password1'];
 
-        $inv_desc = "Оплата заказа номер " . $param->getId();
+        $inv_desc = 'Оплата заказа номер ' . $param->getId();
         //        // номер заказа
         $inv_id = $param->getId();
         $out_summ = $price = $param->getDeliveryPrice() ? ($param->getTotalPrice() + $param->getDeliveryPrice()) : $param->getTotalPrice();
@@ -156,9 +157,9 @@ class Payment_method_robokassa extends MY_Controller {
         $key = $userOrder->payment_method . '_' . $this->moduleName;
         $paySettings = $this->getPaymentSettings($key);
         $mrh_pass2 = $paySettings['password2'];
-        $out_summ = $_POST["OutSum"];
-        $inv_id = $_POST["InvId"];
-        $crc = strtoupper($_REQUEST["SignatureValue"]);
+        $out_summ = $_POST['OutSum'];
+        $inv_id = $_POST['InvId'];
+        $crc = strtoupper($_REQUEST['SignatureValue']);
 
         $my_crc = strtoupper(md5("$out_summ:$inv_id:$mrh_pass2"));
 
@@ -214,7 +215,7 @@ class Payment_method_robokassa extends MY_Controller {
             show_error($ci->db->_error_message());
         }
 
-        \CMSFactory\Events::create()->registerEvent(['system' => __CLASS__, 'order_id' => $order_id], "PaimentSystem:successPaid");
+        \CMSFactory\Events::create()->registerEvent(['system' => __CLASS__, 'order_id' => $order_id], 'PaimentSystem:successPaid');
         \CMSFactory\Events::runFactory();
 
         $result = $ci->db
@@ -223,8 +224,8 @@ class Payment_method_robokassa extends MY_Controller {
             ->update(
                 'users',
                 [
-                    'amout' => str_replace(',', '.', $amount)
-                    ]
+                 'amout' => str_replace(',', '.', $amount),
+                ]
             );
         if (!$result) {
             show_error($ci->db->_error_message());
@@ -252,9 +253,9 @@ class Payment_method_robokassa extends MY_Controller {
             ->update(
                 'shop_payment_methods',
                 [
-                    'active' => '0',
-                    'payment_system_name' => '0',
-                    ]
+                 'active'              => '0',
+                 'payment_system_name' => '0',
+                ]
             );
         if (!$result) {
             show_error($ci->db->_error_message());

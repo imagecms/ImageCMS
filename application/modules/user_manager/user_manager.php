@@ -7,7 +7,8 @@ if (!defined('BASEPATH')) {
 /**
  * Image CMS
  */
-class User_manager extends MY_Controller {
+class User_manager extends MY_Controller
+{
 
     public function __construct() {
 

@@ -58,12 +58,12 @@ class Rss extends MY_Controller
             }
 
             $tpl_data = [
-                'header' => $this->rss_header,
-                'title' => $this->settings['title'],
-                'description' => $this->settings['description'],
-                'pub_date' => gmdate('D, d M Y H:i:s', time()) . ' GMT',
-                'items' => $pages,
-            ];
+                         'header'      => $this->rss_header,
+                         'title'       => $this->settings['title'],
+                         'description' => $this->settings['description'],
+                         'pub_date'    => gmdate('D, d M Y H:i:s', time()) . ' GMT',
+                         'items'       => $pages,
+                        ];
 
             $content = assetManager::create()
                 ->setData($tpl_data)

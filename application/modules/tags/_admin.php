@@ -28,8 +28,8 @@ class Admin extends MY_Controller
 
         $this->template->add_array(
             [
-                    'tags_cloud' => $this->tags->build_cloud('array'),
-                ]
+             'tags_cloud' => $this->tags->build_cloud('array'),
+            ]
         );
 
         $this->display_tpl('tags_admin');

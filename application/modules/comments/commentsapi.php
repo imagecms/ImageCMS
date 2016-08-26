@@ -380,8 +380,8 @@ class Commentsapi extends Comments
             $comment_text_plus = nl2br($this->input->post('comment_text_plus'));
             $comment_text_minus = nl2br($this->input->post('comment_text_minus'));
             $rate = $this->input->post('ratec');
-            if ($rate && SHOP_INSTALLED && class_exists('SProductsQuery') && SProductsQuery::create()->findPk($item_id) !== null) {
-                $model = SProductsRatingQuery::create()->findPk($item_id);
+            if ($rate && SHOP_INSTALLED && class_exists('SProductsQuery') && SProductsQuery::create()->setComment(__METHOD__)->findPk($item_id) !== null) {
+                $model = SProductsRatingQuery::create()->setComment(__METHOD__)->findPk($item_id);
                 if ($model === null) {
                     $model = new SProductsRating;
                     $model->setProductId($item_id);
@@ -507,8 +507,8 @@ class Commentsapi extends Comments
             $rate = $this->input->post('ratec');
             if ($this->input->post('ratec')) {
                 if (class_exists('SProductsQuery')) {
-                    if (SProductsQuery::create()->findPk($item_id) !== null) {
-                        $model = SProductsRatingQuery::create()->findPk($item_id);
+                    if (SProductsQuery::create()->setComment(__METHOD__)->findPk($item_id) !== null) {
+                        $model = SProductsRatingQuery::create()->setComment(__METHOD__)->findPk($item_id);
                         if ($model === null) {
                             $model = new SProductsRating;
                             $model->setProductId($item_id);

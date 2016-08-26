@@ -6,7 +6,8 @@
  * Image CMS
  * Sample Module Admin
  */
-class Admin extends BaseAdminController {
+class Admin extends BaseAdminController
+{
 
     public function __construct() {
         parent::__construct();
@@ -34,7 +35,7 @@ class Admin extends BaseAdminController {
 
     public function fAdd() {
         if ($this->input->post('code')) {
-            $this->db->insert('mod_promocode', array('value' => $this->input->post('code'), 'disc' => $this->input->post('disc')));
+            $this->db->insert('mod_promocode', ['value' => $this->input->post('code'), 'disc' => $this->input->post('disc')]);
             echo $this->db->order_by('id', 'desc')->get('mod_promocode')->row()->id;
 
         }else {
@@ -44,7 +45,7 @@ class Admin extends BaseAdminController {
     }
 
     public function save() {
-        $this->db->where('identif', 'mod_promocode')->update('components', array('settings' => $this->input->post('id_custom_field')));
+        $this->db->where('identif', 'mod_promocode')->update('components', ['settings' => $this->input->post('id_custom_field')]);
         showMessage(lang('Сохранено', 'mod_promocode'));
     }
 

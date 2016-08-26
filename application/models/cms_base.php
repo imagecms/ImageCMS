@@ -175,21 +175,8 @@ class Cms_base extends CI_Model
      */
     public function get_categories() {
 
-        /** Сетаеться только в pages->edit */
-        if ($this->getLocaleId()) {
-
-            $query = $this->db->select('*')
-                ->from('category')
-                ->join('category_translate', 'category.id = category_translate.alias', 'left')
-                ->where('lang', $this->getLocaleId())
-                ->order_by('position', 'ASC')
-                ->get();
-        } else {
-
-            $this->db->order_by('position', 'ASC');
-            $query = $this->db->get('category');
-
-        }
+        $this->db->order_by('position', 'ASC');
+        $query = $this->db->get('category');
 
         if ($query->num_rows() > 0) {
             $categories = $query->result_array();

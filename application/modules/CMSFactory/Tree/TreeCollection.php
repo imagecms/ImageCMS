@@ -14,11 +14,11 @@ class TreeCollection extends ObjectCollection
      */
     public function __construct(ObjectCollection $items, $rootId = 0) {
 
-        //order all categories by id
-        while (!$items->isEmpty()) {
-            $oneItem = $items->shift();
-            $this->data[$oneItem->getId()] = new ModelWrapper($oneItem);
+        foreach ($items as $item) {
+
+            $this->data[$item->getId()] = new ModelWrapper($item);
         }
+
         //set parents
         foreach ($this->data as $wrapper) {
 

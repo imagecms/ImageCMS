@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-            <title>ImageCMS - <?php lang('Installing', 'install') ?></title>
+            <title>ImageCMS - <?php lang('Installing', 'install'); ?></title>
             <link rel="stylesheet" type="text/css" href="/templates/administrator/css/bootstrap.css">
 
                 <style>
@@ -144,13 +144,25 @@
                             <section class="mini-layout">
                                 <form action="/install/change_language" method="POST">
                                     <select name="language" onchange="this.form.submit()" style="float: right; width: 100px;">
-                                        <option value="ru_RU" <?php if ($_SESSION['language'] == 'ru_RU') echo 'selected'; ?>><?php echo lang('Russian', 'install')?></option>
-                                        <option value="en_US" <?php if ($_SESSION['language'] == 'en_US' || !$_SESSION['language']) echo 'selected'; ?>><?php echo lang('English', 'install')?></option>
+                                        <option value="ru_RU" 
+                                        <?php
+                                        if ($_SESSION['language'] == 'ru_RU') { echo 'selected';
+
+                                        };
+?>
+><?php echo lang('Russian', 'install'); ?></option>
+                                        <option value="en_US" 
+                                        <?php
+                                        if ($_SESSION['language'] == 'en_US' || !$_SESSION['language']) { echo 'selected';
+
+                                        };
+?>
+><?php echo lang('English', 'install'); ?></option>
                                     </select>
-                                    <div style="text-align: right; font-size: 17px; float: right; margin-right: 10px; margin-top: 5px"><b><?php echo lang('Language', 'install') ?>:</b></div>
-                                    <?php echo form_csrf() ?>
+                                    <div style="text-align: right; font-size: 17px; float: right; margin-right: 10px; margin-top: 5px"><b><?php echo lang('Language', 'install'); ?>:</b></div>
+                                    <?php echo form_csrf(); ?>
                                 </form>
-                                <?php echo $content ?>
+                                <?php echo $content; ?>
                             </section>
                         </div>
                     </div>

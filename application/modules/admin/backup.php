@@ -36,10 +36,10 @@ class Backup extends BaseAdminController
         } else {
 
             $settings = [
-            'backup_del_status' => $this->input->post('backup_del_status') ?: 0,
-            'backup_term' => $this->input->post('backup_term') ?: 6,
-            'backup_maxsize' => $this->input->post('backup_maxsize') ?: 1000,
-            ];
+                         'backup_del_status' => $this->input->post('backup_del_status') ?: 0,
+                         'backup_term'       => $this->input->post('backup_term') ?: 6,
+                         'backup_maxsize'    => $this->input->post('backup_maxsize') ?: 1000,
+                        ];
 
             $bad = [];
             foreach ($settings as $key => $value) {
@@ -107,12 +107,12 @@ class Backup extends BaseAdminController
 
         $this->template->add_array(
             [
-                    'user' => $this->get_admin_info(),
-                    'backup_del_status' => $del_status == null ? 0 : $del_status,
-                    'backup_term' => $term == null ? 6 : $term,
-                    'backup_maxsize' => $maxSize == null ? 1000 : $maxSize,
-                    'files' => $files
-                ]
+             'user'              => $this->get_admin_info(),
+             'backup_del_status' => $del_status == null ? 0 : $del_status,
+             'backup_term'       => $term == null ? 6 : $term,
+             'backup_maxsize'    => $maxSize == null ? 1000 : $maxSize,
+             'files'             => $files,
+            ]
         );
 
         $this->template->show('backup', false);

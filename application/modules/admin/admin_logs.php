@@ -72,10 +72,10 @@ class Admin_logs extends BaseAdminController
 
         $this->template->add_array(
             [
-                    'messages' => $messages,
+             'messages'  => $messages,
                     //            'languages' => ShopCore::$ci->cms_admin->get_langs(true),
-                    'paginator' => $this->pagination->create_links_ajax(),
-                ]
+             'paginator' => $this->pagination->create_links_ajax(),
+            ]
         );
 
         $this->template->show('logs', false);

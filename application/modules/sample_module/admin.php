@@ -6,7 +6,8 @@
  * Image CMS
  * Sample Module Admin
  */
-class Admin extends BaseAdminController {
+class Admin extends BaseAdminController
+{
 
     public function __construct() {
         parent::__construct();
@@ -29,9 +30,9 @@ class Admin extends BaseAdminController {
     }
 
     public function updateSettings() {
-        $this->db->update('mod_sample_settings', array('value' => $this->input->post('mailTo')), array('name' => 'mailTo'));
-        $this->db->update('mod_sample_settings', array('value' => $this->input->post('useEmailNotification')), array('name' => 'useEmailNotification'));
-        $this->db->update('mod_sample_settings', array('value' => $this->input->post('key')), array('name' => 'key'));
+        $this->db->update('mod_sample_settings', ['value' => $this->input->post('mailTo')], ['name' => 'mailTo']);
+        $this->db->update('mod_sample_settings', ['value' => $this->input->post('useEmailNotification')], ['name' => 'useEmailNotification']);
+        $this->db->update('mod_sample_settings', ['value' => $this->input->post('key')], ['name' => 'key']);
         showMessage(lang('Settings saved', 'sample_module'));
 
         if ($_POST['action'] == 'back') {

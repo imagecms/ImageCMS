@@ -109,24 +109,24 @@ class template_manager extends \MY_Controller
         ($this->dx_auth->is_admin()) OR exit;
 
         $fields = [
-            'id' => [
-                'type' => 'INT',
-                'auto_increment' => TRUE
-            ],
-            'component' => [
-                'type' => 'VARCHAR',
-                'constraint' => '255',
-                'null' => FALSE
-            ],
-            'key' => [
-                'type' => 'Text',
-                'null' => TRUE
-            ],
-            'data' => [
-                'type' => 'TEXT',
-                'null' => TRUE
-            ]
-        ];
+                   'id'        => [
+                                   'type'           => 'INT',
+                                   'auto_increment' => TRUE,
+                                  ],
+                   'component' => [
+                                   'type'       => 'VARCHAR',
+                                   'constraint' => '255',
+                                   'null'       => FALSE,
+                                  ],
+                   'key'       => [
+                                   'type' => 'Text',
+                                   'null' => TRUE,
+                                  ],
+                   'data'      => [
+                                   'type' => 'TEXT',
+                                   'null' => TRUE,
+                                  ],
+                  ];
 
         $this->dbforge->add_field($fields);
         $this->dbforge->add_key('id', TRUE);

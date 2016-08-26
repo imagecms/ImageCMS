@@ -7,7 +7,8 @@
  * RedHelper
  * @property red_helper_model $red_helper_model
  */
-class Red_helper extends MY_Controller {
+class Red_helper extends MY_Controller
+{
 
     public function __construct() {
         parent::__construct();
@@ -23,32 +24,32 @@ class Red_helper extends MY_Controller {
     public function validate() {
 
         $this->load->library('form_validation');
-        $config = array(
-            array(
-                'field' => 'login1',
-                'label' => 'login',
-                'rules' => 'required|min_length[3]'
-            ),
-            array(
-                'field' => 'pass',
-                'label' => 'pass',
-                'rules' => 'required'
-            ),
-            array(
-                'field' => 'email',
-                'label' => 'email',
-                'rules' => 'required'
-            ),
-            array(
-                'field' => 'phone',
-                'label' => 'phone',
-                'rules' => 'required|numeric'
-            )
-        );
+        $config = [
+                   [
+                    'field' => 'login1',
+                    'label' => 'login',
+                    'rules' => 'required|min_length[3]',
+                   ],
+                   [
+                    'field' => 'pass',
+                    'label' => 'pass',
+                    'rules' => 'required',
+                   ],
+                   [
+                    'field' => 'email',
+                    'label' => 'email',
+                    'rules' => 'required',
+                   ],
+                   [
+                    'field' => 'phone',
+                    'label' => 'phone',
+                    'rules' => 'required|numeric',
+                   ],
+                  ];
         $this->form_validation->set_rules($config);
         $this->form_validation->run();
         $this->form_validation->set_error_delimiters('<p>', '</p>');
-        $err = $res = array();
+        $err = $res = [];
         preg_match_all('#<p>(.+?)</p>#is', validation_errors(), $err);
         //       var_dump($err);
         //       exit();
@@ -86,7 +87,7 @@ class Red_helper extends MY_Controller {
 
         $this->db
             ->where('name', 'red_helper')
-            ->update('components', array('autoload' => '1', 'enabled' => '1'));
+            ->update('components', ['autoload' => '1', 'enabled' => '1']);
     }
 
     public function _deinstall() {
@@ -98,32 +99,32 @@ class Red_helper extends MY_Controller {
     }
 
     private function parseErrors($err) {
-        $str = "";
-        $tmp = array();
+        $str = '';
+        $tmp = [];
         foreach ($err as $v) {
             $str .= $v;
         }
         if (strpos($str, 'login')) {
-            $tmp[0] = "<p>Поле login является обязательным.</p>";
+            $tmp[0] = '<p>Поле login является обязательным.</p>';
         } else {
-            $tmp[0] = "";
+            $tmp[0] = '';
         }
         if (strpos($str, 'pass')) {
-            $tmp[1] = "<p>Поле pass является обязательным.</p>";
+            $tmp[1] = '<p>Поле pass является обязательным.</p>';
         } else {
-            $tmp[1] = "";
+            $tmp[1] = '';
         }
         if (strpos($str, 'email')) {
-            $tmp[2] = "<p>Поле email является обязательным.</p>";
+            $tmp[2] = '<p>Поле email является обязательным.</p>';
         } else {
-            $tmp[2] = "";
+            $tmp[2] = '';
         }
         if (strpos($str, 'phone является')) {
-            $tmp[3] = "<p>Поле phone является обязательным.</p>";
+            $tmp[3] = '<p>Поле phone является обязательным.</p>';
         } else if (strpos($str, 'phone должно')) {
-            $tmp[3] = "<p>Поле phone должно содержать только цифры.</p>";
+            $tmp[3] = '<p>Поле phone должно содержать только цифры.</p>';
         } else {
-            $tmp[3] = "";
+            $tmp[3] = '';
         }
         return $tmp;
     }

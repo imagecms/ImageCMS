@@ -7,7 +7,8 @@
  * Sample Module Admin
  * @property red_helper_model $red_helper_model
  */
-class Admin extends BaseAdminController {
+class Admin extends BaseAdminController
+{
 
     public function __construct() {
         parent::__construct();

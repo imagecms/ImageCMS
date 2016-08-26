@@ -13,8 +13,9 @@ if (!function_exists('module')) {
      * @return DummyModule
      */
     function module($moduleName) {
+
         $module = CI::$APP->load->module($moduleName);
-        return $module ? : new DummyModule($moduleName);
+        return $module ?: new DummyModule($moduleName);
     }
 
 }
@@ -30,6 +31,7 @@ if (!function_exists('view')) {
      * @return mixed
      */
     function view($fileName, array $data = []) {
+
         $definedVars = CI::$APP->template->get_vars();
         return CI::$APP->template->view($fileName, array_replace($definedVars, $data));
     }
@@ -45,6 +47,7 @@ if (!function_exists('get_value')) {
      * @return string
      */
     function get_value($fieldName, $default = '') {
+
         if (set_value($fieldName)) {
             return set_value($fieldName);
         }
@@ -67,6 +70,7 @@ if (!function_exists('get_error')) {
      * @return mixed
      */
     function get_error($fieldName) {
+
         if (form_error($fieldName)) {
             return form_error($fieldName);
         }
@@ -90,6 +94,7 @@ if (!function_exists('get_errors')) {
      * @return string
      */
     function get_errors($prefix = '', $suffix = '') {
+
         if (validation_errors()) {
             return validation_errors($prefix = '', $suffix = '');
         }
@@ -125,6 +130,7 @@ if (!function_exists('emmet_money')) {
      * @return EmmetMoneyFormatter
      */
     function emmet_money($price, $priceWrapper = null, $coinsWrapper = null, $symbolWrapper = null, $currency = null) {
+
         $currency = $currency ?: Currency::create()->getMainCurrency();
         $formatter = new EmmetMoneyFormatter($price, $currency);
         $formatter->setWrappers($priceWrapper, $coinsWrapper, $symbolWrapper);
@@ -148,6 +154,7 @@ if (!function_exists('emmet_money_additional')) {
      * @internal param $moduleName
      */
     function emmet_money_additional($price, $priceWrapper = null, $coinsWrapper = null, $symbolWrapper = null) {
+
         $formatters = [];
         foreach (Currency::create()->getOnSiteCurrencies() as $currency) {
             $convertedPrice = $price * $currency->getRate();
@@ -168,7 +175,30 @@ if (!function_exists('flashdata')) {
      * @return string
      */
     function flashdata($key) {
+
         return CI::$APP->session->flashdata($key);
     }
 
+}
+
+if (!function_exists('tpl_register_asset')) {
+
+    /**
+     * @param string|array $path
+     * @param string $position
+     */
+    function tpl_register_asset($path, $position = 'before') {
+
+        if (is_array($path)) {
+
+            foreach ($path as $value) {
+
+                tpl_register_asset($value, $position);
+            }
+        } else {
+            \CMSFactory\assetManager::create()
+                ->assetTemplateFiles($path, $position);
+        }
+
+    }
 }

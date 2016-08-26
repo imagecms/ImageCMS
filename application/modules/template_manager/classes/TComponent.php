@@ -75,10 +75,10 @@ abstract class TComponent
                     ->insert(
                         'template_settings',
                         [
-                            'component' => $this->name,
-                            'key' => $key,
-                            'data' => $value
-                            ]
+                         'component' => $this->name,
+                         'key'       => $key,
+                         'data'      => $value,
+                        ]
                     );
             }
             return TRUE;

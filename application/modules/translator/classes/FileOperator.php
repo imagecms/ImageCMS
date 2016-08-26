@@ -136,7 +136,10 @@ class FileOperator
      * @param string $type - error type
      */
     private function setError($error, $type = '') {
-        $this->errors = ['error' => $error, 'type' => $type];
+        $this->errors = [
+                         'error' => $error,
+                         'type'  => $type,
+                        ];
     }
 
     /**

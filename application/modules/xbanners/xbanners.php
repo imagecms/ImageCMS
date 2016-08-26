@@ -23,7 +23,7 @@ use xbanners\src\Statistic\ClickStatistic;
  * -----------------------------------------------------------------------------
  *  2. Queries:
  *      get Banner with all relations inside translated into passed lang or defaultLocale as defautl:
- *          - Banner BannersQuery::create()->getTranslatedByPlace(string $place, string $lang = null)
+ *          - Banner BannersQuery::create()->setComment(__METHOD__)->getTranslatedByPlace(string $place, string $lang = null)
  * -----------------------------------------------------------------------------
  *  3. Banner object Methods:
  *      get array from concrete object with only initialized relations:

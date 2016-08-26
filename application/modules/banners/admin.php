@@ -1,5 +1,7 @@
 <?php
 
+use CMSFactory\assetManager;
+
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /**
@@ -10,7 +12,8 @@
  * @package ImageCMSModule
  * @property banner_model $banner_model
  */
-class Admin extends BaseAdminController {
+class Admin extends BaseAdminController
+{
 
     public function __construct() {
         parent::__construct();
@@ -77,7 +80,7 @@ class Admin extends BaseAdminController {
         $banners = $this->banner_model->get_all_banner($locale, 0, FALSE);
 
         /** Show Banners list */
-        \CMSFactory\assetManager::create()
+        assetManager::create()
                 ->registerScript('main')
                 ->setData(['banners' => $banners, 'locale' => $locale, 'show_tpl' => $this->banner_model->get_settings_tpl()])
                 ->renderAdmin('list');
@@ -104,7 +107,7 @@ class Admin extends BaseAdminController {
     public function chose_active() {
         $status = ($this->input->post('status')) === 'false' ? 1 : 0;
         $this->banner_model->chose_active($this->input->post('id'), $status);
-        $this->lib_admin->log(lang("Banner status was edited", "banners") . '. Id: ' . $this->input->post('id'));
+        $this->lib_admin->log(lang('Banner status was edited', 'banners') . '. Id: ' . $this->input->post('id'));
     }
 
     /**
@@ -120,7 +123,7 @@ class Admin extends BaseAdminController {
         foreach (json_decode($ids) as $key) {
             $this->banner_model->del_banner($key);
         }
-        $this->lib_admin->log(lang("Banner was removed", "banners") . '. Ids: ' . implode(', ', json_decode($ids)));
+        $this->lib_admin->log(lang('Banner was removed', 'banners') . '. Ids: ' . implode(', ', json_decode($ids)));
     }
 
     /**
@@ -140,21 +143,21 @@ class Admin extends BaseAdminController {
             if ($this->form_validation->run($this) !== FALSE) {
                 /** Set Instart data */
                 $data = [
-                    'name' => $this->input->post('name'),
-                    'active' => (int) $this->input->post('active'),
-                    'description' => $this->input->post('description'),
-                    'active_to' => $this->input->post('active_to_permanent') == 'on' ? -1 : (int) strtotime($this->input->post('active_to')),
-                    'where_show' => count($this->input->post('data')) ? serialize(array_unique($this->input->post('data'))) : serialize([]),
-                    'photo' => $this->input->post('photo'),
-                    'url' => $this->input->post('url'),
-                    'locale' => $this->def_locale,
-                ];
+                         'name'        => $this->input->post('name'),
+                         'active'      => (int) $this->input->post('active'),
+                         'description' => $this->input->post('description'),
+                         'active_to'   => $this->input->post('active_to_permanent') == 'on' ? -1 : (int) strtotime($this->input->post('active_to')),
+                         'where_show'  => count($this->input->post('data')) ? serialize(array_unique($this->input->post('data'))) : serialize([]),
+                         'photo'       => $this->input->post('photo'),
+                         'url'         => $this->input->post('url'),
+                         'locale'      => $this->def_locale,
+                        ];
                 /** Create new banner from data-array */
                 try {
                     $lid = $this->banner_model->add_banner($data);
 
-                    $last_banner_id = $this->db->order_by("id", "desc")->get('mod_banner')->row()->id;
-                    $this->lib_admin->log(lang("Banner created", "banners") . '. Id: ' . $last_banner_id);
+                    $last_banner_id = $this->db->order_by('id', 'desc')->get('mod_banner')->row()->id;
+                    $this->lib_admin->log(lang('Banner created', 'banners') . '. Id: ' . $last_banner_id);
                     showMessage(lang('Banner created', 'banners'));
                     /** Show successful message and redirect */
                     if ($this->input->post('action') == 'tomain') {
@@ -172,7 +175,7 @@ class Admin extends BaseAdminController {
         } else {
 
             /** Show empty form for create */
-            \CMSFactory\assetManager::create()
+            assetManager::create()
                     ->registerScript('main')
                     ->registerStyle('style')
                     ->setData(['is_shop' => $this->is_shop, 'locale' => $locale, 'languages' => $lan])
@@ -202,22 +205,22 @@ class Admin extends BaseAdminController {
 
                 /** Set Update data */
                 $data = [
-                    'name' => $this->input->post('name'),
-                    'active' => (int) $this->input->post('active'),
-                    'description' => $this->input->post('description'),
-                    'active_to' => $this->input->post('active_to_permanent') == 'on' ? -1 : (int) strtotime($this->input->post('active_to')),
-                    'where_show' => count($this->input->post('data')) ? serialize(array_unique($this->input->post('data'))) : serialize([]),
-                    'photo' => $this->input->post('photo'),
-                    'url' => $this->input->post('url'),
-                    'locale' => $locale,
-                    'group' => serialize($this->input->post('group')),
-                    'id' => (int) $id,
-                ];
+                         'name'        => $this->input->post('name'),
+                         'active'      => (int) $this->input->post('active'),
+                         'description' => $this->input->post('description'),
+                         'active_to'   => $this->input->post('active_to_permanent') == 'on' ? -1 : (int) strtotime($this->input->post('active_to')),
+                         'where_show'  => count($this->input->post('data')) ? serialize(array_unique($this->input->post('data'))) : serialize([]),
+                         'photo'       => $this->input->post('photo'),
+                         'url'         => $this->input->post('url'),
+                         'locale'      => $locale,
+                         'group'       => serialize($this->input->post('group')),
+                         'id'          => (int) $id,
+                        ];
                 /** Update banner from data-array */
                 $this->banner_model->edit_banner($data);
 
                 /** Show successful message and redirect */
-                $this->lib_admin->log(lang("Banner was edited", "banners") . '. Id: ' . $id);
+                $this->lib_admin->log(lang('Banner was edited', 'banners') . '. Id: ' . $id);
                 showMessage(lang('Data is saved', 'banners'));
                 if ($this->input->post('action') == 'tomain') {
                     pjax('/admin/components/init_window/banners');
@@ -241,12 +244,12 @@ class Admin extends BaseAdminController {
                     ->registerStyle('style')
                     ->setData(
                         [
-                                'is_shop' => $this->is_shop,
-                                'banner' => $banner,
-                                'locale' => $locale,
-                                'languages' => $this->db->get('languages')->result_array(),
-                                'groups' => $groups,
-                            ]
+                         'is_shop'   => $this->is_shop,
+                         'banner'    => $banner,
+                         'locale'    => $locale,
+                         'languages' => $this->db->get('languages')->result_array(),
+                         'groups'    => $groups,
+                        ]
                     )
                     ->renderAdmin('edit');
         }
@@ -261,13 +264,13 @@ class Admin extends BaseAdminController {
     public function autosearch() {
         switch ($this->input->post('queryString')) {
             case 'product':
-                $entity = SProductsQuery::create()->joinWithI18n($this->def_locale)->filterByActive(true)->withColumn('SProductsI18n.Name', 'Name')->select(['Id', 'Name'])->find()->toArray();
+                $entity = SProductsQuery::create()->setComment(__METHOD__)->joinWithI18n($this->def_locale)->filterByActive(true)->withColumn('SProductsI18n.Name', 'Name')->select(['Id', 'Name'])->find()->toArray();
                 break;
             case 'shop_category':
-                $entity = SCategoryQuery::create()->joinWithI18n($this->def_locale)->withColumn('SCategoryI18n.Name', 'Name')->select(['Id', 'Name'])->find()->toArray();
+                $entity = SCategoryQuery::create()->setComment(__METHOD__)->joinWithI18n($this->def_locale)->withColumn('SCategoryI18n.Name', 'Name')->select(['Id', 'Name'])->find()->toArray();
                 break;
             case 'brand':
-                $entity = SBrandsQuery::create()->joinWithI18n($this->def_locale)->withColumn('SBrandsI18n.Name', 'Name')->select(['Id', 'Name'])->find()->toArray();
+                $entity = SBrandsQuery::create()->setComment(__METHOD__)->joinWithI18n($this->def_locale)->withColumn('SBrandsI18n.Name', 'Name')->select(['Id', 'Name'])->find()->toArray();
                 break;
             case 'category':
                 $entity = $this->db->select('id as Id')->select('name as Name')->get('category')->result_array();
@@ -276,14 +279,19 @@ class Admin extends BaseAdminController {
                 $entity = $this->db->select('id as Id')->select('title as Name')->get('content')->result_array();
                 break;
             case 'main':
-                $entity = [['Id' => 0, 'Name' => lang('Main', 'banners')]];
+                $entity = [
+                           [
+                            'Id'   => 0,
+                            'Name' => lang('Main', 'banners'),
+                           ],
+                          ];
                 break;
             default:
                 break;
         }
 
         /** Show template with data */
-        \CMSFactory\assetManager::create()
+        assetManager::create()
                 ->setData('entity', $entity)
                 ->render($this->input->post('tpl'), TRUE);
     }

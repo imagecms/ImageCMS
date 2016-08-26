@@ -282,22 +282,22 @@ class discount_api extends MY_Controller
             ->result_array();
         foreach ($productVariants as $var) {
             $arr_for_discount = [
-                'product_id' => $var['id'],
-                'category_id' => $var['category_id'],
-                'brand_id' => $var['brand_id'],
-                'vid' => $var['var_id'],
-                'id' => $var['id']
-            ];
+                                 'product_id'  => $var['id'],
+                                 'category_id' => $var['category_id'],
+                                 'brand_id'    => $var['brand_id'],
+                                 'vid'         => $var['var_id'],
+                                 'id'          => $var['id'],
+                                ];
             assetManager::create()->discount = 0;
             Discount_product::create()->getProductDiscount($arr_for_discount);
 
             if ($discount = assetManager::create()->discount) {
                 $priceNew = ((float) $var['price'] - (float) $discount['discount_value'] < 0) ? 1 : (float) $var['price'] - (float) $discount['discount_value'];
                 $dataProductUpdate = [
-                    'price' => ($discount) ? $priceNew : $var['price'],
-                    'price_no_disc' => $var['price'],
-                    'disc' => $discount['discount_value'],
-                ];
+                                      'price'         => ($discount) ? $priceNew : $var['price'],
+                                      'price_no_disc' => $var['price'],
+                                      'disc'          => $discount['discount_value'],
+                                     ];
                 $this->db->where('id', $var['var_id'])->update('shop_product_variants', $dataProductUpdate);
                 $cnt++;
             }

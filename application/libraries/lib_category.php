@@ -264,10 +264,11 @@ class Lib_category
      * @access public
      */
     public function create_path() {
-        $path_str = '';
 
         // Create path to each category
         for ($i = 0, $cats_count = count($this->categories); $i < $cats_count; $i++) {
+            $path_str = '';
+
             $this->path = []; // make path empty
 
             $path_arr = $this->_PathToCat($this->categories[$i]['id']);
@@ -279,8 +280,7 @@ class Lib_category
 
             $this->categories[$i]['path_url'] = $path_str; // path string
 
-            unset($path_arr);
-            unset($path_str);
+            unset($path_arr, $path_str);
         }
     }
 

@@ -74,7 +74,7 @@ $db['default']['stricton'] = FALSE;
  */
 
 // Auto-detect base url.
-$prototype = "http" . ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "s" : "") . "://";
+$prototype = 'http' . ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 's' : '') . '://';
 $server = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : $_SERVER['SERVER_NAME'];
 $config['base_url'] = $prototype . $server;
 
@@ -90,7 +90,7 @@ $config['static_base_url'] = $config['base_url'];
   | variable so that it is blank.
   |
  */
-$config['index_page'] = "";
+$config['index_page'] = '';
 $config['is_installed'] = TRUE;
 $config['rebuild_hooks_tree'] = FALSE;
 /*
@@ -109,7 +109,7 @@ $config['rebuild_hooks_tree'] = FALSE;
   | 'ORIG_PATH_INFO'	Uses the ORIG_PATH_INFO
   |
  */
-$config['uri_protocol'] = "REQUEST_URI";
+$config['uri_protocol'] = 'REQUEST_URI';
 
 /*
   |--------------------------------------------------------------------------
@@ -140,7 +140,7 @@ $config['tpl_use_filemtime'] = TRUE;
   | http://codeigniter.com/user_guide/general/urls.html
  */
 
-$config['url_suffix'] = "";
+$config['url_suffix'] = '';
 
 /*
   |--------------------------------------------------------------------------
@@ -152,7 +152,7 @@ $config['url_suffix'] = "";
   | than english.
   |
  */
-$config['language'] = "russian";
+$config['language'] = 'russian';
 
 /*
   |--------------------------------------------------------------------------
@@ -163,7 +163,7 @@ $config['language'] = "russian";
   | that require a character set to be provided.
   |
  */
-$config['charset'] = "UTF-8";
+$config['charset'] = 'UTF-8';
 
 /*
   |--------------------------------------------------------------------------
@@ -304,7 +304,7 @@ $config['cache_path'] = PUBPATH . 'system/cache/';
   | enabled you MUST set an encryption key.  See the user guide for info.
   |
  */
-$config['encryption_key'] = "347lQnePg3ZMbBgVznIiQQo5dVY6ZQHh";
+$config['encryption_key'] = '347lQnePg3ZMbBgVznIiQQo5dVY6ZQHh';
 
 /*
   |--------------------------------------------------------------------------
@@ -337,9 +337,9 @@ $config['sess_time_to_update'] = 600;
   | 'cookie_path'   =  Typically will be a forward slash
   |
  */
-$config['cookie_prefix'] = "";
-$config['cookie_domain'] = "";
-$config['cookie_path'] = "/";
+$config['cookie_prefix'] = '';
+$config['cookie_domain'] = '';
+$config['cookie_path'] = '/';
 
 /*
   |--------------------------------------------------------------------------

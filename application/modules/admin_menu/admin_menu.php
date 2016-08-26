@@ -22,7 +22,34 @@ class Admin_menu extends MY_Controller
 
     static private $MENU_TYPE;
 
-    static private $HIDEN_MODULES = ['language_switch', 'payment_method_paypal', 'payment_method_webmoney', 'payment_method_privat24', 'payment_method_liqpay', 'payment_method_oschadbank', 'payment_method_sberbank', 'payment_method_robokassa', 'payment_method_interkassa', 'test', 'admin', 'CMSFactory', 'core', 'imagebox', 'forms', 'admin_menu', 'cfcm', 'auth', 'shop', 'smart_filter', 'tags', 'navigation', 'shop_news', 'admin_menu', 'new_level', 'ga_dashboard'];
+    static private $HIDEN_MODULES = [
+                                     'language_switch',
+                                     'payment_method_paypal',
+                                     'payment_method_webmoney',
+                                     'payment_method_privat24',
+                                     'payment_method_liqpay',
+                                     'payment_method_oschadbank',
+                                     'payment_method_sberbank',
+                                     'payment_method_robokassa',
+                                     'payment_method_interkassa',
+                                     'test',
+                                     'admin',
+                                     'CMSFactory',
+                                     'core',
+                                     'imagebox',
+                                     'forms',
+                                     'admin_menu',
+                                     'cfcm',
+                                     'auth',
+                                     'shop',
+                                     'smart_filter',
+                                     'tags',
+                                     'navigation',
+                                     'shop_news',
+                                     'admin_menu',
+                                     'new_level',
+                                     'ga_dashboard',
+                                    ];
 
     public function __construct() {
         parent::__construct();
@@ -140,9 +167,9 @@ class Admin_menu extends MY_Controller
             return CMSFactory\assetManager::create()
                             ->setData(
                                 [
-                                'menu' => $menu,
-                                'modules' => $modules,
-                                'SAAS' => self::$SAAS
+                                 'menu'    => $menu,
+                                 'modules' => $modules,
+                                 'SAAS'    => self::$SAAS,
                                 ]
                             )
                             ->registerScript('admin_menu')
@@ -181,7 +208,10 @@ class Admin_menu extends MY_Controller
                     $modules[$key] = ['name' => $module_name];
                     $modules[$key] = array_merge($modules[$key], $com_info);
                 } else {
-                    $modules[$key] = ['menu_name' => $module_name, 'name' => $module_name];
+                    $modules[$key] = [
+                                      'menu_name' => $module_name,
+                                      'name'      => $module_name,
+                                     ];
                 }
                 unset($com_info);
             }

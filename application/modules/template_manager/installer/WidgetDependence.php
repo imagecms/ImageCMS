@@ -170,15 +170,15 @@ class WidgetDependence extends DependenceBase
              * Prepare data to insert into DB table `widgets`
              */
             $data = [
-                'name' => $this->name,
-                'description' => $this->description,
-                'data' => $widgetData,
-                'type' => $this->widgetType,
-                'method' => $this->method,
-                'settings' => $this->moduleSettings ? serialize($this->moduleSettings) : '',
-                'description' => $this->description,
-                'created' => time()
-            ];
+                     'name'        => $this->name,
+                     'description' => $this->description,
+                     'data'        => $widgetData,
+                     'type'        => $this->widgetType,
+                     'method'      => $this->method,
+                     'settings'    => $this->moduleSettings ? serialize($this->moduleSettings) : '',
+                     'description' => $this->description,
+                     'created'     => time(),
+                    ];
 
             if ($this->rewriteData) {
                 \CI::$APP->db->where('name', $data['name'])->delete('widgets');
@@ -206,10 +206,10 @@ class WidgetDependence extends DependenceBase
                     }
 
                     $data_i18n[] = [
-                        'id' => $widget_id,
-                        'locale' => (string) $attributes->locale ? (string) $attributes->locale : \MY_Controller::getCurrentLocale(),
-                        'data' => $data
-                    ];
+                                    'id'     => $widget_id,
+                                    'locale' => (string) $attributes->locale ? (string) $attributes->locale : \MY_Controller::getCurrentLocale(),
+                                    'data'   => $data,
+                                   ];
                 }
             }
 

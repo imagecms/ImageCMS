@@ -48,7 +48,7 @@ class AdminMenuBuilder
      * Removed items array
      * @var array
      */
-    private static $REMOVED_ITEMS = array();
+    private static $REMOVED_ITEMS = [];
 
     /**
      * CI object
@@ -112,13 +112,13 @@ class AdminMenuBuilder
     private static function saveOneMenu($data, $menu_name) {
 
         $menu_export = var_export($data, TRUE);
-        $menu_export = str_replace("stdClass::__set_state(", '', $menu_export);
-        $menu_export = str_replace("))", ')', $menu_export);
+        $menu_export = str_replace('stdClass::__set_state(', '', $menu_export);
+        $menu_export = str_replace('))', ')', $menu_export);
         $menu_export = str_replace("'true'", 'true', $menu_export);
         $menu_export = str_replace("'false'", 'false', $menu_export);
         $menu_export = preg_replace("/'text' => '(.*)'/", '\'text\' =>  lang("$1", "admin_menu")', $menu_export);
-        $menu_export = preg_replace("/[\s]*[']?[\d]{1,3}[']?[\s]*=>/", "", $menu_export);
-        $menu_export = "<?php return " . $menu_export . ';';
+        $menu_export = preg_replace("/[\s]*[']?[\d]{1,3}[']?[\s]*=>/", '', $menu_export);
+        $menu_export = '<?php return ' . $menu_export . ';';
         $menu_path = self::getMenuPath() . "/cms/{$menu_name}.php";
         chmod($menu_path, 0777);
         file_put_contents($menu_path, $menu_export);
@@ -144,11 +144,11 @@ class AdminMenuBuilder
     private static function saveOneTariffMenu($data, $menu_name, $type) {
 
         $menu_export = var_export($data, TRUE);
-        $menu_export = str_replace("stdClass::__set_state(", '', $menu_export);
-        $menu_export = str_replace("))", ')', $menu_export);
+        $menu_export = str_replace('stdClass::__set_state(', '', $menu_export);
+        $menu_export = str_replace('))', ')', $menu_export);
         $menu_export = preg_replace("/'text' => '(.*)'/", '\'text\' =>  lang("$1", "admin_menu")', $menu_export);
-        $menu_export = preg_replace("/[\s]*[']?[\d]{1,3}[']?[\s]*=>/", "", $menu_export);
-        $menu_export = "<?php return " . $menu_export . ';';
+        $menu_export = preg_replace("/[\s]*[']?[\d]{1,3}[']?[\s]*=>/", '', $menu_export);
+        $menu_export = '<?php return ' . $menu_export . ';';
         file_put_contents(self::getMenuPath() . "/{$type}/{$menu_name}.php", $menu_export);
     }
 
@@ -200,7 +200,10 @@ class AdminMenuBuilder
     private static function renderMenuItem($item, $parent = '') {
 
         self::$CI = &get_instance();
-        $data = array('item' => $item, 'parent' => $parent);
+        $data = [
+                 'item'   => $item,
+                 'parent' => $parent,
+                ];
         self::$MENU_LIST .= self::$CI->template->fetch('file:' . dirname(__DIR__) . '/assets/menu/item.tpl', $data);
 
         if ($item['subMenu']) {
@@ -262,7 +265,7 @@ class AdminMenuBuilder
         $modules = self::prepareModulesMenusData();
         foreach ($modules as $item) {
             foreach ($item as $position => $module_item) {
-                array_splice($menu, $position, 0, array($module_item));
+                array_splice($menu, $position, 0, [$module_item]);
             }
         }
 

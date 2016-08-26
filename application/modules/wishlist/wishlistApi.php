@@ -10,7 +10,8 @@ use wishlist\classes\BaseApi;
  * Module Wishlist
  * @property wishlist_model $wishlist_model
  */
-class WishlistApi extends BaseApi {
+class WishlistApi extends BaseApi
+{
 
     public function __construct() {
         parent::__construct();
@@ -315,15 +316,15 @@ class WishlistApi extends BaseApi {
         $data = [];
         if ($this->dataModel) {
             $data = [
-                'answer' => 'success',
-                'data' => $this->dataModel
-            ];
+                     'answer' => 'success',
+                     'data'   => $this->dataModel,
+                    ];
         } else {
             if ($this->errors) {
                 $data = [
-                    'answer' => 'error',
-                    'data' => $this->errors
-                ];
+                         'answer' => 'error',
+                         'data'   => $this->errors,
+                        ];
             }
         }
         return json_encode($data);

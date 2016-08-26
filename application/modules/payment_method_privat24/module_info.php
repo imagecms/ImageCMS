@@ -5,15 +5,15 @@ if (!defined('BASEPATH')) {
 }
 
 $com_info = [
-    'menu_name' => lang('Privat24', 'payment_method_privat24'), // Menu name
-    'description' => lang('Метод оплаты Privat24', 'payment_method_privat24'), // Module Description
-    'admin_type' => 'window', // Open admin class in new window or not. Possible values window/inside
-    'window_type' => 'xhr', // Load method. Possible values xhr/iframe
-    'w' => 600, // Window width
-    'h' => 550, // Window height
-    'version' => '1.0 dev.', // Module version
-    'author' => 'v.dushko@imagecms.net', // Author info
-    'icon_class' => 'icon-barcode'
-];
+             'menu_name'   => lang('Privat24', 'payment_method_privat24'), // Menu name
+             'description' => lang('Метод оплаты Privat24', 'payment_method_privat24'), // Module Description
+             'admin_type'  => 'window', // Open admin class in new window or not. Possible values window/inside
+             'window_type' => 'xhr', // Load method. Possible values xhr/iframe
+             'w'           => 600, // Window width
+             'h'           => 550, // Window height
+             'version'     => '1.0 dev.', // Module version
+             'author'      => 'v.dushko@imagecms.net', // Author info
+             'icon_class'  => 'icon-barcode',
+            ];
 
 /* End of file module_info.php */

@@ -7,7 +7,8 @@ namespace template_manager\installer;
  * Module Template_manager
  * class DemodataCategoriestemplates
  */
-class DemodataCategoriestemplates extends DemodataDirector {
+class DemodataCategoriestemplates extends DemodataDirector
+{
 
     /**
      * DemodataCategoriestemplates SimpleXMLElement node

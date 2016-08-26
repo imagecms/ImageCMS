@@ -1,6 +1,7 @@
 <?php
 
-class CForm_Select {
+class CForm_Select
+{
 
     public $ci = NULL;
 
@@ -8,7 +9,7 @@ class CForm_Select {
 
     public $field = NULL;
 
-    public function __construct($name, $field = array()) {
+    public function __construct($name, $field = []) {
 
         $this->form =& get_instance();
         $this->form = $this->form->load->module('forms');
@@ -71,7 +72,7 @@ class CForm_Select {
         }
 
         if (!isset($this->field->selected)) {
-            $this->field->selected = array();
+            $this->field->selected = [];
         }
 
         if (isset($this->field->multiple) AND $this->field->multiple == TRUE) {

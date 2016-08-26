@@ -60,9 +60,9 @@ class ZeroFiller
                 for ($j = 0; $j < $countOfEmptyIntervals; $j++) {
                     $currentTimeValue = $prevTime += $interval;
                     $filledValues[] = [
-                        $timeKey => $currentTimeValue,
-                        $valueKey => 0,
-                    ];
+                                       $timeKey  => $currentTimeValue,
+                                       $valueKey => 0,
+                                      ];
                 }
             }
         }

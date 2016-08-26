@@ -4,7 +4,8 @@
  * @property CI_DB_active_record $db
  * @property DX_Auth $dx_auth
  */
-class Red_helper_model extends CI_Model {
+class Red_helper_model extends CI_Model
+{
 
     public function __construct() {
         parent::__construct();
@@ -33,8 +34,9 @@ class Red_helper_model extends CI_Model {
         return $this->db->where('identif', 'red_helper')
             ->update(
                 'components',
-                array('settings' => serialize($settings)
-                                )
+                [
+                 'settings' => serialize($settings),
+                ]
             );
     }
 

@@ -24,9 +24,9 @@ class SearchController extends ControllerBase
         $limit = CI::$APP->input->get('swr') ? (int) CI::$APP->input->get('swr') : 200;
         $result = $this->controller->search_model->queryKeywordsByDateRange(
             [
-                'dateFrom' => CI::$APP->input->get('from') ?: '2005-05-05',
-                'dateTo' => CI::$APP->input->get('to') ?: date("Y-m-d"),
-                'interval' => CI::$APP->input->get('group') ?: 'day',
+             'dateFrom' => CI::$APP->input->get('from') ?: '2005-05-05',
+             'dateTo'   => CI::$APP->input->get('to') ?: date('Y-m-d'),
+             'interval' => CI::$APP->input->get('group') ?: 'day',
             ],
             $limit
         );
@@ -68,19 +68,19 @@ class SearchController extends ControllerBase
      * @param string $type
      */
     private function getSearchData($type) {
-        $dateTo = CI::$APP->input->get('to') ? CI::$APP->input->get('to') : date("Y-m-d");
-        $dateTo = date("Y-m-d", strtotime($dateTo));
+        $dateTo = CI::$APP->input->get('to') ? CI::$APP->input->get('to') : date('Y-m-d');
+        $dateTo = date('Y-m-d', strtotime($dateTo));
 
-        $dateFrom = CI::$APP->input->get('from') ? CI::$APP->input->get('from') : date("Y-m-d");
-        $dateFrom = date("Y-m-d", strtotime($dateFrom));
+        $dateFrom = CI::$APP->input->get('from') ? CI::$APP->input->get('from') : date('Y-m-d');
+        $dateFrom = date('Y-m-d', strtotime($dateFrom));
 
         $params = [
-            'dateFrom' => $dateFrom,
-            'dateTo' => $dateTo,
-            'interval' => CI::$APP->input->get('group') ?: 'day',
-            'swr' => CI::$APP->input->get('swr') ? (int) CI::$APP->input->get('swr') : 9,
-            'swc' => CI::$APP->input->get('swc') ? (int) CI::$APP->input->get('swc') : 9
-        ];
+                   'dateFrom' => $dateFrom,
+                   'dateTo'   => $dateTo,
+                   'interval' => CI::$APP->input->get('group') ?: 'day',
+                   'swr'      => CI::$APP->input->get('swr') ? (int) CI::$APP->input->get('swr') : 9,
+                   'swc'      => CI::$APP->input->get('swc') ? (int) CI::$APP->input->get('swc') : 9,
+                  ];
 
         $keywordsArray = $this->controller->search_model->queryKeywordsByDateRange($params, $params['swc']);
 
@@ -105,13 +105,13 @@ class SearchController extends ControllerBase
             return FALSE;
         } else {
 
-            $returnResult = "(";
-            $isFirst = "";
+            $returnResult = '(';
+            $isFirst = '';
             foreach ($searchResults as $value) {
                 $returnResult .= $isFirst . "`shop_products_i18n`.`name` LIKE '%" . $value['key'] . "%'";
-                $isFirst = " OR ";
+                $isFirst = ' OR ';
             }
-            $returnResult .= ")";
+            $returnResult .= ')';
             return $returnResult;
         }
     }

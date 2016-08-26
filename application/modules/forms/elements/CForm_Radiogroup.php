@@ -1,6 +1,7 @@
 <?php
 
-class CForm_Radiogroup {
+class CForm_Radiogroup
+{
 
     public $ci = NULL;
 
@@ -8,7 +9,7 @@ class CForm_Radiogroup {
 
     public $field = NULL;
 
-    public function __construct($name, $field = array()) {
+    public function __construct($name, $field = []) {
 
         $this->form =& get_instance();
         $this->form = $this->form->load->module('forms');

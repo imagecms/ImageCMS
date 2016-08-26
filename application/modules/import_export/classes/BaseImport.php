@@ -469,7 +469,7 @@ class BaseImport extends CI_Model
 
                     $propery = $this->db->query(
                         '
-                    SELECT `id`, `data`
+                    SELECT `id`, `name`
                     FROM `shop_product_properties_i18n`
                     WHERE id = ? AND locale = ?',
                         [

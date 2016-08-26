@@ -393,8 +393,8 @@ class Comments extends MY_Controller
             $comment_text_minus = str_replace("\n", '<br/>', $comment_text_minus);
             $rate = $this->input->post('ratec');
             if ($this->input->post('ratec')) {
-                if (SProductsQuery::create()->findPk($item_id) !== null) {
-                    $model = SProductsRatingQuery::create()->findPk($item_id);
+                if (SProductsQuery::create()->setComment(__METHOD__)->findPk($item_id) !== null) {
+                    $model = SProductsRatingQuery::create()->setComment(__METHOD__)->findPk($item_id);
                     if ($model === null) {
                         $model = new SProductsRating;
                         $model->setProductId($item_id);

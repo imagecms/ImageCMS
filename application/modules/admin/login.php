@@ -153,10 +153,10 @@ class Login extends BaseAdminController
 
     public function switch_admin_lang($lang) {
         $langs = [
-            'english',
-            'russian',
-            'german'
-        ];
+                  'english',
+                  'russian',
+                  'german',
+                 ];
 
         if (!$lang) {
             $lang = $this->input->get('language');

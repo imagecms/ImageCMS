@@ -26,15 +26,15 @@ class Sys_info extends BaseAdminController
         $this->lib_admin->init_settings();
     }
 
-    public function index($action = '') {
+    public function index() {
         $folders = [
-            '/system/cache/' => FALSE,
-            '/system/cache/templates_c/' => FALSE,
-            '/uploads/' => FALSE,
-            '/uploads/images' => FALSE,
-            '/uploads/files' => FALSE,
-            '/captcha/' => FALSE,
-        ];
+                    '/system/cache/'             => FALSE,
+                    '/system/cache/templates_c/' => FALSE,
+                    '/uploads/'                  => FALSE,
+                    '/uploads/images'            => FALSE,
+                    '/uploads/files'             => FALSE,
+                    '/captcha/'                  => FALSE,
+                   ];
 
         foreach ($folders as $k => $v) {
             $folders[$k] = is_really_writable(PUBPATH . $k);
@@ -63,10 +63,10 @@ class Sys_info extends BaseAdminController
 
             $this->template->add_array(
                 [
-                        'db_version' => $version['VERSION()'],
-                        'db_size' => byte_format($total_size),
-                        'db_rows' => $total_rows,
-                    ]
+                 'db_version' => $version['VERSION()'],
+                 'db_size'    => byte_format($total_size),
+                 'db_rows'    => $total_rows,
+                ]
             );
         }
 

@@ -58,7 +58,11 @@ class Translator extends MY_Controller
                 if ($origin) {
                     preg_match('/"(.*?)"/', $line, $translation);
                     $translation = $translation[1];
-                    $result[] = ['paths' => $links, 'origin' => $origin, 'translation' => $translation];
+                    $result[] = [
+                                 'paths'       => $links,
+                                 'origin'      => $origin,
+                                 'translation' => $translation,
+                                ];
                     unset($links);
                 }
             }
@@ -156,9 +160,9 @@ class Translator extends MY_Controller
         $po_Attributes = getPoFileAttributes($domain);
         if ($po_Attributes) {
             $data[$origin] = [
-                'translation' => $translation,
-                'comment' => $comment
-            ];
+                              'translation' => $translation,
+                              'comment'     => $comment,
+                             ];
 
             if ($poFileManager->update($po_Attributes['name'], $po_Attributes['type'], $po_Attributes['lang'], $data)) {
                 return json_encode(['success' => TRUE, 'message' => lang('Successfully translated.', 'translator')]);
@@ -201,9 +205,9 @@ class Translator extends MY_Controller
             ->update(
                 'components',
                 [
-                    'autoload' => '1',
-                    'enabled' => '1',
-                    'settings' => serialize(['originsLang' => 'en', 'editorTheme' => 'chrome'])
+                 'autoload' => '1',
+                 'enabled'  => '1',
+                 'settings' => serialize(['originsLang' => 'en', 'editorTheme' => 'chrome']),
                 ]
             );
     }

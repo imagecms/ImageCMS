@@ -61,10 +61,10 @@ class Prices extends ExchangeBase
     protected function setPurchacePrice($externalId, $purchasePrice) {
 
         $fieldId = ModuleSettings::ofModule('exchange')->get('purchcePriceFieldId');
-        $product = SProductsQuery::create()->findOneByExternalId($externalId);
+        $product = SProductsQuery::create()->setComment(__METHOD__)->findOneByExternalId($externalId);
         if ($product) {
             $productId = $product->getId();
-            $cf = CustomFieldsDataQuery::create()->filterByentityId($productId)->filterByfieldId($fieldId)->findOne();
+            $cf = CustomFieldsDataQuery::create()->setComment(__METHOD__)->filterByentityId($productId)->filterByfieldId($fieldId)->findOne();
 
             if (!$cf) {
                 $cf = new CustomFieldsData();

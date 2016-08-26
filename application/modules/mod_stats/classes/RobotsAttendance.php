@@ -31,18 +31,18 @@ class RobotsAttendance
      * @var array
      */
     private $robots = [
-        1 => 'googlebot',
-        2 => 'msnbot',
-        3 => 'baiduspider',
-        4 => 'bingbot',
-        5 => 'slurp',
-        6 => 'yahoo',
-        7 => 'askjeeves',
-        8 => 'fastcrawler',
-        9 => 'infoseek',
-        10 => 'lycos',
-        11 => 'yandex',
-    ];
+                       1  => 'googlebot',
+                       2  => 'msnbot',
+                       3  => 'baiduspider',
+                       4  => 'bingbot',
+                       5  => 'slurp',
+                       6  => 'yahoo',
+                       7  => 'askjeeves',
+                       8  => 'fastcrawler',
+                       9  => 'infoseek',
+                       10 => 'lycos',
+                       11 => 'yandex',
+                      ];
 
     private function __construct() {
     }
@@ -76,11 +76,11 @@ class RobotsAttendance
 
         if (FALSE !== $robotId = $this->getRobotId($robotName)) {
             $this->attendanceData = [
-                'id_robot' => $robotId,
-                'type_id' => $typeId,
-                'id_entity' => $coreData['id'],
-                'time_add' => time(),
-            ];
+                                     'id_robot'  => $robotId,
+                                     'type_id'   => $typeId,
+                                     'id_entity' => $coreData['id'],
+                                     'time_add'  => time(),
+                                    ];
         }
     }
 

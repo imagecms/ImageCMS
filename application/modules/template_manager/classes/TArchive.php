@@ -8,7 +8,8 @@ namespace template_manager\classes;
  *
  * Can return some information about template (name, color schemes...)
  */
-class TArchive {
+class TArchive
+{
 
     /**
      *

@@ -45,17 +45,20 @@ class Docs extends BaseAdminController
 
     private function exportData() {
         $dsn = 'mysqli://root:root@localhost/premmerce';
-        $db = $this->load->database($dsn,true);
+        $db = $this->load->database($dsn, true);
 
         $result = $db->select(['title', 'url', 'full_text'])
             ->where(['lang' => '3', 'category' => 92, 'post_status' => 'publish'])
             ->order_by('position')
             ->get('content')->result_array();
-//        dd($result);
+        //        dd($result);
 
         $jsonsDataArray = [];
         foreach ($result as $pageFromDatabase) {
-            $jsonsDataArray[] = ['full_url' => $pageFromDatabase['url'], 'title' => $pageFromDatabase['title']];
+            $jsonsDataArray[] = [
+                                 'full_url' => $pageFromDatabase['url'],
+                                 'title'    => $pageFromDatabase['title'],
+                                ];
 
             $pageTitle = '<div class="title-default-main"><div class="title">'
                     . $pageFromDatabase['title'] . '</div></div>';

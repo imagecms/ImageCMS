@@ -6,7 +6,8 @@
  * Image CMS
  * Module Frame
  */
-class Payment_method_oschadbank extends MY_Controller {
+class Payment_method_oschadbank extends MY_Controller
+{
 
     public $paymentMethod;
 
@@ -96,11 +97,11 @@ class Payment_method_oschadbank extends MY_Controller {
         $price = $param->getDeliveryPrice() ? ($param->getTotalPrice() + $param->getDeliveryPrice()) : $param->getTotalPrice();
 
         $data = [
-            'PM' => $payment_method_id,
-            'URL' => site_url('payment_method_oschadbank/processPayment/' . $param->getKey()),
-            'order_id' => $param->id,
-            'price' => $price,
-        ];
+                 'PM'       => $payment_method_id,
+                 'URL'      => site_url('payment_method_oschadbank/processPayment/' . $param->getKey()),
+                 'order_id' => $param->id,
+                 'price'    => $price,
+                ];
 
         $codeTpl = \CMSFactory\assetManager::create()
                 ->setData('data', $data)
@@ -380,7 +381,7 @@ class Payment_method_oschadbank extends MY_Controller {
             show_error($ci->db->_error_message());
         }
 
-        \CMSFactory\Events::create()->registerEvent(['system' => __CLASS__, 'order_id' => $order_id], "PaimentSystem:successPaid");
+        \CMSFactory\Events::create()->registerEvent(['system' => __CLASS__, 'order_id' => $order_id], 'PaimentSystem:successPaid');
         \CMSFactory\Events::runFactory();
 
         $result = $ci->db
@@ -389,8 +390,8 @@ class Payment_method_oschadbank extends MY_Controller {
             ->update(
                 'users',
                 [
-                    'amout' => str_replace(',', '.', $amount)
-                    ]
+                 'amout' => str_replace(',', '.', $amount),
+                ]
             );
         if ($ci->db->_error_message()) {
             show_error($ci->db->_error_message());
@@ -418,9 +419,9 @@ class Payment_method_oschadbank extends MY_Controller {
             ->update(
                 'shop_payment_methods',
                 [
-                    'active' => '0',
-                    'payment_system_name' => '0',
-                    ]
+                 'active'              => '0',
+                 'payment_system_name' => '0',
+                ]
             );
         if ($ci->db->_error_message()) {
             show_error($ci->db->_error_message());

@@ -23,11 +23,11 @@ class Attendance_model extends CI_Model
      */
     public function getCommonAttendance(array $params_ = []) {
         $params = [
-            'interval' => 'day',
-            'dateFrom' => NULL,
-            'dateTo' => NULL,
-            'type' => 'all'
-        ];
+                   'interval' => 'day',
+                   'dateFrom' => NULL,
+                   'dateTo'   => NULL,
+                   'type'     => 'all',
+                  ];
 
         foreach ($params_ as $key => $value) {
             if (array_key_exists($key, $params)) {

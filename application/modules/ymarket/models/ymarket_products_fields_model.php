@@ -4,7 +4,8 @@
  * @property CI_DB_active_record $db
  * @property DX_Auth $dx_auth
  */
-class Ymarket_products_fields_model extends CI_Model {
+class Ymarket_products_fields_model extends CI_Model
+{
 
     const TABLE = 'mod_ymarket_products_fields';
 

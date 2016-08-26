@@ -69,9 +69,7 @@ class Widgets_manager extends BaseAdminController
         }
 
         $this->template->add_array(
-            [
-                'widgets' => $widgets
-            ]
+            ['widgets' => $widgets]
         );
 
         $this->template->show('widgets_list', FALSE);
@@ -125,15 +123,17 @@ class Widgets_manager extends BaseAdminController
                 showMessage(validation_errors(), false, 'r');
             } else {
                 $data = [
-                    'description' => $this->input->post('desc'),
-                    'method' => $this->input->post('method'),
-                    'data' => $this->input->post('module'), // module name
-                    'name' => $this->input->post('name'),
-                    'type' => $type,
-                    'created' => time()
-                ];
-
+                         'description' => $this->input->post('desc'),
+                         'method'      => $this->input->post('method'),
+                         'data'        => $this->input->post('module'), // module name
+                         'name'        => $this->input->post('name'),
+                         'type'        => $type,
+                         'settings'    => '',
+                         'roles'       => '',
+                         'created'     => time(),
+                        ];
                 $this->db->insert('widgets', $data);
+
                 $data['id'] = $this->db->insert_id();
                 $findId = $this->db->insert_id();
 
@@ -189,13 +189,13 @@ class Widgets_manager extends BaseAdminController
                 showMessage(validation_errors(), false, 'r');
             } else {
                 $data = [
-                    'description' => $this->input->post('desc'),
+                         'description' => $this->input->post('desc'),
                     //'data' => $this->input->post('html_code'),
-                    'name' => $this->input->post('name'),
-                    'type' => $type,
-                    'created' => time(),
+                         'name'        => $this->input->post('name'),
+                         'type'        => $type,
+                         'created'     => time(),
                     //'locale' => $locale
-                ];
+                        ];
 
                 $this->lib_admin->log(lang('Created a widget', 'admin') . ' ' . $data['name']);
 
@@ -209,11 +209,11 @@ class Widgets_manager extends BaseAdminController
         if ($findId) {
             $locale = MY_Controller::defaultLocale();
             $data = [
-                'id' => $findId,
-                'title' => $this->input->post('title') ? $this->input->post('title') : '',
-                'data' => $this->input->post('html_code') ? $this->input->post('html_code') : '',
-                'locale' => $locale
-            ];
+                     'id'     => $findId,
+                     'title'  => $this->input->post('title') ? $this->input->post('title') : '',
+                     'data'   => $this->input->post('html_code') ? $this->input->post('html_code') : '',
+                     'locale' => $locale,
+                    ];
 
             $this->db->insert('widget_i18n', $data);
 
@@ -293,9 +293,9 @@ class Widgets_manager extends BaseAdminController
             }
 
             $data = [
-                'description' => $this->input->post('desc'),
-                'name' => $this->input->post('name')
-            ];
+                     'description' => $this->input->post('desc'),
+                     'name'        => $this->input->post('name'),
+                    ];
 
             $this->db->where('id', $id);
             $this->db->update('widgets', $data);
@@ -304,20 +304,20 @@ class Widgets_manager extends BaseAdminController
             if ($this->db->query($sql)->num_rows() > 0) {
 
                 $data = [
-                    'data' => $this->input->post('html_code'),
-                    'title' => $this->input->post('title'),
-                ];
+                         'data'  => $this->input->post('html_code'),
+                         'title' => $this->input->post('title'),
+                        ];
                 $this->db->where('id', $id);
                 $this->db->where('locale', $locale);
                 $this->db->update('widget_i18n', $data);
             } else {
 
                 $data = [
-                    'id' => $id,
-                    'data' => $this->input->post('html_code'),
-                    'title' => $this->input->post('title'),
-                    'locale' => $locale
-                ];
+                         'id'     => $id,
+                         'data'   => $this->input->post('html_code'),
+                         'title'  => $this->input->post('title'),
+                         'locale' => $locale,
+                        ];
 
                 $this->db->insert('widget_i18n', $data);
             }
@@ -362,28 +362,28 @@ class Widgets_manager extends BaseAdminController
                 }
 
                 $data = [
-                    'description' => $this->input->post('desc'),
-                    'name' => $this->input->post('name')
-                ];
+                         'description' => $this->input->post('desc'),
+                         'name'        => $this->input->post('name'),
+                        ];
 
                 $this->db->where('id', $widget['id']);
                 $this->db->update('widgets', $data);
 
                 if ($this->db->where('id', $id)->where('locale', $locale)->get('widget_i18n')->num_rows()) {
                     $dataI18n = [
-                        'data' => '',
-                        'title' => $this->input->post('title')
-                    ];
+                                 'data'  => '',
+                                 'title' => $this->input->post('title'),
+                                ];
                     $this->db->where('id', $id)
                         ->where('locale', $locale)
                         ->update('widget_i18n', $dataI18n);
                 } else {
                     $dataI18n = [
-                        'id' => $id,
-                        'locale' => $locale,
-                        'data' => '',
-                        'title' => $this->input->post('title')
-                    ];
+                                 'id'     => $id,
+                                 'locale' => $locale,
+                                 'data'   => '',
+                                 'title'  => $this->input->post('title'),
+                                ];
                     $this->db->insert('widget_i18n', $dataI18n);
                 }
 
@@ -458,7 +458,7 @@ class Widgets_manager extends BaseAdminController
      * @param null|string $locale
      */
     public function edit_html_widget($id, $update_info = FALSE, $locale = null) {
-        $locale = $locale ? $locale : MY_Controller::defaultLocale();
+        $locale = $locale ?: MY_Controller::defaultLocale();
 
         $lang = $this->db->get('languages')->result_array();
 
@@ -477,9 +477,7 @@ class Widgets_manager extends BaseAdminController
         $this->template->assign('locale', $locale);
         $this->template->assign('languages', $lang);
         $this->template->add_array(
-            [
-                'widget' => $widget
-            ]
+            ['widget' => $widget]
         );
 
         $this->lib_admin->log(lang('Widget edited', 'admin'));
@@ -490,7 +488,7 @@ class Widgets_manager extends BaseAdminController
 
     public function edit_module_widget($id, $update_info = FALSE, $locale = NULL) {
         //cp_check_perm('widget_access_settings');
-        $locale = $locale ? $locale : MY_Controller::defaultLocale();
+        $locale = $locale ?: MY_Controller::defaultLocale();
 
         if ($this->input->post()) {
             $this->update_widget($id, $update_info, $locale);
@@ -513,10 +511,10 @@ class Widgets_manager extends BaseAdminController
 
             $this->template->add_array(
                 [
-                    'widget_id' => $id,
-                    'widget' => $widget,
-                    'locale' => $locale,
-                    'languages' => $this->db->get('languages')->result_array()
+                 'widget_id' => $id,
+                 'widget'    => $widget,
+                 'locale'    => $locale,
+                 'languages' => $this->db->get('languages')->result_array(),
                 ]
             );
 
@@ -525,7 +523,7 @@ class Widgets_manager extends BaseAdminController
     }
 
     /**
-     * Search for aviable widgets in all modules except admin module
+     * Search for available widgets in all modules except admin module
      * @param bool|string $type
      * @return array
      */
@@ -552,10 +550,10 @@ class Widgets_manager extends BaseAdminController
 
                     if (file_exists($widgets_info)) {
                         $module_widgets = [
-                            'widgets' => $this->getWidgetsArray($widgets_info),
-                            'module' => $module['name'],
-                            'module_name' => $this->get_module_name($module['name']),
-                        ];
+                                           'widgets'     => $this->getWidgetsArray($widgets_info),
+                                           'module'      => $module['name'],
+                                           'module_name' => $this->get_module_name($module['name']),
+                                          ];
 
                         $subpath = isset($moduleInfo['widgets_subpath']) ? $moduleInfo['widgets_subpath'] . '/' : '';
 
@@ -568,9 +566,7 @@ class Widgets_manager extends BaseAdminController
                 }
 
                 $this->template->add_array(
-                    [
-                        'widgets' => $all_widgets
-                    ]
+                    ['widgets' => $all_widgets]
                 );
                 if ($case) {
                     return $all_widgets;

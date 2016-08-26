@@ -9,7 +9,8 @@ if (!defined('BASEPATH')) {
  *
  * Page tags module
  */
-class Navigation extends MY_Controller {
+class Navigation extends MY_Controller
+{
 
     public function __construct() {
 

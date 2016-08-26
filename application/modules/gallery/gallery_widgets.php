@@ -43,9 +43,7 @@ class Gallery_Widgets extends MY_Controller
         }
 
         $this->template->add_array(
-            [
-                    'images' => $images,
-                ]
+            ['images' => $images]
         );
 
         return $this->template->fetch('widgets/' . $widget['name'], $data);
@@ -76,9 +74,9 @@ class Gallery_Widgets extends MY_Controller
                 }
 
                 $data = [
-                    'limit' => $this->input->post('limit'),
-                    'order' => $this->input->post('order'),
-                ];
+                         'limit' => $this->input->post('limit'),
+                         'order' => $this->input->post('order'),
+                        ];
 
                 $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
 
@@ -90,9 +88,9 @@ class Gallery_Widgets extends MY_Controller
 
             case 'install_defaults':
                 $data = [
-                    'limit' => 5,
-                    'order' => 'latest',
-                ];
+                         'limit' => 5,
+                         'order' => 'latest',
+                        ];
 
                 $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
                 break;

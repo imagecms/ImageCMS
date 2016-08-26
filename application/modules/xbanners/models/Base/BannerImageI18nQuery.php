@@ -344,9 +344,6 @@ abstract class BannerImageI18nQuery extends ModelCriteria
         if (null === $comparison) {
             if (is_array($locale)) {
                 $comparison = Criteria::IN;
-            } elseif (preg_match('/[\%\*]/', $locale)) {
-                $locale = str_replace('*', '%', $locale);
-                $comparison = Criteria::LIKE;
             }
         }
 
@@ -373,9 +370,6 @@ abstract class BannerImageI18nQuery extends ModelCriteria
         if (null === $comparison) {
             if (is_array($src)) {
                 $comparison = Criteria::IN;
-            } elseif (preg_match('/[\%\*]/', $src)) {
-                $src = str_replace('*', '%', $src);
-                $comparison = Criteria::LIKE;
             }
         }
 
@@ -402,9 +396,6 @@ abstract class BannerImageI18nQuery extends ModelCriteria
         if (null === $comparison) {
             if (is_array($name)) {
                 $comparison = Criteria::IN;
-            } elseif (preg_match('/[\%\*]/', $name)) {
-                $name = str_replace('*', '%', $name);
-                $comparison = Criteria::LIKE;
             }
         }
 
@@ -472,9 +463,6 @@ abstract class BannerImageI18nQuery extends ModelCriteria
         if (null === $comparison) {
             if (is_array($description)) {
                 $comparison = Criteria::IN;
-            } elseif (preg_match('/[\%\*]/', $description)) {
-                $description = str_replace('*', '%', $description);
-                $comparison = Criteria::LIKE;
             }
         }
 

@@ -7,7 +7,8 @@ if (!defined('BASEPATH')) {
 /**
  * Image CMS
  */
-class Tags_Widgets extends MY_Controller {
+class Tags_Widgets extends MY_Controller
+{
 
     public function __construct() {
         parent::__construct();
@@ -45,9 +46,9 @@ class Tags_Widgets extends MY_Controller {
         return $this->template->fetch(
             'widgets/' . $widget['name'],
             [
-                    'tags' => $this->tags->build_cloud('array'),
-                    'widget' => $widget
-                        ]
+             'tags'   => $this->tags->build_cloud('array'),
+             'widget' => $widget,
+            ]
         );
     }
 

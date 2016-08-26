@@ -6,7 +6,8 @@
  * Image CMS
  * Module Frame
  */
-class Payment_method_interkassa extends MY_Controller {
+class Payment_method_interkassa extends MY_Controller
+{
 
     public $paymentMethod;
 
@@ -113,15 +114,15 @@ class Payment_method_interkassa extends MY_Controller {
         }
 
         $data = [
-            'ik_co_id' => $publicKey,
-            'ik_am' => $price,
-            'ik_cur' => $code,
-            'ik_desc' => $descr,
-            'ik_pm_no' => $param->id,
-            'ik_suc_u' => site_url() . 'shop/order/view/' . $param->getKey(),
-            'ik_pnd_u' => site_url() . 'shop/order/view/' . $param->getKey(),
-            'ik_fal_u' => site_url() . 'shop/order/view/' . $param->getKey(),
-        ];
+                 'ik_co_id' => $publicKey,
+                 'ik_am'    => $price,
+                 'ik_cur'   => $code,
+                 'ik_desc'  => $descr,
+                 'ik_pm_no' => $param->id,
+                 'ik_suc_u' => site_url() . 'shop/order/view/' . $param->getKey(),
+                 'ik_pnd_u' => site_url() . 'shop/order/view/' . $param->getKey(),
+                 'ik_fal_u' => site_url() . 'shop/order/view/' . $param->getKey(),
+                ];
 
         ksort($data, SORT_STRING);
         array_push($data, $paySettings['merchant_sig']);
@@ -220,7 +221,7 @@ class Payment_method_interkassa extends MY_Controller {
             show_error($ci->db->_error_message());
         }
 
-        \CMSFactory\Events::create()->registerEvent(['system' => __CLASS__, 'order_id' => $order_id], "PaimentSystem:successPaid");
+        \CMSFactory\Events::create()->registerEvent(['system' => __CLASS__, 'order_id' => $order_id], 'PaimentSystem:successPaid');
         \CMSFactory\Events::runFactory();
 
         $result = $ci->db
@@ -229,8 +230,8 @@ class Payment_method_interkassa extends MY_Controller {
             ->update(
                 'users',
                 [
-                    'amout' => str_replace(',', '.', $amount)
-                    ]
+                 'amout' => str_replace(',', '.', $amount),
+                ]
             );
         if ($ci->db->_error_message()) {
             show_error($ci->db->_error_message());
@@ -258,9 +259,9 @@ class Payment_method_interkassa extends MY_Controller {
             ->update(
                 'shop_payment_methods',
                 [
-                    'active' => '0',
-                    'payment_system_name' => '0',
-                    ]
+                 'active'              => '0',
+                 'payment_system_name' => '0',
+                ]
             );
         if ($ci->db->_error_message()) {
             show_error($ci->db->_error_message());

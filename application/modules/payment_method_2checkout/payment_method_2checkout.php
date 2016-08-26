@@ -6,7 +6,8 @@
  * Image CMS
  * Module Frame
  */
-class Payment_method_2checkout extends MY_Controller {
+class Payment_method_2checkout extends MY_Controller
+{
 
     public $paymentMethod;
 
@@ -114,13 +115,13 @@ class Payment_method_2checkout extends MY_Controller {
         }
 
         $data = [
-            'sid' => $sid,
-            'amount' => strtr($price, [',' => '.']),
-            'currency' => $code,
-            'description' => $descr,
-            'order_id' => $param->id,
-            'server_url' => site_url() . $this->moduleName . '/callback',
-        ];
+                 'sid'         => $sid,
+                 'amount'      => strtr($price, [',' => '.']),
+                 'currency'    => $code,
+                 'description' => $descr,
+                 'order_id'    => $param->id,
+                 'server_url'  => site_url() . $this->moduleName . '/callback',
+                ];
 
         $codeTpl = \CMSFactory\assetManager::create()
                 ->setData('data', $data)
@@ -211,7 +212,7 @@ class Payment_method_2checkout extends MY_Controller {
         if ($ci->db->_error_message()) {
             show_error($ci->db->_error_message());
         }
-        \CMSFactory\Events::create()->registerEvent(['system' => __CLASS__, 'order_id' => $order_id], "PaimentSystem:successPaid");
+        \CMSFactory\Events::create()->registerEvent(['system' => __CLASS__, 'order_id' => $order_id], 'PaimentSystem:successPaid');
         \CMSFactory\Events::runFactory();
 
         $result = $ci->db
@@ -220,8 +221,8 @@ class Payment_method_2checkout extends MY_Controller {
             ->update(
                 'users',
                 [
-                    'amout' => str_replace(',', '.', $amount)
-                    ]
+                 'amout' => str_replace(',', '.', $amount),
+                ]
             );
         if ($ci->db->_error_message()) {
             show_error($ci->db->_error_message());
@@ -249,9 +250,9 @@ class Payment_method_2checkout extends MY_Controller {
             ->update(
                 'shop_payment_methods',
                 [
-                    'active' => '0',
-                    'payment_system_name' => '0',
-                    ]
+                 'active'              => '0',
+                 'payment_system_name' => '0',
+                ]
             );
         if ($ci->db->_error_message()) {
             show_error($ci->db->_error_message());

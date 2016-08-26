@@ -6,7 +6,8 @@
  * @copyright (c) 2014, ImageCMS
  * @package ImageCMSModule
  */
-class ChartDataRemap {
+class ChartDataRemap
+{
 
     /**
      * Remap data for chart with one Y axiss
@@ -21,7 +22,10 @@ class ChartDataRemap {
             unset($row['unix_date']);
             unset($row['date']);
             foreach ($row as $field => $value) {
-                $newStructure1[$field][] = [(float) ($date * 1000), (int) $value];
+                $newStructure1[$field][] = [
+                                            (float) ($date * 1000),
+                                            (int) $value,
+                                           ];
             }
         }
         return $newStructure1;
@@ -40,7 +44,10 @@ class ChartDataRemap {
             unset($row['unix_date']);
             unset($row['date']);
             foreach ($row as $field => $value) {
-                $newStructure1[$field][] = ['x' => (float) ($date * 1000), 'y' => (int) $value];
+                $newStructure1[$field][] = [
+                                            'x' => (float) ($date * 1000),
+                                            'y' => (int) $value,
+                                           ];
             }
         }
 

@@ -31,9 +31,9 @@ class Page extends BasePageType
         $data = [];
         foreach ($pages as $page) {
             $data[$page['id']] = [
-                'id' => $page['id'],
-                'name' => $page['title'],
-            ];
+                                  'id'   => $page['id'],
+                                  'name' => $page['title'],
+                                 ];
         }
 
         return $data;

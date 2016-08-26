@@ -31,8 +31,8 @@ class BannerView
      */
     public function show() {
         $data = [
-            'banner' => $this->banner,
-        ];
+                 'banner' => $this->banner,
+                ];
         return $this->render($data);
     }
 

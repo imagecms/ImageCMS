@@ -22,21 +22,21 @@ if (!function_exists('get_entity_mod')) {
                 break;
             case strstr($w, 'product'):
                 $id = (int) str_replace('product_', '', $w);
-                $prod = SProductsQuery::create()->findPk($id);
+                $prod = SProductsQuery::create()->setComment(__METHOD__)->findPk($id);
                 if ($prod) {
                     return 'product - ' . $prod->getName();
                 }
                 break;
             case strstr($w, 'shop_category'):
                 $id = (int) str_replace('shop_category_', '', $w);
-                $cat = SCategoryQuery::create()->findPk($id);
+                $cat = SCategoryQuery::create()->setComment(__METHOD__)->findPk($id);
                 if ($cat) {
                     return 'shop_category - ' . $cat->getName();
                 }
                 break;
             case strstr($w, 'brand'):
                 $id = (int) str_replace('brand_', '', $w);
-                $br = SBrandsQuery::create()->findPk($id);
+                $br = SBrandsQuery::create()->setComment(__METHOD__)->findPk($id);
                 if ($br) {
                     return 'brand - ' . $br->getName();
                 }

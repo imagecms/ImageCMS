@@ -39,35 +39,35 @@ class BannerPageTypesManager
      */
     public function getPagesTypes($type = NULL) {
         $pageTypes = [
-            'main' => [
-                'name' => lang('Main', 'xbanners'),
-                'class' => NULL
-            ],
-            'shop_category' => [
-                'name' => lang('Product category', 'xbanners'),
-                'class' => '\xbanners\src\BannerPagesTypes\ShopCategory'
-            ],
-            'product' => [
-                'name' => lang('Product', 'xbanners'),
-                'class' => '\xbanners\src\BannerPagesTypes\Product'
-            ],
-            'category' => [
-                'name' => lang('Page category', 'xbanners'),
-                'class' => '\xbanners\src\BannerPagesTypes\Category'
-            ],
-            'page' => [
-                'name' => lang('Page', 'xbanners'),
-                'class' => '\xbanners\src\BannerPagesTypes\Page'
-            ],
-            'brand' => [
-                'name' => lang('Product brand', 'xbanners'),
-                'class' => '\xbanners\src\BannerPagesTypes\Brand'
-            ],
-            'search' => [
-                'name' => lang('Search page', 'xbanners'),
-                'class' => NULL
-            ],
-        ];
+                      'main'          => [
+                                          'name'  => lang('Main', 'xbanners'),
+                                          'class' => NULL,
+                                         ],
+                      'shop_category' => [
+                                          'name'  => lang('Product category', 'xbanners'),
+                                          'class' => '\xbanners\src\BannerPagesTypes\ShopCategory',
+                                         ],
+                      'product'       => [
+                                          'name'  => lang('Product', 'xbanners'),
+                                          'class' => '\xbanners\src\BannerPagesTypes\Product',
+                                         ],
+                      'category'      => [
+                                          'name'  => lang('Page category', 'xbanners'),
+                                          'class' => '\xbanners\src\BannerPagesTypes\Category',
+                                         ],
+                      'page'          => [
+                                          'name'  => lang('Page', 'xbanners'),
+                                          'class' => '\xbanners\src\BannerPagesTypes\Page',
+                                         ],
+                      'brand'         => [
+                                          'name'  => lang('Product brand', 'xbanners'),
+                                          'class' => '\xbanners\src\BannerPagesTypes\Brand',
+                                         ],
+                      'search'        => [
+                                          'name'  => lang('Search page', 'xbanners'),
+                                          'class' => NULL,
+                                         ],
+                     ];
 
         return $type ? $pageTypes[$type] : $pageTypes;
     }

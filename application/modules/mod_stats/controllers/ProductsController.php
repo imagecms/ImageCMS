@@ -9,7 +9,8 @@ use Propel\Runtime\Propel;
  * @copyright (c) 2014, ImageCMS
  * @package ImageCMSModule
  */
-class ProductsController extends ControllerBase {
+class ProductsController extends ControllerBase
+{
 
     public $perPage = 24;
 
@@ -33,8 +34,8 @@ class ProductsController extends ControllerBase {
      */
     public function getCategoriesChartData() {
         $params = [
-            'categoryId' => isset($_GET['catId']) ? $_GET['catId'] : 0,
-        ];
+                   'categoryId' => isset($_GET['catId']) ? $_GET['catId'] : 0,
+                  ];
         $catIds = $this->controller->products_model->getSubcategoriesIds($params['categoryId']);
         //        if (!$catIds && $params['categoryId'] != 'main' ){
         //            $catIds = array($params['categoryId']);
@@ -59,8 +60,8 @@ class ProductsController extends ControllerBase {
      */
     public function getBrandsChartData() {
         $params = [
-            'topBrandsCount' => isset($_GET['stbc']) ? $_GET['stbc'] : 20,
-        ];
+                   'topBrandsCount' => isset($_GET['stbc']) ? $_GET['stbc'] : 20,
+                  ];
 
         $brands = $this->controller->products_model->getBrandsCountsData($params['topBrandsCount'], NULL, TRUE);
 
@@ -111,7 +112,13 @@ class ProductsController extends ControllerBase {
         //        $model = $model->orderBy('AddedToCartCount', 'DESC');
         // Order by params
         if (isset(ShopCore::$_GET['orderMethod']) && ShopCore::$_GET['orderMethod'] != '') {
-            $order_methods = ['Id', 'Name', 'Category', 'Views', 'AddedToCartCount'];
+            $order_methods = [
+                              'Id',
+                              'Name',
+                              'Category',
+                              'Views',
+                              'AddedToCartCount',
+                             ];
             if (in_array(ShopCore::$_GET['orderMethod'], $order_methods)) {
                 switch (ShopCore::$_GET['orderMethod']) {
                     case 'Id':
@@ -152,12 +159,12 @@ class ProductsController extends ControllerBase {
         $this->controller->load->library('pagination');
         $config['base_url'] = site_url('/admin/components/cp/mod_stats/products/productInfo');
         $config['per_page'] = $this->perPage;
-        $config['suffix'] = '?' . http_build_query($_GET, '', "&");
+        $config['suffix'] = '?' . http_build_query($_GET, '', '&');
         $config['uri_segment'] = 7;
         $config['total_rows'] = $totalProducts;
         $config['per_page'] = $this->perPage;
 
-        $config['first_url'] = site_url('/admin/components/cp/mod_stats/products/productInfo/0?' . http_build_query($_GET, '', "&"));
+        $config['first_url'] = site_url('/admin/components/cp/mod_stats/products/productInfo/0?' . http_build_query($_GET, '', '&'));
         $config['separate_controls'] = true;
         $config['full_tag_open'] = '<div class="pagination pull-left"><ul>';
         $config['full_tag_close'] = '</ul></div>';
