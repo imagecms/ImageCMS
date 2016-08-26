@@ -15,8 +15,6 @@
     "psr-4": {
       "": [
         "application/modules/",
-        "application/modules/shop/classes/",
-        "application/modules/shop/models/",
         "hooks"
       ],
       "libraries\\": [
@@ -67,5 +65,7 @@
       "ImageCMSHooks::copyTinyMCEFiles",
       "php application/third_party/bin/propel --verbose build"
     ]
-  }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
