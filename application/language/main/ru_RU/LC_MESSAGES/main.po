@@ -1029,7 +1029,7 @@ msgstr "Ваше сообщение успешно отправлено"
 #: system/language/upload/upload_validation.php:7
 #: system/language/upload/upload_validation.php:17
 msgid "upload_invalid_filetype"
-msgstr "Неверний тип файла, который вы пытаетесь загрузить."
+msgstr "Неверный тип файла, который вы пытаетесь загрузить."
 
 #: system/language/upload/upload_validation.php:9
 msgid "upload_userfile_not_set"
