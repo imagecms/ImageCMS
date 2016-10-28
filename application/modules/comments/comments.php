@@ -88,7 +88,16 @@ class Comments extends MY_Controller
 
     public static function adminAutoload() {
 
-        parent::adminAutoload();
+        \CMSFactory\Events::create()->onShopProductDelete()->setListener(
+            function ($data){
+                $models = $data['model'];
+                $ids = [];
+                foreach ($models as $model) {
+                    $ids[] = $model->getId();
+                }
+                CI::$APP->db->where('module', 'shop')->where_in('item_id', $ids)->delete('comments');
+            }
+        );
     }
 
     /**

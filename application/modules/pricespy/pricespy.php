@@ -84,8 +84,9 @@ class Pricespy extends MY_Controller
 
         $product = $product['model'];
         $ids = [];
+        /** @var SProducts $p */
         foreach ($product as $key => $p) {
-            $ids[$key] = $p->id;
+            $ids[$key] = $p->getId();
         }
 
         $CI->db->where_in('productId', $ids);
@@ -185,9 +186,9 @@ class Pricespy extends MY_Controller
 
             assetManager::create()
                 ->registerScript('spy');
-
-            return $this;
         }
+
+        return $this;
     }
 
     /**
@@ -330,7 +331,7 @@ class Pricespy extends MY_Controller
                                          ],
                    'hash'             => [
                                           'type'       => 'VARCHAR',
-                                          'constraint' => '30',
+                                          'constraint' => '40',
                                           'null'       => TRUE,
                                          ],
                   ];

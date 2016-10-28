@@ -125,7 +125,9 @@ class Socauth extends MY_Controller
             $this->dx_auth_event->user_logged_in($userData->id);
         }
         if ($redirect) {
-            redirect($this->input->cookie('url'));
+
+            $url = $this->input->cookie('url');
+            $this->jsOpenPopap($url);
         }
     }
 
@@ -232,7 +234,7 @@ class Socauth extends MY_Controller
                            'oauth_token' => $tokenInfo['access_token'],
                           ];
 
-                $userInfo = json_decode(file_get_contents('https://login.yandex.ru/info' . '?' . urldecode(http_build_query($params))), true);
+                $userInfo = json_decode(file_get_contents('https://login.yandex.ru/info?' . urldecode(http_build_query($params))), true);
 
             }
             if (!$this->dx_auth->is_logged_in()) {
@@ -249,15 +251,44 @@ class Socauth extends MY_Controller
      *
      * @param string $soc type of social service
      * @param string $socId social service ID
+     * @param bool $redirect
      */
-    public function link($soc, $socId) {
+    public function link($soc, $socId, $redirect = true) {
 
         $this->socauth_model->setLink($soc, $socId);
 
         if ($this->settings['URLredirect']) {
             redirect(site_url() . $this->settings['URLredirect']);
         }
-        redirect($this->input->cookie('url'));
+
+        if ($redirect) {
+
+            $url = $this->input->cookie('url');
+            $this->jsOpenPopap($url);
+
+        } else {
+
+            redirect($this->input->cookie('url'));
+        }
+
+    }
+
+    /**
+     * @param string $url
+     */
+    private function jsOpenPopap($url) {
+
+        echo "<script type='text/javascript'>";
+        echo "(function(){
+                if(window.opener !== null){
+                    window.opener.location.assign(\" $url \");
+                    window.close();
+                }else{
+                    window.location.assign(\" $url \");
+                }
+            })()";
+        echo '</script>';
+
     }
 
     /**

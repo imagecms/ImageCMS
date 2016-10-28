@@ -201,13 +201,13 @@ function save_positions_variant(url) {
         arr.push($(this).val());
     });
     $.post(
-            url,
-            {
-                positions: arr
-            },
-    function(data) {
-        $('.notifications').append(data);
-    });
+        url,
+        {
+            positions: arr
+        },
+        function(data) {
+            $('.notifications').append(data);
+        });
 
 }
 
@@ -247,35 +247,44 @@ var delete_functionS = new Object({
 
 
 var delete_currency_function = new Object({
-    deleteFunction: function(cid, currentEl) {
-        var checkedAsMain = $(currentEl).closest('tr').find('.mainCurrency').attr('checked');
-        if (checkedAsMain) {
-            event.stopPropagation()
-            return false;
-        }
-        $('#first').modal();
-        id = cid;
+
+    deleteCurrencyWithPriceType: function (itemId) {
+
+        $('.modal-remove .modal-body').load('/admin/components/run/shop/currencies/ajaxDeleteWindow/' + itemId, function () {
+            return true;
+        });
+        $('.modal-remove:not(.addNotificationMessage)').modal('show');
+
+        id = itemId;
+
         return id;
     },
+
     deleteFunctionConfirm: function(href)
     {
-        var ids = new Array();
-        ids = id;
+        var data = $('#deleteCurrencyWithPriceType').serialize();
 
-        $.post(href, {
-            ids: ids
-        }, function(data) {
-            if (data.recount) {
-                $('#recount').modal();
-                return false;
+        $.ajax({
+            type: 'POST',
+            url: href,
+            data: data,
+            dataType: 'json',
+            success: function (data) {
+
+                if (data.recount) {
+                    $('#recount').modal();
+                    return false;
+                }
+                
+                if (data.success) {
+                    $('#currency_tr' + id).remove();
+                }
             }
-            if (data.success) {
-                $('#currency_tr' + id).remove();
-            }
-            $('.notifications').append(data.response);
-        }, "json");
+        });
+
         $('#first').modal('hide');
         return true;
+
     },
     ajaxRecount: function(url) {
         $.ajax({
@@ -323,3 +332,44 @@ function showOnSite(id, currentEl) {
 
     return true;
 }
+function getid(id, product_id) {
+
+    $('#variant_id_hidden').val(id);
+    $('#product_id_hidden').val(product_id);
+    $('.price_variant').val('');
+    $.ajax({
+        type: 'POST',
+        url: '/admin/components/run/shop/variantprice/attribute',
+        data: {id: id},
+        dataType: 'json',
+
+        success: function (data) {
+
+            for (var value in data) {
+                $('[name="prices[' + data[value].type + ']"]').val(data[value].price)
+            }
+        }
+    });
+
+}
+function add() {
+
+    var data = $('#variant').serialize();
+    $.ajax({
+        type: 'POST',
+        url: '/admin/components/run/shop/variantprice/saveVariantsPrice',
+        data: data,
+        dataType: 'json',
+
+        success: function (data) {
+            if (data.success) {
+                showMessage('', data.success);
+            }
+        }
+    })
+}
+
+$('#price_type').on('change', function() {
+
+    $('#currency').toggle();
+});

@@ -13,7 +13,7 @@ final class PageCategories extends BaseFinder
 
     protected $nameColumn = 'category_translate.name';
 
-    protected $urlColumn = 'category.url';
+    protected $urlColumn = 'route.url';
 
     protected $langColumn = 'category_translate.lang';
 
@@ -42,7 +42,9 @@ final class PageCategories extends BaseFinder
             $db->where($this->langColumn, $languageId);
         };
         /* @var $db \CI_DB_active_record */
-        $results = $db->select("$this->nameColumn, $this->urlColumn, $this->parentId")
+        $results = $db->select("$this->nameColumn, $this->parentId")
+            ->select("IF(route.parent_url <> '', concat(route.parent_url, '/', route.url), route.url) as url", false)
+            ->join('route', 'route.id = category.route_id')
             ->from($this->table)
             ->like($this->nameColumn, $word)
             ->limit($limit)
@@ -51,9 +53,6 @@ final class PageCategories extends BaseFinder
 
         $result = new Result($this->getGroupName());
         foreach ($results as $oneResult) {
-            if ($oneResult['parent_id'] > 0) {
-                $oneResult['url'] = $this->getPagentUrl($oneResult['parent_id']) . $oneResult['url'];
-            }
             $result->addResult($oneResult['name'], $this->formUrl($oneResult['url']));
         }
 

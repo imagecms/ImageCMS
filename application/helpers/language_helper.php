@@ -245,10 +245,9 @@ if (!function_exists('chose_language')) {
         $ci = &get_instance();
 
         $url_arr = $ci->uri->segment_array();
-
         foreach ((array) MY_Controller::getAllLocales($active) as $l) {
-            if (in_array($l['identif'], $url_arr)) {
-                $lang = $l['identif'];
+            if (in_array($l, $url_arr)) {
+                $lang = $l;
             }
         }
 

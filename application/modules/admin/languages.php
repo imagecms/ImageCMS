@@ -76,8 +76,8 @@ class Languages extends BaseAdminController
      * Insert new language
      */
     public function insert() {
-        $this->form_validation->set_rules('name', lang('Title', 'admin'), 'trim|required|min_length[1]|max_length[100]');
-        $this->form_validation->set_rules('identif', lang('Identifier', 'admin'), 'trim|required|min_length[1]|max_length[5]|alpha_dash');
+        $this->form_validation->set_rules('name', lang('Language', 'admin'), 'trim|required|min_length[1]|max_length[100]');
+        $this->form_validation->set_rules('identif', lang('Identifier', 'admin'), 'trim|required|min_length[1]|max_length[5]|alpha_dash|is_unique[languages.identif]');
         $this->form_validation->set_rules('locale', lang('Locale', 'admin'), 'required|max_length[250]');
 
         if ($this->form_validation->run($this) == FALSE) {
@@ -380,7 +380,7 @@ class Languages extends BaseAdminController
 
         //cp_check_perm('lang_edit');
 
-        $this->form_validation->set_rules('lang_name', lang('Title', 'admin'), 'trim|required|min_length[1]|max_length[100]');
+        $this->form_validation->set_rules('lang_name', lang('Language', 'admin'), 'trim|required|min_length[1]|max_length[100]');
         $this->form_validation->set_rules('identif', lang('Identifier', 'admin'), 'trim|required|min_length[1]|max_length[5]|alpha_dash');
         $this->form_validation->set_rules('locale', lang('Locale', 'admin'), 'required|max_length[250]');
 
@@ -393,9 +393,7 @@ class Languages extends BaseAdminController
 
             $data = [
                      'lang_name' => $this->input->post('lang_name'),
-                     'identif'   => $this->input->post('identif'),
                      'locale'    => $post_locale,
-                     'active'    => $this->input->post('active'),
                     ];
 
             $this->cms_admin->update_lang($data, $lang_id);

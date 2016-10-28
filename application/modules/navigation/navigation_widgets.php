@@ -110,6 +110,11 @@ class Navigation_Widgets extends MY_Controller
                 return $this->make(lang('Callbacks', 'navigation'), 'callbacks', $widget);
 
             case 'shop':
+
+                if ($this->uri->uri_string() == 'shop/search') {
+
+                    return $this->make(lang('Search', 'navigation'), 'shop/search', $widget);
+                }
                 return $this->make(lang('Compare', 'navigation'), 'shop/compare', $widget);
 
             case 'wishlist':
@@ -133,7 +138,7 @@ class Navigation_Widgets extends MY_Controller
 
                     foreach ($categories as $category) {
                         $paths[] = [
-                                    'path_url' => 'shop/category/' . $category->getFullPath(),
+                                    'path_url' => $category->getRouteUrl(),
                                     'name'     => $category->getName(),
                                    ];
                     }
@@ -149,8 +154,8 @@ class Navigation_Widgets extends MY_Controller
                 if ($this->core->core_data['id'] != null && $this->core->core_data['id'] > 0) {
                     //get product model
                     $product = SProductsQuery::create()
-                            ->joinWithI18n(MY_Controller::getCurrentLocale())
-                            ->findOneById($this->core->core_data['id']);
+                        ->joinWithI18n(MY_Controller::getCurrentLocale())
+                        ->findOneById($this->core->core_data['id']);
 
                     if ($product) {
 
@@ -163,7 +168,7 @@ class Navigation_Widgets extends MY_Controller
 
                         foreach ($categories as $category) {
                             $path[] = [
-                                       'path_url' => 'shop/category/' . $category->getFullPath(),
+                                       'path_url' => $category->getRouteUrl(),
                                        'name'     => $category->getName(),
                                       ];
                         }

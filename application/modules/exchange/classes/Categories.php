@@ -3,6 +3,9 @@
 namespace exchange\classes;
 
 use CMSFactory\ModuleSettings;
+use core\models\Route;
+use core\models\RouteQuery;
+use Propel\Runtime\Exception\PropelException;
 
 /**
  *
@@ -20,7 +23,7 @@ final class Categories extends ExchangeBase
     private $categoriesNames = [];
 
     /**
-     * Parsed categories from XML to one-dimention array
+     * Parsed categories from XML to one-dimension array
      * @var array
      */
     private $categoriesXml = [];
@@ -68,6 +71,7 @@ final class Categories extends ExchangeBase
     /**
      * Starting import of the categories
      * @return boolean|array FALSE|array(count of inserted, count of deleted)
+     * @throws \Exception
      */
     protected function import_() {
 
@@ -77,6 +81,7 @@ final class Categories extends ExchangeBase
             ->get('shop_category_i18n')
             ->result_array();
 
+        /** @var array $categoriesI18n */
         foreach ($categoriesI18n as $category) {
             array_push($this->categoriesNames, $category['name']);
         }
@@ -89,7 +94,7 @@ final class Categories extends ExchangeBase
             $dbArray = $this->getPreparedData($this->new);
             $this->insertBatch('shop_category', $dbArray);
             $this->dataLoad->getNewData('categories');
-            $i18nData = $this->geti18nData($this->new);
+            $i18nData = $this->getI18nData($this->new);
             $this->insertBatch('shop_category_i18n', $i18nData);
         }
 
@@ -100,12 +105,13 @@ final class Categories extends ExchangeBase
             $dbArray = $this->getPreparedData($this->existing);
             $this->updateBatch('shop_category', $dbArray, 'external_id');
             $this->dataLoad->getNewData('categories');
-            $i18nData = $this->geti18nData($this->existing);
+            $i18nData = $this->getI18nData($this->existing);
             $this->updateBatch('shop_category_i18n', $i18nData, 'id');
         }
 
         $pathsAndParents = $this->getPathsAndParents();
         $this->updateBatch('shop_category', $pathsAndParents, 'id');
+
         $this->dataLoad->getNewData('categories');
     }
 
@@ -116,7 +122,6 @@ final class Categories extends ExchangeBase
      * @param string $parent (default null) external id of parent if there is
      */
     private function processCategories(\SimpleXMLElement $categories, $parent = NULL) {
-
         foreach ($categories as $category) {
             $externalId = (string) $category->Ид;
 
@@ -131,7 +136,7 @@ final class Categories extends ExchangeBase
 
             $this->categoriesXml[$externalId] = [
                                                  'name'               => $name,
-                                                 'active'             => (string) $category->Статус == 'Удален' ? 0 : 1,
+                                                 'active'             => (string) $category->Статус === 'Удален' ? 0 : 1,
                                                  'external_id'        => $externalId,
                                                  'parent_external_id' => $parent === null ? 0 : $parent,
                                                 ];
@@ -166,7 +171,7 @@ final class Categories extends ExchangeBase
 
         $nameTemp = $name;
         $i = 1;
-        while (in_array($nameTemp, $this->categoriesNames)) {
+        while (in_array($nameTemp, $this->categoriesNames, true)) {
             $nameTemp = $name . ' ' . $i++;
         }
         array_push($this->categoriesNames, $nameTemp);
@@ -175,7 +180,7 @@ final class Categories extends ExchangeBase
 
     /**
      * Prepare array for DB insert/update query
-     * (returns array redy to inserting in database)
+     * (returns array ready to inserting in database)
      * @param array $categoriesExternalIds
      * @return array
      */
@@ -184,22 +189,24 @@ final class Categories extends ExchangeBase
         $dbArray = [];
         foreach ($categoriesExternalIds as $externalId) {
             // fitment of category url (might be busy)
-            $url = translit_url($this->categoriesXml[$externalId]['name']);
             // preparing array for insert
             $dbArray[] = [
                           'external_id' => $externalId,
-                          'url'         => $url,
                           'active'      => $this->categoriesXml[$externalId]['active'],
                          ];
         }
         return $dbArray;
     }
 
-    private function geti18nData($categoriesExternalIds) {
+    /**
+     * @param array $categoriesExternalIds
+     * @return array
+     */
+    private function getI18nData($categoriesExternalIds) {
 
         $i18n = [];
         foreach ($this->categories as $categoryId => $categoryData) {
-            if (in_array($categoryData['external_id'], $categoriesExternalIds)) {
+            if (in_array($categoryData['external_id'], $categoriesExternalIds, true)) {
                 $i18n[] = [
                            'id'     => $categoryData['id'],
                            'locale' => $this->locale,
@@ -212,21 +219,21 @@ final class Categories extends ExchangeBase
 
     /**
      * Filling parent ids of
-     * @return boolean
+     * @return array
      */
     private function getPathsAndParents() {
-
         $categoriesExternalIds = array_merge($this->new, $this->existing);
         // UPDATING INSERTED CATEGORIES (add parent ids & full path)
-        $this->dataLoad->getNewData('categories'); // getting dategories form db again
+        $this->dataLoad->getNewData('categories'); // getting categories form db again
         // getting only categories which was inserted
         $categories = [];
         // "parent data" is in $this->categories (db),
         foreach ($this->categories as $categoryId => $categoryData) {
-            if (in_array($categoryData['external_id'], $categoriesExternalIds)) {
+            if (in_array($categoryData['external_id'], $categoriesExternalIds, true)) {
                 $categories[$categoryData['id']] = [
-                                                    'id'        => $categoryData['id'],
-                                                    'parent_id' => $this->getParentIdDb($categoryData['external_id']),
+                                                    'id'          => $categoryData['id'],
+                                                    'parent_id'   => $this->getParentIdDb($categoryData['external_id']),
+                                                    'external_id' => $categoryData['external_id'],
                                                    ];
             }
         }
@@ -234,17 +241,28 @@ final class Categories extends ExchangeBase
         // creating id-paths and url-paths of each category
         foreach ($categories as $categoryId => $categoryData) {
             $currentPathIds = [];
-            $currentPathUrl = $this->categories[$categoryId]['url'];
 
             $neededCid = $categoryData['parent_id'];
 
             while ($neededCid != 0) {
                 $currentPathIds[] = $neededCid;
-                $currentPathUrl = $this->categories[$neededCid]['url'] . '/' . $currentPathUrl;
                 $neededCid = $categories[$neededCid]['parent_id'];
             }
 
-            $categories[$categoryId]['full_path'] = $currentPathUrl;
+            $parentUrl = RouteQuery::create()->filterByEntityId($categoryData['parent_id'])->filterByType(Route::TYPE_SHOP_CATEGORY)->findOne();
+            try{
+
+                        $route = new RouteQuery();
+                        $route->filterByParentUrl($parentUrl ? $parentUrl->getFullUrl() : '');
+                        $route->filterByUrl(translit_url($this->categoriesXml[$categoryData['external_id']]['name']));
+                        $route->findByType(Route::TYPE_SHOP_CATEGORY);
+                        $route->filterByEntityId($categoryData['id']);
+                        $route->findOneOrCreate()->save();
+
+            }catch (PropelException $exp){
+                dd($exp);
+            }
+            $categories[$categoryId]['route_id'] = $route->findOne()->getId();
             $categories[$categoryId]['full_path_ids'] = serialize(array_reverse($currentPathIds));
         }
 
@@ -268,21 +286,6 @@ final class Categories extends ExchangeBase
             }
         }
         return 0;
-    }
-
-    /**
-     * Checks if the new url of category is free (helper)
-     * @param string $url
-     * @return boolean
-     */
-    private function isUrlFree($url) {
-
-        foreach ($this->categories as $categoryData) {
-            if (strtolower($url) == strtolower($categoryData['url'])) {
-                return FALSE;
-            }
-        }
-        return TRUE;
     }
 
 }

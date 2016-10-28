@@ -53,7 +53,7 @@ class Lib_category
      */
     public function build() {
 
-            return $this->_build();
+        return $this->_build();
     }
 
     public function buildForAdmin() {
@@ -128,6 +128,9 @@ class Lib_category
      * Get value of category item
      *
      * @access public
+     * @param int $cat_id
+     * @param string $param
+     * @return string
      */
     public function GetValue($cat_id, $param) {
         if ($this->unsorted_arr == FALSE) {
@@ -143,7 +146,7 @@ class Lib_category
      * @access public
      * @param string $param
      * @param string $value
-     * @return array
+     * @return false|array
      */
     public function get_category_by($param, $value) {
         $categories = $this->unsorted();

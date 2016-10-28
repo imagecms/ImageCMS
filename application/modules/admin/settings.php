@@ -100,6 +100,8 @@ class Settings extends BaseAdminController
         $this->template->assign('users_roles', Permitions::getRoles());
         $this->template->assign('users_registration_role_id', $settings['users_registration_role_id']);
 
+        $this->template->assign('url_settings', json_decode($settings['url'], true));
+
         //++++++++++++++++++++
         // Load modules list
         $notAvailableModules = [

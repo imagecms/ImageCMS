@@ -1,6 +1,7 @@
 <?php
 
 use CMSFactory\assetManager;
+use core\src\CoreFactory;
 
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
@@ -66,7 +67,8 @@ class Share extends MY_Controller
      * @return string
      */
     public function _make_share_form($url = '') {
-        $url = $url ?: site_url($this->uri->uri_string());
+
+        $url = $url ?: site_url(CoreFactory::getUrlParser()->getFullUrl(false));
 
         $settings = $this->settings;
         $services = '';

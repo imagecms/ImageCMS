@@ -77,7 +77,7 @@ class Widgets_manager extends BaseAdminController
 
     /**
      * Check if widgets folder is writable
-     * @return null|false
+     * @return boolean
      */
     private function _is_writable() {
         $this->db->where('s_name', 'main');
@@ -86,11 +86,7 @@ class Widgets_manager extends BaseAdminController
 
         $this->widgets_path = PUBPATH . '/templates/' . $query['site_template'] . '/widgets/';
 
-        if (!is_really_writable($this->widgets_path)) {
-            return false;
-        } else {
-            return true;
-        }
+        return !is_really_writable($this->widgets_path) ? false : true;
     }
 
     /**
@@ -210,8 +206,8 @@ class Widgets_manager extends BaseAdminController
             $locale = MY_Controller::defaultLocale();
             $data = [
                      'id'     => $findId,
-                     'title'  => $this->input->post('title') ? $this->input->post('title') : '',
-                     'data'   => $this->input->post('html_code') ? $this->input->post('html_code') : '',
+                     'title'  => $this->input->post('title') ?: '',
+                     'data'   => $this->input->post('html_code') ?: '',
                      'locale' => $locale,
                     ];
 
@@ -272,8 +268,13 @@ class Widgets_manager extends BaseAdminController
         }
     }
 
+    /**
+     * @param int $id
+     * @param string $locale
+     * @return bool
+     */
     public function update_html_widget($id, $locale) {
-        $locale = $locale ? $locale : MY_Controller::defaultLocale();
+        $locale = $locale ?: MY_Controller::defaultLocale();
         $widget = $this->get($id);
         if ($widget->num_rows() == 1) {
             $widget = $widget->row_array();
@@ -340,7 +341,7 @@ class Widgets_manager extends BaseAdminController
      */
     public function update_widget($id, $update_info = FALSE, $locale = NULL) {
         //cp_check_perm('widget_access_settings');
-        $locale = $locale ? $locale : MY_Controller::defaultLocale();
+        $locale = $locale ?: MY_Controller::defaultLocale();
         $widget = $this->get($id);
 
         if ($widget->num_rows() == 1) {
@@ -486,6 +487,11 @@ class Widgets_manager extends BaseAdminController
         $this->template->show('widget_edit_html', FALSE);
     }
 
+    /**
+     * @param int $id
+     * @param bool $update_info
+     * @param null|string $locale
+     */
     public function edit_module_widget($id, $update_info = FALSE, $locale = NULL) {
         //cp_check_perm('widget_access_settings');
         $locale = $locale ?: MY_Controller::defaultLocale();

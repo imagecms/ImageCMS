@@ -315,11 +315,10 @@ abstract class BannersI18nQuery extends ModelCriteria
      * Example usage:
      * <code>
      * $query->filterByLocale('fooValue');   // WHERE locale = 'fooValue'
-     * $query->filterByLocale('%fooValue%'); // WHERE locale LIKE '%fooValue%'
+     * $query->filterByLocale('%fooValue%', Criteria::LIKE); // WHERE locale LIKE '%fooValue%'
      * </code>
      *
      * @param     string $locale The value to use as filter.
-     *              Accepts wildcards (* and % trigger a LIKE)
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return $this|ChildBannersI18nQuery The current query, for fluid interface
@@ -341,11 +340,10 @@ abstract class BannersI18nQuery extends ModelCriteria
      * Example usage:
      * <code>
      * $query->filterByName('fooValue');   // WHERE name = 'fooValue'
-     * $query->filterByName('%fooValue%'); // WHERE name LIKE '%fooValue%'
+     * $query->filterByName('%fooValue%', Criteria::LIKE); // WHERE name LIKE '%fooValue%'
      * </code>
      *
      * @param     string $name The value to use as filter.
-     *              Accepts wildcards (* and % trigger a LIKE)
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return $this|ChildBannersI18nQuery The current query, for fluid interface

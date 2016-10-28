@@ -4,9 +4,12 @@ namespace exchange\classes;
 
 use CI;
 use CMSFactory\ModuleSettings;
+use core\models\Route;
+use core\models\RouteQuery;
 use Exception;
 use MediaManager\Image;
 use MY_Controller;
+use Propel\Runtime\ActiveQuery\Criteria;
 use SimpleXMLElement;
 
 /**
@@ -142,6 +145,8 @@ class Products extends ExchangeBase
      */
     private $variantCharacteristics;
 
+    private $categoryUrls = [];
+
     protected function addProductsToUpperCategories() {
 
         $products = $this->db->select('shop_products.id, shop_category.full_path_ids')
@@ -186,8 +191,8 @@ class Products extends ExchangeBase
         $this->ignoreExistingProducts = isset($ignoreExisting['products']);
         $this->ignoreExistingDescriptions = isset($ignoreExisting['description']);
 
-        $this->insertCollector = new DataCollector;
-        $this->updateCollector = new DataCollector;
+        $this->insertCollector = new DataCollector();
+        $this->updateCollector = new DataCollector();
 
         $storageFilePath = CI::$APP->config->item('characteristicsStorageFilePath');
         $this->variantCharacteristics = new VariantCharacteristics($storageFilePath);
@@ -207,7 +212,7 @@ class Products extends ExchangeBase
 
         $this->rebuildAdditionalParentsCats();
         $this->runResize();
-        $this->rebuildProductProperties();
+        //        $this->rebuildProductProperties();
     }
 
     /**
@@ -620,6 +625,7 @@ class Products extends ExchangeBase
     /**
      * Method-helper for simplify processProducts1 method
      * @param SimpleXMLElement $product
+     * @param int $categoryId
      * @return array
      */
     protected function pass1Helper_getPropertiesData(SimpleXMLElement $product, $categoryId) {
@@ -649,7 +655,6 @@ class Products extends ExchangeBase
                 $propertyId = $this->compare_properties[$propertyExId]['id'];
 
                 // if property is multiple, then correting value
-
                 if (Properties::getInstance()->dictionaryProperties[$propertyExId]) {
                     $propertyValue = Properties::getInstance()->dictionaryProperties[$propertyExId][$propertyValue];
                 }
@@ -691,7 +696,7 @@ class Products extends ExchangeBase
      */
     protected function insert1() {
 
-        $this->insertBatch('shop_products', $this->insertCollector->getData('shop_products'));
+        $this->insertProducts($this->insertCollector->getData('shop_products'));
         $this->dataLoad->getNewData('products');
 
         // properties-categories relations
@@ -712,6 +717,53 @@ class Products extends ExchangeBase
             }
             $this->insertBatch('shop_product_properties_categories', $this->productProCats);
         }
+    }
+
+    private function insertProducts($data) {
+        if (FALSE == (count($data) > 0)) {
+            return;
+        }
+
+        foreach ($data as $value) {
+            $routeUrl = $value['url'];
+            unset($value['url']);
+            $value['created'] = time();
+            $value['updated'] = time();
+            $this->db->set($value)->insert('shop_products');
+
+            $id = $this->db->insert_id();
+
+            $category_id = $value['category_id'];
+            if (!array_key_exists($category_id, $this->categoryUrls)) {
+                $parentRoute = RouteQuery::create()->filterByType(Route::TYPE_SHOP_CATEGORY)
+                    ->findOneById($category_id);
+                $this->categoryUrls[$category_id] = $parentRoute->getFullUrl();
+            }
+
+            $parentUrl = $this->categoryUrls[$category_id];
+
+            $route = new Route();
+            $route->setType(Route::TYPE_PRODUCT)
+                ->setParentUrl($parentUrl)
+                ->setUrl($routeUrl)
+                ->setEntityId($id)
+                ->save();
+
+            $this->db->update('shop_products', ['route_id' => $route->getId()], ['id' => $id]);
+
+        }
+
+        $error = $this->db->_error_message();
+
+        if (!empty($error)) {
+            throw new Exception('Error on inserting into `shop_products`: ' . $error);
+        }
+        // gathering statistics
+        ExchangeBase::$stats[] = [
+                                  'query type'    => 'insert',
+                                  'table name'    => 'shop_products',
+                                  'affected rows' => count($data),
+                                 ];
     }
 
     /**
@@ -771,24 +823,9 @@ class Products extends ExchangeBase
 
         // adding shop_product_properties_data and shop_product_properties_data_i18n is not so ordinary...
         if (count($propertiesData_) > 0) {
-            $existingPropertiesData = $this->db
-                ->select('id')
-                ->get('shop_product_properties_data')
-                ->result_array();
 
-            $existingPropertiesData = array_column($existingPropertiesData, 'id');
-
-            $this->insertBatch('shop_product_properties_data', $propertiesData_);
-
-            $this->db->select('id, value, locale');
-            if (count($existingPropertiesData) > 0) {
-                $this->db->where_not_in('id', $existingPropertiesData);
-            }
-            $propDataForI18n = $this->db->get('shop_product_properties_data')->result_array();
-
-            if (count($propDataForI18n) > 0) {
-                $this->insertBatch('shop_product_properties_data_i18n', $propDataForI18n);
-            }
+            $data = $this->prepareProductPropertiesData($propertiesData_);
+            $this->insertBatch('shop_product_properties_data', $data);
         }
 
         // inserting shop_product_categories
@@ -827,8 +864,7 @@ class Products extends ExchangeBase
         }
 
         foreach ($this->existingRows as $existingRowData) {
-            if ($existingRowData['product_id'] == $newRowData['product_id'] & $existingRowData['category_id'] == $newRowData['category_id']
-            ) {
+            if ($existingRowData['product_id'] == $newRowData['product_id'] & $existingRowData['category_id'] == $newRowData['category_id']) {
                 return FALSE;
             }
         }
@@ -977,7 +1013,7 @@ class Products extends ExchangeBase
             if (!isset($productPropertiesOrdered[$one['property_id']][$one['locale']])) {
                 $productPropertiesOrdered[$one['property_id']][$one['locale']] = [];
             }
-            if (!in_array($one['value'], $productPropertiesOrdered[$one['property_id']][$one['locale']])) {
+            if (!in_array($one['value'], $productPropertiesOrdered[$one['property_id']][$one['locale']], true)) {
                 array_push($productPropertiesOrdered[$one['property_id']][$one['locale']], $one['value']);
             }
         }
@@ -1017,6 +1053,44 @@ class Products extends ExchangeBase
 
         $this->tempDir = $tempDir;
         return $this;
+    }
+
+    private function getPropertyValueIdOrCreate($propertyId, $value, $locale) {
+        $valueModel = \SPropertyValueQuery::create()
+            ->joinWithI18n($locale, Criteria::INNER_JOIN)
+            ->useI18nQuery($locale)
+            ->filterByValue($value)
+            ->endUse()
+            ->filterByPropertyId($propertyId)
+            ->findOne();
+
+        if (!$valueModel) {
+            $valueModel = new \SPropertyValue();
+            $valueModel->setPropertyId($propertyId)
+                ->setValue($value)
+                ->setLocale($locale)
+                ->save();
+
+        }
+
+        return $valueModel->getId();
+    }
+
+    private function prepareProductPropertiesData($propertiesData) {
+
+        $data = [];
+        foreach ($propertiesData as $key => $item) {
+
+            $dataItem = [
+                         'property_id' => $item['property_id'],
+                         'product_id'  => $item['product_id'],
+                         'value_id'    => $this->getPropertyValueIdOrCreate($item['property_id'], $item['value'], $item['locale']),
+
+                        ];
+            $data[] = $dataItem;
+        }
+
+        return $data;
     }
 
 }

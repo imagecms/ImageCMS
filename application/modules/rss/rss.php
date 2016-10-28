@@ -1,6 +1,7 @@
 <?php
 
 use CMSFactory\assetManager;
+use CMSFactory\ModuleSettings;
 
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
@@ -36,7 +37,7 @@ class Rss extends MY_Controller
         if (($content = $this->cache->fetch($this->cache_key)) === FALSE) {
             $this->load->library('lib_category');
 
-            $this->settings = $this->_load_settings();
+            $this->settings = ModuleSettings::ofModule('rss')->get();
 
             if ($this->settings['pages_count'] == 0) {
                 $this->settings['pages_count'] = 10;
@@ -80,8 +81,9 @@ class Rss extends MY_Controller
      */
     private function get_pages() {
 
-        $this->db->select('CONCAT_WS("", cat_url, url) as full_url, id, title, prev_text, publish_date, category, author', FALSE);
+        $this->db->select('IF(route.parent_url <> \'\', concat(route.parent_url, \'/\', route.url), route.url) as full_url, content.id, title, prev_text, publish_date, category, author', FALSE);
         $this->db->where('post_status', 'publish');
+        $this->db->join('route', 'route.id=content.route_id');
         $this->db->where('prev_text !=', 'null');
         $this->db->where('publish_date <=', time());
 
@@ -93,17 +95,6 @@ class Rss extends MY_Controller
         $query = $this->db->get('content', $this->settings['pages_count']);
 
         return $query->result_array();
-    }
-
-    /**
-     * Load rss settings
-     */
-    public function _load_settings() {
-
-        $this->db->where('name', 'rss');
-        $query = $this->db->get('components', 1)->row_array();
-
-        return unserialize($query['settings']);
     }
 
     public function _install() {

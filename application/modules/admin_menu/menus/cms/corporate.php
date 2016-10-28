@@ -1,7 +1,7 @@
 <?php return array( 
   array(
      'identifier' => 'content',
-     'text' =>  lang("Content", "admin_menu"),
+     'text' =>  lang("Страницы", "admin_menu"),
      'link' => '',
      'class' => '',
      'id' => '',
@@ -13,7 +13,7 @@
     array( 
       array(
          'identifier' => 'create_page',
-         'text' =>  lang("Create page", "admin_menu"),
+         'text' =>  lang("Создать страницу", "admin_menu"),
          'link' => '/admin/pages',
          'class' => '',
          'id' => '',
@@ -24,7 +24,7 @@
       ), 
       array(
          'identifier' => 'articles_list',
-         'text' =>  lang("Articles list", "admin_menu"),
+         'text' =>  lang("Список страниц", "admin_menu"),
          'link' => '/admin/pages/GetPagesByCategory',
          'class' => '',
          'id' => '',
@@ -35,7 +35,7 @@
       ), 
       array(
          'identifier' => '',
-         'text' =>  lang("Additional fields", "admin_menu"),
+         'text' =>  lang("Конструктор полей", "admin_menu"),
          'link' => '/admin/components/cp/cfcm/index',
          'class' => '',
          'id' => '',
@@ -48,7 +48,7 @@
   ), 
   array(
      'identifier' => 'categories',
-     'text' =>  lang("Categories", "admin_menu"),
+     'text' =>  lang("Категории", "admin_menu"),
      'link' => '',
      'class' => '',
      'id' => '',
@@ -60,7 +60,7 @@
     array( 
       array(
          'identifier' => 'new_category',
-         'text' =>  lang("Create new", "admin_menu"),
+         'text' =>  lang("Создать категорию", "admin_menu"),
          'link' => '/admin/categories/create_form',
          'class' => '',
          'id' => '',
@@ -71,7 +71,7 @@
       ), 
       array(
          'identifier' => 'categories_list',
-         'text' =>  lang("Categories list", "admin_menu"),
+         'text' =>  lang("Список категорий", "admin_menu"),
          'link' => '/admin/categories/cat_list',
          'class' => '',
          'id' => '',
@@ -84,7 +84,7 @@
   ), 
   array(
      'identifier' => 'modules',
-     'text' =>  lang("Modules", "admin_menu"),
+     'text' =>  lang("Модули", "admin_menu"),
      'link' => '',
      'class' => '',
      'id' => '',
@@ -96,7 +96,7 @@
     array( 
       array(
          'identifier' => 'all_modules',
-         'text' =>  lang("All modules", "admin_menu"),
+         'text' =>  lang("Все модули", "admin_menu"),
          'link' => '/admin/components/modules_table',
          'class' => '',
          'id' => '',
@@ -109,7 +109,7 @@
   ), 
   array(
      'identifier' => 'widgets',
-     'text' =>  lang("Widgets", "admin_menu"),
+     'text' =>  lang("Виджеты", "admin_menu"),
      'link' => '',
      'class' => '',
      'id' => '',
@@ -121,7 +121,7 @@
     array( 
       array(
          'identifier' => 'create_widget',
-         'text' =>  lang("Create widget", "admin_menu"),
+         'text' =>  lang("Создать виджет", "admin_menu"),
          'link' => '/admin/widgets_manager/create_tpl',
          'class' => '',
          'id' => '',
@@ -132,7 +132,7 @@
       ), 
       array(
          'identifier' => 'widgets_list',
-         'text' =>  lang("Widgets list", "admin_menu"),
+         'text' =>  lang("Список виджетов", "admin_menu"),
          'link' => '/admin/widgets_manager',
          'class' => '',
          'id' => '',
@@ -145,7 +145,7 @@
   ), 
   array(
      'identifier' => 'system',
-     'text' =>  lang("System", "admin_menu"),
+     'text' =>  lang("Система", "admin_menu"),
      'link' => '',
      'class' => '',
      'id' => '',
@@ -157,7 +157,7 @@
     array( 
       array(
          'identifier' => 'global_settings',
-         'text' =>  lang("Global settings", "admin_menu"),
+         'text' =>  lang("Глобальные настройки", "admin_menu"),
          'link' => '/admin/settings',
          'class' => '',
          'id' => '',
@@ -168,7 +168,7 @@
       ), 
       array(
          'identifier' => 'template_editor',
-         'text' =>  lang("Template editor", "admin_menu"),
+         'text' =>  lang("Редактор шаблонов", "admin_menu"),
          'link' => '/admin/components/cp/template_editor',
          'class' => '',
          'id' => '',
@@ -179,7 +179,7 @@
       ), 
       array(
          'identifier' => 'languages',
-         'text' =>  lang("Languages", "admin_menu"),
+         'text' =>  lang("Языки", "admin_menu"),
          'link' => '/admin/languages',
          'class' => '',
          'id' => '',
@@ -190,7 +190,7 @@
       ), 
       array(
          'identifier' => 'events_journal',
-         'text' =>  lang("Events journal", "admin_menu"),
+         'text' =>  lang("Журнал событий", "admin_menu"),
          'link' => '/admin/admin_logs',
          'class' => '',
          'id' => '',
@@ -201,7 +201,7 @@
       ), 
       array(
          'identifier' => 'backup',
-         'text' =>  lang("Backup", "admin_menu"),
+         'text' =>  lang("Резервное копирование", "admin_menu"),
          'link' => '/admin/backup',
          'class' => '',
          'id' => '',
@@ -212,7 +212,7 @@
       ), 
       array(
          'identifier' => 'role_list',
-         'text' =>  lang("Roles list", "admin_menu"),
+         'text' =>  lang("Управление правами доступа", "admin_menu"),
          'link' => '/admin/rbac/roleList',
          'class' => '',
          'id' => '',
@@ -223,7 +223,7 @@
       ), 
       array(
          'identifier' => 'custom_fields',
-         'text' =>  lang("Clear cache", "admin_menu"),
+         'text' =>  lang("Очистить кеш", "admin_menu"),
          'link' => '',
          'class' => '',
          'id' => 'clearAllCache',

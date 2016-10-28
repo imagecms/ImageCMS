@@ -122,13 +122,14 @@ class Tags extends MY_Controller
             $pages_id = array_unique($pages_id);
 
             if (count($pages_id) > 0) {
-                $this->db->select('content.*');
-                $this->db->select('CONCAT_WS( "", content.cat_url, content.url ) as full_url');
+
+                $this->db->select('IF(route.parent_url <> \'\', concat(route.parent_url, \'/\', route.url), route.url) as full_url, content.*', FALSE);
                 $this->db->where('post_status', 'publish');
                 $this->db->where('publish_date <=', time());
                 $this->db->where('lang', $this->config->item('cur_lang'));
+                $this->db->join('route', 'route.id=content.route_id');
                 $this->db->order_by('publish_date', 'DESC');
-                $this->db->where_in('id', $pages_id);
+                $this->db->where_in('content.id', $pages_id);
                 $pages = $this->db->get('content', $this->search->row_count, (int) $offset);
 
                 if (NULL == $query) {
@@ -317,7 +318,7 @@ class Tags extends MY_Controller
                         $tag_id = $this->db->insert_id();
                     }
 
-                    if (mb_strlen($v, 'utf-8') > 1) {
+                    if (mb_strlen($v, 'utf-8') >= 1) {
                         $this->db->insert('content_tags', ['page_id' => $page_id, 'tag_id' => $tag_id]);
                     }
                 }

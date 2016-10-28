@@ -15,6 +15,8 @@
     "psr-4": {
       "": [
         "application/modules/",
+        "application/modules/shop/classes/",
+        "application/modules/shop/models/",
         "hooks"
       ],
       "libraries\\": [
@@ -27,45 +29,35 @@
     "ext-curl": "*",
     "propel/propel": "dev-master",
     "monolog/monolog": ">1.12",
-    "phpoffice/phpexcel": ">1.8",
     "tubalmartin/cssmin": "dev-master",
     "patchwork/jsqueeze": "~2.0",
-    "tecnickcom/tcpdf": ">=6",
     "greenlion/php-sql-parser": ">=4.0",
-    "true/punycode": "^2.0",
     "nqxcode/phpmorphy": "^1.0",
     "gettext/gettext": ">=3.5.3",
-    "retailcrm/api-client-php": ">=3.0",
-    "artem_c/emmet": "^1.0",
     "symfony/config": "^3.0",
     "symfony/var-dumper": "^3.0",
     "symfony/event-dispatcher": "^3.0",
     "symfony/dependency-injection": "^3.0",
     "tinymce/tinymce": ">=4",
     "doctrine/common": "^2.6",
-    "twig/twig": "^1.24",
     "symfony/expression-language": "^3.1",
-    "studio-42/elfinder" : "~2.1.12",
+    "studio-42/elfinder": "~2.1.12",
     "symfony/debug": "^3.1"
   },
   "require-dev": {
     "phpmd/phpmd": ">=2.2.2",
-    "nubera-ebusiness/intercom-php": "dev-master",
-    "fzaninotto/faker": "^1.5",
     "imagecms/coding-standard": "dev-master",
-    "intervention/image": "^2.3",
-    "symfony/stopwatch": "^3.1"
+    "symfony/stopwatch": "^3.1",
+    "blackfire/php-sdk": "^1.5"
   },
   "scripts": {
     "post-update-cmd": [
       "ImageCMSHooks::copyTinyMCEFiles",
-      "php application/third_party/bin/propel --verbose build"
+      "php application/third_party/propel/propel/bin/propel --verbose build"
     ],
     "post-install-cmd": [
       "ImageCMSHooks::copyTinyMCEFiles",
-      "php application/third_party/bin/propel --verbose build"
+      "php application/third_party/propel/propel/bin/propel --verbose build"
     ]
-  },
-  "minimum-stability": "dev",
-  "prefer-stable": true
+  }
 }

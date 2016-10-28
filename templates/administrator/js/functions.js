@@ -115,8 +115,8 @@ function changeMainValute(id, curElement) {
     curElement.closest('table').find('.currencies-value').each(function () {
         $(this).removeClass('disabled').removeAttr('disabled');
     });
-
     curElement.closest('tr').find('.currencies-value').addClass('disabled').attr('disabled', 'disabled');
+
 
     $(curElement).closest('tr').find('.btn-danger').attr('disabled', 'disabled');
 
@@ -125,7 +125,7 @@ function changeMainValute(id, curElement) {
 
     var additionalCurrency = $(curElement).closest('tr').find('.prod-on_off ');
     if (!$(additionalCurrency).hasClass('disable_tovar')) {
-        $('.prod-on_off').addClass('disable_tovar').css('left', '-28px');
+        $(additionalCurrency).addClass('disable_tovar').css('left', '-28px');
 
         $.ajax({
             type: "post",
@@ -595,6 +595,7 @@ function initTinyMCE(selector) {
                 });
             },
             image_advtab: true,
+            image_title: true,
             toolbar: "undo redo | fontsizeselect | fontselect | bold italic underline | backcolor forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | fullscreen",
             external_filemanager_path: "/application/third_party/filemanager/",
             filemanager_title: "Responsive Filemanager",
@@ -616,7 +617,6 @@ function initTinyMCE(selector) {
                     ],
                     selectionPointer: true,
                 },
-
 
 
                 cssFiles: [
@@ -784,7 +784,7 @@ function elFinderTPLEd() {
         commands: commands,
         commandsOptions: {
             edit: {
-            	dialogWidth: 980,
+                dialogWidth: 980,
                 mimes: ['text/plain', 'text/css', 'text/html', 'text/javascript', 'text/x-php'],
                 editors: [{
                     mimes: ['text/plain', 'text/css', 'text/html', 'text/javascript', 'text/x-php'],
@@ -1101,7 +1101,11 @@ var orders = new Object({
                 $(".productsForOrders").empty().each(function () {
                     if (products.length > 0)
                         for (var i = 0; i < products.length; i++)
-                            $(this).append($('<option data-product-name=\'' + products[i]['name'] + '\' value=' + products[i]['id'] + '>' + products[i]['name'] + '</option>'));
+                        $('<option/>', {
+                            value: products[i]['id'],
+                            text: products[i]['name'],
+                            'data-product-name': products[i]['name']
+                        }).appendTo($(this));
                     else
                         $('<option>', {
                             text: langs.notFound,

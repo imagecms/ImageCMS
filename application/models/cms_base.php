@@ -176,7 +176,10 @@ class Cms_base extends CI_Model
     public function get_categories() {
 
         $this->db->order_by('position', 'ASC');
-        $query = $this->db->get('category');
+        $query = $this->db
+            ->select('category.*, route.url')
+            ->join('route', 'route.id = category.route_id')
+            ->get('category');
 
         if ($query->num_rows() > 0) {
             $categories = $query->result_array();
@@ -202,8 +205,10 @@ class Cms_base extends CI_Model
     public function get_category_by_id($id) {
 
         $query = $this->db
-            ->order_by('position', 'ASC')
-            ->where('id', $id)
+            ->select('category.*, route.url, route.parent_url')
+            ->order_by('category.position', 'ASC')
+            ->where('category.id', $id)
+            ->join('route', 'category.route_id = route.id')
             ->get('category');
 
         if ($query->num_rows() > 0) {

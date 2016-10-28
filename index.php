@@ -206,7 +206,7 @@ define('IMAGECMS_VERSION', '20160720');
 
 define('IMAGECMS_BUILD_ID', '${buildid}');
 
-define('BUILD_ID', '4110.10720');
+define('BUILD_ID', '4120.10720');
 
 define('IMAGECMS_PUBLIC_ID', '51035d2a96a227c54d0dea3ff415ced6d39266c3');
 

@@ -51,8 +51,7 @@ class CForm_Text
         }
         if ($this->form->form_validation->run($this->ci) == FALSE) {
             return form_error($this->name, ' ', ' ');
-        }
-        else {
+        } else {
             return FALSE;
         }
     }

@@ -76,8 +76,10 @@ class Admin extends BaseAdminController
             $cnt = count($comments);
             for ($i = 0; $i < $cnt; $i++) {
                 if ($comments[$i]['module'] == 'core') {
-                    $this->db->select('id, title, url, cat_url');
-                    $this->db->where('id', $comments[$i]['item_id']);
+                    $this->db->select('content.id, content.title');
+                    $this->db->select('route.url, if(route.parent_url <> "", concat(route.parent_url ,"/"), "") as cat_url', false);
+                    $this->db->join('route', 'route.id = content.route_id');
+                    $this->db->where('content.id', $comments[$i]['item_id']);
                     $query = $this->db->get('content')->row_array();
 
                     $comments[$i]['page_title'] = $query['title'];

@@ -4,7 +4,7 @@ namespace xbanners\models\Base;
 
 use \Exception;
 use \PDO;
-use Base\PropelBaseModelClass;
+use CMSFactory\PropelBaseModelClass;
 use Propel\Runtime\Propel;
 use Propel\Runtime\ActiveQuery\Criteria;
 use Propel\Runtime\ActiveQuery\ModelCriteria;

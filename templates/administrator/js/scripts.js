@@ -616,13 +616,15 @@ function init_2() {
             orders.user.phone = $('#createUserPhone').val();
             orders.user.address = $('#createUserAddress').val();
             setValueUser();
-            if (orders.user.email.search(emailPattern) === -1)
+            if (orders.user.email.search(emailPattern) === -1) {
                 showMessage(langs.message, langs.enterValidEmailAddress, "error");
-            else
+
+            } else {
+
                 $.ajax({
                     url: '/admin/components/run/shop/orders/createNewUser',
                     type: "POST",
-                    data: "name=" + orders.user.name + "&email=" + orders.user.email + "&phone=" + orders.user.phone + "&address=" + orders.user.address,
+                    data: orders.user,
                     success: function (response) {
                         if (response == 'email') {
                             showMessage(langs.message, langs.thisEmailUserExists, "error");
@@ -637,9 +639,10 @@ function init_2() {
                         }
                     }
                 });
-        }
-        else
+            }
+        } else {
             showMessage(langs.error, langs.needToFillFields, "error");
+        }
     });
     /* Create user in order */
     $('#createOrderAndExit').off('click').on('click', function (e) {
@@ -1784,7 +1787,7 @@ $('.variantsForOrders').live('change', function () {
         option = $this.find('option:selected'),
         variantId = $this.val(),
         imageName = variantInfo.getImage(variantId),
-        productName = option.data('productName'),
+        productName = option.data('product-name'),
         variantName = option.data('variantname'),
         variantPrice = option.data('price'),
         stock = option.data('stock'),
@@ -2393,7 +2396,7 @@ function createCatFast(name, catId, url, actEl , showSite) {
     $.post('/admin/components/run/shop/categories/createCatFast', {
         Name: name,
         catId: catId,
-        url: url,
+        Url: url,
         active: active,
         show_in_menu : show_in_site
     }, function (data) {

@@ -1,6 +1,8 @@
 <?php
 
 use CMSFactory\assetManager;
+use core\models\Route;
+use core\models\RouteQuery;
 
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
@@ -71,6 +73,25 @@ class Admin extends BaseAdminController
         $config['total_rows'] = $countTotalRows;
         $config['per_page'] = 25;
         $config['page_query_string'] = true;
+        $config['full_tag_open'] = '<div class="pagination pull-left"><ul>';
+        $config['full_tag_close'] = '</ul></div>';
+        $config['controls_tag_open'] = '<div class="pagination pull-right"><ul>';
+        $config['controls_tag_close'] = '</ul></div>';
+        $config['next_link'] = lang('Next', 'admin') . '&nbsp;&gt;';
+        $config['prev_link'] = '&lt;&nbsp;' . lang('Prev', 'admin');
+        $config['cur_tag_open'] = '<li class="btn-primary active"><span>';
+        $config['cur_tag_close'] = '</span></li>';
+        $config['prev_tag_open'] = '<li>';
+        $config['last_tag_close'] = '</li>';
+        $config['last_tag_open'] = '<li>';
+        $config['first_tag_close'] = '</li>';
+        $config['first_tag_open'] = '<li>';
+        $config['prev_tag_close'] = '</li>';
+        $config['next_tag_open'] = '<li>';
+        $config['next_tag_close'] = '</li>';
+        $config['num_tag_close'] = '</li>';
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
         $this->pagination->num_links = 5;
         $this->pagination->initialize($config);
 
@@ -145,26 +166,32 @@ class Admin extends BaseAdminController
                         break;
 
                     case 'product':
-                        $query = $this->db->get_where('shop_products', ['id' => $this->input->post('products')]);
-                        $url = $query->row();
+                        $route = RouteQuery::create()
+                            ->filterByEntityId($this->input->post('products'))
+                            ->filterByType(Route::TYPE_PRODUCT)
+                            ->findOne();
+
                         $array = [
                                   'trash_id'            => $this->input->post('products'),
                                   'trash_url'           => ltrim($this->input->post('url'), '/'),
                                   'trash_redirect_type' => $this->input->post('redirect_type'),
                                   'trash_type'          => $this->input->post('type'),
-                                  'trash_redirect'      => site_url() . 'shop/product/' . $url->url,
+                                  'trash_redirect'      => site_url($route->getRouteUrl()),
                                  ];
                         break;
 
                     case 'category':
-                        $query = $this->db->get_where('shop_category', ['id' => $this->input->post('category')]);
-                        $url = $query->row();
+                        $route = RouteQuery::create()
+                            ->filterByEntityId($this->input->post('category'))
+                            ->filterByType(Route::TYPE_SHOP_CATEGORY)
+                            ->findOne();
+
                         $array = [
                                   'trash_id'            => $this->input->post('category'),
                                   'trash_url'           => ltrim($this->input->post('url'), '/'),
                                   'trash_redirect_type' => $this->input->post('redirect_type'),
                                   'trash_type'          => $this->input->post('type'),
-                                  'trash_redirect'      => site_url() . 'shop/category/' . $url->full_path,
+                                  'trash_redirect'      => site_url($route->getRouteUrl()),
                                  ];
                         break;
 
@@ -248,8 +275,10 @@ class Admin extends BaseAdminController
                     break;
 
                 case 'product':
-                    $query = $this->db->get_where('shop_products', ['id' => $this->input->post('products')]);
-                    $url = $query->row();
+                    $route = RouteQuery::create()
+                        ->filterByEntityId($this->input->post('products'))
+                        ->filterByType(Route::TYPE_PRODUCT)
+                        ->findOne();
 
                     $array = [
                               'id'                  => $this->input->post('id'),
@@ -257,21 +286,24 @@ class Admin extends BaseAdminController
                               'trash_url'           => $this->input->post('old_url'),
                               'trash_redirect_type' => $this->input->post('redirect_type'),
                               'trash_type'          => $this->input->post('type'),
-                              'trash_redirect'      => site_url() . 'shop/product/' . $url->url,
+                              'trash_redirect'      => site_url($route->getRouteUrl()),
+
                              ];
                     break;
 
                 case 'category':
-                    $query = $this->db->get_where('shop_category', ['id' => $this->input->post('category')]);
-                    $url = $query->row();
-
+                    $route = RouteQuery::create()
+                        ->filterByEntityId($this->input->post('category'))
+                        ->filterByType(Route::TYPE_SHOP_CATEGORY)
+                        ->findOne();
                     $array = [
                               'id'                  => $this->input->post('id'),
                               'trash_id'            => $this->input->post('category'),
                               'trash_url'           => $this->input->post('old_url'),
                               'trash_redirect_type' => $this->input->post('redirect_type'),
                               'trash_type'          => $this->input->post('type'),
-                              'trash_redirect'      => site_url() . 'shop/category/' . $url->full_path,
+                              'trash_redirect'      => site_url($route->getRouteUrl()),
+
                              ];
                     break;
 

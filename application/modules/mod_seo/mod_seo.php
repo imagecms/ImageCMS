@@ -131,6 +131,13 @@ class Mod_seo extends MY_Controller
             if ($settings['usesubcategoryPattern'] != 1) {
                 return FALSE;
             }
+
+            if ($settings['usesubcategoryPatternForEmptyMeta'] == 1 && trim($model->getH1()) != '') {
+                $templateH1 = trim($model->getH1());
+            } else {
+                $templateH1 = $settings['subcategoryTemplateH1'];
+            }
+
             if ($settings['usesubcategoryPatternForEmptyMeta'] == 1 && trim($model->getMetaTitle()) != '') {
                 $templateTitle = trim($model->getMetaTitle());
             } else {
@@ -156,6 +163,12 @@ class Mod_seo extends MY_Controller
                 return FALSE;
             }
 
+            if ($settings['useCategoryPatternForEmptyMeta'] == 1 && trim($model->getH1()) != '') {
+                $templateH1 = trim($model->getH1());
+            } else {
+                $templateH1 = $settings['categoryTemplateH1'];
+            }
+
             if ($settings['useCategoryPatternForEmptyMeta'] == 1 && trim($model->getMetaTitle()) != '') {
                 $templateTitle = trim($model->getMetaTitle());
             } else {
@@ -179,6 +192,7 @@ class Mod_seo extends MY_Controller
         }
 
         $metaStorage = new MetaStorage();
+        $metaStorage->setH1Template($templateH1);
         $metaStorage->setTitleTemplate($templateTitle);
         $metaStorage->setDescriptionTemplate($templateDesc);
         $metaStorage->setKeywordsTemplate($templateKey);
@@ -188,6 +202,10 @@ class Mod_seo extends MY_Controller
         $metaManipulator->setBrandsCount($brandsCount);
         $metaManipulator->setDescLength($descCount);
         $meta = $metaManipulator->render();
+
+        $model->setH1($meta['metaH1']);
+        $model->setVirtualColumn('title', $meta['metaH1']);
+        $categoryObj->data['title'] = $meta['metaH1'];
 
         // Set meta tags
         self::setMetaTags($meta['metaTitle'], $meta['metaKeywords'], $meta['metaDescription']);

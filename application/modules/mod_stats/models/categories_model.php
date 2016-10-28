@@ -1,4 +1,5 @@
 <?php
+use core\models\Route;
 
 /**
  * Class Categories_model for mod_stats module
@@ -48,11 +49,19 @@ class Categories_model extends \CI_Model
     public function getAllChildCategoriesIds($catId = null) {
 
         /** Get full path of curent category* */
-        $fullPath = $this->db->select('full_path')->where('id', $catId)->get('shop_category')->row_array();
+        $fullPath = $this->db
+            ->select(' concat( if( parent_url <> "", concat(parent_url, "/"), "" ) ,route.url ) as full_path', false)
+            ->where('entity_id', $catId)
+            ->where('type', Route::TYPE_SHOP_CATEGORY)
+            ->get('route')
+            ->row_array();
 
         if ($fullPath != null) {
             /*             * Get ids of child categories * */
-            $result = $this->db->select('id')->from('shop_category')->like('full_path', $fullPath['full_path'])->get()->result_array();
+            $result = $this->db->select('entity_id as id')->from('route')
+                ->where('type', Route::TYPE_SHOP_CATEGORY)
+                ->like('concat(parent_url ,  "/", url)', $fullPath['full_path'])
+                ->get()->result_array();
             if ($result != null) {
                 return $this->prepareArray($result);
             }

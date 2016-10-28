@@ -110,7 +110,7 @@ class BaseApi extends ParentWishlist
     /**
      * get user public list by hash
      *
-     * @param type $hash - unique list identificator
+     * @param string $hash - unique list identificator
      * @return mixed
      */
     public function show($hash) {

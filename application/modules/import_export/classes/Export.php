@@ -54,6 +54,7 @@ class Export
                                      'shop_products_i18n',
                                      'shop_category',
                                      'shop_category_i18n',
+                                     'route',
                                      'shop_product_properties',
                                      'shop_product_properties_data',
                                      'shop_product_properties_i18n',
@@ -77,8 +78,11 @@ class Export
     public function __construct(array $settings = []) {
         $ci = &get_instance();
         $this->db = $ci->db;
+
         if (count($settings) > 0) {
+
             foreach ($settings as $key => $value) {
+
                 if (isset($this->$key)) {
                     $this->$key = $value;
                 }
@@ -86,6 +90,7 @@ class Export
         }
 
         $this->withZip = (bool) $settings['withZip'];
+
         if ($this->withZip == true && $this->attributes['vimg'] != '1' && $this->attributes['imgs'] != '1') {
             $this->addError(lang('Укажите колонки фотографий для экспорта.', 'import_export'));
             LOG::create()->set('Укажите колонки фотографий для экспорта.');
@@ -476,6 +481,8 @@ class Export
             LEFT JOIN `shop_currencies` ON `shop_currencies`.`id` = `shop_product_variants`.`currency`
 
             LEFT JOIN `shop_product_images` ON `shop_product_variants`.`product_id` = `shop_product_images`.`product_id`
+            
+            LEFT JOIN `route` ON `shop_products`.`route_id` = `route`.`id`
 
             WHERE  1
                 AND `shop_product_variants_i18n`.`locale` = '{$this->language}'
@@ -540,18 +547,22 @@ class Export
     protected function getCompleteFields() {
         $abbreviations = $this->getAbbreviation();
         $completeFields = [];
-        // the parameters of the products that can be transmitted through the settings designer
-        if (count($this->attributesCF) > 0) {
-            $attr = array_merge($this->attributes, $this->attributesCF);
-        }
+
         //a reduction of the field names and field attributes
-        foreach ($this->attributes as $field => $justNumber1) {
+        foreach (array_keys($this->attributes) as $field) {
+
             if (array_key_exists($field, $abbreviations)) {
+
                 $completeFields[] = $abbreviations[$field];
+
             } elseif (in_array($field, $this->customFields)) {
+
                 $completeFields[] = $field;
+
             } else {
+
                 if ($this->skipErrors == FALSE) {
+
                     $this->addError('Unknown column: ' . $field);
                     LOG::create()->set('Неизвестная колонка: ' . $field);
                 }

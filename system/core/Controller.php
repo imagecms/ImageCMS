@@ -22,6 +22,7 @@
  * This class object is the super class that every library in
  * CodeIgniter will be assigned to.
  *
+ * @property  	discount_model_front discount_model_front
  * @property Template template
  * @package		CodeIgniter
  * @subpackage	Libraries

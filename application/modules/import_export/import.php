@@ -63,6 +63,9 @@ use import_export\classes\ImportBootstrap as Imp;
 use import_export\classes\Logger as LOG;
 use MediaManager\Image;
 
+/**
+ * @property Lib_admin lib_admin
+ */
 class Import extends ShopAdminController
 {
 
@@ -102,15 +105,15 @@ class Import extends ShopAdminController
      * @access public
      */
     public function segmentImport($bool = false) {
-        $result = Imp::create()->startProcess($_POST['offers'], $_POST['limit'], $_POST['countProd'], $_POST['EmptyFields'])->resultAsString();
+        $result = Imp::create()->startProcess($this->input->post('offers'), $this->input->post('limit'), $this->input->post('countProd'), $this->input->post('EmptyFields'))->resultAsString();
 
-        if (($_POST['offers'] >= $_POST['countProd']) && $_POST['offers']) {
-            $this->resizeAndUpdatePrice($_POST['withResize'], $_POST['withCurUpdate'], $result);
+        if (($this->input->post('offers') >= $this->input->post('countProd')) && $this->input->post('offers')) {
+            $this->resizeAndUpdatePrice($this->input->post('withResize'), $this->input->post('withCurUpdate'), $result);
             $this->lib_admin->log(lang('Products was imported', 'import_export'));
             echo (json_encode($result));
         } elseif (!$bool) {
-            //            var_dump($result);
-            $this->resizeAndUpdatePrice($_POST['withResize'], false, $result);
+
+            $this->resizeAndUpdatePrice($this->input->post('withResize'), false, $result);
             return $result;
         } else {
             return $result;
@@ -133,7 +136,7 @@ class Import extends ShopAdminController
             }
         }
 
-        if (count($_POST['attributes']) && $_POST['csvfile']) {
+        if ($this->input->post('attributes') && $this->input->post('csvfile')) {
             $importSettings = $this->cache->fetch('ImportExportCache');
             if (empty($importSettings) || $importSettings['withBackup'] != $this->input->post('withBackup')) {
                 $this->cache->store('ImportExportCache', ['withBackup' => $this->input->post('withBackup')], '25920000');
@@ -141,18 +144,18 @@ class Import extends ShopAdminController
             Imp::create()->withBackup();
             $result = $this->segmentImport(TRUE);
             /* for ajax */
-            if (!$_POST['offers'] && $result['success']) {
+            if (!$this->input->post('offers') && $result['success']) {
                 $result['propertiesSegmentImport']['countProductsInFile'] = $_SESSION['countProductsInFile'];
-                $result['propertiesSegmentImport']['csvfile'] = trim($_POST['csvfile']);
-                $result['propertiesSegmentImport']['delimiter'] = trim($_POST['delimiter']);
-                $result['propertiesSegmentImport']['enclosure'] = trim($_POST['enclosure']);
-                $result['propertiesSegmentImport']['encoding'] = trim($_POST['encoding']);
-                $result['propertiesSegmentImport']['import_type'] = trim($_POST['import_type']);
-                $result['propertiesSegmentImport']['language'] = trim($_POST['language']);
-                $result['propertiesSegmentImport']['currency'] = trim($_POST['currency']);
-                $result['propertiesSegmentImport']['withResize'] = trim($_POST['withResize']);
-                $result['propertiesSegmentImport']['withCurUpdate'] = trim($_POST['withCurUpdate']);
-                $result['propertiesSegmentImport']['EmptyFields'] = trim($_POST['EmptyFields']);
+                $result['propertiesSegmentImport']['csvfile'] = trim($this->input->post('csvfile'));
+                $result['propertiesSegmentImport']['delimiter'] = trim($this->input->post('delimiter'));
+                $result['propertiesSegmentImport']['enclosure'] = trim($this->input->post('enclosure'));
+                $result['propertiesSegmentImport']['encoding'] = trim($this->input->post('encoding'));
+                $result['propertiesSegmentImport']['import_type'] = trim($this->input->post('import_type'));
+                $result['propertiesSegmentImport']['language'] = trim($this->input->post('language'));
+                $result['propertiesSegmentImport']['currency'] = trim($this->input->post('currency'));
+                $result['propertiesSegmentImport']['withResize'] = trim($this->input->post('withResize'));
+                $result['propertiesSegmentImport']['withCurUpdate'] = trim($this->input->post('withCurUpdate'));
+                $result['propertiesSegmentImport']['EmptyFields'] = trim($this->input->post('EmptyFields'));
                 unset($_SESSION['countProductsInFile']);
             }
             echo (json_encode($result));
@@ -228,7 +231,7 @@ class Import extends ShopAdminController
      * @access private
      */
     private function takeFileName() {
-        $fileNumber = (in_array($_POST['csvfile'], [1, 2, 3])) ? intval($_POST['csvfile']) : 1;
+        $fileNumber = (in_array($this->input->post('csvfile'), [1, 2, 3])) ? (int) $this->input->post('csvfile') : 1;
         $this->csvFileName = "product_csv_$fileNumber.csv";
     }
 
@@ -330,7 +333,7 @@ class Import extends ShopAdminController
      * @access public
      */
     public function errorLog() {
-        LOG::create()->set($_POST['error'] . ' - IMPORT');
+        LOG::create()->set($this->input->post('error') . ' - IMPORT');
     }
 
 }

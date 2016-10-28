@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database name="Shop" defaultIdMethod="native" baseClass="CMSFactory\PropelBaseModelClass" package="core"
+          namespace="core\models">
+
+    <table name="route">
+        <vendor type="mysql">
+            <parameter name="Engine" value="MYISAM"/>
+            <parameter name="Charset" value="utf8"/>
+        </vendor>
+
+        <column name="id" size="11" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="entity_id" size="11" type="integer" required="true"/>
+        <column name="type" type="varchar" size="255" required="true"/>
+        <column name="parent_url" type="varchar" size="500" defaultValue=""/>
+        <column name="url" type="varchar" size="255" required="true"/>
+
+        <unique>
+            <unique-column name="url"/>
+        </unique>
+
+    </table>
+
+
+</database>

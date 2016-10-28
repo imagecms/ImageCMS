@@ -813,6 +813,7 @@ td[colspan]{padding: 0;/*border-width: 0;*/}
 .load_additional_images {position: relative; width: 50%}
 .btn-file > input {display: none;}
 .content_big_td.table{table-layout: fixed;}
+.table-creation-variant-price .content_big_td.table{table-layout: auto;}
 .title-default{margin-top: 30px;margin-bottom: 12px;}
 .content_big_td thead th, .title-default{color: #000;font-weight: bold;font-size: 14px;}
 .content_big_td thead th{background-color: #fff;padding: 0 18px;}
@@ -860,6 +861,8 @@ hr{border-top-color: #dfdfdf;border-bottom: 0;margin-top: 30px;}
     .form-horizontal .controls {margin-left: 130px !important;}
     .table-edit-banner .form-horizontal .controls {min-width: 290px;}
     .elips-text {width: 170px;}
+    .controls.photo_album.photo_album-v {margin-left: 0px !important;}
+    .controls.photo_album.photo_album-v .photo-block {width: 78px;}
 }
 
 .btn_help{margin-right: 26px;position: relative;}
@@ -1265,3 +1268,20 @@ button[data-title-new][disabled="disabled"]:before, button[data-title-new][disab
 }
 
 .searchSetting {color: grey;}
+
+.button-container {
+    font-size: 0;
+    margin-left: -3px;
+    margin-top: -3px;
+}
+.button-container button {
+    margin-left: 3px;
+    margin-top: 3px;
+    min-width: 36px;
+}
+
+.table.table-creation-variant-price th, .table.table-creation-variant-price td {border-top: none;}
+.btn.variant_price {margin-top: 5px;}
+.status-buttons {font-size: 0; margin: -5px 0 0 -5px;}
+.status-buttons > button {margin: 5px 0 0 5px;}
+.btn-small--real {line-height: 18px; padding: 3px 9px;}

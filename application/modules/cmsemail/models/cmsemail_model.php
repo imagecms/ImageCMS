@@ -1,4 +1,5 @@
 <?php
+use CMSFactory\ModuleSettings;
 
 /**
  * @property CI_DB_active_record $db
@@ -398,13 +399,7 @@ class Cmsemail_model extends \CI_Model
         $settings = $this->getSettings();
         $settings[$data['locale']] = $data['settings'];
 
-        return $this->db->where('identif', 'cmsemail')
-            ->update(
-                'components',
-                [
-                 'settings' => serialize($settings),
-                ]
-            );
+        return ModuleSettings::ofModule('cmsemail')->set($settings);
     }
 
     /**
@@ -413,18 +408,8 @@ class Cmsemail_model extends \CI_Model
      * @return array
      */
     public function getSettings($locale = FALSE) {
-        $settings = $this->db->select('settings')
-            ->where('identif', 'cmsemail')
-            ->get('components')
-            ->row_array();
 
-        $settings = unserialize($settings['settings']);
-
-        if ($locale) {
-            $settings = $settings[$locale] ?: $settings;
-        }
-
-        return $settings;
+        return ModuleSettings::ofModule('cmsemail')->get($locale ?: null);
     }
 
     /**

@@ -159,9 +159,9 @@ langs["Show answers"] = '<?php echo lang("Show answers", "comments")?>';
                                             {/if}
                                             {if $item.module == 'shop'}
                                                 {if $this->CI->db->where('name','shop')->get('components')->num_rows() > 0}
-                                                    {$p_name = encode(SProductsQuery::create()->setComment(__METHOD__)->filterById($item.item_id)->findOne()->name)}
-                                                    {$p_url = encode(SProductsQuery::create()->setComment(__METHOD__)->filterById($item.item_id)->findOne()->url)}
-                                                    <a href="/shop/product/{$p_url}" target="_blank">{truncate($p_name,25,'...')}</a>
+                                                    {$p_name = encode(SProductsQuery::create()->filterById($item.item_id)->findOne()->getName())}
+                                                    {$p_url = encode(SProductsQuery::create()->filterById($item.item_id)->findOne()->getRouteUrl())}
+                                                    <a href="/{$p_url}" target="_blank">{truncate($p_name,25,'...')}</a>
                                                 {/if}
                                             {/if}
                                         </td>
@@ -257,9 +257,9 @@ langs["Show answers"] = '<?php echo lang("Show answers", "comments")?>';
                                                             {/if}
                                                             {if $item.module == 'shop'}
                                                                 {if $this->CI->db->where('name','shop')->get('components')->num_rows() > 0}
-                                                                    {$p_name = encode(SProductsQuery::create()->setComment(__METHOD__)->filterById($item.item_id)->findOne()->name)}
-                                                                    {$p_url = encode(SProductsQuery::create()->setComment(__METHOD__)->filterById($item.item_id)->findOne()->url)}
-                                                                    <a href="/shop/product/{$p_url}" target="_blank">{truncate($p_name,25,'...')}</a>
+                                                                    {$p_name = encode(SProductsQuery::create()->filterById($item.item_id)->findOne()->getName())}
+                                                                    {$p_url = encode(SProductsQuery::create()->filterById($item.item_id)->findOne()->getRouteUrl())}
+                                                                    <a href="/{$p_url}" target="_blank">{truncate($p_name,25,'...')}</a>
                                                                 {/if}
                                                             {/if}
                                                         </td>
@@ -362,9 +362,9 @@ langs["Show answers"] = '<?php echo lang("Show answers", "comments")?>';
                                                                             {/if}
                                                                             {if $ic.module == 'shop'}
                                                                                 {if $this->CI->db->where('name','shop')->get('components')->num_rows() > 0}
-                                                                                    {$p_name = encode(SProductsQuery::create()->setComment(__METHOD__)->filterById($ic.item_id)->findOne()->name)}
-                                                                                    {$p_url = encode(SProductsQuery::create()->setComment(__METHOD__)->filterById($item.item_id)->findOne()->url)}
-                                                                                    <a href="/shop/product/{$p_url}" target="_blank">{truncate($p_name,25,'...')}</a>
+                                                                                    {$p_name = encode(SProductsQuery::create()->filterById($ic.item_id)->findOne()->getName())}
+                                                                                    {$p_url = encode(SProductsQuery::create()->filterById($item.item_id)->findOne()->getRouteUrl())}
+                                                                                    <a href="/{$p_url}" target="_blank">{truncate($p_name,25,'...')}</a>
                                                                                 {/if}
                                                                             {/if}
                                                                         </td>

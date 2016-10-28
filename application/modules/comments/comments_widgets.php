@@ -41,11 +41,12 @@ class Comments_Widgets extends MY_Controller
         }
 
         $this->db->select('comments.*');
-        $this->db->select('CONCAT_WS("", ,content.cat_url, content.url) as url', FALSE); // page full url
+        $this->db->select("IF(route.parent_url <> '', concat(route.parent_url, '/', route.url), route.url) as url", FALSE); // page full url
         $this->db->where('content.lang', $this->config->item('cur_lang'));
         $this->db->where('comments.module', 'core');
         $this->db->where('comments.status', 0);
         $this->db->join('content', 'content.id = comments.item_id', 'left');
+        $this->db->join('route', 'content.id = route.entity_id', 'left');
         $this->db->order_by('date', 'desc');
         $query = $this->db->get('comments', $settings['comments_count']);
 
@@ -130,10 +131,11 @@ class Comments_Widgets extends MY_Controller
         }
 
         $this->db->select('comments.*');
-        $this->db->select('CONCAT_WS("", ,content.cat_url, content.url) as url', FALSE); // page full url
+        $this->db->select("IF(route.parent_url <> '', concat(route.parent_url, '/', route.url), route.url) as url", FALSE); // page full url
         $this->db->where('comments.module', 'shop');
         $this->db->where('comments.status', 0);
         $this->db->join('content', 'content.id = comments.item_id', 'left');
+        $this->db->join('route', 'content.id = route.entity_id', 'left');
         $this->db->order_by('date', 'desc');
         $query = $this->db->get('comments', $settings['comments_count']);
 

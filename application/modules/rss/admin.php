@@ -1,6 +1,7 @@
 <?php
 
 use CMSFactory\assetManager;
+use CMSFactory\ModuleSettings;
 
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
@@ -10,6 +11,7 @@ if (!defined('BASEPATH')) {
  * Image CMS
  *
  * Rss Module Admin
+ * @property Lib_category lib_category
  */
 class Admin extends BaseAdminController
 {
@@ -30,7 +32,7 @@ class Admin extends BaseAdminController
 
         $data = [
                  'cats'     => $cats,
-                 'settings' => $this->get_settings(),
+                 'settings' => ModuleSettings::ofModule('rss')->get(),
                 ];
         assetManager::create()->setData($data)->renderAdmin('settings');
     }
@@ -40,27 +42,18 @@ class Admin extends BaseAdminController
      */
     public function settings_update() {
 
-        $data = [
-                 'title'       => $this->input->post('title'),
-                 'description' => $this->input->post('description'),
-                 'categories'  => $this->input->post('categories'),
-                 'cache_ttl'   => (int) $this->input->post('cache_ttl'),
-                 'pages_count' => (int) $this->input->post('pages_count'),
-                ];
-
-        $this->db->where('name', 'rss');
-        $this->db->update('components', ['settings' => serialize($data)]);
+        ModuleSettings::ofModule('rss')->set(
+            [
+             'title'       => $this->input->post('title'),
+             'description' => $this->input->post('description'),
+             'categories'  => $this->input->post('categories'),
+             'cache_ttl'   => (int) $this->input->post('cache_ttl'),
+             'pages_count' => (int) $this->input->post('pages_count'),
+            ]
+        );
 
         $this->lib_admin->log(lang('RSS was edited', 'rss'));
         showMessage(lang('Changes have been saved', 'rss'));
-    }
-
-    /**
-     * @return mixed
-     */
-    private function get_settings() {
-
-        return $this->load->module('rss')->_load_settings();
     }
 
 }

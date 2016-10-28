@@ -21,6 +21,7 @@
     <exclude-pattern>*/mod_stats/assets/js/*</exclude-pattern>
     <exclude-pattern>*/admin_menu/assets/js/*</exclude-pattern>
     <exclude-pattern>*/admin_menu/menus/*</exclude-pattern>
+    <exclude-pattern>application/modules/install/*</exclude-pattern>
     <exclude-pattern>index.php</exclude-pattern>
     
     <arg name="extensions" value="php"/>

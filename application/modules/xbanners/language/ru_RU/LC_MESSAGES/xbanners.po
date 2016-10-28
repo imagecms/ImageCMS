@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-28 05:19+0300\n"
-"PO-Revision-Date: 2016-07-28 05:19+0300\n"
+"POT-Creation-Date: 2016-10-26 12:48+0300\n"
+"PO-Revision-Date: 2016-10-26 12:48+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -18,6 +18,18 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
+#: application/modules/xbanners/admin.php:91
+msgid "The banner was update"
+msgstr "Банер был обновлен"
+
+#: application/modules/xbanners/admin.php:155
+msgid "The banner image was be saved"
+msgstr "Изображение банера было сохранено"
+
+#: application/modules/xbanners/admin.php:206
+msgid "The banner slide was be deleted"
+msgstr "Слайд банера был удален"
+
 #: application/modules/xbanners/admin.php:78
 msgid "scrollSpeed"
 msgstr "Скорость прокрутки(сек)"
@@ -26,11 +38,11 @@ msgstr "Скорость прокрутки(сек)"
 msgid "Page Categories"
 msgstr "Категории страниц"
 
-#: application/modules/xbanners/src/UrlFinder/Finders/ProductCategories.php:22
+#: application/modules/xbanners/src/UrlFinder/Finders/ProductCategories.php:25
 msgid "Product Categories"
 msgstr "Категории товаров"
 
-#: application/modules/xbanners/src/UrlFinder/Finders/Products.php:22
+#: application/modules/xbanners/src/UrlFinder/Finders/Products.php:25
 msgid "Products"
 msgstr "Товары"
 
@@ -165,23 +177,23 @@ msgid "Banner successfully update"
 msgstr "Баннер успешно обновлен"
 
 #: application/modules/xbanners/admin.php:90
-#: application/modules/xbanners/admin.php:152
-#: application/modules/xbanners/admin.php:180
-#: application/modules/xbanners/admin.php:200
-#: application/modules/xbanners/admin.php:242
+#: application/modules/xbanners/admin.php:154
+#: application/modules/xbanners/admin.php:184
+#: application/modules/xbanners/admin.php:204
+#: application/modules/xbanners/admin.php:249
 msgid "Success"
 msgstr "Успешно"
 
-#: application/modules/xbanners/admin.php:152
-#: application/modules/xbanners/admin.php:242
+#: application/modules/xbanners/admin.php:154
+#: application/modules/xbanners/admin.php:249
 msgid "Successfully saved"
 msgstr "Успешно сохранено"
 
-#: application/modules/xbanners/admin.php:180
+#: application/modules/xbanners/admin.php:184
 msgid "Image successfully deleted"
 msgstr "Изображение успешно удалено"
 
-#: application/modules/xbanners/admin.php:200
+#: application/modules/xbanners/admin.php:204
 msgid "Banner slide successfully deleted"
 msgstr "Слайд баннера успешно удален"
 
@@ -252,39 +264,39 @@ msgid "Activity"
 msgstr "Активность"
 
 #: application/modules/xbanners/admin.php:76
-#: application/modules/xbanners/admin.php:122
+#: application/modules/xbanners/admin.php:124
 #: application/modules/xbanners/assets/admin/banner/settings.tpl:22
 #: application/modules/xbanners/assets/admin/banner/slides_list.tpl:71
 #: application/modules/xbanners/assets/admin/banner/add_slide.tpl:66
 msgid "Name"
 msgstr "Название"
 
-#: application/modules/xbanners/admin.php:123
+#: application/modules/xbanners/admin.php:125
 msgid "URL"
 msgstr "URL-адрес"
 
-#: application/modules/xbanners/admin.php:134
+#: application/modules/xbanners/admin.php:136
 msgid "Slide must have image"
 msgstr "Слайд должен иметь изображения"
 
-#: application/modules/xbanners/admin.php:134
-#: application/modules/xbanners/admin.php:158
-#: application/modules/xbanners/admin.php:183
-#: application/modules/xbanners/admin.php:202
-#: application/modules/xbanners/admin.php:244
+#: application/modules/xbanners/admin.php:136
+#: application/modules/xbanners/admin.php:162
+#: application/modules/xbanners/admin.php:187
+#: application/modules/xbanners/admin.php:209
+#: application/modules/xbanners/admin.php:251
 #: application/modules/xbanners/xbanners.php:148
 msgid "Error"
 msgstr "Ошибка"
 
-#: application/modules/xbanners/admin.php:183
+#: application/modules/xbanners/admin.php:187
 msgid "Can not delete image"
 msgstr "Невозможно удалить изображения"
 
-#: application/modules/xbanners/admin.php:202
+#: application/modules/xbanners/admin.php:209
 msgid "Can not delete banner slide"
 msgstr "Невозможно удалить баннер слайд"
 
-#: application/modules/xbanners/admin.php:215
+#: application/modules/xbanners/admin.php:222
 msgid "Positions saved"
 msgstr "Позиции сохраняются"
 
@@ -489,6 +501,6 @@ msgstr "Изображения без связи"
 msgid "Brands"
 msgstr "Бренды"
 
-#: application/modules/xbanners/src/UrlFinder/Finders/Pages.php:21
+#: application/modules/xbanners/src/UrlFinder/Finders/Pages.php:17
 msgid "Pages"
 msgstr "Страницы"

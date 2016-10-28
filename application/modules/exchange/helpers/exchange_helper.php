@@ -123,7 +123,7 @@ if (!function_exists('load_multiple_prop')) {
 
     /**
      * Load multiple prop
-     * @return type
+     * @return array
      */
     function load_multiple_prop() {
 

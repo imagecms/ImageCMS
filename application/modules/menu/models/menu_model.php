@@ -1,5 +1,8 @@
 <?php
 
+use core\models\Route;
+use core\models\RouteQuery;
+
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
@@ -148,8 +151,9 @@ class Menu_model extends CI_Model
      */
     public function get_page_url($page_id) {
 
-        $this->db->select('url, cat_url');
-        $this->db->where('id', $page_id);
+        $this->db->select('route.url, route.parent_url as cat_url');
+        $this->db->join('route', 'route.id = content.route_id');
+        $this->db->where('content.id', $page_id);
         $query = $this->db->get('content', 1);
 
         if ($query->num_rows() == 1) {

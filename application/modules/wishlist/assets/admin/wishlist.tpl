@@ -95,7 +95,7 @@
                                                 <span class="text-el">{truncate(ShopCore::encode($w['name']),100)}</span>
                                             </a>
 
-                                            <a href="/shop/product/{echo $w[url]}"
+                                            <a href="/{echo $w['full_url']}"
                                                target="_blank"
                                                class="go_to_site pull-right btn btn-small"
                                                data-rel="tooltip"

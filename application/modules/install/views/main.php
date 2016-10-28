@@ -2,15 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-            <title>ImageCMS - <?php lang('Installing', 'install'); ?></title>
+            <title>ImageCMS - <?php lang('Installing', 'install') ?></title>
             <link rel="stylesheet" type="text/css" href="/templates/administrator/css/bootstrap.css">
 
                 <style>
                     body {
                         font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
                         background-image: url("/templates/administrator/img/fon_document.png");
-                        font-family:"Trebuchet MS", Arial,Tahoma,Verdana; 
-                        width:100%; 
+                        font-family:"Trebuchet MS", Arial,Tahoma,Verdana;
+                        width:100%;
                         font-size:13px;
                         min-width:800px;
                         padding:0px;
@@ -73,7 +73,7 @@
 
                     .list li:hover {
                         cursor:pointer;
-                        background-color:#ADD3DC; 
+                        background-color:#ADD3DC;
                     }
 
                     .list .err {
@@ -81,18 +81,18 @@
                         background-image:url('<?php echo $img; ?>error.png');
                         background-repeat:no-repeat;
                         background-position:center right;
-                        border-left:2px solid #DD6464; 
+                        border-left:2px solid #DD6464;
                     }
 
                     .list .ok {
                         background-repeat:no-repeat;
                         background-position:center right;
-                        border-left:2px solid #A8CC4A ; 
+                        border-left:2px solid #A8CC4A ;
                     }
                     .list .warning {
                         background-repeat:no-repeat;
                         background-position:center right;
-                        border-left:2px solid #DD6464; 
+                        border-left:2px solid #DD6464;
                     }
                     .textbox {
                         -moz-background-clip:border;
@@ -115,7 +115,7 @@
                     .errors_list {
                         padding-left:25px;
                         padding-top:10px;
-                        color:#F15858; 
+                        color:#F15858;
                     }
 
                     section.mini-layout{
@@ -144,25 +144,13 @@
                             <section class="mini-layout">
                                 <form action="/install/change_language" method="POST">
                                     <select name="language" onchange="this.form.submit()" style="float: right; width: 100px;">
-                                        <option value="ru_RU" 
-                                        <?php
-                                        if ($_SESSION['language'] == 'ru_RU') { echo 'selected';
-
-                                        };
-?>
-><?php echo lang('Russian', 'install'); ?></option>
-                                        <option value="en_US" 
-                                        <?php
-                                        if ($_SESSION['language'] == 'en_US' || !$_SESSION['language']) { echo 'selected';
-
-                                        };
-?>
-><?php echo lang('English', 'install'); ?></option>
+                                        <option value="ru_RU" <?php if ($_SESSION['language'] == 'ru_RU') echo 'selected'; ?>><?php echo lang('Russian', 'install')?></option>
+                                        <option value="en_US" <?php if ($_SESSION['language'] == 'en_US' || !$_SESSION['language']) echo 'selected'; ?>><?php echo lang('English', 'install')?></option>
                                     </select>
-                                    <div style="text-align: right; font-size: 17px; float: right; margin-right: 10px; margin-top: 5px"><b><?php echo lang('Language', 'install'); ?>:</b></div>
-                                    <?php echo form_csrf(); ?>
+                                    <div style="text-align: right; font-size: 17px; float: right; margin-right: 10px; margin-top: 5px"><b><?php echo lang('Language', 'install') ?>:</b></div>
+                                    <?php echo form_csrf() ?>
                                 </form>
-                                <?php echo $content; ?>
+                                <?php echo $content ?>
                             </section>
                         </div>
                     </div>

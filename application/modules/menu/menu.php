@@ -578,7 +578,7 @@ class Menu extends MY_Controller
                     case 'page':
 
                         $url = $this->item->get_page_url($menus[$i]['item_id']);
-                        $menus[$i]['link'] = $url['cat_url'] . $url['url'];
+                        $menus[$i]['link'] = $url['cat_url'] . '/' . $url['url'];
                         break;
 
                     case 'category':

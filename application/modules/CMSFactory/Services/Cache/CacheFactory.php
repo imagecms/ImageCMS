@@ -1,6 +1,6 @@
 <?php namespace CMSFactory\Services\Cache;
 
-use Doctrine\Common\Cache\Cache;
+use Doctrine\Common\Cache\CacheProvider;
 use Memcache;
 use Memcached;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
@@ -13,7 +13,7 @@ class CacheFactory
     use ContainerAwareTrait;
 
     /**
-     * @return Cache
+     * @return CacheProvider
      * @throws ServiceNotFoundException
      * @throws InvalidArgumentException
      * @throws ServiceCircularReferenceException
@@ -22,7 +22,9 @@ class CacheFactory
 
         foreach ($this->container->getParameter('cache.provider.priority') as $provider) {
             if ($this->checkRequirements($provider)) {
-                return $this->container->get($provider);
+                $provider = $this->container->get($provider);
+                $provider->setNamespace($_SERVER['HTTP_HOST']);
+                return $provider;
             }
         }
         return $this->container->get('cache.provider.void');

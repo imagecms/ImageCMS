@@ -70,7 +70,7 @@
                                 :</label>
 
                             <div class="controls number">
-                                <input onkeyup="checkLenghtStr('autoplaySpeed', 11, 6, event.keyCode)" id="autoplaySpeed" type="text"  name="options[autoplaySpeed]" class="input-long" value='{echo $options['autoplaySpeed']}'/>
+                                <input onkeyup="checkLenghtStr('autoplaySpeed', 11, 3, event.keyCode)" id="autoplaySpeed" type="text"  name="options[autoplaySpeed]" class="input-long" value='{echo $options['autoplaySpeed']}'/>
                                 <i class="icon-info-sign popover_ref" data-title="" data-original-title=""></i>
 
                                 <div class="d_n">
@@ -153,7 +153,7 @@
                                 :</label>
 
                             <div class="controls number">
-                                <input onkeyup="checkLenghtStr('scrollSpeed', 11, 6, event.keyCode)" id="scrollSpeed" type="text" name="options[scrollSpeed]" class="input-long" value="{$options['scrollSpeed']}"/>
+                                <input onkeyup="checkLenghtStr('scrollSpeed', 11, 3, event.keyCode)" id="scrollSpeed" type="text" name="options[scrollSpeed]" class="input-long" value="{$options['scrollSpeed']}"/>
                                 <i class="icon-info-sign popover_ref" data-title="" data-original-title=""></i>
 
                                 <div class="d_n">

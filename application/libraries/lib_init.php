@@ -8,6 +8,10 @@ use Monolog\Handler\RotatingFileHandler;
 use Monolog\Logger;
 use Propel\Runtime\Propel;
 use Propel\Runtime\Connection\ConnectionManagerSingle;
+use Symfony\Component\Debug\Debug;
+use Symfony\Component\Debug\DebugClassLoader;
+use Symfony\Component\Debug\ErrorHandler;
+use Symfony\Component\Debug\ExceptionHandler;
 
 /**
  * Executing custom CMS initialization code
@@ -39,6 +43,13 @@ class Lib_init
         defined('DS') or define('DS', '/');
 
         try {
+
+            if (ENVIRONMENT === 'development') {
+                Debug::enable(E_ERROR | E_PARSE);
+                ErrorHandler::register();
+                ExceptionHandler::register();
+                DebugClassLoader::enable();
+            }
 
             $this->CI = get_instance();
 

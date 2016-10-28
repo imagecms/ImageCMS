@@ -105,7 +105,11 @@ class Discount_product
 
         if (count($discountArray) > 0) {
             if (null === $price) {
-                $price = $this->ci->discount_model_front->getPrice($product['vid']);
+
+                $price = \SProductVariantsQuery::create()
+                    ->findOneById($product['vid'])->getPrice();
+
+                //                $price = $this->ci->discount_model_front->getPrice($product['vid']);
             }
             $discountMax = $this->baseDiscount->getMaxDiscount($discountArray, $price);
             $discountValue = $this->baseDiscount->getDiscountValue($discountMax, $price);

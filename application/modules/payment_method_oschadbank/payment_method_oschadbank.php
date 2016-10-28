@@ -228,9 +228,9 @@ class Payment_method_oschadbank extends MY_Controller
 
         // Line for numbers
         $n = 0;
-        for ($i = 0; $i < 9; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $this->pdf->Line($x + $n, $y + $lineStep * 7, $x + $n, $y + $lineStep * 8);
-            $n = $n + 5.5;
+            $n = $n + 5;
         }
         $n = 0;
         for ($i = 0; $i < 14; $i++) {
@@ -294,7 +294,7 @@ class Payment_method_oschadbank extends MY_Controller
         $userData['purpose'] = 'Оплата замовлення номер ' . $_POST['order_id'];
 
         for ($i = 0; $i < strlen($userData['code']); $i++) {
-            $this->drawTextB($userData['code'][$i], $x + 1 + $i * 5.5, $y + $lineStep * 8, 150, 10);
+            $this->drawTextB($userData['code'][$i], $x + 1 + $i * 5, $y + $lineStep * 8, 150, 10);
         }
 
         // Розрахунковий рахунок

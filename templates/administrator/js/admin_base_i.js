@@ -500,6 +500,20 @@ $(document).ready(function () {
         });
     });
 
+    $('.variant_price_show_in_site').live('click', function () {
+        var id = $(this).attr('data-id');
+
+
+        //console.log(id);
+
+
+        $.ajax({
+            type: 'POST',
+            url: base_url + 'admin/components/run/shop/variantprice/changeStatus/' + id
+        });
+    });
+
+
 
     $('#create_tpl').live('click', function () {
         var name = prompt(langs.enterTemplateName, '');

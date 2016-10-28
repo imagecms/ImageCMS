@@ -51,8 +51,7 @@ class CForm_Checkgroup
         }
         if ($this->form->form_validation->run($this->ci) == FALSE) {
             return form_error($this->name, ' ', ' ');
-        }
-        else {
+        } else {
             return FALSE;
         }
     }
@@ -74,14 +73,12 @@ class CForm_Checkgroup
             return;
         }
 
-        foreach ($this->field->initial as $key => $val)
-        {
+        foreach ($this->field->initial as $key => $val) {
             $checked = '';
             $val = trim($val);
 
             if ($this->field->selected != NULL) {
-                foreach ($this->field->selected as $s_key => $s_val)
-                {
+                foreach ($this->field->selected as $s_key => $s_val) {
                     if (trim($s_val) == $key) {
                         $checked = 'checked="checked"';
                     }

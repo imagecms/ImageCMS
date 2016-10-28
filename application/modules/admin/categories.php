@@ -1,6 +1,8 @@
 <?php
 
 use CMSFactory\Events;
+use core\models\Route;
+use core\models\RouteQuery;
 use template_manager\classes\TemplateManager;
 
 if (!defined('BASEPATH')) {
@@ -70,11 +72,9 @@ class Categories extends BaseAdminController
         $this->form_validation->set_rules('name', lang('Title', 'admin'), 'trim|required|min_length[1]|max_length[160]|xss_clean');
 
         /** Добавил необходимое условие так как если передать спец символы url не генерирует */
-        if ($url) {
-            $this->form_validation->set_rules('url', lang('URL categories', 'admin'), 'trim|min_length[1]|max_length[200]|alpha_dash|least_one_symbol');
-        } else {
-            $this->form_validation->set_rules('url', lang('URL categories', 'admin'), 'required|trim|min_length[1]|max_length[200]|alpha_dash|least_one_symbol');
-        }
+
+        $urlRule = 'trim|min_length[1]|max_length[255]|alpha_dash|least_one_symbol';
+        $this->form_validation->set_rules('url', lang('URL categories', 'admin'), $url ? $urlRule : 'required|' . $urlRule);
         $this->form_validation->set_rules('image', lang('Image', 'admin'), 'max_length[250]');
         $this->form_validation->set_rules('parent_id', lang('Parent', 'admin'), 'trim|required|integer|max_length[160]');
         $this->form_validation->set_rules('description', lang('Description ', 'admin'), 'trim');
@@ -128,6 +128,7 @@ class Categories extends BaseAdminController
                      'fetch_pages'      => $fetch_pages,
                      'settings'         => serialize($settings),
                      'updated'          => time(),
+                     'route_id'         => $cat['route_id'],
                     ];
 
             $parent = $this->lib_category->get_category($data['parent_id']);
@@ -145,8 +146,7 @@ class Categories extends BaseAdminController
             switch ($action) {
                 case 'new':
 
-                    $pages_with_category_url = $this->db->where('url', $data['url'])->get('content');
-                    if ($pages_with_category_url->num_rows()) {
+                    if ($this->url_exists($data['url'])) {
                         $data['url'] .= time();
                     }
 
@@ -161,7 +161,7 @@ class Categories extends BaseAdminController
                     );
 
                     /** Init Event. Create new Category */
-                    Events::create()->registerEvent(array_merge($data, ['userId' => $this->dx_auth->get_user_id()]));
+                    Events::create()->registerEvent(array_merge($data, ['id' => $id, 'userId' => $this->dx_auth->get_user_id()]));
 
                     /** End init Event. Create new Page */
                     showMessage(lang('Pages category created', 'admin'));
@@ -179,6 +179,10 @@ class Categories extends BaseAdminController
                     /** Init Event. Pre Create Category */
                     Events::create()->registerEvent(['pageId' => $cat_id, 'url' => $cat['url']], 'Categories:preUpdate');
                     Events::runFactory();
+
+                    if ($this->url_exists($data['url'], $cat_id)) {
+                        $data['url'] .= time();
+                    }
 
                     ($hook = get_hook('admin_update_category')) ? eval($hook) : NULL;
                     $this->cms_admin->update_category($data, $cat_id);
@@ -204,7 +208,7 @@ class Categories extends BaseAdminController
                     );
 
                     /** Init Event. Create new Category */
-                    Events::create()->registerEvent(array_merge($data, ['userId' => $this->dx_auth->get_user_id()]), 'Categories:update');
+                    Events::create()->registerEvent(array_merge($data, ['id' => $cat_id, 'userId' => $this->dx_auth->get_user_id()]), 'Categories:update');
 
                     showMessage(lang('Changes saved', 'admin'));
                     $act = $this->input->post('action');
@@ -219,6 +223,19 @@ class Categories extends BaseAdminController
 
             $this->cache->delete_all();
         }
+    }
+
+    public function url_exists($url, $id = null) {
+
+        $segment = end(explode('/', $url));
+
+        if ($id) {
+            $this->db->where('entity_id <>', $id);
+        }
+        $query = $this->db->where('url', $segment)->get('route');
+
+        return $query->num_rows() > 0;
+
     }
 
     /**
@@ -374,6 +391,8 @@ class Categories extends BaseAdminController
             $this->db->where('id', $cat_id);
             $this->db->delete('category');
 
+            Events::create()->raiseEvent(['id' => $cat_id], 'Categories:delete');
+
             $this->lib_admin->log(lang('Deleted ID category or ID category has been deleted', 'admin') . ' ' . $cat_id);
 
             // Delete translates
@@ -405,6 +424,8 @@ class Categories extends BaseAdminController
                     $this->db->limit(1);
                     $this->db->where('id', $cat_id);
                     $this->db->delete('category');
+
+                    Events::create()->raiseEvent(['id' => $cat_id], 'Categories:delete');
 
                     $this->lib_admin->log(lang('Deleted ID category or ID category has been deleted', 'admin') . ' ' . $cat_id);
 

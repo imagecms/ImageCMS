@@ -124,6 +124,12 @@ abstract class BaseEvents
         return $this;
     }
 
+    final public function onAdminCategoryDelete() {
+
+        $this->key = 'Categories:delete';
+        return $this;
+    }
+
     /**
      * @return $this
      */
@@ -575,6 +581,12 @@ abstract class BaseEvents
         return $this;
     }
 
+    final public function onShopCategoryAjaxChangeShowInSite() {
+
+        $this->key = 'ShopAdminCategories:ajaxChangeShowInSite';
+        return $this;
+    }
+
     final public function onShopDashboardShow() {
 
         $this->key = 'ShopDashboard:show';
@@ -708,6 +720,15 @@ abstract class BaseEvents
     }
 
     /**
+     * @return $this
+     */
+    final public function onMakeCurrencyMain() {
+
+        $this->key = 'ShopAdminCurrencies:makeCurrencyMain';
+        return $this;
+    }
+
+    /**
      * Run listeners for one event. After running removes listeners.
      * @param array|object $data
      * @param string $eventAlias
@@ -759,6 +780,7 @@ abstract class BaseEvents
             if (isset($value['run'])) {
                 if ($value['run'] === TRUE && isset($value['collable'])) {
                     foreach ($value['collable'] as $collableKey => $run) {
+                        Events::create()->storage[$storageKey]['run'] = false;
                         if ($run['isClosure'] === false) {
                             call_user_func([$run['collClass'], $run['collMethod']], $value['params']);
                         } else {

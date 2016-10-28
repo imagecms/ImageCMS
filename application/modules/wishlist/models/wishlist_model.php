@@ -1,4 +1,7 @@
 <?php
+use cmsemail\email;
+use CMSFactory\ModuleSettings;
+use core\models\Route;
 
 /**
  * @property CI_DB_active_record $db
@@ -16,12 +19,8 @@ class Wishlist_model extends CI_Model
      * @return array
      */
     public function getSettings() {
-        $settings = $this->db->select('settings')
-            ->where('identif', 'wishlist')
-            ->get('components')
-            ->row_array();
-        $settings = unserialize($settings['settings']);
-        return $settings;
+
+        return ModuleSettings::ofModule('wishlist')->get();
     }
 
     /**
@@ -30,13 +29,8 @@ class Wishlist_model extends CI_Model
      * @return boolean
      */
     public function setSettings($settings) {
-        return $this->db->where('identif', 'wishlist')
-            ->update(
-                'components',
-                [
-                 'settings' => serialize($settings),
-                ]
-            );
+
+        return ModuleSettings::ofModule('wishlist')->set($settings);
     }
 
     /**
@@ -77,7 +71,7 @@ class Wishlist_model extends CI_Model
      * get user by id
      *
      * @param integer $id
-     * @return array
+     * @return array|bool
      */
     public function getUserByID($id) {
         $query = $this->db
@@ -127,8 +121,10 @@ class Wishlist_model extends CI_Model
             ->join('shop_product_variants_i18n', 'shop_product_variants_i18n.id=shop_product_variants.id')
             ->join('shop_products', 'shop_products.id=shop_product_variants.product_id')
             ->join('shop_products_i18n', 'shop_products_i18n.id=shop_products.id')
+            ->join('route', 'route.id = shop_products.route_id')
             ->get('mod_wish_list')
             ->result_array();
+
         if (!$query) {
             return $this->db
                 ->select('*, mod_wish_list.id AS `wish_list_id`')
@@ -139,7 +135,13 @@ class Wishlist_model extends CI_Model
                 ->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id', 'left')
                 ->get('mod_wish_list')
                 ->result_array();
+        }else{
+            foreach ($query as $key => $item) {
+                $query[$key]['full_url'] = Route::createRouteUrl($item['url'], $item['parent_url'], Route::TYPE_PRODUCT);
+            }
+
         }
+
         return $query;
     }
 
@@ -224,7 +226,7 @@ class Wishlist_model extends CI_Model
     public function getUserWishListsByID($user_id, $access = ['public', 'shared', 'private']) {
         $locale = \MY_Controller::getCurrentLocale();
         $queryFirst = $this->db
-            ->select('*, shop_product_variants.mainImage AS `image`, mod_wish_list_products.id AS  list_product_id')
+            ->select('*, shop_product_variants.mainImage AS `image`, mod_wish_list_products.id AS  list_product_id, route.url, route.parent_url')
             ->where('mod_wish_list.user_id', $user_id)
             ->join('mod_wish_list_products', 'mod_wish_list_products.wish_list_id=mod_wish_list.id', 'left')
             ->where_in('mod_wish_list.access', $access)
@@ -233,11 +235,17 @@ class Wishlist_model extends CI_Model
             ->join('shop_product_variants', 'shop_product_variants.id=mod_wish_list_products.variant_id')
             ->join('shop_product_variants_i18n', 'shop_product_variants_i18n.id=shop_product_variants.id')
             ->join('shop_products', 'shop_products.id=shop_product_variants.product_id')
+            ->join('route', 'route.id = shop_products.route_id')
             ->join('shop_products_i18n', 'shop_products_i18n.id=shop_products.id')
             ->get('mod_wish_list');
 
         if ($queryFirst) {
             $queryFirst = $queryFirst->result_array();
+
+            foreach ($queryFirst as $key => $item) {
+                $queryFirst[$key]['full_url'] = Route::createRouteUrl($item['url'], $item['parent_url'], Route::TYPE_PRODUCT);
+            }
+
         }
 
         $querySecond = $this->db
@@ -529,7 +537,7 @@ class Wishlist_model extends CI_Model
                  'access'      => $access,
                 ];
 
-        \cmsemail\email::getInstance()->sendEmail(
+        email::getInstance()->sendEmail(
             $this->dx_auth->get_user_email(),
             'wish_list',
             [

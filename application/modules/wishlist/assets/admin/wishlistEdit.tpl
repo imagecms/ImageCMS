@@ -85,7 +85,7 @@
                                             <a href="/admin/components/cp/wishlist/deleteItem/{echo $w[variant_id]}/{echo $w[wish_list_id]}">{lang('Delete', 'wishlist')}</a>
                                         </td>
                                         <td>
-                                            <a href="{shop_url('product/'.$w[url])}"
+                                            <a href="{site_url('/'.$w['full_url'])}"
                                                title="{$w[name]}">
                                                 {$w[name]}
                                             </a>

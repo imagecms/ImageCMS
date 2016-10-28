@@ -432,11 +432,10 @@ abstract class BannerImageQuery extends ModelCriteria
      * Example usage:
      * <code>
      * $query->filterByUrl('fooValue');   // WHERE url = 'fooValue'
-     * $query->filterByUrl('%fooValue%'); // WHERE url LIKE '%fooValue%'
+     * $query->filterByUrl('%fooValue%', Criteria::LIKE); // WHERE url LIKE '%fooValue%'
      * </code>
      *
      * @param     string $url The value to use as filter.
-     *              Accepts wildcards (* and % trigger a LIKE)
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return $this|ChildBannerImageQuery The current query, for fluid interface

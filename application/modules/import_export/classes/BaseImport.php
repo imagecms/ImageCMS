@@ -6,9 +6,10 @@ use CI_DB_active_record;
 use CI_DB_result;
 use CI_Model;
 use Core;
+use core\models\Route;
 use Exception;
 use import_export\classes\ProductsImport as ProductsHandler;
-use My_Controller;
+use MY_Controller;
 use SPropertyValue;
 use SPropertyValueQuery;
 
@@ -111,11 +112,19 @@ class BaseImport extends CI_Model
      */
     public $countProduct;
 
-    public $allLanguages;
+    /**
+     * @var array
+     */
+    public $allLanguages = [];
+
+    /**
+     * @var int
+     */
+    public $maxRowLegth;
 
     public function __construct() {
         parent::__construct();
-        $this->languages = My_Controller::getCurrentLocale();
+        $this->languages = MY_Controller::getCurrentLocale();
         $this->languages = $this->input->post('language') ?: $this->languages;
         $this->getLangs();
     }
@@ -128,6 +137,18 @@ class BaseImport extends CI_Model
                 $this->mainLanguages = $val->identif;
             }
         }
+    }
+
+    /**
+     * BaseImport Singleton
+     * @return BaseImport
+     * @access public
+     * @author Kaero
+     * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
+     */
+    public static function create() {
+        (null !== self::$_instance) OR self::$_instance = new self();
+        return self::$_instance;
     }
 
     /**
@@ -157,191 +178,6 @@ class BaseImport extends CI_Model
         } else {
             return FALSE;
         }
-    }
-
-    /**
-     * @param string $attribute
-     * @return bool
-     */
-    public function attributeExist($attribute) {
-        $attributes = \CI::$APP->input->post('attributes');
-        if (!$attributes) {
-            return TRUE;
-        }
-
-        $attributes = explode(',', $attributes);
-        return in_array($attribute, $attributes) ? TRUE : FALSE;
-    }
-
-    /**
-     * Validate Information and parse CSV. As a goal we have $content variable with file information.
-     * @param integer $offers The final position
-     * @param integer $limit Step
-     * @return false|null
-     * @access public
-     * @author Kaero
-     * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
-     */
-    public function validateFile($offers, $limit) {
-
-        if (substr(sprintf('%o', fileperms(ImportBootstrap::getUploadDir())), -4) != '0777') {
-            ImportBootstrap::addMessage(Factor::ErrorFolderPermission);
-            return FALSE;
-        }
-        if (!$file = @fopen($this->CSVsource, 'r')) {
-            ImportBootstrap::addMessage(Factor::ErrorFileReadError);
-            return FALSE;
-        }
-
-        $row = fgetcsv($file, $this->maxRowLegth, $this->delimiter, $this->enclosure);
-        //        if (!in_array('cat', $row) && !$this->attributeExist('cat')) {
-        //            ImportBootstrap::addMessage(Factor::ErrorCategoryAttribute);
-        //            return FALSE;
-        //        }
-        //        if (!in_array('name', $row) && !$this->attributeExist('name')) {
-        //            ImportBootstrap::addMessage(Factor::ErrorNameAttribute);
-        //            return FALSE;
-        //        }
-        //      Првоерка на url
-        //        if (!in_array('url', $row)) {
-        //            ImportBootstrap::addMessage(Factor::ErrorUrlAttribute);
-        //            return FALSE;
-        //        }
-        if (!in_array('prc', $row) && !$this->attributeExist('prc')) {
-            ImportBootstrap::addMessage(Factor::ErrorPriceAttribute);
-            return FALSE;
-        }
-        //        if (!in_array('var', $row) && !$this->attributeExist('var')) {
-        //            ImportBootstrap::addMessage(Factor::ErrorNameVariantAttribute);
-        //            return FALSE;
-        //        }
-        if (!in_array('num', $row) && !$this->attributeExist('prc') && $this->importType == Factor::ImportProducts) {
-            ImportBootstrap::addMessage(Factor::ErrorNumberAttribute);
-            return FALSE;
-        }
-        if ((count($this->possibleAttributes) - count(array_diff($this->possibleAttributes, $row))) == count($this->attributes)) {
-            $this->attributes = $row;
-        } elseif (count($row) === count($this->attributes)) {
-            rewind($file);
-        } else {
-            ImportBootstrap::addMessage(Factor::ErrorPossibleAttrValues);
-            return FALSE;
-        }
-        $this->parseFile($offers, $limit, $file);
-    }
-
-    /**
-     * File parsing
-     * @param integer $offers The final position
-     * @param integer $limit Step
-     * @param  $file
-     * @return boolean
-     */
-    public function parseFile($offers, $limit, $file = false) {
-        if (!$file) {
-            $file = @fopen($this->CSVsource, 'r');
-        }
-        if ($offers > 0) {
-            $positionStart = $offers - $limit;
-            $cnt = 0;
-            $iOffer = 0;
-            while (($row = fgetcsv($file, $this->maxRowLegth, $this->delimiter, $this->enclosure)) !== false) {
-                //                if ($cnt != 0) {
-                //                    if ($iOffer < $positionStart) {
-                //                        $iOffer++;
-                //                    }else{
-                //                        $this->content[] = array_combine($this->attributes, array_map('trim', $row));
-                //                    }
-                //                }
-                //                $cnt = 1;
-                //            }
-                if ($cnt != 0) {
-                    if ($iOffer < $positionStart) {
-                        $iOffer++;
-                    } else {
-                        $this->content[] = array_combine($this->attributes, array_map('trim', $row));
-                    }
-                }
-                if ($cnt >= $offers) {
-                    break;
-                }
-                $cnt++;
-            }
-        } else {
-            $cnt = 0;
-            while (($row = fgetcsv($file, $this->maxRowLegth, $this->delimiter, $this->enclosure)) !== false) {
-                if ($cnt != 0) {
-                    $this->countProduct++;
-                }
-                $cnt = 1;
-            }
-            $_SESSION['countProductsInFile'] = $this->countProduct;
-        }
-        fclose($file);
-        return TRUE;
-    }
-
-    /**
-     * Set Import Type. Must be setted before import start.
-     * @param $type
-     * @return BaseImport
-     * @access public
-     * @author Kaero
-     * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
-     */
-    public function setImportType($type) {
-        $this->importType = $type;
-        return $this;
-    }
-
-    /**
-     * Set Import Settings. Must be setted before import start.
-     * @param $settings
-     * @return BaseImport
-     * @access public
-     * @author Kaero
-     * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
-     */
-    public function setSettings($settings) {
-        $this->settings = $settings;
-        $this->attributes = array_diff(explode(',', $this->settings['attributes']), [null]);
-        return $this;
-    }
-
-    /**
-     * Set Import file name. Must be setted before import start.
-     * @param string $fileName
-     * @return BaseImport
-     * @access public
-     * @author Kaero
-     * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
-     */
-    public function setFileName($fileName) {
-        try {
-            if (FALSE === file_exists($fileName)) {
-                throw new Exception(Factor::ErrorEmptySlot);
-            }
-            $this->CSVsource = $fileName;
-            return $this;
-        } catch (Exception $exc) {
-            $result[Factor::MessageTypeSuccess] = FALSE;
-            $result[Factor::MessageTypeError] = FALSE;
-            $result['message'] = $exc->getMessage();
-            echo json_encode($result);
-            exit();
-        }
-    }
-
-    /**
-     * BaseImport Singleton
-     * @return BaseImport
-     * @access public
-     * @author Kaero
-     * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
-     */
-    public static function create() {
-        (null !== self::$_instance) OR self::$_instance = new self();
-        return self::$_instance;
     }
 
     /**
@@ -399,6 +235,223 @@ class BaseImport extends CI_Model
     }
 
     /**
+     * Validate Information and parse CSV. As a goal we have $content variable with file information.
+     * @param integer $offers The final position
+     * @param integer $limit Step
+     * @return false|null
+     * @access public
+     * @author Kaero
+     * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
+     */
+    public function validateFile($offers, $limit) {
+
+        if (substr(sprintf('%o', fileperms(ImportBootstrap::getUploadDir())), -4) != '0777') {
+            ImportBootstrap::addMessage(Factor::ErrorFolderPermission);
+            return FALSE;
+        }
+        if (!$file = @fopen($this->CSVsource, 'r')) {
+            ImportBootstrap::addMessage(Factor::ErrorFileReadError);
+            return FALSE;
+        }
+
+        $row = fgetcsv($file, $this->maxRowLegth, $this->delimiter, $this->enclosure);
+
+        if (!in_array('prc', $row) && !$this->attributeExist('prc')) {
+            ImportBootstrap::addMessage(Factor::ErrorPriceAttribute);
+            return FALSE;
+        }
+
+        if (!in_array('num', $row) && !$this->attributeExist('prc') && $this->importType == Factor::ImportProducts) {
+            ImportBootstrap::addMessage(Factor::ErrorNumberAttribute);
+            return FALSE;
+        }
+        if ((count($this->possibleAttributes) - count(array_diff($this->possibleAttributes, $row))) == count($this->attributes)) {
+            $this->attributes = $row;
+        } elseif (count($row) === count($this->attributes)) {
+            rewind($file);
+        } else {
+            ImportBootstrap::addMessage(Factor::ErrorPossibleAttrValues);
+            return FALSE;
+        }
+        $this->parseFile($offers, $limit, $file);
+    }
+
+    /**
+     * @param string $attribute
+     * @return bool
+     */
+    public function attributeExist($attribute) {
+        $attributes = \CI::$APP->input->post('attributes');
+        if (!$attributes) {
+            return TRUE;
+        }
+
+        $attributes = explode(',', $attributes);
+        return in_array($attribute, $attributes) ? TRUE : FALSE;
+    }
+
+    /**
+     * File parsing
+     * @param integer $offers The final position
+     * @param integer $limit Step
+     * @param  $file
+     * @return boolean
+     */
+    public function parseFile($offers, $limit, $file = false) {
+        if (!$file) {
+            $file = @fopen($this->CSVsource, 'r');
+        }
+        if ($offers > 0) {
+            $positionStart = $offers - $limit;
+            $cnt = 0;
+            $iOffer = 0;
+            while (($row = fgetcsv($file, $this->maxRowLegth, $this->delimiter, $this->enclosure)) !== false) {
+
+                if ($cnt != 0) {
+                    if ($iOffer < $positionStart) {
+                        $iOffer++;
+                    } else {
+                        $this->content[] = array_combine($this->attributes, array_map('trim', $row));
+                    }
+                }
+                if ($cnt >= $offers) {
+                    break;
+                }
+                $cnt++;
+            }
+        } else {
+            $cnt = 0;
+            while (($row = fgetcsv($file, $this->maxRowLegth, $this->delimiter, $this->enclosure)) !== false) {
+                if ($cnt != 0) {
+                    $this->countProduct++;
+                }
+                $cnt = 1;
+            }
+            $_SESSION['countProductsInFile'] = $this->countProduct;
+        }
+        fclose($file);
+        return TRUE;
+    }
+
+    /**
+     * Process Categories
+     * @access public
+     * @author Kaero
+     * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
+     */
+    public function loadCategories() {
+        if (ImportBootstrap::hasErrors()) {
+            return FALSE;
+        }
+        $this->load->helper('translit');
+        foreach ($this->content as $key => $node) {
+            if ($node['cat'] == '') {
+                continue;
+            }
+
+            if (trim($node['addcats'])) {
+                $cats = explode('|', $node['addcats']);
+                foreach ($cats as $cat) {
+                    $this->content(['cat' => $cat], $key);
+                }
+            }
+            $this->content($node, $key);
+        }
+    }
+
+    /**
+     * @param string $node
+     * @param string $key
+     */
+    private function content($node, $key) {
+
+        $parts = $this->parseCategoryName($node['cat']);
+        $pathIds = $pathNames = [];
+        $parentId = $line = 0;
+        foreach ($parts as $part) {
+
+            /* Find existing category */
+            $binds = [
+                      $part,
+                      $this->languages,
+                      $parentId,
+                     ];
+            //                $binds = array($part, $this->mainLanguages, $parentId);
+            $result = $this->db->query(
+                '
+                SELECT SCategory.id AS CategoryId
+                FROM `shop_category_i18n` AS SCategoryI18n
+                RIGHT OUTER JOIN `shop_category` AS SCategory ON SCategory.id = SCategoryI18n.id
+                WHERE SCategoryI18n.name = ? AND SCategoryI18n.locale = ? AND SCategory.parent_id = ?',
+                $binds
+            );
+            if ($result) {
+                $result = $result->row();
+            } else {
+                Logger::create()->set('Error $result in CategoryImport.php - IMPORT');
+            }
+
+            if (!($result instanceof \stdClass)) {
+                /* Create new category */
+                $lastPosition = $this->db->query('SELECT max(position) AS maxPos FROM `shop_category`')->row()->maxPos;
+                $binds = [
+                          'parent_id'     => $parentId,
+                          'full_path_ids' => serialize($pathIds),
+                          'active'        => 1,
+                          'position'      => $lastPosition + 1,
+                         ];
+
+                $this->db->insert('shop_category', $binds);
+                $newCategoryId = $this->db->insert_id();
+
+                if ($newCategoryId) {
+                    $route = [
+                              'parent_url' => implode('/', array_map('translit_url', $pathNames)),
+                              'url'        => translit_url($part),
+                              'entity_id'  => $newCategoryId,
+                              'type'       => Route::TYPE_SHOP_CATEGORY,
+                             ];
+
+                    $this->db->insert('route', $route);
+
+                    $newRouteId = $this->db->insert_id();
+
+                    $this->db->update('shop_category', ['route_id' => $newRouteId], ['id' => $newCategoryId]);
+                }
+                if (!$newCategoryId) {
+                    Logger::create()->set('Error INSERT category or SELECT id new category in CategoryImport.php - IMPORT');
+                }
+
+                /* Add translation data for new category  */
+                foreach ($this->allLanguages as $val) {
+                    $this->db->insert('shop_category_i18n', ['id' => $newCategoryId, 'locale' => $val, 'name' => trim($part)]);
+                }
+
+                $this->content[$key]['CategoryId'] = $pathIds[] = $parentId = $newCategoryId;
+                $this->content[$key]['CategoryIds'] = $pathIds;
+            } else {
+                $this->content[$key]['CategoryId'] = $pathIds[] = $parentId = $result->CategoryId;
+                $this->content[$key]['CategoryIds'] = $pathIds;
+            }
+            $pathNames[] = $part;
+
+        }
+    }
+
+    /**
+     * Parse Category Name by slashes
+     * @param string $name
+     * @return array
+     * @access private
+     * @author Kaero
+     * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
+     */
+    private function parseCategoryName($name) {
+        $result = array_map('trim', array_map('stripcslashes', preg_split('/\\REPLACE((?:[^\\\\\REPLACE]|\\\\.)*)/', $name, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY)));
+        return explode('/', $result[0]);
+    }
+
+    /**
      * FROM PropertiesImport
      */
 
@@ -440,8 +493,8 @@ class BaseImport extends CI_Model
 
                             $property_value = SPropertyValueQuery::create()
                                 ->useSPropertyValueI18nQuery()
-                                    ->filterByLocale($this->languages)
-                                    ->filterByValue($v)
+                                ->filterByLocale($this->languages)
+                                ->filterByValue($v)
                                 ->endUse()
                                 ->findOneByPropertyId($properyAlias[$nodeKey]);
 
@@ -519,6 +572,61 @@ class BaseImport extends CI_Model
     }
 
     /**
+     * Set Import Type. Must be setted before import start.
+     * @param $type
+     * @return BaseImport
+     * @access public
+     * @author Kaero
+     * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
+     */
+    public function setImportType($type) {
+        $this->importType = $type;
+        return $this;
+    }
+
+    /**
+     * FROM CategoryImport
+     */
+
+    /**
+     * Set Import Settings. Must be setted before import start.
+     * @param $settings
+     * @return BaseImport
+     * @access public
+     * @author Kaero
+     * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
+     */
+    public function setSettings($settings) {
+        $this->settings = $settings;
+        $this->attributes = array_diff(explode(',', $this->settings['attributes']), [null]);
+        return $this;
+    }
+
+    /**
+     * Set Import file name. Must be setted before import start.
+     * @param string $fileName
+     * @return BaseImport
+     * @access public
+     * @author Kaero
+     * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
+     */
+    public function setFileName($fileName) {
+        try {
+            if (FALSE === file_exists($fileName)) {
+                throw new Exception(Factor::ErrorEmptySlot);
+            }
+            $this->CSVsource = $fileName;
+            return $this;
+        } catch (Exception $exc) {
+            $result[Factor::MessageTypeSuccess] = FALSE;
+            $result[Factor::MessageTypeError] = FALSE;
+            $result['message'] = $exc->getMessage();
+            echo json_encode($result);
+            exit();
+        }
+    }
+
+    /**
      * Add new value to custom field and save it.
      * @param mixed $name
      * @param mixed $value
@@ -544,113 +652,6 @@ class BaseImport extends CI_Model
                 $this->customFieldsCache[$name]->setData($newData);
             }
         }
-    }
-
-    /**
-     * FROM CategoryImport
-     */
-
-    /**
-     * Process Categories
-     * @access public
-     * @author Kaero
-     * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
-     */
-    public function loadCategories() {
-        if (ImportBootstrap::hasErrors()) {
-            return FALSE;
-        }
-        $this->load->helper('translit');
-        foreach ($this->content as $key => $node) {
-            if ($node['cat'] == '') {
-                continue;
-            }
-
-            if (trim($node['addcats'])) {
-                $cats = explode('|', $node['addcats']);
-                foreach ($cats as $cat) {
-                    $this->content(['cat' => $cat], $key);
-                }
-            }
-            $this->content($node, $key);
-        }
-    }
-
-    /**
-     * @param string $node
-     * @param string $key
-     */
-    private function content($node, $key) {
-
-        $parts = $this->parseCategoryName($node['cat']);
-        $pathIds = $pathNames = [];
-        $parentId = $line = 0;
-        foreach ($parts as $part) {
-            $pathNames[] = $part;
-
-            /* Find existing category */
-            $binds = [
-                      $part,
-                      $this->languages,
-                      $parentId,
-                     ];
-            //                $binds = array($part, $this->mainLanguages, $parentId);
-            $result = $this->db->query(
-                '
-                SELECT SCategory.id as CategoryId
-                FROM `shop_category_i18n` as SCategoryI18n
-                RIGHT OUTER JOIN `shop_category` AS SCategory ON SCategory.id = SCategoryI18n.id
-                WHERE SCategoryI18n.name = ? AND SCategoryI18n.locale = ? AND SCategory.parent_id = ?',
-                $binds
-            );
-            if ($result) {
-                $result = $result->row();
-            } else {
-                Logger::create()->set('Error $result in CategoryImport.php - IMPORT');
-            }
-
-            if (!($result instanceof \stdClass)) {
-                /* Create new category */
-                $lastPosition = $this->db->query('SELECT max(position) as maxPos FROM `shop_category`')->row()->maxPos;
-                $binds = [
-                          'parent_id'     => $parentId,
-                          'full_path_ids' => serialize($pathIds),
-                          'full_path'     => implode('/', array_map('translit_url', $pathNames)),
-                          'url'           => translit_url($part),
-                          'active'        => 1,
-                          'position'      => $lastPosition + 1,
-                         ];
-                $this->db->insert('shop_category', $binds);
-                $newCategoryId = $this->db->insert_id();
-                if (!$newCategoryId) {
-                    Logger::create()->set('Error INSERT category or SELECT id new category in CategoryImport.php - IMPORT');
-                }
-
-                /* Add translation data for new category  */
-                foreach ($this->allLanguages as $val) {
-                    $this->db->insert('shop_category_i18n', ['id' => $newCategoryId, 'locale' => $val, 'name' => trim($part)]);
-                }
-
-                $this->content[$key]['CategoryId'] = $pathIds[] = $parentId = $newCategoryId;
-                $this->content[$key]['CategoryIds'] = $pathIds;
-            } else {
-                $this->content[$key]['CategoryId'] = $pathIds[] = $parentId = $result->CategoryId;
-                $this->content[$key]['CategoryIds'] = $pathIds;
-            }
-        }
-    }
-
-    /**
-     * Parse Category Name by slashes
-     * @param string $name
-     * @return array
-     * @access private
-     * @author Kaero
-     * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
-     */
-    private function parseCategoryName($name) {
-        $result = array_map('trim', array_map('stripcslashes', preg_split('/\\REPLACE((?:[^\\\\\REPLACE]|\\\\.)*)/', $name, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY)));
-        return explode('/', $result[0]);
     }
 
 }

@@ -61,7 +61,7 @@ class DemodataDirector
 
     /**
      * Get error messages
-     * @return type
+     * @return string
      */
     public function getMessages() {
         return $this->messages;

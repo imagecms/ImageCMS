@@ -13,6 +13,7 @@ use Propel\Runtime\ActiveQuery\Criteria;
  * @copyright (c) 2013, ImageCMS
  * @package ImageCMSModule
  * @property Discount_model_admin $discount_model_admin
+ * @property Lib_admin lib_admin
  */
 class Admin extends ShopAdminController
 {
@@ -29,7 +30,7 @@ class Admin extends ShopAdminController
 
     /**
      * For displaing list of discounts
-     * @return html
+     * @return string
      */
     public function index() {
         $filterParam = $this->input->get('filterBy');
@@ -91,9 +92,9 @@ class Admin extends ShopAdminController
 
     /**
      * Edit discount
-     * @paran (int) $id
-     * @paran (string) $locale
-     * @return html
+     * @param int $id
+     * @param string|null $locale
+     * @return string
      */
     public function edit($id, $locale = null) {
 
@@ -178,7 +179,7 @@ class Admin extends ShopAdminController
                      'categories'  => ShopCore::app()->SCategoryTree->getTree_(),
                      'languages'   => $this->db->get('languages')->result_array(),
                      'locale'      => $locale,
-                     'brands'      => SBrandsQuery::create()->setComment(__METHOD__)->orderByID(Criteria::DESC)->find(),
+                     'brands'      => SBrandsQuery::create()->setComment(__METHOD__)->orderById(Criteria::DESC)->find(),
                     ];
             $this->cache->delete_all();
             //Render template and set data
@@ -276,7 +277,7 @@ class Admin extends ShopAdminController
 
     /**
      * Autocomlete products
-     * @return jsone
+     * @return string
      */
     public function autoCompliteProducts($locale) {
         $locale = $locale ? $locale : MY_Controller::defaultLocale();

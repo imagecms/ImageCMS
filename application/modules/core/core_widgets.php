@@ -37,8 +37,9 @@ class Core_Widgets extends MY_Controller
             $settings = $widget['settings'];
         }
 
-        $this->db->select('CONCAT_WS("", content.cat_url, content.url) as full_url, content.id, content.title, prev_text, publish_date, showed, comments_count, author, category.name as cat_name, content.cat_url', FALSE);
+        $this->db->select("IF(route.parent_url <> '', concat(route.parent_url, '/', route.url), route.url) as full_url, content.id, content.title, prev_text, publish_date, showed, comments_count, author, category.name as cat_name", FALSE);
         $this->db->join('category', 'category.id=content.category');
+        $this->db->join('route', 'route.id=content.route_id');
         $this->db->where('post_status', 'publish');
         $this->db->where('prev_text !=', 'null');
         $this->db->where('publish_date <=', time());

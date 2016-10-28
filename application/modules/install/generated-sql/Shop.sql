@@ -4,6 +4,23 @@
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ---------------------------------------------------------------------
+-- route
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `route`;
+
+CREATE TABLE `route`
+(
+    `id` INTEGER(11) NOT NULL AUTO_INCREMENT,
+    `entity_id` INTEGER(11) NOT NULL,
+    `type` VARCHAR(255) NOT NULL,
+    `parent_url` VARCHAR(500) DEFAULT '',
+    `url` VARCHAR(255) NOT NULL,
+    PRIMARY KEY (`id`),
+    UNIQUE INDEX `route_u_df1472` (`url`)
+) ENGINE=MYISAM CHARACTER SET='utf8';
+
+-- ---------------------------------------------------------------------
 -- page_link
 -- ---------------------------------------------------------------------
 
@@ -43,16 +60,16 @@ CREATE TABLE `shop_category`
 (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `parent_id` INTEGER,
+    `route_id` INTEGER,
     `external_id` VARCHAR(255),
-    `url` VARCHAR(255) NOT NULL,
     `active` TINYINT(1),
     `image` VARCHAR(255),
     `position` INTEGER,
-    `full_path` VARCHAR(1000),
     `full_path_ids` VARCHAR(250),
     `tpl` VARCHAR(250),
     `order_method` INTEGER,
     `showsitetitle` INTEGER,
+    `show_in_menu` TINYINT(1) DEFAULT 1 NOT NULL,
     `created` INTEGER NOT NULL,
     `updated` INTEGER NOT NULL,
     PRIMARY KEY (`id`),
@@ -60,10 +77,15 @@ CREATE TABLE `shop_category`
     INDEX `shop_category_i_25ffb6` (`active`),
     INDEX `shop_category_i_0bb977` (`parent_id`),
     INDEX `shop_category_i_ba7161` (`position`),
+    INDEX `shop_category_fi_c5366e` (`route_id`),
     CONSTRAINT `shop_category_fk_49e723`
         FOREIGN KEY (`parent_id`)
         REFERENCES `shop_category` (`id`)
         ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    CONSTRAINT `shop_category_fk_c5366e`
+        FOREIGN KEY (`route_id`)
+        REFERENCES `route` (`id`)
         ON DELETE CASCADE
 ) ENGINE=InnoDB CHARACTER SET='utf8';
 
@@ -103,8 +125,8 @@ CREATE TABLE `shop_products`
 (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `user_id` INTEGER,
+    `route_id` INTEGER,
     `external_id` VARCHAR(255),
-    `url` VARCHAR(255) NOT NULL,
     `active` TINYINT(1),
     `hit` TINYINT(1),
     `hot` TINYINT(1),
@@ -124,6 +146,11 @@ CREATE TABLE `shop_products`
     INDEX `shop_products_i_df1472` (`url`),
     INDEX `shop_products_i_24f797` (`brand_id`),
     INDEX `shop_products_i_916b34` (`category_id`),
+    INDEX `shop_products_fi_c5366e` (`route_id`),
+    CONSTRAINT `shop_products_fk_c5366e`
+        FOREIGN KEY (`route_id`)
+        REFERENCES `route` (`id`)
+        ON DELETE CASCADE,
     CONSTRAINT `shop_products_fk_d02aad`
         FOREIGN KEY (`brand_id`)
         REFERENCES `shop_brands` (`id`),
@@ -860,8 +887,8 @@ DROP TABLE IF EXISTS `shop_products_rating`;
 CREATE TABLE `shop_products_rating`
 (
     `product_id` INTEGER(11) NOT NULL,
-    `votes` INTEGER(11),
-    `rating` INTEGER(11),
+    `votes` INTEGER(11) DEFAULT 0,
+    `rating` INTEGER(11) DEFAULT 0,
     PRIMARY KEY (`product_id`),
     CONSTRAINT `shop_products_rating_fk_6a9780`
         FOREIGN KEY (`product_id`)
@@ -1108,6 +1135,10 @@ CREATE TABLE `custom_fields_data`
     `field_data` TEXT,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB CHARACTER SET='utf8';
+
+-- ---------------------------------------------------------------------
+-- smart_filter_patterns
+-- ---------------------------------------------------------------------
 
 DROP TABLE IF EXISTS `smart_filter_patterns`;
 

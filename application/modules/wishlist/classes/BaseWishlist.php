@@ -307,7 +307,6 @@ class BaseWishlist extends ParentWishlist
                 $this->wishlist_model->setUserImage($this->input->post('userID'), $this->dataModel['upload_data']['file_name']);
                 return TRUE;
             }
-            return $this->dataModel[] = lang('Image uploaded', 'wishlist');
         } else {
 
             return $this->errors[] = lang('Can not upload photo', 'wishlist');

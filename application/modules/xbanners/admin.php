@@ -88,6 +88,8 @@ class Admin extends BaseAdminController
                 $banner->save();
 
                 showMessage(lang('Banner successfully update', 'xbanners'), lang('Success', 'admin'));
+                $this->lib_admin->log(lang('The banner was update', 'xbanners') . '. Id: ' . $banner->getId());
+
             }
         } else {
             $bannerImages = ImagesManager::getInstance()->getImagesByPageType($banner, $locale);
@@ -150,6 +152,8 @@ class Admin extends BaseAdminController
                         $bannerImageI18n->save();
 
                         showMessage(lang('Successfully saved', 'xbanners'), lang('Success', 'admin'));
+                        $this->lib_admin->log(lang('The banner image was be saved', 'xbanners') . '. Id: ' . $bannerImage->getId());
+
                         pjax(site_url('/admin/components/init_window/xbanners/edit_banner') . "/$bannerId/$locale");
                     }
                 }
@@ -198,6 +202,9 @@ class Admin extends BaseAdminController
             ImagesManager::getInstance()->delete($imageId);
             BannerImageQuery::create()->setComment(__METHOD__)->findPk($imageId)->delete();
             showMessage(lang('Banner slide successfully deleted', 'xbanners'), lang('Success', 'admin'));
+
+            $this->lib_admin->log(lang('The banner slide was be deleted', 'xbanners'));
+
         } else {
             showMessage(lang('Can not delete banner slide', 'xbanners'), lang('Error', 'admin'), 'r');
         }

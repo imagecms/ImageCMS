@@ -32,6 +32,8 @@ class Callbacks extends MY_Controller
     public function index() {
 
         $this->core->set_meta_tags(lang('Callback', 'callback'));
+        $this->template->registerMeta('ROBOTS', 'NOINDEX, NOFOLLOW');
+
         $this->load->library('Form_validation');
         if ($this->input->post()) {
             try {

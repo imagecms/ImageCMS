@@ -80,21 +80,20 @@ class Attendance_model extends CI_Model
                 FROM_UNIXTIME(`mod_stats_attendance`.`time_add`) as `last_activity`,
                
                 -- ---- for urls ----
-                CASE `mod_stats_attendance`.`type_id`
-                    WHEN 1 THEN CONCAT(`content`.`cat_url`, `content`.`url`)
-                    WHEN 2 THEN `category`.`url`
-                    WHEN 3 THEN CONCAT('shop/category/',`shop_category`.`full_path`)
-                    WHEN 4 THEN CONCAT('shop/product/',`shop_products`.`url`)
-                END as `last_url`,   
+               IF(route.parent_url <> '', concat(route.parent_url, '/', route.url), route.url) AS `last_url`,   
                 -- ------------------
 
                 -- ---- for names ----
-                CASE `mod_stats_attendance`.`type_id`
-                    WHEN 1 THEN CONCAT(`content`.`cat_url`, `content`.`url`)
-                    WHEN 2 THEN `category`.`url`
-                    WHEN 3 THEN `shop_category_i18n`.`name`
-                    WHEN 4 THEN `shop_products_i18n`.`name`
-                END as `page_name`   
+            CASE `mod_stats_attendance`.`type_id`
+            WHEN 1
+              THEN IF(route.parent_url <> '', concat(route.parent_url, '/', route.url), route.url)
+            WHEN 2
+              THEN IF(route.parent_url <> '', concat(route.parent_url, '/', route.url), route.url)
+            WHEN 3
+              THEN `shop_category_i18n`.`name`
+            WHEN 4
+              THEN `shop_products_i18n`.`name`
+            END as `page_name`   
                 -- ------------------
             FROM 
                 (SELECT * FROM `mod_stats_attendance` ORDER BY `id` DESC) as `mod_stats_attendance` 
@@ -117,6 +116,19 @@ class Attendance_model extends CI_Model
             LEFT JOIN `shop_products_i18n` ON `shop_products`.`id` = `shop_products_i18n`.`id` 
                 AND `shop_products_i18n`.`locale` = '{$locale}'
             -- ------------------
+
+            LEFT JOIN route ON route.entity_id = id_entity AND type = (
+              CASE `mod_stats_attendance`.`type_id`
+              WHEN 1
+                THEN 'page'
+              WHEN 2
+                THEN 'category'
+              WHEN 3
+                THEN 'shop_category'
+              WHEN 4
+                THEN 'products'
+              END
+            )
 
             WHERE 1
                 AND FROM_UNIXTIME(`mod_stats_attendance`.`time_add`) >= NOW() - INTERVAL 120 SECOND

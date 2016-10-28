@@ -17,7 +17,7 @@ class TComponentName extends \template_manager\classes\TComponent
 
     /**
      * Get componet lable
-     * @return type
+     * @return string
      */
     public function getLabel() {
         return lang('Component Name', 'template_manager');

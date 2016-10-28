@@ -64,8 +64,8 @@ class ModelWrapper
     }
 
     /**
-     * @param $function
-     * @param $args
+     * @param string $function
+     * @param array $args
      * @return mixed
      */
     public function __call($function, $args) {

@@ -65,9 +65,10 @@ class Mod_discount extends \MY_Controller
     public function autoload() {
         if (BaseDiscount::checkModuleInstall()) {
 
-            $this->applyDiscountCartItems();
+                $this->applyDiscountCartItems();
 
-            $this->applyResultDiscount();
+                $this->applyResultDiscount();
+
             /** apply Gift */
             if ($this->input->post('gift')) {
                 $this->applyGift();
@@ -80,32 +81,6 @@ class Mod_discount extends \MY_Controller
 
             Events::create()->setListener([$this, 'updateDiscountsApplies'], 'Cart:OrderValidated');
 
-            /* $cartItems = \Cart\BaseCart::getInstance()->getItems();
-              $diff = 0;
-              foreach ($cartItems['data'] as $item) {
-              if (is_null($item->discountKey)) {
-              continue;
-              }
-              $appliesLeft = \mod_discount\classes\BaseDiscount::create()->getAppliesLeft($item->discountKey);
-              if ($appliesLeft === null) {
-              continue;
-              }
-              for ($i = 0; $i < $item->quantity; $i++) {
-              if ($appliesLeft-- > 0) {
-
-              }
-              }
-              if ($appliesLeft < 0) {
-              $appliesLeft = abs($appliesLeft);
-              $diff += ($item->originPrice - $item->price) * $appliesLeft;
-              }
-              }
-
-              if ($diff > 0) {
-              $cartPrice = \Cart\BaseCart::getInstance()->getTotalPrice();
-              $cartPrice += $diff;
-              \Cart\BaseCart::getInstance()->setTotalPrice($cartPrice);
-              } */
         }
     }
 
@@ -126,7 +101,21 @@ class Mod_discount extends \MY_Controller
 
         /** @var SProducts|ShopKit $item */
         foreach ($cartItems['data'] as $item) {
-            if ($item->originPrice > $item->price) {
+
+            $usedDiscountVariantPrice = true;
+
+            if (class_exists('\VariantPriceType\BaseVariantPriceType') && self::isPremiumCMS()) {
+
+                $usedDiscountVariantPrice = \VariantPriceType\BaseVariantPriceType::checkUsedDiscount($this->dx_auth->get_role_id()?: '-1', $item);
+
+            }
+
+            if ($item->originPrice > $item->price  ) {
+                continue;
+            }
+
+            if ($usedDiscountVariantPrice === false) {
+
                 continue;
             }
 
@@ -144,6 +133,7 @@ class Mod_discount extends \MY_Controller
             }
 
             if ($discount = assetManager::create()->discount) {
+
                 $priceNew = ((float) $item->originPrice - (float) $discount['discount_value'] < 0) ? 1 : (float) $item->originPrice - (float) $discount['discount_value'];
                 $productData = [
                                 'instance' => 'SProducts',

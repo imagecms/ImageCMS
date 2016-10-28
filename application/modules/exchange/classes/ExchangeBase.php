@@ -30,7 +30,7 @@ abstract class ExchangeBase
 
     /**
      *
-     * @var type
+     * @var CI_DB_active_record
      */
     protected $db;
 
@@ -64,7 +64,7 @@ abstract class ExchangeBase
      */
     public static $stats = [];
 
-    private function __construct() {
+    protected function __construct() {
 
         $this->dataLoad = ExchangeDataLoad::getInstance();
         $this->locale = MY_Controller::getCurrentLocale();
@@ -89,6 +89,10 @@ abstract class ExchangeBase
         return self::$instances[$class];
     }
 
+    /**
+     * @param string $name
+     * @return array|bool|\SplFixedArray
+     */
     public function __get($name) {
 
         return $this->dataLoad->$name;
@@ -209,7 +213,6 @@ abstract class ExchangeBase
             return;
         }
 
-        //        $this->_updateBatchGroup($tableName, $data, $keyToComare); // error when more than 1 language
         $this->_updatePerOne($tableName, $data, $keyToCompare);
 
         // gathering statistics
@@ -283,7 +286,6 @@ abstract class ExchangeBase
         }
         $this->importData = $importData;
         $this->import_();
-        return;
     }
 
     /**

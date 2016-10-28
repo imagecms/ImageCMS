@@ -1,6 +1,8 @@
 <?php
 
 use CMSFactory\Events;
+use core\models\Route;
+use core\src\CoreFactory;
 
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
@@ -184,8 +186,8 @@ class Sitemap extends MY_Controller
 
         $this->load->module('core');
         $this->load->model('sitemap_model');
-        $this->langs = $this->core->langs;
-        $this->default_lang = $this->core->def_lang[0];
+        $this->langs = CoreFactory::getConfiguration()->getLanguages();
+        $this->default_lang = CoreFactory::getConfiguration()->getDefaultLanguage();
         if (uri_string() == 'sitemap.xml') {
             $this->build_xml_map();
             exit();
@@ -485,17 +487,17 @@ class Sitemap extends MY_Controller
         $shop_categories = $this->sitemap_model->get_shop_categories();
 
         // Add categories to Site Map
-        foreach ($shop_categories as $shopcat) {
+        foreach ($shop_categories as $shopCategory) {
 
-            if ($this->sitemap_model->categoryIsActive($shopcat['id'])) {
+            if ($this->sitemap_model->categoryIsActive($shopCategory['id'])) {
 
-                $localeSegment = $shopcat['locale'] == self::defaultLocale() ? '' : $shopcat['locale'] . '/';
+                $localeSegment = $shopCategory['locale'] == self::defaultLocale() ? '' : $shopCategory['locale'] . '/';
 
-                $url = $localeSegment . 'shop/category/' . $shopcat['full_path'];
+                $url = $localeSegment . Route::createRouteUrl($shopCategory['url'], $shopCategory['parent_url'], Route::TYPE_SHOP_CATEGORY);
                 if ($this->not_blocked_url($url)) {
 
                     // Check if category is subcategory
-                    if ((int) $shopcat['parent_id']) {
+                    if ((int) $shopCategory['parent_id']) {
                         $changefreq = $this->products_sub_categories_changefreq;
                         $priority = $this->products_sub_categories_priority;
                     } else {
@@ -504,10 +506,10 @@ class Sitemap extends MY_Controller
                     }
 
                     // create date
-                    if ($shopcat['updated'] > 0) {
-                        $date = date('Y-m-d', $shopcat['updated']);
+                    if ($shopCategory['updated'] > 0) {
+                        $date = date('Y-m-d', $shopCategory['updated']);
                     } else {
-                        $date = date('Y-m-d', $shopcat['created']);
+                        $date = date('Y-m-d', $shopCategory['created']);
                     }
 
                     $this->items[] = [
@@ -567,8 +569,9 @@ class Sitemap extends MY_Controller
             if ($this->sitemap_model->categoryIsActive($shopprod['category_id'])) {
 
                 $localeSegment = $shopprod['locale'] == self::defaultLocale() ? '' : $shopprod['locale'] . '/';
-                $url = site_url($localeSegment . 'shop/product/' . $shopprod['url']);
-                if ($this->not_blocked_url($localeSegment . 'shop/product/' . $shopprod['url'])) {
+                $url = site_url($localeSegment . Route::createRouteUrl($shopprod['url'], $shopprod['parent_url'], Route::TYPE_PRODUCT));
+
+                if ($this->not_blocked_url($localeSegment . Route::createRouteUrl($shopprod['url'], $shopprod['parent_url'], Route::TYPE_PRODUCT))) {
 
                     if ($shopprod['updated'] > 0) {
                         $date = date('Y-m-d', $shopprod['updated']);
@@ -739,6 +742,7 @@ class Sitemap extends MY_Controller
      */
     public function index() {
 
+        $this->template->registerMeta('ROBOTS', 'NOINDEX, NOFOLLOW');
         $categories = $this->lib_category->_build();
 
         $pages = $this->db

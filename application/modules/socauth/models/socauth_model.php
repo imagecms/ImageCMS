@@ -51,8 +51,8 @@ class Socauth_model extends CI_Model
 
     /**
      * Delete user social
-     * @param type $soc
-     * @return type
+     * @param string $soc
+     * @return bool
      */
     public function delUserSocial($soc) {
         return $this->db->delete('mod_social', ['social' => $soc, 'userId' => $this->dx_auth->get_user_id()]);
@@ -60,8 +60,8 @@ class Socauth_model extends CI_Model
 
     /**
      *
-     * @param type $id
-     * @return type
+     * @param int $id
+     * @return object
      */
     public function getUserSocInfoBySocId($id) {
         return $this->db
@@ -72,8 +72,8 @@ class Socauth_model extends CI_Model
 
     /**
      *
-     * @param type $email
-     * @return type
+     * @param string $email
+     * @return array
      */
     public function getUserByEmail($email) {
         return $this->db

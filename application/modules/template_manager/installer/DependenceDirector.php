@@ -18,7 +18,7 @@ class DependenceDirector
 
     /**
      * SilmpleXmlElement dependence node
-     * @var \SilmpleXmlElement
+     * @var \SimpleXMLElement
      */
     private $dependicies;
 
@@ -72,7 +72,7 @@ class DependenceDirector
 
     /**
      * Get error messages
-     * @return type
+     * @return string
      */
     public function getMessages() {
         return $this->messages;

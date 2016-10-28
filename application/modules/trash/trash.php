@@ -157,7 +157,7 @@ class Trash extends MY_Controller
         /** @var SProducts $model */
         $model = $arg['model'];
         $ci = &get_instance();
-        $ci->db->where('trash_url', 'shop/product/' . $model->getUrl())->delete('trash');
+        $ci->db->where('trash_url', $model->getRouteUrl())->delete('trash');
     }
 
     /**
@@ -182,14 +182,14 @@ class Trash extends MY_Controller
                 continue;
             }
 
-            $ci->db->where('trash_url', 'shop/product/' . $model->getUrl())->delete('trash');
+            $ci->db->where('trash_url', $model->getRouteUrl())->delete('trash');
             if (!$model->getActive()) {
                 $array = [
                           'trash_id'            => $model->getCategoryId(),
-                          'trash_url'           => 'shop/product/' . $model->getUrl(),
+                          'trash_url'           => $model->getRouteUrl(),
                           'trash_redirect_type' => 'category',
                           'trash_type'          => '302',
-                          'trash_redirect'      => shop_url('category/' . $model->getMainCategory()->getFullPath()),
+                          'trash_redirect'      => site_url($model->getMainCategory()->getRouteUrl()),
                          ];
                 $ci->db->insert('trash', $array);
             }
@@ -207,10 +207,10 @@ class Trash extends MY_Controller
         foreach ($models as $model) {
             $array = [
                       'trash_id'            => $model->getCategoryId(),
-                      'trash_url'           => 'shop/product/' . $model->getUrl(),
+                      'trash_url'           => $model->getRouteUrl(),
                       'trash_redirect_type' => 'category',
                       'trash_type'          => '301',
-                      'trash_redirect'      => shop_url('category/' . $model->getMainCategory()->getFullPath()),
+                      'trash_redirect'      => site_url($model->getMainCategory()->getRouteUrl()),
                      ];
             $ci->db->insert('trash', $array);
         }

@@ -11,10 +11,6 @@ final class Pages extends BaseFinder
 
     protected $nameColumn = 'content.title';
 
-    protected $urlColumn = 'content.url';
-
-    protected $categoryUrlColumn = 'content.cat_url';
-
     protected $langColumn = 'content.lang';
 
     public function getGroupName() {
@@ -31,8 +27,10 @@ final class Pages extends BaseFinder
         $languageId = $this->correctLocale($language);
         /* @var $db \CI_DB_active_record */
         $db = \CI::$APP->db;
-        $results = $db->select("$this->nameColumn, $this->urlColumn, $this->categoryUrlColumn")
+        $results = $db->select("$this->nameColumn")
+            ->select("IF(route.parent_url <> '', concat(route.parent_url, '/', route.url), route.url) as url", false)
             ->from($this->table)
+            ->join('route', 'route.id = content.route_id')
             ->like($this->nameColumn, $word)
             ->where($this->langColumn, $languageId)
             ->limit($limit)
@@ -40,7 +38,7 @@ final class Pages extends BaseFinder
             ->result_array();
         $result = new Result($this->getGroupName());
         foreach ($results as $oneResult) {
-            $result->addResult($oneResult['title'], $this->formUrl($oneResult['cat_url'] . $oneResult['url']));
+            $result->addResult($oneResult['title'], $this->formUrl($oneResult['url']));
         }
         return $result;
     }

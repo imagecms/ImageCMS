@@ -329,11 +329,10 @@ abstract class BannersQuery extends ModelCriteria
      * Example usage:
      * <code>
      * $query->filterByPlace('fooValue');   // WHERE place = 'fooValue'
-     * $query->filterByPlace('%fooValue%'); // WHERE place LIKE '%fooValue%'
+     * $query->filterByPlace('%fooValue%', Criteria::LIKE); // WHERE place LIKE '%fooValue%'
      * </code>
      *
      * @param     string $place The value to use as filter.
-     *              Accepts wildcards (* and % trigger a LIKE)
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return $this|ChildBannersQuery The current query, for fluid interface
@@ -437,11 +436,10 @@ abstract class BannersQuery extends ModelCriteria
      * Example usage:
      * <code>
      * $query->filterByEffects('fooValue');   // WHERE effects = 'fooValue'
-     * $query->filterByEffects('%fooValue%'); // WHERE effects LIKE '%fooValue%'
+     * $query->filterByEffects('%fooValue%', Criteria::LIKE); // WHERE effects LIKE '%fooValue%'
      * </code>
      *
      * @param     string $effects The value to use as filter.
-     *              Accepts wildcards (* and % trigger a LIKE)
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return $this|ChildBannersQuery The current query, for fluid interface
@@ -463,11 +461,10 @@ abstract class BannersQuery extends ModelCriteria
      * Example usage:
      * <code>
      * $query->filterByPageType('fooValue');   // WHERE page_type = 'fooValue'
-     * $query->filterByPageType('%fooValue%'); // WHERE page_type LIKE '%fooValue%'
+     * $query->filterByPageType('%fooValue%', Criteria::LIKE); // WHERE page_type LIKE '%fooValue%'
      * </code>
      *
      * @param     string $pageType The value to use as filter.
-     *              Accepts wildcards (* and % trigger a LIKE)
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return $this|ChildBannersQuery The current query, for fluid interface

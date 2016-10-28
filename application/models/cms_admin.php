@@ -21,7 +21,7 @@ class Cms_admin extends CI_Model
      * @return integer
      */
     public function add_page($data) {
-
+        unset($data['url'], $data['cat_url']);
         $this->db->limit(1);
         if (!$data['comments_count']) {
             $data['comments_count'] = 0;
@@ -38,6 +38,7 @@ class Cms_admin extends CI_Model
         if (!$data['lang_alias']) {
             $data['lang_alias'] = 0;
         }
+
         $this->db->insert('content', $data);
 
         return $this->db->insert_id();
@@ -71,7 +72,10 @@ class Cms_admin extends CI_Model
      */
     public function get_page($id) {
 
-        $this->db->where('id', $id);
+        $this->db
+            ->select('content.*, route.url')
+            ->where('content.id', $id)
+            ->join('route', 'route.id = content.route_id');
         $query = $this->db->get('content', 1);
 
         if ($query->num_rows > 0) {
@@ -102,6 +106,7 @@ class Cms_admin extends CI_Model
      */
     public function update_page($id, $data, $exists = false) {
 
+        unset($data['url'], $data['cat_url']);
         $lang_id = $this->input->post('lang_id');
         $pageExists = (int) $this->input->post('pageExists');
 
@@ -129,6 +134,7 @@ class Cms_admin extends CI_Model
      */
     public function create_category($data) {
 
+        unset($data['url']);
         $this->db->insert('category', $data);
 
         return $this->db->insert_id();
@@ -143,6 +149,7 @@ class Cms_admin extends CI_Model
      */
     public function update_category($data, $id) {
 
+        unset($data['url']);
         $this->db->where('id', $id);
         $this->db->update('category', $data);
     }
@@ -165,8 +172,10 @@ class Cms_admin extends CI_Model
      */
     public function get_category($id) {
 
-        $this->db->where('id', $id);
-        $query = $this->db->get('category', 1);
+        $query = $this->db
+            ->select('category.*, route.url')
+            ->where('category.id', $id)
+            ->join('route', 'route.id = category.route_id')->get('category', 1);
 
         if ($query->num_rows() > 0) {
             return $query->row_array();

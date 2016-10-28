@@ -152,7 +152,7 @@ class Cfcm_forms extends MY_Controller
                         'help_text' => lang('Tighten Ctrl to select multiple items', 'admin'),
                         'class'     => 'required',
                        ];
-        return $this->forms->add_fields($f);
+        return $this->forms->add_fields($f, true);
     }
 
     public function create_group_form() {

@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-03 10:12+0300\n"
-"PO-Revision-Date: 2016-08-03 10:12+0300\n"
+"POT-Creation-Date: 2016-10-14 03:50+0300\n"
+"PO-Revision-Date: 2016-10-14 03:50+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -21,6 +21,159 @@ msgstr ""
 "X-Poedit-SearchPath-2: ../../modules/shop/admin\n"
 "X-Poedit-SearchPath-3: ../../../application/modules/shop/models/build/classes\n"
 "X-Poedit-SearchPath-4: ../../../application/modules/shop/models2\n"
+
+#: application/modules/admin/pages.php:127
+#: application/modules/admin/pages.php:503
+msgid "This URL is already in use!"
+msgstr ""
+
+#: templates/administrator/js/admin_base_m.js:354
+msgid "Price Change"
+msgstr ""
+
+#: templates/administrator/js/admin_base_m.js:354
+msgid "successfully added"
+msgstr ""
+
+#: application/modules/shop/admin/templates/settings/settings.tpl:1283
+msgid "Product url"
+msgstr ""
+
+#: application/modules/shop/admin/templates/settings/settings.tpl:1296
+#: application/modules/shop/admin/templates/settings/settings.tpl:1342
+msgid "Prefix"
+msgstr ""
+
+#: application/modules/shop/admin/templates/settings/settings.tpl:1308
+#: application/modules/shop/admin/templates/settings/settings.tpl:1353
+msgid "Show parent url"
+msgstr ""
+
+#: application/modules/shop/admin/templates/settings/settings.tpl:1329
+msgid "Category url"
+msgstr ""
+
+#: application/modules/shop/admin/templates/products/default_edit.tpl:127
+msgid "Variant price"
+msgstr ""
+
+#: application/modules/shop/admin/templates/products/edit.tpl:6
+#: application/modules/shop/admin/templates/variantprice/list.tpl:54
+#: application/modules/shop/admin/variantprice.php:89
+#: application/modules/shop/admin/variantprice.php:167
+msgid "Name Type Variant"
+msgstr ""
+
+#: application/modules/shop/admin/templates/variantprice/create.tpl:6
+msgid "Creation of Variant Price Type"
+msgstr ""
+
+#: application/modules/shop/admin/templates/variantprice/create.tpl:51
+#: application/modules/shop/admin/templates/variantprice/edit.tpl:51
+#: application/modules/shop/admin/variantprice.php:91
+#: application/modules/shop/admin/variantprice.php:169
+msgid "Price type"
+msgstr ""
+
+#: application/modules/shop/admin/templates/variantprice/create.tpl:55
+#: application/modules/shop/admin/templates/variantprice/edit.tpl:55
+msgid "Procent"
+msgstr ""
+
+#: application/modules/shop/admin/templates/variantprice/create.tpl:61
+#: application/modules/shop/admin/templates/variantprice/edit.tpl:61
+#: application/modules/shop/admin/variantprice.php:92
+#: application/modules/shop/admin/variantprice.php:170
+msgid "User role"
+msgstr ""
+
+#: application/modules/shop/admin/templates/variantprice/create.tpl:73
+#: application/modules/shop/admin/templates/variantprice/edit.tpl:83
+msgid "Consider discount"
+msgstr ""
+
+#: application/modules/shop/admin/templates/variantprice/edit.tpl:6
+msgid "Editing Variant Price Type"
+msgstr ""
+
+#: application/modules/shop/admin/templates/variantprice/edit.tpl:73
+msgid "Show on Site"
+msgstr ""
+
+#: application/modules/shop/admin/templates/variantprice/list.tpl:6
+msgid "Category Price Variant"
+msgstr ""
+
+#: application/modules/shop/admin/templates/variantprice/list.tpl:9
+msgid "Remove your Price Variant?"
+msgstr ""
+
+#: application/modules/shop/admin/templates/variantprice/list.tpl:19
+msgid "Removing Price Variant"
+msgstr ""
+
+#: application/modules/shop/admin/templates/variantprice/list.tpl:20
+msgid "Remove Price Variant?"
+msgstr ""
+
+#: application/modules/shop/admin/templates/variantprice/list.tpl:28
+msgid "View Price Variant Type"
+msgstr ""
+
+#: application/modules/shop/admin/templates/variantprice/list.tpl:34
+msgid "Create Price Type"
+msgstr ""
+
+#: application/modules/shop/admin/templates/variantprice/list.tpl:55
+msgid "Used rbac role"
+msgstr ""
+
+#: application/modules/shop/admin/templates/variantprice/list.tpl:76
+msgid "Edit Price Variant"
+msgstr ""
+
+#: application/modules/shop/admin/templates/variantprice/list.tpl:96
+msgid "Empty Variant Price."
+msgstr ""
+
+#: application/modules/shop/admin/templates/orders/edit.tpl:321
+#: application/modules/shop/admin/templates/orders/list.tpl:237
+msgid "Deleted"
+msgstr ""
+
+#: application/modules/shop/admin/templates/customfields/create.tpl:44
+#: application/modules/shop/admin/customfields.php:39
+msgid "Product category"
+msgstr ""
+
+#: application/modules/shop/admin/templates/customfields/create.tpl:45
+#: application/modules/shop/admin/customfields.php:40
+msgid "Product brand"
+msgstr ""
+
+#: application/modules/shop/admin/templates/customfields/create.tpl:114
+msgid "Check Box"
+msgstr ""
+
+#: application/modules/shop/admin/variantprice.php:115
+msgid "Variant Price Type was created"
+msgstr ""
+
+#: application/modules/shop/admin/variantprice.php:438
+msgid "Not authorized"
+msgstr ""
+
+#: application/modules/shop/admin/settings.php:113
+msgid "Product url prefix"
+msgstr ""
+
+#: application/modules/shop/admin/settings.php:117
+msgid "Category url prefix"
+msgstr ""
+
+#: application/modules/shop/admin/products.php:1530
+msgid "Can not create category without name."
+msgstr ""
 
 #: application/modules/admin/components.php:437
 msgid "Please wait for a few minutes. Your configuration file is being created."
@@ -50,15 +203,11 @@ msgstr ""
 msgid "Change Show in menu. Module : "
 msgstr ""
 
-#: application/modules/admin/categories.php:362
+#: application/modules/admin/categories.php:381
 msgid "Can not delete main category"
 msgstr ""
 
-#: application/modules/admin/pages.php:519
-msgid "Page with the same URL in this category has been created yet. Specify or select another URL"
-msgstr ""
-
-#: application/modules/admin/pages.php:649
+#: application/modules/admin/pages.php:634
 msgid "Can not delete main page"
 msgstr ""
 
@@ -70,12 +219,12 @@ msgstr ""
 msgid "backup_maxsize must be numeric"
 msgstr ""
 
-#: templates/administrator/js/admin_base_i.js:1064
+#: templates/administrator/js/admin_base_i.js:1078
 msgid "Not Correct Url"
 msgstr ""
 
-#: templates/administrator/js/admin_base_i.js:1067
-#: templates/administrator/js/admin_base_i.js:1219
+#: templates/administrator/js/admin_base_i.js:1081
+#: templates/administrator/js/admin_base_i.js:1233
 msgid "Please specify url images"
 msgstr ""
 
@@ -92,42 +241,42 @@ msgid "Error restored. Root directory dont have permissions."
 msgstr ""
 
 #: application/modules/shop/admin/templates/settings/settings.tpl:26
-#: application/modules/shop/admin/templates/settings/settings.tpl:1229
+#: application/modules/shop/admin/templates/settings/settings.tpl:1231
 msgid "Search setting"
 msgstr ""
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:905
+#: application/modules/shop/admin/templates/settings/settings.tpl:907
 msgid "Consider the amount of products warehouse on adding to basket : "
 msgstr ""
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:1237
+#: application/modules/shop/admin/templates/settings/settings.tpl:1239
 msgid "Search options"
 msgstr ""
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:1240
-#: application/modules/shop/admin/templates/settings/settings.tpl:1253
+#: application/modules/shop/admin/templates/settings/settings.tpl:1242
+#: application/modules/shop/admin/templates/settings/settings.tpl:1255
 msgid "Full search"
 msgstr ""
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:1241
-#: application/modules/shop/admin/templates/settings/settings.tpl:1257
+#: application/modules/shop/admin/templates/settings/settings.tpl:1243
+#: application/modules/shop/admin/templates/settings/settings.tpl:1259
 msgid "Partial search"
 msgstr ""
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:1242
-#: application/modules/shop/admin/templates/settings/settings.tpl:1261
+#: application/modules/shop/admin/templates/settings/settings.tpl:1244
+#: application/modules/shop/admin/templates/settings/settings.tpl:1263
 msgid "Precision search"
 msgstr ""
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:1253
+#: application/modules/shop/admin/templates/settings/settings.tpl:1255
 msgid "Search goes both by name and by name variant, and then there is a search on the article."
 msgstr ""
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:1257
+#: application/modules/shop/admin/templates/settings/settings.tpl:1259
 msgid "Search goes by the name of the product and separately on behalf of the variants, and then there is a search on the article (work faster in all)."
 msgstr ""
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:1261
+#: application/modules/shop/admin/templates/settings/settings.tpl:1263
 msgid "Search is conducted on a strictly entered words, gives the ability to search for words up to 3 characters."
 msgstr ""
 
@@ -138,32 +287,30 @@ msgstr ""
 #: application/modules/shop/admin/templates/products/oneProductListItem.tpl:123
 #: application/modules/shop/admin/templates/products/oneProductListItem.tpl:130
 #: application/modules/shop/admin/templates/products/fastCreateForm.tpl:63
-#: application/modules/shop/admin/templates/search/list.tpl:68
-#: application/modules/shop/admin/templates/search/list.tpl:212
-#: application/modules/shop/admin/templates/search/list.tpl:357
-#: application/modules/shop/admin/templates/search/list.tpl:359
-#: application/modules/shop/admin/templates/search/list.tpl:495
-#: application/modules/shop/admin/templates/search/list.tpl:497
+#: application/modules/shop/admin/templates/search/list.tpl:70
+#: application/modules/shop/admin/templates/search/list.tpl:214
+#: application/modules/shop/admin/templates/search/list.tpl:367
+#: application/modules/shop/admin/templates/search/list.tpl:519
 msgid "Archive"
 msgstr ""
 
-#: application/modules/shop/admin/templates/products/default_edit.tpl:280
+#: application/modules/shop/admin/templates/products/default_edit.tpl:281
 msgid "Remove additional images"
 msgstr ""
 
-#: application/modules/shop/admin/templates/products/default_edit.tpl:283
+#: application/modules/shop/admin/templates/products/default_edit.tpl:284
 msgid "Remove this additional images?"
 msgstr ""
 
-#: application/modules/shop/admin/templates/products/default_edit.tpl:310
+#: application/modules/shop/admin/templates/products/default_edit.tpl:311
 msgid "Select additional images"
 msgstr ""
 
-#: application/modules/shop/admin/templates/products/default_edit.tpl:337
+#: application/modules/shop/admin/templates/products/default_edit.tpl:338
 msgid "Chose all photos"
 msgstr ""
 
-#: application/modules/shop/admin/templates/products/default_edit.tpl:382
+#: application/modules/shop/admin/templates/products/default_edit.tpl:383
 msgid "Additional images list is empty"
 msgstr ""
 
@@ -194,16 +341,16 @@ msgstr ""
 msgid "ID / Title / Vendor Code"
 msgstr ""
 
-#: application/modules/shop/admin/templates/categories/create.tpl:150
-#: application/modules/shop/admin/templates/categories/edit.tpl:173
+#: application/modules/shop/admin/templates/categories/create.tpl:181
+#: application/modules/shop/admin/templates/categories/edit.tpl:218
 msgid "Show category in main menu"
 msgstr ""
 
-#: application/modules/shop/admin/templates/search/list.tpl:75
+#: application/modules/shop/admin/templates/search/list.tpl:77
 msgid "Update indexation name in the search"
 msgstr ""
 
-#: application/modules/shop/admin/templates/search/list.tpl:75
+#: application/modules/shop/admin/templates/search/list.tpl:77
 msgid "Update index products"
 msgstr ""
 
@@ -231,7 +378,7 @@ msgstr ""
 msgid "Initial orders will be deleted!"
 msgstr ""
 
-#: application/modules/shop/admin/templates/customfields/list.tpl:70
+#: application/modules/shop/admin/templates/customfields/list.tpl:74
 msgid "Editing field"
 msgstr ""
 
@@ -248,32 +395,34 @@ msgstr ""
 msgid "Enter value and press + button"
 msgstr ""
 
-#: application/modules/shop/admin/properties.php:525
+#: application/modules/shop/admin/properties.php:536
+#: application/modules/shop/admin/variantprice.php:149
+#: application/modules/shop/admin/variantprice.php:159
 msgid "Page not found"
 msgstr ""
 
-#: application/modules/shop/admin/properties.php:543
+#: application/modules/shop/admin/properties.php:554
 msgid "No such property"
 msgstr ""
 
-#: application/modules/shop/admin/properties.php:547
+#: application/modules/shop/admin/properties.php:558
 msgid "Value |value| already exists"
 msgstr ""
 
-#: application/modules/shop/admin/properties.php:551
+#: application/modules/shop/admin/properties.php:562
 msgid "New value created"
 msgstr ""
 
-#: application/modules/shop/admin/categories.php:666
+#: application/modules/shop/admin/categories.php:577
 msgid "Category don't show in menu."
 msgstr ""
 
-#: application/modules/shop/admin/categories.php:666
+#: application/modules/shop/admin/categories.php:577
 msgid "Category show in menu."
 msgstr ""
 
-#: application/modules/shop/admin/brands.php:173
-#: application/modules/shop/admin/brands.php:283
+#: application/modules/shop/admin/brands.php:197
+#: application/modules/shop/admin/brands.php:353
 msgid "Failed generate URL"
 msgstr ""
 
@@ -281,11 +430,11 @@ msgstr ""
 msgid "First element array of values for the number of products on site must be mush number of products on site"
 msgstr ""
 
-#: application/modules/shop/admin/settings.php:462
+#: application/modules/shop/admin/settings.php:476
 msgid "Status saved"
 msgstr ""
 
-#: application/modules/shop/admin/settings.php:464
+#: application/modules/shop/admin/settings.php:478
 msgid "Change sorting status"
 msgstr ""
 
@@ -294,44 +443,44 @@ msgstr ""
 msgid "Users can see only those sets in which all items are active"
 msgstr ""
 
-#: templates/administrator/js/functions.js:1519
+#: templates/administrator/js/functions.js:1520
 msgid "Can not deactivate default language"
 msgstr ""
 
 #: templates/administrator/settings_site.tpl:26
-#: templates/administrator/settings_site.tpl:631
+#: templates/administrator/settings_site.tpl:742
 msgid "Users registration"
 msgstr ""
 
-#: templates/administrator/settings_site.tpl:108
+#: templates/administrator/settings_site.tpl:119
 msgid "Site redirect"
 msgstr ""
 
-#: templates/administrator/settings_site.tpl:114
+#: templates/administrator/settings_site.tpl:125
 msgid "Without redirect"
 msgstr ""
 
-#: templates/administrator/settings_site.tpl:117
+#: templates/administrator/settings_site.tpl:128
 msgid "From www.|site| to |site|"
 msgstr ""
 
-#: templates/administrator/settings_site.tpl:120
+#: templates/administrator/settings_site.tpl:131
 msgid "From |site| to www.|site|"
 msgstr ""
 
-#: templates/administrator/settings_site.tpl:645
+#: templates/administrator/settings_site.tpl:758
 msgid "Users registration role"
 msgstr ""
 
-#: templates/administrator/settings_site.tpl:650
+#: templates/administrator/settings_site.tpl:766
 msgid "Without role"
 msgstr ""
 
-#: application/modules/shop/admin/orders.php:1018
+#: application/modules/shop/admin/orders.php:1071
 msgid "Order_No_"
 msgstr ""
 
-#: application/modules/shop/admin/orders.php:1018
+#: application/modules/shop/admin/orders.php:1071
 msgid "Orders_check"
 msgstr ""
 
@@ -339,7 +488,7 @@ msgstr ""
 msgid "You can upload only |max_file_uploads| images at once"
 msgstr ""
 
-#: templates/administrator/settings_site.tpl:214
+#: templates/administrator/settings_site.tpl:240
 msgid "Use Enhanced Ecommerce - Web Tracking"
 msgstr ""
 
@@ -352,19 +501,19 @@ msgstr ""
 msgid "User role changed."
 msgstr ""
 
-#: application/modules/shop/admin/orders.php:850
+#: application/modules/shop/admin/orders.php:892
 msgid "Choose more then one order"
 msgstr ""
 
-#: application/modules/shop/admin/orders.php:866
+#: application/modules/shop/admin/orders.php:908
 msgid "Selected orders must have the same payment status"
 msgstr ""
 
-#: application/modules/shop/admin/orders.php:872
+#: application/modules/shop/admin/orders.php:914
 msgid "Choose orders with the same users"
 msgstr ""
 
-#: application/modules/shop/admin/orders.php:969
+#: application/modules/shop/admin/orders.php:1011
 msgid "Orders successfully merged"
 msgstr ""
 
@@ -382,16 +531,16 @@ msgstr ""
 msgid "Print"
 msgstr ""
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:926
+#: application/modules/shop/admin/templates/settings/settings.tpl:928
 #: application/modules/shop/admin/settings.php:109
 msgid "Order minimum price"
 msgstr ""
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:931
+#: application/modules/shop/admin/templates/settings/settings.tpl:933
 msgid "Disallow to create order with price(without discounts) less than this value"
 msgstr ""
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:932
+#: application/modules/shop/admin/templates/settings/settings.tpl:934
 msgid "If value is not specified price will not check"
 msgstr ""
 
@@ -415,7 +564,7 @@ msgstr ""
 msgid "Users list is empty"
 msgstr ""
 
-#: application/modules/shop/admin/products.php:891
+#: application/modules/shop/admin/products.php:897
 msgid "Successfully changed"
 msgstr ""
 
@@ -443,33 +592,32 @@ msgstr ""
 msgid "Select Some Options"
 msgstr ""
 
-#: application/modules/shop/admin/orders.php:464
+#: application/modules/shop/admin/orders.php:494
 msgid "Quantity can not be less then 1"
 msgstr ""
 
-#: application/modules/shop/admin/orders.php:1247
+#: application/modules/shop/admin/orders.php:1301
 msgid "%s can not be less then 1"
 msgstr ""
 
 #: application/modules/shop/admin/templates/products/create.tpl:32
-#: application/modules/shop/admin/templates/products/edit.tpl:38
+#: application/modules/shop/admin/templates/products/edit.tpl:89
 msgid "E-goods"
 msgstr ""
 
-#: application/modules/shop/admin/templates/products/edit.tpl:48
-#: application/modules/shop/admin/templates/products/edit.tpl:52
+#: application/modules/shop/admin/templates/products/edit.tpl:99
 msgid "View on site"
 msgstr ""
 
-#: application/modules/shop/admin/templates/products/edit.tpl:70
+#: application/modules/shop/admin/templates/products/edit.tpl:116
 msgid "Next product"
 msgstr "Next"
 
 #: application/modules/shop/admin/templates/properties/create.tpl:44
 #: application/modules/shop/admin/templates/properties/edit.tpl:39
-#: application/modules/shop/admin/properties.php:236
-#: application/modules/shop/admin/properties.php:313
-#: application/modules/shop/admin/properties.php:431
+#: application/modules/shop/admin/properties.php:240
+#: application/modules/shop/admin/properties.php:317
+#: application/modules/shop/admin/properties.php:435
 msgid "CSV column name"
 msgstr ""
 
@@ -485,7 +633,7 @@ msgstr ""
 msgid "Report an error"
 msgstr ""
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:778
+#: application/modules/shop/admin/templates/settings/settings.tpl:780
 msgid "Email for sending notifications about new Callbacks"
 msgstr "Email for sending notifications about new Callbacks"
 
@@ -493,7 +641,7 @@ msgstr "Email for sending notifications about new Callbacks"
 msgid "Notified email"
 msgstr "Notified email"
 
-#: application/modules/admin/settings.php:204
+#: application/modules/admin/settings.php:255
 msgid "Admin email"
 msgstr "Admin email"
 
@@ -521,7 +669,7 @@ msgstr "A user with this email already exists"
 msgid "ID / Full Name / Email"
 msgstr "ID / Full name / E-mail"
 
-#: application/modules/admin/admin.php:218
+#: application/modules/admin/admin.php:212
 msgid "Your Email"
 msgstr "Your e-mail"
 
@@ -529,7 +677,7 @@ msgstr "Your e-mail"
 msgid "Please check your email for instructions on how to activate the new password."
 msgstr "Please check your e-mail for instructions on how to activate the new password"
 
-#: application/modules/shop/admin/templates/search/list.tpl:233
+#: application/modules/shop/admin/templates/search/list.tpl:238
 msgid "Create fast product"
 msgstr "Create"
 
@@ -557,25 +705,25 @@ msgstr ""
 msgid "First"
 msgstr ""
 
-#: application/modules/admin/widgets_manager.php:325
-#: application/modules/admin/widgets_manager.php:394
+#: application/modules/admin/widgets_manager.php:326
+#: application/modules/admin/widgets_manager.php:395
 msgid "Widget settings edited"
 msgstr ""
 
-#: application/modules/admin/widgets_manager.php:485
-#: application/modules/admin/widgets_manager.php:498
+#: application/modules/admin/widgets_manager.php:484
+#: application/modules/admin/widgets_manager.php:502
 msgid "Widget edited"
 msgstr ""
 
-#: application/modules/admin/categories.php:167
+#: application/modules/admin/categories.php:169
 msgid "Pages category created"
 msgstr ""
 
-#: application/modules/admin/categories.php:438
+#: application/modules/admin/categories.php:461
 msgid "Pages categories deleted"
 msgstr ""
 
-#: application/modules/admin/categories.php:440
+#: application/modules/admin/categories.php:463
 msgid "Pages category deleted"
 msgstr ""
 
@@ -603,11 +751,11 @@ msgstr ""
 msgid "Category editing"
 msgstr ""
 
-#: templates/administrator/js/admin_base_i.js:1076
+#: templates/administrator/js/admin_base_i.js:1090
 msgid "Empty list"
 msgstr ""
 
-#: templates/administrator/js/admin_base_i.js:1151
+#: templates/administrator/js/admin_base_i.js:1165
 msgid "No results for your query"
 msgstr ""
 
@@ -615,14 +763,14 @@ msgstr ""
 msgid "Instructions for filling"
 msgstr ""
 
-#: application/modules/shop/admin/customfields.php:174
+#: application/modules/shop/admin/customfields.php:206
 msgid "Custom field edited"
 msgstr ""
 
 #: application/modules/shop/admin/notifications.php:230
-#: application/modules/shop/admin/orders.php:113
-#: application/modules/shop/admin/orders.php:115
-#: application/modules/shop/admin/orders.php:159
+#: application/modules/shop/admin/orders.php:104
+#: application/modules/shop/admin/orders.php:106
+#: application/modules/shop/admin/orders.php:189
 msgid "Id:"
 msgstr ""
 
@@ -630,7 +778,7 @@ msgstr ""
 msgid "Arrival notification status was deleted"
 msgstr ""
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:160
+#: application/modules/shop/admin/templates/settings/settings.tpl:162
 msgid "dont show"
 msgstr ""
 
@@ -638,35 +786,35 @@ msgstr ""
 msgid "no delivery"
 msgstr ""
 
-#: application/modules/shop/admin/orders.php:159
+#: application/modules/shop/admin/orders.php:189
 msgid "Order status changed to"
 msgstr ""
 
-#: application/modules/shop/admin/orders.php:113
+#: application/modules/shop/admin/orders.php:104
 msgid "Order paid status changed to Paid"
 msgstr ""
 
-#: application/modules/shop/admin/orders.php:115
+#: application/modules/shop/admin/orders.php:106
 msgid "Order paid status changed to Not paid"
 msgstr ""
 
-#: application/modules/shop/admin/products.php:1171
+#: application/modules/shop/admin/products.php:1195
 msgid "Created product clone. Id:"
 msgstr ""
 
-#: application/modules/shop/admin/products.php:1173
+#: application/modules/shop/admin/products.php:1197
 msgid "Copy product ID:"
 msgstr ""
 
-#: application/modules/shop/admin/products.php:1282
+#: application/modules/shop/admin/products.php:1307
 msgid "Product Id:"
 msgstr ""
 
-#: application/modules/shop/admin/products.php:1282
+#: application/modules/shop/admin/products.php:1307
 msgid "moved in category. Category Id:"
 msgstr ""
 
-#: application/modules/shop/admin/settings.php:139
+#: application/modules/shop/admin/settings.php:147
 msgid "Specify the correct path to watermark image"
 msgstr ""
 
@@ -674,28 +822,28 @@ msgstr ""
 msgid "Notification status changed to"
 msgstr ""
 
-#: application/modules/shop/admin/categories.php:98
+#: application/modules/shop/admin/categories.php:83
 msgid "Category activated."
 msgstr ""
 
-#: application/modules/shop/admin/categories.php:98
+#: application/modules/shop/admin/categories.php:83
 msgid "Category deactivated."
 msgstr ""
 
-#: application/modules/shop/admin/categories.php:99
-#: application/modules/shop/admin/categories.php:667
+#: application/modules/shop/admin/categories.php:84
+#: application/modules/shop/admin/categories.php:578
 msgid "Category ID:"
 msgstr ""
 
-#: templates/administrator/settings_site.tpl:63
+#: templates/administrator/settings_site.tpl:65
 msgid "Select admin language"
 msgstr "Admin panel language"
 
-#: application/modules/shop/admin/categories.php:324
+#: application/modules/shop/admin/categories.php:303
 msgid "Category deleted"
 msgstr "Category deleted/ Category has been deleted"
 
-#: application/modules/shop/admin/categories.php:325
+#: application/modules/shop/admin/categories.php:304
 msgid "Category deleted successfully"
 msgstr "Category were deleted"
 
@@ -707,39 +855,39 @@ msgstr "Caution! All category products will be delited"
 msgid "Remove selected categories"
 msgstr "Sure you want to delete the selected categories"
 
-#: application/modules/admin/categories.php:558
+#: application/modules/admin/categories.php:581
 msgid "Category has been created or created a category"
 msgstr "Category has been created or created a category"
 
-#: application/modules/admin/categories.php:159
+#: application/modules/admin/categories.php:161
 msgid "Category has been created"
 msgstr "Category has been created"
 
-#: application/modules/shop/admin/categories.php:166
-#: application/modules/shop/admin/categories.php:167
-#: application/modules/shop/admin/categories.php:263
-#: application/modules/shop/admin/products.php:1496
+#: application/modules/shop/admin/categories.php:145
+#: application/modules/shop/admin/categories.php:146
+#: application/modules/shop/admin/categories.php:242
+#: application/modules/shop/admin/products.php:1521
 msgid "Category created"
 msgstr "Category was created"
 
-#: application/modules/admin/categories.php:377
-#: application/modules/admin/categories.php:409
+#: application/modules/admin/categories.php:398
+#: application/modules/admin/categories.php:432
 msgid "Deleted ID category or ID category has been deleted"
 msgstr "Deleted ID category or ID category has been deleted"
 
-#: application/modules/admin/categories.php:700
+#: application/modules/admin/categories.php:723
 msgid "Translated the category"
 msgstr "Category has been translated/ Category translated "
 
-#: application/modules/admin/categories.php:202
+#: application/modules/admin/categories.php:208
 msgid "Changed the category"
 msgstr "Category has been changed/ Category changed"
 
-#: application/modules/admin/categories.php:327
+#: application/modules/admin/categories.php:346
 msgid "The file has been successfully created"
 msgstr "Template file was created"
 
-#: application/modules/admin/categories.php:209
+#: application/modules/admin/categories.php:215
 #: application/modules/admin/sys_update.php:205
 msgid "Changes saved"
 msgstr "Changes were saved"
@@ -754,8 +902,8 @@ msgstr "Save and exit"
 
 #: application/modules/shop/admin/templates/products/oneProductListItem.tpl:64
 #: application/modules/shop/admin/templates/categories/_listItem.tpl:36
-#: application/modules/shop/admin/templates/search/list.tpl:318
-#: application/modules/shop/admin/templates/search/list.tpl:458
+#: application/modules/shop/admin/templates/search/list.tpl:323
+#: application/modules/shop/admin/templates/search/list.tpl:477
 msgid "Edit category"
 msgstr "Edit category"
 
@@ -767,8 +915,8 @@ msgstr "Editing a category ID"
 msgid "edit category"
 msgstr "edit category"
 
-#: application/modules/shop/admin/templates/categories/create.tpl:121
-#: application/modules/shop/admin/templates/categories/edit.tpl:141
+#: application/modules/shop/admin/templates/categories/create.tpl:149
+#: application/modules/shop/admin/templates/categories/edit.tpl:179
 msgid "Sorting method by default"
 msgstr "Sort by default"
 
@@ -797,14 +945,16 @@ msgstr "Add new category"
 msgid "go to the website"
 msgstr "Show on site"
 
-#: application/modules/shop/admin/properties.php:678
-#: application/modules/shop/admin/categories.php:627
+#: application/modules/shop/admin/properties.php:692
+#: application/modules/shop/admin/categories.php:538
+#: application/modules/shop/admin/customfields.php:344
 #: application/modules/shop/admin/deliverymethods.php:248
 #: application/modules/shop/admin/notificationstatuses.php:212
-#: application/modules/shop/admin/brands.php:570
-#: application/modules/shop/admin/search.php:245
-#: application/modules/shop/admin/paymentmethods.php:227
-#: application/modules/shop/admin/settings.php:477
+#: application/modules/shop/admin/brands.php:619
+#: application/modules/shop/admin/variantprice.php:415
+#: application/modules/shop/admin/search.php:278
+#: application/modules/shop/admin/paymentmethods.php:243
+#: application/modules/shop/admin/settings.php:491
 msgid "Positions saved"
 msgstr "Positions were saved"
 
@@ -827,22 +977,23 @@ msgid "Removing status"
 msgstr "Delete arrival notification status"
 
 #: application/modules/shop/admin/notificationstatuses.php:133
+#: application/modules/shop/admin/variantprice.php:190
 msgid "Changes were saved"
 msgstr "Changes were saved"
 
-#: application/modules/shop/admin/customfields.php:175
+#: application/modules/shop/admin/customfields.php:207
 #: application/modules/shop/admin/deliverymethods.php:168
 #: application/modules/shop/admin/orderstatuses.php:188
 #: application/modules/shop/admin/currencies.php:151
 #: application/modules/shop/admin/notificationstatuses.php:132
 #: application/modules/shop/admin/users.php:448
 #: application/modules/shop/admin/users.php:465
-#: application/modules/shop/admin/brands.php:353
-#: application/modules/shop/admin/brands.php:527
+#: application/modules/shop/admin/brands.php:423
+#: application/modules/shop/admin/brands.php:572
 #: application/modules/shop/admin/kits.php:194
 #: application/modules/shop/admin/kits.php:242
-#: application/modules/shop/admin/paymentmethods.php:168
-#: application/modules/shop/admin/settings.php:332
+#: application/modules/shop/admin/paymentmethods.php:184
+#: application/modules/shop/admin/settings.php:346
 msgid "Changes have been saved"
 msgstr "Changes were saved"
 
@@ -867,6 +1018,7 @@ msgstr "Status pending not found"
 msgid "Creation of Status pending"
 msgstr "Creating an arrival notification status"
 
+#: application/modules/shop/admin/templates/variantprice/edit.tpl:21
 #: application/modules/shop/admin/templates/notificationstatuses/edit.tpl:22
 msgid "Callback status data"
 msgstr "Information"
@@ -895,7 +1047,7 @@ msgstr ""
 #: templates/administrator/lang_create.tpl:11
 #: templates/administrator/sys_update_info.tpl:12
 #: templates/administrator/backup.tpl:10
-#: templates/administrator/settings_site.tpl:11
+#: templates/administrator/settings_site.tpl:10
 msgid "Go back"
 msgstr "Go back"
 
@@ -952,7 +1104,7 @@ msgstr "Callbacks list"
 msgid "Background Color"
 msgstr "Background Color"
 
-#: application/modules/shop/admin/orders.php:2081
+#: application/modules/shop/admin/orders.php:2078
 msgid "&nbsp;Back"
 msgstr "&nbsp;Back"
 
@@ -981,15 +1133,15 @@ msgstr "Back"
 msgid "All Callbacks "
 msgstr "All Call me backs"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:844
+#: application/modules/shop/admin/templates/settings/settings.tpl:846
 msgid " Callback request date"
 msgstr " Callback request date"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:840
+#: application/modules/shop/admin/templates/settings/settings.tpl:842
 msgid "Username requested a callback"
 msgstr "Username requested a callback"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:846
+#: application/modules/shop/admin/templates/settings/settings.tpl:848
 msgid "Comments by a callback user"
 msgstr "Comments by a user callback"
 
@@ -997,7 +1149,7 @@ msgstr "Comments by a user callback"
 msgid "Maximum backup size"
 msgstr "Maximum backup size"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:842
+#: application/modules/shop/admin/templates/settings/settings.tpl:844
 msgid "User telephone number requested a callback"
 msgstr "User telephone number requested a callback"
 
@@ -1014,7 +1166,7 @@ msgstr "Callbacks"
 msgid "Callback"
 msgstr "Callback"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:772
+#: application/modules/shop/admin/templates/settings/settings.tpl:774
 msgid "Send notification about new callback to administrator"
 msgstr "Send notification about new callback to administrator"
 
@@ -1054,7 +1206,7 @@ msgstr "Create call me back theme"
 msgid "Create Backup"
 msgstr "Create Backup"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:1203
+#: application/modules/shop/admin/templates/settings/settings.tpl:1205
 msgid "Message about a callback"
 msgstr "Message about a callback"
 
@@ -1089,6 +1241,7 @@ msgstr "Call me back themes"
 msgid "Empty callbacks status list."
 msgstr "Empty callbacks status list."
 
+#: application/modules/shop/admin/templates/variantprice/create.tpl:21
 #: application/modules/shop/admin/templates/notificationstatuses/create.tpl:21
 msgid "General information"
 msgstr "Information"
@@ -1099,19 +1252,19 @@ msgstr "Information"
 msgid "Create status"
 msgstr "Add status"
 
-#: application/modules/shop/admin/templates/search/list.tpl:529
+#: application/modules/shop/admin/templates/search/list.tpl:562
 #: application/modules/shop/admin/templates/search/advanced.tpl:187
 msgid "Drag product variant"
 msgstr "Drag product option"
 
-#: application/modules/admin/widgets_manager.php:328
-#: application/modules/admin/widgets_manager.php:392
-#: application/modules/admin/widgets_manager.php:399
+#: application/modules/admin/widgets_manager.php:329
+#: application/modules/admin/widgets_manager.php:393
+#: application/modules/admin/widgets_manager.php:400
 #: application/modules/admin/languages.php:413
 msgid "Changes has been saved"
 msgstr "Changes were saved"
 
-#: application/modules/shop/admin/templates/products/edit.tpl:110
+#: application/modules/shop/admin/templates/products/edit.tpl:156
 #: application/modules/shop/admin/templates/products/_edit.tpl:681
 #: application/modules/shop/admin/templates/kits/index.tpl:7
 msgid "Kit removal"
@@ -1125,7 +1278,7 @@ msgstr "Do you really want to delete selected kits?"
 msgid "Do you really want to delete the status?"
 msgstr "Do you really want to delete the status?"
 
-#: application/modules/shop/admin/templates/products/edit.tpl:113
+#: application/modules/shop/admin/templates/products/edit.tpl:159
 msgid "Do you really want to delete this kit"
 msgstr "Sure you want to delete this kit"
 
@@ -1137,7 +1290,7 @@ msgstr "Edit kit"
 msgid "Edit product kit"
 msgstr "Edit product kit"
 
-#: application/modules/shop/admin/properties.php:482
+#: application/modules/shop/admin/properties.php:490
 msgid "Property edited"
 msgstr "Feature edited"
 
@@ -1150,13 +1303,13 @@ msgstr "Edit feature"
 msgid "Editing brand"
 msgstr "Edit manufacturer"
 
-#: application/modules/shop/admin/brands.php:352
+#: application/modules/shop/admin/brands.php:422
 msgid "Brand edited"
 msgstr "Manufacturer was edited"
 
 #: application/modules/shop/admin/templates/products/oneProductListItem.tpl:43
-#: application/modules/shop/admin/templates/search/list.tpl:297
-#: application/modules/shop/admin/templates/search/list.tpl:437
+#: application/modules/shop/admin/templates/search/list.tpl:302
+#: application/modules/shop/admin/templates/search/list.tpl:456
 #: application/modules/shop/admin/templates/brands/list.tpl:97
 msgid "Edit brand"
 msgstr "Edit manufacturer"
@@ -1178,7 +1331,7 @@ msgstr "Shipping option was edited"
 msgid "Properties editing"
 msgstr "Edit feature"
 
-#: application/modules/shop/admin/categories.php:393
+#: application/modules/shop/admin/categories.php:373
 msgid "Category edited"
 msgstr "Category edited"
 
@@ -1190,19 +1343,19 @@ msgstr "User edited"
 msgid "Kit edited"
 msgstr "Kit edited"
 
-#: application/modules/shop/admin/paymentmethods.php:124
+#: application/modules/shop/admin/paymentmethods.php:136
 msgid "Status payment was edited"
 msgstr "Status payment was edited"
 
-#: application/modules/shop/admin/paymentmethods.php:167
+#: application/modules/shop/admin/paymentmethods.php:183
 msgid "Payment method was edited"
 msgstr "Payment method was edited"
 
-#: application/modules/shop/admin/orders.php:1761
+#: application/modules/shop/admin/orders.php:1755
 msgid "Order edited"
 msgstr "Order edited"
 
-#: application/modules/shop/admin/products.php:774
+#: application/modules/shop/admin/products.php:773
 msgid "The product was edited"
 msgstr "The product was edited"
 
@@ -1252,7 +1405,7 @@ msgstr "Currency edit"
 msgid "Widget editing"
 msgstr "Widget editing"
 
-#: application/modules/shop/admin/templates/customfields/edit.tpl:7
+#: application/modules/shop/admin/templates/customfields/edit.tpl:6
 msgid "Editing a custom field"
 msgstr "Editing a custom field"
 
@@ -1306,11 +1459,11 @@ msgstr "Language edit"
 msgid "Roles group edit"
 msgstr "Roles group edit"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:99
+#: application/modules/shop/admin/templates/settings/settings.tpl:101
 #: application/modules/shop/admin/templates/products/default_edit.tpl:105
-#: application/modules/shop/admin/templates/products/create.tpl:154
-#: application/modules/shop/admin/templates/products/create.tpl:489
-#: application/modules/shop/admin/templates/products/edit.tpl:152
+#: application/modules/shop/admin/templates/products/create.tpl:153
+#: application/modules/shop/admin/templates/products/create.tpl:488
+#: application/modules/shop/admin/templates/products/edit.tpl:198
 #: application/modules/shop/admin/templates/paymentmethods/list.tpl:69
 #: application/modules/shop/admin/templates/deliverymethods/list.tpl:69
 msgid "Edit"
@@ -1329,7 +1482,7 @@ msgstr "Edit comment"
 
 #: application/modules/shop/admin/templates/dashboard/dashboard.tpl:147
 #: application/modules/shop/admin/templates/dashboard/dashboard.tpl:195
-#: application/modules/shop/admin/templates/orders/edit.tpl:142
+#: application/modules/shop/admin/templates/orders/edit.tpl:151
 #: application/modules/shop/admin/templates/orders/list.tpl:214
 #: application/modules/shop/admin/templates/users/list.tpl:161
 msgid "Edit user"
@@ -1348,11 +1501,11 @@ msgstr "Edit page"
 #: application/modules/shop/admin/templates/products/oneProductListItem.tpl:25
 #: application/modules/shop/admin/templates/kits/index.tpl:69
 #: application/modules/shop/admin/templates/kits/index.tpl:77
-#: application/modules/shop/admin/templates/search/list.tpl:281
-#: application/modules/shop/admin/templates/search/list.tpl:421
+#: application/modules/shop/admin/templates/search/list.tpl:286
+#: application/modules/shop/admin/templates/search/list.tpl:440
 #: application/modules/shop/admin/templates/notifications/edit.tpl:135
-#: application/modules/shop/admin/templates/orders/edit.tpl:268
-#: application/modules/shop/admin/templates/orders/edit.tpl:316
+#: application/modules/shop/admin/templates/orders/edit.tpl:293
+#: application/modules/shop/admin/templates/orders/edit.tpl:360
 msgid "Edit product"
 msgstr "Edit product"
 
@@ -1371,7 +1524,7 @@ msgstr "Save and edit"
 msgid " Save and edit"
 msgstr " Save and edit"
 
-#: templates/administrator/settings_site.tpl:128
+#: templates/administrator/settings_site.tpl:140
 msgid "Text editor"
 msgstr "Text editor"
 
@@ -1379,7 +1532,7 @@ msgstr "Text editor"
 msgid "enter a valid credit card number"
 msgstr "enter a valid credit card number"
 
-#: application/modules/shop/admin/products.php:775
+#: application/modules/shop/admin/products.php:774
 msgid "The product was successfully edited"
 msgstr "Changes were saved"
 
@@ -1406,8 +1559,8 @@ msgstr "Remove selected manufacturers?"
 msgid "Remove brands?"
 msgstr "Remove manufacturers?"
 
-#: application/modules/shop/admin/brands.php:405
-#: application/modules/shop/admin/brands.php:406
+#: application/modules/shop/admin/brands.php:507
+#: application/modules/shop/admin/brands.php:508
 msgid "Brand (s) has been successfully removed (s)"
 msgstr "Manufacturer (s) has been successfully removed (s)"
 
@@ -1456,7 +1609,7 @@ msgstr "Kits has been removed"
 msgid "Kit has been removed"
 msgstr "Kit has been removed"
 
-#: application/modules/shop/admin/products.php:1196
+#: application/modules/shop/admin/products.php:1225
 msgid "The product was removed"
 msgstr "The product was removed"
 
@@ -1469,7 +1622,7 @@ msgstr "Notifications Removed"
 msgid "Currency successfully removed"
 msgstr "Currency successfully removed"
 
-#: application/modules/shop/admin/orders.php:206
+#: application/modules/shop/admin/orders.php:235
 msgid "Orders are removed"
 msgstr "Orders are removed"
 
@@ -1490,8 +1643,8 @@ msgstr "Unable to remove the main currency"
 msgid "Failure to remove variant"
 msgstr "Failure to remove variant"
 
-#: application/modules/shop/admin/customfields.php:241
-#: application/modules/shop/admin/customfields.php:242
+#: application/modules/shop/admin/customfields.php:280
+#: application/modules/shop/admin/customfields.php:281
 msgid "Field is removed"
 msgstr "Field is removed"
 
@@ -1504,8 +1657,8 @@ msgstr "Members removed"
 msgid "Conversion completed. Now the currency may be removed"
 msgstr "Conversion completed. Now the currency may be removed"
 
-#: application/modules/shop/admin/paymentmethods.php:207
-#: application/modules/shop/admin/paymentmethods.php:208
+#: application/modules/shop/admin/paymentmethods.php:223
+#: application/modules/shop/admin/paymentmethods.php:224
 msgid "Method of payment is removed"
 msgstr "Method of payment is removed"
 
@@ -1514,8 +1667,8 @@ msgstr "Method of payment is removed"
 msgid "Status and related orders removed"
 msgstr "Status and related orders removed"
 
-#: application/modules/shop/admin/orders.php:269
-#: application/modules/shop/admin/orders.php:286
+#: application/modules/shop/admin/orders.php:298
+#: application/modules/shop/admin/orders.php:315
 msgid "Product is removed from the Order"
 msgstr "Product is removed from the Order"
 
@@ -1524,13 +1677,13 @@ msgstr "Product is removed from the Order"
 msgid "Role remove"
 msgstr "Role remove"
 
-#: application/modules/shop/admin/templates/customfields/list.tpl:18
+#: application/modules/shop/admin/templates/customfields/list.tpl:20
 msgid "Remove the field?"
 msgstr "Remove the field?"
 
 #: templates/administrator/inc/javascriptVars.tpl:111
-#: templates/administrator/settings_site.tpl:585
-#: templates/administrator/settings_site.tpl:600
+#: templates/administrator/settings_site.tpl:683
+#: templates/administrator/settings_site.tpl:710
 msgid "Remove"
 msgstr "Delete"
 
@@ -1546,7 +1699,7 @@ msgstr "Remove currency?"
 msgid "Remove the selected currency?"
 msgstr "Remove the selected currency?"
 
-#: application/modules/shop/admin/templates/customfields/list.tpl:8
+#: application/modules/shop/admin/templates/customfields/list.tpl:9
 msgid "Remove the selected field?"
 msgstr "Remove the selected field?"
 
@@ -1562,8 +1715,8 @@ msgstr "Remove order with ID: "
 msgid "Remove a gift certificate?"
 msgstr "Remove a gift certificate?"
 
-#: application/modules/shop/admin/templates/customfields/list.tpl:5
-#: application/modules/shop/admin/templates/customfields/list.tpl:17
+#: application/modules/shop/admin/templates/customfields/list.tpl:6
+#: application/modules/shop/admin/templates/customfields/list.tpl:19
 msgid "Remove fields"
 msgstr "Remove fields"
 
@@ -1582,12 +1735,12 @@ msgid "Remove status?"
 msgstr "Remove status?"
 
 #: application/modules/shop/admin/templates/products/default_edit.tpl:106
-#: application/modules/shop/admin/templates/products/create.tpl:493
-#: application/modules/shop/admin/templates/products/edit.tpl:153
+#: application/modules/shop/admin/templates/products/create.tpl:492
+#: application/modules/shop/admin/templates/products/edit.tpl:199
 msgid "Load from internet"
 msgstr "Download from the Internet"
 
-#: application/modules/shop/admin/products.php:1197
+#: application/modules/shop/admin/products.php:1226
 msgid "Deleted complete"
 msgstr "Products were deleted"
 
@@ -1595,7 +1748,7 @@ msgstr "Products were deleted"
 msgid "Really delete selected products?"
 msgstr "Sure you want to delete the selected products?"
 
-#: application/modules/shop/admin/products.php:1180
+#: application/modules/shop/admin/products.php:1204
 msgid "A copy was successfully created"
 msgstr "Copy was created"
 
@@ -1604,15 +1757,15 @@ msgstr "Copy was created"
 msgid "View page"
 msgstr "Show on site"
 
-#: application/modules/shop/admin/products.php:292
-#: application/modules/shop/admin/products.php:435
+#: application/modules/shop/admin/products.php:290
+#: application/modules/shop/admin/products.php:433
 msgid "The product was successfully created"
 msgstr "Product was created"
 
 #: application/modules/shop/admin/templates/products/default_edit.tpl:605
-#: application/modules/shop/admin/templates/products/create.tpl:325
-#: application/modules/shop/admin/templates/categories/create.tpl:111
-#: application/modules/shop/admin/templates/categories/edit.tpl:132
+#: application/modules/shop/admin/templates/products/create.tpl:324
+#: application/modules/shop/admin/templates/categories/create.tpl:139
+#: application/modules/shop/admin/templates/categories/edit.tpl:168
 msgid "Autoselection"
 msgstr "Autocomplete"
 
@@ -1657,14 +1810,14 @@ msgstr "Show in filter"
 msgid "Use in categories"
 msgstr "Use in categories"
 
-#: application/modules/shop/admin/templates/products/default_edit.tpl:212
-#: application/modules/shop/admin/templates/products/create.tpl:273
+#: application/modules/shop/admin/templates/products/default_edit.tpl:213
+#: application/modules/shop/admin/templates/products/create.tpl:272
 msgid "Chose additional categories"
 msgstr "Select additional categories"
 
-#: application/modules/admin/widgets_manager.php:113
-#: application/modules/admin/widgets_manager.php:291
-#: application/modules/admin/widgets_manager.php:360
+#: application/modules/admin/widgets_manager.php:107
+#: application/modules/admin/widgets_manager.php:292
+#: application/modules/admin/widgets_manager.php:361
 msgid "Widget with the same identifier already exists. Choose or select another identifier"
 msgstr "Widget with the same identifier already exists. Choose or select another identifier"
 
@@ -1683,14 +1836,14 @@ msgid "Fast create"
 msgstr "Create Fast"
 
 #: application/modules/shop/admin/templates/categories/list.tpl:10
-#: application/modules/shop/admin/templates/search/list.tpl:74
+#: application/modules/shop/admin/templates/search/list.tpl:76
 #: application/modules/shop/admin/templates/properties/list.tpl:43
 #: application/modules/shop/admin/templates/brands/list.tpl:31
 msgid "Open fast create"
 msgstr "Open fast create"
 
 #: application/modules/shop/admin/templates/categories/list.tpl:84
-#: application/modules/shop/admin/templates/search/list.tpl:234
+#: application/modules/shop/admin/templates/search/list.tpl:239
 #: application/modules/shop/admin/templates/properties/list.tpl:143
 #: application/modules/shop/admin/templates/brands/list.tpl:76
 msgid "Close fast create"
@@ -1705,8 +1858,8 @@ msgstr "numbers only"
 msgid "Delete a property"
 msgstr "Delete a feature"
 
-#: application/modules/shop/admin/properties.php:699
-#: application/modules/shop/admin/properties.php:700
+#: application/modules/shop/admin/properties.php:713
+#: application/modules/shop/admin/properties.php:714
 msgid "The property(ies) deleted"
 msgstr "Delete a feature(s) deleted"
 
@@ -1722,13 +1875,13 @@ msgstr "Add new feature"
 msgid "Property"
 msgstr "Feature title"
 
-#: application/modules/shop/admin/properties.php:416
+#: application/modules/shop/admin/properties.php:420
 msgid "The property is not found"
 msgstr "The feature is not found"
 
-#: application/modules/shop/admin/properties.php:273
-#: application/modules/shop/admin/properties.php:274
-#: application/modules/shop/admin/properties.php:394
+#: application/modules/shop/admin/properties.php:277
+#: application/modules/shop/admin/properties.php:278
+#: application/modules/shop/admin/properties.php:398
 msgid "Property created"
 msgstr "Feature created"
 
@@ -1740,14 +1893,12 @@ msgstr "Empty features list"
 msgid "Files deleted"
 msgstr "Files deleted"
 
-#: application/modules/admin/categories.php:70
-#: application/modules/admin/categories.php:512
-#: application/modules/admin/categories.php:672
-#: application/modules/admin/widgets_manager.php:119
-#: application/modules/admin/languages.php:79
-#: application/modules/admin/languages.php:383
-#: application/modules/admin/pages.php:84
-#: application/modules/admin/pages.php:442
+#: application/modules/admin/categories.php:72
+#: application/modules/admin/categories.php:535
+#: application/modules/admin/categories.php:695
+#: application/modules/admin/widgets_manager.php:113
+#: application/modules/admin/pages.php:85
+#: application/modules/admin/pages.php:436
 msgid "Title"
 msgstr "Name"
 
@@ -1755,11 +1906,11 @@ msgstr "Name"
 msgid "Product Name"
 msgstr "Product Name"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:736
+#: application/modules/shop/admin/templates/settings/settings.tpl:738
 msgid "Product name "
 msgstr "Product name "
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:566
+#: application/modules/shop/admin/templates/settings/settings.tpl:568
 #: application/modules/shop/admin/templates/products/default_edit.tpl:17
 #: application/modules/shop/admin/templates/products/default_edit.tpl:513
 #: application/modules/shop/admin/templates/products/create.tpl:56
@@ -1773,8 +1924,8 @@ msgstr "Product name"
 msgid "Removing brand"
 msgstr "Removing manufacturer"
 
-#: application/modules/shop/admin/products.php:1564
-#: application/modules/shop/admin/products.php:1568
+#: application/modules/shop/admin/products.php:1589
+#: application/modules/shop/admin/products.php:1593
 msgid "Can not create brand without name."
 msgstr "Can not create manufacturer without name."
 
@@ -1801,10 +1952,10 @@ msgstr "Manufacturers"
 msgid "Brands list is empty."
 msgstr "Manufacturers list is empty."
 
-#: application/modules/shop/admin/templates/products/default_edit.tpl:192
-#: application/modules/shop/admin/templates/products/create.tpl:249
-#: application/modules/shop/admin/templates/products/create.tpl:582
-#: application/modules/shop/admin/templates/products/edit.tpl:242
+#: application/modules/shop/admin/templates/products/default_edit.tpl:193
+#: application/modules/shop/admin/templates/products/create.tpl:248
+#: application/modules/shop/admin/templates/products/create.tpl:581
+#: application/modules/shop/admin/templates/products/edit.tpl:288
 #: application/modules/shop/admin/templates/brands/list.tpl:32
 msgid "Create a brand"
 msgstr "Add new manufacturer"
@@ -1813,25 +1964,25 @@ msgstr "Add new manufacturer"
 #: application/modules/shop/admin/templates/system/export_.tpl:80
 #: application/modules/shop/admin/templates/system/importcsv.tpl:106
 #: application/modules/shop/admin/templates/callbacks/create.tpl:3
-#: application/modules/shop/admin/templates/brands/create.tpl:23
-#: application/modules/shop/admin/templates/brands/edit.tpl:21
+#: application/modules/shop/admin/templates/brands/create.tpl:22
+#: application/modules/shop/admin/templates/brands/edit.tpl:23
 #: application/modules/shop/admin/templates/brands/list.tpl:52
 msgid "Brand"
 msgstr "Manufacturer"
 
-#: application/modules/shop/admin/brands.php:263
-#: application/modules/shop/admin/brands.php:495
+#: application/modules/shop/admin/brands.php:332
+#: application/modules/shop/admin/brands.php:540
 msgid "Brand not found"
 msgstr "Manufacturer not found"
 
-#: application/modules/shop/admin/brands.php:232
-#: application/modules/shop/admin/brands.php:233
-#: application/modules/shop/admin/products.php:1547
+#: application/modules/shop/admin/brands.php:256
+#: application/modules/shop/admin/brands.php:257
+#: application/modules/shop/admin/products.php:1572
 msgid "Brand created"
 msgstr "Manufacturer created"
 
-#: application/modules/shop/admin/templates/products/default_edit.tpl:183
-#: application/modules/shop/admin/templates/products/create.tpl:238
+#: application/modules/shop/admin/templates/products/default_edit.tpl:184
+#: application/modules/shop/admin/templates/products/create.tpl:237
 #: application/modules/shop/admin/templates/products/_edit.tpl:193
 #: application/modules/shop/admin/templates/products/_create.tpl:166
 msgid "Brand name"
@@ -1909,15 +2060,15 @@ msgid "Delete method of delivery?"
 msgstr "Delete shipping option?"
 
 #: application/modules/shop/admin/templates/orders/check.tpl:28
-#: application/modules/shop/admin/templates/orders/edit.tpl:177
+#: application/modules/shop/admin/templates/orders/edit.tpl:188
 #: application/modules/shop/admin/templates/orders/_create.tpl:120
 msgid "Delivery Address"
 msgstr "Shipping address"
 
 #: application/modules/shop/admin/templates/orders/products_table.tpl:49
-#: application/modules/shop/admin/templates/orders/edit.tpl:383
+#: application/modules/shop/admin/templates/orders/edit.tpl:447
 #: application/modules/shop/admin/templates/orders/cart_list.tpl:28
-#: application/modules/shop/admin/orders.php:1048
+#: application/modules/shop/admin/orders.php:1101
 msgid "Delivery"
 msgstr "Total shipping"
 
@@ -1940,12 +2091,12 @@ msgstr "Shipping price"
 msgid "Sorting method updated"
 msgstr "Sorting method updated"
 
-#: application/modules/admin/widgets_manager.php:181
-#: application/modules/admin/widgets_manager.php:205
+#: application/modules/admin/widgets_manager.php:177
+#: application/modules/admin/widgets_manager.php:201
 msgid "Widget created"
 msgstr "Widget has been created"
 
-#: application/modules/admin/widgets_manager.php:441
+#: application/modules/admin/widgets_manager.php:442
 msgid "Widget successfully deleted"
 msgstr "Widget has been successfully deleted"
 
@@ -1989,7 +2140,7 @@ msgstr "Delete after date"
 msgid "the language has been deleted"
 msgstr "The language has been deleted"
 
-#: application/modules/admin/categories.php:355
+#: application/modules/admin/categories.php:374
 msgid "You can not delete the last category from the list"
 msgstr "You can not delete the last category from the list"
 
@@ -1998,16 +2149,16 @@ msgstr "You can not delete the last category from the list"
 msgid "Deleted the ID language"
 msgstr "Deleted the ID language/Delete the ID language/ ID language has been deleted"
 
-#: application/modules/admin/pages.php:720
+#: application/modules/admin/pages.php:705
 msgid "Deleted ID page"
 msgstr "Deleted ID page/ Delete the ID page/ The ID page has been deleted"
 
-#: application/modules/admin/widgets_manager.php:439
+#: application/modules/admin/widgets_manager.php:440
 msgid "Deleted a widget"
 msgstr "Deleted the widget/Deleted widget"
 
+#: application/modules/admin/pages.php:674
 #: application/modules/admin/pages.php:689
-#: application/modules/admin/pages.php:704
 msgid "Page has been deleted."
 msgstr "Page has been deleted."
 
@@ -2015,7 +2166,7 @@ msgstr "Page has been deleted."
 msgid "Deleted a module"
 msgstr "Delete module"
 
-#: application/modules/admin/pages.php:652
+#: application/modules/admin/pages.php:637
 msgid "Successful delete"
 msgstr "Successful delete"
 
@@ -2032,7 +2183,7 @@ msgstr "This language has been used by default and can not be deleted/This langu
 msgid "User deleted"
 msgstr "User deleted"
 
-#: application/modules/shop/admin/orders.php:203
+#: application/modules/shop/admin/orders.php:232
 msgid "Order deleted"
 msgstr "Order deleted"
 
@@ -2044,7 +2195,7 @@ msgstr "Delete order ID"
 msgid "Attention! All pages in this language will be deleted!"
 msgstr "Attention! All pages in this language will be deleted!"
 
-#: application/modules/shop/admin/orders.php:250
+#: application/modules/shop/admin/orders.php:279
 msgid "You can not delete the last item from the order"
 msgstr "You can not delete the last item from the order"
 
@@ -2052,8 +2203,8 @@ msgstr "You can not delete the last item from the order"
 msgid " This product has been deleted from the shop! You can only change the quantity or replace by another product"
 msgstr " This product has been deleted from the shop! You can only change the quantity or replace by another product"
 
-#: application/modules/shop/admin/categories.php:321
-#: application/modules/shop/admin/categories.php:329
+#: application/modules/shop/admin/categories.php:300
+#: application/modules/shop/admin/categories.php:308
 msgid "Failed to delete the category"
 msgstr "Failed to delete the category"
 
@@ -2190,7 +2341,7 @@ msgstr "Add product"
 msgid "Product creation"
 msgstr "Creating a product"
 
-#: application/modules/shop/admin/templates/orders/edit.tpl:490
+#: application/modules/shop/admin/templates/orders/edit.tpl:554
 msgid "Add product to order"
 msgstr "Add product to order"
 
@@ -2221,7 +2372,7 @@ msgstr "Add new user"
 msgid "Create a way to deliver"
 msgstr "Add new option"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:53
+#: application/modules/shop/admin/templates/settings/settings.tpl:55
 msgid "Products count shown on site"
 msgstr "Product count shown on site"
 
@@ -2241,7 +2392,7 @@ msgstr "Theme"
 msgid "Orders with this status"
 msgstr "Orders with this status"
 
-#: templates/administrator/settings_site.tpl:159
+#: templates/administrator/settings_site.tpl:180
 msgid "Configuring robots file manually"
 msgstr "Configuring robots file manually"
 
@@ -2255,34 +2406,28 @@ msgstr "The number of characters depends on the main currency"
 
 #: application/modules/shop/admin/templates/products/default_edit.tpl:74
 #: application/modules/shop/admin/templates/products/create.tpl:118
-#: application/modules/shop/admin/orders.php:1515
 msgid "Number"
 msgstr "SKU"
 
-#: templates/administrator/js/admin_base_i.js:1148
+#: templates/administrator/js/admin_base_i.js:1162
 msgid "More"
 msgstr "More"
 
 #: application/modules/shop/admin/templates/products/default_edit.tpl:691
-#: application/modules/shop/admin/templates/products/create.tpl:424
+#: application/modules/shop/admin/templates/products/create.tpl:423
 msgid "Main product template. By default product.tpl"
 msgstr "Main product template. By default product.tpl"
 
-#: application/modules/shop/admin/brands.php:196
-#: application/modules/shop/admin/brands.php:311
+#: application/modules/shop/admin/brands.php:220
+#: application/modules/shop/admin/brands.php:381
 msgid "Wrong image format"
 msgstr "Wrong image format"
 
-#: application/modules/shop/admin/categories.php:541
-#: application/modules/shop/admin/categories.php:553
+#: application/modules/shop/admin/categories.php:467
 msgid "Тo translation"
 msgstr "The translation"
 
-#: application/modules/shop/admin/products.php:1505
-msgid "Can not create categoty without name."
-msgstr "Can not create categoty without name."
-
-#: application/modules/admin/widgets_manager.php:177
+#: application/modules/admin/widgets_manager.php:173
 msgid "Created a widget "
 msgstr "Created a widget "
 
@@ -2290,7 +2435,7 @@ msgstr "Created a widget "
 msgid "Create a language "
 msgstr "Create a language "
 
-#: application/modules/admin/widgets_manager.php:200
+#: application/modules/admin/widgets_manager.php:196
 msgid "Created a widget"
 msgstr "Created a widget"
 
@@ -2306,15 +2451,15 @@ msgstr "Pages was copied"
 msgid "Pages was moving"
 msgstr "Pages was moving"
 
-#: application/modules/shop/admin/orders.php:1468
+#: application/modules/shop/admin/orders.php:1522
 msgid "Order is created"
 msgstr "Order is created"
 
-#: application/modules/shop/admin/settings.php:331
+#: application/modules/shop/admin/settings.php:345
 msgid "Settings was updated"
 msgstr "Settings was updated"
 
-#: application/modules/shop/admin/products.php:291
+#: application/modules/shop/admin/products.php:289
 msgid "The product was created"
 msgstr "The product was created"
 
@@ -2326,7 +2471,7 @@ msgstr "Currency was updated"
 msgid "Order status established"
 msgstr "Order status established"
 
-#: templates/administrator/settings_site.tpl:143
+#: templates/administrator/settings_site.tpl:156
 msgid "Open the site for indexing robots"
 msgstr "Open the site for indexing robots"
 
@@ -2363,22 +2508,22 @@ msgstr "RBAC control"
 msgid "Empty product arrival notification list."
 msgstr "Arrival notifications list is empty"
 
-#: application/modules/shop/admin/orders.php:1244
+#: application/modules/shop/admin/orders.php:1298
 msgid "Items not selected "
 msgstr "Items not selected "
 
-#: application/modules/shop/admin/templates/customfields/create.tpl:134
-#: application/modules/shop/admin/templates/customfields/edit.tpl:127
+#: application/modules/shop/admin/templates/customfields/create.tpl:146
+#: application/modules/shop/admin/templates/customfields/edit.tpl:126
 msgid "Visualizators classes"
 msgstr "Visualizators classes"
 
-#: application/modules/shop/admin/templates/customfields/create.tpl:135
-#: application/modules/shop/admin/templates/customfields/edit.tpl:128
+#: application/modules/shop/admin/templates/customfields/create.tpl:147
+#: application/modules/shop/admin/templates/customfields/edit.tpl:127
 msgid "Color popup selector"
 msgstr "Color selector popup"
 
-#: application/modules/shop/admin/templates/customfields/create.tpl:136
-#: application/modules/shop/admin/templates/customfields/edit.tpl:129
+#: application/modules/shop/admin/templates/customfields/create.tpl:148
+#: application/modules/shop/admin/templates/customfields/edit.tpl:128
 msgid "Date popup selector"
 msgstr "Date selector popup"
 
@@ -2407,11 +2552,11 @@ msgstr "Purchase history"
 msgid "Basic settings"
 msgstr "Basic settings"
 
-#: application/modules/shop/admin/templates/orders/edit.tpl:376
+#: application/modules/shop/admin/templates/orders/edit.tpl:440
 msgid "The initial value of the goods"
 msgstr "Total products"
 
-#: application/modules/shop/admin/templates/orders/edit.tpl:218
+#: application/modules/shop/admin/templates/orders/edit.tpl:241
 msgid "Comments buyer"
 msgstr "User comment"
 
@@ -2419,7 +2564,7 @@ msgstr "User comment"
 msgid "Exit"
 msgstr "Exit"
 
-#: application/modules/admin/admin.php:207
+#: application/modules/admin/admin.php:201
 msgid "Exited the control panel"
 msgstr "Exited the control panel/ You have exited the control panel"
 
@@ -2442,7 +2587,7 @@ msgid "Save and exit"
 msgstr "Save and exit"
 
 #: application/modules/shop/admin/templates/products/default_edit.tpl:648
-#: application/modules/shop/admin/templates/products/create.tpl:374
+#: application/modules/shop/admin/templates/products/create.tpl:373
 msgid "Advanced settings"
 msgstr "Advanced settings"
 
@@ -2478,7 +2623,7 @@ msgstr "Selected products"
 msgid "Current accessories"
 msgstr "Current accessories"
 
-#: application/modules/shop/admin/templates/products/edit.tpl:27
+#: application/modules/shop/admin/templates/products/edit.tpl:78
 msgid "Accessories"
 msgstr "Accessories"
 
@@ -2525,28 +2670,28 @@ msgstr "Quick product search"
 msgid "Advanced search product"
 msgstr "Advanced product search"
 
-#: application/modules/shop/admin/templates/orders/edit.tpl:31
+#: application/modules/shop/admin/templates/orders/edit.tpl:36
 msgid "Order details"
 msgstr "Order details"
 
-#: application/modules/shop/admin/templates/orders/edit.tpl:125
+#: application/modules/shop/admin/templates/orders/edit.tpl:132
 msgid "Check out"
 msgstr "Check out"
 
-#: application/modules/shop/admin/templates/orders/edit.tpl:236
+#: application/modules/shop/admin/templates/orders/edit.tpl:259
 msgid "Ordered products"
 msgstr "Ordered products"
 
-#: application/modules/shop/admin/templates/orders/edit.tpl:425
+#: application/modules/shop/admin/templates/orders/edit.tpl:488
 msgid "Order status and history"
 msgstr "Order status and history"
 
-#: application/modules/shop/admin/templates/orders/edit.tpl:51
+#: application/modules/shop/admin/templates/orders/edit.tpl:56
 msgid "Date of change"
 msgstr "Date of change"
 
 #: application/modules/shop/admin/templates/orders/create.tpl:200
-#: application/modules/shop/admin/templates/orders/edit.tpl:136
+#: application/modules/shop/admin/templates/orders/edit.tpl:143
 msgid "Buyer"
 msgstr "User"
 
@@ -2562,41 +2707,43 @@ msgstr "Personal data"
 msgid "No photo"
 msgstr "No photo"
 
-#: application/modules/shop/admin/orders.php:1415
+#: application/modules/shop/admin/orders.php:1469
 msgid "Order bad "
 msgstr "Order bad "
 
-#: application/modules/shop/admin/templates/orders/edit.tpl:144
+#: application/modules/shop/admin/templates/orders/edit.tpl:154
 msgid "Profile"
 msgstr "Profile"
 
-#: application/modules/admin/pages.php:126
-msgid "Category or page with such url already exist"
-msgstr "Category or page with such URL already exists"
-
-#: application/modules/shop/admin/templates/search/list.tpl:592
+#: application/modules/shop/admin/templates/search/list.tpl:625
 msgid "Product list is empty"
 msgstr "Product list is empty"
 
 #: application/modules/shop/admin/templates/products/default_edit.tpl:591
-#: application/modules/shop/admin/templates/products/create.tpl:311
+#: application/modules/shop/admin/templates/products/create.tpl:310
 #: application/modules/shop/admin/templates/products/_edit.tpl:459
 #: application/modules/shop/admin/templates/products/_create.tpl:416
-#: application/modules/shop/admin/templates/categories/create.tpl:174
-#: application/modules/shop/admin/templates/categories/edit.tpl:198
+#: application/modules/shop/admin/templates/categories/create.tpl:26
+#: application/modules/shop/admin/templates/categories/create.tpl:209
+#: application/modules/shop/admin/templates/categories/edit.tpl:33
+#: application/modules/shop/admin/templates/categories/edit.tpl:248
+#: application/modules/shop/admin/templates/brands/create.tpl:23
+#: application/modules/shop/admin/templates/brands/create.tpl:115
+#: application/modules/shop/admin/templates/brands/edit.tpl:24
+#: application/modules/shop/admin/templates/brands/edit.tpl:114
 msgid "Meta data"
 msgstr "Meta data"
 
-#: templates/administrator/settings_site.tpl:86
+#: templates/administrator/settings_site.tpl:92
 msgid "Installing the template you agree to the"
 msgstr "Installing the template you agree to the"
 
-#: templates/administrator/settings_site.tpl:88
+#: templates/administrator/settings_site.tpl:96
 msgid "license agreement"
 msgstr "license agreement"
 
 #: application/modules/shop/admin/templates/products/default_edit.tpl:683
-#: application/modules/shop/admin/templates/products/create.tpl:414
+#: application/modules/shop/admin/templates/products/create.tpl:413
 msgid "Format date: yyyy-mm-dd h:mm:ss"
 msgstr "Format date: yyyy-mm-dd h:mm:ss"
 
@@ -2619,24 +2766,24 @@ msgstr "by alphabet"
 msgid "by position"
 msgstr "by position"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:88
+#: application/modules/shop/admin/templates/settings/settings.tpl:90
 msgid "Sorting methods"
 msgstr "Sorting methods"
 
-#: application/modules/shop/admin/templates/customfields/create.tpl:70
-#: application/modules/shop/admin/templates/customfields/edit.tpl:69
-#: application/modules/shop/admin/templates/customfields/list.tpl:53
+#: application/modules/shop/admin/templates/customfields/create.tpl:81
+#: application/modules/shop/admin/templates/customfields/edit.tpl:68
+#: application/modules/shop/admin/templates/customfields/list.tpl:57
 msgid "Field required"
 msgstr "Field required"
 
-#: application/modules/shop/admin/templates/customfields/create.tpl:81
-#: application/modules/shop/admin/templates/customfields/edit.tpl:80
-#: application/modules/shop/admin/templates/customfields/list.tpl:52
+#: application/modules/shop/admin/templates/customfields/create.tpl:92
+#: application/modules/shop/admin/templates/customfields/edit.tpl:79
+#: application/modules/shop/admin/templates/customfields/list.tpl:56
 msgid "Field active"
 msgstr "Field active"
 
-#: application/modules/shop/admin/templates/customfields/create.tpl:92
-#: application/modules/shop/admin/templates/customfields/edit.tpl:91
+#: application/modules/shop/admin/templates/customfields/create.tpl:103
+#: application/modules/shop/admin/templates/customfields/edit.tpl:90
 msgid "Field private"
 msgstr "Field private"
 
@@ -2644,7 +2791,7 @@ msgstr "Field private"
 msgid "Arrival notification"
 msgstr "Arrival notifications list"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:465
+#: application/modules/shop/admin/templates/settings/settings.tpl:467
 msgid "Font colour"
 msgstr "Font colour"
 
@@ -2655,14 +2802,14 @@ msgid "Font Color"
 msgstr "Font Color"
 
 #: application/modules/shop/admin/templates/dashboard/dashboard.tpl:93
-#: application/modules/shop/admin/templates/orders/edit.tpl:459
+#: application/modules/shop/admin/templates/orders/edit.tpl:523
 #: application/modules/shop/admin/templates/users/edit_1.tpl:208
 #: application/modules/shop/admin/templates/users/edit.tpl:206
 msgid "Unpaid"
 msgstr "Unpaid"
 
-#: application/modules/shop/admin/templates/categories/create.tpl:52
-#: application/modules/shop/admin/templates/categories/edit.tpl:75
+#: application/modules/shop/admin/templates/categories/create.tpl:70
+#: application/modules/shop/admin/templates/categories/edit.tpl:96
 msgid "Logo"
 msgstr "Category icon"
 
@@ -2674,17 +2821,17 @@ msgstr "Only fonts-files can be uploaded"
 msgid "Gift certificate"
 msgstr "Gift certificate"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:486
+#: application/modules/shop/admin/templates/settings/settings.tpl:488
 msgid "Upload"
 msgstr "Upload"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:507
+#: application/modules/shop/admin/templates/settings/settings.tpl:509
 msgid "Font file must support all characters you need."
 msgstr "The Font file must support all characters you need."
 
-#: application/modules/shop/admin/products.php:1007
-#: application/modules/shop/admin/products.php:1060
-#: application/modules/shop/admin/products.php:1095
+#: application/modules/shop/admin/products.php:1033
+#: application/modules/shop/admin/products.php:1084
+#: application/modules/shop/admin/products.php:1119
 msgid "(copy)"
 msgstr "(copy)"
 
@@ -2693,10 +2840,10 @@ msgstr "(copy)"
 msgid "API Key for Mail Chimp"
 msgstr "API Key for Mail Chimp"
 
-#: application/modules/shop/admin/properties.php:248
-#: application/modules/shop/admin/properties.php:333
-#: application/modules/shop/admin/properties.php:427
-#: application/modules/shop/admin/properties.php:631
+#: application/modules/shop/admin/properties.php:252
+#: application/modules/shop/admin/properties.php:337
+#: application/modules/shop/admin/properties.php:431
+#: application/modules/shop/admin/properties.php:642
 msgid "Csv name is already used"
 msgstr "Csv name is already used"
 
@@ -2705,7 +2852,7 @@ msgstr "Csv name is already used"
 msgid "E-mail"
 msgstr "E-mail"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:1016
+#: application/modules/shop/admin/templates/settings/settings.tpl:1018
 msgid "Customer e-mail"
 msgstr "Customer e-mail"
 
@@ -2717,8 +2864,8 @@ msgstr "Customer e-mail"
 msgid "English"
 msgstr "English"
 
-#: application/modules/admin/widgets_manager.php:186
-#: application/modules/admin/widgets_manager.php:283
+#: application/modules/admin/widgets_manager.php:182
+#: application/modules/admin/widgets_manager.php:284
 msgid "HTML"
 msgstr "HTML"
 
@@ -2735,7 +2882,7 @@ msgstr "HTML code"
 msgid "ID"
 msgstr "ID"
 
-#: templates/administrator/settings_site.tpl:205
+#: templates/administrator/settings_site.tpl:228
 msgid "ID Google Analytics"
 msgstr "ID Analytics"
 
@@ -2743,7 +2890,7 @@ msgstr "ID Analytics"
 msgid "Main product ID"
 msgstr "Main product ID"
 
-#: templates/administrator/settings_site.tpl:237
+#: templates/administrator/settings_site.tpl:268
 msgid "ID for yandex metric"
 msgstr "ID for yandex metric"
 
@@ -2752,11 +2899,11 @@ msgstr "ID for yandex metric"
 msgid "ID : "
 msgstr "ID : "
 
-#: application/modules/admin/admin.php:235
+#: application/modules/admin/admin.php:229
 msgid "ip-address"
 msgstr "IP address"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:656
+#: application/modules/shop/admin/templates/settings/settings.tpl:658
 msgid "IP address of the wishlist author"
 msgstr "IP address of the author wishlist"
 
@@ -2770,7 +2917,7 @@ msgstr "ISO"
 #: templates/administrator/create_cat.tpl:331
 #: templates/administrator/cat_translate_edit.tpl:112
 #: templates/administrator/category_edit.tpl:366
-#: templates/administrator/settings_site.tpl:392
+#: templates/administrator/settings_site.tpl:447
 #: templates/administrator/add_page.tpl:136
 msgid "Meta Description"
 msgstr "Meta Description"
@@ -2779,16 +2926,16 @@ msgstr "Meta Description"
 #: templates/administrator/create_cat.tpl:339
 #: templates/administrator/cat_translate_edit.tpl:121
 #: templates/administrator/category_edit.tpl:375
-#: templates/administrator/settings_site.tpl:381
+#: templates/administrator/settings_site.tpl:433
 #: templates/administrator/add_page.tpl:146
 msgid "Meta Keywords"
 msgstr "Meta Keywords"
 
-#: application/modules/admin/categories.php:83
+#: application/modules/admin/categories.php:85
 msgid "Meta Title"
 msgstr "Meta Title"
 
-#: application/modules/admin/categories.php:677
+#: application/modules/admin/categories.php:700
 msgid "Meta title"
 msgstr "Meta title"
 
@@ -2797,12 +2944,12 @@ msgstr "Meta title"
 msgid "Off manually entered"
 msgstr "Off manually entered"
 
-#: templates/administrator/js/admin_base_i.js:1376
-#: templates/administrator/js/admin_base_i.js:1524
+#: templates/administrator/js/admin_base_i.js:1390
+#: templates/administrator/js/admin_base_i.js:1538
 msgid "PHP GD library is not installed"
 msgstr "PHP GD library is not installed"
 
-#: application/modules/shop/admin/settings.php:498
+#: application/modules/shop/admin/settings.php:512
 msgid "PHP GD library is not installed on your web server"
 msgstr "PHP GD library is not installed on your web server"
 
@@ -2810,12 +2957,8 @@ msgstr "PHP GD library is not installed on your web server"
 msgid "profiler_"
 msgstr "profiler_"
 
-#: application/modules/admin/pages.php:505
-msgid "Reserved of the same name category"
-msgstr "Reserved of the same name category"
-
-#: application/modules/admin/pages.php:117
-#: application/modules/admin/pages.php:496
+#: application/modules/admin/pages.php:118
+#: application/modules/admin/pages.php:490
 msgid "Reserved the same name module"
 msgstr "Reserved the same name module"
 
@@ -2823,8 +2966,8 @@ msgstr "Reserved the same name module"
 msgid "Url"
 msgstr "Url"
 
-#: application/modules/admin/pages.php:85
-#: application/modules/admin/pages.php:443
+#: application/modules/admin/pages.php:86
+#: application/modules/admin/pages.php:437
 msgid "URL"
 msgstr "URL"
 
@@ -2836,20 +2979,20 @@ msgstr "URL access"
 msgid "URL access on"
 msgstr "URL access on"
 
-#: application/modules/admin/categories.php:74
 #: application/modules/admin/categories.php:76
+#: application/modules/admin/categories.php:78
 msgid "URL categories"
 msgstr "URL categories"
 
-#: templates/administrator/settings_site.tpl:219
+#: templates/administrator/settings_site.tpl:246
 msgid "G.Webmaster"
 msgstr "G. Webmaster"
 
-#: templates/administrator/settings_site.tpl:228
+#: templates/administrator/settings_site.tpl:257
 msgid "Ya.Webmaster"
 msgstr "Ya.Webmaster"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:290
+#: application/modules/shop/admin/templates/settings/settings.tpl:292
 msgid "Auto"
 msgstr "Auto"
 
@@ -2891,11 +3034,11 @@ msgstr "Admin_panel site"
 msgid "Administer site"
 msgstr "Administer site"
 
-#: templates/administrator/settings_site.tpl:538
+#: templates/administrator/settings_site.tpl:616
 msgid "Address"
 msgstr "Shipping address"
 
-#: application/modules/admin/admin.php:235
+#: application/modules/admin/admin.php:229
 msgid "Site address"
 msgstr "Site address"
 
@@ -2942,12 +3085,10 @@ msgstr "Action"
 #: application/modules/shop/admin/templates/products/list.tpl:95
 #: application/modules/shop/admin/templates/products/list.tpl:97
 #: application/modules/shop/admin/templates/products/_create.tpl:159
-#: application/modules/shop/admin/templates/search/list.tpl:67
-#: application/modules/shop/admin/templates/search/list.tpl:211
-#: application/modules/shop/admin/templates/search/list.tpl:351
-#: application/modules/shop/admin/templates/search/list.tpl:353
-#: application/modules/shop/admin/templates/search/list.tpl:489
-#: application/modules/shop/admin/templates/search/list.tpl:491
+#: application/modules/shop/admin/templates/search/list.tpl:69
+#: application/modules/shop/admin/templates/search/list.tpl:213
+#: application/modules/shop/admin/templates/search/list.tpl:360
+#: application/modules/shop/admin/templates/search/list.tpl:512
 #: application/modules/shop/admin/templates/search/advanced.tpl:94
 #: application/modules/shop/admin/templates/search/advanced.tpl:96
 #: application/modules/shop/admin/templates/search/advanced.tpl:162
@@ -2957,10 +3098,10 @@ msgstr "Sale"
 
 #: application/modules/shop/admin/templates/products/default_edit.tpl:513
 #: application/modules/shop/admin/templates/products/default_edit.tpl:545
-#: application/modules/shop/admin/templates/search/list.tpl:131
+#: application/modules/shop/admin/templates/search/list.tpl:133
 #: application/modules/shop/admin/templates/orders/create.tpl:35
 #: application/modules/shop/admin/templates/orders/create.tpl:283
-#: application/modules/shop/admin/templates/orders/edit.tpl:243
+#: application/modules/shop/admin/templates/orders/edit.tpl:266
 #: application/modules/shop/admin/templates/orders/_editAddToCartWindow.tpl:5
 msgid "Article"
 msgstr "SKU"
@@ -3011,7 +3152,7 @@ msgstr "Free"
 msgid "Bestsellers"
 msgstr "Bestsellers"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:1033
+#: application/modules/shop/admin/templates/settings/settings.tpl:1035
 msgid "Top sales block "
 msgstr "Top sales block "
 
@@ -3024,11 +3165,11 @@ msgstr "Lock"
 msgid "Blocking"
 msgstr "Blocking"
 
-#: templates/administrator/settings_site.tpl:366
+#: templates/administrator/settings_site.tpl:414
 msgid "Whether to display the category name in the title page"
 msgstr "Whether to display the category name in the title page"
 
-#: templates/administrator/settings_site.tpl:351
+#: templates/administrator/settings_site.tpl:395
 msgid "Whether to display the site name in the title page"
 msgstr "Whether to display the site name in the title page"
 
@@ -3059,7 +3200,7 @@ msgstr "In ascending order"
 msgid "In descending order"
 msgstr "In descending order"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:541
+#: application/modules/shop/admin/templates/settings/settings.tpl:543
 msgid "Including additional images"
 msgstr "Including additional images"
 
@@ -3068,10 +3209,10 @@ msgstr "Including additional images"
 msgid "Importance"
 msgstr "Importance"
 
-#: application/modules/shop/admin/templates/customfields/create.tpl:114
-#: application/modules/shop/admin/templates/customfields/create.tpl:120
-#: application/modules/shop/admin/templates/customfields/edit.tpl:105
-#: application/modules/shop/admin/templates/customfields/edit.tpl:111
+#: application/modules/shop/admin/templates/customfields/create.tpl:126
+#: application/modules/shop/admin/templates/customfields/create.tpl:132
+#: application/modules/shop/admin/templates/customfields/edit.tpl:104
+#: application/modules/shop/admin/templates/customfields/edit.tpl:110
 msgid "Validators"
 msgstr "Validators"
 
@@ -3108,11 +3249,10 @@ msgid "Variant"
 msgstr "Option"
 
 #: application/modules/shop/admin/templates/orders/cart_list.tpl:65
-#: application/modules/shop/admin/orders.php:1514
 msgid "Option"
 msgstr "Option"
 
-#: application/modules/shop/admin/templates/search/list.tpl:503
+#: application/modules/shop/admin/templates/search/list.tpl:536
 #: application/modules/shop/admin/templates/search/advanced.tpl:168
 msgid "Variants"
 msgstr "Options"
@@ -3125,15 +3265,15 @@ msgstr "Product variations "
 msgid "Your updation key"
 msgstr "Your key updation"
 
-#: application/modules/admin/admin.php:219
+#: application/modules/admin/admin.php:213
 msgid "Your remark"
 msgstr "Your remark"
 
-#: application/modules/admin/admin.php:217
+#: application/modules/admin/admin.php:211
 msgid "Your Name"
 msgstr "Your name "
 
-#: application/modules/admin/admin.php:245
+#: application/modules/admin/admin.php:239
 msgid "Your message has been sent"
 msgstr "Your message has been sent"
 
@@ -3193,7 +3333,7 @@ msgstr "enter only numbers"
 msgid "enter number from"
 msgstr "enter number from"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:369
+#: application/modules/shop/admin/templates/settings/settings.tpl:371
 msgid "Up"
 msgstr "Up"
 
@@ -3223,7 +3363,7 @@ msgstr "Version"
 msgid "Version "
 msgstr "Version "
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:365
+#: application/modules/shop/admin/templates/settings/settings.tpl:367
 msgid "Vertical alignment"
 msgstr "Vertical alignment"
 
@@ -3248,20 +3388,20 @@ msgstr "Off"
 msgid "Turn on"
 msgstr "Turn on"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:1084
+#: application/modules/shop/admin/templates/settings/settings.tpl:1086
 msgid "Switch on integration with Facebook?"
 msgstr "Switch on integration with Facebook?"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:1142
+#: application/modules/shop/admin/templates/settings/settings.tpl:1144
 msgid "Switch on integration with VKontakte?"
 msgstr "Switch on integration with VKontakte?"
 
 #: application/modules/shop/admin/templates/settings/settings.tpl:22
-#: application/modules/shop/admin/templates/settings/settings.tpl:42
+#: application/modules/shop/admin/templates/settings/settings.tpl:44
 msgid "External view"
 msgstr "External view"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:373
+#: application/modules/shop/admin/templates/settings/settings.tpl:375
 msgid "At the bottom"
 msgstr "At the bottom"
 
@@ -3269,7 +3409,7 @@ msgstr "At the bottom"
 msgid "Attention"
 msgstr "Attention"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:329
+#: application/modules/shop/admin/templates/settings/settings.tpl:331
 msgid "Watermark"
 msgstr "Watermark"
 
@@ -3280,7 +3420,7 @@ msgstr "Watermark"
 msgid "Return"
 msgstr "Return"
 
-#: application/modules/shop/admin/templates/customfields/create.tpl:107
+#: application/modules/shop/admin/templates/customfields/create.tpl:119
 msgid "Possible values"
 msgstr "Possible values"
 
@@ -3295,12 +3435,12 @@ msgid "Restore"
 msgstr "Restore"
 
 #: application/modules/admin/admin_logs.php:50
-#: application/modules/admin/pages.php:1040
+#: application/modules/admin/pages.php:1044
 #: application/modules/admin/sys_update.php:125
 msgid "Next"
 msgstr "Next"
 
-#: application/modules/shop/admin/orders.php:2080
+#: application/modules/shop/admin/orders.php:2077
 msgid "Forward&nbsp;"
 msgstr "Forward&nbsp;"
 
@@ -3314,8 +3454,8 @@ msgstr "Time of addition"
 msgid "Time of the order"
 msgstr "Time of the order"
 
-#: application/modules/admin/pages.php:92
-#: application/modules/admin/pages.php:452
+#: application/modules/admin/pages.php:93
+#: application/modules/admin/pages.php:446
 msgid "Publication time"
 msgstr "Publication time/ Time of publication"
 
@@ -3325,8 +3465,8 @@ msgstr "Publication time/ Time of publication"
 msgid "Time of registration"
 msgstr "Time of registration"
 
-#: application/modules/admin/pages.php:90
-#: application/modules/admin/pages.php:450
+#: application/modules/admin/pages.php:91
+#: application/modules/admin/pages.php:444
 msgid "Creation time"
 msgstr "Creation time/ Time of creation"
 
@@ -3367,11 +3507,11 @@ msgstr "All finding products"
 msgid "Total file caching"
 msgstr "Total file caching"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:1013
+#: application/modules/shop/admin/templates/settings/settings.tpl:1015
 msgid " User login for site enrty"
 msgstr " User login for site enrty"
 
-#: templates/administrator/settings_site.tpl:592
+#: templates/administrator/settings_site.tpl:691
 msgid "you entered as a contact type"
 msgstr "you entered as a contact type"
 
@@ -3379,10 +3519,10 @@ msgstr "you entered as a contact type"
 msgid "You have actual system version."
 msgstr "You have actual system version."
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:646
-#: application/modules/shop/admin/templates/settings/settings.tpl:730
-#: application/modules/shop/admin/templates/settings/settings.tpl:835
-#: application/modules/shop/admin/templates/settings/settings.tpl:1012
+#: application/modules/shop/admin/templates/settings/settings.tpl:648
+#: application/modules/shop/admin/templates/settings/settings.tpl:732
+#: application/modules/shop/admin/templates/settings/settings.tpl:837
+#: application/modules/shop/admin/templates/settings/settings.tpl:1014
 msgid "You can use the following variable"
 msgstr "You can use the following variable"
 
@@ -3430,8 +3570,8 @@ msgstr "choose date"
 msgid "Choose an image "
 msgstr "Choose an image "
 
-#: application/modules/shop/admin/templates/categories/create.tpl:58
-#: application/modules/shop/admin/templates/categories/edit.tpl:81
+#: application/modules/shop/admin/templates/categories/create.tpl:77
+#: application/modules/shop/admin/templates/categories/edit.tpl:103
 msgid "Select image"
 msgstr "Select image"
 
@@ -3443,8 +3583,8 @@ msgstr "Select a category"
 msgid "Select a category for export"
 msgstr "Select a category for export"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:1107
-#: application/modules/shop/admin/templates/settings/settings.tpl:1164
+#: application/modules/shop/admin/templates/settings/settings.tpl:1109
+#: application/modules/shop/admin/templates/settings/settings.tpl:1166
 msgid "Select template folder"
 msgstr "Select template folder"
 
@@ -3457,8 +3597,7 @@ msgstr "Select the module type to the table below"
 #: application/modules/shop/admin/templates/products/_edit.tpl:550
 #: application/modules/shop/admin/templates/products/_create.tpl:202
 #: application/modules/shop/admin/templates/products/_create.tpl:253
-#: application/modules/shop/admin/templates/brands/create.tpl:110
-#: application/modules/shop/admin/templates/brands/edit.tpl:80
+#: application/modules/shop/admin/templates/brands/edit.tpl:76
 msgid "Select a file"
 msgstr "Select a file"
 
@@ -3469,7 +3608,7 @@ msgstr "Select file"
 #: application/modules/shop/admin/templates/products/_edit.tpl:262
 #: application/modules/shop/admin/templates/products/_edit.tpl:314
 #: application/modules/shop/admin/templates/system/import.tpl:34
-#: application/modules/shop/admin/templates/brands/create.tpl:82
+#: application/modules/shop/admin/templates/brands/create.tpl:75
 msgid "Select the file"
 msgstr "Select the file"
 
@@ -3481,7 +3620,7 @@ msgstr "Select the file in a convenient format"
 msgid "Select the file with the correct extension"
 msgstr "Select the file with the correct extension"
 
-#: templates/administrator/settings_site.tpl:427
+#: templates/administrator/settings_site.tpl:485
 msgid "Choose language"
 msgstr "Choose language"
 
@@ -3501,19 +3640,19 @@ msgstr "Turn off"
 msgid "On"
 msgstr "On"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:530
+#: application/modules/shop/admin/templates/settings/settings.tpl:532
 msgid "Perform resize of all the images?"
 msgstr "Perform a resize of all the images?"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:561
+#: application/modules/shop/admin/templates/settings/settings.tpl:563
 msgid "Perform resize the selected product"
 msgstr "Perform resize the selected product"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:292
+#: application/modules/shop/admin/templates/settings/settings.tpl:294
 msgid "Height"
 msgstr "Height"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:203
+#: application/modules/shop/admin/templates/settings/settings.tpl:205
 msgid "Height, px"
 msgstr "Height, px"
 
@@ -3534,14 +3673,14 @@ msgid "Dashboard"
 msgstr "Dashboard"
 
 #: templates/administrator/settings_site.tpl:22
-#: templates/administrator/settings_site.tpl:258
+#: templates/administrator/settings_site.tpl:290
 msgid "Main page"
 msgstr "Main page"
 
 #: application/modules/shop/admin/templates/products/default_edit.tpl:94
-#: application/modules/shop/admin/templates/products/create.tpl:134
-#: application/modules/shop/admin/templates/products/create.tpl:476
-#: application/modules/shop/admin/templates/products/edit.tpl:141
+#: application/modules/shop/admin/templates/products/create.tpl:133
+#: application/modules/shop/admin/templates/products/create.tpl:475
+#: application/modules/shop/admin/templates/products/edit.tpl:187
 #: application/modules/shop/admin/templates/products/_edit.tpl:107
 #: application/modules/shop/admin/templates/products/_edit.tpl:131
 #: application/modules/shop/admin/templates/products/_edit.tpl:231
@@ -3556,11 +3695,11 @@ msgstr "Main page"
 msgid "Main image"
 msgstr "Main image"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:286
+#: application/modules/shop/admin/templates/settings/settings.tpl:288
 msgid "Main size"
 msgstr "Main size"
 
-#: templates/administrator/settings_site.tpl:548
+#: templates/administrator/settings_site.tpl:629
 msgid "Main phone"
 msgstr "Main phone"
 
@@ -3571,7 +3710,7 @@ msgstr "Main phone"
 msgid "Main product"
 msgstr "Main product"
 
-#: application/modules/admin/categories.php:86
+#: application/modules/admin/categories.php:88
 msgid "Main template"
 msgstr "Main template"
 
@@ -3588,11 +3727,11 @@ msgstr "Main category template by default"
 #: templates/administrator/inc/menus.php:108
 #: templates/administrator/inc/menus.php:379
 #: templates/administrator/inc/menus.php:627
-#: templates/administrator/settings_site.tpl:7
+#: templates/administrator/settings_site.tpl:6
 msgid "Global settings"
 msgstr "Global settings"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:351
+#: application/modules/shop/admin/templates/settings/settings.tpl:353
 msgid " Horizontal alignment "
 msgstr " Horizontal alignment "
 
@@ -3627,7 +3766,7 @@ msgstr "Yes"
 #: application/modules/shop/admin/templates/notifications/edit.tpl:26
 #: application/modules/shop/admin/templates/comulativ/user.tpl:21
 #: application/modules/shop/admin/templates/users/create.tpl:23
-#: application/modules/shop/admin/templates/customfields/create.tpl:19
+#: application/modules/shop/admin/templates/customfields/create.tpl:28
 msgid "Data"
 msgstr "Data"
 
@@ -3635,20 +3774,20 @@ msgstr "Data"
 msgid "The data of your database will be stored in the folder"
 msgstr "The data of your database will be stored in the folder"
 
-#: application/modules/shop/admin/templates/customfields/edit.tpl:22
+#: application/modules/shop/admin/templates/customfields/edit.tpl:21
 msgid "Additional field data"
 msgstr "Additional field data"
 
-#: application/modules/shop/admin/customfields.php:228
+#: application/modules/shop/admin/customfields.php:267
 #: application/modules/shop/admin/deliverymethods.php:200
 #: application/modules/shop/admin/notificationstatuses.php:164
 #: application/modules/shop/admin/notifications.php:273
 #: application/modules/shop/admin/users.php:604
-#: application/modules/shop/admin/paymentmethods.php:210
+#: application/modules/shop/admin/paymentmethods.php:226
 msgid "No data transmitted"
 msgstr "No data transmitted"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:658
+#: application/modules/shop/admin/templates/settings/settings.tpl:660
 msgid "Sending date of the wishlist"
 msgstr "Sending date of the wishlist"
 
@@ -3669,7 +3808,7 @@ msgstr "Date/time"
 msgid "Order date"
 msgstr "Order date"
 
-#: application/modules/shop/admin/templates/orders/edit.tpl:42
+#: application/modules/shop/admin/templates/orders/edit.tpl:47
 msgid "Date of order"
 msgstr "Date of order"
 
@@ -3685,11 +3824,11 @@ msgstr "Time and date of publication"
 msgid "Time and date of creation"
 msgstr "Time and date of creation"
 
-#: application/modules/shop/admin/templates/orders/edit.tpl:432
+#: application/modules/shop/admin/templates/orders/edit.tpl:495
 msgid "Modify date"
 msgstr "Modify date"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:739
+#: application/modules/shop/admin/templates/settings/settings.tpl:741
 msgid " User notification request date"
 msgstr " User notification request date"
 
@@ -3697,8 +3836,8 @@ msgstr " User notification request date"
 msgid "Date active to"
 msgstr "Date active to"
 
-#: application/modules/admin/pages.php:91
-#: application/modules/admin/pages.php:451
+#: application/modules/admin/pages.php:92
+#: application/modules/admin/pages.php:445
 msgid "Publication date"
 msgstr "Publication date/ Date of publication"
 
@@ -3710,19 +3849,19 @@ msgstr "Date of registration"
 msgid "Date of release"
 msgstr "Date of release"
 
-#: application/modules/admin/pages.php:89
-#: application/modules/admin/pages.php:449
+#: application/modules/admin/pages.php:90
+#: application/modules/admin/pages.php:443
 msgid "Creation date"
 msgstr "Creation date"
 
 #: application/modules/shop/admin/templates/dashboard/dashboard.tpl:174
-#: application/modules/shop/admin/products.php:169
-#: application/modules/shop/admin/products.php:551
+#: application/modules/shop/admin/products.php:170
+#: application/modules/shop/admin/products.php:555
 msgid "Date Created"
 msgstr "Date Created"
 
 #: application/modules/shop/admin/templates/products/default_edit.tpl:676
-#: application/modules/shop/admin/templates/products/create.tpl:406
+#: application/modules/shop/admin/templates/products/create.tpl:405
 #: application/modules/shop/admin/templates/products/_edit.tpl:408
 #: application/modules/shop/admin/templates/products/_create.tpl:360
 #: application/modules/shop/admin/templates/notifications/edit.tpl:50
@@ -3759,11 +3898,11 @@ msgstr "Deposit rates"
 msgid "For imported images will be produced resize"
 msgstr "For imported images will be produced resize"
 
-#: templates/administrator/settings_site.tpl:514
+#: templates/administrator/settings_site.tpl:589
 msgid "For language"
 msgstr "For language"
 
-#: application/modules/shop/admin/templates/search/list.tpl:220
+#: application/modules/shop/admin/templates/search/list.tpl:225
 msgid "To"
 msgstr "To"
 
@@ -3771,8 +3910,8 @@ msgstr "To"
 msgid "to"
 msgstr "to"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:239
-#: application/modules/shop/admin/templates/orders/edit.tpl:495
+#: application/modules/shop/admin/templates/settings/settings.tpl:241
+#: application/modules/shop/admin/templates/orders/edit.tpl:560
 #: application/modules/shop/admin/templates/orders/cart_list.tpl:21
 msgid "Add"
 msgstr "Add"
@@ -3785,8 +3924,8 @@ msgstr "Add to Cart"
 msgid "Add to menu"
 msgstr "Add to menu"
 
-#: application/modules/shop/admin/templates/products/default_edit.tpl:164
-#: application/modules/shop/admin/templates/products/create.tpl:217
+#: application/modules/shop/admin/templates/products/default_edit.tpl:165
+#: application/modules/shop/admin/templates/products/create.tpl:216
 #: application/modules/shop/admin/templates/products/_edit.tpl:157
 #: application/modules/shop/admin/templates/products/_edit.tpl:158
 #: application/modules/shop/admin/templates/products/_create.tpl:130
@@ -3794,11 +3933,11 @@ msgstr "Add to menu"
 msgid "Add a variant"
 msgstr "Add option"
 
-#: templates/administrator/settings_site.tpl:611
+#: templates/administrator/settings_site.tpl:722
 msgid "Add contact"
 msgstr "Add contact"
 
-#: application/modules/shop/admin/templates/orders/edit.tpl:372
+#: application/modules/shop/admin/templates/orders/edit.tpl:436
 msgid "Add a new product to the order"
 msgstr "Add another product"
 
@@ -3837,32 +3976,36 @@ msgstr "Modules additions"
 msgid "Additional currency"
 msgstr "Additional currency"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:247
+#: application/modules/shop/admin/templates/settings/settings.tpl:249
 msgid "Additional image"
 msgstr "Additional image"
 
-#: application/modules/shop/admin/customfields.php:61
-#: application/modules/shop/admin/customfields.php:62
+#: application/modules/shop/admin/customfields.php:98
+#: application/modules/shop/admin/customfields.php:99
 msgid "An additional field is created"
 msgstr "An additional field is created"
 
 #: application/modules/shop/admin/templates/products/default_edit.tpl:401
-#: application/modules/shop/admin/templates/products/edit.tpl:30
+#: application/modules/shop/admin/templates/products/edit.tpl:81
+#: application/modules/shop/admin/templates/categories/edit.tpl:35
+#: application/modules/shop/admin/templates/categories/edit.tpl:309
 #: application/modules/shop/admin/templates/orders/_create.tpl:145
 #: application/modules/shop/admin/templates/users/edit_1.tpl:102
 #: application/modules/shop/admin/templates/users/create.tpl:90
+#: application/modules/shop/admin/templates/brands/edit.tpl:26
+#: application/modules/shop/admin/templates/brands/edit.tpl:166
 msgid "Additional data"
 msgstr "Additional data"
 
-#: application/modules/shop/admin/templates/products/edit.tpl:25
+#: application/modules/shop/admin/templates/products/edit.tpl:76
 #: application/modules/shop/admin/templates/system/importfields.tpl:184
 #: application/modules/shop/admin/templates/system/export_.tpl:87
 #: application/modules/shop/admin/templates/system/importcsv.tpl:113
 msgid "Additional images"
 msgstr "Additional images"
 
-#: application/modules/shop/admin/templates/products/default_edit.tpl:210
-#: application/modules/shop/admin/templates/products/create.tpl:269
+#: application/modules/shop/admin/templates/products/default_edit.tpl:211
+#: application/modules/shop/admin/templates/products/create.tpl:268
 #: application/modules/shop/admin/templates/products/_edit.tpl:214
 #: application/modules/shop/admin/templates/products/_create.tpl:187
 msgid "Additional categories"
@@ -3935,26 +4078,25 @@ msgid "Loading properties"
 msgstr "Loading properties"
 
 #: application/modules/shop/admin/templates/orders/check.tpl:3
-#: application/modules/shop/admin/templates/orders/edit.tpl:7
+#: application/modules/shop/admin/templates/orders/edit.tpl:6
 #: application/modules/shop/admin/templates/users/edit_1.tpl:174
 #: application/modules/shop/admin/templates/users/edit.tpl:172
 #: application/modules/shop/admin/templates/users/edit_orders_list.tpl:28
 #: application/modules/shop/admin/templates/users/edit_orders_list.tpl:43
-#: application/modules/shop/admin/templates/customfields/edit.tpl:2
-#: application/modules/shop/admin/templates/customfields/list.tpl:37
+#: application/modules/shop/admin/customfields.php:42
 msgid "Order"
 msgstr "order"
 
-#: application/modules/shop/admin/orders.php:1650
+#: application/modules/shop/admin/orders.php:1645
 msgid "Order not found"
 msgstr "Order not found"
 
-#: application/modules/shop/admin/orders.php:1470
+#: application/modules/shop/admin/orders.php:1524
 msgid "Order was successfully created"
 msgstr "Order was successfully created"
 
-#: application/modules/shop/admin/templates/orders/list.tpl:312
-#: application/modules/shop/admin/templates/orders/list.tpl:322
+#: application/modules/shop/admin/templates/orders/list.tpl:307
+#: application/modules/shop/admin/templates/orders/list.tpl:317
 msgid "Orders on the page"
 msgstr "Orders on the page"
 
@@ -3974,8 +4116,8 @@ msgstr "Customer"
 msgid "Orders"
 msgstr "Orders"
 
-#: application/modules/shop/admin/templates/customfields/create.tpl:35
-#: application/modules/shop/admin/templates/customfields/create.tpl:37
+#: application/modules/shop/admin/templates/customfields/create.tpl:46
+#: application/modules/shop/admin/templates/customfields/create.tpl:48
 msgid "Orders "
 msgstr "Orders "
 
@@ -3987,12 +4129,12 @@ msgstr "Complete"
 msgid "Close"
 msgstr "Close"
 
-#: application/modules/admin/categories.php:87
+#: application/modules/admin/categories.php:89
 msgid "Posts on page"
 msgstr "Posts on page"
 
 #: templates/administrator/settings_site.tpl:24
-#: templates/administrator/settings_site.tpl:416
+#: templates/administrator/settings_site.tpl:473
 msgid "Enter Meta Tags"
 msgstr "Enter Meta Tags"
 
@@ -4019,12 +4161,12 @@ msgstr "Here you can search for modules and set them to automatic mode"
 msgid "Hello"
 msgstr "Hello"
 
-#: templates/administrator/settings_site.tpl:582
-#: templates/administrator/settings_site.tpl:597
+#: templates/administrator/settings_site.tpl:675
+#: templates/administrator/settings_site.tpl:701
 msgid "Value"
 msgstr "Values"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:67
+#: application/modules/shop/admin/templates/settings/settings.tpl:69
 msgid "The values ​​for the number of products per page (example: 12, 24, 48)"
 msgstr "The values for the number of products per page (example: 12, 24, 48)"
 
@@ -4037,7 +4179,7 @@ msgstr "Identifier"
 msgid " Change the status of marked notifications?"
 msgstr " Change the status of marked notifications?"
 
-#: application/modules/shop/admin/properties.php:716
+#: application/modules/shop/admin/properties.php:733
 msgid "Change saved successfully"
 msgstr "Change saved successfully"
 
@@ -4062,19 +4204,19 @@ msgstr "Product changes"
 msgid "Change product"
 msgstr "Change product"
 
-#: application/modules/shop/admin/templates/search/list.tpl:59
+#: application/modules/shop/admin/templates/search/list.tpl:61
 #: application/modules/shop/admin/templates/orders/list.tpl:49
 msgid "Change status"
 msgstr "Change status"
 
-#: application/modules/admin/categories.php:78
-#: application/modules/admin/categories.php:673
+#: application/modules/admin/categories.php:80
+#: application/modules/admin/categories.php:696
 msgid "Image"
 msgstr "Image"
 
 #: application/modules/shop/admin/templates/settings/settings.tpl:23
-#: application/modules/shop/admin/templates/settings/settings.tpl:190
-#: application/modules/shop/admin/templates/products/default_edit.tpl:303
+#: application/modules/shop/admin/templates/settings/settings.tpl:192
+#: application/modules/shop/admin/templates/products/default_edit.tpl:304
 #: application/modules/shop/admin/templates/products/_edit.tpl:25
 #: application/modules/shop/admin/templates/products/_edit.tpl:531
 #: application/modules/shop/admin/templates/products/_create.tpl:21
@@ -4115,17 +4257,17 @@ msgstr "Import language "
 msgid "Import-Export CSV/XLS"
 msgstr "Import-Export CSV/XLS"
 
-#: application/modules/admin/settings.php:124
+#: application/modules/admin/settings.php:175
 msgid "Name"
 msgstr "Name"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:609
-#: application/modules/shop/admin/templates/settings/settings.tpl:693
-#: application/modules/shop/admin/templates/settings/settings.tpl:798
-#: application/modules/shop/admin/templates/settings/settings.tpl:977
+#: application/modules/shop/admin/templates/settings/settings.tpl:611
+#: application/modules/shop/admin/templates/settings/settings.tpl:695
+#: application/modules/shop/admin/templates/settings/settings.tpl:800
+#: application/modules/shop/admin/templates/settings/settings.tpl:979
 #: application/modules/shop/admin/templates/notifications/edit.tpl:76
 #: application/modules/shop/admin/templates/orders/check.tpl:10
-#: application/modules/shop/admin/templates/orders/edit.tpl:147
+#: application/modules/shop/admin/templates/orders/edit.tpl:157
 #: application/modules/shop/admin/templates/orders/_create.tpl:93
 #: application/modules/shop/admin/templates/callbacks/_list.tpl:41
 #: application/modules/shop/admin/templates/callbacks/_list.tpl:112
@@ -4135,11 +4277,11 @@ msgstr "Name"
 msgid "User name"
 msgstr "User name"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:1015
+#: application/modules/shop/admin/templates/settings/settings.tpl:1017
 msgid "Username of the customer"
 msgstr "Username of the customer"
 
-#: application/modules/admin/admin.php:235
+#: application/modules/admin/admin.php:229
 msgid "user name"
 msgstr "Username"
 
@@ -4147,7 +4289,7 @@ msgstr "Username"
 msgid "Username and password have not been found"
 msgstr "Username and password have not been found"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:733
+#: application/modules/shop/admin/templates/settings/settings.tpl:735
 msgid " Name of the user who made a request "
 msgstr " Name of the user who made a request "
 
@@ -4168,7 +4310,7 @@ msgid "Information"
 msgstr "Information"
 
 #: templates/administrator/settings_site.tpl:25
-#: templates/administrator/settings_site.tpl:500
+#: templates/administrator/settings_site.tpl:573
 msgid "Site information"
 msgstr "Contact information"
 
@@ -4194,7 +4336,7 @@ msgid "Source"
 msgstr "Source"
 
 #: application/modules/shop/admin/templates/orders/products_table.tpl:74
-#: application/modules/shop/admin/templates/orders/edit.tpl:408
+#: application/modules/shop/admin/templates/orders/edit.tpl:471
 msgid "In total"
 msgstr "Total"
 
@@ -4216,8 +4358,8 @@ msgstr "quotes"
 msgid "map"
 msgstr "map"
 
-#: application/modules/shop/admin/settings.php:430
-#: application/modules/shop/admin/settings.php:452
+#: application/modules/shop/admin/settings.php:444
+#: application/modules/shop/admin/settings.php:466
 msgid "Pictures Updated"
 msgstr "Pictures Updated"
 
@@ -4247,7 +4389,7 @@ msgstr "Products catalog"
 #: templates/administrator/inc/menus.php:46
 #: templates/administrator/inc/menus.php:324
 #: templates/administrator/inc/menus.php:607
-#: templates/administrator/settings_site.tpl:270
+#: templates/administrator/settings_site.tpl:303
 msgid "Categories"
 msgstr "Categories"
 
@@ -4257,13 +4399,13 @@ msgstr "Categories"
 msgid "Product categories"
 msgstr "Product categories"
 
-#: application/modules/admin/categories.php:569
-#: application/modules/admin/categories.php:787
+#: application/modules/admin/categories.php:592
+#: application/modules/admin/categories.php:810
 msgid "Category"
 msgstr "Category"
 
-#: application/modules/shop/admin/categories.php:351
-#: application/modules/shop/admin/products.php:78
+#: application/modules/shop/admin/categories.php:329
+#: application/modules/shop/admin/products.php:79
 msgid "Category not found"
 msgstr "Category not found"
 
@@ -4271,7 +4413,7 @@ msgstr "Category not found"
 msgid "Category successfully added"
 msgstr "Category successfully added"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:277
+#: application/modules/shop/admin/templates/settings/settings.tpl:279
 msgid "Quality"
 msgstr "Quality"
 
@@ -4280,21 +4422,21 @@ msgstr "Quality"
 msgid "Cache"
 msgstr "Cache"
 
-#: application/modules/shop/admin/templates/customfields/create.tpl:128
-#: application/modules/shop/admin/templates/customfields/create.tpl:138
-#: application/modules/shop/admin/templates/customfields/edit.tpl:121
-#: application/modules/shop/admin/templates/customfields/edit.tpl:131
+#: application/modules/shop/admin/templates/customfields/create.tpl:140
+#: application/modules/shop/admin/templates/customfields/create.tpl:150
+#: application/modules/shop/admin/templates/customfields/edit.tpl:120
+#: application/modules/shop/admin/templates/customfields/edit.tpl:130
 msgid "Classes"
 msgstr "Classes"
 
-#: application/modules/admin/widgets_manager.php:120
-#: application/modules/admin/widgets_manager.php:185
-#: application/modules/admin/widgets_manager.php:282
-#: application/modules/admin/widgets_manager.php:352
+#: application/modules/admin/widgets_manager.php:114
+#: application/modules/admin/widgets_manager.php:181
+#: application/modules/admin/widgets_manager.php:283
+#: application/modules/admin/widgets_manager.php:353
 msgid "Key"
 msgstr "Key"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:653
+#: application/modules/shop/admin/templates/settings/settings.tpl:655
 msgid "Key to view the wishlist"
 msgstr "Key to view the wishlist"
 
@@ -4303,7 +4445,7 @@ msgstr "Key to view the wishlist"
 msgid "Key for Mail Chimp list"
 msgstr "Key for Mail Chimp list"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:1148
+#: application/modules/shop/admin/templates/settings/settings.tpl:1150
 msgid "Protection key"
 msgstr "Protection key"
 
@@ -4315,10 +4457,10 @@ msgstr "The key to your list of <br />news for MailChimp"
 msgid "The key to your account <br />on the mail Mailchimp"
 msgstr "The key to your account <br />on the mail Mailchimp"
 
-#: application/modules/admin/categories.php:81
-#: application/modules/admin/categories.php:675
-#: application/modules/admin/pages.php:444
-#: application/modules/admin/settings.php:127
+#: application/modules/admin/categories.php:83
+#: application/modules/admin/categories.php:698
+#: application/modules/admin/pages.php:438
+#: application/modules/admin/settings.php:178
 msgid "Keywords"
 msgstr "Keywords"
 
@@ -4328,7 +4470,7 @@ msgstr "Keywords"
 msgid "Code"
 msgstr "Code"
 
-#: templates/administrator/settings_site.tpl:211
+#: templates/administrator/settings_site.tpl:236
 msgid "The code should be in the format ua-54545845"
 msgstr "The code should be in the format ua-54545845"
 
@@ -4352,10 +4494,9 @@ msgstr "Encoding"
 #: application/modules/shop/admin/templates/system/importcsv.tpl:101
 #: application/modules/shop/admin/templates/orders/create.tpl:286
 #: application/modules/shop/admin/templates/orders/products_table.tpl:7
-#: application/modules/shop/admin/templates/orders/edit.tpl:245
+#: application/modules/shop/admin/templates/orders/edit.tpl:268
 #: application/modules/shop/admin/templates/orders/_editAddToCartWindow.tpl:34
-#: application/modules/shop/admin/orders.php:1248
-#: application/modules/shop/admin/orders.php:1516
+#: application/modules/shop/admin/orders.php:1302
 msgid "Quantity"
 msgstr "Quantity"
 
@@ -4385,18 +4526,18 @@ msgstr "Comments"
 
 #: application/modules/shop/admin/templates/notifications/edit.tpl:100
 #: application/modules/shop/admin/templates/orders/check.tpl:51
-#: application/modules/shop/admin/templates/orders/edit.tpl:95
-#: application/modules/shop/admin/templates/orders/edit.tpl:433
+#: application/modules/shop/admin/templates/orders/edit.tpl:102
+#: application/modules/shop/admin/templates/orders/edit.tpl:496
 #: application/modules/shop/admin/templates/orders/_create.tpl:136
 #: application/modules/shop/admin/templates/callbacks/edit.tpl:81
 msgid "Comment"
 msgstr "Comment"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:651
+#: application/modules/shop/admin/templates/settings/settings.tpl:653
 msgid "Comments of the wishlist author"
 msgstr "Comments of the author wishlist"
 
-#: application/modules/shop/admin/templates/orders/edit.tpl:99
+#: application/modules/shop/admin/templates/orders/edit.tpl:106
 msgid "Commentary to change the status"
 msgstr "Commentary to change the status"
 
@@ -4421,11 +4562,11 @@ msgstr "Components"
 msgid "Field constructor"
 msgstr "Field constructor"
 
-#: templates/administrator/settings_site.tpl:569
+#: templates/administrator/settings_site.tpl:655
 msgid "Contacts"
 msgstr "Contacts"
 
-#: application/modules/admin/pages.php:583
+#: application/modules/admin/pages.php:568
 msgid "Page contents have been updated"
 msgstr "Page contents have been updated/ Page content has been updated"
 
@@ -4448,24 +4589,24 @@ msgstr "Copy page"
 msgid "Cart"
 msgstr "Cart"
 
-#: templates/administrator/settings_site.tpl:570
+#: templates/administrator/settings_site.tpl:657
 msgid "that you entered as a contact type"
 msgstr "that you entered as a contact type"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:1042
+#: application/modules/shop/admin/templates/settings/settings.tpl:1044
 msgid " Popularity formula coefficient "
 msgstr " Popularity coefficient formula "
 
-#: application/modules/admin/settings.php:125
+#: application/modules/admin/settings.php:176
 msgid "Short name"
 msgstr "Short name"
 
-#: templates/administrator/settings_site.tpl:455
+#: templates/administrator/settings_site.tpl:518
 msgid "Short site name"
 msgstr "Short site name"
 
-#: application/modules/admin/categories.php:82
-#: application/modules/admin/categories.php:676
+#: application/modules/admin/categories.php:84
+#: application/modules/admin/categories.php:699
 msgid "Short description"
 msgstr "Short description"
 
@@ -4528,7 +4669,7 @@ msgid "Array of values for the number of products on site"
 msgstr "Array of values for the number of products on site"
 
 #: application/modules/shop/admin/templates/notifications/list.tpl:66
-#: application/modules/shop/admin/templates/orders/edit.tpl:434
+#: application/modules/shop/admin/templates/orders/edit.tpl:497
 #: application/modules/shop/admin/templates/callbacks/_list.tpl:46
 #: application/modules/shop/admin/templates/callbacks/_list.tpl:117
 #: application/modules/shop/admin/templates/callbacks/list.tpl:59
@@ -4555,7 +4696,7 @@ msgstr "month"
 #: templates/administrator/create_cat.tpl:313
 #: templates/administrator/category_edit.tpl:47
 #: templates/administrator/category_edit.tpl:349
-#: templates/administrator/settings_site.tpl:330
+#: templates/administrator/settings_site.tpl:371
 msgid "Meta tags"
 msgstr "Meta tags"
 
@@ -4563,8 +4704,8 @@ msgstr "Meta tags"
 msgid "Meta-tags"
 msgstr "Meta-tags"
 
-#: application/modules/shop/admin/templates/customfields/create.tpl:51
-#: application/modules/shop/admin/templates/customfields/edit.tpl:49
+#: application/modules/shop/admin/templates/customfields/create.tpl:62
+#: application/modules/shop/admin/templates/customfields/edit.tpl:48
 msgid "Label"
 msgstr "Label"
 
@@ -4572,7 +4713,7 @@ msgstr "Label"
 msgid "Sort method updated"
 msgstr "Sort method updated"
 
-#: application/modules/admin/widgets_manager.php:122
+#: application/modules/admin/widgets_manager.php:116
 msgid "Method"
 msgstr "Method"
 
@@ -4580,7 +4721,7 @@ msgstr "Method"
 msgid "small image"
 msgstr "small image"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:262
+#: application/modules/shop/admin/templates/settings/settings.tpl:264
 msgid "Thumbnail"
 msgstr "Thumbnail"
 
@@ -4645,11 +4786,11 @@ msgstr "on"
 msgid "At the properties page"
 msgstr "Features on the page"
 
-#: application/modules/shop/admin/templates/search/list.tpl:620
+#: application/modules/shop/admin/templates/search/list.tpl:653
 msgid "At the products page"
 msgstr "At the products page"
 
-#: application/modules/shop/admin/templates/products/edit.tpl:26
+#: application/modules/shop/admin/templates/products/edit.tpl:77
 #: application/modules/shop/admin/templates/products/_edit.tpl:26
 #: application/modules/shop/admin/templates/products/_edit.tpl:595
 #: application/modules/shop/admin/templates/products/_create.tpl:22
@@ -4667,16 +4808,16 @@ msgid "Produkts kits"
 msgstr "Produkts kits"
 
 #: application/modules/admin/admin_logs.php:51
-#: application/modules/admin/pages.php:1041
+#: application/modules/admin/pages.php:1045
 #: application/modules/admin/sys_update.php:126
 msgid "Prev"
 msgstr "Prev"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:647
+#: application/modules/shop/admin/templates/settings/settings.tpl:649
 msgid "Name of the WishList author"
 msgstr "Name of the author WishList"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:570
+#: application/modules/shop/admin/templates/settings/settings.tpl:572
 #: application/modules/shop/admin/templates/system/importfields.tpl:174
 #: application/modules/shop/admin/templates/system/export_.tpl:77
 #: application/modules/shop/admin/templates/system/importcsv.tpl:103
@@ -4690,15 +4831,15 @@ msgstr "Variant name"
 msgid "Product variant name"
 msgstr "Product option name"
 
-#: templates/administrator/settings_site.tpl:357
+#: templates/administrator/settings_site.tpl:402
 msgid "Category name"
 msgstr "Category name"
 
-#: application/modules/admin/widgets_manager.php:121
+#: application/modules/admin/widgets_manager.php:115
 msgid "Module name"
 msgstr "Module name"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:95
+#: application/modules/shop/admin/templates/settings/settings.tpl:97
 msgid "The name at the website"
 msgstr "The name at the website"
 
@@ -4707,8 +4848,8 @@ msgstr "The name at the website"
 msgid "Products name"
 msgstr "Products name"
 
-#: templates/administrator/settings_site.tpl:342
-#: templates/administrator/settings_site.tpl:446
+#: templates/administrator/settings_site.tpl:384
+#: templates/administrator/settings_site.tpl:506
 msgid "Site name"
 msgstr "Site name"
 
@@ -4716,7 +4857,7 @@ msgstr "Site name"
 msgid "File name"
 msgstr "File name"
 
-#: application/modules/admin/categories.php:312
+#: application/modules/admin/categories.php:331
 msgid "Template name"
 msgstr "Template name"
 
@@ -4772,7 +4913,7 @@ msgid "FTP connection settings"
 msgstr "FTP connection settings"
 
 #: templates/administrator/settings_site.tpl:21
-#: templates/administrator/settings_site.tpl:194
+#: templates/administrator/settings_site.tpl:216
 msgid "Analysts settings"
 msgstr "Analytics settings"
 
@@ -4798,7 +4939,7 @@ msgstr "Gift certificate settings"
 msgid "Site settings"
 msgstr "Site settings"
 
-#: application/modules/admin/settings.php:282
+#: application/modules/admin/settings.php:333
 msgid "Changed wesite settings"
 msgstr "Changed wesite settings/ Website settings have been changed"
 
@@ -4806,7 +4947,7 @@ msgstr "Changed wesite settings/ Website settings have been changed"
 msgid "Settings saved"
 msgstr "Settings saved/ Settings have been saved"
 
-#: application/modules/admin/settings.php:286
+#: application/modules/admin/settings.php:337
 msgid "Settings have been saved"
 msgstr "Settings have been saved"
 
@@ -4831,7 +4972,7 @@ msgstr "Start resize images after import"
 msgid "Start typing name here"
 msgstr "Start typing the name here"
 
-#: application/modules/shop/admin/templates/search/list.tpl:203
+#: application/modules/shop/admin/templates/search/list.tpl:205
 #: application/modules/shop/admin/templates/comulativ/create.tpl:57
 #: application/modules/shop/admin/templates/properties/list.tpl:187
 msgid "Not active"
@@ -4850,13 +4991,13 @@ msgstr "There was no price for the upgrade"
 msgid "Not selected"
 msgstr "Not selected"
 
-#: application/modules/admin/pages.php:301
+#: application/modules/admin/pages.php:288
 msgid "Not found"
 msgstr "Not found"
 
 #: application/modules/shop/admin/templates/orders/list.tpl:59
 #: application/modules/shop/admin/templates/orders/list.tpl:186
-#: application/modules/shop/admin/templates/orders/list.tpl:269
+#: application/modules/shop/admin/templates/orders/list.tpl:264
 msgid "Not paid"
 msgstr "Not paid"
 
@@ -4880,8 +5021,8 @@ msgstr "switch off"
 msgid "don't show"
 msgstr "don't show"
 
-#: application/modules/shop/admin/templates/categories/create.tpl:160
-#: application/modules/shop/admin/templates/categories/edit.tpl:184
+#: application/modules/shop/admin/templates/categories/create.tpl:193
+#: application/modules/shop/admin/templates/categories/edit.tpl:231
 msgid "Do not show short name of the site"
 msgstr "Do not show short name of the site in the Meta Data"
 
@@ -4901,12 +5042,12 @@ msgstr "Failed to update the column number"
 msgid "Failed to create user"
 msgstr "Failed to create user"
 
-#: application/modules/admin/categories.php:330
+#: application/modules/admin/categories.php:349
 msgid "Could not create file"
 msgstr "Could not create file"
 
-#: application/modules/shop/admin/templates/products/default_edit.tpl:186
-#: application/modules/shop/admin/templates/products/create.tpl:241
+#: application/modules/shop/admin/templates/products/default_edit.tpl:187
+#: application/modules/shop/admin/templates/products/create.tpl:240
 #: application/modules/shop/admin/templates/products/_edit.tpl:196
 #: application/modules/shop/admin/templates/products/_create.tpl:169
 msgid "Not specified"
@@ -4930,7 +5071,7 @@ msgstr "Some settings are being not saved/ Some settings have not been saved"
 msgid "You must attach the goods to create a set"
 msgstr "You must attach the goods to create a set"
 
-#: application/modules/shop/admin/templates/customfields/list.tpl:87
+#: application/modules/shop/admin/templates/customfields/list.tpl:91
 msgid "Required"
 msgstr "Required"
 
@@ -4943,12 +5084,12 @@ msgstr "Wrong protection code"
 msgid "Wrong file type. Only csv|xls|xlsx"
 msgstr "Wrong file type. Only csv|xls|xlsx"
 
-#: application/modules/shop/admin/templates/orders/edit.tpl:197
+#: application/modules/shop/admin/templates/orders/edit.tpl:213
 msgid "none"
 msgstr "none"
 
-#: application/modules/admin/categories.php:570
-#: application/modules/admin/categories.php:788
+#: application/modules/admin/categories.php:593
+#: application/modules/admin/categories.php:811
 #: application/modules/admin/settings.php:74
 msgid "No"
 msgstr "No"
@@ -5031,10 +5172,8 @@ msgstr "New Role"
 #: application/modules/shop/admin/templates/products/fastCreateForm.tpl:59
 #: application/modules/shop/admin/templates/products/list.tpl:88
 #: application/modules/shop/admin/templates/products/list.tpl:90
-#: application/modules/shop/admin/templates/search/list.tpl:345
-#: application/modules/shop/admin/templates/search/list.tpl:347
-#: application/modules/shop/admin/templates/search/list.tpl:483
-#: application/modules/shop/admin/templates/search/list.tpl:485
+#: application/modules/shop/admin/templates/search/list.tpl:353
+#: application/modules/shop/admin/templates/search/list.tpl:505
 msgid "Novelty"
 msgstr "New"
 
@@ -5063,8 +5202,8 @@ msgstr "New pages"
 #: application/modules/shop/admin/templates/products/_edit.tpl:180
 #: application/modules/shop/admin/templates/products/list.tpl:168
 #: application/modules/shop/admin/templates/products/_create.tpl:153
-#: application/modules/shop/admin/templates/search/list.tpl:66
-#: application/modules/shop/admin/templates/search/list.tpl:210
+#: application/modules/shop/admin/templates/search/list.tpl:68
+#: application/modules/shop/admin/templates/search/list.tpl:212
 #: application/modules/shop/admin/templates/orders/cart_list.tpl:21
 msgid "New"
 msgstr "New"
@@ -5076,8 +5215,8 @@ msgstr "New"
 msgid "New password"
 msgstr "New password"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:1099
-#: application/modules/shop/admin/templates/settings/settings.tpl:1156
+#: application/modules/shop/admin/templates/settings/settings.tpl:1101
+#: application/modules/shop/admin/templates/settings/settings.tpl:1158
 msgid "Application number"
 msgstr "Application number"
 
@@ -5121,11 +5260,10 @@ msgid "Processed"
 msgstr "Processed"
 
 #: application/modules/shop/admin/templates/orders/create.tpl:287
-#: application/modules/shop/admin/templates/orders/edit.tpl:246
+#: application/modules/shop/admin/templates/orders/edit.tpl:269
 #: application/modules/shop/admin/templates/orders/list.tpl:114
 #: application/modules/shop/admin/templates/users/edit_1.tpl:154
 #: application/modules/shop/admin/templates/users/edit.tpl:151
-#: application/modules/shop/admin/orders.php:1543
 msgid "Total price"
 msgstr "Total"
 
@@ -5134,14 +5272,13 @@ msgstr "Total"
 msgid "General Settings"
 msgstr "General Settings"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:862
+#: application/modules/shop/admin/templates/settings/settings.tpl:864
 msgid "General settings"
 msgstr "General settings"
 
 #: application/modules/shop/admin/templates/orders/create.tpl:303
 #: application/modules/shop/admin/templates/orders/_editWindow.tpl:47
 #: application/modules/shop/admin/templates/users/edit_orders_list.tpl:34
-#: application/modules/shop/admin/orders.php:1518
 msgid "Total"
 msgstr "Total"
 
@@ -5149,7 +5286,7 @@ msgstr "Total"
 msgid "Access denied"
 msgstr "Access denied"
 
-#: application/modules/shop/admin/templates/customfields/list.tpl:37
+#: application/modules/shop/admin/customfields.php:41
 msgid "One user"
 msgstr "One user"
 
@@ -5181,23 +5318,23 @@ msgstr "Waiting for approval"
 msgid "Operating system"
 msgstr "Operating system"
 
-#: application/modules/shop/admin/orders.php:179
-#: application/modules/shop/admin/orders.php:206
+#: application/modules/shop/admin/orders.php:209
+#: application/modules/shop/admin/orders.php:235
 msgid "The operation was successful"
 msgstr "The operation was successful"
 
-#: application/modules/admin/categories.php:80
-#: application/modules/admin/categories.php:674
-#: application/modules/admin/widgets_manager.php:118
-#: application/modules/admin/widgets_manager.php:184
-#: application/modules/admin/widgets_manager.php:281
-#: application/modules/admin/widgets_manager.php:351
-#: application/modules/admin/pages.php:87
-#: application/modules/admin/pages.php:446
+#: application/modules/admin/categories.php:82
+#: application/modules/admin/categories.php:697
+#: application/modules/admin/widgets_manager.php:112
+#: application/modules/admin/widgets_manager.php:180
+#: application/modules/admin/widgets_manager.php:282
+#: application/modules/admin/widgets_manager.php:352
+#: application/modules/admin/pages.php:88
+#: application/modules/admin/pages.php:440
 msgid "Description "
 msgstr "Description "
 
-#: application/modules/admin/settings.php:126
+#: application/modules/admin/settings.php:177
 msgid "Description"
 msgstr "Description"
 
@@ -5208,11 +5345,11 @@ msgid "Payments"
 msgstr "processor"
 
 #: application/modules/shop/admin/templates/dashboard/dashboard.tpl:91
-#: application/modules/shop/admin/templates/orders/edit.tpl:68
-#: application/modules/shop/admin/templates/orders/edit.tpl:457
+#: application/modules/shop/admin/templates/orders/edit.tpl:73
+#: application/modules/shop/admin/templates/orders/edit.tpl:521
 #: application/modules/shop/admin/templates/orders/list.tpl:58
 #: application/modules/shop/admin/templates/orders/list.tpl:187
-#: application/modules/shop/admin/templates/orders/list.tpl:267
+#: application/modules/shop/admin/templates/orders/list.tpl:262
 #: application/modules/shop/admin/templates/orders/_create.tpl:86
 #: application/modules/shop/admin/templates/users/edit_1.tpl:206
 #: application/modules/shop/admin/templates/users/edit.tpl:204
@@ -5242,16 +5379,16 @@ msgstr "Main picture an additional"
 msgid "The main image"
 msgstr "The main image"
 
-#: application/modules/shop/admin/templates/categories/create.tpl:100
-#: application/modules/shop/admin/templates/categories/edit.tpl:124
+#: application/modules/shop/admin/templates/categories/create.tpl:128
+#: application/modules/shop/admin/templates/categories/edit.tpl:157
 msgid "The basic template category. Default category.tpl"
 msgstr "The basic category template file. Default: category.tpl"
 
-#: application/modules/admin/pages.php:448
+#: application/modules/admin/pages.php:442
 msgid "Main page template "
 msgstr "Main page template "
 
-#: application/modules/admin/pages.php:94
+#: application/modules/admin/pages.php:95
 msgid "Main page template"
 msgstr "Main page template"
 
@@ -5260,8 +5397,8 @@ msgstr "Main page template"
 msgid "Product main template. By default product.tpl"
 msgstr "Product main template. By default product.tpl"
 
-#: templates/administrator/settings_site.tpl:387
-#: templates/administrator/settings_site.tpl:398
+#: templates/administrator/settings_site.tpl:441
+#: templates/administrator/settings_site.tpl:455
 msgid "Leave empty"
 msgstr "Leave empty"
 
@@ -5287,11 +5424,11 @@ msgstr "In stock"
 msgid "from"
 msgstr "from"
 
-#: application/modules/shop/admin/templates/search/list.tpl:217
+#: application/modules/shop/admin/templates/search/list.tpl:222
 msgid "From"
 msgstr "From"
 
-#: templates/administrator/settings_site.tpl:48
+#: templates/administrator/settings_site.tpl:49
 msgid "Site shutdown"
 msgstr "Close storefront"
 
@@ -5325,11 +5462,11 @@ msgstr "Cancel filter"
 msgid "Mark"
 msgstr "Mark"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:379
+#: application/modules/shop/admin/templates/settings/settings.tpl:381
 msgid "The ratio of the size of the watermark to the size of photos"
 msgstr "The ratio of the size of the watermark to the size of photos"
 
-#: templates/administrator/settings_site.tpl:97
+#: templates/administrator/settings_site.tpl:107
 msgid "Display category tree in the content"
 msgstr "Display category tree in the content"
 
@@ -5338,14 +5475,14 @@ msgstr "Display category tree in the content"
 msgid "Display pages of other categories"
 msgstr "Display pages of other categories"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:599
-#: application/modules/shop/admin/templates/settings/settings.tpl:609
-#: application/modules/shop/admin/templates/settings/settings.tpl:683
-#: application/modules/shop/admin/templates/settings/settings.tpl:694
-#: application/modules/shop/admin/templates/settings/settings.tpl:788
-#: application/modules/shop/admin/templates/settings/settings.tpl:798
-#: application/modules/shop/admin/templates/settings/settings.tpl:968
-#: application/modules/shop/admin/templates/settings/settings.tpl:977
+#: application/modules/shop/admin/templates/settings/settings.tpl:601
+#: application/modules/shop/admin/templates/settings/settings.tpl:611
+#: application/modules/shop/admin/templates/settings/settings.tpl:685
+#: application/modules/shop/admin/templates/settings/settings.tpl:696
+#: application/modules/shop/admin/templates/settings/settings.tpl:790
+#: application/modules/shop/admin/templates/settings/settings.tpl:800
+#: application/modules/shop/admin/templates/settings/settings.tpl:970
+#: application/modules/shop/admin/templates/settings/settings.tpl:979
 msgid "sender"
 msgstr "sender"
 
@@ -5355,7 +5492,7 @@ msgstr "sender"
 msgid "Send"
 msgstr "Send"
 
-#: application/modules/shop/admin/orders.php:460
+#: application/modules/shop/admin/orders.php:490
 msgid "Very high price, please set smaller"
 msgstr "Very high price, please set smaller"
 
@@ -5381,9 +5518,9 @@ msgstr "Clear all"
 msgid "Clear outdated"
 msgstr "Clear outdated"
 
-#: application/modules/admin/categories.php:355
-#: application/modules/admin/categories.php:362
-#: application/modules/admin/settings.php:206
+#: application/modules/admin/categories.php:374
+#: application/modules/admin/categories.php:381
+#: application/modules/admin/settings.php:257
 msgid "Error"
 msgstr "Error"
 
@@ -5403,7 +5540,7 @@ msgstr "Conversion error"
 msgid "Conversion error, "
 msgstr "Conversion error, "
 
-#: application/modules/admin/pages.php:99
+#: application/modules/admin/pages.php:100
 msgid "From validation error: <br />"
 msgstr "From validation error: <br /> / Form validation error: <br />"
 
@@ -5415,8 +5552,8 @@ msgstr "Module deletion error"
 msgid "Error. The currency used in the products. Check the currency options products"
 msgstr "Error. The currency used in the products. Check the currency options products"
 
-#: application/modules/admin/widgets_manager.php:271
-#: application/modules/admin/widgets_manager.php:410
+#: application/modules/admin/widgets_manager.php:267
+#: application/modules/admin/widgets_manager.php:411
 msgid "Error: widget not found!"
 msgstr "Error: widget not found / Error: widget has not been found!"
 
@@ -5447,7 +5584,7 @@ msgstr "Operation panel"
 msgid "Password"
 msgstr "Password"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:1017
+#: application/modules/shop/admin/templates/settings/settings.tpl:1019
 msgid "Customer password"
 msgstr "Customer password"
 
@@ -5465,11 +5602,11 @@ msgstr "Translation"
 msgid "Category translation"
 msgstr "Category translation"
 
-#: application/modules/admin/categories.php:709
+#: application/modules/admin/categories.php:732
 msgid "Changed the category translation"
 msgstr "Change the category translation/ Category translation has been changed"
 
-#: application/modules/admin/categories.php:721
+#: application/modules/admin/categories.php:744
 msgid "Category translation updated"
 msgstr "Category translation updated/ Category translation has been updated"
 
@@ -5481,7 +5618,7 @@ msgstr "Go to site"
 msgid "Move"
 msgstr "Move"
 
-#: application/modules/shop/admin/templates/search/list.tpl:71
+#: application/modules/shop/admin/templates/search/list.tpl:73
 msgid "Move to category"
 msgstr "Move to category"
 
@@ -5505,7 +5642,7 @@ msgstr "Recalculation"
 msgid "Recalculate"
 msgstr "Recalculate"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:884
+#: application/modules/shop/admin/templates/settings/settings.tpl:886
 msgid "Recalculate products after payment of the order?"
 msgstr "Recalculate products after payment of the order?"
 
@@ -5521,8 +5658,8 @@ msgstr "By default"
 msgid "by default"
 msgstr "by default"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:357
-#: application/modules/shop/admin/templates/settings/settings.tpl:371
+#: application/modules/shop/admin/templates/settings/settings.tpl:359
+#: application/modules/shop/admin/templates/settings/settings.tpl:373
 msgid "In the middle"
 msgstr "In the middle"
 
@@ -5531,11 +5668,11 @@ msgid "Gift Certificates"
 msgstr "Gift Certificates"
 
 #: application/modules/shop/admin/templates/orders/create.tpl:299
-#: application/modules/shop/admin/templates/orders/edit.tpl:400
+#: application/modules/shop/admin/templates/orders/edit.tpl:463
 msgid "Gift Certificate"
 msgstr "Gift Certificate"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:96
+#: application/modules/shop/admin/templates/settings/settings.tpl:98
 #: application/modules/shop/admin/templates/properties/create.tpl:79
 #: application/modules/shop/admin/templates/properties/edit.tpl:74
 msgid "Hint"
@@ -5599,8 +5736,8 @@ msgstr "Please enter a value greater than or equal to {0}."
 msgid "Please enter a value less than or equal to {0}."
 msgstr "Please enter a value less than or equal to {0}."
 
-#: templates/administrator/settings_site.tpl:495
-#: templates/administrator/settings_site.tpl:626
+#: templates/administrator/settings_site.tpl:568
+#: templates/administrator/settings_site.tpl:737
 msgid "Please use function siteinfo() with the parameter"
 msgstr "Please use function siteinfo() with the parameter"
 
@@ -5623,7 +5760,7 @@ msgstr "Positions updated/ Positions have been updated"
 msgid "Position"
 msgstr "Position"
 
-#: application/modules/admin/categories.php:642
+#: application/modules/admin/categories.php:665
 msgid "The position has been successfully saved"
 msgstr "The position has been successfully saved"
 
@@ -5645,7 +5782,7 @@ msgstr "Search"
 msgid "show"
 msgstr "show"
 
-#: application/modules/shop/admin/templates/orders/edit.tpl:183
+#: application/modules/shop/admin/templates/orders/edit.tpl:196
 #: application/modules/shop/admin/templates/orders/_create.tpl:126
 msgid "Show on map"
 msgstr "Show on map"
@@ -5678,17 +5815,13 @@ msgstr "Show in menu"
 msgid "Purchase price"
 msgstr "Total purchases"
 
-#: application/modules/shop/admin/templates/customfields/list.tpl:54
-msgid "Field"
-msgstr "Field"
-
-#: application/modules/admin/categories.php:655
-#: application/modules/admin/pages.php:74
+#: application/modules/admin/categories.php:678
+#: application/modules/admin/pages.php:75
 msgid "The %s field can only contain Latin characters"
 msgstr "The %s field can only contain Latin characters"
 
-#: application/modules/shop/admin/templates/customfields/create.tpl:46
-#: application/modules/shop/admin/templates/customfields/edit.tpl:45
+#: application/modules/shop/admin/templates/customfields/create.tpl:57
+#: application/modules/shop/admin/templates/customfields/edit.tpl:44
 msgid "The field should only contain letters without numbers"
 msgstr "The field should only contain letters without numbers"
 
@@ -5697,7 +5830,7 @@ msgstr "The field should only contain letters without numbers"
 msgid "The field must contain only Latin characters ."
 msgstr "The field must contain only Latin characters ."
 
-#: application/modules/shop/admin/customfields.php:134
+#: application/modules/shop/admin/customfields.php:162
 msgid "Field not found"
 msgstr "Field not found"
 
@@ -5750,7 +5883,7 @@ msgstr "Users"
 msgid "User"
 msgstr "User"
 
-#: application/modules/shop/admin/orders.php:1257
+#: application/modules/shop/admin/orders.php:1311
 msgid "User is not selected"
 msgstr "User is not selected"
 
@@ -5775,8 +5908,8 @@ msgstr "User has already been notified by e-mail about product arrival! Notify a
 msgid "User already notified via E-mail upon availability! Notify again"
 msgstr "User already notified via E-mail upon availability! Notify again"
 
-#: application/modules/shop/admin/templates/customfields/create.tpl:132
-#: application/modules/shop/admin/templates/customfields/edit.tpl:125
+#: application/modules/shop/admin/templates/customfields/create.tpl:144
+#: application/modules/shop/admin/templates/customfields/edit.tpl:124
 msgid "Custom classes for widget"
 msgstr "Custom classes for widget"
 
@@ -5807,21 +5940,12 @@ msgstr "Last IP"
 msgid "Last link"
 msgstr "Last link"
 
-#: application/modules/shop/admin/templates/customfields/create.tpl:148
-#: application/modules/shop/admin/templates/customfields/create.tpl:154
-msgid "Access rights"
-msgstr "Access rights"
-
-#: application/modules/shop/admin/templates/customfields/create.tpl:152
-msgid "Access rights define <br />a set of actions (eg, read,<br /> write, execute) permissions for<br /> the subjects (for example, users<br /> of the system) of <br />the data objects."
-msgstr "Access rights define <br />a set of actions (eg, read,<br /> write, execute) permissions for<br /> the subjects (for example, users<br /> of the system) of <br />the data objects."
-
 #: templates/administrator/sys_info.tpl:44
 msgid "Write permission"
 msgstr "Write permission"
 
-#: application/modules/admin/pages.php:86
-#: application/modules/admin/pages.php:445
+#: application/modules/admin/pages.php:87
+#: application/modules/admin/pages.php:439
 msgid "Preliminary contents"
 msgstr "Short description"
 
@@ -5829,19 +5953,14 @@ msgstr "Short description"
 msgid "Warning"
 msgstr "Warning"
 
-#: application/modules/shop/admin/templates/products/edit.tpl:63
+#: application/modules/shop/admin/templates/products/edit.tpl:109
 #: application/modules/shop/admin/templates/products/_edit.tpl:19
 msgid "Previous"
 msgstr "Previous"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:200
+#: application/modules/shop/admin/templates/settings/settings.tpl:202
 msgid "Prefix (folder will be created)"
 msgstr "Prefix (folder will be created)"
-
-#: application/modules/shop/admin/templates/customfields/list.tpl:54
-#: application/modules/shop/admin/templates/customfields/list.tpl:98
-msgid "Private"
-msgstr "Private"
 
 #: templates/administrator/privilegeCreate.tpl:5
 #: templates/administrator/privilegeEdit.tpl:5
@@ -5885,12 +6004,12 @@ msgstr "Price checking"
 msgid "Check the input data and fill in all mandatory fields"
 msgstr "Check the input data and fill in all mandatory fields"
 
-#: application/modules/shop/admin/orders.php:411
-#: application/modules/shop/admin/orders.php:439
+#: application/modules/shop/admin/orders.php:441
+#: application/modules/shop/admin/orders.php:469
 msgid "Product updated"
 msgstr "Product updated"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:429
+#: application/modules/shop/admin/templates/settings/settings.tpl:431
 msgid "Transparency"
 msgstr "Transparency"
 
@@ -5898,7 +6017,7 @@ msgstr "Transparency"
 msgid "Resize images for products"
 msgstr "Resize images for products"
 
-#: application/modules/admin/admin.php:243
+#: application/modules/admin/admin.php:237
 msgid "An error occurred while sending a message"
 msgstr "An error occurred while sending a message"
 
@@ -5931,7 +6050,7 @@ msgstr "Empty status list."
 msgid "Empty."
 msgstr "Empty."
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:405
+#: application/modules/shop/admin/templates/settings/settings.tpl:407
 msgid "Path to the image"
 msgstr "Path to the image"
 
@@ -5944,7 +6063,7 @@ msgstr "Path to the root directory"
 msgid "File path"
 msgstr "File path"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:483
+#: application/modules/shop/admin/templates/settings/settings.tpl:485
 msgid "Path to font "
 msgstr "Path to font "
 
@@ -5956,7 +6075,7 @@ msgstr "expand category"
 msgid "expand the category"
 msgstr "expand the category"
 
-#: templates/administrator/settings_site.tpl:372
+#: templates/administrator/settings_site.tpl:421
 msgid "Separator"
 msgstr "Separator"
 
@@ -5993,7 +6112,7 @@ msgstr "Size"
 msgid "Amount of which will be a discount."
 msgstr "Amount of which will be a discount."
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:456
+#: application/modules/shop/admin/templates/settings/settings.tpl:458
 msgid "Font size"
 msgstr "Font size"
 
@@ -6001,7 +6120,7 @@ msgstr "Font size"
 msgid "Comment permission"
 msgstr "Comment permission"
 
-#: application/modules/shop/admin/templates/orders/edit.tpl:16
+#: application/modules/shop/admin/templates/orders/edit.tpl:17
 msgid "Print receipt"
 msgstr "Print receipt"
 
@@ -6009,12 +6128,12 @@ msgstr "Print receipt"
 msgid "PHP SOAP extension is not installed"
 msgstr "PHP SOAP extension is not installed/ PHP SOAP extension has not been installed"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:879
-#: application/modules/shop/admin/templates/settings/settings.tpl:963
+#: application/modules/shop/admin/templates/settings/settings.tpl:881
+#: application/modules/shop/admin/templates/settings/settings.tpl:965
 msgid "User registartion after making order"
 msgstr "User registartion after making order"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:946
+#: application/modules/shop/admin/templates/settings/settings.tpl:948
 msgid "Registration after order"
 msgstr "Registration after order"
 
@@ -6026,9 +6145,9 @@ msgstr "Regular discounts"
 msgid "Result"
 msgstr "Result"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:521
-#: application/modules/shop/admin/templates/settings/settings.tpl:533
-#: application/modules/shop/admin/templates/settings/settings.tpl:575
+#: application/modules/shop/admin/templates/settings/settings.tpl:523
+#: application/modules/shop/admin/templates/settings/settings.tpl:535
+#: application/modules/shop/admin/templates/settings/settings.tpl:577
 #: application/modules/shop/admin/templates/system/import.tpl:111
 msgid "Resize"
 msgstr "Resize"
@@ -6048,8 +6167,8 @@ msgstr "Resize products images"
 msgid "Sharp"
 msgstr "Sharp"
 
-#: application/modules/admin/categories.php:79
-#: application/modules/admin/categories.php:513
+#: application/modules/admin/categories.php:81
+#: application/modules/admin/categories.php:536
 msgid "Parent"
 msgstr "Parent"
 
@@ -6076,7 +6195,7 @@ msgstr "Role"
 msgid "Russian"
 msgstr "Russian"
 
-#: templates/administrator/settings_site.tpl:58
+#: templates/administrator/settings_site.tpl:59
 msgid "The site will be available only to the Administrator"
 msgstr "The site will be available only to the Administrator"
 
@@ -6084,7 +6203,7 @@ msgstr "The site will be available only to the Administrator"
 msgid "site"
 msgstr "site"
 
-#: application/modules/shop/admin/templates/search/list.tpl:50
+#: application/modules/shop/admin/templates/search/list.tpl:52
 #: application/modules/shop/admin/templates/orders/list.tpl:43
 #: application/modules/shop/admin/templates/properties/list.tpl:37
 #: application/modules/shop/admin/templates/callbacks/list.tpl:21
@@ -6131,8 +6250,8 @@ msgstr "Properties of the products"
 msgid "Products properties"
 msgstr "Products properties"
 
-#: application/modules/shop/admin/templates/customfields/edit.tpl:35
-#: application/modules/shop/admin/templates/customfields/list.tpl:50
+#: application/modules/shop/admin/templates/customfields/edit.tpl:34
+#: application/modules/shop/admin/templates/customfields/list.tpl:54
 msgid "Related entity"
 msgstr "Related entity"
 
@@ -6158,7 +6277,7 @@ msgstr "Generate"
 msgid "Take a snapshot of the database before start"
 msgstr "Take a snapshot of the database before start"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:1091
+#: application/modules/shop/admin/templates/settings/settings.tpl:1093
 msgid "Secret key"
 msgstr "Secret key"
 
@@ -6220,11 +6339,11 @@ msgstr "Warehouse"
 msgid "Copy to the local computer"
 msgstr "Copy to the local computer"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:355
+#: application/modules/shop/admin/templates/settings/settings.tpl:357
 msgid "Left"
 msgstr "Left"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:474
+#: application/modules/shop/admin/templates/settings/settings.tpl:476
 msgid "Displacement"
 msgstr "Displacement"
 
@@ -6232,7 +6351,7 @@ msgstr "Displacement"
 msgid "Create copy"
 msgstr "Create copy"
 
-#: application/modules/admin/pages.php:203
+#: application/modules/admin/pages.php:190
 msgid "Created a page"
 msgstr "Created a page/ Create a page/ Page has been created"
 
@@ -6357,7 +6476,7 @@ msgstr "Create small image"
 msgid "Create gift certificate"
 msgstr "Create gift certificate"
 
-#: application/modules/shop/admin/templates/customfields/list.tpl:30
+#: application/modules/shop/admin/templates/customfields/list.tpl:33
 msgid "Create Field"
 msgstr "Create Field"
 
@@ -6395,8 +6514,8 @@ msgstr "Create a product"
 msgid " Create a product copy?"
 msgstr " Create a product copy?"
 
-#: application/modules/admin/admin.php:235
-#: application/modules/admin/pages.php:649
+#: application/modules/admin/admin.php:229
+#: application/modules/admin/pages.php:634
 msgid "Message"
 msgstr "Message"
 
@@ -6405,7 +6524,7 @@ msgstr "Message"
 msgid "message"
 msgstr "message"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:1195
+#: application/modules/shop/admin/templates/settings/settings.tpl:1197
 msgid "Message about arrival"
 msgstr "Message about arrival"
 
@@ -6414,7 +6533,7 @@ msgstr "Message about arrival"
 msgid "Price to be confirmed message"
 msgstr "Price to be confirmed message"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:1211
+#: application/modules/shop/admin/templates/settings/settings.tpl:1213
 msgid "Message from the order page"
 msgstr "Message from the order page"
 
@@ -6454,7 +6573,8 @@ msgstr "Sort by name ."
 msgid "Sort by price"
 msgstr "Sort by price"
 
-#: application/modules/shop/admin/orders.php:123
+#: application/modules/shop/admin/customfields.php:304
+#: application/modules/shop/admin/orders.php:114
 msgid "Saved"
 msgstr "Saved"
 
@@ -6543,7 +6663,7 @@ msgstr "Group's list "
 msgid "Roles groups list"
 msgstr "Roles groups list"
 
-#: application/modules/shop/admin/templates/customfields/list.tpl:26
+#: application/modules/shop/admin/templates/customfields/list.tpl:28
 msgid "Additional fields list"
 msgstr "Custom fields"
 
@@ -6552,7 +6672,7 @@ msgstr "Custom fields"
 msgid "WishList"
 msgstr "WishList"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:590
+#: application/modules/shop/admin/templates/settings/settings.tpl:592
 msgid "Wish List"
 msgstr "Wish List"
 
@@ -6608,7 +6728,7 @@ msgstr "List of users"
 msgid "Empty user list."
 msgstr "Empty user list."
 
-#: application/modules/shop/admin/templates/customfields/list.tpl:111
+#: application/modules/shop/admin/templates/customfields/list.tpl:103
 #: application/modules/shop/admin/templates/deliverymethods/create.tpl:142
 msgid "List is empty."
 msgstr "List is empty."
@@ -6621,7 +6741,7 @@ msgstr "List is empty"
 msgid "Privileges list"
 msgstr "Privileges list"
 
-#: application/modules/shop/admin/properties.php:649
+#: application/modules/shop/admin/properties.php:660
 msgid "The list of properties is empty"
 msgstr "The list of properties is empty"
 
@@ -6672,7 +6792,7 @@ msgstr "Option name"
 #: application/modules/shop/admin/templates/orders/check.tpl:43
 #: application/modules/shop/admin/templates/orders/create.tpl:186
 #: application/modules/shop/admin/templates/orders/create.tpl:254
-#: application/modules/shop/admin/templates/orders/edit.tpl:206
+#: application/modules/shop/admin/templates/orders/edit.tpl:223
 #: application/modules/shop/admin/templates/orders/_create.tpl:223
 #: application/modules/shop/admin/templates/users/edit_orders_list.tpl:30
 #: application/modules/shop/admin/templates/deliverymethods/create.tpl:124
@@ -6680,12 +6800,12 @@ msgstr "Option name"
 msgid "Payment method"
 msgstr "Payment method"
 
-#: application/modules/shop/admin/paymentmethods.php:134
+#: application/modules/shop/admin/paymentmethods.php:150
 msgid "Payment method is not found."
 msgstr "Payment method is not found."
 
-#: application/modules/shop/admin/paymentmethods.php:96
-#: application/modules/shop/admin/paymentmethods.php:97
+#: application/modules/shop/admin/paymentmethods.php:105
+#: application/modules/shop/admin/paymentmethods.php:106
 msgid "Payment method is created"
 msgstr "Payment method is created"
 
@@ -6699,7 +6819,7 @@ msgstr "Payd method"
 msgid "Payment methods"
 msgstr "Payment methods"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:359
+#: application/modules/shop/admin/templates/settings/settings.tpl:361
 msgid "Right"
 msgstr "Right"
 
@@ -6711,16 +6831,16 @@ msgstr "Valid to"
 msgid "Reference"
 msgstr "Reference"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:737
+#: application/modules/shop/admin/templates/settings/settings.tpl:739
 msgid "Link to view the product"
 msgstr "Link to view the product"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:654
+#: application/modules/shop/admin/templates/settings/settings.tpl:656
 msgid "Link to view the WishList"
 msgstr "Link to view the WishList"
 
-#: application/modules/shop/admin/templates/products/default_edit.tpl:176
-#: application/modules/shop/admin/templates/products/create.tpl:229
+#: application/modules/shop/admin/templates/products/default_edit.tpl:177
+#: application/modules/shop/admin/templates/products/create.tpl:228
 #: application/modules/shop/admin/templates/products/_edit.tpl:415
 #: application/modules/shop/admin/templates/products/_create.tpl:368
 #: application/modules/shop/admin/templates/system/importfields.tpl:171
@@ -6751,13 +6871,13 @@ msgstr "Set this status for all new requests"
 msgid "Status change success"
 msgstr "Status change success"
 
-#: application/modules/shop/admin/notifications.php:322
-#: application/modules/shop/admin/orders.php:1754
+#: application/modules/shop/admin/notifications.php:323
+#: application/modules/shop/admin/orders.php:1748
 msgid "Order status changed"
 msgstr "Order status changed"
 
-#: application/modules/shop/admin/orders.php:179
-#: application/modules/shop/admin/orders.php:1218
+#: application/modules/shop/admin/orders.php:209
+#: application/modules/shop/admin/orders.php:1272
 msgid "Order Status changed"
 msgstr "Order Status changed"
 
@@ -6770,7 +6890,7 @@ msgid "Order status created"
 msgstr "Order status created"
 
 #: application/modules/shop/admin/templates/dashboard/dashboard.tpl:29
-#: application/modules/shop/admin/templates/orders/edit.tpl:435
+#: application/modules/shop/admin/templates/orders/edit.tpl:498
 #: application/modules/shop/admin/templates/orders/list.tpl:57
 #: application/modules/shop/admin/templates/orders/list.tpl:124
 #: application/modules/shop/admin/templates/users/edit_1.tpl:155
@@ -6779,7 +6899,7 @@ msgstr "Order status created"
 msgid "Payment status"
 msgstr "Payment status"
 
-#: application/modules/shop/admin/orders.php:123
+#: application/modules/shop/admin/orders.php:114
 msgid "Payment status of orders changed"
 msgstr "Payment status of orders changed"
 
@@ -6788,7 +6908,7 @@ msgstr "Payment status of orders changed"
 msgid "Publication status"
 msgstr "Publication status"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:731
+#: application/modules/shop/admin/templates/settings/settings.tpl:733
 msgid "Notification status about the arrival"
 msgstr "Notification status about the arrival"
 
@@ -6820,23 +6940,23 @@ msgstr "Statuses of the appearance"
 msgid "Notification statuses"
 msgstr "Notification statuses"
 
-#: application/modules/admin/pages.php:301
+#: application/modules/admin/pages.php:288
 msgid "Page"
 msgstr "Page"
 
-#: application/modules/admin/admin.php:235
+#: application/modules/admin/admin.php:229
 msgid "page"
 msgstr "page/ Page"
 
-#: application/modules/admin/pages.php:214
+#: application/modules/admin/pages.php:201
 msgid "Page has been created"
 msgstr "Page has been created"
 
-#: application/modules/admin/pages.php:572
+#: application/modules/admin/pages.php:557
 msgid "Changed the page"
 msgstr "Changed the page/ The page has been changed/ Change the page"
 
-#: application/modules/admin/settings.php:228
+#: application/modules/admin/settings.php:279
 msgid "Page has not been found"
 msgstr "Page has not been found"
 
@@ -6868,10 +6988,6 @@ msgstr "Comment pages by default "
 msgid "Updated pages"
 msgstr "Updated pages"
 
-#: application/modules/admin/pages.php:138
-msgid "Page with the same URL has been created yet. Specify or select another URL"
-msgstr "Page with the same URL has been created yet. Specify or select another URL"
-
 #: application/modules/admin/pages.php:875
 msgid "Zero-length string"
 msgstr "Zero-length string"
@@ -6880,7 +6996,7 @@ msgstr "Zero-length string"
 msgid "Amount"
 msgstr "Amount"
 
-#: application/modules/shop/admin/templates/orders/edit.tpl:87
+#: application/modules/shop/admin/templates/orders/edit.tpl:94
 msgid "Order amount"
 msgstr "Total price"
 
@@ -6896,8 +7012,8 @@ msgstr "Discount Amount to"
 msgid "The amount to which there will be a discount"
 msgstr "The amount to which there will be a discount"
 
-#: templates/administrator/settings_site.tpl:386
-#: templates/administrator/settings_site.tpl:397
+#: templates/administrator/settings_site.tpl:439
+#: templates/administrator/settings_site.tpl:453
 msgid "Auto formation"
 msgstr "Auto formation"
 
@@ -6917,21 +7033,21 @@ msgstr "Just like the number 10"
 msgid "Such status does not exist"
 msgstr "Such status does not exist"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:393
-#: application/modules/shop/admin/templates/settings/settings.tpl:448
+#: application/modules/shop/admin/templates/settings/settings.tpl:395
+#: application/modules/shop/admin/templates/settings/settings.tpl:450
 #: application/modules/shop/admin/templates/dashboard/dashboard.tpl:173
-#: application/modules/shop/admin/templates/customfields/create.tpl:100
+#: application/modules/shop/admin/templates/customfields/create.tpl:111
 msgid "Text"
 msgstr "Text"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:640
-#: application/modules/shop/admin/templates/settings/settings.tpl:724
-#: application/modules/shop/admin/templates/settings/settings.tpl:829
-#: application/modules/shop/admin/templates/settings/settings.tpl:1006
+#: application/modules/shop/admin/templates/settings/settings.tpl:642
+#: application/modules/shop/admin/templates/settings/settings.tpl:726
+#: application/modules/shop/admin/templates/settings/settings.tpl:831
+#: application/modules/shop/admin/templates/settings/settings.tpl:1008
 msgid "Message text"
 msgstr "Message text"
 
-#: application/modules/shop/admin/templates/customfields/create.tpl:101
+#: application/modules/shop/admin/templates/customfields/create.tpl:112
 msgid "Textarea field"
 msgstr "Textarea field"
 
@@ -6948,7 +7064,7 @@ msgstr "Current certificate (amount):"
 #: application/modules/shop/admin/templates/commulative/edit.tpl:121
 #: application/modules/shop/admin/templates/notifications/edit.tpl:90
 #: application/modules/shop/admin/templates/comulativ/edit.tpl:94
-#: application/modules/shop/admin/templates/orders/edit.tpl:168
+#: application/modules/shop/admin/templates/orders/edit.tpl:178
 #: application/modules/shop/admin/templates/orders/_create.tpl:111
 #: application/modules/shop/admin/templates/users/edit_1.tpl:46
 #: application/modules/shop/admin/templates/users/create.tpl:64
@@ -6969,15 +7085,15 @@ msgstr "Phone"
 msgid "Phone"
 msgstr "Phone"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:649
+#: application/modules/shop/admin/templates/settings/settings.tpl:651
 msgid " Telephone number of the wishlist author"
 msgstr " Telephone number of the author wishlist"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:735
+#: application/modules/shop/admin/templates/settings/settings.tpl:737
 msgid "User phone number"
 msgstr "User phone number"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:836
+#: application/modules/shop/admin/templates/settings/settings.tpl:838
 #: application/modules/shop/admin/templates/callbacks/_list.tpl:43
 #: application/modules/shop/admin/templates/callbacks/_list.tpl:114
 #: application/modules/shop/admin/templates/callbacks/list.tpl:56
@@ -6985,14 +7101,14 @@ msgstr "User phone number"
 msgid "Theme"
 msgstr "Theme"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:618
-#: application/modules/shop/admin/templates/settings/settings.tpl:702
-#: application/modules/shop/admin/templates/settings/settings.tpl:807
-#: application/modules/shop/admin/templates/settings/settings.tpl:985
+#: application/modules/shop/admin/templates/settings/settings.tpl:620
+#: application/modules/shop/admin/templates/settings/settings.tpl:704
+#: application/modules/shop/admin/templates/settings/settings.tpl:809
+#: application/modules/shop/admin/templates/settings/settings.tpl:987
 msgid "Subject"
 msgstr "Subject"
 
-#: application/modules/shop/admin/templates/customfields/create.tpl:31
+#: application/modules/shop/admin/templates/customfields/create.tpl:40
 msgid "Entity"
 msgstr "Entity"
 
@@ -7006,16 +7122,16 @@ msgstr "Type"
 msgid "Import type"
 msgstr "Import type"
 
-#: templates/administrator/settings_site.tpl:579
-#: templates/administrator/settings_site.tpl:594
+#: templates/administrator/settings_site.tpl:668
+#: templates/administrator/settings_site.tpl:694
 msgid "Contact type"
 msgstr "Contact type"
 
-#: application/modules/shop/admin/templates/customfields/create.tpl:97
+#: application/modules/shop/admin/templates/customfields/create.tpl:108
 msgid "Field type"
 msgstr "Field type"
 
-#: templates/administrator/settings_site.tpl:528
+#: templates/administrator/settings_site.tpl:603
 msgid "Company type"
 msgstr "Company type"
 
@@ -7031,11 +7147,11 @@ msgstr "product"
 msgid "Product"
 msgstr "Product"
 
-#: application/modules/shop/admin/orders.php:358
+#: application/modules/shop/admin/orders.php:388
 msgid "Item has been added to the order"
 msgstr "Item has been added to the order"
 
-#: application/modules/shop/admin/products.php:541
+#: application/modules/shop/admin/products.php:545
 msgid "Product not found"
 msgstr "Product not found"
 
@@ -7053,7 +7169,7 @@ msgstr "Products"
 msgid "Products without images"
 msgstr "Products without images"
 
-#: application/modules/shop/admin/templates/orders/edit.tpl:242
+#: application/modules/shop/admin/templates/orders/edit.tpl:265
 msgid "Items in Cart"
 msgstr "Product"
 
@@ -7117,7 +7233,7 @@ msgid "Notifications"
 msgstr "Notifications"
 
 #: application/modules/shop/admin/templates/settings/settings.tpl:25
-#: application/modules/shop/admin/templates/settings/settings.tpl:1186
+#: application/modules/shop/admin/templates/settings/settings.tpl:1188
 msgid "Notifications in pages"
 msgstr "Notifications in pages"
 
@@ -7129,7 +7245,7 @@ msgstr "Reports of the appearance"
 msgid "Notify"
 msgstr "Notify"
 
-#: application/modules/shop/admin/templates/orders/edit.tpl:109
+#: application/modules/shop/admin/templates/orders/edit.tpl:116
 msgid "Info buyer about change status"
 msgstr "Info customer about status change"
 
@@ -7210,8 +7326,8 @@ msgid "Successfull moving"
 msgstr "Successful move/ Moved successfully"
 
 #: application/modules/admin/widgets_manager.php:40
-#: application/modules/admin/widgets_manager.php:103
-#: application/modules/admin/widgets_manager.php:239
+#: application/modules/admin/widgets_manager.php:97
+#: application/modules/admin/widgets_manager.php:235
 msgid "Set the directory access rights to continue the work with widgets"
 msgstr "Set the directory access rights to continue the work with widgets"
 
@@ -7240,7 +7356,7 @@ msgstr "Install"
 msgid "Module install"
 msgstr "Module install"
 
-#: application/modules/shop/admin/templates/customfields/create.tpl:102
+#: application/modules/shop/admin/templates/customfields/create.tpl:113
 msgid "File field"
 msgstr "File field"
 
@@ -7270,11 +7386,11 @@ msgstr "The file is loaded. Slot "
 msgid "File cannot be uploaded, because file with such extention <br /> can not have those mime-type. Mime: "
 msgstr "File cannot be uploaded, because file with such extention <br /> can not have those mime-type. Mime: "
 
-#: application/modules/admin/categories.php:337
+#: application/modules/admin/categories.php:356
 msgid "File with the same name is already exist."
 msgstr "File with the same name is already exist."
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:504
+#: application/modules/shop/admin/templates/settings/settings.tpl:506
 msgid "Font file must be located on the server. For example"
 msgstr "The Font file must be located on the server. For example"
 
@@ -7290,10 +7406,10 @@ msgstr "Files that will be changed"
 msgid "Filter"
 msgstr "Filter"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:627
-#: application/modules/shop/admin/templates/settings/settings.tpl:711
-#: application/modules/shop/admin/templates/settings/settings.tpl:816
-#: application/modules/shop/admin/templates/settings/settings.tpl:993
+#: application/modules/shop/admin/templates/settings/settings.tpl:629
+#: application/modules/shop/admin/templates/settings/settings.tpl:713
+#: application/modules/shop/admin/templates/settings/settings.tpl:818
+#: application/modules/shop/admin/templates/settings/settings.tpl:995
 msgid "Message format"
 msgstr "Message format"
 
@@ -7306,12 +7422,12 @@ msgstr "File format"
 msgid "Not supported file format"
 msgstr "Not supported file format"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:1051
+#: application/modules/shop/admin/templates/settings/settings.tpl:1053
 msgid " Popularity formula: number of views+ products added to the cart *coefficient . For example: 1000."
 msgstr " Popularity formula: number of views+ products added to the cart *coefficient . For example: 1000."
 
-#: application/modules/shop/admin/templates/customfields/create.tpl:118
-#: application/modules/shop/admin/templates/customfields/edit.tpl:109
+#: application/modules/shop/admin/templates/customfields/create.tpl:130
+#: application/modules/shop/admin/templates/customfields/edit.tpl:108
 msgid "Snippet of a certain format,<br /> verifies syntactic correctness<br /> of the entered information - that is,<br /> to validate."
 msgstr "Snippet of a certain format,<br /> verifies syntactic correctness<br /> of the entered information - that is,<br /> to validate."
 
@@ -7329,12 +7445,10 @@ msgstr "Snippet of a certain format,<br /> verifies syntactic correctness<br /> 
 #: application/modules/shop/admin/templates/system/importfields.tpl:176
 #: application/modules/shop/admin/templates/system/export_.tpl:79
 #: application/modules/shop/admin/templates/system/importcsv.tpl:105
-#: application/modules/shop/admin/templates/search/list.tpl:65
-#: application/modules/shop/admin/templates/search/list.tpl:209
-#: application/modules/shop/admin/templates/search/list.tpl:339
-#: application/modules/shop/admin/templates/search/list.tpl:341
-#: application/modules/shop/admin/templates/search/list.tpl:477
-#: application/modules/shop/admin/templates/search/list.tpl:479
+#: application/modules/shop/admin/templates/search/list.tpl:67
+#: application/modules/shop/admin/templates/search/list.tpl:211
+#: application/modules/shop/admin/templates/search/list.tpl:346
+#: application/modules/shop/admin/templates/search/list.tpl:498
 msgid "Hit"
 msgstr "Hot"
 
@@ -7352,7 +7466,7 @@ msgstr "hot"
 msgid "Price"
 msgstr "Price"
 
-#: application/modules/shop/admin/products.php:992
+#: application/modules/shop/admin/products.php:1018
 msgid "Price updated"
 msgstr "Price updated"
 
@@ -7386,7 +7500,7 @@ msgstr "Something went wrong. URL access is not changed."
 msgid "Something went wrong. Startup status is not changed."
 msgstr "Something went wrong. Startup status is not changed."
 
-#: application/modules/admin/categories.php:84
+#: application/modules/admin/categories.php:86
 msgid "Template"
 msgstr "Template"
 
@@ -7400,9 +7514,9 @@ msgstr "Category template"
 msgid "Page view template by default"
 msgstr "Page view template by default"
 
-#: application/modules/admin/categories.php:85
-#: application/modules/admin/pages.php:88
-#: application/modules/admin/pages.php:447
+#: application/modules/admin/categories.php:87
+#: application/modules/admin/pages.php:89
+#: application/modules/admin/pages.php:441
 msgid "Page template"
 msgstr "Page template"
 
@@ -7415,11 +7529,11 @@ msgstr "Page Template"
 msgid "Шаблоны для Shop"
 msgstr "Templates for Shop"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:294
+#: application/modules/shop/admin/templates/settings/settings.tpl:296
 msgid "Width"
 msgstr "Width"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:202
+#: application/modules/shop/admin/templates/settings/settings.tpl:204
 msgid "Width, px"
 msgstr "Width, px"
 
@@ -7480,31 +7594,30 @@ msgstr "This field is required."
 msgid "This field is required"
 msgstr "This field is required"
 
-#: application/modules/shop/admin/brands.php:183
-#: application/modules/shop/admin/brands.php:294
-#: application/modules/shop/admin/products.php:1534
+#: application/modules/shop/admin/brands.php:207
+#: application/modules/shop/admin/brands.php:364
+#: application/modules/shop/admin/products.php:1559
 msgid "This URL is already in use"
 msgstr "This URL is already in use"
 
-#: application/modules/shop/admin/orders.php:361
+#: application/modules/shop/admin/orders.php:391
 msgid "This product does not exist"
 msgstr "This product does not exist"
 
-#: application/modules/shop/admin/templates/settings/settings.tpl:422
+#: application/modules/shop/admin/templates/settings/settings.tpl:424
 msgid "The file must be on the server. For example"
 msgstr "The file must be on the server. For example"
 
-#: application/modules/admin/widgets_manager.php:613
+#: application/modules/admin/widgets_manager.php:615
 msgid "Core"
 msgstr "Core"
 
-#: templates/administrator/lang_edit.tpl:46
-#: templates/administrator/lang_create.tpl:41
-#: templates/administrator/languages.tpl:51
+#: application/modules/admin/languages.php:79
+#: application/modules/admin/languages.php:383
 msgid "Language"
 msgstr "Language"
 
-#: application/modules/shop/admin/brands.php:510
+#: application/modules/shop/admin/brands.php:555
 msgid " language "
 msgstr " language "
 

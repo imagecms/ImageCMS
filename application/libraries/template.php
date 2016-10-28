@@ -33,7 +33,7 @@ class Template extends Mabilis
 
     private $_metas = [];
 
-    private $_canonicals = [];
+    private $_canonicals = '';
 
     private static $arr = [];
 
@@ -393,7 +393,9 @@ class Template extends Mabilis
      * @param string $url canonical url
      */
     public function registerCanonical($url) {
-        $this->_canonicals[] = "<link href='" . $url . "' rel='canonical'>";
+        if ($url != '') {
+            $this->_canonicals = "<link href='" . $url . "' rel='canonical'>";
+        }
     }
 
     /**
@@ -464,7 +466,7 @@ class Template extends Mabilis
 
         $this->split(array_flip($this->_metas));
 
-        $this->split(array_flip($this->_canonicals));
+        self::$result_before .= $this->_canonicals;
 
         $this->split(array_flip($this->_links));
 

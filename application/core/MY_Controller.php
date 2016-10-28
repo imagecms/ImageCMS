@@ -315,14 +315,23 @@ class MY_Controller extends MX_Controller
      * @throws Exception
      */
     public function getCache() {
-
-        $this->getContainer()->get('cache')->setNamespace($this->input->server('HTTP_HOST'));
-
         return $this->getContainer()->get('cache');
     }
 
     public function get($id) {
         return $this->getContainer()->get($id);
+    }
+
+    /**
+     * Drop all cache
+     *
+     * @return void
+     */
+    public static function dropCache() {
+
+        CI::$APP->cache->delete_all();
+        DependencyInjectionProvider::getContainer()->get('cache')->flushAll();
+        DependencyInjectionProvider::getContainer()->get('cache')->deleteAll();
     }
 
 }

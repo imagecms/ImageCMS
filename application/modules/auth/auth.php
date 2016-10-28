@@ -1,5 +1,7 @@
 <?php
 
+use CMSFactory\Events;
+
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
@@ -231,13 +233,16 @@ class Auth extends MY_Controller
             // Run form validation and register user if it's pass the validation
             $this->load->helper('string');
             $key = random_string('alnum', 5);
-            if ($val->run($this) AND $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email'), '', $key, '')) {
+            if ($val->run($this) AND $last_user = $this->dx_auth->register($val->set_value('username'), $val->set_value('password'), $val->set_value('email'), '', $key, '')) {
                 // Set success message accordingly
                 if ($this->dx_auth->email_activation) {
                     $data['auth_message'] = lang('You have successfully registered. Please check your email to activate your account.', 'auth');
                 } else {
                     $data['auth_message'] = lang('You have successfully registered. ', 'auth') . anchor(site_url($this->dx_auth->login_uri), lang('Login', 'auth'));
                 }
+
+                Events::create()->registerEvent($last_user, 'AuthUser:register');
+                Events::create()->runFactory();
 
                 // Load registration success page
                 if ($this->input->server('HTTP_X_REQUESTED_WITH') != 'XMLHttpRequest') {
@@ -319,7 +324,15 @@ class Auth extends MY_Controller
         }
     }
 
+    /**
+     * @return void
+     */
     public function reset_password() {
+
+        if ($this->dx_auth->is_logged_in()) {
+            redirect(site_url('/'));
+        }
+
         // Get username and key
         $email = $this->uri->segment(3);
         $key = $this->uri->segment(4);

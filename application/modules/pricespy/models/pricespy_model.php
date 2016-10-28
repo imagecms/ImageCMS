@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @property DX_Auth dx_auth
+ */
 class Pricespy_model extends CI_Model
 {
 
@@ -8,21 +11,9 @@ class Pricespy_model extends CI_Model
     }
 
     /**
-     * Get module settings
-     */
-    public function getSettings() {
-        $settings = $this->db
-            ->select('settings')
-            ->where('identif', 'pricespy')
-            ->get('components')
-            ->row_array();
-        $settings = unserialize($settings[settings]);
-        return $settings;
-    }
-
-    /**
      * Deleting user spys products from list
      * @param int $ids
+     * @return object
      */
     public function delSpysbyIds($ids) {
         $this->db->where_in('productId', $ids);
@@ -95,7 +86,7 @@ class Pricespy_model extends CI_Model
             ->set('productVariantId', $varId)
             ->set('productPrice', $productPrice)
             ->set('oldProductPrice', $productPrice)
-            ->set('hash', random_string('unique', 15))
+            ->set('hash', random_string('unique'))
             ->insert('mod_price_spy');
     }
 

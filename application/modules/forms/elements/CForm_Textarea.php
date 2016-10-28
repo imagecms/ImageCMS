@@ -36,13 +36,11 @@ class CForm_Textarea
     }
 
     public function setAttributes($data) {
-
         $this->field->initial = $data;
     }
 
     public function getData() {
-
-        return isset($_POST[$this->name]) ?: '';
+        return isset($_POST[$this->name]) ? $_POST[$this->name] : '';
     }
 
     public function runValidation() {
@@ -59,7 +57,7 @@ class CForm_Textarea
 
     public function renderHtml() {
 
-        return '<textarea '.$this->form->_check_attr($this->name, $this->field).'>'.htmlspecialchars($this->field->initial).'</textarea>';
+        return '<textarea ' . $this->form->_check_attr($this->name, $this->field) . '>' . htmlspecialchars($this->field->initial) . '</textarea>';
     }
 
 }

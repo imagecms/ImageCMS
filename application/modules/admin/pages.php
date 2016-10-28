@@ -1,6 +1,7 @@
 <?php
 
 use CMSFactory\Events;
+use core\models\Route;
 
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
@@ -82,7 +83,7 @@ class Pages extends BaseAdminController
     public function add() {
 
         $this->form_validation->set_rules('page_title', lang('Title', 'admin'), 'trim|required|min_length[1]|max_length[500]');
-        $this->form_validation->set_rules('page_url', lang('URL', 'admin'), 'alpha_dash|least_one_symbol');
+        $this->form_validation->set_rules('page_url', lang('URL', 'admin'), 'alpha_dash|least_one_symbol|max_length[255]');
         $this->form_validation->set_rules('prev_text', lang('Preliminary contents', 'admin'), 'trim|required');
         $this->form_validation->set_rules('page_description', lang('Description ', 'admin'), 'trim');
         $this->form_validation->set_rules('full_tpl', lang('Page template', 'admin'), 'trim|max_length[150]|min_length[2]|callback_tpl_validation');
@@ -117,29 +118,15 @@ class Pages extends BaseAdminController
                 showMessage(lang('Reserved the same name module', 'admin'), false, 'r');
                 return;
             }
-            // end module check
             // check if we have existing category with entered URL
+            // end module check
             $this->db->where('url', $url);
-            $query = $this->db->get('category', 1);
+            $query = $this->db->get('route', 1);
 
             if ($query->num_rows() > 0) {
-                showMessage(lang('Category or page with such url already exist', 'admin'), false, 'r');
+                showMessage(lang('This URL is already in use!'), false, 'r');
                 return;
             }
-            // end check
-            // check if we have existing page with entered URL
-            $this->db->select('id, lang, url');
-            $this->db->where('url', $url);
-            $this->db->where('lang', $def_lang['id']);
-            $this->db->where('category', $this->input->post('category'));
-            $query = $this->db->get('content', 1);
-
-            if ($query->num_rows() > 0) {
-                showMessage(lang('Page with the same URL has been created yet. Specify or select another URL', 'admin'), false, 'r');
-                return;
-            }
-            // end check
-
             $full_url = $this->lib_category->GetValue($this->input->post('category'), 'path_url');
 
             if ($full_url == FALSE) {
@@ -181,7 +168,7 @@ class Pages extends BaseAdminController
                      'category'        => $this->input->post('category'),
                      'full_tpl'        => $this->input->post('full_tpl'),
                      'main_tpl'        => $this->input->post('main_tpl'),
-                     'comments_status' => $category_default_comments['comments_default']?: 0,
+                     'comments_status' => $category_default_comments['comments_default'] ?: 0,
                      'post_status'     => $this->input->post('post_status'),
                      'author'          => $this->dx_auth->get_username(),
                      'publish_date'    => strtotime($publish_date),
@@ -303,14 +290,21 @@ class Pages extends BaseAdminController
         }
 
         // Get page data
-        $data = $this->db->get_where('content', ['id' => $page_id])->row_array();
+        $data = $this->db
+            ->select('content.* , route.url, if( route.parent_url <> "", concat(route.parent_url, "/"),"" )  as cat_url', false)
+            ->join('route', 'route.id = content.route_id')
+            ->get_where('content', ['content.id' => $page_id])
+            ->row_array();
 
         if ($data['lang_alias'] != 0) {
             redirect('/admin/pages/edit/' . $data['lang_alias'] . '/' . $data['lang']);
         }
 
         if ($lang != 0 AND $lang != $data['lang']) {
-            $data = $this->db->get_where('content', ['lang_alias' => $page_id, 'lang' => $lang]);
+            $data = $this->db
+                ->select('content.* , route.url')
+                ->join('route', 'route.id = content.route_id')
+                ->get_where('content', ['lang_alias' => $page_id, 'lang' => $lang]);
 
             if ($data->num_rows() > 0) {
                 $data = $data->row_array();
@@ -344,7 +338,12 @@ class Pages extends BaseAdminController
             $this->template->add_array($data);
 
             $this->load->module('tags');
-            $this->template->assign('tags', $this->tags->get_page_tags($data['id']));
+
+            $tags = $this->tags->get_page_tags($data['id']);
+
+            $tags = array_column($tags, 'value');
+
+            $this->template->assign('tags', $tags);
 
             // Roles
             $this->db->where('page_id', $page_id);
@@ -398,7 +397,7 @@ class Pages extends BaseAdminController
                  'tree'            => $this->lib_category->build(),
                  'parent_id'       => $data['category'],
                  'langs'           => $langs,
-                    //                    'defLang' => $def_lang, //??
+                 'defLang'         => MY_Controller::getDefaultLanguage()['id'], //??
                  'category'        => $category,
                  'pageExists'      => $pageExists,
                  'pagesPagination' => $pagesPagination,
@@ -440,7 +439,7 @@ class Pages extends BaseAdminController
         Events::runFactory();
 
         $this->form_validation->set_rules('page_title', lang('Title', 'admin'), 'trim|required|min_length[1]|max_length[500]');
-        $this->form_validation->set_rules('page_url', lang('URL', 'admin'), 'alpha_dash|least_one_symbol');
+        $this->form_validation->set_rules('page_url', lang('URL', 'admin'), 'alpha_dash|least_one_symbol|max_length[255]');
         $this->form_validation->set_rules('page_keywords', lang('Keywords', 'admin'), 'trim');
         $this->form_validation->set_rules('prev_text', lang('Preliminary contents', 'admin'), 'trim|required');
         $this->form_validation->set_rules('page_description', lang('Description ', 'admin'), 'trim');
@@ -498,25 +497,15 @@ class Pages extends BaseAdminController
             }
             // end module check
             // check if we have existing category with entered URL
-            $this->db->where('url', $url);
-            $query = $this->db->get('category', 1);
-
-            if ($query->num_rows() > 0) {
-                showMessage(lang('Reserved of the same name category', 'admin'), false, 'r');
-                return;
-            }
-            // end check
-            // check if we have existing page with entered URL
             $b_page = $this->cms_admin->get_page($page_id);
 
-            $this->db->where('url', $url);
-            $this->db->where('category', $this->input->post('category'));
-            $this->db->where('category !=', $b_page['category']);
-            $this->db->where('lang', $b_page['lang']);
-            $query = $this->db->get('content', 1);
+            $originId = $b_page['lang_alias'] ?: $b_page['id'];
+            $this->db->where('url', $url)
+                ->where('entity_id !=', $originId);
+            $query = $this->db->get('route', 1);
 
             if ($query->num_rows() > 0) {
-                showMessage(lang('Page with the same URL in this category has been created yet. Specify or select another URL', 'admin'), false, 'r');
+                showMessage(lang('This URL is already in use!'), false, 'r');
                 return;
             }
             // end check
@@ -551,6 +540,7 @@ class Pages extends BaseAdminController
                      'publish_date'    => strtotime($publish_date),
                      'created'         => strtotime($create_date),
                      'updated'         => time(),
+                     'route_id'        => $b_page['route_id'],
                     ];
 
             $data['id'] = $page_id;
@@ -727,7 +717,7 @@ class Pages extends BaseAdminController
         $this->load->module('tags')->_remove_orphans($page_id);
 
         /** Init CMS Events system */
-        Events::create()->registerEvent(['pageId' => $page_id, 'userId' => $this->dx_auth->get_user_id()], 'Page:delete');
+        Events::create()->raiseEvent(['pageId' => $page_id, 'userId' => $this->dx_auth->get_user_id()], 'Page:delete');
     }
 
     /**
@@ -754,8 +744,10 @@ class Pages extends BaseAdminController
 
                 $data = [
                          'category' => $category['id'],
-                         'cat_url'  => $category['path_url'],
                         ];
+                $route = [
+                          'parent_url' => trim($category['path_url'], '/'),
+                         ];
 
                 switch ($action) {
                     case 'move':
@@ -765,24 +757,39 @@ class Pages extends BaseAdminController
                         $this->db->where('lang_alias', $page_id);
                         $this->db->update('content', $data);
 
+                        $this->db->where('entity_id', $page_id);
+                        $this->db->update('route', $route);
+
                         break;
 
                     case 'copy':
-                        $page = $this->db->get_where('content', ['id' => $page_id])->row_array();
+                        $page = $this->db
+                            ->select('content.*, route.url, route.parent_url')
+                            ->join('route', 'route.id = content.route_id')
+                            ->get_where('content', ['content.id' => $page_id])->row_array();
                         $page['category'] = $data['category'];
-                        $page['cat_url'] = $data['cat_url'];
                         $page['lang_alias'] = 0;
                         $page['comments_count'] = 0;
+                        $url = $page['url'];
+                        $parentUrl = $page['parent_url'];
 
-                        $this->db->like('url', $page['url']);
-                        $new_url = $this->db->get('content')->num_rows();
+                        $this->db->like('url', $url);
+                        $new_url = $url . ($this->db->get('route')->num_rows() + 1);
 
-                        $page['url'] .= $new_url + 1;
-
-                        unset($page['id']);
+                        unset($page['id'], $page['url'], $page['parent_url']);
 
                         $this->db->insert('content', $page);
                         $new_id = $this->db->insert_id();
+
+                        $route = new Route();
+                        $route->setParentUrl($parentUrl);
+                        $route->setUrl($new_url);
+                        $route->setType(Route::TYPE_PAGE);
+                        $route->setEntityId($new_id);
+                        $route->save();
+
+                        $this->db->update('content', ['route_id' => $route->getId()], ['id' => $new_id]);
+
                         $this->_copy_content_fields($page_id, $new_id);
 
                         // Copy page to other languages
@@ -791,10 +798,8 @@ class Pages extends BaseAdminController
                         foreach ($pages as $page) {
                             unset($page['id']);
                             $page['category'] = $data['category'];
-                            $page['cat_url'] = $data['cat_url'];
                             $page['comments_count'] = 0;
                             $page['lang_alias'] = $new_id;
-                            $page['url'] = $page['url'] . time();
                             $this->db->insert('content', $page);
                             $this->_copy_content_fields($page_id, $this->db->insert_id());
                         }
@@ -1005,7 +1010,8 @@ class Pages extends BaseAdminController
             $flagPOST = true;
         }
         if ($this->input->post('url')) {
-            $this->db->where('content.url LIKE ', '%' . $this->input->post('url') . '%');
+            $this->db->where('route.url LIKE ', '%' . $this->input->post('url') . '%');
+
             $flagPOST = true;
         }
 
@@ -1013,6 +1019,9 @@ class Pages extends BaseAdminController
             $this->db->join('category', 'category.id = content.category');
         }
 
+        $this->db->join('route', 'route.id = content.route_id');
+
+        $this->db->select('content.*, route.url, if(route.parent_url <> "", concat(route.parent_url, "/") , "") as cat_url ', false);
         if (!$flagPOST) {
             $query = $this->db->get_where('content', $db_where, $row_count, $offset);
         } else {

@@ -275,9 +275,11 @@ class ParentWishlist extends MY_Controller
      * @access public
      * @param integer $user_id
      * @param string $listName
+     * @param string $wlType
+     * @param string $wlDescription
+     * @return bool
      * @author DevImageCms
      * @copyright (c) 2013, ImageCMS
-     * @return boolean
      */
     public function createWishList($user_id, $listName, $wlType, $wlDescription) {
 

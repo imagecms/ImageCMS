@@ -124,8 +124,10 @@ class Sitemap_model extends CI_Model
      */
     public function get_all_pages() {
 
-        $this->db->select('id, created, updated, lang,cat_url');
-        $this->db->select('CONCAT_WS("", cat_url, url) as full_url', FALSE);
+        $this->db->select('content.id, content.created, content.updated, content.lang');
+        $this->db->select('if(parent_url <> "",concat(parent_url, "/"), "") as cat_url', FALSE);
+        $this->db->select('if(parent_url <> "", concat(parent_url, "/", url), url) as full_url', FALSE);
+        $this->db->join('route', 'route.id = content.route_id');
         $this->db->where('post_status', 'publish');
         $this->db->where('publish_date <=', time());
         $result = $this->db->get('content');
@@ -158,9 +160,10 @@ class Sitemap_model extends CI_Model
     public function get_shop_categories() {
 
         $result = $this->db
-            ->select('shop_category_i18n.locale, shop_category.*')
+            ->select('shop_category_i18n.locale, shop_category.*, route.url, route.parent_url')
             ->join('languages', 'languages.identif = shop_category_i18n.locale and languages.active = 1')
             ->join('shop_category', 'shop_category_i18n.id = shop_category.id')
+            ->join('route', 'route.id = shop_category.route_id')
             ->where('shop_category.active', 1)
             ->get('shop_category_i18n');
 
@@ -230,11 +233,12 @@ class Sitemap_model extends CI_Model
      */
     public function get_shop_products() {
 
-        $this->db->select('shop_products_i18n.locale, shop_products.url, shop_products.category_id, shop_products.updated, shop_products.created, shop_category.active, shop_category.id');
+        $this->db->select('shop_products_i18n.locale, route.url, route.parent_url, shop_products.category_id, shop_products.updated, shop_products.created, shop_category.active, shop_category.id');
         $result = $this->db
             ->join('languages', 'languages.identif = shop_products_i18n.locale and languages.active = 1')
             ->join('shop_products', 'shop_products_i18n.id=shop_products.id')
             ->join('shop_category', 'shop_category.id=shop_products.category_id')
+            ->join('route', 'route.id = shop_products.route_id')
             ->where('shop_category.active', 1)
             ->where('shop_products.active', 1)
             ->get('shop_products_i18n');

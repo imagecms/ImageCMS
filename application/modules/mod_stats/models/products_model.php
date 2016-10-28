@@ -1,4 +1,5 @@
 <?php
+use core\models\Route;
 
 /**
  * Class Products_model for mod_stats module
@@ -288,7 +289,7 @@ class Products_model extends \CI_Model
     public function getFirstLevelCategoriesIds() {
         $query = 'SELECT id 
                 FROM `shop_category` 
-                WHERE  `url`=`full_path`';
+                WHERE  `parent_id`=0';
         $result = $this->db->query($query)->result_array();
         if ($result != null) {
             return $this->prepareArray($result);
@@ -320,7 +321,7 @@ class Products_model extends \CI_Model
         $query = "SELECT *
                     FROM `shop_category` 
                     JOIN `shop_category_i18n` ON `shop_category`.`id` = `shop_category_i18n`.`id`
-                    WHERE `url`=`full_path`
+                    WHERE `parent_id`=0
                     AND `locale` = '" . $this->locale . "'";
         $result = $this->db->query($query)->result_array();
         if ($result != null) {
@@ -338,12 +339,19 @@ class Products_model extends \CI_Model
         if (!$id) {
             return FALSE;
         }
-        $res = $this->db->where('id', $id)->get('shop_category')->row_array();
+        $res = $this->db
+            ->select('url')
+            ->where('entity_id', $id)
+            ->where('type', Route::TYPE_SHOP_CATEGORY)
+            ->get('route')
+            ->row_array();
+
         $url = $res['url'];
 
-        $query = "SELECT `id` 
+        $query = "SELECT `shop_category`.`id` 
                     FROM  `shop_category` 
-                    WHERE  `shop_category`.`full_path` LIKE  '%$url%'
+                    JOIN `route` ON `shop_category`.`route_id` = `route`.`id`
+                    WHERE  concat(parent_url, '/',url) LIKE  '%$url%'
                     LIMIT 0 , 50";
 
         $childs = $this->db->query($query)->result_array();

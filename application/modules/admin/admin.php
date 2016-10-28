@@ -160,12 +160,6 @@ class Admin extends MY_Controller
                                                    'write'   => false,
                                                    'locked'  => true,
                                                   ],
-                        //                        array(
-                        //                            'pattern' => '/commerce/', //You can also set permissions for file types by adding, for example, .jpg inside pattern.
-                        //                            'read'    => true,
-                        //                            'write'   => true,
-                        //                            'locked'  => false
-                        //                        )
                                                  ],
                               // more elFinder options here
                              ],

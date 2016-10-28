@@ -1,6 +1,7 @@
 <?php
 
 use CMSFactory\assetManager;
+use core\src\CoreFactory;
 
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
@@ -77,7 +78,8 @@ class Admin extends BaseAdminController
         $this->template->assign('langs', $this->_get_langs());
 
         $this->menu->select_hidden = TRUE; //select hidden items
-        $this->default_lang_id = $this->load->module('core')->def_lang[0]['id'];
+
+        $this->default_lang_id = CoreFactory::getModel()->getDefaultLanguage()['id'];
     }
 
     public function index() {
@@ -1046,10 +1048,14 @@ class Admin extends BaseAdminController
         if ($this->input->post('per_page')) {
             $per_page = (int) $this->input->post('per_page');
         }
+        $defaultLanguageId = CoreFactory::getConfiguration()->getDefaultLanguage()['id'];
+
         //$per_page = (int) $this->input->post('per_page');
-        $this->db->select('id, title, url, cat_url');
+        $this->db->select('content.id, content.title');
+        $this->db->select('route.url, route.parent_url as cat_url', false);
         $this->db->order_by('created', 'desc');
-        $this->db->where('lang', $this->load->module('core')->def_lang[0]['id']);
+        $this->db->join('route', 'route.id = content.route_id');
+        $this->db->where('lang', $defaultLanguageId);
         //        $this->db->where('lang_alias', 0);
         $this->db->where('category', $cat_id);
 

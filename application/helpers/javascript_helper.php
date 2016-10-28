@@ -37,9 +37,10 @@ function showMessage($message, $title = FALSE, $class = '', $ret = false, $timeo
     }
     $CI = &get_instance();
     $message .= '<br/><strong>' . lang('Requests to the database') . ': ' . $CI->db->total_queries() . '</strong>';
-    $message = str_replace("\n", '<br/>', $message);
-    $message = str_replace('<p>', '', $message);
-    $message = str_replace('</p>', '', $message);
+
+    $message = str_replace(["\n", '<p>', '</p>'], ['<br/>', '', ''], $message);
+    $title = str_replace(["\n", '<p>', '</p>'], ['<br/>', '', ''], $title);
+
     if (!$ret) {
         echo "<script type=\"text/javascript\"> showMessage('" . $title . "','" . $message . "','" . $class . "'); </script>";
     } elseif (!$timeout) {

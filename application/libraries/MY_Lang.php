@@ -150,7 +150,7 @@ class MY_Lang extends CI_Lang
      * @access private
      * @param string $original the original string to translate
      * @param array $aParams the plural parameters
-     * @return the string translated
+     * @return false|string the string translated
      */
     private function _trans($original, $aParams = false) {
         if (!isset($this->gettext_domain)) {

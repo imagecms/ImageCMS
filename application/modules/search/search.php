@@ -22,7 +22,7 @@ class Search extends MY_Controller
 
     public $row_count = 15;
 
-    public $table_pk = 'id';
+    public $table_pk = 'content.id';
 
     public $search_tpl = 'search';
 
@@ -76,7 +76,7 @@ class Search extends MY_Controller
                        'order_by' => ['publish_date' => 'DESC'],
                        'select'   => [
                                       'content.*',
-                                      'CONCAT_WS( "", content.cat_url, content.url ) as full_url',
+                                      'IF(route.parent_url <> \'\', concat(route.parent_url, \'/\', route.url), route.url) as full_url',
                                      ],
                       ];
 
@@ -342,7 +342,7 @@ class Search extends MY_Controller
         // Add SELECT string
         if (count($this->select) > 0) {
             foreach ($this->select as $key => $val) {
-                $this->db->select($val);
+                $this->db->select($val, false);
             }
         }
 
@@ -350,12 +350,12 @@ class Search extends MY_Controller
             $ids = [];
 
             $this->db->select($this->table_pk);
+            $this->db->join('route', 'route.id=content.route_id');
             $query = $this->db->get($this->table)->result_array();
 
             foreach ($query as $row) {
-                $ids[] = $row[$this->table_pk];
+                $ids[] = $row['id'];
             }
-
             $this->db->where('hash', $this->query_hash);
             $this->db->update('search', ['datetime' => time(), 'ids' => serialize($ids), 'total_rows' => count($ids)]);
 
@@ -364,6 +364,7 @@ class Search extends MY_Controller
             if (!$this->search_title) {
                 $this->search_title = $this->input->post('text');
             }
+            $this->db->join('route', 'route.id=content.route_id');
 
             $data = [
                      'query'        => $this->db->get($this->table),

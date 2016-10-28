@@ -41,7 +41,7 @@
     </div>
     <div class="clearfix">
         <div class="m-t_20 pull-right">
-            {if $CI->uri->total_segments()==5}
+            {if $defLang != $page_lang}
                 <a href="{$BASE_URL}{echo $page_lang_identif}/{$cat_url}{$url}" class="t-d_n m-r_15" target="blank">{lang('Show page','admin')}
                     <span class="f-s_14">&rarr;</span></a>
             {else:}
@@ -178,7 +178,7 @@
                                     </label>
 
                                     <div class="controls">
-                                        <input type="text" name="search_tags" value="{foreach $tags as $tag}{$tag.value},{/foreach}" id="tags"/>
+                                        <input type="text" name="search_tags" value="{implode(',', $tags)}" id="tags"/>
                                     </div>
                                 </div>
 

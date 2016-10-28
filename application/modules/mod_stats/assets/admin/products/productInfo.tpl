@@ -100,7 +100,7 @@
                         <tr data-id="{echo $p->getId()}" class="simple_tr">
                             <td class="span1"><p>{echo $p->getId()}</p></td>
                             <td class="share_alt span3">
-                                <a href="/shop/product/{echo $p->getUrl()}"
+                                <a href="/{echo $p->getRouteUrl()}"
                                    target="_blank"
                                    class="go_to_site pull-right btn btn-small"
                                    data-rel="tooltip"
@@ -118,7 +118,7 @@
                                 </div>
                             </td>
                             <td class="share_alt span2">
-                                <a href="/shop/category/{echo $p->getMainCategory()->getFullPath()}"
+                                <a href="/{echo $p->getMainCategory()->getRouteUrl()}"
                                    target="_blank"
                                    class="go_to_site pull-right btn btn-small"
                                    data-rel="tooltip"

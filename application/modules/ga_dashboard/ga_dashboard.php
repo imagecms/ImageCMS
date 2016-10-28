@@ -26,29 +26,6 @@ class Ga_dashboard extends MY_Controller
     }
 
     /**
-     * @throws Exception
-     */
-    public function autoload() {
-
-        $settings = $this->cms_base->get_settings();
-
-        if ($settings['yandex_metric'] != '') {
-            assetManager::create()->registerJsScript('window.dataLayer = window.dataLayer || [];', false, 'before');
-            Events::create()->onProductPageLoad()->setListener('YMProductPageLoad');
-            Events::create()->onShopOrderView()->setListener('YMShopOrderView');
-        }
-
-        if ($settings['google_analytics_ee'] == 1 and $settings['google_analytics_id'] != '') {
-            Events::create()->onProductPageLoad()->setListener('ProductPageLoad');
-            //            Events::create()->onAddItemToCart()->setListener('ProductAddToCart');
-            Events::create()->onCategoryPageLoad()->setListener('CategorySearchPageLoad');
-            Events::create()->onSearchPageLoad()->setListener('CategorySearchPageLoad');
-            Events::create()->onBrandPageLoad()->setListener('CategorySearchPageLoad');
-            Events::create()->onShopOrderView()->setListener('ShopOrderView');
-        }
-    }
-
-    /**
      * @param Search $categoryObj
      * @throws PropelException
      */
@@ -60,12 +37,19 @@ class Ga_dashboard extends MY_Controller
 
             $url = CI::$APP->uri->uri_string();
 
-            if (false !== strpos($url, 'shop/search')) {
-                $list = 'search_page';
-            } elseif (false !== strpos($url, 'shop/category')) {
-                $list = 'category_page';
-            } elseif (false !== strpos($url, 'shop/brand')) {
-                $list = 'brand_page';
+            switch (CI::$APP->core->core_data['data_type']) {
+
+                case 'shop_category':
+                    $list = 'category_page';
+                    break;
+
+                case 'shop_search':
+                    $list = 'search_page';
+                    break;
+
+                case 'brand':
+                    $list = 'brand_page';
+                    break;
             }
 
             /* @var $product SProducts */
@@ -117,6 +101,21 @@ class Ga_dashboard extends MY_Controller
             ->registerScript('product', FALSE, 'after');
     }
 
+    private static function createProductData($data) {
+        /* @var $model SProducts */
+        $model = $data['model'];
+
+        $gaProduct = [];
+        $gaProduct['id'] = $model->getId();
+        $gaProduct['name'] = $model->getName();
+        $gaProduct['price'] = $model->getFirstVariant()->toCurrency();
+        $SBrands = $model->getBrand();
+        $gaProduct['brand'] = $SBrands ? $SBrands->getName() : '';
+        $gaProduct['category'] = $model->getMainCategory()->getName();
+
+        return json_encode($gaProduct);
+    }
+
     public static function YMProductPageLoad($data) {
 
         assetManager::create()
@@ -157,21 +156,6 @@ class Ga_dashboard extends MY_Controller
                     'before'
                 );
         }
-    }
-
-    private static function createProductData($data) {
-        /* @var $model SProducts */
-        $model = $data['model'];
-
-        $gaProduct = [];
-        $gaProduct['id'] = $model->getId();
-        $gaProduct['name'] = $model->getName();
-        $gaProduct['price'] = $model->getFirstVariant()->toCurrency();
-        $SBrands = $model->getBrand();
-        $gaProduct['brand'] = $SBrands ? $SBrands->getName() : '';
-        $gaProduct['category'] = $model->getMainCategory()->getName();
-
-        return json_encode($gaProduct);
     }
 
     private static function createOrderData($data, $ym = false) {
@@ -219,6 +203,29 @@ class Ga_dashboard extends MY_Controller
                 ->registerJsScript('var gaOrderObject = ' . self::createOrderData($data) . ';')
                 ->registerJsScript('var gaOrderProductsObject = ' . self::createOrderProductsData($data) . ';')
                 ->registerScript('order_view', FALSE, 'after');
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function autoload() {
+
+        $settings = $this->cms_base->get_settings();
+
+        if ($settings['yandex_metric'] != '') {
+            assetManager::create()->registerJsScript('window.dataLayer = window.dataLayer || [];', false, 'before');
+            Events::create()->onProductPageLoad()->setListener('YMProductPageLoad');
+            Events::create()->onShopOrderView()->setListener('YMShopOrderView');
+        }
+
+        if ($settings['google_analytics_ee'] == 1 and $settings['google_analytics_id'] != '') {
+            Events::create()->onProductPageLoad()->setListener('ProductPageLoad');
+            //            Events::create()->onAddItemToCart()->setListener('ProductAddToCart');
+            Events::create()->onCategoryPageLoad()->setListener('CategorySearchPageLoad');
+            Events::create()->onSearchPageLoad()->setListener('CategorySearchPageLoad');
+            Events::create()->onBrandPageLoad()->setListener('CategorySearchPageLoad');
+            Events::create()->onShopOrderView()->setListener('ShopOrderView');
         }
     }
 

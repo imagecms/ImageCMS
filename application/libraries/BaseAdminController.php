@@ -48,8 +48,12 @@ class BaseAdminController extends MY_Controller
             if ($query) {
                 $moduleName = null;
                 /** Run all Admin autoload method */
-                foreach ($query->result_array() as $module) {
-                    $moduleName = $module['name'];
+                $modules = $query->result_array();
+                $modules = array_column($modules, 'name');
+                array_unshift($modules, 'core');
+                $modules = array_unique($modules);
+
+                foreach ($modules as $moduleName) {
                     Modules::load_file($moduleName, APPPATH . 'modules' . DIRECTORY_SEPARATOR . $moduleName . DIRECTORY_SEPARATOR);
                     $moduleName = ucfirst($moduleName);
                     if (class_exists($moduleName)) {
@@ -59,6 +63,7 @@ class BaseAdminController extends MY_Controller
                     }
                 }
             }
+
             self::$adminAutoLoaded = true;
         }
     }

@@ -23,14 +23,20 @@ class Exchange extends \MY_Controller
 
     /**
      * array which contains 1c settings
-     * @var array|null
+     * @var array
      */
     private $my_config = [];
 
-    /** default directory for saving files from 1c */
+    /**
+     * default directory for saving files from 1c
+     * @var string
+     */
     private $tempDir;
 
-    /** contains default locale */
+    /**
+     * contains default locale
+     * @var string
+     */
     private $locale;
 
     /**
@@ -38,8 +44,14 @@ class Exchange extends \MY_Controller
      */
     private $allowed_image_extensions = [];
 
+    /**
+     * @var null|string
+     */
     private $login;
 
+    /**
+     * @var null|string
+     */
     private $password;
 
     /**
@@ -56,6 +68,9 @@ class Exchange extends \MY_Controller
      */
     private $variantCharacteristics;
 
+    /**
+     * Exchange constructor.
+     */
     public function __construct() {
 
         parent::__construct();
@@ -89,11 +104,8 @@ class Exchange extends \MY_Controller
 
         if (!$this->my_config) {
             //default settings if module is not installed yet
-            if (class_exists('ZipArchive')) {
-                $this->my_config['zip'] = 'yes';
-            } else {
-                $this->my_config['zip'] = 'no';
-            }
+            $this->my_config['zip'] = class_exists('ZipArchive') ? 'yes' : 'no';
+
             $this->my_config['filesize'] = $this->config->item('filesize');
             $this->my_config['validIP'] = $this->config->item('validIP');
             $this->my_config['password'] = $this->config->item('password');
@@ -104,9 +116,7 @@ class Exchange extends \MY_Controller
             $this->my_config['email'] = $this->config->item('email');
         }
 
-        if (isset($this->my_config['brand'])) {
-            $this->brand = load_brand();
-        }
+        $this->brand = array_key_exists('brand', $this->my_config) ? load_brand() : [];
 
         $this->allowed_image_extensions = [
                                            'jpg',
@@ -122,17 +132,17 @@ class Exchange extends \MY_Controller
         $this->password = isset($_SERVER['PHP_AUTH_PW']) ? trim($_SERVER['PHP_AUTH_PW']) : null;
 
         //saving get requests to log file
-        if ($_GET) {
+        if ($this->input->get()) {
             $string = '';
-            foreach ($_GET as $key => $value) {
+            foreach ((array) $this->input->get() as $key => $value) {
                 $string .= date('c') . ' GET - ' . $key . ': ' . $value . "\n";
             }
             write_file($this->tempDir . 'log.txt', $string, 'ab');
         }
 
         //preparing method and mode name from $_GET variables
-        if (isset($_GET['type']) && isset($_GET['mode'])) {
-            $method .= strtolower($_GET['type']) . '_' . strtolower($_GET['mode']);
+        if (array_key_exists('type', $this->input->get()) && array_key_exists('mode', $this->input->get())) {
+            $method .= strtolower($this->input->get('type')) . '_' . strtolower($this->input->get('mode'));
         }
 
         //run method if exist
@@ -144,7 +154,7 @@ class Exchange extends \MY_Controller
     public function __destruct() {
 
         $this->time = time() - $this->time;
-        foreach ($this->input->get() as $get) {
+        foreach ((array) $this->input->get() as $get) {
             write_file($this->tempDir . '/time.txt', date('Y-m-d h:i:s') . ': ' . $get . PHP_EOL, FOPEN_WRITE_CREATE);
         }
         write_file($this->tempDir . '/time.txt', date('Y-m-d h:i:s') . ': time - ' . $this->time . PHP_EOL, FOPEN_WRITE_CREATE);
@@ -727,7 +737,7 @@ class Exchange extends \MY_Controller
                 $xml_order .= "<ЗначенияРеквизитов>\n" .
                     "<ЗначениеРеквизита>\n" .
                     "<Наименование>Метод оплаты</Наименование>\n" .
-                    '<Значение>' . $order->getpaymentMethodName() . "</Значение>\n" .
+                    '<Значение>' . $order->getPaymentMethodName() . "</Значение>\n" .
                     "</ЗначениеРеквизита>\n" .
                     "<ЗначениеРеквизита>\n" .
                     "<Наименование>Заказ оплачен</Наименование>\n" .

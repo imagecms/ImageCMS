@@ -100,6 +100,19 @@ $(document).ready(function () {
         btn.toggleClass('btn-primary active');
     });
 
+    $('button.setCustomField').live('click', function () {
+        var btn = $(this);
+
+        $.ajax({
+            type: 'POST',
+            url: base_url + 'admin/components/run/shop/products/ajaxChangeCustomField/' + btn.attr('data-id')+'/'+btn.attr('data-cf-id'),
+            onComplete: function (response) {
+            }
+        });
+
+        btn.toggleClass('btn-primary active');
+    });
+
     $('button.refresh_price').live('click', function () {
         var btn = $(this);
         var variant = btn.attr('variant-id');

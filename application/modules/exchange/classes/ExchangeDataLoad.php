@@ -38,7 +38,7 @@ class ExchangeDataLoad
 
     /**
      *
-     * @var type
+     * @var \CI_DB_active_record
      */
     private $db;
 
@@ -48,7 +48,7 @@ class ExchangeDataLoad
      */
     private static $instance;
 
-    private function __construct() {
+    protected function __construct() {
 
         $ci = &get_instance();
         $this->db = $ci->db;
@@ -126,14 +126,14 @@ class ExchangeDataLoad
      * Updates data If in DB was changes
      * (drops existing data and gets new from db again)
      * @param string $name
-     * @return boolean|array
+     * @return array
      */
     public function getNewData($name = NULL) {
 
         if (array_key_exists($name, $this->data)) {
             unset($this->data[$name]);
         }
-        return $this->$name; //selecting data from db and returning it
+        return $this->$name ?: []; //selecting data from db and returning it
     }
 
     /**

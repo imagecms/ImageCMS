@@ -58,8 +58,9 @@ class ImportBootstrap
      * @param integer $offers The final position
      * @param integer $limit Step
      * @param integer $countProd count products
-     * @author Kaero
+     * @param null|bool $EmptyFields
      * @return ImportBootstrap
+     * @author Kaero
      * @copyright ImageCMS (c) 2012, Kaero <dev@imagecms.net>
      */
     public function startProcess($offers = 0, $limit = 0, $countProd = 0, $EmptyFields = null) {

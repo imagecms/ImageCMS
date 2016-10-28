@@ -3,6 +3,7 @@
 namespace import_export\classes;
 
 use CI_DB_active_record;
+use core\models\Route;
 use Exception;
 use stdClass;
 use TrueBV\Punycode;
@@ -153,7 +154,6 @@ class ProductsImport extends BaseImport
         $productAlias = [
                          'act'        => 'active',
                          'CategoryId' => 'category_id',
-                         'url'        => 'url',
                          'oldprc'     => 'old_price',
                          'hit'        => 'hit',
                          'archive'    => 'archive',
@@ -185,7 +185,8 @@ class ProductsImport extends BaseImport
         }
 
         $this->db->query('UPDATE shop_products SET ' . implode(',', $updateData) . ' WHERE `id`= ?', [$productId]);
-        /* END product Update query block */
+
+        $this->db->query('UPDATE route SET `url`= ?, `parent_url` = ? WHERE `entity_id`= ? AND `type` = "product"', [$arg['url'], $this->full_path_category($arg['cat']), $productId]);
 
         /* START product i18n Update query block */
         $prepareNames = $binds = $updateData = [];
@@ -430,25 +431,37 @@ class ProductsImport extends BaseImport
             }
         }
 
-        $prepareNames = array_merge($prepareNames, ['created', 'updated', 'url']);
+        $prepareNames = array_merge($prepareNames, ['created', 'updated']);
 
         $binds = array_merge(
             $binds,
             [
              'created' => date('U'),
              'updated' => date('U'),
-             'url'     => 'temp',
             ]
         );
 
         $this->db->query('INSERT INTO shop_products (' . implode(',', $prepareNames) . ') VALUES (' . substr(str_repeat('?,', count($prepareNames)), 0, -1) . ')', $binds);
+
         $productId = $this->db->insert_id();
 
-        $this->db->query('UPDATE shop_products SET `url`= ? WHERE `id`= ?', [$this->urlCheck($arg['url'], $productId, $arg['name']), $productId]);
+        $route = [
 
-        // Удаляет редирект товара если таков имеется.
-        $translitName = translit_url(trim($arg['name']));
-        $this->db->where('trash_url', 'shop/product/' . $translitName)->delete('trash');
+                  'type'       => Route::TYPE_PRODUCT,
+                  'entity_id'  => $productId,
+                  'url'        => $this->urlCheck($arg['url'], $productId, $arg['name']),
+                  'parent_url' => $this->full_path_category($arg['cat']),
+
+                 ];
+        $this->db->insert('route', $route);
+
+        $routeId = $this->db->insert_id();
+
+        $this->db->query('UPDATE shop_products SET `route_id`= ? WHERE `id`= ?', [$routeId, $productId]);
+
+        $url = Route::createRouteUrl($route['url'], $route['parent_url'], Route::TYPE_PRODUCT);
+
+        $this->db->where('trash_url', $url)->delete('trash');
 
         /* END product insert query block */
 
@@ -552,6 +565,8 @@ class ProductsImport extends BaseImport
             $binds
         );
         $productVariantId = $this->db->insert_id();
+
+        $this->db->set('position', $productVariantId)->where('id', $productVariantId)->update('shop_product_variants');
         /* END product variant insert query block */
 
         /* START product variant i18n insert query block */
@@ -667,11 +682,15 @@ class ProductsImport extends BaseImport
         }
     }
 
+    /**
+     * @param string $val
+     * @return string
+     */
     private function full_path_category($val) {
         $this->load->helper('translit');
         $str = '';
         foreach (explode('/', $val) as $v) {
-            $str .= translit_url($v) . '/';
+            $str .= translit_url(trim($v)) . '/';
         }
         return substr($str, 0, -1);
     }
@@ -741,23 +760,23 @@ class ProductsImport extends BaseImport
                 }
             } else {
                 $this->load->helper('translit');
-                $vimageArray = explode('.', $item['vimg']);
-                $vimageArray[0];
-                $vimageArray[0] = translit_url($vimageArray[0]);
-                $transtitImg = implode('.', $vimageArray);
+                $vImageArray = explode('.', $item['vimg']);
+                $vImageArray[0];
+                $vImageArray[0] = translit_url($vImageArray[0]);
+                $translitImg = implode('.', $vImageArray);
 
-                if (($transtitImg != '') && (file_exists($this->imageOriginPath . $transtitImg))) {
-                    $this->db->set('mainImage', $transtitImg);
+                if (($translitImg != '') && (file_exists($this->imageOriginPath . $translitImg))) {
+                    $this->db->set('mainImage', $translitImg);
                     $this->db->where('id', $item['variantId']);
                     $this->db->update('shop_product_variants');
                 } elseif (($item['vimg'] != '') && (file_exists($this->imagetemppathOrigin . $item['vimg']))) {
-                    copy($this->imagetemppathOrigin . $item['vimg'], $this->imageOriginPath . $transtitImg);
-                    $this->db->set('mainImage', $transtitImg);
+                    copy($this->imagetemppathOrigin . $item['vimg'], $this->imageOriginPath . $translitImg);
+                    $this->db->set('mainImage', $translitImg);
                     $this->db->where('id', $item['variantId']);
                     $this->db->update('shop_product_variants');
                 } elseif (($item['vimg'] != '') && (file_exists($this->imagetemppathOrigin . iconv('UTF-8', 'Windows-1251', $item['vimg'])))) {
-                    copy($this->imagetemppathOrigin . iconv('UTF-8', 'Windows-1251', $item['vimg']), $this->imageOriginPath . $transtitImg);
-                    $this->db->set('mainImage', $transtitImg);
+                    copy($this->imagetemppathOrigin . iconv('UTF-8', 'Windows-1251', $item['vimg']), $this->imageOriginPath . $translitImg);
+                    $this->db->set('mainImage', $translitImg);
                     $this->db->where('id', $item['variantId']);
                     $this->db->update('shop_product_variants');
                 }
@@ -786,11 +805,7 @@ class ProductsImport extends BaseImport
         $goodName = $sitename . '_' . $name;
 
         $paramTemp = explode('?', $param);
-        if (is_array($paramTemp)) {
-            $param = $paramTemp[0];
-        } else {
-            $param = $param;
-        }
+        $param = is_array($paramTemp) ? $paramTemp[0] : $param;
 
         $idna = new Punycode();
         $idna->decode($param);
@@ -835,7 +850,6 @@ class ProductsImport extends BaseImport
             $goodName = translit_url($goodName);
             return $goodName . '.' . $format;
         }
-        return FALSE;
     }
 
     /**
@@ -854,10 +868,10 @@ class ProductsImport extends BaseImport
         }
         // Check if Url is aviable.
         $urlCheck = $this->db
-            ->select('url,id')
-            ->where('url ', $url)
-            ->where('`id` !=' . $id)
-            ->get('shop_products')
+            ->select('url, entity_id')
+            ->where('url', $url)
+            ->where('entity_id !=' . $id)
+            ->get('route')
             ->row();
 
         if ($urlCheck->id != $id) {
@@ -894,23 +908,23 @@ class ProductsImport extends BaseImport
                     }
                 } else {
                     $this->load->helper('translit');
-                    $vimageArray = explode('.', $img);
-                    $vimageArray[0];
-                    $vimageArray[0] = translit_url($vimageArray[0]);
-                    $transtitImg = implode('.', $vimageArray);
+                    $vImageArray = explode('.', $img);
+                    $vImageArray[0];
+                    $vImageArray[0] = translit_url($vImageArray[0]);
+                    $translitImg = implode('.', $vImageArray);
 
-                    if (file_exists($this->imageAddPath . $transtitImg)) {
+                    if (file_exists($this->imageAddPath . $translitImg)) {
                         /* If the photo is not in the orogin folder, but there is $this->imageAddPath */
-                        $this->db->set('image_name', $transtitImg);
+                        $this->db->set('image_name', $translitImg);
                         $this->db->set('position', $key);
                     } elseif (file_exists($this->imagetemppathAdd . $img)) {
                         /* If the photo is in the orogin folder */
-                        copy($this->imagetemppathAdd . $img, $this->imageAddPath . $transtitImg);
-                        $this->db->set('image_name', $transtitImg);
+                        copy($this->imagetemppathAdd . $img, $this->imageAddPath . $translitImg);
+                        $this->db->set('image_name', $translitImg);
                         $this->db->set('position', $key);
                     } elseif (file_exists($this->imagetemppathAdd . iconv('UTF-8', 'Windows-1251', $img))) {
-                        copy($this->imagetemppathAdd . iconv('UTF-8', 'Windows-1251', $img), $this->imageAddPath . $transtitImg);
-                        $this->db->set('image_name', $transtitImg);
+                        copy($this->imagetemppathAdd . iconv('UTF-8', 'Windows-1251', $img), $this->imageAddPath . $translitImg);
+                        $this->db->set('image_name', $translitImg);
                         $this->db->set('position', $key);
                     }
                     $this->db->insert('shop_product_images');

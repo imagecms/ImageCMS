@@ -330,11 +330,10 @@ abstract class BannerImageI18nQuery extends ModelCriteria
      * Example usage:
      * <code>
      * $query->filterByLocale('fooValue');   // WHERE locale = 'fooValue'
-     * $query->filterByLocale('%fooValue%'); // WHERE locale LIKE '%fooValue%'
+     * $query->filterByLocale('%fooValue%', Criteria::LIKE); // WHERE locale LIKE '%fooValue%'
      * </code>
      *
      * @param     string $locale The value to use as filter.
-     *              Accepts wildcards (* and % trigger a LIKE)
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return $this|ChildBannerImageI18nQuery The current query, for fluid interface
@@ -356,11 +355,10 @@ abstract class BannerImageI18nQuery extends ModelCriteria
      * Example usage:
      * <code>
      * $query->filterBySrc('fooValue');   // WHERE src = 'fooValue'
-     * $query->filterBySrc('%fooValue%'); // WHERE src LIKE '%fooValue%'
+     * $query->filterBySrc('%fooValue%', Criteria::LIKE); // WHERE src LIKE '%fooValue%'
      * </code>
      *
      * @param     string $src The value to use as filter.
-     *              Accepts wildcards (* and % trigger a LIKE)
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return $this|ChildBannerImageI18nQuery The current query, for fluid interface
@@ -382,11 +380,10 @@ abstract class BannerImageI18nQuery extends ModelCriteria
      * Example usage:
      * <code>
      * $query->filterByName('fooValue');   // WHERE name = 'fooValue'
-     * $query->filterByName('%fooValue%'); // WHERE name LIKE '%fooValue%'
+     * $query->filterByName('%fooValue%', Criteria::LIKE); // WHERE name LIKE '%fooValue%'
      * </code>
      *
      * @param     string $name The value to use as filter.
-     *              Accepts wildcards (* and % trigger a LIKE)
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return $this|ChildBannerImageI18nQuery The current query, for fluid interface
@@ -449,11 +446,10 @@ abstract class BannerImageI18nQuery extends ModelCriteria
      * Example usage:
      * <code>
      * $query->filterByDescription('fooValue');   // WHERE description = 'fooValue'
-     * $query->filterByDescription('%fooValue%'); // WHERE description LIKE '%fooValue%'
+     * $query->filterByDescription('%fooValue%', Criteria::LIKE); // WHERE description LIKE '%fooValue%'
      * </code>
      *
      * @param     string $description The value to use as filter.
-     *              Accepts wildcards (* and % trigger a LIKE)
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return $this|ChildBannerImageI18nQuery The current query, for fluid interface

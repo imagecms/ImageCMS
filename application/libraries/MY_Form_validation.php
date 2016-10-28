@@ -14,6 +14,7 @@ class MY_Form_validation extends CI_Form_validation
         $this->set_message('valid_time', lang('Поле %s должно содержать правильное время.'));
         $this->set_message('phone', lang('Поле %s должно содержать корректный номер.'));
         $this->set_message('least_one_symbol', lang('Поле %s должно содержать как минимум один символ.'));
+        $this->set_message('alpha_dash_slash', lang('alpha_dash'));
     }
 
     public function getErrorsArray() {
@@ -36,6 +37,11 @@ class MY_Form_validation extends CI_Form_validation
             );
         }
         return $result;
+    }
+
+    public function alpha_dash_slash($str) {
+        return ( ! preg_match('/^([-a-z\/0-9_-])+$/i', $str)) ? FALSE : TRUE;
+
     }
 
     public function least_one_symbol($str) {

@@ -148,8 +148,7 @@ class Properties extends ExchangeBase
 
         \CI::$APP->load->helper('translit');
 
-        // preparing data array for insert, spliting on new and existing properties
-
+        // preparing data array for insert, splitting on new and existing properties
         $this->processProperties();
 
         if (count($this->new) > 0) {
@@ -168,6 +167,8 @@ class Properties extends ExchangeBase
         $this->dataLoad->getNewData('properties');
 
         $this->loadBrandsNames();
+
+        $this->processPropertiesValues();
     }
 
     /**
@@ -175,7 +176,6 @@ class Properties extends ExchangeBase
      * Preparing arrays (insert & update) for db
      */
     protected function processProperties() {
-
         foreach ($this->importData as $property) {
             $propertyData = [];
             $externalId = (string) $property->Ид;
@@ -192,9 +192,8 @@ class Properties extends ExchangeBase
             $propertyData['csv_name'] = str_replace(['-', '_', "'"], '', translit_url($property->Наименование));
 
             // type ("Справочник"|"Число")
-            $type = (string) $property->ТипЗначений == 'Справочник' ? self::PROPTYPE_SPR : self::PROPTYPE_NUM;
+            $type = (string) $property->ТипЗначений === 'Справочник' ? self::PROPTYPE_SPR : self::PROPTYPE_NUM;
             $this->propertiesData[$externalId]['type'] = $type;
-
             if ($type == self::PROPTYPE_SPR) {
                 // getting all possible values
                 $values = [];
@@ -209,18 +208,18 @@ class Properties extends ExchangeBase
             }
 
             // main_property
-            $propertyData['main_property'] = (string) $property->Обязательное == 'true' ? 1 : 0;
+            $propertyData['main_property'] = (string) $property->Обязательное === 'true' ? 1 : 0;
 
-            // cheking if property is "multivalue"
-            if ((string) $property->Множественное == 'true' || $type == self::PROPTYPE_SPR) {
+            // checking if property is "multivalue"
+            if ((string) $property->Множественное === 'true' || $type === self::PROPTYPE_SPR) {
                 $propertyData['multiple'] = 1;
             } else {
                 $propertyData['multiple'] = 0;
             }
 
             // status of property (active or disabled)
-            $active = (string) $property->ИспользованиеСвойства == 'true' ? TRUE : FALSE;
-            if ($active == TRUE || count($property->ИспользованиеСвойства) == 0) {
+            $active = (string) $property->ИспользованиеСвойства === 'true';
+            if ($active === TRUE || count($property->ИспользованиеСвойства) === 0) {
                 $propertyData['active'] = 1;
             } else {
                 $propertyData['active'] = 0;
@@ -229,14 +228,10 @@ class Properties extends ExchangeBase
             // separation on new and existing
             if (!$this->propertyExists($externalId)) {
                 // adding default property values
-                $propertyData = array_merge(
-                    $propertyData,
-                    [
-                     'show_in_compare' => 0,
-                     'show_on_site'    => 1,
-                     'show_in_filter'  => 0,
-                    ]
-                );
+                $propertyData['show_in_compare'] = 0;
+                $propertyData['show_on_site'] = 1;
+                $propertyData['show_in_filter'] = 0;
+
                 $this->new[$externalId] = $propertyData;
             } else {
                 $this->existing[$externalId] = $propertyData;
@@ -270,7 +265,6 @@ class Properties extends ExchangeBase
 
         // preparing data for `i18n` and `mod_exchange`
         $i18n = $this->makei18n('new');
-
         $this->insertBatch('shop_product_properties_i18n', $i18n);
     }
 
@@ -282,32 +276,13 @@ class Properties extends ExchangeBase
             $exId = $propertyData['external_id'];
             if (array_key_exists($exId, $this->$type)) {
                 $arr = [];
-                if (!empty($this->dictionaryProperties[$exId])) {
-                    foreach ($this->dictionaryProperties[$exId] as $value) {
-                        $arr[] = trim($value);
-                    }
-                    $data = serialize($arr);
-                } else {
-                    $data = '';
-                }
 
                 $i18n[] = [
                            'id'     => $propertyData['id'],
                            'name'   => $this->propertiesData[$exId]['name'],
                            'locale' => $this->locale,
-                           'data'   => $data,
                           ];
 
-                // gathering property possible values, if type = "Справочник"
-                if ($this->propertiesData[$exId]['type'] == self::PROPTYPE_SPR) {
-                    foreach ($this->dictionaryProperties[$exId] as $valueExternalId => $value) {
-                        $modExchange[] = [
-                                          'external_id' => $valueExternalId,
-                                          'property_id' => $propertyData['id'],
-                                          'value'       => $value,
-                                         ];
-                    }
-                }
             }
         }
         return $i18n;
@@ -315,6 +290,7 @@ class Properties extends ExchangeBase
 
     /**
      *
+     * @throws \Exception
      */
     protected function update() {
 
@@ -324,7 +300,6 @@ class Properties extends ExchangeBase
         $i18n = $this->makei18n();
 
         $this->updateBatch('shop_product_properties_i18n', $i18n, 'id');
-        //$this->updateBatch('mod_exchange', $modExchange, 'external_id');
     }
 
     /**
@@ -397,6 +372,31 @@ class Properties extends ExchangeBase
 
         foreach ($result as $brandData) {
             $this->brandIdsToNames[$brandData['id']] = $brandData['name'];
+        }
+    }
+
+    private function processPropertiesValues() {
+        foreach ($this->properties as $property) {
+
+            if(array_key_exists($property['external_id'], $this->dictionaryProperties)) {
+                foreach ($this->dictionaryProperties[$property['external_id']] as $key => $values) {
+
+                    $prop = \SPropertyValueQuery::create()
+                        ->useI18nQuery(\MY_Controller::getCurrentLocale())
+                        ->filterByValue($values)
+                        ->endUse()
+                        ->filterByPropertyId($property['id'])
+                        ->findOne();
+
+                    if($prop === null) {
+                        $prop = new \SPropertyValue();
+                        $prop->setLocale(\MY_Controller::getCurrentLocale());
+                        $prop->setValue($values);
+                        $prop->setPropertyId($property['id']);
+                        $prop->save();
+                    }
+                }
+            }
         }
     }
 

@@ -9,6 +9,41 @@
         <td colspan="6">
             <div class="inside_padd discount-out">
                 <div class="form-horizontal">
+
+                    <label class="control-group">
+                                                <span class="span4">
+                                                    <span data-title="{lang('Variables, can use to', 'mod_seo')}" class="popover_ref" data-original-title="">
+                                                        <i class="icon-info-sign"></i>
+                                                    </span>
+                                                    <div class="d_n">
+                                                        <b>%ID%</b> - {lang('Category ID','mod_seo')}<br/>
+                                                        <b>%name%</b> - {lang('Category name','mod_seo')}<br/>
+                                                        <b>%desc%</b> - {lang('Category description','mod_seo')}<br/>
+                                                        <b>%H1%</b> - {lang('field H1 of category','mod_seo')}<br/>
+                                                        <b>%brands%</b> - {lang('list of the top brands, separated by ','mod_seo')}"," <br/>
+                                                        <b>%pagenumber%</b> - {lang("Current page number",'mod_seo')}<br/>
+                                                        <b>%maxPrice%</b> - {lang("Minimal price in category",'mod_seo')}<br/>
+                                                        <b>%minPrice%</b> - {lang("Maximal price in category",'mod_seo')}<br/>
+                                                        <br/>
+                                                        {lang('Additional params for using with category name','mod_seo')}:<br/>
+                                                        <b>[t]</b> - {lang('Translit','mod_seo')}<br/>
+                                                        <b>[1..6]</b> - {lang('Number case of word','mod_seo')}<br/>
+                                                        {lang('Example','mod_seo')}:<br/>
+                                                        <b>%name[1]%</b> - {lang('Именительный', 'mod_seo')}<br/>
+                                                        <b>%name[2]%</b> - {lang('Родительный', 'mod_seo')}<br/>
+                                                        <b>%name[3]%</b> - {lang('Дательный', 'mod_seo')}<br/>
+                                                        <b>%name[4]%</b> - {lang('Винительный', 'mod_seo')}<br/>
+                                                        <b>%name[5]%</b> - {lang('Творительный', 'mod_seo')}<br/>
+                                                        <b>%name[6]%</b> - {lang('Предложный', 'mod_seo')}<br/>
+                                                        <b>%name[1..6][t]%</b> - {lang('Совместное использование', 'mod_seo')} <br/>
+                                                    </div>
+                                                    H1:
+                                                </span>
+                        <span class="span8 discount-name">
+                                                    <textarea name='categoryTemplateH1'>{$settings.categoryTemplateH1}</textarea>
+                                                </span>
+                    </label>
+
                     <label class="control-group">
                                                 <span class="span4">
                                                     <span class="popover_ref" data-original-title="">

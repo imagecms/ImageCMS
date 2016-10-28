@@ -1,5 +1,9 @@
 <?php
 
+use CMSFactory\assetManager;
+use wishlist\classes\BaseWishlist;
+use wishlist\classes\ParentWishlist;
+
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 /**
@@ -22,7 +26,7 @@ class Admin extends BaseAdminController
     }
 
     /**
-     * render wadmin start page
+     * render admin start page
      */
     public function index() {
         $users = $this->wishlist_model->getAllUsers();
@@ -32,7 +36,7 @@ class Admin extends BaseAdminController
             $users[$key] = $user;
         }
 
-        \CMSFactory\assetManager::create()
+        assetManager::create()
                 ->setData('settings', $this->wishlist_model->getSettings())
                 ->setData('users', $users)
                 ->renderAdmin('users');
@@ -53,7 +57,7 @@ class Admin extends BaseAdminController
      * render settings page for wishlist
      */
     public function settings() {
-        \CMSFactory\assetManager::create()
+        assetManager::create()
                 ->setData('settings', $this->wishlist_model->getSettings())
                 ->renderAdmin('main');
     }
@@ -61,14 +65,14 @@ class Admin extends BaseAdminController
     /**
      * render user wish list
      *
-     * @param type $id
+     * @param int $id
      */
     public function userWL($id) {
         $wishlist = \CI::$APP->load->module('wishlist');
         $this->session->set_userdata(['admin_edit_user_id' => $id]);
 
         $wishlist->getUserWL($id, ['public', 'shared', 'private']);
-        \CMSFactory\assetManager::create()
+        assetManager::create()
                 ->registerScript('wishlist')
                 ->registerStyle('style')
                 ->setData('wishlists', $wishlist->dataModel['wishlists'])
@@ -83,14 +87,14 @@ class Admin extends BaseAdminController
     /**
      * render user edit list page
      *
-     * @param type $wish_list_id
-     * @param type $userID
+     * @param int $wish_list_id
+     * @param int $userID
      */
     public function editWL($wish_list_id, $userID) {
         $wishlist = new Wishlist();
         if ($wishlist->renderUserWLEdit($wish_list_id, $userID)) {
             $user_id = $this->session->userdata('admin_edit_user_id');
-            \CMSFactory\assetManager::create()
+            assetManager::create()
                     ->registerScript('wishlist')
                     ->registerStyle('style')
                     ->setData('wishlists', $wishlist->dataModel)
@@ -104,10 +108,10 @@ class Admin extends BaseAdminController
     /**
      * delete list by list id
      *
-     * @param type $wish_list_id
+     * @param int $wish_list_id
      */
     public function deleteWL($wish_list_id) {
-        $wishlist = new \wishlist\classes\ParentWishlist();
+        $wishlist = new ParentWishlist();
         $wishlist->deleteWL($wish_list_id);
 
         $this->lib_admin->log(lang('Wish list deleted.', 'wishlist') . ' ID: ' . $wish_list_id);
@@ -123,7 +127,7 @@ class Admin extends BaseAdminController
      * update wish list
      */
     public function updateWL() {
-        $wishlist = new \wishlist\classes\BaseWishlist();
+        $wishlist = new BaseWishlist();
         $wishlist->updateWL();
 
         $this->lib_admin->log(lang('User wish list edited.', 'wishlist'));
@@ -134,7 +138,7 @@ class Admin extends BaseAdminController
      * user information update
      */
     public function userUpdate() {
-        $wishlist = new \wishlist\classes\BaseWishlist();
+        $wishlist = new BaseWishlist();
         $wishlist->userUpdate();
 
         redirect($this->input->server('HTTP_REFERER'));
@@ -144,7 +148,7 @@ class Admin extends BaseAdminController
      * create wish list
      */
     public function createWishList() {
-        $wishlist = new \wishlist\classes\BaseWishlist();
+        $wishlist = new BaseWishlist();
         $result = $wishlist->createWishList();
         $response = ['status' => 0];
         if (is_array($result)) {
@@ -159,9 +163,8 @@ class Admin extends BaseAdminController
      * upload image
      */
     public function do_upload() {
-        $wishlist = new \wishlist\classes\BaseWishlist();
+        $wishlist = new BaseWishlist();
         $wishlist->do_upload();
-        //        var_dumps_exit($wishlist->errors);
         if ($wishlist->errors) {
             $this->session->set_flashdata('upload_errors', $wishlist->errors);
         }
@@ -171,10 +174,9 @@ class Admin extends BaseAdminController
     /**
      * render add and move item popup
      *
-     * @param type $varId
-     * @param type $wish_list_id
-     * @param type $user_id
-     * @return type
+     * @param int $varId
+     * @param int $wish_list_id
+     * @param int $user_id
      */
     public function renderPopup($varId, $wish_list_id, $user_id) {
         $wish_lists = $this->wishlist_model->getWishLists($user_id);
@@ -183,7 +185,7 @@ class Admin extends BaseAdminController
         $variant = SProductVariantsQuery::create()->setComment(__METHOD__)->findOneById($varId);
         $fullName = $variant->getSProducts()->getName() . " ({$variant->getName()})";
 
-        return \CMSFactory\assetManager::create()
+        return assetManager::create()
                         ->registerStyle('style')
                         ->setData('class', 'btn')
                         ->setData('wish_list_id', $wish_list_id)
@@ -198,11 +200,11 @@ class Admin extends BaseAdminController
     /**
      * delete item from wish list
      *
-     * @param type $varId
-     * @param type $wish_list_id
+     * @param int $varId
+     * @param int $wish_list_id
      */
     public function deleteItem($varId, $wish_list_id) {
-        $wishlist = new \wishlist\classes\BaseWishlist();
+        $wishlist = new BaseWishlist();
         $wishlist->deleteItem($varId, $wish_list_id);
 
         $this->lib_admin->log(lang('Product was deleted from wish list.', 'wishlist') . ' ID: ' . $varId);
@@ -212,11 +214,11 @@ class Admin extends BaseAdminController
     /**
      * move item to wish list
      *
-     * @param type $varId - current item  variant id
-     * @param type $wish_list_id - current item  list id
+     * @param int $varId - current item  variant id
+     * @param int $wish_list_id - current item  list id
      */
     public function moveItem($varId, $wish_list_id) {
-        $wishlist = new \wishlist\classes\BaseWishlist();
+        $wishlist = new BaseWishlist();
         $wishlist->moveItem($varId, $wish_list_id);
         $user_id = $this->session->userdata('admin_edit_user_id');
 
@@ -228,7 +230,7 @@ class Admin extends BaseAdminController
      * delete user image
      */
     public function deleteImage() {
-        $wishlist = new \wishlist\classes\BaseWishlist();
+        $wishlist = new BaseWishlist();
         $wishlist->deleteImage();
 
         redirect($this->input->server('HTTP_REFERER'));

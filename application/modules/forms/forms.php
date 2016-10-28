@@ -97,9 +97,10 @@ class Forms extends MY_Controller
     /**
      * Add fields array
      * @param array $fields
+     * @param bool $edit
      * @return Forms
      */
-    public function add_fields(array $fields = []) {
+    public function add_fields(array $fields = [], $edit = false) {
 
         $defaults = $this->_config['default_attr'];
 
@@ -119,7 +120,7 @@ class Forms extends MY_Controller
                 include 'elements/CForm_' . $class . EXT;
             }
 
-            if (isset($field['type']) && 'textarea' == $field['type']) {
+            if (!$edit && isset($field['type']) && 'textarea' == $field['type']) {
                 $field['class'] = 'elRTE customTextArea';
             }
 

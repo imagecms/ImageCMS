@@ -114,12 +114,12 @@ class ModuleSettings
      * If second argument is not specified, and first is array-type
      * then all settings will be overwritten by this array
      *
-     * @param string $keyOrSettings setting name of second argument value, or
+     * @param string|array $keyOrSettings setting name of second argument value, or
      * array with all new settings (will be owerwritten)
      * @param string|int|array $value (optional) setting value
      */
     public function set($keyOrSettings, $value = null) {
-        if (is_array($keyOrSettings) && $value == null) {
+        if (is_array($keyOrSettings) && $value === null) {
             $this->settings = $keyOrSettings;
         } else {
             $this->settings[$keyOrSettings] = $value;

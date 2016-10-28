@@ -51,9 +51,7 @@ class CForm_Select
 
             if ($this->form->form_validation->run($this->ci) == FALSE) {
                 return form_error($this->name, ' ', ' ');
-            }
-            else
-            {
+            } else {
                 return FALSE;
             }
         }
@@ -83,13 +81,11 @@ class CForm_Select
         $select = '<select '.$this->form->_check_attr($name, $this->field).' '.$multiple.'>';
 
         if (isset($this->field->initial) AND count($this->field->initial)) {
-            foreach ($this->field->initial as $key => $val)
-            {
-                if(trim($val) != '') {
+            foreach ($this->field->initial as $key => $val) {
+                if (trim($val) != '') {
                     $selected = '';
 
-                    foreach ($this->field->selected as $s_key => $s_val)
-                    {
+                    foreach ($this->field->selected as $s_key => $s_val) {
                         if ($s_val == $key) {
                             $selected = 'selected="selected"';
                         }

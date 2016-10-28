@@ -23,14 +23,6 @@ class Lib_admin
      *  Loads libraries
      */
     public function init_settings() {
-        # Load language
-        //        $sett = $this->CI->db->where('s_name', 'main')->get('settings')->row();
-        //        $folder = '/' . $sett->lang_sel;
-        //        if ($sett->lang_sel == 'english_lang') {
-        //            $this->CI->config->set_item('language', 'english');
-        //        }
-        //        else
-        //            $this->CI->config->set_item('language', 'russian');
 
         $this->CI->config->set_item('langs', ['russian', 'english']);
 
@@ -44,13 +36,6 @@ class Lib_admin
 
         $this->CI->load->library('form_validation');
         $this->CI->load->library('template');
-        //TODO: fix that
-        //        $this->CI->template->add_array($this->CI->lang->load('admin', 'admin' . $folder, TRUE));
-        //        $this->CI->lang->load('admin', 'admin' . $folder);
-        //        $this->CI->lang->load('controller', 'admin' . $folder);
-        //        $this->CI->lang->load('admin_shop', 'admin' . $folder);
-        //        $this->CI->lang->load('basemodules', 'admin' . $folder);
-
         $this->CI->load->helper('javascript');
         $this->CI->load->helper('admin');
         $this->CI->load->helper('component');

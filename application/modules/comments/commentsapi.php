@@ -1,5 +1,9 @@
 <?php
 
+use core\models\Route;
+use core\src\CoreFactory;
+use CMSFactory\Events;
+
 (defined('BASEPATH')) OR exit('No direct script access allowed');
 
 class Commentsapi extends Comments
@@ -146,7 +150,7 @@ class Commentsapi extends Comments
         $item_id = $this->parsUrl($this->input->server('HTTP_REFERER'));
 
         $commentsCount = $this->getTotalCommentsForProducts($item_id);
-        $comments = $this->base->get($item_id, 0, $this->module, $this->input->post('countcomment')?:null, $this->order_by);
+        $comments = $this->base->get($item_id, 0, $this->module, $this->input->post('countcomment') ?: null, $this->order_by);
 
         // Read comments template
         // Set page id for comments form
@@ -212,21 +216,25 @@ class Commentsapi extends Comments
      * @return string
      */
     public function parsUrl($url) {
+        $productUrl = parse_url($url);
+        $urlArraySegments = explode('/', $productUrl['path']);
 
-        if (strstr($url, '/product/')) {
-            $url = parse_url($url);
-            /** Check is lang segment and remove it from url path * */
-            $urlArraySegments = explode('/', $url['path']);
+        if(!\MY_Controller::isCorporateCMS()) {
+            $productQuery = $this->db->select('shop_products.id, shop_products.enable_comments')
+                ->where('route.url', end($urlArraySegments))
+                ->join('route', 'route.id = shop_products.route_id')
+                ->get('shop_products');
 
-            $id = $this->db->select('id, enable_comments')
-                ->where('url', end($urlArraySegments))
-                ->get('shop_products')
-                ->row();
+            if ($productQuery->num_rows()) {
+                /** Check is lang segment and remove it from url path * */
 
-            if ($id->enable_comments == 0) {
-                $this->enable_comments = false;
+                $id = $productQuery->row();
+
+                if ($id->enable_comments == 0) {
+                    $this->enable_comments = false;
+                }
+                return $id->id;
             }
-            return $id->id;
         }
 
         if (strstr($url, '/image/')) {
@@ -259,9 +267,10 @@ class Commentsapi extends Comments
 
         $lang_id = $this->getCommentsLocale() ?: MY_Controller::getCurrentLanguage('id');
 
-        $page = $this->db->select('id, comments_status, category')
-            ->where('url', $paths)
-            ->where('lang', $lang_id)
+        $page = $this->db->select('content.id, content.comments_status, content.category')
+            ->where('route.url', $paths)
+            ->where('content.lang', $lang_id)
+            ->join('route', 'route.id = content.route_id')
             ->get('content');
 
         if ($page) {
@@ -289,25 +298,30 @@ class Commentsapi extends Comments
      * @return string
      */
     public function getModule($url) {
-        $url = '/' . $url;
 
-        if (strstr($url, '/shop/')) {
-            return 'shop';
-        }
+        $url = str_replace(site_url(), '', $url);
 
-        if (strstr($url, '/bloh/')) {
+        try {
+            $route = CoreFactory::getRouter()->findRoute($url);
+            if ($route) {
+
+                switch ($route->getType()) {
+
+                    case Route::TYPE_MODULE:
+                        return $route->getUrl();
+                    case Route::TYPE_SHOP_CATEGORY:
+                    case Route::TYPE_PRODUCT:
+                        return 'shop';
+                    default :
+                        return 'core';
+                }
+
+            }
+        } catch (Exception $e) {
             return 'core';
         }
-
-        if (strstr($url, '/gallery/')) {
-            return 'gallery';
-        }
-
-        if ($url == site_url()) {
-            return 'core';
-        }
-
         return 'core';
+
     }
 
     /**
@@ -341,7 +355,7 @@ class Commentsapi extends Comments
         }
 
         // Check captcha code if captcha_check enabled and user in not admin.
-        if ($this->use_captcha AND ! $this->dx_auth->is_admin()) {
+        if ($this->use_captcha AND !$this->dx_auth->is_admin()) {
             $this->form_validation->set_message('callback_captcha_check', lang('Wrong code protection', 'comments'));
             if ($this->dx_auth->use_recaptcha) {
                 $this->form_validation->set_rules('recaptcha_response_field', lang('Code protection', 'comments'), 'trim|required|xss_clean|callback_captcha_check');
@@ -494,6 +508,9 @@ class Commentsapi extends Comments
                 ($hook = get_hook('comments_author_logged')) ? eval($hook) : NULL;
 
                 $user = $this->db->get_where('users', ['id' => $this->dx_auth->get_user_id()])->row_array();
+
+                Events::create()->raiseEvent(['user_info' => $user, 'item_id' => $item_id], 'CommentsApi:newPost');
+
                 $comment_author = $user['username'];
                 $comment_email = $user['email'];
             }
