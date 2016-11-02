@@ -17,7 +17,7 @@ class Core_Widgets extends MY_Controller
                          'max_symdols' => 150,
                          'display'     => 'recent',//possible values: recent/popular
                          'sort_order'  => 'desc'
-    ];
+                        ];
 
     public function __construct() {
         parent::__construct();
@@ -130,12 +130,12 @@ class Core_Widgets extends MY_Controller
                     exit;
                 } else {
                     $data = [
-                        'news_count'  => $this->input->post('news_count'),
-                        'max_symdols' => $this->input->post('max_symdols'),
-                        'categories'  => $this->input->post('categories'),
-                        'display'     => $this->input->post('display'),
-                        'sort_order'  => $this->input->post('sort_order'),
-                    ];
+                             'news_count'  => $this->input->post('news_count'),
+                             'max_symdols' => $this->input->post('max_symdols'),
+                             'categories'  => $this->input->post('categories'),
+                             'display'     => $this->input->post('display'),
+                             'sort_order'  => $this->input->post('sort_order'),
+                            ];
 
                     $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
 
@@ -214,7 +214,7 @@ class Core_Widgets extends MY_Controller
 
             $data = [
                      'pages' => $similarPages ?: [],
-            ];
+                    ];
             return $this->template->fetch('widgets/' . $widget['name'], $data);
         }
     }
