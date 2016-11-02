@@ -10,7 +10,7 @@
                 <button type="button" class="btn btn-small btn-primary formSubmit" data-form="#widget_form" data-submit><i class="icon-ok"></i>{lang("Save", 'admin')}</button>
                 <button type="button" class="btn btn-small formSubmit" data-form="#widget_form" data-action="tomain"><i class="icon-check"></i>{lang("Save and go back", 'admin')}</button>
             </div>
-        </div>                            
+        </div>
     </div>
     <form action="{$BASE_URL}admin/widgets_manager/update_widget/{$widget.id}" id="widget_form" method="post" class="form-horizontal">
         <table class="table  table-bordered table-hover table-condensed content_big_td">
@@ -27,6 +27,16 @@
                                     <select name="display" id="comcount">
                                         <option value="recent"  {if $widget.settings.display == 'recent'} selected="selected" {/if} >{lang("Last", 'core')}</option>
                                         <option value="popular" {if $widget.settings.display == 'popular'} selected="selected" {/if}>{lang("Popular", 'core')}</option>
+                                        <option value="position" {if $widget.settings.display == 'position'} selected="selected" {/if}>{lang("by position","admin")}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="control-group">
+
+                                <div class="controls">
+                                    <select name="sort_order">
+                                        <option value="desc" {if $widget.settings.sort_order == 'desc'} selected="selected" {/if}>{lang("In descending order","admin")}</option>
+                                        <option value="asc" {if $widget.settings.sort_order == 'asc'} selected="selected" {/if}>{lang("In ascending order","admin")}</option>
                                     </select>
                                 </div>
                             </div>
@@ -43,15 +53,15 @@
                             <div class="control-group">
                                 <label class="control-label" for="newscount">{lang("Number of news for display", 'core')}:</label>
                                 <div class="controls">
-                                    <input type="text" name="news_count" value="{$widget.settings.news_count}" id="newscount"/> 
-                                </div>            
+                                    <input type="text" name="news_count" value="{$widget.settings.news_count}" id="newscount"/>
+                                </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label" for="maxsym">{lang("Maximum number of characters", 'core')}:</label>
                                 <div class="controls">
                                     <input type="text" name="max_symdols" value="{$widget.settings.max_symdols}" id="maxsym"/>
-                                </div>            
-                            </div>    
+                                </div>
+                            </div>
                         </div>
                     </td>
                 </tr>

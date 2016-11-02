@@ -16,6 +16,7 @@ class Core_Widgets extends MY_Controller
                          'news_count'  => 10,
                          'max_symdols' => 150,
                          'display'     => 'recent',//possible values: recent/popular
+                         'sort_order'  => 'desc',
                         ];
 
     public function __construct() {
@@ -37,7 +38,7 @@ class Core_Widgets extends MY_Controller
             $settings = $widget['settings'];
         }
 
-        $this->db->select("IF(route.parent_url <> '', concat(route.parent_url, '/', route.url), route.url) as full_url, content.id, content.title, prev_text, publish_date, showed, comments_count, author, category.name as cat_name", FALSE);
+        $this->db->select("IF(route.parent_url <> '', concat(route.parent_url, '/', route.url), route.url) as full_url, content.id, content.title, prev_text, publish_date, showed, content.position, comments_count, author, category.name as cat_name", FALSE);
         $this->db->join('category', 'category.id=content.category');
         $this->db->join('route', 'route.id=content.route_id');
         $this->db->where('post_status', 'publish');
@@ -49,11 +50,39 @@ class Core_Widgets extends MY_Controller
             $this->db->where_in('category', $settings['categories']);
         }
 
-        if ($settings['display'] == 'recent') {
-            $this->db->order_by('publish_date', 'desc'); // Recent news
-        } elseif ($settings['display'] == 'popular') {
-            $this->db->order_by('showed', 'desc'); // Pupular news
+        switch ($settings['display']) {
+            case 'recent':
+                $settings['display'] = 'publish_date';  // Recent news
+                break;
+
+            case 'popular':
+                $settings['display'] = 'showed'; // Popular news
+                break;
+
+            case 'position':
+                $settings['display'] = 'position'; // Position news
+                break;
+
+            default:
+                $settings['display'] = 'position'; // Position news
+
         }
+
+        switch ($settings['sort_order']) {
+            case 'asc':
+                $settings['sort_order'] = 'asc';
+                break;
+
+            case 'desc':
+                $settings['sort_order'] = 'desc';
+                break;
+
+            default:
+                $settings['sort_order'] = 'desc';
+
+        }
+
+        $this->db->order_by($settings['display'], $settings['sort_order']);
 
         $query = $this->db->get('content', $settings['news_count']);
 
@@ -114,6 +143,7 @@ class Core_Widgets extends MY_Controller
                              'max_symdols' => $this->input->post('max_symdols'),
                              'categories'  => $this->input->post('categories'),
                              'display'     => $this->input->post('display'),
+                             'sort_order'  => $this->input->post('sort_order'),
                             ];
 
                     $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
