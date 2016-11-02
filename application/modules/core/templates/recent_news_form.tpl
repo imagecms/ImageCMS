@@ -15,7 +15,7 @@
     <form action="{$BASE_URL}admin/widgets_manager/update_widget/{$widget.id}" id="widget_form" method="post" class="form-horizontal">
         <table class="table  table-bordered table-hover table-condensed content_big_td">
             <thead>
-            <th>{lang("Settings", 'core')}</th>
+                <th>{lang("Settings", 'core')}</th>
             </thead>
             <tbody>
             <tr>

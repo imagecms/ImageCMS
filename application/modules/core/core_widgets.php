@@ -13,10 +13,10 @@ class Core_Widgets extends MY_Controller
 {
 
     private $defaults = [
-        'news_count'  => 10,
-        'max_symdols' => 150,
-        'display'     => 'recent',//possible values: recent/popular
-        'sort_order'  => 'desc'
+                         'news_count'  => 10,
+                         'max_symdols' => 150,
+                         'display'     => 'recent',//possible values: recent/popular
+                         'sort_order'  => 'desc'
     ];
 
     public function __construct() {
@@ -213,7 +213,7 @@ class Core_Widgets extends MY_Controller
             $similarPages = $this->similar_library->find($this->core->page_content['id'], $title, $widget['settings']);
 
             $data = [
-                'pages' => $similarPages ?: [],
+                     'pages' => $similarPages ?: [],
             ];
             return $this->template->fetch('widgets/' . $widget['name'], $data);
         }
