@@ -16,7 +16,7 @@ class Core_Widgets extends MY_Controller
                          'news_count'  => 10,
                          'max_symdols' => 150,
                          'display'     => 'recent',//possible values: recent/popular
-                         'sort_order'  => 'desc'
+                         'sort_order'  => 'desc',
                         ];
 
     public function __construct() {
@@ -54,23 +54,32 @@ class Core_Widgets extends MY_Controller
             case 'recent':
                 $settings['display'] = 'publish_date';  // Recent news
                 break;
+
             case 'popular':
                 $settings['display'] = 'showed'; // Popular news
                 break;
-            default:
+
             case 'position':
                 $settings['display'] = 'position'; // Position news
                 break;
+
+            default:
+                $settings['display'] = 'position'; // Position news
+
         }
 
         switch ($settings['sort_order']) {
             case 'asc':
                 $settings['sort_order'] = 'asc';
                 break;
-            default:
+
             case 'desc':
                 $settings['sort_order'] = 'desc';
                 break;
+
+            default:
+                $settings['sort_order'] = 'desc';
+
         }
 
         $this->db->order_by($settings['display'], $settings['sort_order']);
