@@ -45,10 +45,10 @@ class PageController extends Controller
             $this->ci->template->registerCanonical(site_url());
         }
 
-        $this->ci->template->assign('content', $this->ci->template->read($pageTemplate));
-
         $this->ci->core->page_content = $page;
         $this->ci->core->cat_content = $category;
+        
+        $this->ci->template->assign('content', $this->ci->template->read($pageTemplate));       
 
         $page['description'] = $this->ci->core->_makeDescription($page['description'], $page['full_text']);
         $page['keywords'] = $this->ci->core->_makeKeywords($page['keywords'], $page['full_text'] ?: $page['prev_text']);
