@@ -723,6 +723,10 @@ abstract class BannerImageI18n extends PropelBaseModelClass implements ActiveRec
             throw new PropelException("You cannot save an object that has been deleted.");
         }
 
+        if ($this->alreadyInSave) {
+            return 0;
+        }
+
         if ($con === null) {
             $con = Propel::getServiceContainer()->getWriteConnection(BannerImageI18nTableMap::DATABASE_NAME);
         }

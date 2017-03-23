@@ -631,18 +631,22 @@ class Permitions extends BaseAdminController
      * @return    void
      */
     public function roleEdit($roleId) {
-        $sqlModel = 'SELECT SRR.id, SRR.name, SRR.importance, SRRI.alt_name, SRRI.description
-            FROM shop_rbac_roles SRR
-            LEFT JOIN shop_rbac_roles_i18n SRRI ON SRRI.id = SRR.id  AND SRRI.locale = "' . MY_Controller::getCurrentLocale() . '" WHERE SRR.id = "' . $roleId . '" ORDER BY SRR.name ASC';
 
-        $queryModel = $this->db->query($sqlModel);
-        $queryModel->row();
+        $locale = MY_Controller::getCurrentLocale();
+
+        $queryModel = $this->db->select('shop_rbac_roles.id, shop_rbac_roles.name , shop_rbac_roles.importance, shop_rbac_roles_i18n.alt_name, shop_rbac_roles_i18n.description ')
+            ->from('shop_rbac_roles')
+            ->join('shop_rbac_roles_i18n', 'shop_rbac_roles_i18n.id = shop_rbac_roles.id', 'left')
+            ->where('shop_rbac_roles.id', $roleId)
+            ->where('shop_rbac_roles_i18n.locale', $locale)
+            ->get();
 
         if ($queryModel === null) {
             $this->error404(lang('Role not found'));
         }
 
         if ($this->input->post()) {
+
             $this->form_validation->set_rules('alt_name', lang('Title'), 'required');
 
             if ($this->form_validation->run($this) == FALSE) {
@@ -662,12 +666,12 @@ class Permitions extends BaseAdminController
                 //$this->db->where('id',$roleId)->update('shop_rbac_roles',array('name', $this->input->post('Name')));
 
                 $privileges = $this->input->post('Privileges') ?: [];
-
-                if (MY_Controller::isProCMS()) {
-                    $privilegesPOSTIds = $this->filterShopPrivileges();
-                } else {
+                //
+                //                if (MY_Controller::isProCMS()) {
+                //                    $privilegesPOSTIds = $this->filterShopPrivileges();
+                //                } else {
                     $privilegesPOSTIds = $privileges;
-                }
+                //                }
 
                     $idForDelete = implode(', ', $privilegesPOSTIds);
 
@@ -691,23 +695,29 @@ class Permitions extends BaseAdminController
                 }
             }
         } else {
-            //preparing array of privileges ids which belong to currenc role
-            $sql = 'SELECT `privilege_id`
-            FROM `shop_rbac_roles_privileges` WHERE `role_id` = ' . $roleId;
-            $queryPrivilegeR = $this->db->query($sql)->result_array();
+
+            $queryPrivilegeR = $this->db->select('privilege_id')
+                ->from('shop_rbac_roles_privileges')
+                ->where('role_id', $roleId)
+                ->get()->result_array();
+
             $role_privileges = [];
             foreach ($queryPrivilegeR as $item) {
                 $role_privileges[] = (int) $item['privilege_id'];
             }
 
-            //preparing array of controller types
-            $types = $this->db->query('SELECT DISTINCT `type` FROM ' . self::$rbac_group_table)->result_array();
+            $types = $this->db->select('type')
+                ->distinct()
+                ->from(self::$rbac_group_table)
+                ->get()->result_array();
+
+            $controller_types = [];
+
             foreach ($types as $item) {
                 $controller_types[] = $item['type'];
             }
 
             //preparing groups
-
             $locale = MY_Controller::defaultLocale();
             $res = $this->db->select('id')->get_where(self::$rbac_group_table . '_i18n', ['locale' => $locale])->result_array();
             if (count($res) < 1) {
@@ -716,8 +726,13 @@ class Permitions extends BaseAdminController
 
             $result = self::makeRolesArray($controller_types, $locale);
 
-            $sqlLangSel = 'SELECT lang_sel FROM settings';
-            $Lang = $this->db->query($sqlLangSel)->row();
+            $Lang = $this->db->select('lang_sel')
+                ->from('settings')
+                ->get()
+                ->row();
+
+            //            dd($result);
+
             $this->template->add_array(
                 [
                  'model'          => $queryModel->row(),

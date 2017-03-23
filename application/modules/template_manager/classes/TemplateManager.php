@@ -45,7 +45,7 @@ class TemplateManager
      *
      * @var string
      */
-    private static $ImageCMSRepositoryURL = 'http://www.imagecms.net/addons/shop/templates_xml';
+    private static $ImageCMSRepositoryURL = 'https://www.imagecms.net/addons/shop/templates_xml';
 
     /**
      *

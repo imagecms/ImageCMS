@@ -39,7 +39,18 @@ class Shop_news_model extends CI_Model
      */
     public function getContent($ids, $limit) {
         if ($ids != null) {
-            return $this->db->where_in('id', $ids)->limit($limit)->get('content')->result_array();
+            $query = $this->db
+                ->select('content.*')
+                ->select("IF(route.parent_url <> '', concat(route.parent_url, '/', route.url), route.url) as full_url", false)
+                ->join('route', 'route.id = content.route_id')
+                ->where_in('content.id', $ids)
+                ->limit($limit)
+                ->get('content');
+
+            if ($query->num_rows() > 0) {
+                return $query->result_array();
+            }
+            return [];
         }
     }
 

@@ -4,7 +4,7 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-/*
+/**
  * Image CMS
  * lib_category.php
  * Library to work with categories
@@ -15,18 +15,39 @@ if (!defined('BASEPATH')) {
 class Lib_category
 {
 
+    /**
+     * @var array
+     */
     public $categories = [];
 
+    /**
+     * @var int
+     */
     public $level = 0;
 
+    /**
+     * @var array
+     */
     public $path = [];
 
+    /**
+     * @var bool
+     */
     public $unsorted_arr = FALSE;
 
+    /**
+     * @var bool
+     */
     public $unsorted = FALSE;
 
+    /**
+     * @var int
+     */
     protected $defaultLocaleId;
 
+    /**
+     * @var CI_Controller
+     */
     public $CI;
 
     /**
@@ -35,11 +56,18 @@ class Lib_category
      */
     protected $categoriesPagesCounts = [];
 
+    /**
+     * Lib_category constructor.
+     */
     public function __construct() {
-        $this->CI = get_instance();
+        $this->CI = &get_instance();
         $this->defaultLocaleId = $this->CI->load->model('cms_admin')->get_default_lang()['id'];
     }
 
+    /**
+     * @param int $localeId
+     * @return $this
+     */
     public function setLocaleId($localeId) {
         $this->defaultLocaleId = $localeId;
         return $this;
@@ -56,6 +84,9 @@ class Lib_category
         return $this->_build();
     }
 
+    /**
+     * @return mixed
+     */
     public function buildForAdmin() {
         // check cache file
         return $this->CI->cache->call([$this, '_build']);
@@ -106,6 +137,7 @@ class Lib_category
      * Get category from an array
      *
      * @access public
+     * @param int|array $id
      * @return array
      */
     public function get_category($id) {
@@ -306,6 +338,10 @@ class Lib_category
         //return $this->path;
     }
 
+    /**
+     * @param array $category
+     * @return array
+     */
     public function translate($category = []) {
 
         if ($this->defaultLocaleId == CI::$APP->load->module('core')->def_lang[0]['id']) {
@@ -332,9 +368,13 @@ class Lib_category
         return $category;
     }
 
+    /**
+     * @return array
+     */
     public function get_translated_array() {
         $translated = [];
         $lang = $this->defaultLocaleId;
+
         $ck = 'categories_translated_array_' . $lang;
 
         if (($translated = $this->CI->cache->fetch($ck)) !== FALSE) {

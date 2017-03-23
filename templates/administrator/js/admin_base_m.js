@@ -197,8 +197,8 @@ var delete_function = new Object({
 
 function save_positions_variant(url) {
     var arr = new Array();
-    $('input[name=idv]').each(function() {
-        arr.push($(this).val());
+    $('[data-sort-variant]').each(function() {
+        arr.push($(this).data('sort-variant'));
     });
     $.post(
         url,

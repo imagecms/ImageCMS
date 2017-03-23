@@ -584,7 +584,6 @@ class Products extends ExchangeBase
      */
     protected function pass1Helper_getImagesData(SimpleXMLElement $product, $exId) {
 
-        //$exId = (string) $product->Ид;
         $additionalImages = NULL;
         $mainImage = NULL;
 
@@ -596,14 +595,16 @@ class Products extends ExchangeBase
             $path = (string) $image;
             $fileName = pathinfo($path, PATHINFO_BASENAME);
             if ($i == 0) { // main image
-                if (file_exists($this->tempDir . $path)) {
+                if (file_exists($this->tempDir . $path) and !file_exists('./uploads/shop/products/origin/' . $fileName)) {
                     $copied = copy($this->tempDir . $path, './uploads/shop/products/origin/' . $fileName);
                     if ($copied != FALSE) {
                         $mainImage = $fileName;
                     }
+                } elseif (file_exists('./uploads/shop/products/origin/' . $fileName)) {
+                    $mainImage = $fileName;
                 }
             } else { // rest of images will be an additional
-                if (file_exists($this->tempDir . $path)) {
+                if (file_exists($this->tempDir . $path) and !file_exists('./uploads/shop/products/origin/additional/' . $fileName)) {
                     $copied = copy($this->tempDir . $path, './uploads/shop/products/origin/additional/' . $fileName);
                     if ($copied != FALSE) {
                         $additionalImages[] = [
@@ -611,6 +612,11 @@ class Products extends ExchangeBase
                                                'image_name' => $fileName,
                                               ];
                     }
+                } elseif (file_exists('./uploads/shop/products/origin/additional/' . $fileName)) {
+                    $additionalImages[] = [
+                                           'position'   => $i - 1,
+                                           'image_name' => $fileName,
+                                          ];
                 }
             }
             $i++;
@@ -736,7 +742,7 @@ class Products extends ExchangeBase
             $category_id = $value['category_id'];
             if (!array_key_exists($category_id, $this->categoryUrls)) {
                 $parentRoute = RouteQuery::create()->filterByType(Route::TYPE_SHOP_CATEGORY)
-                    ->findOneById($category_id);
+                    ->findOneByEntityId($category_id);
                 $this->categoryUrls[$category_id] = $parentRoute->getFullUrl();
             }
 

@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-28 12:00+0200\n"
-"PO-Revision-Date: 2015-01-28 12:00+0200\n"
+"POT-Creation-Date: 2016-11-02 04:27+0200\n"
+"PO-Revision-Date: 2016-11-02 04:27+0200\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -18,111 +18,128 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: application/modules/core/widgets_info.php:5
-msgid "Latest news"
-msgstr "Останні новини"
+#: application/modules/core/core_widgets.php:126
+msgid "Amount of news"
+msgstr "Обсяг новин"
+
+#: application/modules/core/templates/recent_news_form.tpl:30
+msgid "By position"
+msgstr "По позиції"
+
+#: application/modules/core/src/Controller/CategoryController.php:81
+msgid "Can't locate category template file."
+msgstr "Неможливо знайти файл шаблону категорії"
+
+#: application/modules/core/templates/similar_posts_form.tpl:28
+#: application/modules/core/templates/recent_news_form.tpl:44
+msgid "Categories"
+msgstr "Категорії"
 
 #: application/modules/core/widgets_info.php:6
 msgid "Displaying the last or popular pages in the selected category."
 msgstr "Відображення останніх або популярних сторінок з обраної категорії."
 
-#: application/modules/core/widgets_info.php:10
-msgid "Similar pages"
-msgstr "Схожі сторінки"
-
-#: application/modules/core/widgets_info.php:11
+#: application/modules/core/widgets_info.php:12
 msgid "Displays a list of pages that are linked title."
 msgstr "Виводить список сторінок, які пов'язані між собою заголовком."
 
-#: application/modules/core/core.php:356
-msgid "Home page not found."
-msgstr "Домашня сторінка не знайдена"
-
-#: application/modules/core/core.php:403
-msgid "Module uploading or loading  error"
-msgstr "Модуль вивантажений або помилка  завантаження"
-
-#: application/modules/core/core.php:573
-msgid "The first"
-msgstr "Перша"
-
-#: application/modules/core/core.php:574
-msgid "Last"
-msgstr "Остання"
-
-#: application/modules/core/core.php:600
-msgid "Can't locate category template file."
-msgstr "Неможливо знайти файл шаблону категорії"
-
-#: application/modules/core/core.php:608
-msgid "In the category has no pages."
-msgstr "У категорії немає сторінок"
-
-#: application/modules/core/core.php:768
-msgid "Page not found"
-msgstr "Сторінка не знайдена"
-
-#: application/modules/core/core.php:770
-msgid "Page not found."
-msgstr "Сторінка не знайдена"
-
-#: application/modules/core/core_widgets.php:88
-msgid "Amount of news"
-msgstr "Обсяг новин"
-
-#: application/modules/core/core_widgets.php:89
-#: application/modules/core/templates/recent_news_form.tpl:50
-msgid "Maximum number of characters"
-msgstr "Максимальна кількість символів"
-
-#: application/modules/core/core_widgets.php:103
-msgid "Settings have been saved"
-msgstr "Налаштування були збережені"
-
-#: application/modules/core/templates/recent_news_form.tpl:5
-msgid "Widget settings"
-msgstr "Налаштування віджета"
-
+#: application/modules/core/templates/similar_posts_form.tpl:10
 #: application/modules/core/templates/recent_news_form.tpl:9
 msgid "Go back"
 msgstr "Повернутися"
 
-#: application/modules/core/templates/recent_news_form.tpl:10
-msgid "Save"
-msgstr "Зберегти"
+#: application/modules/core/templates/recent_news_form.tpl:39
+msgid "In ascending order"
+msgstr "У порядку зростання"
 
-#: application/modules/core/templates/recent_news_form.tpl:11
-msgid "Save and go back"
-msgstr "Зберегти і повернутися"
+#: application/modules/core/templates/recent_news_form.tpl:38
+msgid "In descending order"
+msgstr "У порядку убування"
 
-#: application/modules/core/templates/recent_news_form.tpl:18
-msgid "Settings"
-msgstr "Налаштування"
-
-#: application/modules/core/templates/recent_news_form.tpl:25
-msgid "Pages"
-msgstr "Сторінки"
+#: application/modules/core/src/Controller/CategoryController.php:86
+msgid "In the category has no pages."
+msgstr "У категорії немає сторінок"
 
 #: application/modules/core/templates/recent_news_form.tpl:28
-msgid "Latest"
-msgstr "Останні"
+msgid "Last"
+msgstr "Остання"
+
+#: application/modules/core/widgets_info.php:5
+msgid "Latest news"
+msgstr "Останні новини"
+
+#: application/modules/core/templates/recent_news_form.tpl:60
+#: application/modules/core/core_widgets.php:127
+msgid "Maximum number of characters"
+msgstr "Максимальна кількість символів"
+
+#: application/modules/core/templates/similar_posts_form.tpl:47
+#: application/modules/core/core_widgets.php:180
+msgid "Maximum short description words count"
+msgstr "Кількість слів короткого опису"
+
+#: application/modules/core/templates/recent_news_form.tpl:54
+msgid "Number of news for display"
+msgstr "Кількість новин для відображення"
+
+#: application/modules/core/templates/recent_news_form.tpl:25
+msgid "Order by"
+msgstr "Сортувати за"
+
+#: application/modules/core/core.php:153
+msgid "Page"
+msgstr "Сторінки"
+
+#: application/modules/core/core.php:126
+msgid "Page not found"
+msgstr "Сторінка не знайдена"
+
+#: application/modules/core/core.php:127
+msgid "Page not found."
+msgstr "Сторінка не знайдена"
 
 #: application/modules/core/templates/recent_news_form.tpl:29
 msgid "Popular"
 msgstr "Популярні"
 
-#: application/modules/core/templates/recent_news_form.tpl:34
-msgid "Categories"
-msgstr "Категорії"
-
-#: application/modules/core/templates/recent_news_form.tpl:37
-msgid "Without a category"
-msgstr "Без категорії"
-
-#: application/modules/core/templates/recent_news_form.tpl:44
-msgid "Number of news for display"
-msgstr "Кількість новин для відображення"
-
 #: application/modules/core/templates/similar_posts.tpl:2
 msgid "Related topics"
 msgstr "Див. також"
+
+#: application/modules/core/templates/similar_posts_form.tpl:12
+#: application/modules/core/templates/recent_news_form.tpl:10
+msgid "Save"
+msgstr "Зберегти"
+
+#: application/modules/core/templates/similar_posts_form.tpl:14
+#: application/modules/core/templates/recent_news_form.tpl:11
+msgid "Save and go back"
+msgstr "Зберегти і повернутися"
+
+#: application/modules/core/templates/similar_posts_form.tpl:21
+#: application/modules/core/templates/recent_news_form.tpl:18
+msgid "Settings"
+msgstr "Налаштування"
+
+#: application/modules/core/core_widgets.php:143
+#: application/modules/core/core_widgets.php:188
+msgid "Settings have been saved"
+msgstr "Налаштування були збережені"
+
+#: application/modules/core/widgets_info.php:11
+msgid "Similar pages"
+msgstr "Схожі сторінки"
+
+#: application/modules/core/templates/similar_posts_form.tpl:39
+#: application/modules/core/core_widgets.php:179
+msgid "Similar pages limit"
+msgstr "Кількість сторінок"
+
+#: application/modules/core/templates/similar_posts_form.tpl:5
+#: application/modules/core/templates/recent_news_form.tpl:5
+msgid "Widget settings"
+msgstr "Налаштування віджета"
+
+#: application/modules/core/templates/recent_news_form.tpl:47
+msgid "Without a category"
+msgstr "Без категорії"

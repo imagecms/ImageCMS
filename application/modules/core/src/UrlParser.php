@@ -86,7 +86,7 @@ class UrlParser
      */
     public function parse($url) {
         list($this->fullUrl, $this->paramsString) = explode('?', $url);
-        if (strpos($this->fullUrl, '/') == 0) {
+        if (strpos($this->fullUrl, '/') === 0) {
             $this->fullUrl = (string) substr($this->fullUrl, 1);
         }
 

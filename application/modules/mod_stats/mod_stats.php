@@ -69,12 +69,13 @@ class Mod_stats extends MY_Controller implements FileImport
     }
 
     /**
-     * Save user attandance
+     * Save user attendance
      */
     public static function saveAttendance() {
         if (self::$USED_EVENTS[__FUNCTION__]) {
             return;
         }
+
         self::$USED_EVENTS[__FUNCTION__] = TRUE;
 
         $thisObj = new Mod_stats();
@@ -106,7 +107,6 @@ class Mod_stats extends MY_Controller implements FileImport
                 $userId = $_COOKIE['u2id'];
             }
         } else { // registered user
-            $userId = CI::$APP->dx_auth->get_user_id();
             if (isset($_COOKIE['u2id'])) { // it means that user just make registration
                 $thisObj->stats_model->updateAttendanceUserId($_COOKIE['u2id'], $userId);
                 setcookie('u2id', $userId, time() - 100, '/'); // deleting cookie

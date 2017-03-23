@@ -26,12 +26,16 @@ class Dashboard extends BaseAdminController
 
         // get latest pages
         $this->db->limit(5);
+        $this->db->select('IF(route.parent_url <> \'\', concat(route.parent_url, \'/\', route.url), route.url) as full_url, content.*', FALSE);
+        $this->db->join('route', 'route.id=content.route_id');
         $this->db->order_by('created', 'DESC');
         $this->db->where('lang_alias', 0);
         $latest = $this->db->get('content')->result_array();
 
         // get recently updated pages
         $this->db->limit(5);
+        $this->db->select('IF(route.parent_url <> \'\', concat(route.parent_url, \'/\', route.url), route.url) as full_url, content.*', FALSE);
+        $this->db->join('route', 'route.id=content.route_id');
         $this->db->order_by('updated', 'DESC');
         $this->db->where('updated >', 0);
         $this->db->where('lang_alias', 0);

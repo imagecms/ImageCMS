@@ -11,7 +11,7 @@ abstract class ControllerBase
 {
 
     /**
-     * Instance of main admin controler
+     * Instance of main admin controller
      * @var Admin
      */
     protected $controller;

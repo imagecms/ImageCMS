@@ -526,6 +526,8 @@ class PoFileManager
      * @return boolean
      */
     public function save($name, $type, $lang, $data) {
+        ksort($data, SORT_STRING | SORT_FLAG_CASE);
+
         $url = $this->getPoFileUrl($name, $type, $lang);
 
         if (!$url) {

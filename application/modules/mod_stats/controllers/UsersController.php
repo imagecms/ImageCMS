@@ -30,6 +30,7 @@ class UsersController extends ControllerBase implements FileImport
     public function online() {
         $this->controller->load->model('attendance_model');
         $onlineUsers = $this->controller->attendance_model->getOnline();
+
         $this->renderAdmin(
             'online',
             ['data' => $onlineUsers]
@@ -71,7 +72,6 @@ class UsersController extends ControllerBase implements FileImport
             $viewType = 'table';
         }
 
-        //        $this->controller->import('traits/DateIntervalTrait.php');
         $this->controller->load->model('attendance_model');
 
         $data = $this->controller->attendance_model->getCommonAttendance($this->params);

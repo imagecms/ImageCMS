@@ -19,7 +19,7 @@ class Admin extends BaseAdminController
     /**
      * Templates repository url
      */
-    const REMOTE_TEMPLATES_REPOSITORY = 'http://www.imagecms.net/addons/shop/remoteDownload/';
+    const REMOTE_TEMPLATES_REPOSITORY = 'https://www.imagecms.net/addons/shop/remoteDownload/';
 
     /**
      * Errors array

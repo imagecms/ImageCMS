@@ -20,13 +20,14 @@ if (!function_exists('get_page')) {
         $ci = &get_instance();
 
         $ci->db->limit(1);
-        $ci->db->select('CONCAT_WS("", content.cat_url, content.url) as full_url, category, content.id, content.title, full_text, prev_text, publish_date, showed, comments_count, author', FALSE);
+        $ci->db->select('IF(route.parent_url <> \'\', concat(route.parent_url, \'/\', route.url), route.url) as full_url, category, content.id, content.title, full_text, prev_text, publish_date, showed, comments_count, author', FALSE);
+        $ci->db->join('route', 'route.id=content.route_id');
 
         if ($lang_identif == $ci->uri->segment(1)) {
             $ci->db->where('lang_alias', $id);
             $ci->db->where('lang', $lang_id);
         } else {
-            $ci->db->where('id', $id);
+            $ci->db->where('content.id', $id);
         }
         $query = $ci->db->get('content');
 
@@ -65,7 +66,9 @@ if (!function_exists('category_pages')) {
         }
 
         $ci->db->select('content.*');
-        $ci->db->select('CONCAT_WS("", content.cat_url, content.url) as full_url', FALSE);
+        $ci->db->select('IF(route.parent_url <> \'\', concat(route.parent_url, \'/\', route.url), route.url) as full_url', FALSE);
+        $ci->db->join('route', 'route.id=content.route_id');
+
         $ci->db->order_by($category['order_by'], $category['sort_order']);
 
         if ($limit > 0) {

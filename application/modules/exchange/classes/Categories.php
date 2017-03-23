@@ -250,19 +250,30 @@ final class Categories extends ExchangeBase
             }
 
             $parentUrl = RouteQuery::create()->filterByEntityId($categoryData['parent_id'])->filterByType(Route::TYPE_SHOP_CATEGORY)->findOne();
-            try{
 
-                        $route = new RouteQuery();
-                        $route->filterByParentUrl($parentUrl ? $parentUrl->getFullUrl() : '');
-                        $route->filterByUrl(translit_url($this->categoriesXml[$categoryData['external_id']]['name']));
-                        $route->findByType(Route::TYPE_SHOP_CATEGORY);
-                        $route->filterByEntityId($categoryData['id']);
-                        $route->findOneOrCreate()->save();
+            try {
 
-            }catch (PropelException $exp){
-                dd($exp);
+                $route = RouteQuery::create()
+                    ->filterByType(Route::TYPE_SHOP_CATEGORY)
+                    ->filterByEntityId($categoryData['id'])
+                    ->findOne();
+
+                if (!$route) {
+                    $route = new Route();
+                    $route->setParentUrl($parentUrl ? $parentUrl->getFullUrl() : '')
+                        ->setUrl(translit_url($this->categoriesXml[$categoryData['external_id']]['name']))
+                        ->setType(Route::TYPE_SHOP_CATEGORY)
+                        ->setEntityId($categoryData['id'])
+                        ->save();
+
+                }
+
+            } catch (PropelException $exp) {
+                echo $exp->getPrevious()->getMessage();
+            } catch (\Exception $exp) {
+                echo $exp->getMessage();
             }
-            $categories[$categoryId]['route_id'] = $route->findOne()->getId();
+            $categories[$categoryId]['route_id'] = $route->getId();
             $categories[$categoryId]['full_path_ids'] = serialize(array_reverse($currentPathIds));
         }
 

@@ -173,6 +173,12 @@ class discount_api extends MY_Controller
                     $this->baseDiscount->discountType['user'][0] = $user;
                 }
             }
+
+            foreach ($this->baseDiscount->discountType['group_user'] as $group) {
+                if ($group['group_id'] == $this->dx_auth->get_role_id()) {
+                    $this->baseDiscount->discountType['group_user'][0] = $group;
+                }
+            }
             return $this->baseDiscount->discountType;
         }
     }

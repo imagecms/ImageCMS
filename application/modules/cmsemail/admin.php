@@ -165,7 +165,7 @@ class Admin extends BaseAdminController
         $locale = $locale ?: MY_Controller::defaultLocale();
 
         if ($this->input->post()) {
-            $this->form_validation->set_rules('settings[admin_email]', lang('Admin email', 'cmsemail'), 'required|xss_clean|valid_email');
+            $this->form_validation->set_rules('settings[admin_email]', lang('Admin email', 'cmsemail'), 'required|xss_clean|callback_email_check|trim');
             $this->form_validation->set_rules('settings[from_email]', lang('Email sender', 'cmsemail'), 'required|xss_clean|valid_email');
             $this->form_validation->set_rules('settings[from]', lang('From', 'cmsemail'), 'required|xss_clean');
             $this->form_validation->set_rules('settings[theme]', lang('From email', 'cmsemail'), 'xss_clean|required');
@@ -185,10 +185,9 @@ class Admin extends BaseAdminController
                          'settings' => $this->input->post('settings'),
                         ];
 
-                if ($this->email->setSettings($data)) {
-                    showMessage(lang('Settings saved', 'cmsemail'), lang('Message', 'cmsemail'));
-                    $this->lib_admin->log(lang('Template customization mails have been changed', 'cmsemail') . '. Id: '); // . $id);??
-                }
+                $this->email->setSettings($data);
+                showMessage(lang('Settings saved', 'cmsemail'), lang('Message', 'cmsemail'));
+                $this->lib_admin->log(lang('Template customization mails have been changed', 'cmsemail') . '. Id: '); // . $id);??
             }
 
             $this->cache->delete_all();
@@ -207,6 +206,26 @@ class Admin extends BaseAdminController
             $this->form_validation->set_message('wraper_check', lang('Field', 'cmsemail') . ' %s ' . lang('Must contain variable', 'cmsemail') . ' $content');
             return FALSE;
         }
+    }
+
+    /**
+     * @param $emails
+     *
+     * @return bool
+     */
+    public function email_check($emails) {
+
+        $emails = str_replace(' ', '', $emails);
+
+        foreach (explode(',', $emails) as $e) {
+            if (!filter_var($e, FILTER_VALIDATE_EMAIL)) {
+                $this->form_validation->set_message('email_check', lang('Field', 'cmsemail') . ' %s ' . lang('Must contain valid email', 'cmsemail'));
+
+                return false;
+            }
+        }
+
+        return TRUE;
     }
 
     /**

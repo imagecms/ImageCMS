@@ -11,7 +11,7 @@ if (!function_exists('check_admin_redirect')) {
      */
     function create_language_select($languages, $locale, $url, $pjax = FALSE) {
 
-        if (count($languages) > 1) {
+        if (count($languages) > 1 && \MY_Controller::isPremiumCMS()) {
             $html = "<div class='dropdown d-i_b'>";
             foreach ($languages as $language) {
                 if ($language['identif'] == $locale) {

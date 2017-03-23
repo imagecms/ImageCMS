@@ -6,24 +6,25 @@ use core\models\Route;
 use core\models\RouteQuery;
 use core\src\Exception\PageNotFoundException;
 
-
 /**
  * Class Router
+ *
  * @package core\src
- * @todo remove PageException and url check
+ * @todo    remove PageException and url check
  */
 class Router
 {
 
     private $modules = [];
 
-    private $deniedSegments = [
-                               '_install',
-                               '_deinstall',
-                               '_install_rules',
-                               'autoload',
-                               '__construct',
-                              ];
+    private $deniedSegments
+                     = [
+                        '_install',
+                        '_deinstall',
+                        '_install_rules',
+                        'autoload',
+                        '__construct',
+                       ];
 
     public function setModules(array $modules) {
         $this->modules = $modules;
@@ -37,13 +38,14 @@ class Router
             return $route;
         }
 
+        if ($route = $this->isModule($url)) {
+            return $route;
+        }
+
         if ($route = $this->isRoute($url)) {
             return $route;
         }
 
-        if ($route = $this->isModule($url)) {
-            return $route;
-        }
     }
 
     private function checkUrl($url) {
@@ -56,7 +58,7 @@ class Router
         }
 
         foreach ($this->segments as $segment) {
-            if (in_array($segment, $this->deniedSegments) == TRUE) {
+            if (in_array($segment, $this->deniedSegments) == true) {
                 throw new PageNotFoundException();
             }
         }
@@ -66,16 +68,16 @@ class Router
         if ($url == '') {
             $route = new Route();
             $route->setType(Route::TYPE_MAIN);
+
             return $route;
         }
     }
 
     private function isRoute($url) {
         $routeUrl = explode('/', $url);
-        $last = array_pop($routeUrl);
+        $last     = array_pop($routeUrl);
 
-        $route = RouteQuery::create()->filterByUrl($last)
-            ->findOne();
+        $route = RouteQuery::create()->filterByUrl($last)->findOne();
 
         if ($route && $this->checkRoute($route, $url)) {
             return $route;
@@ -86,18 +88,25 @@ class Router
         if ($route->getRouteUrl() !== $url) {
             throw new PageNotFoundException();
         }
+
         return true;
 
     }
 
     /**
      * @param $url
-     * @return Route
+     *
+     * @return bool|Route
      */
     private function isModule($url) {
-
+        if (strpos(trim($url, '/'), 'shop/category') === 0) {
+            return false;
+        }
+        if (strpos(trim($url, '/'), 'shop/product') === 0) {
+            return false;
+        }
         $moduleSegments = explode('/', $url);
-        $moduleName = array_shift($moduleSegments);
+        $moduleName     = array_shift($moduleSegments);
 
         foreach ($this->modules as $module) {
             if ($module['identif'] === $moduleName AND $module['enabled'] == 1) {
@@ -105,6 +114,7 @@ class Router
                 $route = new Route();
                 $route->setType(Route::TYPE_MODULE);
                 $route->setUrl($url);
+
                 return $route;
             }
         }

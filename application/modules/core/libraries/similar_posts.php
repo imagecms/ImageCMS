@@ -109,19 +109,20 @@ class Similar_Posts
      */
     private function getPagesByTags() {
         $query = '
-                SELECT page.*, count(page_tags.tag_id) AS tags_count
-                FROM `content` AS page
-                JOIN content_tags  AS page_tags
-                ON page_tags.page_id = page.id
-                WHERE tag_id IN (SELECT tag_id FROM content_tags WHERE page_id = ' . $this->pageId . ")  AND `page`.`post_status`='publish'
-                AND page.id != " . $this->pageId
-                . ' AND page.lang = ' . CI::$APP->config->item('cur_lang');
+                SELECT `content`.*, count(content_tags.`tag_id`) AS `tags_count`, IF(`route`.`parent_url` <> \'\', 
+                concat(`route`.`parent_url`, \'/\', `route`.`url`), `route`.`url`) as `full_url`
+                FROM `content`
+                JOIN `content_tags` ON `content_tags`.`page_id` = `content`.`id`
+                LEFT JOIN `route` on `content`.`id` = route.entity_id AND `route`.`type` = \'page\'
+                WHERE tag_id IN (SELECT tag_id FROM content_tags WHERE page_id = ' . $this->pageId . ")  AND `content`.`post_status`='publish'
+                AND `content`.id != " . $this->pageId
+                . ' AND `content`.lang = ' . CI::$APP->config->item('cur_lang');
 
         if (!in_array('all', $this->settings['categories'])) {
-            $query .= ' AND page.category IN (' . implode(',', $this->settings['categories']) . ')';
+            $query .= ' AND `content`.`category` IN (' . implode(',', $this->settings['categories']) . ')';
         }
 
-        $query .= ' GROUP BY page.id ORDER BY tags_count DESC';
+        $query .= ' GROUP BY `content`.`id` ORDER BY `tags_count` DESC';
         if ($this->settings['limit']) {
             $query .= ' LIMIT ' . $this->settings['limit'];
         }

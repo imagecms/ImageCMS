@@ -439,7 +439,7 @@ class Export
             $fields .= $field != FALSE ? " \n {$field}, " : '';
         }
         // last comma removing
-        $fields = substr($fields, 0, strlen($fields) - 2);
+        $fields = substr($fields, 0, - 2);
         $this->fields = $fields;
         // if categories are selected adding condition to query
         if (is_array($this->selectedCats) && count($this->selectedCats) > 0) {
@@ -579,7 +579,7 @@ class Export
     protected function getAbbreviation($field = NULL) {
         $abbreviationsArray = [
                                'name'    => '`shop_products_i18n`.`name` as product_name', //
-                               'url'     => 'url', //
+                               'url'     => '`route`.`url` as url', //
                                'oldprc'  => 'old_price', //
                                'archive' => 'archive', //
                                'prc'     => 'price_in_main', //

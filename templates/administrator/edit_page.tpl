@@ -14,7 +14,8 @@
                     <i class="icon-ok icon-white"></i>{lang("Save","admin")}</button>
                 <button type="button" class="btn btn-small action_on formSubmit" data-action="close" data-form="#edit_page_form">
                     <i class="icon-check"></i>{lang("Save and go back","admin")}</button>
-                {if count($langs) > 1}
+
+                {if My_Controller::isPremiumCms() && count($langs) > 1}
                     <div class="dropdown d-i_b">
                         <a class="btn dropdown-toggle btn-small" data-toggle="dropdown" href="#">
                             {foreach $langs as $l}
@@ -90,7 +91,6 @@
 
                                         <div> <!--class="o_h"-->
                                             <select style="width:700px" name="category" id="category_selectbox" onchange="pagesAdmin.loadCFEditPage()">
-                                                <option value="0">{lang('No','admin')}</option>
                                                 {$this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'], 'sel_cat' => $this->template_vars['parent_id']));}
                                             </select>
                                         </div>

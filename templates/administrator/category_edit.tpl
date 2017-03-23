@@ -14,7 +14,7 @@
                     </button>
                     <button type="button" class="btn btn-small action_on formSubmit" data-action="close"
                             data-form="#save"><i class="icon-check"></i>{lang("Save and exit","admin")}</button>
-                        {if count($langs) > 1}
+                        {if My_Controller::isPremiumCms() && count($langs) > 1}
                         <div class="dropdown d-i_b">
                             {foreach $langs as $l}
                                 {if $l['default'] == 1}

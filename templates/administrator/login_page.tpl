@@ -10,7 +10,6 @@
         <link rel="stylesheet" type="text/css" href="{$THEME}css/style.css"/>
         <link rel="stylesheet" type="text/css" href="{$THEME}css/bootstrap-responsive.css"/>
         <link rel="stylesheet" type="text/css" href="{$THEME}css/bootstrap-notify.css"/>
-        <link rel="stylesheet" type="text/css" href="{$THEME}css/jquery/custom-theme/jquery-ui-1.8.23.custom.css"/>
         <link rel="stylesheet" type="text/css" href="{$THEME}css/jquery/custom-theme/jquery-ui-1.8.16.custom.css"/>
         <link rel="stylesheet" type="text/css" href="{$THEME}css/jquery/custom-theme/jquery.ui.1.8.16.ie.css"/>
     </head>

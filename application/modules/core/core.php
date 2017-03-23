@@ -1,8 +1,9 @@
 <?php
 
-use CMSFactory\DependencyInjection\DependencyInjectionProvider;
 use CMSFactory\Events;
 use core\src\CoreFactory;
+use core\src\Kernel;
+use core\src\RouteSubscriber;
 
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
@@ -61,10 +62,12 @@ class Core extends MY_Controller
         $this->langs = CoreFactory::getModel()->getLanguages();
         $this->def_lang = [CoreFactory::getModel()->getDefaultLanguage()];
 
+        $this->lib_category->setLocaleId(MY_Controller::getCurrentLanguage('id'));
+
     }
 
     public function index() {
-        (new \core\src\Kernel($this, CI::$APP))->run();
+        (new Kernel($this, CI::$APP))->run();
     }
 
     /**
@@ -301,7 +304,7 @@ class Core extends MY_Controller
     }
 
     public static function adminAutoload() {
-        $subscriber = new \core\src\RouteSubscriber();
+        $subscriber = new RouteSubscriber();
 
         foreach ($subscriber->getHandlers() as $eventName => $callback) {
 

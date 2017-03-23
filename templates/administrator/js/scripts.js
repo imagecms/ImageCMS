@@ -411,12 +411,12 @@ function init_2() {
     $('.products_table').find('span.prod-on_off').add($('[data-page="tovar"]')).off('click').on('click', function () {
         var page_id = $(this).attr('data-id');
 
-            $.ajax({
-                type: 'POST',
-                url: base_url + 'admin/components/run/shop/products/ajaxChangeActive/' + page_id,
-                onComplete: function (response) {
-                }
-            });
+        $.ajax({
+            type: 'POST',
+            url: base_url + 'admin/components/run/shop/products/ajaxChangeActive/' + page_id,
+            onComplete: function (response) {
+            }
+        });
 
     });
     // /if ($.exists('[data-submit]')) $('body').append('<div class="notifications bottom-right"><div class="alert-message" style="color:#666;text-shadow:0 1px #fff;">??? ???? ???? <span style="color:green;font-weight:bold;">'+$('[data-submit]').text()+'</span> ??????????? ?????????? ?????? <span style="color:green;font-weight:bold;">Ctrl + s</span></div></div>')
@@ -525,18 +525,20 @@ function init_2() {
                 dataType: 'json',
                 success: function (data) {
                     if (data)
-                        for (var i in data)
+                        for (var i in data) {
+                            // debugger;
                             $('<option>', {
                                 data: data[i],
                                 'data-product-name': data[i].name,
                                 value: data[i].id,
                                 text: data[i].label
                             }).appendTo(listProduct);
-                    else
+                        } else {
                         $('<option>', {
                             text: langs.notFound,
                             disabled: 'disabled'
                         }).appendTo(listProduct);
+                    }
                 }
             });
         });
@@ -1974,7 +1976,7 @@ $('body').off('click.pjax').on('click.pjax', 'a.pjax', function (event) {
 
 });
 
-$(document).on('ready pjax:end', function(){
+$(document).on('ready pjax:end', function () {
     $(document).trigger('document:initialized');
 });
 
@@ -2382,7 +2384,7 @@ function fastParopCreate(Name, inCat, Csv, actEl) {
     });
 
 }
-function createCatFast(name, catId, url, actEl , showSite) {
+function createCatFast(name, catId, url, actEl, showSite) {
 
     var active = 1;
     if (actEl.hasClass('disable_tovar'))
@@ -2398,7 +2400,7 @@ function createCatFast(name, catId, url, actEl , showSite) {
         catId: catId,
         Url: url,
         active: active,
-        show_in_menu : show_in_site
+        show_in_menu: show_in_site
     }, function (data) {
         $('#loading').hide();
         if (data) {

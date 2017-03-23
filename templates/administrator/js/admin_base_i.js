@@ -1010,6 +1010,7 @@ $(document).ready(function () {
 
         container.find(".deleteImage").attr("value", 1);
         container.find('[name="variants[mainPhoto][]"]').attr('value', '');
+        container.find('[name="changeImage[]"]').attr('value', '');
         container.find('img').attr('src', "/uploads/shop/nophoto/nophoto.jpg");
         container.find('img').css('width', '50px');
 

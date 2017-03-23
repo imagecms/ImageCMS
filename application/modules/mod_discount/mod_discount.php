@@ -106,16 +106,10 @@ class Mod_discount extends \MY_Controller
 
             if (class_exists('\VariantPriceType\BaseVariantPriceType') && self::isPremiumCMS()) {
 
-                $usedDiscountVariantPrice = \VariantPriceType\BaseVariantPriceType::checkUsedDiscount($this->dx_auth->get_role_id()?: '-1', $item);
-
+                $usedDiscountVariantPrice = \VariantPriceType\BaseVariantPriceType::checkUsedDiscount($this->dx_auth->get_role_id() !== false ? $this->dx_auth->get_role_id() : '-1', $item);
             }
 
-            if ($item->originPrice > $item->price  ) {
-                continue;
-            }
-
-            if ($usedDiscountVariantPrice === false) {
-
+            if ($item->originPrice > $item->price || $usedDiscountVariantPrice === false  ) {
                 continue;
             }
 

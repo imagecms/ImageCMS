@@ -105,8 +105,7 @@ class Seo_snippets extends MY_Controller
         $model = $product['model'];
 
         $ci = &get_instance();
-
-        if (!strstr($ci->uri->uri_string(), 'shop/product/')) {
+        if ($ci->core->core_data['data_type'] !== 'product') {
             return;
         } else {
             if (encode($model->getName()) == encode($model->getFirstVariant()->getName())) {
@@ -122,13 +121,13 @@ class Seo_snippets extends MY_Controller
             /* @var $similarProduct SProducts */
             foreach ($similarProducts as $similarProduct) {
                 $similar[] = [
-                              'url'   => shop_url('product/' . $similarProduct->getUrl()),
+                              'url'   => site_url($similarProduct->getRouteUrl()),
                               'image' => site_url($similarProduct->getFirstVariant()->getMainPhoto()),
                              ];
             }
 
             CI::$APP->load->module('comments')->load->model('base');
-            $comments = CI::$APP->base->get($model->getId(), 0, 'shop');
+            $comments = CI::$APP->base->get($model->getId(), 0, 'shop', 999999, 'date.desc');
 
             foreach ($comments as $comment) {
                 $review[] = [
@@ -148,9 +147,9 @@ class Seo_snippets extends MY_Controller
                         '@context'        => 'http://schema.org',
                         '@type'           => 'Product',
                         'name'            => $name,
-                        'image'           => site_url($model->getFirstVariant()->getMainPhoto()),
+                        'image'           => media_url($model->getFirstVariant()->getMainPhoto()),
                         'description'     => mb_substr(strip_tags($model->getFullDescription()), 0, 200, 'utf-8'),
-                        'url'             => shop_url('product/' . $model->getUrl()),
+                        'url'             => site_url($model->getRouteUrl()),
                         'brand'           => [],
                         'offers'          => [
                                               '@type'         => 'Offer',
@@ -161,7 +160,7 @@ class Seo_snippets extends MY_Controller
                         'isSimilarTo'     => $similar,
                         'aggregateRating' => [
                                               '@type'       => 'AggregateRating',
-                                              'ratingValue' => (float) (($aggregateRating['reviewCount'] ? : 0) / ($aggregateRating['ratingCount'] ? : 0)),
+                                              'ratingValue' => $aggregateRating['reviewCount'] ? (float) (($aggregateRating['reviewCount'] ? : 0) / ($aggregateRating['ratingCount'] ? : 0)) : 0,
                                               'bestRating'  => 5,
                                               'worstRating' => 0,
                                               'ratingCount' => $aggregateRating['ratingCount'] ? : 0,

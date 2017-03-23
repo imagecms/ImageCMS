@@ -37,10 +37,17 @@ class Found_less_expensive extends MY_Controller
      * Display button and form
      */
     public function showButtonWithForm() {
+
+        $id = $this->input->get('id');
+        $product = SProductsQuery::create()->findOneById($id);
+
+        $url = $product ? site_url($product->getRouteUrl()) : $_SERVER['HTTP_REFERER'];
+
         assetManager::create()
-                ->registerStyle('style')
-                ->registerScript('scripts')
-                ->render('buttonWithForm', true);
+            ->setData('url', $url)
+            ->registerStyle('style')
+            ->registerScript('scripts')
+            ->render('buttonWithForm', true);
     }
 
     /**

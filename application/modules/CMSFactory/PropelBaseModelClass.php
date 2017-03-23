@@ -100,21 +100,30 @@ class PropelBaseModelClass implements \Serializable
         }
         $data = $_POST['custom_field'];
 
+        if (!$data) {
+            return;
+        }
+
+        $newFields = [];
         foreach ($this->customFields as $fieldObject) {
-            if (!array_key_exists($fieldObject['Id'], $_POST['custom_field'])) {
+            if (!array_key_exists($fieldObject['Id'], $data)) {
                 $data[$fieldObject['Id']] = '';
+                $newFields[] = $fieldObject['Id'];
             }
+
             foreach ($data as $key => $value) {
                 if ((int) $key == $fieldObject['Id']) {
 
                     $objCustomData = CustomFieldsDataQuery::create()
-                        ->filterByentityId($this->entityId)
-                        ->filterByfieldId($key)
-                        ->filterByLocale($locale)
-                        ->findOne();
+                                                          ->filterByentityId($this->entityId)
+                                                          ->filterByfieldId($key)
+                                                          ->filterByLocale($locale)
+                                                          ->findOne();
                     if ($objCustomData) {
-                        $objCustomData->setdata($value);
-                        $objCustomData->save();
+                        if (!in_array($key, $newFields)) {
+                            $objCustomData->setdata($value);
+                            $objCustomData->save();
+                        }
                         break;
                     } else {
                         $fieldObject = new CustomFieldsData();

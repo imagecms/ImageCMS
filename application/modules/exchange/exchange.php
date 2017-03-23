@@ -166,6 +166,10 @@ class Exchange extends \MY_Controller
      */
     protected function makeDBBackup() {
 
+        if (PHP_MAJOR_VERSION === 7) {
+            return false;
+        }
+
         if (is_really_writable(BACKUPFOLDER)) {
             Backup::create()->createBackup('zip', 'exchange');
         } else {
@@ -472,6 +476,11 @@ class Exchange extends \MY_Controller
                  * send notifications if changes products quantity
                  */
                 Notificator::run();
+            } catch (\Propel\Runtime\Exception\PropelException $e) {
+                $this->error_log(lang('Import error', 'exchange') . ': ' . $e->getPrevious()->getMessage() . $e->getPrevious()->getFile() . $e->getPrevious()->getLine());
+                echo $e->getPrevious()->getMessage() . $e->getPrevious()->getFile() . $e->getPrevious()->getLine();
+                echo 'failure';
+                exit;
             } catch (Exception $e) {
                 $this->error_log(lang('Import error', 'exchange') . ': ' . $e->getMessage() . $e->getFile() . $e->getLine());
                 echo $e->getMessage() . $e->getFile() . $e->getLine();

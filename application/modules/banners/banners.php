@@ -52,38 +52,29 @@ class Banners extends MY_Controller
         $painting = $type . '_' . (int) $id;
 
         $hash = 'baners' . $type . $id . \CI_Controller::get_instance()->config->item('template');
-        if ($cache = Cache_html::get_html($hash)) {
+
+        $banners = $this->banner_model->get_all_banner($lang, $group);
+        foreach ($banners as $banner) {
+            $data = unserialize($banner['where_show']);
+
+            if ((in_array($painting, $data) || in_array($type . '_0', $data)) && $banner['active'] && (time() < $banner['active_to'] or $banner['active_to'] == '-1')) {
+                $ban[] = $banner;
+            }
+        }
+        if (count($ban) > 0) {
+
+            $tpl = $this->banner_model->get_settings_tpl() ? $type . '_slider' : 'slider';
+
+            ob_start();
             \CMSFactory\assetManager::create()
-                    ->registerScript('jquery.cycle.all.min');
-            echo $cache;
-        } else {
-            $banners = $this->banner_model->get_all_banner($lang, $group);
-            foreach ($banners as $banner) {
-                $data = unserialize($banner['where_show']);
+                    ->registerStyle('style')
+                    ->registerScript('jquery.cycle.all.min')
+                    ->setData(['banners' => $ban])
+                    ->render($tpl, TRUE);
 
-                if ((in_array($painting, $data) || in_array($type . '_0', $data)) && $banner['active'] && (time() < $banner['active_to'] or $banner['active_to'] == '-1')) {
-                    $ban[] = $banner;
-                }
-            }
-            if (count($ban) > 0) {
+            $baners_view = ob_get_clean();
 
-                $tpl = $this->banner_model->get_settings_tpl() ? $type . '_slider' : 'slider';
-
-                ob_start();
-                \CMSFactory\assetManager::create()
-                        ->registerStyle('style')
-                        ->registerScript('jquery.cycle.all.min')
-                        ->setData(['banners' => $ban])
-                        ->render($tpl, TRUE);
-
-                $baners_view = ob_get_clean();
-
-                Cache_html::set_html($baners_view, $hash);
-
-                echo $baners_view;
-            } else {
-                return FALSE;
-            }
+            echo $baners_view;
         }
     }
 

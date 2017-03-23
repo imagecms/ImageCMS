@@ -1,39 +1,39 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.10.1deb1
--- http://www.phpmyadmin.net
+-- version 4.6.4deb1+deb.cihar.com~yakkety.1
+-- https://www.phpmyadmin.net/
 --
+-- Хост: localhost
+-- Час створення: Лис 04 2016 р., 13:52
+-- Версія сервера: 5.7.16-0ubuntu0.16.10.1
+-- Версія PHP: 7.0.12-1+deb.sury.org~yakkety+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT = @@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS = @@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION = @@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+--
+-- База даних: `demoshop`
+--
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `banners`
+-- Структура таблиці `banners`
 --
 
 DROP TABLE IF EXISTS `banners`;
-CREATE TABLE IF NOT EXISTS `banners` (
-  `id`        INT(11)      NOT NULL AUTO_INCREMENT,
+CREATE TABLE `banners` (
+  `id`        INT(11)      NOT NULL,
   `place`     VARCHAR(255) NOT NULL,
   `width`     INT(5)       NOT NULL,
   `height`    INT(5)       NOT NULL,
   `effects`   TEXT,
-  `page_type` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`id`)
+  `page_type` VARCHAR(255) NOT NULL
 )
   ENGINE = MyISAM
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 3;
+  DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `banners`
+-- Дамп даних таблиці `banners`
 --
 
 INSERT INTO `banners` (`id`, `place`, `width`, `height`, `effects`, `page_type`) VALUES
@@ -47,21 +47,20 @@ INSERT INTO `banners` (`id`, `place`, `width`, `height`, `effects`, `page_type`)
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `banners_i18n`
+-- Структура таблиці `banners_i18n`
 --
 
 DROP TABLE IF EXISTS `banners_i18n`;
-CREATE TABLE IF NOT EXISTS `banners_i18n` (
+CREATE TABLE `banners_i18n` (
   `id`     INT(11)    NOT NULL,
   `locale` VARCHAR(5) NOT NULL DEFAULT 'ru',
-  `name`   VARCHAR(255)        DEFAULT NULL,
-  PRIMARY KEY (`id`, `locale`)
+  `name`   VARCHAR(255)        DEFAULT NULL
 )
   ENGINE = MyISAM
   DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `banners_i18n`
+-- Дамп даних таблиці `banners_i18n`
 --
 
 INSERT INTO `banners_i18n` (`id`, `locale`, `name`) VALUES
@@ -72,30 +71,27 @@ INSERT INTO `banners_i18n` (`id`, `locale`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `banner_image`
+-- Структура таблиці `banner_image`
 --
 
 DROP TABLE IF EXISTS `banner_image`;
-CREATE TABLE IF NOT EXISTS `banner_image` (
-  `id`           INT(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `banner_image` (
+  `id`           INT(11) NOT NULL,
   `banner_id`    INT(11) NOT NULL,
-  `target`       INT(2)           DEFAULT NULL,
-  `url`          VARCHAR(255)     DEFAULT NULL,
-  `allowed_page` INT(11)          DEFAULT NULL,
-  `position`     INT(11)          DEFAULT NULL,
-  `active_from`  INT(11)          DEFAULT NULL,
-  `active_to`    INT(11)          DEFAULT NULL,
-  `active`       INT(1)           DEFAULT NULL,
-  `permanent`    INT(1)           DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `banner_image_fi_0bb916` (`banner_id`)
+  `target`       INT(2)       DEFAULT NULL,
+  `url`          VARCHAR(255) DEFAULT NULL,
+  `allowed_page` INT(11)      DEFAULT NULL,
+  `position`     INT(11)      DEFAULT NULL,
+  `active_from`  INT(11)      DEFAULT NULL,
+  `active_to`    INT(11)      DEFAULT NULL,
+  `active`       INT(1)       DEFAULT NULL,
+  `permanent`    INT(1)       DEFAULT NULL
 )
   ENGINE = MyISAM
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 14;
+  DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `banner_image`
+-- Дамп даних таблиці `banner_image`
 --
 
 INSERT INTO `banner_image` (`id`, `banner_id`, `target`, `url`, `allowed_page`, `position`, `active_from`, `active_to`, `active`, `permanent`)
@@ -113,24 +109,23 @@ VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `banner_image_i18n`
+-- Структура таблиці `banner_image_i18n`
 --
 
 DROP TABLE IF EXISTS `banner_image_i18n`;
-CREATE TABLE IF NOT EXISTS `banner_image_i18n` (
+CREATE TABLE `banner_image_i18n` (
   `id`          INT(11)    NOT NULL,
   `locale`      VARCHAR(5) NOT NULL DEFAULT 'ru',
   `src`         VARCHAR(255)        DEFAULT NULL,
   `name`        VARCHAR(255)        DEFAULT NULL,
   `clicks`      INT(20)             DEFAULT NULL,
-  `description` TEXT,
-  PRIMARY KEY (`id`, `locale`)
+  `description` TEXT
 )
   ENGINE = MyISAM
   DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `banner_image_i18n`
+-- Дамп даних таблиці `banner_image_i18n`
 --
 
 INSERT INTO `banner_image_i18n` (`id`, `locale`, `src`, `name`, `clicks`, `description`) VALUES
@@ -144,7 +139,7 @@ INSERT INTO `banner_image_i18n` (`id`, `locale`, `src`, `name`, `clicks`, `descr
   (10, 'ru', '1436284464.png', 'Beststart', 0, ''),
   (11, 'ru', '1436284479.png', 'Webcreate', 0, ''),
   (13, 'ru', '1436285526.png', 'NewAgency', 0, ''),
-  (5, 'uk', '1436388314.jpg', 'Незалежні консультанти', 0, '<p>Наші консультанти завжди є незалежними об''єктивними експертами, що дають свіжий погляд з боку і залишаються неупередженими в будь-якій ситуації.</p>'),
+  (5, 'uk', '1436388314.jpg', 'Незалежні консультанти', 0, '<p>Наші консультанти завжди є незалежними об\'єктивними експертами, що дають свіжий погляд з боку і залишаються неупередженими в будь-якій ситуації.</p>'),
   (4, 'uk', '1436388489.jpg', 'Індивідуальні рішення', 0, '<p>Ми підходимо до кожної компанії і бізнес-стратегії індивідуально, забезпечуючи рішення, що гарантують успіх вашої компанії протягом тривалого періоду.</p>'),
   (3, 'uk', '1436388690.jpg', 'Комплексний супровід', 0,
    '<p>Ми повністю включаємось в проект і беремо на себе весь комплекс робіт, в який входить бізнес-консалтинг, стратегія, маркетингові рішення і реалізації проекту в майбутньому.</p>'),
@@ -158,80 +153,112 @@ INSERT INTO `banner_image_i18n` (`id`, `locale`, `src`, `name`, `clicks`, `descr
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `category`
+-- Структура таблиці `category`
 --
 
 DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `parent_id` int(11) NOT NULL DEFAULT '0',
-  `position` mediumint(5) NOT NULL DEFAULT '0',
-  `name` varchar(160) NOT NULL,
-  `title` varchar(250) DEFAULT NULL,
-  `short_desc` text NOT NULL,
-  `image` varchar(250) DEFAULT NULL,
-  `keywords` text,
-  `description` text,
-  `fetch_pages` text NOT NULL,
-  `main_tpl` varchar(50) NOT NULL,
-  `tpl` varchar(50) DEFAULT NULL,
-  `page_tpl` varchar(50) DEFAULT NULL,
-  `per_page` smallint(5) NOT NULL,
-  `order_by` varchar(25) NOT NULL,
-  `sort_order` varchar(25) NOT NULL,
-  `comments_default` tinyint(1) NOT NULL DEFAULT '0',
-  `field_group` int(11) NOT NULL,
-  `category_field_group` int(11) NOT NULL,
-  `settings` varchar(10000) DEFAULT NULL,
-  `created` int(11) NOT NULL,
-  `updated` int(11) NOT NULL,
-  `route_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `name` (`name`)
-) ENGINE=MyISAM AUTO_INCREMENT=75 DEFAULT CHARSET=utf8;
+  `id`                   INT(11)      NOT NULL,
+  `parent_id`            INT(11)      NOT NULL DEFAULT '0',
+  `position`             MEDIUMINT(5) NOT NULL DEFAULT '0',
+  `name`                 VARCHAR(160) NOT NULL,
+  `title`                VARCHAR(250)          DEFAULT NULL,
+  `short_desc`           TEXT         NOT NULL,
+  `image`                VARCHAR(250)          DEFAULT NULL,
+  `keywords`             TEXT,
+  `description`          TEXT,
+  `fetch_pages`          TEXT         NOT NULL,
+  `main_tpl`             VARCHAR(50)  NOT NULL,
+  `tpl`                  VARCHAR(50)           DEFAULT NULL,
+  `page_tpl`             VARCHAR(50)           DEFAULT NULL,
+  `per_page`             SMALLINT(5)  NOT NULL,
+  `order_by`             VARCHAR(25)  NOT NULL,
+  `sort_order`           VARCHAR(25)  NOT NULL,
+  `comments_default`     TINYINT(1)   NOT NULL DEFAULT '0',
+  `field_group`          INT(11)      NOT NULL,
+  `category_field_group` INT(11)      NOT NULL,
+  `settings`             VARCHAR(10000)        DEFAULT NULL,
+  `created`              INT(11)      NOT NULL,
+  `updated`              INT(11)      NOT NULL,
+  `route_id`             INT(11)               DEFAULT NULL
+)
+  ENGINE = MyISAM
+  DEFAULT CHARSET = utf8;
 
 --
--- Dumping data for table `category`
+-- Дамп даних таблиці `category`
 --
 
-INSERT INTO `category` VALUES (64,0,0,'Блог','','','','','','a:4:{i:0;s:2:\"70\";i:1;s:2:\"67\";i:2;s:2:\"68\";i:3;s:2:\"69\";}','','category_blog','page_blog',15,'position','asc',1,11,-1,'a:2:{s:26:\"category_apply_for_subcats\";b:0;s:17:\"apply_for_subcats\";s:1:\"1\";}',1428164812,1436214625,1),(66,0,4,'Клиенты о нас','','','','','','b:0;','','','',15,'publish_date','desc',0,12,-1,'a:2:{s:26:\"category_apply_for_subcats\";b:0;s:17:\"apply_for_subcats\";b:0;}',1429361818,1429362509,2),(67,64,1,'Бизнес','','','','','','b:0;','','category_blog','page_blog',15,'publish_date','desc',1,11,-1,'a:2:{s:26:\"category_apply_for_subcats\";b:0;s:17:\"apply_for_subcats\";b:0;}',1429885611,1436384636,3),(74,64,2,'Финансы','','','','','','b:0;','','','',15,'publish_date','desc',0,-1,11,'a:2:{s:26:\"category_apply_for_subcats\";b:0;s:17:\"apply_for_subcats\";b:0;}',1436384618,1436384641,4),(69,64,3,'Экономика','','','','','','b:0;','','category_blog','page_blog',15,'publish_date','desc',1,11,-1,'a:2:{s:26:\"category_apply_for_subcats\";b:0;s:17:\"apply_for_subcats\";b:0;}',1429885646,1436384648,5),(62,0,5,'Услуги','','<p>Консалтинг (консультирование) &mdash; деятельность по консультированию руководителей, управленцев по широкому кругу вопросов в сфере финансовой, коммерческой, юридической, технологической, технической, экспертной деятельности. Цель консалтинга &mdash; помочь системе управления (менеджменту) в достижении заявленных целей.</p>\n<p>Иными словами: консалтинг &mdash; это управленческое консультирование по широкому кругу вопросов в сфере финансовой, юридической, технологической, технической, экспертной деятельности, оказываемое внешними консультантами для решения той или иной проблемы. Консалтинговые компании специализируются по отдельным направлениям деятельности (например, финансовому, кадровому, организационному, стратегическому).</p>\n<p>Основная задача консалтинга заключается в анализе, обосновании перспектив развития и использования научно-технических и организационно-экономических решений с учётом предметной области и проблем клиента.</p>','','','','b:0;','','','',10,'publish_date','desc',1,13,-1,'a:2:{s:26:\"category_apply_for_subcats\";b:0;s:17:\"apply_for_subcats\";s:1:\"1\";}',1428164759,1436384496,6);
+INSERT INTO `category` (`id`, `parent_id`, `position`, `name`, `title`, `short_desc`, `image`, `keywords`, `description`, `fetch_pages`, `main_tpl`, `tpl`, `page_tpl`, `per_page`, `order_by`, `sort_order`, `comments_default`, `field_group`, `category_field_group`, `settings`, `created`, `updated`, `route_id`)
+VALUES
+  (64, 0, 0, 'Блог', '', '', '', '', '', 'a:4:{i:0;s:2:"70";i:1;s:2:"67";i:2;s:2:"68";i:3;s:2:"69";}', '',
+    'category_blog', 'page_blog', 15, 'position', 'asc', 1, 11, -1,
+    'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";s:1:"1";}', 1428164812, 1436214625, 1),
+  (66, 0, 4, 'Клиенты о нас', '', '', '', '', '', 'b:0;', '', '', '', 15, 'publish_date', 'desc', 0, 12, -1,
+                                                              'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}',
+                                                              1429361818, 1429362509, 2),
+  (67, 64, 1, 'Бизнес', '', '', '', '', '', 'b:0;', '', 'category_blog', 'page_blog', 15, 'publish_date', 'desc', 1, 11,
+                                                        -1,
+                                                        'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}',
+                                                        1429885611, 1436384636, 3),
+  (74, 64, 2, 'Финансы', '', '', '', '', '', 'b:0;', '', '', '', 15, 'publish_date', 'desc', 0, -1, 11,
+                                                         'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}',
+                                                         1436384618, 1436384641, 4),
+  (69, 64, 3, 'Экономика', '', '', '', '', '', 'b:0;', '', 'category_blog', 'page_blog', 15, 'publish_date', 'desc', 1,
+                                                           11, -1,
+                                                           'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";b:0;}',
+                                                           1429885646, 1436384648, 5),
+  (62, 0, 5, 'Услуги', '',
+       '<p>Консалтинг (консультирование) &mdash; деятельность по консультированию руководителей, управленцев по широкому кругу вопросов в сфере финансовой, коммерческой, юридической, технологической, технической, экспертной деятельности. Цель консалтинга &mdash; помочь системе управления (менеджменту) в достижении заявленных целей.</p>\n<p>Иными словами: консалтинг &mdash; это управленческое консультирование по широкому кругу вопросов в сфере финансовой, юридической, технологической, технической, экспертной деятельности, оказываемое внешними консультантами для решения той или иной проблемы. Консалтинговые компании специализируются по отдельным направлениям деятельности (например, финансовому, кадровому, организационному, стратегическому).</p>\n<p>Основная задача консалтинга заключается в анализе, обосновании перспектив развития и использования научно-технических и организационно-экономических решений с учётом предметной области и проблем клиента.</p>',
+       '', '', '', 'b:0;', '', '', '', 10, 'publish_date', 'desc', 1, 13, -1,
+                               'a:2:{s:26:"category_apply_for_subcats";b:0;s:17:"apply_for_subcats";s:1:"1";}',
+                               1428164759, 1436384496, 6);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `category_translate`
+-- Структура таблиці `category_translate`
 --
 
 DROP TABLE IF EXISTS `category_translate`;
 CREATE TABLE `category_translate` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `alias` int(11) NOT NULL,
-  `name` varchar(160) NOT NULL,
-  `title` varchar(250) DEFAULT NULL,
-  `short_desc` text,
-  `image` varchar(250) DEFAULT NULL,
-  `keywords` text,
-  `description` text,
-  `lang` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `name` (`name`,`lang`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+  `id`          INT(11)      NOT NULL,
+  `alias`       INT(11)      NOT NULL,
+  `name`        VARCHAR(160) NOT NULL,
+  `title`       VARCHAR(250) DEFAULT NULL,
+  `short_desc`  TEXT,
+  `image`       VARCHAR(250) DEFAULT NULL,
+  `keywords`    TEXT,
+  `description` TEXT,
+  `lang`        INT(11)      NOT NULL
+)
+  ENGINE = MyISAM
+  DEFAULT CHARSET = utf8;
 
 --
--- Dumping data for table `category_translate`
+-- Дамп даних таблиці `category_translate`
 --
 
-INSERT INTO `category_translate` VALUES (6,64,'Блог','','','','','',32),(7,66,'Клієнти про нас','','','','','',32),(10,67,'Бізнес','','','','','',32),(9,62,'Послуги','','<p>Консалтинг (консультування) - діяльність з консультування керівників, управлінців з широкого кола питань у сфері фінансової, комерційної, юридичної, технологічної, технічної, експертної діяльності. Мета консалтингу - допомогти системі управління (менеджменту) в досягненні заявлених цілей.</p>\n<p>Іншими словами: консалтинг - це управлінське консультування з широкого кола питань у сфері фінансової, юридичної, технологічної, технічної, експертної діяльності, який чиниться зовнішніми консультантами для вирішення тієї чи іншої проблеми. Консалтингові компанії спеціалізуються за окремими напрямами діяльності (наприклад, фінансовому, кадрового, організаційного, стратегічному).</p>\n<p>Основне завдання консалтингу полягає в аналізі, обгрунтуванні перспектив розвитку і використання науково-технічних і організаційно-економічних рішень з урахуванням предметної області і проблем клієнта.</p>','','','',32),(11,74,'Фінанси','','','','','',32),(12,69,'Економіка','','','','','',32);
+INSERT INTO `category_translate` (`id`, `alias`, `name`, `title`, `short_desc`, `image`, `keywords`, `description`, `lang`)
+VALUES
+  (6, 64, 'Блог', '', '', '', '', '', 32),
+  (7, 66, 'Клієнти про нас', '', '', '', '', '', 32),
+  (10, 67, 'Бізнес', '', '', '', '', '', 32),
+  (9, 62, 'Послуги', '',
+   '<p>Консалтинг (консультування) - діяльність з консультування керівників, управлінців з широкого кола питань у сфері фінансової, комерційної, юридичної, технологічної, технічної, експертної діяльності. Мета консалтингу - допомогти системі управління (менеджменту) в досягненні заявлених цілей.</p>\n<p>Іншими словами: консалтинг - це управлінське консультування з широкого кола питань у сфері фінансової, юридичної, технологічної, технічної, експертної діяльності, який чиниться зовнішніми консультантами для вирішення тієї чи іншої проблеми. Консалтингові компанії спеціалізуються за окремими напрямами діяльності (наприклад, фінансовому, кадрового, організаційного, стратегічному).</p>\n<p>Основне завдання консалтингу полягає в аналізі, обгрунтуванні перспектив розвитку і використання науково-технічних і організаційно-економічних рішень з урахуванням предметної області і проблем клієнта.</p>',
+   '', '', '', 32),
+  (11, 74, 'Фінанси', '', '', '', '', '', 32),
+  (12, 69, 'Економіка', '', '', '', '', '', 32);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `comments`
+-- Структура таблиці `comments`
 --
 
 DROP TABLE IF EXISTS `comments`;
-CREATE TABLE IF NOT EXISTS `comments` (
-  `id`         INT(11)      NOT NULL AUTO_INCREMENT,
+CREATE TABLE `comments` (
+  `id`         INT(11)      NOT NULL,
   `module`     VARCHAR(25)  NOT NULL DEFAULT 'core',
   `user_id`    INT(11)      NOT NULL,
   `user_name`  VARCHAR(50)  NOT NULL,
@@ -248,18 +275,13 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `text_minus` VARCHAR(500)          DEFAULT NULL,
   `like`       INT(11)      NOT NULL,
   `disslike`   INT(11)      NOT NULL,
-  `parent`     INT(11)               DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `module` (`module`),
-  KEY `item_id` (`item_id`),
-  KEY `date` (`date`)
+  `parent`     INT(11)               DEFAULT NULL
 )
   ENGINE = MyISAM
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 113;
+  DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `comments`
+-- Дамп даних таблиці `comments`
 --
 
 INSERT INTO `comments` (`id`, `module`, `user_id`, `user_name`, `user_mail`, `user_site`, `item_id`, `text`, `date`, `status`, `agent`, `user_ip`, `rate`, `text_plus`, `text_minus`, `like`, `disslike`, `parent`)
@@ -282,166 +304,167 @@ VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `components`
+-- Структура таблиці `components`
 --
 
 DROP TABLE IF EXISTS `components`;
-CREATE TABLE IF NOT EXISTS `components` (
-  `id`       INT(11)     NOT NULL AUTO_INCREMENT,
+CREATE TABLE `components` (
+  `id`       INT(11)     NOT NULL,
   `name`     VARCHAR(50) NOT NULL,
   `identif`  VARCHAR(25) NOT NULL,
   `enabled`  INT(1)      NOT NULL DEFAULT '0',
   `autoload` INT(1)      NOT NULL DEFAULT '0',
   `in_menu`  INT(1)      NOT NULL DEFAULT '0',
   `settings` TEXT,
-  `position` INT(11)              DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `name` (`name`),
-  KEY `identif` (`identif`),
-  KEY `enabled` (`enabled`),
-  KEY `autoload` (`autoload`)
-)
-  ENGINE = MyISAM
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 276;
-
---
--- Дамп данных таблицы `components`
---
-
-INSERT INTO `components` (`name`, `identif`, `enabled`, `autoload`, `in_menu`, `settings`, `position`) VALUES
-  ('user_manager', 'user_manager', 0, 0, 0, NULL, 19),
-  ('auth', 'auth', 1, 0, 0, NULL, 28),
-  ('comments', 'comments', 1, 1, 1, 'a:5:{s:18:"max_comment_length";i:0;s:6:"period";i:0;s:11:"can_comment";i:0;s:11:"use_captcha";b:0;s:14:"use_moderation";b:0;}', 9),
-  ('navigation', 'navigation', 0, 0, 0, NULL, 29),
-  ('tags', 'tags', 1, 1, 0, NULL, 27),
-  ('mod_seo', 'mod_seo', 0, 1, 1, NULL, 5),
-  ('gallery', 'gallery', 1, 0, 1, 'a:26:{s:14:"max_image_size";s:1:"5";s:9:"max_width";s:1:"0";s:10:"max_height";s:1:"0";s:7:"quality";s:2:"95";s:14:"maintain_ratio";b:1;s:19:"maintain_ratio_prev";b:1;s:19:"maintain_ratio_icon";b:1;s:4:"crop";b:0;s:9:"crop_prev";b:0;s:9:"crop_icon";b:1;s:14:"prev_img_width";s:4:"1200";s:15:"prev_img_height";s:3:"900";s:11:"thumb_width";s:3:"480";s:12:"thumb_height";s:3:"350";s:14:"watermark_text";s:0:"";s:16:"wm_vrt_alignment";s:6:"bottom";s:16:"wm_hor_alignment";s:4:"left";s:19:"watermark_font_size";s:2:"14";s:15:"watermark_color";s:6:"ffffff";s:17:"watermark_padding";s:2:"-5";s:15:"watermark_image";s:10:"./uploads/";s:23:"watermark_image_opacity";s:2:"50";s:14:"watermark_type";s:4:"text";s:8:"order_by";s:4:"date";s:10:"sort_order";s:4:"desc";s:19:"watermark_font_path";s:25:"./uploads/defaultFont.ttf";}', 13),
-  ('rss', 'rss', 1, 0, 0, 'a:5:{s:5:"title";s:9:"Image CMS";s:11:"description";s:35:"Тестируем модуль RSS";s:10:"categories";a:1:{i:0;s:1:"3";}s:9:"cache_ttl";i:60;s:11:"pages_count";i:10;}', 14),
-  ('menu', 'menu', 0, 1, 1, NULL, 0),
-  ('sitemap', 'sitemap', 1, 1, 0, 'a:6:{s:18:"main_page_priority";b:0;s:13:"cats_priority";b:0;s:14:"pages_priority";b:0;s:20:"main_page_changefreq";b:0;s:21:"categories_changefreq";b:0;s:16:"pages_changefreq";b:0;}', 15),
-  ('search', 'search', 1, 1, 0, NULL, 22),
-  ('feedback', 'feedback', 1, 0, 0, 'a:2:{s:5:"email";s:19:"admin@localhost.loc";s:15:"message_max_len";i:550;}', 25),
-  ('template_editor', 'template_editor', 0, 0, 0, NULL, 17),
-  ('group_mailer', 'group_mailer', 0, 0, 1, NULL, 10),
-  ('cfcm', 'cfcm', 0, 0, 0, NULL, 16),
-  ('sample_mail', 'sample_mail', 0, 0, 0, NULL, 20),
-  ('mailer', 'mailer', 1, 0, 0, NULL, 21),
-  ('share', 'share', 1, 0, 1, 'a:10:{s:5:"vkcom";s:1:"1";s:8:"facebook";s:1:"1";s:7:"twitter";s:1:"1";s:2:"gg";s:1:"1";s:4:"type";s:7:"counter";s:13:"facebook_like";s:1:"1";s:7:"vk_like";s:1:"1";s:8:"vk_apiid";s:7:"3901548";s:7:"gg_like";s:1:"1";s:12:"twitter_like";s:1:"1";}', 8),
-  ('banners', 'banners', 1, 0, 1, 'a:1:{s:8:"show_tpl";i:1;}', 1),
-  ('cmsemail', 'cmsemail', 1, 0, 1, 'a:3:{s:2:"ru";a:13:{s:4:"from";s:18:"Corporate UniTheme";s:10:"from_email";s:19:"noreplay@mysite.com";s:11:"admin_email";s:15:"info@mysite.com";s:5:"theme";s:18:"Corporate UniTheme";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:255:"<h2>Corporate UniTheme</h2>\n<div>$content</div>\n<hr />\n<p>С уважением, Corporate UniTheme</p>\n<p><small>Данное письмо создано автоматически, пожалуйста не отвечайте на него.</small></p>";s:8:"mailpath";s:0:"";s:8:"protocol";s:4:"mail";s:9:"smtp_host";s:0:"";s:9:"smtp_user";s:10:"ad@min.com";s:9:"smtp_pass";s:5:"admin";s:4:"port";s:0:"";s:10:"encryption";s:0:"";}s:2:"en";a:13:{s:4:"from";s:22:"Online store ImageShop";s:10:"from_email";s:19:"noreplay@client.com";s:11:"admin_email";s:15:"info@client.com";s:5:"theme";s:22:"Online store ImageShop";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:159:"<h2>Online store "ImageShop"</h2>\n<div>$content</div>\n<hr />\n<p>Sincerely, online store "ImageShop"</p>\n<p>This is an automated email, please do not reply.</p>";s:8:"mailpath";s:0:"";s:8:"protocol";s:4:"mail";s:9:"smtp_host";s:0:"";s:9:"smtp_user";s:10:"ad@min.com";s:9:"smtp_pass";s:5:"admin";s:4:"port";s:0:"";s:10:"encryption";s:0:"";}s:2:"ua";a:13:{s:4:"from";s:41:"Інтернет-магазин ImageShop";s:10:"from_email";s:22:"noreplay@client.com.ua";s:11:"admin_email";s:18:"info@client.com.ua";s:5:"theme";s:41:"Інтернет-магазин ImageShop";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:284:"<h2>Інтернет-магазин "ImageShop"</h2>\n<div>$content</div>\n<hr />\n<p>З повагою, Інтернет-магазин "ImageShop"</p>\n<p>Даний лист створено автоматично, будь ласка не відповідайте на нього.</p>";s:8:"mailpath";s:0:"";s:8:"protocol";s:4:"mail";s:9:"smtp_host";s:0:"";s:9:"smtp_user";s:10:"ad@min.com";s:9:"smtp_pass";s:5:"admin";s:4:"port";s:0:"";s:10:"encryption";s:0:"";}}', 4),
-  ('language_switch', 'language_switch', 0, 0, 0, NULL, 23),
-  ('star_rating', 'star_rating', 1, 0, 0, NULL, 12),
-  ('translator', 'translator', 1, 1, 1, 'a:2:{s:11:"originsLang";s:2:"en";s:11:"editorTheme";s:6:"chrome";}', 11),
-  ('imagebox', 'imagebox', 0, 1, 0, NULL, 18),
-  ('sample_module', 'sample_module', 1, 1, 0, NULL, NULL),
-  ('template_manager', 'template_manager', 1, 1, 1, NULL, NULL),
-  ('xbanners', 'xbanners', 1, 1, 1, NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `mod_seo`
---
-
-DROP TABLE IF EXISTS `mod_seo`;
-CREATE TABLE IF NOT EXISTS `mod_seo` (
-  `id`       INT(11) NOT NULL AUTO_INCREMENT,
-  `locale`   VARCHAR(5)       DEFAULT NULL,
-  `settings` TEXT,
-  PRIMARY KEY (`id`)
-)
-  ENGINE = MyISAM
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 1;
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `mod_seo_inflect`
---
-
-DROP TABLE IF EXISTS `mod_seo_inflect`;
-CREATE TABLE IF NOT EXISTS `mod_seo_inflect` (
-  `id`            INT(11)      NOT NULL AUTO_INCREMENT,
-  `original`      VARCHAR(250) NOT NULL,
-  `inflection_id` INT(11)      NOT NULL,
-  `inflected`     VARCHAR(250) NOT NULL,
-  PRIMARY KEY (`id`)
-)
-  ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 1;
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `content`
---
-
-DROP TABLE IF EXISTS `content`;
-CREATE TABLE `content` (
-  `id` bigint(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(500) NOT NULL,
-  `meta_title` varchar(300) DEFAULT NULL,
-  `keywords` text,
-  `description` text,
-  `prev_text` text,
-  `full_text` longtext NOT NULL,
-  `category` int(11) NOT NULL,
-  `full_tpl` varchar(50) DEFAULT NULL,
-  `main_tpl` varchar(50) NOT NULL,
-  `position` smallint(5) NOT NULL,
-  `comments_status` smallint(1) NOT NULL,
-  `comments_count` int(9) DEFAULT '0',
-  `post_status` varchar(15) NOT NULL,
-  `author` varchar(50) NOT NULL,
-  `publish_date` int(11) NOT NULL,
-  `created` int(11) NOT NULL,
-  `updated` int(11) NOT NULL,
-  `showed` int(11) NOT NULL,
-  `lang` int(11) NOT NULL DEFAULT '0',
-  `lang_alias` int(11) NOT NULL DEFAULT '0',
-  `route_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `lang` (`lang`),
-  KEY `post_status` (`post_status`(4)),
-  KEY `publish_date` (`publish_date`),
-  KEY `category` (`category`),
-  KEY `created` (`created`),
-  KEY `updated` (`updated`)
-) ENGINE=MyISAM AUTO_INCREMENT=142 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `content`
---
-
-INSERT INTO `content` VALUES (85,'Налоговые консультации','','','Налоог  обязательный, индивидуально безвозмездный платёж, принудительно взимаемый органами государственной власти различных уровней с организаций и физических лиц в целях финансового обеспечения деятельности государства и (или) муниципальных образований.','<p><span>Сегодня ни одно предприятие не обходится без минимальной налоговой консультации. Наша компания предлагает полный спектр услуг в плане правильного построения и составления налоговых обложений, очередности их выплачивания, а также оценивания рисков.</span></p>','<p>Наша юридическая фирма проводит налоговые консультации по налоговому законодательству для физических и для юридических лиц. Организациям предоставляются выгодные условия сотрудничества при возникновении налоговых споров.<br /> <br />Юридические консультации по налогообложению, проводятся профессиональными адвокатами в Киеве, которые имеют опыт как в консультировании по налоговым вопросам, так и опыт в досудебном и судебном разрешении налоговых споров. Консультирование по налогам всегда узкоспециализированная сфера, поэтому задействуется адвокат по определенному правовому направлению, например: консультация по возмещению налога на добавленную стоимость, проводит один адвокат, а по консультацию по обжалованию налогового уведомления-решения, другой налоговый юрист. Такой подход, существенно повышает качество юридической консультации за счет использования опыта адвоката в специфических налоговых спорах.<br /> <br />Обратившись в нашу юридическую компанию за юридической консультацией по налогообложению, мы всегда подтвердим на практике грамотную квалификацию налогового адвоката. Если Вы ищите качественную юридическую консультацию по налогам, вы двигаетесь в нужном направлении. Мы поможем получить гарантированно квалифицированную помощь адвокатов по различным вопросам налогового права, начиная от выезда адвоката на предприятие при проведении налоговой проверки до разрешения налогового спора в судебном порядке.</p>',62,'','',9,0,0,'publish','Administrator',1428164860,1428164860,1436456492,38,3,0,13),(86,'Услуги адвоката','','','Адвокат (лат. advocatus  от advoco  приглашаю)  лицо, профессией которого является оказание квалифицированной юридической помощи физическим лицам (гражданам, лицам без гражданства) и юридическим лицам (организациям), в том числе защита их интересов и прав','<p><span>У Вас возникли правовые проблемы и вам нужна юридическая поддержка? Обратитесь к квалифицированному адвокату. Наш&nbsp;город включает в себя достаточно разнообразный рынок юридических услуг, которые предоставляют квалифицированные адвокаты. Но довольно сложно найти опытного юриста, знающего свое дело и разбирающегося в действующем законодательстве.&nbsp;</span></p>\n<p></p>','<p>Впервые адвокаты появились в Древнем Риме. Как отмечал русский юрист и историк права польского происхождения Е. В. Васьковский, &laquo;&hellip; первыми юристами в Риме были патроны. В лице их совмещались две профессии: юрисконсультов и адвокатов&raquo;. Долгое время услуги адвоката выполняли ораторы, которые часто не были знатоками права.</p>\n<p>Цицерон посвятил адвокатам, плохо разбирающимся в правовых вопросов, немало едких слов. Адвокатура республиканского периода Древнего Рима была свободной профессией и никакого корпоративного устройства не имела. Корпорация профессиональных защитников в суде сформировалась в Риме в эпоху Империи, то есть до нашей эры.</p>\n<p>Документально зафиксированная коллегия юристов-защитников формировалась на основе хорошо известных в позднейшие времена принципов: требовалось быть занесённым в матрикулы (официальный список лиц с определённым уровнем доходов) и успешно сдать испытания (экзамены) по праву. Устройство адвокатуры, сложившееся в эпоху Империи, было классическим. Оно стало основой всех последующих видоизменений адвокатуры, вплоть до новейшего времени.</p>',62,'','',7,0,0,'publish','Administrator',1428164894,1428164894,1436456711,319,3,0,18),(87,'Контакты','','контакты','Контакты','<h3>Телефон горячей линии</h3>\n<p>8&nbsp;(800) 269-12-42</p>\n<h3><span>Телефоны нашего офиса</span></h3>\n<p><span>(044) 269-12-42</span></p>\n<p><span>(044) 269-12-43</span></p>\n<h3>Пишите нам на e-mail</h3>\n<p><span></span></p>\n<p>info@businessimage.com</p>\n<h3><span>Адрес нашего офиса</span></h3>\n<p>Минск, ул. Красочная 22а</p>','',0,'','',6,0,0,'publish','Administrator',1428165320,1428165320,1436521040,121,3,0,12),(89,'Объективность как одна из самых важных составляющих','','марта, года, архиве, электронных, препринтов, появилась, статья, хартмана, hartman, коллегами, посвященная, открытию, четырех, транзитных, планет, три, них, являются, горячими, юпитерами, одна, ndash, горячим, сатурном, hat, gsc, слегка, проэволюционировавшая, звезда, спектрального','16 марта 2015 года в Архиве электронных препринтов появилась статья Дж. Хартмана (J. D. Hartman) с коллегами, посвященная открытию еще четырех транзитных планет. Три из них являются горячими юпитерами, еще одна  горячим сатурном. HAT-P-50 (GSC 0787-00340)','<p><span>Эффективность принимаемых решений можно оценить только спустя какое-то время, и нередко нельзя точно определить, что явилось причиной улучшений или, наоборот,&nbsp;негативных изменений.</span></p>','<p><img src=\"/uploads/images/articles/chair-designer-desk-4927.jpg\" alt=\"\" width=\"900\" height=\"460\" /></p>\n<p>Обычно под ненужной работой подразумевается &laquo;мы это могли сделать сами&raquo;. Ненужность также заключается в том, и это особенность самого консалтинга, что результаты работы консультантов зачастую сразу невидны. Эффективность принимаемых решений можно оценить только спустя какое-то время, и нередко нельзя точно определить, что явилось причиной улучшений. Руководству предприятия часто кажется, что это оно само смогло скорректировать и улучшить ситуацию, а консультанты здесь ни причем. В общем, это вопрос больше исторический, чем риторический.</p>\n<p>Не так&nbsp;далеки те времена, когда бизнес в нашей стране заключался в приобретении и наращивании активов и их последующей перепродаже. Некоторыми предприятиями услуги консалтинга по большому счету использовались как инструмент &laquo;отмывания&raquo; денег. Вот, типа, пришли консультанты, нарисовали бизнес-процессы за кругленькую сумму и ушли. Никому эти бизнес-процессы не нужны, они так и остались на бумаге, деньги &laquo;распилены&raquo; &ndash; все счастливы.</p>\n<p>С другой стороны (и это продолжается до сих пор) многие предприятия приглашают консультантов с целью &laquo;это модно&raquo; или для возможности помахать флагом (особенно, когда приглашают какую-нибудь западную и широкоизвестную компанию) - &laquo;у нас поработали консультанты, нарисовали процессы, а значит мы на мировом уровне&raquo;. В итоге получается забавная картина, когда говорят о бизнес-процессах, многие руководители представляет себе толстенную (и надо сказать дорогую) пачку бумаги с нарисованными квадратиками и стрелочками. Но ведь бизнес-процессы это не квадратики на бумаге, это реально работающие процессы на предприятии. Дальше нечестность порождает еще большую нечестность, у консультантов в голове крутятся доллары, бессмысленность и ненужность работы, и в итоге пошел процесс &laquo;нужно побольше придумать себе работы и побольше взять денег&raquo;. В итоге, получается, что мощный инструмент бизнес-консалтинга используется абсолютно не по назначению.</p>\n<p></p>',67,'','',5,1,3,'publish','Administrator',1429529033,1429529033,1436527746,198,3,0,15),(90,'Не откладывайте запуск лучших бизнес-идей','','изучение, планетных, систем, звезд, различной, массы, находящихся, разных, стадиях, эволюции, позволяет, глубже, понимать, весь, комплекс, процессов, планетообразования, важной, частью, подобных, исследований, является, поиск, планет, промежуточной, массой, солнечных, будучи, главной, последовательности','Изучение планетных систем у звезд различной массы и находящихся на разных стадиях эволюции позволяет глубже понимать весь комплекс процессов планетообразования. Важной частью подобных исследований является поиск и изучение планет у звезд промежуточной мас','<p>В прошлом году предприниматель и специалист по маркетингу Ной Каган бросил вызов самому себе, запустив бизнес и заработав первые $1000 в течение 24 часов. Тем самым он хотел доказать тот факт, что нет ни единой причины не начать свое предприятие именно сегодня.</p>','<p><img src=\"/uploads/images/articles/chair-designer-desk-4929.jpg\" alt=\"\" width=\"900\" height=\"460\" /></p>\n<p>В прошлом году предприниматель и специалист по маркетингу Ной Каган бросил вызов самому себе, запустив бизнес и заработав первые $1000 в течение 24 часов. Тем самым он хотел доказать тот факт, что нет ни единой причины не начать свое предприятие именно сегодня. Используя только домен, наскоро созданную landing page и привлеченное к проекту внимание, Каган удивил скептиков и основал прибыльный стартап еще до того, как создал свой первый продукт.</p>\n<p>Лучшие бизнес идеи имеют свойство видоизменяться вместе с бизнес-ландшафтом, об этом стоит помнить. Чтобы быть успешным, не всегда следует оставаться упрямым. Потребуется мобилизация всех запасов смелости для отказа от первичного плана в пользу роста.</p>\n<p>Многие решения предпринимателей могут казаться со стороны безрассудными. Например, оффлайн-ритейлер Amerisleep в один момент полностью отказался от реальных магазинов, сделав ставку на электронную коммерцию. Руководство решило, что лучшие бизнес идеи могут быть воплощены в жизнь в контексте интернета. Потребители и конкуренты видели в этом необоснованный риск и отступление с занятых позиций. Жертвуя каналом сбыта, компания в то же время сбросила оковы территориальных ограничений, а также замедляющие рост арендные выплаты. Помните, стабильность и выгода в краткосрочной перспективе &mdash; главные враги развития и масштабирования бизнеса.</p>',67,'','',4,1,2,'publish','Administrator',1423830381,1423830381,1436527719,35,3,0,14),(92,'Андрей Павличенко','','компания, показала, себя, надежного, партнера, вовремя, были, сделаны, запланированные, работы, организованы, рекламные, кампании, чувствуется, профессионализм','Компания показала себя как надежного партнера, вовремя были сделаны все запланированные работы и организованы рекламные кампании, чувствуется профессионализм','Компания показала себя как надежного партнера, вовремя были сделаны все запланированные работы и организованы рекламные кампании, чувствуется профессионализм','',66,'','',3,0,0,'publish','Administrator',1429362249,1429362249,1436386855,0,3,0,7),(93,'Артур Рудковский','','выражаю, благодарность, компании, реализацию, проекта, повышению, эффективности, бизнес, процессов, нашей, проектированию, новой, организационной, структуры','Выражаю благодарность компании за реализацию проекта по повышению эффективности бизнес-процессов в нашей компании и проектированию новой организационной структуры.','<p>Выражаю благодарность компании за реализацию проекта по повышению эффективности бизнес-процессов в нашей компании и проектированию новой организационной структуры.</p>','',66,'','',2,0,0,'publish','Administrator',1429362954,1429362954,1429376272,3,3,0,8),(84,'Бизнес-консалтинг','','','Бизнес-консалтинг  вид услуг, связанный с подготовкой рекомендаций по достижению поставленных целей в экономической деятельности. Бизнес-консалтинг может включать в себя не только консультационную поддержку, но и саму реализацию управленческих решений. Та','<p>Бизнес-консалтинг &ndash; вид услуг, связанный с подготовкой рекомендаций по достижению поставленных целей в экономической деятельности. Бизнес-консалтинг может включать в себя не только консультационную поддержку, но и саму реализацию управленческих решений.</p>','<p>Сообщения для потребителей отправляются бизнесом по традиционным каналам в надежде быть услышанным. Интернет-маркетинг же инициирует постоянный диалог между компаниями и клиентами. При этом охват собеседников может быть по-настоящему широким, но, говоря о качественном составе аудитории, следует отметить тот факт, что не все ее сегменты доступны в рамках цифровых коммуникаций. Кроме того, далеко не каждая группа пользователей интернет является платежеспособной, а, значит, теряется контакт с людьми, представляющими наибольший интерес для бизнеса. Таким образом, конечных пользователей многих брендов до сих пор можно достичь лишь традиционными методами, какими бы технически устаревшими те не были.</p>\n<p>Цифровой маркетинг динамичен, он характеризуется высокой скоростью доставки любых видов контента. Аудитория в мгновение ока может получить информацию, представленную в текстовом или графическом виде. К тому же, эффективность коммуникации может быть измерена в режиме реального времени, что позволяет очень быстро адаптироваться в соответствие с малейшими изменениями для улучшения результатов.</p>',62,'','',11,0,0,'publish','Administrator',1428164555,1428164555,1436456692,66,3,0,9),(109,'Консультирование по управлению компьютерной структурой','','марта, архиве, электронных, препринтов, появилась, статья, посвященная, итогам, мониторинга, наблюдательной, площадки, кампания, который, проводился, мая, августа, года, обнаружено, транзитных, кандидатов, звезды, прошли, процедуру, валидации, статистического, подтверждения, причем, ndash, впервые, достоверность','26 марта в Архиве электронных препринтов появилась статья, посвященная итогам мониторинга 1-й наблюдательной площадки (Кампания 1), который проводился с 30 мая по 21 августа 2014 года. Обнаружено 36 транзитных кандидатов у 31 звезды. 18 кандидатов прошли','<p><span>Стремительный прогресс в области информационных технологий привел к тому, что они прочно вошли в нашу повседневную жизнь.&nbsp;</span><span>Сложно представить область человеческой деятельности, где бы информационные технологии не использовались в той или иной мере.&nbsp;</span></p>','<p><img src=\"/uploads/images/articles/chair-designer-desk-4936.jpg\" alt=\"\" width=\"900\" height=\"460\" /></p>\n<p>Стремительный прогресс в области информационных технологий привел к тому, что они прочно вошли в нашу повседневную жизнь.&nbsp;Сложно представить область человеческой деятельности, где бы информационные технологии не использовались в той или иной мере.&nbsp;От того насколько квалифицированно решаются задачи в области ИТ напрямую зависит успешность и конкурентоспособность бизнеса.&nbsp;В наше время лавинообразного роста предложений на рынке ИТ услуг, появления большого колличества программных продуктов, технических решений от именитых так и не очень производителей зачастую приводит непосвященного в состояние полной неразберихи.&nbsp;Пытаясь принять решение, перед руководителем предприятия зачастую встают вопросы с чего начать,&nbsp;как делать&nbsp;и&nbsp;кому делать?<br /><br />Эти и многие другие вопросы возникают не только у начинающих руководителей малых и средних предприятий, но и у куда более опытных их коллег.&nbsp;Хорошо если рядом есть доверенный профессионал, который поможет советом и даст ответы на насущные вопросы квалифицированно и понятно.&nbsp;Наши консультанты готовы помочь вам. Имея многолетний практический опыт в предметных областях, предлагаем выверенные временем решения.<br /><br />Наша компания&nbsp;осуществляет консультирование предприятий по вопросам управления компьютерной структурой, автоматизации бизнес-процессов, выбора программных, аппаратных платформ и поставщиков оборудования.&nbsp;На основе многолетнего опыта работы предлагаем выверенные временем решения.</p>',69,'','',0,1,3,'publish','Administrator',1427887795,1427887795,1436527614,154,3,0,11),(110,'Главная вещь, которая стоит между вами и успехом','','марта, года, архиве, электронных, препринтов, появилась, статья, луиджи, манчини, luigi, mancini, коллегами, посвященная, открытию, двух, новых, экзопланет, hats, подавляющее, большинство, других, обнаруженных, наземными, транзитными, обзорами, обе, планеты, являются, горячими, юпитерами','12 марта 2015 года в Архиве электронных препринтов появилась статья Луиджи Манчини (Luigi Mancini) с коллегами, посвященная открытию двух новых экзопланет HATS-13 b и HATS-14 b. Как и подавляющее большинство других экзопланет, обнаруженных наземными транз','<p>Чтобы начать бизнес, нужно сделать очень много действительно важных вещей: исследовать рынок, найти целевую аудиторию, определить ее&nbsp;потребности, разработать удовлетворяющий их продукт, продумать маркетинг, посчитать бюджет.</p>','<p><img src=\"/uploads/images/articles/chair-designer-desk-4928.jpg\" alt=\"\" width=\"900\" height=\"460\" /></p>\n<p>Мало кто был способен настолько метко формулировать великие мысли, как Генри Форд (Henry Ford), который подметил: &laquo;Верите вы, что сможете, либо верите, что не сможете &ndash; вы правы&raquo;. Kюди не пробуют! Многие талантливые и подающие надежды бизнесмены в самом начале своего пути не добиваются успеха, потому что не верят в свои силы и боятся рисковать. Предпосылки могут быть самые разные:&nbsp;Затянувшиеся размышления, после которых не остается сил &laquo;нажать на курок&raquo;, то есть начать действовать. Консервативные родственники, друзья или &laquo;советчики&raquo;, которые боятся сделать это сами и &laquo;предупреждают&raquo; других. Слишком долгая подготовка, которая не дает желаемого результата и дает преимущество тем, кто действует.</p>\n<p>Если у вас есть идея &mdash; реализуйте ее как можно скорее и с минимальными денежными вложениями. И наблюдайте за происходящим. Возможно, вы поймете, что на правильном пути. В большинстве случаев этот этап показывает, что нужно изменить и над чем поработать, чтобы развиваться в правильном направлении. Это естественно &mdash; и через это проходят все. И даже если у вас не получилось &mdash; в этом нет никакой катастрофы, ведь вы минимизировали свои затраты. Поэтому у вас еще должно остаться достаточно сил и средств на новые попытки.</p>\n<p>Главное препятствие к вашему успеху &mdash; страх. Чтобы добиться успеха в новом бизнесе, не бойтесь идти на риск. У баскетболистов и хоккеистов есть выражение: &laquo;Ты промахиваешься в 100% случаев, когда не пробуешь&raquo;. Думаем, оно лучше всего передает смысл нашего сегодняшнего материала. Действуйте!</p>',69,'','',1,1,0,'publish','Administrator',1426335738,1426335738,1436527679,25,3,0,10),(129,'Контакти','','','','<h3>Телефон гарячої лінії</h3>\n<p>8&nbsp;(800) 269-12-42</p>\n<h3><span>Телефони нашого&nbsp;офісу</span></h3>\n<p><span>(044) 269-12-42</span></p>\n<p><span>(044) 269-12-43</span></p>\n<h3>Пишіть нам на e-mail</h3>\n<p>info@businessimage.com<br /><span></span></p>\n<h3><span>Адреса нашого офісу</span></h3>\n<p>Мінськ, вул. Барвиста 22а</p>','',0,'','',0,0,0,'publish','Administrator',1428165320,1428165320,1436777787,4,32,87,12),(130,'Послуги адвоката','','','','<p>У Вас виникли правові проблеми і вам потрібна юридична підтримка? Зверніться до кваліфікованого адвоката. Наше місто включає в себе досить різноманітний ринок юридичних послуг, які надають кваліфіковані адвокати. Але досить складно знайти досвідченого юриста, який знає свою справу і розбирається в чинному законодавстві.</p>','<p>Вперше адвокати з\'явилися в Стародавньому Римі. Як зазначав російський юрист і історик права польського походження Е. В. Васьковський, &laquo;... першими юристами в Римі були патрони. В особі їх поєднувалися дві професії: юрисконсультів і адвокатів &raquo;. Довгий час послуги адвоката виконували оратори, які часто вже не були знавцями права.</p>\n<p>Цицерон присвятив адвокатам, погано розбирається в правових питань, чимало їдких слів. Адвокатура республіканського періоду Стародавнього Риму була вільною професією і ніякого корпоративного пристрою не мала. Корпорація професійних захисників у суді сформувалася в Римі в епоху Імперії, тобто до нашої ери.</p>\n<p>Документально зафіксована колегія юристів-захисників формувалася на основі добре відомих в пізніші часи принципів: вимагалося бути занесеним в матрикули (офіційний список осіб з певним рівнем доходів) та успішно скласти випробування (іспити) по праву. Пристрій адвокатури, що склалося в епоху Імперії, було класичним. Воно стало основою всіх подальших видозмін адвокатури, аж до новітнього часу.</p>',62,'','',0,0,0,'publish','Administrator',1428164894,1428164894,1436779421,12,32,86,18),(131,'',NULL,NULL,NULL,NULL,'',62,'','',0,0,0,'publish','Administrator',1428164894,1428164894,0,3,33,86,18),(132,'Податкові консультації','','','Податок - обов\'язковий, індивідуально безвідплатний платіж, примусово стягується органами державної влади різних рівнів з організацій і фізичних осіб з метою фінансового забезпечення діяльності держави і (або) муніципальних утворень. Податки бувають офіці','<p>Cьогодні жодне підприємство не обходиться без мінімальної податкової консультації. Наша компанія пропонує повний спектр послуг в плані правильної побудови і складання податкових обкладань, черговості їх виплачування, а також оцінювання ризиків.</p>','<p>Наша юридична фірма проводить податкові консультації з податкового законодавства для фізичних і для юридичних осіб. Організаціям надаються вигідні умови співпраці при виникненні податкових спорів.</p>\n<p>Юридичні консультації з оподаткування, проводяться професійними адвокатами в Києві, які мають досвід як у консультуванні з податкових питань, так і досвід в досудовому та судовому вирішенні податкових спорів. Консультування з податків завжди вузькоспеціалізована сфера, тому задіюється адвокат по певному правовому напрямку, наприклад: консультація з відшкодування податку на додану вартість, проводить один адвокат, а по консультацію щодо оскарження податкового повідомлення-рішення, інший податковий юрист. Такий підхід, істотно підвищує якість юридичної консультації за рахунок використання досвіду адвоката в специфічних податкових суперечках.</p>\n<p>Звернувшись в нашу юридичну компанію за юридичною консультацією з оподаткування, ми завжди підтвердимо на практиці грамотну кваліфікацію податкового адвоката. Якщо Ви шукайте якісну юридичну консультацію з податків, ви рухаєтеся в потрібному напрямку. Ми допоможемо отримати гарантовано кваліфіковану допомогу адвокатів з різних питань податкового права, починаючи від виїзду адвоката на підприємство при проведенні податкової перевірки до дозволу податкового спору в судовому порядку.</p>',62,'','',0,0,0,'publish','Administrator',1428164860,1428164860,1436779320,5,32,85,13),(136,'Не відкладайте запуск кращих бізнес-ідей','','','','<p>Торік підприємець і фахівець з маркетингу Ной Каган кинув виклик самому собі, запустивши бізнес і заробивши перші $ 1000 протягом 24 годин. Тим самим він хотів довести той факт, що немає жодної причини не почати своє підприємство саме сьогодні.</p>','<p><img src=\"/uploads/images/articles/chair-designer-desk-4929.jpg\" alt=\"\" width=\"900\" height=\"460\" /></p>\n<p>Торік підприємець і фахівець з маркетингу Ной Каган кинув виклик самому собі, запустивши бізнес і заробивши перші $ 1000 протягом 24 годин. Тим самим він хотів довести той факт, що немає жодної причини не почати своє підприємство саме сьогодні. Використовуючи тільки домен, нашвидку створену landing page і притягнуте до проекту увагу, Каган здивував скептиків і заснував прибутковий стартап ще до того, як створив свій перший продукт.</p>\n<p>Кращі бізнес ідеї мають властивість видозмінюватися разом з бізнес-ландшафтом, про це варто пам\'ятати. Щоб бути успішним, не завжди слід залишатися впертим. Буде потрібно мобілізація всіх запасів сміливості для відмови від первинного плану на користь зростання.</p>\n<p>Багато рішень підприємців можуть здаватися з боку безрозсудними. Наприклад, оффлайн-рітейлер Amerisleep в один момент повністю відмовився від реальних магазинів, зробивши ставку на електронну комерцію. Керівництво вирішило, що кращі бізнес ідеї можуть бути втілені в життя в контексті інтернету. Споживачі і конкуренти бачили в цьому необгрунтований ризик і відступ із зайнятих позицій. Жертвуючи каналом збуту, компанія в той же час скинула окови територіальних обмежень, а також сповільнюють ріст орендні виплати. Пам\'ятайте, стабільність і вигода в короткостроковій перспективі - головні вороги розвитку і масштабування бізнесу.</p>',67,'','',0,0,0,'publish','Administrator',1423830381,1423830381,1436776826,0,32,90,14),(133,'Артур Рудковський','','','','<p>Висловлюю подяку компанії за реалізацію проекту з підвищення ефективності бізнес-процесів в нашій компанії і проектування нової організаційної структури.</p>','',66,'','',0,0,0,'publish','Administrator',1429362954,1429362954,1436777676,1,32,93,8),(134,'Андрій Павличенко','','','','<p>Компанія показала себе як надійного партнера, вчасно були зроблені всі заплановані роботи і організовані рекламні кампанії, відчувається професіоналізм</p>','',66,'','',0,0,0,'publish','Administrator',1429362249,1429362249,1436386848,1,32,92,7),(135,'',NULL,NULL,NULL,NULL,'',66,'','',0,0,0,'publish','Administrator',1429362249,1429362249,0,0,33,92,7),(121,'Оптимизация налогов и управление налоговыми рисками','','марта, архиве, электронных, препринтов, появилась, статья, посвященная, итогам, мониторинга, наблюдательной, площадки, кампания, который, проводился, мая, августа, года, обнаружено, транзитных, кандидатов, звезды, прошли, процедуру, валидации, статистического, подтверждения, причем, ndash, впервые, достоверность','26 марта в Архиве электронных препринтов появилась статья, посвященная итогам мониторинга 1-й наблюдательной площадки (Кампания 1), который проводился с 30 мая по 21 августа 2014 года. Обнаружено 36 транзитных кандидатов у 31 звезды. 18 кандидатов прошли','<p>Реалии нашего бизнеса таковы, что стремление к снижению налоговой нагрузки присуще практически каждому предприятию, независимо от рода и географии его деятельности. Но почему при этом не использовать легальные способы оптимизации налогообложения?&nbsp;</p>','<p><img src=\"/uploads/images/articles/woman-typing-writing-windows-4.jpg\" alt=\"\" width=\"900\" height=\"460\" /></p>\n<p>Как правило, общение с контролирующими органами не всегда является удовольствием для бухгалтеров или руководителей компаний. Почему так? Потому, что представитель налоговой инспекции приходит для того, чтобы найти ошибки в ведении бухгалтерского или налогового учета, а причина возникновения ошибки &ndash; случайно или специально &ndash; для налоговиков не имеет значения.</p>\n<p>Реалии нашего бизнеса таковы, что стремление к снижению налоговой нагрузки присуще практически каждому предприятию, независимо от рода и географии его деятельности. Но почему при этом не использовать легальные способы оптимизации налогообложения? Налоговая оптимизация &ndash; это легитимное, эффективное налоговое планирование начислений и уплат в бюджет. Использование легальной оптимизации налогов позволит избежать множества проблем и негативных последствий.</p>\n<p>Для того, чтобы правильно использовать методы минимизации налогов, следует ориентироваться на такие пункты налогового планирования, которые позволят составить индивидуальные схемы оптимизации налогообложения. На российском рынке можно встретить много различных предложений об оказании налоговых услуг. Но большинство из них помогают устранить только часть проблем, связанных с налогами. Поэтому необходимо обращаться к экспертам, которые комплексно подойдут к решению данной задачи.</p>',64,'','',1,1,3,'publish','Administrator',1427887795,1427887795,1436527811,119,3,0,16),(124,'Про компанию','','heading, lorem, ipsum, dolor, sit, amet, consectetuer, adipiscing, elit, aenean, commodo, ligula, eget, massa, cum, sociis, natoque, penatibus, text, level, semantics, this, should, hidden, all, bsysrowsers, apart, from, the, element','Heading 1 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et m. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa','<p>Компания&nbsp;<span>Business </span><span>Image&nbsp;</span>является передовым экспертом в области повышения эффективности ведения бизнеса и управления проектами. Мы разрабатываем и внедряем маркетинговые кейсы, предоставляя уникальное качество услуг бизнес консалтинга. Мы&nbsp;обладаем&nbsp;навыками системного мышления и многолетним опытом в реализации маркетинговых проектов.&nbsp;</p>\n<p>Нашей специализацией являются&nbsp;информационные технологии в связке с уникальными маркетинговыми инструментами. Мы полностью включаемся в проект и берем на себя его комплексное сопровождение, а не просто раздаем умные советы.&nbsp;</p>','<p>Разработка стратегий и внедрение проектов по развитию бизнеса, повышению эффективности и автоматизации процессов&nbsp;&mdash; наш профиль.&nbsp;Превращаем свой опыт и знания в вашу прибыль&nbsp;и&nbsp;будем для вас надежным партнером в сфере услуг бизнес-консалтинга!</p>\n<h2>Специализация</h2>\n<p>Информационные технологии в связке с уникальными маркетинговыми инструментами являются нашим главным вектором. Наша отличительная черта &mdash; реализация проектов на основе методов процессного консалтинга, т.е. мы полностью включаемся в проект и берем на себя его комплексное сопровождение, а не просто раздаем умные советы. Мы действуем исключительно в рамках интереса клиента, используя только рабочие и эффективные решения.</p>\n<p>Компания Business Image&nbsp;является передовым экспертом в области повышения эффективности ведения бизнеса и управления проектами. Мы разрабатываем и внедряем передовые маркетинговые и ИТ кейсы, предоставляя уникальное качество услуг бизнес консалтинга. Мы &mdash; команда профессионалов, обладающая навыками системного мышления и многолетним опытом в реализации информационно-технических и маркетинговых проектов. Основная цель, которую мы преследуем &mdash; развитие бизнеса и достижение новых высот наших клиентов, путем разработки и внедрения сложных маркетинговых стратегий и передовых систем автоматизации.&nbsp;</p>\n<h2>Наши&nbsp;возможности</h2>\n<p>Если вы еще размышляете, прибегать к услугам нашей компании, обратиться к конкурентам, или же выполнять задачи собственными силами, мы можем продемонстрировать вам&nbsp;краткий перечень аргументов, которые позволят вам сделать правильный выбор.</p>\n<h4>Эффективные решения</h4>\n<p>Безусловно, наши решения отличаются свежестью и современностью, но в первую очередь они являются эффективными и приносящими реально ощутимую выгоду. Проверенные многолетним опытом и критическими ситуациями,&nbsp;наши решения помогут найти выход в любом положении и, кроме того, обеспечит устойчивое положение вашей компании в будущем.</p>\n<h4>Специалисты</h4>\n<p>Наши специалисты обладают особыми знаниями и навыками, которые практически невозможно получить выполняя задачи в рамках одной компании.&nbsp;Для реализации поставленной задачи вам требуется либо отвлечь Вашего штатного специалиста от текущих задач, либо нанять нового. Мы же готовы тратить столько времени, сколько необходимо, ни больше, ни меньше.</p>\n<h4>Консультанты</h4>\n<p>Наши консультанты всегда являются независимыми объективными экспертами, дающими свежий взгляд со стороны и остающимися беспристрастными в любой ситуации.&nbsp;Консультанты нашей компании, конечно, смогут подержать вас и выслушать, но их решение будет основано только на профессионализме и опыте, поэтому будьте готовы к решениям, которые не совсем отвечают вашим ожиданиям.&nbsp;</p>',0,'','',0,0,0,'publish','Administrator',1433755063,1433755063,1436437101,386,3,0,17),(122,'Kepler spacecraft','','','','<p>Kepler is a space observatory launched by NASA to discover Earth-like planets orbiting other stars. The spacecraft, named after the Renaissance astronomer Johannes Kepler, was launched on March 7, 2009.</p>','<p>Designed to survey a portion of our region of the Milky Way to discover dozens of Earth-size extrasolar planets in or near the habitable zone and estimate how many of the billions of stars in our galaxy have such planets, Kepler\'s sole instrument is a photometer that continually monitors the brightness of over 145,000 main sequence stars in a fixed field of view. These data are transmitted to Earth, then analyzed to detect periodic dimming caused by extrasolar planets that cross in front of their host star.</p>\n<p>Kepler is part of NASA\'s Discovery Program of relatively low-cost, focused primary science missions. The telescope\'s construction and initial operation were managed by NASA\'s Jet Propulsion Laboratory, with Ball Aerospace responsible for developing the Kepler flight system. The Ames Research Center is responsible for the ground system development, mission operations since December 2009, and scientific data analysis. The initial planned lifetime was 3.5 years, but greater-than-expected noise in the data, from both the stars and the spacecraft, meant additional time was needed to fulfill all mission goals. Initially, in 2012, the mission was expected to last until 2016, but this would only have been possible if all remaining reaction wheels used for pointing the spacecraft remained reliable. On May 11, 2013, a second of four reaction wheels failed, disabling the collection of science data and threatening the continuation of the mission.</p>',62,'','',0,0,0,'publish','Administrator',1428164555,1428164555,1431860696,2,33,84,9),(123,'Бізнес-консалтинг','','','Бізнес-консалтинг - вид послуг, пов\'язаний з підготовкою рекомендацій щодо досягнення поставлених цілей в економічній діяльності. Бізнес-консалтинг може включати в себе не тільки консультаційну підтримку, а й саму реалізацію управлінських рішень. Також до','<p>Бізнес-консалтинг - вид послуг, пов\'язаний з підготовкою рекомендацій щодо досягнення поставлених цілей в економічній діяльності. Бізнес-консалтинг може включати в себе не тільки консультаційну підтримку, а й саму реалізацію управлінських рішень.</p>','<p>Повідомлення для споживачів відправляються бізнесом за традиційними каналами в надії бути почутим. Інтернет-маркетинг же ініціює постійний діалог між компаніями і клієнтами. При цьому охоплення співрозмовників може бути по-справжньому широким, але, говорячи про якісний склад аудиторії, слід відзначити той факт, що не всі її сегменти доступні в рамках цифрових комунікацій. Крім того, далеко не кожна група користувачів інтернет є платоспроможною, а, значить, втрачається контакт з людьми, що представляють найбільший інтерес для бізнесу. Таким чином, кінцевих користувачів багатьох брендів досі можна досягти лише традиційними методами, якими б технічно застарілими ті були.</p>\n<p>Цифровий маркетинг динамічний, він характеризується високою швидкістю доставки будь-яких видів контенту. Аудиторія миттю може отримати інформацію, представлену в текстовому або графічному вигляді. До того ж, ефективність комунікації може бути виміряна в режимі реального часу, що дозволяє дуже швидко адаптуватися у відповідність із найменшими змінами для покращення результатів.</p>',62,'','',0,0,0,'publish','Administrator',1428164555,1428164555,1436779379,6,32,84,9),(126,'Про компанію','','','','<p>Компанія Business Image є передовим експертом в галузі підвищення ефективності ведення бізнесу та управління проектами. Ми розробляємо і впроваджуємо маркетингові кейси, надаючи унікальну якість послуг бізнес консалтингу. Ми володіємо навичками системного мислення і багаторічним досвідом в реалізації маркетингових проектів.</p>\n<p>Нашою спеціалізацією є інформаційні технології в зв\'язці з унікальними маркетинговими інструментами. Ми повністю включаємось в проект і беремо на себе його комплексний супровід, а не просто роздаємо розумні поради.</p>','<p>Розробка стратегій та впровадження проектів з розвитку бізнесу, підвищенню ефективності та автоматизації процесів - наш профіль. Перетворюємо свій досвід і знання в вашу прибуток і будемо для вас надійним партнером у сфері послуг бізнес-консалтингу!</p>\n<h2>Спеціалізація</h2>\n<p>Інформаційні технології в зв\'язці з унікальними маркетинговими інструментами є нашим головним вектором. Наша відмінна риса - реалізація проектів на основі методів процесного консалтингу, тобто ми повністю включаємось в проект і беремо на себе його комплексний супровід, а не просто роздаємо розумні поради. Ми діємо виключно в рамках інтересу клієнта, використовуючи тільки робітники і ефективні рішення.</p>\n<p>Компанія Business Image є передовим експертом в галузі підвищення ефективності ведення бізнесу та управління проектами. Ми розробляємо і впроваджуємо передові маркетингові та ІТ кейси, надаючи унікальну якість послуг бізнес консалтингу. Ми - команда професіоналів, що володіє навичками системного мислення і багаторічним досвідом в реалізації інформаційно-технічних і маркетингових проектів. Основна мета, яку ми переслідуємо - розвиток бізнесу і досягнення нових висот наших клієнтів, шляхом розробки та впровадження складних маркетингових стратегій і передових систем автоматизації.</p>\n<h2>Наші можливості</h2>\n<p>Якщо ви ще роздумуєте, вдаватися до послуг нашої компанії, звернутися до конкурентів, або ж виконувати завдання власними силами, ми можемо продемонструвати вам короткий перелік аргументів, які дозволять вам зробити правильний вибір.</p>\n<h4>Эфективні рішення</h4>\n<p>Безумовно, наші рішення відрізняються свіжістю і сучасністю, але в першу чергу вони є ефективними і приносять реально відчутну вигоду. Перевірені багаторічним досвідом і критичними ситуаціями, наші рішення допоможуть знайти вихід у будь-якому положенні і, крім того, забезпечить стійке положення вашої компанії в майбутньому.</p>\n<h4>Спеціалісти</h4>\n<p>Наші фахівці володіють особливими знаннями і навичками, які практично неможливо отримати виконуючи завдання в рамках однієї компанії. Для реалізації поставленого завдання вам потрібно або відвернути Вашої штатного фахівця від поточних завдань, або найняти нового. Ми ж готові витрачати стільки часу, скільки необхідно, ні більше, ні менше.</p>\n<h4>Консультанти</h4>\n<p>Наші консультанти завжди є незалежними об\'єктивними експертами, що дають свіжий погляд з боку і залишаються неупередженими в будь-якій ситуації. Консультанти нашої компанії, звичайно, зможуть потримати вас і вислухати, але їхнє рішення буде засновано тільки на професіоналізм і досвід, тому будьте готові до рішень, які не зовсім відповідають вашим очікуванням.</p>',0,'','',0,0,0,'publish','Administrator',1433755063,1433755063,1436779227,13,32,124,17),(137,'Об\'єктивність як одна з найважливіших складових','','','','<p>Ефективність прийнятих рішень можна оцінити тільки через якийсь час, і нерідко можна точно визначити, що стало причиною поліпшень або, навпаки, негативних змін.</p>','<p><img src=\"/uploads/images/articles/chair-designer-desk-4927.jpg\" alt=\"\" width=\"900\" height=\"460\" /></p>\n<p>Зазвичай під непотрібною роботою мається на увазі &laquo;ми це могли зробити самі&raquo;. Непотрібність також полягає в тому, і це особливість самого консалтингу, що результати роботи консультантів найчастіше відразу невидно. Ефективність прийнятих рішень можна оцінити тільки через якийсь час, і нерідко можна точно визначити, що стало причиною поліпшень. Керівництву підприємства часто здається, що це воно саме змогло скорегувати й поліпшити ситуацію, а консультанти тут ні причому. Загалом, це питання більше історичний, ніж риторичне.</p>\n<p>Не так далекі ті часи, коли бізнес у нашій країні полягав у придбанні та нарощуванні активів та їх подальшої перепродажі. Деякими підприємствами послуги консалтингу за великим рахунком використовувалися як інструмент &laquo;відмивання&raquo; грошей. Ось, типу, прийшли консультанти, намалювали бізнес-процеси за кругленьку суму і пішли. Нікому ці бізнес-процеси не потрібні, вони так і залишилися на папері, гроші &laquo;розпиляні&raquo; - всі щасливі.</p>\n<p>З іншого боку (і це триває досі) багато підприємств запрошують консультантів з метою &laquo;це модно&raquo; або для можливості помахати прапором (особливо, коли запрошують якусь західну і широковідомих компанію) - &laquo;у нас попрацювали консультанти, намалювали процеси, а значить ми на світовому рівні &raquo;. У підсумку виходить кумедна картина, коли говорять про бізнес-процеси, багато керівників уявляє собі толстенную (і треба сказати дорогу) пачку паперу з намальованими квадратиками і стрілочками. Але ж бізнес-процеси це не квадратики на папері, це реально працюючі процеси на підприємстві. Далі нечесність породжує ще більшу нечесність, у консультантів в голові крутяться долари, безглуздість і непотрібність роботи, і в підсумку пішов процес &laquo;потрібно побільше придумати собі роботи і побільше взяти грошей&raquo;. У результаті, виходить, що потужний інструмент бізнес-консалтингу використовується абсолютно не за призначенням.</p>',67,'','',0,0,0,'publish','Administrator',1429529033,1429529033,1436776981,0,32,89,15),(139,'Консультування з управління комп\'ютерної структурою','','','','<p>Стрімкий прогрес у галузі інформаційних технологій призвів до того, що вони міцно увійшли в наше повсякденне життя. Складно уявити галузь людської діяльності, де б інформаційні технології не використовувалися в тій чи іншій мірі.</p>','<p><img src=\"/uploads/images/articles/chair-designer-desk-4936.jpg\" alt=\"\" width=\"900\" height=\"460\" /></p>\n<p>Стрімкий прогрес у галузі інформаційних технологій призвів до того, що вони міцно увійшли в наше повсякденне життя. Складно уявити галузь людської діяльності, де б інформаційні технології не використовувалися в тій чи іншій мірі. Від того наскільки кваліфіковано вирішуються завдання в галузі ІТ безпосередньо залежить успішність і конкурентоспроможність бізнесу. У наш час лавиноподібного зростання пропозицій на ринку ІТ послуг, появи безлічі програмних продуктів, технічних рішень від іменитих так і не дуже виробників часто призводить необізнаного в стан повної плутанини. Намагаючись прийняти рішення, перед керівником підприємства часто постають питання з чого почати, як робити і кому робити?</p>\n<p>Ці та багато інших питань виникають не тільки у початківців керівників малих і середніх підприємств, а й у куди більш досвідчених їхніх колег. Добре якщо поруч є довірений професіонал, який допоможе порадою і дасть відповіді на нагальні питання кваліфіковано і зрозуміло. Наші консультанти готові допомогти вам. Маючи багаторічний практичний досвід у предметних областях, пропонуємо вивірені часом рішення.</p>\n<p>Наша компанія здійснює консультування підприємств з питань управління комп\'ютерною структурою, автоматизації бізнес-процесів, вибору програмних, апаратних платформ і постачальників устаткування. На основі багаторічного досвіду роботи пропонуємо вивірені часом рішення.</p>',69,'','',0,1,0,'publish','Administrator',1427887795,1427887795,1436546533,1,32,109,11),(140,'Оптимізація податків та управління податковими ризиками','','','','<p>Реалії нашого бізнесу такі, що прагнення до зниження податкового навантаження притаманне практично кожному підприємству, незалежно від роду та географії його діяльності. Але чому при цьому не використовувати легальні способи оптимізації оподаткування?</p>','<p><img src=\"/uploads/images/articles/woman-typing-writing-windows-4.jpg\" alt=\"\" width=\"900\" height=\"460\" /></p>\n<p>Як правило, спілкування з контролюючими органами не завжди є задоволенням для бухгалтерів чи керівників компаній. Чому так? Тому, що представник податкової інспекції приходить для того, щоб знайти помилки у веденні бухгалтерського або податкового обліку, а причина виникнення помилки - випадково чи спеціально - для податківців не має значення.</p>\n<p>Реалії нашого бізнесу такі, що прагнення до зниження податкового навантаження притаманне практично кожному підприємству, незалежно від роду та географії його діяльності. Але чому при цьому не використовувати легальні способи оптимізації оподаткування? Податкова оптимізація - це легітимне, ефективне податкове планування нарахувань і сплат до бюджету. Використання легальної оптимізації податків дозволить уникнути безлічі проблем і негативних наслідків.</p>\n<p>Для того, щоб правильно використовувати методи мінімізації податків, слід орієнтуватися на такі пункти податкового планування, які дозволять скласти індивідуальні схеми оптимізації оподаткування. На російському ринку можна зустріти багато різних пропозицій про надання податкових послуг. Але більшість з них допомагають усунути тільки частина проблем, пов\'язаних з податками. Тому необхідно звертатися до експертів, які комплексно підійдуть до вирішення даного завдання.</p>',64,'','',0,1,0,'publish','Administrator',1427887795,1427887795,1436776332,4,32,121,16),(141,'Головна річ, яка стоїть між вами та успіхом','','','','<p>Щоб розпочати бізнес, потрібно зробити дуже багато дійсно важливих речей: дослідити ринок, знайти цільову аудиторію, визначити її потреби, розробити зрозумілий для них&nbsp;продукт, продумати маркетинг, порахувати бюджет.</p>','<p><img src=\"/uploads/images/articles/chair-designer-desk-4928.jpg\" alt=\"\" width=\"900\" height=\"460\" /></p>\n<p>Мало хто був здатний настільки влучно формулювати великі думки, як Генрі Форд (Henry Ford), який помітив: &laquo;Чи вірите ви, що зможете, або вірите, що не зможете - ви праві&raquo;. Люди не пробують! Багато талановитих і подають надії бізнесмени на самому початку свого шляху не домагаються успіху, бо не вірять у свої сили і бояться ризикувати. Передумови можуть бути самі різні: Тривалі роздуми, після яких не залишається сил &laquo;натиснути на курок&raquo;, тобто почати діяти. Консервативні родичі, друзі або &laquo;порадники&raquo;, які бояться зробити це самі і &laquo;попереджають&raquo; інших. Занадто довга підготовка, яка не дає бажаного результату і дає перевагу тим, хто діє.</p>\n<p>Якщо у вас є ідея - реалізуйте її якомога швидше і з мінімальними грошовими вкладеннями. І спостерігайте за подіями. Можливо, ви зрозумієте, що на правильному шляху. У більшості випадків цей етап показує, що потрібно змінити і над чим попрацювати, щоб розвиватися в правильному напрямку. Це природно - і через це проходять всі. І навіть якщо у вас не вийшло - в цьому немає ніякої катастрофи, адже ви мінімізували свої витрати. Тому у вас ще повинно залишитися достатньо сил і засобів на нові спроби.</p>\n<p>Головна перешкода до вашого успіху - страх. Щоб домогтися успіху в новому бізнесі, не бійтеся йти на ризик. У баскетболістів і хокеїстів є вираз: &laquo;Ти промахується в 100% випадках, коли не поробиш&raquo;. Думаємо, воно найкраще передає зміст нашого сьогоднішнього матеріалу. Дійте!</p>',69,'','',0,1,0,'publish','Administrator',1426335738,1426335738,1436776661,3,32,110,10);
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `content_fields`
---
-
-DROP TABLE IF EXISTS `content_fields`;
-CREATE TABLE IF NOT EXISTS `content_fields` (
-  `field_name` VARCHAR(255) NOT NULL,
-  `type`       VARCHAR(255) NOT NULL,
-  `label`      VARCHAR(255) NOT NULL,
-  `data`       TEXT         NOT NULL,
-  `weight`     INT(11)      NOT NULL,
-  `in_search`  TINYINT(1) DEFAULT '0',
-  PRIMARY KEY (`field_name`),
-  UNIQUE KEY `field_name` (`field_name`),
-  KEY `type` (`type`),
-  KEY `in_search` (`in_search`)
+  `position` INT(11)              DEFAULT NULL
 )
   ENGINE = MyISAM
   DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `content_fields`
+-- Дамп даних таблиці `components`
+--
+
+INSERT INTO `components` (`id`, `name`, `identif`, `enabled`, `autoload`, `in_menu`, `settings`, `position`) VALUES
+  (276, 'user_manager', 'user_manager', 0, 0, 0, NULL, 19),
+  (277, 'auth', 'auth', 1, 0, 0, NULL, 28),
+  (278, 'comments', 'comments', 1, 1, 1, 'a:5:{s:18:"max_comment_length";i:0;s:6:"period";i:0;s:11:"can_comment";i:0;s:11:"use_captcha";b:0;s:14:"use_moderation";b:0;}', 9),
+  (279, 'navigation', 'navigation', 0, 0, 0, NULL, 29),
+  (280, 'tags', 'tags', 1, 1, 0, NULL, 27),
+  (281, 'mod_seo', 'mod_seo', 0, 1, 1, NULL, 5),
+  (282, 'gallery', 'gallery', 1, 0, 1, 'a:26:{s:14:"max_image_size";s:1:"5";s:9:"max_width";s:1:"0";s:10:"max_height";s:1:"0";s:7:"quality";s:2:"95";s:14:"maintain_ratio";b:1;s:19:"maintain_ratio_prev";b:1;s:19:"maintain_ratio_icon";b:1;s:4:"crop";b:0;s:9:"crop_prev";b:0;s:9:"crop_icon";b:1;s:14:"prev_img_width";s:4:"1200";s:15:"prev_img_height";s:3:"900";s:11:"thumb_width";s:3:"480";s:12:"thumb_height";s:3:"350";s:14:"watermark_text";s:0:"";s:16:"wm_vrt_alignment";s:6:"bottom";s:16:"wm_hor_alignment";s:4:"left";s:19:"watermark_font_size";s:2:"14";s:15:"watermark_color";s:6:"ffffff";s:17:"watermark_padding";s:2:"-5";s:15:"watermark_image";s:10:"./uploads/";s:23:"watermark_image_opacity";s:2:"50";s:14:"watermark_type";s:4:"text";s:8:"order_by";s:4:"date";s:10:"sort_order";s:4:"desc";s:19:"watermark_font_path";s:25:"./uploads/defaultFont.ttf";}', 13),
+  (283, 'rss', 'rss', 1, 0, 0, 'a:5:{s:5:"title";s:9:"Image CMS";s:11:"description";s:35:"Тестируем модуль RSS";s:10:"categories";a:1:{i:0;s:1:"3";}s:9:"cache_ttl";i:60;s:11:"pages_count";i:10;}', 14),
+  (284, 'menu', 'menu', 0, 1, 1, NULL, 0),
+  (285, 'sitemap', 'sitemap', 1, 1, 0, 'a:6:{s:18:"main_page_priority";b:0;s:13:"cats_priority";b:0;s:14:"pages_priority";b:0;s:20:"main_page_changefreq";b:0;s:21:"categories_changefreq";b:0;s:16:"pages_changefreq";b:0;}', 15),
+  (286, 'search', 'search', 1, 1, 0, NULL, 22),
+  (287, 'feedback', 'feedback', 1, 0, 0, 'a:2:{s:5:"email";s:19:"admin@localhost.loc";s:15:"message_max_len";i:550;}', 25),
+  (288, 'template_editor', 'template_editor', 0, 0, 0, NULL, 17),
+  (289, 'group_mailer', 'group_mailer', 0, 0, 1, NULL, 10),
+  (290, 'cfcm', 'cfcm', 0, 0, 0, NULL, 16),
+  (291, 'sample_mail', 'sample_mail', 0, 0, 0, NULL, 20),
+  (292, 'mailer', 'mailer', 1, 0, 0, NULL, 21),
+  (293, 'share', 'share', 1, 0, 1, 'a:10:{s:5:"vkcom";s:1:"1";s:8:"facebook";s:1:"1";s:7:"twitter";s:1:"1";s:2:"gg";s:1:"1";s:4:"type";s:7:"counter";s:13:"facebook_like";s:1:"1";s:7:"vk_like";s:1:"1";s:8:"vk_apiid";s:7:"3901548";s:7:"gg_like";s:1:"1";s:12:"twitter_like";s:1:"1";}', 8),
+  (294, 'banners', 'banners', 1, 0, 1, 'a:1:{s:8:"show_tpl";i:1;}', 1),
+  (295, 'cmsemail', 'cmsemail', 1, 0, 1, 'a:3:{s:2:"ru";a:13:{s:4:"from";s:18:"Corporate UniTheme";s:10:"from_email";s:19:"noreplay@mysite.com";s:11:"admin_email";s:15:"info@mysite.com";s:5:"theme";s:18:"Corporate UniTheme";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:255:"<h2>Corporate UniTheme</h2>\n<div>$content</div>\n<hr />\n<p>С уважением, Corporate UniTheme</p>\n<p><small>Данное письмо создано автоматически, пожалуйста не отвечайте на него.</small></p>";s:8:"mailpath";s:0:"";s:8:"protocol";s:4:"mail";s:9:"smtp_host";s:0:"";s:9:"smtp_user";s:10:"ad@min.com";s:9:"smtp_pass";s:5:"admin";s:4:"port";s:0:"";s:10:"encryption";s:0:"";}s:2:"en";a:13:{s:4:"from";s:22:"Online store ImageShop";s:10:"from_email";s:19:"noreplay@client.com";s:11:"admin_email";s:15:"info@client.com";s:5:"theme";s:22:"Online store ImageShop";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:159:"<h2>Online store "ImageShop"</h2>\n<div>$content</div>\n<hr />\n<p>Sincerely, online store "ImageShop"</p>\n<p>This is an automated email, please do not reply.</p>";s:8:"mailpath";s:0:"";s:8:"protocol";s:4:"mail";s:9:"smtp_host";s:0:"";s:9:"smtp_user";s:10:"ad@min.com";s:9:"smtp_pass";s:5:"admin";s:4:"port";s:0:"";s:10:"encryption";s:0:"";}s:2:"ua";a:13:{s:4:"from";s:41:"Інтернет-магазин ImageShop";s:10:"from_email";s:22:"noreplay@client.com.ua";s:11:"admin_email";s:18:"info@client.com.ua";s:5:"theme";s:41:"Інтернет-магазин ImageShop";s:12:"wraper_activ";s:2:"on";s:6:"wraper";s:284:"<h2>Інтернет-магазин "ImageShop"</h2>\n<div>$content</div>\n<hr />\n<p>З повагою, Інтернет-магазин "ImageShop"</p>\n<p>Даний лист створено автоматично, будь ласка не відповідайте на нього.</p>";s:8:"mailpath";s:0:"";s:8:"protocol";s:4:"mail";s:9:"smtp_host";s:0:"";s:9:"smtp_user";s:10:"ad@min.com";s:9:"smtp_pass";s:5:"admin";s:4:"port";s:0:"";s:10:"encryption";s:0:"";}}', 4),
+  (296, 'language_switch', 'language_switch', 0, 0, 0, NULL, 23),
+  (297, 'star_rating', 'star_rating', 1, 0, 0, NULL, 12),
+  (298, 'translator', 'translator', 1, 1, 1, 'a:2:{s:11:"originsLang";s:2:"en";s:11:"editorTheme";s:6:"chrome";}', 11),
+  (299, 'imagebox', 'imagebox', 0, 1, 0, NULL, 18),
+  (300, 'sample_module', 'sample_module', 1, 1, 0, NULL, NULL),
+  (301, 'template_manager', 'template_manager', 1, 1, 1, NULL, NULL),
+  (302, 'xbanners', 'xbanners', 1, 1, 1, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `content`
+--
+
+DROP TABLE IF EXISTS `content`;
+CREATE TABLE `content` (
+  `id`              BIGINT(11)   NOT NULL,
+  `title`           VARCHAR(500) NOT NULL,
+  `meta_title`      VARCHAR(300)          DEFAULT NULL,
+  `keywords`        TEXT,
+  `description`     TEXT,
+  `prev_text`       TEXT,
+  `full_text`       LONGTEXT     NOT NULL,
+  `category`        INT(11)      NOT NULL,
+  `full_tpl`        VARCHAR(50)           DEFAULT NULL,
+  `main_tpl`        VARCHAR(50)  NOT NULL,
+  `position`        SMALLINT(5)  NOT NULL,
+  `comments_status` SMALLINT(1)  NOT NULL,
+  `comments_count`  INT(9)                DEFAULT '0',
+  `post_status`     VARCHAR(15)  NOT NULL,
+  `author`          VARCHAR(50)  NOT NULL,
+  `publish_date`    INT(11)      NOT NULL,
+  `created`         INT(11)      NOT NULL,
+  `updated`         INT(11)      NOT NULL,
+  `showed`          INT(11)      NOT NULL,
+  `lang`            INT(11)      NOT NULL DEFAULT '0',
+  `lang_alias`      INT(11)      NOT NULL DEFAULT '0',
+  `route_id`        INT(11)               DEFAULT NULL
+)
+  ENGINE = MyISAM
+  DEFAULT CHARSET = utf8;
+
+--
+-- Дамп даних таблиці `content`
+--
+
+INSERT INTO `content` (`id`, `title`, `meta_title`, `keywords`, `description`, `prev_text`, `full_text`, `category`, `full_tpl`, `main_tpl`, `position`, `comments_status`, `comments_count`, `post_status`, `author`, `publish_date`, `created`, `updated`, `showed`, `lang`, `lang_alias`, `route_id`)
+VALUES
+  (85, 'Налоговые консультации', '', '',
+       'Налоог  обязательный, индивидуально безвозмездный платёж, принудительно взимаемый органами государственной власти различных уровней с организаций и физических лиц в целях финансового обеспечения деятельности государства и (или) муниципальных образований.',
+       '<p><span>Сегодня ни одно предприятие не обходится без минимальной налоговой консультации. Наша компания предлагает полный спектр услуг в плане правильного построения и составления налоговых обложений, очередности их выплачивания, а также оценивания рисков.</span></p>',
+       '<p>Наша юридическая фирма проводит налоговые консультации по налоговому законодательству для физических и для юридических лиц. Организациям предоставляются выгодные условия сотрудничества при возникновении налоговых споров.<br /> <br />Юридические консультации по налогообложению, проводятся профессиональными адвокатами в Киеве, которые имеют опыт как в консультировании по налоговым вопросам, так и опыт в досудебном и судебном разрешении налоговых споров. Консультирование по налогам всегда узкоспециализированная сфера, поэтому задействуется адвокат по определенному правовому направлению, например: консультация по возмещению налога на добавленную стоимость, проводит один адвокат, а по консультацию по обжалованию налогового уведомления-решения, другой налоговый юрист. Такой подход, существенно повышает качество юридической консультации за счет использования опыта адвоката в специфических налоговых спорах.<br /> <br />Обратившись в нашу юридическую компанию за юридической консультацией по налогообложению, мы всегда подтвердим на практике грамотную квалификацию налогового адвоката. Если Вы ищите качественную юридическую консультацию по налогам, вы двигаетесь в нужном направлении. Мы поможем получить гарантированно квалифицированную помощь адвокатов по различным вопросам налогового права, начиная от выезда адвоката на предприятие при проведении налоговой проверки до разрешения налогового спора в судебном порядке.</p>',
+       62, '', '', 9, 0, 0, 'publish', 'Administrator', 1428164860, 1428164860, 1436456492, 38, 3, 0, 13),
+  (86, 'Услуги адвоката', '', '', 'Адвокат (лат. advocatus  от advoco  приглашаю)  лицо, профессией которого является оказание квалифицированной юридической помощи физическим лицам (гражданам, лицам без гражданства) и юридическим лицам (организациям), в том числе защита их интересов и прав', '<p><span>У Вас возникли правовые проблемы и вам нужна юридическая поддержка? Обратитесь к квалифицированному адвокату. Наш&nbsp;город включает в себя достаточно разнообразный рынок юридических услуг, которые предоставляют квалифицированные адвокаты. Но довольно сложно найти опытного юриста, знающего свое дело и разбирающегося в действующем законодательстве.&nbsp;</span></p>\n<p></p>', '<p>Впервые адвокаты появились в Древнем Риме. Как отмечал русский юрист и историк права польского происхождения Е. В. Васьковский, &laquo;&hellip; первыми юристами в Риме были патроны. В лице их совмещались две профессии: юрисконсультов и адвокатов&raquo;. Долгое время услуги адвоката выполняли ораторы, которые часто не были знатоками права.</p>\n<p>Цицерон посвятил адвокатам, плохо разбирающимся в правовых вопросов, немало едких слов. Адвокатура республиканского периода Древнего Рима была свободной профессией и никакого корпоративного устройства не имела. Корпорация профессиональных защитников в суде сформировалась в Риме в эпоху Империи, то есть до нашей эры.</p>\n<p>Документально зафиксированная коллегия юристов-защитников формировалась на основе хорошо известных в позднейшие времена принципов: требовалось быть занесённым в матрикулы (официальный список лиц с определённым уровнем доходов) и успешно сдать испытания (экзамены) по праву. Устройство адвокатуры, сложившееся в эпоху Империи, было классическим. Оно стало основой всех последующих видоизменений адвокатуры, вплоть до новейшего времени.</p>', 62, '', '', 7, 0, 0, 'publish', 'Administrator', 1428164894, 1428164894, 1436456711, 319, 3, 0, 18),
+  (87, 'Контакты', '', 'контакты', 'Контакты', '<h3>Телефон горячей линии</h3>\n<p>8&nbsp;(800) 269-12-42</p>\n<h3><span>Телефоны нашего офиса</span></h3>\n<p><span>(044) 269-12-42</span></p>\n<p><span>(044) 269-12-43</span></p>\n<h3>Пишите нам на e-mail</h3>\n<p><span></span></p>\n<p>info@businessimage.com</p>\n<h3><span>Адрес нашего офиса</span></h3>\n<p>Минск, ул. Красочная 22а</p>', '', 0, '', '', 6, 0, 0, 'publish', 'Administrator', 1428165320, 1428165320, 1436521040, 121, 3, 0, 12),
+  (89, 'Объективность как одна из самых важных составляющих', '', 'марта, года, архиве, электронных, препринтов, появилась, статья, хартмана, hartman, коллегами, посвященная, открытию, четырех, транзитных, планет, три, них, являются, горячими, юпитерами, одна, ndash, горячим, сатурном, hat, gsc, слегка, проэволюционировавшая, звезда, спектрального', '16 марта 2015 года в Архиве электронных препринтов появилась статья Дж. Хартмана (J. D. Hartman) с коллегами, посвященная открытию еще четырех транзитных планет. Три из них являются горячими юпитерами, еще одна  горячим сатурном. HAT-P-50 (GSC 0787-00340)', '<p><span>Эффективность принимаемых решений можно оценить только спустя какое-то время, и нередко нельзя точно определить, что явилось причиной улучшений или, наоборот,&nbsp;негативных изменений.</span></p>', '<p><img src="/uploads/images/articles/chair-designer-desk-4927.jpg" alt="" width="900" height="460" /></p>\n<p>Обычно под ненужной работой подразумевается &laquo;мы это могли сделать сами&raquo;. Ненужность также заключается в том, и это особенность самого консалтинга, что результаты работы консультантов зачастую сразу невидны. Эффективность принимаемых решений можно оценить только спустя какое-то время, и нередко нельзя точно определить, что явилось причиной улучшений. Руководству предприятия часто кажется, что это оно само смогло скорректировать и улучшить ситуацию, а консультанты здесь ни причем. В общем, это вопрос больше исторический, чем риторический.</p>\n<p>Не так&nbsp;далеки те времена, когда бизнес в нашей стране заключался в приобретении и наращивании активов и их последующей перепродаже. Некоторыми предприятиями услуги консалтинга по большому счету использовались как инструмент &laquo;отмывания&raquo; денег. Вот, типа, пришли консультанты, нарисовали бизнес-процессы за кругленькую сумму и ушли. Никому эти бизнес-процессы не нужны, они так и остались на бумаге, деньги &laquo;распилены&raquo; &ndash; все счастливы.</p>\n<p>С другой стороны (и это продолжается до сих пор) многие предприятия приглашают консультантов с целью &laquo;это модно&raquo; или для возможности помахать флагом (особенно, когда приглашают какую-нибудь западную и широкоизвестную компанию) - &laquo;у нас поработали консультанты, нарисовали процессы, а значит мы на мировом уровне&raquo;. В итоге получается забавная картина, когда говорят о бизнес-процессах, многие руководители представляет себе толстенную (и надо сказать дорогую) пачку бумаги с нарисованными квадратиками и стрелочками. Но ведь бизнес-процессы это не квадратики на бумаге, это реально работающие процессы на предприятии. Дальше нечестность порождает еще большую нечестность, у консультантов в голове крутятся доллары, бессмысленность и ненужность работы, и в итоге пошел процесс &laquo;нужно побольше придумать себе работы и побольше взять денег&raquo;. В итоге, получается, что мощный инструмент бизнес-консалтинга используется абсолютно не по назначению.</p>\n<p></p>', 67, '', '', 5, 1, 3, 'publish', 'Administrator', 1429529033, 1429529033, 1436527746, 198, 3, 0, 15),
+  (90, 'Не откладывайте запуск лучших бизнес-идей', '', 'изучение, планетных, систем, звезд, различной, массы, находящихся, разных, стадиях, эволюции, позволяет, глубже, понимать, весь, комплекс, процессов, планетообразования, важной, частью, подобных, исследований, является, поиск, планет, промежуточной, массой, солнечных, будучи, главной, последовательности', 'Изучение планетных систем у звезд различной массы и находящихся на разных стадиях эволюции позволяет глубже понимать весь комплекс процессов планетообразования. Важной частью подобных исследований является поиск и изучение планет у звезд промежуточной мас', '<p>В прошлом году предприниматель и специалист по маркетингу Ной Каган бросил вызов самому себе, запустив бизнес и заработав первые $1000 в течение 24 часов. Тем самым он хотел доказать тот факт, что нет ни единой причины не начать свое предприятие именно сегодня.</p>', '<p><img src="/uploads/images/articles/chair-designer-desk-4929.jpg" alt="" width="900" height="460" /></p>\n<p>В прошлом году предприниматель и специалист по маркетингу Ной Каган бросил вызов самому себе, запустив бизнес и заработав первые $1000 в течение 24 часов. Тем самым он хотел доказать тот факт, что нет ни единой причины не начать свое предприятие именно сегодня. Используя только домен, наскоро созданную landing page и привлеченное к проекту внимание, Каган удивил скептиков и основал прибыльный стартап еще до того, как создал свой первый продукт.</p>\n<p>Лучшие бизнес идеи имеют свойство видоизменяться вместе с бизнес-ландшафтом, об этом стоит помнить. Чтобы быть успешным, не всегда следует оставаться упрямым. Потребуется мобилизация всех запасов смелости для отказа от первичного плана в пользу роста.</p>\n<p>Многие решения предпринимателей могут казаться со стороны безрассудными. Например, оффлайн-ритейлер Amerisleep в один момент полностью отказался от реальных магазинов, сделав ставку на электронную коммерцию. Руководство решило, что лучшие бизнес идеи могут быть воплощены в жизнь в контексте интернета. Потребители и конкуренты видели в этом необоснованный риск и отступление с занятых позиций. Жертвуя каналом сбыта, компания в то же время сбросила оковы территориальных ограничений, а также замедляющие рост арендные выплаты. Помните, стабильность и выгода в краткосрочной перспективе &mdash; главные враги развития и масштабирования бизнеса.</p>', 67, '', '', 4, 1, 2, 'publish', 'Administrator', 1423830381, 1423830381, 1436527719, 35, 3, 0, 14),
+  (92, 'Андрей Павличенко', '', 'компания, показала, себя, надежного, партнера, вовремя, были, сделаны, запланированные, работы, организованы, рекламные, кампании, чувствуется, профессионализм', 'Компания показала себя как надежного партнера, вовремя были сделаны все запланированные работы и организованы рекламные кампании, чувствуется профессионализм', 'Компания показала себя как надежного партнера, вовремя были сделаны все запланированные работы и организованы рекламные кампании, чувствуется профессионализм', '', 66, '', '', 3, 0, 0, 'publish', 'Administrator', 1429362249, 1429362249, 1436386855, 0, 3, 0, 7),
+  (93, 'Артур Рудковский', '', 'выражаю, благодарность, компании, реализацию, проекта, повышению, эффективности, бизнес, процессов, нашей, проектированию, новой, организационной, структуры', 'Выражаю благодарность компании за реализацию проекта по повышению эффективности бизнес-процессов в нашей компании и проектированию новой организационной структуры.', '<p>Выражаю благодарность компании за реализацию проекта по повышению эффективности бизнес-процессов в нашей компании и проектированию новой организационной структуры.</p>', '', 66, '', '', 2, 0, 0, 'publish', 'Administrator', 1429362954, 1429362954, 1429376272, 3, 3, 0, 8),
+  (84, 'Бизнес-консалтинг', '', '', 'Бизнес-консалтинг  вид услуг, связанный с подготовкой рекомендаций по достижению поставленных целей в экономической деятельности. Бизнес-консалтинг может включать в себя не только консультационную поддержку, но и саму реализацию управленческих решений. Та', '<p>Бизнес-консалтинг &ndash; вид услуг, связанный с подготовкой рекомендаций по достижению поставленных целей в экономической деятельности. Бизнес-консалтинг может включать в себя не только консультационную поддержку, но и саму реализацию управленческих решений.</p>', '<p>Сообщения для потребителей отправляются бизнесом по традиционным каналам в надежде быть услышанным. Интернет-маркетинг же инициирует постоянный диалог между компаниями и клиентами. При этом охват собеседников может быть по-настоящему широким, но, говоря о качественном составе аудитории, следует отметить тот факт, что не все ее сегменты доступны в рамках цифровых коммуникаций. Кроме того, далеко не каждая группа пользователей интернет является платежеспособной, а, значит, теряется контакт с людьми, представляющими наибольший интерес для бизнеса. Таким образом, конечных пользователей многих брендов до сих пор можно достичь лишь традиционными методами, какими бы технически устаревшими те не были.</p>\n<p>Цифровой маркетинг динамичен, он характеризуется высокой скоростью доставки любых видов контента. Аудитория в мгновение ока может получить информацию, представленную в текстовом или графическом виде. К тому же, эффективность коммуникации может быть измерена в режиме реального времени, что позволяет очень быстро адаптироваться в соответствие с малейшими изменениями для улучшения результатов.</p>', 62, '', '', 11, 0, 0, 'publish', 'Administrator', 1428164555, 1428164555, 1436456692, 66, 3, 0, 9),
+  (109, 'Консультирование по управлению компьютерной структурой', '', 'марта, архиве, электронных, препринтов, появилась, статья, посвященная, итогам, мониторинга, наблюдательной, площадки, кампания, который, проводился, мая, августа, года, обнаружено, транзитных, кандидатов, звезды, прошли, процедуру, валидации, статистического, подтверждения, причем, ndash, впервые, достоверность', '26 марта в Архиве электронных препринтов появилась статья, посвященная итогам мониторинга 1-й наблюдательной площадки (Кампания 1), который проводился с 30 мая по 21 августа 2014 года. Обнаружено 36 транзитных кандидатов у 31 звезды. 18 кандидатов прошли', '<p><span>Стремительный прогресс в области информационных технологий привел к тому, что они прочно вошли в нашу повседневную жизнь.&nbsp;</span><span>Сложно представить область человеческой деятельности, где бы информационные технологии не использовались в той или иной мере.&nbsp;</span></p>', '<p><img src="/uploads/images/articles/chair-designer-desk-4936.jpg" alt="" width="900" height="460" /></p>\n<p>Стремительный прогресс в области информационных технологий привел к тому, что они прочно вошли в нашу повседневную жизнь.&nbsp;Сложно представить область человеческой деятельности, где бы информационные технологии не использовались в той или иной мере.&nbsp;От того насколько квалифицированно решаются задачи в области ИТ напрямую зависит успешность и конкурентоспособность бизнеса.&nbsp;В наше время лавинообразного роста предложений на рынке ИТ услуг, появления большого колличества программных продуктов, технических решений от именитых так и не очень производителей зачастую приводит непосвященного в состояние полной неразберихи.&nbsp;Пытаясь принять решение, перед руководителем предприятия зачастую встают вопросы с чего начать,&nbsp;как делать&nbsp;и&nbsp;кому делать?<br /><br />Эти и многие другие вопросы возникают не только у начинающих руководителей малых и средних предприятий, но и у куда более опытных их коллег.&nbsp;Хорошо если рядом есть доверенный профессионал, который поможет советом и даст ответы на насущные вопросы квалифицированно и понятно.&nbsp;Наши консультанты готовы помочь вам. Имея многолетний практический опыт в предметных областях, предлагаем выверенные временем решения.<br /><br />Наша компания&nbsp;осуществляет консультирование предприятий по вопросам управления компьютерной структурой, автоматизации бизнес-процессов, выбора программных, аппаратных платформ и поставщиков оборудования.&nbsp;На основе многолетнего опыта работы предлагаем выверенные временем решения.</p>', 69, '', '', 0, 1, 3, 'publish', 'Administrator', 1427887795, 1427887795, 1436527614, 154, 3, 0, 11),
+  (110, 'Главная вещь, которая стоит между вами и успехом', '', 'марта, года, архиве, электронных, препринтов, появилась, статья, луиджи, манчини, luigi, mancini, коллегами, посвященная, открытию, двух, новых, экзопланет, hats, подавляющее, большинство, других, обнаруженных, наземными, транзитными, обзорами, обе, планеты, являются, горячими, юпитерами', '12 марта 2015 года в Архиве электронных препринтов появилась статья Луиджи Манчини (Luigi Mancini) с коллегами, посвященная открытию двух новых экзопланет HATS-13 b и HATS-14 b. Как и подавляющее большинство других экзопланет, обнаруженных наземными транз', '<p>Чтобы начать бизнес, нужно сделать очень много действительно важных вещей: исследовать рынок, найти целевую аудиторию, определить ее&nbsp;потребности, разработать удовлетворяющий их продукт, продумать маркетинг, посчитать бюджет.</p>', '<p><img src="/uploads/images/articles/chair-designer-desk-4928.jpg" alt="" width="900" height="460" /></p>\n<p>Мало кто был способен настолько метко формулировать великие мысли, как Генри Форд (Henry Ford), который подметил: &laquo;Верите вы, что сможете, либо верите, что не сможете &ndash; вы правы&raquo;. Kюди не пробуют! Многие талантливые и подающие надежды бизнесмены в самом начале своего пути не добиваются успеха, потому что не верят в свои силы и боятся рисковать. Предпосылки могут быть самые разные:&nbsp;Затянувшиеся размышления, после которых не остается сил &laquo;нажать на курок&raquo;, то есть начать действовать. Консервативные родственники, друзья или &laquo;советчики&raquo;, которые боятся сделать это сами и &laquo;предупреждают&raquo; других. Слишком долгая подготовка, которая не дает желаемого результата и дает преимущество тем, кто действует.</p>\n<p>Если у вас есть идея &mdash; реализуйте ее как можно скорее и с минимальными денежными вложениями. И наблюдайте за происходящим. Возможно, вы поймете, что на правильном пути. В большинстве случаев этот этап показывает, что нужно изменить и над чем поработать, чтобы развиваться в правильном направлении. Это естественно &mdash; и через это проходят все. И даже если у вас не получилось &mdash; в этом нет никакой катастрофы, ведь вы минимизировали свои затраты. Поэтому у вас еще должно остаться достаточно сил и средств на новые попытки.</p>\n<p>Главное препятствие к вашему успеху &mdash; страх. Чтобы добиться успеха в новом бизнесе, не бойтесь идти на риск. У баскетболистов и хоккеистов есть выражение: &laquo;Ты промахиваешься в 100% случаев, когда не пробуешь&raquo;. Думаем, оно лучше всего передает смысл нашего сегодняшнего материала. Действуйте!</p>', 69, '', '', 1, 1, 0, 'publish', 'Administrator', 1426335738, 1426335738, 1436527679, 25, 3, 0, 10),
+  (129, 'Контакти', '', '', '', '<h3>Телефон гарячої лінії</h3>\n<p>8&nbsp;(800) 269-12-42</p>\n<h3><span>Телефони нашого&nbsp;офісу</span></h3>\n<p><span>(044) 269-12-42</span></p>\n<p><span>(044) 269-12-43</span></p>\n<h3>Пишіть нам на e-mail</h3>\n<p>info@businessimage.com<br /><span></span></p>\n<h3><span>Адреса нашого офісу</span></h3>\n<p>Мінськ, вул. Барвиста 22а</p>', '', 0, '', '', 0, 0, 0, 'publish', 'Administrator', 1428165320, 1428165320, 1436777787, 4, 32, 87, 12),
+  (130, 'Послуги адвоката', '', '', '', '<p>У Вас виникли правові проблеми і вам потрібна юридична підтримка? Зверніться до кваліфікованого адвоката. Наше місто включає в себе досить різноманітний ринок юридичних послуг, які надають кваліфіковані адвокати. Але досить складно знайти досвідченого юриста, який знає свою справу і розбирається в чинному законодавстві.</p>', '<p>Вперше адвокати з\'явилися в Стародавньому Римі. Як зазначав російський юрист і історик права польського походження Е. В. Васьковський, &laquo;... першими юристами в Римі були патрони. В особі їх поєднувалися дві професії: юрисконсультів і адвокатів &raquo;. Довгий час послуги адвоката виконували оратори, які часто вже не були знавцями права.</p>\n<p>Цицерон присвятив адвокатам, погано розбирається в правових питань, чимало їдких слів. Адвокатура республіканського періоду Стародавнього Риму була вільною професією і ніякого корпоративного пристрою не мала. Корпорація професійних захисників у суді сформувалася в Римі в епоху Імперії, тобто до нашої ери.</p>\n<p>Документально зафіксована колегія юристів-захисників формувалася на основі добре відомих в пізніші часи принципів: вимагалося бути занесеним в матрикули (офіційний список осіб з певним рівнем доходів) та успішно скласти випробування (іспити) по праву. Пристрій адвокатури, що склалося в епоху Імперії, було класичним. Воно стало основою всіх подальших видозмін адвокатури, аж до новітнього часу.</p>', 62, '', '', 0, 0, 0, 'publish', 'Administrator', 1428164894, 1428164894, 1436779421, 12, 32, 86, 18),
+  (131, '', NULL, NULL, NULL, NULL, '', 62, '', '', 0, 0, 0, 'publish', 'Administrator', 1428164894, 1428164894, 0, 3, 33, 86, 18),
+  (132, 'Податкові консультації', '', '', 'Податок - обов\'язковий, індивідуально безвідплатний платіж, примусово стягується органами державної влади різних рівнів з організацій і фізичних осіб з метою фінансового забезпечення діяльності держави і (або) муніципальних утворень. Податки бувають офіці', '<p>Cьогодні жодне підприємство не обходиться без мінімальної податкової консультації. Наша компанія пропонує повний спектр послуг в плані правильної побудови і складання податкових обкладань, черговості їх виплачування, а також оцінювання ризиків.</p>', '<p>Наша юридична фірма проводить податкові консультації з податкового законодавства для фізичних і для юридичних осіб. Організаціям надаються вигідні умови співпраці при виникненні податкових спорів.</p>\n<p>Юридичні консультації з оподаткування, проводяться професійними адвокатами в Києві, які мають досвід як у консультуванні з податкових питань, так і досвід в досудовому та судовому вирішенні податкових спорів. Консультування з податків завжди вузькоспеціалізована сфера, тому задіюється адвокат по певному правовому напрямку, наприклад: консультація з відшкодування податку на додану вартість, проводить один адвокат, а по консультацію щодо оскарження податкового повідомлення-рішення, інший податковий юрист. Такий підхід, істотно підвищує якість юридичної консультації за рахунок використання досвіду адвоката в специфічних податкових суперечках.</p>\n<p>Звернувшись в нашу юридичну компанію за юридичною консультацією з оподаткування, ми завжди підтвердимо на практиці грамотну кваліфікацію податкового адвоката. Якщо Ви шукайте якісну юридичну консультацію з податків, ви рухаєтеся в потрібному напрямку. Ми допоможемо отримати гарантовано кваліфіковану допомогу адвокатів з різних питань податкового права, починаючи від виїзду адвоката на підприємство при проведенні податкової перевірки до дозволу податкового спору в судовому порядку.</p>', 62, '', '', 0, 0, 0, 'publish', 'Administrator', 1428164860, 1428164860, 1436779320, 5, 32, 85, 13),
+  (136, 'Не відкладайте запуск кращих бізнес-ідей', '', '', '', '<p>Торік підприємець і фахівець з маркетингу Ной Каган кинув виклик самому собі, запустивши бізнес і заробивши перші $ 1000 протягом 24 годин. Тим самим він хотів довести той факт, що немає жодної причини не почати своє підприємство саме сьогодні.</p>', '<p><img src="/uploads/images/articles/chair-designer-desk-4929.jpg" alt="" width="900" height="460" /></p>\n<p>Торік підприємець і фахівець з маркетингу Ной Каган кинув виклик самому собі, запустивши бізнес і заробивши перші $ 1000 протягом 24 годин. Тим самим він хотів довести той факт, що немає жодної причини не почати своє підприємство саме сьогодні. Використовуючи тільки домен, нашвидку створену landing page і притягнуте до проекту увагу, Каган здивував скептиків і заснував прибутковий стартап ще до того, як створив свій перший продукт.</p>\n<p>Кращі бізнес ідеї мають властивість видозмінюватися разом з бізнес-ландшафтом, про це варто пам\'ятати. Щоб бути успішним, не завжди слід залишатися впертим. Буде потрібно мобілізація всіх запасів сміливості для відмови від первинного плану на користь зростання.</p>\n<p>Багато рішень підприємців можуть здаватися з боку безрозсудними. Наприклад, оффлайн-рітейлер Amerisleep в один момент повністю відмовився від реальних магазинів, зробивши ставку на електронну комерцію. Керівництво вирішило, що кращі бізнес ідеї можуть бути втілені в життя в контексті інтернету. Споживачі і конкуренти бачили в цьому необгрунтований ризик і відступ із зайнятих позицій. Жертвуючи каналом збуту, компанія в той же час скинула окови територіальних обмежень, а також сповільнюють ріст орендні виплати. Пам\'ятайте, стабільність і вигода в короткостроковій перспективі - головні вороги розвитку і масштабування бізнесу.</p>', 67, '', '', 0, 0, 0, 'publish', 'Administrator', 1423830381, 1423830381, 1436776826, 0, 32, 90, 14),
+  (133, 'Артур Рудковський', '', '', '', '<p>Висловлюю подяку компанії за реалізацію проекту з підвищення ефективності бізнес-процесів в нашій компанії і проектування нової організаційної структури.</p>', '', 66, '', '', 0, 0, 0, 'publish', 'Administrator', 1429362954, 1429362954, 1436777676, 1, 32, 93, 8),
+  (134, 'Андрій Павличенко', '', '', '', '<p>Компанія показала себе як надійного партнера, вчасно були зроблені всі заплановані роботи і організовані рекламні кампанії, відчувається професіоналізм</p>', '', 66, '', '', 0, 0, 0, 'publish', 'Administrator', 1429362249, 1429362249, 1436386848, 1, 32, 92, 7),
+  (135, '', NULL, NULL, NULL, NULL, '', 66, '', '', 0, 0, 0, 'publish', 'Administrator', 1429362249, 1429362249, 0, 0, 33, 92, 7),
+  (121, 'Оптимизация налогов и управление налоговыми рисками', '', 'марта, архиве, электронных, препринтов, появилась, статья, посвященная, итогам, мониторинга, наблюдательной, площадки, кампания, который, проводился, мая, августа, года, обнаружено, транзитных, кандидатов, звезды, прошли, процедуру, валидации, статистического, подтверждения, причем, ndash, впервые, достоверность', '26 марта в Архиве электронных препринтов появилась статья, посвященная итогам мониторинга 1-й наблюдательной площадки (Кампания 1), который проводился с 30 мая по 21 августа 2014 года. Обнаружено 36 транзитных кандидатов у 31 звезды. 18 кандидатов прошли', '<p>Реалии нашего бизнеса таковы, что стремление к снижению налоговой нагрузки присуще практически каждому предприятию, независимо от рода и географии его деятельности. Но почему при этом не использовать легальные способы оптимизации налогообложения?&nbsp;</p>', '<p><img src="/uploads/images/articles/woman-typing-writing-windows-4.jpg" alt="" width="900" height="460" /></p>\n<p>Как правило, общение с контролирующими органами не всегда является удовольствием для бухгалтеров или руководителей компаний. Почему так? Потому, что представитель налоговой инспекции приходит для того, чтобы найти ошибки в ведении бухгалтерского или налогового учета, а причина возникновения ошибки &ndash; случайно или специально &ndash; для налоговиков не имеет значения.</p>\n<p>Реалии нашего бизнеса таковы, что стремление к снижению налоговой нагрузки присуще практически каждому предприятию, независимо от рода и географии его деятельности. Но почему при этом не использовать легальные способы оптимизации налогообложения? Налоговая оптимизация &ndash; это легитимное, эффективное налоговое планирование начислений и уплат в бюджет. Использование легальной оптимизации налогов позволит избежать множества проблем и негативных последствий.</p>\n<p>Для того, чтобы правильно использовать методы минимизации налогов, следует ориентироваться на такие пункты налогового планирования, которые позволят составить индивидуальные схемы оптимизации налогообложения. На российском рынке можно встретить много различных предложений об оказании налоговых услуг. Но большинство из них помогают устранить только часть проблем, связанных с налогами. Поэтому необходимо обращаться к экспертам, которые комплексно подойдут к решению данной задачи.</p>', 64, '', '', 1, 1, 3, 'publish', 'Administrator', 1427887795, 1427887795, 1436527811, 119, 3, 0, 16),
+  (124, 'Про компанию', '', 'heading, lorem, ipsum, dolor, sit, amet, consectetuer, adipiscing, elit, aenean, commodo, ligula, eget, massa, cum, sociis, natoque, penatibus, text, level, semantics, this, should, hidden, all, bsysrowsers, apart, from, the, element', 'Heading 1 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et m. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa', '<p>Компания&nbsp;<span>Business </span><span>Image&nbsp;</span>является передовым экспертом в области повышения эффективности ведения бизнеса и управления проектами. Мы разрабатываем и внедряем маркетинговые кейсы, предоставляя уникальное качество услуг бизнес консалтинга. Мы&nbsp;обладаем&nbsp;навыками системного мышления и многолетним опытом в реализации маркетинговых проектов.&nbsp;</p>\n<p>Нашей специализацией являются&nbsp;информационные технологии в связке с уникальными маркетинговыми инструментами. Мы полностью включаемся в проект и берем на себя его комплексное сопровождение, а не просто раздаем умные советы.&nbsp;</p>', '<p>Разработка стратегий и внедрение проектов по развитию бизнеса, повышению эффективности и автоматизации процессов&nbsp;&mdash; наш профиль.&nbsp;Превращаем свой опыт и знания в вашу прибыль&nbsp;и&nbsp;будем для вас надежным партнером в сфере услуг бизнес-консалтинга!</p>\n<h2>Специализация</h2>\n<p>Информационные технологии в связке с уникальными маркетинговыми инструментами являются нашим главным вектором. Наша отличительная черта &mdash; реализация проектов на основе методов процессного консалтинга, т.е. мы полностью включаемся в проект и берем на себя его комплексное сопровождение, а не просто раздаем умные советы. Мы действуем исключительно в рамках интереса клиента, используя только рабочие и эффективные решения.</p>\n<p>Компания Business Image&nbsp;является передовым экспертом в области повышения эффективности ведения бизнеса и управления проектами. Мы разрабатываем и внедряем передовые маркетинговые и ИТ кейсы, предоставляя уникальное качество услуг бизнес консалтинга. Мы &mdash; команда профессионалов, обладающая навыками системного мышления и многолетним опытом в реализации информационно-технических и маркетинговых проектов. Основная цель, которую мы преследуем &mdash; развитие бизнеса и достижение новых высот наших клиентов, путем разработки и внедрения сложных маркетинговых стратегий и передовых систем автоматизации.&nbsp;</p>\n<h2>Наши&nbsp;возможности</h2>\n<p>Если вы еще размышляете, прибегать к услугам нашей компании, обратиться к конкурентам, или же выполнять задачи собственными силами, мы можем продемонстрировать вам&nbsp;краткий перечень аргументов, которые позволят вам сделать правильный выбор.</p>\n<h4>Эффективные решения</h4>\n<p>Безусловно, наши решения отличаются свежестью и современностью, но в первую очередь они являются эффективными и приносящими реально ощутимую выгоду. Проверенные многолетним опытом и критическими ситуациями,&nbsp;наши решения помогут найти выход в любом положении и, кроме того, обеспечит устойчивое положение вашей компании в будущем.</p>\n<h4>Специалисты</h4>\n<p>Наши специалисты обладают особыми знаниями и навыками, которые практически невозможно получить выполняя задачи в рамках одной компании.&nbsp;Для реализации поставленной задачи вам требуется либо отвлечь Вашего штатного специалиста от текущих задач, либо нанять нового. Мы же готовы тратить столько времени, сколько необходимо, ни больше, ни меньше.</p>\n<h4>Консультанты</h4>\n<p>Наши консультанты всегда являются независимыми объективными экспертами, дающими свежий взгляд со стороны и остающимися беспристрастными в любой ситуации.&nbsp;Консультанты нашей компании, конечно, смогут подержать вас и выслушать, но их решение будет основано только на профессионализме и опыте, поэтому будьте готовы к решениям, которые не совсем отвечают вашим ожиданиям.&nbsp;</p>', 0, '', '', 0, 0, 0, 'publish', 'Administrator', 1433755063, 1433755063, 1436437101, 386, 3, 0, 17),
+  (122, 'Kepler spacecraft', '', '', '', '<p>Kepler is a space observatory launched by NASA to discover Earth-like planets orbiting other stars. The spacecraft, named after the Renaissance astronomer Johannes Kepler, was launched on March 7, 2009.</p>', '<p>Designed to survey a portion of our region of the Milky Way to discover dozens of Earth-size extrasolar planets in or near the habitable zone and estimate how many of the billions of stars in our galaxy have such planets, Kepler\'s sole instrument is a photometer that continually monitors the brightness of over 145,000 main sequence stars in a fixed field of view. These data are transmitted to Earth, then analyzed to detect periodic dimming caused by extrasolar planets that cross in front of their host star.</p>\n<p>Kepler is part of NASA\'s Discovery Program of relatively low-cost, focused primary science missions. The telescope\'s construction and initial operation were managed by NASA\'s Jet Propulsion Laboratory, with Ball Aerospace responsible for developing the Kepler flight system. The Ames Research Center is responsible for the ground system development, mission operations since December 2009, and scientific data analysis. The initial planned lifetime was 3.5 years, but greater-than-expected noise in the data, from both the stars and the spacecraft, meant additional time was needed to fulfill all mission goals. Initially, in 2012, the mission was expected to last until 2016, but this would only have been possible if all remaining reaction wheels used for pointing the spacecraft remained reliable. On May 11, 2013, a second of four reaction wheels failed, disabling the collection of science data and threatening the continuation of the mission.</p>', 62, '', '', 0, 0, 0, 'publish', 'Administrator', 1428164555, 1428164555, 1431860696, 2, 33, 84, 9),
+  (123, 'Бізнес-консалтинг', '', '',
+        'Бізнес-консалтинг - вид послуг, пов\'язаний з підготовкою рекомендацій щодо досягнення поставлених цілей в економічній діяльності. Бізнес-консалтинг може включати в себе не тільки консультаційну підтримку, а й саму реалізацію управлінських рішень. Також до',
+        '<p>Бізнес-консалтинг - вид послуг, пов\'язаний з підготовкою рекомендацій щодо досягнення поставлених цілей в економічній діяльності. Бізнес-консалтинг може включати в себе не тільки консультаційну підтримку, а й саму реалізацію управлінських рішень.</p>',
+        '<p>Повідомлення для споживачів відправляються бізнесом за традиційними каналами в надії бути почутим. Інтернет-маркетинг же ініціює постійний діалог між компаніями і клієнтами. При цьому охоплення співрозмовників може бути по-справжньому широким, але, говорячи про якісний склад аудиторії, слід відзначити той факт, що не всі її сегменти доступні в рамках цифрових комунікацій. Крім того, далеко не кожна група користувачів інтернет є платоспроможною, а, значить, втрачається контакт з людьми, що представляють найбільший інтерес для бізнесу. Таким чином, кінцевих користувачів багатьох брендів досі можна досягти лише традиційними методами, якими б технічно застарілими ті були.</p>\n<p>Цифровий маркетинг динамічний, він характеризується високою швидкістю доставки будь-яких видів контенту. Аудиторія миттю може отримати інформацію, представлену в текстовому або графічному вигляді. До того ж, ефективність комунікації може бути виміряна в режимі реального часу, що дозволяє дуже швидко адаптуватися у відповідність із найменшими змінами для покращення результатів.</p>',
+        62, '', '', 0, 0, 0, 'publish', 'Administrator', 1428164555, 1428164555, 1436779379, 6, 32, 84, 9),
+  (126, 'Про компанію', '', '', '',
+        '<p>Компанія Business Image є передовим експертом в галузі підвищення ефективності ведення бізнесу та управління проектами. Ми розробляємо і впроваджуємо маркетингові кейси, надаючи унікальну якість послуг бізнес консалтингу. Ми володіємо навичками системного мислення і багаторічним досвідом в реалізації маркетингових проектів.</p>\n<p>Нашою спеціалізацією є інформаційні технології в зв\'язці з унікальними маркетинговими інструментами. Ми повністю включаємось в проект і беремо на себе його комплексний супровід, а не просто роздаємо розумні поради.</p>',
+        '<p>Розробка стратегій та впровадження проектів з розвитку бізнесу, підвищенню ефективності та автоматизації процесів - наш профіль. Перетворюємо свій досвід і знання в вашу прибуток і будемо для вас надійним партнером у сфері послуг бізнес-консалтингу!</p>\n<h2>Спеціалізація</h2>\n<p>Інформаційні технології в зв\'язці з унікальними маркетинговими інструментами є нашим головним вектором. Наша відмінна риса - реалізація проектів на основі методів процесного консалтингу, тобто ми повністю включаємось в проект і беремо на себе його комплексний супровід, а не просто роздаємо розумні поради. Ми діємо виключно в рамках інтересу клієнта, використовуючи тільки робітники і ефективні рішення.</p>\n<p>Компанія Business Image є передовим експертом в галузі підвищення ефективності ведення бізнесу та управління проектами. Ми розробляємо і впроваджуємо передові маркетингові та ІТ кейси, надаючи унікальну якість послуг бізнес консалтингу. Ми - команда професіоналів, що володіє навичками системного мислення і багаторічним досвідом в реалізації інформаційно-технічних і маркетингових проектів. Основна мета, яку ми переслідуємо - розвиток бізнесу і досягнення нових висот наших клієнтів, шляхом розробки та впровадження складних маркетингових стратегій і передових систем автоматизації.</p>\n<h2>Наші можливості</h2>\n<p>Якщо ви ще роздумуєте, вдаватися до послуг нашої компанії, звернутися до конкурентів, або ж виконувати завдання власними силами, ми можемо продемонструвати вам короткий перелік аргументів, які дозволять вам зробити правильний вибір.</p>\n<h4>Эфективні рішення</h4>\n<p>Безумовно, наші рішення відрізняються свіжістю і сучасністю, але в першу чергу вони є ефективними і приносять реально відчутну вигоду. Перевірені багаторічним досвідом і критичними ситуаціями, наші рішення допоможуть знайти вихід у будь-якому положенні і, крім того, забезпечить стійке положення вашої компанії в майбутньому.</p>\n<h4>Спеціалісти</h4>\n<p>Наші фахівці володіють особливими знаннями і навичками, які практично неможливо отримати виконуючи завдання в рамках однієї компанії. Для реалізації поставленого завдання вам потрібно або відвернути Вашої штатного фахівця від поточних завдань, або найняти нового. Ми ж готові витрачати стільки часу, скільки необхідно, ні більше, ні менше.</p>\n<h4>Консультанти</h4>\n<p>Наші консультанти завжди є незалежними об\'єктивними експертами, що дають свіжий погляд з боку і залишаються неупередженими в будь-якій ситуації. Консультанти нашої компанії, звичайно, зможуть потримати вас і вислухати, але їхнє рішення буде засновано тільки на професіоналізм і досвід, тому будьте готові до рішень, які не зовсім відповідають вашим очікуванням.</p>',
+        0, '', '', 0, 0, 0, 'publish', 'Administrator', 1433755063, 1433755063, 1436779227, 13, 32, 124, 17),
+  (137, 'Об\'єктивність як одна з найважливіших складових', '', '', '',
+        '<p>Ефективність прийнятих рішень можна оцінити тільки через якийсь час, і нерідко можна точно визначити, що стало причиною поліпшень або, навпаки, негативних змін.</p>',
+        '<p><img src="/uploads/images/articles/chair-designer-desk-4927.jpg" alt="" width="900" height="460" /></p>\n<p>Зазвичай під непотрібною роботою мається на увазі &laquo;ми це могли зробити самі&raquo;. Непотрібність також полягає в тому, і це особливість самого консалтингу, що результати роботи консультантів найчастіше відразу невидно. Ефективність прийнятих рішень можна оцінити тільки через якийсь час, і нерідко можна точно визначити, що стало причиною поліпшень. Керівництву підприємства часто здається, що це воно саме змогло скорегувати й поліпшити ситуацію, а консультанти тут ні причому. Загалом, це питання більше історичний, ніж риторичне.</p>\n<p>Не так далекі ті часи, коли бізнес у нашій країні полягав у придбанні та нарощуванні активів та їх подальшої перепродажі. Деякими підприємствами послуги консалтингу за великим рахунком використовувалися як інструмент &laquo;відмивання&raquo; грошей. Ось, типу, прийшли консультанти, намалювали бізнес-процеси за кругленьку суму і пішли. Нікому ці бізнес-процеси не потрібні, вони так і залишилися на папері, гроші &laquo;розпиляні&raquo; - всі щасливі.</p>\n<p>З іншого боку (і це триває досі) багато підприємств запрошують консультантів з метою &laquo;це модно&raquo; або для можливості помахати прапором (особливо, коли запрошують якусь західну і широковідомих компанію) - &laquo;у нас попрацювали консультанти, намалювали процеси, а значить ми на світовому рівні &raquo;. У підсумку виходить кумедна картина, коли говорять про бізнес-процеси, багато керівників уявляє собі толстенную (і треба сказати дорогу) пачку паперу з намальованими квадратиками і стрілочками. Але ж бізнес-процеси це не квадратики на папері, це реально працюючі процеси на підприємстві. Далі нечесність породжує ще більшу нечесність, у консультантів в голові крутяться долари, безглуздість і непотрібність роботи, і в підсумку пішов процес &laquo;потрібно побільше придумати собі роботи і побільше взяти грошей&raquo;. У результаті, виходить, що потужний інструмент бізнес-консалтингу використовується абсолютно не за призначенням.</p>',
+        67, '', '', 0, 0, 0, 'publish', 'Administrator', 1429529033, 1429529033, 1436776981, 0, 32, 89, 15),
+  (139, 'Консультування з управління комп\'ютерної структурою', '', '', '',
+        '<p>Стрімкий прогрес у галузі інформаційних технологій призвів до того, що вони міцно увійшли в наше повсякденне життя. Складно уявити галузь людської діяльності, де б інформаційні технології не використовувалися в тій чи іншій мірі.</p>',
+        '<p><img src="/uploads/images/articles/chair-designer-desk-4936.jpg" alt="" width="900" height="460" /></p>\n<p>Стрімкий прогрес у галузі інформаційних технологій призвів до того, що вони міцно увійшли в наше повсякденне життя. Складно уявити галузь людської діяльності, де б інформаційні технології не використовувалися в тій чи іншій мірі. Від того наскільки кваліфіковано вирішуються завдання в галузі ІТ безпосередньо залежить успішність і конкурентоспроможність бізнесу. У наш час лавиноподібного зростання пропозицій на ринку ІТ послуг, появи безлічі програмних продуктів, технічних рішень від іменитих так і не дуже виробників часто призводить необізнаного в стан повної плутанини. Намагаючись прийняти рішення, перед керівником підприємства часто постають питання з чого почати, як робити і кому робити?</p>\n<p>Ці та багато інших питань виникають не тільки у початківців керівників малих і середніх підприємств, а й у куди більш досвідчених їхніх колег. Добре якщо поруч є довірений професіонал, який допоможе порадою і дасть відповіді на нагальні питання кваліфіковано і зрозуміло. Наші консультанти готові допомогти вам. Маючи багаторічний практичний досвід у предметних областях, пропонуємо вивірені часом рішення.</p>\n<p>Наша компанія здійснює консультування підприємств з питань управління комп\'ютерною структурою, автоматизації бізнес-процесів, вибору програмних, апаратних платформ і постачальників устаткування. На основі багаторічного досвіду роботи пропонуємо вивірені часом рішення.</p>',
+        69, '', '', 0, 1, 0, 'publish', 'Administrator', 1427887795, 1427887795, 1436546533, 1, 32, 109, 11),
+  (140, 'Оптимізація податків та управління податковими ризиками', '', '', '',
+        '<p>Реалії нашого бізнесу такі, що прагнення до зниження податкового навантаження притаманне практично кожному підприємству, незалежно від роду та географії його діяльності. Але чому при цьому не використовувати легальні способи оптимізації оподаткування?</p>',
+        '<p><img src="/uploads/images/articles/woman-typing-writing-windows-4.jpg" alt="" width="900" height="460" /></p>\n<p>Як правило, спілкування з контролюючими органами не завжди є задоволенням для бухгалтерів чи керівників компаній. Чому так? Тому, що представник податкової інспекції приходить для того, щоб знайти помилки у веденні бухгалтерського або податкового обліку, а причина виникнення помилки - випадково чи спеціально - для податківців не має значення.</p>\n<p>Реалії нашого бізнесу такі, що прагнення до зниження податкового навантаження притаманне практично кожному підприємству, незалежно від роду та географії його діяльності. Але чому при цьому не використовувати легальні способи оптимізації оподаткування? Податкова оптимізація - це легітимне, ефективне податкове планування нарахувань і сплат до бюджету. Використання легальної оптимізації податків дозволить уникнути безлічі проблем і негативних наслідків.</p>\n<p>Для того, щоб правильно використовувати методи мінімізації податків, слід орієнтуватися на такі пункти податкового планування, які дозволять скласти індивідуальні схеми оптимізації оподаткування. На російському ринку можна зустріти багато різних пропозицій про надання податкових послуг. Але більшість з них допомагають усунути тільки частина проблем, пов\'язаних з податками. Тому необхідно звертатися до експертів, які комплексно підійдуть до вирішення даного завдання.</p>',
+        64, '', '', 0, 1, 0, 'publish', 'Administrator', 1427887795, 1427887795, 1436776332, 4, 32, 121, 16),
+  (141, 'Головна річ, яка стоїть між вами та успіхом', '', '', '',
+        '<p>Щоб розпочати бізнес, потрібно зробити дуже багато дійсно важливих речей: дослідити ринок, знайти цільову аудиторію, визначити її потреби, розробити зрозумілий для них&nbsp;продукт, продумати маркетинг, порахувати бюджет.</p>',
+        '<p><img src="/uploads/images/articles/chair-designer-desk-4928.jpg" alt="" width="900" height="460" /></p>\n<p>Мало хто був здатний настільки влучно формулювати великі думки, як Генрі Форд (Henry Ford), який помітив: &laquo;Чи вірите ви, що зможете, або вірите, що не зможете - ви праві&raquo;. Люди не пробують! Багато талановитих і подають надії бізнесмени на самому початку свого шляху не домагаються успіху, бо не вірять у свої сили і бояться ризикувати. Передумови можуть бути самі різні: Тривалі роздуми, після яких не залишається сил &laquo;натиснути на курок&raquo;, тобто почати діяти. Консервативні родичі, друзі або &laquo;порадники&raquo;, які бояться зробити це самі і &laquo;попереджають&raquo; інших. Занадто довга підготовка, яка не дає бажаного результату і дає перевагу тим, хто діє.</p>\n<p>Якщо у вас є ідея - реалізуйте її якомога швидше і з мінімальними грошовими вкладеннями. І спостерігайте за подіями. Можливо, ви зрозумієте, що на правильному шляху. У більшості випадків цей етап показує, що потрібно змінити і над чим попрацювати, щоб розвиватися в правильному напрямку. Це природно - і через це проходять всі. І навіть якщо у вас не вийшло - в цьому немає ніякої катастрофи, адже ви мінімізували свої витрати. Тому у вас ще повинно залишитися достатньо сил і засобів на нові спроби.</p>\n<p>Головна перешкода до вашого успіху - страх. Щоб домогтися успіху в новому бізнесі, не бійтеся йти на ризик. У баскетболістів і хокеїстів є вираз: &laquo;Ти промахується в 100% випадках, коли не поробиш&raquo;. Думаємо, воно найкраще передає зміст нашого сьогоднішнього матеріалу. Дійте!</p>',
+        69, '', '', 0, 1, 0, 'publish', 'Administrator', 1426335738, 1426335738, 1436776661, 3, 32, 110, 10);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `content_fields`
+--
+
+DROP TABLE IF EXISTS `content_fields`;
+CREATE TABLE `content_fields` (
+  `field_name` VARCHAR(255) NOT NULL,
+  `type`       VARCHAR(255) NOT NULL,
+  `label`      VARCHAR(255) NOT NULL,
+  `data`       TEXT         NOT NULL,
+  `weight`     INT(11)      NOT NULL,
+  `in_search`  TINYINT(1) DEFAULT '0'
+)
+  ENGINE = MyISAM
+  DEFAULT CHARSET = utf8;
+
+--
+-- Дамп даних таблиці `content_fields`
 --
 
 INSERT INTO `content_fields` (`field_name`, `type`, `label`, `data`, `weight`, `in_search`) VALUES
@@ -455,27 +478,22 @@ INSERT INTO `content_fields` (`field_name`, `type`, `label`, `data`, `weight`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `content_fields_data`
+-- Структура таблиці `content_fields_data`
 --
 
 DROP TABLE IF EXISTS `content_fields_data`;
-CREATE TABLE IF NOT EXISTS `content_fields_data` (
-  `id`         INT(11)      NOT NULL AUTO_INCREMENT,
+CREATE TABLE `content_fields_data` (
+  `id`         INT(11)      NOT NULL,
   `item_id`    INT(11)      NOT NULL,
   `item_type`  VARCHAR(15)  NOT NULL,
   `field_name` VARCHAR(255) NOT NULL,
-  `data`       TEXT         NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `item_id` (`item_id`),
-  KEY `item_type` (`item_type`),
-  KEY `field_name` (`field_name`)
+  `data`       TEXT         NOT NULL
 )
   ENGINE = MyISAM
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 89;
+  DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `content_fields_data`
+-- Дамп даних таблиці `content_fields_data`
 --
 
 INSERT INTO `content_fields_data` (`id`, `item_id`, `item_type`, `field_name`, `data`) VALUES
@@ -525,11 +543,11 @@ INSERT INTO `content_fields_data` (`id`, `item_id`, `item_type`, `field_name`, `
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `content_fields_groups_relations`
+-- Структура таблиці `content_fields_groups_relations`
 --
 
 DROP TABLE IF EXISTS `content_fields_groups_relations`;
-CREATE TABLE IF NOT EXISTS `content_fields_groups_relations` (
+CREATE TABLE `content_fields_groups_relations` (
   `field_name` VARCHAR(64) NOT NULL,
   `group_id`   INT(3)      NOT NULL
 )
@@ -537,7 +555,7 @@ CREATE TABLE IF NOT EXISTS `content_fields_groups_relations` (
   DEFAULT CHARSET = latin1;
 
 --
--- Дамп данных таблицы `content_fields_groups_relations`
+-- Дамп даних таблиці `content_fields_groups_relations`
 --
 
 INSERT INTO `content_fields_groups_relations` (`field_name`, `group_id`) VALUES
@@ -552,23 +570,20 @@ INSERT INTO `content_fields_groups_relations` (`field_name`, `group_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `content_field_groups`
+-- Структура таблиці `content_field_groups`
 --
 
 DROP TABLE IF EXISTS `content_field_groups`;
-CREATE TABLE IF NOT EXISTS `content_field_groups` (
-  `id`          INT(11)      NOT NULL AUTO_INCREMENT,
+CREATE TABLE `content_field_groups` (
+  `id`          INT(11)      NOT NULL,
   `name`        VARCHAR(255) NOT NULL,
-  `description` TEXT,
-  PRIMARY KEY (`id`),
-  KEY `name` (`name`)
+  `description` TEXT
 )
   ENGINE = MyISAM
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 14;
+  DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `content_field_groups`
+-- Дамп даних таблиці `content_field_groups`
 --
 
 INSERT INTO `content_field_groups` (`id`, `name`, `description`) VALUES
@@ -579,42 +594,35 @@ INSERT INTO `content_field_groups` (`id`, `name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `content_permissions`
+-- Структура таблиці `content_permissions`
 --
 
 DROP TABLE IF EXISTS `content_permissions`;
-CREATE TABLE IF NOT EXISTS `content_permissions` (
-  `id`      BIGINT(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `content_permissions` (
+  `id`      BIGINT(11) NOT NULL,
   `page_id` BIGINT(11) NOT NULL,
-  `data`    TEXT       NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `page_id` (`page_id`)
+  `data`    TEXT       NOT NULL
 )
   ENGINE = MyISAM
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 7;
+  DEFAULT CHARSET = utf8;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `content_tags`
+-- Структура таблиці `content_tags`
 --
 
 DROP TABLE IF EXISTS `content_tags`;
-CREATE TABLE IF NOT EXISTS `content_tags` (
-  `id`      INT(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `content_tags` (
+  `id`      INT(11) NOT NULL,
   `page_id` INT(11) NOT NULL,
-  `tag_id`  INT(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `page_id` (`page_id`),
-  KEY `tag_id` (`tag_id`)
+  `tag_id`  INT(11) NOT NULL
 )
   ENGINE = MyISAM
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 373;
+  DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `content_tags`
+-- Дамп даних таблиці `content_tags`
 --
 
 INSERT INTO `content_tags` (`id`, `page_id`, `tag_id`) VALUES
@@ -652,12 +660,12 @@ INSERT INTO `content_tags` (`id`, `page_id`, `tag_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `custom_fields`
+-- Структура таблиці `custom_fields`
 --
 
 DROP TABLE IF EXISTS `custom_fields`;
-CREATE TABLE IF NOT EXISTS `custom_fields` (
-  `id`            INT(11)     NOT NULL AUTO_INCREMENT,
+CREATE TABLE `custom_fields` (
+  `id`            INT(11)     NOT NULL,
   `field_type_id` INT(11)     NOT NULL,
   `field_name`    VARCHAR(64) NOT NULL,
   `is_required`   TINYINT(1)  NOT NULL DEFAULT '1',
@@ -667,46 +675,7 @@ CREATE TABLE IF NOT EXISTS `custom_fields` (
   `entity`        VARCHAR(32)          DEFAULT NULL,
   `options`       VARCHAR(65)          DEFAULT NULL,
   `classes`       TEXT,
-  `position`      TINYINT(4)           DEFAULT NULL,
-  PRIMARY KEY (`id`)
-)
-  ENGINE = MyISAM
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 96;
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `custom_fields_data`
---
-
-DROP TABLE IF EXISTS `custom_fields_data`;
-CREATE TABLE IF NOT EXISTS `custom_fields_data` (
-  `id`         INT(11)    NOT NULL AUTO_INCREMENT,
-  `field_id`   INT(11)    NOT NULL,
-  `entity_id`  INT(11)    NOT NULL,
-  `field_data` TEXT,
-  `locale`     VARCHAR(4) NOT NULL,
-  PRIMARY KEY (`id`)
-)
-  ENGINE = MyISAM
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 514;
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `custom_fields_i18n`
---
-
-DROP TABLE IF EXISTS `custom_fields_i18n`;
-CREATE TABLE IF NOT EXISTS `custom_fields_i18n` (
-  `id`                INT(11)    NOT NULL,
-  `locale`            VARCHAR(4) NOT NULL,
-  `field_label`       VARCHAR(255) DEFAULT NULL,
-  `field_description` TEXT,
-  `possible_values`   TEXT,
-  PRIMARY KEY (`id`, `locale`)
+  `position`      TINYINT(4)           DEFAULT NULL
 )
   ENGINE = MyISAM
   DEFAULT CHARSET = utf8;
@@ -714,12 +683,46 @@ CREATE TABLE IF NOT EXISTS `custom_fields_i18n` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `gallery_albums`
+-- Структура таблиці `custom_fields_data`
+--
+
+DROP TABLE IF EXISTS `custom_fields_data`;
+CREATE TABLE `custom_fields_data` (
+  `id`         INT(11)    NOT NULL,
+  `field_id`   INT(11)    NOT NULL,
+  `entity_id`  INT(11)    NOT NULL,
+  `field_data` TEXT,
+  `locale`     VARCHAR(4) NOT NULL
+)
+  ENGINE = MyISAM
+  DEFAULT CHARSET = utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `custom_fields_i18n`
+--
+
+DROP TABLE IF EXISTS `custom_fields_i18n`;
+CREATE TABLE `custom_fields_i18n` (
+  `id`                INT(11)    NOT NULL,
+  `locale`            VARCHAR(4) NOT NULL,
+  `field_label`       VARCHAR(255) DEFAULT NULL,
+  `field_description` TEXT,
+  `possible_values`   TEXT
+)
+  ENGINE = MyISAM
+  DEFAULT CHARSET = utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `gallery_albums`
 --
 
 DROP TABLE IF EXISTS `gallery_albums`;
-CREATE TABLE IF NOT EXISTS `gallery_albums` (
-  `id`          INT(11)     NOT NULL AUTO_INCREMENT,
+CREATE TABLE `gallery_albums` (
+  `id`          INT(11)     NOT NULL,
   `category_id` INT(11)              DEFAULT NULL,
   `name`        VARCHAR(250)         DEFAULT NULL,
   `description` VARCHAR(500)         DEFAULT NULL,
@@ -727,17 +730,13 @@ CREATE TABLE IF NOT EXISTS `gallery_albums` (
   `position`    INT(9)               DEFAULT '0',
   `created`     INT(11)              DEFAULT NULL,
   `updated`     INT(11)              DEFAULT NULL,
-  `tpl_file`    VARCHAR(50) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`),
-  KEY `category_id` (`category_id`),
-  KEY `created` (`created`)
+  `tpl_file`    VARCHAR(50) NOT NULL DEFAULT ''
 )
   ENGINE = MyISAM
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 12;
+  DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `gallery_albums`
+-- Дамп даних таблиці `gallery_albums`
 --
 
 INSERT INTO `gallery_albums` (`id`, `category_id`, `name`, `description`, `cover_id`, `position`, `created`, `updated`, `tpl_file`)
@@ -752,22 +751,21 @@ VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `gallery_albums_i18n`
+-- Структура таблиці `gallery_albums_i18n`
 --
 
 DROP TABLE IF EXISTS `gallery_albums_i18n`;
-CREATE TABLE IF NOT EXISTS `gallery_albums_i18n` (
+CREATE TABLE `gallery_albums_i18n` (
   `id`          INT(11)      NOT NULL,
   `locale`      VARCHAR(5)   NOT NULL,
   `description` TEXT         NOT NULL,
-  `name`        VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`id`, `locale`)
+  `name`        VARCHAR(255) NOT NULL
 )
   ENGINE = MyISAM
   DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `gallery_albums_i18n`
+-- Дамп даних таблиці `gallery_albums_i18n`
 --
 
 INSERT INTO `gallery_albums_i18n` (`id`, `locale`, `description`, `name`) VALUES
@@ -789,27 +787,23 @@ INSERT INTO `gallery_albums_i18n` (`id`, `locale`, `description`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `gallery_category`
+-- Структура таблиці `gallery_category`
 --
 
 DROP TABLE IF EXISTS `gallery_category`;
-CREATE TABLE IF NOT EXISTS `gallery_category` (
-  `id`          INT(11) NOT NULL AUTO_INCREMENT,
-  `name`        VARCHAR(250)     DEFAULT NULL,
-  `description` VARCHAR(500)     DEFAULT NULL,
-  `cover_id`    INT(11)          DEFAULT '0',
-  `position`    INT(9)           DEFAULT '0',
-  `created`     INT(11)          DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `created` (`created`),
-  KEY `position` (`position`)
+CREATE TABLE `gallery_category` (
+  `id`          INT(11) NOT NULL,
+  `name`        VARCHAR(250) DEFAULT NULL,
+  `description` VARCHAR(500) DEFAULT NULL,
+  `cover_id`    INT(11)      DEFAULT '0',
+  `position`    INT(9)       DEFAULT '0',
+  `created`     INT(11)      DEFAULT NULL
 )
   ENGINE = MyISAM
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 8;
+  DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `gallery_category`
+-- Дамп даних таблиці `gallery_category`
 --
 
 INSERT INTO `gallery_category` (`id`, `name`, `description`, `cover_id`, `position`, `created`) VALUES
@@ -819,22 +813,21 @@ INSERT INTO `gallery_category` (`id`, `name`, `description`, `cover_id`, `positi
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `gallery_category_i18n`
+-- Структура таблиці `gallery_category_i18n`
 --
 
 DROP TABLE IF EXISTS `gallery_category_i18n`;
-CREATE TABLE IF NOT EXISTS `gallery_category_i18n` (
+CREATE TABLE `gallery_category_i18n` (
   `id`          INT(11)    NOT NULL,
   `locale`      VARCHAR(5) NOT NULL,
   `description` TEXT,
-  `name`        VARCHAR(255) DEFAULT NULL,
-  PRIMARY KEY (`id`, `locale`)
+  `name`        VARCHAR(255) DEFAULT NULL
 )
   ENGINE = MyISAM
   DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `gallery_category_i18n`
+-- Дамп даних таблиці `gallery_category_i18n`
 --
 
 INSERT INTO `gallery_category_i18n` (`id`, `locale`, `description`, `name`) VALUES
@@ -854,32 +847,28 @@ INSERT INTO `gallery_category_i18n` (`id`, `locale`, `description`, `name`) VALU
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `gallery_images`
+-- Структура таблиці `gallery_images`
 --
 
 DROP TABLE IF EXISTS `gallery_images`;
-CREATE TABLE IF NOT EXISTS `gallery_images` (
-  `id`          INT(11) NOT NULL AUTO_INCREMENT,
-  `album_id`    INT(11)          DEFAULT NULL,
-  `file_name`   VARCHAR(150)     DEFAULT NULL,
-  `file_ext`    VARCHAR(8)       DEFAULT NULL,
-  `file_size`   VARCHAR(20)      DEFAULT NULL,
-  `position`    INT(9)           DEFAULT NULL,
-  `width`       INT(6)           DEFAULT NULL,
-  `height`      INT(6)           DEFAULT NULL,
-  `description` VARCHAR(500)     DEFAULT NULL,
-  `uploaded`    INT(11)          DEFAULT NULL,
-  `views`       INT(11)          DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `album_id` (`album_id`),
-  KEY `position` (`position`)
+CREATE TABLE `gallery_images` (
+  `id`          INT(11) NOT NULL,
+  `album_id`    INT(11)      DEFAULT NULL,
+  `file_name`   VARCHAR(150) DEFAULT NULL,
+  `file_ext`    VARCHAR(8)   DEFAULT NULL,
+  `file_size`   VARCHAR(20)  DEFAULT NULL,
+  `position`    INT(9)       DEFAULT NULL,
+  `width`       INT(6)       DEFAULT NULL,
+  `height`      INT(6)       DEFAULT NULL,
+  `description` VARCHAR(500) DEFAULT NULL,
+  `uploaded`    INT(11)      DEFAULT NULL,
+  `views`       INT(11)      DEFAULT NULL
 )
   ENGINE = MyISAM
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 171;
+  DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `gallery_images`
+-- Дамп даних таблиці `gallery_images`
 --
 
 INSERT INTO `gallery_images` (`id`, `album_id`, `file_name`, `file_ext`, `file_size`, `position`, `width`, `height`, `description`, `uploaded`, `views`)
@@ -916,22 +905,21 @@ VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `gallery_images_i18n`
+-- Структура таблиці `gallery_images_i18n`
 --
 
 DROP TABLE IF EXISTS `gallery_images_i18n`;
-CREATE TABLE IF NOT EXISTS `gallery_images_i18n` (
+CREATE TABLE `gallery_images_i18n` (
   `id`          INT(11)    NOT NULL,
   `locale`      VARCHAR(5) NOT NULL,
   `description` TEXT,
-  `title`       VARCHAR(255) DEFAULT NULL,
-  PRIMARY KEY (`id`, `locale`)
+  `title`       VARCHAR(255) DEFAULT NULL
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `gallery_images_i18n`
+-- Дамп даних таблиці `gallery_images_i18n`
 --
 
 INSERT INTO `gallery_images_i18n` (`id`, `locale`, `description`, `title`) VALUES
@@ -941,11 +929,11 @@ INSERT INTO `gallery_images_i18n` (`id`, `locale`, `description`, `title`) VALUE
   (97, 'ru', '<p>Kepler 64 Moon by D. Terrell, Boulder, CO</p>', NULL),
   (98, 'ru', '<p>Pale Blue Dots by K. Mora, Atlanta, GA</p>', NULL),
   (99, 'ru', '<p>Edge of Existence by L. Nendza, Leesburg, FL</p>', ''),
-  (102, 'ru', '<p>This image from NASA''s Kepler mission shows the telescope''s full field of view -- an expansive star-rich patch of sky in the constellations Cygnus and Lyra stretching across 100 square degrees, or the equivalent of two side-by-side dips of the Big Dipper.</p>', ''),
+  (102, 'ru', '<p>This image from NASA\'s Kepler mission shows the telescope\'s full field of view -- an expansive star-rich patch of sky in the constellations Cygnus and Lyra stretching across 100 square degrees, or the equivalent of two side-by-side dips of the Big Dipper.</p>', ''),
   (103, 'ru', '<p>Inverted image (dark stars on light sky) Stars in the image are all brighter than magnitude 18.5. Stars brighter than 11.5 are "saturated" (all look the same brightness in the image).</p>', NULL),
-  (104, 'ru', '<p>This image from NASA''s Kepler mission shows the telescope''s full field of view -- an expansive star-rich patch of sky in the constellations Cygnus and Lyra stretching across 100 square degrees, or the equivalent of two side-by-side dips of the Big Dipper.</p>', NULL),
+  (104, 'ru', '<p>This image from NASA\'s Kepler mission shows the telescope\'s full field of view -- an expansive star-rich patch of sky in the constellations Cygnus and Lyra stretching across 100 square degrees, or the equivalent of two side-by-side dips of the Big Dipper.</p>', NULL),
   (105, 'ru', '<p>A single Kepler science module with two CCDs and a single field flattening lens mounted onto an Invar carrier. Each of the 21 CCD science modules are covered with lenses of sapphire.</p>', NULL),
-  (106, 'ru', '<p>The Kepler focal plane is approximately one foot square. It''s composed of 25 individually mounted modules. The four corner modules are used for fine guiding and the other 21 modules are used for science observing.</p>\n<p>Note that the four fine guidance modules in the corners of the focal plane are much smaller CCDs than the science modules. Each module and its electronics convert light into digital numbers that is analyzed for planet transits.</p>', ''),
+  (106, 'ru', '<p>The Kepler focal plane is approximately one foot square. It\'s composed of 25 individually mounted modules. The four corner modules are used for fine guiding and the other 21 modules are used for science observing.</p>\n<p>Note that the four fine guidance modules in the corners of the focal plane are much smaller CCDs than the science modules. Each module and its electronics convert light into digital numbers that is analyzed for planet transits.</p>', ''),
   (107, 'ru', '', ''),
   (108, 'ru', '', ''),
   (119, 'ru', '', ''),
@@ -979,12 +967,12 @@ INSERT INTO `gallery_images_i18n` (`id`, `locale`, `description`, `title`) VALUE
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `languages`
+-- Структура таблиці `languages`
 --
 
 DROP TABLE IF EXISTS `languages`;
-CREATE TABLE IF NOT EXISTS `languages` (
-  `id`        INT(11)      NOT NULL AUTO_INCREMENT,
+CREATE TABLE `languages` (
+  `id`        INT(11)      NOT NULL,
   `lang_name` VARCHAR(100) NOT NULL,
   `identif`   VARCHAR(10)  NOT NULL,
   `image`     TEXT         NOT NULL,
@@ -992,17 +980,13 @@ CREATE TABLE IF NOT EXISTS `languages` (
   `template`  VARCHAR(100) NOT NULL,
   `default`   INT(1)       NOT NULL,
   `locale`    VARCHAR(100) NOT NULL,
-  `active`    TINYINT(1)            DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `identif` (`identif`),
-  KEY `default` (`default`)
+  `active`    TINYINT(1) DEFAULT NULL
 )
   ENGINE = MyISAM
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 34;
+  DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `languages`
+-- Дамп даних таблиці `languages`
 --
 
 INSERT INTO `languages` (`id`, `lang_name`, `identif`, `image`, `folder`, `template`, `default`, `locale`, `active`)
@@ -1013,45 +997,38 @@ VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `login_attempts`
+-- Структура таблиці `login_attempts`
 --
 
 DROP TABLE IF EXISTS `login_attempts`;
-CREATE TABLE IF NOT EXISTS `login_attempts` (
-  `id`         INT(11)     NOT NULL AUTO_INCREMENT,
+CREATE TABLE `login_attempts` (
+  `id`         INT(11)     NOT NULL,
   `ip_address` VARCHAR(40) NOT NULL,
-  `time`       TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  KEY `ip_address` (`ip_address`),
-  KEY `time` (`time`)
+  `time`       TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )
   ENGINE = MyISAM
   DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC
-  AUTO_INCREMENT = 84;
+  ROW_FORMAT = DYNAMIC;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `logs`
+-- Структура таблиці `logs`
 --
 
 DROP TABLE IF EXISTS `logs`;
-CREATE TABLE IF NOT EXISTS `logs` (
-  `id`       INT(11)      NOT NULL AUTO_INCREMENT,
+CREATE TABLE `logs` (
+  `id`       INT(11)      NOT NULL,
   `user_id`  INT(11)      NOT NULL,
   `username` VARCHAR(255) NOT NULL,
   `message`  TEXT         NOT NULL,
-  `date`     INT(11)      NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `date` (`date`)
+  `date`     INT(11)      NOT NULL
 )
   ENGINE = MyISAM
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 2373;
+  DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `logs`
+-- Дамп даних таблиці `logs`
 --
 
 INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
@@ -1696,8 +1673,7 @@ INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
   (762, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 5', 1428665025),
   (763, 1, 'Administrator', 'Кэш очищен', 1428665028),
   (764, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 3', 1428665034),
-  (765, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 2', 1428665035);
-INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
+  (765, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 2', 1428665035),
   (766, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 2', 1428665043),
   (767, 1, 'Administrator', 'Статус баннера был отредактирован. Id: 3', 1428665044),
   (768, 1, 'Administrator', 'Виджет отредактирован', 1428665317),
@@ -1820,10 +1796,19 @@ INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
   (885, 1, 'Administrator', 'Виджет создан bredkrumbs', 1429807112),
   (886, 1, 'Administrator', 'Кэш очищен', 1429812705),
   (887, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/64"> Новости</a>', 1429862722),
-  (888, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/100">Три планеты-гиганта у красных гигантов HD 216536, HD 95127 и BD+49 828</a>', 1429862876),
-  (889, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/98">Еще два транзитных горячих гиганта от обзора HATSouth</a>', 1429862897),
-  (890, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/100">Три планеты-гиганта у красных гигантов HD 216536, HD 95127 и BD+49 828</a>', 1429862906),
-  (891, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/98">Еще два транзитных горячих гиганта от обзора HATSouth</a>', 1429862920),
+  (888, 1, 'Administrator',
+   'Страница отредактирована <a href="http://corporate/admin/pages/edit/100">Три планеты-гиганта у красных гигантов HD 216536, HD 95127 и BD+49 828</a>',
+   1429862876),
+  (889, 1, 'Administrator',
+   'Страница отредактирована <a href="http://corporate/admin/pages/edit/98">Еще два транзитных горячих гиганта от обзора HATSouth</a>',
+   1429862897),
+  (890, 1, 'Administrator',
+   'Страница отредактирована <a href="http://corporate/admin/pages/edit/100">Три планеты-гиганта у красных гигантов HD 216536, HD 95127 и BD+49 828</a>',
+   1429862906);
+INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
+  (891, 1, 'Administrator',
+   'Страница отредактирована <a href="http://corporate/admin/pages/edit/98">Еще два транзитных горячих гиганта от обзора HATSouth</a>',
+   1429862920),
   (892, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/64"> Новости</a>', 1429863400),
   (893, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/64"> Новости</a>', 1429865578),
   (894, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/100">Три планеты-гиганта у красных гигантов HD 216536, HD 95127 и BD+49 828</a>', 1429865607),
@@ -2152,8 +2137,7 @@ INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
   (1217, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431851026),
   (1218, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431851100),
   (1219, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431851115),
-  (1220, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431851118);
-INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
+  (1220, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | ru_RU', 1431851118),
   (1221, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | en_US', 1431851121),
   (1222, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | en_US', 1431851122),
   (1223, 1, 'Administrator', 'Файл перевода был успешно сохранен. - corporate | uk_UA', 1431851126),
@@ -2405,7 +2389,8 @@ INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
   (1469, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/84">Бизнес-консалтинг</a>', 1432833117),
   (1470, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/84">Бизнес-консалтинг</a>', 1432833170),
   (1471, 1, 'Administrator', 'Страница отредактирована <a href="http://corporate/admin/pages/edit/84">Бизнес-консалтинг</a>', 1432833176),
-  (1472, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/62"> Услуги</a>', 1432833240),
+  (1472, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/62"> Услуги</a>', 1432833240);
+INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
   (1473, 1, 'Administrator', 'Группа полей создана. Id: 13', 1432833274),
   (1474, 1, 'Administrator', 'Поле обновлено - field_image', 1432833282),
   (1475, 1, 'Administrator', 'Категория изменена <a href="/admin/categories/edit/62"> Услуги</a>', 1432833572),
@@ -2601,8 +2586,7 @@ INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
   (1665, 1, 'Administrator', 'Кэш очищен', 1433237013),
   (1666, 1, 'Administrator', 'Кэш очищен', 1433237082),
   (1667, 1, 'Administrator', 'Кэш очищен', 1433237190),
-  (1668, 1, 'Administrator', 'Кэш очищен', 1433237315);
-INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
+  (1668, 1, 'Administrator', 'Кэш очищен', 1433237315),
   (1669, 1, 'Administrator', 'Кэш очищен', 1433237348),
   (1670, 1, 'Administrator', 'Кэш очищен', 1433237462),
   (1671, 1, 'Administrator', 'Кэш очищен', 1433237478),
@@ -3028,10 +3012,15 @@ INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
   (2091, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/133">Артур Рудковський</a>', 1436386758),
   (2092, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/133">Артур Рудковський</a>', 1436386769),
   (2093, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/134">Андрій Павличенко</a>', 1436386822),
-  (2094, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/134">Андрій Павличенко</a>', 1436386833),
-  (2095, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/134">Андрій Павличенко</a>', 1436386848),
-  (2096, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/92">Андрей Павличенко</a>', 1436386854),
-  (2097, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/92">Андрей Павличенко</a>', 1436386855),
+  (2094, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/134">Андрій Павличенко</a>',
+   1436386833),
+  (2095, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/134">Андрій Павличенко</a>',
+   1436386848),
+  (2096, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/92">Андрей Павличенко</a>',
+   1436386854);
+INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
+  (2097, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/92">Андрей Павличенко</a>',
+   1436386855),
   (2098, 1, 'Administrator', 'Пункт меню удалён. Ids 36', 1436387377),
   (2099, 1, 'Administrator', 'Пункт меню создан. Id: 66', 1436387384),
   (2100, 1, 'Administrator', 'Баннер был удален. Ids: 27, 28', 1436389576),
@@ -3087,19 +3076,12 @@ INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
   (2150, 1, 'Administrator', 'Баннер был отредактирован. Id: 25', 1436436966),
   (2151, 1, 'Administrator', 'Баннер был отредактирован. Id: 25', 1436436974),
   (2152, 1, 'Administrator', 'Баннер был отредактирован. Id: 26', 1436436991),
-  (2153, 1, 'Administrator',
-   'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/124">Про компанию</a>',
-   1436437037),
-  (2154, 1, 'Administrator',
-   'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/124">Про компанию</a>',
-   1436437101),
+  (2153, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/124">Про компанию</a>', 1436437037),
+  (2154, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/124">Про компанию</a>', 1436437101),
   (2155, 1, 'Administrator', 'Фотография в альбоме галереи удалена. Id: 145', 1436439166),
   (2156, 1, 'Administrator', 'Фотографии в альбоме галереи сохранены', 1436439453),
-  (2157, 1, 'Administrator', 'Фотографии в альбоме галереи сохранены', 1436439662);
-INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
-  (2158, 1, 'Administrator',
-   'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/89">Объективность как одна из самых важных составляющих</a>',
-   1436440804),
+  (2157, 1, 'Administrator', 'Фотографии в альбоме галереи сохранены', 1436439662),
+  (2158, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/89">Объективность как одна из самых важных составляющих</a>', 1436440804),
   (2159, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/89">Объективность как одна из самых важных составляющих</a>', 1436440836),
   (2160, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/89">Объективность как одна из самых важных составляющих</a>', 1436440859),
   (2161, 1, 'Administrator', 'Страница отредактирована <a href="http://kepler.siteimage.com.ua/admin/pages/edit/89">Объективность как одна из самых важных составляющих</a>', 1436440920),
@@ -3269,7 +3251,7 @@ INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
   (2325, 1, 'Administrator', 'Введен IP панели управления 178.136.237.181', 1436528791),
   (2326, 1, 'Administrator', 'Введен IP панели управления 178.136.237.181', 1436532445),
   (2327, 1, 'Administrator', 'Введен IP панели управления 178.136.237.181', 1436546167),
-  (2328, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/139">Консультування з управління комп''ютерної структурою</a>', 1436546533),
+  (2328, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/139">Консультування з управління комп\'ютерної структурою</a>', 1436546533),
   (2329, 1, 'Administrator', 'Введен IP панели управления 178.136.237.181', 1436774108),
   (2330, 1, 'Administrator', 'Настройки сайта изменены', 1436774161),
   (2331, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/140">Оптимізація податків та управління податковими ризиками</a>', 1436775240),
@@ -3278,7 +3260,7 @@ INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
   (2334, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/141">Головна річ, яка стоїть між вами та успіхом</a>', 1436776602),
   (2335, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/141">Головна річ, яка стоїть між вами та успіхом</a>', 1436776661),
   (2336, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/136">Не відкладайте запуск кращих бізнес-ідей</a>', 1436776826),
-  (2337, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/137">Об''єктивність як одна з найважливіших складових</a>', 1436776981),
+  (2337, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/137">Об\'єктивність як одна з найважливіших складових</a>', 1436776981),
   (2338, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/126">Про компанію</a>', 1436777496),
   (2339, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/126">Про компанію</a>', 1436777541),
   (2340, 1, 'Administrator', 'Страница отредактирована <a href="/admin/pages/edit/126">Про компанію</a>', 1436777586),
@@ -3318,44 +3300,39 @@ INSERT INTO `logs` (`id`, `user_id`, `username`, `message`, `date`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `mail`
+-- Структура таблиці `mail`
 --
 
 DROP TABLE IF EXISTS `mail`;
-CREATE TABLE IF NOT EXISTS `mail` (
-  `id`    INT(11) NOT NULL AUTO_INCREMENT,
-  `email` VARCHAR(255)     DEFAULT NULL,
-  `date`  INT(15)          DEFAULT NULL,
-  PRIMARY KEY (`id`)
+CREATE TABLE `mail` (
+  `id`    INT(11) NOT NULL,
+  `email` VARCHAR(255) DEFAULT NULL,
+  `date`  INT(15)      DEFAULT NULL
 )
   ENGINE = MyISAM
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 1;
+  DEFAULT CHARSET = utf8;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `menus`
+-- Структура таблиці `menus`
 --
 
 DROP TABLE IF EXISTS `menus`;
-CREATE TABLE IF NOT EXISTS `menus` (
-  `id`           INT(11)      NOT NULL AUTO_INCREMENT,
+CREATE TABLE `menus` (
+  `id`           INT(11)      NOT NULL,
   `name`         VARCHAR(250) NOT NULL,
   `main_title`   VARCHAR(300) NOT NULL,
-  `tpl`          VARCHAR(255)          DEFAULT NULL,
-  `expand_level` INT(255)              DEFAULT NULL,
+  `tpl`          VARCHAR(255) DEFAULT NULL,
+  `expand_level` INT(255)     DEFAULT NULL,
   `description`  TEXT,
-  `created`      VARCHAR(50)  NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `name` (`name`)
+  `created`      VARCHAR(50)  NOT NULL
 )
   ENGINE = MyISAM
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 8;
+  DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `menus`
+-- Дамп даних таблиці `menus`
 --
 
 INSERT INTO `menus` (`id`, `name`, `main_title`, `tpl`, `expand_level`, `description`, `created`) VALUES
@@ -3365,12 +3342,12 @@ INSERT INTO `menus` (`id`, `name`, `main_title`, `tpl`, `expand_level`, `descrip
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `menus_data`
+-- Структура таблиці `menus_data`
 --
 
 DROP TABLE IF EXISTS `menus_data`;
-CREATE TABLE IF NOT EXISTS `menus_data` (
-  `id`          INT(11)      NOT NULL AUTO_INCREMENT,
+CREATE TABLE `menus_data` (
+  `id`          INT(11)      NOT NULL,
   `menu_id`     INT(9)       NOT NULL,
   `item_id`     INT(9)       NOT NULL,
   `item_type`   VARCHAR(15)  NOT NULL,
@@ -3381,17 +3358,13 @@ CREATE TABLE IF NOT EXISTS `menus_data` (
   `parent_id`   INT(9)       NOT NULL,
   `position`    SMALLINT(5)           DEFAULT NULL,
   `description` TEXT,
-  `add_data`    TEXT,
-  PRIMARY KEY (`id`),
-  KEY `menu_id` (`menu_id`),
-  KEY `position` (`position`)
+  `add_data`    TEXT
 )
   ENGINE = MyISAM
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 67;
+  DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `menus_data`
+-- Дамп даних таблиці `menus_data`
 --
 
 INSERT INTO `menus_data` (`id`, `menu_id`, `item_id`, `item_type`, `item_image`, `roles`, `hidden`, `title`, `parent_id`, `position`, `description`, `add_data`)
@@ -3414,25 +3387,21 @@ VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `menu_translate`
+-- Структура таблиці `menu_translate`
 --
 
 DROP TABLE IF EXISTS `menu_translate`;
-CREATE TABLE IF NOT EXISTS `menu_translate` (
-  `id`      INT(11)      NOT NULL AUTO_INCREMENT,
+CREATE TABLE `menu_translate` (
+  `id`      INT(11)      NOT NULL,
   `item_id` INT(11)      NOT NULL,
   `lang_id` INT(11)      NOT NULL,
-  `title`   VARCHAR(250) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `item_id` (`item_id`),
-  KEY `lang_id` (`lang_id`)
+  `title`   VARCHAR(250) NOT NULL
 )
   ENGINE = MyISAM
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 47;
+  DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `menu_translate`
+-- Дамп даних таблиці `menu_translate`
 --
 
 INSERT INTO `menu_translate` (`id`, `item_id`, `lang_id`, `title`) VALUES
@@ -3475,25 +3444,23 @@ INSERT INTO `menu_translate` (`id`, `item_id`, `lang_id`, `title`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `mod_banner`
+-- Структура таблиці `mod_banner`
 --
 
 DROP TABLE IF EXISTS `mod_banner`;
-CREATE TABLE IF NOT EXISTS `mod_banner` (
-  `id`         INT(11)    NOT NULL AUTO_INCREMENT,
+CREATE TABLE `mod_banner` (
+  `id`         INT(11)    NOT NULL,
   `active`     TINYINT(4) NOT NULL,
-  `active_to`  INT(11)             DEFAULT NULL,
+  `active_to`  INT(11) DEFAULT NULL,
   `where_show` TEXT,
   `group`      TEXT,
-  `position`   INT(11)    NOT NULL,
-  PRIMARY KEY (`id`)
+  `position`   INT(11)    NOT NULL
 )
   ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 27;
+  DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `mod_banner`
+-- Дамп даних таблиці `mod_banner`
 --
 
 INSERT INTO `mod_banner` (`id`, `active`, `active_to`, `where_show`, `group`, `position`) VALUES
@@ -3504,21 +3471,19 @@ INSERT INTO `mod_banner` (`id`, `active`, `active_to`, `where_show`, `group`, `p
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `mod_banner_groups`
+-- Структура таблиці `mod_banner_groups`
 --
 
 DROP TABLE IF EXISTS `mod_banner_groups`;
-CREATE TABLE IF NOT EXISTS `mod_banner_groups` (
-  `id`   INT(11) NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(255)     DEFAULT NULL,
-  PRIMARY KEY (`id`)
+CREATE TABLE `mod_banner_groups` (
+  `id`   INT(11) NOT NULL,
+  `name` VARCHAR(255) DEFAULT NULL
 )
   ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 2;
+  DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `mod_banner_groups`
+-- Дамп даних таблиці `mod_banner_groups`
 --
 
 INSERT INTO `mod_banner_groups` (`id`, `name`) VALUES
@@ -3527,24 +3492,23 @@ INSERT INTO `mod_banner_groups` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `mod_banner_i18n`
+-- Структура таблиці `mod_banner_i18n`
 --
 
 DROP TABLE IF EXISTS `mod_banner_i18n`;
-CREATE TABLE IF NOT EXISTS `mod_banner_i18n` (
+CREATE TABLE `mod_banner_i18n` (
   `id`          INT(11)    NOT NULL,
   `url`         TEXT,
   `locale`      VARCHAR(5) NOT NULL,
   `name`        VARCHAR(25)  DEFAULT NULL,
   `description` TEXT,
-  `photo`       VARCHAR(255) DEFAULT NULL,
-  KEY `id` (`id`, `locale`)
+  `photo`       VARCHAR(255) DEFAULT NULL
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `mod_banner_i18n`
+-- Дамп даних таблиці `mod_banner_i18n`
 --
 
 INSERT INTO `mod_banner_i18n` (`id`, `url`, `locale`, `name`, `description`, `photo`) VALUES
@@ -3561,21 +3525,21 @@ INSERT INTO `mod_banner_i18n` (`id`, `url`, `locale`, `name`, `description`, `ph
    '<p>Діяльність, спрямована на підвищення ефективності фірм, компаній, організацій. У процесі управлінського консалтингу може вирішуватися найширше коло завдань.</p>',
    'fa-diamond'),
   (25, '', 'uk', 'Екологічний консалтинг',
-   '<p>Комплекс робіт, пов''язаних з екологічним забезпеченням діяльності будівельних і проектних організацій, підприємств всіх галузей діяльності.</p>',
+   '<p>Комплекс робіт, пов\'язаних з екологічним забезпеченням діяльності будівельних і проектних організацій, підприємств всіх галузей діяльності.</p>',
    'fa-bicycle'),
   (26, '', 'uk', 'ІТ-консалтинг',
-   '<p>Проектно-орієнтована діяльність, пов''язана з інформаційною підтримкою бізнес-процесів, що дозволяє дати незалежну експертну оцінку.</p>',
+   '<p>Проектно-орієнтована діяльність, пов\'язана з інформаційною підтримкою бізнес-процесів, що дозволяє дати незалежну експертну оцінку.</p>',
    'fa-file-text-o');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `mod_email_paterns`
+-- Структура таблиці `mod_email_paterns`
 --
 
 DROP TABLE IF EXISTS `mod_email_paterns`;
-CREATE TABLE IF NOT EXISTS `mod_email_paterns` (
-  `id`                   INT(11)               NOT NULL AUTO_INCREMENT,
+CREATE TABLE `mod_email_paterns` (
+  `id`                   INT(11)               NOT NULL,
   `name`                 VARCHAR(256)          NOT NULL,
   `patern`               TEXT,
   `from`                 VARCHAR(256)          NOT NULL,
@@ -3583,15 +3547,13 @@ CREATE TABLE IF NOT EXISTS `mod_email_paterns` (
   `admin_email`          VARCHAR(256)          NOT NULL,
   `type`                 ENUM ('HTML', 'Text') NOT NULL DEFAULT 'HTML',
   `user_message_active`  TINYINT(1)            NOT NULL,
-  `admin_message_active` TINYINT(1)            NOT NULL,
-  PRIMARY KEY (`id`)
+  `admin_message_active` TINYINT(1)            NOT NULL
 )
   ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 7;
+  DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `mod_email_paterns`
+-- Дамп даних таблиці `mod_email_paterns`
 --
 
 INSERT INTO `mod_email_paterns` (`id`, `name`, `patern`, `from`, `from_email`, `admin_email`, `type`, `user_message_active`, `admin_message_active`)
@@ -3603,25 +3565,24 @@ VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `mod_email_paterns_i18n`
+-- Структура таблиці `mod_email_paterns_i18n`
 --
 
 DROP TABLE IF EXISTS `mod_email_paterns_i18n`;
-CREATE TABLE IF NOT EXISTS `mod_email_paterns_i18n` (
+CREATE TABLE `mod_email_paterns_i18n` (
   `id`            INT(11)      NOT NULL,
   `locale`        VARCHAR(5)   NOT NULL,
   `theme`         VARCHAR(256) NOT NULL,
   `user_message`  TEXT         NOT NULL,
   `admin_message` TEXT         NOT NULL,
   `description`   TEXT         NOT NULL,
-  `variables`     TEXT         NOT NULL,
-  PRIMARY KEY (`id`, `locale`)
+  `variables`     TEXT         NOT NULL
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `mod_email_paterns_i18n`
+-- Дамп даних таблиці `mod_email_paterns_i18n`
 --
 
 INSERT INTO `mod_email_paterns_i18n` (`id`, `locale`, `theme`, `user_message`, `admin_message`, `description`, `variables`)
@@ -3643,22 +3604,20 @@ VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `mod_sample_settings`
+-- Структура таблиці `mod_sample_settings`
 --
 
 DROP TABLE IF EXISTS `mod_sample_settings`;
-CREATE TABLE IF NOT EXISTS `mod_sample_settings` (
-  `id`    INT(11)      NOT NULL AUTO_INCREMENT,
+CREATE TABLE `mod_sample_settings` (
+  `id`    INT(11)      NOT NULL,
   `name`  VARCHAR(50)  NOT NULL,
-  `value` VARCHAR(100) NOT NULL,
-  PRIMARY KEY (`id`)
+  `value` VARCHAR(100) NOT NULL
 )
   ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 4;
+  DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `mod_sample_settings`
+-- Дамп даних таблиці `mod_sample_settings`
 --
 
 INSERT INTO `mod_sample_settings` (`id`, `name`, `value`) VALUES
@@ -3669,24 +3628,125 @@ INSERT INTO `mod_sample_settings` (`id`, `name`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `permissions`
+-- Структура таблиці `mod_seo`
+--
+
+DROP TABLE IF EXISTS `mod_seo`;
+CREATE TABLE `mod_seo` (
+  `id`       INT(11) NOT NULL,
+  `locale`   VARCHAR(5) DEFAULT NULL,
+  `settings` TEXT
+)
+  ENGINE = MyISAM
+  DEFAULT CHARSET = utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `mod_seo_inflect`
+--
+
+DROP TABLE IF EXISTS `mod_seo_inflect`;
+CREATE TABLE `mod_seo_inflect` (
+  `id`            INT(11)      NOT NULL,
+  `original`      VARCHAR(250) NOT NULL,
+  `inflection_id` INT(11)      NOT NULL,
+  `inflected`     VARCHAR(250) NOT NULL
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `mod_sitemap_blocked_urls`
+--
+
+DROP TABLE IF EXISTS `mod_sitemap_blocked_urls`;
+CREATE TABLE `mod_sitemap_blocked_urls` (
+  `id`           INT(11)      NOT NULL,
+  `url`          VARCHAR(255) NOT NULL,
+  `robots_check` INT(11) DEFAULT '0'
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `mod_sitemap_changefreq`
+--
+
+DROP TABLE IF EXISTS `mod_sitemap_changefreq`;
+CREATE TABLE `mod_sitemap_changefreq` (
+  `id`                                 INT(11) NOT NULL,
+  `main_page_changefreq`               VARCHAR(255) DEFAULT NULL,
+  `pages_changefreq`                   VARCHAR(255) DEFAULT NULL,
+  `product_changefreq`                 VARCHAR(255) DEFAULT NULL,
+  `categories_changefreq`              VARCHAR(255) DEFAULT NULL,
+  `products_categories_changefreq`     VARCHAR(255) DEFAULT NULL,
+  `products_sub_categories_changefreq` VARCHAR(255) DEFAULT NULL,
+  `brands_changefreq`                  VARCHAR(255) DEFAULT NULL,
+  `sub_categories_changefreq`          VARCHAR(255) DEFAULT NULL
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
+--
+-- Дамп даних таблиці `mod_sitemap_changefreq`
+--
+
+INSERT INTO `mod_sitemap_changefreq` (`id`, `main_page_changefreq`, `pages_changefreq`, `product_changefreq`, `categories_changefreq`, `products_categories_changefreq`, `products_sub_categories_changefreq`, `brands_changefreq`, `sub_categories_changefreq`)
+VALUES
+  (1, 'weekly', 'weekly', 'weekly', 'weekly', 'weekly', 'weekly', 'weekly', 'weekly');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `mod_sitemap_priorities`
+--
+
+DROP TABLE IF EXISTS `mod_sitemap_priorities`;
+CREATE TABLE `mod_sitemap_priorities` (
+  `id`                               INT(11) NOT NULL,
+  `main_page_priority`               FLOAT DEFAULT '1',
+  `cats_priority`                    FLOAT DEFAULT '1',
+  `pages_priority`                   FLOAT DEFAULT '1',
+  `sub_cats_priority`                FLOAT DEFAULT '1',
+  `products_priority`                FLOAT DEFAULT '1',
+  `products_categories_priority`     FLOAT DEFAULT '1',
+  `products_sub_categories_priority` FLOAT DEFAULT '1',
+  `brands_priority`                  FLOAT DEFAULT '1'
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
+--
+-- Дамп даних таблиці `mod_sitemap_priorities`
+--
+
+INSERT INTO `mod_sitemap_priorities` (`id`, `main_page_priority`, `cats_priority`, `pages_priority`, `sub_cats_priority`, `products_priority`, `products_categories_priority`, `products_sub_categories_priority`, `brands_priority`)
+VALUES
+  (1, 1, 0.8, 0.9, 0.7, 0.4, 0.6, 0.5, 0.3);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `permissions`
 --
 
 DROP TABLE IF EXISTS `permissions`;
-CREATE TABLE IF NOT EXISTS `permissions` (
-  `id`      INT(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `permissions` (
+  `id`      INT(11) NOT NULL,
   `role_id` INT(11) NOT NULL,
-  `data`    TEXT,
-  PRIMARY KEY (`id`),
-  KEY `role_id` (`role_id`)
+  `data`    TEXT
 )
   ENGINE = MyISAM
   DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC
-  AUTO_INCREMENT = 5;
+  ROW_FORMAT = DYNAMIC;
 
 --
--- Дамп данных таблицы `permissions`
+-- Дамп даних таблиці `permissions`
 --
 
 INSERT INTO `permissions` (`id`, `role_id`, `data`) VALUES
@@ -3696,18 +3756,18 @@ INSERT INTO `permissions` (`id`, `role_id`, `data`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `propel_migration`
+-- Структура таблиці `propel_migration`
 --
 
 DROP TABLE IF EXISTS `propel_migration`;
-CREATE TABLE IF NOT EXISTS `propel_migration` (
+CREATE TABLE `propel_migration` (
   `version` INT(11) DEFAULT '0'
 )
   ENGINE = MyISAM
   DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `propel_migration`
+-- Дамп даних таблиці `propel_migration`
 --
 
 INSERT INTO `propel_migration` (`version`) VALUES
@@ -3716,46 +3776,40 @@ INSERT INTO `propel_migration` (`version`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `rating`
+-- Структура таблиці `rating`
 --
 
 DROP TABLE IF EXISTS `rating`;
-CREATE TABLE IF NOT EXISTS `rating` (
-  `id`      INT(11) NOT NULL AUTO_INCREMENT,
-  `id_type` VARCHAR(25)      DEFAULT NULL,
-  `type`    VARCHAR(25)      DEFAULT NULL,
+CREATE TABLE `rating` (
+  `id`      INT(11) NOT NULL,
+  `id_type` VARCHAR(25) DEFAULT NULL,
+  `type`    VARCHAR(25) DEFAULT NULL,
   `votes`   INT(11) NOT NULL,
-  `rating`  INT(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `rating`  INT(11) NOT NULL
 )
   ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 1;
+  DEFAULT CHARSET = utf8;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `roles`
+-- Структура таблиці `roles`
 --
 
 DROP TABLE IF EXISTS `roles`;
-CREATE TABLE IF NOT EXISTS `roles` (
-  `id`        INT(11)      NOT NULL AUTO_INCREMENT,
+CREATE TABLE `roles` (
+  `id`        INT(11)      NOT NULL,
   `parent_id` INT(11)      NOT NULL DEFAULT '0',
   `name`      VARCHAR(30)  NOT NULL,
   `alt_name`  VARCHAR(50)  NOT NULL,
-  `desc`      VARCHAR(300) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `parent_id` (`parent_id`),
-  KEY `name` (`name`)
+  `desc`      VARCHAR(300) NOT NULL
 )
   ENGINE = MyISAM
   DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC
-  AUTO_INCREMENT = 19;
+  ROW_FORMAT = DYNAMIC;
 
 --
--- Дамп данных таблицы `roles`
+-- Дамп даних таблиці `roles`
 --
 
 INSERT INTO `roles` (`id`, `parent_id`, `name`, `alt_name`, `desc`) VALUES
@@ -3765,32 +3819,69 @@ INSERT INTO `roles` (`id`, `parent_id`, `name`, `alt_name`, `desc`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `search`
+-- Структура таблиці `route`
+--
+
+DROP TABLE IF EXISTS `route`;
+CREATE TABLE `route` (
+  `id`         INT(11)      NOT NULL,
+  `entity_id`  INT(11)      NOT NULL,
+  `type`       VARCHAR(255) NOT NULL,
+  `parent_url` VARCHAR(500) NOT NULL DEFAULT '',
+  `url`        VARCHAR(255) NOT NULL
+)
+  ENGINE = MyISAM
+  DEFAULT CHARSET = utf8;
+
+--
+-- Дамп даних таблиці `route`
+--
+
+INSERT INTO `route` (`id`, `entity_id`, `type`, `parent_url`, `url`) VALUES
+  (1, 64, 'category', '', 'blog'),
+  (2, 66, 'category', '', 'klienty-o-nas'),
+  (3, 67, 'category', 'blog', 'biznes'),
+  (4, 74, 'category', 'blog', 'finansy'),
+  (5, 69, 'category', 'blog', 'ekonomika'),
+  (6, 62, 'category', '', 'uslugi'),
+  (7, 92, 'page', 'klienty-o-nas', 'andrei-pavlichenko'),
+  (8, 93, 'page', 'klienty-o-nas', 'artur-rudkovskii'),
+  (9, 84, 'page', 'uslugi', 'business-consulting'),
+  (10, 110, 'page', 'blog/ekonomika', 'glavnaia-veshch-kotoraia-stoit-mezhdu-vami-i-uspehom'),
+  (11, 109, 'page', 'blog/ekonomika', 'konsultirovanie-po-upravleniiu-kompiuternoi-strukturoi'),
+  (12, 87, 'page', '', 'kontakty'),
+  (13, 85, 'page', 'uslugi', 'nalogovye-konsultatsii'),
+  (14, 90, 'page', 'blog/biznes', 'ne-otkladyvaite-zapusk-luchshih-biznes-idei'),
+  (15, 89, 'page', 'blog/biznes', 'obektivnost-kak-odna-iz-samyh-vazhnyh-sostavliaiushchih'),
+  (16, 121, 'page', 'blog', 'optimizatsiia-nalogov-i-upravlenie-nalogovymi-riskami'),
+  (17, 124, 'page', '', 'pro-kompaniiu'),
+  (18, 86, 'page', 'uslugi', 'uslugi-advokata');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `search`
 --
 
 DROP TABLE IF EXISTS `search`;
-CREATE TABLE IF NOT EXISTS `search` (
-  `id`           INT(11)      NOT NULL AUTO_INCREMENT,
-  `hash`         VARCHAR(264)          DEFAULT NULL,
-  `datetime`     INT(11)               DEFAULT NULL,
+CREATE TABLE `search` (
+  `id`           INT(11)      NOT NULL,
+  `hash`         VARCHAR(264) DEFAULT NULL,
+  `datetime`     INT(11)      DEFAULT NULL,
   `where_array`  TEXT,
   `select_array` TEXT,
-  `table_name`   VARCHAR(100)          DEFAULT NULL,
+  `table_name`   VARCHAR(100) DEFAULT NULL,
   `order_by`     TEXT,
-  `row_count`    INT(11)               DEFAULT NULL,
-  `total_rows`   INT(11)               DEFAULT NULL,
+  `row_count`    INT(11)      DEFAULT NULL,
+  `total_rows`   INT(11)      DEFAULT NULL,
   `ids`          TEXT,
-  `search_title` VARCHAR(250) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `hash` (`hash`),
-  KEY `datetime` (`datetime`)
+  `search_title` VARCHAR(250) NOT NULL
 )
   ENGINE = MyISAM
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 21;
+  DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `search`
+-- Дамп даних таблиці `search`
 --
 
 INSERT INTO `search` (`id`, `hash`, `datetime`, `where_array`, `select_array`, `table_name`, `order_by`, `row_count`, `total_rows`, `ids`, `search_title`)
@@ -3839,12 +3930,12 @@ VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `settings`
+-- Структура таблиці `settings`
 --
 
 DROP TABLE IF EXISTS `settings`;
-CREATE TABLE IF NOT EXISTS `settings` (
-  `id`                         INT(11)      NOT NULL AUTO_INCREMENT,
+CREATE TABLE `settings` (
+  `id`                         INT(11)      NOT NULL,
   `s_name`                     VARCHAR(50)  NOT NULL,
   `create_keywords`            VARCHAR(25)  NOT NULL,
   `create_description`         VARCHAR(25)  NOT NULL,
@@ -3878,16 +3969,13 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `robots_settings`            TEXT         NOT NULL,
   `google_analytics_ee`        INT(1)       NOT NULL DEFAULT '1',
   `www_redirect`               VARCHAR(100) NOT NULL DEFAULT 'without',
-  `users_registration_role_id` INT(11)               DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `s_name` (`s_name`)
+  `users_registration_role_id` INT(11)               DEFAULT NULL
 )
   ENGINE = MyISAM
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 5;
+  DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `settings`
+-- Дамп даних таблиці `settings`
 --
 
 INSERT INTO `settings` (`id`, `s_name`, `create_keywords`, `create_description`, `create_cat_keywords`, `create_cat_description`, `add_site_name`, `add_site_name_to_cat`, `delimiter`, `editor_theme`, `site_template`, `site_offline`, `google_analytics_id`, `main_type`, `main_page_id`, `main_page_cat`, `main_page_module`, `sidepanel`, `lk`, `lang_sel`, `google_webmaster`, `yandex_webmaster`, `yandex_metric`, `ss`, `cat_list`, `text_editor`, `siteinfo`, `update`, `backup`, `robots_status`, `robots_settings_status`, `robots_settings`, `google_analytics_ee`, `www_redirect`, `users_registration_role_id`)
@@ -3901,12 +3989,12 @@ VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `settings_i18n`
+-- Структура таблиці `settings_i18n`
 --
 
 DROP TABLE IF EXISTS `settings_i18n`;
-CREATE TABLE IF NOT EXISTS `settings_i18n` (
-  `id`          INT(11) NOT NULL   AUTO_INCREMENT,
+CREATE TABLE `settings_i18n` (
+  `id`          INT(11) NOT NULL,
   `lang_ident`  INT(11) NOT NULL,
   `name`        VARCHAR(255)
                 CHARACTER SET utf8 DEFAULT NULL,
@@ -3915,15 +4003,13 @@ CREATE TABLE IF NOT EXISTS `settings_i18n` (
   `description` VARCHAR(255)
                 CHARACTER SET utf8 DEFAULT NULL,
   `keywords`    VARCHAR(255)
-                CHARACTER SET utf8 DEFAULT NULL,
-  PRIMARY KEY (`id`)
+                CHARACTER SET utf8 DEFAULT NULL
 )
   ENGINE = InnoDB
-  DEFAULT CHARSET = latin1
-  AUTO_INCREMENT = 4;
+  DEFAULT CHARSET = latin1;
 
 --
--- Дамп данных таблицы `settings_i18n`
+-- Дамп даних таблиці `settings_i18n`
 --
 
 INSERT INTO `settings_i18n` (`id`, `lang_ident`, `name`, `short_name`, `description`, `keywords`) VALUES
@@ -3937,23 +4023,21 @@ INSERT INTO `settings_i18n` (`id`, `lang_ident`, `name`, `short_name`, `descript
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_rbac_group`
+-- Структура таблиці `shop_rbac_group`
 --
 
 DROP TABLE IF EXISTS `shop_rbac_group`;
-CREATE TABLE IF NOT EXISTS `shop_rbac_group` (
-  `id`          INT(11)      NOT NULL AUTO_INCREMENT,
+CREATE TABLE `shop_rbac_group` (
+  `id`          INT(11)      NOT NULL,
   `type`        VARCHAR(10)  NOT NULL,
   `name`        VARCHAR(100) NOT NULL,
-  `description` VARCHAR(255)          DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `description` VARCHAR(255) DEFAULT NULL
 )
   ENGINE = MyISAM
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 79;
+  DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `shop_rbac_group`
+-- Дамп даних таблиці `shop_rbac_group`
 --
 
 INSERT INTO `shop_rbac_group` (`id`, `type`, `name`, `description`) VALUES
@@ -4037,21 +4121,20 @@ INSERT INTO `shop_rbac_group` (`id`, `type`, `name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_rbac_group_i18n`
+-- Структура таблиці `shop_rbac_group_i18n`
 --
 
 DROP TABLE IF EXISTS `shop_rbac_group_i18n`;
-CREATE TABLE IF NOT EXISTS `shop_rbac_group_i18n` (
+CREATE TABLE `shop_rbac_group_i18n` (
   `id`          INT(11)    NOT NULL,
   `description` VARCHAR(200) DEFAULT NULL,
-  `locale`      VARCHAR(5) NOT NULL,
-  KEY `id_idx` (`id`)
+  `locale`      VARCHAR(5) NOT NULL
 )
   ENGINE = MyISAM
   DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `shop_rbac_group_i18n`
+-- Дамп даних таблиці `shop_rbac_group_i18n`
 --
 
 INSERT INTO `shop_rbac_group_i18n` (`id`, `description`, `locale`) VALUES
@@ -4118,25 +4201,21 @@ INSERT INTO `shop_rbac_group_i18n` (`id`, `description`, `locale`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_rbac_privileges`
+-- Структура таблиці `shop_rbac_privileges`
 --
 
 DROP TABLE IF EXISTS `shop_rbac_privileges`;
-CREATE TABLE IF NOT EXISTS `shop_rbac_privileges` (
-  `id`          INT(11)      NOT NULL AUTO_INCREMENT,
+CREATE TABLE `shop_rbac_privileges` (
+  `id`          INT(11)      NOT NULL,
   `name`        VARCHAR(255) NOT NULL,
   `group_id`    INT(11)      NOT NULL,
-  `description` VARCHAR(255)          DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `shop_rbac_privileges_I_1` (`name`),
-  KEY `shop_rbac_privileges_FI_1` (`group_id`)
+  `description` VARCHAR(255) DEFAULT NULL
 )
   ENGINE = MyISAM
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 732;
+  DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `shop_rbac_privileges`
+-- Дамп даних таблиці `shop_rbac_privileges`
 --
 
 INSERT INTO `shop_rbac_privileges` (`id`, `name`, `group_id`, `description`) VALUES
@@ -4855,22 +4934,21 @@ INSERT INTO `shop_rbac_privileges` (`id`, `name`, `group_id`, `description`) VAL
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_rbac_privileges_i18n`
+-- Структура таблиці `shop_rbac_privileges_i18n`
 --
 
 DROP TABLE IF EXISTS `shop_rbac_privileges_i18n`;
-CREATE TABLE IF NOT EXISTS `shop_rbac_privileges_i18n` (
+CREATE TABLE `shop_rbac_privileges_i18n` (
   `id`          INT(11)     NOT NULL,
   `title`       VARCHAR(45) NOT NULL,
   `description` VARCHAR(200) DEFAULT NULL,
-  `locale`      VARCHAR(45) NOT NULL,
-  KEY `id_idx` (`id`)
+  `locale`      VARCHAR(45) NOT NULL
 )
   ENGINE = MyISAM
   DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `shop_rbac_privileges_i18n`
+-- Дамп даних таблиці `shop_rbac_privileges_i18n`
 --
 
 INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`) VALUES
@@ -5288,8 +5366,7 @@ INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`)
   (421, 'sample_mail::render', '', 'ru'),
   (422, 'Список шаблонов писем', 'Доступ к списку шаблонов писем', 'ru'),
   (423, 'Удаление шаблона письма', 'Доступ к удалению шаблона письма', 'ru'),
-  (424, 'sample_module::__construct', '', 'ru');
-INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`) VALUES
+  (424, 'sample_module::__construct', '', 'ru'),
   (425, 'sample_module::index', '', 'ru'),
   (426, 'Управление кнопками соцсетей', 'Доступ к управлению кнопками соцсетей', 'ru'),
   (427, 'Управление кнопками соцсетей', 'Доступ к управлению кнопками соцсетей', 'ru'),
@@ -5353,24 +5430,21 @@ INSERT INTO `shop_rbac_privileges_i18n` (`id`, `title`, `description`, `locale`)
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_rbac_roles`
+-- Структура таблиці `shop_rbac_roles`
 --
 
 DROP TABLE IF EXISTS `shop_rbac_roles`;
-CREATE TABLE IF NOT EXISTS `shop_rbac_roles` (
-  `id`          INT(11)      NOT NULL AUTO_INCREMENT,
+CREATE TABLE `shop_rbac_roles` (
+  `id`          INT(11)      NOT NULL,
   `name`        VARCHAR(255) NOT NULL,
-  `importance`  INT(11)               DEFAULT NULL,
-  `description` VARCHAR(255)          DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `unique_name` (`name`)
+  `importance`  INT(11)      DEFAULT NULL,
+  `description` VARCHAR(255) DEFAULT NULL
 )
   ENGINE = MyISAM
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 7;
+  DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `shop_rbac_roles`
+-- Дамп даних таблиці `shop_rbac_roles`
 --
 
 INSERT INTO `shop_rbac_roles` (`id`, `name`, `importance`, `description`) VALUES
@@ -5379,22 +5453,21 @@ INSERT INTO `shop_rbac_roles` (`id`, `name`, `importance`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_rbac_roles_i18n`
+-- Структура таблиці `shop_rbac_roles_i18n`
 --
 
 DROP TABLE IF EXISTS `shop_rbac_roles_i18n`;
-CREATE TABLE IF NOT EXISTS `shop_rbac_roles_i18n` (
+CREATE TABLE `shop_rbac_roles_i18n` (
   `id`          INT(11)    NOT NULL,
   `alt_name`    VARCHAR(45)  DEFAULT NULL,
   `locale`      VARCHAR(5) NOT NULL,
-  `description` VARCHAR(200) DEFAULT NULL,
-  KEY `role_id_idx` (`id`)
+  `description` VARCHAR(200) DEFAULT NULL
 )
   ENGINE = MyISAM
   DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `shop_rbac_roles_i18n`
+-- Дамп даних таблиці `shop_rbac_roles_i18n`
 --
 
 INSERT INTO `shop_rbac_roles_i18n` (`id`, `alt_name`, `locale`, `description`) VALUES
@@ -5406,24 +5479,20 @@ INSERT INTO `shop_rbac_roles_i18n` (`id`, `alt_name`, `locale`, `description`) V
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `shop_rbac_roles_privileges`
+-- Структура таблиці `shop_rbac_roles_privileges`
 --
 
 DROP TABLE IF EXISTS `shop_rbac_roles_privileges`;
-CREATE TABLE IF NOT EXISTS `shop_rbac_roles_privileges` (
-  `id`           INT(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `shop_rbac_roles_privileges` (
+  `id`           INT(11) NOT NULL,
   `role_id`      INT(11) NOT NULL,
-  `privilege_id` INT(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `rolepriv` (`role_id`, `privilege_id`),
-  KEY `shop_rbac_roles_privileges_FK_2` (`privilege_id`)
+  `privilege_id` INT(11) NOT NULL
 )
   ENGINE = MyISAM
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 2476;
+  DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `shop_rbac_roles_privileges`
+-- Дамп даних таблиці `shop_rbac_roles_privileges`
 --
 
 INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUES
@@ -6133,26 +6202,24 @@ INSERT INTO `shop_rbac_roles_privileges` (`id`, `role_id`, `privilege_id`) VALUE
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `support_comments`
+-- Структура таблиці `support_comments`
 --
 
 DROP TABLE IF EXISTS `support_comments`;
-CREATE TABLE IF NOT EXISTS `support_comments` (
-  `id`          INT(11)      NOT NULL AUTO_INCREMENT,
+CREATE TABLE `support_comments` (
+  `id`          INT(11)      NOT NULL,
   `ticket_id`   INT(11)      NOT NULL,
   `user_id`     INT(11)      NOT NULL,
   `user_status` INT(11)      NOT NULL,
   `user_name`   VARCHAR(100) NOT NULL,
   `text`        VARCHAR(500) NOT NULL,
-  `date`        INT(11)      NOT NULL,
-  UNIQUE KEY `id` (`id`)
+  `date`        INT(11)      NOT NULL
 )
   ENGINE = MyISAM
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 2;
+  DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `support_comments`
+-- Дамп даних таблиці `support_comments`
 --
 
 INSERT INTO `support_comments` (`id`, `ticket_id`, `user_id`, `user_status`, `user_name`, `text`, `date`) VALUES
@@ -6161,21 +6228,19 @@ INSERT INTO `support_comments` (`id`, `ticket_id`, `user_id`, `user_status`, `us
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `support_departments`
+-- Структура таблиці `support_departments`
 --
 
 DROP TABLE IF EXISTS `support_departments`;
-CREATE TABLE IF NOT EXISTS `support_departments` (
-  `id`   INT(11) NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45)      DEFAULT NULL,
-  PRIMARY KEY (`id`)
+CREATE TABLE `support_departments` (
+  `id`   INT(11) NOT NULL,
+  `name` VARCHAR(45) DEFAULT NULL
 )
   ENGINE = MyISAM
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 2;
+  DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `support_departments`
+-- Дамп даних таблиці `support_departments`
 --
 
 INSERT INTO `support_departments` (`id`, `name`) VALUES
@@ -6184,29 +6249,27 @@ INSERT INTO `support_departments` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `support_tickets`
+-- Структура таблиці `support_tickets`
 --
 
 DROP TABLE IF EXISTS `support_tickets`;
-CREATE TABLE IF NOT EXISTS `support_tickets` (
-  `id`                  INT(11)      NOT NULL AUTO_INCREMENT,
-  `user_id`             INT(11)               DEFAULT NULL,
+CREATE TABLE `support_tickets` (
+  `id`                  INT(11)      NOT NULL,
+  `user_id`             INT(11)     DEFAULT NULL,
   `last_comment_author` VARCHAR(50)  NOT NULL,
   `text`                TEXT,
   `theme`               VARCHAR(100) NOT NULL,
   `department`          INT(11)      NOT NULL,
-  `status`              SMALLINT(1)           DEFAULT NULL,
-  `priority`            VARCHAR(15)           DEFAULT NULL,
-  `date`                INT(11)               DEFAULT NULL,
-  `updated`             INT(11)      NOT NULL,
-  PRIMARY KEY (`id`)
+  `status`              SMALLINT(1) DEFAULT NULL,
+  `priority`            VARCHAR(15) DEFAULT NULL,
+  `date`                INT(11)     DEFAULT NULL,
+  `updated`             INT(11)      NOT NULL
 )
   ENGINE = MyISAM
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 2;
+  DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `support_tickets`
+-- Дамп даних таблиці `support_tickets`
 --
 
 INSERT INTO `support_tickets` (`id`, `user_id`, `last_comment_author`, `text`, `theme`, `department`, `status`, `priority`, `date`, `updated`)
@@ -6216,22 +6279,19 @@ VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tags`
+-- Структура таблиці `tags`
 --
 
 DROP TABLE IF EXISTS `tags`;
-CREATE TABLE IF NOT EXISTS `tags` (
-  `id`    INT(11)      NOT NULL AUTO_INCREMENT,
-  `value` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `value` (`value`)
+CREATE TABLE `tags` (
+  `id`    INT(11)      NOT NULL,
+  `value` VARCHAR(255) NOT NULL
 )
   ENGINE = MyISAM
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 40;
+  DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `tags`
+-- Дамп даних таблиці `tags`
 --
 
 INSERT INTO `tags` (`id`, `value`) VALUES
@@ -6248,11 +6308,11 @@ INSERT INTO `tags` (`id`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `template_settings`
+-- Структура таблиці `template_settings`
 --
 
 DROP TABLE IF EXISTS `template_settings`;
-CREATE TABLE IF NOT EXISTS `template_settings` (
+CREATE TABLE `template_settings` (
   `id`        INT(11)      NOT NULL,
   `component` VARCHAR(255) NOT NULL,
   `key`       TEXT,
@@ -6264,42 +6324,38 @@ CREATE TABLE IF NOT EXISTS `template_settings` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `users`
+-- Структура таблиці `users`
 --
 
 DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
-  `id`             INT(11)      NOT NULL AUTO_INCREMENT,
-  `role_id`        INT(11)               DEFAULT NULL,
-  `username`       VARCHAR(50)           DEFAULT NULL,
-  `password`       VARCHAR(255)          DEFAULT NULL,
-  `email`          VARCHAR(100)          DEFAULT NULL,
-  `banned`         TINYINT(1)            DEFAULT NULL,
-  `ban_reason`     VARCHAR(255)          DEFAULT NULL,
-  `newpass`        VARCHAR(255)          DEFAULT NULL,
-  `newpass_key`    VARCHAR(255)          DEFAULT NULL,
-  `newpass_time`   INT(11)               DEFAULT NULL,
-  `last_ip`        VARCHAR(40)           DEFAULT NULL,
-  `last_login`     INT(11)               DEFAULT NULL,
-  `created`        INT(11)               DEFAULT NULL,
-  `modified`       DATETIME              DEFAULT NULL,
-  `address`        VARCHAR(255)          DEFAULT NULL,
+CREATE TABLE `users` (
+  `id`             INT(11)      NOT NULL,
+  `role_id`        INT(11)      DEFAULT NULL,
+  `username`       VARCHAR(50)  DEFAULT NULL,
+  `password`       VARCHAR(255) DEFAULT NULL,
+  `email`          VARCHAR(100) DEFAULT NULL,
+  `banned`         TINYINT(1)   DEFAULT NULL,
+  `ban_reason`     VARCHAR(255) DEFAULT NULL,
+  `newpass`        VARCHAR(255) DEFAULT NULL,
+  `newpass_key`    VARCHAR(255) DEFAULT NULL,
+  `newpass_time`   INT(11)      DEFAULT NULL,
+  `last_ip`        VARCHAR(40)  DEFAULT NULL,
+  `last_login`     INT(11)      DEFAULT NULL,
+  `created`        INT(11)      DEFAULT NULL,
+  `modified`       DATETIME     DEFAULT NULL,
+  `address`        VARCHAR(255) DEFAULT NULL,
   `cart_data`      TEXT,
   `wish_list_data` TEXT,
   `key`            VARCHAR(255) NOT NULL,
   `amout`          FLOAT(10, 2) NOT NULL,
-  `discount`       VARCHAR(255)          DEFAULT NULL,
-  `phone`          VARCHAR(32)           DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `role_id` (`role_id`),
-  KEY `users_I_1` (`key`)
+  `discount`       VARCHAR(255) DEFAULT NULL,
+  `phone`          VARCHAR(32)  DEFAULT NULL
 )
   ENGINE = MyISAM
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 65;
+  DEFAULT CHARSET = utf8;
 
 --
--- Dumping data for table `users`
+-- Дамп даних таблиці `users`
 --
 
 INSERT INTO `users` (`id`, `role_id`, `username`, `password`, `email`, `banned`, `ban_reason`, `newpass`, `newpass_key`, `newpass_time`, `last_ip`, `last_login`, `created`, `modified`, `address`, `cart_data`, `wish_list_data`, `key`, `amout`, `discount`, `phone`)
@@ -6338,11 +6394,11 @@ VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `user_autologin`
+-- Структура таблиці `user_autologin`
 --
 
 DROP TABLE IF EXISTS `user_autologin`;
-CREATE TABLE IF NOT EXISTS `user_autologin` (
+CREATE TABLE `user_autologin` (
   `key_id`     CHAR(32)
                CHARACTER SET utf8
                COLLATE utf8_bin NOT NULL,
@@ -6353,9 +6409,7 @@ CREATE TABLE IF NOT EXISTS `user_autologin` (
   `last_ip`    VARCHAR(40)
                CHARACTER SET utf8
                COLLATE utf8_bin NOT NULL,
-  `last_login` TIMESTAMP        NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`key_id`, `user_id`),
-  KEY `last_ip` (`last_ip`)
+  `last_login` TIMESTAMP        NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )
   ENGINE = MyISAM
   DEFAULT CHARSET = utf8
@@ -6364,34 +6418,32 @@ CREATE TABLE IF NOT EXISTS `user_autologin` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `user_temp`
+-- Структура таблиці `user_temp`
 --
 
 DROP TABLE IF EXISTS `user_temp`;
-CREATE TABLE IF NOT EXISTS `user_temp` (
-  `id`             INT(11)      NOT NULL AUTO_INCREMENT,
+CREATE TABLE `user_temp` (
+  `id`             INT(11)      NOT NULL,
   `username`       VARCHAR(255) NOT NULL,
   `password`       VARCHAR(255) NOT NULL,
   `email`          VARCHAR(100) NOT NULL,
   `activation_key` VARCHAR(50)  NOT NULL,
   `last_ip`        VARCHAR(40)  NOT NULL,
-  `created`        TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+  `created`        TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )
   ENGINE = MyISAM
   DEFAULT CHARSET = utf8
-  ROW_FORMAT = DYNAMIC
-  AUTO_INCREMENT = 1;
+  ROW_FORMAT = DYNAMIC;
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `widgets`
+-- Структура таблиці `widgets`
 --
 
 DROP TABLE IF EXISTS `widgets`;
-CREATE TABLE IF NOT EXISTS `widgets` (
-  `id`          INT(11)      NOT NULL AUTO_INCREMENT,
+CREATE TABLE `widgets` (
+  `id`          INT(11)      NOT NULL,
   `name`        VARCHAR(50)  NOT NULL,
   `type`        VARCHAR(15)  NOT NULL,
   `data`        TEXT         NOT NULL,
@@ -6399,16 +6451,13 @@ CREATE TABLE IF NOT EXISTS `widgets` (
   `settings`    TEXT         NOT NULL,
   `description` VARCHAR(300) NOT NULL,
   `roles`       TEXT         NOT NULL,
-  `created`     INT(11)      NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `name` (`name`)
+  `created`     INT(11)      NOT NULL
 )
   ENGINE = MyISAM
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 41;
+  DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `widgets`
+-- Дамп даних таблиці `widgets`
 --
 
 INSERT INTO `widgets` (`id`, `name`, `type`, `data`, `method`, `settings`, `description`, `roles`, `created`) VALUES
@@ -6435,23 +6484,21 @@ INSERT INTO `widgets` (`id`, `name`, `type`, `data`, `method`, `settings`, `desc
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `widget_i18n`
+-- Структура таблиці `widget_i18n`
 --
 
 DROP TABLE IF EXISTS `widget_i18n`;
-CREATE TABLE IF NOT EXISTS `widget_i18n` (
+CREATE TABLE `widget_i18n` (
   `id`     INT(11)     NOT NULL,
   `locale` VARCHAR(11) NOT NULL,
   `title`  VARCHAR(500) DEFAULT NULL,
-  `data`   TEXT        NOT NULL,
-  PRIMARY KEY (`id`, `locale`),
-  KEY `locale` (`locale`)
+  `data`   TEXT        NOT NULL
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
 --
--- Дамп данных таблицы `widget_i18n`
+-- Дамп даних таблиці `widget_i18n`
 --
 
 INSERT INTO `widget_i18n` (`id`, `locale`, `title`, `data`) VALUES
@@ -6489,94 +6536,749 @@ INSERT INTO `widget_i18n` (`id`, `locale`, `title`, `data`) VALUES
   (40, 'ru', 'Теги', ''),
   (40, 'uk', 'Теги', '');
 
-
-DROP TABLE IF EXISTS `mod_sitemap_blocked_urls`;
-CREATE TABLE IF NOT EXISTS `mod_sitemap_blocked_urls` (
-  `id`           INT(11)      NOT NULL AUTO_INCREMENT,
-  `url`          VARCHAR(255) NOT NULL,
-  `robots_check` INT(11)               DEFAULT '0',
-  PRIMARY KEY (`id`)
-)
-  ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
-  AUTO_INCREMENT = 1;
 --
--- Структура таблицы `mod_sitemap_changefreq`
+-- Індекси збережених таблиць
 --
 
-DROP TABLE IF EXISTS `mod_sitemap_changefreq`;
-CREATE TABLE IF NOT EXISTS `mod_sitemap_changefreq` (
-  `id`                                 INT(11) NOT NULL AUTO_INCREMENT,
-  `main_page_changefreq`               VARCHAR(255)     DEFAULT NULL,
-  `pages_changefreq`                   VARCHAR(255)     DEFAULT NULL,
-  `product_changefreq`                 VARCHAR(255)     DEFAULT NULL,
-  `categories_changefreq`              VARCHAR(255)     DEFAULT NULL,
-  `products_categories_changefreq`     VARCHAR(255)     DEFAULT NULL,
-  `products_sub_categories_changefreq` VARCHAR(255)     DEFAULT NULL,
-  `brands_changefreq`                  VARCHAR(255)     DEFAULT NULL,
-  `sub_categories_changefreq`          VARCHAR(255)     DEFAULT NULL,
-  PRIMARY KEY (`id`)
-)
-  ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
+--
+-- Індекси таблиці `banners`
+--
+ALTER TABLE `banners`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Індекси таблиці `banners_i18n`
+--
+ALTER TABLE `banners_i18n`
+  ADD PRIMARY KEY (`id`, `locale`);
+
+--
+-- Індекси таблиці `banner_image`
+--
+ALTER TABLE `banner_image`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `banner_image_fi_0bb916` (`banner_id`);
+
+--
+-- Індекси таблиці `banner_image_i18n`
+--
+ALTER TABLE `banner_image_i18n`
+  ADD PRIMARY KEY (`id`, `locale`);
+
+--
+-- Індекси таблиці `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `name` (`name`);
+
+--
+-- Індекси таблиці `category_translate`
+--
+ALTER TABLE `category_translate`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `name` (`name`, `lang`);
+
+--
+-- Індекси таблиці `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `module` (`module`),
+  ADD KEY `item_id` (`item_id`),
+  ADD KEY `date` (`date`);
+
+--
+-- Індекси таблиці `components`
+--
+ALTER TABLE `components`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `name` (`name`),
+  ADD KEY `identif` (`identif`),
+  ADD KEY `enabled` (`enabled`),
+  ADD KEY `autoload` (`autoload`);
+
+--
+-- Індекси таблиці `content`
+--
+ALTER TABLE `content`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `lang` (`lang`),
+  ADD KEY `post_status` (`post_status`(4)),
+  ADD KEY `publish_date` (`publish_date`),
+  ADD KEY `category` (`category`),
+  ADD KEY `created` (`created`),
+  ADD KEY `updated` (`updated`);
+
+--
+-- Індекси таблиці `content_fields`
+--
+ALTER TABLE `content_fields`
+  ADD PRIMARY KEY (`field_name`),
+  ADD UNIQUE KEY `field_name` (`field_name`),
+  ADD KEY `type` (`type`),
+  ADD KEY `in_search` (`in_search`);
+
+--
+-- Індекси таблиці `content_fields_data`
+--
+ALTER TABLE `content_fields_data`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `item_id` (`item_id`),
+  ADD KEY `item_type` (`item_type`),
+  ADD KEY `field_name` (`field_name`);
+
+--
+-- Індекси таблиці `content_field_groups`
+--
+ALTER TABLE `content_field_groups`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `name` (`name`);
+
+--
+-- Індекси таблиці `content_permissions`
+--
+ALTER TABLE `content_permissions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `page_id` (`page_id`);
+
+--
+-- Індекси таблиці `content_tags`
+--
+ALTER TABLE `content_tags`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `page_id` (`page_id`),
+  ADD KEY `tag_id` (`tag_id`);
+
+--
+-- Індекси таблиці `custom_fields`
+--
+ALTER TABLE `custom_fields`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Індекси таблиці `custom_fields_data`
+--
+ALTER TABLE `custom_fields_data`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Індекси таблиці `custom_fields_i18n`
+--
+ALTER TABLE `custom_fields_i18n`
+  ADD PRIMARY KEY (`id`, `locale`);
+
+--
+-- Індекси таблиці `gallery_albums`
+--
+ALTER TABLE `gallery_albums`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `category_id` (`category_id`),
+  ADD KEY `created` (`created`);
+
+--
+-- Індекси таблиці `gallery_albums_i18n`
+--
+ALTER TABLE `gallery_albums_i18n`
+  ADD PRIMARY KEY (`id`, `locale`);
+
+--
+-- Індекси таблиці `gallery_category`
+--
+ALTER TABLE `gallery_category`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `created` (`created`),
+  ADD KEY `position` (`position`);
+
+--
+-- Індекси таблиці `gallery_category_i18n`
+--
+ALTER TABLE `gallery_category_i18n`
+  ADD PRIMARY KEY (`id`, `locale`);
+
+--
+-- Індекси таблиці `gallery_images`
+--
+ALTER TABLE `gallery_images`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `album_id` (`album_id`),
+  ADD KEY `position` (`position`);
+
+--
+-- Індекси таблиці `gallery_images_i18n`
+--
+ALTER TABLE `gallery_images_i18n`
+  ADD PRIMARY KEY (`id`, `locale`);
+
+--
+-- Індекси таблиці `languages`
+--
+ALTER TABLE `languages`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `identif` (`identif`),
+  ADD KEY `default` (`default`);
+
+--
+-- Індекси таблиці `login_attempts`
+--
+ALTER TABLE `login_attempts`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ip_address` (`ip_address`),
+  ADD KEY `time` (`time`);
+
+--
+-- Індекси таблиці `logs`
+--
+ALTER TABLE `logs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `date` (`date`);
+
+--
+-- Індекси таблиці `mail`
+--
+ALTER TABLE `mail`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Індекси таблиці `menus`
+--
+ALTER TABLE `menus`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `name` (`name`);
+
+--
+-- Індекси таблиці `menus_data`
+--
+ALTER TABLE `menus_data`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `menu_id` (`menu_id`),
+  ADD KEY `position` (`position`);
+
+--
+-- Індекси таблиці `menu_translate`
+--
+ALTER TABLE `menu_translate`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `item_id` (`item_id`),
+  ADD KEY `lang_id` (`lang_id`);
+
+--
+-- Індекси таблиці `mod_banner`
+--
+ALTER TABLE `mod_banner`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Індекси таблиці `mod_banner_groups`
+--
+ALTER TABLE `mod_banner_groups`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Індекси таблиці `mod_banner_i18n`
+--
+ALTER TABLE `mod_banner_i18n`
+  ADD KEY `id` (`id`, `locale`);
+
+--
+-- Індекси таблиці `mod_email_paterns`
+--
+ALTER TABLE `mod_email_paterns`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Індекси таблиці `mod_email_paterns_i18n`
+--
+ALTER TABLE `mod_email_paterns_i18n`
+  ADD PRIMARY KEY (`id`, `locale`);
+
+--
+-- Індекси таблиці `mod_sample_settings`
+--
+ALTER TABLE `mod_sample_settings`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Індекси таблиці `mod_seo`
+--
+ALTER TABLE `mod_seo`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Індекси таблиці `mod_seo_inflect`
+--
+ALTER TABLE `mod_seo_inflect`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Індекси таблиці `mod_sitemap_blocked_urls`
+--
+ALTER TABLE `mod_sitemap_blocked_urls`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Індекси таблиці `mod_sitemap_changefreq`
+--
+ALTER TABLE `mod_sitemap_changefreq`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Індекси таблиці `mod_sitemap_priorities`
+--
+ALTER TABLE `mod_sitemap_priorities`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Індекси таблиці `permissions`
+--
+ALTER TABLE `permissions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `role_id` (`role_id`);
+
+--
+-- Індекси таблиці `rating`
+--
+ALTER TABLE `rating`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Індекси таблиці `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `parent_id` (`parent_id`),
+  ADD KEY `name` (`name`);
+
+--
+-- Індекси таблиці `route`
+--
+ALTER TABLE `route`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `route_u_df1472` (`url`);
+
+--
+-- Індекси таблиці `search`
+--
+ALTER TABLE `search`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `hash` (`hash`),
+  ADD KEY `datetime` (`datetime`);
+
+--
+-- Індекси таблиці `settings`
+--
+ALTER TABLE `settings`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `s_name` (`s_name`);
+
+--
+-- Індекси таблиці `settings_i18n`
+--
+ALTER TABLE `settings_i18n`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Індекси таблиці `shop_rbac_group`
+--
+ALTER TABLE `shop_rbac_group`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Індекси таблиці `shop_rbac_group_i18n`
+--
+ALTER TABLE `shop_rbac_group_i18n`
+  ADD KEY `id_idx` (`id`);
+
+--
+-- Індекси таблиці `shop_rbac_privileges`
+--
+ALTER TABLE `shop_rbac_privileges`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `shop_rbac_privileges_I_1` (`name`),
+  ADD KEY `shop_rbac_privileges_FI_1` (`group_id`);
+
+--
+-- Індекси таблиці `shop_rbac_privileges_i18n`
+--
+ALTER TABLE `shop_rbac_privileges_i18n`
+  ADD KEY `id_idx` (`id`);
+
+--
+-- Індекси таблиці `shop_rbac_roles`
+--
+ALTER TABLE `shop_rbac_roles`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unique_name` (`name`);
+
+--
+-- Індекси таблиці `shop_rbac_roles_i18n`
+--
+ALTER TABLE `shop_rbac_roles_i18n`
+  ADD KEY `role_id_idx` (`id`);
+
+--
+-- Індекси таблиці `shop_rbac_roles_privileges`
+--
+ALTER TABLE `shop_rbac_roles_privileges`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `rolepriv` (`role_id`, `privilege_id`),
+  ADD KEY `shop_rbac_roles_privileges_FK_2` (`privilege_id`);
+
+--
+-- Індекси таблиці `support_comments`
+--
+ALTER TABLE `support_comments`
+  ADD UNIQUE KEY `id` (`id`);
+
+--
+-- Індекси таблиці `support_departments`
+--
+ALTER TABLE `support_departments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Індекси таблиці `support_tickets`
+--
+ALTER TABLE `support_tickets`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Індекси таблиці `tags`
+--
+ALTER TABLE `tags`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `value` (`value`);
+
+--
+-- Індекси таблиці `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `role_id` (`role_id`),
+  ADD KEY `users_I_1` (`key`);
+
+--
+-- Індекси таблиці `user_autologin`
+--
+ALTER TABLE `user_autologin`
+  ADD PRIMARY KEY (`key_id`, `user_id`),
+  ADD KEY `last_ip` (`last_ip`);
+
+--
+-- Індекси таблиці `user_temp`
+--
+ALTER TABLE `user_temp`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Індекси таблиці `widgets`
+--
+ALTER TABLE `widgets`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `name` (`name`);
+
+--
+-- Індекси таблиці `widget_i18n`
+--
+ALTER TABLE `widget_i18n`
+  ADD PRIMARY KEY (`id`, `locale`),
+  ADD KEY `locale` (`locale`);
+
+--
+-- AUTO_INCREMENT для збережених таблиць
+--
+
+--
+-- AUTO_INCREMENT для таблиці `banners`
+--
+ALTER TABLE `banners`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 3;
+--
+-- AUTO_INCREMENT для таблиці `banner_image`
+--
+ALTER TABLE `banner_image`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 14;
+--
+-- AUTO_INCREMENT для таблиці `category`
+--
+ALTER TABLE `category`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 75;
+--
+-- AUTO_INCREMENT для таблиці `category_translate`
+--
+ALTER TABLE `category_translate`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 13;
+--
+-- AUTO_INCREMENT для таблиці `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 113;
+--
+-- AUTO_INCREMENT для таблиці `components`
+--
+ALTER TABLE `components`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 303;
+--
+-- AUTO_INCREMENT для таблиці `content`
+--
+ALTER TABLE `content`
+  MODIFY `id` BIGINT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 142;
+--
+-- AUTO_INCREMENT для таблиці `content_fields_data`
+--
+ALTER TABLE `content_fields_data`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 89;
+--
+-- AUTO_INCREMENT для таблиці `content_field_groups`
+--
+ALTER TABLE `content_field_groups`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 14;
+--
+-- AUTO_INCREMENT для таблиці `content_permissions`
+--
+ALTER TABLE `content_permissions`
+  MODIFY `id` BIGINT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 7;
+--
+-- AUTO_INCREMENT для таблиці `content_tags`
+--
+ALTER TABLE `content_tags`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 373;
+--
+-- AUTO_INCREMENT для таблиці `custom_fields`
+--
+ALTER TABLE `custom_fields`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 96;
+--
+-- AUTO_INCREMENT для таблиці `custom_fields_data`
+--
+ALTER TABLE `custom_fields_data`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 514;
+--
+-- AUTO_INCREMENT для таблиці `gallery_albums`
+--
+ALTER TABLE `gallery_albums`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 12;
+--
+-- AUTO_INCREMENT для таблиці `gallery_category`
+--
+ALTER TABLE `gallery_category`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 8;
+--
+-- AUTO_INCREMENT для таблиці `gallery_images`
+--
+ALTER TABLE `gallery_images`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 171;
+--
+-- AUTO_INCREMENT для таблиці `languages`
+--
+ALTER TABLE `languages`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 34;
+--
+-- AUTO_INCREMENT для таблиці `login_attempts`
+--
+ALTER TABLE `login_attempts`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 84;
+--
+-- AUTO_INCREMENT для таблиці `logs`
+--
+ALTER TABLE `logs`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 2373;
+--
+-- AUTO_INCREMENT для таблиці `mail`
+--
+ALTER TABLE `mail`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT для таблиці `menus`
+--
+ALTER TABLE `menus`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 8;
+--
+-- AUTO_INCREMENT для таблиці `menus_data`
+--
+ALTER TABLE `menus_data`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 67;
+--
+-- AUTO_INCREMENT для таблиці `menu_translate`
+--
+ALTER TABLE `menu_translate`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 47;
+--
+-- AUTO_INCREMENT для таблиці `mod_banner`
+--
+ALTER TABLE `mod_banner`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 27;
+--
+-- AUTO_INCREMENT для таблиці `mod_banner_groups`
+--
+ALTER TABLE `mod_banner_groups`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
   AUTO_INCREMENT = 2;
-
 --
--- Дамп данных таблицы `mod_sitemap_changefreq`
+-- AUTO_INCREMENT для таблиці `mod_email_paterns`
 --
-
-INSERT INTO `mod_sitemap_changefreq` (`id`, `main_page_changefreq`, `pages_changefreq`, `product_changefreq`, `categories_changefreq`, `products_categories_changefreq`, `products_sub_categories_changefreq`, `brands_changefreq`, `sub_categories_changefreq`)
-VALUES
-  (1, 'weekly', 'weekly', 'weekly', 'weekly', 'weekly', 'weekly', 'weekly', 'weekly');
-
--- --------------------------------------------------------
-
+ALTER TABLE `mod_email_paterns`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 7;
 --
--- Структура таблицы `mod_sitemap_priorities`
+-- AUTO_INCREMENT для таблиці `mod_sample_settings`
 --
-
-DROP TABLE IF EXISTS `mod_sitemap_priorities`;
-CREATE TABLE IF NOT EXISTS `mod_sitemap_priorities` (
-  `id`                               INT(11) NOT NULL AUTO_INCREMENT,
-  `main_page_priority`               FLOAT            DEFAULT '1',
-  `cats_priority`                    FLOAT            DEFAULT '1',
-  `pages_priority`                   FLOAT            DEFAULT '1',
-  `sub_cats_priority`                FLOAT            DEFAULT '1',
-  `products_priority`                FLOAT            DEFAULT '1',
-  `products_categories_priority`     FLOAT            DEFAULT '1',
-  `products_sub_categories_priority` FLOAT            DEFAULT '1',
-  `brands_priority`                  FLOAT            DEFAULT '1',
-  PRIMARY KEY (`id`)
-)
-  ENGINE = InnoDB
-  DEFAULT CHARSET = utf8
+ALTER TABLE `mod_sample_settings`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 4;
+--
+-- AUTO_INCREMENT для таблиці `mod_seo`
+--
+ALTER TABLE `mod_seo`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT для таблиці `mod_seo_inflect`
+--
+ALTER TABLE `mod_seo_inflect`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT для таблиці `mod_sitemap_blocked_urls`
+--
+ALTER TABLE `mod_sitemap_blocked_urls`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT для таблиці `mod_sitemap_changefreq`
+--
+ALTER TABLE `mod_sitemap_changefreq`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
   AUTO_INCREMENT = 2;
-
 --
--- Дамп данных таблицы `mod_sitemap_priorities`
+-- AUTO_INCREMENT для таблиці `mod_sitemap_priorities`
 --
-
-INSERT INTO `mod_sitemap_priorities` (`id`, `main_page_priority`, `cats_priority`, `pages_priority`, `sub_cats_priority`, `products_priority`, `products_categories_priority`, `products_sub_categories_priority`, `brands_priority`)
-VALUES
-  (1, 1, 0.8, 0.9, 0.7, 0.4, 0.6, 0.5, 0.3);
-
-DROP TABLE IF EXISTS `route`;
-CREATE TABLE `route` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `entity_id` int(11) NOT NULL,
-  `type` varchar(255) NOT NULL,
-  `parent_url` varchar(500) NOT NULL DEFAULT '',
-  `url` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `route_u_df1472` (`url`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
-
+ALTER TABLE `mod_sitemap_priorities`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 2;
 --
--- Dumping data for table `route`
+-- AUTO_INCREMENT для таблиці `permissions`
 --
-
-INSERT INTO `route` VALUES (1,64,'category','','blog'),(2,66,'category','','klienty-o-nas'),(3,67,'category','blog','biznes'),(4,74,'category','blog','finansy'),(5,69,'category','blog','ekonomika'),(6,62,'category','','uslugi'),(7,92,'page','klienty-o-nas','andrei-pavlichenko'),(8,93,'page','klienty-o-nas','artur-rudkovskii'),(9,84,'page','uslugi','business-consulting'),(10,110,'page','blog/ekonomika','glavnaia-veshch-kotoraia-stoit-mezhdu-vami-i-uspehom'),(11,109,'page','blog/ekonomika','konsultirovanie-po-upravleniiu-kompiuternoi-strukturoi'),(12,87,'page','','kontakty'),(13,85,'page','uslugi','nalogovye-konsultatsii'),(14,90,'page','blog/biznes','ne-otkladyvaite-zapusk-luchshih-biznes-idei'),(15,89,'page','blog/biznes','obektivnost-kak-odna-iz-samyh-vazhnyh-sostavliaiushchih'),(16,121,'page','blog','optimizatsiia-nalogov-i-upravlenie-nalogovymi-riskami'),(17,124,'page','','pro-kompaniiu'),(18,86,'page','uslugi','uslugi-advokata');
-
-/*!40101 SET CHARACTER_SET_CLIENT = @OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS = @OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION = @OLD_COLLATION_CONNECTION */;
+ALTER TABLE `permissions`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 5;
+--
+-- AUTO_INCREMENT для таблиці `rating`
+--
+ALTER TABLE `rating`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT для таблиці `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 19;
+--
+-- AUTO_INCREMENT для таблиці `route`
+--
+ALTER TABLE `route`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 19;
+--
+-- AUTO_INCREMENT для таблиці `search`
+--
+ALTER TABLE `search`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 21;
+--
+-- AUTO_INCREMENT для таблиці `settings`
+--
+ALTER TABLE `settings`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 5;
+--
+-- AUTO_INCREMENT для таблиці `settings_i18n`
+--
+ALTER TABLE `settings_i18n`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 4;
+--
+-- AUTO_INCREMENT для таблиці `shop_rbac_group`
+--
+ALTER TABLE `shop_rbac_group`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 79;
+--
+-- AUTO_INCREMENT для таблиці `shop_rbac_privileges`
+--
+ALTER TABLE `shop_rbac_privileges`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 732;
+--
+-- AUTO_INCREMENT для таблиці `shop_rbac_roles`
+--
+ALTER TABLE `shop_rbac_roles`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 7;
+--
+-- AUTO_INCREMENT для таблиці `shop_rbac_roles_privileges`
+--
+ALTER TABLE `shop_rbac_roles_privileges`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 2476;
+--
+-- AUTO_INCREMENT для таблиці `support_comments`
+--
+ALTER TABLE `support_comments`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 2;
+--
+-- AUTO_INCREMENT для таблиці `support_departments`
+--
+ALTER TABLE `support_departments`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 2;
+--
+-- AUTO_INCREMENT для таблиці `support_tickets`
+--
+ALTER TABLE `support_tickets`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 2;
+--
+-- AUTO_INCREMENT для таблиці `tags`
+--
+ALTER TABLE `tags`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 40;
+--
+-- AUTO_INCREMENT для таблиці `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 65;
+--
+-- AUTO_INCREMENT для таблиці `user_temp`
+--
+ALTER TABLE `user_temp`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT для таблиці `widgets`
+--
+ALTER TABLE `widgets`
+  MODIFY `id` INT(11) NOT NULL AUTO_INCREMENT,
+  AUTO_INCREMENT = 41;

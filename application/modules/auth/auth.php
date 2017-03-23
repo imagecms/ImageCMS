@@ -126,7 +126,7 @@ class Auth extends MY_Controller
                 }
             }
 
-            if ($val->run() AND $this->dx_auth->login($val->set_value('email'), $val->set_value('password'), $val->set_value('remember'))) {
+            if ($val->run($this) AND $this->dx_auth->login($val->set_value('email'), $val->set_value('password'), $val->set_value('remember'))) {
                 // Redirect to homepage
                 if (class_exists('ShopCore') && SHOP_INSTALLED) {
                     ShopCore::app()->SCart->transferCartData();

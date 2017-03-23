@@ -249,21 +249,22 @@ abstract class ExchangeBase
      * @throws Exception
      */
     public function _updatePerOne($tableName, array $data, $keyToCompare) {
+          $this->db->update_batch($tableName, $data, $keyToCompare);
 
-        foreach ($data as $rowData) {
-            $this->db->update($tableName, $rowData, [$keyToCompare => $rowData[$keyToCompare]], 1);
-
-            $error = $this->db->_error_message();
-            if (empty($error)) {
-                continue;
-            }
-
-            log_message('error', sprintf("DB error: '%s'", $error));
-
-            if (config_item('update:failOnError') == true) {
-                throw new Exception("Error on updating `{$tableName}`: " . $error);
-            }
-        }
+        //        foreach ($data as $rowData) {
+        //            $this->db->update($tableName, $rowData, [$keyToCompare => $rowData[$keyToCompare]], 1);
+        //
+        //            $error = $this->db->_error_message();
+        //            if (empty($error)) {
+        //                continue;
+        //            }
+        //
+        //            log_message('error', sprintf("DB error: '%s'", $error));
+        //
+        //            if (config_item('update:failOnError') == true) {
+        //                throw new Exception("Error on updating `{$tableName}`: " . $error);
+        //            }
+        //        }
     }
 
     /**

@@ -467,22 +467,21 @@ class BaseImport extends CI_Model
         }
         $properties = $this->db->query('SELECT `id`, `csv_name` FROM `shop_product_properties`')->result();
         foreach ($properties as $property) {
-            $properyAlias[$property->csv_name] = $property->id;
+            $propertyAlias[$property->csv_name] = $property->id;
         }
 
         foreach ($this->content as $node) {
             foreach ($node as $nodeKey => $nodeElement) {
 
-                if (array_key_exists($nodeKey, $properyAlias)) {
-                    $result = $this->db->query('SELECT * FROM `shop_product_properties_data` WHERE `product_id` = ? AND `property_id` = ?', [$node['ProductId'], $properyAlias[$nodeKey]])->row();
+                if (array_key_exists($nodeKey, $propertyAlias)) {
+                    $result = $this->db->query('SELECT * FROM `shop_product_properties_data` WHERE `product_id` = ? AND `property_id` = ?', [$node['ProductId'], $propertyAlias[$nodeKey]])->row();
 
                     if ($result instanceof \stdClass) {
                         $this->db->delete(
                             'shop_product_properties_data',
                             [
                              'product_id'  => $node['ProductId'],
-                             'property_id' => $properyAlias[$nodeKey],
-                             'locale'      => $this->languages,
+                             'property_id' => $propertyAlias[$nodeKey],
                             ]
                         );
                     }
@@ -496,27 +495,27 @@ class BaseImport extends CI_Model
                                 ->filterByLocale($this->languages)
                                 ->filterByValue($v)
                                 ->endUse()
-                                ->findOneByPropertyId($properyAlias[$nodeKey]);
+                                ->findOneByPropertyId($propertyAlias[$nodeKey]);
 
                             if (!$property_value) {
 
                                 $property_value = new SPropertyValue();
-                                $property_value->setPropertyId($properyAlias[$nodeKey]);
+                                $property_value->setPropertyId($propertyAlias[$nodeKey]);
                                 $property_value->setLocale($this->languages);
                                 $property_value->setValue($v);
                                 $property_value->save();
 
                             }
 
-                            $this->checkPropertiesData($properyAlias[$nodeKey], $node['ProductId'], $property_value->getId());
+                            $this->checkPropertiesData($propertyAlias[$nodeKey], $node['ProductId'], $property_value->getId());
 
                         }
                     }
 
                     foreach ($node['CategoryIds'] as $categoryId) {
-                        $result = $this->db->query('SELECT * FROM `shop_product_properties_categories` WHERE `category_id` = ? AND `property_id` = ?', [$categoryId, $properyAlias[$nodeKey]])->row();
+                        $result = $this->db->query('SELECT * FROM `shop_product_properties_categories` WHERE `category_id` = ? AND `property_id` = ?', [$categoryId, $propertyAlias[$nodeKey]])->row();
                         if (!($result instanceof \stdClass) && !empty($nodeElement)) {
-                            $this->db->insert('shop_product_properties_categories', ['property_id' => $properyAlias[$nodeKey], 'category_id' => $categoryId]);
+                            $this->db->insert('shop_product_properties_categories', ['property_id' => $propertyAlias[$nodeKey], 'category_id' => $categoryId]);
                         }
                     }
 
@@ -526,7 +525,7 @@ class BaseImport extends CI_Model
                     FROM `shop_product_properties_i18n`
                     WHERE id = ? AND locale = ?',
                         [
-                         $properyAlias[$nodeKey],
+                         $propertyAlias[$nodeKey],
                          $this->languages,
                         ]
                     )->row();
@@ -539,7 +538,7 @@ class BaseImport extends CI_Model
                         }
                     }
                     if ($changed) {
-                        $this->db->update('shop_product_properties_i18n', ['data' => serialize($data)], ['id' => $properyAlias[$nodeKey], 'locale' => $this->languages]);
+                        $this->db->update('shop_product_properties_i18n', ['data' => serialize($data)], ['id' => $propertyAlias[$nodeKey], 'locale' => $this->languages]);
                     }
                 }
             }

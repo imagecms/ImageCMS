@@ -38,7 +38,7 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="{$BASE_URL}{$l.cat_url}{$l.url}" target="_blank">{truncate($l.url, 20, '...')}</a>
+                                        <a href="{$BASE_URL}{$l.full_url}" target="_blank">{truncate($l.full_url, 20, '...')}</a>
                                     </td>
                                     <td>{date('Y-m-d H:i:s', $l['created'])}</td>
                                     <td>
@@ -87,7 +87,7 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="{$BASE_URL}{$l.cat_url}{$l.url}" target="_blank">{truncate($l.url, 20, '...')}</a>
+                                        <a href="{$BASE_URL}{$l.full_url}" target="_blank">{truncate($l.full_url, 20, '...')}</a>
                                     </td>
                                     <td>{date('Y-m-d H:i:s', $l['created'])}</td>
                                     <td>

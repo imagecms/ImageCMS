@@ -46,7 +46,6 @@
                                         <div class="controls">
                                             <div>
                                                 <select style="width:699px" name="category" id="category_selectbox" onchange="pagesAdmin.loadCFAddPage()">
-                                                    <option value="0" selected="selected">{lang("No","admin")}</option>
                                                     { $this->view("cats_select.tpl", array('tree' => $this->template_vars['tree'], 'sel_cat' => $this->template_vars['sel_cat'])); }
                                                 </select>
                                                 <a onclick="$('.addCategoryModal').modal(); return false;" class="btn m-l_10" href="#">

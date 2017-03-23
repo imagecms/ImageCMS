@@ -1101,11 +1101,11 @@ var orders = new Object({
                 $(".productsForOrders").empty().each(function () {
                     if (products.length > 0)
                         for (var i = 0; i < products.length; i++)
-                        $('<option/>', {
-                            value: products[i]['id'],
-                            text: products[i]['name'],
-                            'data-product-name': products[i]['name']
-                        }).appendTo($(this));
+                            $('<option/>', {
+                                value: products[i]['id'],
+                                text: products[i]['name'],
+                                'data-product-name': products[i]['name']
+                            }).appendTo($(this));
                     else
                         $('<option>', {
                             text: langs.notFound,
@@ -1133,9 +1133,23 @@ var orders = new Object({
                             separate = ' - '
                         }
                         var price = parseFloat(productVariants[i]['price']).toFixed(pricePrecision);
-                        $this.append($('<option data-number=\'' + productVariants[i]['number'] + '\' data-stock=\'' + productVariants[i]['stock'] + '\' data-price=\'' + price + '\' data-variantName=\'' + variantName +
-                            '\' data-product-id=' + productId + ' data-product-name=\'' + productName + '\' data-productCurrency=' + curr + ' data-variantId=' + productVariants[i]['id'] +
-                            ' value=' + productVariants[i]['id'] + ' data-orig_price="' + productVariants[i]['origPrice'] + '">' + variantName + separate + price + ' ' + curr + '</option>'));
+
+                        var optionElement = $('<option/>', {
+                            'data-number': productVariants[i]['number'],
+                            'data-stock': productVariants[i]['stock'] ,
+                            'data-price' : price ,
+                            'data-variantName' : variantName,
+                            'data-product-id' : productId ,
+                            'data-product-name' : productName,
+                            'data-productCurrency' : curr,
+                            'data-variantId': productVariants[i]['id'],
+                            'value' : productVariants[i]['id'],
+                            'data-orig_price': productVariants[i]['origPrice']
+                        });
+
+                        optionElement.html(variantName + separate + price + ' ' + curr);
+
+                        $this.append(optionElement);
 
                         $($this.find('option')[0]).trigger('click');
                         $this.trigger('change');

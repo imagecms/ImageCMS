@@ -170,8 +170,10 @@ class FrontController
 
         $args = $moduleSegments;
         if (method_exists($module, $moduleAction)) {
+
             $refMethod = new \ReflectionMethod($module, $moduleAction);
             $maxArgsNum = $refMethod->getNumberOfParameters();
+
             if (count($args) > $maxArgsNum) {
                 throw new PageNotFoundException();
             }

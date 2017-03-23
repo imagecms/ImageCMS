@@ -90,7 +90,7 @@ class ExchangeDataLoad
 
     private function getCategories() {
 
-        $result = $this->db->get('shop_category');
+        $result = $this->db->order_by('id')->get('shop_category');
         $categories = [];
         foreach ($result->result_array() as $category) {
             $categories[$category['id']] = $category;

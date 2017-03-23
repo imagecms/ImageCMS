@@ -12,6 +12,8 @@ if (!defined('BASEPATH')) {
  * @property Cms_admin $cms_admin
  * @property Lib_category $lib_category
  * @property Lib_seo $lib_seo
+ * @property Tags tags
+ * @property Cms_base cms_base
  */
 class Pages extends BaseAdminController
 {
@@ -94,7 +96,15 @@ class Pages extends BaseAdminController
 
         $this->form_validation->set_rules('main_tpl', lang('Main page template', 'admin'), 'trim|max_length[50]|min_length[2]|callback_tpl_validation');
 
-        if ($this->form_validation->run($this) == FALSE) {
+        $url = $this->input->post('page_url') ?: $this->createUrl($this->input->post('page_title'));
+
+        if ($url) {
+            $this->form_validation->set_rules('page_url', lang('URL', 'admin'), 'alpha_dash|least_one_symbol|max_length[255]');
+        } else {
+            $this->form_validation->set_rules('page_url', lang('URL', 'admin'), 'required|alpha_dash|least_one_symbol|max_length[255]');
+        }
+
+        if ($this->form_validation->run() == FALSE) {
             $error = $this->form_validation->error_string('<p>', '</p>');
 
             showMessage(lang('From validation error: <br />', 'admin') . $error, false, 'r');
@@ -103,13 +113,6 @@ class Pages extends BaseAdminController
             $settings = $this->cms_admin->get_settings();
 
             $def_lang = $this->cms_admin->get_default_lang();
-
-            if ($this->input->post('page_url') == '' or $this->input->post('page_url') == NULL) {
-                $url = $this->createUrl($this->input->post('page_title'));
-            } else {
-                $url = $this->input->post('page_url');
-            }
-
             // check if we have existing module with entered URL
             $this->db->where('name', $url);
             $query = $this->db->get('components');
@@ -161,10 +164,8 @@ class Pages extends BaseAdminController
                      'cat_url'         => $full_url,
                      'keywords'        => $keywords,
                      'description'     => $description,
-                //'full_text' => htmlspecialchars(trim($this->input->post('full_text'))),
                      'full_text'       => trim($this->input->post('full_text')),
                      'prev_text'       => trim($this->lib_admin->db_post('prev_text')),
-                //'prev_text' => htmlspecialchars(trim($this->lib_admin->db_post('prev_text'))),
                      'category'        => $this->input->post('category'),
                      'full_tpl'        => $this->input->post('full_tpl'),
                      'main_tpl'        => $this->input->post('main_tpl'),
@@ -289,9 +290,11 @@ class Pages extends BaseAdminController
             return;
         }
 
+        $select = 'content.* , route.url, if( route.parent_url <> "", concat(route.parent_url, "/"), "") as cat_url';
+
         // Get page data
         $data = $this->db
-            ->select('content.* , route.url, if( route.parent_url <> "", concat(route.parent_url, "/"),"" )  as cat_url', false)
+            ->select($select, false)
             ->join('route', 'route.id = content.route_id')
             ->get_where('content', ['content.id' => $page_id])
             ->row_array();
@@ -302,7 +305,7 @@ class Pages extends BaseAdminController
 
         if ($lang != 0 AND $lang != $data['lang']) {
             $data = $this->db
-                ->select('content.* , route.url')
+                ->select($select, false)
                 ->join('route', 'route.id = content.route_id')
                 ->get_where('content', ['lang_alias' => $page_id, 'lang' => $lang]);
 
@@ -312,6 +315,7 @@ class Pages extends BaseAdminController
                 $data = FALSE;
             }
         }
+
         /** Init Event. Pre Edit Page */
         Events::create()->registerEvent(['pageId' => $page_id, 'url' => $data['url']], 'BaseAdminPage:preUpdate');
         Events::runFactory();
@@ -388,7 +392,7 @@ class Pages extends BaseAdminController
             $category = $this->lib_category->get_category($data['category']);
 
             $pagesPagination = $this->session->userdata('pages_pag_url');
-            $pagesPagination = $pagesPagination ? $pagesPagination : null;
+            $pagesPagination = $pagesPagination ?: null;
 
             $this->template->add_array(
                 [
@@ -423,7 +427,7 @@ class Pages extends BaseAdminController
     public function update($page_id) {
 
         $pagesPagination = $this->session->userdata('pages_pag_url');
-        $pagesPagination = $pagesPagination ? $pagesPagination : null;
+        $pagesPagination = $pagesPagination ?: null;
 
         //cp_check_perm('page_edit');
 
@@ -439,7 +443,6 @@ class Pages extends BaseAdminController
         Events::runFactory();
 
         $this->form_validation->set_rules('page_title', lang('Title', 'admin'), 'trim|required|min_length[1]|max_length[500]');
-        $this->form_validation->set_rules('page_url', lang('URL', 'admin'), 'alpha_dash|least_one_symbol|max_length[255]');
         $this->form_validation->set_rules('page_keywords', lang('Keywords', 'admin'), 'trim');
         $this->form_validation->set_rules('prev_text', lang('Preliminary contents', 'admin'), 'trim|required');
         $this->form_validation->set_rules('page_description', lang('Description ', 'admin'), 'trim');
@@ -449,6 +452,10 @@ class Pages extends BaseAdminController
         $this->form_validation->set_rules('create_time', lang('Creation time', 'admin'), 'required');
         $this->form_validation->set_rules('publish_date', lang('Publication date', 'admin'), 'required');
         $this->form_validation->set_rules('publish_time', lang('Publication time', 'admin'), 'required');
+
+        $url = $this->input->post('page_url') ?: $this->createUrl($this->input->post('page_title'));
+        $urlValidation = $url ? '' : '|required';
+        $this->form_validation->set_rules('page_url', lang('URL', 'admin'), 'alpha_dash|least_one_symbol|max_length[255]' . $urlValidation);
 
         $page_category = $this->cms_admin->get_category($data['category']);
 
@@ -481,11 +488,6 @@ class Pages extends BaseAdminController
         if ($this->form_validation->run($this) == FALSE) {
             showMessage(validation_errors(), false, 'r');
         } else {
-            if ($this->input->post('page_url') == '' or $this->input->post('page_url') == NULL) {
-                $url = $this->createUrl($this->input->post('page_title'));
-            } else {
-                $url = $this->input->post('page_url');
-            }
 
             // check if we have existing module with entered URL
             $this->db->where('name', $url);
@@ -536,7 +538,6 @@ class Pages extends BaseAdminController
                      'main_tpl'        => $this->input->post('main_tpl'),
                      'comments_status' => $this->input->post('comments_status'),
                      'post_status'     => $this->input->post('post_status'),
-                     'author'          => $this->dx_auth->get_username(),
                      'publish_date'    => strtotime($publish_date),
                      'created'         => strtotime($create_date),
                      'updated'         => time(),
@@ -956,8 +957,8 @@ class Pages extends BaseAdminController
      * Display pages by Category ID
      *
      * @access public
-     * @cat_id int
-     * @cur_page int
+     * @param string $cat_id
+     * @param null|int $pagination
      */
     public function GetPagesByCategory($cat_id = 'all', $pagination = null) {
 
@@ -970,7 +971,7 @@ class Pages extends BaseAdminController
         }
 
         $def_lang = $this->cms_admin->get_default_lang();
-        CI::$APP->config->set_item('cur_lang', $def_lang['id']);
+        $this->config->set_item('cur_lang', $def_lang['id']);
         if ($cat_id != 'all') {
             $db_where = [
                          'category' => $cat_id,

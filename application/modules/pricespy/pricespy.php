@@ -67,7 +67,7 @@ class Pricespy extends MY_Controller
                     ->registerScript('spy');
             $this->renderUserSpys();
         } else {
-            $this->core->error_404();
+            redirect('auth/login');
         }
     }
 
@@ -120,13 +120,15 @@ class Pricespy extends MY_Controller
 
             foreach ($spys as $spy) {
 
-                if ($spy->price != $spy->productPrice && $spy->price < $spy->productPrice) {
+                if ($spy->price != $spy->productPrice) {
 
                     $CI->db->set('productPrice', $spy->price);
                     $CI->db->where('productVariantId', $spy->productVariantId);
                     $CI->db->update('mod_price_spy');
 
-                    self::sendNotificationByEmail($spy);
+                    if ($spy->price < $spy->productPrice) {
+                        self::sendNotificationByEmail($spy);
+                    }
                 }
             }
         }
@@ -280,8 +282,13 @@ class Pricespy extends MY_Controller
             ->join('shop_product_variants', 'shop_product_variants.id=mod_price_spy.productVariantId')
             ->join('shop_products_i18n', 'shop_products_i18n.id=mod_price_spy.productId')
             ->join('shop_products', 'shop_products.id=mod_price_spy.productId')
+            ->join('route', 'route.entity_id = mod_price_spy.productId and route.type = "product"')
             ->get('mod_price_spy')
             ->result_array();
+
+        foreach ($products as &$product) {
+            $product['url'] = \core\models\Route::createRouteUrl($product['url'], $product['parent_url'], 'product');
+        }
 
         assetManager::create()
                 ->setData('products', $products)

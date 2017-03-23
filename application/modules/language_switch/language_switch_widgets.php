@@ -24,6 +24,10 @@ class Language_switch_Widgets extends MY_Controller
      * @return string
      */
     public function language_switch_show($widget = []) {
+
+        if (!MY_Controller::isPremiumCMS()) {
+            return '';
+        }
         $current_address = (string) $this->uri->uri_string();
 
         if (\core\src\CoreFactory::getConfiguration()->isDefaultLanguage()) {

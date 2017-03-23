@@ -161,7 +161,7 @@ class Categories extends BaseAdminController
                     );
 
                     /** Init Event. Create new Category */
-                    Events::create()->registerEvent(array_merge($data, ['id' => $id, 'userId' => $this->dx_auth->get_user_id()]));
+                    Events::create()->raiseEvent(array_merge($data, ['id' => $id, 'userId' => $this->dx_auth->get_user_id()]), 'Categories:create');
 
                     /** End init Event. Create new Page */
                     showMessage(lang('Pages category created', 'admin'));
@@ -177,8 +177,7 @@ class Categories extends BaseAdminController
                 case 'update':
 
                     /** Init Event. Pre Create Category */
-                    Events::create()->registerEvent(['pageId' => $cat_id, 'url' => $cat['url']], 'Categories:preUpdate');
-                    Events::runFactory();
+                    Events::create()->raiseEvent(['pageId' => $cat_id, 'url' => $cat['url']], 'Categories:preUpdate');
 
                     if ($this->url_exists($data['url'], $cat_id)) {
                         $data['url'] .= time();
@@ -208,7 +207,7 @@ class Categories extends BaseAdminController
                     );
 
                     /** Init Event. Create new Category */
-                    Events::create()->registerEvent(array_merge($data, ['id' => $cat_id, 'userId' => $this->dx_auth->get_user_id()]), 'Categories:update');
+                    Events::create()->raiseEvent(array_merge($data, ['id' => $cat_id, 'userId' => $this->dx_auth->get_user_id()]), 'Categories:update');
 
                     showMessage(lang('Changes saved', 'admin'));
                     $act = $this->input->post('action');
@@ -251,7 +250,7 @@ class Categories extends BaseAdminController
         }
         $url = mb_strlen($url) === 1 ? str_repeat($url, 2) : $url;
 
-        return $url;
+        return $url ?: time();
     }
 
     /**
@@ -517,7 +516,6 @@ class Categories extends BaseAdminController
      * @param string $action
      */
     public function fast_add($action = '') {
-        ($hook = get_hook('admin_fast_cat_add')) ? eval($hook) : NULL;
 
         $this->template->add_array(
             [
@@ -570,9 +568,13 @@ class Categories extends BaseAdminController
                     $data['url'] .= time();
                 }
 
-                ($hook = get_hook('admin_fast_cat_insert')) ? eval($hook) : NULL;
-
                 $id = $this->cms_admin->create_category($data);
+
+                Events::create()->raiseEvent(
+                    array_merge($data, ['id' => $id, 'userId' => $this->dx_auth->get_user_id()]),
+                    'Categories:create'
+                );
+
                 $this->cache->delete_all();
 
                 $this->lib_admin->log(
@@ -587,12 +589,7 @@ class Categories extends BaseAdminController
                     ]
                 );
 
-                echo lang('Category', 'admin') . ' <select name="category" ONCHANGE="change_comments_status();" id="category_selectbox">
-                <option value="0">' . lang('No', 'admin') . '</option>';
-
                 $this->template->show('cats_select', FALSE);
-
-                echo '</select>';
             }
         }
     }

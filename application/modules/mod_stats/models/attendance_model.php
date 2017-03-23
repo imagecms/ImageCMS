@@ -80,7 +80,7 @@ class Attendance_model extends CI_Model
                 FROM_UNIXTIME(`mod_stats_attendance`.`time_add`) as `last_activity`,
                
                 -- ---- for urls ----
-               IF(route.parent_url <> '', concat(route.parent_url, '/', route.url), route.url) AS `last_url`,   
+               route.url AS `last_url`,   
                 -- ------------------
 
                 -- ---- for names ----
@@ -117,7 +117,7 @@ class Attendance_model extends CI_Model
                 AND `shop_products_i18n`.`locale` = '{$locale}'
             -- ------------------
 
-            LEFT JOIN route ON route.entity_id = id_entity AND type = (
+            LEFT JOIN route ON route.entity_id = `mod_stats_attendance`.id_entity AND type = (
               CASE `mod_stats_attendance`.`type_id`
               WHEN 1
                 THEN 'page'
@@ -126,7 +126,7 @@ class Attendance_model extends CI_Model
               WHEN 3
                 THEN 'shop_category'
               WHEN 4
-                THEN 'products'
+                THEN 'product'
               END
             )
 
@@ -137,7 +137,58 @@ class Attendance_model extends CI_Model
             ORDER BY 
                 `mod_stats_attendance`.`id` DESC
         ";
-        return $this->db->query($query)->result_array();
+
+        $results = $this->db->query($query);
+
+        if ($results) {
+            $results = $results->result_array();
+            foreach ($results as &$result) {
+                if ($result['type_id'] == Attendance::PAGE) {
+                    $result['last_url'] = $this->getUrl($result['id_entity'], \core\models\Route::TYPE_PAGE);
+                } elseif ($result['type_id'] == Attendance::CATEGORY) {
+                    $result['last_url'] = $this->getUrl($result['id_entity'], \core\models\Route::TYPE_CATEGORY);
+                } elseif ($result['type_id'] == Attendance::SHOP_CATEGORY) {
+                    $result['last_url'] = $this->getUrl($result['id_entity'], \core\models\Route::TYPE_SHOP_CATEGORY);
+                } elseif ($result['type_id'] == Attendance::PRODUCT) {
+                    $result['last_url'] = $this->getUrl($result['id_entity'], \core\models\Route::TYPE_PRODUCT);
+                }
+            }
+
+            return $results;
+        }
+
+        return false;
+    }
+
+    protected function getUrl($id, $type) {
+        $urlConfiguration = \core\src\CoreFactory::getConfiguration()->getUrlRules();
+        $url              = \core\models\RouteQuery::create()->filterByEntityId($id)->filterByType($type)->findOneOrCreate();
+        if ($type == \core\models\Route::TYPE_SHOP_CATEGORY) {
+            if ($urlConfiguration['shop_category']['parent'] === '1') {
+                $url = $url->getFullUrl();
+            } else {
+                $url = $url->getUrl();
+            }
+            if ($urlConfiguration['shop_category']['prefix'] != '') {
+                $url = rtrim($urlConfiguration['shop_category']['prefix'], '/') . '/' . $url;
+            }
+
+            return $url;
+        } elseif ($type == \core\models\Route::TYPE_PRODUCT) {
+            if ($urlConfiguration['product']['parent'] === '1') {
+                $url = $url->getFullUrl();
+            } else {
+                $url = $url->getUrl();
+            }
+            if ($urlConfiguration['product']['prefix'] != '') {
+                $url = rtrim($urlConfiguration['product']['prefix'], '/') . '/' . $url;
+            }
+
+            return $url;
+        } else {
+            return $url->getFullUrl();
+        }
+
     }
 
     /**

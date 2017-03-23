@@ -49,7 +49,7 @@ if (!function_exists('category_list')) {
             if (!in_array($row['id'], $exclude_cats)) {
                 $row['fetch_pages'] = unserialize($row['fetch_pages']);
 
-                $total_pages = $ci->core->_get_category_pages($row, 0, 0, TRUE);
+                $total_pages = _get_category_pages($row, 0, 0, TRUE);
                 $result[] = '<a href="' . site_url($row['path_url']) . '">' . $row['name'] . ' (' . $total_pages . ')</a>';
             }
         }
@@ -77,7 +77,7 @@ if (!function_exists('sub_category_list')) {
                 foreach ($categories as $row) {
                     $row['fetch_pages'] = unserialize($row['fetch_pages']);
 
-                    $total_pages = $ci->core->_get_category_pages($row, 0, 0, TRUE);
+                    $total_pages = _get_category_pages($row, 0, 0, TRUE);
                     $result[] = '<a href="' . site_url($row['path_url']) . '">' . $row['name'] . ' (' . $total_pages . ')</a>';
                 }
 
@@ -107,6 +107,57 @@ if (!function_exists('get_category_name')) {
         }
 
         return $c['name'];
+    }
+
+}
+
+if (!function_exists('_get_category_pages')) {
+
+    /**
+     * Select or count pages in category
+     * @param array $category
+     * @param int $row_count
+     * @param int $offset
+     * @param bool|FALSE $count
+     * @return array|string
+     */
+    function _get_category_pages(array $category = [], $row_count = 0, $offset = 0, $count = FALSE) {
+        $ci = & get_instance();
+
+        $ci->db->where('post_status', 'publish');
+        $ci->db->where('publish_date <=', time());
+        $ci->db->where('lang', $ci->config->item('cur_lang'));
+        if (count($category['fetch_pages']) > 0) {
+            $category['fetch_pages'][] = $category['id'];
+            $ci->db->where_in('category', $category['fetch_pages']);
+        } else {
+            $ci->db->where('category', $category['id']);
+        }
+        $ci->db->select('content.*');
+        $ci->db->select('IF(route.parent_url <> \'\', concat(route.parent_url, \'/\', route.url), route.url) as full_url', FALSE);
+        $ci->db->order_by($category['order_by'], $category['sort_order']);
+        $ci->db->join('route', 'route.id=content.route_id');
+
+        if ($count === FALSE) {
+            if ($row_count > 0) {
+                $query = $ci->db->get('content', (int) $row_count, (int) $offset);
+            } else {
+                $query = $ci->db->get('content');
+            }
+        } else {
+            $ci->db->from('content');
+            return $ci->db->count_all_results();
+        }
+        $pages = $query->result_array();
+
+        if (count($pages) > 0 AND is_array($pages)) {
+            $n = 0;
+            foreach ($pages as $p) {
+                $pages[$n] = $ci->cfcm->connect_fields($p, 'page');
+                $n++;
+            }
+        }
+        return $pages;
     }
 
 }

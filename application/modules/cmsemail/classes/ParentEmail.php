@@ -233,7 +233,7 @@ class ParentEmail extends MY_Controller
                 $this->form_validation->set_rules('adminMailText', lang('Template admin mail', 'cmsemail'), 'required');
             }
 
-            $this->form_validation->set_rules('admin_email', lang('Admin address', 'cmsemail'), 'valid_email');
+            $this->form_validation->set_rules('admin_email', lang('Admin address', 'cmsemail'), 'trim|callback_email_check');
 
             if ($this->form_validation->run($this) == FALSE) {
                 $this->errors = validation_errors();
@@ -255,6 +255,26 @@ class ParentEmail extends MY_Controller
                 return FALSE;
             }
         }
+    }
+
+    /**
+     * @param $emails
+     *
+     * @return bool
+     */
+    public function email_check($emails) {
+
+        $emails = str_replace(' ', '', $emails);
+
+        foreach (explode(',', $emails) as $e) {
+            if (!filter_var($e, FILTER_VALIDATE_EMAIL)) {
+                $this->form_validation->set_message('email_check', lang('Field', 'cmsemail') . ' %s ' . lang('Must contain valid email', 'cmsemail'));
+
+                return false;
+            }
+        }
+
+        return TRUE;
     }
 
     /**

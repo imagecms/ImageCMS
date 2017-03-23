@@ -688,11 +688,10 @@ class ProductsImport extends BaseImport
      */
     private function full_path_category($val) {
         $this->load->helper('translit');
-        $str = '';
-        foreach (explode('/', $val) as $v) {
-            $str .= translit_url(trim($v)) . '/';
-        }
-        return substr($str, 0, -1);
+        $str = explode('/', $val);
+        $str = array_map('trim', $str);
+        $str = array_map('translit_url', $str);
+        return implode('/', $str);
     }
 
     /**
@@ -807,9 +806,6 @@ class ProductsImport extends BaseImport
         $paramTemp = explode('?', $param);
         $param = is_array($paramTemp) ? $paramTemp[0] : $param;
 
-        $idna = new Punycode();
-        $idna->decode($param);
-
         $format = pathinfo($param, PATHINFO_EXTENSION);
 
         switch ($format) {
@@ -820,10 +816,9 @@ class ProductsImport extends BaseImport
                 $flag = TRUE;
                 break;
             default:
-                $flag = FALSE;
                 Logger::create()
                     ->set('The link does not lead to the image or images in the correct format ProductsImport.php. - IMPORT');
-                break;
+                return false;
         }
 
         $this->load->helper('translit');

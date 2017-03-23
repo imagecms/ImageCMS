@@ -37,6 +37,7 @@ $config = [
                                        'shop_sorting',
                                        'shop_sorting_i18n',
                                        'widgets',
+                                       'route',
                                        'widget_i18n',
                                        'gallery_albums',
                                        'gallery_albums_i18n',
