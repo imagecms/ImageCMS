@@ -31,9 +31,13 @@ if (!function_exists('siteinfo')) {
         if (0 !== strpos($name, 'siteinfo_')) {
             $name = 'siteinfo_' . $name;
         }
-        $ci = &get_instance();
-        $ci->load->library('SiteInfo');
-        $siteinfo = new SiteInfo();
+
+		static $siteinfo;
+		if ( empty( $siteinfo ) ) {
+            $ci = &get_instance();
+            $ci->load->library('SiteInfo');
+            $siteinfo = new SiteInfo();
+		}
         // next code is only for compatibility with older versions of library,
         // so in the future needed to be removed (with funciton processOldVersions() too)
 
@@ -67,7 +71,10 @@ if (!function_exists('siteInfoAdditionalManipulations')) {
             $name = str_replace('_url', '', $name);
         }
 
-        $siteinfo = new SiteInfo();
+		static $siteinfo;
+		if ( empty( $siteinfo ) ) {
+		    $siteinfo = new SiteInfo();
+		}
         $value = $siteinfo->getSiteInfo($name);
         switch ($name) {
             case 'siteinfo_favicon':
