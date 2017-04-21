@@ -75,9 +75,7 @@
             <div class="span3">
                 <div class="inside_padd">
                     <ul class="nav nav-tabs nav-stacked">
-                        <li {if '0'==$cat_id} class="active" {/if} ><a href="/admin/pages/GetPagesByCategory/0" class="pjax">{lang("Without a category","admin")}</a></li>
-                        <li {if 'all'==$cat_id} class="active" {/if}><a href="/admin/pages/GetPagesByCategory" class="pjax">{lang('All categories','admin')}</a></li>
-
+                        <li {if $cat_id=='all'} class="active" {/if}><a href="/admin/pages/GetPagesByCategory" class="pjax">{lang('All categories','admin')}</a></li>
 
                         {foreach $tree as $cat}
                         <li class="{if $cat_id==$cat.id}active{/if} {if $cat.subtree}is-sub{/if}" >
