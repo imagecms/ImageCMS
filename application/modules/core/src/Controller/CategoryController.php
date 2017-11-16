@@ -1,4 +1,6 @@
-<?php namespace core\src\Controller;
+<?php
+
+namespace core\src\Controller;
 
 use CMSFactory\Events;
 use core\src\CoreFactory;
@@ -6,6 +8,11 @@ use core\src\Exception\PageNotFoundException;
 
 class CategoryController extends Controller
 {
+    protected static $defaultPaginationConfig = [
+        'page_query_string'    => false,
+        'first_link'           => '1',
+        'num_links'            => 3,
+    ];
 
     public function index($id) {
         $category = $this->model->getCategory($id);
@@ -17,10 +24,29 @@ class CategoryController extends Controller
         /** Register event 'Core:_displayCategory' */
         Events::create()->registerEvent($category, 'Core:_displayCategory')->runFactory();
 
-        $paginationPage = $this->ci->input->get('per_page');
-        if ($paginationPage) {
+        include_once './templates/' . config_item('template') . '/paginations.php';
+
+        foreach (static::$defaultPaginationConfig as $key => $value) {
+            if (!isset($paginationConfig[$key])) {
+                $paginationConfig[$key] = $value;
+            }
+        }
+
+        $querySegment = $paginationConfig['query_string_segment'];
+
+        $paginationPage = $this->ci->input->get($querySegment);
+
+        if ($paginationPage !== false) {
             $offset = $paginationPage;
             $segment = $this->ci->uri->total_segments();
+
+            if ($offset < 1) {
+                throw new PageNotFoundException();
+            }
+
+            if ($paginationConfig['use_page_numbers']) {
+                $offset = ($offset - 1) * $category['per_page'];
+            }
         } else {
             $offset = 0;
             $segment = $this->ci->uri->total_segments() + 1;
@@ -39,24 +65,22 @@ class CategoryController extends Controller
             $this->ci->load->library('Pagination');
 
             $get = $this->ci->input->get();
-            if (isset($get['per_page'])) {
-                unset($get['per_page']);
+
+            if (isset($get[$querySegment])) {
+                unset($get[$querySegment]);
             }
+
             $get = http_build_query($get);
 
             $get = $get ? '?' . $get : '';
 
             $categoryUrl = '/' . CoreFactory::getUrlParser()->getFullUrl(true, true, false) . $get;
-            $paginationConfig['base_url'] = $categoryUrl;
-            $paginationConfig['first_url'] = $categoryUrl;
-            $paginationConfig['first_link'] = '1';
-            $paginationConfig['num_links'] = 3;
-            $paginationConfig['total_rows'] = $category['total_pages'];
-            $paginationConfig['per_page'] = $category['per_page'];
-            $paginationConfig['uri_segment'] = $segment;
-            $paginationConfig['page_query_string'] = false;
 
-            include_once './templates/' . config_item('template') . '/paginations.php';
+            $paginationConfig['base_url']    = $categoryUrl;
+            $paginationConfig['first_url']   = $categoryUrl;
+            $paginationConfig['total_rows']  = $category['total_pages'];
+            $paginationConfig['per_page']    = $category['per_page'];
+            $paginationConfig['uri_segment'] = $segment;
 
             $pagination = $this->ci->pagination;
 
