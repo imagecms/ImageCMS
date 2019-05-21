@@ -2,8 +2,8 @@
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-26 04:33+0200\n"
-"PO-Revision-Date: 2015-01-26 04:33+0200\n"
+"POT-Creation-Date: 2017-03-29 04:45+0300\n"
+"PO-Revision-Date: 2017-03-29 04:45+0300\n"
 "Last-Translator:  <>\n"
 "Language-Team:  <>\n"
 "Language: \n"
@@ -18,693 +18,711 @@ msgstr ""
 "X-Poedit-Country: \n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: application/modules/gallery/assets/index.tpl:15
-msgid "Категории"
-msgstr "Categories"
-
-#: application/modules/gallery/assets/index.tpl:35
-msgid "There are no categories."
-msgstr ""
-
-#: application/modules/gallery/admin.php:274
-msgid "Gallery settings was edited"
-msgstr ""
-
-#: application/modules/gallery/admin.php:309
-msgid "Gallery album was created"
-msgstr ""
-
-#: application/modules/gallery/admin.php:336
-msgid "Gallery album was updated"
-msgstr ""
-
-#: application/modules/gallery/admin.php:414
-msgid "Gallery album was removed"
-msgstr ""
-
-#: application/modules/gallery/admin.php:686
-msgid "Gallery category was created"
-msgstr ""
-
-#: application/modules/gallery/admin.php:746
-msgid "Gallery category was edited"
-msgstr ""
-
-#: application/modules/gallery/admin.php:772
-msgid "Gallery category was removed"
-msgstr ""
-
-#: application/modules/gallery/admin.php:861
-msgid "Upload success"
-msgstr ""
-
-#: application/modules/gallery/templates/admin/settings.tpl:349
-msgid "Font file must support all characters you need."
-msgstr "Font file must support all characters you need."
-
-#: application/modules/gallery/templates/latest_fotos.tpl:2
-msgid "My last photo"
-msgstr "My latest photo"
-
-#: application/modules/gallery/admin.php:189
-msgid "Watermark text"
-msgstr "Watermark text"
-
-#: application/modules/gallery/templates/admin/settings.tpl:100
-#: application/modules/gallery/templates/admin/settings.tpl:151
-#: application/modules/gallery/templates/admin/settings.tpl:202
-msgid "Save ratio"
-msgstr "Save ratio"
-
-#: application/modules/gallery/templates/admin/categories.tpl:67
-msgid "Delete category?"
-msgstr "Delete category?/Remove category?"
-
-#: application/modules/gallery/admin.php:587
-#: application/modules/gallery/admin.php:595
-#: application/modules/gallery/admin.php:603
-msgid "Positions updated"
-msgstr "Positions updated"
-
-#: application/modules/gallery/templates/admin/album_list.tpl:88
-msgid "No albums found"
-msgstr "No albums found"
-
-#: application/modules/gallery/templates/admin/settings.tpl:239
-msgid "in the center"
-msgstr "in the center"
-
-#: application/modules/gallery/templates/admin/settings.tpl:225
-msgid "Watermark"
-msgstr "Watermark"
-
-#: application/modules/gallery/templates/latest_fotos_form.tpl:34
-msgid "Algorithm"
-msgstr "Algorithm"
-
-#: application/modules/gallery/assets/albums.tpl:6
-#: application/modules/gallery/assets/album.tpl:6
-#: application/modules/gallery/assets/index.tpl:6
-msgid "Главная"
-msgstr "Home page"
-
-#: application/modules/gallery/templates/admin/settings.tpl:240
-msgid "on the right"
-msgstr "on the right/ right"
-
-#: application/modules/gallery/templates/admin/settings.tpl:289
-#: application/modules/gallery/templates/admin/settings.tpl:318
-msgid "Offset"
-msgstr "Offset"
-
-#: application/modules/gallery/templates/admin/create_category.tpl:5
-#: application/modules/gallery/templates/admin/categories.tpl:10
-msgid "Create a category"
-msgstr "Create a category"
-
-#: application/modules/gallery/templates/admin/settings.tpl:67
-msgid "In megabites"
-msgstr "in megabites"
-
-#: application/modules/gallery/templates/admin/settings.tpl:245
-msgid "vertical alignment"
-msgstr "vertical alignment"
-
-#: application/modules/gallery/templates/admin/settings.tpl:107
-#: application/modules/gallery/templates/admin/settings.tpl:158
-#: application/modules/gallery/templates/admin/settings.tpl:209
-msgid "Cut the borders"
-msgstr "Cut the borders"
-
-#: application/modules/gallery/templates/latest_fotos_form.tpl:37
-msgid "Last images"
-msgstr "Last images"
-
-#: application/modules/gallery/templates/admin/settings.tpl:248
-msgid "at the top"
-msgstr "at the top"
-
-#: application/modules/gallery/templates/admin/settings.tpl:235
-msgid "horizontal alignment"
-msgstr "horizontal alignment/ Horizontal alignment"
-
-#: application/modules/gallery/templates/admin/settings.tpl:306
-#: application/modules/gallery/admin.php:190
-msgid "Font size"
-msgstr "Font size"
-
-#: application/modules/gallery/templates/admin/create_category.tpl:11
-#: application/modules/gallery/templates/admin/create_album.tpl:11
-msgid "Create and exit"
-msgstr "Create and exit"
-
-#: application/modules/gallery/templates/latest_fotos_form.tpl:11
-#: application/modules/gallery/templates/admin/edit_category.tpl:11
-msgid "Save and exit"
-msgstr "Save and exit"
-
-#: application/modules/gallery/templates/public/main_backup.tpl:132
-#: application/modules/gallery/templates/admin/album_params.tpl:23
-#: application/modules/gallery/templates/admin/create_album.tpl:22
-#: application/modules/gallery/templates/admin/categories.tpl:5
-#: application/modules/gallery/admin.php:291
-msgid "Categories"
-msgstr "Categories"
-
-#: application/modules/gallery/templates/latest_fotos_form.tpl:38
-msgid "Random images"
-msgstr "Random images"
-
-#: application/modules/gallery/admin.php:474
-#: application/modules/gallery/admin.php:516
-#: application/modules/gallery/admin.php:578
-msgid "Can't load image information"
-msgstr "Can't load image information/ Cannot load image information"
-
-#: application/modules/gallery/templates/admin/edit_image.tpl:5
-msgid "Album"
-msgstr "Album"
-
-#: application/modules/gallery/gallery_widgets.php:66
-#: application/modules/gallery/admin.php:275
-msgid "Settings have been saved"
-msgstr "Settings have been saved"
-
-#: application/modules/gallery/templates/admin/edit_image.tpl:9
-msgid "Return"
-msgstr "Return"
-
-#: application/modules/gallery/assets/thumbnails.tpl:3
-#: application/modules/gallery/assets/albums.tpl:14
-#: application/modules/gallery/assets/album.tpl:11
-#: application/modules/gallery/assets/index.tpl:14
-msgid "Галерея"
-msgstr "Gallery"
-
-#: application/modules/gallery/templates/admin/edit_image.tpl:29
-msgid "Has been downloaded"
-msgstr "Has been downloaded/ Downloaded"
-
-#: application/modules/gallery/templates/public/album.tpl:23
-msgid "from"
-msgstr "from"
-
-#: application/modules/gallery/templates/admin/edit_image.tpl:35
-msgid "Image size"
-msgstr "Image size"
-
-#: application/modules/gallery/module_info.php:7
-#: application/modules/gallery/templates/public/thumbnails.tpl:1
-#: application/modules/gallery/templates/public/albums.tpl:1
-#: application/modules/gallery/templates/public/album.tpl:10
-#: application/modules/gallery/gallery.php:42
-#: application/modules/gallery/gallery.php:63
-msgid "Gallery"
-msgstr "Gallery"
-
-#: application/modules/gallery/templates/admin/edit_image.tpl:59
-msgid "New name"
-msgstr "New name"
-
-#: application/modules/gallery/gallery_widgets.php:52
-msgid "Image limit"
-msgstr "Image limit"
-
-#: application/modules/gallery/templates/admin/settings.tpl:22
-msgid "Categories and albums"
-msgstr "Categories and albums"
-
-#: application/modules/gallery/templates/latest_fotos_form.tpl:9
-#: application/modules/gallery/templates/admin/album_list.tpl:9
-#: application/modules/gallery/templates/admin/album_params.tpl:9
-#: application/modules/gallery/templates/admin/create_category.tpl:9
-#: application/modules/gallery/templates/admin/settings.tpl:9
-#: application/modules/gallery/templates/admin/edit_album.tpl:9
-#: application/modules/gallery/templates/admin/create_album.tpl:9
-#: application/modules/gallery/templates/admin/edit_category.tpl:9
-msgid "Back"
-msgstr "Back"
-
-#: application/modules/gallery/templates/admin/settings.tpl:32
-msgid "Sort"
-msgstr "Sort"
-
-#: application/modules/gallery/templates/public/album.tpl:26
-msgid "All images"
-msgstr "All images"
-
-#: application/modules/gallery/templates/admin/settings.tpl:35
-msgid "By date"
-msgstr "By date/by date"
-
-#: application/modules/gallery/templates/admin/album_list.tpl:47
-msgid "Has been updated"
-msgstr "Has been updated/ Updated"
-
-#: application/modules/gallery/templates/admin/settings.tpl:36
-msgid "in alphabetic order"
-msgstr "in alphabetic order/ In alphabetic"
-
-#: application/modules/gallery/templates/latest_fotos_form.tpl:10
-#: application/modules/gallery/templates/admin/album_params.tpl:10
-#: application/modules/gallery/templates/admin/edit_image.tpl:51
-#: application/modules/gallery/templates/admin/edit_image.tpl:62
-#: application/modules/gallery/templates/admin/settings.tpl:10
-#: application/modules/gallery/templates/admin/edit_album.tpl:13
-#: application/modules/gallery/templates/admin/edit_category.tpl:10
-msgid "Save"
-msgstr ""
-
-#: application/modules/gallery/templates/admin/settings.tpl:37
-msgid "By position"
-msgstr "By position/ by position"
-
-#: application/modules/gallery/templates/admin/album_list.tpl:71
-#: application/modules/gallery/templates/admin/album_list.tpl:73
-#: application/modules/gallery/templates/admin/album_list.tpl:101
-#: application/modules/gallery/templates/admin/album_params.tpl:78
-#: application/modules/gallery/templates/admin/create_category.tpl:57
-#: application/modules/gallery/templates/admin/edit_album.tpl:14
-#: application/modules/gallery/templates/admin/edit_album.tpl:52
-#: application/modules/gallery/templates/admin/edit_album.tpl:92
-#: application/modules/gallery/templates/admin/categories.tpl:9
-#: application/modules/gallery/templates/admin/categories.tpl:71
-#: application/modules/gallery/templates/admin/edit_category.tpl:58
-msgid "Delete"
-msgstr "Delete"
-
-#: application/modules/gallery/templates/admin/settings.tpl:40
-msgid "in descending order"
-msgstr "in descending order/ In descending order"
-
-#: application/modules/gallery/templates/public/album.tpl:31
-msgid "Previous"
-msgstr "Previous"
-
-#: application/modules/gallery/templates/admin/settings.tpl:41
-msgid "in ascending order"
-msgstr "in ascending order/ In ascending order "
-
-#: application/modules/gallery/templates/admin/album_params.tpl:5
-#: application/modules/gallery/templates/admin/edit_album.tpl:5
-msgid "Album editing"
-msgstr "Album editing"
-
-#: application/modules/gallery/templates/admin/settings.tpl:55
-msgid "Images"
-msgstr "Images"
-
-#: application/modules/gallery/admin.php:88
-msgid "Set the write access"
-msgstr "Set the right access"
-
-#: application/modules/gallery/templates/admin/settings.tpl:65
-msgid "maximum file size"
-msgstr "maximum file size/ maximum file size"
-
-#: application/modules/gallery/templates/admin/album_params.tpl:74
-msgid "Album deletion"
-msgstr "Album deletion"
-
-#: application/modules/gallery/templates/admin/settings.tpl:102
-#: application/modules/gallery/templates/admin/settings.tpl:109
-#: application/modules/gallery/templates/admin/settings.tpl:153
-#: application/modules/gallery/templates/admin/settings.tpl:160
-#: application/modules/gallery/templates/admin/settings.tpl:204
-#: application/modules/gallery/templates/admin/settings.tpl:211
-msgid "Yes"
-msgstr "Yes"
-
-#: application/modules/gallery/templates/public/album.tpl:32
-msgid "Next"
-msgstr "Next"
-
-#: application/modules/gallery/templates/admin/settings.tpl:123
-msgid "Image preview"
-msgstr "Image preview"
-
-#: application/modules/gallery/templates/admin/categories.tpl:26
-msgid "ID"
-msgstr "ID"
-
-#: application/modules/gallery/templates/admin/settings.tpl:133
-#: application/modules/gallery/templates/admin/settings.tpl:184
-msgid "Width"
-msgstr "Width"
-
-#: application/modules/gallery/templates/admin/album_list.tpl:51
-#: application/modules/gallery/templates/admin/edit_image.tpl:31
-msgid "Views"
-msgstr "Views"
-
-#: application/modules/gallery/templates/admin/settings.tpl:135
-#: application/modules/gallery/templates/admin/settings.tpl:144
-#: application/modules/gallery/templates/admin/settings.tpl:186
-#: application/modules/gallery/templates/admin/settings.tpl:195
-#: application/modules/gallery/templates/admin/settings.tpl:291
-#: application/modules/gallery/templates/admin/settings.tpl:320
-msgid "px"
-msgstr "px"
-
-#: application/modules/gallery/templates/admin/create_category.tpl:10
-#: application/modules/gallery/templates/admin/create_album.tpl:10
-msgid "Create"
-msgstr "Create"
-
-#: application/modules/gallery/templates/admin/settings.tpl:142
-#: application/modules/gallery/templates/admin/settings.tpl:193
-msgid "Height"
-msgstr "Height"
-
-#: application/modules/gallery/admin.php:547
-msgid "Photos removed"
-msgstr "Photos removed/Photos have been removed"
-
-#: application/modules/gallery/templates/admin/settings.tpl:174
-msgid "Image icons"
-msgstr "Image icons"
-
-#: application/modules/gallery/templates/public/main_backup.tpl:130
-#: application/modules/gallery/assets/index.tpl:43
-msgid "All albums"
-msgstr "All albums"
-
-#: application/modules/gallery/templates/admin/album_list.tpl:55
-#: application/modules/gallery/templates/admin/album_params.tpl:39
-#: application/modules/gallery/templates/admin/edit_image.tpl:47
-#: application/modules/gallery/templates/admin/create_category.tpl:28
-#: application/modules/gallery/templates/admin/create_album.tpl:39
-#: application/modules/gallery/templates/admin/categories.tpl:29
-#: application/modules/gallery/templates/admin/edit_category.tpl:29
-#: application/modules/gallery/admin.php:290
-#: application/modules/gallery/admin.php:662
-#: application/modules/gallery/admin.php:718
-msgid "Description"
-msgstr "Description"
-
-#: application/modules/gallery/templates/admin/categories.tpl:44
-msgid "Edit category"
-msgstr "Edit category"
-
-#: application/modules/gallery/templates/admin/create_category.tpl:53
-#: application/modules/gallery/templates/admin/edit_category.tpl:54
-msgid "Remove selected category"
-msgstr "Remove the selected category/ Delete the selected category"
-
-#: application/modules/gallery/templates/admin/settings.tpl:279
-#: application/modules/gallery/admin.php:191
-msgid "Transparency"
-msgstr "Transparency"
-
-#: application/modules/gallery/templates/admin/create_album.tpl:5
-msgid "Album creating"
-msgstr "Album creating"
-
-#: application/modules/gallery/templates/admin/edit_album.tpl:11
+#: application/modules/gallery/assets/admin/edit_album.tpl:11
 msgid "Add pictures"
 msgstr "Add pictures"
 
-#: application/modules/gallery/templates/admin/album_params.tpl:56
-#: application/modules/gallery/templates/admin/create_album.tpl:50
-msgid "by default"
-msgstr "by default"
+#: application/modules/gallery/assets/admin/edit_image.tpl:5
+#: application/modules/gallery/assets/admin/widget_album_images_settings.tpl:34
+#: application/modules/gallery/assets/admin/widget_latest_fotos_settings.tpl:34
+msgid "Album"
+msgstr "Album"
 
-#: application/modules/gallery/admin.php:389
-#: application/modules/gallery/admin.php:419
-msgid "Can't load album information"
-msgstr "Can't load album information/ Cannot load album information"
+#: application/modules/gallery/admin.php:334
+msgid "Album created"
+msgstr "Album created"
 
-#: application/modules/gallery/templates/admin/album_params.tpl:45
-#: application/modules/gallery/templates/admin/edit_image.tpl:43
-#: application/modules/gallery/templates/admin/create_category.tpl:34
-#: application/modules/gallery/templates/admin/edit_category.tpl:35
-#: application/modules/gallery/admin.php:663
-#: application/modules/gallery/admin.php:719
-msgid "Position"
-msgstr "Position"
+#: application/modules/gallery/assets/admin/create_album.tpl:5
+msgid "Album creating"
+msgstr "Album creating"
 
-#: application/modules/gallery/admin.php:88
-msgid "Create a directory to continue your work with the gallery"
-msgstr "Create a directory to continue your work with the gallery"
+#: application/modules/gallery/assets/admin/album_params.tpl:74
+msgid "Album deletion"
+msgstr "Album deletion"
 
-#: application/modules/gallery/templates/admin/settings.tpl:249
-msgid "in the middle"
-msgstr "in the middle"
+#: application/modules/gallery/assets/admin/album_params.tpl:5
+#: application/modules/gallery/assets/admin/edit_album.tpl:5
+msgid "Album editing"
+msgstr "Album editing"
 
-#: application/modules/gallery/templates/admin/album_list.tpl:39
-#: application/modules/gallery/templates/admin/album_params.tpl:33
-#: application/modules/gallery/templates/admin/edit_image.tpl:27
-#: application/modules/gallery/templates/admin/create_category.tpl:22
-#: application/modules/gallery/templates/admin/edit_album.tpl:58
-#: application/modules/gallery/templates/admin/create_album.tpl:33
-#: application/modules/gallery/templates/admin/categories.tpl:27
-#: application/modules/gallery/templates/admin/edit_category.tpl:23
-#: application/modules/gallery/admin.php:289
-#: application/modules/gallery/admin.php:326
-#: application/modules/gallery/admin.php:487
-#: application/modules/gallery/admin.php:661
-#: application/modules/gallery/admin.php:717
-msgid "Name"
-msgstr "Name"
+#: application/modules/gallery/admin.php:593
+msgid "Album image deleted."
+msgstr "Album image deleted."
 
-#: application/modules/gallery/templates/admin/settings.tpl:250
-msgid "at the bottom"
-msgstr "at the bottom"
+#: application/modules/gallery/widgets_info.php:10
+msgid "Album images"
+msgstr "Album images"
 
-#: application/modules/gallery/templates/admin/edit_album.tpl:33
-msgid "Chose all photos"
-msgstr "Choose all photos"
-
-#: application/modules/gallery/templates/admin/settings.tpl:255
-msgid "Type"
-msgstr "Type"
-
-#: application/modules/gallery/admin.php:574
-msgid "Changes are saved"
-msgstr "Changes saved/ Changes have been saved"
-
-#: application/modules/gallery/templates/admin/settings.tpl:258
-#: application/modules/gallery/templates/admin/settings.tpl:300
-msgid "Text"
-msgstr "Text"
-
-#: application/modules/gallery/templates/admin/edit_image.tpl:33
-#: application/modules/gallery/admin.php:181
-msgid "File size"
-msgstr "File size"
-
-#: application/modules/gallery/templates/public/album.tpl:23
-#: application/modules/gallery/templates/admin/settings.tpl:259
-msgid "Image"
-msgstr "Image"
-
-#: application/modules/gallery/module_info.php:8
-msgid "Creating and managing photo galleries online."
-msgstr "Creating and managing photo galleries online."
-
-#: application/modules/gallery/templates/admin/settings.tpl:269
-msgid "Choose an image "
-msgstr "Choose an image"
-
-#: application/modules/gallery/templates/admin/edit_album.tpl:59
-msgid "Size"
-msgstr "Size"
-
-#: application/modules/gallery/templates/admin/settings.tpl:284
-msgid "Select a digit from 1 to 100"
-msgstr "Select a digit from 1 to 100"
-
-#: application/modules/gallery/templates/admin/album_list.tpl:64
-#: application/modules/gallery/templates/admin/edit_album.tpl:53
-msgid "Edit"
-msgstr "Edit"
-
-#: application/modules/gallery/templates/admin/settings.tpl:312
-msgid "Font colour"
-msgstr "Font colour"
-
-#: application/modules/gallery/templates/admin/settings.tpl:83
-#: application/modules/gallery/admin.php:183
-msgid "Maximum height"
-msgstr "Maximum height"
-
-#: application/modules/gallery/templates/admin/settings.tpl:328
-msgid "Path to font "
-msgstr "Path to font"
-
-#: application/modules/gallery/templates/admin/album_params.tpl:11
-msgid "Save and go back"
-msgstr "Save and go back"
-
-#: application/modules/gallery/templates/admin/settings.tpl:332
-msgid "Upload"
-msgstr "Upload"
-
-#: application/modules/gallery/templates/admin/edit_album.tpl:74
+#: application/modules/gallery/assets/admin/edit_album.tpl:73
 msgid "Album is empty"
 msgstr "Album is empty"
 
-#: application/modules/gallery/templates/admin/settings.tpl:339
-msgid "Font is not uploaded"
-msgstr "Font is not uploaded/Fond has not been uploaded"
-
-#: application/modules/gallery/templates/admin/categories.tpl:48
-#: application/modules/gallery/templates/admin/categories.tpl:48
-msgid "View albums"
-msgstr "View albums"
-
-#: application/modules/gallery/templates/latest_fotos_form.tpl:5
-msgid "Widget settings"
-msgstr "Widget settings"
-
-#: application/modules/gallery/admin.php:185
-msgid "Pre-image width"
-msgstr "Pre-image width/pre-image width"
-
-#: application/modules/gallery/templates/latest_fotos_form.tpl:28
-msgid "Images limit"
-msgstr "Image limit"
-
-#: application/modules/gallery/templates/admin/settings.tpl:74
-#: application/modules/gallery/admin.php:182
-msgid "Maximum width"
-msgstr "Maximum width"
-
-#: application/modules/gallery/templates/admin/edit_image.tpl:40
-msgid "Cover"
-msgstr "Cover"
-
-#: application/modules/gallery/templates/admin/edit_album.tpl:88
-msgid "Deleting photos"
-msgstr "Deleting photos..."
-
-#: application/modules/gallery/assets/albums.tpl:35
-msgid "Альбомов не найдено"
-msgstr "Albums have not been found/ Albums not found"
-
-#: application/modules/gallery/admin.php:200
-msgid "Specify the correct path to watermark image"
-msgstr "Specify the correct path to watermark image/Indicate the correct path to watermark"
-
-#: application/modules/gallery/templates/admin/album_list.tpl:43
-#: application/modules/gallery/templates/admin/categories.tpl:30
-msgid "Created"
-msgstr "Created/ Has been created"
-
-#: application/modules/gallery/admin.php:187
-msgid "Icon width"
-msgstr "Icon width"
-
-#: application/modules/gallery/templates/admin/album_list.tpl:99
-#: application/modules/gallery/templates/admin/album_params.tpl:77
-#: application/modules/gallery/templates/admin/edit_image.tpl:52
-#: application/modules/gallery/templates/admin/create_category.tpl:56
-#: application/modules/gallery/templates/admin/edit_album.tpl:91
-#: application/modules/gallery/templates/admin/categories.tpl:70
-#: application/modules/gallery/templates/admin/edit_category.tpl:57
-msgid "Cancel"
-msgstr "Cancel"
-
-#: application/modules/gallery/assets/albums.tpl:25
-#: application/modules/gallery/assets/index.tpl:25
-msgid "Описание"
-msgstr "Description"
-
-#: application/modules/gallery/templates/latest_fotos_form.tpl:20
-#: application/modules/gallery/templates/admin/settings.tpl:5
-#: application/modules/gallery/templates/admin/categories.tpl:12
-msgid "Settings"
-msgstr "Settings"
-
-#: application/modules/gallery/templates/admin/edit_category.tpl:5
-msgid "Category editing"
-msgstr "Category editing"
-
-#: application/modules/gallery/templates/admin/create_category.tpl:50
-#: application/modules/gallery/templates/admin/edit_category.tpl:51
-msgid "Removing categories"
-msgstr "Removing categories/ Deleting categories"
-
-#: application/modules/gallery/templates/admin/album_list.tpl:96
-msgid "Delete album?"
-msgstr ""
-
-#: application/modules/gallery/admin.php:310
-msgid "Album created"
-msgstr "Album has been created/ Album created"
-
-#: application/modules/gallery/admin.php:186
-msgid "pre-image height"
-msgstr "pre-image height/Pre-image height"
-
-#: application/modules/gallery/templates/admin/album_list.tpl:10
-msgid "Create album"
-msgstr "Create an album"
-
-#: application/modules/gallery/templates/admin/settings.tpl:103
-#: application/modules/gallery/templates/admin/settings.tpl:110
-#: application/modules/gallery/templates/admin/settings.tpl:154
-#: application/modules/gallery/templates/admin/settings.tpl:161
-#: application/modules/gallery/templates/admin/settings.tpl:205
-#: application/modules/gallery/templates/admin/settings.tpl:212
-#: application/modules/gallery/templates/admin/create_album.tpl:25
-msgid "No"
-msgstr "No"
-
-#: application/modules/gallery/templates/admin/settings.tpl:238
-msgid "left or on the left"
-msgstr "to the left"
-
-#: application/modules/gallery/templates/public/albums.tpl:24
-msgid "Albums not found"
-msgstr "Albums have not been found"
-
-#: application/modules/gallery/templates/admin/album_list.tpl:65
-msgid "Edit albums"
-msgstr "Edit albums"
-
-#: application/modules/gallery/admin.php:337
-#: application/modules/gallery/admin.php:513
-#: application/modules/gallery/admin.php:747
-msgid "Changes have been saved"
-msgstr "Changes have been saved"
-
-#: application/modules/gallery/templates/admin/categories.tpl:60
-msgid "Category list is empty"
-msgstr "Category list is empty"
-
-#: application/modules/gallery/admin.php:188
-msgid "Icon height"
-msgstr "Icon height"
-
-#: application/modules/gallery/assets/albums.tpl:21
-msgid "Альбом"
-msgstr "Album"
-
-#: application/modules/gallery/templates/admin/categories.tpl:11
-msgid "Create an album"
-msgstr "Create an album"
-
-#: application/modules/gallery/templates/admin/album_list.tpl:5
-#: application/modules/gallery/templates/admin/categories.tpl:28
+#: application/modules/gallery/assets/admin/album_list.tpl:5
+#: application/modules/gallery/assets/admin/categories.tpl:28
 msgid "Albums"
 msgstr "Albums"
 
-#: application/modules/gallery/templates/admin/album_list.tpl:31
-#: application/modules/gallery/templates/admin/album_list.tpl:31
-msgid "View images"
-msgstr "View images"
+#: application/modules/gallery/assets/index.tpl:36
+msgid "All albums"
+msgstr "All albums"
 
-#: application/modules/gallery/templates/admin/settings.tpl:91
-#: application/modules/gallery/admin.php:184
+#: application/modules/gallery/assets/admin/settings.tpl:254
+msgid "at the bottom"
+msgstr "at the bottom"
+
+#: application/modules/gallery/assets/admin/settings.tpl:252
+msgid "at the top"
+msgstr "at the top"
+
+#: application/modules/gallery/assets/admin/album_list.tpl:10
+#: application/modules/gallery/assets/admin/album_params.tpl:9
+#: application/modules/gallery/assets/admin/create_album.tpl:9
+#: application/modules/gallery/assets/admin/create_category.tpl:9
+#: application/modules/gallery/assets/admin/edit_album.tpl:9
+#: application/modules/gallery/assets/admin/edit_category.tpl:9
+#: application/modules/gallery/assets/admin/edit_image.tpl:11
+#: application/modules/gallery/assets/admin/settings.tpl:9
+#: application/modules/gallery/assets/admin/widget_album_images_settings.tpl:9
+#: application/modules/gallery/assets/admin/widget_latest_fotos_settings.tpl:9
+msgid "Back"
+msgstr "Back"
+
+#: application/modules/gallery/assets/admin/settings.tpl:36
+msgid "By date"
+msgstr "By date"
+
+#: application/modules/gallery/assets/admin/album_params.tpl:56
+#: application/modules/gallery/assets/admin/create_album.tpl:50
+msgid "by default"
+msgstr "by default"
+
+#: application/modules/gallery/assets/admin/settings.tpl:38
+msgid "By position"
+msgstr "By position"
+
+#: application/modules/gallery/admin.php:422
+#: application/modules/gallery/admin.php:453
+msgid "Can't load album information"
+msgstr "Can't load album information"
+
+#: application/modules/gallery/admin.php:517
+#: application/modules/gallery/admin.php:559
+#: application/modules/gallery/admin.php:631
+msgid "Can't load image information"
+msgstr "Can't load image information"
+
+#: application/modules/gallery/assets/admin/album_list.tpl:95
+#: application/modules/gallery/assets/admin/album_params.tpl:77
+#: application/modules/gallery/assets/admin/categories.tpl:70
+#: application/modules/gallery/assets/admin/create_category.tpl:56
+#: application/modules/gallery/assets/admin/edit_album.tpl:90
+#: application/modules/gallery/assets/admin/edit_category.tpl:57
+#: application/modules/gallery/assets/admin/edit_image.tpl:14
+#: application/modules/gallery/assets/admin/edit_image.tpl:68
+msgid "Cancel"
+msgstr "Cancel"
+
+#: application/modules/gallery/admin.php:315
+#: application/modules/gallery/assets/admin/album_params.tpl:23
+#: application/modules/gallery/assets/admin/categories.tpl:5
+#: application/modules/gallery/assets/admin/create_album.tpl:22
+msgid "Categories"
+msgstr "Categories"
+
+#: application/modules/gallery/assets/admin/settings.tpl:22
+msgid "Categories and albums"
+msgstr "Categories and albums"
+
+#: application/modules/gallery/assets/admin/edit_category.tpl:5
+msgid "Category editing"
+msgstr "Category editing"
+
+#: application/modules/gallery/assets/admin/categories.tpl:60
+msgid "Category list is empty"
+msgstr "Category list is empty"
+
+#: application/modules/gallery/admin.php:627
+msgid "Changes are saved"
+msgstr "Changes are saved"
+
+#: application/modules/gallery/admin.php:363
+#: application/modules/gallery/admin.php:556
+#: application/modules/gallery/admin.php:819
+msgid "Changes have been saved"
+msgstr "Changes have been saved"
+
+#: application/modules/gallery/gallery_widgets.php:149
+msgid "Choose Album"
+msgstr "Choose Album"
+
+#: application/modules/gallery/assets/admin/settings.tpl:275
+msgid "Choose an image "
+msgstr "Choose an image "
+
+#: application/modules/gallery/assets/admin/edit_album.tpl:33
+msgid "Chose all photos"
+msgstr "Chose all photos"
+
+#: application/modules/gallery/assets/admin/edit_image.tpl:46
+msgid "Cover"
+msgstr "Cover"
+
+#: application/modules/gallery/assets/admin/create_album.tpl:10
+#: application/modules/gallery/assets/admin/create_category.tpl:10
+msgid "Create"
+msgstr "Create"
+
+#: application/modules/gallery/assets/admin/categories.tpl:10
+msgid "Create a category"
+msgstr "Create a category"
+
+#: application/modules/gallery/admin.php:95
+msgid "Create a directory to continue your work with the gallery"
+msgstr "Create a directory to continue your work with the gallery"
+
+#: application/modules/gallery/assets/admin/album_list.tpl:11
+msgid "Create album"
+msgstr "Create album"
+
+#: application/modules/gallery/assets/admin/categories.tpl:11
+msgid "Create an album"
+msgstr "Create an album"
+
+#: application/modules/gallery/assets/admin/create_album.tpl:11
+#: application/modules/gallery/assets/admin/create_category.tpl:11
+msgid "Create and exit"
+msgstr "Create and exit"
+
+#: application/modules/gallery/assets/admin/create_category.tpl:5
+msgid "Create category"
+msgstr "Create category"
+
+#: application/modules/gallery/assets/admin/album_list.tpl:43
+#: application/modules/gallery/assets/admin/categories.tpl:30
+msgid "Created"
+msgstr "Created"
+
+#: application/modules/gallery/module_info.php:9
+msgid "Creating and managing photo galleries online."
+msgstr "Creating and managing photo galleries online."
+
+#: application/modules/gallery/assets/admin/settings.tpl:111
+#: application/modules/gallery/assets/admin/settings.tpl:162
+#: application/modules/gallery/assets/admin/settings.tpl:213
+msgid "Cut the borders"
+msgstr "Cut the borders"
+
+#: application/modules/gallery/assets/admin/album_list.tpl:81
+#: application/modules/gallery/assets/admin/album_list.tpl:82
+#: application/modules/gallery/assets/admin/album_list.tpl:97
+#: application/modules/gallery/assets/admin/album_params.tpl:78
+#: application/modules/gallery/assets/admin/categories.tpl:9
+#: application/modules/gallery/assets/admin/categories.tpl:71
+#: application/modules/gallery/assets/admin/create_category.tpl:57
+#: application/modules/gallery/assets/admin/edit_album.tpl:14
+#: application/modules/gallery/assets/admin/edit_album.tpl:91
+#: application/modules/gallery/assets/admin/edit_category.tpl:58
+msgid "Delete"
+msgstr "Delete"
+
+#: application/modules/gallery/assets/admin/album_list.tpl:92
+msgid "Delete album?"
+msgstr "Delete album?"
+
+#: application/modules/gallery/assets/admin/categories.tpl:67
+msgid "Delete category?"
+msgstr "Delete category?"
+
+#: application/modules/gallery/assets/admin/edit_album.tpl:87
+msgid "Deleting photos"
+msgstr "Deleting photos"
+
+#: application/modules/gallery/admin.php:314
+#: application/modules/gallery/assets/admin/album_list.tpl:60
+#: application/modules/gallery/assets/admin/album_params.tpl:39
+#: application/modules/gallery/assets/admin/categories.tpl:29
+#: application/modules/gallery/assets/admin/create_album.tpl:39
+#: application/modules/gallery/assets/admin/create_category.tpl:28
+#: application/modules/gallery/assets/admin/edit_category.tpl:29
+#: application/modules/gallery/assets/admin/edit_image.tpl:60
+msgid "Description"
+msgstr "Description"
+
+#: application/modules/gallery/widgets_info.php:11
+msgid "Displays a list of images of the specified album."
+msgstr "Displays a list of images of the specified album."
+
+#: application/modules/gallery/widgets_info.php:6
+msgid "Displays the most recently added to the image gallery."
+msgstr "Displays the most recently added to the image gallery."
+
+#: application/modules/gallery/assets/admin/album_list.tpl:74
+#: application/modules/gallery/assets/admin/edit_album.tpl:52
+msgid "Edit"
+msgstr "Edit"
+
+#: application/modules/gallery/assets/admin/album_list.tpl:75
+msgid "Edit albums"
+msgstr "Edit albums"
+
+#: application/modules/gallery/assets/admin/categories.tpl:44
+msgid "Edit category"
+msgstr "Edit category"
+
+#: application/modules/gallery/admin.php:900
+msgid "Error"
+msgstr "Error"
+
+#: application/modules/gallery/assets/admin/settings.tpl:281
+msgid "File has to be located on the server. For example"
+msgstr "File has to be located on the server. For example"
+
+#: application/modules/gallery/admin.php:192
+#: application/modules/gallery/assets/admin/edit_image.tpl:39
+msgid "File size"
+msgstr "File size"
+
+#: application/modules/gallery/assets/admin/settings.tpl:319
+msgid "Font colour"
+msgstr "Font colour"
+
+#: application/modules/gallery/assets/admin/settings.tpl:355
+msgid "Font file must support all characters you need."
+msgstr "Font file must support all characters you need."
+
+#: application/modules/gallery/assets/admin/settings.tpl:346
+msgid "Font is not uploaded"
+msgstr "Font is not uploaded"
+
+#: application/modules/gallery/admin.php:201
+#: application/modules/gallery/assets/admin/settings.tpl:313
+msgid "Font size"
+msgstr "Font size"
+
+#: application/modules/gallery/gallery.php:50
+#: application/modules/gallery/gallery.php:72
+#: application/modules/gallery/gallery.php:96
+#: application/modules/gallery/module_info.php:8
+msgid "Gallery"
+msgstr "Gallery"
+
+#: application/modules/gallery/admin.php:333
+msgid "Gallery album was created"
+msgstr "Gallery album was created"
+
+#: application/modules/gallery/admin.php:448
+msgid "Gallery album was removed"
+msgstr "Gallery album was removed"
+
+#: application/modules/gallery/admin.php:362
+msgid "Gallery album was updated"
+msgstr "Gallery album was updated"
+
+#: application/modules/gallery/admin.php:758
+msgid "Gallery category was created"
+msgstr "Gallery category was created"
+
+#: application/modules/gallery/admin.php:818
+msgid "Gallery category was edited"
+msgstr "Gallery category was edited"
+
+#: application/modules/gallery/admin.php:846
+msgid "Gallery category was removed"
+msgstr "Gallery category was removed"
+
+#: application/modules/gallery/admin.php:298
+msgid "Gallery settings was edited"
+msgstr "Gallery settings was edited"
+
+#: application/modules/gallery/assets/admin/edit_image.tpl:35
+msgid "Has been downloaded"
+msgstr "Has been downloaded"
+
+#: application/modules/gallery/assets/admin/album_list.tpl:48
+msgid "Has been updated"
+msgstr "Has been updated"
+
+#: application/modules/gallery/assets/admin/settings.tpl:146
+#: application/modules/gallery/assets/admin/settings.tpl:197
+msgid "Height"
+msgstr "Height"
+
+#: application/modules/gallery/assets/admin/settings.tpl:239
+msgid "horizontal alignment"
+msgstr "horizontal alignment"
+
+#: application/modules/gallery/admin.php:199
+msgid "Icon height"
+msgstr "Icon height"
+
+#: application/modules/gallery/admin.php:198
+msgid "Icon width"
+msgstr "Icon width"
+
+#: application/modules/gallery/assets/admin/categories.tpl:26
+msgid "ID"
+msgstr "ID"
+
+#: application/modules/gallery/assets/admin/settings.tpl:263
+msgid "Image"
+msgstr "Image"
+
+#: application/modules/gallery/assets/admin/edit_image.tpl:33
+msgid "Image file name"
+msgstr "Image file name"
+
+#: application/modules/gallery/assets/admin/settings.tpl:178
+msgid "Image icons"
+msgstr "Image icons"
+
+#: application/modules/gallery/gallery_widgets.php:73
+#: application/modules/gallery/gallery_widgets.php:148
+msgid "Image limit"
+msgstr "Image limit"
+
+#: application/modules/gallery/assets/admin/settings.tpl:270
+msgid "Image path"
+msgstr "Image path"
+
+#: application/modules/gallery/assets/admin/settings.tpl:127
+msgid "Image preview"
+msgstr "Image preview"
+
+#: application/modules/gallery/assets/admin/edit_image.tpl:41
+msgid "Image size"
+msgstr "Image size"
+
+#: application/modules/gallery/assets/admin/settings.tpl:59
+msgid "Images"
+msgstr "Images"
+
+#: application/modules/gallery/assets/admin/widget_album_images_settings.tpl:28
+#: application/modules/gallery/assets/admin/widget_latest_fotos_settings.tpl:28
+msgid "Images limit"
+msgstr "Images limit"
+
+#: application/modules/gallery/assets/admin/settings.tpl:37
+msgid "in alphabetic order"
+msgstr "in alphabetic order"
+
+#: application/modules/gallery/assets/admin/settings.tpl:44
+msgid "in ascending order"
+msgstr "in ascending order"
+
+#: application/modules/gallery/assets/admin/settings.tpl:43
+msgid "in descending order"
+msgstr "in descending order"
+
+#: application/modules/gallery/assets/admin/settings.tpl:71
+msgid "In megabites"
+msgstr "In megabites"
+
+#: application/modules/gallery/assets/admin/settings.tpl:243
+msgid "in the center"
+msgstr "in the center"
+
+#: application/modules/gallery/assets/admin/settings.tpl:253
+msgid "in the middle"
+msgstr "in the middle"
+
+#: application/modules/gallery/assets/admin/widget_latest_fotos_settings.tpl:37
+msgid "Last images"
+msgstr "Last images"
+
+#: application/modules/gallery/assets/admin/settings.tpl:242
+msgid "left or on the left"
+msgstr "left or on the left"
+
+#: application/modules/gallery/assets/admin/settings.tpl:69
+msgid "maximum file size"
+msgstr "maximum file size"
+
+#: application/modules/gallery/admin.php:194
+#: application/modules/gallery/assets/admin/settings.tpl:87
+msgid "Maximum height"
+msgstr "Maximum height"
+
+#: application/modules/gallery/admin.php:193
+#: application/modules/gallery/assets/admin/settings.tpl:78
+msgid "Maximum width"
+msgstr "Maximum width"
+
+#: application/modules/gallery/templates/latest_fotos.tpl:2
+msgid "My last photo"
+msgstr "My last photo"
+
+#: application/modules/gallery/admin.php:313
+#: application/modules/gallery/admin.php:352
+#: application/modules/gallery/admin.php:734
+#: application/modules/gallery/admin.php:792
+#: application/modules/gallery/assets/admin/album_list.tpl:39
+#: application/modules/gallery/assets/admin/album_params.tpl:33
+#: application/modules/gallery/assets/admin/categories.tpl:27
+#: application/modules/gallery/assets/admin/create_album.tpl:33
+#: application/modules/gallery/assets/admin/create_category.tpl:22
+#: application/modules/gallery/assets/admin/edit_category.tpl:23
+msgid "Name"
+msgstr "Name"
+
+#: application/modules/gallery/admin.php:530
+#: application/modules/gallery/assets/admin/edit_image.tpl:77
+msgid "New name"
+msgstr "New name"
+
+#: application/modules/gallery/assets/admin/create_album.tpl:25
+#: application/modules/gallery/assets/admin/settings.tpl:107
+#: application/modules/gallery/assets/admin/settings.tpl:114
+#: application/modules/gallery/assets/admin/settings.tpl:158
+#: application/modules/gallery/assets/admin/settings.tpl:165
+#: application/modules/gallery/assets/admin/settings.tpl:209
+#: application/modules/gallery/assets/admin/settings.tpl:216
+msgid "No"
+msgstr "No"
+
+#: application/modules/gallery/assets/admin/album_list.tpl:104
+msgid "No albums found"
+msgstr "No albums found"
+
+#: application/modules/gallery/assets/admin/settings.tpl:296
+#: application/modules/gallery/assets/admin/settings.tpl:325
+msgid "Offset"
+msgstr "Offset"
+
+#: application/modules/gallery/assets/admin/settings.tpl:244
+msgid "on the right"
+msgstr "on the right"
+
+#: application/modules/gallery/assets/admin/settings.tpl:335
+msgid "Path to font "
+msgstr "Path to font "
+
+#: application/modules/gallery/admin.php:948
+msgid "Photos in gallery the album are saved"
+msgstr "Photos in gallery the album are saved"
+
+#: application/modules/gallery/admin.php:594
+msgid "Photos removed"
+msgstr "Photos removed"
+
+#: application/modules/gallery/admin.php:735
+#: application/modules/gallery/admin.php:793
+#: application/modules/gallery/assets/admin/album_params.tpl:45
+#: application/modules/gallery/assets/admin/create_category.tpl:34
+#: application/modules/gallery/assets/admin/edit_category.tpl:35
+#: application/modules/gallery/assets/admin/edit_image.tpl:50
+msgid "Position"
+msgstr "Position"
+
+#: application/modules/gallery/admin.php:640
+#: application/modules/gallery/admin.php:648
+#: application/modules/gallery/admin.php:656
+msgid "Positions updated"
+msgstr "Positions updated"
+
+#: application/modules/gallery/admin.php:197
+msgid "pre-image height"
+msgstr "pre-image height"
+
+#: application/modules/gallery/admin.php:196
+msgid "Pre-image width"
+msgstr "Pre-image width"
+
+#: application/modules/gallery/assets/admin/settings.tpl:139
+#: application/modules/gallery/assets/admin/settings.tpl:148
+#: application/modules/gallery/assets/admin/settings.tpl:190
+#: application/modules/gallery/assets/admin/settings.tpl:199
+#: application/modules/gallery/assets/admin/settings.tpl:298
+#: application/modules/gallery/assets/admin/settings.tpl:327
+msgid "px"
+msgstr "px"
+
+#: application/modules/gallery/admin.php:195
+#: application/modules/gallery/assets/admin/settings.tpl:95
 msgid "Quality"
 msgstr "Quality"
 
-#: application/modules/gallery/templates/admin/album_params.tpl:51
-#: application/modules/gallery/templates/admin/create_album.tpl:45
+#: application/modules/gallery/assets/admin/widget_latest_fotos_settings.tpl:38
+msgid "Random images"
+msgstr "Random images"
+
+#: application/modules/gallery/widgets_info.php:5
+msgid "Recent images"
+msgstr "Recent images"
+
+#: application/modules/gallery/assets/admin/create_category.tpl:53
+#: application/modules/gallery/assets/admin/edit_category.tpl:54
+msgid "Remove selected category"
+msgstr "Remove selected category"
+
+#: application/modules/gallery/assets/admin/create_category.tpl:50
+#: application/modules/gallery/assets/admin/edit_category.tpl:51
+msgid "Removing categories"
+msgstr "Removing categories"
+
+#: application/modules/gallery/assets/admin/album_params.tpl:10
+#: application/modules/gallery/assets/admin/edit_album.tpl:13
+#: application/modules/gallery/assets/admin/edit_category.tpl:10
+#: application/modules/gallery/assets/admin/edit_image.tpl:13
+#: application/modules/gallery/assets/admin/edit_image.tpl:67
+#: application/modules/gallery/assets/admin/edit_image.tpl:81
+#: application/modules/gallery/assets/admin/settings.tpl:10
+#: application/modules/gallery/assets/admin/widget_album_images_settings.tpl:10
+#: application/modules/gallery/assets/admin/widget_latest_fotos_settings.tpl:10
+msgid "Save"
+msgstr "Save"
+
+#: application/modules/gallery/assets/admin/edit_category.tpl:11
+#: application/modules/gallery/assets/admin/widget_album_images_settings.tpl:11
+#: application/modules/gallery/assets/admin/widget_latest_fotos_settings.tpl:11
+msgid "Save and exit"
+msgstr "Save and exit"
+
+#: application/modules/gallery/assets/admin/album_params.tpl:11
+msgid "Save and go back"
+msgstr "Save and go back"
+
+#: application/modules/gallery/assets/admin/settings.tpl:104
+#: application/modules/gallery/assets/admin/settings.tpl:155
+#: application/modules/gallery/assets/admin/settings.tpl:206
+msgid "Save ratio"
+msgstr "Save ratio"
+
+#: application/modules/gallery/assets/admin/settings.tpl:291
+msgid "Select a digit from 1 to 100"
+msgstr "Select a digit from 1 to 100"
+
+#: application/modules/gallery/admin.php:95
+msgid "Set the write access"
+msgstr "Set the write access"
+
+#: application/modules/gallery/assets/admin/categories.tpl:12
+#: application/modules/gallery/assets/admin/settings.tpl:5
+#: application/modules/gallery/assets/admin/widget_album_images_settings.tpl:20
+#: application/modules/gallery/assets/admin/widget_latest_fotos_settings.tpl:20
+msgid "Settings"
+msgstr "Settings"
+
+#: application/modules/gallery/admin.php:299
+#: application/modules/gallery/gallery_widgets.php:87
+#: application/modules/gallery/gallery_widgets.php:163
+msgid "Settings have been saved"
+msgstr "Settings have been saved"
+
+#: application/modules/gallery/assets/admin/edit_album.tpl:58
+msgid "Size"
+msgstr "Size"
+
+#: application/modules/gallery/assets/admin/settings.tpl:32
+msgid "Sort"
+msgstr "Sort"
+
+#: application/modules/gallery/admin.php:211
+msgid "Specify the correct path to watermark image"
+msgstr "Specify the correct path to watermark image"
+
+#: application/modules/gallery/assets/admin/album_params.tpl:51
+#: application/modules/gallery/assets/admin/create_album.tpl:45
 msgid "Template file"
 msgstr "Template file"
 
-#: application/modules/gallery/templates/admin/settings.tpl:274
-msgid "File has to be located on the server. For example"
-msgstr "File has to be located on the server. For example"
+#: application/modules/gallery/assets/admin/settings.tpl:262
+#: application/modules/gallery/assets/admin/settings.tpl:307
+msgid "Text"
+msgstr "Text"
+
+#: application/modules/gallery/assets/index.tpl:27
+msgid "There are no categories."
+msgstr "There are no categories."
+
+#: application/modules/gallery/assets/admin/edit_image.tpl:55
+msgid "Title"
+msgstr "Title"
+
+#: application/modules/gallery/admin.php:202
+#: application/modules/gallery/assets/admin/settings.tpl:286
+msgid "Transparency"
+msgstr "Transparency"
+
+#: application/modules/gallery/assets/admin/settings.tpl:259
+msgid "Type"
+msgstr "Type"
+
+#: application/modules/gallery/assets/admin/settings.tpl:339
+msgid "Upload"
+msgstr "Upload"
+
+#: application/modules/gallery/admin.php:944
+msgid "Upload success"
+msgstr "Upload success"
+
+#: application/modules/gallery/assets/admin/settings.tpl:249
+msgid "vertical alignment"
+msgstr "vertical alignment"
+
+#: application/modules/gallery/assets/admin/categories.tpl:48
+#: application/modules/gallery/assets/admin/categories.tpl:48
+msgid "View albums"
+msgstr "View albums"
+
+#: application/modules/gallery/assets/admin/album_list.tpl:68
+#: application/modules/gallery/assets/admin/album_list.tpl:68
+msgid "View images"
+msgstr "View images"
+
+#: application/modules/gallery/assets/admin/album_list.tpl:54
+#: application/modules/gallery/assets/admin/edit_image.tpl:37
+msgid "Views"
+msgstr "Views"
+
+#: application/modules/gallery/assets/admin/settings.tpl:229
+msgid "Watermark"
+msgstr "Watermark"
+
+#: application/modules/gallery/admin.php:200
+msgid "Watermark text"
+msgstr "Watermark text"
+
+#: application/modules/gallery/assets/admin/widget_album_images_settings.tpl:5
+#: application/modules/gallery/assets/admin/widget_latest_fotos_settings.tpl:5
+msgid "Widget settings"
+msgstr "Widget settings"
+
+#: application/modules/gallery/assets/admin/settings.tpl:137
+#: application/modules/gallery/assets/admin/settings.tpl:188
+msgid "Width"
+msgstr "Width"
+
+#: application/modules/gallery/assets/admin/settings.tpl:106
+#: application/modules/gallery/assets/admin/settings.tpl:113
+#: application/modules/gallery/assets/admin/settings.tpl:157
+#: application/modules/gallery/assets/admin/settings.tpl:164
+#: application/modules/gallery/assets/admin/settings.tpl:208
+#: application/modules/gallery/assets/admin/settings.tpl:215
+msgid "Yes"
+msgstr "Yes"
+
+#: application/modules/gallery/admin.php:900
+msgid "You can upload only |max_file_uploads| images at once"
+msgstr "You can upload only |max_file_uploads| images at once"
+
+#: application/modules/gallery/assets/albums.tpl:12
+msgid "Альбом"
+msgstr "Альбом"
+
+#: application/modules/gallery/assets/albums.tpl:27
+msgid "Альбомов не найдено"
+msgstr "Альбомов не найдено"
+
+#: application/modules/gallery/assets/index.tpl:5
+#: application/modules/gallery/assets/thumbnails.tpl:3
+msgid "Галерея"
+msgstr "Галерея"
+
+#: application/modules/gallery/assets/index.tpl:6
+msgid "Категории"
+msgstr "Категории"
+
+#: application/modules/gallery/assets/albums.tpl:17
+#: application/modules/gallery/assets/index.tpl:17
+msgid "Описание"
+msgstr "Описание"

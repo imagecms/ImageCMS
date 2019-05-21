@@ -17,4 +17,20 @@
         <method>latest_fotos</method>
     </widget>
 
+    <widget>
+        <i18n_ru>
+            <title>Изображения альбома</title>
+            <description>Выводит список изображений заданного альбома.</description>
+        </i18n_ru>
+        <i18n_en>
+            <title>Album images</title>
+            <description>Displays a list of images of the specified album.</description>
+        </i18n_en>
+        <i18n_ua>
+            <title>Зображення альбому</title>
+            <description>Виводить список зображень заданого альбому.</description>
+        </i18n_ua>
+        <method>album_images</method>
+    </widget>
+
 </widgets>

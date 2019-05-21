@@ -103,7 +103,7 @@
                                         {lang("Title","admin")}: <span class="must">*</span>
                                     </label>
 
-                                    <div class="controls">
+                                    <div class="controls o_h">
                                         <input type="text" name="page_title" value="{encode($title)}" id="page_title_u"/>
                                     </div>
                                 </div>
@@ -177,7 +177,7 @@
                                         {lang("Tags","admin")}:
                                     </label>
 
-                                    <div class="controls">
+                                    <div class="controls o_h">
                                         <input type="text" name="search_tags" value="{implode(',', $tags)}" id="tags"/>
                                     </div>
                                 </div>
@@ -187,7 +187,7 @@
                                         {lang("Meta Title","admin")}:
                                     </label>
 
-                                    <div class="controls">
+                                    <div class="controls o_h">
                                         <input type="text" name="meta_title" id="meta_title" value="{$meta_title}"/>
                                     </div>
                                 </div>
@@ -267,7 +267,7 @@
             </div>
             <div class="tab-pane" id="addfields_article" >
                 <div id="cfcm_fields_block">
-                {echo $this->CI->load->module('cfcm/admin')->form_from_category_group($category['id']?:0, $id, 'page')}
+                    {echo $this->CI->load->module('cfcm/admin')->form_from_category_group($category['id']?:0, $id, 'page')}
                 </div>
             </div>
             <div class="tab-pane" id="setings_article">

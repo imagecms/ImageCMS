@@ -31,7 +31,7 @@
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label" for="symcount">{lang("Algorithm", 'gallery')}:</label>
+                                            <label class="control-label" for="symcount">{lang("Album", 'gallery')}:</label>
                                             <div class="controls">
                                                 <select name="order" id="symcount"> 
                                                     <option value="latest" {if $widget.settings.order=='latest'}selected="selected"{/if}>{lang("Last images", 'gallery')}</option>

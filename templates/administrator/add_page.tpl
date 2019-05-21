@@ -58,7 +58,7 @@
                                         <label class="control-label" for="page_title_u">
                                             {lang("Title","admin")}: <span class="must">*</span>
                                         </label>
-                                        <div class="controls">
+                                        <div class="controls o_h">
                                             <input type="text" name="page_title" value="" id="page_title_u" required/>
                                         </div>
                                     </div>
@@ -116,7 +116,7 @@
                                         <label class="control-label" for="tags">
                                             {lang("Tags","admin")}:
                                         </label>
-                                        <div class="controls">
+                                        <div class="controls o_h">
                                             <input type="text" name="search_tags" value="" id="tags"/>
                                         </div>
                                     </div>
@@ -125,7 +125,7 @@
                                         <label class="control-label" for="meta_title">
                                             {lang("Meta Title","admin")}:
                                         </label>
-                                        <div class="controls">
+                                        <div class="controls o_h">
                                             <input type="text" name="meta_title" id="meta_title" value=""/>
                                         </div>
                                     </div>

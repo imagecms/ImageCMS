@@ -1,5 +1,7 @@
 <?php
 
+use CMSFactory\assetManager;
+
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
@@ -17,6 +19,8 @@ class Gallery_Widgets extends MY_Controller
         parent::__construct();
         $lang = new MY_Lang();
         $lang->load('gallery');
+        $this->load->helper('gallery');
+        $this->load->model('gallery_m');
     }
 
     /**
@@ -24,8 +28,6 @@ class Gallery_Widgets extends MY_Controller
      * @return string
      */
     public function latest_fotos(array $widget = []) {
-        $this->load->helper('gallery');
-        $this->load->model('gallery_m');
 
         if ($widget['settings']['order'] == 'latest') {
             $images = gallery_latest_images($widget['settings']['limit']);
@@ -60,7 +62,9 @@ class Gallery_Widgets extends MY_Controller
 
         switch ($action) {
             case 'show_settings':
-                $this->render('latest_fotos_form', ['widget' => $widget_data]);
+                assetManager::create()
+                    ->setData('widget', $widget_data)
+                    ->renderAdmin('../../templates/latest_fotos_form');
                 break;
 
             case 'update_settings':
@@ -97,39 +101,74 @@ class Gallery_Widgets extends MY_Controller
         }
     }
 
-    /**
-     * Template functions
-     * @param string $file
-     * @param array $vars
-     */
-    public function display_tpl($file, $vars = []) {
-        $this->template->add_array($vars);
-
-        $file = realpath(__DIR__) . '/templates/' . $file . '.tpl';
-        $this->template->display('file:' . $file);
-    }
 
     /**
-     * @param string $file
-     * @param array $vars
+     * @param array $widget
      * @return string
      */
-    public function fetch_tpl($file, array $vars = []) {
-        $this->template->add_array($vars);
+    public function album_images(array $widget = []) {
 
-        $file = realpath(__DIR__) . '/templates/' . $file . '.tpl';
-        return $this->template->fetch('file:' . $file);
+        $images = $this->gallery_m->get_album_images($widget['settings']['album_id'], $widget['settings']['limit']);
+
+        if (!empty($images)) {
+            $countImages = count($images);
+            for ($i = 0; $i < $countImages; $i++) {
+                $images[$i]['url'] = site_url('gallery/album/' . $images[$i]['album_id'] . '/image/' . $images[$i]['id']);
+                $images[$i]['file_path'] = media_url('uploads/gallery/' . $images[$i]['album_id'] . '/' . $images[$i]['file_name'] .  $images[$i]['file_ext']);
+                $images[$i]['thumb_path'] = media_url('uploads/gallery/' . $images[$i]['album_id'] . '/_thumbs/' . $images[$i]['file_name'] . $images[$i]['file_ext']);
+            }
+        }
+
+        return assetManager::create()
+            ->setData('images', $images)
+            ->fetchTemplate('../widgets/' . $widget['name']);
     }
+
 
     /**
-     * @param string $viewName
-     * @param array $data
+     * @param string $action
+     * @param array $widget_data
      */
-    public function render($viewName, array $data = []) {
-        if (!empty($data)) {
-            $this->template->add_array($data);
+    public function album_images_configure($action = 'show_settings', array $widget_data = []) {
+        if ($this->dx_auth->is_admin() == FALSE) {
+            exit;
         }
-        $this->template->show('file:' . APPPATH . getModContDirName('gallery') . '/gallery/templates/' . $viewName);
-    }
 
+        switch ($action) {
+            case 'show_settings':
+                assetManager::create()
+                    ->setData('widget', $widget_data)
+                    ->setData('albums', $this->gallery_m->get_albums())
+                    ->renderAdmin('../../templates/album_images_form');
+                break;
+
+            case 'update_settings':
+
+                $this->load->library('Form_validation');
+                $this->form_validation->set_rules('limit', lang('Image limit', 'gallery'), 'trim|required|integer');
+                $this->form_validation->set_rules('album_id', lang('Choose Album', 'gallery'), 'trim|required|integer');
+
+                if ($this->form_validation->run($this) == FALSE) {
+                    showMessage(validation_errors(), false, 'r');
+                    exit;
+                }
+
+                $data = [
+                    'limit' => $this->input->post('limit'),
+                    'album_id' => $this->input->post('album_id'),
+                ];
+
+                $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], $data);
+
+                showMessage(lang('Settings have been saved', 'gallery'));
+                if ($this->input->post('action') == 'tomain') {
+                    pjax('/admin/widgets_manager/index');
+                }
+                break;
+
+            case 'install_defaults':
+                $this->load->module('admin/widgets_manager')->update_config($widget_data['id'], ['limit' => 15]);
+                break;
+        }
+    }
 }
